@@ -9,7 +9,7 @@ import {
   SuccessStatusIcon,
   UncheckedIcon,
   WarningStatusIcon,
-} from '@evoko/components';
+} from './icons/index';
 import { alpha, createTheme } from '@mui/material/styles';
 
 const colors = {
