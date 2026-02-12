@@ -1,0 +1,58 @@
+{
+  "name": "@evoko/styles",
+  "version": "0.1.0",
+  "description": "Shared Biamp Workplace theme and styling utilities built on MUI",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./mui-theme-augmentation": "./mui-theme-augmentation.d.ts"
+  },
+  "files": [
+    "dist",
+    "mui-theme-augmentation.d.ts"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup && tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules .turbo"
+  },
+  "peerDependencies": {
+    "@evoko/components": ">=0.1.0",
+    "@mui/material": ">=7.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@evoko/components": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@evoko/components": "*",
+    "@mui/material": "^7.3.7",
+    "@types/react": "^19.1.0",
+    "react": "^19.1.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evoko/workplace-public-packages.git",
+    "directory": "packages/styles"
+  }
+}
