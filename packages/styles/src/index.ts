@@ -1,1 +1,1 @@
-export { appBarHeight, biampCustomTheme } from './theme';
+export { appBarHeight, biampTheme } from './theme';

@@ -52,15 +52,60 @@ npm install @evoko/styles
 ```tsx
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { biampCustomTheme } from '@evoko/styles';
+import { biampTheme } from '@evoko/styles';
 
-const theme = biampCustomTheme();
+const theme = biampTheme();
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       {/* Your app */}
+    </ThemeProvider>
+  );
+}
+```
+
+### Customizing the Theme
+
+`biampTheme` accepts an optional theme options object that is deep-merged on top of the base Biamp theme, just like overriding any default MUI theme. You can override palette colors, typography, component default props, style overrides, spacing, breakpoints -- anything MUI's `createTheme` supports.
+
+```tsx
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { biampTheme } from '@evoko/styles';
+
+const theme = biampTheme({
+  // Override palette colors
+  palette: {
+    primary: {
+      main: '#ff0000',
+    },
+  },
+  // Override typography
+  typography: {
+    fontFamily: '"Inter", sans-serif',
+  },
+  // Override component defaults and styles
+  components: {
+    MuiButton: {
+      defaultProps: {
+        size: 'small',
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: '8px',
+        },
+      },
+    },
+  },
+});
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {/* Your app with customized theme */}
     </ThemeProvider>
   );
 }
@@ -87,5 +132,5 @@ Or add a triple-slash directive in a project `.d.ts` file:
 
 ### Exports
 
-- `biampCustomTheme(overrideOptions?)` - Creates the Biamp Workplace MUI theme. Accepts optional theme override options.
+- `biampTheme(overrideOptions?)` - Creates the Biamp Workplace MUI theme. Accepts optional theme override options.
 - `appBarHeight` - Standard app bar height constant (64px).

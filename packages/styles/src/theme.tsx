@@ -90,7 +90,7 @@ export const appBarHeight = 64;
 
 const drawerWidth = 300;
 
-export const biampCustomTheme = (
+export const biampTheme = (
   overrideOptions: Parameters<typeof createTheme>[0] = {},
 ) =>
   createTheme(
