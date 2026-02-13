@@ -20,7 +20,7 @@ export function BiampSidebar({
   ...props
 }: BiampSidebarProps) {
   return (
-    <Stack width="48px" height="100%" sx={{ ...sx }} {...props}>
+    <Stack width="48px" height="100%" sx={{ mx: 2.5, ...sx }} {...props}>
       <Stack height="100%">{children}</Stack>
       {bottomLogoIcon ?? (
         <BiampLogoIcon sx={{ width: '48px', height: '15px' }} />
