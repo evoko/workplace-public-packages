@@ -113,7 +113,9 @@ function App() {
 
 ### Theme Augmentation
 
-To get full TypeScript support for the custom palette colors (`biamp`, `blue`, `purple`, `sidebar`, etc.) and component variant overrides, include the augmentation file in your `tsconfig.json`:
+Full TypeScript support for the custom palette colors (`biamp`, `blue`, `purple`, `sidebar`, etc.) and component variant overrides is **automatically included** when you import from `@bwp-web/styles` — no extra configuration needed.
+
+If you need the augmentations without importing the theme (rare), you can reference the file directly in your `tsconfig.json`:
 
 ```json
 {
