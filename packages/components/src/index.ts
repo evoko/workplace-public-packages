@@ -24,3 +24,4 @@ export const WarningStatusIcon: IconComponent = () => null;
 // Components
 export { Header } from './Header';
 export type { HeaderProps } from './Header';
+export { BiampWrapper } from './BiampWrapper';
