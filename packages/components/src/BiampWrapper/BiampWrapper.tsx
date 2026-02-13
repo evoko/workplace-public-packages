@@ -6,15 +6,12 @@ import Box from '@mui/material/Box';
  * with a grey.100 (#F5F5F5) background and responsive padding around the content.
  * Mobile: 16px, Desktop: 20px.
  */
-
-// TODO: Perhaps include a "withHeader" prop to include the header in the wrapper 
 export const BiampWrapper: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <Box
       sx={{
-        height: '100vh',
+        height: '100%',
         padding: { xs: '16px', md: '20px' },
-        backgroundColor: 'grey.900',
         display: 'flex',
         flexDirection: 'column',
       }}
