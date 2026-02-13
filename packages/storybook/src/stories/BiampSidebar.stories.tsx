@@ -44,7 +44,7 @@ export const Default: Story = {
     ];
 
     return (
-      <BiampSidebar>
+      <BiampSidebar sx={{ height: 600 }}>
         {items.map((item, i) => (
           <BiampSidebarIcon
             key={i}
