@@ -40,7 +40,9 @@ export function BiampSidebarIcon({
       disableGutters
       disableRipple
       sx={{
+        minWidth: '48px',
         maxWidth: '48px',
+        minHeight: '48px',
         maxHeight: '48px',
         borderRadius: '8px',
         justifyContent: 'center',

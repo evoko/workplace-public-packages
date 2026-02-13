@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box } from '@mui/material';
+import { Box, Stack, Typography, Divider } from '@mui/material';
 import { BiampSidebar, BiampSidebarIcon } from '@bwp-web/components';
-import { BreadcrumbIcon } from '../../../styles/src/icons/BreadcrumbIcon';
+import HomeIcon from '@mui/icons-material/Home';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import SettingsIcon from '@mui/icons-material/Settings';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import PeopleIcon from '@mui/icons-material/People';
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 
 const meta: Meta<typeof BiampSidebar> = {
   title: 'Components/BiampSidebar',
@@ -20,21 +27,140 @@ const meta: Meta<typeof BiampSidebar> = {
 export default meta;
 type Story = StoryObj<typeof BiampSidebar>;
 
+/**
+ * The default sidebar with selectable navigation icons.
+ * Click any icon to select it. The Biamp logo is automatically rendered at the bottom.
+ */
 export const Default: Story = {
   render: () => {
-    const [selectedIndex, setSelectedIndex] = useState<number | null>(0);
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+    const items = [
+      { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
+      { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
+      { icon: <PeopleOutlinedIcon />, selectedIcon: <PeopleIcon /> },
+      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    ];
 
     return (
       <BiampSidebar>
-        {Array.from({ length: 5 }, (_, i) => (
+        {items.map((item, i) => (
           <BiampSidebarIcon
             key={i}
             selected={selectedIndex === i}
-            icon={<BreadcrumbIcon />}
+            icon={item.icon}
+            selectedIcon={item.selectedIcon}
             onClick={() => setSelectedIndex(i)}
           />
         ))}
       </BiampSidebar>
     );
   },
+};
+
+/**
+ * When `selectedIcon` is provided, the sidebar icon swaps between
+ * the `icon` (unselected) and `selectedIcon` (selected) automatically.
+ * This is useful for showing filled vs outlined icon variants.
+ */
+export const WithSelectedIcons: Story = {
+  name: 'With Selected Icons',
+  render: () => {
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+    return (
+      <Stack direction="row" spacing={4}>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            With selectedIcon
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+            The icon changes from outlined to filled when selected.
+          </Typography>
+          <Box sx={{ height: 400 }}>
+            <BiampSidebar>
+              <BiampSidebarIcon
+                selected={selectedIndex === 0}
+                icon={<HomeOutlinedIcon />}
+                selectedIcon={<HomeIcon />}
+                onClick={() => setSelectedIndex(0)}
+              />
+              <BiampSidebarIcon
+                selected={selectedIndex === 1}
+                icon={<SettingsOutlinedIcon />}
+                selectedIcon={<SettingsIcon />}
+                onClick={() => setSelectedIndex(1)}
+              />
+            </BiampSidebar>
+          </Box>
+        </Box>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            Without selectedIcon
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+            When no selectedIcon is provided, the same icon is used for both
+            states.
+          </Typography>
+          <Box sx={{ height: 400 }}>
+            <BiampSidebar>
+              <BiampSidebarIcon
+                selected={selectedIndex === 0}
+                icon={<HomeIcon />}
+                onClick={() => setSelectedIndex(0)}
+              />
+              <BiampSidebarIcon
+                selected={selectedIndex === 1}
+                icon={<SettingsIcon />}
+                onClick={() => setSelectedIndex(1)}
+              />
+            </BiampSidebar>
+          </Box>
+        </Box>
+      </Stack>
+    );
+  },
+};
+
+/**
+ * Individual `BiampSidebarIcon` states shown side by side.
+ * Each icon is a `ListItemButton` under the hood, so it supports
+ * `selected`, `disabled`, and `onClick` props.
+ */
+export const IconStates: Story = {
+  name: 'Icon States',
+  render: () => (
+    <Stack spacing={3}>
+      <Typography variant="h3">BiampSidebarIcon States</Typography>
+      <Stack direction="row" spacing={3} alignItems="flex-start">
+        <Stack alignItems="center" spacing={1}>
+          <BiampSidebarIcon icon={<HomeOutlinedIcon />} />
+          <Typography variant="caption">Default</Typography>
+        </Stack>
+        <Stack alignItems="center" spacing={1}>
+          <BiampSidebarIcon selected icon={<HomeOutlinedIcon />} />
+          <Typography variant="caption">Selected</Typography>
+        </Stack>
+        <Stack alignItems="center" spacing={1}>
+          <BiampSidebarIcon
+            selected
+            icon={<HomeOutlinedIcon />}
+            selectedIcon={<HomeIcon />}
+          />
+          <Typography variant="caption">Selected (with selectedIcon)</Typography>
+        </Stack>
+        <Stack alignItems="center" spacing={1}>
+          <BiampSidebarIcon icon={<HomeOutlinedIcon />} disabled />
+          <Typography variant="caption">Disabled</Typography>
+        </Stack>
+      </Stack>
+      <Divider />
+      <Typography variant="h3">Extends ListItemButton</Typography>
+      <Typography variant="body2" sx={{ maxWidth: 500 }}>
+        BiampSidebarIcon extends MUI's ListItemButtonProps, so you can pass
+        any prop that ListItemButton accepts, such as <code>disabled</code>,{' '}
+        <code>onClick</code>, <code>sx</code>, and more.
+      </Typography>
+    </Stack>
+  ),
 };
