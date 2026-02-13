@@ -10,6 +10,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 const meta: Meta<typeof BiampSidebar> = {
   title: 'Components/BiampSidebar',
@@ -54,6 +55,78 @@ export const Default: Story = {
           />
         ))}
       </BiampSidebar>
+    );
+  },
+};
+
+/**
+ * Pass a custom `logo` prop to replace the default Biamp logo at the
+ * bottom of the sidebar. When omitted, the Biamp logo is rendered automatically.
+ */
+export const CustomLogo: Story = {
+  name: 'Custom Logo',
+  render: () => {
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+    const items = [
+      { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
+      { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
+      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    ];
+
+    return (
+      <Stack direction="row" spacing={4}>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            Default logo
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+            The Biamp logo is rendered at the bottom when no{' '}
+            <code>bottomLogoIcon</code> prop is provided.
+          </Typography>
+          <Box sx={{ height: 400 }}>
+            <BiampSidebar>
+              {items.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampSidebar>
+          </Box>
+        </Box>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            Custom logo
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+            Any JSX element can be passed as the{' '}
+            <code>bottomLogoIcon</code> prop to replace the default Biamp logo.
+          </Typography>
+          <Box sx={{ height: 400 }}>
+            <BiampSidebar
+              bottomLogoIcon={
+                <ApartmentIcon
+                  sx={{ width: '48px', height: '24px', alignSelf: 'center' }}
+                />
+              }
+            >
+              {items.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampSidebar>
+          </Box>
+        </Box>
+      </Stack>
     );
   },
 };

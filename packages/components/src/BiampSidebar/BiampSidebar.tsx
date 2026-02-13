@@ -9,13 +9,21 @@ import { JSX } from 'react';
 
 type BiampSidebarProps = StackProps & {
   children: React.ReactNode;
+  bottomLogoIcon?: JSX.Element;
 };
 
-export function BiampSidebar({ children, sx, ...props }: BiampSidebarProps) {
+export function BiampSidebar({
+  children,
+  bottomLogoIcon,
+  sx,
+  ...props
+}: BiampSidebarProps) {
   return (
     <Stack width="48px" height="100%" sx={{ ...sx }} {...props}>
       <Stack height="100%">{children}</Stack>
-      <BiampLogoIcon sx={{ width: '48px', height: '15px' }} />
+      {bottomLogoIcon ?? (
+        <BiampLogoIcon sx={{ width: '48px', height: '15px' }} />
+      )}
     </Stack>
   );
 }

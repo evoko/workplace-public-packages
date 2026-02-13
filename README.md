@@ -157,11 +157,12 @@ A fixed-width (48px) vertical sidebar that renders its children as navigation it
 
 #### Props
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `children` | `React.ReactNode` | Sidebar content — typically a list of `BiampSidebarIcon` components |
-| `sx` | `SxProps` | MUI system styles passed to the root `Stack` |
-| _...rest_ | `StackProps` | All other MUI `Stack` props are forwarded |
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | _(required)_ | Sidebar content — typically a list of `BiampSidebarIcon` components |
+| `bottomLogoIcon` | `JSX.Element` | `<BiampLogoIcon />` | Optional custom element rendered at the bottom of the sidebar. Defaults to the Biamp logo |
+| `sx` | `SxProps` | — | MUI system styles passed to the root `Stack` |
+| _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
 
 #### Basic Usage
 
@@ -189,6 +190,24 @@ function AppShell() {
         selectedIcon={<SettingsIcon />}
         onClick={() => setSelected(1)}
       />
+    </BiampSidebar>
+  );
+}
+```
+
+#### Custom Logo
+
+By default the Biamp logo is rendered at the bottom of the sidebar. Pass the `bottomLogoIcon` prop to replace it with any element:
+
+```tsx
+import { BiampSidebar, BiampSidebarIcon } from '@bwp-web/components';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import HomeIcon from '@mui/icons-material/Home';
+
+function AppShell() {
+  return (
+    <BiampSidebar bottomLogoIcon={<ApartmentIcon sx={{ width: 48, height: 24 }} />}>
+      <BiampSidebarIcon selected icon={<HomeIcon />} />
     </BiampSidebar>
   );
 }
