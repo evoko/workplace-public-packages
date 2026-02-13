@@ -24,7 +24,9 @@ export function BiampWrapper({
 }: BiampWrapperProps) {
   const theme = useTheme();
   const defaultBg =
-    theme.palette.mode === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100];
+    theme.palette.mode === 'dark'
+      ? theme.palette.grey[900]
+      : theme.palette.grey[100];
 
   return (
     <Box
@@ -43,7 +45,7 @@ export function BiampWrapper({
           borderRadius: '8px',
           overflow: 'auto',
           backgroundColor: 'background.default',
-          flexGrow: 1,
+          height: '100%',
         }}
       >
         {children}
