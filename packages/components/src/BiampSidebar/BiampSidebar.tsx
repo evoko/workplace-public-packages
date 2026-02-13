@@ -1,4 +1,5 @@
 import {
+  Box,
   ListItemButton,
   ListItemButtonProps,
   Stack,
@@ -24,6 +25,22 @@ export function BiampSidebar({
       {bottomLogoIcon ?? (
         <BiampLogoIcon sx={{ width: '48px', height: '15px' }} />
       )}
+    </Stack>
+  );
+}
+
+type BiampSidebarIconList = StackProps & {
+  children: React.ReactNode;
+};
+
+export function BiampSidebarIconList({
+  children,
+  sx,
+  ...props
+}: BiampSidebarIconList) {
+  return (
+    <Stack height="100%" sx={{ gap: '4px', ...sx }} {...props}>
+      {children}
     </Stack>
   );
 }
@@ -61,5 +78,34 @@ export function BiampSidebarIcon({
     >
       {selected ? displayedSelectedIcon : icon}
     </ListItemButton>
+  );
+}
+
+type BiampSidebarComponentProps = ListItemButtonProps & {
+  children: React.ReactNode;
+};
+
+export function BiampSidebarComponent({
+  children,
+  sx,
+  ...props
+}: BiampSidebarComponentProps) {
+  return (
+    <Box
+      sx={{
+        minWidth: '48px',
+        maxWidth: '48px',
+        minHeight: '48px',
+        maxHeight: '48px',
+        borderRadius: '8px',
+        overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...sx,
+      }}
+      {...props}
+    >
+      {children}
+    </Box>
   );
 }

@@ -213,6 +213,51 @@ function AppShell() {
 }
 ```
 
+### `BiampSidebarIconList`
+
+A vertical list container that arranges `BiampSidebarIcon` (and `BiampSidebarComponent`) children with standardised 4px gaps. Use it inside `BiampSidebar` to keep consistent spacing between sidebar items. Extends MUI `StackProps`.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | _(required)_ | List items — typically `BiampSidebarIcon` or `BiampSidebarComponent` elements |
+| `sx` | `SxProps` | — | MUI system styles passed to the root `Stack` |
+| _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
+
+#### Usage
+
+```tsx
+import { BiampSidebar, BiampSidebarIconList, BiampSidebarIcon } from '@bwp-web/components';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import HomeIcon from '@mui/icons-material/Home';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import SettingsIcon from '@mui/icons-material/Settings';
+
+function AppShell() {
+  const [selected, setSelected] = useState(0);
+
+  return (
+    <BiampSidebar>
+      <BiampSidebarIconList>
+        <BiampSidebarIcon
+          selected={selected === 0}
+          icon={<HomeOutlinedIcon />}
+          selectedIcon={<HomeIcon />}
+          onClick={() => setSelected(0)}
+        />
+        <BiampSidebarIcon
+          selected={selected === 1}
+          icon={<SettingsOutlinedIcon />}
+          selectedIcon={<SettingsIcon />}
+          onClick={() => setSelected(1)}
+        />
+      </BiampSidebarIconList>
+    </BiampSidebar>
+  );
+}
+```
+
 ### `BiampSidebarIcon`
 
 A 48×48px icon button designed for use inside `BiampSidebar`. Supports an optional `selectedIcon` that is shown when the icon is selected, which is useful for swapping between outlined and filled icon variants. Extends MUI `ListItemButtonProps`.
@@ -248,10 +293,59 @@ When `selectedIcon` is provided, the component automatically swaps between the t
 />
 ```
 
+### `BiampSidebarComponent`
+
+A 48×48px rounded box that matches the dimensions and shape of `BiampSidebarIcon`, but renders a plain `Box` instead of a button. Use it to place arbitrary content (avatars, status indicators, custom widgets, etc.) in the sidebar alongside icon buttons while maintaining a consistent visual rhythm. Extends MUI `ListItemButtonProps`.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | _(required)_ | Content to render inside the box |
+| `sx` | `SxProps` | — | MUI system styles passed to the underlying `Box` |
+| _...rest_ | `ListItemButtonProps` | — | Additional props forwarded to the `Box` |
+
+#### Usage
+
+```tsx
+import {
+  BiampSidebar,
+  BiampSidebarIconList,
+  BiampSidebarIcon,
+  BiampSidebarComponent,
+} from '@bwp-web/components';
+import HomeIcon from '@mui/icons-material/Home';
+import { Typography } from '@mui/material';
+
+function AppShell() {
+  return (
+    <BiampSidebar>
+      <BiampSidebarIconList>
+        <BiampSidebarComponent
+          sx={{
+            bgcolor: 'primary.main',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Typography variant="caption" sx={{ color: 'primary.contrastText' }}>
+            AV
+          </Typography>
+        </BiampSidebarComponent>
+        <BiampSidebarIcon selected icon={<HomeIcon />} />
+      </BiampSidebarIconList>
+    </BiampSidebar>
+  );
+}
+```
+
 ### Exports
 
 - `BiampSidebar` — Vertical sidebar container with Biamp logo.
+- `BiampSidebarIconList` — Vertical list with 4px gaps for sidebar items.
 - `BiampSidebarIcon` — Selectable icon button for sidebar navigation.
+- `BiampSidebarComponent` — 48×48px rounded box for arbitrary sidebar content.
 
 ## Storybook
 

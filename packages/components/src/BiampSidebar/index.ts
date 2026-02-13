@@ -1,1 +1,6 @@
-export { BiampSidebar, BiampSidebarIcon } from './BiampSidebar';
+export {
+  BiampSidebar,
+  BiampSidebarIcon,
+  BiampSidebarIconList,
+  BiampSidebarComponent,
+} from './BiampSidebar';

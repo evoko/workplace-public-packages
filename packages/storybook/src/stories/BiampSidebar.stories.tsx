@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Box, Stack, Typography, Divider } from '@mui/material';
-import { BiampSidebar, BiampSidebarIcon } from '@bwp-web/components';
+import {
+  BiampSidebar,
+  BiampSidebarIcon,
+  BiampSidebarIconList,
+  BiampSidebarComponent,
+} from '@bwp-web/components';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -236,4 +241,150 @@ export const IconStates: Story = {
       </Typography>
     </Stack>
   ),
+};
+
+/**
+ * `BiampSidebarIconList` provides a standardised vertical list layout for
+ * `BiampSidebarIcon` items with consistent 4px gaps between each icon.
+ * Use it inside `BiampSidebar` to get properly-spaced icon groups.
+ */
+export const WithIconList: Story = {
+  name: 'With Icon List',
+  render: () => {
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+    const items = [
+      { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
+      { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
+      { icon: <PeopleOutlinedIcon />, selectedIcon: <PeopleIcon /> },
+      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    ];
+
+    return (
+      <Stack direction="row" spacing={4}>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            With BiampSidebarIconList
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+            Icons are wrapped in <code>BiampSidebarIconList</code> which adds
+            standardised 4px gaps between each item.
+          </Typography>
+          <Box sx={{ height: 400 }}>
+            <BiampSidebar>
+              <BiampSidebarIconList>
+                {items.map((item, i) => (
+                  <BiampSidebarIcon
+                    key={i}
+                    selected={selectedIndex === i}
+                    icon={item.icon}
+                    selectedIcon={item.selectedIcon}
+                    onClick={() => setSelectedIndex(i)}
+                  />
+                ))}
+              </BiampSidebarIconList>
+            </BiampSidebar>
+          </Box>
+        </Box>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            Without BiampSidebarIconList
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+            Without the list wrapper, icons stack with no gap between them.
+          </Typography>
+          <Box sx={{ height: 400 }}>
+            <BiampSidebar>
+              {items.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampSidebar>
+          </Box>
+        </Box>
+      </Stack>
+    );
+  },
+};
+
+/**
+ * `BiampSidebarComponent` renders a 48×48px rounded box that matches the
+ * dimensions and shape of `BiampSidebarIcon`. Use it to place arbitrary
+ * content (avatars, status indicators, custom widgets, etc.) in the sidebar
+ * alongside icon buttons while maintaining a consistent visual rhythm.
+ */
+export const WithSidebarComponent: Story = {
+  name: 'With Sidebar Component',
+  render: () => {
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+    const items = [
+      { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
+      { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
+      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    ];
+
+    return (
+      <Stack spacing={3}>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            BiampSidebarComponent
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
+            Use <code>BiampSidebarComponent</code> to embed arbitrary content
+            in the sidebar. It provides the same 48×48px rounded-box
+            dimensions as <code>BiampSidebarIcon</code>, but renders a plain{' '}
+            <code>Box</code> instead of a button.
+          </Typography>
+        </Box>
+        <Box sx={{ height: 500 }}>
+          <BiampSidebar>
+            <BiampSidebarIconList>
+              <BiampSidebarComponent
+                sx={{
+                  bgcolor: 'primary.main',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography
+                  variant="caption"
+                  sx={{ color: 'primary.contrastText', fontWeight: 'bold' }}
+                >
+                  AV
+                </Typography>
+              </BiampSidebarComponent>
+              {items.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+              <BiampSidebarComponent
+                sx={{
+                  bgcolor: 'grey.300',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
+                  42
+                </Typography>
+              </BiampSidebarComponent>
+            </BiampSidebarIconList>
+          </BiampSidebar>
+        </Box>
+      </Stack>
+    );
+  },
 };
