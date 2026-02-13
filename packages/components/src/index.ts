@@ -20,3 +20,7 @@ export const InputCloseIcon: IconComponent = () => null;
 export const SuccessStatusIcon: IconComponent = () => null;
 export const UncheckedIcon: IconComponent = () => null;
 export const WarningStatusIcon: IconComponent = () => null;
+
+// Components
+export { Header } from './Header';
+export type { HeaderProps } from './Header';

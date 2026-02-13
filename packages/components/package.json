@@ -17,6 +17,7 @@
     "react-dom": ">=18.0.0"
   },
   "devDependencies": {
+    "@mui/material": "^7.3.7",
     "@types/react": "^19.1.0",
     "typescript": "^5.9.2"
   },
