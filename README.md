@@ -6,8 +6,8 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 
 | Package | Description | Status |
 |---------|-------------|--------|
-| [`@evoko/styles`](./packages/styles) | Shared MUI theme and styling utilities | Active |
-| [`@evoko/components`](./packages/components) | Shared React components | Placeholder |
+| [`@workplace/styles`](./packages/styles) | Shared MUI theme and styling utilities | Active |
+| [`@workplace/components`](./packages/components) | Shared React components | Placeholder |
 
 ## Getting Started
 
@@ -32,12 +32,12 @@ npx turbo run build
 cd packages/styles && npm run build
 ```
 
-## Using `@evoko/styles`
+## Using `@workplace/styles`
 
 ### Installation
 
 ```bash
-npm install @evoko/styles
+npm install @workplace/styles
 ```
 
 ### Peer Dependencies
@@ -45,14 +45,14 @@ npm install @evoko/styles
 - `@mui/material` >= 7.0.0
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
-- `@evoko/components` >= 0.1.0 (optional)
+- `@workplace/components` >= 0.1.0 (optional)
 
 ### Usage
 
 ```tsx
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { biampTheme } from '@evoko/styles';
+import { biampTheme } from '@workplace/styles';
 
 const theme = biampTheme();
 
@@ -73,7 +73,7 @@ function App() {
 ```tsx
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { biampTheme } from '@evoko/styles';
+import { biampTheme } from '@workplace/styles';
 
 const theme = biampTheme({
   // Override palette colors
@@ -119,7 +119,7 @@ To get full TypeScript support for the custom palette colors (`biamp`, `blue`, `
 {
   "include": [
     "src",
-    "node_modules/@evoko/styles/mui-theme-augmentation.d.ts"
+    "node_modules/@workplace/styles/mui-theme-augmentation.d.ts"
   ]
 }
 ```
@@ -127,7 +127,7 @@ To get full TypeScript support for the custom palette colors (`biamp`, `blue`, `
 Or add a triple-slash directive in a project `.d.ts` file:
 
 ```ts
-/// <reference types="@evoko/styles/mui-theme-augmentation" />
+/// <reference types="@workplace/styles/mui-theme-augmentation" />
 ```
 
 ### Exports

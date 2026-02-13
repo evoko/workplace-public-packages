@@ -1,5 +1,5 @@
 {
-  "name": "@evoko/styles",
+  "name": "@workplace/styles",
   "version": "0.1.0",
   "description": "Shared Biamp Workplace theme and styling utilities built on MUI",
   "type": "module",
@@ -31,18 +31,18 @@
     "clean": "rm -rf dist node_modules .turbo"
   },
   "peerDependencies": {
-    "@evoko/components": ">=0.1.0",
+    "@workplace/components": ">=0.1.0",
     "@mui/material": ">=7.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
   "peerDependenciesMeta": {
-    "@evoko/components": {
+    "@workplace/components": {
       "optional": true
     }
   },
   "devDependencies": {
-    "@evoko/components": "*",
+    "@workplace/components": "*",
     "@mui/material": "^7.3.7",
     "@types/react": "^19.1.0",
     "react": "^19.1.0",

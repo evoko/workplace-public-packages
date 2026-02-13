@@ -1,5 +1,5 @@
 {
-  "name": "@evoko/components",
+  "name": "@workplace/components",
   "version": "0.1.0",
   "description": "Shared Biamp Workplace React components",
   "type": "module",
