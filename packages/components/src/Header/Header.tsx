@@ -43,9 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
         {!title && <Box sx={{ flexGrow: 1 }} />}
 
         {endContent && (
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            {endContent}
-          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>{endContent}</Box>
         )}
       </Toolbar>
     </AppBar>

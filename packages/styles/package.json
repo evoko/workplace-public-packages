@@ -27,7 +27,8 @@
   "scripts": {
     "build": "tsup && tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
-    "lint": "tsc --noEmit",
+    "lint": "eslint",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
     "clean": "rm -rf dist node_modules .turbo"
   },
   "peerDependencies": {
@@ -43,8 +44,11 @@
   },
   "devDependencies": {
     "@bwp-web/components": "*",
+    "@bwp-web/eslint-config": "*",
     "@mui/material": "^7.3.7",
     "@types/react": "^19.1.0",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.1",
     "react": "^19.1.0",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2"

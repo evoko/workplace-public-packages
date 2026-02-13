@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint",
+    "format": "prettier --check . --ignore-path ../../.gitignore"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -19,9 +22,12 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@bwp-web/eslint-config": "*",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.5.2",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.1",
     "typescript": "^5.9.2",
     "vite": "^6.3.5"
   }
