@@ -6,6 +6,6 @@ export default defineConfig({
   dts: false, // We use tsc for declarations (see build script)
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', '@mui/material', '@workplace/components'],
+  external: ['react', 'react-dom', '@mui/material', '@bwp/components'],
   jsx: 'automatic',
 });

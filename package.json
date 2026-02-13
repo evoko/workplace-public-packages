@@ -6,7 +6,7 @@
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",
-    "dev": "npm run dev --workspace=@workplace/demo",
+    "dev": "npm run dev --workspace=@bwp/demo",
     "clean": "turbo run clean && rm -rf node_modules .turbo"
   },
   "devDependencies": {

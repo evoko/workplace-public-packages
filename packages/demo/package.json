@@ -1,5 +1,5 @@
 {
-  "name": "@workplace/demo",
+  "name": "@bwp/demo",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -13,8 +13,8 @@
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.3.7",
     "@mui/icons-material": "^7.3.7",
-    "@workplace/components": "*",
-    "@workplace/styles": "*",
+    "@bwp/components": "*",
+    "@bwp/styles": "*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
