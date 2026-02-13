@@ -1,0 +1,1 @@
+export { BiampSidebar } from './BiampSidebar';
