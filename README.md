@@ -7,7 +7,7 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 | Package | Description | Status |
 |---------|-------------|--------|
 | [`@bwp-web/styles`](./packages/styles) | Shared MUI theme and styling utilities | Active |
-| [`@bwp-web/components`](./packages/components) | Shared React components | Placeholder |
+| [`@bwp-web/components`](./packages/components) | Shared React components | Active |
 
 ## Getting Started
 
@@ -137,6 +137,29 @@ Or add a triple-slash directive in a project `.d.ts` file:
 - `biampTheme(overrideOptions?)` - Creates the Biamp Workplace MUI theme. Accepts optional theme override options.
 - `appBarHeight` - Standard app bar height constant (64px).
 
+## Using `@bwp-web/components`
+
+### Installation
+
+```bash
+npm install @bwp-web/components
+```
+
+### Peer Dependencies
+
+- `@mui/material` >= 7.0.0
+- `react` >= 18.0.0
+- `react-dom` >= 18.0.0
+
+### Component Documentation
+
+| Component | Description | Docs |
+|-----------|-------------|------|
+| `BiampSidebar` | Fixed-width vertical sidebar with Biamp logo | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
+| `BiampSidebarIconList` | Vertical list with 4px gaps for sidebar items | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
+| `BiampSidebarIcon` | Selectable 48×48px icon button for sidebar navigation | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
+| `BiampSidebarComponent` | 48×48px rounded box for arbitrary sidebar content | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
+
 ## Storybook
 
 A Storybook is included in this repo so you can browse and interact with every themed component, color, and typography variant without writing any code.
@@ -157,6 +180,6 @@ This starts Storybook at [http://localhost:6006](http://localhost:6006).
 |---------|-----------------|
 | **Styles / Colors** | Full color palette — primary, secondary, status colors, brand colors, grey scale, text, backgrounds, dividers, and action states |
 | **Styles / Typography** | Every typography variant with font family, size, and weight |
-| **Components** | Interactive demos of Button, IconButton, Checkbox, Switch, TextField, Autocomplete, Dialog, Tabs, Alert, and more |
+| **Components** | Interactive demos of BiampSidebar, BiampSidebarIcon, Button, IconButton, Checkbox, Switch, TextField, Autocomplete, Dialog, Tabs, Alert, and more |
 
 Use the **Color Mode** toggle in the Storybook toolbar to switch between light and dark themes and see how each component and color adapts.
