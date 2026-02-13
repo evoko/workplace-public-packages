@@ -18,7 +18,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { biampTheme } from '@bwp-web/styles';
-import { Header } from '@bwp-web/components';
+import { Header, BiampWrapper } from '@bwp-web/components';
 
 export const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -32,7 +32,7 @@ export const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
+      <BiampWrapper>
         {/* Demo Header */}
         <Header
           title="Workplace"
@@ -54,7 +54,8 @@ export const App: React.FC = () => {
         />
 
         {/* Demo Content */}
-        <Container maxWidth="md" sx={{ py: 4 }}>
+        
+          <Container maxWidth="md" sx={{ py: 4 }}>
           <Paper sx={{ p: 3, mb: 3 }}>
             <Typography variant="h4" gutterBottom>
               Component Demo
@@ -153,7 +154,7 @@ export const App: React.FC = () => {
             </Paper>
           </Stack>
         </Container>
-      </Box>
+        </BiampWrapper>
     </ThemeProvider>
   );
 };
