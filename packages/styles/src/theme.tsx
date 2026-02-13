@@ -1278,7 +1278,7 @@ export const biampTheme = (
           },
         },
         // MUI X DatePicker components
-        // @ts-ignore - MUI X DatePicker component types may not be available
+        // @ts-expect-error - MUI X DatePicker component types may not be available
         MuiDatePicker: {
           defaultProps: {
             slots: {
