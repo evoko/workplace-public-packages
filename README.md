@@ -136,3 +136,27 @@ Or add a triple-slash directive in a project `.d.ts` file:
 
 - `biampTheme(overrideOptions?)` - Creates the Biamp Workplace MUI theme. Accepts optional theme override options.
 - `appBarHeight` - Standard app bar height constant (64px).
+
+## Storybook
+
+A Storybook is included in this repo so you can browse and interact with every themed component, color, and typography variant without writing any code.
+
+### Running Storybook
+
+From the repo root:
+
+```bash
+npm run storybook
+```
+
+This starts Storybook at [http://localhost:6006](http://localhost:6006).
+
+### What's Inside
+
+| Section | What you'll find |
+|---------|-----------------|
+| **Styles / Colors** | Full color palette — primary, secondary, status colors, brand colors, grey scale, text, backgrounds, dividers, and action states |
+| **Styles / Typography** | Every typography variant with font family, size, and weight |
+| **Components** | Interactive demos of Button, IconButton, Checkbox, Switch, TextField, Autocomplete, Dialog, Tabs, Alert, and more |
+
+Use the **Color Mode** toggle in the Storybook toolbar to switch between light and dark themes and see how each component and color adapts.
