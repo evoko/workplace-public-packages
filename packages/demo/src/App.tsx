@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {
   ThemeProvider,
   CssBaseline,
-  Box,
   Container,
   Typography,
   IconButton,
@@ -54,8 +53,8 @@ export const App: React.FC = () => {
         />
 
         {/* Demo Content */}
-        
-          <Container maxWidth="md" sx={{ py: 4 }}>
+
+        <Container maxWidth="md" sx={{ py: 4 }}>
           <Paper sx={{ p: 3, mb: 3 }}>
             <Typography variant="h4" gutterBottom>
               Component Demo
@@ -154,7 +153,7 @@ export const App: React.FC = () => {
             </Paper>
           </Stack>
         </Container>
-        </BiampWrapper>
+      </BiampWrapper>
     </ThemeProvider>
   );
 };

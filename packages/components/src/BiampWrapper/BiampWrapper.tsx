@@ -6,7 +6,9 @@ import Box from '@mui/material/Box';
  * with a grey.100 (#F5F5F5) background and responsive padding around the content.
  * Mobile: 16px, Desktop: 20px.
  */
-export const BiampWrapper: React.FC<React.PropsWithChildren> = ({ children }) => {
+export const BiampWrapper: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
   return (
     <Box
       sx={{
