@@ -1,1 +1,1 @@
-export { BiampSidebar } from './BiampSidebar';
+export { BiampSidebar, BiampSidebarIcon } from './BiampSidebar';

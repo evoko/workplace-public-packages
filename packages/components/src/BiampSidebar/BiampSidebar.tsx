@@ -1,11 +1,55 @@
-import { Stack } from '@mui/material';
+import {
+  ListItemButton,
+  ListItemButtonProps,
+  Stack,
+  StackProps,
+} from '@mui/material';
 import { BiampLogoIcon } from '../icons';
+import { JSX } from 'react';
 
-export function BiampSidebar() {
+type BiampSidebarProps = StackProps & {
+  children: React.ReactNode;
+};
+
+export function BiampSidebar({ children, sx, ...props }: BiampSidebarProps) {
   return (
-    <Stack width="48px" height="100%" sx={{ backgroundColor: 'red' }}>
-      <Stack height="100%"></Stack>
+    <Stack width="48px" height="100%" sx={{ ...sx }} {...props}>
+      <Stack height="100%">{children}</Stack>
       <BiampLogoIcon sx={{ width: '48px', height: '15px' }} />
     </Stack>
+  );
+}
+
+type BiampSidebarIconProps = ListItemButtonProps & {
+  selected?: boolean;
+  icon: JSX.Element;
+  selectedIcon?: JSX.Element;
+};
+
+export function BiampSidebarIcon({
+  selected,
+  icon,
+  selectedIcon,
+  sx,
+  ...props
+}: BiampSidebarIconProps) {
+  const displayedSelectedIcon = selectedIcon ?? icon;
+  return (
+    <ListItemButton
+      selected={selected}
+      disableGutters
+      disableRipple
+      sx={{
+        maxWidth: '48px',
+        maxHeight: '48px',
+        borderRadius: '8px',
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...sx,
+      }}
+      {...props}
+    >
+      {selected ? displayedSelectedIcon : icon}
+    </ListItemButton>
   );
 }
