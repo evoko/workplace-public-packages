@@ -1,5 +1,5 @@
 {
-  "name": "@bwp/components",
+  "name": "@bwp-web/components",
   "version": "0.1.0",
   "description": "Shared Biamp Workplace React components",
   "type": "module",

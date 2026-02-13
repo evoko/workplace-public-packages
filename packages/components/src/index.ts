@@ -1,4 +1,4 @@
-// Stub icon components used by @bwp/styles theme.
+// Stub icon components used by @bwp-web/styles theme.
 // These will be replaced with real implementations when the components package is built out.
 
 import type { FC } from 'react';

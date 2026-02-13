@@ -17,8 +17,8 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { biampTheme } from '@bwp/styles';
-import { Header } from '@bwp/components';
+import { biampTheme } from '@bwp-web/styles';
+import { Header } from '@bwp-web/components';
 
 export const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
