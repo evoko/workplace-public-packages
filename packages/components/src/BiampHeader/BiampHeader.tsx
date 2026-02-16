@@ -1,6 +1,9 @@
 import {
+  alpha,
   Box,
   BoxProps,
+  Grid,
+  GridProps,
   InputAdornment,
   ListItemButtonProps,
   Stack,
@@ -185,6 +188,96 @@ export function BiampHeaderButton({
     />
   );
 }
+
+type BiampAppDialogProps = GridProps & {
+  children: React.ReactNode;
+};
+
+export function BiampAppDialog({
+  children,
+  sx,
+  ...props
+}: BiampAppDialogProps) {
+  return (
+    <Grid
+      container
+      columns={3}
+      spacing={2}
+      rowSpacing={1.5}
+      columnSpacing={1.5}
+      sx={{
+        overflow: 'auto',
+        width: '284px',
+        borderRadius: '16px',
+        backgroundColor: 'white',
+        boxShadow: (theme) =>
+          `0px 4px 24px 0px ${alpha(theme.palette.common.black, 0.15)}`,
+        ...sx,
+      }}
+      {...props}
+    >
+      {children}
+    </Grid>
+  );
+}
+
+type BiampAppDialogItemProps = GridProps & {
+  icon: JSX.Element;
+  name: string;
+};
+
+export function BiampAppDialogItem({
+  icon,
+  name,
+  sx,
+  ...props
+}: BiampAppDialogItemProps) {
+  return (
+    <Grid
+      size={1}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '8px',
+        ...sx,
+      }}
+      {...props}
+    >
+      <Box
+        sx={{
+          width: '54px',
+          height: '54px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          '& .MuiSvgIcon-root': {
+            width: '54px',
+            height: '54px',
+            fontSize: '54px',
+          },
+        }}
+      >
+        {icon}
+      </Box>
+      <Typography
+        variant="caption"
+        sx={{
+          textAlign: 'center',
+          lineHeight: 1.2,
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
+          maxWidth: '100%',
+        }}
+      >
+        {name}
+      </Typography>
+    </Grid>
+  );
+}
+
 
 type BiampHeaderProfileProps = BoxProps & {
   icon: JSX.Element;

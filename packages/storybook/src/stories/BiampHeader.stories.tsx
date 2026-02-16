@@ -14,6 +14,9 @@ import {
   BiampHeaderButtonList,
   BiampHeaderButton,
   BiampHeaderProfile,
+  BiampAppIcon,
+  BiampAppDialog,
+  BiampAppDialogItem,
   AppsIcon,
   AppsIconFilled,
 } from '@bwp-web/components';
@@ -28,6 +31,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import BusinessIcon from '@mui/icons-material/Business';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
+import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
+import DevicesIcon from '@mui/icons-material/Devices';
 
 const meta: Meta<typeof BiampHeader> = {
   title: 'Components/BiampHeader',
@@ -320,6 +329,80 @@ export const WithBorder: Story = {
           />
         </BiampHeaderActions>
       </BiampHeader>
+    );
+  },
+};
+
+/**
+ * A standalone BiampAppIcon — a 76×89 clickable tile with a 54×54 icon
+ * and a text label underneath, separated by an 8px gap.
+ */
+export const AppIcon: Story = {
+  name: 'App Icon',
+  render: () => (
+    <Stack spacing={4}>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          BiampAppIcon
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
+          A 76×89px clickable tile with a 54×54px icon and a caption label
+          below, separated by an 8px gap. Useful as a launcher-style button.
+        </Typography>
+        <Stack direction="row" spacing={1}>
+          <BiampAppIcon icon={<DashboardIcon />} label="Dashboard" />
+          <BiampAppIcon icon={<SettingsOutlinedIcon />} label="Settings" />
+          <BiampAppIcon icon={<CalendarMonthIcon />} label="Calendar" />
+          <BiampAppIcon icon={<BarChartIcon />} label="Analytics" />
+          <BiampAppIcon icon={<ChatBubbleOutlineIcon />} label="Messages" />
+          <BiampAppIcon icon={<FolderOpenIcon />} label="Files" />
+        </Stack>
+      </Box>
+    </Stack>
+  ),
+};
+
+/**
+ * A grid of BiampAppDialogItems inside BiampAppDialog, simulating
+ * an app-launcher popover with 9 sample applications.
+ */
+export const AppDialog: Story = {
+  name: 'App Dialog',
+  render: () => {
+    const apps = [
+      { icon: <DashboardIcon />, name: 'Dashboard' },
+      { icon: <CalendarMonthIcon />, name: 'Calendar' },
+      { icon: <BarChartIcon />, name: 'Analytics' },
+      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
+      { icon: <FolderOpenIcon />, name: 'Files' },
+      { icon: <MapOutlinedIcon />, name: 'Maps' },
+      { icon: <DevicesIcon />, name: 'Devices' },
+      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
+      { icon: <BusinessIcon />, name: 'Buildings' },
+    ];
+
+    return (
+      <Stack spacing={4}>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            BiampAppDialog
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
+            A 3-column grid of <code>BiampAppDialogItem</code> tiles inside a
+            rounded, shadowed container. Each item uses
+            <code> BiampAppIcon</code> internally to render a 76×89px tile.
+          </Typography>
+          <BiampAppDialog sx={{ p: 2 }}>
+            {apps.map((app, i) => (
+              <BiampAppDialogItem
+                key={i}
+                icon={app.icon}
+                name={app.name}
+              />
+            ))}
+          </BiampAppDialog>
+        </Box>
+      </Stack>
     );
   },
 };

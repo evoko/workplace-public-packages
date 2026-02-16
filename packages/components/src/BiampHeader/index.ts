@@ -6,4 +6,6 @@ export {
   BiampHeaderButtonList,
   BiampHeaderButton,
   BiampHeaderProfile,
+  BiampAppDialog,
+  BiampAppDialogItem,
 } from './BiampHeader';
