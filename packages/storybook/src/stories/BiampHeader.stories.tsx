@@ -4,8 +4,6 @@ import {
   Box,
   Stack,
   Typography,
-  TextField,
-  InputAdornment,
   IconButton,
   Divider,
 } from '@mui/material';
@@ -17,7 +15,6 @@ import {
   BiampHeaderButtonList,
   BiampHeaderProfile,
 } from '@bwp-web/components';
-import SearchIcon from '@mui/icons-material/Search';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
@@ -54,22 +51,7 @@ export const Default: Story = {
         icon={<DashboardIcon sx={{ width: 24, height: 24 }} />}
         title="Dashboard"
       />
-      <BiampHeaderSearch sx={{ flexGrow: 1 }}>
-        <TextField
-          size="small"
-          placeholder="Search…"
-          fullWidth
-          slotProps={{
-            input: {
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            },
-          }}
-        />
-      </BiampHeaderSearch>
+      <BiampHeaderSearch sx={{ flexGrow: 1 }} />
       <BiampHeaderActions>
         <BiampHeaderButtonList>
           <IconButton size="small">
@@ -145,22 +127,7 @@ export const WithSearch: Story = {
         icon={<BusinessIcon sx={{ width: 24, height: 24 }} />}
         title="Buildings"
       />
-      <BiampHeaderSearch sx={{ flexGrow: 1 }}>
-        <TextField
-          size="small"
-          placeholder="Search buildings…"
-          fullWidth
-          slotProps={{
-            input: {
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            },
-          }}
-        />
-      </BiampHeaderSearch>
+      <BiampHeaderSearch sx={{ flexGrow: 1 }} />
     </BiampHeader>
   ),
 };
@@ -229,22 +196,7 @@ export const SubComponents: Story = {
           A box with <code>px: 1.5</code> that wraps a search input.
         </Typography>
         <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex', width: 400 }}>
-          <BiampHeaderSearch sx={{ flexGrow: 1 }}>
-            <TextField
-              size="small"
-              placeholder="Search…"
-              fullWidth
-              slotProps={{
-                input: {
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                  ),
-                },
-              }}
-            />
-          </BiampHeaderSearch>
+          <BiampHeaderSearch sx={{ flexGrow: 1 }} />
         </Box>
       </Box>
 
@@ -306,22 +258,7 @@ export const WithBorder: Story = {
         icon={<DashboardIcon sx={{ width: 24, height: 24 }} />}
         title="Dashboard"
       />
-      <BiampHeaderSearch sx={{ flexGrow: 1 }}>
-        <TextField
-          size="small"
-          placeholder="Search…"
-          fullWidth
-          slotProps={{
-            input: {
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            },
-          }}
-        />
-      </BiampHeaderSearch>
+      <BiampHeaderSearch sx={{ flexGrow: 1 }} />
       <BiampHeaderActions>
         <BiampHeaderButtonList>
           <IconButton size="small">

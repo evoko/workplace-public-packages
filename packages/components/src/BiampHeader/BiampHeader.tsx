@@ -1,6 +1,16 @@
-import { Box, BoxProps, Stack, StackProps, Typography } from '@mui/material';
+import {
+  Box,
+  BoxProps,
+  InputAdornment,
+  Stack,
+  StackProps,
+  TextField,
+  TextFieldProps,
+  Typography,
+} from '@mui/material';
 import { JSX } from 'react';
 import biampRedLogo from '../../public/BiampRedLogoIcon.png';
+import { SearchIcon } from '../icons';
 
 type BiampHeaderProps = StackProps & {
   children?: React.ReactNode;
@@ -33,8 +43,23 @@ export function BiampHeaderTitle({
   return (
     <Box sx={{ pr: 3, ...sx }} {...props}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <Box sx={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {icon ?? <Box component="img" src={biampRedLogo} alt="Biamp" sx={{ width: 24, height: 24 }} />}
+        <Box
+          sx={{
+            width: 24,
+            height: 24,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {icon ?? (
+            <Box
+              component="img"
+              src={biampRedLogo}
+              alt="Biamp"
+              sx={{ width: 24, height: 24 }}
+            />
+          )}
         </Box>
         <Typography variant="h4">{title}</Typography>
       </Box>
@@ -42,19 +67,40 @@ export function BiampHeaderTitle({
   );
 }
 
-type BiampHeaderSearchProps = BoxProps & {
-  children: React.ReactNode;
-};
+type BiampHeaderSearchProps = TextFieldProps;
 
-export function BiampHeaderSearch({
-  children,
-  sx,
-  ...props
-}: BiampHeaderSearchProps) {
+export function BiampHeaderSearch({ sx, ...props }: BiampHeaderSearchProps) {
   return (
-    <Box sx={{ px: 1.5, ...sx }} {...props}>
-      {children}
-    </Box>
+    <TextField
+      size="small"
+      placeholder="Search buildings…"
+      fullWidth
+      sx={{
+        px: 1.5,
+        '& .MuiOutlinedInput-root': {
+          height: '40px',
+        },
+        '& .MuiOutlinedInput-input': {
+          height: '40px',
+        },
+        '& .MuiOutlinedInput-notchedOutline': {
+          height: '40px',
+          border: 'none',
+          boxShadow: 'none',
+        },
+        ...sx,
+      }}
+      slotProps={{
+        input: {
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        },
+      }}
+      {...props}
+    />
   );
 }
 
@@ -127,7 +173,15 @@ export function BiampHeaderProfile({
           justifyContent: 'center',
         }}
       >
-        <Box sx={{ width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Box
+          sx={{
+            width: 32,
+            height: 32,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
           {icon}
         </Box>
       </Box>
