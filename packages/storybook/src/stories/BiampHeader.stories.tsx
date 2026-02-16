@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Box,
   Stack,
   Typography,
-  IconButton,
   Divider,
 } from '@mui/material';
 import {
@@ -13,12 +12,18 @@ import {
   BiampHeaderSearch,
   BiampHeaderActions,
   BiampHeaderButtonList,
+  BiampHeaderButton,
   BiampHeaderProfile,
+  AppsIcon,
+  AppsIconFilled,
 } from '@bwp-web/components';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import HelpIcon from '@mui/icons-material/Help';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import BusinessIcon from '@mui/icons-material/Business';
@@ -45,32 +50,40 @@ type Story = StoryObj<typeof BiampHeader>;
  * search bar, action buttons, and a profile section.
  */
 export const Default: Story = {
-  render: () => (
-    <BiampHeader>
-      <BiampHeaderTitle
-        icon={<DashboardIcon sx={{ width: 24, height: 24 }} />}
-        title="Dashboard"
-      />
-      <BiampHeaderSearch sx={{ flexGrow: 1 }} />
-      <BiampHeaderActions>
-        <BiampHeaderButtonList>
-          <IconButton size="small">
-            <NotificationsNoneIcon />
-          </IconButton>
-          <IconButton size="small">
-            <HelpOutlineIcon />
-          </IconButton>
-          <IconButton size="small">
-            <SettingsOutlinedIcon />
-          </IconButton>
-        </BiampHeaderButtonList>
-        <BiampHeaderProfile
-          icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
-          name="Jane Doe"
+  render: () => {
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+    const items = [
+      { icon: <AppsIcon />, selectedIcon: <AppsIconFilled /> },
+      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    ];
+
+    return (
+      <BiampHeader>
+        <BiampHeaderTitle
+          title="Dashboard"
         />
-      </BiampHeaderActions>
-    </BiampHeader>
-  ),
+        <BiampHeaderSearch sx={{ flexGrow: 1 }} />
+        <BiampHeaderActions>
+          <BiampHeaderButtonList>
+            {items.map((item, i) => (
+              <BiampHeaderButton
+                key={i}
+                selected={selectedIndex === i}
+                icon={item.icon}
+                selectedIcon={item.selectedIcon}
+                onClick={() => setSelectedIndex(i)}
+              />
+            ))}
+          </BiampHeaderButtonList>
+          <BiampHeaderProfile
+            icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
+            name="Jane Doe"
+          />
+        </BiampHeaderActions>
+      </BiampHeader>
+    );
+  },
 };
 
 /**
@@ -124,7 +137,6 @@ export const WithSearch: Story = {
   render: () => (
     <BiampHeader>
       <BiampHeaderTitle
-        icon={<BusinessIcon sx={{ width: 24, height: 24 }} />}
         title="Buildings"
       />
       <BiampHeaderSearch sx={{ flexGrow: 1 }} />
@@ -137,29 +149,41 @@ export const WithSearch: Story = {
  */
 export const WithActions: Story = {
   name: 'With Actions',
-  render: () => (
-    <BiampHeader>
-      <BiampHeaderTitle
-        icon={<DashboardIcon sx={{ width: 24, height: 24 }} />}
-        title="Overview"
-      />
-      <Box sx={{ flexGrow: 1 }} />
-      <BiampHeaderActions>
-        <BiampHeaderButtonList>
-          <IconButton size="small">
-            <NotificationsNoneIcon />
-          </IconButton>
-          <IconButton size="small">
-            <SettingsOutlinedIcon />
-          </IconButton>
-        </BiampHeaderButtonList>
-        <BiampHeaderProfile
-          icon={<PersonOutlineIcon sx={{ width: 32, height: 32 }} />}
-          name="John Smith"
+  render: () => {
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+    const items = [
+      { icon: <AppsIcon />, selectedIcon: <AppsIcon /> },
+      { icon: <NotificationsNoneIcon />, selectedIcon: <NotificationsIcon /> },
+      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    ];
+
+    return (
+      <BiampHeader>
+        <BiampHeaderTitle
+          title="Overview"
         />
-      </BiampHeaderActions>
-    </BiampHeader>
-  ),
+        <Box sx={{ flexGrow: 1 }} />
+        <BiampHeaderActions>
+          <BiampHeaderButtonList>
+            {items.map((item, i) => (
+              <BiampHeaderButton
+                key={i}
+                selected={selectedIndex === i}
+                icon={item.icon}
+                selectedIcon={item.selectedIcon}
+                onClick={() => setSelectedIndex(i)}
+              />
+            ))}
+          </BiampHeaderButtonList>
+          <BiampHeaderProfile
+            icon={<PersonOutlineIcon sx={{ width: 32, height: 32 }} />}
+            name="John Smith"
+          />
+        </BiampHeaderActions>
+      </BiampHeader>
+    );
+  },
 };
 
 /**
@@ -168,82 +192,92 @@ export const WithActions: Story = {
  */
 export const SubComponents: Story = {
   name: 'Sub-Components',
-  render: () => (
-    <Stack spacing={4}>
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          BiampHeaderTitle
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-          A box with <code>pr: 3</code> containing a 24x24 icon and H4 text
-          with a 12px gap.
-        </Typography>
-        <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
-          <BiampHeaderTitle
-            icon={<DashboardIcon sx={{ width: 24, height: 24 }} />}
-            title="Dashboard"
-          />
+  render: () => {
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+    const items = [
+      { icon: <AppsIcon />, selectedIcon: <AppsIcon /> },
+      { icon: <NotificationsNoneIcon />, selectedIcon: <NotificationsIcon /> },
+      { icon: <HelpOutlineIcon />, selectedIcon: <HelpIcon /> },
+      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    ];
+
+    return (
+      <Stack spacing={4}>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            BiampHeaderTitle
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
+            A box with <code>pr: 3</code> containing a 24x24 icon and H4 text
+            with a 12px gap.
+          </Typography>
+          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+            <BiampHeaderTitle
+              title="Dashboard"
+            />
+          </Box>
         </Box>
-      </Box>
 
-      <Divider />
+        <Divider />
 
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          BiampHeaderSearch
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-          A box with <code>px: 1.5</code> that wraps a search input.
-        </Typography>
-        <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex', width: 400 }}>
-          <BiampHeaderSearch sx={{ flexGrow: 1 }} />
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            BiampHeaderSearch
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
+            A box with <code>px: 1.5</code> that wraps a search input.
+          </Typography>
+          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex', width: 400 }}>
+            <BiampHeaderSearch sx={{ flexGrow: 1 }} />
+          </Box>
         </Box>
-      </Box>
 
-      <Divider />
+        <Divider />
 
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          BiampHeaderButtonList
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-          A flex container with <code>gap: 0.5</code> for grouping action
-          buttons.
-        </Typography>
-        <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
-          <BiampHeaderButtonList>
-            <IconButton size="small">
-              <NotificationsNoneIcon />
-            </IconButton>
-            <IconButton size="small">
-              <HelpOutlineIcon />
-            </IconButton>
-            <IconButton size="small">
-              <SettingsOutlinedIcon />
-            </IconButton>
-          </BiampHeaderButtonList>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            BiampHeaderButtonList
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
+            A flex container with <code>gap: 0.5</code> for grouping action
+            buttons. Click to select — icons swap between outlined and filled.
+          </Typography>
+          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+            <BiampHeaderButtonList>
+              {items.map((item, i) => (
+                <BiampHeaderButton
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampHeaderButtonList>
+          </Box>
         </Box>
-      </Box>
 
-      <Divider />
+        <Divider />
 
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          BiampHeaderProfile
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-          A profile section with a 36x36 container (holding a 32x32 icon) and
-          an H4 name, separated by <code>gap: 1</code>.
-        </Typography>
-        <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
-          <BiampHeaderProfile
-            icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
-            name="Jane Doe"
-          />
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            BiampHeaderProfile
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
+            A profile section with a 36x36 container (holding a 32x32 icon) and
+            an H4 name, separated by <code>gap: 1</code>.
+          </Typography>
+          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+            <BiampHeaderProfile
+              icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
+              name="Jane Doe"
+            />
+          </Box>
         </Box>
-      </Box>
-    </Stack>
-  ),
+      </Stack>
+    );
+  },
 };
 
 /**
@@ -252,30 +286,40 @@ export const SubComponents: Story = {
  */
 export const WithBorder: Story = {
   name: 'With Border (Layout Debug)',
-  render: () => (
-    <BiampHeader sx={{ border: '1px solid', borderColor: 'divider' }}>
-      <BiampHeaderTitle
-        icon={<DashboardIcon sx={{ width: 24, height: 24 }} />}
-        title="Dashboard"
-      />
-      <BiampHeaderSearch sx={{ flexGrow: 1 }} />
-      <BiampHeaderActions>
-        <BiampHeaderButtonList>
-          <IconButton size="small">
-            <NotificationsNoneIcon />
-          </IconButton>
-          <IconButton size="small">
-            <HelpOutlineIcon />
-          </IconButton>
-          <IconButton size="small">
-            <SettingsOutlinedIcon />
-          </IconButton>
-        </BiampHeaderButtonList>
-        <BiampHeaderProfile
-          icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
-          name="Jane Doe"
+  render: () => {
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+    const items = [
+      { icon: <AppsIcon />, selectedIcon: <AppsIcon /> },
+      { icon: <NotificationsNoneIcon />, selectedIcon: <NotificationsIcon /> },
+      { icon: <HelpOutlineIcon />, selectedIcon: <HelpIcon /> },
+      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    ];
+
+    return (
+      <BiampHeader sx={{ border: '1px solid', borderColor: 'divider' }}>
+        <BiampHeaderTitle
+          title="Dashboard"
         />
-      </BiampHeaderActions>
-    </BiampHeader>
-  ),
+        <BiampHeaderSearch sx={{ flexGrow: 1 }} />
+        <BiampHeaderActions>
+          <BiampHeaderButtonList>
+            {items.map((item, i) => (
+              <BiampHeaderButton
+                key={i}
+                selected={selectedIndex === i}
+                icon={item.icon}
+                selectedIcon={item.selectedIcon}
+                onClick={() => setSelectedIndex(i)}
+              />
+            ))}
+          </BiampHeaderButtonList>
+          <BiampHeaderProfile
+            icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
+            name="Jane Doe"
+          />
+        </BiampHeaderActions>
+      </BiampHeader>
+    );
+  },
 };

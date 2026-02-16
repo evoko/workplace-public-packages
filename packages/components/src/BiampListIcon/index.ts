@@ -1,0 +1,1 @@
+export { BiampListIcon } from './BiampListIcon';

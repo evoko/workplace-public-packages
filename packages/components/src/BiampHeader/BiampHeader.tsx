@@ -2,6 +2,7 @@ import {
   Box,
   BoxProps,
   InputAdornment,
+  ListItemButtonProps,
   Stack,
   StackProps,
   TextField,
@@ -11,6 +12,7 @@ import {
 import { JSX } from 'react';
 import biampRedLogo from '../../public/BiampRedLogoIcon.png';
 import { SearchIcon } from '../icons';
+import { BiampListIcon } from '../BiampListIcon';
 
 type BiampHeaderProps = StackProps & {
   children?: React.ReactNode;
@@ -146,6 +148,41 @@ export function BiampHeaderButtonList({
     >
       {children}
     </Box>
+  );
+}
+
+type BiampHeaderButtonProps = ListItemButtonProps & {
+  icon: JSX.Element;
+  selectedIcon?: JSX.Element;
+  selected?: boolean;
+};
+
+export function BiampHeaderButton({
+  icon,
+  selectedIcon,
+  selected,
+  sx,
+  ...props
+}: BiampHeaderButtonProps) {
+  return (
+    <BiampListIcon
+      icon={icon}
+      selectedIcon={selectedIcon}
+      selected={selected}
+      sx={{
+        minWidth: '40px',
+        maxWidth: '40px',
+        minHeight: '40px',
+        maxHeight: '40px',
+        '& .MuiSvgIcon-root': {
+          width: '24px',
+          height: '24px',
+          fontSize: '24px',
+        },
+        ...sx,
+      }}
+      {...props}
+    />
   );
 }
 

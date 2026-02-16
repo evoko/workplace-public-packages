@@ -4,5 +4,6 @@ export {
   BiampHeaderSearch,
   BiampHeaderActions,
   BiampHeaderButtonList,
+  BiampHeaderButton,
   BiampHeaderProfile,
 } from './BiampHeader';
