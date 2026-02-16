@@ -78,13 +78,14 @@ export function BiampHeaderSearch({ sx, ...props }: BiampHeaderSearchProps) {
       sx={{
         px: 1.5,
         '& .MuiOutlinedInput-root': {
-          height: '40px',
+          height: '40px !important',
+          minHeight: '40px',
         },
         '& .MuiOutlinedInput-input': {
-          height: '40px',
+          height: '40px !important',
         },
         '& .MuiOutlinedInput-notchedOutline': {
-          height: '40px',
+          height: '40px !important',
           border: 'none',
           boxShadow: 'none',
         },
