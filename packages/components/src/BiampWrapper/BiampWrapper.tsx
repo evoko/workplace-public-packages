@@ -8,7 +8,6 @@ export type BiampWrapperProps = BoxProps & {
    * Background color of the outer container.
    * Defaults to `grey.100` in light mode and `grey.900` in dark mode.
    */
-  background?: string;
 };
 
 /**
@@ -18,7 +17,6 @@ export type BiampWrapperProps = BoxProps & {
  */
 export function BiampWrapper({
   children,
-  background,
   sx,
   ...props
 }: BiampWrapperProps) {
@@ -35,17 +33,17 @@ export function BiampWrapper({
       sx={{
         height: '100%',
         padding: { xs: '16px', md: '20px' },
-        backgroundColor: background ?? defaultBg,
+        backgroundColor: defaultBg,
         ...sx,
       }}
       {...props}
     >
       <Box
         sx={{
+          height: '100%',
           borderRadius: '8px',
           overflow: 'auto',
-          backgroundColor: 'background.default',
-          height: '100%',
+          backgroundColor: defaultBg,
         }}
       >
         {children}
