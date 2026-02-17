@@ -9,6 +9,7 @@
     "clean": "rm -rf dist node_modules .turbo"
   },
   "dependencies": {
+    "@bwp-web/assets": "*",
     "@bwp-web/components": "*",
     "@bwp-web/styles": "*",
     "@emotion/react": "^11.14.0",

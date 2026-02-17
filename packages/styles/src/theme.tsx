@@ -9,7 +9,7 @@ import {
   SuccessStatusIcon,
   UncheckedIcon,
   WarningStatusIcon,
-} from './icons/index';
+} from '@bwp-web/assets';
 import { alpha, createTheme } from '@mui/material/styles';
 
 const colors = {

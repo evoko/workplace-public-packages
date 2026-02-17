@@ -33,18 +33,13 @@
     "clean": "rm -rf dist node_modules .turbo"
   },
   "peerDependencies": {
-    "@bwp-web/components": ">=0.1.0",
+    "@bwp-web/assets": ">=0.1.0",
     "@mui/material": ">=7.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
-  "peerDependenciesMeta": {
-    "@bwp-web/components": {
-      "optional": true
-    }
-  },
   "devDependencies": {
-    "@bwp-web/components": "*",
+    "@bwp-web/assets": "*",
     "@bwp-web/eslint-config": "*",
     "@mui/material": "^7.3.7",
     "@types/react": "^19.1.0",

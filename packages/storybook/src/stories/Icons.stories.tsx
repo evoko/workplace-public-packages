@@ -2,18 +2,18 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Stack, Typography, Box } from '@mui/material';
 
-// Import icons directly from the styles source — these are the custom icons
-// used internally by the theme's component overrides (alerts, checkboxes, etc.)
-import { BreadcrumbIcon } from '../../../styles/src/icons/BreadcrumbIcon';
-import { CheckedIcon } from '../../../styles/src/icons/CheckedIcon';
-import { DatePickerIcon } from '../../../styles/src/icons/DatePickerIcon';
-import { ErrorStatusIcon } from '../../../styles/src/icons/ErrorStatusIcon';
-import { IndeterminateIcon } from '../../../styles/src/icons/IndeterminateIcon';
-import { InfoStatusIcon } from '../../../styles/src/icons/InfoStatusIcon';
-import { InputCloseIcon } from '../../../styles/src/icons/InputCloseIcon';
-import { SuccessStatusIcon } from '../../../styles/src/icons/SuccessStatusIcon';
-import { UncheckedIcon } from '../../../styles/src/icons/UncheckedIcon';
-import { WarningStatusIcon } from '../../../styles/src/icons/WarningStatusIcon';
+import {
+  BreadcrumbIcon,
+  CheckedIcon,
+  DatePickerIcon,
+  ErrorStatusIcon,
+  IndeterminateIcon,
+  InfoStatusIcon,
+  InputCloseIcon,
+  SuccessStatusIcon,
+  UncheckedIcon,
+  WarningStatusIcon,
+} from '@bwp-web/assets';
 
 const meta: Meta = {
   title: 'Styles/Icons',

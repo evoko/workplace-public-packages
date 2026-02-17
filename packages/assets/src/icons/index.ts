@@ -1,3 +1,6 @@
+export { AppsIcon } from './AppsIcon';
+export { AppsIconFilled } from './AppsIconFilled';
+export { BiampLogoIcon } from './BiampLogoIcon';
 export { BreadcrumbIcon } from './BreadcrumbIcon';
 export { CheckedIcon } from './CheckedIcon';
 export { DatePickerIcon } from './DatePickerIcon';
@@ -5,6 +8,7 @@ export { ErrorStatusIcon } from './ErrorStatusIcon';
 export { IndeterminateIcon } from './IndeterminateIcon';
 export { InfoStatusIcon } from './InfoStatusIcon';
 export { InputCloseIcon } from './InputCloseIcon';
+export { SearchIcon } from './SearchIcon';
 export { SuccessStatusIcon } from './SuccessStatusIcon';
 export { UncheckedIcon } from './UncheckedIcon';
 export { WarningStatusIcon } from './WarningStatusIcon';

@@ -14,8 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 import { JSX } from 'react';
-import biampRedLogo from '../../public/BiampRedLogoIcon.png';
-import { SearchIcon } from '../icons';
+import { biampRedLogo, SearchIcon } from '@bwp-web/assets';
 
 type BiampHeaderProps = StackProps & {
   children?: React.ReactNode;
