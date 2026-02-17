@@ -18,7 +18,7 @@ export function AppsIcon(props: SvgIconProps) {
         </g>
         <defs>
           <clipPath id="clip0_3188_920">
-            <rect width="24" height="24" fill="white" />
+            <rect width="24" height="24" fill="currentColor" />
           </clipPath>
         </defs>
       </svg>

@@ -206,9 +206,9 @@ export function BiampAppDialog({
         overflow: 'auto',
         maxWidth: '284px',
         borderRadius: '16px',
-        backgroundColor: 'white',
-        boxShadow: (theme) =>
-          `0px 4px 24px 0px ${alpha(theme.palette.common.black, 0.15)}`,
+        backgroundColor: ({palette}) => palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
+        boxShadow: ({palette}) =>
+          `0px 4px 24px 0px ${alpha(palette.common.black, 0.15)}`,
         ...sx,
       }}
       {...props}
@@ -233,11 +233,18 @@ export function BiampAppDialogItem({
     <Box
       sx={{
         width: '76px',
+        height: '89px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         gap: '8px',
+        borderRadius: '12px',
+        border: '0.6px solid transparent',
+        transition: 'background-color 0.2s ease, border-color 0.2s ease',
+        ":hover": {backgroundColor: ({palette}) => alpha(palette.info.main, 0.1),
+          borderColor: ({ palette }) => palette.info.main,
+        },
         ...sx,
       }}
       {...props}
@@ -260,9 +267,9 @@ export function BiampAppDialogItem({
       </Box>
       <Typography
         variant="caption"
+        fontWeight={600}
         sx={{
           textAlign: 'center',
-          lineHeight: 1.2,
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
@@ -311,8 +318,8 @@ export function BiampHeaderProfile({
           width: 32,
           height: 32,
           borderRadius: '4px',
-          border: (theme) =>
-            `0.6px solid var(--Divider-divider_primary, ${alpha(theme.palette.background.paper, 0.15)})`,
+          border: ({palette}) =>
+            `0.6px solid var(--Divider-divider_primary, ${alpha(palette.background.paper, 0.15)})`,
         }}
       />
     </ListItemButton>
