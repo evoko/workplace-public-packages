@@ -5,6 +5,7 @@ import {
   Stack,
   Typography,
   Divider,
+  Popover,
 } from '@mui/material';
 import {
   BiampHeader,
@@ -60,36 +61,59 @@ type Story = StoryObj<typeof BiampHeader>;
  */
 export const Default: Story = {
   render: () => {
-    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const open = Boolean(anchorEl);
 
-    const items = [
-      { icon: <AppsIcon />, selectedIcon: <AppsIconFilled /> },
-      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    const apps = [
+      { icon: <DashboardIcon />, name: 'Dashboard' },
+      { icon: <CalendarMonthIcon />, name: 'Calendar' },
+      { icon: <BarChartIcon />, name: 'Analytics' },
+      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
+      { icon: <FolderOpenIcon />, name: 'Files' },
+      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
     ];
 
     return (
       <BiampHeader>
-        <BiampHeaderTitle
-          title="Dashboard"
-        />
+        <BiampHeaderTitle title="Dashboard" />
         <BiampHeaderSearch sx={{ flexGrow: 1 }} />
         <BiampHeaderActions>
           <BiampHeaderButtonList>
-            {items.map((item, i) => (
-              <BiampHeaderButton
-                key={i}
-                selected={selectedIndex === i}
-                icon={item.icon}
-                selectedIcon={item.selectedIcon}
-                onClick={() => setSelectedIndex(i)}
-              />
-            ))}
+            <BiampHeaderButton
+              icon={<AppsIcon />}
+              selectedIcon={<AppsIconFilled />}
+              selected={open}
+              onClick={(e) =>
+                setAnchorEl(open ? null : (e.currentTarget as HTMLElement))
+              }
+            />
+            <BiampHeaderButton
+              icon={<SettingsOutlinedIcon />}
+              selectedIcon={<SettingsIcon />}
+            />
           </BiampHeaderButtonList>
           <BiampHeaderProfile
             icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
             name="Jane Doe"
           />
         </BiampHeaderActions>
+        <Popover
+          open={open}
+          anchorEl={anchorEl}
+          onClose={() => setAnchorEl(null)}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          slotProps={{ paper: { sx: { mt: 1, borderRadius: '16px' } } }}
+        >
+          <BiampAppDialog sx={{ p: 2 }}>
+            {apps.map((app, i) => (
+              <BiampAppDialogItem
+                key={i}
+                icon={app.icon}
+                name={app.name}
+              />
+            ))}
+          </BiampAppDialog>
+        </Popover>
       </BiampHeader>
     );
   },
@@ -159,37 +183,63 @@ export const WithSearch: Story = {
 export const WithActions: Story = {
   name: 'With Actions',
   render: () => {
-    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const open = Boolean(anchorEl);
 
-    const items = [
-      { icon: <AppsIcon />, selectedIcon: <AppsIcon /> },
-      { icon: <NotificationsNoneIcon />, selectedIcon: <NotificationsIcon /> },
-      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    const apps = [
+      { icon: <DashboardIcon />, name: 'Dashboard' },
+      { icon: <CalendarMonthIcon />, name: 'Calendar' },
+      { icon: <BarChartIcon />, name: 'Analytics' },
+      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
+      { icon: <FolderOpenIcon />, name: 'Files' },
+      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
     ];
 
     return (
       <BiampHeader>
-        <BiampHeaderTitle
-          title="Overview"
-        />
+        <BiampHeaderTitle title="Overview" />
         <Box sx={{ flexGrow: 1 }} />
         <BiampHeaderActions>
           <BiampHeaderButtonList>
-            {items.map((item, i) => (
-              <BiampHeaderButton
-                key={i}
-                selected={selectedIndex === i}
-                icon={item.icon}
-                selectedIcon={item.selectedIcon}
-                onClick={() => setSelectedIndex(i)}
-              />
-            ))}
+            <BiampHeaderButton
+              icon={<AppsIcon />}
+              selectedIcon={<AppsIconFilled />}
+              selected={open}
+              onClick={(e) =>
+                setAnchorEl(open ? null : (e.currentTarget as HTMLElement))
+              }
+            />
+            <BiampHeaderButton
+              icon={<NotificationsNoneIcon />}
+              selectedIcon={<NotificationsIcon />}
+            />
+            <BiampHeaderButton
+              icon={<SettingsOutlinedIcon />}
+              selectedIcon={<SettingsIcon />}
+            />
           </BiampHeaderButtonList>
           <BiampHeaderProfile
             icon={<PersonOutlineIcon sx={{ width: 32, height: 32 }} />}
             name="John Smith"
           />
         </BiampHeaderActions>
+        <Popover
+          open={open}
+          anchorEl={anchorEl}
+          onClose={() => setAnchorEl(null)}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          slotProps={{ paper: { sx: { mt: 1, borderRadius: '16px' } } }}
+        >
+          <BiampAppDialog sx={{ p: 2 }}>
+            {apps.map((app, i) => (
+              <BiampAppDialogItem
+                key={i}
+                icon={app.icon}
+                name={app.name}
+              />
+            ))}
+          </BiampAppDialog>
+        </Popover>
       </BiampHeader>
     );
   },
@@ -202,13 +252,16 @@ export const WithActions: Story = {
 export const SubComponents: Story = {
   name: 'Sub-Components',
   render: () => {
-    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const open = Boolean(anchorEl);
 
-    const items = [
-      { icon: <AppsIcon />, selectedIcon: <AppsIcon /> },
-      { icon: <NotificationsNoneIcon />, selectedIcon: <NotificationsIcon /> },
-      { icon: <HelpOutlineIcon />, selectedIcon: <HelpIcon /> },
-      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    const apps = [
+      { icon: <DashboardIcon />, name: 'Dashboard' },
+      { icon: <CalendarMonthIcon />, name: 'Calendar' },
+      { icon: <BarChartIcon />, name: 'Analytics' },
+      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
+      { icon: <FolderOpenIcon />, name: 'Files' },
+      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
     ];
 
     return (
@@ -250,20 +303,48 @@ export const SubComponents: Story = {
           </Typography>
           <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
             A flex container with <code>gap: 0.5</code> for grouping action
-            buttons. Click to select — icons swap between outlined and filled.
+            buttons. Click the Apps button to open the app dialog.
           </Typography>
           <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
             <BiampHeaderButtonList>
-              {items.map((item, i) => (
-                <BiampHeaderButton
-                  key={i}
-                  selected={selectedIndex === i}
-                  icon={item.icon}
-                  selectedIcon={item.selectedIcon}
-                  onClick={() => setSelectedIndex(i)}
-                />
-              ))}
+              <BiampHeaderButton
+                icon={<AppsIcon />}
+                selectedIcon={<AppsIconFilled />}
+                selected={open}
+                onClick={(e) =>
+                  setAnchorEl(open ? null : (e.currentTarget as HTMLElement))
+                }
+              />
+              <BiampHeaderButton
+                icon={<NotificationsNoneIcon />}
+                selectedIcon={<NotificationsIcon />}
+              />
+              <BiampHeaderButton
+                icon={<HelpOutlineIcon />}
+                selectedIcon={<HelpIcon />}
+              />
+              <BiampHeaderButton
+                icon={<SettingsOutlinedIcon />}
+                selectedIcon={<SettingsIcon />}
+              />
             </BiampHeaderButtonList>
+            <Popover
+              open={open}
+              anchorEl={anchorEl}
+              onClose={() => setAnchorEl(null)}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+              slotProps={{ paper: { sx: { mt: 1, borderRadius: '16px' } } }}
+            >
+              <BiampAppDialog sx={{ p: 2 }}>
+                {apps.map((app, i) => (
+                  <BiampAppDialogItem
+                    key={i}
+                    icon={app.icon}
+                    name={app.name}
+                  />
+                ))}
+              </BiampAppDialog>
+            </Popover>
           </Box>
         </Box>
 
@@ -296,38 +377,67 @@ export const SubComponents: Story = {
 export const WithBorder: Story = {
   name: 'With Border (Layout Debug)',
   render: () => {
-    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const open = Boolean(anchorEl);
 
-    const items = [
-      { icon: <AppsIcon />, selectedIcon: <AppsIcon /> },
-      { icon: <NotificationsNoneIcon />, selectedIcon: <NotificationsIcon /> },
-      { icon: <HelpOutlineIcon />, selectedIcon: <HelpIcon /> },
-      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    const apps = [
+      { icon: <DashboardIcon />, name: 'Dashboard' },
+      { icon: <CalendarMonthIcon />, name: 'Calendar' },
+      { icon: <BarChartIcon />, name: 'Analytics' },
+      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
+      { icon: <FolderOpenIcon />, name: 'Files' },
+      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
     ];
 
     return (
       <BiampHeader sx={{ border: '1px solid', borderColor: 'divider' }}>
-        <BiampHeaderTitle
-          title="Dashboard"
-        />
+        <BiampHeaderTitle title="Dashboard" />
         <BiampHeaderSearch sx={{ flexGrow: 1 }} />
         <BiampHeaderActions>
           <BiampHeaderButtonList>
-            {items.map((item, i) => (
-              <BiampHeaderButton
-                key={i}
-                selected={selectedIndex === i}
-                icon={item.icon}
-                selectedIcon={item.selectedIcon}
-                onClick={() => setSelectedIndex(i)}
-              />
-            ))}
+            <BiampHeaderButton
+              icon={<AppsIcon />}
+              selectedIcon={<AppsIconFilled />}
+              selected={open}
+              onClick={(e) =>
+                setAnchorEl(open ? null : (e.currentTarget as HTMLElement))
+              }
+            />
+            <BiampHeaderButton
+              icon={<NotificationsNoneIcon />}
+              selectedIcon={<NotificationsIcon />}
+            />
+            <BiampHeaderButton
+              icon={<HelpOutlineIcon />}
+              selectedIcon={<HelpIcon />}
+            />
+            <BiampHeaderButton
+              icon={<SettingsOutlinedIcon />}
+              selectedIcon={<SettingsIcon />}
+            />
           </BiampHeaderButtonList>
           <BiampHeaderProfile
             icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
             name="Jane Doe"
           />
         </BiampHeaderActions>
+        <Popover
+          open={open}
+          anchorEl={anchorEl}
+          onClose={() => setAnchorEl(null)}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          slotProps={{ paper: { sx: { mt: 1, borderRadius: '16px' } } }}
+        >
+          <BiampAppDialog sx={{ p: 2 }}>
+            {apps.map((app, i) => (
+              <BiampAppDialogItem
+                key={i}
+                icon={app.icon}
+                name={app.name}
+              />
+            ))}
+          </BiampAppDialog>
+        </Popover>
       </BiampHeader>
     );
   },
@@ -360,6 +470,71 @@ export const AppIcon: Story = {
       </Box>
     </Stack>
   ),
+};
+
+/**
+ * Clicking the Apps button in the header opens a BiampAppDialog
+ * as a popover anchored below the button.
+ */
+export const AppDialogToggle: Story = {
+  name: 'App Dialog (Toggle)',
+  render: () => {
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const open = Boolean(anchorEl);
+
+    const apps = [
+      { icon: <DashboardIcon />, name: 'Dashboard' },
+      { icon: <CalendarMonthIcon />, name: 'Calendar' },
+      { icon: <BarChartIcon />, name: 'Analytics' },
+      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
+      { icon: <FolderOpenIcon />, name: 'Files' },
+      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
+    ];
+
+    return (
+      <BiampHeader>
+        <BiampHeaderTitle title="Dashboard" />
+        <BiampHeaderSearch sx={{ flexGrow: 1 }} />
+        <BiampHeaderActions>
+          <BiampHeaderButtonList>
+            <BiampHeaderButton
+              icon={<AppsIcon />}
+              selectedIcon={<AppsIconFilled />}
+              selected={open}
+              onClick={(e) =>
+                setAnchorEl(open ? null : e.currentTarget as HTMLElement)
+              }
+            />
+            <BiampHeaderButton
+              icon={<SettingsOutlinedIcon />}
+              selectedIcon={<SettingsIcon />}
+            />
+          </BiampHeaderButtonList>
+          <BiampHeaderProfile
+            icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
+            name="Jane Doe"
+          />
+        </BiampHeaderActions>
+        <Popover
+          open={open}
+          anchorEl={anchorEl}
+          onClose={() => setAnchorEl(null)}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+          slotProps={{ paper: { sx: { mt: 1, borderRadius: '16px' } } }}
+        >
+          <BiampAppDialog sx={{ p: 2 }}>
+            {apps.map((app, i) => (
+              <BiampAppDialogItem
+                key={i}
+                icon={app.icon}
+                name={app.name}
+              />
+            ))}
+          </BiampAppDialog>
+        </Popover>
+      </BiampHeader>
+    );
+  },
 };
 
 /**
