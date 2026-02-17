@@ -169,7 +169,7 @@ npm install @bwp-web/components
 | `BiampHeaderProfile` | Profile image button | [biamp-header.md](./docs/biamp-header.md) |
 | `BiampAppPopover` | Styled popover for the app-launcher dialog | [biamp-header.md](./docs/biamp-header.md) |
 | `BiampAppDialog` | Rounded dialog container for app-launcher grid | [biamp-header.md](./docs/biamp-header.md) |
-| `BiampAppDialogItem` | Clickable app tile with icon and label | [biamp-header.md](./docs/biamp-header.md) |
+| `BiampAppDialogItem` | Clickable app tile with children content and label | [biamp-header.md](./docs/biamp-header.md) |
 
 ## Using `@bwp-web/assets`
 

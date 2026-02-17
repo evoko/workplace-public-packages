@@ -17,7 +17,7 @@ import {
   SuccessStatusIcon,
   UncheckedIcon,
   WarningStatusIcon,
-  biampRedLogo,
+  BiampRedLogo,
 } from '@bwp-web/assets';
 
 const meta: Meta = {
@@ -146,12 +146,12 @@ export const AllIcons: Story = {
         >
           <Box
             component="img"
-            src={biampRedLogo}
+            src={BiampRedLogo}
             alt="Biamp Red Logo"
             sx={{ width: 24, height: 24 }}
           />
           <Typography variant="caption" align="center">
-            biampRedLogo
+            BiampRedLogo
           </Typography>
         </Box>
       </Box>

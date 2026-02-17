@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 import { JSX } from 'react';
-import { biampRedLogo, SearchIcon } from '@bwp-web/assets';
+import { BiampRedLogo, SearchIcon } from '@bwp-web/assets';
 
 type BiampHeaderProps = StackProps & {
   children?: React.ReactNode;
@@ -59,7 +59,7 @@ export function BiampHeaderTitle({
           {icon ?? (
             <Box
               component="img"
-              src={biampRedLogo}
+              src={BiampRedLogo}
               alt="Biamp"
               sx={{ width: 24, height: 24 }}
             />
@@ -176,7 +176,7 @@ export function BiampHeaderButton({
         maxWidth: '40px',
         minHeight: '40px',
         maxHeight: '40px',
-        borderRadius: '8px',
+        borderRadius: '4px',
         justifyContent: 'center',
         alignItems: 'center',
         ...sx,
@@ -203,6 +203,7 @@ export function BiampAppPopover({
       open={open}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
       sx={{ ...sx }}
+      transformOrigin={{ vertical: -4, horizontal: 150 }}
       slotProps={{
         paper: {
           sx: {
@@ -251,12 +252,12 @@ export function BiampAppDialog({
 }
 
 type BiampAppDialogItemProps = BoxProps & {
-  icon: JSX.Element;
+  children: React.ReactNode;
   name: string;
 };
 
 export function BiampAppDialogItem({
-  icon,
+  children,
   name,
   sx,
   ...props
@@ -271,7 +272,7 @@ export function BiampAppDialogItem({
         alignItems: 'center',
         cursor: 'pointer',
         justifyContent: 'center',
-        gap: '8px',
+        gap: '4px',
         borderRadius: '12px',
         border: '0.6px solid transparent',
         transition: 'background-color 0.2s ease, border-color 0.2s ease',
@@ -285,19 +286,15 @@ export function BiampAppDialogItem({
     >
       <Box
         sx={{
+          mt: '8px',
           width: '54px',
           height: '54px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          '& .MuiSvgIcon-root': {
-            width: '54px',
-            height: '54px',
-            fontSize: '54px',
-          },
         }}
       >
-        {icon}
+        {children}
       </Box>
       <Typography
         variant="caption"

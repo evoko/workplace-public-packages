@@ -73,25 +73,25 @@ All icons respect MUI's `sx` prop for sizing:
 
 ## Images
 
-### `biampRedLogo`
+### `BiampRedLogo`
 
 A named export that resolves to the Biamp red logo PNG image. During the build it is inlined as a data URL, so no additional asset pipeline is required.
 
 | Export | Type | Description |
 |--------|------|-------------|
-| `biampRedLogo` | `string` | Data URL of the 24×24 Biamp red logo PNG |
+| `BiampRedLogo` | `string` | Data URL of the 24×24 Biamp red logo PNG |
 
 #### Usage
 
 ```tsx
-import { biampRedLogo } from '@bwp-web/assets';
+import { BiampRedLogo } from '@bwp-web/assets';
 import { Box } from '@mui/material';
 
 function Logo() {
   return (
     <Box
       component="img"
-      src={biampRedLogo}
+      src={BiampRedLogo}
       alt="Biamp"
       sx={{ width: 24, height: 24 }}
     />
@@ -120,4 +120,4 @@ function Logo() {
 
 ### Images
 
-- `biampRedLogo` — Biamp red logo PNG (data URL).
+- `BiampRedLogo` — Biamp red logo PNG (data URL).
