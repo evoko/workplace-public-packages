@@ -6,6 +6,17 @@ import {
   IndeterminateIcon,
   InfoStatusIcon,
   InputCloseIcon,
+  MontserratBold,
+  MontserratMedium,
+  MontserratSemiBold,
+  OpenSansBold,
+  OpenSansBoldItalic,
+  OpenSansExtraBold,
+  OpenSansExtraBoldItalic,
+  OpenSansRegular,
+  OpenSansRegularItalic,
+  OpenSansSemiBold,
+  OpenSansSemiBoldItalic,
   SuccessStatusIcon,
   UncheckedIcon,
   WarningStatusIcon,
@@ -377,7 +388,7 @@ export const biampTheme = (
           font-weight: 400;
           font-style: normal;
           font-display: swap;
-          src: url(/open-sans-regular.woff2) format('woff2');
+          src: url(${OpenSansRegular}) format('woff2');
         }
 
         @font-face {
@@ -385,15 +396,15 @@ export const biampTheme = (
           font-weight: 400;
           font-style: italic;
           font-display: swap;
-          src: url(/open-sans-regular-italic.woff2) format('woff2');
+          src: url(${OpenSansRegularItalic}) format('woff2');
         }
-        
+
         @font-face {
           font-family: 'Open Sans';
           font-weight: 600;
           font-style: normal;
           font-display: swap;
-          src: url(/open-sans-semibold.woff2) format('woff2');
+          src: url(${OpenSansSemiBold}) format('woff2');
         }
 
         @font-face {
@@ -401,7 +412,7 @@ export const biampTheme = (
           font-weight: 600;
           font-style: italic;
           font-display: swap;
-          src: url(/open-sans-semibold-italic.woff2) format('woff2');
+          src: url(${OpenSansSemiBoldItalic}) format('woff2');
         }
 
         @font-face {
@@ -409,7 +420,7 @@ export const biampTheme = (
           font-weight: 700;
           font-style: normal;
           font-display: swap;
-          src: url(/open-sans-bold.woff2) format('woff2');
+          src: url(${OpenSansBold}) format('woff2');
         }
 
         @font-face {
@@ -417,7 +428,7 @@ export const biampTheme = (
           font-weight: 700;
           font-style: italic;
           font-display: swap;
-          src: url(/open-sans-bold-italic.woff2) format('woff2');
+          src: url(${OpenSansBoldItalic}) format('woff2');
         }
 
         @font-face {
@@ -425,7 +436,7 @@ export const biampTheme = (
           font-weight: 800;
           font-style: normal;
           font-display: swap;
-          src: url(/open-sans-extrabold.woff2) format('woff2');
+          src: url(${OpenSansExtraBold}) format('woff2');
         }
 
         @font-face {
@@ -433,7 +444,7 @@ export const biampTheme = (
           font-weight: 800;
           font-style: italic;
           font-display: swap;
-          src: url(/open-sans-extrabold-italic.woff2) format('woff2');
+          src: url(${OpenSansExtraBoldItalic}) format('woff2');
         }
 
         @font-face {
@@ -441,7 +452,7 @@ export const biampTheme = (
           font-weight: 500;
           font-style: normal;
           font-display: swap;
-          src: url(/Montserrat-Medium.ttf) format('truetype');
+          src: url(${MontserratMedium}) format('truetype');
         }
 
         @font-face {
@@ -449,7 +460,7 @@ export const biampTheme = (
           font-weight: 600;
           font-style: normal;
           font-display: swap;
-          src: url(/Montserrat-SemiBold.ttf) format('truetype');
+          src: url(${MontserratSemiBold}) format('truetype');
         }
 
         @font-face {
@@ -457,7 +468,7 @@ export const biampTheme = (
           font-weight: 700;
           font-style: normal;
           font-display: swap;
-          src: url(/Montserrat-Bold.ttf) format('truetype');
+          src: url(${MontserratBold}) format('truetype');
         }
 
         [class*="Mui"] {

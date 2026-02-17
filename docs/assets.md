@@ -142,6 +142,79 @@ function AppLauncher() {
 }
 ```
 
+## Fonts
+
+All font files used by the Biamp Workplace theme are bundled as data URLs, just like images. This means fonts are embedded directly in the JavaScript bundle — no need to configure static file serving, copy font files to a public directory, or set up any additional asset pipeline.
+
+### Included Fonts
+
+**Open Sans** (woff2) — used as the default body font:
+
+| Export | Weight | Style |
+|--------|--------|-------|
+| `OpenSansRegular` | 400 | normal |
+| `OpenSansRegularItalic` | 400 | italic |
+| `OpenSansSemiBold` | 600 | normal |
+| `OpenSansSemiBoldItalic` | 600 | italic |
+| `OpenSansBold` | 700 | normal |
+| `OpenSansBoldItalic` | 700 | italic |
+| `OpenSansExtraBold` | 800 | normal |
+| `OpenSansExtraBoldItalic` | 800 | italic |
+
+**Montserrat** (ttf) — used for headings (h0, h1, h2, h4):
+
+| Export | Weight | Style |
+|--------|--------|-------|
+| `MontserratMedium` | 500 | normal |
+| `MontserratSemiBold` | 600 | normal |
+| `MontserratBold` | 700 | normal |
+
+### Usage with the Biamp Theme (Recommended)
+
+If you are using `biampTheme()` from `@bwp-web/styles` with MUI's `<CssBaseline />`, **fonts are loaded automatically**. The theme's CSS baseline injects `@font-face` declarations that reference the embedded font data URLs. No extra imports or configuration needed.
+
+```tsx
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { biampTheme } from '@bwp-web/styles';
+
+const theme = biampTheme();
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline /> {/* Fonts are loaded here automatically */}
+      {/* Your app */}
+    </ThemeProvider>
+  );
+}
+```
+
+### Standalone Usage
+
+If you need to use the font files outside of the Biamp theme (e.g. custom `@font-face` rules or non-MUI projects), you can import them directly. Each export is a `string` containing a `data:` URL.
+
+```tsx
+import { OpenSansRegular, MontserratBold } from '@bwp-web/assets';
+
+// Use in a custom @font-face declaration
+const fontFaceCSS = `
+  @font-face {
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-style: normal;
+    src: url(${OpenSansRegular}) format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-style: normal;
+    src: url(${MontserratBold}) format('truetype');
+  }
+`;
+```
+
 ## Exports
 
 ### Icons
@@ -169,3 +242,17 @@ function AppLauncher() {
 - `ConnectApp` — Biamp Connect app icon PNG (data URL).
 - `DesignerApp` — Biamp Designer app icon PNG (data URL).
 - `WorkplaceApp` — Biamp Workplace app icon PNG (data URL).
+
+### Fonts
+
+- `OpenSansRegular` — Open Sans 400 normal (woff2 data URL).
+- `OpenSansRegularItalic` — Open Sans 400 italic (woff2 data URL).
+- `OpenSansSemiBold` — Open Sans 600 normal (woff2 data URL).
+- `OpenSansSemiBoldItalic` — Open Sans 600 italic (woff2 data URL).
+- `OpenSansBold` — Open Sans 700 normal (woff2 data URL).
+- `OpenSansBoldItalic` — Open Sans 700 italic (woff2 data URL).
+- `OpenSansExtraBold` — Open Sans 800 normal (woff2 data URL).
+- `OpenSansExtraBoldItalic` — Open Sans 800 italic (woff2 data URL).
+- `MontserratMedium` — Montserrat 500 normal (ttf data URL).
+- `MontserratSemiBold` — Montserrat 600 normal (ttf data URL).
+- `MontserratBold` — Montserrat 700 normal (ttf data URL).

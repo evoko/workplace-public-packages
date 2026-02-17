@@ -1,4 +1,5 @@
 export * from './icons';
+export * from './fonts';
 export { default as BiampRedLogo } from './images/BiampRedLogo.png';
 export { default as BookingApp } from './images/BookingApp.png';
 export { default as WorkplaceApp } from './images/WorkplaceApp.png';
