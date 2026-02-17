@@ -206,8 +206,9 @@ export function BiampAppDialog({
         overflow: 'auto',
         maxWidth: '284px',
         borderRadius: '16px',
-        backgroundColor: ({palette}) => palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
-        boxShadow: ({palette}) =>
+        backgroundColor: ({ palette }) =>
+          palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
+        boxShadow: ({ palette }) =>
           `0px 4px 24px 0px ${alpha(palette.common.black, 0.15)}`,
         ...sx,
       }}
@@ -237,12 +238,14 @@ export function BiampAppDialogItem({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        cursor: 'pointer',
         justifyContent: 'center',
         gap: '8px',
         borderRadius: '12px',
         border: '0.6px solid transparent',
         transition: 'background-color 0.2s ease, border-color 0.2s ease',
-        ":hover": {backgroundColor: ({palette}) => alpha(palette.info.main, 0.1),
+        ':hover': {
+          backgroundColor: ({ palette }) => alpha(palette.info.main, 0.1),
           borderColor: ({ palette }) => palette.info.main,
         },
         ...sx,
@@ -318,7 +321,7 @@ export function BiampHeaderProfile({
           width: 32,
           height: 32,
           borderRadius: '4px',
-          border: ({palette}) =>
+          border: ({ palette }) =>
             `0.6px solid var(--Divider-divider_primary, ${alpha(palette.background.paper, 0.15)})`,
         }}
       />
