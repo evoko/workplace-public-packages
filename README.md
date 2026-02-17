@@ -159,6 +159,16 @@ npm install @bwp-web/components
 | `BiampSidebarIconList` | Vertical list with 4px gaps for sidebar items | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
 | `BiampSidebarIcon` | Selectable 48×48px icon button for sidebar navigation | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
 | `BiampSidebarComponent` | 48×48px rounded box for arbitrary sidebar content | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
+| `BiampHeader` | Horizontal header container with padding | [biamp-header.md](./docs/biamp-header.md) |
+| `BiampHeaderTitle` | Title section with icon and H4 text | [biamp-header.md](./docs/biamp-header.md) |
+| `BiampHeaderSearch` | Search input with leading search icon | [biamp-header.md](./docs/biamp-header.md) |
+| `BiampHeaderActions` | Flex container for grouping action buttons and profile | [biamp-header.md](./docs/biamp-header.md) |
+| `BiampHeaderButtonList` | Horizontal list with 4px gaps for header buttons | [biamp-header.md](./docs/biamp-header.md) |
+| `BiampHeaderButton` | Selectable 40×40px icon button for header actions | [biamp-header.md](./docs/biamp-header.md) |
+| `BiampHeaderProfile` | Profile image button | [biamp-header.md](./docs/biamp-header.md) |
+| `BiampAppPopover` | Styled popover for the app-launcher dialog | [biamp-header.md](./docs/biamp-header.md) |
+| `BiampAppDialog` | Rounded dialog container for app-launcher grid | [biamp-header.md](./docs/biamp-header.md) |
+| `BiampAppDialogItem` | Clickable app tile with icon and label | [biamp-header.md](./docs/biamp-header.md) |
 
 ## Storybook
 
@@ -180,6 +190,6 @@ This starts Storybook at [http://localhost:6006](http://localhost:6006).
 |---------|-----------------|
 | **Styles / Colors** | Full color palette — primary, secondary, status colors, brand colors, grey scale, text, backgrounds, dividers, and action states |
 | **Styles / Typography** | Every typography variant with font family, size, and weight |
-| **Components** | Interactive demos of BiampSidebar, BiampSidebarIcon, Button, IconButton, Checkbox, Switch, TextField, Autocomplete, Dialog, Tabs, Alert, and more |
+| **Components** | Interactive demos of BiampSidebar, BiampSidebarIcon, BiampHeader, BiampHeaderButton, Button, IconButton, Checkbox, Switch, TextField, Autocomplete, Dialog, Tabs, Alert, and more |
 
 Use the **Color Mode** toggle in the Storybook toolbar to switch between light and dark themes and see how each component and color adapts.
