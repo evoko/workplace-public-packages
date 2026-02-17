@@ -1,8 +1,4 @@
-import {
-  ListItemButton,
-  ListItemButtonProps,
-  Typography,
-} from '@mui/material';
+import { ListItemButton, ListItemButtonProps, Typography } from '@mui/material';
 import { JSX } from 'react';
 
 type BiampAppIconProps = ListItemButtonProps & {
@@ -10,12 +6,7 @@ type BiampAppIconProps = ListItemButtonProps & {
   label: string;
 };
 
-export function BiampAppIcon({
-  icon,
-  label,
-  sx,
-  ...props
-}: BiampAppIconProps) {
+export function BiampAppIcon({ icon, label, sx, ...props }: BiampAppIconProps) {
   return (
     <ListItemButton
       disableGutters

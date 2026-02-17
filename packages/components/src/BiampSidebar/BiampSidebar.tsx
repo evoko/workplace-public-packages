@@ -1,9 +1,4 @@
-import {
-  Box,
-  ListItemButtonProps,
-  Stack,
-  StackProps,
-} from '@mui/material';
+import { Box, ListItemButtonProps, Stack, StackProps } from '@mui/material';
 import { BiampLogoIcon } from '../icons';
 import { BiampListIcon } from '../BiampListIcon';
 import { JSX } from 'react';

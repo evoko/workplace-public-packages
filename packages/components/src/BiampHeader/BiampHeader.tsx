@@ -275,7 +275,6 @@ export function BiampAppDialogItem({
   );
 }
 
-
 type BiampHeaderProfileProps = ListItemButtonProps & {
   image: string;
   selected?: boolean;
@@ -288,8 +287,7 @@ export function BiampHeaderProfile({
   ...props
 }: BiampHeaderProfileProps) {
   return (
-    
-      <ListItemButton
+    <ListItemButton
       selected={selected}
       disableGutters
       disableRipple
@@ -305,18 +303,18 @@ export function BiampHeaderProfile({
       }}
       {...props}
     >
-        <Box
-          component="img"
-          src={image}
-          alt={'Profile Image'}
-          sx={{
-            width: 32,
-            height: 32,
-            borderRadius: '4px',
-            border: (theme) => `0.6px solid var(--Divider-divider_primary, ${alpha(theme.palette.background.paper, 0.15)})`,
-          }}
-        />
-      </ListItemButton>
-        
+      <Box
+        component="img"
+        src={image}
+        alt={'Profile Image'}
+        sx={{
+          width: 32,
+          height: 32,
+          borderRadius: '4px',
+          border: (theme) =>
+            `0.6px solid var(--Divider-divider_primary, ${alpha(theme.palette.background.paper, 0.15)})`,
+        }}
+      />
+    </ListItemButton>
   );
 }
