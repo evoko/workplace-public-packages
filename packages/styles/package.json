@@ -26,6 +26,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsup && tsc -p tsconfig.build.json",
+    "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore",

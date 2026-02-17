@@ -1183,6 +1183,15 @@ export const biampTheme = (
         },
         MuiInputAdornment: {
           styleOverrides: {
+            root: {
+              '& .MuiSvgIcon-root': {
+                width: '16px',
+                height: '16px',
+              },
+            },
+            positionStart: {
+              marginLeft: '8px',
+            },
             positionEnd: {
               marginRight: '8px',
             },

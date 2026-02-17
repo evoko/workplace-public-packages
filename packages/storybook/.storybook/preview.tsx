@@ -45,7 +45,7 @@ const preview: Preview = {
       return (
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Box sx={{ p: 3, minHeight: '100vh' }}>
+          <Box sx={{ p: 3, minHeight: '100vh', bgcolor: 'grey.100', ...( mode === 'dark' && { bgcolor: 'grey.900' }) }}>
             <Story />
           </Box>
         </ThemeProvider>

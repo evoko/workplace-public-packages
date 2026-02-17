@@ -7,8 +7,8 @@ import {
   InputAdornment,
   Box,
 } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { SearchIcon } from '@bwp-web/components';
 
 const meta: Meta<typeof TextField> = {
   title: 'Styles/TextField',
