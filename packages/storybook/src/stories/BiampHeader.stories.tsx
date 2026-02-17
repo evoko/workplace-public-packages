@@ -15,7 +15,6 @@ import {
   BiampHeaderButtonList,
   BiampHeaderButton,
   BiampHeaderProfile,
-  BiampAppIcon,
   BiampAppDialog,
   BiampAppDialogItem,
   AppsIcon,
@@ -602,35 +601,6 @@ export const WithBorder: Story = {
       </BiampHeader>
     );
   },
-};
-
-/**
- * A standalone BiampAppIcon — a 76×89 clickable tile with a 54×54 icon
- * and a text label underneath, separated by an 8px gap.
- */
-export const AppIcon: Story = {
-  name: 'App Icon',
-  render: () => (
-    <Stack spacing={4}>
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          BiampAppIcon
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-          A 76×89px clickable tile with a 54×54px icon and a caption label
-          below, separated by an 8px gap. Useful as a launcher-style button.
-        </Typography>
-        <Stack direction="row" spacing={1}>
-          <BiampAppIcon icon={<DashboardIcon />} label="Dashboard" />
-          <BiampAppIcon icon={<SettingsOutlinedIcon />} label="Settings" />
-          <BiampAppIcon icon={<CalendarMonthIcon />} label="Calendar" />
-          <BiampAppIcon icon={<BarChartIcon />} label="Analytics" />
-          <BiampAppIcon icon={<ChatBubbleOutlineIcon />} label="Messages" />
-          <BiampAppIcon icon={<FolderOpenIcon />} label="Files" />
-        </Stack>
-      </Box>
-    </Stack>
-  ),
 };
 
 /**

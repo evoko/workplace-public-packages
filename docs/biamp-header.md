@@ -306,30 +306,6 @@ function AppLauncher() {
 }
 ```
 
-### `BiampAppIcon`
-
-A standalone 76×89px clickable tile with a 54×54 icon and a caption label below, separated by an 8px gap. Useful as a launcher-style button. Extends MUI `ListItemButtonProps`.
-
-#### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `icon` | `JSX.Element` | _(required)_ | Icon rendered inside the tile (sized to 54×54) |
-| `label` | `string` | _(required)_ | Caption text displayed below the icon |
-| `sx` | `SxProps` | — | MUI system styles passed to the underlying `ListItemButton` |
-| _...rest_ | `ListItemButtonProps` | — | All other MUI `ListItemButton` props (e.g. `onClick`, `disabled`) are forwarded |
-
-#### Usage
-
-```tsx
-import { BiampAppIcon } from '@bwp-web/components';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-
-<BiampAppIcon icon={<DashboardIcon />} label="Dashboard" />
-<BiampAppIcon icon={<SettingsOutlinedIcon />} label="Settings" />
-```
-
 ## Exports
 
 - `BiampHeader` — Horizontal header container with padding.
@@ -342,4 +318,3 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 - `BiampAppPopover` — Styled popover for the app-launcher dialog.
 - `BiampAppDialog` — Rounded dialog container for app-launcher grid.
 - `BiampAppDialogItem` — Clickable app tile with icon and label.
-- `BiampAppIcon` — Standalone 76×89px clickable tile with icon and label.
