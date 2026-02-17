@@ -2,8 +2,6 @@ import {
   alpha,
   Box,
   BoxProps,
-  Grid,
-  GridProps,
   InputAdornment,
   ListItemButtonProps,
   Stack,
@@ -189,7 +187,7 @@ export function BiampHeaderButton({
   );
 }
 
-type BiampAppDialogProps = GridProps & {
+type BiampAppDialogProps = BoxProps & {
   children: React.ReactNode;
 };
 
@@ -199,15 +197,13 @@ export function BiampAppDialog({
   ...props
 }: BiampAppDialogProps) {
   return (
-    <Grid
-      container
-      columns={3}
-      spacing={2}
-      rowSpacing={1.5}
-      columnSpacing={1.5}
+    <Box
       sx={{
+        display: 'inline-flex',
+        flexWrap: 'wrap',
+        gap: 1.5,
         overflow: 'auto',
-        width: '284px',
+        maxWidth: '284px',
         borderRadius: '16px',
         backgroundColor: 'white',
         boxShadow: (theme) =>
@@ -217,11 +213,11 @@ export function BiampAppDialog({
       {...props}
     >
       {children}
-    </Grid>
+    </Box>
   );
 }
 
-type BiampAppDialogItemProps = GridProps & {
+type BiampAppDialogItemProps = BoxProps & {
   icon: JSX.Element;
   name: string;
 };
@@ -233,9 +229,9 @@ export function BiampAppDialogItem({
   ...props
 }: BiampAppDialogItemProps) {
   return (
-    <Grid
-      size={1}
+    <Box
       sx={{
+        width: '76px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -274,7 +270,7 @@ export function BiampAppDialogItem({
       >
         {name}
       </Typography>
-    </Grid>
+    </Box>
   );
 }
 

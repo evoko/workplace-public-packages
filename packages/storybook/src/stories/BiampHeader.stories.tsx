@@ -363,6 +363,31 @@ export const AppIcon: Story = {
 };
 
 /**
+ * A BiampAppDialog with only 2 items, showing how the layout
+ * behaves with fewer than a full row.
+ */
+export const AppDialogFewItems: Story = {
+  name: 'App Dialog (Few Items)',
+  render: () => (
+    <Stack spacing={4}>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          BiampAppDialog — Few Items
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
+          The dialog with only 2 items. Items maintain their fixed width and
+          align to the start of the row.
+        </Typography>
+        <BiampAppDialog sx={{ p: 2 }}>
+          <BiampAppDialogItem icon={<DashboardIcon />} name="Dashboard" />
+          <BiampAppDialogItem icon={<SettingsOutlinedIcon />} name="Settings" />
+        </BiampAppDialog>
+      </Box>
+    </Stack>
+  ),
+};
+
+/**
  * A grid of BiampAppDialogItems inside BiampAppDialog, simulating
  * an app-launcher popover with 9 sample applications.
  */
