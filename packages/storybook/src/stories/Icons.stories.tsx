@@ -18,6 +18,11 @@ import {
   UncheckedIcon,
   WarningStatusIcon,
   BiampRedLogo,
+  BookingApp,
+  CommandApp,
+  ConnectApp,
+  DesignerApp,
+  WorkplaceApp,
 } from '@bwp-web/assets';
 
 const meta: Meta = {
@@ -154,6 +159,49 @@ export const AllIcons: Story = {
             BiampRedLogo
           </Typography>
         </Box>
+      </Box>
+
+      <Typography variant="h3" sx={{ pt: 2 }}>
+        App Images
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        PNG images for the app-launcher dialog tiles. Each export is a data URL
+        string.
+      </Typography>
+
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+        {[
+          { src: BookingApp, name: 'BookingApp' },
+          { src: CommandApp, name: 'CommandApp' },
+          { src: ConnectApp, name: 'ConnectApp' },
+          { src: DesignerApp, name: 'DesignerApp' },
+          { src: WorkplaceApp, name: 'WorkplaceApp' },
+        ].map((img) => (
+          <Box
+            key={img.name}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 1,
+              p: 2,
+              borderRadius: 1,
+              border: '1px solid',
+              borderColor: 'divider',
+              minWidth: 120,
+            }}
+          >
+            <Box
+              component="img"
+              src={img.src}
+              alt={img.name}
+              sx={{ width: 54, height: 54, objectFit: 'contain' }}
+            />
+            <Typography variant="caption" align="center">
+              {img.name}
+            </Typography>
+          </Box>
+        ))}
       </Box>
     </Stack>
   ),

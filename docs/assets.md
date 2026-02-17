@@ -73,9 +73,9 @@ All icons respect MUI's `sx` prop for sizing:
 
 ## Images
 
-### `BiampRedLogo`
+All images are inlined as data URLs during the build, so no additional asset pipeline is required.
 
-A named export that resolves to the Biamp red logo PNG image. During the build it is inlined as a data URL, so no additional asset pipeline is required.
+### `BiampRedLogo`
 
 | Export | Type | Description |
 |--------|------|-------------|
@@ -95,6 +95,49 @@ function Logo() {
       alt="Biamp"
       sx={{ width: 24, height: 24 }}
     />
+  );
+}
+```
+
+### App Images
+
+PNG images for the app-launcher dialog tiles. Each export is a `string` that resolves to a data URL.
+
+| Export | Description |
+|--------|-------------|
+| `BookingApp` | Biamp Booking application icon |
+| `CommandApp` | Biamp Command application icon |
+| `ConnectApp` | Biamp Connect application icon |
+| `DesignerApp` | Biamp Designer application icon |
+| `WorkplaceApp` | Biamp Workplace application icon |
+
+#### Usage
+
+```tsx
+import { BookingApp, DesignerApp, ConnectApp } from '@bwp-web/assets';
+import { BiampAppDialog, BiampAppDialogItem } from '@bwp-web/components';
+import { Box } from '@mui/material';
+
+function AppLauncher() {
+  const apps = [
+    { image: BookingApp, name: 'Booking' },
+    { image: DesignerApp, name: 'Designer' },
+    { image: ConnectApp, name: 'Connect' },
+  ];
+
+  return (
+    <BiampAppDialog>
+      {apps.map((app) => (
+        <BiampAppDialogItem key={app.name} name={app.name}>
+          <Box
+            component="img"
+            src={app.image}
+            alt={app.name}
+            sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          />
+        </BiampAppDialogItem>
+      ))}
+    </BiampAppDialog>
   );
 }
 ```
@@ -121,3 +164,8 @@ function Logo() {
 ### Images
 
 - `BiampRedLogo` — Biamp red logo PNG (data URL).
+- `BookingApp` — Biamp Booking app icon PNG (data URL).
+- `CommandApp` — Biamp Command app icon PNG (data URL).
+- `ConnectApp` — Biamp Connect app icon PNG (data URL).
+- `DesignerApp` — Biamp Designer app icon PNG (data URL).
+- `WorkplaceApp` — Biamp Workplace app icon PNG (data URL).

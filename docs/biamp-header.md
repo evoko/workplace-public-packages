@@ -253,7 +253,7 @@ A rounded, shadowed container that lays out its children in a 3-column wrapping 
 
 ### `BiampAppDialogItem`
 
-A 76×89px clickable tile with a 54×54 content area and a caption label below, separated by an 8px gap. Includes a hover effect with a coloured border and background. Extends MUI `BoxProps`.
+A 76×89px clickable tile with a 54×54 content area and a caption label below, separated by a 4px gap. Includes a hover effect with a coloured border and background. Extends MUI `BoxProps`.
 
 #### Props
 
