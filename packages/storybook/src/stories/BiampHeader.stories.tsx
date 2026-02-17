@@ -244,6 +244,179 @@ export const WithActions: Story = {
 };
 
 /**
+ * When `selectedIcon` is provided, `BiampHeaderButton` swaps between
+ * the `icon` (unselected) and `selectedIcon` (selected) automatically.
+ * This is useful for showing filled vs outlined icon variants.
+ */
+export const WithSelectedButtons: Story = {
+  name: 'With Selected Buttons',
+  render: () => {
+    const [selectedA, setSelectedA] = useState<number>(0);
+    const [selectedB, setSelectedB] = useState<number>(0);
+
+    return (
+      <Stack direction="row" spacing={4}>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            With selectedIcon
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+            The icon changes from outlined to filled when selected.
+          </Typography>
+          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+            <BiampHeaderButtonList>
+              <BiampHeaderButton
+                selected={selectedA === 0}
+                icon={<NotificationsNoneIcon />}
+                selectedIcon={<NotificationsIcon />}
+                onClick={() => setSelectedA(0)}
+              />
+              <BiampHeaderButton
+                selected={selectedA === 1}
+                icon={<SettingsOutlinedIcon />}
+                selectedIcon={<SettingsIcon />}
+                onClick={() => setSelectedA(1)}
+              />
+            </BiampHeaderButtonList>
+          </Box>
+        </Box>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            Without selectedIcon
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+            When no selectedIcon is provided, the same icon is used for both
+            states.
+          </Typography>
+          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+            <BiampHeaderButtonList>
+              <BiampHeaderButton
+                selected={selectedB === 0}
+                icon={<NotificationsIcon />}
+                onClick={() => setSelectedB(0)}
+              />
+              <BiampHeaderButton
+                selected={selectedB === 1}
+                icon={<SettingsIcon />}
+                onClick={() => setSelectedB(1)}
+              />
+            </BiampHeaderButtonList>
+          </Box>
+        </Box>
+      </Stack>
+    );
+  },
+};
+
+/**
+ * Individual `BiampHeaderButton` states shown side by side.
+ * Each button uses `BiampListIcon` under the hood, so it supports
+ * `selected`, `disabled`, and `onClick` props.
+ */
+export const ButtonStates: Story = {
+  name: 'Button States',
+  render: () => (
+    <Stack spacing={3}>
+      <Typography variant="h3">BiampHeaderButton States</Typography>
+      <Stack direction="row" spacing={3} alignItems="flex-start">
+        <Stack alignItems="center" spacing={1}>
+          <BiampHeaderButton icon={<SettingsOutlinedIcon />} />
+          <Typography variant="caption">Default</Typography>
+        </Stack>
+        <Stack alignItems="center" spacing={1}>
+          <BiampHeaderButton selected icon={<SettingsOutlinedIcon />} />
+          <Typography variant="caption">Selected</Typography>
+        </Stack>
+        <Stack alignItems="center" spacing={1}>
+          <BiampHeaderButton
+            selected
+            icon={<SettingsOutlinedIcon />}
+            selectedIcon={<SettingsIcon />}
+          />
+          <Typography variant="caption">Selected (with selectedIcon)</Typography>
+        </Stack>
+        <Stack alignItems="center" spacing={1}>
+          <BiampHeaderButton icon={<SettingsOutlinedIcon />} disabled />
+          <Typography variant="caption">Disabled</Typography>
+        </Stack>
+      </Stack>
+      <Divider />
+      <Typography variant="h3">Extends ListItemButton</Typography>
+      <Typography variant="body2" sx={{ maxWidth: 500 }}>
+        BiampHeaderButton extends MUI's ListItemButtonProps, so you can pass
+        any prop that ListItemButton accepts, such as <code>disabled</code>,{' '}
+        <code>onClick</code>, <code>sx</code>, and more.
+      </Typography>
+    </Stack>
+  ),
+};
+
+/**
+ * `BiampHeaderButtonList` provides a standardised horizontal layout for
+ * `BiampHeaderButton` items with consistent 4px (0.5) gaps between each button.
+ * Use it inside `BiampHeaderActions` to get properly-spaced button groups.
+ */
+export const WithButtonList: Story = {
+  name: 'With Button List',
+  render: () => {
+    const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+    const items = [
+      { icon: <AppsIcon />, selectedIcon: <AppsIconFilled /> },
+      { icon: <NotificationsNoneIcon />, selectedIcon: <NotificationsIcon /> },
+      { icon: <HelpOutlineIcon />, selectedIcon: <HelpIcon /> },
+      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    ];
+
+    return (
+      <Stack direction="row" spacing={4}>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            With BiampHeaderButtonList
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+            Buttons are wrapped in <code>BiampHeaderButtonList</code> which adds
+            standardised 4px gaps between each item.
+          </Typography>
+          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+            <BiampHeaderButtonList>
+              {items.map((item, i) => (
+                <BiampHeaderButton
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampHeaderButtonList>
+          </Box>
+        </Box>
+        <Box>
+          <Typography variant="h3" sx={{ mb: 2 }}>
+            Without BiampHeaderButtonList
+          </Typography>
+          <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+            Without the list wrapper, buttons stack with no gap between them.
+          </Typography>
+          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+            {items.map((item, i) => (
+              <BiampHeaderButton
+                key={i}
+                selected={selectedIndex === i}
+                icon={item.icon}
+                selectedIcon={item.selectedIcon}
+                onClick={() => setSelectedIndex(i)}
+              />
+            ))}
+          </Box>
+        </Box>
+      </Stack>
+    );
+  },
+};
+
+/**
  * Demonstrates each sub-component individually so you can see
  * how they look and behave in isolation.
  */

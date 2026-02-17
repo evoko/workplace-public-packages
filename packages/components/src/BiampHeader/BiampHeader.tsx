@@ -122,7 +122,7 @@ export function BiampHeaderActions({
     <Box
       sx={{
         pl: 3,
-        gap: 3,
+        gap: 2,
         display: 'flex',
         alignItems: 'center',
         ...sx,
