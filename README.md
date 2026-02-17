@@ -8,6 +8,7 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 |---------|-------------|--------|
 | [`@bwp-web/styles`](./packages/styles) | Shared MUI theme and styling utilities | Active |
 | [`@bwp-web/components`](./packages/components) | Shared React components | Active |
+| [`@bwp-web/assets`](./packages/assets) | Shared icons and image assets | Active |
 
 ## Getting Started
 
@@ -169,6 +170,24 @@ npm install @bwp-web/components
 | `BiampAppPopover` | Styled popover for the app-launcher dialog | [biamp-header.md](./docs/biamp-header.md) |
 | `BiampAppDialog` | Rounded dialog container for app-launcher grid | [biamp-header.md](./docs/biamp-header.md) |
 | `BiampAppDialogItem` | Clickable app tile with icon and label | [biamp-header.md](./docs/biamp-header.md) |
+
+## Using `@bwp-web/assets`
+
+### Installation
+
+```bash
+npm install @bwp-web/assets
+```
+
+### Peer Dependencies
+
+- `@mui/material` >= 7.0.0
+- `react` >= 18.0.0
+- `react-dom` >= 18.0.0
+
+### Asset Documentation
+
+for further asset documentation, go to [assets.md](./docs/assets.md)
 
 ## Storybook
 
