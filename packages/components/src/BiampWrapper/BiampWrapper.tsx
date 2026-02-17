@@ -1,53 +1,34 @@
 import React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
-import { useTheme } from '@mui/material/styles';
 
 export type BiampWrapperProps = BoxProps & {
   children?: React.ReactNode;
-  /**
-   * Background color of the outer container.
-   * Defaults to `grey.100` in light mode and `grey.900` in dark mode.
-   */
 };
 
 /**
  * A full-page content wrapper that stretches to fill all available space
- * with a configurable background and responsive padding around the content.
- * Mobile: 16px, Desktop: 20px.
+ * with 8px padding, 8px border radius, and scrollable overflow.
+ * Background: white (light) / `grey.800` (dark).
  */
-export function BiampWrapper({
-  children,
-  sx,
-  ...props
-}: BiampWrapperProps) {
-  const theme = useTheme();
-  const defaultBg =
-    theme.palette.mode === 'dark'
-      ? theme.palette.grey[900]
-      : theme.palette.grey[100];
-
+export function BiampWrapper({ children, sx, ...props }: BiampWrapperProps) {
   return (
     <Box
       display="flex"
-      flexDirection="column"
+      padding="8px"
+      alignItems="flex-start"
       sx={{
+        flex: 1,
         height: '100%',
-        padding: { xs: '16px', md: '20px' },
-        backgroundColor: defaultBg,
+        width: '100%',
+        borderRadius: '8px',
+        overflow: 'auto',
+        backgroundColor: ({ palette }) =>
+          palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
         ...sx,
       }}
       {...props}
     >
-      <Box
-        sx={{
-          height: '100%',
-          borderRadius: '8px',
-          overflow: 'auto',
-          backgroundColor: defaultBg,
-        }}
-      >
-        {children}
-      </Box>
+      {children}
     </Box>
   );
 }
