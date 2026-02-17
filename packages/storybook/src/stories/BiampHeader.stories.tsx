@@ -305,7 +305,7 @@ export const WithSelectedButtons: Story = {
 
 /**
  * Individual `BiampHeaderButton` states shown side by side.
- * Each button uses `BiampListIcon` under the hood, so it supports
+ * Each button extends `ListItemButton`, so it supports
  * `selected`, `disabled`, and `onClick` props.
  */
 export const ButtonStates: Story = {
@@ -520,9 +520,8 @@ export const SubComponents: Story = {
             BiampHeaderProfile
           </Typography>
           <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-            A profile section with a 36x36 container (holding a 32x32 image with
-            a 4px border radius) and an optional H4 name, separated by{' '}
-            <code>gap: 1</code>.
+            A 36x36 profile button container holding a 32x32 image with
+            a 4px border radius.
           </Typography>
           <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
             <BiampHeaderProfile
@@ -748,8 +747,7 @@ export const AppDialog: Story = {
           </Typography>
           <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
             A 3-column grid of <code>BiampAppDialogItem</code> tiles inside a
-            rounded, shadowed container. Each item uses
-            <code> BiampAppIcon</code> internally to render a 76×89px tile.
+            rounded, shadowed container. Each item renders a 76×89px tile.
           </Typography>
           <BiampAppDialog>
             {apps.map((app, i) => (

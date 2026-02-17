@@ -57,7 +57,6 @@ function App() {
         </BiampHeaderButtonList>
         <BiampHeaderProfile
           image="https://i.pravatar.cc/32?img=1"
-          name="Jane Doe"
         />
       </BiampHeaderActions>
     </BiampHeader>
@@ -171,7 +170,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 ### `BiampHeaderButton`
 
-A 40×40px icon button designed for use inside `BiampHeaderButtonList`. Supports an optional `selectedIcon` that is shown when the button is selected, which is useful for swapping between outlined and filled icon variants. Uses `BiampListIcon` under the hood and extends MUI `ListItemButtonProps`.
+A 40×40px icon button designed for use inside `BiampHeaderButtonList`. Supports an optional `selectedIcon` that is shown when the button is selected, which is useful for swapping between outlined and filled icon variants. Extends MUI `ListItemButtonProps`.
 
 #### Props
 
@@ -180,7 +179,7 @@ A 40×40px icon button designed for use inside `BiampHeaderButtonList`. Supports
 | `icon` | `JSX.Element` | _(required)_ | Icon shown in the default (unselected) state |
 | `selectedIcon` | `JSX.Element` | Same as `icon` | Icon shown when `selected` is `true`. Falls back to `icon` if not provided |
 | `selected` | `boolean` | `false` | Whether the button is in the selected state |
-| `sx` | `SxProps` | — | MUI system styles passed to the underlying `BiampListIcon` |
+| `sx` | `SxProps` | — | MUI system styles passed to the underlying `ListItemButton` |
 | _...rest_ | `ListItemButtonProps` | — | All other MUI `ListItemButton` props (e.g. `disabled`, `onClick`) are forwarded |
 
 #### Using `selectedIcon`
@@ -224,9 +223,21 @@ import { BiampHeaderProfile } from '@bwp-web/components';
 
 <BiampHeaderProfile
   image="https://i.pravatar.cc/32?img=1"
-  name="Jane Doe"
 />
 ```
+
+### `BiampAppPopover`
+
+A styled `Popover` with a 16px border radius, no background image, a subtle border, and a drop shadow. Anchors to the bottom-left of its trigger by default. Designed to wrap `BiampAppDialog` for the app-launcher popover. Extends MUI `PopoverProps`.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | _(required)_ | Popover content — typically a `BiampAppDialog` |
+| `open` | `boolean` | _(required)_ | Whether the popover is open |
+| `sx` | `SxProps` | — | MUI system styles passed to the `Popover` |
+| _...rest_ | `PopoverProps` | — | All other MUI `Popover` props (e.g. `anchorEl`, `onClose`) are forwarded |
 
 ### `BiampAppDialog`
 
@@ -257,9 +268,9 @@ A 76×89px clickable tile with a 54×54 icon and a caption label below, separate
 
 ```tsx
 import { useState } from 'react';
-import { Popover } from '@mui/material';
 import {
   BiampHeaderButton,
+  BiampAppPopover,
   BiampAppDialog,
   BiampAppDialogItem,
   AppsIcon,
@@ -280,21 +291,43 @@ function AppLauncher() {
         selected={open}
         onClick={(e) => setAnchorEl(open ? null : e.currentTarget as HTMLElement)}
       />
-      <Popover
+      <BiampAppPopover
         open={open}
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-        slotProps={{ paper: { sx: { mt: 1, borderRadius: '16px' } } }}
       >
-        <BiampAppDialog sx={{ p: 2 }}>
+        <BiampAppDialog>
           <BiampAppDialogItem icon={<DashboardIcon />} name="Dashboard" />
           <BiampAppDialogItem icon={<SettingsOutlinedIcon />} name="Settings" />
         </BiampAppDialog>
-      </Popover>
+      </BiampAppPopover>
     </>
   );
 }
+```
+
+### `BiampAppIcon`
+
+A standalone 76×89px clickable tile with a 54×54 icon and a caption label below, separated by an 8px gap. Useful as a launcher-style button. Extends MUI `ListItemButtonProps`.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `icon` | `JSX.Element` | _(required)_ | Icon rendered inside the tile (sized to 54×54) |
+| `label` | `string` | _(required)_ | Caption text displayed below the icon |
+| `sx` | `SxProps` | — | MUI system styles passed to the underlying `ListItemButton` |
+| _...rest_ | `ListItemButtonProps` | — | All other MUI `ListItemButton` props (e.g. `onClick`, `disabled`) are forwarded |
+
+#### Usage
+
+```tsx
+import { BiampAppIcon } from '@bwp-web/components';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+
+<BiampAppIcon icon={<DashboardIcon />} label="Dashboard" />
+<BiampAppIcon icon={<SettingsOutlinedIcon />} label="Settings" />
 ```
 
 ## Exports
@@ -306,5 +339,7 @@ function AppLauncher() {
 - `BiampHeaderButtonList` — Horizontal list with 4px gaps for header buttons.
 - `BiampHeaderButton` — Selectable 40×40px icon button for header actions.
 - `BiampHeaderProfile` — Profile image button.
+- `BiampAppPopover` — Styled popover for the app-launcher dialog.
 - `BiampAppDialog` — Rounded dialog container for app-launcher grid.
 - `BiampAppDialogItem` — Clickable app tile with icon and label.
+- `BiampAppIcon` — Standalone 76×89px clickable tile with icon and label.

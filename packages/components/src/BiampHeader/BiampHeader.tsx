@@ -239,6 +239,7 @@ export function BiampAppDialog({
         flexWrap: 'wrap',
         gap: 1.5,
         maxWidth: '284px',
+        borderRadius: '16px',
         backgroundColor: ({ palette }) =>
           palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
         ...sx,
