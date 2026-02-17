@@ -4,4 +4,9 @@ export { BiampWrapper } from './BiampWrapper';
 export type { BiampWrapperProps } from './BiampWrapper';
 export * from './BiampSidebar';
 export * from './BiampHeader';
-export * from './icons';
+export {
+  AppsIcon,
+  AppsIconFilled,
+  BiampLogoIcon,
+  SearchIcon,
+} from '@bwp-web/assets';

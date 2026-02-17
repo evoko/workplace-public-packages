@@ -21,7 +21,13 @@ import {
   AppsIconFilled,
   BiampAppPopover,
 } from '@bwp-web/components';
-import DashboardIcon from '@mui/icons-material/Dashboard';
+import {
+  BookingApp,
+  WorkplaceApp,
+  CommandApp,
+  DesignerApp,
+  ConnectApp,
+} from '@bwp-web/assets';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
@@ -29,13 +35,6 @@ import HelpIcon from '@mui/icons-material/Help';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import BusinessIcon from '@mui/icons-material/Business';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
-import DevicesIcon from '@mui/icons-material/Devices';
 
 const meta: Meta<typeof BiampHeader> = {
   title: 'Components/BiampHeader',
@@ -63,12 +62,11 @@ export const Default: Story = {
     const open = Boolean(anchorEl);
 
     const apps = [
-      { icon: <DashboardIcon />, name: 'Dashboard' },
-      { icon: <CalendarMonthIcon />, name: 'Calendar' },
-      { icon: <BarChartIcon />, name: 'Analytics' },
-      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
-      { icon: <FolderOpenIcon />, name: 'Files' },
-      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
+      { image: BookingApp, name: 'Booking' },
+      { image: DesignerApp, name: 'Designer' },
+      { image: ConnectApp, name: 'Connect' },
+      { image: CommandApp, name: 'Command' },
+      { image: WorkplaceApp, name: 'Workplace' },
     ];
 
     return (
@@ -101,11 +99,9 @@ export const Default: Story = {
         >
           <BiampAppDialog>
             {apps.map((app, i) => (
-              <BiampAppDialogItem
-                key={i}
-                icon={app.icon}
-                name={app.name}
-              />
+              <BiampAppDialogItem key={i} name={app.name}>
+                <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              </BiampAppDialogItem>
             ))}
           </BiampAppDialog>
         </BiampAppPopover>
@@ -182,12 +178,11 @@ export const WithActions: Story = {
     const open = Boolean(anchorEl);
 
     const apps = [
-      { icon: <DashboardIcon />, name: 'Dashboard' },
-      { icon: <CalendarMonthIcon />, name: 'Calendar' },
-      { icon: <BarChartIcon />, name: 'Analytics' },
-      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
-      { icon: <FolderOpenIcon />, name: 'Files' },
-      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
+      { image: BookingApp, name: 'Booking' },
+      { image: DesignerApp, name: 'Designer' },
+      { image: ConnectApp, name: 'Connect' },
+      { image: CommandApp, name: 'Command' },
+      { image: WorkplaceApp, name: 'Workplace' },
     ];
 
     return (
@@ -224,11 +219,9 @@ export const WithActions: Story = {
         >
           <BiampAppDialog>
             {apps.map((app, i) => (
-              <BiampAppDialogItem
-                key={i}
-                icon={app.icon}
-                name={app.name}
-              />
+              <BiampAppDialogItem key={i} name={app.name}>
+                <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              </BiampAppDialogItem>
             ))}
           </BiampAppDialog>
         </BiampAppPopover>
@@ -421,12 +414,11 @@ export const SubComponents: Story = {
     const open = Boolean(anchorEl);
 
     const apps = [
-      { icon: <DashboardIcon />, name: 'Dashboard' },
-      { icon: <CalendarMonthIcon />, name: 'Calendar' },
-      { icon: <BarChartIcon />, name: 'Analytics' },
-      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
-      { icon: <FolderOpenIcon />, name: 'Files' },
-      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
+      { image: BookingApp, name: 'Booking' },
+      { image: DesignerApp, name: 'Designer' },
+      { image: ConnectApp, name: 'Connect' },
+      { image: CommandApp, name: 'Command' },
+      { image: WorkplaceApp, name: 'Workplace' },
     ];
 
     return (
@@ -501,11 +493,9 @@ export const SubComponents: Story = {
             >
               <BiampAppDialog>
                 {apps.map((app, i) => (
-                  <BiampAppDialogItem
-                    key={i}
-                    icon={app.icon}
-                    name={app.name}
-                  />
+                  <BiampAppDialogItem key={i} name={app.name}>
+                    <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  </BiampAppDialogItem>
                 ))}
               </BiampAppDialog>
             </BiampAppPopover>
@@ -544,12 +534,11 @@ export const WithBorder: Story = {
     const open = Boolean(anchorEl);
 
     const apps = [
-      { icon: <DashboardIcon />, name: 'Dashboard' },
-      { icon: <CalendarMonthIcon />, name: 'Calendar' },
-      { icon: <BarChartIcon />, name: 'Analytics' },
-      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
-      { icon: <FolderOpenIcon />, name: 'Files' },
-      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
+      { image: BookingApp, name: 'Booking' },
+      { image: DesignerApp, name: 'Designer' },
+      { image: ConnectApp, name: 'Connect' },
+      { image: CommandApp, name: 'Command' },
+      { image: WorkplaceApp, name: 'Workplace' },
     ];
 
     return (
@@ -590,11 +579,9 @@ export const WithBorder: Story = {
         >
           <BiampAppDialog>
             {apps.map((app, i) => (
-              <BiampAppDialogItem
-                key={i}
-                icon={app.icon}
-                name={app.name}
-              />
+              <BiampAppDialogItem key={i} name={app.name}>
+                <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              </BiampAppDialogItem>
             ))}
           </BiampAppDialog>
         </BiampAppPopover>
@@ -614,12 +601,11 @@ export const AppDialogToggle: Story = {
     const open = Boolean(anchorEl);
 
     const apps = [
-      { icon: <DashboardIcon />, name: 'Dashboard' },
-      { icon: <CalendarMonthIcon />, name: 'Calendar' },
-      { icon: <BarChartIcon />, name: 'Analytics' },
-      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
-      { icon: <FolderOpenIcon />, name: 'Files' },
-      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
+      { image: BookingApp, name: 'Booking' },
+      { image: DesignerApp, name: 'Designer' },
+      { image: ConnectApp, name: 'Connect' },
+      { image: CommandApp, name: 'Command' },
+      { image: WorkplaceApp, name: 'Workplace' },
     ];
 
     return (
@@ -652,11 +638,9 @@ export const AppDialogToggle: Story = {
         >
           <BiampAppDialog>
             {apps.map((app, i) => (
-              <BiampAppDialogItem
-                key={i}
-                icon={app.icon}
-                name={app.name}
-              />
+              <BiampAppDialogItem key={i} name={app.name}>
+                <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              </BiampAppDialogItem>
             ))}
           </BiampAppDialog>
         </BiampAppPopover>
@@ -682,8 +666,12 @@ export const AppDialogFewItems: Story = {
           align to the start of the row.
         </Typography>
         <BiampAppDialog>
-          <BiampAppDialogItem icon={<DashboardIcon />} name="Dashboard" />
-          <BiampAppDialogItem icon={<SettingsOutlinedIcon />} name="Settings" />
+          <BiampAppDialogItem name="Booking">
+            <Box component="img" src={BookingApp} alt="Booking" sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          </BiampAppDialogItem>
+          <BiampAppDialogItem name="Designer">
+            <Box component="img" src={DesignerApp} alt="Designer" sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+          </BiampAppDialogItem>
         </BiampAppDialog>
       </Box>
     </Stack>
@@ -698,15 +686,11 @@ export const AppDialog: Story = {
   name: 'App Dialog',
   render: () => {
     const apps = [
-      { icon: <DashboardIcon />, name: 'Dashboard' },
-      { icon: <CalendarMonthIcon />, name: 'Calendar' },
-      { icon: <BarChartIcon />, name: 'Analytics' },
-      { icon: <ChatBubbleOutlineIcon />, name: 'Messages' },
-      { icon: <FolderOpenIcon />, name: 'Files' },
-      { icon: <MapOutlinedIcon />, name: 'Maps' },
-      { icon: <DevicesIcon />, name: 'Devices' },
-      { icon: <SettingsOutlinedIcon />, name: 'Settings' },
-      { icon: <BusinessIcon />, name: 'Buildings' },
+      { image: BookingApp, name: 'Booking' },
+      { image: DesignerApp, name: 'Designer' },
+      { image: ConnectApp, name: 'Connect' },
+      { image: CommandApp, name: 'Command' },
+      { image: WorkplaceApp, name: 'Workplace' },
     ];
 
     return (
@@ -721,11 +705,9 @@ export const AppDialog: Story = {
           </Typography>
           <BiampAppDialog>
             {apps.map((app, i) => (
-              <BiampAppDialogItem
-                key={i}
-                icon={app.icon}
-                name={app.name}
-              />
+              <BiampAppDialogItem key={i} name={app.name}>
+                <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              </BiampAppDialogItem>
             ))}
           </BiampAppDialog>
         </Box>

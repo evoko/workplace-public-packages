@@ -2,21 +2,31 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Stack, Typography, Box } from '@mui/material';
 
-// Import icons directly from the styles source — these are the custom icons
-// used internally by the theme's component overrides (alerts, checkboxes, etc.)
-import { BreadcrumbIcon } from '../../../styles/src/icons/BreadcrumbIcon';
-import { CheckedIcon } from '../../../styles/src/icons/CheckedIcon';
-import { DatePickerIcon } from '../../../styles/src/icons/DatePickerIcon';
-import { ErrorStatusIcon } from '../../../styles/src/icons/ErrorStatusIcon';
-import { IndeterminateIcon } from '../../../styles/src/icons/IndeterminateIcon';
-import { InfoStatusIcon } from '../../../styles/src/icons/InfoStatusIcon';
-import { InputCloseIcon } from '../../../styles/src/icons/InputCloseIcon';
-import { SuccessStatusIcon } from '../../../styles/src/icons/SuccessStatusIcon';
-import { UncheckedIcon } from '../../../styles/src/icons/UncheckedIcon';
-import { WarningStatusIcon } from '../../../styles/src/icons/WarningStatusIcon';
+import {
+  AppsIcon,
+  AppsIconFilled,
+  BiampLogoIcon,
+  BreadcrumbIcon,
+  CheckedIcon,
+  DatePickerIcon,
+  ErrorStatusIcon,
+  IndeterminateIcon,
+  InfoStatusIcon,
+  InputCloseIcon,
+  SearchIcon,
+  SuccessStatusIcon,
+  UncheckedIcon,
+  WarningStatusIcon,
+  BiampRedLogo,
+  BookingApp,
+  CommandApp,
+  ConnectApp,
+  DesignerApp,
+  WorkplaceApp,
+} from '@bwp-web/assets';
 
 const meta: Meta = {
-  title: 'Styles/Icons',
+  title: 'Assets/Icons',
   tags: ['autodocs'],
 };
 
@@ -50,13 +60,39 @@ const IconDisplay = ({
   </Box>
 );
 
+/**
+ * All icons and images exported by `@bwp-web/assets`, organised by category.
+ */
 export const AllIcons: Story = {
   render: () => (
     <Stack spacing={3}>
-      <Typography variant="h3">Custom Theme Icons</Typography>
+      <Typography variant="h3">Component Icons</Typography>
       <Typography variant="body2" color="text.secondary">
-        These icons are used internally by the theme for component overrides
-        (alerts, checkboxes, breadcrumbs, date picker, autocomplete).
+        Icons used directly in Biamp Workplace components (header, sidebar, app
+        launcher).
+      </Typography>
+
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+        <IconDisplay name="BiampLogoIcon">
+          <BiampLogoIcon />
+        </IconDisplay>
+        <IconDisplay name="SearchIcon">
+          <SearchIcon />
+        </IconDisplay>
+        <IconDisplay name="AppsIcon">
+          <AppsIcon />
+        </IconDisplay>
+        <IconDisplay name="AppsIconFilled">
+          <AppsIconFilled />
+        </IconDisplay>
+      </Box>
+
+      <Typography variant="h3" sx={{ pt: 2 }}>
+        Theme Icons
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        Icons used internally by the theme for component overrides (alerts,
+        checkboxes, breadcrumbs, date picker, autocomplete).
       </Typography>
 
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
@@ -93,8 +129,91 @@ export const AllIcons: Story = {
       </Box>
 
       <Typography variant="h3" sx={{ pt: 2 }}>
-        Icons at Different Sizes
+        Images
       </Typography>
+      <Typography variant="body2" color="text.secondary">
+        Static image assets exported as data URLs.
+      </Typography>
+
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 1,
+            p: 2,
+            borderRadius: 1,
+            border: '1px solid',
+            borderColor: 'divider',
+            minWidth: 120,
+          }}
+        >
+          <Box
+            component="img"
+            src={BiampRedLogo}
+            alt="Biamp Red Logo"
+            sx={{ width: 24, height: 24 }}
+          />
+          <Typography variant="caption" align="center">
+            BiampRedLogo
+          </Typography>
+        </Box>
+      </Box>
+
+      <Typography variant="h3" sx={{ pt: 2 }}>
+        App Images
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        PNG images for the app-launcher dialog tiles. Each export is a data URL
+        string.
+      </Typography>
+
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+        {[
+          { src: BookingApp, name: 'BookingApp' },
+          { src: CommandApp, name: 'CommandApp' },
+          { src: ConnectApp, name: 'ConnectApp' },
+          { src: DesignerApp, name: 'DesignerApp' },
+          { src: WorkplaceApp, name: 'WorkplaceApp' },
+        ].map((img) => (
+          <Box
+            key={img.name}
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 1,
+              p: 2,
+              borderRadius: 1,
+              border: '1px solid',
+              borderColor: 'divider',
+              minWidth: 120,
+            }}
+          >
+            <Box
+              component="img"
+              src={img.src}
+              alt={img.name}
+              sx={{ width: 54, height: 54, objectFit: 'contain' }}
+            />
+            <Typography variant="caption" align="center">
+              {img.name}
+            </Typography>
+          </Box>
+        ))}
+      </Box>
+    </Stack>
+  ),
+};
+
+/**
+ * Icons rendered at multiple sizes to verify they scale correctly.
+ */
+export const Sizes: Story = {
+  render: () => (
+    <Stack spacing={3}>
+      <Typography variant="h3">Icons at Different Sizes</Typography>
       <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
         {[14, 16, 20, 24, 32, 48].map((size) => (
           <Box key={size} sx={{ textAlign: 'center' }}>

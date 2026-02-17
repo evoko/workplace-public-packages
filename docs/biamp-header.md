@@ -253,14 +253,14 @@ A rounded, shadowed container that lays out its children in a 3-column wrapping 
 
 ### `BiampAppDialogItem`
 
-A 76×89px clickable tile with a 54×54 icon and a caption label below, separated by an 8px gap. Includes a hover effect with a coloured border and background. Extends MUI `BoxProps`.
+A 76×89px clickable tile with a 54×54 content area and a caption label below, separated by a 4px gap. Includes a hover effect with a coloured border and background. Extends MUI `BoxProps`.
 
 #### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `icon` | `JSX.Element` | _(required)_ | Icon rendered inside the tile |
-| `name` | `string` | _(required)_ | Label displayed below the icon |
+| `children` | `React.ReactNode` | _(required)_ | Content rendered inside the 54×54 tile area (icons, images, components, etc.) |
+| `name` | `string` | _(required)_ | Label displayed below the content |
 | `sx` | `SxProps` | — | MUI system styles passed to the root `Box` |
 | _...rest_ | `BoxProps` | — | All other MUI `Box` props are forwarded |
 
@@ -297,8 +297,12 @@ function AppLauncher() {
         onClose={() => setAnchorEl(null)}
       >
         <BiampAppDialog>
-          <BiampAppDialogItem icon={<DashboardIcon />} name="Dashboard" />
-          <BiampAppDialogItem icon={<SettingsOutlinedIcon />} name="Settings" />
+          <BiampAppDialogItem name="Dashboard">
+            <DashboardIcon />
+          </BiampAppDialogItem>
+          <BiampAppDialogItem name="Settings">
+            <SettingsOutlinedIcon />
+          </BiampAppDialogItem>
         </BiampAppDialog>
       </BiampAppPopover>
     </>
@@ -317,4 +321,4 @@ function AppLauncher() {
 - `BiampHeaderProfile` — Profile image button.
 - `BiampAppPopover` — Styled popover for the app-launcher dialog.
 - `BiampAppDialog` — Rounded dialog container for app-launcher grid.
-- `BiampAppDialogItem` — Clickable app tile with icon and label.
+- `BiampAppDialogItem` — Clickable app tile with children content and label.

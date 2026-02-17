@@ -5,7 +5,7 @@ import {
   Stack,
   StackProps,
 } from '@mui/material';
-import { BiampLogoIcon } from '../icons';
+import { BiampLogoIcon } from '@bwp-web/assets';
 import { JSX } from 'react';
 
 type BiampSidebarProps = StackProps & {

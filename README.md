@@ -8,6 +8,7 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 |---------|-------------|--------|
 | [`@bwp-web/styles`](./packages/styles) | Shared MUI theme and styling utilities | Active |
 | [`@bwp-web/components`](./packages/components) | Shared React components | Active |
+| [`@bwp-web/assets`](./packages/assets) | Shared icons, image, and font assets | Active |
 
 ## Getting Started
 
@@ -168,7 +169,35 @@ npm install @bwp-web/components
 | `BiampHeaderProfile` | Profile image button | [biamp-header.md](./docs/biamp-header.md) |
 | `BiampAppPopover` | Styled popover for the app-launcher dialog | [biamp-header.md](./docs/biamp-header.md) |
 | `BiampAppDialog` | Rounded dialog container for app-launcher grid | [biamp-header.md](./docs/biamp-header.md) |
-| `BiampAppDialogItem` | Clickable app tile with icon and label | [biamp-header.md](./docs/biamp-header.md) |
+| `BiampAppDialogItem` | Clickable app tile with children content and label | [biamp-header.md](./docs/biamp-header.md) |
+
+## Using `@bwp-web/assets`
+
+### Installation
+
+```bash
+npm install @bwp-web/assets
+```
+
+### Peer Dependencies
+
+- `@mui/material` >= 7.0.0
+- `react` >= 18.0.0
+- `react-dom` >= 18.0.0
+
+### Fonts
+
+All font files (Open Sans and Montserrat) required by the Biamp Workplace theme are bundled as data URLs in the assets package. If you are using `biampTheme()` with `<CssBaseline />`, **fonts load automatically** — no extra imports or configuration needed.
+
+For standalone use or custom `@font-face` rules, fonts can be imported directly:
+
+```tsx
+import { OpenSansRegular, MontserratBold } from '@bwp-web/assets';
+```
+
+### Asset Documentation
+
+For further asset documentation, go to [assets.md](./docs/assets.md)
 
 ## Storybook
 
