@@ -1,6 +1,11 @@
-import { Box, ListItemButtonProps, Stack, StackProps } from '@mui/material';
+import {
+  Box,
+  ListItemButton,
+  ListItemButtonProps,
+  Stack,
+  StackProps,
+} from '@mui/material';
 import { BiampLogoIcon } from '../icons';
-import { BiampListIcon } from '../BiampListIcon';
 import { JSX } from 'react';
 
 type BiampSidebarProps = StackProps & {
@@ -40,7 +45,41 @@ export function BiampSidebarIconList({
   );
 }
 
-export const BiampSidebarIcon = BiampListIcon;
+type BiampSidebarIconProps = ListItemButtonProps & {
+  selected?: boolean;
+  icon: JSX.Element;
+  selectedIcon?: JSX.Element;
+};
+
+export function BiampSidebarIcon({
+  selected,
+  icon,
+  selectedIcon,
+  sx,
+  ...props
+}: BiampSidebarIconProps) {
+  const displayedSelectedIcon = selectedIcon ?? icon;
+  return (
+    <ListItemButton
+      selected={selected}
+      disableGutters
+      disableRipple
+      sx={{
+        minWidth: '48px',
+        maxWidth: '48px',
+        minHeight: '48px',
+        maxHeight: '48px',
+        borderRadius: '8px',
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...sx,
+      }}
+      {...props}
+    >
+      {selected ? displayedSelectedIcon : icon}
+    </ListItemButton>
+  );
+}
 
 type BiampSidebarComponentProps = ListItemButtonProps & {
   children: React.ReactNode;

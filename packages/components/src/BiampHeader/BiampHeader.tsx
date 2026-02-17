@@ -14,7 +14,6 @@ import {
 import { JSX } from 'react';
 import biampRedLogo from '../../public/BiampRedLogoIcon.png';
 import { SearchIcon } from '../icons';
-import { BiampListIcon } from '../BiampListIcon';
 
 type BiampHeaderProps = StackProps & {
   children?: React.ReactNode;
@@ -166,25 +165,26 @@ export function BiampHeaderButton({
   sx,
   ...props
 }: BiampHeaderButtonProps) {
+  const displayedSelectedIcon = selectedIcon ?? icon;
   return (
-    <BiampListIcon
-      icon={icon}
-      selectedIcon={selectedIcon}
+    <ListItemButton
       selected={selected}
+      disableGutters
+      disableRipple
       sx={{
         minWidth: '40px',
         maxWidth: '40px',
         minHeight: '40px',
         maxHeight: '40px',
-        '& .MuiSvgIcon-root': {
-          width: '24px',
-          height: '24px',
-          fontSize: '24px',
-        },
+        borderRadius: '8px',
+        justifyContent: 'center',
+        alignItems: 'center',
         ...sx,
       }}
       {...props}
-    />
+    >
+      {selected ? displayedSelectedIcon : icon}
+    </ListItemButton>
   );
 }
 
