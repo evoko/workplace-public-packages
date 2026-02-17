@@ -3,6 +3,7 @@ import {
   Box,
   BoxProps,
   InputAdornment,
+  ListItemButton,
   ListItemButtonProps,
   Stack,
   StackProps,
@@ -275,44 +276,47 @@ export function BiampAppDialogItem({
 }
 
 
-type BiampHeaderProfileProps = BoxProps & {
-  icon: JSX.Element;
-  name: string;
+type BiampHeaderProfileProps = ListItemButtonProps & {
+  image: string;
+  selected?: boolean;
 };
 
 export function BiampHeaderProfile({
-  icon,
-  name,
+  image,
+  selected,
   sx,
   ...props
 }: BiampHeaderProfileProps) {
   return (
-    <Box
-      sx={{ display: 'flex', alignItems: 'center', gap: 1, ...sx }}
+    
+      <ListItemButton
+      selected={selected}
+      disableGutters
+      disableRipple
+      sx={{
+        minWidth: '36px',
+        maxWidth: '36px',
+        minHeight: '36px',
+        maxHeight: '36px',
+        borderRadius: '6px',
+        justifyContent: 'center',
+        alignItems: 'center',
+        ...sx,
+      }}
       {...props}
     >
-      <Box
-        sx={{
-          width: 36,
-          height: 36,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
         <Box
+          component="img"
+          src={image}
+          alt={'Profile Image'}
           sx={{
             width: 32,
             height: 32,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            borderRadius: '4px',
+            border: (theme) => `0.6px solid var(--Divider-divider_primary, ${alpha(theme.palette.background.paper, 0.15)})`,
           }}
-        >
-          {icon}
-        </Box>
-      </Box>
-      <Typography variant="h4">{name}</Typography>
-    </Box>
+        />
+      </ListItemButton>
+        
   );
 }

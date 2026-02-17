@@ -28,10 +28,8 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import HelpIcon from '@mui/icons-material/Help';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import BusinessIcon from '@mui/icons-material/Business';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
@@ -93,7 +91,7 @@ export const Default: Story = {
             />
           </BiampHeaderButtonList>
           <BiampHeaderProfile
-            icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
+            image="https://i.pravatar.cc/32?img=1"
             name="Jane Doe"
           />
         </BiampHeaderActions>
@@ -219,7 +217,7 @@ export const WithActions: Story = {
             />
           </BiampHeaderButtonList>
           <BiampHeaderProfile
-            icon={<PersonOutlineIcon sx={{ width: 32, height: 32 }} />}
+            image="https://i.pravatar.cc/32?img=3"
             name="John Smith"
           />
         </BiampHeaderActions>
@@ -355,12 +353,13 @@ export const SubComponents: Story = {
             BiampHeaderProfile
           </Typography>
           <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-            A profile section with a 36x36 container (holding a 32x32 icon) and
-            an H4 name, separated by <code>gap: 1</code>.
+            A profile section with a 36x36 container (holding a 32x32 image with
+            a 4px border radius) and an optional H4 name, separated by{' '}
+            <code>gap: 1</code>.
           </Typography>
           <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
             <BiampHeaderProfile
-              icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
+              image="https://i.pravatar.cc/32?img=1"
               name="Jane Doe"
             />
           </Box>
@@ -417,7 +416,7 @@ export const WithBorder: Story = {
             />
           </BiampHeaderButtonList>
           <BiampHeaderProfile
-            icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
+            image="https://i.pravatar.cc/32?img=1"
             name="Jane Doe"
           />
         </BiampHeaderActions>
@@ -511,7 +510,7 @@ export const AppDialogToggle: Story = {
             />
           </BiampHeaderButtonList>
           <BiampHeaderProfile
-            icon={<AccountCircleIcon sx={{ width: 32, height: 32 }} />}
+            image="https://i.pravatar.cc/32?img=1"
             name="Jane Doe"
           />
         </BiampHeaderActions>
