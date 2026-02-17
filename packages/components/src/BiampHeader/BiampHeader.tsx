@@ -5,6 +5,8 @@ import {
   InputAdornment,
   ListItemButton,
   ListItemButtonProps,
+  Popover,
+  PopoverProps,
   Stack,
   StackProps,
   TextField,
@@ -75,8 +77,7 @@ type BiampHeaderSearchProps = TextFieldProps;
 export function BiampHeaderSearch({ sx, ...props }: BiampHeaderSearchProps) {
   return (
     <TextField
-      size="small"
-      placeholder="Search buildings…"
+      placeholder="Search..."
       fullWidth
       sx={{
         px: 1.5,
@@ -188,6 +189,39 @@ export function BiampHeaderButton({
   );
 }
 
+type BiampAppPopoverProps = PopoverProps & {
+  children: React.ReactNode;
+};
+
+export function BiampAppPopover({
+  children,
+  open,
+  sx,
+  ...props
+}: BiampAppPopoverProps) {
+  return (
+    <Popover
+      open={open}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      sx={{ ...sx }}
+      slotProps={{
+        paper: {
+          sx: {
+            borderRadius: '16px',
+            backgroundImage: 'none',
+            border: ({ palette }) => `0.6px solid ${palette.divider}`,
+            boxShadow: ({ palette }) =>
+              `0px 4px 24px 0px ${alpha(palette.common.black, 0.15)};`,
+          },
+        },
+      }}
+      {...props}
+    >
+      {children}
+    </Popover>
+  );
+}
+
 type BiampAppDialogProps = BoxProps & {
   children: React.ReactNode;
 };
@@ -200,16 +234,13 @@ export function BiampAppDialog({
   return (
     <Box
       sx={{
+        p: 2,
         display: 'inline-flex',
         flexWrap: 'wrap',
         gap: 1.5,
-        overflow: 'auto',
         maxWidth: '284px',
-        borderRadius: '16px',
         backgroundColor: ({ palette }) =>
           palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
-        boxShadow: ({ palette }) =>
-          `0px 4px 24px 0px ${alpha(palette.common.black, 0.15)}`,
         ...sx,
       }}
       {...props}

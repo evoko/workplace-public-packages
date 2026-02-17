@@ -8,4 +8,5 @@ export {
   BiampHeaderProfile,
   BiampAppDialog,
   BiampAppDialogItem,
+  BiampAppPopover,
 } from './BiampHeader';

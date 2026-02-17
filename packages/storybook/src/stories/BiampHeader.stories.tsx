@@ -20,6 +20,7 @@ import {
   BiampAppDialogItem,
   AppsIcon,
   AppsIconFilled,
+  BiampAppPopover,
 } from '@bwp-web/components';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
@@ -74,7 +75,7 @@ export const Default: Story = {
     return (
       <BiampHeader>
         <BiampHeaderTitle title="Dashboard" />
-        <BiampHeaderSearch sx={{ flexGrow: 1 }} />
+        <BiampHeaderSearch />
         <BiampHeaderActions>
           <BiampHeaderButtonList>
             <BiampHeaderButton
@@ -92,17 +93,14 @@ export const Default: Story = {
           </BiampHeaderButtonList>
           <BiampHeaderProfile
             image="https://i.pravatar.cc/32?img=1"
-            name="Jane Doe"
           />
         </BiampHeaderActions>
-        <Popover
+        <BiampAppPopover
           open={open}
           anchorEl={anchorEl}
           onClose={() => setAnchorEl(null)}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-          slotProps={{ paper: { sx: { mt: 1, borderRadius: '16px' } } }}
         >
-          <BiampAppDialog sx={{ p: 2 }}>
+          <BiampAppDialog>
             {apps.map((app, i) => (
               <BiampAppDialogItem
                 key={i}
@@ -111,7 +109,7 @@ export const Default: Story = {
               />
             ))}
           </BiampAppDialog>
-        </Popover>
+        </BiampAppPopover>
       </BiampHeader>
     );
   },
@@ -170,7 +168,7 @@ export const WithSearch: Story = {
       <BiampHeaderTitle
         title="Buildings"
       />
-      <BiampHeaderSearch sx={{ flexGrow: 1 }} />
+      <BiampHeaderSearch />
     </BiampHeader>
   ),
 };
@@ -218,17 +216,14 @@ export const WithActions: Story = {
           </BiampHeaderButtonList>
           <BiampHeaderProfile
             image="https://i.pravatar.cc/32?img=3"
-            name="John Smith"
           />
         </BiampHeaderActions>
-        <Popover
+        <BiampAppPopover
           open={open}
           anchorEl={anchorEl}
           onClose={() => setAnchorEl(null)}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-          slotProps={{ paper: { sx: { mt: 1, borderRadius: '16px' } } }}
         >
-          <BiampAppDialog sx={{ p: 2 }}>
+          <BiampAppDialog>
             {apps.map((app, i) => (
               <BiampAppDialogItem
                 key={i}
@@ -237,7 +232,7 @@ export const WithActions: Story = {
               />
             ))}
           </BiampAppDialog>
-        </Popover>
+        </BiampAppPopover>
       </BiampHeader>
     );
   },
@@ -462,7 +457,7 @@ export const SubComponents: Story = {
             A box with <code>px: 1.5</code> that wraps a search input.
           </Typography>
           <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex', width: 400 }}>
-            <BiampHeaderSearch sx={{ flexGrow: 1 }} />
+            <BiampHeaderSearch />
           </Box>
         </Box>
 
@@ -499,14 +494,13 @@ export const SubComponents: Story = {
                 selectedIcon={<SettingsIcon />}
               />
             </BiampHeaderButtonList>
-            <Popover
+            <BiampAppPopover
               open={open}
               anchorEl={anchorEl}
               onClose={() => setAnchorEl(null)}
               anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-              slotProps={{ paper: { sx: { mt: 1, borderRadius: '16px' } } }}
             >
-              <BiampAppDialog sx={{ p: 2 }}>
+              <BiampAppDialog>
                 {apps.map((app, i) => (
                   <BiampAppDialogItem
                     key={i}
@@ -515,7 +509,7 @@ export const SubComponents: Story = {
                   />
                 ))}
               </BiampAppDialog>
-            </Popover>
+            </BiampAppPopover>
           </Box>
         </Box>
 
@@ -533,7 +527,6 @@ export const SubComponents: Story = {
           <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
             <BiampHeaderProfile
               image="https://i.pravatar.cc/32?img=1"
-              name="Jane Doe"
             />
           </Box>
         </Box>
@@ -564,7 +557,7 @@ export const WithBorder: Story = {
     return (
       <BiampHeader sx={{ border: '1px solid', borderColor: 'divider' }}>
         <BiampHeaderTitle title="Dashboard" />
-        <BiampHeaderSearch sx={{ flexGrow: 1 }} />
+        <BiampHeaderSearch />
         <BiampHeaderActions>
           <BiampHeaderButtonList>
             <BiampHeaderButton
@@ -590,17 +583,14 @@ export const WithBorder: Story = {
           </BiampHeaderButtonList>
           <BiampHeaderProfile
             image="https://i.pravatar.cc/32?img=1"
-            name="Jane Doe"
           />
         </BiampHeaderActions>
-        <Popover
+        <BiampAppPopover
           open={open}
           anchorEl={anchorEl}
           onClose={() => setAnchorEl(null)}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-          slotProps={{ paper: { sx: { mt: 1, borderRadius: '16px' } } }}
         >
-          <BiampAppDialog sx={{ p: 2 }}>
+          <BiampAppDialog>
             {apps.map((app, i) => (
               <BiampAppDialogItem
                 key={i}
@@ -609,7 +599,7 @@ export const WithBorder: Story = {
               />
             ))}
           </BiampAppDialog>
-        </Popover>
+        </BiampAppPopover>
       </BiampHeader>
     );
   },
@@ -666,7 +656,7 @@ export const AppDialogToggle: Story = {
     return (
       <BiampHeader>
         <BiampHeaderTitle title="Dashboard" />
-        <BiampHeaderSearch sx={{ flexGrow: 1 }} />
+        <BiampHeaderSearch />
         <BiampHeaderActions>
           <BiampHeaderButtonList>
             <BiampHeaderButton
@@ -684,17 +674,14 @@ export const AppDialogToggle: Story = {
           </BiampHeaderButtonList>
           <BiampHeaderProfile
             image="https://i.pravatar.cc/32?img=1"
-            name="Jane Doe"
           />
         </BiampHeaderActions>
-        <Popover
+        <BiampAppPopover
           open={open}
           anchorEl={anchorEl}
           onClose={() => setAnchorEl(null)}
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-          slotProps={{ paper: { sx: { mt: 1, borderRadius: '16px' } } }}
         >
-          <BiampAppDialog sx={{ p: 2 }}>
+          <BiampAppDialog>
             {apps.map((app, i) => (
               <BiampAppDialogItem
                 key={i}
@@ -703,7 +690,7 @@ export const AppDialogToggle: Story = {
               />
             ))}
           </BiampAppDialog>
-        </Popover>
+        </BiampAppPopover>
       </BiampHeader>
     );
   },
@@ -725,7 +712,7 @@ export const AppDialogFewItems: Story = {
           The dialog with only 2 items. Items maintain their fixed width and
           align to the start of the row.
         </Typography>
-        <BiampAppDialog sx={{ p: 2 }}>
+        <BiampAppDialog>
           <BiampAppDialogItem icon={<DashboardIcon />} name="Dashboard" />
           <BiampAppDialogItem icon={<SettingsOutlinedIcon />} name="Settings" />
         </BiampAppDialog>
@@ -764,7 +751,7 @@ export const AppDialog: Story = {
             rounded, shadowed container. Each item uses
             <code> BiampAppIcon</code> internally to render a 76×89px tile.
           </Typography>
-          <BiampAppDialog sx={{ p: 2 }}>
+          <BiampAppDialog>
             {apps.map((app, i) => (
               <BiampAppDialogItem
                 key={i}
