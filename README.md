@@ -23,6 +23,24 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 npm install
 ```
 
+### Updating Packages
+
+The packages `@bwp-web/styles`, `@bwp-web/components`, and `@bwp-web/assets` follow the same update process.
+
+If the installed version uses a caret range (e.g., `^0.1.1`), you can pull in the latest compatible version with:
+
+```bash
+npm update @bwp-web/styles
+```
+
+If the new version is outside the caret range (e.g., `0.2.0` or `1.0.0`), you'll need to install the latest explicitly:
+
+```bash
+npm install @bwp-web/styles@latest
+```
+
+Replace `@bwp-web/styles` with `@bwp-web/components` or `@bwp-web/assets` as needed.
+
 ### Build
 
 ```bash
