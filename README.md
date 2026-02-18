@@ -260,7 +260,7 @@ Use the **Color Mode** toggle in the Storybook toolbar to switch between light a
 
    ```bash
    git add .
-   git commit -m "Version to X.Y.Z"
+   git commit -m "Commit message here"
    ```
 
 3. Create an annotated git tag:
@@ -272,8 +272,8 @@ Use the **Color Mode** toggle in the Storybook toolbar to switch between light a
 4. Push the commit and tag:
 
    ```bash
-   git push origin main
-   git push origin vX.Y.Z
+   git push
+   git push --tags
    ```
 
 Tags follow the format `vX.Y.Z` (e.g., `v0.3.0`).
