@@ -18,7 +18,7 @@ npm install @bwp-web/components
 
 ### `BiampSidebar`
 
-A fixed-width (48px) vertical sidebar that renders its children as navigation items with the Biamp logo automatically placed at the bottom. Extends MUI `StackProps`.
+A fixed-width (48px) vertical sidebar that renders its children as navigation items with the Biamp logo automatically placed at the bottom. Does not apply its own horizontal margin — spacing is managed by the parent layout (e.g. `BiampLayout`). Extends MUI `StackProps`.
 
 #### Props
 
