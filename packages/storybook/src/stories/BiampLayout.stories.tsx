@@ -178,34 +178,77 @@ export const WithHeaderSidebarAndWrapper: Story = {
  */
 export const WithHeaderAndWrapper: Story = {
   name: 'Header + Wrapper',
-  render: () => (
-    <BiampLayout
-      header={
-        <BiampHeader>
-          <BiampHeaderTitle title="Settings" />
-          <BiampHeaderSearch />
-          <BiampHeaderActions>
-            <BiampHeaderButtonList>
-              <BiampHeaderButton
-                icon={<SettingsOutlinedIcon />}
-                selectedIcon={<SettingsIcon />}
-              />
-            </BiampHeaderButtonList>
-            <BiampHeaderProfile image="https://i.pravatar.cc/32?img=2" />
-          </BiampHeaderActions>
-        </BiampHeader>
-      }
-    >
-      <BiampWrapper>
-        <Typography variant="h4" gutterBottom>
-          Page Content
-        </Typography>
-        <Typography variant="body1">
-          This layout includes a header and wrapper, but no sidebar.
-        </Typography>
-      </BiampWrapper>
-    </BiampLayout>
-  ),
+  render: () => {
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const open = Boolean(anchorEl);
+
+    const apps = [
+      { image: BookingApp, name: 'Booking' },
+      { image: DesignerApp, name: 'Designer' },
+      { image: ConnectApp, name: 'Connect' },
+      { image: CommandApp, name: 'Command' },
+      { image: WorkplaceApp, name: 'Workplace' },
+    ];
+
+    return (
+      <BiampLayout
+        header={
+          <BiampHeader>
+            <BiampHeaderTitle title="Settings" />
+            <BiampHeaderSearch />
+            <BiampHeaderActions>
+              <BiampHeaderButtonList>
+                <BiampHeaderButton
+                  icon={<AppsIcon />}
+                  selectedIcon={<AppsIconFilled />}
+                  selected={open}
+                  onClick={(e) =>
+                    setAnchorEl(open ? null : (e.currentTarget as HTMLElement))
+                  }
+                />
+                <BiampHeaderButton
+                  icon={<SettingsOutlinedIcon />}
+                  selectedIcon={<SettingsIcon />}
+                />
+              </BiampHeaderButtonList>
+              <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
+            </BiampHeaderActions>
+            <BiampAppPopover
+              open={open}
+              anchorEl={anchorEl}
+              onClose={() => setAnchorEl(null)}
+            >
+              <BiampAppDialog>
+                {apps.map((app, i) => (
+                  <BiampAppDialogItem key={i} name={app.name}>
+                    <Box
+                      component="img"
+                      src={app.image}
+                      alt={app.name}
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                      }}
+                    />
+                  </BiampAppDialogItem>
+                ))}
+              </BiampAppDialog>
+            </BiampAppPopover>
+          </BiampHeader>
+        }
+      >
+        <BiampWrapper>
+          <Typography variant="h4" gutterBottom>
+            Page Content
+          </Typography>
+          <Typography variant="body1">
+            This layout includes a header and wrapper, but no sidebar.
+          </Typography>
+        </BiampWrapper>
+      </BiampLayout>
+    );
+  },
 };
 
 /**
