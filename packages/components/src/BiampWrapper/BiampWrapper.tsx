@@ -14,7 +14,7 @@ export function BiampWrapper({ children, sx, ...props }: BiampWrapperProps) {
   return (
     <Stack
       direction="column"
-      padding="8px"
+      padding="16px"
       alignItems="flex-start"
       sx={{
         flex: 1,

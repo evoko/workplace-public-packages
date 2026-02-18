@@ -136,11 +136,7 @@ export const WithIcons: Story = {
         <Button variant="contained" color="primary" startIcon={<AddIcon />}>
           Add Item
         </Button>
-        <Button
-          variant="contained"
-          color="error"
-          startIcon={<DeleteIcon />}
-        >
+        <Button variant="contained" color="error" startIcon={<DeleteIcon />}>
           Delete
         </Button>
         <Button variant="outlined" color="primary" endIcon={<AddIcon />}>
@@ -187,7 +183,12 @@ export const AllVariantsAndColors: Story = {
             </Typography>
             <Stack spacing={2}>
               {variants.map((variant) => (
-                <Stack key={variant} direction="row" spacing={2} alignItems="center">
+                <Stack
+                  key={variant}
+                  direction="row"
+                  spacing={2}
+                  alignItems="center"
+                >
                   <Typography
                     variant="caption"
                     sx={{ width: 80, flexShrink: 0 }}

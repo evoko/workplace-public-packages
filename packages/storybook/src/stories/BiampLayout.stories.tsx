@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 import {
   BiampLayout,
   BiampHeader,
@@ -14,6 +14,7 @@ import {
   BiampSidebarIcon,
   BiampWrapper,
   BiampSidebarIconList,
+  BiampSidebarComponent,
 } from '@bwp-web/components';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -72,17 +73,35 @@ export const WithHeaderSidebarAndWrapper: Story = {
         }
         sidebar={
           <BiampSidebar>
+            <Stack direction="column" gap={1}>
+            <BiampSidebarComponent
+              sx={{
+                my: '8px',
+                bgcolor: 'primary.main',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Typography
+                variant="caption"
+                sx={{ color: 'primary.contrastText', fontWeight: 'bold' }}
+              >
+                AV
+              </Typography>
+            </BiampSidebarComponent>
             <BiampSidebarIconList>
-            {sidebarItems.map((item, i) => (
-              <BiampSidebarIcon
-                key={i}
-                selected={selectedIndex === i}
-                icon={item.icon}
-                selectedIcon={item.selectedIcon}
-                onClick={() => setSelectedIndex(i)}
-              />
-            ))}
+              {sidebarItems.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
             </BiampSidebarIconList>
+            </Stack>
           </BiampSidebar>
         }
       >
@@ -125,12 +144,12 @@ export const WithHeaderAndWrapper: Story = {
       }
     >
       <BiampWrapper>
-          <Typography variant="h4" gutterBottom>
-            Page Content
-          </Typography>
-          <Typography variant="body1">
-            This layout includes a header and wrapper, but no sidebar.
-          </Typography>
+        <Typography variant="h4" gutterBottom>
+          Page Content
+        </Typography>
+        <Typography variant="body1">
+          This layout includes a header and wrapper, but no sidebar.
+        </Typography>
       </BiampWrapper>
     </BiampLayout>
   ),
@@ -145,12 +164,12 @@ export const WrapperOnly: Story = {
   render: () => (
     <BiampLayout>
       <BiampWrapper>
-          <Typography variant="h4" gutterBottom>
-            Page Content
-          </Typography>
-          <Typography variant="body1">
-            This layout uses only the wrapper with no header or sidebar.
-          </Typography>
+        <Typography variant="h4" gutterBottom>
+          Page Content
+        </Typography>
+        <Typography variant="body1">
+          This layout uses only the wrapper with no header or sidebar.
+        </Typography>
       </BiampWrapper>
     </BiampLayout>
   ),

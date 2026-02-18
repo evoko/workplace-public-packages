@@ -45,10 +45,7 @@ export const AllStates: Story = {
 
       <TextField label="Default" placeholder="Enter text..." />
 
-      <TextField
-        label="With value"
-        defaultValue="Hello World"
-      />
+      <TextField label="With value" defaultValue="Hello World" />
 
       <TextField
         label="With helper text"
@@ -63,17 +60,9 @@ export const AllStates: Story = {
         helperText="This field is required"
       />
 
-      <TextField
-        label="Disabled"
-        defaultValue="Cannot edit"
-        disabled
-      />
+      <TextField label="Disabled" defaultValue="Cannot edit" disabled />
 
-      <TextField
-        label="Required"
-        placeholder="Required field"
-        required
-      />
+      <TextField label="Required" placeholder="Required field" required />
     </Stack>
   ),
 };
@@ -117,9 +106,7 @@ export const WithAdornments: Story = {
         placeholder="0.00"
         slotProps={{
           input: {
-            startAdornment: (
-              <InputAdornment position="start">$</InputAdornment>
-            ),
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
           },
         }}
       />
@@ -182,11 +169,7 @@ export const Sizes: Story = {
           type="email"
           sx={{ flex: 2 }}
         />
-        <TextField
-          label="Phone"
-          placeholder="+1 555 0123"
-          sx={{ flex: 1 }}
-        />
+        <TextField label="Phone" placeholder="+1 555 0123" sx={{ flex: 1 }} />
       </Box>
     </Stack>
   ),

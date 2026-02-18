@@ -101,6 +101,7 @@ export function BiampSidebarComponent({
         overflow: 'hidden',
         justifyContent: 'center',
         alignItems: 'center',
+        border: ({ palette }) => `0.6px solid ${palette.divider}`,
         ...sx,
       }}
       {...props}

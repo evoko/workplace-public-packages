@@ -65,21 +65,9 @@ export const RadioGroupExample: Story = {
       <FormControl>
         <FormLabel>Pick a size</FormLabel>
         <RadioGroup defaultValue="medium" row>
-          <FormControlLabel
-            value="small"
-            control={<Radio />}
-            label="Small"
-          />
-          <FormControlLabel
-            value="medium"
-            control={<Radio />}
-            label="Medium"
-          />
-          <FormControlLabel
-            value="large"
-            control={<Radio />}
-            label="Large"
-          />
+          <FormControlLabel value="small" control={<Radio />} label="Small" />
+          <FormControlLabel value="medium" control={<Radio />} label="Medium" />
+          <FormControlLabel value="large" control={<Radio />} label="Large" />
         </RadioGroup>
       </FormControl>
     </Stack>
@@ -95,14 +83,8 @@ export const AllStates: Story = {
           control={<Radio checked={false} />}
           label="Unchecked"
         />
-        <FormControlLabel
-          control={<Radio checked />}
-          label="Checked"
-        />
-        <FormControlLabel
-          control={<Radio disabled />}
-          label="Disabled"
-        />
+        <FormControlLabel control={<Radio checked />} label="Checked" />
+        <FormControlLabel control={<Radio disabled />} label="Disabled" />
         <FormControlLabel
           control={<Radio disabled checked />}
           label="Disabled checked"
