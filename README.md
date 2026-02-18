@@ -33,13 +33,25 @@ If the installed version uses a caret range (e.g., `^0.1.1`), you can pull in th
 npm update @bwp-web/styles
 ```
 
+To update all three packages at once:
+
+```bash
+npm update @bwp-web/styles @bwp-web/components @bwp-web/assets
+```
+
 If the new version is outside the caret range (e.g., `0.2.0` or `1.0.0`), you'll need to install the latest explicitly:
 
 ```bash
 npm install @bwp-web/styles@latest
 ```
 
-Replace `@bwp-web/styles` with `@bwp-web/components` or `@bwp-web/assets` as needed.
+To install the latest version of all three packages at once:
+
+```bash
+npm install @bwp-web/styles@latest @bwp-web/components@latest @bwp-web/assets@latest
+```
+
+Replace `@bwp-web/styles` with `@bwp-web/components` or `@bwp-web/assets` as needed for individual updates.
 
 ### Build
 
@@ -268,3 +280,13 @@ Use the **Color Mode** toggle in the Storybook toolbar to switch between light a
    ```
 
 Tags follow the format `vX.Y.Z` (e.g., `v0.3.0`).
+
+### Publishing to npm
+
+After tagging, publish each package from its directory:
+
+```bash
+cd packages/styles && npm publish --access public
+cd packages/components && npm publish --access public
+cd packages/assets && npm publish --access public
+```
