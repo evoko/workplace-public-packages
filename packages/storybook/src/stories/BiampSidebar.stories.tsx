@@ -108,8 +108,8 @@ export const CustomLogo: Story = {
             Custom logo
           </Typography>
           <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
-            Any JSX element can be passed as the{' '}
-            <code>bottomLogoIcon</code> prop to replace the default Biamp logo.
+            Any JSX element can be passed as the <code>bottomLogoIcon</code>{' '}
+            prop to replace the default Biamp logo.
           </Typography>
           <Box sx={{ height: 400 }}>
             <BiampSidebar
@@ -225,7 +225,9 @@ export const IconStates: Story = {
             icon={<HomeOutlinedIcon />}
             selectedIcon={<HomeIcon />}
           />
-          <Typography variant="caption">Selected (with selectedIcon)</Typography>
+          <Typography variant="caption">
+            Selected (with selectedIcon)
+          </Typography>
         </Stack>
         <Stack alignItems="center" spacing={1}>
           <BiampSidebarIcon icon={<HomeOutlinedIcon />} disabled />
@@ -235,8 +237,8 @@ export const IconStates: Story = {
       <Divider />
       <Typography variant="h3">Extends ListItemButton</Typography>
       <Typography variant="body2" sx={{ maxWidth: 500 }}>
-        BiampSidebarIcon extends MUI's ListItemButtonProps, so you can pass
-        any prop that ListItemButton accepts, such as <code>disabled</code>,{' '}
+        BiampSidebarIcon extends MUI's ListItemButtonProps, so you can pass any
+        prop that ListItemButton accepts, such as <code>disabled</code>,{' '}
         <code>onClick</code>, <code>sx</code>, and more.
       </Typography>
     </Stack>
@@ -336,10 +338,10 @@ export const WithSidebarComponent: Story = {
             BiampSidebarComponent
           </Typography>
           <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-            Use <code>BiampSidebarComponent</code> to embed arbitrary content
-            in the sidebar. It provides the same 48×48px rounded-box
-            dimensions as <code>BiampSidebarIcon</code>, but renders a plain{' '}
-            <code>Box</code> instead of a button.
+            Use <code>BiampSidebarComponent</code> to embed arbitrary content in
+            the sidebar. It provides the same 48×48px rounded-box dimensions as{' '}
+            <code>BiampSidebarIcon</code>, but renders a plain <code>Box</code>{' '}
+            instead of a button.
           </Typography>
         </Box>
         <Box sx={{ height: 500 }}>

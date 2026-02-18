@@ -45,16 +45,8 @@ export const AllVariants: Story = {
           </Typography>
           <Stack spacing={2}>
             {(['small', 'medium'] as const).map((size) => (
-              <Stack
-                key={size}
-                direction="row"
-                spacing={2}
-                alignItems="center"
-              >
-                <Typography
-                  variant="caption"
-                  sx={{ width: 60, flexShrink: 0 }}
-                >
+              <Stack key={size} direction="row" spacing={2} alignItems="center">
+                <Typography variant="caption" sx={{ width: 60, flexShrink: 0 }}>
                   {size}
                 </Typography>
                 <IconButton variant={variant} size={size}>

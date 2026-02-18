@@ -38,14 +38,8 @@ export const AllStates: Story = {
           control={<Switch defaultChecked={false} />}
           label="Off"
         />
-        <FormControlLabel
-          control={<Switch defaultChecked />}
-          label="On"
-        />
-        <FormControlLabel
-          control={<Switch disabled />}
-          label="Disabled off"
-        />
+        <FormControlLabel control={<Switch defaultChecked />} label="On" />
+        <FormControlLabel control={<Switch disabled />} label="Disabled off" />
         <FormControlLabel
           control={<Switch disabled checked />}
           label="Disabled on"

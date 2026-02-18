@@ -57,7 +57,7 @@ export const InList: Story = {
               </Typography>
               {index < arr.length - 1 && <Divider />}
             </React.Fragment>
-          )
+          ),
         )}
       </Box>
     </Stack>

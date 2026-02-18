@@ -1,6 +1,12 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Autocomplete, TextField, Stack, Typography, Chip } from '@mui/material';
+import {
+  Autocomplete,
+  TextField,
+  Stack,
+  Typography,
+  Chip,
+} from '@mui/material';
 
 const meta: Meta<typeof Autocomplete> = {
   title: 'Styles/Autocomplete',
@@ -58,11 +64,7 @@ export const AllVariants: Story = {
       <Autocomplete
         options={topMovies}
         renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Default"
-            placeholder="Select a movie"
-          />
+          <TextField {...params} label="Default" placeholder="Select a movie" />
         )}
       />
 
@@ -78,9 +80,7 @@ export const AllVariants: Story = {
         options={topMovies}
         disabled
         defaultValue="Inception"
-        renderInput={(params) => (
-          <TextField {...params} label="Disabled" />
-        )}
+        renderInput={(params) => <TextField {...params} label="Disabled" />}
       />
 
       <Autocomplete
@@ -131,11 +131,7 @@ export const MultiSelect: Story = {
           ))
         }
         renderInput={(params) => (
-          <TextField
-            {...params}
-            label="With chips"
-            placeholder="Add movies"
-          />
+          <TextField {...params} label="With chips" placeholder="Add movies" />
         )}
       />
     </Stack>

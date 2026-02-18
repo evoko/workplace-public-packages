@@ -39,11 +39,7 @@ export const Default: Story = {
         >
           Open Menu
         </Button>
-        <Menu
-          anchorEl={anchorEl}
-          open={open}
-          onClose={() => setAnchorEl(null)}
-        >
+        <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
           <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
           <MenuItem onClick={() => setAnchorEl(null)}>My Account</MenuItem>
           <MenuItem onClick={() => setAnchorEl(null)}>Settings</MenuItem>
@@ -68,11 +64,7 @@ export const WithIcons: Story = {
         >
           Actions
         </Button>
-        <Menu
-          anchorEl={anchorEl}
-          open={open}
-          onClose={() => setAnchorEl(null)}
-        >
+        <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
           <MenuItem onClick={() => setAnchorEl(null)}>
             <ListItemIcon>
               <EditIcon fontSize="small" />
@@ -119,11 +111,7 @@ export const ContextMenu: Story = {
         >
           More Options
         </Button>
-        <Menu
-          anchorEl={anchorEl}
-          open={open}
-          onClose={() => setAnchorEl(null)}
-        >
+        <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
           <MenuItem onClick={() => setAnchorEl(null)}>Option A</MenuItem>
           <MenuItem onClick={() => setAnchorEl(null)}>Option B</MenuItem>
           <MenuItem onClick={() => setAnchorEl(null)}>Option C</MenuItem>

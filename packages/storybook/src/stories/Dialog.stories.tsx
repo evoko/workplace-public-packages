@@ -100,7 +100,12 @@ export const WithForm: Story = {
         <Button variant="contained" onClick={() => setOpen(true)}>
           Create New
         </Button>
-        <Dialog open={open} onClose={() => setOpen(false)} maxWidth="sm" fullWidth>
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          maxWidth="sm"
+          fullWidth
+        >
           <DialogTitle>Create New Item</DialogTitle>
           <DialogContent>
             <DialogContentText sx={{ mb: 2 }}>

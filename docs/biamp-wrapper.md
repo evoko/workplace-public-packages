@@ -18,15 +18,15 @@ npm install @bwp-web/components
 
 ### `BiampWrapper`
 
-A flexible container component designed to wrap page content with a clean, consistent appearance. It automatically stretches to fill available space (using `flex: 1`, `width: '100%'`, and `height: '100%'`) and provides 8px padding, 8px border radius, and scrollable overflow when content exceeds the container size. The background is white in light mode and `grey.800` in dark mode. Extends MUI `BoxProps`.
+A flexible container component designed to wrap page content with a clean, consistent appearance. It automatically stretches to fill available space (using `flex: 1`, `width: '100%'`, and `height: '100%'`) and provides 16px padding, 8px border radius, and scrollable overflow when content exceeds the container size. The background is white in light mode and `grey.800` in dark mode. Extends MUI `StackProps`.
 
 #### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `children` | `React.ReactNode` | — | Content to render inside the wrapper |
-| `sx` | `SxProps` | — | MUI system styles passed to the root `Box` |
-| _...rest_ | `BoxProps` | — | All other MUI `Box` props are forwarded |
+| `sx` | `SxProps` | — | MUI system styles passed to the root `Stack` |
+| _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
 
 #### Basic Usage
 
@@ -44,7 +44,7 @@ function MyPage() {
           </Typography>
           <Typography variant="body1">
             This is an example of content inside the BiampWrapper. The wrapper
-            provides a full-height container with 8px padding, a white
+            provides a full-height container with 16px padding, a white
             background with 8px rounded corners, and scrollable overflow.
           </Typography>
         </Box>
@@ -160,13 +160,13 @@ function CustomWrapper() {
 ## Design Details
 
 - **Dimensions**: Automatically stretches to fill available space using `flex: 1`, `width: '100%'`, and `height: '100%'`
-- **Padding**: 8px on all sides
+- **Padding**: 16px on all sides
 - **Border Radius**: 8px rounded corners
 - **Background**: White in light mode, `grey.800` in dark mode
 - **Overflow**: Scrollable (`auto`) when content exceeds container size
-- **Layout**: Uses `display: flex` with `alignItems: flex-start` for content alignment
+- **Layout**: Uses `Stack` (column direction) with `alignItems: flex-start` for content alignment
 
 ## Exports
 
 - `BiampWrapper` — Full-page content wrapper with automatic space-filling and consistent styling.
-- `BiampWrapperProps` — TypeScript type definition extending `BoxProps`.
+- `BiampWrapperProps` — TypeScript type definition extending `StackProps`.
