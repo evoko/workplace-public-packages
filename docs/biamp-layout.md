@@ -18,7 +18,7 @@ npm install @bwp-web/components
 
 ### `BiampLayout`
 
-A full-viewport (`100vh`) column layout that stacks an optional header on top and a row containing an optional sidebar alongside the main content below. Responsive gap/padding is applied automatically — `12px` on small screens (`xs`) and `20px` on medium screens and above (`md`). When no header is provided, top padding is added to compensate. Extends MUI `StackProps`.
+A full-viewport (`100vh`) column layout that stacks an optional header on top and a row containing an optional sidebar alongside the main content below. Responsive gap/padding is applied automatically — `12px` on small screens (`xs`) and `20px` on medium screens and above (`md`). When no header is provided, top padding is added to compensate. The background is `grey.100` in light mode and `grey.900` in dark mode. Extends MUI `StackProps`.
 
 #### Props
 
@@ -168,6 +168,7 @@ function SimplePage() {
 - **Viewport**: Fills the full viewport height (`100vh`)
 - **Responsive spacing**: `12px` gap, padding-x, and padding-bottom on `xs`; `20px` on `md` and above
 - **Header-aware padding**: When a header is present, top padding is `0` (the header provides its own spacing); when absent, top padding matches the bottom padding
+- **Background**: `grey.100` in light mode, `grey.900` in dark mode
 - **Slot-based composition**: Pass `header`, `sidebar`, and `children` — unused slots are simply omitted from the DOM
 
 ## Exports
