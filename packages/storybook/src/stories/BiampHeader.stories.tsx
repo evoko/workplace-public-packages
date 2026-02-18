@@ -65,7 +65,7 @@ export const Default: Story = {
 
     return (
       <BiampHeader>
-        <BiampHeaderTitle title="Dashboard" />
+        <BiampHeaderTitle title="Workplace" subtitle="Booking" />
         <BiampHeaderSearch />
         <BiampHeaderActions>
           <BiampHeaderButtonList>
@@ -155,6 +155,67 @@ export const TitleIcon: Story = {
               icon={<HomeOutlinedIcon sx={{ width: 24, height: 24 }} />}
               title="Home"
             />
+          </BiampHeader>
+        </Box>
+      </Box>
+    </Stack>
+  ),
+};
+
+/**
+ * `BiampHeaderTitle` supports an optional `subtitle` prop rendered in
+ * `text.secondary` color next to the title. Both `title` and `subtitle`
+ * are optional and can be used independently or together.
+ */
+export const TitleSubtitle: Story = {
+  name: 'Title & Subtitle',
+  render: () => (
+    <Stack spacing={4}>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          Title only
+        </Typography>
+        <Box
+          sx={{
+            border: '1px dashed',
+            borderColor: 'divider',
+            display: 'inline-flex',
+          }}
+        >
+          <BiampHeader>
+            <BiampHeaderTitle title="Workplace" />
+          </BiampHeader>
+        </Box>
+      </Box>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          Title with subtitle
+        </Typography>
+        <Box
+          sx={{
+            border: '1px dashed',
+            borderColor: 'divider',
+            display: 'inline-flex',
+          }}
+        >
+          <BiampHeader>
+            <BiampHeaderTitle title="Workplace" subtitle="Booking" />
+          </BiampHeader>
+        </Box>
+      </Box>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          Subtitle only
+        </Typography>
+        <Box
+          sx={{
+            border: '1px dashed',
+            borderColor: 'divider',
+            display: 'inline-flex',
+          }}
+        >
+          <BiampHeader>
+            <BiampHeaderTitle subtitle="Booking" />
           </BiampHeader>
         </Box>
       </Box>
@@ -465,7 +526,8 @@ export const SubComponents: Story = {
           </Typography>
           <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
             A box with <code>pr: 3</code> containing a 24x24 icon and H4 text
-            with a 12px gap.
+            with a 12px gap. Supports optional <code>title</code> and{' '}
+            <code>subtitle</code> props.
           </Typography>
           <Box
             sx={{
