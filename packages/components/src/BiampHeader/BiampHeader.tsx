@@ -35,12 +35,14 @@ export function BiampHeader({ children, sx, ...props }: BiampHeaderProps) {
 
 type BiampHeaderTitleProps = BoxProps & {
   icon?: JSX.Element;
-  title: string;
+  title?: string;
+  subtitle?: string;
 };
 
 export function BiampHeaderTitle({
   icon,
   title,
+  subtitle,
   sx,
   ...props
 }: BiampHeaderTitleProps) {
@@ -65,7 +67,14 @@ export function BiampHeaderTitle({
             />
           )}
         </Box>
-        <Typography variant="h4">{title}</Typography>
+        <Stack direction="row" gap={0.5}>
+          {title && <Typography variant="h4">{title}</Typography>}
+          {subtitle && (
+            <Typography variant="h4" color="text.secondary">
+              {subtitle}
+            </Typography>
+          )}
+        </Stack>
       </Box>
     </Box>
   );

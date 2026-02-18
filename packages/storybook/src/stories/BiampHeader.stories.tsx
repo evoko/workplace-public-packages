@@ -65,7 +65,7 @@ export const Default: Story = {
 
     return (
       <BiampHeader>
-        <BiampHeaderTitle title="Dashboard" />
+        <BiampHeaderTitle title="Workplace" subtitle="Booking" />
         <BiampHeaderSearch />
         <BiampHeaderActions>
           <BiampHeaderButtonList>
