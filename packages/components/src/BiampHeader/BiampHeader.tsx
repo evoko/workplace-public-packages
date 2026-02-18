@@ -47,8 +47,11 @@ export function BiampHeaderTitle({
   ...props
 }: BiampHeaderTitleProps) {
   return (
-    <Box sx={{ pr: 3, ...sx }} {...props}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+    <Box
+      sx={{ pr: 3, display: 'flex', alignItems: 'center', gap: '12px', ...sx }}
+      {...props}
+    >
+      {icon ? (
         <Box
           sx={{
             width: 24,
@@ -58,24 +61,24 @@ export function BiampHeaderTitle({
             justifyContent: 'center',
           }}
         >
-          {icon ?? (
-            <Box
-              component="img"
-              src={BiampRedLogo}
-              alt="Biamp"
-              sx={{ width: 24, height: 24 }}
-            />
-          )}
+          {icon}
         </Box>
-        <Stack direction="row" gap={0.5}>
-          {title && <Typography variant="h4">{title}</Typography>}
-          {subtitle && (
-            <Typography variant="h4" color="text.secondary">
-              {subtitle}
-            </Typography>
-          )}
-        </Stack>
-      </Box>
+      ) : (
+        <Box
+          component="img"
+          src={BiampRedLogo}
+          alt="Biamp"
+          sx={{ width: 24, height: 24 }}
+        />
+      )}
+      <Stack direction="row" gap={0.5}>
+        {title && <Typography variant="h4">{title}</Typography>}
+        {subtitle && (
+          <Typography variant="h4" color="text.secondary">
+            {subtitle}
+          </Typography>
+        )}
+      </Stack>
     </Box>
   );
 }
