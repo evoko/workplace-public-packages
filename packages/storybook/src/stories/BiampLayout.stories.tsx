@@ -74,33 +74,33 @@ export const WithHeaderSidebarAndWrapper: Story = {
         sidebar={
           <BiampSidebar>
             <Stack direction="column" gap={1}>
-            <BiampSidebarComponent
-              sx={{
-                my: '8px',
-                bgcolor: 'primary.main',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Typography
-                variant="caption"
-                sx={{ color: 'primary.contrastText', fontWeight: 'bold' }}
+              <BiampSidebarComponent
+                sx={{
+                  my: '8px',
+                  bgcolor: 'primary.main',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
               >
-                AV
-              </Typography>
-            </BiampSidebarComponent>
-            <BiampSidebarIconList>
-              {sidebarItems.map((item, i) => (
-                <BiampSidebarIcon
-                  key={i}
-                  selected={selectedIndex === i}
-                  icon={item.icon}
-                  selectedIcon={item.selectedIcon}
-                  onClick={() => setSelectedIndex(i)}
-                />
-              ))}
-            </BiampSidebarIconList>
+                <Typography
+                  variant="caption"
+                  sx={{ color: 'primary.contrastText', fontWeight: 'bold' }}
+                >
+                  AV
+                </Typography>
+              </BiampSidebarComponent>
+              <BiampSidebarIconList>
+                {sidebarItems.map((item, i) => (
+                  <BiampSidebarIcon
+                    key={i}
+                    selected={selectedIndex === i}
+                    icon={item.icon}
+                    selectedIcon={item.selectedIcon}
+                    onClick={() => setSelectedIndex(i)}
+                  />
+                ))}
+              </BiampSidebarIconList>
             </Stack>
           </BiampSidebar>
         }

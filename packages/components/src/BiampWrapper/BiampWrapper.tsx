@@ -7,7 +7,7 @@ export type BiampWrapperProps = StackProps & {
 
 /**
  * A full-page content wrapper that stretches to fill all available space
- * with 8px padding, 8px border radius, and scrollable overflow.
+ * with 16px padding, 8px border radius, and scrollable overflow.
  * Background: white (light) / `grey.800` (dark).
  */
 export function BiampWrapper({ children, sx, ...props }: BiampWrapperProps) {
