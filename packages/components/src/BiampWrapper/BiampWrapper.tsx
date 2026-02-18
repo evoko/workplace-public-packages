@@ -1,7 +1,7 @@
 import React from 'react';
-import Box, { BoxProps } from '@mui/material/Box';
+import { Stack, StackProps } from '@mui/material';
 
-export type BiampWrapperProps = BoxProps & {
+export type BiampWrapperProps = StackProps & {
   children?: React.ReactNode;
 };
 
@@ -12,8 +12,8 @@ export type BiampWrapperProps = BoxProps & {
  */
 export function BiampWrapper({ children, sx, ...props }: BiampWrapperProps) {
   return (
-    <Box
-      display="flex"
+    <Stack
+      direction="column"
       padding="8px"
       alignItems="flex-start"
       sx={{
@@ -29,6 +29,6 @@ export function BiampWrapper({ children, sx, ...props }: BiampWrapperProps) {
       {...props}
     >
       {children}
-    </Box>
+    </Stack>
   );
 }
