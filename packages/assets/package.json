@@ -1,6 +1,6 @@
 {
   "name": "@bwp-web/assets",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Shared Biamp Workplace icons and image assets",
   "type": "module",
   "main": "./dist/index.cjs",
