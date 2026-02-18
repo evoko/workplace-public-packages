@@ -30,18 +30,10 @@ export const AllSeverities: Story = {
       <Typography variant="h3" sx={{ mb: 1 }}>
         Standard Alerts (all severities)
       </Typography>
-      <Alert severity="success">
-        Success — This is a success alert.
-      </Alert>
-      <Alert severity="info">
-        Info — This is an info alert.
-      </Alert>
-      <Alert severity="warning">
-        Warning — This is a warning alert.
-      </Alert>
-      <Alert severity="error">
-        Error — This is an error alert.
-      </Alert>
+      <Alert severity="success">Success — This is a success alert.</Alert>
+      <Alert severity="info">Info — This is an info alert.</Alert>
+      <Alert severity="warning">Warning — This is a warning alert.</Alert>
+      <Alert severity="error">Error — This is an error alert.</Alert>
     </Stack>
   ),
 };

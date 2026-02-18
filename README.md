@@ -156,6 +156,8 @@ npm install @bwp-web/components
 
 | Component | Description | Docs |
 |-----------|-------------|------|
+| `BiampLayout` | Full-page layout shell with optional header and sidebar slots | [biamp-layout.md](./docs/biamp-layout.md) |
+| `BiampWrapper` | Full-page content wrapper with padding, rounded corners, and scrollable overflow | [biamp-wrapper.md](./docs/biamp-wrapper.md) |
 | `BiampSidebar` | Fixed-width vertical sidebar with Biamp logo | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
 | `BiampSidebarIconList` | Vertical list with 4px gaps for sidebar items | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
 | `BiampSidebarIcon` | Selectable 48×48px icon button for sidebar navigation | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
@@ -219,6 +221,6 @@ This starts Storybook at [http://localhost:6006](http://localhost:6006).
 |---------|-----------------|
 | **Styles / Colors** | Full color palette — primary, secondary, status colors, brand colors, grey scale, text, backgrounds, dividers, and action states |
 | **Styles / Typography** | Every typography variant with font family, size, and weight |
-| **Components** | Interactive demos of BiampSidebar, BiampSidebarIcon, BiampHeader, BiampHeaderButton, Button, IconButton, Checkbox, Switch, TextField, Autocomplete, Dialog, Tabs, Alert, and more |
+| **Components** | Interactive demos of BiampLayout, BiampSidebar, BiampSidebarIcon, BiampHeader, BiampHeaderButton, BiampWrapper, Button, IconButton, Checkbox, Switch, TextField, Autocomplete, Dialog, Tabs, Alert, and more |
 
 Use the **Color Mode** toggle in the Storybook toolbar to switch between light and dark themes and see how each component and color adapts.

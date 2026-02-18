@@ -21,7 +21,7 @@ type Story = StoryObj<typeof BiampWrapper>;
 
 /**
  * The default BiampWrapper with simple content. The wrapper provides
- * a full-height container with 8px padding, 8px border radius, and
+ * a full-height container with 16px padding, 8px border radius, and
  * a white background (dark: `grey.800`). The outer page background
  * is `grey.100` (dark: `grey.800`).
  */
@@ -35,7 +35,7 @@ export const Default: Story = {
           </Typography>
           <Typography variant="body1">
             This is an example of content inside the BiampWrapper. The wrapper
-            provides a full-height container with 8px padding, a white
+            provides a full-height container with 16px padding, a white
             background with 8px rounded corners, and scrollable overflow.
           </Typography>
         </Box>
@@ -91,7 +91,7 @@ export const Mobile: Story = {
             Mobile View
           </Typography>
           <Typography variant="body2">
-            The wrapper uses 8px padding around the content area at all
+            The wrapper uses 16px padding around the content area at all
             breakpoints.
           </Typography>
           <Stack spacing={2} sx={{ mt: 2 }}>

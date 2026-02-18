@@ -72,7 +72,11 @@ const AllColors = () => {
           { color: p.primary.main, label: 'main' },
           { color: p.primary.light, label: 'light' },
           { color: p.primary.dark, label: 'dark' },
-          { color: p.primary.contrastText, label: 'contrastText', bordered: true },
+          {
+            color: p.primary.contrastText,
+            label: 'contrastText',
+            bordered: true,
+          },
         ]}
       />
 

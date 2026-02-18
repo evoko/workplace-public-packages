@@ -1,20 +1,20 @@
 import React from 'react';
-import Box, { BoxProps } from '@mui/material/Box';
+import { Stack, StackProps } from '@mui/material';
 
-export type BiampWrapperProps = BoxProps & {
+export type BiampWrapperProps = StackProps & {
   children?: React.ReactNode;
 };
 
 /**
  * A full-page content wrapper that stretches to fill all available space
- * with 8px padding, 8px border radius, and scrollable overflow.
+ * with 16px padding, 8px border radius, and scrollable overflow.
  * Background: white (light) / `grey.800` (dark).
  */
 export function BiampWrapper({ children, sx, ...props }: BiampWrapperProps) {
   return (
-    <Box
-      display="flex"
-      padding="8px"
+    <Stack
+      direction="column"
+      padding="16px"
       alignItems="flex-start"
       sx={{
         flex: 1,
@@ -29,6 +29,6 @@ export function BiampWrapper({ children, sx, ...props }: BiampWrapperProps) {
       {...props}
     >
       {children}
-    </Box>
+    </Stack>
   );
 }

@@ -1,6 +1,13 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tooltip, Button, IconButton, Stack, Typography, Box } from '@mui/material';
+import {
+  Tooltip,
+  Button,
+  IconButton,
+  Stack,
+  Typography,
+  Box,
+} from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import HelpIcon from '@mui/icons-material/Help';
 
@@ -64,7 +71,12 @@ export const Placements: Story = {
             'bottom-end',
           ] as const
         ).map((placement) => (
-          <Tooltip key={placement} title={`Placement: ${placement}`} placement={placement} arrow>
+          <Tooltip
+            key={placement}
+            title={`Placement: ${placement}`}
+            placement={placement}
+            arrow
+          >
             <Button variant="outlined" size="small">
               {placement}
             </Button>

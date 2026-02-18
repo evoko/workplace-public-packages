@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import {
-  Box,
-  Stack,
-  Typography,
-  Divider,
-  Popover,
-} from '@mui/material';
+import { Box, Stack, Typography, Divider } from '@mui/material';
 import {
   BiampHeader,
   BiampHeaderTitle,
@@ -17,8 +11,6 @@ import {
   BiampHeaderProfile,
   BiampAppDialog,
   BiampAppDialogItem,
-  AppsIcon,
-  AppsIconFilled,
   BiampAppPopover,
 } from '@bwp-web/components';
 import {
@@ -27,6 +19,8 @@ import {
   CommandApp,
   DesignerApp,
   ConnectApp,
+  AppsIcon,
+  AppsIconFilled,
 } from '@bwp-web/assets';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -88,9 +82,7 @@ export const Default: Story = {
               selectedIcon={<SettingsIcon />}
             />
           </BiampHeaderButtonList>
-          <BiampHeaderProfile
-            image="https://i.pravatar.cc/32?img=1"
-          />
+          <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
         </BiampHeaderActions>
         <BiampAppPopover
           open={open}
@@ -100,7 +92,12 @@ export const Default: Story = {
           <BiampAppDialog>
             {apps.map((app, i) => (
               <BiampAppDialogItem key={i} name={app.name}>
-                <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <Box
+                  component="img"
+                  src={app.image}
+                  alt={app.name}
+                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
               </BiampAppDialogItem>
             ))}
           </BiampAppDialog>
@@ -126,7 +123,13 @@ export const TitleIcon: Story = {
           When no <code>icon</code> prop is provided, the Biamp red logo is
           rendered automatically.
         </Typography>
-        <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+        <Box
+          sx={{
+            border: '1px dashed',
+            borderColor: 'divider',
+            display: 'inline-flex',
+          }}
+        >
           <BiampHeader>
             <BiampHeaderTitle title="Dashboard" />
           </BiampHeader>
@@ -140,7 +143,13 @@ export const TitleIcon: Story = {
           Pass any JSX element as the <code>icon</code> prop to replace the
           default logo.
         </Typography>
-        <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+        <Box
+          sx={{
+            border: '1px dashed',
+            borderColor: 'divider',
+            display: 'inline-flex',
+          }}
+        >
           <BiampHeader>
             <BiampHeaderTitle
               icon={<HomeOutlinedIcon sx={{ width: 24, height: 24 }} />}
@@ -160,9 +169,7 @@ export const WithSearch: Story = {
   name: 'With Search',
   render: () => (
     <BiampHeader>
-      <BiampHeaderTitle
-        title="Buildings"
-      />
+      <BiampHeaderTitle title="Buildings" />
       <BiampHeaderSearch />
     </BiampHeader>
   ),
@@ -208,9 +215,7 @@ export const WithActions: Story = {
               selectedIcon={<SettingsIcon />}
             />
           </BiampHeaderButtonList>
-          <BiampHeaderProfile
-            image="https://i.pravatar.cc/32?img=3"
-          />
+          <BiampHeaderProfile image="https://i.pravatar.cc/32?img=3" />
         </BiampHeaderActions>
         <BiampAppPopover
           open={open}
@@ -220,7 +225,12 @@ export const WithActions: Story = {
           <BiampAppDialog>
             {apps.map((app, i) => (
               <BiampAppDialogItem key={i} name={app.name}>
-                <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <Box
+                  component="img"
+                  src={app.image}
+                  alt={app.name}
+                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
               </BiampAppDialogItem>
             ))}
           </BiampAppDialog>
@@ -250,7 +260,13 @@ export const WithSelectedButtons: Story = {
           <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
             The icon changes from outlined to filled when selected.
           </Typography>
-          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+          <Box
+            sx={{
+              border: '1px dashed',
+              borderColor: 'divider',
+              display: 'inline-flex',
+            }}
+          >
             <BiampHeaderButtonList>
               <BiampHeaderButton
                 selected={selectedA === 0}
@@ -275,7 +291,13 @@ export const WithSelectedButtons: Story = {
             When no selectedIcon is provided, the same icon is used for both
             states.
           </Typography>
-          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+          <Box
+            sx={{
+              border: '1px dashed',
+              borderColor: 'divider',
+              display: 'inline-flex',
+            }}
+          >
             <BiampHeaderButtonList>
               <BiampHeaderButton
                 selected={selectedB === 0}
@@ -320,7 +342,9 @@ export const ButtonStates: Story = {
             icon={<SettingsOutlinedIcon />}
             selectedIcon={<SettingsIcon />}
           />
-          <Typography variant="caption">Selected (with selectedIcon)</Typography>
+          <Typography variant="caption">
+            Selected (with selectedIcon)
+          </Typography>
         </Stack>
         <Stack alignItems="center" spacing={1}>
           <BiampHeaderButton icon={<SettingsOutlinedIcon />} disabled />
@@ -330,8 +354,8 @@ export const ButtonStates: Story = {
       <Divider />
       <Typography variant="h3">Extends ListItemButton</Typography>
       <Typography variant="body2" sx={{ maxWidth: 500 }}>
-        BiampHeaderButton extends MUI's ListItemButtonProps, so you can pass
-        any prop that ListItemButton accepts, such as <code>disabled</code>,{' '}
+        BiampHeaderButton extends MUI's ListItemButtonProps, so you can pass any
+        prop that ListItemButton accepts, such as <code>disabled</code>,{' '}
         <code>onClick</code>, <code>sx</code>, and more.
       </Typography>
     </Stack>
@@ -365,7 +389,13 @@ export const WithButtonList: Story = {
             Buttons are wrapped in <code>BiampHeaderButtonList</code> which adds
             standardised 4px gaps between each item.
           </Typography>
-          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+          <Box
+            sx={{
+              border: '1px dashed',
+              borderColor: 'divider',
+              display: 'inline-flex',
+            }}
+          >
             <BiampHeaderButtonList>
               {items.map((item, i) => (
                 <BiampHeaderButton
@@ -386,7 +416,13 @@ export const WithButtonList: Story = {
           <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
             Without the list wrapper, buttons stack with no gap between them.
           </Typography>
-          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+          <Box
+            sx={{
+              border: '1px dashed',
+              borderColor: 'divider',
+              display: 'inline-flex',
+            }}
+          >
             {items.map((item, i) => (
               <BiampHeaderButton
                 key={i}
@@ -431,10 +467,14 @@ export const SubComponents: Story = {
             A box with <code>pr: 3</code> containing a 24x24 icon and H4 text
             with a 12px gap.
           </Typography>
-          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
-            <BiampHeaderTitle
-              title="Dashboard"
-            />
+          <Box
+            sx={{
+              border: '1px dashed',
+              borderColor: 'divider',
+              display: 'inline-flex',
+            }}
+          >
+            <BiampHeaderTitle title="Dashboard" />
           </Box>
         </Box>
 
@@ -447,7 +487,14 @@ export const SubComponents: Story = {
           <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
             A box with <code>px: 1.5</code> that wraps a search input.
           </Typography>
-          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex', width: 400 }}>
+          <Box
+            sx={{
+              border: '1px dashed',
+              borderColor: 'divider',
+              display: 'inline-flex',
+              width: 400,
+            }}
+          >
             <BiampHeaderSearch />
           </Box>
         </Box>
@@ -462,7 +509,13 @@ export const SubComponents: Story = {
             A flex container with <code>gap: 0.5</code> for grouping action
             buttons. Click the Apps button to open the app dialog.
           </Typography>
-          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
+          <Box
+            sx={{
+              border: '1px dashed',
+              borderColor: 'divider',
+              display: 'inline-flex',
+            }}
+          >
             <BiampHeaderButtonList>
               <BiampHeaderButton
                 icon={<AppsIcon />}
@@ -494,7 +547,16 @@ export const SubComponents: Story = {
               <BiampAppDialog>
                 {apps.map((app, i) => (
                   <BiampAppDialogItem key={i} name={app.name}>
-                    <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    <Box
+                      component="img"
+                      src={app.image}
+                      alt={app.name}
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                      }}
+                    />
                   </BiampAppDialogItem>
                 ))}
               </BiampAppDialog>
@@ -509,13 +571,17 @@ export const SubComponents: Story = {
             BiampHeaderProfile
           </Typography>
           <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-            A 36x36 profile button container holding a 32x32 image with
-            a 4px border radius.
+            A 36x36 profile button container holding a 32x32 image with a 4px
+            border radius.
           </Typography>
-          <Box sx={{ border: '1px dashed', borderColor: 'divider', display: 'inline-flex' }}>
-            <BiampHeaderProfile
-              image="https://i.pravatar.cc/32?img=1"
-            />
+          <Box
+            sx={{
+              border: '1px dashed',
+              borderColor: 'divider',
+              display: 'inline-flex',
+            }}
+          >
+            <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
           </Box>
         </Box>
       </Stack>
@@ -568,9 +634,7 @@ export const WithBorder: Story = {
               selectedIcon={<SettingsIcon />}
             />
           </BiampHeaderButtonList>
-          <BiampHeaderProfile
-            image="https://i.pravatar.cc/32?img=1"
-          />
+          <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
         </BiampHeaderActions>
         <BiampAppPopover
           open={open}
@@ -580,7 +644,12 @@ export const WithBorder: Story = {
           <BiampAppDialog>
             {apps.map((app, i) => (
               <BiampAppDialogItem key={i} name={app.name}>
-                <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <Box
+                  component="img"
+                  src={app.image}
+                  alt={app.name}
+                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
               </BiampAppDialogItem>
             ))}
           </BiampAppDialog>
@@ -619,7 +688,7 @@ export const AppDialogToggle: Story = {
               selectedIcon={<AppsIconFilled />}
               selected={open}
               onClick={(e) =>
-                setAnchorEl(open ? null : e.currentTarget as HTMLElement)
+                setAnchorEl(open ? null : (e.currentTarget as HTMLElement))
               }
             />
             <BiampHeaderButton
@@ -627,9 +696,7 @@ export const AppDialogToggle: Story = {
               selectedIcon={<SettingsIcon />}
             />
           </BiampHeaderButtonList>
-          <BiampHeaderProfile
-            image="https://i.pravatar.cc/32?img=1"
-          />
+          <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
         </BiampHeaderActions>
         <BiampAppPopover
           open={open}
@@ -639,7 +706,12 @@ export const AppDialogToggle: Story = {
           <BiampAppDialog>
             {apps.map((app, i) => (
               <BiampAppDialogItem key={i} name={app.name}>
-                <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <Box
+                  component="img"
+                  src={app.image}
+                  alt={app.name}
+                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
               </BiampAppDialogItem>
             ))}
           </BiampAppDialog>
@@ -667,10 +739,20 @@ export const AppDialogFewItems: Story = {
         </Typography>
         <BiampAppDialog>
           <BiampAppDialogItem name="Booking">
-            <Box component="img" src={BookingApp} alt="Booking" sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+            <Box
+              component="img"
+              src={BookingApp}
+              alt="Booking"
+              sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
           </BiampAppDialogItem>
           <BiampAppDialogItem name="Designer">
-            <Box component="img" src={DesignerApp} alt="Designer" sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+            <Box
+              component="img"
+              src={DesignerApp}
+              alt="Designer"
+              sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
           </BiampAppDialogItem>
         </BiampAppDialog>
       </Box>
@@ -706,7 +788,12 @@ export const AppDialog: Story = {
           <BiampAppDialog>
             {apps.map((app, i) => (
               <BiampAppDialogItem key={i} name={app.name}>
-                <Box component="img" src={app.image} alt={app.name} sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                <Box
+                  component="img"
+                  src={app.image}
+                  alt={app.name}
+                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
               </BiampAppDialogItem>
             ))}
           </BiampAppDialog>

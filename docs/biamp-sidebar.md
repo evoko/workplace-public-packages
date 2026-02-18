@@ -18,7 +18,7 @@ npm install @bwp-web/components
 
 ### `BiampSidebar`
 
-A fixed-width (48px) vertical sidebar that renders its children as navigation items with the Biamp logo automatically placed at the bottom. Extends MUI `StackProps`.
+A fixed-width (48px) vertical sidebar that renders its children as navigation items with the Biamp logo automatically placed at the bottom. Does not apply its own horizontal margin — spacing is managed by the parent layout (e.g. `BiampLayout`). Extends MUI `StackProps`.
 
 #### Props
 
@@ -160,7 +160,7 @@ When `selectedIcon` is provided, the component automatically swaps between the t
 
 ### `BiampSidebarComponent`
 
-A 48×48px rounded box that matches the dimensions and shape of `BiampSidebarIcon`, but renders a plain `Box` instead of a button. Use it to place arbitrary content (avatars, status indicators, custom widgets, etc.) in the sidebar alongside icon buttons while maintaining a consistent visual rhythm. Extends MUI `ListItemButtonProps`.
+A 48×48px rounded box that matches the dimensions and shape of `BiampSidebarIcon`, but renders a plain `Box` instead of a button. Includes a subtle `0.6px solid` border using the theme's `divider` colour. Use it to place arbitrary content (avatars, status indicators, custom widgets, etc.) in the sidebar alongside icon buttons while maintaining a consistent visual rhythm. Extends MUI `ListItemButtonProps`.
 
 #### Props
 
@@ -210,4 +210,4 @@ function AppShell() {
 - `BiampSidebar` — Vertical sidebar container with Biamp logo.
 - `BiampSidebarIconList` — Vertical list with 4px gaps for sidebar items.
 - `BiampSidebarIcon` — Selectable icon button for sidebar navigation.
-- `BiampSidebarComponent` — 48×48px rounded box for arbitrary sidebar content.
+- `BiampSidebarComponent` — 48×48px rounded box with a subtle divider border for arbitrary sidebar content.
