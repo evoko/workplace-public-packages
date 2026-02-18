@@ -15,7 +15,16 @@ export function BiampLayout({
   ...props
 }: BiampLayoutProps) {
   return (
-    <Stack direction="column" height="100vh" sx={{ ...sx }} {...props}>
+    <Stack
+      direction="column"
+      height="100vh"
+      sx={{
+        backgroundColor: ({ palette }) =>
+          palette.mode === 'dark' ? palette.grey[900] : palette.grey[100],
+        ...sx,
+      }}
+      {...props}
+    >
       {header}
       <Stack
         direction="row"
