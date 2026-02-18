@@ -5,7 +5,6 @@ import {
   Stack,
   Typography,
   Divider,
-  Popover,
 } from '@mui/material';
 import {
   BiampHeader,
@@ -17,8 +16,6 @@ import {
   BiampHeaderProfile,
   BiampAppDialog,
   BiampAppDialogItem,
-  AppsIcon,
-  AppsIconFilled,
   BiampAppPopover,
 } from '@bwp-web/components';
 import {
@@ -27,6 +24,8 @@ import {
   CommandApp,
   DesignerApp,
   ConnectApp,
+  AppsIcon,
+  AppsIconFilled,
 } from '@bwp-web/assets';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import NotificationsIcon from '@mui/icons-material/Notifications';
