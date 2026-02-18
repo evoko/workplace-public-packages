@@ -190,7 +190,7 @@ npm install @bwp-web/components
 | `BiampSidebarIcon`      | Selectable 48×48px icon button for sidebar navigation                            | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
 | `BiampSidebarComponent` | 48×48px rounded box for arbitrary sidebar content                                | [biamp-sidebar.md](./docs/biamp-sidebar.md) |
 | `BiampHeader`           | Horizontal header container with padding                                         | [biamp-header.md](./docs/biamp-header.md)   |
-| `BiampHeaderTitle`      | Title section with icon and H4 text                                              | [biamp-header.md](./docs/biamp-header.md)   |
+| `BiampHeaderTitle`      | Title section with icon, optional title, and optional subtitle                   | [biamp-header.md](./docs/biamp-header.md)   |
 | `BiampHeaderSearch`     | Search input with leading search icon                                            | [biamp-header.md](./docs/biamp-header.md)   |
 | `BiampHeaderActions`    | Flex container for grouping action buttons and profile                           | [biamp-header.md](./docs/biamp-header.md)   |
 | `BiampHeaderButtonList` | Horizontal list with 4px gaps for header buttons                                 | [biamp-header.md](./docs/biamp-header.md)   |

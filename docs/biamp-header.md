@@ -46,7 +46,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 function App() {
   return (
     <BiampHeader>
-      <BiampHeaderTitle title="Dashboard" />
+      <BiampHeaderTitle title="Workplace" subtitle="Booking" />
       <BiampHeaderSearch sx={{ flexGrow: 1 }} />
       <BiampHeaderActions>
         <BiampHeaderButtonList>
@@ -66,13 +66,14 @@ function App() {
 
 ### `BiampHeaderTitle`
 
-A title section that renders a 24×24 icon alongside an H4 text label with a 12px gap and `pr: 3` right padding. When no `icon` prop is provided, the Biamp red logo is rendered automatically. Extends MUI `BoxProps`.
+A title section that renders a 24×24 icon alongside an H4 text label with a 12px gap and `pr: 3` right padding. When no `icon` prop is provided, the Biamp red logo is rendered automatically. Both `title` and `subtitle` are optional — you can use either or both. The subtitle is rendered in `text.secondary` color next to the title. Extends MUI `BoxProps`.
 
 #### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `title` | `string` | _(required)_ | The title text displayed as H4 typography |
+| `title` | `string` | — | Optional title text displayed as H4 typography |
+| `subtitle` | `string` | — | Optional subtitle text displayed as H4 typography in `text.secondary` color, rendered next to the title |
 | `icon` | `JSX.Element` | Biamp red logo | Optional custom icon rendered to the left of the title. Defaults to the Biamp red logo |
 | `sx` | `SxProps` | — | MUI system styles passed to the root `Box` |
 | _...rest_ | `BoxProps` | — | All other MUI `Box` props are forwarded |
@@ -92,6 +93,23 @@ function App() {
         icon={<HomeOutlinedIcon sx={{ width: 24, height: 24 }} />}
         title="Home"
       />
+    </BiampHeader>
+  );
+}
+```
+
+#### Subtitle
+
+Use the `subtitle` prop to display secondary text next to the title in a muted color. Both `title` and `subtitle` are optional and can be used independently or together:
+
+```tsx
+import { BiampHeader, BiampHeaderTitle } from '@bwp-web/components';
+
+function App() {
+  return (
+    <BiampHeader>
+      {/* Title with subtitle */}
+      <BiampHeaderTitle title="Workplace" subtitle="Booking" />
     </BiampHeader>
   );
 }
@@ -313,7 +331,7 @@ function AppLauncher() {
 ## Exports
 
 - `BiampHeader` — Horizontal header container with padding.
-- `BiampHeaderTitle` — Title section with icon and H4 text.
+- `BiampHeaderTitle` — Title section with icon, optional title, and optional subtitle.
 - `BiampHeaderSearch` — Search input with leading search icon.
 - `BiampHeaderActions` — Flex container for grouping action buttons and profile.
 - `BiampHeaderButtonList` — Horizontal list with 4px gaps for header buttons.
