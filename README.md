@@ -240,3 +240,31 @@ This starts Storybook at [http://localhost:6006](http://localhost:6006).
 | **Components** | Interactive demos of BiampSidebar, BiampSidebarIcon, BiampHeader, BiampHeaderButton, Button, IconButton, Checkbox, Switch, TextField, Autocomplete, Dialog, Tabs, Alert, and more |
 
 Use the **Color Mode** toggle in the Storybook toolbar to switch between light and dark themes and see how each component and color adapts.
+
+## Releasing
+
+### Tagging a Release
+
+1. Update the `version` field in each package's `package.json` to the new version number.
+
+2. Commit the version bump:
+
+   ```bash
+   git add .
+   git commit -m "Version to X.Y.Z"
+   ```
+
+3. Create an annotated git tag:
+
+   ```bash
+   git tag -a vX.Y.Z -m "vX.Y.Z"
+   ```
+
+4. Push the commit and tag:
+
+   ```bash
+   git push origin main
+   git push origin vX.Y.Z
+   ```
+
+Tags follow the format `vX.Y.Z` (e.g., `v0.3.0`).
