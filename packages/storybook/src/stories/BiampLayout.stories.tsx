@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import {
   BiampLayout,
   BiampHeader,
@@ -15,6 +15,9 @@ import {
   BiampWrapper,
   BiampSidebarIconList,
   BiampSidebarComponent,
+  BiampAppDialog,
+  BiampAppDialogItem,
+  BiampAppPopover,
 } from '@bwp-web/components';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -24,6 +27,15 @@ import PeopleIcon from '@mui/icons-material/People';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
+import {
+  AppsIcon,
+  AppsIconFilled,
+  BookingApp,
+  CommandApp,
+  ConnectApp,
+  DesignerApp,
+  WorkplaceApp,
+} from '@bwp-web/assets';
 
 const meta: Meta<typeof BiampLayout> = {
   title: 'Components/BiampLayout',
@@ -54,6 +66,17 @@ export const WithHeaderSidebarAndWrapper: Story = {
       { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
     ];
 
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const open = Boolean(anchorEl);
+
+    const apps = [
+      { image: BookingApp, name: 'Booking' },
+      { image: DesignerApp, name: 'Designer' },
+      { image: ConnectApp, name: 'Connect' },
+      { image: CommandApp, name: 'Command' },
+      { image: WorkplaceApp, name: 'Workplace' },
+    ];
+
     return (
       <BiampLayout
         header={
@@ -63,12 +86,42 @@ export const WithHeaderSidebarAndWrapper: Story = {
             <BiampHeaderActions>
               <BiampHeaderButtonList>
                 <BiampHeaderButton
+                  icon={<AppsIcon />}
+                  selectedIcon={<AppsIconFilled />}
+                  selected={open}
+                  onClick={(e) =>
+                    setAnchorEl(open ? null : (e.currentTarget as HTMLElement))
+                  }
+                />
+                <BiampHeaderButton
                   icon={<SettingsOutlinedIcon />}
                   selectedIcon={<SettingsIcon />}
                 />
               </BiampHeaderButtonList>
               <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
             </BiampHeaderActions>
+            <BiampAppPopover
+              open={open}
+              anchorEl={anchorEl}
+              onClose={() => setAnchorEl(null)}
+            >
+              <BiampAppDialog>
+                {apps.map((app, i) => (
+                  <BiampAppDialogItem key={i} name={app.name}>
+                    <Box
+                      component="img"
+                      src={app.image}
+                      alt={app.name}
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                      }}
+                    />
+                  </BiampAppDialogItem>
+                ))}
+              </BiampAppDialog>
+            </BiampAppPopover>
           </BiampHeader>
         }
         sidebar={
