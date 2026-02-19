@@ -1,5 +1,5 @@
 {
-  "name": "@bwp-web/all",
+  "name": "@bwp-web/bundle",
   "version": "0.3.2",
   "description": "Biamp Workplace meta-package — installs assets, styles, and components in one go",
   "dependencies": {
@@ -16,6 +16,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/evoko/workplace-public-packages.git",
-    "directory": "packages/bwp"
+    "directory": "packages/bundle"
   }
 }

@@ -9,7 +9,7 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 | [`@bwp-web/styles`](./packages/styles)         | Shared MUI theme and styling utilities | Active |
 | [`@bwp-web/components`](./packages/components) | Shared React components                | Active |
 | [`@bwp-web/assets`](./packages/assets)         | Shared icons, image, and font assets   | Active |
-| [`@bwp-web/all`](./packages/all)               | Meta-package that installs all three packages   | Active |
+| [`@bwp-web/bundle`](./packages/bundle)               | Meta-package that installs all three packages   | Active |
 
 ## Getting Started
 
@@ -26,10 +26,10 @@ npm install
 
 ### Installing All Packages
 
-To install all three packages (`@bwp-web/assets`, `@bwp-web/styles`, and `@bwp-web/components`) at once, use the `@bwp-web/all` meta-package:
+To install all three packages (`@bwp-web/assets`, `@bwp-web/styles`, and `@bwp-web/components`) at once, use the `@bwp-web/bundle` meta-package:
 
 ```bash
-npm install @bwp-web/all
+npm install @bwp-web/bundle
 ```
 
 This is equivalent to installing each package individually. You still import from each package directly:
@@ -42,16 +42,16 @@ import { BiampLayout } from '@bwp-web/components';
 
 ### Updating Packages
 
-If you are using `@bwp-web/all`, updating it will pull in the latest compatible versions of all three packages:
+If you are using `@bwp-web/bundle`, updating it will pull in the latest compatible versions of all three packages:
 
 ```bash
-npm update @bwp-web/all
+npm update @bwp-web/bundle
 ```
 
 If the new version is outside the caret range (e.g., `0.2.0` or `1.0.0`), install the latest explicitly:
 
 ```bash
-npm install @bwp-web/all@latest
+npm install @bwp-web/bundle@latest
 ```
 
 You can also install or update individual packages. The following example commands are for `@bwp-web/styles` but the same process applies to `@bwp-web/components` and `@bwp-web/assets`.
@@ -293,5 +293,5 @@ Tags follow the format `vX.Y.Z` (e.g., `v0.0.0`).
 After tagging, publish all packages from the repo root:
 
 ```bash
-npm publish -w packages/assets -w packages/styles -w packages/components -w packages/all --access public
+npm publish -w packages/assets -w packages/styles -w packages/components -w packages/bundle --access public
 ```
