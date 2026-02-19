@@ -9,6 +9,7 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 | [`@bwp-web/styles`](./packages/styles)         | Shared MUI theme and styling utilities | Active |
 | [`@bwp-web/components`](./packages/components) | Shared React components                | Active |
 | [`@bwp-web/assets`](./packages/assets)         | Shared icons, image, and font assets   | Active |
+| [`@bwp-web/all`](./packages/all)               | Meta-package that installs all three packages   | Active |
 
 ## Getting Started
 
@@ -23,35 +24,42 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 npm install
 ```
 
+### Installing All Packages
+
+To install all three packages (`@bwp-web/assets`, `@bwp-web/styles`, and `@bwp-web/components`) at once, use the `@bwp-web/all` meta-package:
+
+```bash
+npm install @bwp-web/all
+```
+
+This is equivalent to installing each package individually. You still import from each package directly:
+
+```tsx
+import { BiampLogo } from '@bwp-web/assets';
+import { biampTheme } from '@bwp-web/styles';
+import { BiampLayout } from '@bwp-web/components';
+```
+
 ### Updating Packages
 
-The following example commands are for `@bwp-web/styles` but the same update process applies to all three packages: `@bwp-web/styles`, `@bwp-web/components`, and `@bwp-web/assets`.
+If you are using `@bwp-web/all`, updating it will pull in the latest compatible versions of all three packages:
 
-If the installed version uses a caret range (e.g., `^0.1.1`), you can pull in the latest compatible version with:
+```bash
+npm update @bwp-web/all
+```
+
+If the new version is outside the caret range (e.g., `0.2.0` or `1.0.0`), install the latest explicitly:
+
+```bash
+npm install @bwp-web/all@latest
+```
+
+You can also install or update individual packages. The following example commands are for `@bwp-web/styles` but the same process applies to `@bwp-web/components` and `@bwp-web/assets`.
 
 ```bash
 npm update @bwp-web/styles
-```
-
-To update all three packages at once:
-
-```bash
-npm update @bwp-web/styles @bwp-web/components @bwp-web/assets
-```
-
-If the new version is outside the caret range (e.g., `0.2.0` or `1.0.0`), you'll need to install the latest explicitly:
-
-```bash
 npm install @bwp-web/styles@latest
 ```
-
-To install the latest version of all three packages at once:
-
-```bash
-npm install @bwp-web/styles@latest @bwp-web/components@latest @bwp-web/assets@latest
-```
-
-Replace `@bwp-web/styles` with `@bwp-web/components` or `@bwp-web/assets` as needed for individual updates.
 
 ### Build
 
@@ -278,14 +286,12 @@ Use the **Color Mode** toggle in the Storybook toolbar to switch between light a
    git push --tags
    ```
 
-Tags follow the format `vX.Y.Z` (e.g., `v0.3.0`).
+Tags follow the format `vX.Y.Z` (e.g., `v0.0.0`).
 
 ### Publishing to npm
 
-After tagging, publish each package from its directory:
+After tagging, publish all packages from the repo root:
 
 ```bash
-cd packages/styles && npm publish --access public
-cd packages/components && npm publish --access public
-cd packages/assets && npm publish --access public
+npm publish -w packages/assets -w packages/styles -w packages/components -w packages/all --access public
 ```
