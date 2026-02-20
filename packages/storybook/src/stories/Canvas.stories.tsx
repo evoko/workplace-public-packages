@@ -3,7 +3,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import {
   Canvas,
-  useCanvas,
+  useEditCanvas,
+  useViewCanvas,
   createRectangle,
   createRectangleAtPoint,
   editRectangle,
@@ -73,7 +74,7 @@ const RECT_MODES: Array<{ key: RectMode; label: string }> = [
  */
 export const RectangleDemo: Story = {
   render: function RectangleDemo() {
-    const canvas = useCanvas();
+    const canvas = useEditCanvas();
     const [mode, setMode] = useState<RectMode>('select');
     const [editValues, setEditValues] = useState({
       left: 0,
@@ -287,7 +288,7 @@ export const PolygonDemo: Story = {
       });
     }, []);
 
-    const canvas = useCanvas({ onReady: handleCanvasReady });
+    const canvas = useEditCanvas({ onReady: handleCanvasReady });
     const [mode, setMode] = useState<PolygonMode>('select');
     const [editValues, setEditValues] = useState({ left: 0, top: 0 });
 
@@ -439,6 +440,107 @@ export const PolygonDemo: Story = {
                 )}
               </>
             )}
+          </>
+        }
+      />
+    );
+  },
+};
+
+// --- View Canvas Demo ---
+
+/**
+ * View-only demo using `useViewCanvas`.
+ *
+ * The canvas is pre-populated with rectangles and polygons. Objects cannot be
+ * selected, created, edited, or deleted. Only panning and zooming are available.
+ */
+export const ViewCanvasDemo: Story = {
+  render: function ViewCanvasDemoRender() {
+    const canvas = useViewCanvas({
+      onReady: (fabricCanvas: FabricCanvas) => {
+        createRectangle(fabricCanvas, {
+          left: 120,
+          top: 100,
+          width: 140,
+          height: 90,
+        });
+        createRectangle(fabricCanvas, {
+          left: 500,
+          top: 80,
+          width: 100,
+          height: 160,
+        });
+        createRectangle(fabricCanvas, {
+          left: 350,
+          top: 400,
+          width: 180,
+          height: 70,
+        });
+        createPolygon(fabricCanvas, {
+          points: [
+            { x: 0, y: 0 },
+            { x: 80, y: -30 },
+            { x: 120, y: 20 },
+            { x: 100, y: 80 },
+            { x: 20, y: 80 },
+          ],
+          left: 300,
+          top: 180,
+        });
+        createPolygon(fabricCanvas, {
+          points: [
+            { x: 0, y: 40 },
+            { x: 40, y: 0 },
+            { x: 80, y: 0 },
+            { x: 120, y: 40 },
+            { x: 100, y: 90 },
+            { x: 20, y: 90 },
+          ],
+          left: 600,
+          top: 320,
+        });
+        createPolygon(fabricCanvas, {
+          points: [
+            { x: 50, y: 0 },
+            { x: 100, y: 35 },
+            { x: 80, y: 90 },
+            { x: 20, y: 90 },
+            { x: 0, y: 35 },
+          ],
+          left: 80,
+          top: 350,
+        });
+      },
+    });
+
+    return (
+      <DemoLayout
+        onReady={canvas.onReady}
+        sidebar={
+          <>
+            <Typography variant="subtitle2">View-Only Canvas</Typography>
+            <Typography variant="body2" color="text.secondary">
+              This canvas uses <code>useViewCanvas</code>. Objects cannot be
+              selected, created, edited, or deleted. Drag to pan, scroll to
+              zoom.
+            </Typography>
+            <div>
+              <Typography variant="subtitle2" gutterBottom>
+                Viewport
+              </Typography>
+              <Typography variant="body2" color="text.secondary" gutterBottom>
+                Zoom: {Math.round(canvas.zoom * 100)}%
+              </Typography>
+              <Button
+                variant="outlined"
+                size="small"
+                fullWidth
+                onClick={canvas.viewport.reset}
+              >
+                Reset View
+              </Button>
+            </div>
           </>
         }
       />

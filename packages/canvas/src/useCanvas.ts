@@ -8,7 +8,7 @@ import {
   type ViewportMode,
 } from './viewportActions';
 
-export interface UseCanvasOptions {
+export interface UseEditCanvasOptions {
   /** Configure pan and zoom. Pass `false` to disable, or options to customize. Default: enabled. */
   panAndZoom?: boolean | PanAndZoomOptions;
   /** Called after the canvas is initialized and viewport is set up. */
@@ -21,14 +21,15 @@ type ModeSetup = (
 ) => (() => void) | void;
 
 /**
- * Hook that provides a batteries-included canvas experience.
+ * Hook that provides a batteries-included canvas experience with full
+ * editing capabilities (create, edit, delete, select, pan, zoom).
  *
  * Handles canvas ref management, viewport setup (pan/zoom), reactive state
  * (zoom level, selected objects), and interaction mode lifecycle.
  *
  * @example
  * ```tsx
- * const canvas = useCanvas();
+ * const canvas = useEditCanvas();
  *
  * // Activate a creation mode:
  * canvas.setMode((c, viewport) =>
@@ -41,7 +42,7 @@ type ModeSetup = (
  * return <Canvas onReady={canvas.onReady} width={800} height={600} />;
  * ```
  */
-export function useCanvas(options?: UseCanvasOptions) {
+export function useEditCanvas(options?: UseEditCanvasOptions) {
   const canvasRef = useRef<FabricCanvas | null>(null);
   const viewportRef = useRef<ViewportController | null>(null);
   const modeCleanupRef = useRef<(() => void) | null>(null);

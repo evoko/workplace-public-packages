@@ -8,3 +8,4 @@ export * from './interactionModes';
 export * from './vertexEditMode';
 export * from './viewportActions';
 export * from './useCanvas';
+export * from './useViewCanvas';
