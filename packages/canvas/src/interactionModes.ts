@@ -84,12 +84,15 @@ export function enableDragToCreate(
     const currentX = event.scenePoint.x;
     const currentY = event.scenePoint.y;
 
-    const left = Math.min(startX, currentX);
-    const top = Math.min(startY, currentY);
-    const width = Math.abs(currentX - startX);
-    const height = Math.abs(currentY - startY);
+    const width = Math.max(0, currentX - startX);
+    const height = Math.max(0, currentY - startY);
 
-    activeRect.set({ left, top, width, height });
+    activeRect.set({
+      left: startX + width / 2,
+      top: startY + height / 2,
+      width,
+      height,
+    });
     activeRect.setCoords();
     canvas.requestRenderAll();
   };
