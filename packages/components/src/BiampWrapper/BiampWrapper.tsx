@@ -22,6 +22,7 @@ export function BiampWrapper({ children, sx, ...props }: BiampWrapperProps) {
         width: '100%',
         borderRadius: '8px',
         overflow: 'auto',
+        overscrollBehavior: 'none',
         backgroundColor: ({ palette }) =>
           palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
         ...sx,
