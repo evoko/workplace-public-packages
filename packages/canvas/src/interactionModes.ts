@@ -1,10 +1,34 @@
-import { Canvas as FabricCanvas, Circle, Line, Polygon, Rect } from 'fabric';
+import {
+  Canvas as FabricCanvas,
+  Circle,
+  FabricObject,
+  Line,
+  Rect,
+} from 'fabric';
 import type { ViewportController } from './viewportActions';
+import {
+  createPolygonFromVertices,
+  type PolygonStyleOptions,
+} from './polygonActions';
 
-export interface CreateModeDefaults {
-  fill?: string;
-  stroke?: string;
-  strokeWidth?: number;
+export interface InteractionModeOptions {
+  onCreated?: (obj: FabricObject) => void;
+  viewport?: ViewportController;
+}
+
+export interface DragToCreateOptions extends InteractionModeOptions {
+  /** Style applied to the preview rectangle shown during drag. */
+  previewStyle?: {
+    fill?: string;
+    stroke?: string;
+    strokeWidth?: number;
+  };
+}
+
+export interface DrawToCreateOptions {
+  style?: PolygonStyleOptions;
+  onCreated?: (polygon: ReturnType<typeof createPolygonFromVertices>) => void;
+  viewport?: ViewportController;
 }
 
 /** Restore the viewport to select mode if a controller was provided. */
@@ -14,203 +38,52 @@ function restoreViewport(viewport?: ViewportController) {
   viewport.setMode('select');
 }
 
+const MIN_DRAG_SIZE = 3;
+const CLOSE_THRESHOLD = 10;
+
 /**
- * Enable click-to-place mode.
- * Each click on the canvas creates a rectangle of preset size at the clicked position.
+ * Enable click-to-create mode.
+ * Each click calls the factory with the canvas and the click point.
+ * The factory creates and adds the object to the canvas, returning it.
  * Returns a cleanup function that disables the mode.
  */
 export function enableClickToCreate(
   canvas: FabricCanvas,
-  defaults: CreateModeDefaults & { width: number; height: number },
-  onCreated?: (rect: Rect) => void,
-  viewport?: ViewportController,
+  factory: (
+    canvas: FabricCanvas,
+    point: { x: number; y: number },
+  ) => FabricObject,
+  options?: InteractionModeOptions,
 ): () => void {
-  const { width, height, ...style } = defaults;
-
-  viewport?.setEnabled(false);
+  options?.viewport?.setEnabled(false);
 
   const handleMouseDown = (event: { scenePoint: { x: number; y: number } }) => {
-    const rect = new Rect({
-      left: event.scenePoint.x,
-      top: event.scenePoint.y,
-      width,
-      height,
-      ...style,
-    });
-    canvas.add(rect);
-    canvas.requestRenderAll();
-    restoreViewport(viewport);
-    onCreated?.(rect);
+    const obj = factory(canvas, event.scenePoint);
+    restoreViewport(options?.viewport);
+    options?.onCreated?.(obj);
   };
 
   canvas.on('mouse:down', handleMouseDown);
 
   return () => {
     canvas.off('mouse:down', handleMouseDown);
-    restoreViewport(viewport);
+    restoreViewport(options?.viewport);
   };
 }
 
-const MIN_DRAG_SIZE = 3;
-
 /**
- * Enable drag-to-draw mode.
- * User holds mouse down and drags to define the rectangle dimensions.
+ * Enable drag-to-create mode.
+ * A preview rectangle is shown while dragging. On mouse-up the factory
+ * receives the drag bounds and creates the final object.
  * Returns a cleanup function that disables the mode.
  */
 export function enableDragToCreate(
   canvas: FabricCanvas,
-  defaults?: CreateModeDefaults,
-  onCreated?: (rect: Rect) => void,
-  viewport?: ViewportController,
-): () => void {
-  let isDrawing = false;
-  let startX = 0;
-  let startY = 0;
-  let activeRect: Rect | null = null;
-  let previousSelection: boolean;
-
-  viewport?.setEnabled(false);
-
-  const handleMouseDown = (event: { scenePoint: { x: number; y: number } }) => {
-    isDrawing = true;
-    startX = event.scenePoint.x;
-    startY = event.scenePoint.y;
-
-    previousSelection = canvas.selection;
-    canvas.selection = false;
-
-    activeRect = new Rect({
-      left: startX,
-      top: startY,
-      width: 0,
-      height: 0,
-      ...defaults,
-      selectable: false,
-      evented: false,
-    });
-    canvas.add(activeRect);
-  };
-
-  const handleMouseMove = (event: { scenePoint: { x: number; y: number } }) => {
-    if (!isDrawing || !activeRect) {
-      return;
-    }
-
-    const currentX = event.scenePoint.x;
-    const currentY = event.scenePoint.y;
-
-    const width = Math.max(0, currentX - startX);
-    const height = Math.max(0, currentY - startY);
-
-    activeRect.set({
-      left: startX + width / 2,
-      top: startY + height / 2,
-      width,
-      height,
-    });
-    activeRect.setCoords();
-    canvas.requestRenderAll();
-  };
-
-  const handleMouseUp = () => {
-    if (!isDrawing || !activeRect) {
-      return;
-    }
-
-    isDrawing = false;
-    canvas.selection = previousSelection;
-
-    const width = activeRect.width ?? 0;
-    const height = activeRect.height ?? 0;
-
-    if (width < MIN_DRAG_SIZE && height < MIN_DRAG_SIZE) {
-      canvas.remove(activeRect);
-      canvas.requestRenderAll();
-      activeRect = null;
-      return;
-    }
-
-    activeRect.set({ selectable: true, evented: true });
-    activeRect.setCoords();
-    canvas.requestRenderAll();
-
-    restoreViewport(viewport);
-    onCreated?.(activeRect);
-    activeRect = null;
-  };
-
-  canvas.on('mouse:down', handleMouseDown);
-  canvas.on('mouse:move', handleMouseMove);
-  canvas.on('mouse:up', handleMouseUp);
-
-  return () => {
-    canvas.off('mouse:down', handleMouseDown);
-    canvas.off('mouse:move', handleMouseMove);
-    canvas.off('mouse:up', handleMouseUp);
-
-    if (isDrawing && activeRect) {
-      canvas.remove(activeRect);
-      canvas.requestRenderAll();
-    }
-    restoreViewport(viewport);
-  };
-}
-
-/**
- * Enable click-to-place mode for polygons.
- * Each click on the canvas creates a rectangular polygon of preset size at the clicked position.
- * Returns a cleanup function that disables the mode.
- */
-export function enablePolygonClickToCreate(
-  canvas: FabricCanvas,
-  defaults: CreateModeDefaults & { width: number; height: number },
-  onCreated?: (polygon: Polygon) => void,
-  viewport?: ViewportController,
-): () => void {
-  const { width, height, ...style } = defaults;
-
-  viewport?.setEnabled(false);
-
-  const handleMouseDown = (event: { scenePoint: { x: number; y: number } }) => {
-    const polygon = new Polygon(
-      [
-        { x: 0, y: 0 },
-        { x: width, y: 0 },
-        { x: width, y: height },
-        { x: 0, y: height },
-      ],
-      {
-        left: event.scenePoint.x,
-        top: event.scenePoint.y,
-        ...style,
-      },
-    );
-    canvas.add(polygon);
-    canvas.requestRenderAll();
-    restoreViewport(viewport);
-    onCreated?.(polygon);
-  };
-
-  canvas.on('mouse:down', handleMouseDown);
-
-  return () => {
-    canvas.off('mouse:down', handleMouseDown);
-    restoreViewport(viewport);
-  };
-}
-
-/**
- * Enable drag-to-draw mode for polygons.
- * User holds mouse down and drags to define a rectangular polygon.
- * Uses a Rect preview during drag, then creates a Polygon on release.
- * Returns a cleanup function that disables the mode.
- */
-export function enablePolygonDragToCreate(
-  canvas: FabricCanvas,
-  defaults?: CreateModeDefaults,
-  onCreated?: (polygon: Polygon) => void,
-  viewport?: ViewportController,
+  factory: (
+    canvas: FabricCanvas,
+    bounds: { startX: number; startY: number; width: number; height: number },
+  ) => FabricObject,
+  options?: DragToCreateOptions,
 ): () => void {
   let isDrawing = false;
   let startX = 0;
@@ -218,7 +91,7 @@ export function enablePolygonDragToCreate(
   let previewRect: Rect | null = null;
   let previousSelection: boolean;
 
-  viewport?.setEnabled(false);
+  options?.viewport?.setEnabled(false);
 
   const handleMouseDown = (event: { scenePoint: { x: number; y: number } }) => {
     isDrawing = true;
@@ -233,7 +106,7 @@ export function enablePolygonDragToCreate(
       top: startY,
       width: 0,
       height: 0,
-      ...defaults,
+      ...options?.previewStyle,
       selectable: false,
       evented: false,
     });
@@ -241,15 +114,10 @@ export function enablePolygonDragToCreate(
   };
 
   const handleMouseMove = (event: { scenePoint: { x: number; y: number } }) => {
-    if (!isDrawing || !previewRect) {
-      return;
-    }
+    if (!isDrawing || !previewRect) return;
 
-    const currentX = event.scenePoint.x;
-    const currentY = event.scenePoint.y;
-
-    const width = Math.max(0, currentX - startX);
-    const height = Math.max(0, currentY - startY);
+    const width = Math.max(0, event.scenePoint.x - startX);
+    const height = Math.max(0, event.scenePoint.y - startY);
 
     previewRect.set({
       left: startX + width / 2,
@@ -262,9 +130,7 @@ export function enablePolygonDragToCreate(
   };
 
   const handleMouseUp = () => {
-    if (!isDrawing || !previewRect) {
-      return;
-    }
+    if (!isDrawing || !previewRect) return;
 
     isDrawing = false;
     canvas.selection = previousSelection;
@@ -280,24 +146,9 @@ export function enablePolygonDragToCreate(
       return;
     }
 
-    const polygon = new Polygon(
-      [
-        { x: 0, y: 0 },
-        { x: width, y: 0 },
-        { x: width, y: height },
-        { x: 0, y: height },
-      ],
-      {
-        left: startX + width / 2,
-        top: startY + height / 2,
-        ...defaults,
-      },
-    );
-    canvas.add(polygon);
-    canvas.requestRenderAll();
-
-    restoreViewport(viewport);
-    onCreated?.(polygon);
+    const obj = factory(canvas, { startX, startY, width, height });
+    restoreViewport(options?.viewport);
+    options?.onCreated?.(obj);
     previewRect = null;
   };
 
@@ -314,11 +165,9 @@ export function enablePolygonDragToCreate(
       canvas.remove(previewRect);
       canvas.requestRenderAll();
     }
-    restoreViewport(viewport);
+    restoreViewport(options?.viewport);
   };
 }
-
-const CLOSE_THRESHOLD = 10;
 
 /**
  * Enable draw mode for polygons.
@@ -327,11 +176,9 @@ const CLOSE_THRESHOLD = 10;
  * polygon once at least 3 points have been placed.
  * Returns a cleanup function that disables the mode.
  */
-export function enablePolygonDrawToCreate(
+export function enableDrawToCreate(
   canvas: FabricCanvas,
-  defaults?: CreateModeDefaults,
-  onCreated?: (polygon: Polygon) => void,
-  viewport?: ViewportController,
+  options?: DrawToCreateOptions,
 ): () => void {
   const points: Array<{ x: number; y: number }> = [];
   const markers: Circle[] = [];
@@ -340,11 +187,11 @@ export function enablePolygonDrawToCreate(
   let closingLine: Line | null = null;
   let previousSelection: boolean;
 
-  viewport?.setEnabled(false);
+  options?.viewport?.setEnabled(false);
 
   const lineStyle = {
-    stroke: defaults?.stroke ?? '#999999',
-    strokeWidth: defaults?.strokeWidth ?? 1,
+    stroke: options?.style?.stroke ?? '#999999',
+    strokeWidth: options?.style?.strokeWidth ?? 1,
     selectable: false,
     evented: false,
   } as const;
@@ -373,16 +220,12 @@ export function enablePolygonDrawToCreate(
   const finalize = () => {
     removePreviewElements();
 
-    const polygon = new Polygon(
-      points.map((p) => ({ x: p.x, y: p.y })),
-      { ...defaults },
-    );
-    canvas.add(polygon);
+    const polygon = createPolygonFromVertices(canvas, points, options?.style);
     canvas.selection = previousSelection;
     canvas.requestRenderAll();
 
-    restoreViewport(viewport);
-    onCreated?.(polygon);
+    restoreViewport(options?.viewport);
+    options?.onCreated?.(polygon);
     points.length = 0;
   };
 
@@ -435,9 +278,7 @@ export function enablePolygonDrawToCreate(
   };
 
   const handleMouseMove = (event: { scenePoint: { x: number; y: number } }) => {
-    if (points.length === 0) {
-      return;
-    }
+    if (points.length === 0) return;
 
     const lastPoint = points[points.length - 1];
     const x = event.scenePoint.x;
@@ -482,6 +323,6 @@ export function enablePolygonDrawToCreate(
     }
     points.length = 0;
     canvas.requestRenderAll();
-    restoreViewport(viewport);
+    restoreViewport(options?.viewport);
   };
 }

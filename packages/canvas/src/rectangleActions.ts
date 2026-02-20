@@ -12,6 +12,16 @@ export interface RectangleOptions {
   ry?: number;
 }
 
+export interface RectangleAtPointOptions {
+  width: number;
+  height: number;
+  fill?: string;
+  stroke?: string;
+  strokeWidth?: number;
+  rx?: number;
+  ry?: number;
+}
+
 /**
  * Create a rectangle and add it to the canvas.
  * Returns the fabric Rect instance for further manipulation.
@@ -21,6 +31,28 @@ export function createRectangle(
   options: RectangleOptions,
 ): Rect {
   const rect = new Rect(options);
+  canvas.add(rect);
+  canvas.requestRenderAll();
+  return rect;
+}
+
+/**
+ * Create a rectangle at the given scene point and add it to the canvas.
+ * Returns the fabric Rect instance.
+ */
+export function createRectangleAtPoint(
+  canvas: FabricCanvas,
+  point: { x: number; y: number },
+  options: RectangleAtPointOptions,
+): Rect {
+  const { width, height, ...style } = options;
+  const rect = new Rect({
+    left: point.x,
+    top: point.y,
+    width,
+    height,
+    ...style,
+  });
   canvas.add(rect);
   canvas.requestRenderAll();
   return rect;
