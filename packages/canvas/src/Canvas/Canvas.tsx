@@ -35,12 +35,8 @@ export function Canvas({
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      width={width}
-      height={height}
-      className={className}
-      style={style}
-    />
+    <div className={className} style={style}>
+      <canvas ref={canvasRef} />
+    </div>
   );
 }
