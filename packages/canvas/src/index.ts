@@ -5,3 +5,4 @@ export * from './canvasActions';
 export * from './keyboardShortcuts';
 export * from './interactionModes';
 export * from './vertexEditMode';
+export * from './viewportActions';

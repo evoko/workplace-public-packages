@@ -20,6 +20,10 @@ import {
   enablePolygonDragToCreate,
   enablePolygonDrawToCreate,
   enableVertexEdit,
+  enablePanAndZoom,
+  resetViewport,
+  type ViewportController,
+  type ViewportMode,
 } from '@bwp-web/canvas';
 import { Polygon as FabricPolygon } from 'fabric';
 import type {
@@ -51,13 +55,16 @@ type Story = StoryObj<typeof Canvas>;
  * - **Click-to-place mode**: Click anywhere on the canvas to place a 100x80 rectangle.
  * - **Drag-to-draw mode**: Hold mouse and drag to draw a rectangle.
  */
-export const Demo: Story = {
+export const RectangleDemo: Story = {
   render: function RectangleDemo() {
     const canvasRef = useRef<FabricCanvas | null>(null);
     const cleanupRef = useRef<(() => void) | null>(null);
+    const viewportRef = useRef<ViewportController | null>(null);
 
     const [mode, setMode] = useState<Mode>('select');
+    const [viewportMode, setViewportMode] = useState<ViewportMode>('select');
     const [selected, setSelected] = useState<Rect[]>([]);
+    const [zoom, setZoom] = useState(1);
     const [editValues, setEditValues] = useState({
       left: 0,
       top: 0,
@@ -77,6 +84,12 @@ export const Demo: Story = {
     const handleReady = useCallback(
       (canvas: FabricCanvas) => {
         canvasRef.current = canvas;
+
+        viewportRef.current = enablePanAndZoom(canvas);
+
+        canvas.on('mouse:wheel', () => {
+          setZoom(canvas.getZoom());
+        });
 
         canvas.on('selection:created', (e) => {
           const objs = (e.selected ?? []) as Rect[];
@@ -106,6 +119,18 @@ export const Demo: Story = {
       },
       [syncEditValues],
     );
+
+    const handleResetViewport = useCallback(() => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      resetViewport(canvas);
+      setZoom(1);
+    }, []);
+
+    const handleViewportMode = useCallback((newMode: ViewportMode) => {
+      viewportRef.current?.setMode(newMode);
+      setViewportMode(newMode);
+    }, []);
 
     const activateMode = useCallback((newMode: Mode) => {
       cleanupRef.current?.();
@@ -230,6 +255,47 @@ export const Demo: Story = {
 
             <div>
               <Typography variant="subtitle2" gutterBottom>
+                Viewport
+              </Typography>
+              <ButtonGroup fullWidth size="small" sx={{ mb: 1 }}>
+                <Button
+                  variant={viewportMode === 'select' ? 'contained' : 'outlined'}
+                  onClick={() => handleViewportMode('select')}
+                >
+                  Select
+                </Button>
+                <Button
+                  variant={viewportMode === 'pan' ? 'contained' : 'outlined'}
+                  onClick={() => handleViewportMode('pan')}
+                >
+                  Pan
+                </Button>
+              </ButtonGroup>
+              <Typography variant="body2" color="text.secondary" gutterBottom>
+                Zoom: {Math.round(zoom * 100)}%
+              </Typography>
+              <Button
+                variant="outlined"
+                size="small"
+                fullWidth
+                onClick={handleResetViewport}
+              >
+                Reset View
+              </Button>
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ mt: 1, display: 'block' }}
+              >
+                Scroll to zoom.{' '}
+                {viewportMode === 'select'
+                  ? 'Cmd/Ctrl+drag to pan.'
+                  : 'Drag to pan.'}
+              </Typography>
+            </div>
+
+            <div>
+              <Typography variant="subtitle2" gutterBottom>
                 Programmatic
               </Typography>
               <Button
@@ -329,9 +395,12 @@ export const PolygonDemo: Story = {
     const canvasRef = useRef<FabricCanvas | null>(null);
     const cleanupRef = useRef<(() => void) | null>(null);
     const vertexEditCleanupRef = useRef<(() => void) | null>(null);
+    const viewportRef = useRef<ViewportController | null>(null);
 
     const [mode, setMode] = useState<PolygonMode>('select');
+    const [viewportMode, setViewportMode] = useState<ViewportMode>('select');
     const [selected, setSelected] = useState<Polygon[]>([]);
+    const [zoom, setZoom] = useState(1);
     const [editValues, setEditValues] = useState({ left: 0, top: 0 });
     const [isEditingVertices, setIsEditingVertices] = useState(false);
 
@@ -345,6 +414,12 @@ export const PolygonDemo: Story = {
     const handleReady = useCallback(
       (canvas: FabricCanvas) => {
         canvasRef.current = canvas;
+
+        viewportRef.current = enablePanAndZoom(canvas);
+
+        canvas.on('mouse:wheel', () => {
+          setZoom(canvas.getZoom());
+        });
 
         canvas.on('selection:created', (e) => {
           const objs = (e.selected ?? []) as Polygon[];
@@ -395,6 +470,18 @@ export const PolygonDemo: Story = {
       },
       [syncEditValues],
     );
+
+    const handleResetViewport = useCallback(() => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      resetViewport(canvas);
+      setZoom(1);
+    }, []);
+
+    const handleViewportMode = useCallback((newMode: ViewportMode) => {
+      viewportRef.current?.setMode(newMode);
+      setViewportMode(newMode);
+    }, []);
 
     const activateMode = useCallback((newMode: PolygonMode) => {
       vertexEditCleanupRef.current?.();
@@ -544,6 +631,47 @@ export const PolygonDemo: Story = {
                   Draw Polygon
                 </Button>
               </ButtonGroup>
+            </div>
+
+            <div>
+              <Typography variant="subtitle2" gutterBottom>
+                Viewport
+              </Typography>
+              <ButtonGroup fullWidth size="small" sx={{ mb: 1 }}>
+                <Button
+                  variant={viewportMode === 'select' ? 'contained' : 'outlined'}
+                  onClick={() => handleViewportMode('select')}
+                >
+                  Select
+                </Button>
+                <Button
+                  variant={viewportMode === 'pan' ? 'contained' : 'outlined'}
+                  onClick={() => handleViewportMode('pan')}
+                >
+                  Pan
+                </Button>
+              </ButtonGroup>
+              <Typography variant="body2" color="text.secondary" gutterBottom>
+                Zoom: {Math.round(zoom * 100)}%
+              </Typography>
+              <Button
+                variant="outlined"
+                size="small"
+                fullWidth
+                onClick={handleResetViewport}
+              >
+                Reset View
+              </Button>
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ mt: 1, display: 'block' }}
+              >
+                Scroll to zoom.{' '}
+                {viewportMode === 'select'
+                  ? 'Cmd/Ctrl+drag to pan.'
+                  : 'Drag to pan.'}
+              </Typography>
             </div>
 
             <div>
