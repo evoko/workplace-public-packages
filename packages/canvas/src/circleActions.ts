@@ -1,5 +1,5 @@
 import { Canvas as FabricCanvas, Rect } from 'fabric';
-import { DEFAULT_SHAPE_STYLE } from './defaultStyles';
+import { DEFAULT_CIRCLE_STYLE } from './defaultStyles';
 
 export interface CircleOptions {
   left: number;
@@ -17,6 +17,27 @@ export interface CircleAtPointOptions {
   strokeWidth?: number;
 }
 
+/** Constraints applied to every circle: uniform-only scaling, no rotation. */
+const CIRCLE_CONSTRAINTS = {
+  lockRotation: true,
+  lockUniScaling: true,
+} as const;
+
+/** Controls hidden on circles: mid-edge handles (non-uniform) and rotation. */
+const HIDDEN_CIRCLE_CONTROLS = {
+  mt: false,
+  mb: false,
+  ml: false,
+  mr: false,
+  mtr: false,
+} as const;
+
+/** Apply circle tag and interaction constraints to a Rect. */
+function applyCircleConstraints(rect: Rect): void {
+  rect.shapeType = 'circle';
+  rect.setControlsVisibility(HIDDEN_CIRCLE_CONTROLS);
+}
+
 /**
  * Create a circle (a square Rect with full border-radius) and add it to the canvas.
  * Returns the fabric Rect instance for further manipulation.
@@ -27,14 +48,15 @@ export function createCircle(
 ): Rect {
   const { size, ...rest } = options;
   const rect = new Rect({
-    ...DEFAULT_SHAPE_STYLE,
+    ...DEFAULT_CIRCLE_STYLE,
+    ...CIRCLE_CONSTRAINTS,
     width: size,
     height: size,
     rx: size / 2,
     ry: size / 2,
     ...rest,
   });
-  rect.shapeType = 'circle';
+  applyCircleConstraints(rect);
   canvas.add(rect);
   canvas.requestRenderAll();
   return rect;
@@ -51,7 +73,8 @@ export function createCircleAtPoint(
 ): Rect {
   const { size, ...style } = options;
   const rect = new Rect({
-    ...DEFAULT_SHAPE_STYLE,
+    ...DEFAULT_CIRCLE_STYLE,
+    ...CIRCLE_CONSTRAINTS,
     left: point.x,
     top: point.y,
     width: size,
@@ -60,7 +83,7 @@ export function createCircleAtPoint(
     ry: size / 2,
     ...style,
   });
-  rect.shapeType = 'circle';
+  applyCircleConstraints(rect);
   canvas.add(rect);
   canvas.requestRenderAll();
   return rect;

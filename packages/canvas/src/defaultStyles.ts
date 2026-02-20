@@ -17,6 +17,13 @@ export const DEFAULT_SHAPE_STYLE = {
   ...DEFAULT_CONTROL_STYLE,
 };
 
+export const DEFAULT_CIRCLE_STYLE = {
+  fill: palette.info.main,
+  stroke: palette.info.main,
+  strokeWidth: 2.5,
+  ...DEFAULT_CONTROL_STYLE,
+};
+
 export const DEFAULT_DRAG_SHAPE_STYLE = {
   fill: alpha(palette.info.main, 0.1),
   stroke: palette.info.main,
