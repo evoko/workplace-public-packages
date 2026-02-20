@@ -1,6 +1,13 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, Stack, TextField, Typography } from '@mui/material';
+import {
+  Button,
+  FormControlLabel,
+  Stack,
+  Switch,
+  TextField,
+  Typography,
+} from '@mui/material';
 import {
   Canvas,
   useEditCanvas,
@@ -77,7 +84,8 @@ const RECT_MODES: Array<{ key: RectMode; label: string }> = [
  */
 export const RectangleDemo: Story = {
   render: function RectangleDemo() {
-    const canvas = useEditCanvas();
+    const [alignmentEnabled, setAlignmentEnabled] = useState(true);
+    const canvas = useEditCanvas({ enableAlignment: alignmentEnabled });
     const [mode, setMode] = useState<RectMode>('select');
     const [editValues, setEditValues] = useState({
       left: 0,
@@ -117,7 +125,6 @@ export const RectangleDemo: Story = {
               {
                 onCreated: () => activateMode('select'),
                 viewport,
-                snapping: true,
               },
             ),
           );
@@ -179,6 +186,16 @@ export const RectangleDemo: Story = {
         onReady={canvas.onReady}
         sidebar={
           <>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={alignmentEnabled}
+                  onChange={(e) => setAlignmentEnabled(e.target.checked)}
+                  size="small"
+                />
+              }
+              label="Enable Alignment"
+            />
             <ModeButtons
               modes={RECT_MODES}
               activeMode={mode}
@@ -292,7 +309,11 @@ export const PolygonDemo: Story = {
       });
     }, []);
 
-    const canvas = useEditCanvas({ onReady: handleCanvasReady });
+    const [alignmentEnabled, setAlignmentEnabled] = useState(true);
+    const canvas = useEditCanvas({
+      onReady: handleCanvasReady,
+      enableAlignment: alignmentEnabled,
+    });
     const [mode, setMode] = useState<PolygonMode>('select');
     const [editValues, setEditValues] = useState({ left: 0, top: 0 });
 
@@ -330,7 +351,6 @@ export const PolygonDemo: Story = {
               {
                 onCreated: () => activateMode('select'),
                 viewport,
-                snapping: true,
               },
             ),
           );
@@ -339,7 +359,6 @@ export const PolygonDemo: Story = {
             enableDrawToCreate(c, {
               onCreated: () => activateMode('select'),
               viewport,
-              snapping: true,
             }),
           );
         }
@@ -395,6 +414,16 @@ export const PolygonDemo: Story = {
         onReady={canvas.onReady}
         sidebar={
           <>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={alignmentEnabled}
+                  onChange={(e) => setAlignmentEnabled(e.target.checked)}
+                  size="small"
+                />
+              }
+              label="Enable Alignment"
+            />
             <ModeButtons
               modes={POLYGON_MODES}
               activeMode={mode}
@@ -476,7 +505,8 @@ const DEFAULT_CIRCLE_SIZE = 80;
  */
 export const CircleDemo: Story = {
   render: function CircleDemoRender() {
-    const canvas = useEditCanvas();
+    const [alignmentEnabled, setAlignmentEnabled] = useState(true);
+    const canvas = useEditCanvas({ enableAlignment: alignmentEnabled });
     const [mode, setMode] = useState<CircleMode>('select');
     const [editValues, setEditValues] = useState({
       left: 0,
@@ -514,7 +544,6 @@ export const CircleDemo: Story = {
                 onCreated: () => activateMode('select'),
                 viewport,
                 constrainToSquare: true,
-                snapping: true,
               },
             ),
           );
@@ -569,6 +598,15 @@ export const CircleDemo: Story = {
         onReady={canvas.onReady}
         sidebar={
           <>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={alignmentEnabled}
+                  onChange={(e) => setAlignmentEnabled(e.target.checked)}
+                />
+              }
+              label="Enable Alignment"
+            />
             <ModeButtons
               modes={CIRCLE_MODES}
               activeMode={mode}

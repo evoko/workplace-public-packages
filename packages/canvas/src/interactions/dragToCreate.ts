@@ -21,7 +21,7 @@ export interface DragToCreateOptions extends InteractionModeOptions {
   };
   /** When true, constrain the drag to a 1:1 aspect ratio (square). */
   constrainToSquare?: boolean;
-  /** Enable cursor snapping during drag. Pass `true` for defaults or an options object. */
+  /** Enable cursor snapping during drag. Pass `true` for defaults or an options object. Default: enabled. */
   snapping?:
     | boolean
     | {
@@ -30,6 +30,13 @@ export interface DragToCreateOptions extends InteractionModeOptions {
         /** Custom guideline style. */
         guidelineStyle?: GuidelineStyle;
       };
+  /**
+   * Master toggle for alignment/snapping.
+   * - `undefined`: uses the `snapping` prop (default: enabled).
+   * - `true`: force-enable snapping.
+   * - `false`: force-disable snapping.
+   */
+  enableAlignment?: boolean;
 }
 
 const MIN_DRAG_SIZE = 3;
@@ -54,9 +61,11 @@ export function enableDragToCreate(
   let previewRect: Rect | null = null;
   let previousSelection: boolean;
 
-  // Snapping setup
+  // Snapping setup — enabled by default; enableAlignment overrides when defined
   const snapEnabled =
-    options?.snapping !== undefined && options?.snapping !== false;
+    options?.enableAlignment !== undefined
+      ? options.enableAlignment
+      : options?.snapping !== false;
   const snapMargin =
     typeof options?.snapping === 'object' ? options.snapping.margin : undefined;
   const guidelineStyle =

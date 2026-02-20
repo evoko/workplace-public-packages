@@ -26,7 +26,7 @@ export interface DrawToCreateOptions {
   style?: PolygonStyleOptions;
   onCreated?: (polygon: ReturnType<typeof createPolygonFromVertices>) => void;
   viewport?: ViewportController;
-  /** Enable cursor snapping during polygon drawing. Pass `true` for defaults or an options object. */
+  /** Enable cursor snapping during polygon drawing. Pass `true` for defaults or an options object. Default: enabled. */
   snapping?:
     | boolean
     | {
@@ -35,6 +35,13 @@ export interface DrawToCreateOptions {
         /** Custom guideline style. */
         guidelineStyle?: GuidelineStyle;
       };
+  /**
+   * Master toggle for alignment/snapping.
+   * - `undefined`: uses the `snapping` prop (default: enabled).
+   * - `true`: force-enable snapping.
+   * - `false`: force-disable snapping.
+   */
+  enableAlignment?: boolean;
 }
 
 const CLOSE_THRESHOLD = 10;
@@ -57,9 +64,11 @@ export function enableDrawToCreate(
   let closingLine: Line | null = null;
   let previousSelection: boolean;
 
-  // Snapping setup
+  // Snapping setup — enabled by default; enableAlignment overrides when defined
   const snapEnabled =
-    options?.snapping !== undefined && options?.snapping !== false;
+    options?.enableAlignment !== undefined
+      ? options.enableAlignment
+      : options?.snapping !== false;
   const snapMargin =
     typeof options?.snapping === 'object' ? options.snapping.margin : undefined;
   const guidelineStyle =

@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Canvas as FabricCanvas, type FabricObject } from 'fabric';
 import {
   enablePanAndZoom,
@@ -17,6 +17,13 @@ export interface UseEditCanvasOptions {
   panAndZoom?: boolean | PanAndZoomOptions;
   /** Enable alignment guidelines for object movement/scaling. Pass `false` to disable, or options to customize. Default: enabled. */
   alignment?: boolean | ObjectAlignmentOptions;
+  /**
+   * Master toggle for all alignment and snapping functionality.
+   * - `undefined`: each feature uses its own prop (default).
+   * - `true`: all alignment/snapping is force-enabled.
+   * - `false`: all alignment/snapping is force-disabled.
+   */
+  enableAlignment?: boolean;
   /** Called after the canvas is initialized and viewport is set up. */
   onReady?: (canvas: FabricCanvas) => void;
 }
@@ -107,7 +114,12 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
         );
       }
 
-      if (options?.alignment !== false) {
+      const alignmentEnabled =
+        options?.enableAlignment !== undefined
+          ? options.enableAlignment
+          : options?.alignment !== false;
+
+      if (alignmentEnabled) {
         alignmentCleanupRef.current = enableObjectAlignment(
           canvas,
           typeof options?.alignment === 'object'
@@ -139,6 +151,28 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     [],
   );
 
+  // React to enableAlignment changes — tear down or set up object alignment
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const shouldEnable =
+      options?.enableAlignment !== undefined
+        ? options.enableAlignment
+        : options?.alignment !== false;
+
+    if (shouldEnable && !alignmentCleanupRef.current) {
+      alignmentCleanupRef.current = enableObjectAlignment(
+        canvas,
+        typeof options?.alignment === 'object' ? options.alignment : undefined,
+      );
+    } else if (!shouldEnable && alignmentCleanupRef.current) {
+      alignmentCleanupRef.current();
+      alignmentCleanupRef.current = null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [options?.enableAlignment]);
+
   const setViewportMode = useCallback((mode: ViewportMode) => {
     viewportRef.current?.setMode(mode);
     setViewportModeState(mode);
@@ -169,6 +203,11 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
       /** Reset viewport to default (no pan, zoom = 1). */
       reset: resetViewport,
     },
+    /**
+     * Master alignment toggle passed via options.
+     * Pass to interaction functions (e.g. `enableDragToCreate`) to unify behaviour.
+     */
+    enableAlignment: options?.enableAlignment,
     /**
      * Activate an interaction mode or return to select mode.
      *
