@@ -1,42 +1,18 @@
-import { Canvas as FabricCanvas, FabricObject, Point, Rect } from 'fabric';
-import type { Point2D } from '../fabric';
+import { Canvas as FabricCanvas, FabricObject, Rect } from 'fabric';
+import type {
+  Point2D,
+  ShapeStyleOptions,
+  SnappableInteractionOptions,
+} from '../types';
 import { DEFAULT_GUIDELINE_SHAPE_STYLE } from '../styles';
-import { InteractionModeOptions, restoreViewport } from './shared';
-import {
-  drawCursorGuidelines,
-  getSnapPoints,
-  snapCursorPoint,
-  type CursorSnapResult,
-  type GuidelineStyle,
-} from '../alignment';
+import { restoreViewport } from './shared';
+import { createInteractionSnapping } from './interactionSnapping';
 
-export interface DragToCreateOptions extends InteractionModeOptions {
+export interface DragToCreateOptions extends SnappableInteractionOptions {
   /** Style applied to the preview rectangle shown during drag. */
-  previewStyle?: {
-    fill?: string;
-    stroke?: string;
-    strokeWidth?: number;
-    rx?: number;
-    ry?: number;
-  };
+  previewStyle?: ShapeStyleOptions & { rx?: number; ry?: number };
   /** When true, constrain the drag to a 1:1 aspect ratio (square). */
   constrainToSquare?: boolean;
-  /** Enable cursor snapping during drag. Pass `true` for defaults or an options object. Default: enabled. */
-  snapping?:
-    | boolean
-    | {
-        /** Snap margin in screen pixels. Default: 6. */
-        margin?: number;
-        /** Custom guideline style. */
-        guidelineStyle?: GuidelineStyle;
-      };
-  /**
-   * Master toggle for alignment/snapping.
-   * - `undefined`: uses the `snapping` prop (default: enabled).
-   * - `true`: force-enable snapping.
-   * - `false`: force-disable snapping.
-   */
-  enableAlignment?: boolean;
 }
 
 const MIN_DRAG_SIZE = 3;
@@ -61,69 +37,14 @@ export function enableDragToCreate(
   let previewRect: Rect | null = null;
   let previousSelection: boolean;
 
-  // Snapping setup — enabled by default; enableAlignment overrides when defined
-  const snapEnabled =
-    options?.enableAlignment !== undefined
-      ? options.enableAlignment
-      : options?.snapping !== false;
-  const snapMargin =
-    typeof options?.snapping === 'object' ? options.snapping.margin : undefined;
-  const guidelineStyle =
-    typeof options?.snapping === 'object'
-      ? options.snapping.guidelineStyle
-      : undefined;
-  let cachedTargetPoints: Point[] | null = null;
-
-  function getTargetPoints(): Point[] {
-    if (cachedTargetPoints) return cachedTargetPoints;
-    cachedTargetPoints = [];
-    canvas.forEachObject((obj) => {
-      if (!obj.visible) return;
-      if (obj === previewRect) return;
-      cachedTargetPoints!.push(...getSnapPoints(obj));
-    });
-    return cachedTargetPoints;
-  }
-
-  const invalidateCache = () => {
-    cachedTargetPoints = null;
-  };
-
-  if (snapEnabled) {
-    canvas.on('object:added', invalidateCache);
-    canvas.on('object:removed', invalidateCache);
-  }
-
-  function snapPoint(rawX: number, rawY: number): { x: number; y: number } {
-    if (!snapEnabled) return { x: rawX, y: rawY };
-
-    const result = snapCursorPoint(canvas, new Point(rawX, rawY), {
-      margin: snapMargin,
-      exclude: previewRect ? new Set<FabricObject>([previewRect]) : undefined,
-      targetPoints: getTargetPoints(),
-    });
-    return { x: result.point.x, y: result.point.y };
-  }
-
-  // Store last snap result so guidelines can be drawn in after:render
-  let lastSnapResult: CursorSnapResult | null = null;
-
-  const afterRender = () => {
-    if (lastSnapResult) {
-      drawCursorGuidelines(canvas, lastSnapResult, guidelineStyle);
-    }
-  };
-
-  if (snapEnabled) {
-    canvas.on('after:render', afterRender);
-  }
+  const snapping = createInteractionSnapping(canvas, options);
 
   options?.viewport?.setEnabled(false);
 
   const handleMouseDown = (event: { scenePoint: Point2D }) => {
     isDrawing = true;
 
-    const snapped = snapPoint(event.scenePoint.x, event.scenePoint.y);
+    const snapped = snapping.snap(event.scenePoint.x, event.scenePoint.y);
     startX = snapped.x;
     startY = snapped.y;
 
@@ -140,33 +61,17 @@ export function enableDragToCreate(
       selectable: false,
       evented: false,
     });
+    snapping.excludeSet.add(previewRect);
     canvas.add(previewRect);
   };
 
   const handleMouseMove = (event: { scenePoint: Point2D }) => {
     if (!isDrawing || !previewRect) return;
 
-    let endX: number;
-    let endY: number;
-
-    if (snapEnabled) {
-      const targetPoints = getTargetPoints();
-      lastSnapResult = snapCursorPoint(
-        canvas,
-        new Point(event.scenePoint.x, event.scenePoint.y),
-        {
-          margin: snapMargin,
-          exclude: new Set<FabricObject>([previewRect]),
-          targetPoints,
-        },
-      );
-      endX = lastSnapResult.point.x;
-      endY = lastSnapResult.point.y;
-    } else {
-      endX = event.scenePoint.x;
-      endY = event.scenePoint.y;
-      lastSnapResult = null;
-    }
+    const { x: endX, y: endY } = snapping.snapWithGuidelines(
+      event.scenePoint.x,
+      event.scenePoint.y,
+    );
 
     let width = Math.max(0, endX - startX);
     let height = Math.max(0, endY - startY);
@@ -191,7 +96,7 @@ export function enableDragToCreate(
     if (!isDrawing || !previewRect) return;
 
     isDrawing = false;
-    lastSnapResult = null;
+    snapping.clearSnapResult();
     canvas.selection = previousSelection;
 
     let width = previewRect.width ?? 0;
@@ -203,6 +108,7 @@ export function enableDragToCreate(
       height = size;
     }
 
+    snapping.excludeSet.delete(previewRect);
     canvas.remove(previewRect);
 
     if (width < MIN_DRAG_SIZE && height < MIN_DRAG_SIZE) {
@@ -226,13 +132,7 @@ export function enableDragToCreate(
     canvas.off('mouse:move', handleMouseMove);
     canvas.off('mouse:up', handleMouseUp);
 
-    if (snapEnabled) {
-      canvas.off('object:added', invalidateCache);
-      canvas.off('object:removed', invalidateCache);
-      canvas.off('after:render', afterRender);
-    }
-
-    lastSnapResult = null;
+    snapping.cleanup();
 
     if (isDrawing && previewRect) {
       canvas.remove(previewRect);

@@ -1,25 +1,19 @@
 import { Canvas as FabricCanvas, Rect } from 'fabric';
-import type { Point2D } from '../fabric';
+import type { Point2D, ShapeStyleOptions } from '../types';
 import { DEFAULT_SHAPE_STYLE } from '../styles';
 
-export interface RectangleOptions {
+export interface RectangleOptions extends ShapeStyleOptions {
   left: number;
   top: number;
   width: number;
   height: number;
-  fill?: string;
-  stroke?: string;
-  strokeWidth?: number;
   rx?: number;
   ry?: number;
 }
 
-export interface RectangleAtPointOptions {
+export interface RectangleAtPointOptions extends ShapeStyleOptions {
   width: number;
   height: number;
-  fill?: string;
-  stroke?: string;
-  strokeWidth?: number;
   rx?: number;
   ry?: number;
 }

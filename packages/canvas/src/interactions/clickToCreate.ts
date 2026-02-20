@@ -1,6 +1,6 @@
 import { Canvas as FabricCanvas, FabricObject } from 'fabric';
-import type { Point2D } from '../fabric';
-import { InteractionModeOptions, restoreViewport } from './shared';
+import type { Point2D, InteractionModeOptions } from '../types';
+import { restoreViewport } from './shared';
 
 /**
  * Enable click-to-create mode.

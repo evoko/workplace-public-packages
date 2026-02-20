@@ -1,21 +1,15 @@
 import { Canvas as FabricCanvas, Polygon } from 'fabric';
-import type { Point2D } from '../fabric';
+import type { Point2D, ShapeStyleOptions } from '../types';
 import { DEFAULT_SHAPE_STYLE } from '../styles';
 
-export interface PolygonOptions {
+export interface PolygonOptions extends ShapeStyleOptions {
   points: Point2D[];
   left?: number;
   top?: number;
-  fill?: string;
-  stroke?: string;
-  strokeWidth?: number;
 }
 
-export interface PolygonStyleOptions {
-  fill?: string;
-  stroke?: string;
-  strokeWidth?: number;
-}
+/** Style options for polygon creation. Alias for ShapeStyleOptions preserved for backward compatibility. */
+export type PolygonStyleOptions = ShapeStyleOptions;
 
 /**
  * Create a polygon and add it to the canvas.

@@ -1,5 +1,10 @@
-export * from './shared';
-export * from './clickToCreate';
-export * from './dragToCreate';
-export * from './drawToCreate';
-export * from './vertexEdit';
+export { enableClickToCreate } from './clickToCreate';
+
+export { enableDragToCreate } from './dragToCreate';
+export type { DragToCreateOptions } from './dragToCreate';
+
+export { enableDrawToCreate } from './drawToCreate';
+export type { DrawToCreateOptions } from './drawToCreate';
+
+export { enableVertexEdit } from './vertexEdit';
+export type { VertexEditOptions } from './vertexEdit';

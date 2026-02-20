@@ -5,8 +5,7 @@ import {
   Line,
   Point,
 } from 'fabric';
-import type { Point2D } from '../fabric';
-import type { ViewportController } from '../viewport';
+import type { Point2D, SnappableInteractionOptions } from '../types';
 import { createPolygonFromVertices, type PolygonStyleOptions } from '../shapes';
 import {
   DEFAULT_DRAG_SHAPE_STYLE,
@@ -14,34 +13,11 @@ import {
   DEFAULT_SHAPE_STYLE,
 } from '../styles';
 import { restoreViewport } from './shared';
-import {
-  drawCursorGuidelines,
-  getSnapPoints,
-  snapCursorPoint,
-  type CursorSnapResult,
-  type GuidelineStyle,
-} from '../alignment';
+import { createInteractionSnapping } from './interactionSnapping';
 
-export interface DrawToCreateOptions {
+export interface DrawToCreateOptions extends SnappableInteractionOptions {
+  /** Style applied to the polygon being drawn. */
   style?: PolygonStyleOptions;
-  onCreated?: (polygon: ReturnType<typeof createPolygonFromVertices>) => void;
-  viewport?: ViewportController;
-  /** Enable cursor snapping during polygon drawing. Pass `true` for defaults or an options object. Default: enabled. */
-  snapping?:
-    | boolean
-    | {
-        /** Snap margin in screen pixels. Default: 6. */
-        margin?: number;
-        /** Custom guideline style. */
-        guidelineStyle?: GuidelineStyle;
-      };
-  /**
-   * Master toggle for alignment/snapping.
-   * - `undefined`: uses the `snapping` prop (default: enabled).
-   * - `true`: force-enable snapping.
-   * - `false`: force-disable snapping.
-   */
-  enableAlignment?: boolean;
 }
 
 const CLOSE_THRESHOLD = 10;
@@ -64,97 +40,17 @@ export function enableDrawToCreate(
   let closingLine: Line | null = null;
   let previousSelection: boolean;
 
-  // Snapping setup — enabled by default; enableAlignment overrides when defined
-  const snapEnabled =
-    options?.enableAlignment !== undefined
-      ? options.enableAlignment
-      : options?.snapping !== false;
-  const snapMargin =
-    typeof options?.snapping === 'object' ? options.snapping.margin : undefined;
-  const guidelineStyle =
-    typeof options?.snapping === 'object'
-      ? options.snapping.guidelineStyle
-      : undefined;
-  const previewElements = new Set<FabricObject>();
-  let cachedTargetPoints: Point[] | null = null;
+  // Use shared snapping context, with placed vertices as additional snap targets
+  const snapping = createInteractionSnapping(canvas, options, () =>
+    points.map((p) => new Point(p.x, p.y)),
+  );
 
-  function getTargetPoints(): Point[] {
-    if (cachedTargetPoints) return cachedTargetPoints;
-    cachedTargetPoints = [];
-    canvas.forEachObject((obj) => {
-      if (!obj.visible) return;
-      if (previewElements.has(obj)) return;
-      cachedTargetPoints!.push(...getSnapPoints(obj));
-    });
-    return cachedTargetPoints;
+  /** Track a preview element in the snapping exclude set. */
+  function trackPreviewElement(obj: FabricObject) {
+    snapping.excludeSet.add(obj);
   }
-
-  const invalidateCache = () => {
-    cachedTargetPoints = null;
-  };
-
-  if (snapEnabled) {
-    canvas.on('object:added', invalidateCache);
-    canvas.on('object:removed', invalidateCache);
-  }
-
-  function snapPoint(rawX: number, rawY: number): { x: number; y: number } {
-    if (!snapEnabled) return { x: rawX, y: rawY };
-
-    // Add all placed vertices as snap targets for axis alignment
-    let targetPoints = getTargetPoints();
-    if (points.length >= 1) {
-      targetPoints = [
-        ...targetPoints,
-        ...points.map((p) => new Point(p.x, p.y)),
-      ];
-    }
-
-    const result = snapCursorPoint(canvas, new Point(rawX, rawY), {
-      margin: snapMargin,
-      exclude: previewElements,
-      targetPoints,
-    });
-    return { x: result.point.x, y: result.point.y };
-  }
-
-  // Store last snap result so guidelines can be drawn in after:render
-  // (drawing on contextTop before requestRenderAll is wiped by objectAlignment's beforeRender)
-  let lastSnapResult: CursorSnapResult | null = null;
-
-  const afterRender = () => {
-    if (lastSnapResult) {
-      drawCursorGuidelines(canvas, lastSnapResult, guidelineStyle);
-    }
-  };
-
-  if (snapEnabled) {
-    canvas.on('after:render', afterRender);
-  }
-
-  function snapPointWithGuidelines(
-    rawX: number,
-    rawY: number,
-  ): { x: number; y: number } {
-    if (!snapEnabled) {
-      lastSnapResult = null;
-      return { x: rawX, y: rawY };
-    }
-
-    let targetPoints = getTargetPoints();
-    if (points.length >= 1) {
-      targetPoints = [
-        ...targetPoints,
-        ...points.map((p) => new Point(p.x, p.y)),
-      ];
-    }
-
-    lastSnapResult = snapCursorPoint(canvas, new Point(rawX, rawY), {
-      margin: snapMargin,
-      exclude: previewElements,
-      targetPoints,
-    });
-    return { x: lastSnapResult.point.x, y: lastSnapResult.point.y };
+  function untrackPreviewElement(obj: FabricObject) {
+    snapping.excludeSet.delete(obj);
   }
 
   options?.viewport?.setEnabled(false);
@@ -178,31 +74,31 @@ export function enableDrawToCreate(
   const removePreviewElements = () => {
     for (const marker of markers) {
       canvas.remove(marker);
-      previewElements.delete(marker);
+      untrackPreviewElement(marker);
     }
     markers.length = 0;
 
     for (const line of edgeLines) {
       canvas.remove(line);
-      previewElements.delete(line);
+      untrackPreviewElement(line);
     }
     edgeLines.length = 0;
 
     if (trackingLine) {
       canvas.remove(trackingLine);
-      previewElements.delete(trackingLine);
+      untrackPreviewElement(trackingLine);
       trackingLine = null;
     }
     if (closingLine) {
       canvas.remove(closingLine);
-      previewElements.delete(closingLine);
+      untrackPreviewElement(closingLine);
       closingLine = null;
     }
   };
 
   const finalize = () => {
     removePreviewElements();
-    lastSnapResult = null;
+    snapping.clearSnapResult();
 
     const polygon = createPolygonFromVertices(canvas, points, options?.style);
     canvas.selection = previousSelection;
@@ -214,7 +110,7 @@ export function enableDrawToCreate(
   };
 
   const handleMouseDown = (event: { scenePoint: Point2D }) => {
-    const { x, y } = snapPoint(event.scenePoint.x, event.scenePoint.y);
+    const { x, y } = snapping.snap(event.scenePoint.x, event.scenePoint.y);
 
     // Close the polygon if clicking near the first vertex with 3+ points
     if (points.length >= 3) {
@@ -246,7 +142,7 @@ export function enableDrawToCreate(
       evented: false,
     });
     markers.push(marker);
-    previewElements.add(marker);
+    trackPreviewElement(marker);
     canvas.add(marker);
 
     // Add edge line from previous vertex to this one
@@ -254,7 +150,7 @@ export function enableDrawToCreate(
       const prev = points[points.length - 2];
       const edge = new Line([prev.x, prev.y, x, y], lineStyle);
       edgeLines.push(edge);
-      previewElements.add(edge);
+      trackPreviewElement(edge);
       canvas.add(edge);
     }
 
@@ -265,26 +161,26 @@ export function enableDrawToCreate(
     if (points.length === 0) return;
 
     const lastPoint = points[points.length - 1];
-    const { x, y } = snapPointWithGuidelines(
+    const { x, y } = snapping.snapWithGuidelines(
       event.scenePoint.x,
       event.scenePoint.y,
     );
 
     // Update tracking line from last vertex to cursor
     if (trackingLine) {
-      previewElements.delete(trackingLine);
+      untrackPreviewElement(trackingLine);
       canvas.remove(trackingLine);
     }
     trackingLine = new Line([lastPoint.x, lastPoint.y, x, y], {
       ...guideLineStyle,
       strokeDashArray: [5, 5],
     });
-    previewElements.add(trackingLine);
+    trackPreviewElement(trackingLine);
     canvas.add(trackingLine);
 
     // Show closing line from cursor to first vertex when 3+ points
     if (closingLine) {
-      previewElements.delete(closingLine);
+      untrackPreviewElement(closingLine);
       canvas.remove(closingLine);
       closingLine = null;
     }
@@ -293,7 +189,7 @@ export function enableDrawToCreate(
         ...guideLineStyle,
         strokeDashArray: [5, 5],
       });
-      previewElements.add(closingLine);
+      trackPreviewElement(closingLine);
       canvas.add(closingLine);
     }
 
@@ -307,14 +203,9 @@ export function enableDrawToCreate(
     canvas.off('mouse:down', handleMouseDown);
     canvas.off('mouse:move', handleMouseMove);
 
-    if (snapEnabled) {
-      canvas.off('object:added', invalidateCache);
-      canvas.off('object:removed', invalidateCache);
-      canvas.off('after:render', afterRender);
-    }
-
+    snapping.cleanup();
     removePreviewElements();
-    lastSnapResult = null;
+
     if (points.length > 0) {
       canvas.selection = previousSelection;
     }

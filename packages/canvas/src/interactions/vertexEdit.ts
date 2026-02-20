@@ -6,7 +6,7 @@ import {
   Polygon,
   util,
 } from 'fabric';
-import type { Point2D } from '../fabric';
+import type { Point2D } from '../types';
 
 export interface VertexEditOptions {
   handleRadius?: number;

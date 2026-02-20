@@ -5,7 +5,7 @@ import {
   resetViewport as resetViewportFn,
   type PanAndZoomOptions,
   type ViewportController,
-} from './viewport';
+} from '../viewport';
 
 export interface UseViewCanvasOptions {
   /** Configure pan and zoom. Pass `false` to disable, or options to customize. Default: enabled. */

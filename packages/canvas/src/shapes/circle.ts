@@ -1,21 +1,15 @@
 import { Canvas as FabricCanvas, Rect } from 'fabric';
-import type { Point2D } from '../fabric';
+import type { Point2D, ShapeStyleOptions } from '../types';
 import { DEFAULT_CIRCLE_STYLE } from '../styles';
 
-export interface CircleOptions {
+export interface CircleOptions extends ShapeStyleOptions {
   left: number;
   top: number;
   size: number;
-  fill?: string;
-  stroke?: string;
-  strokeWidth?: number;
 }
 
-export interface CircleAtPointOptions {
+export interface CircleAtPointOptions extends ShapeStyleOptions {
   size: number;
-  fill?: string;
-  stroke?: string;
-  strokeWidth?: number;
 }
 
 /** Constraints applied to every circle: uniform-only scaling, no rotation. */

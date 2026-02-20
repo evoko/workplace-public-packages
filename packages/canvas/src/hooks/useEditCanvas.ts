@@ -6,11 +6,12 @@ import {
   type PanAndZoomOptions,
   type ViewportController,
   type ViewportMode,
-} from './viewport';
+} from '../viewport';
 import {
   enableObjectAlignment,
   type ObjectAlignmentOptions,
-} from './alignment';
+} from '../alignment';
+import type { ModeSetup } from '../types';
 
 export interface UseEditCanvasOptions {
   /** Configure pan and zoom. Pass `false` to disable, or options to customize. Default: enabled. */
@@ -27,11 +28,6 @@ export interface UseEditCanvasOptions {
   /** Called after the canvas is initialized and viewport is set up. */
   onReady?: (canvas: FabricCanvas) => void;
 }
-
-type ModeSetup = (
-  canvas: FabricCanvas,
-  viewport: ViewportController | undefined,
-) => (() => void) | void;
 
 /**
  * Hook that provides a batteries-included canvas experience with full
