@@ -37,3 +37,9 @@ export const DEFAULT_GUIDELINE_SHAPE_STYLE = {
   strokeWidth: 2.5,
   strokeDashArray: [5, 5],
 };
+
+export const DEFAULT_ALIGNMENT_STYLE = {
+  color: 'rgba(255, 0, 0, 0.9)',
+  width: 1,
+  xSize: 2.4,
+} as const;

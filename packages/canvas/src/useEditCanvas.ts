@@ -7,10 +7,16 @@ import {
   type ViewportController,
   type ViewportMode,
 } from './viewport';
+import {
+  enableObjectAlignment,
+  type ObjectAlignmentOptions,
+} from './alignment';
 
 export interface UseEditCanvasOptions {
   /** Configure pan and zoom. Pass `false` to disable, or options to customize. Default: enabled. */
   panAndZoom?: boolean | PanAndZoomOptions;
+  /** Enable alignment guidelines for object movement/scaling. Pass `false` to disable, or options to customize. Default: enabled. */
+  alignment?: boolean | ObjectAlignmentOptions;
   /** Called after the canvas is initialized and viewport is set up. */
   onReady?: (canvas: FabricCanvas) => void;
 }
@@ -45,6 +51,7 @@ type ModeSetup = (
 export function useEditCanvas(options?: UseEditCanvasOptions) {
   const canvasRef = useRef<FabricCanvas | null>(null);
   const viewportRef = useRef<ViewportController | null>(null);
+  const alignmentCleanupRef = useRef<(() => void) | null>(null);
   const modeCleanupRef = useRef<(() => void) | null>(null);
 
   const [zoom, setZoom] = useState(1);
@@ -96,6 +103,15 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
           canvas,
           typeof options?.panAndZoom === 'object'
             ? options.panAndZoom
+            : undefined,
+        );
+      }
+
+      if (options?.alignment !== false) {
+        alignmentCleanupRef.current = enableObjectAlignment(
+          canvas,
+          typeof options?.alignment === 'object'
+            ? options.alignment
             : undefined,
         );
       }
