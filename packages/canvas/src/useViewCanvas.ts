@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { Canvas as FabricCanvas } from 'fabric';
+import { Canvas as FabricCanvas, Rect } from 'fabric';
 import {
   enablePanAndZoom,
   resetViewport as resetViewportFn,
@@ -14,12 +14,15 @@ export interface UseViewCanvasOptions {
   onReady?: (canvas: FabricCanvas) => void;
 }
 
-/** Disable selection and interactivity on all objects in the canvas. */
+/** Disable selection and interactivity on all objects, and apply view-only styles. */
 function lockCanvas(canvas: FabricCanvas) {
   canvas.selection = false;
   canvas.forEachObject((obj) => {
     obj.selectable = false;
     obj.evented = false;
+    if (obj instanceof Rect) {
+      obj.set({ rx: 4, ry: 4 });
+    }
   });
 }
 
