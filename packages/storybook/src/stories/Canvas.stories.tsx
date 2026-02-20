@@ -136,11 +136,14 @@ export const RectangleDemo: Story = {
       cleanupRef.current?.();
       cleanupRef.current = null;
       setMode(newMode);
+      setViewportMode('select');
 
       const canvas = canvasRef.current;
       if (!canvas) {
         return;
       }
+
+      const viewport = viewportRef.current ?? undefined;
 
       canvas.selection = newMode === 'select';
       canvas.forEachObject((obj) => {
@@ -161,6 +164,7 @@ export const RectangleDemo: Story = {
           () => {
             activateMode('select');
           },
+          viewport,
         );
       }
 
@@ -175,6 +179,7 @@ export const RectangleDemo: Story = {
           () => {
             activateMode('select');
           },
+          viewport,
         );
       }
     }, []);
@@ -491,11 +496,14 @@ export const PolygonDemo: Story = {
       cleanupRef.current?.();
       cleanupRef.current = null;
       setMode(newMode);
+      setViewportMode('select');
 
       const canvas = canvasRef.current;
       if (!canvas) {
         return;
       }
+
+      const viewport = viewportRef.current ?? undefined;
 
       canvas.selection = newMode === 'select';
       canvas.forEachObject((obj) => {
@@ -516,6 +524,7 @@ export const PolygonDemo: Story = {
           () => {
             activateMode('select');
           },
+          viewport,
         );
       }
 
@@ -530,6 +539,7 @@ export const PolygonDemo: Story = {
           () => {
             activateMode('select');
           },
+          viewport,
         );
       }
 
@@ -544,6 +554,7 @@ export const PolygonDemo: Story = {
           () => {
             activateMode('select');
           },
+          viewport,
         );
       }
     }, []);

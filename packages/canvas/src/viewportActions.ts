@@ -18,6 +18,8 @@ export interface ViewportController {
   setMode: (mode: ViewportMode) => void;
   /** Get the current viewport mode. */
   getMode: () => ViewportMode;
+  /** Temporarily disable all pan and zoom input (e.g. during draw modes). */
+  setEnabled: (enabled: boolean) => void;
   /** Remove all event listeners. */
   cleanup: () => void;
 }
@@ -42,6 +44,7 @@ export function enablePanAndZoom(
   const zoomFactor = options?.zoomFactor ?? 1.03;
 
   let mode: ViewportMode = options?.initialMode ?? 'select';
+  let enabled = true;
   let isPanning = false;
   let lastPanX = 0;
   let lastPanY = 0;
@@ -49,6 +52,8 @@ export function enablePanAndZoom(
   let didDisableSelection = false;
 
   const handleWheel = (opt: { e: WheelEvent }) => {
+    if (!enabled) return;
+
     const e = opt.e;
     e.preventDefault();
     e.stopPropagation();
@@ -61,7 +66,9 @@ export function enablePanAndZoom(
     canvas.zoomToPoint(new Point(e.offsetX, e.offsetY), zoom);
   };
 
-  const handleMouseDown = (opt: { e: TPointerEvent }) => {
+  const handleMouseDown = (opt: { e: TPointerEvent; target?: unknown }) => {
+    if (!enabled) return;
+
     const e = opt.e;
     if (!(e instanceof MouseEvent)) {
       return;
@@ -70,7 +77,7 @@ export function enablePanAndZoom(
     const shouldPan =
       mode === 'pan' ||
       e.button === 1 ||
-      ((e.metaKey || e.ctrlKey) && mode === 'select');
+      (mode === 'select' && (e.metaKey || e.ctrlKey || !opt.target));
 
     if (shouldPan) {
       isPanning = true;
@@ -145,6 +152,10 @@ export function enablePanAndZoom(
 
     getMode() {
       return mode;
+    },
+
+    setEnabled(value: boolean) {
+      enabled = value;
     },
 
     cleanup() {

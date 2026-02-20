@@ -1,9 +1,17 @@
 import { Canvas as FabricCanvas, Circle, Line, Polygon, Rect } from 'fabric';
+import type { ViewportController } from './viewportActions';
 
 export interface CreateModeDefaults {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+}
+
+/** Restore the viewport to select mode if a controller was provided. */
+function restoreViewport(viewport?: ViewportController) {
+  if (!viewport) return;
+  viewport.setEnabled(true);
+  viewport.setMode('select');
 }
 
 /**
@@ -15,8 +23,11 @@ export function enableClickToCreate(
   canvas: FabricCanvas,
   defaults: CreateModeDefaults & { width: number; height: number },
   onCreated?: (rect: Rect) => void,
+  viewport?: ViewportController,
 ): () => void {
   const { width, height, ...style } = defaults;
+
+  viewport?.setEnabled(false);
 
   const handleMouseDown = (event: { scenePoint: { x: number; y: number } }) => {
     const rect = new Rect({
@@ -28,6 +39,7 @@ export function enableClickToCreate(
     });
     canvas.add(rect);
     canvas.requestRenderAll();
+    restoreViewport(viewport);
     onCreated?.(rect);
   };
 
@@ -35,6 +47,7 @@ export function enableClickToCreate(
 
   return () => {
     canvas.off('mouse:down', handleMouseDown);
+    restoreViewport(viewport);
   };
 }
 
@@ -49,12 +62,15 @@ export function enableDragToCreate(
   canvas: FabricCanvas,
   defaults?: CreateModeDefaults,
   onCreated?: (rect: Rect) => void,
+  viewport?: ViewportController,
 ): () => void {
   let isDrawing = false;
   let startX = 0;
   let startY = 0;
   let activeRect: Rect | null = null;
   let previousSelection: boolean;
+
+  viewport?.setEnabled(false);
 
   const handleMouseDown = (event: { scenePoint: { x: number; y: number } }) => {
     isDrawing = true;
@@ -119,6 +135,7 @@ export function enableDragToCreate(
     activeRect.setCoords();
     canvas.requestRenderAll();
 
+    restoreViewport(viewport);
     onCreated?.(activeRect);
     activeRect = null;
   };
@@ -136,6 +153,7 @@ export function enableDragToCreate(
       canvas.remove(activeRect);
       canvas.requestRenderAll();
     }
+    restoreViewport(viewport);
   };
 }
 
@@ -148,8 +166,11 @@ export function enablePolygonClickToCreate(
   canvas: FabricCanvas,
   defaults: CreateModeDefaults & { width: number; height: number },
   onCreated?: (polygon: Polygon) => void,
+  viewport?: ViewportController,
 ): () => void {
   const { width, height, ...style } = defaults;
+
+  viewport?.setEnabled(false);
 
   const handleMouseDown = (event: { scenePoint: { x: number; y: number } }) => {
     const polygon = new Polygon(
@@ -167,6 +188,7 @@ export function enablePolygonClickToCreate(
     );
     canvas.add(polygon);
     canvas.requestRenderAll();
+    restoreViewport(viewport);
     onCreated?.(polygon);
   };
 
@@ -174,6 +196,7 @@ export function enablePolygonClickToCreate(
 
   return () => {
     canvas.off('mouse:down', handleMouseDown);
+    restoreViewport(viewport);
   };
 }
 
@@ -187,12 +210,15 @@ export function enablePolygonDragToCreate(
   canvas: FabricCanvas,
   defaults?: CreateModeDefaults,
   onCreated?: (polygon: Polygon) => void,
+  viewport?: ViewportController,
 ): () => void {
   let isDrawing = false;
   let startX = 0;
   let startY = 0;
   let previewRect: Rect | null = null;
   let previousSelection: boolean;
+
+  viewport?.setEnabled(false);
 
   const handleMouseDown = (event: { scenePoint: { x: number; y: number } }) => {
     isDrawing = true;
@@ -270,6 +296,7 @@ export function enablePolygonDragToCreate(
     canvas.add(polygon);
     canvas.requestRenderAll();
 
+    restoreViewport(viewport);
     onCreated?.(polygon);
     previewRect = null;
   };
@@ -287,6 +314,7 @@ export function enablePolygonDragToCreate(
       canvas.remove(previewRect);
       canvas.requestRenderAll();
     }
+    restoreViewport(viewport);
   };
 }
 
@@ -303,6 +331,7 @@ export function enablePolygonDrawToCreate(
   canvas: FabricCanvas,
   defaults?: CreateModeDefaults,
   onCreated?: (polygon: Polygon) => void,
+  viewport?: ViewportController,
 ): () => void {
   const points: Array<{ x: number; y: number }> = [];
   const markers: Circle[] = [];
@@ -310,6 +339,8 @@ export function enablePolygonDrawToCreate(
   let trackingLine: Line | null = null;
   let closingLine: Line | null = null;
   let previousSelection: boolean;
+
+  viewport?.setEnabled(false);
 
   const lineStyle = {
     stroke: defaults?.stroke ?? '#999999',
@@ -350,6 +381,7 @@ export function enablePolygonDrawToCreate(
     canvas.selection = previousSelection;
     canvas.requestRenderAll();
 
+    restoreViewport(viewport);
     onCreated?.(polygon);
     points.length = 0;
   };
@@ -450,5 +482,6 @@ export function enablePolygonDrawToCreate(
     }
     points.length = 0;
     canvas.requestRenderAll();
+    restoreViewport(viewport);
   };
 }
