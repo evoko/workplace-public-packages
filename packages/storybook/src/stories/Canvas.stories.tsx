@@ -117,6 +117,7 @@ export const RectangleDemo: Story = {
               {
                 onCreated: () => activateMode('select'),
                 viewport,
+                snapping: true,
               },
             ),
           );
@@ -329,6 +330,7 @@ export const PolygonDemo: Story = {
               {
                 onCreated: () => activateMode('select'),
                 viewport,
+                snapping: true,
               },
             ),
           );
@@ -337,6 +339,7 @@ export const PolygonDemo: Story = {
             enableDrawToCreate(c, {
               onCreated: () => activateMode('select'),
               viewport,
+              snapping: true,
             }),
           );
         }
@@ -511,6 +514,7 @@ export const CircleDemo: Story = {
                 onCreated: () => activateMode('select'),
                 viewport,
                 constrainToSquare: true,
+                snapping: true,
               },
             ),
           );

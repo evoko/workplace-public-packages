@@ -1,7 +1,14 @@
-import { Canvas as FabricCanvas, FabricObject, Rect } from 'fabric';
+import { Canvas as FabricCanvas, FabricObject, Point, Rect } from 'fabric';
 import type { Point2D } from '../fabric';
 import { DEFAULT_GUIDELINE_SHAPE_STYLE } from '../styles';
 import { InteractionModeOptions, restoreViewport } from './shared';
+import {
+  drawCursorGuidelines,
+  getSnapPoints,
+  snapCursorPoint,
+  type CursorSnapResult,
+  type GuidelineStyle,
+} from '../alignment';
 
 export interface DragToCreateOptions extends InteractionModeOptions {
   /** Style applied to the preview rectangle shown during drag. */
@@ -14,6 +21,15 @@ export interface DragToCreateOptions extends InteractionModeOptions {
   };
   /** When true, constrain the drag to a 1:1 aspect ratio (square). */
   constrainToSquare?: boolean;
+  /** Enable cursor snapping during drag. Pass `true` for defaults or an options object. */
+  snapping?:
+    | boolean
+    | {
+        /** Snap margin in screen pixels. Default: 6. */
+        margin?: number;
+        /** Custom guideline style. */
+        guidelineStyle?: GuidelineStyle;
+      };
 }
 
 const MIN_DRAG_SIZE = 3;
@@ -38,12 +54,69 @@ export function enableDragToCreate(
   let previewRect: Rect | null = null;
   let previousSelection: boolean;
 
+  // Snapping setup
+  const snapEnabled =
+    options?.snapping !== undefined && options?.snapping !== false;
+  const snapMargin =
+    typeof options?.snapping === 'object' ? options.snapping.margin : undefined;
+  const guidelineStyle =
+    typeof options?.snapping === 'object'
+      ? options.snapping.guidelineStyle
+      : undefined;
+  let cachedTargetPoints: Point[] | null = null;
+
+  function getTargetPoints(): Point[] {
+    if (cachedTargetPoints) return cachedTargetPoints;
+    cachedTargetPoints = [];
+    canvas.forEachObject((obj) => {
+      if (!obj.visible) return;
+      if (obj === previewRect) return;
+      cachedTargetPoints!.push(...getSnapPoints(obj));
+    });
+    return cachedTargetPoints;
+  }
+
+  const invalidateCache = () => {
+    cachedTargetPoints = null;
+  };
+
+  if (snapEnabled) {
+    canvas.on('object:added', invalidateCache);
+    canvas.on('object:removed', invalidateCache);
+  }
+
+  function snapPoint(rawX: number, rawY: number): { x: number; y: number } {
+    if (!snapEnabled) return { x: rawX, y: rawY };
+
+    const result = snapCursorPoint(canvas, new Point(rawX, rawY), {
+      margin: snapMargin,
+      exclude: previewRect ? new Set<FabricObject>([previewRect]) : undefined,
+      targetPoints: getTargetPoints(),
+    });
+    return { x: result.point.x, y: result.point.y };
+  }
+
+  // Store last snap result so guidelines can be drawn in after:render
+  let lastSnapResult: CursorSnapResult | null = null;
+
+  const afterRender = () => {
+    if (lastSnapResult) {
+      drawCursorGuidelines(canvas, lastSnapResult, guidelineStyle);
+    }
+  };
+
+  if (snapEnabled) {
+    canvas.on('after:render', afterRender);
+  }
+
   options?.viewport?.setEnabled(false);
 
   const handleMouseDown = (event: { scenePoint: Point2D }) => {
     isDrawing = true;
-    startX = event.scenePoint.x;
-    startY = event.scenePoint.y;
+
+    const snapped = snapPoint(event.scenePoint.x, event.scenePoint.y);
+    startX = snapped.x;
+    startY = snapped.y;
 
     previousSelection = canvas.selection;
     canvas.selection = false;
@@ -64,8 +137,30 @@ export function enableDragToCreate(
   const handleMouseMove = (event: { scenePoint: Point2D }) => {
     if (!isDrawing || !previewRect) return;
 
-    let width = Math.max(0, event.scenePoint.x - startX);
-    let height = Math.max(0, event.scenePoint.y - startY);
+    let endX: number;
+    let endY: number;
+
+    if (snapEnabled) {
+      const targetPoints = getTargetPoints();
+      lastSnapResult = snapCursorPoint(
+        canvas,
+        new Point(event.scenePoint.x, event.scenePoint.y),
+        {
+          margin: snapMargin,
+          exclude: new Set<FabricObject>([previewRect]),
+          targetPoints,
+        },
+      );
+      endX = lastSnapResult.point.x;
+      endY = lastSnapResult.point.y;
+    } else {
+      endX = event.scenePoint.x;
+      endY = event.scenePoint.y;
+      lastSnapResult = null;
+    }
+
+    let width = Math.max(0, endX - startX);
+    let height = Math.max(0, endY - startY);
 
     if (options?.constrainToSquare) {
       const size = Math.max(width, height);
@@ -87,6 +182,7 @@ export function enableDragToCreate(
     if (!isDrawing || !previewRect) return;
 
     isDrawing = false;
+    lastSnapResult = null;
     canvas.selection = previousSelection;
 
     let width = previewRect.width ?? 0;
@@ -120,6 +216,14 @@ export function enableDragToCreate(
     canvas.off('mouse:down', handleMouseDown);
     canvas.off('mouse:move', handleMouseMove);
     canvas.off('mouse:up', handleMouseUp);
+
+    if (snapEnabled) {
+      canvas.off('object:added', invalidateCache);
+      canvas.off('object:removed', invalidateCache);
+      canvas.off('after:render', afterRender);
+    }
+
+    lastSnapResult = null;
 
     if (isDrawing && previewRect) {
       canvas.remove(previewRect);

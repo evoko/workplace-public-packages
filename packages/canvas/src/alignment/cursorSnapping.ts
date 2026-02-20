@@ -10,10 +10,10 @@ export interface CursorSnapResult {
   snapX: boolean;
   /** Whether the Y coordinate was snapped. */
   snapY: boolean;
-  /** The target point that triggered the X-axis snap (for drawing guidelines). */
-  alignTargetX?: Point;
-  /** The target point that triggered the Y-axis snap (for drawing guidelines). */
-  alignTargetY?: Point;
+  /** All target points that triggered the X-axis snap (for drawing guidelines). */
+  alignTargetsX?: Point[];
+  /** All target points that triggered the Y-axis snap (for drawing guidelines). */
+  alignTargetsY?: Point[];
 }
 
 export interface CursorSnapOptions {
@@ -61,35 +61,41 @@ export function snapCursorPoint(
 
   let bestDx = Infinity;
   let bestDy = Infinity;
-  let snapTargetX: Point | undefined;
-  let snapTargetY: Point | undefined;
+  let snapTargetsX: Point[] = [];
+  let snapTargetsY: Point[] = [];
 
   for (const tp of targetPoints) {
     const dx = Math.abs(rawPoint.x - tp.x);
     const dy = Math.abs(rawPoint.y - tp.y);
     if (dx < bestDx) {
       bestDx = dx;
-      snapTargetX = tp;
+      snapTargetsX = [];
+    }
+    if (dx === bestDx) {
+      snapTargetsX.push(tp);
     }
     if (dy < bestDy) {
       bestDy = dy;
-      snapTargetY = tp;
+      snapTargetsY = [];
+    }
+    if (dy === bestDy) {
+      snapTargetsY.push(tp);
     }
   }
 
-  const snapX = bestDx <= margin && snapTargetX !== undefined;
-  const snapY = bestDy <= margin && snapTargetY !== undefined;
+  const snapX = bestDx <= margin && snapTargetsX.length > 0;
+  const snapY = bestDy <= margin && snapTargetsY.length > 0;
 
   return {
     point: new Point(
-      snapX ? snapTargetX!.x : rawPoint.x,
-      snapY ? snapTargetY!.y : rawPoint.y,
+      snapX ? snapTargetsX[0].x : rawPoint.x,
+      snapY ? snapTargetsY[0].y : rawPoint.y,
     ),
     snapped: snapX || snapY,
     snapX,
     snapY,
-    alignTargetX: snapX ? snapTargetX : undefined,
-    alignTargetY: snapY ? snapTargetY : undefined,
+    alignTargetsX: snapX ? snapTargetsX : undefined,
+    alignTargetsY: snapY ? snapTargetsY : undefined,
   };
 }
 
@@ -117,25 +123,27 @@ export function drawCursorGuidelines(
   ctx.lineWidth = width / zoom;
   ctx.strokeStyle = color;
 
-  if (snapResult.snapX && snapResult.alignTargetX) {
-    const from = snapResult.alignTargetX;
+  if (snapResult.snapX && snapResult.alignTargetsX) {
     const to = snapResult.point;
-    ctx.beginPath();
-    ctx.moveTo(from.x, from.y);
-    ctx.lineTo(to.x, to.y);
-    ctx.stroke();
-    drawXMarker(ctx, from, xSize);
+    for (const from of snapResult.alignTargetsX) {
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.stroke();
+      drawXMarker(ctx, from, xSize);
+    }
     drawXMarker(ctx, new Point(to.x, to.y), xSize);
   }
 
-  if (snapResult.snapY && snapResult.alignTargetY) {
-    const from = snapResult.alignTargetY;
+  if (snapResult.snapY && snapResult.alignTargetsY) {
     const to = snapResult.point;
-    ctx.beginPath();
-    ctx.moveTo(from.x, from.y);
-    ctx.lineTo(to.x, to.y);
-    ctx.stroke();
-    drawXMarker(ctx, from, xSize);
+    for (const from of snapResult.alignTargetsY) {
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.stroke();
+      drawXMarker(ctx, from, xSize);
+    }
     drawXMarker(ctx, new Point(to.x, to.y), xSize);
   }
 

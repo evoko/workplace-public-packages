@@ -15,10 +15,10 @@ import {
 } from '../styles';
 import { restoreViewport } from './shared';
 import {
-  clearCursorGuidelines,
   drawCursorGuidelines,
   getSnapPoints,
   snapCursorPoint,
+  type CursorSnapResult,
   type GuidelineStyle,
 } from '../alignment';
 
@@ -92,10 +92,13 @@ export function enableDrawToCreate(
   function snapPoint(rawX: number, rawY: number): { x: number; y: number } {
     if (!snapEnabled) return { x: rawX, y: rawY };
 
-    // Add first vertex as extra snap target when 3+ points (easier closing)
+    // Add all placed vertices as snap targets for axis alignment
     let targetPoints = getTargetPoints();
-    if (points.length >= 3) {
-      targetPoints = [...targetPoints, new Point(points[0].x, points[0].y)];
+    if (points.length >= 1) {
+      targetPoints = [
+        ...targetPoints,
+        ...points.map((p) => new Point(p.x, p.y)),
+      ];
     }
 
     const result = snapCursorPoint(canvas, new Point(rawX, rawY), {
@@ -106,25 +109,43 @@ export function enableDrawToCreate(
     return { x: result.point.x, y: result.point.y };
   }
 
+  // Store last snap result so guidelines can be drawn in after:render
+  // (drawing on contextTop before requestRenderAll is wiped by objectAlignment's beforeRender)
+  let lastSnapResult: CursorSnapResult | null = null;
+
+  const afterRender = () => {
+    if (lastSnapResult) {
+      drawCursorGuidelines(canvas, lastSnapResult, guidelineStyle);
+    }
+  };
+
+  if (snapEnabled) {
+    canvas.on('after:render', afterRender);
+  }
+
   function snapPointWithGuidelines(
     rawX: number,
     rawY: number,
   ): { x: number; y: number } {
-    if (!snapEnabled) return { x: rawX, y: rawY };
-
-    let targetPoints = getTargetPoints();
-    if (points.length >= 3) {
-      targetPoints = [...targetPoints, new Point(points[0].x, points[0].y)];
+    if (!snapEnabled) {
+      lastSnapResult = null;
+      return { x: rawX, y: rawY };
     }
 
-    clearCursorGuidelines(canvas);
-    const result = snapCursorPoint(canvas, new Point(rawX, rawY), {
+    let targetPoints = getTargetPoints();
+    if (points.length >= 1) {
+      targetPoints = [
+        ...targetPoints,
+        ...points.map((p) => new Point(p.x, p.y)),
+      ];
+    }
+
+    lastSnapResult = snapCursorPoint(canvas, new Point(rawX, rawY), {
       margin: snapMargin,
       exclude: previewElements,
       targetPoints,
     });
-    drawCursorGuidelines(canvas, result, guidelineStyle);
-    return { x: result.point.x, y: result.point.y };
+    return { x: lastSnapResult.point.x, y: lastSnapResult.point.y };
   }
 
   options?.viewport?.setEnabled(false);
@@ -172,7 +193,7 @@ export function enableDrawToCreate(
 
   const finalize = () => {
     removePreviewElements();
-    clearCursorGuidelines(canvas);
+    lastSnapResult = null;
 
     const polygon = createPolygonFromVertices(canvas, points, options?.style);
     canvas.selection = previousSelection;
@@ -280,10 +301,11 @@ export function enableDrawToCreate(
     if (snapEnabled) {
       canvas.off('object:added', invalidateCache);
       canvas.off('object:removed', invalidateCache);
+      canvas.off('after:render', afterRender);
     }
 
     removePreviewElements();
-    clearCursorGuidelines(canvas);
+    lastSnapResult = null;
     if (points.length > 0) {
       canvas.selection = previousSelection;
     }
