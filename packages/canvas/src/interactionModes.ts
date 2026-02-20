@@ -266,7 +266,7 @@ export function enableDrawToCreate(
 
     points.push({ x, y });
 
-    // Add vertex marker (first vertex is larger to indicate close target)
+    // Add vertex marker
     const marker = new Circle({
       left: x,
       top: y,
