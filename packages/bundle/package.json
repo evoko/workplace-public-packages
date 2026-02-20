@@ -1,13 +1,11 @@
 {
   "name": "@bwp-web/bundle",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Biamp Workplace meta-package — installs assets, styles, and components in one go",
-  "dependencies": {
-    "@bwp-web/assets": ">=0.3.2",
-    "@bwp-web/styles": ">=0.3.2",
-    "@bwp-web/components": ">=0.3.2"
-  },
   "peerDependencies": {
+    "@bwp-web/assets": ">=0.3.3",
+    "@bwp-web/styles": ">=0.3.3",
+    "@bwp-web/components": ">=0.3.3",
     "@mui/material": ">=7.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
