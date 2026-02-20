@@ -2,6 +2,7 @@ export * from './Canvas';
 export * from './defaultStyles';
 export * from './rectangleActions';
 export * from './polygonActions';
+export * from './circleActions';
 export * from './canvasActions';
 export * from './keyboardShortcuts';
 export * from './interactionModes';

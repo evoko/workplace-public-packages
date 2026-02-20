@@ -20,7 +20,10 @@ function lockCanvas(canvas: FabricCanvas) {
   canvas.forEachObject((obj) => {
     obj.selectable = false;
     obj.evented = false;
-    if (obj instanceof Rect) {
+    if (
+      obj instanceof Rect &&
+      (obj.shapeType !== 'circle' || obj.data?.type !== 'DEVICE')
+    ) {
       obj.set({ rx: 4, ry: 4 });
     }
   });

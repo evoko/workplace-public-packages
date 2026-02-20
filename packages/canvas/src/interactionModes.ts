@@ -27,7 +27,11 @@ export interface DragToCreateOptions extends InteractionModeOptions {
     fill?: string;
     stroke?: string;
     strokeWidth?: number;
+    rx?: number;
+    ry?: number;
   };
+  /** When true, constrain the drag to a 1:1 aspect ratio (square). */
+  constrainToSquare?: boolean;
 }
 
 export interface DrawToCreateOptions {
@@ -122,8 +126,14 @@ export function enableDragToCreate(
   const handleMouseMove = (event: { scenePoint: { x: number; y: number } }) => {
     if (!isDrawing || !previewRect) return;
 
-    const width = Math.max(0, event.scenePoint.x - startX);
-    const height = Math.max(0, event.scenePoint.y - startY);
+    let width = Math.max(0, event.scenePoint.x - startX);
+    let height = Math.max(0, event.scenePoint.y - startY);
+
+    if (options?.constrainToSquare) {
+      const size = Math.max(width, height);
+      width = size;
+      height = size;
+    }
 
     previewRect.set({
       left: startX + width / 2,
@@ -141,8 +151,14 @@ export function enableDragToCreate(
     isDrawing = false;
     canvas.selection = previousSelection;
 
-    const width = previewRect.width ?? 0;
-    const height = previewRect.height ?? 0;
+    let width = previewRect.width ?? 0;
+    let height = previewRect.height ?? 0;
+
+    if (options?.constrainToSquare) {
+      const size = Math.max(width, height);
+      width = size;
+      height = size;
+    }
 
     canvas.remove(previewRect);
 

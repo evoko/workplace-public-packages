@@ -12,6 +12,9 @@ import {
   createPolygonAtPoint,
   createPolygonFromDrag,
   editPolygon,
+  createCircle,
+  createCircleAtPoint,
+  editCircle,
   enableClickToCreate,
   enableDragToCreate,
   enableDrawToCreate,
@@ -447,12 +450,185 @@ export const PolygonDemo: Story = {
   },
 };
 
+// --- Circle Demo ---
+
+type CircleMode = 'select' | 'click' | 'drag';
+
+const CIRCLE_MODES: Array<{ key: CircleMode; label: string }> = [
+  { key: 'select', label: 'Select' },
+  { key: 'click', label: 'Click to Place' },
+  { key: 'drag', label: 'Drag to Draw' },
+];
+
+const DEFAULT_CIRCLE_SIZE = 80;
+
+/**
+ * Interactive demo for creating, editing, and deleting circles.
+ *
+ * Circles are square Rects with full border-radius (`rx`/`ry` = size/2).
+ *
+ * - **Select mode**: Click objects to select them, then edit.
+ * - **Click-to-place mode**: Click anywhere on the canvas to place an 80px circle.
+ * - **Drag-to-draw mode**: Hold mouse and drag to draw a circle (constrained to 1:1).
+ */
+export const CircleDemo: Story = {
+  render: function CircleDemoRender() {
+    const canvas = useEditCanvas();
+    const [mode, setMode] = useState<CircleMode>('select');
+    const [editValues, setEditValues] = useState({
+      left: 0,
+      top: 0,
+      size: 0,
+    });
+
+    const activateMode = useCallback(
+      (newMode: CircleMode) => {
+        setMode(newMode);
+        if (newMode === 'select') {
+          canvas.setMode(null);
+        } else if (newMode === 'click') {
+          canvas.setMode((c, viewport) =>
+            enableClickToCreate(
+              c,
+              (c, point) =>
+                createCircleAtPoint(c, point, {
+                  size: DEFAULT_CIRCLE_SIZE,
+                }),
+              { onCreated: () => activateMode('select'), viewport },
+            ),
+          );
+        } else if (newMode === 'drag') {
+          canvas.setMode((c, viewport) =>
+            enableDragToCreate(
+              c,
+              (c, bounds) =>
+                createCircle(c, {
+                  left: bounds.startX + bounds.width / 2,
+                  top: bounds.startY + bounds.height / 2,
+                  size: bounds.width,
+                }),
+              {
+                onCreated: () => activateMode('select'),
+                viewport,
+                constrainToSquare: true,
+              },
+            ),
+          );
+        }
+      },
+      [canvas.setMode],
+    );
+
+    // Sync edit values when selection changes
+    const prevSelectedRef = useRef(canvas.selected);
+    if (canvas.selected !== prevSelectedRef.current) {
+      prevSelectedRef.current = canvas.selected;
+      if (canvas.selected.length === 1) {
+        const vals = syncFields(canvas.selected[0], ['left', 'top', 'width']);
+        if (
+          vals.left !== editValues.left ||
+          vals.top !== editValues.top ||
+          vals.width !== editValues.size
+        ) {
+          setEditValues({ left: vals.left, top: vals.top, size: vals.width });
+        }
+      }
+    }
+
+    const handleEdit = useCallback(
+      (field: string, value: string) => {
+        const num = Number(value);
+        if (isNaN(num)) return;
+        setEditValues((prev) => ({ ...prev, [field]: num }));
+        const c = canvas.canvasRef.current;
+        if (c && canvas.selected.length === 1) {
+          editCircle(c, canvas.selected[0] as Rect, { [field]: num });
+        }
+      },
+      [canvas.selected, canvas.canvasRef],
+    );
+
+    const handleAddProgrammatic = useCallback(() => {
+      const c = canvas.canvasRef.current;
+      if (!c) return;
+      const circle = createCircle(c, {
+        left: 50 + Math.random() * 300,
+        top: 50 + Math.random() * 200,
+        size: 100,
+      });
+      c.setActiveObject(circle);
+      c.requestRenderAll();
+    }, [canvas.canvasRef]);
+
+    return (
+      <DemoLayout
+        onReady={canvas.onReady}
+        sidebar={
+          <>
+            <ModeButtons
+              modes={CIRCLE_MODES}
+              activeMode={mode}
+              onModeChange={activateMode}
+            />
+            <ViewportControls
+              viewportMode={canvas.viewport.mode}
+              zoom={canvas.zoom}
+              onModeChange={canvas.viewport.setMode}
+              onReset={canvas.viewport.reset}
+            />
+            <div>
+              <Typography variant="subtitle2" gutterBottom>
+                Programmatic
+              </Typography>
+              <Button
+                variant="outlined"
+                size="small"
+                fullWidth
+                onClick={handleAddProgrammatic}
+              >
+                Add Circle
+              </Button>
+            </div>
+            {canvas.selected.length > 0 && (
+              <>
+                <Typography variant="body2" color="text.secondary">
+                  {canvas.selected.length} object
+                  {canvas.selected.length > 1 ? 's' : ''} selected
+                </Typography>
+                {canvas.selected.length === 1 && (
+                  <div>
+                    <Typography variant="subtitle2" gutterBottom>
+                      Edit Selected
+                    </Typography>
+                    <Stack spacing={1.5}>
+                      {['left', 'top', 'size'].map((field) => (
+                        <TextField
+                          key={field}
+                          label={field.charAt(0).toUpperCase() + field.slice(1)}
+                          type="number"
+                          size="small"
+                          value={editValues[field as keyof typeof editValues]}
+                          onChange={(e) => handleEdit(field, e.target.value)}
+                        />
+                      ))}
+                    </Stack>
+                  </div>
+                )}
+              </>
+            )}
+          </>
+        }
+      />
+    );
+  },
+};
+
 // --- View Canvas Demo ---
 
 /**
  * View-only demo using `useViewCanvas`.
  *
- * The canvas is pre-populated with rectangles and polygons. Objects cannot be
+ * The canvas is pre-populated with rectangles, polygons, and circles. Objects cannot be
  * selected, created, edited, or deleted. Only panning and zooming are available.
  */
 export const ViewCanvasDemo: Story = {
@@ -510,6 +686,16 @@ export const ViewCanvasDemo: Story = {
           ],
           left: 80,
           top: 350,
+        });
+        createCircle(fabricCanvas, {
+          left: 200,
+          top: 250,
+          size: 100,
+        });
+        createCircle(fabricCanvas, {
+          left: 500,
+          top: 400,
+          size: 60,
         });
       },
     });
