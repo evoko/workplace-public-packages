@@ -1,6 +1,6 @@
 {
   "name": "@bwp-web/styles",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Shared Biamp Workplace theme and styling utilities built on MUI",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -33,7 +33,7 @@
     "clean": "rm -rf dist node_modules .turbo"
   },
   "peerDependencies": {
-    "@bwp-web/assets": ">=0.3.3",
+    "@bwp-web/assets": ">=0.3.4",
     "@mui/material": ">=7.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"

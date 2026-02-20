@@ -29,6 +29,7 @@ export function BiampLayout({
       <Stack
         direction="row"
         flex={1}
+        minHeight={0}
         gap={{ xs: 1.5, md: 2.5 }}
         px={{ xs: 1.5, md: 2.5 }}
         pb={{ xs: 1.5, md: 2.5 }}
