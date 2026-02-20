@@ -1,8 +1,9 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button, Stack, TextField, Typography } from '@mui/material';
 import {
   Canvas,
+  useCanvas,
   createRectangle,
   createRectangleAtPoint,
   editRectangle,
@@ -16,8 +17,12 @@ import {
   enableVertexEdit,
 } from '@bwp-web/canvas';
 import { Polygon as FabricPolygon } from 'fabric';
-import type { Canvas as FabricCanvas, Polygon, Rect } from 'fabric';
-import { useCanvasDemo, type ModeActivator } from './useCanvasDemo';
+import type {
+  Canvas as FabricCanvas,
+  FabricObject,
+  Polygon,
+  Rect,
+} from 'fabric';
 import { ModeButtons } from './canvas/ModeButtons';
 import { ViewportControls } from './canvas/ViewportControls';
 import { DemoLayout } from './canvas/DemoLayout';
@@ -34,6 +39,20 @@ const meta: Meta<typeof Canvas> = {
 
 export default meta;
 type Story = StoryObj<typeof Canvas>;
+
+// --- Helpers ---
+
+function syncFields(
+  obj: FabricObject,
+  fields: string[],
+): Record<string, number> {
+  return Object.fromEntries(
+    fields.map((f) => [
+      f,
+      Math.round((obj as unknown as Record<string, number>)[f] ?? 0),
+    ]),
+  );
+}
 
 // --- Rectangle Demo ---
 
@@ -66,66 +85,96 @@ const RECT_DRAG_STYLE = {
  */
 export const RectangleDemo: Story = {
   render: function RectangleDemo() {
-    const modeActivators = useMemo<Record<RectMode, ModeActivator<RectMode>>>(
-      () => ({
-        select: () => null,
-        click: ({ canvas, viewport, activateMode }) =>
-          enableClickToCreate(
-            canvas,
-            (c, point) =>
-              createRectangleAtPoint(c, point, {
-                width: 100,
-                height: 80,
-                ...RECT_CLICK_STYLE,
-              }),
-            { onCreated: () => activateMode('select'), viewport },
-          ),
-        drag: ({ canvas, viewport, activateMode }) =>
-          enableDragToCreate(
-            canvas,
-            (c, bounds) =>
-              createRectangle(c, {
-                left: bounds.startX + bounds.width / 2,
-                top: bounds.startY + bounds.height / 2,
-                width: bounds.width,
-                height: bounds.height,
-                ...RECT_DRAG_STYLE,
-              }),
-            {
-              onCreated: () => activateMode('select'),
-              viewport,
-              previewStyle: RECT_DRAG_STYLE,
-            },
-          ),
-      }),
-      [],
+    const canvas = useCanvas();
+    const [mode, setMode] = useState<RectMode>('select');
+    const [editValues, setEditValues] = useState({
+      left: 0,
+      top: 0,
+      width: 0,
+      height: 0,
+    });
+
+    const activateMode = useCallback(
+      (newMode: RectMode) => {
+        setMode(newMode);
+        if (newMode === 'select') {
+          canvas.setMode(null);
+        } else if (newMode === 'click') {
+          canvas.setMode((c, viewport) =>
+            enableClickToCreate(
+              c,
+              (c, point) =>
+                createRectangleAtPoint(c, point, {
+                  width: 100,
+                  height: 80,
+                  ...RECT_CLICK_STYLE,
+                }),
+              { onCreated: () => activateMode('select'), viewport },
+            ),
+          );
+        } else if (newMode === 'drag') {
+          canvas.setMode((c, viewport) =>
+            enableDragToCreate(
+              c,
+              (c, bounds) =>
+                createRectangle(c, {
+                  left: bounds.startX + bounds.width / 2,
+                  top: bounds.startY + bounds.height / 2,
+                  width: bounds.width,
+                  height: bounds.height,
+                  ...RECT_DRAG_STYLE,
+                }),
+              {
+                onCreated: () => activateMode('select'),
+                viewport,
+                previewStyle: RECT_DRAG_STYLE,
+              },
+            ),
+          );
+        }
+      },
+      [canvas.setMode],
     );
 
-    const demo = useCanvasDemo<RectMode>({
-      defaultMode: 'select',
-      editFields: ['left', 'top', 'width', 'height'],
-      modeActivators,
-    });
+    // Sync edit values when selection changes
+    const prevSelectedRef = useRef(canvas.selected);
+    if (canvas.selected !== prevSelectedRef.current) {
+      prevSelectedRef.current = canvas.selected;
+      if (canvas.selected.length === 1) {
+        const vals = syncFields(canvas.selected[0], [
+          'left',
+          'top',
+          'width',
+          'height',
+        ]);
+        if (
+          vals.left !== editValues.left ||
+          vals.top !== editValues.top ||
+          vals.width !== editValues.width ||
+          vals.height !== editValues.height
+        ) {
+          setEditValues(vals as typeof editValues);
+        }
+      }
+    }
 
     const handleEdit = useCallback(
       (field: string, value: string) => {
         const num = Number(value);
         if (isNaN(num)) return;
-
-        demo.setEditValues((prev) => ({ ...prev, [field]: num }));
-
-        const canvas = demo.canvasRef.current;
-        if (canvas && demo.selected.length === 1) {
-          editRectangle(canvas, demo.selected[0] as Rect, { [field]: num });
+        setEditValues((prev) => ({ ...prev, [field]: num }));
+        const c = canvas.canvasRef.current;
+        if (c && canvas.selected.length === 1) {
+          editRectangle(c, canvas.selected[0] as Rect, { [field]: num });
         }
       },
-      [demo.selected, demo.canvasRef, demo.setEditValues],
+      [canvas.selected, canvas.canvasRef],
     );
 
     const handleAddProgrammatic = useCallback(() => {
-      const canvas = demo.canvasRef.current;
-      if (!canvas) return;
-      const rect = createRectangle(canvas, {
+      const c = canvas.canvasRef.current;
+      if (!c) return;
+      const rect = createRectangle(c, {
         left: 50 + Math.random() * 300,
         top: 50 + Math.random() * 200,
         width: 120,
@@ -134,25 +183,25 @@ export const RectangleDemo: Story = {
         stroke: '#ff9800',
         strokeWidth: 2,
       });
-      canvas.setActiveObject(rect);
-      canvas.requestRenderAll();
-    }, [demo.canvasRef]);
+      c.setActiveObject(rect);
+      c.requestRenderAll();
+    }, [canvas.canvasRef]);
 
     return (
       <DemoLayout
-        onReady={demo.handleReady}
+        onReady={canvas.onReady}
         sidebar={
           <>
             <ModeButtons
               modes={RECT_MODES}
-              activeMode={demo.mode}
-              onModeChange={demo.activateMode}
+              activeMode={mode}
+              onModeChange={activateMode}
             />
             <ViewportControls
-              viewportMode={demo.viewportMode}
-              zoom={demo.zoom}
-              onModeChange={demo.handleViewportMode}
-              onReset={demo.handleResetViewport}
+              viewportMode={canvas.viewport.mode}
+              zoom={canvas.zoom}
+              onModeChange={canvas.viewport.setMode}
+              onReset={canvas.viewport.reset}
             />
             <div>
               <Typography variant="subtitle2" gutterBottom>
@@ -167,13 +216,13 @@ export const RectangleDemo: Story = {
                 Add Rectangle
               </Button>
             </div>
-            {demo.selected.length > 0 && (
+            {canvas.selected.length > 0 && (
               <>
                 <Typography variant="body2" color="text.secondary">
-                  {demo.selected.length} object
-                  {demo.selected.length > 1 ? 's' : ''} selected
+                  {canvas.selected.length} object
+                  {canvas.selected.length > 1 ? 's' : ''} selected
                 </Typography>
-                {demo.selected.length === 1 && (
+                {canvas.selected.length === 1 && (
                   <div>
                     <Typography variant="subtitle2" gutterBottom>
                       Edit Selected
@@ -185,7 +234,7 @@ export const RectangleDemo: Story = {
                           label={field.charAt(0).toUpperCase() + field.slice(1)}
                           type="number"
                           size="small"
-                          value={demo.editValues[field]}
+                          value={editValues[field as keyof typeof editValues]}
                           onChange={(e) => handleEdit(field, e.target.value)}
                         />
                       ))}
@@ -245,12 +294,18 @@ export const PolygonDemo: Story = {
     const vertexEditCleanupRef = useRef<(() => void) | null>(null);
     const [isEditingVertices, setIsEditingVertices] = useState(false);
 
-    const handleCanvasReady = useCallback((canvas: FabricCanvas) => {
-      canvas.on('mouse:dblclick', (e) => {
+    const cleanupVertexEdit = useCallback(() => {
+      vertexEditCleanupRef.current?.();
+      vertexEditCleanupRef.current = null;
+      setIsEditingVertices(false);
+    }, []);
+
+    const handleCanvasReady = useCallback((fabricCanvas: FabricCanvas) => {
+      fabricCanvas.on('mouse:dblclick', (e) => {
         if (e.target && e.target instanceof FabricPolygon) {
           vertexEditCleanupRef.current?.();
           vertexEditCleanupRef.current = enableVertexEdit(
-            canvas,
+            fabricCanvas,
             e.target as Polygon,
             {
               handleRadius: 6,
@@ -268,92 +323,92 @@ export const PolygonDemo: Story = {
       });
     }, []);
 
-    const cleanupVertexEdit = useCallback(() => {
-      vertexEditCleanupRef.current?.();
-      vertexEditCleanupRef.current = null;
-      setIsEditingVertices(false);
-    }, []);
+    const canvas = useCanvas({ onReady: handleCanvasReady });
+    const [mode, setMode] = useState<PolygonMode>('select');
+    const [editValues, setEditValues] = useState({ left: 0, top: 0 });
 
-    const modeActivators = useMemo<
-      Record<PolygonMode, ModeActivator<PolygonMode>>
-    >(
-      () => ({
-        select: () => {
-          cleanupVertexEdit();
-          return null;
-        },
-        click: ({ canvas, viewport, activateMode }) => {
-          cleanupVertexEdit();
-          return enableClickToCreate(
-            canvas,
-            (c, point) =>
-              createPolygonAtPoint(c, point, {
-                width: 100,
-                height: 80,
-                ...POLYGON_CLICK_STYLE,
-              }),
-            { onCreated: () => activateMode('select'), viewport },
+    const activateMode = useCallback(
+      (newMode: PolygonMode) => {
+        cleanupVertexEdit();
+        setMode(newMode);
+        if (newMode === 'select') {
+          canvas.setMode(null);
+        } else if (newMode === 'click') {
+          canvas.setMode((c, viewport) =>
+            enableClickToCreate(
+              c,
+              (c, point) =>
+                createPolygonAtPoint(c, point, {
+                  width: 100,
+                  height: 80,
+                  ...POLYGON_CLICK_STYLE,
+                }),
+              { onCreated: () => activateMode('select'), viewport },
+            ),
           );
-        },
-        drag: ({ canvas, viewport, activateMode }) => {
-          cleanupVertexEdit();
-          return enableDragToCreate(
-            canvas,
-            (c, bounds) =>
-              createPolygonFromDrag(
-                c,
-                { x: bounds.startX, y: bounds.startY },
-                {
-                  x: bounds.startX + bounds.width,
-                  y: bounds.startY + bounds.height,
-                },
-                POLYGON_DRAG_STYLE,
-              ),
-            {
+        } else if (newMode === 'drag') {
+          canvas.setMode((c, viewport) =>
+            enableDragToCreate(
+              c,
+              (c, bounds) =>
+                createPolygonFromDrag(
+                  c,
+                  { x: bounds.startX, y: bounds.startY },
+                  {
+                    x: bounds.startX + bounds.width,
+                    y: bounds.startY + bounds.height,
+                  },
+                  POLYGON_DRAG_STYLE,
+                ),
+              {
+                onCreated: () => activateMode('select'),
+                viewport,
+                previewStyle: POLYGON_DRAG_STYLE,
+              },
+            ),
+          );
+        } else if (newMode === 'draw') {
+          canvas.setMode((c, viewport) =>
+            enableDrawToCreate(c, {
+              style: POLYGON_DRAW_STYLE,
               onCreated: () => activateMode('select'),
               viewport,
-              previewStyle: POLYGON_DRAG_STYLE,
-            },
+            }),
           );
-        },
-        draw: ({ canvas, viewport, activateMode }) => {
-          cleanupVertexEdit();
-          return enableDrawToCreate(canvas, {
-            style: POLYGON_DRAW_STYLE,
-            onCreated: () => activateMode('select'),
-            viewport,
-          });
-        },
-      }),
-      [cleanupVertexEdit],
+        }
+      },
+      [canvas.setMode, cleanupVertexEdit],
     );
 
-    const demo = useCanvasDemo<PolygonMode>({
-      defaultMode: 'select',
-      editFields: ['left', 'top'],
-      modeActivators,
-      onReady: handleCanvasReady,
-    });
+    // Sync edit values when selection changes
+    const prevSelectedRef = useRef(canvas.selected);
+    if (canvas.selected !== prevSelectedRef.current) {
+      prevSelectedRef.current = canvas.selected;
+      if (canvas.selected.length === 1) {
+        const vals = syncFields(canvas.selected[0], ['left', 'top']);
+        if (vals.left !== editValues.left || vals.top !== editValues.top) {
+          setEditValues(vals as typeof editValues);
+        }
+      }
+    }
 
     const handleEdit = useCallback(
       (field: string, value: string) => {
         const num = Number(value);
         if (isNaN(num)) return;
-
-        demo.setEditValues((prev) => ({ ...prev, [field]: num }));
-
-        const canvas = demo.canvasRef.current;
-        if (canvas && demo.selected.length === 1) {
-          editPolygon(canvas, demo.selected[0] as Polygon, { [field]: num });
+        setEditValues((prev) => ({ ...prev, [field]: num }));
+        const c = canvas.canvasRef.current;
+        if (c && canvas.selected.length === 1) {
+          editPolygon(c, canvas.selected[0] as Polygon, { [field]: num });
         }
       },
-      [demo.selected, demo.canvasRef, demo.setEditValues],
+      [canvas.selected, canvas.canvasRef],
     );
 
     const handleAddProgrammatic = useCallback(() => {
-      const canvas = demo.canvasRef.current;
-      if (!canvas) return;
-      const polygon = createPolygon(canvas, {
+      const c = canvas.canvasRef.current;
+      if (!c) return;
+      const polygon = createPolygon(c, {
         points: [
           { x: 0, y: 0 },
           { x: 80, y: -30 },
@@ -367,25 +422,25 @@ export const PolygonDemo: Story = {
         stroke: '#ff9800',
         strokeWidth: 2,
       });
-      canvas.setActiveObject(polygon);
-      canvas.requestRenderAll();
-    }, [demo.canvasRef]);
+      c.setActiveObject(polygon);
+      c.requestRenderAll();
+    }, [canvas.canvasRef]);
 
     return (
       <DemoLayout
-        onReady={demo.handleReady}
+        onReady={canvas.onReady}
         sidebar={
           <>
             <ModeButtons
               modes={POLYGON_MODES}
-              activeMode={demo.mode}
-              onModeChange={demo.activateMode}
+              activeMode={mode}
+              onModeChange={activateMode}
             />
             <ViewportControls
-              viewportMode={demo.viewportMode}
-              zoom={demo.zoom}
-              onModeChange={demo.handleViewportMode}
-              onReset={demo.handleResetViewport}
+              viewportMode={canvas.viewport.mode}
+              zoom={canvas.zoom}
+              onModeChange={canvas.viewport.setMode}
+              onReset={canvas.viewport.reset}
             />
             <div>
               <Typography variant="subtitle2" gutterBottom>
@@ -400,13 +455,13 @@ export const PolygonDemo: Story = {
                 Add Polygon
               </Button>
             </div>
-            {demo.selected.length > 0 && (
+            {canvas.selected.length > 0 && (
               <>
                 <Typography variant="body2" color="text.secondary">
-                  {demo.selected.length} object
-                  {demo.selected.length > 1 ? 's' : ''} selected
+                  {canvas.selected.length} object
+                  {canvas.selected.length > 1 ? 's' : ''} selected
                 </Typography>
-                {demo.selected.length === 1 && (
+                {canvas.selected.length === 1 && (
                   <div>
                     <Typography variant="subtitle2" gutterBottom>
                       Edit Selected
@@ -418,7 +473,7 @@ export const PolygonDemo: Story = {
                           label={field.charAt(0).toUpperCase() + field.slice(1)}
                           type="number"
                           size="small"
-                          value={demo.editValues[field]}
+                          value={editValues[field as keyof typeof editValues]}
                           onChange={(e) => handleEdit(field, e.target.value)}
                         />
                       ))}
