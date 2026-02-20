@@ -10,6 +10,11 @@ import {
   createPolygonFromVertices,
   type PolygonStyleOptions,
 } from './polygonActions';
+import {
+  DEFAULT_DRAG_SHAPE_STYLE,
+  DEFAULT_GUIDELINE_SHAPE_STYLE,
+  DEFAULT_SHAPE_STYLE,
+} from './defaultStyles';
 
 export interface InteractionModeOptions {
   onCreated?: (obj: FabricObject) => void;
@@ -102,6 +107,7 @@ export function enableDragToCreate(
     canvas.selection = false;
 
     previewRect = new Rect({
+      ...DEFAULT_GUIDELINE_SHAPE_STYLE,
       left: startX,
       top: startY,
       width: 0,
@@ -190,8 +196,17 @@ export function enableDrawToCreate(
   options?.viewport?.setEnabled(false);
 
   const lineStyle = {
-    stroke: options?.style?.stroke ?? '#999999',
-    strokeWidth: options?.style?.strokeWidth ?? 1,
+    stroke: options?.style?.stroke ?? DEFAULT_DRAG_SHAPE_STYLE.stroke,
+    strokeWidth:
+      options?.style?.strokeWidth ?? DEFAULT_DRAG_SHAPE_STYLE.strokeWidth,
+    selectable: false,
+    evented: false,
+  };
+
+  const guideLineStyle = {
+    stroke: options?.style?.stroke ?? DEFAULT_GUIDELINE_SHAPE_STYLE.stroke,
+    strokeWidth:
+      options?.style?.strokeWidth ?? DEFAULT_GUIDELINE_SHAPE_STYLE.strokeWidth,
     selectable: false,
     evented: false,
   } as const;
@@ -252,13 +267,12 @@ export function enableDrawToCreate(
     points.push({ x, y });
 
     // Add vertex marker (first vertex is larger to indicate close target)
-    const isFirst = points.length === 1;
     const marker = new Circle({
       left: x,
       top: y,
-      radius: isFirst ? 6 : 4,
-      fill: isFirst ? '#ff4444' : '#4444ff',
-      stroke: '#ffffff',
+      radius: 4,
+      fill: DEFAULT_SHAPE_STYLE.stroke,
+      stroke: DEFAULT_SHAPE_STYLE.stroke,
       strokeWidth: 1,
       selectable: false,
       evented: false,
@@ -289,7 +303,7 @@ export function enableDrawToCreate(
       canvas.remove(trackingLine);
     }
     trackingLine = new Line([lastPoint.x, lastPoint.y, x, y], {
-      ...lineStyle,
+      ...guideLineStyle,
       strokeDashArray: [5, 5],
     });
     canvas.add(trackingLine);
@@ -301,7 +315,7 @@ export function enableDrawToCreate(
     }
     if (points.length >= 3) {
       closingLine = new Line([x, y, points[0].x, points[0].y], {
-        ...lineStyle,
+        ...guideLineStyle,
         strokeDashArray: [5, 5],
       });
       canvas.add(closingLine);

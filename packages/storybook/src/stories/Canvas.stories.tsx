@@ -64,18 +64,6 @@ const RECT_MODES: Array<{ key: RectMode; label: string }> = [
   { key: 'drag', label: 'Drag to Draw' },
 ];
 
-const RECT_CLICK_STYLE = {
-  fill: 'rgba(33, 150, 243, 0.3)',
-  stroke: '#2196f3',
-  strokeWidth: 2,
-};
-
-const RECT_DRAG_STYLE = {
-  fill: 'rgba(76, 175, 80, 0.3)',
-  stroke: '#4caf50',
-  strokeWidth: 2,
-};
-
 /**
  * Interactive demo for creating, editing, and deleting rectangles.
  *
@@ -107,7 +95,6 @@ export const RectangleDemo: Story = {
                 createRectangleAtPoint(c, point, {
                   width: 100,
                   height: 80,
-                  ...RECT_CLICK_STYLE,
                 }),
               { onCreated: () => activateMode('select'), viewport },
             ),
@@ -122,12 +109,10 @@ export const RectangleDemo: Story = {
                   top: bounds.startY + bounds.height / 2,
                   width: bounds.width,
                   height: bounds.height,
-                  ...RECT_DRAG_STYLE,
                 }),
               {
                 onCreated: () => activateMode('select'),
                 viewport,
-                previewStyle: RECT_DRAG_STYLE,
               },
             ),
           );
@@ -179,9 +164,6 @@ export const RectangleDemo: Story = {
         top: 50 + Math.random() * 200,
         width: 120,
         height: 80,
-        fill: 'rgba(255, 152, 0, 0.3)',
-        stroke: '#ff9800',
-        strokeWidth: 2,
       });
       c.setActiveObject(rect);
       c.requestRenderAll();
@@ -261,24 +243,6 @@ const POLYGON_MODES: Array<{ key: PolygonMode; label: string }> = [
   { key: 'draw', label: 'Draw Polygon' },
 ];
 
-const POLYGON_CLICK_STYLE = {
-  fill: 'rgba(33, 150, 243, 0.3)',
-  stroke: '#2196f3',
-  strokeWidth: 2,
-};
-
-const POLYGON_DRAG_STYLE = {
-  fill: 'rgba(76, 175, 80, 0.3)',
-  stroke: '#4caf50',
-  strokeWidth: 2,
-};
-
-const POLYGON_DRAW_STYLE = {
-  fill: 'rgba(156, 39, 176, 0.3)',
-  stroke: '#9c27b0',
-  strokeWidth: 2,
-};
-
 /**
  * Interactive demo for creating, editing, and deleting polygons.
  *
@@ -341,7 +305,6 @@ export const PolygonDemo: Story = {
                 createPolygonAtPoint(c, point, {
                   width: 100,
                   height: 80,
-                  ...POLYGON_CLICK_STYLE,
                 }),
               { onCreated: () => activateMode('select'), viewport },
             ),
@@ -358,19 +321,16 @@ export const PolygonDemo: Story = {
                     x: bounds.startX + bounds.width,
                     y: bounds.startY + bounds.height,
                   },
-                  POLYGON_DRAG_STYLE,
                 ),
               {
                 onCreated: () => activateMode('select'),
                 viewport,
-                previewStyle: POLYGON_DRAG_STYLE,
               },
             ),
           );
         } else if (newMode === 'draw') {
           canvas.setMode((c, viewport) =>
             enableDrawToCreate(c, {
-              style: POLYGON_DRAW_STYLE,
               onCreated: () => activateMode('select'),
               viewport,
             }),
@@ -418,9 +378,6 @@ export const PolygonDemo: Story = {
         ],
         left: 50 + Math.random() * 300,
         top: 50 + Math.random() * 200,
-        fill: 'rgba(255, 152, 0, 0.3)',
-        stroke: '#ff9800',
-        strokeWidth: 2,
       });
       c.setActiveObject(polygon);
       c.requestRenderAll();

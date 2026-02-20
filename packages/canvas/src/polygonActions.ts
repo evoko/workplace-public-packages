@@ -1,4 +1,5 @@
 import { Canvas as FabricCanvas, Polygon } from 'fabric';
+import { DEFAULT_SHAPE_STYLE } from './defaultStyles';
 
 export interface PolygonOptions {
   points: Array<{ x: number; y: number }>;
@@ -24,7 +25,7 @@ export function createPolygon(
   options: PolygonOptions,
 ): Polygon {
   const { points, ...rest } = options;
-  const polygon = new Polygon(points, rest);
+  const polygon = new Polygon(points, { ...DEFAULT_SHAPE_STYLE, ...rest });
   canvas.add(polygon);
   canvas.requestRenderAll();
   return polygon;
@@ -47,7 +48,7 @@ export function createPolygonAtPoint(
       { x: width, y: height },
       { x: 0, y: height },
     ],
-    { left: point.x, top: point.y, ...style },
+    { ...DEFAULT_SHAPE_STYLE, left: point.x, top: point.y, ...style },
   );
   canvas.add(polygon);
   canvas.requestRenderAll();
@@ -75,7 +76,7 @@ export function createPolygonFromDrag(
       { x: width, y: height },
       { x: 0, y: height },
     ],
-    { left, top, ...style },
+    { ...DEFAULT_SHAPE_STYLE, left, top, ...style },
   );
   canvas.add(polygon);
   canvas.requestRenderAll();
@@ -93,7 +94,7 @@ export function createPolygonFromVertices(
 ): Polygon {
   const polygon = new Polygon(
     points.map((p) => ({ x: p.x, y: p.y })),
-    { ...style },
+    { ...DEFAULT_SHAPE_STYLE, ...style },
   );
   canvas.add(polygon);
   canvas.requestRenderAll();

@@ -1,4 +1,5 @@
 import { Canvas as FabricCanvas, Rect } from 'fabric';
+import { DEFAULT_SHAPE_STYLE } from './defaultStyles';
 
 export interface RectangleOptions {
   left: number;
@@ -30,7 +31,7 @@ export function createRectangle(
   canvas: FabricCanvas,
   options: RectangleOptions,
 ): Rect {
-  const rect = new Rect(options);
+  const rect = new Rect({ ...DEFAULT_SHAPE_STYLE, ...options });
   canvas.add(rect);
   canvas.requestRenderAll();
   return rect;
@@ -47,6 +48,7 @@ export function createRectangleAtPoint(
 ): Rect {
   const { width, height, ...style } = options;
   const rect = new Rect({
+    ...DEFAULT_SHAPE_STYLE,
     left: point.x,
     top: point.y,
     width,

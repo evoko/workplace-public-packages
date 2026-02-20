@@ -1,4 +1,5 @@
 export * from './Canvas';
+export * from './defaultStyles';
 export * from './rectangleActions';
 export * from './polygonActions';
 export * from './canvasActions';
