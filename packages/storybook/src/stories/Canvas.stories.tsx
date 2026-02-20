@@ -19,7 +19,9 @@ import {
   enablePolygonClickToCreate,
   enablePolygonDragToCreate,
   enablePolygonDrawToCreate,
+  enableVertexEdit,
 } from '@bwp-web/canvas';
+import { Polygon as FabricPolygon } from 'fabric';
 import type {
   Canvas as FabricCanvas,
   Rect,
@@ -326,10 +328,12 @@ export const PolygonDemo: Story = {
   render: function PolygonDemoRender() {
     const canvasRef = useRef<FabricCanvas | null>(null);
     const cleanupRef = useRef<(() => void) | null>(null);
+    const vertexEditCleanupRef = useRef<(() => void) | null>(null);
 
     const [mode, setMode] = useState<PolygonMode>('select');
     const [selected, setSelected] = useState<Polygon[]>([]);
     const [editValues, setEditValues] = useState({ left: 0, top: 0 });
+    const [isEditingVertices, setIsEditingVertices] = useState(false);
 
     const syncEditValues = useCallback((obj: FabricObject) => {
       setEditValues({
@@ -367,11 +371,36 @@ export const PolygonDemo: Story = {
             syncEditValues(e.target);
           }
         });
+
+        canvas.on('mouse:dblclick', (e) => {
+          if (e.target && e.target instanceof FabricPolygon) {
+            vertexEditCleanupRef.current?.();
+            vertexEditCleanupRef.current = enableVertexEdit(
+              canvas,
+              e.target as Polygon,
+              {
+                handleRadius: 6,
+                handleFill: '#ffffff',
+                handleStroke: '#1976d2',
+                handleStrokeWidth: 2,
+              },
+              () => {
+                vertexEditCleanupRef.current = null;
+                setIsEditingVertices(false);
+              },
+            );
+            setIsEditingVertices(true);
+          }
+        });
       },
       [syncEditValues],
     );
 
     const activateMode = useCallback((newMode: PolygonMode) => {
+      vertexEditCleanupRef.current?.();
+      vertexEditCleanupRef.current = null;
+      setIsEditingVertices(false);
+
       cleanupRef.current?.();
       cleanupRef.current = null;
       setMode(newMode);
