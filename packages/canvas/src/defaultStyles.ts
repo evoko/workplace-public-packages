@@ -3,10 +3,18 @@ import { biampTheme } from '@bwp-web/styles';
 
 const { palette } = biampTheme();
 
+export const DEFAULT_CONTROL_STYLE = {
+  borderColor: palette.info.main,
+  cornerColor: palette.info.main,
+  cornerStrokeColor: palette.info.main,
+  transparentCorners: true,
+};
+
 export const DEFAULT_SHAPE_STYLE = {
   fill: alpha(palette.info.main, 0.3),
   stroke: palette.info.main,
   strokeWidth: 2.5,
+  ...DEFAULT_CONTROL_STYLE,
 };
 
 export const DEFAULT_DRAG_SHAPE_STYLE = {
