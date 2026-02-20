@@ -25,9 +25,7 @@ import {
   enableClickToCreate,
   enableDragToCreate,
   enableDrawToCreate,
-  enableVertexEdit,
 } from '@bwp-web/canvas';
-import { Polygon as FabricPolygon } from 'fabric';
 import type {
   Canvas as FabricCanvas,
   FabricObject,
@@ -191,7 +189,6 @@ export const RectangleDemo: Story = {
                 <Switch
                   checked={alignmentEnabled}
                   onChange={(e) => setAlignmentEnabled(e.target.checked)}
-                  size="small"
                 />
               }
               label="Enable Alignment"
@@ -277,49 +274,13 @@ const POLYGON_MODES: Array<{ key: PolygonMode; label: string }> = [
  */
 export const PolygonDemo: Story = {
   render: function PolygonDemoRender() {
-    const vertexEditCleanupRef = useRef<(() => void) | null>(null);
-    const [isEditingVertices, setIsEditingVertices] = useState(false);
-
-    const cleanupVertexEdit = useCallback(() => {
-      vertexEditCleanupRef.current?.();
-      vertexEditCleanupRef.current = null;
-      setIsEditingVertices(false);
-    }, []);
-
-    const handleCanvasReady = useCallback((fabricCanvas: FabricCanvas) => {
-      fabricCanvas.on('mouse:dblclick', (e) => {
-        if (e.target && e.target instanceof FabricPolygon) {
-          vertexEditCleanupRef.current?.();
-          vertexEditCleanupRef.current = enableVertexEdit(
-            fabricCanvas,
-            e.target as Polygon,
-            {
-              handleRadius: 6,
-              handleFill: '#ffffff',
-              handleStroke: '#1976d2',
-              handleStrokeWidth: 2,
-            },
-            () => {
-              vertexEditCleanupRef.current = null;
-              setIsEditingVertices(false);
-            },
-          );
-          setIsEditingVertices(true);
-        }
-      });
-    }, []);
-
     const [alignmentEnabled, setAlignmentEnabled] = useState(true);
-    const canvas = useEditCanvas({
-      onReady: handleCanvasReady,
-      enableAlignment: alignmentEnabled,
-    });
+    const canvas = useEditCanvas({ enableAlignment: alignmentEnabled });
     const [mode, setMode] = useState<PolygonMode>('select');
     const [editValues, setEditValues] = useState({ left: 0, top: 0 });
 
     const activateMode = useCallback(
       (newMode: PolygonMode) => {
-        cleanupVertexEdit();
         setMode(newMode);
         if (newMode === 'select') {
           canvas.setMode(null);
@@ -363,7 +324,7 @@ export const PolygonDemo: Story = {
           );
         }
       },
-      [canvas.setMode, cleanupVertexEdit],
+      [canvas.setMode],
     );
 
     // Sync edit values when selection changes
@@ -419,7 +380,6 @@ export const PolygonDemo: Story = {
                 <Switch
                   checked={alignmentEnabled}
                   onChange={(e) => setAlignmentEnabled(e.target.checked)}
-                  size="small"
                 />
               }
               label="Enable Alignment"

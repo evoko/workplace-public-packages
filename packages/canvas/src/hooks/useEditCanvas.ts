@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Canvas as FabricCanvas, type FabricObject } from 'fabric';
+import { Canvas as FabricCanvas, type FabricObject, Polygon } from 'fabric';
 import {
   enablePanAndZoom,
   resetViewport as resetViewportFn,
@@ -11,6 +11,7 @@ import {
   enableObjectAlignment,
   type ObjectAlignmentOptions,
 } from '../alignment';
+import { enableVertexEdit, type VertexEditOptions } from '../interactions';
 import type { ModeSetup } from '../types';
 
 export interface UseEditCanvasOptions {
@@ -25,6 +26,12 @@ export interface UseEditCanvasOptions {
    * - `false`: all alignment/snapping is force-disabled.
    */
   enableAlignment?: boolean;
+  /**
+   * Enable double-click-to-vertex-edit on polygons.
+   * Pass `false` to disable, or a `VertexEditOptions` object to customize handle appearance.
+   * Default: enabled.
+   */
+  vertexEdit?: boolean | VertexEditOptions;
   /** Called after the canvas is initialized and viewport is set up. */
   onReady?: (canvas: FabricCanvas) => void;
 }
@@ -56,10 +63,12 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
   const viewportRef = useRef<ViewportController | null>(null);
   const alignmentCleanupRef = useRef<(() => void) | null>(null);
   const modeCleanupRef = useRef<(() => void) | null>(null);
+  const vertexEditCleanupRef = useRef<(() => void) | null>(null);
 
   const [zoom, setZoom] = useState(1);
   const [selected, setSelected] = useState<FabricObject[]>([]);
   const [viewportMode, setViewportModeState] = useState<ViewportMode>('select');
+  const [isEditingVertices, setIsEditingVertices] = useState(false);
 
   /**
    * Activate an interaction mode, or pass `null` to return to select mode.
@@ -72,6 +81,11 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
    * When `null` is passed, selectability is restored.
    */
   const setMode = useCallback((setup: ModeSetup | null) => {
+    // Exit any active vertex edit session before switching modes
+    vertexEditCleanupRef.current?.();
+    vertexEditCleanupRef.current = null;
+    setIsEditingVertices(false);
+
     modeCleanupRef.current?.();
     modeCleanupRef.current = null;
 
@@ -140,6 +154,30 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
         setSelected([]);
       });
 
+      // Auto-setup vertex edit on double-click for polygons
+      if (options?.vertexEdit !== false) {
+        const vertexOpts =
+          typeof options?.vertexEdit === 'object'
+            ? options.vertexEdit
+            : undefined;
+
+        canvas.on('mouse:dblclick', (e) => {
+          if (e.target && e.target instanceof Polygon) {
+            vertexEditCleanupRef.current?.();
+            vertexEditCleanupRef.current = enableVertexEdit(
+              canvas,
+              e.target,
+              vertexOpts,
+              () => {
+                vertexEditCleanupRef.current = null;
+                setIsEditingVertices(false);
+              },
+            );
+            setIsEditingVertices(true);
+          }
+        });
+      }
+
       options?.onReady?.(canvas);
     },
     // onReady and panAndZoom are intentionally excluded — we only initialize once
@@ -204,6 +242,8 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
      * Pass to interaction functions (e.g. `enableDragToCreate`) to unify behaviour.
      */
     enableAlignment: options?.enableAlignment,
+    /** Whether vertex edit mode is currently active (reactive). */
+    isEditingVertices,
     /**
      * Activate an interaction mode or return to select mode.
      *
