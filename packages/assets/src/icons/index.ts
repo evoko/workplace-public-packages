@@ -12,3 +12,4 @@ export { SearchIcon } from './SearchIcon';
 export { SuccessStatusIcon } from './SuccessStatusIcon';
 export { UncheckedIcon } from './UncheckedIcon';
 export { WarningStatusIcon } from './WarningStatusIcon';
+export { ChevronRight } from './ChevronRight';

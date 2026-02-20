@@ -41,7 +41,7 @@ export const MultipleDepths: Story = {
         <Link underline="hover" color="inherit" href="#">
           Home
         </Link>
-        <Typography color="text.primary">Dashboard</Typography>
+        <Typography>Dashboard</Typography>
       </Breadcrumbs>
 
       <Breadcrumbs>
@@ -51,7 +51,7 @@ export const MultipleDepths: Story = {
         <Link underline="hover" color="inherit" href="#">
           Users
         </Link>
-        <Typography color="text.primary">John Doe</Typography>
+        <Typography>John Doe</Typography>
       </Breadcrumbs>
 
       <Breadcrumbs>
@@ -67,7 +67,7 @@ export const MultipleDepths: Story = {
         <Link underline="hover" color="inherit" href="#">
           Network
         </Link>
-        <Typography color="text.primary">Proxy Configuration</Typography>
+        <Typography>Proxy Configuration</Typography>
       </Breadcrumbs>
     </Stack>
   ),
@@ -90,7 +90,7 @@ export const Collapsed: Story = {
         <Link underline="hover" color="inherit" href="#">
           Item Type
         </Link>
-        <Typography color="text.primary">Item Detail</Typography>
+        <Typography color="text.secondary" fontWeight={600} fontSize={14}>Item Detail</Typography>
       </Breadcrumbs>
     </Stack>
   ),

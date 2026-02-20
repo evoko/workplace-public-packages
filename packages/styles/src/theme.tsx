@@ -1,6 +1,6 @@
 import {
-  BreadcrumbIcon,
   CheckedIcon,
+  ChevronRight,
   DatePickerIcon,
   ErrorStatusIcon,
   IndeterminateIcon,
@@ -708,14 +708,35 @@ export const biampTheme = (
         },
         MuiBreadcrumbs: {
           defaultProps: {
-            separator: <BreadcrumbIcon />,
+            separator: <ChevronRight />,
           },
           styleOverrides: {
+            root: ({ theme }) => ({
+              font: theme.typography.body2.font,
+              fontWeight: 600,
+              '& button svg': {
+                color: theme.palette.text.secondary,
+              },
+            }),
             separator: ({ theme }) => ({
+              margin: 0,
               color: theme.palette.text.secondary,
               '& svg': {
                 width: '16px',
                 height: '16px',
+              },
+            }),
+            ol: {
+              padding: 0,
+            },
+            li: ({ theme }) => ({
+              marginLeft: "8px",
+              marginRight: "8px",
+              fontSize: theme.typography.body2.fontSize,
+              fontWeight: 600,
+              color: `${theme.palette.text.secondary} !important`,
+              '&:last-child': {
+                color: theme.palette.text.secondary,
               },
             }),
           },
