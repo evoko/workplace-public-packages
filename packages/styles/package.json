@@ -1,6 +1,6 @@
 {
   "name": "@bwp-web/styles",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Shared Biamp Workplace theme and styling utilities built on MUI",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -30,10 +30,11 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore",
-    "clean": "rm -rf dist node_modules .turbo"
+    "clean": "rm -rf dist node_modules .turbo",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "@bwp-web/assets": ">=0.3.4",
+    "@bwp-web/assets": ">=0.3.5",
     "@mui/material": ">=7.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
