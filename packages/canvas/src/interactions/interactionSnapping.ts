@@ -8,6 +8,21 @@ import {
   type GuidelineStyle,
 } from '../alignment';
 
+/**
+ * Canvas-level alignment state.
+ * Allows `useEditCanvas` to set the master alignment toggle once so that all
+ * interaction modes created via `setMode` inherit it automatically.
+ */
+const canvasAlignmentState = new WeakMap<FabricCanvas, boolean | undefined>();
+
+/** Set the canvas-level alignment toggle (called by useEditCanvas). */
+export function setCanvasAlignmentEnabled(
+  canvas: FabricCanvas,
+  enabled?: boolean,
+): void {
+  canvasAlignmentState.set(canvas, enabled);
+}
+
 /** Context object for managing snapping within an interaction mode. */
 export interface InteractionSnappingContext {
   /** Whether snapping is enabled. */
@@ -36,10 +51,13 @@ export function createInteractionSnapping(
   options?: Pick<SnappableInteractionOptions, 'snapping' | 'enableAlignment'>,
   getAdditionalTargets?: () => Point[],
 ): InteractionSnappingContext {
+  const canvasAlignment = canvasAlignmentState.get(canvas);
   const snapEnabled =
     options?.enableAlignment !== undefined
       ? options.enableAlignment
-      : options?.snapping !== false;
+      : canvasAlignment !== undefined
+        ? canvasAlignment
+        : options?.snapping !== false;
 
   const snapMargin =
     typeof options?.snapping === 'object' ? options.snapping.margin : undefined;
@@ -74,6 +92,10 @@ export function createInteractionSnapping(
     cachedTargetPoints = null;
   };
 
+  const beforeRender = () => {
+    canvas.clearContext(canvas.getTopContext());
+  };
+
   const afterRender = () => {
     if (lastSnapResult) {
       drawCursorGuidelines(canvas, lastSnapResult, guidelineStyle);
@@ -83,6 +105,7 @@ export function createInteractionSnapping(
   if (snapEnabled) {
     canvas.on('object:added', invalidateCache);
     canvas.on('object:removed', invalidateCache);
+    canvas.on('before:render', beforeRender);
     canvas.on('after:render', afterRender);
   }
 
@@ -126,7 +149,11 @@ export function createInteractionSnapping(
       if (snapEnabled) {
         canvas.off('object:added', invalidateCache);
         canvas.off('object:removed', invalidateCache);
+        canvas.off('before:render', beforeRender);
         canvas.off('after:render', afterRender);
+        // Clear any lingering guideline drawings since the before:render
+        // handler that would normally clear them has been removed.
+        canvas.clearContext(canvas.getTopContext());
       }
       lastSnapResult = null;
     },

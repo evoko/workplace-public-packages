@@ -8,3 +8,5 @@ export type { DrawToCreateOptions } from './drawToCreate';
 
 export { enableVertexEdit } from './vertexEdit';
 export type { VertexEditOptions } from './vertexEdit';
+
+export { setCanvasAlignmentEnabled } from './interactionSnapping';

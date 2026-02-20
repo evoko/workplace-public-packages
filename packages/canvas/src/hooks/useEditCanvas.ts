@@ -11,7 +11,11 @@ import {
   enableObjectAlignment,
   type ObjectAlignmentOptions,
 } from '../alignment';
-import { enableVertexEdit, type VertexEditOptions } from '../interactions';
+import {
+  enableVertexEdit,
+  setCanvasAlignmentEnabled,
+  type VertexEditOptions,
+} from '../interactions';
 import type { ModeSetup } from '../types';
 
 export interface UseEditCanvasOptions {
@@ -115,6 +119,9 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     (canvas: FabricCanvas) => {
       canvasRef.current = canvas;
 
+      // Set canvas-level alignment state so interaction modes inherit it
+      setCanvasAlignmentEnabled(canvas, options?.enableAlignment);
+
       if (options?.panAndZoom !== false) {
         viewportRef.current = enablePanAndZoom(
           canvas,
@@ -185,10 +192,14 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     [],
   );
 
-  // React to enableAlignment changes — tear down or set up object alignment
+  // React to enableAlignment changes — tear down or set up object alignment,
+  // and update the canvas-level alignment state for interaction modes.
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    // Keep canvas-level alignment state in sync
+    setCanvasAlignmentEnabled(canvas, options?.enableAlignment);
 
     const shouldEnable =
       options?.enableAlignment !== undefined
@@ -237,11 +248,6 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
       /** Reset viewport to default (no pan, zoom = 1). */
       reset: resetViewport,
     },
-    /**
-     * Master alignment toggle passed via options.
-     * Pass to interaction functions (e.g. `enableDragToCreate`) to unify behaviour.
-     */
-    enableAlignment: options?.enableAlignment,
     /** Whether vertex edit mode is currently active (reactive). */
     isEditingVertices,
     /**

@@ -111,6 +111,7 @@ export function enableDrawToCreate(
 
   const handleMouseDown = (event: { scenePoint: Point2D }) => {
     const { x, y } = snapping.snap(event.scenePoint.x, event.scenePoint.y);
+    snapping.clearSnapResult();
 
     // Close the polygon if clicking near the first vertex with 3+ points
     if (points.length >= 3) {
