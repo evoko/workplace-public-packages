@@ -14,7 +14,6 @@ import {
   editRectangle,
   createPolygon,
   editPolygon,
-  deleteObjects,
   enableClickToCreate,
   enableDragToCreate,
   enablePolygonClickToCreate,
@@ -46,7 +45,7 @@ type Story = StoryObj<typeof Canvas>;
 /**
  * Interactive demo for creating, editing, and deleting rectangles.
  *
- * - **Select mode**: Click objects to select them, then edit or delete.
+ * - **Select mode**: Click objects to select them, then edit.
  * - **Click-to-place mode**: Click anywhere on the canvas to place a 100x80 rectangle.
  * - **Drag-to-draw mode**: Hold mouse and drag to draw a rectangle.
  */
@@ -56,7 +55,7 @@ export const Demo: Story = {
     const cleanupRef = useRef<(() => void) | null>(null);
 
     const [mode, setMode] = useState<Mode>('select');
-    const [selected, setSelected] = useState<Rect | null>(null);
+    const [selected, setSelected] = useState<Rect[]>([]);
     const [editValues, setEditValues] = useState({
       left: 0,
       top: 0,
@@ -78,27 +77,27 @@ export const Demo: Story = {
         canvasRef.current = canvas;
 
         canvas.on('selection:created', (e) => {
-          const obj = e.selected?.[0];
-          if (obj) {
-            setSelected(obj as Rect);
-            syncEditValues(obj);
+          const objs = (e.selected ?? []) as Rect[];
+          setSelected(objs);
+          if (objs.length === 1) {
+            syncEditValues(objs[0]);
           }
         });
 
         canvas.on('selection:updated', (e) => {
-          const obj = e.selected?.[0];
-          if (obj) {
-            setSelected(obj as Rect);
-            syncEditValues(obj);
+          const objs = (e.selected ?? []) as Rect[];
+          setSelected(objs);
+          if (objs.length === 1) {
+            syncEditValues(objs[0]);
           }
         });
 
         canvas.on('selection:cleared', () => {
-          setSelected(null);
+          setSelected([]);
         });
 
         canvas.on('object:modified', (e) => {
-          if (e.target) {
+          if (e.target && selected.length === 1) {
             syncEditValues(e.target);
           }
         });
@@ -163,21 +162,12 @@ export const Demo: Story = {
         setEditValues((prev) => ({ ...prev, [field]: num }));
 
         const canvas = canvasRef.current;
-        if (canvas && selected) {
-          editRectangle(canvas, selected, { [field]: num });
+        if (canvas && selected.length === 1) {
+          editRectangle(canvas, selected[0], { [field]: num });
         }
       },
       [selected],
     );
-
-    const handleDelete = useCallback(() => {
-      const canvas = canvasRef.current;
-      if (!canvas || !selected) {
-        return;
-      }
-      deleteObjects(canvas, selected);
-      setSelected(null);
-    }, [selected]);
 
     const handleAddProgrammatic = useCallback(() => {
       const canvas = canvasRef.current;
@@ -250,53 +240,50 @@ export const Demo: Story = {
               </Button>
             </div>
 
-            {selected && (
+            {selected.length > 0 && (
               <>
-                <div>
-                  <Typography variant="subtitle2" gutterBottom>
-                    Edit Selected
-                  </Typography>
-                  <Stack spacing={1.5}>
-                    <TextField
-                      label="Left"
-                      type="number"
-                      size="small"
-                      value={editValues.left}
-                      onChange={(e) => handleEdit('left', e.target.value)}
-                    />
-                    <TextField
-                      label="Top"
-                      type="number"
-                      size="small"
-                      value={editValues.top}
-                      onChange={(e) => handleEdit('top', e.target.value)}
-                    />
-                    <TextField
-                      label="Width"
-                      type="number"
-                      size="small"
-                      value={editValues.width}
-                      onChange={(e) => handleEdit('width', e.target.value)}
-                    />
-                    <TextField
-                      label="Height"
-                      type="number"
-                      size="small"
-                      value={editValues.height}
-                      onChange={(e) => handleEdit('height', e.target.value)}
-                    />
-                  </Stack>
-                </div>
+                <Typography variant="body2" color="text.secondary">
+                  {selected.length} object{selected.length > 1 ? 's' : ''}{' '}
+                  selected
+                </Typography>
 
-                <Button
-                  variant="contained"
-                  color="error"
-                  size="small"
-                  fullWidth
-                  onClick={handleDelete}
-                >
-                  Delete Selected
-                </Button>
+                {selected.length === 1 && (
+                  <div>
+                    <Typography variant="subtitle2" gutterBottom>
+                      Edit Selected
+                    </Typography>
+                    <Stack spacing={1.5}>
+                      <TextField
+                        label="Left"
+                        type="number"
+                        size="small"
+                        value={editValues.left}
+                        onChange={(e) => handleEdit('left', e.target.value)}
+                      />
+                      <TextField
+                        label="Top"
+                        type="number"
+                        size="small"
+                        value={editValues.top}
+                        onChange={(e) => handleEdit('top', e.target.value)}
+                      />
+                      <TextField
+                        label="Width"
+                        type="number"
+                        size="small"
+                        value={editValues.width}
+                        onChange={(e) => handleEdit('width', e.target.value)}
+                      />
+                      <TextField
+                        label="Height"
+                        type="number"
+                        size="small"
+                        value={editValues.height}
+                        onChange={(e) => handleEdit('height', e.target.value)}
+                      />
+                    </Stack>
+                  </div>
+                )}
               </>
             )}
           </Stack>
@@ -329,7 +316,7 @@ type PolygonMode = 'select' | 'click' | 'drag' | 'draw';
 /**
  * Interactive demo for creating, editing, and deleting polygons.
  *
- * - **Select mode**: Click objects to select them, then edit or delete.
+ * - **Select mode**: Click objects to select them, then edit.
  * - **Click-to-place mode**: Click anywhere to place a rectangular polygon.
  * - **Drag-to-draw mode**: Hold mouse and drag to draw a rectangular polygon.
  * - **Draw mode**: Click to place vertices one by one. Click near the first
@@ -341,7 +328,7 @@ export const PolygonDemo: Story = {
     const cleanupRef = useRef<(() => void) | null>(null);
 
     const [mode, setMode] = useState<PolygonMode>('select');
-    const [selected, setSelected] = useState<Polygon | null>(null);
+    const [selected, setSelected] = useState<Polygon[]>([]);
     const [editValues, setEditValues] = useState({ left: 0, top: 0 });
 
     const syncEditValues = useCallback((obj: FabricObject) => {
@@ -356,27 +343,27 @@ export const PolygonDemo: Story = {
         canvasRef.current = canvas;
 
         canvas.on('selection:created', (e) => {
-          const obj = e.selected?.[0];
-          if (obj) {
-            setSelected(obj as Polygon);
-            syncEditValues(obj);
+          const objs = (e.selected ?? []) as Polygon[];
+          setSelected(objs);
+          if (objs.length === 1) {
+            syncEditValues(objs[0]);
           }
         });
 
         canvas.on('selection:updated', (e) => {
-          const obj = e.selected?.[0];
-          if (obj) {
-            setSelected(obj as Polygon);
-            syncEditValues(obj);
+          const objs = (e.selected ?? []) as Polygon[];
+          setSelected(objs);
+          if (objs.length === 1) {
+            syncEditValues(objs[0]);
           }
         });
 
         canvas.on('selection:cleared', () => {
-          setSelected(null);
+          setSelected([]);
         });
 
         canvas.on('object:modified', (e) => {
-          if (e.target) {
+          if (e.target && selected.length === 1) {
             syncEditValues(e.target);
           }
         });
@@ -455,21 +442,12 @@ export const PolygonDemo: Story = {
         setEditValues((prev) => ({ ...prev, [field]: num }));
 
         const canvas = canvasRef.current;
-        if (canvas && selected) {
-          editPolygon(canvas, selected, { [field]: num });
+        if (canvas && selected.length === 1) {
+          editPolygon(canvas, selected[0], { [field]: num });
         }
       },
       [selected],
     );
-
-    const handleDelete = useCallback(() => {
-      const canvas = canvasRef.current;
-      if (!canvas || !selected) {
-        return;
-      }
-      deleteObjects(canvas, selected);
-      setSelected(null);
-    }, [selected]);
 
     const handleAddProgrammatic = useCallback(() => {
       const canvas = canvasRef.current;
@@ -553,39 +531,36 @@ export const PolygonDemo: Story = {
               </Button>
             </div>
 
-            {selected && (
+            {selected.length > 0 && (
               <>
-                <div>
-                  <Typography variant="subtitle2" gutterBottom>
-                    Edit Selected
-                  </Typography>
-                  <Stack spacing={1.5}>
-                    <TextField
-                      label="Left"
-                      type="number"
-                      size="small"
-                      value={editValues.left}
-                      onChange={(e) => handleEdit('left', e.target.value)}
-                    />
-                    <TextField
-                      label="Top"
-                      type="number"
-                      size="small"
-                      value={editValues.top}
-                      onChange={(e) => handleEdit('top', e.target.value)}
-                    />
-                  </Stack>
-                </div>
+                <Typography variant="body2" color="text.secondary">
+                  {selected.length} object{selected.length > 1 ? 's' : ''}{' '}
+                  selected
+                </Typography>
 
-                <Button
-                  variant="contained"
-                  color="error"
-                  size="small"
-                  fullWidth
-                  onClick={handleDelete}
-                >
-                  Delete Selected
-                </Button>
+                {selected.length === 1 && (
+                  <div>
+                    <Typography variant="subtitle2" gutterBottom>
+                      Edit Selected
+                    </Typography>
+                    <Stack spacing={1.5}>
+                      <TextField
+                        label="Left"
+                        type="number"
+                        size="small"
+                        value={editValues.left}
+                        onChange={(e) => handleEdit('left', e.target.value)}
+                      />
+                      <TextField
+                        label="Top"
+                        type="number"
+                        size="small"
+                        value={editValues.top}
+                        onChange={(e) => handleEdit('top', e.target.value)}
+                      />
+                    </Stack>
+                  </div>
+                )}
               </>
             )}
           </Stack>

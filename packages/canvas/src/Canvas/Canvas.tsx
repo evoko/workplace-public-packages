@@ -1,5 +1,6 @@
 import { Canvas as FabricCanvas } from 'fabric';
 import { CSSProperties, useEffect, useRef } from 'react';
+import { enableKeyboardShortcuts } from '../keyboardShortcuts';
 
 export interface CanvasProps {
   width?: number;
@@ -27,7 +28,10 @@ export function Canvas({
     const fabricCanvas = new FabricCanvas(el, { width, height });
     onReady?.(fabricCanvas);
 
+    const cleanupShortcuts = enableKeyboardShortcuts(fabricCanvas);
+
     return () => {
+      cleanupShortcuts();
       fabricCanvas.dispose();
     };
     // onReady is intentionally excluded — we only want to initialise once on mount
