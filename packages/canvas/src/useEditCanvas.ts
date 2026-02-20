@@ -6,7 +6,7 @@ import {
   type PanAndZoomOptions,
   type ViewportController,
   type ViewportMode,
-} from './viewportActions';
+} from './viewport';
 
 export interface UseEditCanvasOptions {
   /** Configure pan and zoom. Pass `false` to disable, or options to customize. Default: enabled. */

@@ -1,5 +1,6 @@
 import { Canvas as FabricCanvas, Rect } from 'fabric';
-import { DEFAULT_CIRCLE_STYLE } from './defaultStyles';
+import type { Point2D } from '../fabric';
+import { DEFAULT_CIRCLE_STYLE } from '../styles';
 
 export interface CircleOptions {
   left: number;
@@ -68,7 +69,7 @@ export function createCircle(
  */
 export function createCircleAtPoint(
   canvas: FabricCanvas,
-  point: { x: number; y: number },
+  point: Point2D,
   options: CircleAtPointOptions,
 ): Rect {
   const { size, ...style } = options;

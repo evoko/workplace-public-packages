@@ -6,6 +6,7 @@ import {
   Polygon,
   util,
 } from 'fabric';
+import type { Point2D } from '../fabric';
 
 export interface VertexEditOptions {
   handleRadius?: number;
@@ -14,10 +15,7 @@ export interface VertexEditOptions {
   handleStrokeWidth?: number;
 }
 
-function localPointToScene(
-  polygon: Polygon,
-  point: { x: number; y: number },
-): Point {
+function localPointToScene(polygon: Polygon, point: Point2D): Point {
   const matrix = polygon.calcTransformMatrix();
   const localPoint = new Point(
     point.x - polygon.pathOffset.x,
@@ -26,10 +24,7 @@ function localPointToScene(
   return util.transformPoint(localPoint, matrix);
 }
 
-function scenePointToLocal(
-  polygon: Polygon,
-  scenePoint: Point,
-): { x: number; y: number } {
+function scenePointToLocal(polygon: Polygon, scenePoint: Point): Point2D {
   const matrix = polygon.calcTransformMatrix();
   const invMatrix = util.invertTransform(matrix);
   const localPoint = util.transformPoint(scenePoint, invMatrix);

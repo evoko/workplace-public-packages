@@ -1,6 +1,6 @@
 import { Canvas as FabricCanvas } from 'fabric';
 import { CSSProperties, useEffect, useRef } from 'react';
-import { enableKeyboardShortcuts } from '../keyboardShortcuts';
+import { enableKeyboardShortcuts } from '../keyboard';
 
 export interface CanvasProps {
   width?: number;

@@ -1,4 +1,15 @@
-import { Canvas as FabricCanvas } from 'fabric';
+import { Canvas as FabricCanvas, FabricObject } from 'fabric';
+
+/**
+ * Remove one or more objects from the canvas.
+ */
+export function deleteObjects(
+  canvas: FabricCanvas,
+  ...objects: FabricObject[]
+): void {
+  canvas.remove(...objects);
+  canvas.requestRenderAll();
+}
 
 /**
  * Enable default keyboard shortcuts on the canvas.
@@ -12,8 +23,7 @@ export function enableKeyboardShortcuts(canvas: FabricCanvas): () => void {
       const active = canvas.getActiveObjects();
       if (active.length > 0) {
         canvas.discardActiveObject();
-        canvas.remove(...active);
-        canvas.requestRenderAll();
+        deleteObjects(canvas, ...active);
       }
     }
   };
