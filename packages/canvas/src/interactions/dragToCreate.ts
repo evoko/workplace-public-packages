@@ -21,6 +21,7 @@ const MIN_DRAG_SIZE = 3;
  * Enable drag-to-create mode.
  * A preview rectangle is shown while dragging. On mouse-up the factory
  * receives the drag bounds and creates the final object.
+ * Holding Shift during drag constrains the shape to a 1:1 aspect ratio.
  * Returns a cleanup function that disables the mode.
  */
 export function enableDragToCreate(
@@ -34,12 +35,62 @@ export function enableDragToCreate(
   let isDrawing = false;
   let startX = 0;
   let startY = 0;
+  let lastEndX = 0;
+  let lastEndY = 0;
   let previewRect: Rect | null = null;
   let previousSelection: boolean;
+  let shiftHeld = false;
 
   const snapping = createInteractionSnapping(canvas, options);
 
   options?.viewport?.setEnabled(false);
+
+  const shouldConstrain = () => !!(options?.constrainToSquare || shiftHeld);
+
+  const computeDimensions = (
+    endX: number,
+    endY: number,
+  ): { width: number; height: number } => {
+    let width = Math.max(0, endX - startX);
+    let height = Math.max(0, endY - startY);
+    if (shouldConstrain()) {
+      const size = Math.max(width, height);
+      width = size;
+      height = size;
+    }
+    return { width, height };
+  };
+
+  const updatePreview = (endX: number, endY: number) => {
+    lastEndX = endX;
+    lastEndY = endY;
+    if (!isDrawing || !previewRect) return;
+
+    const { width, height } = computeDimensions(endX, endY);
+    previewRect.set({
+      left: startX + width / 2,
+      top: startY + height / 2,
+      width,
+      height,
+    });
+    previewRect.setCoords();
+    canvas.requestRenderAll();
+  };
+
+  const onShiftDown = (e: KeyboardEvent) => {
+    if (e.key === 'Shift' && !shiftHeld) {
+      shiftHeld = true;
+      updatePreview(lastEndX, lastEndY);
+    }
+  };
+  const onShiftUp = (e: KeyboardEvent) => {
+    if (e.key === 'Shift' && shiftHeld) {
+      shiftHeld = false;
+      updatePreview(lastEndX, lastEndY);
+    }
+  };
+  document.addEventListener('keydown', onShiftDown);
+  document.addEventListener('keyup', onShiftUp);
 
   const handleMouseDown = (event: { scenePoint: Point2D }) => {
     isDrawing = true;
@@ -47,6 +98,8 @@ export function enableDragToCreate(
     const snapped = snapping.snap(event.scenePoint.x, event.scenePoint.y);
     startX = snapped.x;
     startY = snapped.y;
+    lastEndX = startX;
+    lastEndY = startY;
 
     previousSelection = canvas.selection;
     canvas.selection = false;
@@ -72,24 +125,7 @@ export function enableDragToCreate(
       event.scenePoint.x,
       event.scenePoint.y,
     );
-
-    let width = Math.max(0, endX - startX);
-    let height = Math.max(0, endY - startY);
-
-    if (options?.constrainToSquare) {
-      const size = Math.max(width, height);
-      width = size;
-      height = size;
-    }
-
-    previewRect.set({
-      left: startX + width / 2,
-      top: startY + height / 2,
-      width,
-      height,
-    });
-    previewRect.setCoords();
-    canvas.requestRenderAll();
+    updatePreview(endX, endY);
   };
 
   const handleMouseUp = () => {
@@ -99,14 +135,7 @@ export function enableDragToCreate(
     snapping.clearSnapResult();
     canvas.selection = previousSelection;
 
-    let width = previewRect.width ?? 0;
-    let height = previewRect.height ?? 0;
-
-    if (options?.constrainToSquare) {
-      const size = Math.max(width, height);
-      width = size;
-      height = size;
-    }
+    const { width, height } = computeDimensions(lastEndX, lastEndY);
 
     snapping.excludeSet.delete(previewRect);
     canvas.remove(previewRect);
@@ -131,6 +160,8 @@ export function enableDragToCreate(
     canvas.off('mouse:down', handleMouseDown);
     canvas.off('mouse:move', handleMouseMove);
     canvas.off('mouse:up', handleMouseUp);
+    document.removeEventListener('keydown', onShiftDown);
+    document.removeEventListener('keyup', onShiftUp);
 
     snapping.cleanup();
 
