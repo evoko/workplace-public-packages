@@ -34,6 +34,20 @@ function applyCircleConstraints(rect: Rect): void {
 }
 
 /**
+ * Re-apply circle control visibility after deserialization.
+ *
+ * Fabric's `loadFromJSON` does not restore `setControlsVisibility` state, so
+ * this must be called on any deserialized object whose `shapeType === 'circle'`
+ * to restore the correct handle layout (no mid-edge or rotation handles).
+ *
+ * Not part of the public package API — imported directly by `serialization.ts`.
+ */
+export function restoreCircleConstraints(rect: Rect): void {
+  rect.set(CIRCLE_CONSTRAINTS);
+  rect.setControlsVisibility(HIDDEN_CIRCLE_CONTROLS);
+}
+
+/**
  * Create a circle (a square Rect with full border-radius) and add it to the canvas.
  * Returns the fabric Rect instance for further manipulation.
  */

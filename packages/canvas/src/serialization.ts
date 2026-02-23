@@ -1,4 +1,6 @@
-import { Canvas as FabricCanvas, type FabricObject } from 'fabric';
+import { Canvas as FabricCanvas, Rect, type FabricObject } from 'fabric';
+import { restoreCircleConstraints } from './shapes/circle';
+import { DEFAULT_CONTROL_STYLE } from './styles';
 
 /**
  * Module-level map from FabricObject to its "base" (unscaled) stroke width.
@@ -53,8 +55,8 @@ export function enableScaledStrokes(canvas: FabricCanvas): () => void {
 export interface SerializeOptions {
   /**
    * Additional Fabric object properties to include in the JSON output.
-   * The `'data'` property is always included.
-   * Default: `['data']`.
+   * The `'data'` and `'shapeType'` properties are always included.
+   * Default: `['data', 'shapeType']`.
    */
   properties?: string[];
 }
@@ -75,7 +77,7 @@ export function getBaseStrokeWidth(obj: FabricObject): number {
 /**
  * Serialize the canvas to a plain object, ready for `JSON.stringify`.
  *
- * - Always includes the `'data'` custom property (for shape IDs and types).
+ * - Always includes the `'data'` and `'shapeType'` custom properties.
  * - If {@link enableScaledStrokes} is active, temporarily restores all stroke
  *   widths to their base values before serializing, then reapplies the
  *   zoom-scaled values. This ensures the saved JSON always contains the
@@ -85,7 +87,19 @@ export function serializeCanvas(
   canvas: FabricCanvas,
   options?: SerializeOptions,
 ): object {
-  const properties = ['data', ...(options?.properties ?? [])];
+  const properties = [
+    'data',
+    'shapeType',
+    // Control styling — absent from Fabric's default toObject output
+    'borderColor',
+    'cornerColor',
+    'cornerStrokeColor',
+    'transparentCorners',
+    // Interaction locks — absent from Fabric's default toObject output
+    'lockRotation',
+    'lockUniScaling',
+    ...(options?.properties ?? []),
+  ];
 
   // Save any currently scaled stroke widths and restore base values
   const scaledWidths = new Map<FabricObject, number>();
@@ -118,5 +132,15 @@ export async function loadCanvas(
   json: object,
 ): Promise<void> {
   await canvas.loadFromJSON(json);
+  // Re-apply per-object state that Fabric does not persist through serialization.
+  canvas.forEachObject((obj) => {
+    // Control styling (borderColor, cornerColor, etc.) is absent from Fabric's
+    // default toObject output, so we restore it explicitly for all objects.
+    obj.set(DEFAULT_CONTROL_STYLE);
+    // Circle-specific constraints (control visibility, lock flags).
+    if (obj.shapeType === 'circle' && obj instanceof Rect) {
+      restoreCircleConstraints(obj);
+    }
+  });
   canvas.requestRenderAll();
 }
