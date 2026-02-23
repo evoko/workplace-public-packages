@@ -20,7 +20,11 @@ import {
 } from '../interactions';
 import { enableScaledStrokes } from '../serialization';
 import { enableKeyboardShortcuts } from '../keyboard';
-import { fitViewportToBackground } from '../background';
+import {
+  fitViewportToBackground,
+  setBackgroundImage as setBackgroundImageFn,
+  type ResizeImageOptions,
+} from '../background';
 import type { ModeSetup } from '../types';
 
 export interface UseEditCanvasOptions {
@@ -65,6 +69,13 @@ export interface UseEditCanvasOptions {
    * Pass `false` to disable. Default: enabled.
    */
   autoFitToBackground?: boolean;
+  /**
+   * Automatically resize background images when set via `setBackground`.
+   * Images exceeding `maxSize` are downscaled to fit; images smaller than
+   * `minSize` on both dimensions are rejected with an error.
+   * Pass `false` to disable. Default: enabled (maxSize: 4096, minSize: 480).
+   */
+  backgroundResize?: boolean | ResizeImageOptions;
 }
 
 /**
@@ -301,6 +312,28 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     if (canvas) setZoom(canvas.getZoom());
   }, []);
 
+  const setBackground = useCallback(async (url: string) => {
+    const canvas = canvasRef.current;
+    if (!canvas) throw new Error('Canvas not ready');
+
+    const resizeOpts =
+      options?.backgroundResize !== false
+        ? typeof options?.backgroundResize === 'object'
+          ? options.backgroundResize
+          : {}
+        : undefined;
+
+    const img = await setBackgroundImageFn(canvas, url, resizeOpts);
+
+    if (options?.autoFitToBackground !== false) {
+      fitViewportToBackground(canvas);
+      setZoom(canvas.getZoom());
+    }
+
+    return img;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return {
     /** Pass this to `<Canvas onReady={...} />` */
     onReady,
@@ -341,5 +374,11 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
      * ```
      */
     setMode,
+    /**
+     * Set a background image from a URL. Automatically resizes if the image
+     * exceeds the configured limits (opt out via `backgroundResize: false`),
+     * and fits the viewport after setting if `autoFitToBackground` is enabled.
+     */
+    setBackground,
   };
 }

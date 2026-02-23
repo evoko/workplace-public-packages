@@ -215,13 +215,21 @@ export function resizeImageUrl(
 
 /**
  * Set an image URL as the canvas background image.
+ * Pass `resize` options to downscale oversized images before loading;
+ * omit to load the URL as-is.
  * Returns the created FabricImage for further manipulation.
  */
 export async function setBackgroundImage(
   canvas: FabricCanvas,
   url: string,
+  resize?: ResizeImageOptions,
 ): Promise<FabricImage> {
-  const img = await FabricImage.fromURL(url, { crossOrigin: 'anonymous' });
+  let imageUrl = url;
+  if (resize !== undefined) {
+    const result = await resizeImageUrl(url, resize);
+    imageUrl = result.url;
+  }
+  const img = await FabricImage.fromURL(imageUrl, { crossOrigin: 'anonymous' });
   canvas.backgroundImage = img;
   canvas.requestRenderAll();
   return img;

@@ -36,7 +36,6 @@ import {
   getBackgroundOpacity,
   setBackgroundInverted,
   getBackgroundInverted,
-  setBackgroundImage,
 } from '@bwp-web/canvas';
 import { DemoLayout } from './canvas/DemoLayout';
 import { ViewportControlToolbar } from './canvas/ViewportControlToolbar';
@@ -323,20 +322,21 @@ function EditCanvasContent({
     async (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (!file) return;
-      const reader = new FileReader();
-      reader.onload = async (ev) => {
-        const c = canvas.canvasRef.current;
-        if (!c || typeof ev.target?.result !== 'string') return;
-        await setBackgroundImage(c, ev.target.result);
-        canvas.viewport.reset();
-        setBgOpacity(getBackgroundOpacity(c));
-        setBgInverted(getBackgroundInverted(c));
-        setHasBackground(true);
-      };
-      reader.readAsDataURL(file);
       e.target.value = '';
+      const url = URL.createObjectURL(file);
+      try {
+        await canvas.setBackground(url);
+        const c = canvas.canvasRef.current;
+        if (c) {
+          setBgOpacity(getBackgroundOpacity(c));
+          setBgInverted(getBackgroundInverted(c));
+        }
+        setHasBackground(true);
+      } finally {
+        URL.revokeObjectURL(url);
+      }
     },
-    [canvas.canvasRef],
+    [canvas.setBackground, canvas.canvasRef],
   );
 
   const handleOpacityChange = useCallback(
