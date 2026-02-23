@@ -22,8 +22,8 @@ export interface DemoLayoutProps {
 export function DemoLayout({
   sidebar,
   onReady,
-  canvasWidth = 800,
-  canvasHeight = 600,
+  canvasWidth = 1280,
+  canvasHeight = 720,
   canvasOverlay,
 }: DemoLayoutProps) {
   return (

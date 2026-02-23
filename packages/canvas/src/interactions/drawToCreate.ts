@@ -101,6 +101,7 @@ export function enableDrawToCreate(
     stroke: options?.style?.stroke ?? DEFAULT_DRAG_SHAPE_STYLE.stroke,
     strokeWidth:
       options?.style?.strokeWidth ?? DEFAULT_DRAG_SHAPE_STYLE.strokeWidth,
+    strokeUniform: true,
     selectable: false,
     evented: false,
   };
@@ -109,6 +110,7 @@ export function enableDrawToCreate(
     stroke: options?.style?.stroke ?? DEFAULT_GUIDELINE_SHAPE_STYLE.stroke,
     strokeWidth:
       options?.style?.strokeWidth ?? DEFAULT_GUIDELINE_SHAPE_STYLE.strokeWidth,
+    strokeUniform: true,
     selectable: false,
     evented: false,
   } as const;
@@ -188,6 +190,7 @@ export function enableDrawToCreate(
       fill: DEFAULT_SHAPE_STYLE.stroke,
       stroke: DEFAULT_SHAPE_STYLE.stroke,
       strokeWidth: 1,
+      strokeUniform: true,
       selectable: false,
       evented: false,
     });

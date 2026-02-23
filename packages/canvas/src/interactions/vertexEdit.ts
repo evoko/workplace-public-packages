@@ -98,6 +98,7 @@ export function enableVertexEdit(
       fill: options?.handleFill ?? '#ffffff',
       stroke: options?.handleStroke ?? '#2196f3',
       strokeWidth: options?.handleStrokeWidth ?? 2,
+      strokeUniform: true,
       originX: 'center',
       originY: 'center',
       hasBorders: false,
