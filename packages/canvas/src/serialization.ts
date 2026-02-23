@@ -35,10 +35,10 @@ export function enableScaledStrokes(canvas: FabricCanvas): () => void {
     });
   }
 
-  canvas.on('after:render', applyScaledStrokes);
+  canvas.on('before:render', applyScaledStrokes);
 
   return () => {
-    canvas.off('after:render', applyScaledStrokes);
+    canvas.off('before:render', applyScaledStrokes);
     // Restore all objects to their base stroke widths on cleanup
     canvas.forEachObject((obj) => {
       const base = strokeBaseMap.get(obj);
