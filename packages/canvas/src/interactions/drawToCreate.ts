@@ -213,6 +213,9 @@ export function enableDrawToCreate(
     );
     if (angleSnapEnabled && shiftHeld) {
       ({ x, y } = snapAngleToInterval({ x, y }, lastPoint, angleInterval));
+      // Cursor-snap guideline is now at a different position than the
+      // angle-snapped tracking line — clear it to avoid visual confusion.
+      snapping.clearSnapResult();
     }
 
     // Update tracking line from last vertex to cursor

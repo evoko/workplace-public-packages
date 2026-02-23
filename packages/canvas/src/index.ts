@@ -75,6 +75,7 @@ export {
   enableScaledStrokes,
   serializeCanvas,
   loadCanvas,
+  getBaseStrokeWidth,
 } from './serialization';
 export type { SerializeOptions } from './serialization';
 

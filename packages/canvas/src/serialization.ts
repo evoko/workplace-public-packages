@@ -60,6 +60,19 @@ export interface SerializeOptions {
 }
 
 /**
+ * Return the base (unscaled) stroke width for an object.
+ *
+ * When {@link enableScaledStrokes} is active, `obj.strokeWidth` is a
+ * zoom-adjusted value. This function returns the original intended width that
+ * was recorded before any zoom adjustment was applied. Falls back to the
+ * object's current `strokeWidth` if the object has never been seen by
+ * `enableScaledStrokes` (e.g. if the feature is disabled).
+ */
+export function getBaseStrokeWidth(obj: FabricObject): number {
+  return strokeBaseMap.get(obj) ?? obj.strokeWidth ?? 0;
+}
+
+/**
  * Serialize the canvas to a plain object, ready for `JSON.stringify`.
  *
  * - Always includes the `'data'` custom property (for shape IDs and types).
