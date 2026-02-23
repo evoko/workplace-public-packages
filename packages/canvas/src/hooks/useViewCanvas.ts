@@ -7,6 +7,7 @@ import {
   type ViewportController,
 } from '../viewport';
 import { enableScaledStrokes } from '../serialization';
+import { fitViewportToBackground } from '../background';
 
 export interface UseViewCanvasOptions {
   /** Configure pan and zoom. Pass `false` to disable, or options to customize. Default: enabled. */
@@ -17,7 +18,14 @@ export interface UseViewCanvasOptions {
    */
   scaledStrokes?: boolean;
   /** Called after the canvas is initialized and viewport is set up. */
-  onReady?: (canvas: FabricCanvas) => void;
+  onReady?: (canvas: FabricCanvas) => void | Promise<void>;
+  /**
+   * Automatically fit the viewport to the background image after `onReady`
+   * completes, if a background image is present. Also applies when
+   * `viewport.reset` is called while a background image is set.
+   * Pass `false` to disable. Default: enabled.
+   */
+  autoFitToBackground?: boolean;
 }
 
 /** Disable selection and interactivity on all objects, and apply view-only styles. */
@@ -85,7 +93,15 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
         setZoom(canvas.getZoom());
       });
 
-      options?.onReady?.(canvas);
+      const onReadyResult = options?.onReady?.(canvas);
+      if (options?.autoFitToBackground !== false) {
+        Promise.resolve(onReadyResult).then(() => {
+          if (canvas.backgroundImage) {
+            fitViewportToBackground(canvas);
+            setZoom(canvas.getZoom());
+          }
+        });
+      }
     },
     // onReady and panAndZoom are intentionally excluded — we only initialize once
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -95,8 +111,12 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
   const resetViewport = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    resetViewportFn(canvas);
-    setZoom(1);
+    if (canvas.backgroundImage) {
+      fitViewportToBackground(canvas);
+    } else {
+      resetViewportFn(canvas);
+    }
+    setZoom(canvas.getZoom());
   }, []);
 
   const zoomIn = useCallback((step?: number) => {
@@ -120,7 +140,7 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     zoom,
     /** Viewport controls. */
     viewport: {
-      /** Reset viewport to default (no pan, zoom = 1). */
+      /** Reset viewport to default (no pan, zoom = 1), or fit to background if one is set. */
       reset: resetViewport,
       /** Zoom in toward the canvas center. Default step: 0.2. */
       zoomIn,

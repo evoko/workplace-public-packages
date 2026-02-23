@@ -23,20 +23,32 @@ export function fitViewportToBackground(
   const bg = canvas.backgroundImage as FabricImage | undefined;
   if (!bg) return;
 
-  const bgWidth = bg.width;
-  const bgHeight = bg.height;
+  // Use scaled dimensions so any scaleX/scaleY on the image is respected.
+  const bgWidth = bg.getScaledWidth();
+  const bgHeight = bg.getScaledHeight();
   if (!bgWidth || !bgHeight) return;
 
+  // getCenterPoint() returns the geometric centre of the object in canvas space,
+  // reliably regardless of how left/top are stored in this Fabric version.
+  // The actual top-left corner is always centre − half-size.
+  const center = bg.getCenterPoint();
+  const imgLeft = center.x - bgWidth / 2;
+  const imgTop = center.y - bgHeight / 2;
+
   const padding = options?.padding ?? 0.05;
-  const availableWidth = canvas.getWidth() * (1 - padding * 2);
-  const availableHeight = canvas.getHeight() * (1 - padding * 2);
+  const canvasWidth = canvas.getWidth();
+  const canvasHeight = canvas.getHeight();
+  const availableWidth = canvasWidth * (1 - padding * 2);
+  const availableHeight = canvasHeight * (1 - padding * 2);
 
   const scale = Math.min(availableWidth / bgWidth, availableHeight / bgHeight);
 
   const scaledW = bgWidth * scale;
   const scaledH = bgHeight * scale;
-  const offsetX = (canvas.getWidth() - scaledW) / 2;
-  const offsetY = (canvas.getHeight() - scaledH) / 2;
+
+  // Shift so the image's top-left maps to the padded centre of the viewport.
+  const offsetX = (canvasWidth - scaledW) / 2 - imgLeft * scale;
+  const offsetY = (canvasHeight - scaledH) / 2 - imgTop * scale;
 
   canvas.setViewportTransform([scale, 0, 0, scale, offsetX, offsetY]);
   canvas.requestRenderAll();

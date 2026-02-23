@@ -32,7 +32,6 @@ import {
   enableDrawToCreate,
   serializeCanvas,
   loadCanvas,
-  fitViewportToBackground,
   setBackgroundOpacity,
   getBackgroundOpacity,
   setBackgroundInverted,
@@ -329,6 +328,7 @@ function EditCanvasContent({
         const c = canvas.canvasRef.current;
         if (!c || typeof ev.target?.result !== 'string') return;
         await setBackgroundImage(c, ev.target.result);
+        canvas.viewport.reset();
         setBgOpacity(getBackgroundOpacity(c));
         setBgInverted(getBackgroundInverted(c));
         setHasBackground(true);
@@ -338,11 +338,6 @@ function EditCanvasContent({
     },
     [canvas.canvasRef],
   );
-
-  const handleFitViewport = useCallback(() => {
-    const c = canvas.canvasRef.current;
-    if (c) fitViewportToBackground(c);
-  }, [canvas.canvasRef]);
 
   const handleOpacityChange = useCallback(
     (_: Event, value: number | number[]) => {
@@ -394,7 +389,8 @@ function EditCanvasContent({
       setBgOpacity(getBackgroundOpacity(c));
       setBgInverted(getBackgroundInverted(c));
     }
-  }, [canvas.canvasRef]);
+    canvas.viewport.reset();
+  }, [canvas.canvasRef, canvas.viewport]);
 
   const handleClear = useCallback(() => {
     const c = canvas.canvasRef.current;
@@ -613,14 +609,6 @@ function EditCanvasContent({
                 </Button>
                 {hasBackground && (
                   <>
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      fullWidth
-                      onClick={handleFitViewport}
-                    >
-                      Fit to Viewport
-                    </Button>
                     <Box>
                       <Typography variant="caption" color="text.secondary">
                         Opacity: {Math.round(bgOpacity * 100)}%
