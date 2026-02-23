@@ -188,22 +188,21 @@ export function resizeImageUrl(
       const newW = Math.round(w * scale);
       const newH = Math.round(h * scale);
 
-      const offscreen = new OffscreenCanvas(newW, newH);
-      const ctx = offscreen.getContext('2d');
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = newW;
+      tempCanvas.height = newH;
+      const ctx = tempCanvas.getContext('2d');
       if (!ctx) {
         reject(new Error('Could not get 2D context for image resize.'));
         return;
       }
       ctx.drawImage(img, 0, 0, newW, newH);
-
-      offscreen.convertToBlob({ type: 'image/png' }).then((blob) => {
-        resolve({
-          url: URL.createObjectURL(blob),
-          width: newW,
-          height: newH,
-          wasResized: true,
-        });
-      }, reject);
+      resolve({
+        url: tempCanvas.toDataURL('image/png'),
+        width: newW,
+        height: newH,
+        wasResized: true,
+      });
     };
 
     img.onerror = () => reject(new Error(`Failed to load image: ${url}`));

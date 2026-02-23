@@ -319,22 +319,22 @@ function EditCanvasContent({
   // --- Background ---
 
   const handleFileChange = useCallback(
-    async (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (!file) return;
       e.target.value = '';
-      const url = URL.createObjectURL(file);
-      try {
-        await canvas.setBackground(url);
+      const reader = new FileReader();
+      reader.onload = async (ev) => {
+        if (typeof ev.target?.result !== 'string') return;
+        await canvas.setBackground(ev.target.result);
         const c = canvas.canvasRef.current;
         if (c) {
           setBgOpacity(getBackgroundOpacity(c));
           setBgInverted(getBackgroundInverted(c));
         }
         setHasBackground(true);
-      } finally {
-        URL.revokeObjectURL(url);
-      }
+      };
+      reader.readAsDataURL(file);
     },
     [canvas.setBackground, canvas.canvasRef],
   );
