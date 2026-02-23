@@ -17,12 +17,24 @@ export interface CursorSnapResult {
 }
 
 export interface CursorSnapOptions {
-  /** Snap margin in scene-space pixels. Default: 6. */
+  /**
+   * Base snap margin in screen-pixel-equivalent units. Default: 6.
+   * The effective scene-space margin is `margin * sizeScale / zoom`, where
+   * `sizeScale` grows proportionally with canvas size so that snapping feels
+   * consistent regardless of how large the canvas coordinate space is.
+   */
   margin?: number;
   /** Objects to exclude from snap targets (e.g., preview elements). */
   exclude?: Set<FabricObject>;
   /** Pre-computed target points. If provided, skips object iteration. */
   targetPoints?: Point[];
+  /**
+   * Scale the snap margin proportionally with canvas size.
+   * Uses `max(width, height) / 1000` as a multiplier so large canvases
+   * (e.g. floor plans) get proportionally larger snap zones.
+   * Default: `true`. Pass `false` to use a fixed margin regardless of size.
+   */
+  scaleWithCanvasSize?: boolean;
 }
 
 export interface GuidelineStyle {
@@ -32,6 +44,7 @@ export interface GuidelineStyle {
 }
 
 const DEFAULT_CURSOR_SNAP_MARGIN = 6;
+const BASE_CANVAS_SIZE = 1000;
 
 /**
  * Compute a snapped cursor position given a raw scene-space point.
@@ -43,8 +56,13 @@ export function snapCursorPoint(
   rawPoint: Point,
   options?: CursorSnapOptions,
 ): CursorSnapResult {
+  const zoom = canvas.getZoom();
+  const scaleWithSize = options?.scaleWithCanvasSize !== false;
+  const sizeScale = scaleWithSize
+    ? Math.max(canvas.width ?? 800, canvas.height ?? 600) / BASE_CANVAS_SIZE
+    : 1;
   const margin =
-    (options?.margin ?? DEFAULT_CURSOR_SNAP_MARGIN) / canvas.getZoom();
+    ((options?.margin ?? DEFAULT_CURSOR_SNAP_MARGIN) * sizeScale) / zoom;
   const exclude = options?.exclude ?? new Set();
 
   let targetPoints: Point[];

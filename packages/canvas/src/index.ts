@@ -70,6 +70,26 @@ export type {
 // --- Keyboard ---
 export { deleteObjects, enableKeyboardShortcuts } from './keyboard';
 
+// --- Serialization ---
+export {
+  enableScaledStrokes,
+  serializeCanvas,
+  loadCanvas,
+} from './serialization';
+export type { SerializeOptions } from './serialization';
+
+// --- Background ---
+export {
+  fitViewportToBackground,
+  setBackgroundOpacity,
+  getBackgroundOpacity,
+  setBackgroundInverted,
+  getBackgroundInverted,
+  resizeImageUrl,
+  setBackgroundImage,
+} from './background';
+export type { FitViewportOptions, ResizeResult, ResizeImageOptions } from './background';
+
 // --- Styles ---
 export {
   DEFAULT_CONTROL_STYLE,

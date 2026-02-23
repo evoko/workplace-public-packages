@@ -18,9 +18,35 @@ import { createInteractionSnapping } from './interactionSnapping';
 export interface DrawToCreateOptions extends SnappableInteractionOptions {
   /** Style applied to the polygon being drawn. */
   style?: PolygonStyleOptions;
+  /**
+   * Snap vertex positions to multiples of `interval` degrees when Shift is
+   * held while placing a vertex. The angle is measured relative to the
+   * previous vertex.
+   *
+   * Pass `false` to disable. Default: enabled at 15° intervals.
+   */
+  angleSnap?: boolean | { interval?: number };
 }
 
 const CLOSE_THRESHOLD = 10;
+
+function snapAngleToInterval(
+  point: { x: number; y: number },
+  ref: { x: number; y: number },
+  intervalDeg: number,
+): { x: number; y: number } {
+  const dx = point.x - ref.x;
+  const dy = point.y - ref.y;
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  if (dist === 0) return point;
+  const radInterval = (intervalDeg * Math.PI) / 180;
+  const snappedAngle =
+    Math.round(Math.atan2(dy, dx) / radInterval) * radInterval;
+  return {
+    x: ref.x + Math.cos(snappedAngle) * dist,
+    y: ref.y + Math.sin(snappedAngle) * dist,
+  };
+}
 
 /**
  * Enable draw mode for polygons.
@@ -33,6 +59,22 @@ export function enableDrawToCreate(
   canvas: FabricCanvas,
   options?: DrawToCreateOptions,
 ): () => void {
+  const angleSnapEnabled = options?.angleSnap !== false;
+  const angleInterval =
+    typeof options?.angleSnap === 'object'
+      ? (options.angleSnap.interval ?? 15)
+      : 15;
+
+  let shiftHeld = false;
+  const onShiftDown = (e: KeyboardEvent) => {
+    if (e.key === 'Shift') shiftHeld = true;
+  };
+  const onShiftUp = (e: KeyboardEvent) => {
+    if (e.key === 'Shift') shiftHeld = false;
+  };
+  document.addEventListener('keydown', onShiftDown);
+  document.addEventListener('keyup', onShiftUp);
+
   const points: Point2D[] = [];
   const markers: Circle[] = [];
   const edgeLines: Line[] = [];
@@ -110,7 +152,10 @@ export function enableDrawToCreate(
   };
 
   const handleMouseDown = (event: { scenePoint: Point2D }) => {
-    const { x, y } = snapping.snap(event.scenePoint.x, event.scenePoint.y);
+    let { x, y } = snapping.snap(event.scenePoint.x, event.scenePoint.y);
+    if (angleSnapEnabled && shiftHeld && points.length > 0) {
+      ({ x, y } = snapAngleToInterval({ x, y }, points[points.length - 1], angleInterval));
+    }
     snapping.clearSnapResult();
 
     // Close the polygon if clicking near the first vertex with 3+ points
@@ -162,10 +207,13 @@ export function enableDrawToCreate(
     if (points.length === 0) return;
 
     const lastPoint = points[points.length - 1];
-    const { x, y } = snapping.snapWithGuidelines(
+    let { x, y } = snapping.snapWithGuidelines(
       event.scenePoint.x,
       event.scenePoint.y,
     );
+    if (angleSnapEnabled && shiftHeld) {
+      ({ x, y } = snapAngleToInterval({ x, y }, lastPoint, angleInterval));
+    }
 
     // Update tracking line from last vertex to cursor
     if (trackingLine) {
@@ -203,6 +251,8 @@ export function enableDrawToCreate(
   return () => {
     canvas.off('mouse:down', handleMouseDown);
     canvas.off('mouse:move', handleMouseMove);
+    document.removeEventListener('keydown', onShiftDown);
+    document.removeEventListener('keyup', onShiftUp);
 
     snapping.cleanup();
     removePreviewElements();

@@ -6,10 +6,16 @@ import {
   type PanAndZoomOptions,
   type ViewportController,
 } from '../viewport';
+import { enableScaledStrokes } from '../serialization';
 
 export interface UseViewCanvasOptions {
   /** Configure pan and zoom. Pass `false` to disable, or options to customize. Default: enabled. */
   panAndZoom?: boolean | PanAndZoomOptions;
+  /**
+   * Keep stroke widths visually constant as the user zooms in/out.
+   * Pass `false` to disable. Default: enabled.
+   */
+  scaledStrokes?: boolean;
   /** Called after the canvas is initialized and viewport is set up. */
   onReady?: (canvas: FabricCanvas) => void;
 }
@@ -53,6 +59,10 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     (canvas: FabricCanvas) => {
       canvasRef.current = canvas;
 
+      if (options?.scaledStrokes !== false) {
+        enableScaledStrokes(canvas);
+      }
+
       if (options?.panAndZoom !== false) {
         const panAndZoomOpts =
           typeof options?.panAndZoom === 'object' ? options.panAndZoom : {};
@@ -88,6 +98,18 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     setZoom(1);
   }, []);
 
+  const zoomIn = useCallback((step?: number) => {
+    viewportRef.current?.zoomIn(step);
+    const canvas = canvasRef.current;
+    if (canvas) setZoom(canvas.getZoom());
+  }, []);
+
+  const zoomOut = useCallback((step?: number) => {
+    viewportRef.current?.zoomOut(step);
+    const canvas = canvasRef.current;
+    if (canvas) setZoom(canvas.getZoom());
+  }, []);
+
   return {
     /** Pass this to `<Canvas onReady={...} />` */
     onReady,
@@ -99,6 +121,10 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     viewport: {
       /** Reset viewport to default (no pan, zoom = 1). */
       reset: resetViewport,
+      /** Zoom in toward the canvas center. Default step: 0.2. */
+      zoomIn,
+      /** Zoom out from the canvas center. Default step: 0.2. */
+      zoomOut,
     },
   };
 }

@@ -20,20 +20,66 @@ export interface ViewportController {
   getMode: () => ViewportMode;
   /** Temporarily disable all pan and zoom input (e.g. during draw modes). */
   setEnabled: (enabled: boolean) => void;
+  /**
+   * Zoom in toward the canvas center by `step` zoom units.
+   * Respects the configured min/max zoom bounds. Default step: 0.2.
+   */
+  zoomIn: (step?: number) => void;
+  /**
+   * Zoom out from the canvas center by `step` zoom units.
+   * Respects the configured min/max zoom bounds. Default step: 0.2.
+   */
+  zoomOut: (step?: number) => void;
   /** Remove all event listeners. */
   cleanup: () => void;
 }
+
+// ─── Pointer helpers ──────────────────────────────────────────────────────────
+
+/** Extract clientX/Y from any pointer-style event (Mouse, Pointer, or Touch). */
+function getPointerXY(e: Event): { x: number; y: number } | null {
+  // PointerEvent extends MouseEvent — both are handled by this branch
+  if (e instanceof MouseEvent) return { x: e.clientX, y: e.clientY };
+  if (
+    typeof TouchEvent !== 'undefined' &&
+    e instanceof TouchEvent &&
+    e.touches.length > 0
+  ) {
+    return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }
+  return null;
+}
+
+/** Distance between two touch points. */
+function touchDistance(touches: TouchList): number {
+  const dx = touches[0].clientX - touches[1].clientX;
+  const dy = touches[0].clientY - touches[1].clientY;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+/** Midpoint of two touch points relative to a canvas element. */
+function touchMidpoint(touches: TouchList, el: HTMLElement): Point {
+  const rect = el.getBoundingClientRect();
+  return new Point(
+    (touches[0].clientX + touches[1].clientX) / 2 - rect.left,
+    (touches[0].clientY + touches[1].clientY) / 2 - rect.top,
+  );
+}
+
+// ─── Main function ────────────────────────────────────────────────────────────
 
 /**
  * Enable pan and zoom on the canvas viewport.
  *
  * - **Zoom**: Scroll the mouse wheel to zoom in/out centred on the cursor
- *   (works in both modes).
+ *   (works in both modes). On touch devices, pinch with two fingers to zoom.
  * - **Select mode**: Normal object selection. Hold Cmd (Mac) / Ctrl (Win) and
- *   drag to pan.
- * - **Pan mode**: Click and drag to pan freely. Object selection is disabled.
+ *   drag to pan. Middle-button drag also pans.
+ * - **Pan mode**: Click or single-touch drag to pan freely. Object selection
+ *   is disabled.
  *
- * Returns a {@link ViewportController} for switching modes and cleaning up.
+ * Returns a {@link ViewportController} for switching modes, programmatic zoom,
+ * and cleanup.
  */
 export function enablePanAndZoom(
   canvas: FabricCanvas,
@@ -51,6 +97,8 @@ export function enablePanAndZoom(
   /** Tracks whether we toggled canvas.selection off so we can restore it. */
   let didDisableSelection = false;
 
+  // ─── Scroll / wheel zoom ─────────────────────────────────────────────────
+
   const handleWheel = (opt: { e: WheelEvent }) => {
     if (!enabled) return;
 
@@ -66,23 +114,29 @@ export function enablePanAndZoom(
     canvas.zoomToPoint(new Point(e.offsetX, e.offsetY), zoom);
   };
 
+  // ─── Mouse / single-touch pan ────────────────────────────────────────────
+
   const handleMouseDown = (opt: { e: TPointerEvent; target?: unknown }) => {
     if (!enabled) return;
 
+    const pos = getPointerXY(opt.e);
+    if (!pos) return;
+
     const e = opt.e;
-    if (!(e instanceof MouseEvent)) {
-      return;
-    }
+    const isMiddleButton = e instanceof MouseEvent && e.button === 1;
+    const isModifiedSelect =
+      e instanceof MouseEvent && mode === 'select' && (e.metaKey || e.ctrlKey);
 
     const shouldPan =
       mode === 'pan' ||
-      e.button === 1 ||
-      (mode === 'select' && (e.metaKey || e.ctrlKey || !opt.target));
+      isMiddleButton ||
+      isModifiedSelect ||
+      (mode === 'select' && !opt.target);
 
     if (shouldPan) {
       isPanning = true;
-      lastPanX = e.clientX;
-      lastPanY = e.clientY;
+      lastPanX = pos.x;
+      lastPanY = pos.y;
 
       if (canvas.selection) {
         didDisableSelection = true;
@@ -93,19 +147,15 @@ export function enablePanAndZoom(
   };
 
   const handleMouseMove = (opt: { e: TPointerEvent }) => {
-    if (!isPanning) {
-      return;
-    }
+    if (!isPanning) return;
 
-    const e = opt.e;
-    if (!(e instanceof MouseEvent)) {
-      return;
-    }
+    const pos = getPointerXY(opt.e);
+    if (!pos) return;
 
-    const dx = e.clientX - lastPanX;
-    const dy = e.clientY - lastPanY;
-    lastPanX = e.clientX;
-    lastPanY = e.clientY;
+    const dx = pos.x - lastPanX;
+    const dy = pos.y - lastPanY;
+    lastPanX = pos.x;
+    lastPanY = pos.y;
 
     canvas.relativePan(new Point(dx, dy));
     canvas.setCursor('grab');
@@ -127,6 +177,50 @@ export function enablePanAndZoom(
   canvas.on('mouse:down', handleMouseDown);
   canvas.on('mouse:move', handleMouseMove);
   canvas.on('mouse:up', handleMouseUp);
+
+  // ─── Pinch-to-zoom (direct DOM touch events) ─────────────────────────────
+
+  let lastPinchDist = 0;
+  const canvasEl = canvas.getElement();
+
+  const onTouchStart = (e: TouchEvent) => {
+    if (e.touches.length === 2) {
+      e.preventDefault();
+      lastPinchDist = touchDistance(e.touches);
+    }
+  };
+
+  const onTouchMove = (e: TouchEvent) => {
+    if (!enabled || e.touches.length !== 2) return;
+    e.preventDefault();
+
+    const dist = touchDistance(e.touches);
+    if (lastPinchDist === 0) {
+      lastPinchDist = dist;
+      return;
+    }
+
+    const ratio = dist / lastPinchDist;
+    lastPinchDist = dist;
+
+    const mid = touchMidpoint(e.touches, canvasEl);
+    canvas.zoomToPoint(
+      mid,
+      Math.min(Math.max(canvas.getZoom() * ratio, minZoom), maxZoom),
+    );
+  };
+
+  const onTouchEnd = (e: TouchEvent) => {
+    if (e.touches.length < 2) lastPinchDist = 0;
+  };
+
+  if (typeof TouchEvent !== 'undefined') {
+    canvasEl.addEventListener('touchstart', onTouchStart, { passive: false });
+    canvasEl.addEventListener('touchmove', onTouchMove, { passive: false });
+    canvasEl.addEventListener('touchend', onTouchEnd);
+  }
+
+  // ─── Controller ──────────────────────────────────────────────────────────
 
   return {
     setMode(newMode: ViewportMode) {
@@ -158,11 +252,32 @@ export function enablePanAndZoom(
       enabled = value;
     },
 
+    zoomIn(step = 0.2) {
+      const z = Math.min(canvas.getZoom() + step, maxZoom);
+      canvas.zoomToPoint(
+        new Point(canvas.getWidth() / 2, canvas.getHeight() / 2),
+        z,
+      );
+    },
+
+    zoomOut(step = 0.2) {
+      const z = Math.max(canvas.getZoom() - step, minZoom);
+      canvas.zoomToPoint(
+        new Point(canvas.getWidth() / 2, canvas.getHeight() / 2),
+        z,
+      );
+    },
+
     cleanup() {
       canvas.off('mouse:wheel', handleWheel);
       canvas.off('mouse:down', handleMouseDown);
       canvas.off('mouse:move', handleMouseMove);
       canvas.off('mouse:up', handleMouseUp);
+      if (typeof TouchEvent !== 'undefined') {
+        canvasEl.removeEventListener('touchstart', onTouchStart);
+        canvasEl.removeEventListener('touchmove', onTouchMove);
+        canvasEl.removeEventListener('touchend', onTouchEnd);
+      }
     },
   };
 }

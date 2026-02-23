@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Stack } from '@mui/material';
-import { Canvas, type CanvasProps } from '@bwp-web/canvas';
+import { Canvas } from '@bwp-web/canvas';
 import type { Canvas as FabricCanvas } from 'fabric';
 
 export interface DemoLayoutProps {
@@ -8,6 +8,15 @@ export interface DemoLayoutProps {
   onReady: (canvas: FabricCanvas) => void;
   canvasWidth?: number;
   canvasHeight?: number;
+  /**
+   * Content to render overlaid on the canvas, positioned absolutely relative
+   * to the canvas element. Use this for floating toolbars, e.g.:
+   *
+   * ```tsx
+   * canvasOverlay={<ViewportControlToolbar ... />}
+   * ```
+   */
+  canvasOverlay?: React.ReactNode;
 }
 
 export function DemoLayout({
@@ -15,6 +24,7 @@ export function DemoLayout({
   onReady,
   canvasWidth = 800,
   canvasHeight = 600,
+  canvasOverlay,
 }: DemoLayoutProps) {
   return (
     <Box sx={{ display: 'flex', height: '100vh' }}>
@@ -39,12 +49,15 @@ export function DemoLayout({
           bgcolor: 'grey.100',
         }}
       >
-        <Canvas
-          width={canvasWidth}
-          height={canvasHeight}
-          onReady={onReady}
-          style={{ border: '1px solid #ccc', background: '#fff' }}
-        />
+        <Box sx={{ position: 'relative', display: 'inline-block' }}>
+          <Canvas
+            width={canvasWidth}
+            height={canvasHeight}
+            onReady={onReady}
+            style={{ border: '1px solid #ccc', background: '#fff' }}
+          />
+          {canvasOverlay}
+        </Box>
       </Box>
     </Box>
   );

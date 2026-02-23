@@ -16,6 +16,8 @@ import {
   setCanvasAlignmentEnabled,
   type VertexEditOptions,
 } from '../interactions';
+import { enableScaledStrokes } from '../serialization';
+import { enableKeyboardShortcuts } from '../keyboard';
 import type { ModeSetup } from '../types';
 
 export interface UseEditCanvasOptions {
@@ -36,6 +38,16 @@ export interface UseEditCanvasOptions {
    * Default: enabled.
    */
   vertexEdit?: boolean | VertexEditOptions;
+  /**
+   * Keep stroke widths visually constant as the user zooms in/out.
+   * Pass `false` to disable. Default: enabled.
+   */
+  scaledStrokes?: boolean;
+  /**
+   * Enable keyboard shortcuts (Delete/Backspace to delete selected objects).
+   * Pass `false` to disable. Default: enabled.
+   */
+  keyboardShortcuts?: boolean;
   /** Called after the canvas is initialized and viewport is set up. */
   onReady?: (canvas: FabricCanvas) => void;
 }
@@ -68,6 +80,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
   const alignmentCleanupRef = useRef<(() => void) | null>(null);
   const modeCleanupRef = useRef<(() => void) | null>(null);
   const vertexEditCleanupRef = useRef<(() => void) | null>(null);
+  const keyboardCleanupRef = useRef<(() => void) | null>(null);
 
   const [zoom, setZoom] = useState(1);
   const [selected, setSelected] = useState<FabricObject[]>([]);
@@ -118,6 +131,14 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
   const onReady = useCallback(
     (canvas: FabricCanvas) => {
       canvasRef.current = canvas;
+
+      if (options?.scaledStrokes !== false) {
+        enableScaledStrokes(canvas);
+      }
+
+      if (options?.keyboardShortcuts !== false) {
+        keyboardCleanupRef.current = enableKeyboardShortcuts(canvas);
+      }
 
       // Set canvas-level alignment state so interaction modes inherit it
       setCanvasAlignmentEnabled(canvas, options?.enableAlignment);
@@ -230,6 +251,18 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     setZoom(1);
   }, []);
 
+  const zoomIn = useCallback((step?: number) => {
+    viewportRef.current?.zoomIn(step);
+    const canvas = canvasRef.current;
+    if (canvas) setZoom(canvas.getZoom());
+  }, []);
+
+  const zoomOut = useCallback((step?: number) => {
+    viewportRef.current?.zoomOut(step);
+    const canvas = canvasRef.current;
+    if (canvas) setZoom(canvas.getZoom());
+  }, []);
+
   return {
     /** Pass this to `<Canvas onReady={...} />` */
     onReady,
@@ -247,6 +280,10 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
       setMode: setViewportMode,
       /** Reset viewport to default (no pan, zoom = 1). */
       reset: resetViewport,
+      /** Zoom in toward the canvas center. Default step: 0.2. */
+      zoomIn,
+      /** Zoom out from the canvas center. Default step: 0.2. */
+      zoomOut,
     },
     /** Whether vertex edit mode is currently active (reactive). */
     isEditingVertices,

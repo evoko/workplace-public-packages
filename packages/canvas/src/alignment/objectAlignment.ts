@@ -30,6 +30,13 @@ export interface ObjectAlignmentOptions {
   xSize?: number;
   /** Dashed line style. */
   lineDash?: number[];
+  /**
+   * Scale the snap margin proportionally with canvas size.
+   * Uses `max(width, height) / 1000` as a multiplier so large canvases
+   * (e.g. floor plans) get proportionally larger snap zones.
+   * Default: `true`. Pass `false` to use a fixed margin regardless of size.
+   */
+  scaleWithCanvasSize?: boolean;
 }
 
 /**
@@ -39,6 +46,7 @@ export interface ObjectAlignmentOptions {
 class ObjectAlignmentGuides {
   private canvas: Canvas;
   private margin: number;
+  private scaleWithCanvasSize: boolean;
   private renderConfig: AlignmentRenderConfig;
 
   private horizontalLines = new Set<string>();
@@ -49,6 +57,7 @@ class ObjectAlignmentGuides {
   constructor(canvas: Canvas, opts?: ObjectAlignmentOptions) {
     this.canvas = canvas;
     this.margin = opts?.margin ?? 4;
+    this.scaleWithCanvasSize = opts?.scaleWithCanvasSize ?? true;
     this.renderConfig = {
       canvas,
       width: opts?.width ?? 1,
@@ -78,6 +87,19 @@ class ObjectAlignmentGuides {
     this.canvas.off('object:resizing', this.onScalingOrResizing);
     this.canvas.off('before:render', this.beforeRender);
     this.canvas.off('after:render', this.afterRender);
+  }
+
+  // --- Margin calculation ---
+
+  private readonly BASE_CANVAS_SIZE = 1000;
+
+  private computeMargin(): number {
+    const zoom = this.canvas.getZoom();
+    const sizeScale = this.scaleWithCanvasSize
+      ? Math.max(this.canvas.width ?? 800, this.canvas.height ?? 600) /
+        this.BASE_CANVAS_SIZE
+      : 1;
+    return (this.margin * sizeScale) / zoom;
   }
 
   // --- Snap point caching ---
@@ -124,7 +146,7 @@ class ObjectAlignmentGuides {
     this.horizontalLines.clear();
 
     const points = this.collectSnapPointsFromTargets(target);
-    const margin = this.margin / this.canvas.getZoom();
+    const margin = this.computeMargin();
     const { verticalLines, horizontalLines } = collectMovingAlignmentLines(
       target,
       points,
@@ -183,7 +205,7 @@ class ObjectAlignmentGuides {
     if (this.markersOnly) isUniform = false;
 
     const allPoints = this.collectSnapPointsFromTargets(target);
-    const margin = this.margin / this.canvas.getZoom();
+    const margin = this.computeMargin();
 
     const props = {
       target,

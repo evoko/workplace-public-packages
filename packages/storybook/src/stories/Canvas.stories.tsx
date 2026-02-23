@@ -1,8 +1,10 @@
 import { useCallback, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
+  Box,
   Button,
   FormControlLabel,
+  Slider,
   Stack,
   Switch,
   TextField,
@@ -25,6 +27,15 @@ import {
   enableClickToCreate,
   enableDragToCreate,
   enableDrawToCreate,
+  enableScaledStrokes,
+  serializeCanvas,
+  loadCanvas,
+  fitViewportToBackground,
+  setBackgroundOpacity,
+  getBackgroundOpacity,
+  setBackgroundInverted,
+  getBackgroundInverted,
+  setBackgroundImage,
 } from '@bwp-web/canvas';
 import type {
   Canvas as FabricCanvas,
@@ -33,8 +44,8 @@ import type {
   Rect,
 } from 'fabric';
 import { ModeButtons } from './canvas/ModeButtons';
-import { ViewportControls } from './canvas/ViewportControls';
 import { DemoLayout } from './canvas/DemoLayout';
+import { ViewportControlToolbar } from './canvas/ViewportControlToolbar';
 
 const meta: Meta<typeof Canvas> = {
   title: 'Canvas/Canvas',
@@ -62,6 +73,15 @@ function syncFields(
     ]),
   );
 }
+
+// A simple SVG grid pattern used as a placeholder background image in demos.
+const GRID_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300">
+  <rect width="400" height="300" fill="#f8f8f8"/>
+  <path d="M 0 0 L 400 0 M 0 50 L 400 50 M 0 100 L 400 100 M 0 150 L 400 150 M 0 200 L 400 200 M 0 250 L 400 250 M 0 300 L 400 300" stroke="#ddd" stroke-width="1"/>
+  <path d="M 0 0 L 0 300 M 50 0 L 50 300 M 100 0 L 100 300 M 150 0 L 150 300 M 200 0 L 200 300 M 250 0 L 250 300 M 300 0 L 300 300 M 350 0 L 350 300 M 400 0 L 400 300" stroke="#ddd" stroke-width="1"/>
+  <text x="200" y="155" text-anchor="middle" fill="#bbb" font-size="14" font-family="sans-serif">Background Image</text>
+</svg>`;
+const GRID_BG_URL = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(GRID_SVG)}`;
 
 // --- Rectangle Demo ---
 
@@ -182,6 +202,16 @@ export const RectangleDemo: Story = {
     return (
       <DemoLayout
         onReady={canvas.onReady}
+        canvasOverlay={
+          <ViewportControlToolbar
+            zoom={canvas.zoom}
+            viewportMode={canvas.viewport.mode}
+            onModeChange={canvas.viewport.setMode}
+            onZoomIn={canvas.viewport.zoomIn}
+            onZoomOut={canvas.viewport.zoomOut}
+            onReset={canvas.viewport.reset}
+          />
+        }
         sidebar={
           <>
             <FormControlLabel
@@ -197,12 +227,6 @@ export const RectangleDemo: Story = {
               modes={RECT_MODES}
               activeMode={mode}
               onModeChange={activateMode}
-            />
-            <ViewportControls
-              viewportMode={canvas.viewport.mode}
-              zoom={canvas.zoom}
-              onModeChange={canvas.viewport.setMode}
-              onReset={canvas.viewport.reset}
             />
             <div>
               <Typography variant="subtitle2" gutterBottom>
@@ -271,6 +295,8 @@ const POLYGON_MODES: Array<{ key: PolygonMode; label: string }> = [
  * - **Draw mode**: Click to place vertices one by one. Click near the first
  *   vertex (red dot) to close the polygon.
  * - Double-click a selected polygon to edit its vertices.
+ * - **Angle snapping**: While editing vertices, hold **Shift** to snap the
+ *   dragged vertex to 15° angle intervals relative to the previous vertex.
  */
 export const PolygonDemo: Story = {
   render: function PolygonDemoRender() {
@@ -373,6 +399,16 @@ export const PolygonDemo: Story = {
     return (
       <DemoLayout
         onReady={canvas.onReady}
+        canvasOverlay={
+          <ViewportControlToolbar
+            zoom={canvas.zoom}
+            viewportMode={canvas.viewport.mode}
+            onModeChange={canvas.viewport.setMode}
+            onZoomIn={canvas.viewport.zoomIn}
+            onZoomOut={canvas.viewport.zoomOut}
+            onReset={canvas.viewport.reset}
+          />
+        }
         sidebar={
           <>
             <FormControlLabel
@@ -389,12 +425,6 @@ export const PolygonDemo: Story = {
               activeMode={mode}
               onModeChange={activateMode}
             />
-            <ViewportControls
-              viewportMode={canvas.viewport.mode}
-              zoom={canvas.zoom}
-              onModeChange={canvas.viewport.setMode}
-              onReset={canvas.viewport.reset}
-            />
             <div>
               <Typography variant="subtitle2" gutterBottom>
                 Programmatic
@@ -408,7 +438,13 @@ export const PolygonDemo: Story = {
                 Add Polygon
               </Button>
             </div>
-            {canvas.selected.length > 0 && (
+            {canvas.isEditingVertices && (
+              <Typography variant="body2" color="info.main">
+                Vertex edit active — hold <strong>Shift</strong> to snap to 15°
+                angles.
+              </Typography>
+            )}
+            {canvas.selected.length > 0 && !canvas.isEditingVertices && (
               <>
                 <Typography variant="body2" color="text.secondary">
                   {canvas.selected.length} object
@@ -556,6 +592,16 @@ export const CircleDemo: Story = {
     return (
       <DemoLayout
         onReady={canvas.onReady}
+        canvasOverlay={
+          <ViewportControlToolbar
+            zoom={canvas.zoom}
+            viewportMode={canvas.viewport.mode}
+            onModeChange={canvas.viewport.setMode}
+            onZoomIn={canvas.viewport.zoomIn}
+            onZoomOut={canvas.viewport.zoomOut}
+            onReset={canvas.viewport.reset}
+          />
+        }
         sidebar={
           <>
             <FormControlLabel
@@ -571,12 +617,6 @@ export const CircleDemo: Story = {
               modes={CIRCLE_MODES}
               activeMode={mode}
               onModeChange={activateMode}
-            />
-            <ViewportControls
-              viewportMode={canvas.viewport.mode}
-              zoom={canvas.zoom}
-              onModeChange={canvas.viewport.setMode}
-              onReset={canvas.viewport.reset}
             />
             <div>
               <Typography variant="subtitle2" gutterBottom>
@@ -705,6 +745,16 @@ export const ViewCanvasDemo: Story = {
     return (
       <DemoLayout
         onReady={canvas.onReady}
+        canvasOverlay={
+          <ViewportControlToolbar
+            zoom={canvas.zoom}
+            viewportMode="pan"
+            onModeChange={() => {}}
+            onZoomIn={canvas.viewport.zoomIn}
+            onZoomOut={canvas.viewport.zoomOut}
+            onReset={canvas.viewport.reset}
+          />
+        }
         sidebar={
           <>
             <Typography variant="subtitle2">View-Only Canvas</Typography>
@@ -713,22 +763,292 @@ export const ViewCanvasDemo: Story = {
               selected, created, edited, or deleted. Drag to pan, scroll to
               zoom.
             </Typography>
+          </>
+        }
+      />
+    );
+  },
+};
+
+// --- Background Image Demo ---
+
+/**
+ * Demonstrates background image management utilities.
+ *
+ * - Set/change the background image
+ * - Adjust opacity with a slider
+ * - Toggle invert filter
+ * - Fit the viewport to the background image
+ *
+ * Draw shapes on top of the background to see how they interact.
+ */
+export const BackgroundDemo: Story = {
+  render: function BackgroundDemoRender() {
+    const canvas = useEditCanvas();
+    const [opacity, setOpacity] = useState(1);
+    const [inverted, setInverted] = useState(false);
+
+    const handleSetBackground = useCallback(async () => {
+      const c = canvas.canvasRef.current;
+      if (!c) return;
+      await setBackgroundImage(c, GRID_BG_URL);
+      setOpacity(getBackgroundOpacity(c));
+      setInverted(getBackgroundInverted(c));
+    }, [canvas.canvasRef]);
+
+    const handleOpacityChange = useCallback(
+      (_: Event, value: number | number[]) => {
+        const v = Array.isArray(value) ? value[0] : value;
+        setOpacity(v);
+        const c = canvas.canvasRef.current;
+        if (c) setBackgroundOpacity(c, v);
+      },
+      [canvas.canvasRef],
+    );
+
+    const handleInvertChange = useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInverted(e.target.checked);
+        const c = canvas.canvasRef.current;
+        if (c) setBackgroundInverted(c, e.target.checked);
+      },
+      [canvas.canvasRef],
+    );
+
+    const handleFitViewport = useCallback(() => {
+      const c = canvas.canvasRef.current;
+      if (c) fitViewportToBackground(c);
+    }, [canvas.canvasRef]);
+
+    const handleClearBackground = useCallback(() => {
+      const c = canvas.canvasRef.current;
+      if (!c) return;
+      c.backgroundImage = undefined;
+      c.requestRenderAll();
+    }, [canvas.canvasRef]);
+
+    return (
+      <DemoLayout
+        onReady={canvas.onReady}
+        canvasOverlay={
+          <ViewportControlToolbar
+            zoom={canvas.zoom}
+            viewportMode={canvas.viewport.mode}
+            onModeChange={canvas.viewport.setMode}
+            onZoomIn={canvas.viewport.zoomIn}
+            onZoomOut={canvas.viewport.zoomOut}
+            onReset={canvas.viewport.reset}
+          />
+        }
+        sidebar={
+          <>
             <div>
               <Typography variant="subtitle2" gutterBottom>
-                Viewport
+                Background Image
               </Typography>
-              <Typography variant="body2" color="text.secondary" gutterBottom>
-                Zoom: {Math.round(canvas.zoom * 100)}%
-              </Typography>
-              <Button
-                variant="outlined"
-                size="small"
-                fullWidth
-                onClick={canvas.viewport.reset}
-              >
-                Reset View
-              </Button>
+              <Stack spacing={1}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onClick={handleSetBackground}
+                >
+                  Load Grid Background
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onClick={handleClearBackground}
+                >
+                  Clear Background
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onClick={handleFitViewport}
+                >
+                  Fit to Viewport
+                </Button>
+              </Stack>
             </div>
+
+            <div>
+              <Typography variant="subtitle2" gutterBottom>
+                Opacity: {Math.round(opacity * 100)}%
+              </Typography>
+              <Slider
+                value={opacity}
+                min={0}
+                max={1}
+                step={0.05}
+                onChange={handleOpacityChange}
+                size="small"
+              />
+            </div>
+
+            <FormControlLabel
+              control={
+                <Switch checked={inverted} onChange={handleInvertChange} />
+              }
+              label="Invert"
+            />
+
+            <Typography variant="body2" color="text.secondary">
+              Click <em>Load Grid Background</em> first, then adjust opacity and
+              invert. Use <em>Fit to Viewport</em> to center and scale the image
+              in the canvas.
+            </Typography>
+          </>
+        }
+      />
+    );
+  },
+};
+
+// --- Serialization Demo ---
+
+/**
+ * Demonstrates canvas serialization and loading.
+ *
+ * - Zoom-independent stroke widths via `enableScaledStrokes` — strokes
+ *   maintain their visual weight at any zoom level.
+ * - **Save**: serializes the canvas to JSON (stroke widths are restored to
+ *   their base values in the saved data).
+ * - **Clear**: removes all objects.
+ * - **Load**: restores the canvas from the last saved JSON.
+ *
+ * Zoom in/out with the toolbar after placing shapes to confirm stroke widths
+ * remain visually consistent.
+ */
+export const SerializationDemo: Story = {
+  render: function SerializationDemoRender() {
+    const [savedJson, setSavedJson] = useState<object | null>(null);
+    const [charCount, setCharCount] = useState(0);
+
+    const canvas = useEditCanvas({
+      onReady: (fabricCanvas) => {
+        // Enable zoom-independent stroke widths
+        enableScaledStrokes(fabricCanvas);
+
+        // Pre-populate with a few shapes
+        createRectangle(fabricCanvas, {
+          left: 80,
+          top: 80,
+          width: 160,
+          height: 100,
+        });
+        createPolygon(fabricCanvas, {
+          points: [
+            { x: 0, y: 60 },
+            { x: 60, y: 0 },
+            { x: 120, y: 60 },
+            { x: 100, y: 120 },
+            { x: 20, y: 120 },
+          ],
+          left: 320,
+          top: 120,
+        });
+        createCircle(fabricCanvas, {
+          left: 560,
+          top: 100,
+          size: 90,
+        });
+      },
+    });
+
+    const handleSave = useCallback(() => {
+      const c = canvas.canvasRef.current;
+      if (!c) return;
+      const json = serializeCanvas(c);
+      setSavedJson(json);
+      setCharCount(JSON.stringify(json).length);
+    }, [canvas.canvasRef]);
+
+    const handleClear = useCallback(() => {
+      const c = canvas.canvasRef.current;
+      if (!c) return;
+      c.clear();
+      c.requestRenderAll();
+    }, [canvas.canvasRef]);
+
+    const handleLoad = useCallback(async () => {
+      const c = canvas.canvasRef.current;
+      if (!c || !savedJson) return;
+      await loadCanvas(c, savedJson);
+      // Re-enable scaled strokes for restored objects
+      enableScaledStrokes(c);
+    }, [canvas.canvasRef, savedJson]);
+
+    return (
+      <DemoLayout
+        onReady={canvas.onReady}
+        canvasOverlay={
+          <ViewportControlToolbar
+            zoom={canvas.zoom}
+            viewportMode={canvas.viewport.mode}
+            onModeChange={canvas.viewport.setMode}
+            onZoomIn={canvas.viewport.zoomIn}
+            onZoomOut={canvas.viewport.zoomOut}
+            onReset={canvas.viewport.reset}
+          />
+        }
+        sidebar={
+          <>
+            <div>
+              <Typography variant="subtitle2" gutterBottom>
+                Serialization
+              </Typography>
+              <Stack spacing={1}>
+                <Button
+                  variant="contained"
+                  size="small"
+                  fullWidth
+                  onClick={handleSave}
+                >
+                  Save Canvas
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onClick={handleClear}
+                >
+                  Clear Canvas
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  onClick={handleLoad}
+                  disabled={!savedJson}
+                >
+                  Load Canvas
+                </Button>
+              </Stack>
+            </div>
+
+            {savedJson && (
+              <Box
+                sx={{
+                  p: 1.5,
+                  bgcolor: 'action.hover',
+                  borderRadius: 1,
+                  fontSize: 12,
+                }}
+              >
+                <Typography variant="caption" color="text.secondary">
+                  Saved snapshot: {charCount} chars
+                </Typography>
+              </Box>
+            )}
+
+            <Typography variant="body2" color="text.secondary">
+              Zoom in/out to confirm strokes remain visually consistent
+              (zoom-independent stroke widths are active). Save captures the
+              base stroke width — not the scaled one.
+            </Typography>
           </>
         }
       />

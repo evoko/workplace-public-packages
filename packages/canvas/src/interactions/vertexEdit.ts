@@ -15,6 +15,8 @@ export interface VertexEditOptions {
   handleStrokeWidth?: number;
 }
 
+// ─── Coordinate helpers ───────────────────────────────────────────────────────
+
 function localPointToScene(polygon: Polygon, point: Point2D): Point {
   const matrix = polygon.calcTransformMatrix();
   const localPoint = new Point(
@@ -33,6 +35,8 @@ function scenePointToLocal(polygon: Polygon, scenePoint: Point): Point2D {
     y: localPoint.y + polygon.pathOffset.y,
   };
 }
+
+// ─── Main function ────────────────────────────────────────────────────────────
 
 /**
  * Enable vertex editing on a polygon.
@@ -120,15 +124,15 @@ export function enableVertexEdit(
   const handleObjectMoving = (e: { target: FabricObject }) => {
     const target = e.target;
     const index = handleIndexMap.get(target as Circle);
-    if (index === undefined) {
-      return;
-    }
+    if (index === undefined) return;
+
+    const pos = { x: target.left, y: target.top };
 
     // Use a non-dragged vertex as an anchor to measure visual drift
     const anchorIdx = index === 0 ? 1 : 0;
     const anchorBefore = localPointToScene(polygon, polygon.points[anchorIdx]);
 
-    const scenePoint = new Point(target.left, target.top);
+    const scenePoint = new Point(pos.x, pos.y);
     const localPoint = scenePointToLocal(polygon, scenePoint);
 
     polygon.points[index] = localPoint;
@@ -167,9 +171,7 @@ export function enableVertexEdit(
   canvas.on('mouse:down', handleMouseDown);
 
   function cleanup() {
-    if (exited) {
-      return;
-    }
+    if (exited) return;
     exited = true;
 
     canvas.off('object:moving', handleObjectMoving);
