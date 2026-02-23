@@ -225,6 +225,13 @@ class ObjectAlignmentGuides {
       this.markersOnly && (corner.includes('l') || corner.includes('r'));
 
     const vList = skipVertical ? [] : collectVerticalSnapOffset(props);
+    // Vertical snap may have mutated scaleX (and scaleY for uniform scaling),
+    // shifting the active corner's Y position. Refresh point so horizontal snap
+    // computes its offset against the post-snap corner location, not the stale one.
+    if (vList.length > 0) {
+      const updatedPointMap = getBoundingPointMap(target);
+      if (corner in updatedPointMap) props.point = updatedPointMap[corner];
+    }
     const hList = skipHorizontal ? [] : collectHorizontalSnapOffset(props);
 
     for (const l of vList) this.verticalLines.add(JSON.stringify(l));
