@@ -154,7 +154,11 @@ export function enableDrawToCreate(
   const handleMouseDown = (event: { scenePoint: Point2D }) => {
     let { x, y } = snapping.snap(event.scenePoint.x, event.scenePoint.y);
     if (angleSnapEnabled && shiftHeld && points.length > 0) {
-      ({ x, y } = snapAngleToInterval({ x, y }, points[points.length - 1], angleInterval));
+      ({ x, y } = snapAngleToInterval(
+        { x, y },
+        points[points.length - 1],
+        angleInterval,
+      ));
     }
     snapping.clearSnapResult();
 

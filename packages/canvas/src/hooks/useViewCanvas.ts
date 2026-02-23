@@ -28,7 +28,8 @@ function lockCanvas(canvas: FabricCanvas) {
     obj.evented = false;
     if (
       obj instanceof Rect &&
-      (obj.shapeType !== 'circle' || obj.data?.type !== 'DEVICE')
+      obj.shapeType !== 'circle' &&
+      obj.data?.type !== 'DEVICE'
     ) {
       obj.set({ rx: 4, ry: 4 });
     }

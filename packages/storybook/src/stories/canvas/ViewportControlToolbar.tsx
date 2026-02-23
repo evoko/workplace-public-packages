@@ -1,5 +1,13 @@
 import React from 'react';
-import { Box, IconButton, Paper, ToggleButton, ToggleButtonGroup, Tooltip, Typography } from '@mui/material';
+import {
+  Box,
+  IconButton,
+  Paper,
+  ToggleButton,
+  ToggleButtonGroup,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CropFreeIcon from '@mui/icons-material/CropFree';
@@ -89,7 +97,11 @@ export function ViewportControlToolbar({
 
       <Typography
         variant="caption"
-        sx={{ minWidth: 40, textAlign: 'center', fontVariantNumeric: 'tabular-nums' }}
+        sx={{
+          minWidth: 40,
+          textAlign: 'center',
+          fontVariantNumeric: 'tabular-nums',
+        }}
       >
         {Math.round(zoom * 100)}%
       </Typography>

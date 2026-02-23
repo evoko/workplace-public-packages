@@ -129,7 +129,9 @@ export function collectVerticalSnapOffset(
   snapOffset *= dirX;
 
   const { width, height, scaleX, scaleY } = target;
-  const strokeWidthDelta = target.strokeUniform ? 0 : getBaseStrokeWidth(target);
+  const strokeWidthDelta = target.strokeUniform
+    ? 0
+    : getBaseStrokeWidth(target);
   const scaleWidth = scaleX * width + strokeWidthDelta;
   const sx = (snapOffset + scaleWidth) / scaleWidth;
   if (sx === 0) return [];
@@ -178,7 +180,9 @@ export function collectHorizontalSnapOffset(
   snapOffset *= dirY;
 
   const { width, height, scaleX, scaleY } = target;
-  const strokeWidthDelta = target.strokeUniform ? 0 : getBaseStrokeWidth(target);
+  const strokeWidthDelta = target.strokeUniform
+    ? 0
+    : getBaseStrokeWidth(target);
   const scaleHeight = scaleY * height + strokeWidthDelta;
   const sy = (snapOffset + scaleHeight) / scaleHeight;
   if (sy === 0) return [];

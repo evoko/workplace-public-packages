@@ -89,7 +89,11 @@ export {
   resizeImageUrl,
   setBackgroundImage,
 } from './background';
-export type { FitViewportOptions, ResizeResult, ResizeImageOptions } from './background';
+export type {
+  FitViewportOptions,
+  ResizeResult,
+  ResizeImageOptions,
+} from './background';
 
 // --- Styles ---
 export {
