@@ -60,6 +60,8 @@ export { getSnapPoints, registerSnapPointExtractor } from './alignment';
 export type { SnapPointExtractor } from './alignment';
 export { enableObjectAlignment } from './alignment';
 export type { ObjectAlignmentOptions } from './alignment';
+export { enableRotationSnap } from './alignment';
+export type { RotationSnapOptions } from './alignment';
 export { snapCursorPoint } from './alignment';
 export type {
   CursorSnapResult,

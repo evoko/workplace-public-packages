@@ -10,6 +10,8 @@ import {
 import {
   enableObjectAlignment,
   type ObjectAlignmentOptions,
+  enableRotationSnap,
+  type RotationSnapOptions,
 } from '../alignment';
 import {
   enableVertexEdit,
@@ -26,6 +28,11 @@ export interface UseEditCanvasOptions {
   panAndZoom?: boolean | PanAndZoomOptions;
   /** Enable alignment guidelines for object movement/scaling. Pass `false` to disable, or options to customize. Default: enabled. */
   alignment?: boolean | ObjectAlignmentOptions;
+  /**
+   * Snap rotation to angle intervals when Shift is held. Pass `false` to
+   * disable, or `{ interval }` to change the snap interval. Default: enabled at 15° intervals.
+   */
+  rotationSnap?: boolean | RotationSnapOptions;
   /**
    * Master toggle for all alignment and snapping functionality.
    * - `undefined`: each feature uses its own prop (default).
@@ -86,6 +93,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
   const canvasRef = useRef<FabricCanvas | null>(null);
   const viewportRef = useRef<ViewportController | null>(null);
   const alignmentCleanupRef = useRef<(() => void) | null>(null);
+  const rotationSnapCleanupRef = useRef<(() => void) | null>(null);
   const modeCleanupRef = useRef<(() => void) | null>(null);
   const vertexEditCleanupRef = useRef<(() => void) | null>(null);
   const keyboardCleanupRef = useRef<(() => void) | null>(null);
@@ -174,6 +182,15 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
         );
       }
 
+      if (options?.rotationSnap !== false) {
+        rotationSnapCleanupRef.current = enableRotationSnap(
+          canvas,
+          typeof options?.rotationSnap === 'object'
+            ? options.rotationSnap
+            : undefined,
+        );
+      }
+
       canvas.on('mouse:wheel', () => {
         setZoom(canvas.getZoom());
       });
@@ -252,6 +269,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
       alignmentCleanupRef.current();
       alignmentCleanupRef.current = null;
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options?.enableAlignment]);
 
