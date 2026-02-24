@@ -730,8 +730,8 @@ export const biampTheme = (
               padding: 0,
             },
             li: ({ theme }) => ({
-              marginLeft: "8px",
-              marginRight: "8px",
+              marginLeft: '8px',
+              marginRight: '8px',
               fontSize: theme.typography.body2.fontSize,
               fontWeight: 600,
               color: `${theme.palette.text.secondary} !important`,
@@ -1444,7 +1444,9 @@ export const biampTheme = (
               height: 16,
               borderRadius: 8,
               backgroundColor:
-                theme.palette.mode === 'dark' ? colors.grey[800] : colors.grey[100],
+                theme.palette.mode === 'dark'
+                  ? colors.grey[800]
+                  : colors.grey[100],
               '&::before': {
                 content: '""',
                 position: 'absolute',
@@ -1454,7 +1456,10 @@ export const biampTheme = (
                 height: 16,
                 borderTopLeftRadius: 8,
                 borderBottomLeftRadius: 8,
-                backgroundColor: theme.palette.mode === 'dark' ? colors.grey[800] : colors.grey[100],
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? colors.grey[800]
+                    : colors.grey[100],
               },
               '&::after': {
                 content: '""',
@@ -1465,7 +1470,10 @@ export const biampTheme = (
                 height: 16,
                 borderTopRightRadius: 8,
                 borderBottomRightRadius: 8,
-                backgroundColor: theme.palette.mode === 'dark' ? colors.grey[800] : colors.grey[100],
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? colors.grey[800]
+                    : colors.grey[100],
               },
             }),
             track: {

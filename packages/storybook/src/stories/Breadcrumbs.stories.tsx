@@ -26,7 +26,9 @@ export const Default: Story = {
         <Link underline="hover" color="inherit" href="#">
           Settings
         </Link>
-        <Typography color="text.secondary" variant="body2" fontWeight={600}>General</Typography>
+        <Typography color="text.secondary" variant="body2" fontWeight={600}>
+          General
+        </Typography>
       </Breadcrumbs>
     </Stack>
   ),
@@ -41,7 +43,9 @@ export const MultipleDepths: Story = {
         <Link underline="hover" color="inherit" href="#">
           Home
         </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">Dashboard</Typography>
+        <Typography color="text.secondary" fontWeight={600} variant="body2">
+          Dashboard
+        </Typography>
       </Breadcrumbs>
 
       <Breadcrumbs>
@@ -51,7 +55,9 @@ export const MultipleDepths: Story = {
         <Link underline="hover" color="inherit" href="#">
           Users
         </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">John Doe</Typography>
+        <Typography color="text.secondary" fontWeight={600} variant="body2">
+          John Doe
+        </Typography>
       </Breadcrumbs>
 
       <Breadcrumbs>
@@ -67,7 +73,9 @@ export const MultipleDepths: Story = {
         <Link underline="hover" color="inherit" href="#">
           Network
         </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">Proxy Configuration</Typography>
+        <Typography color="text.secondary" fontWeight={600} variant="body2">
+          Proxy Configuration
+        </Typography>
       </Breadcrumbs>
     </Stack>
   ),
@@ -90,7 +98,9 @@ export const Collapsed: Story = {
         <Link underline="hover" color="inherit" href="#">
           Item Type
         </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">Item Detail</Typography>
+        <Typography color="text.secondary" fontWeight={600} variant="body2">
+          Item Detail
+        </Typography>
       </Breadcrumbs>
     </Stack>
   ),
