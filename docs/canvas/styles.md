@@ -82,3 +82,21 @@ interface Canvas {
 ```
 
 This augmentation is applied automatically — no manual `declare module 'fabric'` needed by consumers.
+
+---
+
+## Fabric re-exports
+
+The package re-exports commonly used Fabric types so consumers can import from a single source. This avoids type boundary mismatches that occur when the consumer and the package resolve different copies of `fabric`.
+
+```typescript
+import {
+  FabricCanvas,   // Fabric's Canvas class (aliased to avoid conflict with the React component)
+  FabricObject,
+  FabricImage,
+  Rect,
+  Polygon,
+} from '@bwp-web/canvas';
+```
+
+> `fabric` is a peer dependency — install it alongside `@bwp-web/canvas`. The package does not bundle its own copy.

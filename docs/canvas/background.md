@@ -2,7 +2,7 @@
 
 Utilities for managing a background image on the canvas (e.g. a floor plan image).
 
-## `setBackgroundImage(canvas, url, resize?): Promise<FabricImage>`
+## `setBackgroundImage(canvas, url, options?): Promise<FabricImage>`
 
 Loads an image from a URL (or data URL) and sets it as the canvas background. Optionally resizes large images before applying.
 
@@ -19,11 +19,23 @@ reader.readAsDataURL(file);
 // With resize options
 await setBackgroundImage(canvas, url, { maxSize: 2000, minSize: 100 });
 
-// Disable auto-resize
-await setBackgroundImage(canvas, url, false);
+// Preserve opacity when replacing the background image
+await setBackgroundImage(canvas, url, { preserveOpacity: true });
 ```
 
 > When using `useEditCanvas`, prefer `canvas.setBackground(url)` which handles resize options from the hook config.
+
+### Options (`SetBackgroundImageOptions`)
+
+Extends `ResizeImageOptions` with:
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `maxSize` | `number` | `4096` | Maximum dimension in pixels |
+| `minSize` | `number` | `50` | Minimum dimension — throws if smaller |
+| `preserveOpacity` | `boolean` | `false` | Preserve the current background opacity when replacing the image |
+
+When `preserveOpacity` is `true`, the current background opacity is read before loading the new image and re-applied afterwards. This avoids the manual 3-step pattern of read-opacity / set-image / restore-opacity.
 
 ---
 
