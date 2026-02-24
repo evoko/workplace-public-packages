@@ -166,6 +166,23 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     [],
   );
 
+  /** Apply a visual style to all objects whose `data.type` matches the given type. */
+  const setObjectStyleByType = useCallback(
+    (type: string, style: ViewObjectStyle) => {
+      const c = canvasRef.current;
+      if (!c) return;
+      let updated = false;
+      for (const obj of c.getObjects()) {
+        if (obj.data?.type === type) {
+          obj.set(style);
+          updated = true;
+        }
+      }
+      if (updated) c.requestRenderAll();
+    },
+    [],
+  );
+
   return {
     /** Pass this to `<Canvas onReady={...} />` */
     onReady,
@@ -186,5 +203,7 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     setObjectStyle,
     /** Batch-update multiple objects' visual styles in one render. Keyed by `data.id`. */
     setObjectStyles,
+    /** Apply a visual style to all objects whose `data.type` matches. */
+    setObjectStyleByType,
   };
 }
