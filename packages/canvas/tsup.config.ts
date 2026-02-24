@@ -6,6 +6,12 @@ export default defineConfig({
   dts: false,
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', '@bwp-web/styles', '@mui/material'],
+  external: [
+    'react',
+    'react-dom',
+    '@bwp-web/styles',
+    '@mui/material',
+    'fabric',
+  ],
   jsx: 'automatic',
 });
