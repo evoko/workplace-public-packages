@@ -30,6 +30,8 @@ export interface DrawToCreateOptions extends SnappableInteractionOptions {
    * Pass `false` to disable. Default: enabled at 15° intervals.
    */
   angleSnap?: boolean | { interval?: number };
+  /** Called when the user cancels drawing via Escape or Backspace. */
+  onCancel?: () => void;
 }
 
 function snapAngleToInterval(
@@ -61,6 +63,8 @@ export function enableDrawToCreate(
   canvas: FabricCanvas,
   options?: DrawToCreateOptions,
 ): () => void {
+  let exited = false;
+
   const angleSnapEnabled = options?.angleSnap !== false;
   const angleInterval =
     typeof options?.angleSnap === 'object'
@@ -249,12 +253,26 @@ export function enableDrawToCreate(
     canvas.requestRenderAll();
   };
 
+  // Cancel drawing on Escape or Backspace (capture phase to prevent other handlers)
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape' || e.key === 'Backspace') {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      cleanup('cancel');
+    }
+  };
+
   canvas.on('mouse:down', handleMouseDown);
   canvas.on('mouse:move', handleMouseMove);
+  document.addEventListener('keydown', handleKeyDown, true);
 
-  return () => {
+  function cleanup(reason?: 'cancel') {
+    if (exited) return;
+    exited = true;
+
     canvas.off('mouse:down', handleMouseDown);
     canvas.off('mouse:move', handleMouseMove);
+    document.removeEventListener('keydown', handleKeyDown, true);
     shiftTracker.cleanup();
 
     snapping.cleanup();
@@ -266,5 +284,11 @@ export function enableDrawToCreate(
     points.length = 0;
     canvas.requestRenderAll();
     restoreViewport(options?.viewport);
-  };
+
+    if (reason === 'cancel') {
+      options?.onCancel?.();
+    }
+  }
+
+  return () => cleanup();
 }
