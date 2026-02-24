@@ -113,6 +113,10 @@ export function serializeCanvas(
 
   const json = canvas.toObject(properties);
 
+  // Strip backgroundColor — it's theme-dependent, not user data. The
+  // container's CSS background should control the canvas background color.
+  delete json.backgroundColor;
+
   // Reapply the zoom-scaled values
   scaledWidths.forEach((scaled, obj) => {
     obj.strokeWidth = scaled;
