@@ -49,8 +49,8 @@ Returned by `enablePanAndZoom`. Also available through the hooks' `viewport` pro
 | `setMode(mode)` | Switch between `'select'` and `'pan'` mode |
 | `getMode()` | Get current mode |
 | `setEnabled(enabled)` | Enable/disable all viewport input |
-| `zoomIn(step?)` | Zoom in toward canvas center (default step: `0.2`) |
-| `zoomOut(step?)` | Zoom out from canvas center (default step: `0.2`) |
+| `zoomIn(factor?)` | Zoom in toward canvas center by a multiplier (default: `1.2` = 20%) |
+| `zoomOut(factor?)` | Zoom out from canvas center by a multiplier (default: `1.2` = 20%) |
 | `panToObject(object, options?)` | Pan viewport to center on a specific object |
 | `cleanup()` | Remove all event listeners |
 

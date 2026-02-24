@@ -73,29 +73,68 @@ export function fitViewportToBackground(
   canvas.requestRenderAll();
 }
 
-// --- Opacity ---
+// --- Contrast ---
 
 /**
- * Set the opacity of the canvas background image.
- * Value is clamped to the 0–1 range.
+ * Set the contrast of the canvas background image.
+ *
+ * Value is expressed as a 0–2 scale:
+ * - **0**: minimum contrast (flat grey).
+ * - **1**: normal / unmodified (no filter applied).
+ * - **2**: maximum contrast (darks are truly dark, lights truly light).
+ *
+ * Clamped to the 0–2 range.
  */
-export function setBackgroundOpacity(
+export function setBackgroundContrast(
   canvas: FabricCanvas,
-  opacity: number,
+  value: number,
 ): void {
   const bg = getBackgroundImage(canvas);
   if (!bg) return;
-  bg.set('opacity', Math.min(1, Math.max(0, opacity)));
+
+  // Map 0–2 scale to Fabric Contrast range -1..+1 (0 = normal)
+  const contrast = Math.min(Math.max(value, 0), 2) - 1;
+
+  const currentFilters: filters.BaseFilter<string>[] = bg.filters ?? [];
+  const contrastIdx = currentFilters.findIndex(
+    (f) => f instanceof filters.Contrast,
+  );
+
+  if (contrast === 0) {
+    // Normal — remove filter if present
+    if (contrastIdx >= 0) {
+      bg.filters = currentFilters.filter(
+        (f) => !(f instanceof filters.Contrast),
+      );
+      bg.applyFilters();
+    }
+  } else if (contrastIdx >= 0) {
+    (currentFilters[contrastIdx] as filters.Contrast).contrast = contrast;
+    bg.applyFilters();
+  } else {
+    bg.filters = [...currentFilters, new filters.Contrast({ contrast })];
+    bg.applyFilters();
+  }
+
   canvas.requestRenderAll();
 }
 
 /**
- * Get the current opacity of the canvas background image.
+ * Get the current contrast of the canvas background image.
+ *
+ * Returns a value in the 0–2 range where 1 is normal (no filter).
  * Returns 1 if no background image is set.
  */
-export function getBackgroundOpacity(canvas: FabricCanvas): number {
+export function getBackgroundContrast(canvas: FabricCanvas): number {
   const bg = getBackgroundImage(canvas);
-  return bg?.opacity ?? 1;
+  if (!bg) return 1;
+
+  const contrastFilter = bg.filters?.find(
+    (f) => f instanceof filters.Contrast,
+  ) as filters.Contrast | undefined;
+
+  // Map Fabric -1..+1 back to 0..2 scale
+  return 1 + (contrastFilter?.contrast ?? 0);
 }
 
 // --- Invert filter ---
@@ -232,15 +271,15 @@ export function resizeImageUrl(
 // --- Background image loading helper ---
 
 export interface SetBackgroundImageOptions extends ResizeImageOptions {
-  /** Preserve the current background opacity when replacing the image. */
-  preserveOpacity?: boolean;
+  /** Preserve the current background contrast when replacing the image. */
+  preserveContrast?: boolean;
 }
 
 /**
  * Set an image URL as the canvas background image.
  *
  * Pass options to control auto-resize (`maxSize`, `minSize`) and/or
- * preserve the current background opacity when replacing the image.
+ * preserve the current background contrast when replacing the image.
  * Omit to load the URL as-is without resizing.
  *
  * Returns the created FabricImage for further manipulation.
@@ -250,8 +289,8 @@ export async function setBackgroundImage(
   url: string,
   options?: SetBackgroundImageOptions,
 ): Promise<FabricImage> {
-  const prevOpacity = options?.preserveOpacity
-    ? getBackgroundOpacity(canvas)
+  const prevContrast = options?.preserveContrast
+    ? getBackgroundContrast(canvas)
     : undefined;
 
   let imageUrl = url;
@@ -262,8 +301,8 @@ export async function setBackgroundImage(
   const img = await FabricImage.fromURL(imageUrl, { crossOrigin: 'anonymous' });
   canvas.backgroundImage = img;
 
-  if (prevOpacity !== undefined && prevOpacity !== 1) {
-    img.set('opacity', prevOpacity);
+  if (prevContrast !== undefined && prevContrast !== 1) {
+    setBackgroundContrast(canvas, prevContrast);
   }
 
   canvas.requestRenderAll();

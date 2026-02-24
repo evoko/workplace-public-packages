@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Box,
@@ -17,6 +23,7 @@ import {
   Canvas,
   useEditCanvas,
   useViewCanvas,
+  useObjectOverlay,
   createRectangle,
   createRectangleAtPoint,
   editRectangle,
@@ -32,8 +39,8 @@ import {
   enableDrawToCreate,
   serializeCanvas,
   loadCanvas,
-  setBackgroundOpacity,
-  getBackgroundOpacity,
+  setBackgroundContrast,
+  getBackgroundContrast,
   setBackgroundInverted,
   getBackgroundInverted,
 } from '@bwp-web/canvas';
@@ -122,7 +129,7 @@ function EditCanvasContent({
 }: EditCanvasContentProps) {
   const [creationMode, setCreationMode] = useState<CreationMode>('select');
   const [activeShape, setActiveShape] = useState<ShapeType>('rectangle');
-  const [bgOpacity, setBgOpacity] = useState(1);
+  const [bgContrast, setBgContrast] = useState(1);
   const [bgInverted, setBgInverted] = useState(false);
   const [hasBackground, setHasBackground] = useState(false);
   const [hasSaved, setHasSaved] = useState(
@@ -153,7 +160,7 @@ function EditCanvasContent({
           await loadCanvas(c, JSON.parse(stored));
           if (c.backgroundImage) {
             setHasBackground(true);
-            setBgOpacity(getBackgroundOpacity(c));
+            setBgContrast(getBackgroundContrast(c));
             setBgInverted(getBackgroundInverted(c));
           }
           setHasSaved(true);
@@ -329,7 +336,7 @@ function EditCanvasContent({
         await canvas.setBackground(ev.target.result);
         const c = canvas.canvasRef.current;
         if (c) {
-          setBgOpacity(getBackgroundOpacity(c));
+          setBgContrast(getBackgroundContrast(c));
           setBgInverted(getBackgroundInverted(c));
         }
         setHasBackground(true);
@@ -339,12 +346,12 @@ function EditCanvasContent({
     [canvas.setBackground, canvas.canvasRef],
   );
 
-  const handleOpacityChange = useCallback(
+  const handleContrastChange = useCallback(
     (_: Event, value: number | number[]) => {
       const v = Array.isArray(value) ? value[0] : value;
-      setBgOpacity(v);
+      setBgContrast(v);
       const c = canvas.canvasRef.current;
-      if (c) setBackgroundOpacity(c, v);
+      if (c) setBackgroundContrast(c, v);
     },
     [canvas.canvasRef],
   );
@@ -386,7 +393,7 @@ function EditCanvasContent({
     await loadCanvas(c, JSON.parse(stored));
     if (c.backgroundImage) {
       setHasBackground(true);
-      setBgOpacity(getBackgroundOpacity(c));
+      setBgContrast(getBackgroundContrast(c));
       setBgInverted(getBackgroundInverted(c));
     }
     canvas.viewport.reset();
@@ -611,14 +618,14 @@ function EditCanvasContent({
                   <>
                     <Box>
                       <Typography variant="caption" color="text.secondary">
-                        Opacity: {Math.round(bgOpacity * 100)}%
+                        Contrast: {Math.round(bgContrast * 100)}%
                       </Typography>
                       <Slider
-                        value={bgOpacity}
+                        value={bgContrast}
                         min={0}
-                        max={1}
+                        max={2}
                         step={0.05}
-                        onChange={handleOpacityChange}
+                        onChange={handleContrastChange}
                         size="small"
                       />
                     </Box>
@@ -1049,5 +1056,221 @@ export const ViewCanvasDemo: Story = {
         onOptionToggle={handleOptionToggle}
       />
     );
+  },
+};
+
+// ============================================================
+// ObjectOverlayLabel — renders a DOM label over a canvas object
+// ============================================================
+
+function ObjectOverlayLabel({
+  canvasRef,
+  object,
+  label,
+}: {
+  canvasRef: RefObject<FabricCanvas | null>;
+  object: FabricObject;
+  label: string;
+}) {
+  const overlayRef = useObjectOverlay(canvasRef, object, {
+    autoScaleContent: true,
+    textSelector: '.overlay-text',
+    textMinScale: 0.5,
+  });
+
+  return (
+    <div
+      ref={overlayRef}
+      style={{
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <div
+        style={{
+          transform: 'scale(var(--overlay-scale, 1))',
+          transformOrigin: 'center',
+          background: 'rgba(33, 150, 243, 0.85)',
+          color: '#fff',
+          padding: '2px 8px',
+          borderRadius: 4,
+          fontSize: 12,
+          fontWeight: 600,
+          whiteSpace: 'nowrap',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 4,
+        }}
+      >
+        <span
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: '50%',
+            background: '#fff',
+            flexShrink: 0,
+          }}
+        />
+        <span className="overlay-text">{label}</span>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// OverlayDemoContent — useObjectOverlay + panToObject demo
+// ============================================================
+
+function OverlayDemoContent() {
+  const [objects, setObjects] = useState<FabricObject[]>([]);
+  const [showOverlays, setShowOverlays] = useState(true);
+
+  const canvas = useEditCanvas({
+    onReady: (c) => {
+      const r1 = createRectangle(c, {
+        left: 200,
+        top: 150,
+        width: 140,
+        height: 90,
+      });
+      r1.data = { type: 'DESK', id: 'desk-101' };
+
+      const r2 = createRectangle(c, {
+        left: 500,
+        top: 100,
+        width: 120,
+        height: 80,
+      });
+      r2.data = { type: 'DESK', id: 'desk-102' };
+
+      const c1 = createCircle(c, { left: 350, top: 350, size: 100 });
+      c1.data = { type: 'FACILITY', id: 'printer-A' };
+
+      const p1 = createPolygon(c, {
+        points: [
+          { x: 0, y: 0 },
+          { x: 80, y: -20 },
+          { x: 120, y: 30 },
+          { x: 100, y: 80 },
+          { x: 20, y: 80 },
+        ],
+        left: 150,
+        top: 350,
+      });
+      p1.data = { type: 'PLACE', id: 'room-A1' };
+
+      setObjects([r1, r2, c1, p1]);
+    },
+  });
+
+  return (
+    <DemoLayout
+      onReady={canvas.onReady}
+      canvasOverlay={
+        <>
+          <ViewportControlToolbar
+            zoom={canvas.zoom}
+            viewportMode={canvas.viewport.mode}
+            onModeChange={canvas.viewport.setMode}
+            onZoomIn={canvas.viewport.zoomIn}
+            onZoomOut={canvas.viewport.zoomOut}
+            onReset={canvas.viewport.reset}
+          />
+          {showOverlays &&
+            objects.map((obj) => (
+              <ObjectOverlayLabel
+                key={obj.data?.id}
+                canvasRef={canvas.canvasRef}
+                object={obj}
+                label={obj.data?.id ?? ''}
+              />
+            ))}
+        </>
+      }
+      sidebar={
+        <>
+          <div>
+            <Typography variant="subtitle2" gutterBottom>
+              Object Overlay
+            </Typography>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={showOverlays}
+                  onChange={(e) => setShowOverlays(e.target.checked)}
+                />
+              }
+              label={<Typography variant="body2">Show Overlays</Typography>}
+            />
+          </div>
+
+          <Divider />
+
+          {objects.length > 0 && (
+            <>
+              <div>
+                <Typography variant="subtitle2" gutterBottom>
+                  Pan to Object
+                </Typography>
+                <Stack spacing={0.5}>
+                  {objects.map((obj) => (
+                    <Button
+                      key={obj.data?.id}
+                      variant="outlined"
+                      size="small"
+                      fullWidth
+                      onClick={() =>
+                        canvas.viewport.panToObject(obj, { animate: true })
+                      }
+                    >
+                      {obj.data?.id ?? 'unknown'}
+                    </Button>
+                  ))}
+                </Stack>
+              </div>
+
+              <Divider />
+            </>
+          )}
+
+          <Typography variant="body2" color="text.secondary">
+            DOM overlays positioned over canvas objects using{' '}
+            <code>useObjectOverlay</code>. Overlays track with pan, zoom, move,
+            scale, and rotate.
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Zoom in/out to see auto-scaling. Text labels hide when zoomed out
+            far enough.
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Click &ldquo;Pan to Object&rdquo; buttons to see animated panning
+            via <code>viewport.panToObject</code>.
+          </Typography>
+        </>
+      }
+    />
+  );
+}
+
+// ============================================================
+// ObjectOverlayDemo story
+// ============================================================
+
+/**
+ * Demonstrates `useObjectOverlay` — positioning DOM elements over canvas
+ * objects that stay in sync with pan, zoom, move, scale, and rotate.
+ *
+ * - **Toggle overlays**: switch the DOM labels on/off
+ * - **Pan to object**: animated panning via `viewport.panToObject`
+ * - **Auto-scale**: overlay content scales with zoom; text hides at low zoom
+ * - **Drag objects**: overlays follow in real time
+ */
+export const ObjectOverlayDemo: Story = {
+  name: 'Object Overlay',
+  render: function ObjectOverlayDemoRender() {
+    return <OverlayDemoContent />;
   },
 };

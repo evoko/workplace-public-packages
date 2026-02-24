@@ -100,8 +100,8 @@ export type { SerializeOptions, LoadCanvasOptions } from './serialization';
 export {
   fitViewportToBackground,
   getBackgroundSrc,
-  setBackgroundOpacity,
-  getBackgroundOpacity,
+  setBackgroundContrast,
+  getBackgroundContrast,
   setBackgroundInverted,
   getBackgroundInverted,
   resizeImageUrl,

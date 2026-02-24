@@ -113,6 +113,10 @@ export function serializeCanvas(
 
   const json = canvas.toObject(properties);
 
+  // Strip backgroundColor — it's theme-dependent, not user data. The
+  // container's CSS background should control the canvas background color.
+  delete json.backgroundColor;
+
   // Reapply the zoom-scaled values
   scaledWidths.forEach((scaled, obj) => {
     obj.strokeWidth = scaled;
@@ -154,6 +158,21 @@ export async function loadCanvas(
     });
     for (const obj of toRemove) canvas.remove(obj);
   }
+
+  // Normalize legacy origin: old data uses originX/Y 'left'/'top', but the
+  // new canvas expects 'center'/'center'. Compute the visual center before
+  // switching origins so objects stay in the same position.
+  canvas.forEachObject((obj) => {
+    if (obj.originX === 'center' && obj.originY === 'center') return;
+    const center = obj.getCenterPoint();
+    obj.set({
+      originX: 'center',
+      originY: 'center',
+      left: center.x,
+      top: center.y,
+    });
+    obj.setCoords();
+  });
 
   // Re-apply per-object state that Fabric does not persist through serialization.
   canvas.forEachObject((obj) => {

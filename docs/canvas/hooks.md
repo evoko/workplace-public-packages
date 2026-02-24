@@ -79,11 +79,11 @@ The `setMode` function accepts a `ModeSetup` — a function that receives `(canv
 // Basic usage
 await canvas.setBackground(url);
 
-// Preserve the current opacity when replacing the image
-await canvas.setBackground(url, { preserveOpacity: true });
+// Preserve the current contrast when replacing the image
+await canvas.setBackground(url, { preserveContrast: true });
 ```
 
-When `preserveOpacity` is set, the current background opacity is saved before loading the new image and re-applied afterwards. This avoids the manual read-opacity / set-image / restore-opacity dance.
+When `preserveContrast` is set, the current background contrast is saved before loading the new image and re-applied afterwards.
 
 ### Dirty tracking
 
