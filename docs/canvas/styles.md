@@ -47,19 +47,22 @@ These are used internally but documented here for reference.
 
 | Constant | Value | Description |
 |---|---|---|
-| `DEFAULT_MIN_ZOOM` | `0.1` | Minimum zoom level |
+| `DEFAULT_MIN_ZOOM` | `0.2` | Minimum zoom level |
 | `DEFAULT_MAX_ZOOM` | `10` | Maximum zoom level |
-| `DEFAULT_ZOOM_FACTOR` | `0.999` | Scroll zoom sensitivity |
+| `DEFAULT_ZOOM_FACTOR` | `1.03` | Scroll zoom sensitivity (multiplier per wheel tick) |
 | `DEFAULT_ZOOM_STEP` | `1.2` | Programmatic zoom factor (multiplicative, 20% per click) |
-| `DEFAULT_VIEWPORT_PADDING` | `20` | Padding when fitting to background |
+| `DEFAULT_VIEWPORT_PADDING` | `0.05` | Padding fraction (5% on each side) when fitting to background |
 | `BASE_CANVAS_SIZE` | `1000` | Reference size for canvas-scaled snapping |
 | `DEFAULT_SNAP_MARGIN` | `6` | Default snap distance in pixels |
 | `DEFAULT_ANGLE_SNAP_INTERVAL` | `15` | Default rotation snap angle (degrees) |
-| `MIN_DRAG_SIZE` | `5` | Minimum drag distance to create a shape |
+| `MIN_DRAG_SIZE` | `3` | Minimum drag distance (scene units) to create a shape |
 | `POLYGON_CLOSE_THRESHOLD` | `10` | Distance to first vertex to auto-close polygon |
 | `DEFAULT_IMAGE_MAX_SIZE` | `4096` | Max image dimension before auto-downscale |
-| `DEFAULT_IMAGE_MIN_SIZE` | `50` | Min image dimension (rejects smaller) |
+| `DEFAULT_IMAGE_MIN_SIZE` | `480` | Min image dimension (rejects smaller on both axes) |
 | `DEFAULT_VERTEX_HANDLE_RADIUS` | `6` | Vertex edit handle radius |
+| `DEFAULT_VERTEX_HANDLE_FILL` | `'#ffffff'` | Vertex edit handle fill color |
+| `DEFAULT_VERTEX_HANDLE_STROKE` | `'#2196f3'` | Vertex edit handle stroke color |
+| `DEFAULT_VERTEX_HANDLE_STROKE_WIDTH` | `2` | Vertex edit handle stroke width |
 
 ---
 

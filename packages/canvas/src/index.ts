@@ -50,7 +50,7 @@ export {
   createPolygonFromVertices,
   editPolygon,
 } from './shapes';
-export type { PolygonOptions, PolygonStyleOptions } from './shapes';
+export type { PolygonOptions } from './shapes';
 
 // --- Interactions ---
 export { enableClickToCreate } from './interactions';

@@ -69,6 +69,28 @@ const cleanup = enableDragToCreate(
 
 **Factory signature:** `(canvas, bounds: DragBounds) => FabricObject`
 
+### Click fallback with `clickFactory`
+
+By default, a click without dragging does nothing. Pass `clickFactory` to create a default-sized shape at the click point:
+
+```typescript
+enableDragToCreate(
+  canvas,
+  (c, bounds) =>
+    createRectangleAtPoint(c, { x: bounds.startX, y: bounds.startY }, {
+      width: bounds.width, height: bounds.height,
+    }),
+  {
+    clickFactory: (c, point) =>
+      createRectangleAtPoint(c, point, { width: 60, height: 40 }),
+    onCreated: () => canvas.setMode(null),
+    viewport,
+  },
+);
+```
+
+When `clickFactory` is provided, the `onCreated` callback fires for both drag-created and click-created shapes.
+
 ### `DragBounds`
 
 ```typescript
@@ -89,6 +111,7 @@ interface DragBounds {
 | `viewport` | `ViewportController` | — | Auto-switches to select mode during drag |
 | `constrainToSquare` | `boolean \| { key? }` | `false` | Hold Shift to constrain aspect ratio to 1:1 |
 | `previewStyle` | `object` | Dashed blue | Style for the drag preview rectangle |
+| `clickFactory` | `(canvas, point: Point2D) => FabricObject` | — | Factory for click-without-drag. If provided, a single click (below `MIN_DRAG_SIZE`) creates a default-sized shape at the click point instead of being ignored |
 | `snapping` | `SnappingOptions` | — | Enable cursor snapping |
 | `enableAlignment` | `boolean` | — | Enable alignment guides |
 
