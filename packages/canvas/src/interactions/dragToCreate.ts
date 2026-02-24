@@ -15,6 +15,11 @@ export interface DragToCreateOptions extends SnappableInteractionOptions {
   previewStyle?: ShapeStyleOptions & { rx?: number; ry?: number };
   /** When true, constrain the drag to a 1:1 aspect ratio (square). */
   constrainToSquare?: boolean;
+  /**
+   * Factory called when the user clicks without dragging (below MIN_DRAG_SIZE).
+   * Receives the canvas and the click point. If not provided, clicks are ignored.
+   */
+  clickFactory?: (canvas: FabricCanvas, point: Point2D) => FabricObject;
   /** Called when the user cancels the drag via Escape. */
   onCancel?: () => void;
 }
@@ -130,6 +135,12 @@ export function enableDragToCreate(
     if (width < MIN_DRAG_SIZE && height < MIN_DRAG_SIZE) {
       canvas.requestRenderAll();
       previewRect = null;
+
+      if (options?.clickFactory) {
+        const obj = options.clickFactory(canvas, { x: startX, y: startY });
+        restoreViewport(options?.viewport);
+        options?.onCreated?.(obj);
+      }
       return;
     }
 
