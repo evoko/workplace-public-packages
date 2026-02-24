@@ -17,6 +17,8 @@ import {
   OpenSansRegularItalic,
   OpenSansSemiBold,
   OpenSansSemiBoldItalic,
+  RadioCheckedIcon,
+  RadioUncheckedIcon,
   SuccessStatusIcon,
   UncheckedIcon,
   WarningStatusIcon,
@@ -1000,13 +1002,46 @@ export const biampTheme = (
           },
         },
         MuiRadio: {
+          defaultProps: {
+            disableRipple: true,
+            icon: <RadioUncheckedIcon />,
+            checkedIcon: (
+              <RadioCheckedIcon
+                ringColor={colors.grey[400]}
+                dotColor={colors.blue.main}
+              />
+            ),
+          },
           styleOverrides: {
-            root: {
+            root: ({ theme }) => ({
               color: colors.grey[400],
-              '&.Mui-checked': {
-                color: colors.blue.main,
+              '&:hover': {
+                backgroundColor: 'transparent',
               },
-            },
+              '&.Mui-focusVisible': {
+                backgroundColor: 'transparent',
+              },
+              '& .MuiTouchRipple-root': {
+                display: 'none',
+              },
+              '& .MuiSvgIcon-root': {
+                fontSize: 18,
+              },
+              '&.Mui-disabled': {
+                '& .radio-ring': {
+                  stroke:
+                    theme.palette.mode === 'dark'
+                      ? colors.grey[700]
+                      : colors.sidebar,
+                },
+                '& .radio-dot': {
+                  fill:
+                    theme.palette.mode === 'dark'
+                      ? colors.grey[700]
+                      : colors.sidebar,
+                },
+              },
+            }),
           },
         },
         MuiSwitch: {
