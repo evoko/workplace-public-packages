@@ -1,3 +1,8 @@
+// Fabric.js module augmentation — adds `shapeType`, `data`, and `lockLightMode`
+// to FabricObject/Canvas. Importing here ensures the augmentation is emitted in
+// the dist and automatically applied for consumers of the package.
+import './fabricAugmentation';
+
 // --- Component ---
 export { Canvas } from './Canvas';
 export type { CanvasProps } from './Canvas';
@@ -6,7 +11,7 @@ export type { CanvasProps } from './Canvas';
 export { useEditCanvas } from './hooks';
 export type { UseEditCanvasOptions } from './hooks';
 export { useViewCanvas } from './hooks';
-export type { UseViewCanvasOptions } from './hooks';
+export type { UseViewCanvasOptions, ViewObjectStyle } from './hooks';
 
 // --- Types ---
 export type {

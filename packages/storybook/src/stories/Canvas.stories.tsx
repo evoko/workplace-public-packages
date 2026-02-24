@@ -40,14 +40,6 @@ import {
 import { DemoLayout } from './canvas/DemoLayout';
 import { ViewportControlToolbar } from './canvas/ViewportControlToolbar';
 
-// The canvas package augments fabric's FabricObject with `shapeType` in its source.
-// Re-declare it here since the dist doesn't re-export that ambient augmentation.
-declare module 'fabric' {
-  interface FabricObject {
-    shapeType?: 'circle';
-  }
-}
-
 const meta: Meta<typeof Canvas> = {
   title: 'Canvas/Canvas',
   component: Canvas,
@@ -147,6 +139,14 @@ function EditCanvasContent({
     vertexEdit: options.vertexEdit,
     panAndZoom: options.panZoom,
     onReady: async (c) => {
+      // Auto-assign data.id to any new object that doesn't have one
+      c.on('object:added', (e) => {
+        const obj = e.target;
+        if (!obj.data?.id) {
+          obj.data = { type: 'PLACE', id: crypto.randomUUID(), ...obj.data };
+        }
+      });
+
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         try {
@@ -758,10 +758,41 @@ interface ViewCanvasContentProps {
   onOptionToggle: (key: keyof ViewCanvasOptions, value: boolean) => void;
 }
 
+interface ObjectEntry {
+  id: string;
+  label: string;
+  fill: string;
+  stroke: string;
+}
+
+function collectObjectEntries(c: FabricCanvas): ObjectEntry[] {
+  const entries: ObjectEntry[] = [];
+  c.forEachObject((obj) => {
+    if (!obj.data?.id) return;
+    const type =
+      obj.shapeType === 'circle'
+        ? 'Circle'
+        : obj instanceof Polygon
+          ? 'Polygon'
+          : obj instanceof Rect
+            ? 'Rectangle'
+            : 'Object';
+    entries.push({
+      id: obj.data.id,
+      label: `${type} (${obj.data.id})`,
+      fill: (obj.fill as string) ?? '',
+      stroke: (obj.stroke as string) ?? '',
+    });
+  });
+  return entries;
+}
+
 function ViewCanvasContent({
   options,
   onOptionToggle,
 }: ViewCanvasContentProps) {
+  const [objectEntries, setObjectEntries] = useState<ObjectEntry[]>([]);
+
   const canvas = useViewCanvas({
     scaledStrokes: options.scaledStrokes,
     panAndZoom: options.panZoom,
@@ -771,6 +802,7 @@ function ViewCanvasContent({
       if (stored) {
         try {
           await loadCanvas(c, JSON.parse(stored));
+          setObjectEntries(collectObjectEntries(c));
           return;
         } catch {
           // fall through to demo shapes
@@ -778,10 +810,28 @@ function ViewCanvasContent({
       }
 
       // Default demo canvas when nothing has been saved yet
-      createRectangle(c, { left: 120, top: 80, width: 140, height: 90 });
-      createRectangle(c, { left: 500, top: 60, width: 100, height: 150 });
-      createRectangle(c, { left: 350, top: 380, width: 180, height: 70 });
-      createPolygon(c, {
+      const r1 = createRectangle(c, {
+        left: 120,
+        top: 80,
+        width: 140,
+        height: 90,
+      });
+      r1.data = { type: 'PLACE', id: 'rect-1' };
+      const r2 = createRectangle(c, {
+        left: 500,
+        top: 60,
+        width: 100,
+        height: 150,
+      });
+      r2.data = { type: 'PLACE', id: 'rect-2' };
+      const r3 = createRectangle(c, {
+        left: 350,
+        top: 380,
+        width: 180,
+        height: 70,
+      });
+      r3.data = { type: 'PLACE', id: 'rect-3' };
+      const p1 = createPolygon(c, {
         points: [
           { x: 0, y: 0 },
           { x: 80, y: -30 },
@@ -792,7 +842,8 @@ function ViewCanvasContent({
         left: 300,
         top: 180,
       });
-      createPolygon(c, {
+      p1.data = { type: 'PLACE', id: 'poly-1' };
+      const p2 = createPolygon(c, {
         points: [
           { x: 50, y: 0 },
           { x: 100, y: 35 },
@@ -803,10 +854,25 @@ function ViewCanvasContent({
         left: 80,
         top: 320,
       });
-      createCircle(c, { left: 200, top: 230, size: 100 });
-      createCircle(c, { left: 500, top: 390, size: 60 });
+      p2.data = { type: 'PLACE', id: 'poly-2' };
+      const c1 = createCircle(c, { left: 200, top: 230, size: 100 });
+      c1.data = { type: 'PLACE', id: 'circle-1' };
+      const c2 = createCircle(c, { left: 500, top: 390, size: 60 });
+      c2.data = { type: 'PLACE', id: 'circle-2' };
+
+      setObjectEntries(collectObjectEntries(c));
     },
   });
+
+  const handleStyleChange = useCallback(
+    (id: string, field: 'fill' | 'stroke', value: string) => {
+      canvas.setObjectStyle(id, { [field]: value });
+      setObjectEntries((prev) =>
+        prev.map((e) => (e.id === id ? { ...e, [field]: value } : e)),
+      );
+    },
+    [canvas.setObjectStyle],
+  );
 
   return (
     <DemoLayout
@@ -858,6 +924,75 @@ function ViewCanvasContent({
           </div>
 
           <Divider />
+
+          {objectEntries.length > 0 && (
+            <>
+              <div>
+                <Typography variant="subtitle2" gutterBottom>
+                  Object Styling
+                </Typography>
+                <Stack spacing={1.5}>
+                  {objectEntries.map((entry) => (
+                    <Box key={entry.id}>
+                      <Typography
+                        variant="caption"
+                        color="text.secondary"
+                        sx={{ display: 'block', mb: 0.5 }}
+                      >
+                        {entry.label}
+                      </Typography>
+                      <Box
+                        sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+                      >
+                        <Typography variant="caption" sx={{ minWidth: 28 }}>
+                          Fill
+                        </Typography>
+                        <input
+                          type="color"
+                          value={entry.fill || '#000000'}
+                          onChange={(e) =>
+                            handleStyleChange(entry.id, 'fill', e.target.value)
+                          }
+                          style={{
+                            width: 28,
+                            height: 22,
+                            padding: 0,
+                            border: '1px solid #ccc',
+                            borderRadius: 3,
+                            cursor: 'pointer',
+                          }}
+                        />
+                        <Typography variant="caption" sx={{ minWidth: 38 }}>
+                          Stroke
+                        </Typography>
+                        <input
+                          type="color"
+                          value={entry.stroke || '#000000'}
+                          onChange={(e) =>
+                            handleStyleChange(
+                              entry.id,
+                              'stroke',
+                              e.target.value,
+                            )
+                          }
+                          style={{
+                            width: 28,
+                            height: 22,
+                            padding: 0,
+                            border: '1px solid #ccc',
+                            borderRadius: 3,
+                            cursor: 'pointer',
+                          }}
+                        />
+                      </Box>
+                    </Box>
+                  ))}
+                </Stack>
+              </div>
+
+              <Divider />
+            </>
+          )}
 
           <Typography variant="subtitle2">View-Only Canvas</Typography>
           <Typography variant="body2" color="text.secondary">

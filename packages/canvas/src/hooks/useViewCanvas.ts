@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { Canvas as FabricCanvas, Rect } from 'fabric';
+import { Canvas as FabricCanvas, type FabricObject, Rect } from 'fabric';
 import {
   enablePanAndZoom,
   type PanAndZoomOptions,
@@ -8,6 +8,15 @@ import {
 import { enableScaledStrokes } from '../serialization';
 import { fitViewportToBackground } from '../background';
 import { createViewportActions, syncZoom } from './shared';
+
+/** Visual properties that can be updated on view-canvas objects. */
+export interface ViewObjectStyle {
+  fill?: string;
+  stroke?: string;
+  strokeWidth?: number;
+  opacity?: number;
+  visible?: boolean;
+}
 
 export interface UseViewCanvasOptions {
   /** Configure pan and zoom. Pass `false` to disable, or options to customize. Default: enabled. */
@@ -119,6 +128,44 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     setZoom,
   );
 
+  /** Find a canvas object by its `data.id`. */
+  const findObject = (id: string): FabricObject | undefined => {
+    const c = canvasRef.current;
+    if (!c) return undefined;
+    return c.getObjects().find((o) => o.data?.id === id);
+  };
+
+  /** Update a single object's visual style by its `data.id`. */
+  const setObjectStyle = useCallback((id: string, style: ViewObjectStyle) => {
+    const obj = findObject(id);
+    if (!obj) return;
+    obj.set(style);
+    canvasRef.current!.requestRenderAll();
+  }, []);
+
+  /** Batch-update multiple objects' visual styles. Keyed by `data.id`. */
+  const setObjectStyles = useCallback(
+    (styles: Record<string, ViewObjectStyle>) => {
+      const c = canvasRef.current;
+      if (!c) return;
+      const objects = c.getObjects();
+      const idMap = new Map<string, FabricObject>();
+      for (const obj of objects) {
+        if (obj.data?.id) idMap.set(obj.data.id, obj);
+      }
+      let updated = false;
+      for (const [id, style] of Object.entries(styles)) {
+        const obj = idMap.get(id);
+        if (obj) {
+          obj.set(style);
+          updated = true;
+        }
+      }
+      if (updated) c.requestRenderAll();
+    },
+    [],
+  );
+
   return {
     /** Pass this to `<Canvas onReady={...} />` */
     onReady,
@@ -135,5 +182,9 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
       /** Zoom out from the canvas center. Default step: 0.2. */
       zoomOut,
     },
+    /** Update a single object's visual style by its `data.id`. */
+    setObjectStyle,
+    /** Batch-update multiple objects' visual styles in one render. Keyed by `data.id`. */
+    setObjectStyles,
   };
 }

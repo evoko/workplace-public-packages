@@ -274,7 +274,11 @@ export function enableDrawToCreate(
     const lastPoint = points[points.length - 1];
     let { x, y } = event.scenePoint;
     if (angleSnapEnabled && shiftTracker.held) {
-      const angleSnapped = snapAngleToInterval({ x, y }, lastPoint, angleInterval);
+      const angleSnapped = snapAngleToInterval(
+        { x, y },
+        lastPoint,
+        angleInterval,
+      );
       ({ x, y } = snapAlongRay(angleSnapped, lastPoint, (sx, sy) =>
         snapping.snapWithGuidelines(sx, sy),
       ));
