@@ -150,6 +150,11 @@ export async function loadCanvas(
 ): Promise<FabricObject[]> {
   await canvas.loadFromJSON(json);
 
+  // Strip backgroundColor restored from old canvas data —
+  // background color is a runtime/theme concern, not persisted data.
+  // Mirrors serializeCanvas which already deletes backgroundColor on save.
+  canvas.backgroundColor = '';
+
   // Filter out non-matching objects before applying styles
   if (options?.filter) {
     const toRemove: FabricObject[] = [];
