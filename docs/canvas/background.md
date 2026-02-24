@@ -59,6 +59,21 @@ fitViewportToBackground(canvas, { padding: 20 });
 
 ---
 
+## `getBackgroundSrc(canvas): string | null`
+
+Get the source URL of the canvas background image, or `null` if no background image is set.
+
+```typescript
+import { getBackgroundSrc } from '@bwp-web/canvas';
+
+const src = getBackgroundSrc(canvas);
+if (src?.startsWith('blob:')) {
+  // handle blob URL background
+}
+```
+
+---
+
 ## Opacity
 
 ### `setBackgroundOpacity(canvas, opacity)`

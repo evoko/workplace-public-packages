@@ -57,6 +57,7 @@ const cleanup = enableDragToCreate(
     }),
   {
     onCreated: () => canvas.setMode(null),
+    onCancel: () => canvas.setMode(null),  // called on Escape
     viewport,
     constrainToSquare: true,  // hold Shift to constrain to 1:1 ratio
     previewStyle: { ... },    // customize the dashed preview rectangle
@@ -84,6 +85,7 @@ interface DragBounds {
 | Option | Type | Default | Description |
 |---|---|---|---|
 | `onCreated` | `(obj) => void` | — | Called after shape is created |
+| `onCancel` | `() => void` | — | Called when the user cancels the drag via Escape |
 | `viewport` | `ViewportController` | — | Auto-switches to select mode during drag |
 | `constrainToSquare` | `boolean \| { key? }` | `false` | Hold Shift to constrain aspect ratio to 1:1 |
 | `previewStyle` | `object` | Dashed blue | Style for the drag preview rectangle |
@@ -101,6 +103,7 @@ const cleanup = enableDrawToCreate(canvas, {
   onCreated: (polygon) => canvas.setMode(null),
   viewport,
   style: { fill: '#0066ff1a', stroke: '#0066ff' },
+  data: { type: 'PLACE', id: 'new-place-id' },  // auto-set on created polygon
   angleSnap: { interval: 15 },  // hold Shift to snap angles to 15 degrees
   snapping: true,
   enableAlignment: true,
@@ -115,6 +118,7 @@ const cleanup = enableDrawToCreate(canvas, {
 | `onCreated` | `(polygon) => void` | — | Called after polygon is closed |
 | `viewport` | `ViewportController` | — | Auto-switches to select mode |
 | `style` | `ShapeStyleOptions` | `DEFAULT_GUIDELINE_SHAPE_STYLE` | Fill/stroke during drawing |
+| `data` | `FabricObject['data']` | — | Metadata to attach to the created polygon (takes precedence over `style.data`) |
 | `angleSnap` | `{ interval? }` | `{ interval: 15 }` | Shift+drag snaps to angle increments |
 | `snapping` | `SnappingOptions` | — | Cursor snapping to existing objects |
 | `enableAlignment` | `boolean` | — | Alignment guides |
