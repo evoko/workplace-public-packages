@@ -13,3 +13,5 @@ export { SuccessStatusIcon } from './SuccessStatusIcon';
 export { UncheckedIcon } from './UncheckedIcon';
 export { WarningStatusIcon } from './WarningStatusIcon';
 export { ChevronRight } from './ChevronRight';
+export { RadioUncheckedIcon } from './RadioUncheckedIcon';
+export { RadioCheckedIcon } from './RadioCheckedIcon';
