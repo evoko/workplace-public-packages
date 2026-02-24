@@ -1,5 +1,6 @@
 import { Canvas as FabricCanvas, type FabricObject, Point } from 'fabric';
 import { getSnapPoints } from './snapPoints';
+import { DEFAULT_CURSOR_SNAP_MARGIN, BASE_CANVAS_SIZE } from '../constants';
 
 export interface CursorSnapResult {
   /** The snapped point (or original if no snap occurred). */
@@ -42,9 +43,6 @@ export interface GuidelineStyle {
   width?: number;
   xSize?: number;
 }
-
-const DEFAULT_CURSOR_SNAP_MARGIN = 6;
-const BASE_CANVAS_SIZE = 1000;
 
 /**
  * Compute a snapped cursor position given a raw scene-space point.

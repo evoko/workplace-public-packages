@@ -2,11 +2,15 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Canvas as FabricCanvas, type FabricObject, Polygon } from 'fabric';
 import {
   enablePanAndZoom,
-  resetViewport as resetViewportFn,
   type PanAndZoomOptions,
   type ViewportController,
   type ViewportMode,
 } from '../viewport';
+import {
+  createViewportActions,
+  resolveAlignmentEnabled,
+  syncZoom,
+} from './shared';
 import {
   enableObjectAlignment,
   type ObjectAlignmentOptions,
@@ -179,10 +183,10 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
         );
       }
 
-      const alignmentEnabled =
-        options?.enableAlignment !== undefined
-          ? options.enableAlignment
-          : options?.alignment !== false;
+      const alignmentEnabled = resolveAlignmentEnabled(
+        options?.enableAlignment,
+        options?.alignment,
+      );
 
       if (alignmentEnabled) {
         alignmentCleanupRef.current = enableObjectAlignment(
@@ -247,7 +251,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
         Promise.resolve(onReadyResult).then(() => {
           if (canvas.backgroundImage) {
             fitViewportToBackground(canvas);
-            setZoom(canvas.getZoom());
+            syncZoom(canvasRef, setZoom);
           }
         });
       }
@@ -266,10 +270,10 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     // Keep canvas-level alignment state in sync
     setCanvasAlignmentEnabled(canvas, options?.enableAlignment);
 
-    const shouldEnable =
-      options?.enableAlignment !== undefined
-        ? options.enableAlignment
-        : options?.alignment !== false;
+    const shouldEnable = resolveAlignmentEnabled(
+      options?.enableAlignment,
+      options?.alignment,
+    );
 
     if (shouldEnable && !alignmentCleanupRef.current) {
       alignmentCleanupRef.current = enableObjectAlignment(
@@ -289,28 +293,11 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     setViewportModeState(mode);
   }, []);
 
-  const resetViewport = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    if (canvas.backgroundImage) {
-      fitViewportToBackground(canvas);
-    } else {
-      resetViewportFn(canvas);
-    }
-    setZoom(canvas.getZoom());
-  }, []);
-
-  const zoomIn = useCallback((step?: number) => {
-    viewportRef.current?.zoomIn(step);
-    const canvas = canvasRef.current;
-    if (canvas) setZoom(canvas.getZoom());
-  }, []);
-
-  const zoomOut = useCallback((step?: number) => {
-    viewportRef.current?.zoomOut(step);
-    const canvas = canvasRef.current;
-    if (canvas) setZoom(canvas.getZoom());
-  }, []);
+  const { resetViewport, zoomIn, zoomOut } = createViewportActions(
+    canvasRef,
+    viewportRef,
+    setZoom,
+  );
 
   const setBackground = useCallback(async (url: string) => {
     const canvas = canvasRef.current;
@@ -327,7 +314,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
 
     if (options?.autoFitToBackground !== false) {
       fitViewportToBackground(canvas);
-      setZoom(canvas.getZoom());
+      syncZoom(canvasRef, setZoom);
     }
 
     return img;

@@ -41,6 +41,14 @@ export interface SnappableInteractionOptions extends InteractionModeOptions {
   enableAlignment?: boolean;
 }
 
+/** Bounds produced by a drag-to-create interaction. */
+export interface DragBounds {
+  startX: number;
+  startY: number;
+  width: number;
+  height: number;
+}
+
 /** Setup function for interaction modes, used by useEditCanvas.setMode(). */
 export type ModeSetup = (
   canvas: FabricCanvas,

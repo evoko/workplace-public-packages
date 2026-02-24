@@ -12,7 +12,11 @@ import {
   DEFAULT_GUIDELINE_SHAPE_STYLE,
   DEFAULT_SHAPE_STYLE,
 } from '../styles';
-import { restoreViewport } from './shared';
+import {
+  POLYGON_CLOSE_THRESHOLD,
+  DEFAULT_ANGLE_SNAP_INTERVAL,
+} from '../constants';
+import { restoreViewport, createShiftKeyTracker } from './shared';
 import { createInteractionSnapping } from './interactionSnapping';
 
 export interface DrawToCreateOptions extends SnappableInteractionOptions {
@@ -27,8 +31,6 @@ export interface DrawToCreateOptions extends SnappableInteractionOptions {
    */
   angleSnap?: boolean | { interval?: number };
 }
-
-const CLOSE_THRESHOLD = 10;
 
 function snapAngleToInterval(
   point: { x: number; y: number },
@@ -62,18 +64,10 @@ export function enableDrawToCreate(
   const angleSnapEnabled = options?.angleSnap !== false;
   const angleInterval =
     typeof options?.angleSnap === 'object'
-      ? (options.angleSnap.interval ?? 15)
-      : 15;
+      ? (options.angleSnap.interval ?? DEFAULT_ANGLE_SNAP_INTERVAL)
+      : DEFAULT_ANGLE_SNAP_INTERVAL;
 
-  let shiftHeld = false;
-  const onShiftDown = (e: KeyboardEvent) => {
-    if (e.key === 'Shift') shiftHeld = true;
-  };
-  const onShiftUp = (e: KeyboardEvent) => {
-    if (e.key === 'Shift') shiftHeld = false;
-  };
-  document.addEventListener('keydown', onShiftDown);
-  document.addEventListener('keyup', onShiftUp);
+  const shiftTracker = createShiftKeyTracker();
 
   const points: Point2D[] = [];
   const markers: Circle[] = [];
@@ -155,7 +149,7 @@ export function enableDrawToCreate(
 
   const handleMouseDown = (event: { scenePoint: Point2D }) => {
     let { x, y } = snapping.snap(event.scenePoint.x, event.scenePoint.y);
-    if (angleSnapEnabled && shiftHeld && points.length > 0) {
+    if (angleSnapEnabled && shiftTracker.held && points.length > 0) {
       ({ x, y } = snapAngleToInterval(
         { x, y },
         points[points.length - 1],
@@ -168,7 +162,7 @@ export function enableDrawToCreate(
     if (points.length >= 3) {
       const dx = x - points[0].x;
       const dy = y - points[0].y;
-      if (Math.sqrt(dx * dx + dy * dy) <= CLOSE_THRESHOLD) {
+      if (Math.sqrt(dx * dx + dy * dy) <= POLYGON_CLOSE_THRESHOLD) {
         finalize();
         return;
       }
@@ -218,7 +212,7 @@ export function enableDrawToCreate(
       event.scenePoint.x,
       event.scenePoint.y,
     );
-    if (angleSnapEnabled && shiftHeld) {
+    if (angleSnapEnabled && shiftTracker.held) {
       ({ x, y } = snapAngleToInterval({ x, y }, lastPoint, angleInterval));
       // Cursor-snap guideline is now at a different position than the
       // angle-snapped tracking line — clear it to avoid visual confusion.
@@ -261,8 +255,7 @@ export function enableDrawToCreate(
   return () => {
     canvas.off('mouse:down', handleMouseDown);
     canvas.off('mouse:move', handleMouseMove);
-    document.removeEventListener('keydown', onShiftDown);
-    document.removeEventListener('keyup', onShiftUp);
+    shiftTracker.cleanup();
 
     snapping.cleanup();
     removePreviewElements();

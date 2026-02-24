@@ -8,7 +8,7 @@ export interface PolygonOptions extends ShapeStyleOptions {
   top?: number;
 }
 
-/** Style options for polygon creation. Alias for ShapeStyleOptions preserved for backward compatibility. */
+/** @deprecated Use `ShapeStyleOptions` directly. This alias will be removed in a future major version. */
 export type PolygonStyleOptions = ShapeStyleOptions;
 
 /**

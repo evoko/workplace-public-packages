@@ -1,5 +1,6 @@
 import type { Canvas } from 'fabric';
 import type { TransformEvent } from './objectAlignmentUtils';
+import { DEFAULT_ANGLE_SNAP_INTERVAL } from '../constants';
 
 export interface RotationSnapOptions {
   /**
@@ -23,10 +24,10 @@ export function enableRotationSnap(
   canvas: Canvas,
   options?: RotationSnapOptions,
 ): () => void {
-  const interval = options?.interval ?? 15;
+  const interval = options?.interval ?? DEFAULT_ANGLE_SNAP_INTERVAL;
 
   const onRotating = (e: TransformEvent) => {
-    if (!(e.e as MouseEvent).shiftKey) return;
+    if (!('shiftKey' in e.e) || !e.e.shiftKey) return;
     e.target.angle = snapToInterval(e.target.angle as number, interval);
   };
 

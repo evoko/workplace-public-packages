@@ -1,4 +1,10 @@
 import { Canvas as FabricCanvas, Point, TPointerEvent } from 'fabric';
+import {
+  DEFAULT_MIN_ZOOM,
+  DEFAULT_MAX_ZOOM,
+  DEFAULT_ZOOM_FACTOR,
+  DEFAULT_ZOOM_STEP,
+} from './constants';
 
 export type ViewportMode = 'select' | 'pan';
 
@@ -34,7 +40,12 @@ export interface ViewportController {
   cleanup: () => void;
 }
 
-// ─── Pointer helpers ──────────────────────────────────────────────────────────
+interface ZoomBounds {
+  minZoom: number;
+  maxZoom: number;
+}
+
+// --- Pointer helpers ---
 
 /** Extract clientX/Y from any pointer-style event (Mouse, Pointer, or Touch). */
 function getPointerXY(e: Event): { x: number; y: number } | null {
@@ -66,41 +77,16 @@ function touchMidpoint(touches: TouchList, el: HTMLElement): Point {
   );
 }
 
-// ─── Main function ────────────────────────────────────────────────────────────
+// --- Wheel zoom ---
 
-/**
- * Enable pan and zoom on the canvas viewport.
- *
- * - **Zoom**: Scroll the mouse wheel to zoom in/out centred on the cursor
- *   (works in both modes). On touch devices, pinch with two fingers to zoom.
- * - **Select mode**: Normal object selection. Hold Cmd (Mac) / Ctrl (Win) and
- *   drag to pan. Middle-button drag also pans.
- * - **Pan mode**: Click or single-touch drag to pan freely. Object selection
- *   is disabled.
- *
- * Returns a {@link ViewportController} for switching modes, programmatic zoom,
- * and cleanup.
- */
-export function enablePanAndZoom(
+function setupWheelZoom(
   canvas: FabricCanvas,
-  options?: PanAndZoomOptions,
-): ViewportController {
-  const minZoom = options?.minZoom ?? 0.2;
-  const maxZoom = options?.maxZoom ?? 10;
-  const zoomFactor = options?.zoomFactor ?? 1.03;
-
-  let mode: ViewportMode = options?.initialMode ?? 'select';
-  let enabled = true;
-  let isPanning = false;
-  let lastPanX = 0;
-  let lastPanY = 0;
-  /** Tracks whether we toggled canvas.selection off so we can restore it. */
-  let didDisableSelection = false;
-
-  // ─── Scroll / wheel zoom ─────────────────────────────────────────────────
-
+  bounds: ZoomBounds,
+  zoomFactor: number,
+  isEnabled: () => boolean,
+) {
   const handleWheel = (opt: { e: WheelEvent }) => {
-    if (!enabled) return;
+    if (!isEnabled()) return;
 
     const e = opt.e;
     e.preventDefault();
@@ -109,20 +95,35 @@ export function enablePanAndZoom(
     const delta = e.deltaY;
     let zoom = canvas.getZoom();
     zoom = delta < 0 ? zoom * zoomFactor : zoom / zoomFactor;
-    zoom = Math.min(Math.max(zoom, minZoom), maxZoom);
+    zoom = Math.min(Math.max(zoom, bounds.minZoom), bounds.maxZoom);
 
     canvas.zoomToPoint(new Point(e.offsetX, e.offsetY), zoom);
   };
 
-  // ─── Mouse / single-touch pan ────────────────────────────────────────────
+  canvas.on('mouse:wheel', handleWheel);
+  return handleWheel;
+}
+
+// --- Mouse / single-touch pan ---
+
+function setupMousePan(
+  canvas: FabricCanvas,
+  getMode: () => ViewportMode,
+  isEnabled: () => boolean,
+) {
+  let isPanning = false;
+  let lastPanX = 0;
+  let lastPanY = 0;
+  let didDisableSelection = false;
 
   const handleMouseDown = (opt: { e: TPointerEvent; target?: unknown }) => {
-    if (!enabled) return;
+    if (!isEnabled()) return;
 
     const pos = getPointerXY(opt.e);
     if (!pos) return;
 
     const e = opt.e;
+    const mode = getMode();
     const isMiddleButton = e instanceof MouseEvent && e.button === 1;
     const isModifiedSelect =
       e instanceof MouseEvent && mode === 'select' && (e.metaKey || e.ctrlKey);
@@ -169,19 +170,28 @@ export function enablePanAndZoom(
         canvas.selection = true;
         didDisableSelection = false;
       }
-      canvas.setCursor(mode === 'pan' ? 'grab' : 'default');
+      canvas.setCursor(getMode() === 'pan' ? 'grab' : 'default');
     }
   };
 
-  canvas.on('mouse:wheel', handleWheel);
   canvas.on('mouse:down', handleMouseDown);
   canvas.on('mouse:move', handleMouseMove);
   canvas.on('mouse:up', handleMouseUp);
 
-  // ─── Pinch-to-zoom (direct DOM touch events) ─────────────────────────────
+  return { handleMouseDown, handleMouseMove, handleMouseUp };
+}
+
+// --- Pinch-to-zoom ---
+
+function setupPinchZoom(
+  canvas: FabricCanvas,
+  bounds: ZoomBounds,
+  isEnabled: () => boolean,
+): () => void {
+  const canvasEl = canvas.getElement();
+  if (typeof TouchEvent === 'undefined') return () => {};
 
   let lastPinchDist = 0;
-  const canvasEl = canvas.getElement();
 
   const onTouchStart = (e: TouchEvent) => {
     if (e.touches.length === 2) {
@@ -191,7 +201,7 @@ export function enablePanAndZoom(
   };
 
   const onTouchMove = (e: TouchEvent) => {
-    if (!enabled || e.touches.length !== 2) return;
+    if (!isEnabled() || e.touches.length !== 2) return;
     e.preventDefault();
 
     const dist = touchDistance(e.touches);
@@ -206,7 +216,10 @@ export function enablePanAndZoom(
     const mid = touchMidpoint(e.touches, canvasEl);
     canvas.zoomToPoint(
       mid,
-      Math.min(Math.max(canvas.getZoom() * ratio, minZoom), maxZoom),
+      Math.min(
+        Math.max(canvas.getZoom() * ratio, bounds.minZoom),
+        bounds.maxZoom,
+      ),
     );
   };
 
@@ -214,13 +227,52 @@ export function enablePanAndZoom(
     if (e.touches.length < 2) lastPinchDist = 0;
   };
 
-  if (typeof TouchEvent !== 'undefined') {
-    canvasEl.addEventListener('touchstart', onTouchStart, { passive: false });
-    canvasEl.addEventListener('touchmove', onTouchMove, { passive: false });
-    canvasEl.addEventListener('touchend', onTouchEnd);
-  }
+  canvasEl.addEventListener('touchstart', onTouchStart, { passive: false });
+  canvasEl.addEventListener('touchmove', onTouchMove, { passive: false });
+  canvasEl.addEventListener('touchend', onTouchEnd);
 
-  // ─── Controller ──────────────────────────────────────────────────────────
+  return () => {
+    canvasEl.removeEventListener('touchstart', onTouchStart);
+    canvasEl.removeEventListener('touchmove', onTouchMove);
+    canvasEl.removeEventListener('touchend', onTouchEnd);
+  };
+}
+
+// --- Main function ---
+
+/**
+ * Enable pan and zoom on the canvas viewport.
+ *
+ * - **Zoom**: Scroll the mouse wheel to zoom in/out centred on the cursor
+ *   (works in both modes). On touch devices, pinch with two fingers to zoom.
+ * - **Select mode**: Normal object selection. Hold Cmd (Mac) / Ctrl (Win) and
+ *   drag to pan. Middle-button drag also pans.
+ * - **Pan mode**: Click or single-touch drag to pan freely. Object selection
+ *   is disabled.
+ *
+ * Returns a {@link ViewportController} for switching modes, programmatic zoom,
+ * and cleanup.
+ */
+export function enablePanAndZoom(
+  canvas: FabricCanvas,
+  options?: PanAndZoomOptions,
+): ViewportController {
+  const bounds: ZoomBounds = {
+    minZoom: options?.minZoom ?? DEFAULT_MIN_ZOOM,
+    maxZoom: options?.maxZoom ?? DEFAULT_MAX_ZOOM,
+  };
+  const zoomFactor = options?.zoomFactor ?? DEFAULT_ZOOM_FACTOR;
+
+  let mode: ViewportMode = options?.initialMode ?? 'select';
+  let enabled = true;
+  const isEnabled = () => enabled;
+  const getMode = () => mode;
+
+  const handleWheel = setupWheelZoom(canvas, bounds, zoomFactor, isEnabled);
+  const panHandlers = setupMousePan(canvas, getMode, isEnabled);
+  const cleanupPinch = setupPinchZoom(canvas, bounds, isEnabled);
+
+  // --- Controller ---
 
   return {
     setMode(newMode: ViewportMode) {
@@ -252,16 +304,16 @@ export function enablePanAndZoom(
       enabled = value;
     },
 
-    zoomIn(step = 0.2) {
-      const z = Math.min(canvas.getZoom() + step, maxZoom);
+    zoomIn(step = DEFAULT_ZOOM_STEP) {
+      const z = Math.min(canvas.getZoom() + step, bounds.maxZoom);
       canvas.zoomToPoint(
         new Point(canvas.getWidth() / 2, canvas.getHeight() / 2),
         z,
       );
     },
 
-    zoomOut(step = 0.2) {
-      const z = Math.max(canvas.getZoom() - step, minZoom);
+    zoomOut(step = DEFAULT_ZOOM_STEP) {
+      const z = Math.max(canvas.getZoom() - step, bounds.minZoom);
       canvas.zoomToPoint(
         new Point(canvas.getWidth() / 2, canvas.getHeight() / 2),
         z,
@@ -270,14 +322,10 @@ export function enablePanAndZoom(
 
     cleanup() {
       canvas.off('mouse:wheel', handleWheel);
-      canvas.off('mouse:down', handleMouseDown);
-      canvas.off('mouse:move', handleMouseMove);
-      canvas.off('mouse:up', handleMouseUp);
-      if (typeof TouchEvent !== 'undefined') {
-        canvasEl.removeEventListener('touchstart', onTouchStart);
-        canvasEl.removeEventListener('touchmove', onTouchMove);
-        canvasEl.removeEventListener('touchend', onTouchEnd);
-      }
+      canvas.off('mouse:down', panHandlers.handleMouseDown);
+      canvas.off('mouse:move', panHandlers.handleMouseMove);
+      canvas.off('mouse:up', panHandlers.handleMouseUp);
+      cleanupPinch();
     },
   };
 }

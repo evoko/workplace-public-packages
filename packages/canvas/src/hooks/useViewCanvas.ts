@@ -2,12 +2,12 @@ import { useCallback, useRef, useState } from 'react';
 import { Canvas as FabricCanvas, Rect } from 'fabric';
 import {
   enablePanAndZoom,
-  resetViewport as resetViewportFn,
   type PanAndZoomOptions,
   type ViewportController,
 } from '../viewport';
 import { enableScaledStrokes } from '../serialization';
 import { fitViewportToBackground } from '../background';
+import { createViewportActions, syncZoom } from './shared';
 
 export interface UseViewCanvasOptions {
   /** Configure pan and zoom. Pass `false` to disable, or options to customize. Default: enabled. */
@@ -98,7 +98,7 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
         Promise.resolve(onReadyResult).then(() => {
           if (canvas.backgroundImage) {
             fitViewportToBackground(canvas);
-            setZoom(canvas.getZoom());
+            syncZoom(canvasRef, setZoom);
           }
         });
       }
@@ -108,28 +108,11 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     [],
   );
 
-  const resetViewport = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    if (canvas.backgroundImage) {
-      fitViewportToBackground(canvas);
-    } else {
-      resetViewportFn(canvas);
-    }
-    setZoom(canvas.getZoom());
-  }, []);
-
-  const zoomIn = useCallback((step?: number) => {
-    viewportRef.current?.zoomIn(step);
-    const canvas = canvasRef.current;
-    if (canvas) setZoom(canvas.getZoom());
-  }, []);
-
-  const zoomOut = useCallback((step?: number) => {
-    viewportRef.current?.zoomOut(step);
-    const canvas = canvasRef.current;
-    if (canvas) setZoom(canvas.getZoom());
-  }, []);
+  const { resetViewport, zoomIn, zoomOut } = createViewportActions(
+    canvasRef,
+    viewportRef,
+    setZoom,
+  );
 
   return {
     /** Pass this to `<Canvas onReady={...} />` */

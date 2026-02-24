@@ -1,4 +1,5 @@
 import { type Canvas, type FabricObject, Point, util } from 'fabric';
+import { BASE_CANVAS_SIZE } from '../constants';
 import { getSnapPoints } from './snapPoints';
 import {
   type TransformEvent,
@@ -37,6 +38,20 @@ export interface ObjectAlignmentOptions {
    * Default: `true`. Pass `false` to use a fixed margin regardless of size.
    */
   scaleWithCanvasSize?: boolean;
+}
+
+/** Adjust a corner string for flipped objects (e.g. 'tl' → 'tr' when flipX). */
+function adjustCornerForFlip(corner: string, target: FabricObject): string {
+  let adjusted = corner;
+  if (target.flipX) {
+    if (adjusted.includes('l')) adjusted = adjusted.replace('l', 'r');
+    else if (adjusted.includes('r')) adjusted = adjusted.replace('r', 'l');
+  }
+  if (target.flipY) {
+    if (adjusted.includes('t')) adjusted = adjusted.replace('t', 'b');
+    else if (adjusted.includes('b')) adjusted = adjusted.replace('b', 't');
+  }
+  return adjusted;
 }
 
 /**
@@ -91,13 +106,11 @@ class ObjectAlignmentGuides {
 
   // --- Margin calculation ---
 
-  private readonly BASE_CANVAS_SIZE = 1000;
-
   private computeMargin(): number {
     const zoom = this.canvas.getZoom();
     const sizeScale = this.scaleWithCanvasSize
       ? Math.max(this.canvas.width ?? 800, this.canvas.height ?? 600) /
-        this.BASE_CANVAS_SIZE
+        BASE_CANVAS_SIZE
       : 1;
     return (this.margin * sizeScale) / zoom;
   }
@@ -164,15 +177,7 @@ class ObjectAlignmentGuides {
     this.verticalLines.clear();
     this.horizontalLines.clear();
 
-    let corner = e.transform.corner;
-    if (target.flipX) {
-      if (corner.includes('l')) corner = corner.replace('l', 'r');
-      else if (corner.includes('r')) corner = corner.replace('r', 'l');
-    }
-    if (target.flipY) {
-      if (corner.includes('t')) corner = corner.replace('t', 'b');
-      else if (corner.includes('b')) corner = corner.replace('b', 't');
-    }
+    const corner = adjustCornerForFlip(e.transform.corner, target);
 
     const pointMap = getBoundingPointMap(target);
     if (!(corner in pointMap)) return;
@@ -247,8 +252,10 @@ class ObjectAlignmentGuides {
   private afterRender() {
     if (this.markersOnly) {
       const lines: AlignmentLine[] = [];
-      for (const v of this.verticalLines) lines.push(JSON.parse(v));
-      for (const h of this.horizontalLines) lines.push(JSON.parse(h));
+      for (const v of this.verticalLines)
+        lines.push(JSON.parse(v) as AlignmentLine);
+      for (const h of this.horizontalLines)
+        lines.push(JSON.parse(h) as AlignmentLine);
       drawMarkerList(this.renderConfig, lines);
     } else {
       drawVerticalAlignmentLines(this.renderConfig, this.verticalLines);

@@ -7,6 +7,11 @@ import {
   util,
 } from 'fabric';
 import type { Point2D } from '../types';
+import {
+  DEFAULT_VERTEX_HANDLE_FILL,
+  DEFAULT_VERTEX_HANDLE_STROKE,
+  DEFAULT_VERTEX_HANDLE_STROKE_WIDTH,
+} from '../constants';
 
 export interface VertexEditOptions {
   handleRadius?: number;
@@ -15,7 +20,7 @@ export interface VertexEditOptions {
   handleStrokeWidth?: number;
 }
 
-// ─── Coordinate helpers ───────────────────────────────────────────────────────
+// --- Coordinate helpers ---
 
 function localPointToScene(polygon: Polygon, point: Point2D): Point {
   const matrix = polygon.calcTransformMatrix();
@@ -36,7 +41,7 @@ function scenePointToLocal(polygon: Polygon, scenePoint: Point): Point2D {
   };
 }
 
-// ─── Main function ────────────────────────────────────────────────────────────
+// --- Main function ---
 
 /**
  * Enable vertex editing on a polygon.
@@ -57,11 +62,13 @@ export function enableVertexEdit(
   const handleIndexMap = new Map<Circle, number>();
   let exited = false;
 
-  // Save previous state
-  const prevSelectable = polygon.selectable;
-  const prevEvented = polygon.evented;
-  const prevHasControls = polygon.hasControls;
-  const prevCanvasSelection = canvas.selection;
+  // Save previous state so we can restore on cleanup
+  const previousState = {
+    selectable: polygon.selectable,
+    evented: polygon.evented,
+    hasControls: polygon.hasControls,
+    canvasSelection: canvas.selection,
+  };
 
   const prevObjectStates = new Map<
     FabricObject,
@@ -95,9 +102,10 @@ export function enableVertexEdit(
       left: scenePos.x,
       top: scenePos.y,
       radius: options?.handleRadius ?? 6,
-      fill: options?.handleFill ?? '#ffffff',
-      stroke: options?.handleStroke ?? '#2196f3',
-      strokeWidth: options?.handleStrokeWidth ?? 2,
+      fill: options?.handleFill ?? DEFAULT_VERTEX_HANDLE_FILL,
+      stroke: options?.handleStroke ?? DEFAULT_VERTEX_HANDLE_STROKE,
+      strokeWidth:
+        options?.handleStrokeWidth ?? DEFAULT_VERTEX_HANDLE_STROKE_WIDTH,
       strokeUniform: true,
       originX: 'center',
       originY: 'center',
@@ -184,10 +192,10 @@ export function enableVertexEdit(
     }
     handles.length = 0;
 
-    polygon.selectable = prevSelectable;
-    polygon.evented = prevEvented;
-    polygon.hasControls = prevHasControls;
-    canvas.selection = prevCanvasSelection;
+    polygon.selectable = previousState.selectable;
+    polygon.evented = previousState.evented;
+    polygon.hasControls = previousState.hasControls;
+    canvas.selection = previousState.canvasSelection;
 
     prevObjectStates.forEach((state, obj) => {
       obj.selectable = state.selectable;

@@ -15,6 +15,7 @@ export type {
   SnappingOptions,
   InteractionModeOptions,
   SnappableInteractionOptions,
+  DragBounds,
   ModeSetup,
 } from './types';
 

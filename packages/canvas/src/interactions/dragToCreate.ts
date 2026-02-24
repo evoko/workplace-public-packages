@@ -1,11 +1,13 @@
 import { Canvas as FabricCanvas, FabricObject, Rect } from 'fabric';
 import type {
+  DragBounds,
   Point2D,
   ShapeStyleOptions,
   SnappableInteractionOptions,
 } from '../types';
 import { DEFAULT_GUIDELINE_SHAPE_STYLE } from '../styles';
-import { restoreViewport } from './shared';
+import { MIN_DRAG_SIZE } from '../constants';
+import { restoreViewport, createShiftKeyTracker } from './shared';
 import { createInteractionSnapping } from './interactionSnapping';
 
 export interface DragToCreateOptions extends SnappableInteractionOptions {
@@ -14,8 +16,6 @@ export interface DragToCreateOptions extends SnappableInteractionOptions {
   /** When true, constrain the drag to a 1:1 aspect ratio (square). */
   constrainToSquare?: boolean;
 }
-
-const MIN_DRAG_SIZE = 3;
 
 /**
  * Enable drag-to-create mode.
@@ -26,10 +26,7 @@ const MIN_DRAG_SIZE = 3;
  */
 export function enableDragToCreate(
   canvas: FabricCanvas,
-  factory: (
-    canvas: FabricCanvas,
-    bounds: { startX: number; startY: number; width: number; height: number },
-  ) => FabricObject,
+  factory: (canvas: FabricCanvas, bounds: DragBounds) => FabricObject,
   options?: DragToCreateOptions,
 ): () => void {
   let isDrawing = false;
@@ -39,13 +36,16 @@ export function enableDragToCreate(
   let lastEndY = 0;
   let previewRect: Rect | null = null;
   let previousSelection: boolean;
-  let shiftHeld = false;
 
   const snapping = createInteractionSnapping(canvas, options);
+  const shiftTracker = createShiftKeyTracker(() => {
+    updatePreview(lastEndX, lastEndY);
+  });
 
   options?.viewport?.setEnabled(false);
 
-  const shouldConstrain = () => !!(options?.constrainToSquare || shiftHeld);
+  const shouldConstrain = () =>
+    !!(options?.constrainToSquare || shiftTracker.held);
 
   const computeDimensions = (
     endX: number,
@@ -76,21 +76,6 @@ export function enableDragToCreate(
     previewRect.setCoords();
     canvas.requestRenderAll();
   };
-
-  const onShiftDown = (e: KeyboardEvent) => {
-    if (e.key === 'Shift' && !shiftHeld) {
-      shiftHeld = true;
-      updatePreview(lastEndX, lastEndY);
-    }
-  };
-  const onShiftUp = (e: KeyboardEvent) => {
-    if (e.key === 'Shift' && shiftHeld) {
-      shiftHeld = false;
-      updatePreview(lastEndX, lastEndY);
-    }
-  };
-  document.addEventListener('keydown', onShiftDown);
-  document.addEventListener('keyup', onShiftUp);
 
   const handleMouseDown = (event: { scenePoint: Point2D }) => {
     isDrawing = true;
@@ -160,8 +145,7 @@ export function enableDragToCreate(
     canvas.off('mouse:down', handleMouseDown);
     canvas.off('mouse:move', handleMouseMove);
     canvas.off('mouse:up', handleMouseUp);
-    document.removeEventListener('keydown', onShiftDown);
-    document.removeEventListener('keyup', onShiftUp);
+    shiftTracker.cleanup();
 
     snapping.cleanup();
 

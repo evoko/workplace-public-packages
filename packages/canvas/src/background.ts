@@ -1,6 +1,15 @@
 import { Canvas as FabricCanvas, FabricImage, filters } from 'fabric';
+import {
+  DEFAULT_VIEWPORT_PADDING,
+  DEFAULT_IMAGE_MAX_SIZE,
+  DEFAULT_IMAGE_MIN_SIZE,
+} from './constants';
 
-// ─── Viewport fitting ────────────────────────────────────────────────────────
+function getBackgroundImage(canvas: FabricCanvas): FabricImage | undefined {
+  return canvas.backgroundImage as FabricImage | undefined;
+}
+
+// --- Viewport fitting ---
 
 export interface FitViewportOptions {
   /**
@@ -20,7 +29,7 @@ export function fitViewportToBackground(
   canvas: FabricCanvas,
   options?: FitViewportOptions,
 ): void {
-  const bg = canvas.backgroundImage as FabricImage | undefined;
+  const bg = getBackgroundImage(canvas);
   if (!bg) return;
 
   // Use scaled dimensions so any scaleX/scaleY on the image is respected.
@@ -35,7 +44,7 @@ export function fitViewportToBackground(
   const imgLeft = center.x - bgWidth / 2;
   const imgTop = center.y - bgHeight / 2;
 
-  const padding = options?.padding ?? 0.05;
+  const padding = options?.padding ?? DEFAULT_VIEWPORT_PADDING;
   const canvasWidth = canvas.getWidth();
   const canvasHeight = canvas.getHeight();
   const availableWidth = canvasWidth * (1 - padding * 2);
@@ -54,7 +63,7 @@ export function fitViewportToBackground(
   canvas.requestRenderAll();
 }
 
-// ─── Opacity ─────────────────────────────────────────────────────────────────
+// --- Opacity ---
 
 /**
  * Set the opacity of the canvas background image.
@@ -64,7 +73,7 @@ export function setBackgroundOpacity(
   canvas: FabricCanvas,
   opacity: number,
 ): void {
-  const bg = canvas.backgroundImage as FabricImage | undefined;
+  const bg = getBackgroundImage(canvas);
   if (!bg) return;
   bg.set('opacity', Math.min(1, Math.max(0, opacity)));
   canvas.requestRenderAll();
@@ -75,11 +84,11 @@ export function setBackgroundOpacity(
  * Returns 1 if no background image is set.
  */
 export function getBackgroundOpacity(canvas: FabricCanvas): number {
-  const bg = canvas.backgroundImage as FabricImage | undefined;
+  const bg = getBackgroundImage(canvas);
   return bg?.opacity ?? 1;
 }
 
-// ─── Invert filter ───────────────────────────────────────────────────────────
+// --- Invert filter ---
 
 /**
  * Add or remove the Invert filter from the canvas background image.
@@ -88,7 +97,7 @@ export function setBackgroundInverted(
   canvas: FabricCanvas,
   inverted: boolean,
 ): void {
-  const bg = canvas.backgroundImage as FabricImage | undefined;
+  const bg = getBackgroundImage(canvas);
   if (!bg) return;
 
   const currentFilters: filters.BaseFilter<string>[] = bg.filters ?? [];
@@ -109,12 +118,12 @@ export function setBackgroundInverted(
  * Returns whether the canvas background image currently has an Invert filter.
  */
 export function getBackgroundInverted(canvas: FabricCanvas): boolean {
-  const bg = canvas.backgroundImage as FabricImage | undefined;
+  const bg = getBackgroundImage(canvas);
   if (!bg?.filters) return false;
   return bg.filters.some((f) => f instanceof filters.Invert);
 }
 
-// ─── Image resizing ───────────────────────────────────────────────────────────
+// --- Image resizing ---
 
 export interface ResizeResult {
   /** The (possibly new) image URL. Same as input URL if no resize was needed. */
@@ -159,8 +168,8 @@ export function resizeImageUrl(
   url: string,
   options?: ResizeImageOptions,
 ): Promise<ResizeResult> {
-  const maxSize = options?.maxSize ?? 4096;
-  const minSize = options?.minSize ?? 480;
+  const maxSize = options?.maxSize ?? DEFAULT_IMAGE_MAX_SIZE;
+  const minSize = options?.minSize ?? DEFAULT_IMAGE_MIN_SIZE;
 
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -210,7 +219,7 @@ export function resizeImageUrl(
   });
 }
 
-// ─── Background image loading helper ─────────────────────────────────────────
+// --- Background image loading helper ---
 
 /**
  * Set an image URL as the canvas background image.
