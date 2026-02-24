@@ -10,6 +10,8 @@ export interface ShapeStyleOptions {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  /** Optional metadata to attach to the created object. */
+  data?: { type: string; id: string };
 }
 
 /** Snapping configuration used by interaction modes (dragToCreate, drawToCreate). */

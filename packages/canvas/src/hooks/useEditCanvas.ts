@@ -28,6 +28,7 @@ import {
   fitViewportToBackground,
   setBackgroundImage as setBackgroundImageFn,
   type ResizeImageOptions,
+  type SetBackgroundImageOptions,
 } from '../background';
 import type { ModeSetup } from '../types';
 
@@ -80,6 +81,12 @@ export interface UseEditCanvasOptions {
    * Pass `false` to disable. Default: enabled (maxSize: 4096, minSize: 480).
    */
   backgroundResize?: boolean | ResizeImageOptions;
+  /**
+   * Track object add/remove/modify events and expose an `isDirty` flag.
+   * Call `resetDirty()` after a successful save to clear the flag.
+   * Default: disabled.
+   */
+  trackChanges?: boolean;
 }
 
 /**
@@ -117,6 +124,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
   const [selected, setSelected] = useState<FabricObject[]>([]);
   const [viewportMode, setViewportModeState] = useState<ViewportMode>('select');
   const [isEditingVertices, setIsEditingVertices] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
 
   /**
    * Activate an interaction mode, or pass `null` to return to select mode.
@@ -222,6 +230,13 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
         setSelected([]);
       });
 
+      // Dirty tracking — mark canvas as modified on any object mutation
+      if (options?.trackChanges) {
+        canvas.on('object:added', () => setIsDirty(true));
+        canvas.on('object:removed', () => setIsDirty(true));
+        canvas.on('object:modified', () => setIsDirty(true));
+      }
+
       // Auto-setup vertex edit on double-click for polygons
       if (options?.vertexEdit !== false) {
         const vertexOpts =
@@ -299,27 +314,32 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     setZoom,
   );
 
-  const setBackground = useCallback(async (url: string) => {
-    const canvas = canvasRef.current;
-    if (!canvas) throw new Error('Canvas not ready');
+  const setBackground = useCallback(
+    async (url: string, bgOpts?: { preserveOpacity?: boolean }) => {
+      const canvas = canvasRef.current;
+      if (!canvas) throw new Error('Canvas not ready');
 
-    const resizeOpts =
-      options?.backgroundResize !== false
-        ? typeof options?.backgroundResize === 'object'
-          ? options.backgroundResize
-          : {}
-        : undefined;
+      const resizeOpts: SetBackgroundImageOptions | undefined =
+        options?.backgroundResize !== false
+          ? typeof options?.backgroundResize === 'object'
+            ? { ...options.backgroundResize, ...bgOpts }
+            : { ...bgOpts }
+          : bgOpts?.preserveOpacity
+            ? { preserveOpacity: true }
+            : undefined;
 
-    const img = await setBackgroundImageFn(canvas, url, resizeOpts);
+      const img = await setBackgroundImageFn(canvas, url, resizeOpts);
 
-    if (options?.autoFitToBackground !== false) {
-      fitViewportToBackground(canvas);
-      syncZoom(canvasRef, setZoom);
-    }
+      if (options?.autoFitToBackground !== false) {
+        fitViewportToBackground(canvas);
+        syncZoom(canvasRef, setZoom);
+      }
 
-    return img;
+      return img;
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    [],
+  );
 
   return {
     /** Pass this to `<Canvas onReady={...} />` */
@@ -365,7 +385,14 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
      * Set a background image from a URL. Automatically resizes if the image
      * exceeds the configured limits (opt out via `backgroundResize: false`),
      * and fits the viewport after setting if `autoFitToBackground` is enabled.
+     *
+     * Pass `{ preserveOpacity: true }` to keep the current background opacity
+     * when replacing the image.
      */
     setBackground,
+    /** Whether the canvas has been modified since the last `resetDirty()` call. Requires `trackChanges: true`. */
+    isDirty,
+    /** Reset the dirty flag (e.g., after a successful save). */
+    resetDirty: useCallback(() => setIsDirty(false), []),
   };
 }

@@ -122,6 +122,18 @@ export function serializeCanvas(
 }
 
 /**
+ * Options for {@link loadCanvas}.
+ */
+export interface LoadCanvasOptions {
+  /**
+   * If provided, objects for which this function returns `false` are removed
+   * from the canvas after loading. Useful for filtering out objects whose IDs
+   * no longer exist in the application's data model.
+   */
+  filter?: (obj: FabricObject) => boolean;
+}
+
+/**
  * Load a canvas from a previously serialized JSON object (from {@link serializeCanvas}).
  *
  * Clears the canvas and restores all objects, then requests a re-render.
@@ -130,8 +142,19 @@ export function serializeCanvas(
 export async function loadCanvas(
   canvas: FabricCanvas,
   json: object,
+  options?: LoadCanvasOptions,
 ): Promise<void> {
   await canvas.loadFromJSON(json);
+
+  // Filter out non-matching objects before applying styles
+  if (options?.filter) {
+    const toRemove: FabricObject[] = [];
+    canvas.forEachObject((obj) => {
+      if (!options.filter!(obj)) toRemove.push(obj);
+    });
+    for (const obj of toRemove) canvas.remove(obj);
+  }
+
   // Re-apply per-object state that Fabric does not persist through serialization.
   canvas.forEachObject((obj) => {
     // Control styling (borderColor, cornerColor, etc.) is absent from Fabric's

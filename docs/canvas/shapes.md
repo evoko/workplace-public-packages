@@ -178,7 +178,23 @@ interface ShapeStyleOptions {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
+  data?: { type: string; id: string };
 }
 ```
 
 When omitted, shapes use the default styles from `DEFAULT_SHAPE_STYLE` (rectangles/polygons) or `DEFAULT_CIRCLE_STYLE` (circles).
+
+### `data` — attaching metadata to shapes
+
+Pass `data` directly in the creation options to attach metadata to the shape. This eliminates the need for a separate `.set({ data })` + `canvas.renderAll()` call after creation.
+
+```typescript
+createRectangleAtPoint(canvas, pointer, {
+  width: 40,
+  height: 40,
+  fill: '#0066ff',
+  data: { type: 'DEVICE', id: 'dev-123' },
+});
+```
+
+The `data` property is automatically included in serialization (see [serialization.md](./serialization.md)) and can be used to identify objects after loading.

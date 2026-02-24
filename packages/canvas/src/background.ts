@@ -221,24 +221,41 @@ export function resizeImageUrl(
 
 // --- Background image loading helper ---
 
+export interface SetBackgroundImageOptions extends ResizeImageOptions {
+  /** Preserve the current background opacity when replacing the image. */
+  preserveOpacity?: boolean;
+}
+
 /**
  * Set an image URL as the canvas background image.
- * Pass `resize` options to downscale oversized images before loading;
- * omit to load the URL as-is.
+ *
+ * Pass options to control auto-resize (`maxSize`, `minSize`) and/or
+ * preserve the current background opacity when replacing the image.
+ * Omit to load the URL as-is without resizing.
+ *
  * Returns the created FabricImage for further manipulation.
  */
 export async function setBackgroundImage(
   canvas: FabricCanvas,
   url: string,
-  resize?: ResizeImageOptions,
+  options?: SetBackgroundImageOptions,
 ): Promise<FabricImage> {
+  const prevOpacity = options?.preserveOpacity
+    ? getBackgroundOpacity(canvas)
+    : undefined;
+
   let imageUrl = url;
-  if (resize !== undefined) {
-    const result = await resizeImageUrl(url, resize);
+  if (options !== undefined) {
+    const result = await resizeImageUrl(url, options);
     imageUrl = result.url;
   }
   const img = await FabricImage.fromURL(imageUrl, { crossOrigin: 'anonymous' });
   canvas.backgroundImage = img;
+
+  if (prevOpacity !== undefined && prevOpacity !== 1) {
+    img.set('opacity', prevOpacity);
+  }
+
   canvas.requestRenderAll();
   return img;
 }

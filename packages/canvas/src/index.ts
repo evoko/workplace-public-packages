@@ -12,6 +12,12 @@ export { useEditCanvas } from './hooks';
 export type { UseEditCanvasOptions } from './hooks';
 export { useViewCanvas } from './hooks';
 export type { UseViewCanvasOptions, ViewObjectStyle } from './hooks';
+export { useCanvasEvents } from './hooks';
+export type { CanvasEventHandlers } from './hooks';
+export { useCanvasTooltip } from './hooks';
+export type { UseCanvasTooltipOptions, CanvasTooltipState } from './hooks';
+export { useCanvasClick } from './hooks';
+export type { UseCanvasClickOptions } from './hooks';
 
 // --- Types ---
 export type {
@@ -85,7 +91,7 @@ export {
   loadCanvas,
   getBaseStrokeWidth,
 } from './serialization';
-export type { SerializeOptions } from './serialization';
+export type { SerializeOptions, LoadCanvasOptions } from './serialization';
 
 // --- Background ---
 export {
@@ -101,6 +107,7 @@ export type {
   FitViewportOptions,
   ResizeResult,
   ResizeImageOptions,
+  SetBackgroundImageOptions,
 } from './background';
 
 // --- Styles ---
@@ -112,3 +119,14 @@ export {
   DEFAULT_GUIDELINE_SHAPE_STYLE,
   DEFAULT_ALIGNMENT_STYLE,
 } from './styles';
+
+// --- Fabric re-exports ---
+// Re-export commonly used Fabric types so consumers don't need to import
+// from both '@bwp-web/canvas' and 'fabric' (avoids type boundary mismatches).
+export {
+  Canvas as FabricCanvas,
+  FabricObject,
+  FabricImage,
+  Rect,
+  Polygon,
+} from 'fabric';

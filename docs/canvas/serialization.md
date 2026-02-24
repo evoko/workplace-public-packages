@@ -21,7 +21,7 @@ localStorage.setItem('canvas', JSON.stringify(json));
 
 ---
 
-## `loadCanvas(canvas, json): Promise<void>`
+## `loadCanvas(canvas, json, options?): Promise<void>`
 
 Loads a previously serialized canvas state. Restores control styles (selection handles) and circle constraints.
 
@@ -31,6 +31,23 @@ import { loadCanvas } from '@bwp-web/canvas';
 const json = JSON.parse(localStorage.getItem('canvas')!);
 await loadCanvas(canvas, json);
 ```
+
+### Filtering objects on load
+
+Pass a `filter` function to exclude objects during loading. Objects for which the filter returns `false` are removed from the canvas before control styles are applied.
+
+```typescript
+// Only keep objects whose IDs exist in the current data set
+await loadCanvas(canvas, json, {
+  filter: (obj) => validIds.has(obj.data?.id),
+});
+```
+
+### Options (`LoadCanvasOptions`)
+
+| Option | Type | Description |
+|---|---|---|
+| `filter` | `(obj: FabricObject) => boolean` | If provided, objects for which this returns `false` are removed after loading |
 
 ---
 
