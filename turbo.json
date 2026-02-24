@@ -10,8 +10,12 @@
       "cache": false,
       "persistent": true
     },
+    "build:types": {
+      "dependsOn": ["^build:types"],
+      "outputs": ["dist/**/*.d.ts", "dist/**/*.d.ts.map"]
+    },
     "typecheck": {
-      "dependsOn": ["^build", "^typecheck"]
+      "dependsOn": ["^build:types", "^typecheck"]
     },
     "lint": {},
     "format": {
