@@ -53,6 +53,64 @@ function snapAngleToInterval(
 }
 
 /**
+ * Apply cursor snapping while maintaining an angle constraint.
+ * For each axis that cursor-snapped, compute the intersection of the angle
+ * ray with that axis value (preserving both angle and axis alignment).
+ * Pick the candidate closest to the original position and re-snap there
+ * so guidelines render from the correct on-ray point.
+ */
+function snapAlongRay(
+  angleSnapped: { x: number; y: number },
+  ref: { x: number; y: number },
+  doSnap: (x: number, y: number) => { x: number; y: number },
+): { x: number; y: number } {
+  const cursorSnapped = doSnap(angleSnapped.x, angleSnapped.y);
+
+  const snappedX = cursorSnapped.x !== angleSnapped.x;
+  const snappedY = cursorSnapped.y !== angleSnapped.y;
+
+  if (!snappedX && !snappedY) return angleSnapped;
+
+  const rayDx = angleSnapped.x - ref.x;
+  const rayDy = angleSnapped.y - ref.y;
+
+  const candidates: Array<{ x: number; y: number; dist: number }> = [];
+
+  // X-snap: find where the ray crosses x = cursorSnapped.x
+  if (snappedX && Math.abs(rayDx) > 1e-9) {
+    const t = (cursorSnapped.x - ref.x) / rayDx;
+    const onRayY = ref.y + t * rayDy;
+    candidates.push({
+      x: cursorSnapped.x,
+      y: onRayY,
+      dist: Math.abs(onRayY - angleSnapped.y),
+    });
+  }
+
+  // Y-snap: find where the ray crosses y = cursorSnapped.y
+  if (snappedY && Math.abs(rayDy) > 1e-9) {
+    const t = (cursorSnapped.y - ref.y) / rayDy;
+    const onRayX = ref.x + t * rayDx;
+    candidates.push({
+      x: onRayX,
+      y: cursorSnapped.y,
+      dist: Math.abs(onRayX - angleSnapped.x),
+    });
+  }
+
+  if (candidates.length === 0) return angleSnapped;
+
+  // Pick candidate closest to the original angle-snapped position
+  candidates.sort((a, b) => a.dist - b.dist);
+  const best = candidates[0];
+
+  // Re-snap at the on-ray position so guidelines render correctly
+  doSnap(best.x, best.y);
+
+  return best;
+}
+
+/**
  * Enable draw mode for polygons.
  * Click to place vertices one by one. A preview shows edges and a tracking line
  * to the cursor. Click near the first vertex (within threshold) to close the
@@ -152,13 +210,15 @@ export function enableDrawToCreate(
   };
 
   const handleMouseDown = (event: { scenePoint: Point2D }) => {
-    let { x, y } = snapping.snap(event.scenePoint.x, event.scenePoint.y);
+    let { x, y } = event.scenePoint;
     if (angleSnapEnabled && shiftTracker.held && points.length > 0) {
-      ({ x, y } = snapAngleToInterval(
-        { x, y },
-        points[points.length - 1],
-        angleInterval,
+      const ref = points[points.length - 1];
+      const angleSnapped = snapAngleToInterval({ x, y }, ref, angleInterval);
+      ({ x, y } = snapAlongRay(angleSnapped, ref, (sx, sy) =>
+        snapping.snap(sx, sy),
       ));
+    } else {
+      ({ x, y } = snapping.snap(x, y));
     }
     snapping.clearSnapResult();
 
@@ -212,15 +272,14 @@ export function enableDrawToCreate(
     if (points.length === 0) return;
 
     const lastPoint = points[points.length - 1];
-    let { x, y } = snapping.snapWithGuidelines(
-      event.scenePoint.x,
-      event.scenePoint.y,
-    );
+    let { x, y } = event.scenePoint;
     if (angleSnapEnabled && shiftTracker.held) {
-      ({ x, y } = snapAngleToInterval({ x, y }, lastPoint, angleInterval));
-      // Cursor-snap guideline is now at a different position than the
-      // angle-snapped tracking line — clear it to avoid visual confusion.
-      snapping.clearSnapResult();
+      const angleSnapped = snapAngleToInterval({ x, y }, lastPoint, angleInterval);
+      ({ x, y } = snapAlongRay(angleSnapped, lastPoint, (sx, sy) =>
+        snapping.snapWithGuidelines(sx, sy),
+      ));
+    } else {
+      ({ x, y } = snapping.snapWithGuidelines(x, y));
     }
 
     // Update tracking line from last vertex to cursor
