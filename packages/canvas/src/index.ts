@@ -50,7 +50,7 @@ export {
   createPolygonFromVertices,
   editPolygon,
 } from './shapes';
-export type { PolygonOptions, PolygonStyleOptions } from './shapes';
+export type { PolygonOptions } from './shapes';
 
 // --- Interactions ---
 export { enableClickToCreate } from './interactions';
@@ -90,6 +90,7 @@ export { deleteObjects, enableKeyboardShortcuts } from './keyboard';
 // --- Serialization ---
 export {
   enableScaledStrokes,
+  enableScaledBorderRadius,
   serializeCanvas,
   loadCanvas,
   getBaseStrokeWidth,

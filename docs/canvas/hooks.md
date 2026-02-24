@@ -51,6 +51,8 @@ const canvas = useEditCanvas({
 | `alignment` | `boolean \| ObjectAlignmentOptions` | `true` | Object alignment guides on move/scale |
 | `rotationSnap` | `boolean \| RotationSnapOptions` | `true` | Shift+rotate angle snapping |
 | `scaledStrokes` | `boolean` | `true` | Keep stroke widths constant at any zoom level |
+
+> **Border radius scaling** is automatically enabled in both `useEditCanvas` and `useViewCanvas`. Objects loaded via `loadCanvas` get a visual border radius that stays uniform regardless of non-uniform scaling. See [Serialization — `enableScaledBorderRadius`](./serialization.md#enablescaledborderradiuscanvas---void).
 | `keyboardShortcuts` | `boolean` | `true` | Delete/Backspace to remove selected objects |
 | `vertexEdit` | `boolean` | `true` | Double-click polygon to edit vertices |
 | `panAndZoom` | `boolean \| PanAndZoomOptions` | `true` | Pan and zoom controls |

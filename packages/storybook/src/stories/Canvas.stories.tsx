@@ -244,7 +244,15 @@ function EditCanvasContent({
                   width: bounds.width,
                   height: bounds.height,
                 }),
-              { onCreated: () => activateMode('select', shape), viewport },
+              {
+                onCreated: () => activateMode('select', shape),
+                viewport,
+                clickFactory: (c, point) =>
+                  createRectangleAtPoint(c, point, {
+                    width: 60,
+                    height: 40,
+                  }),
+              },
             );
           } else if (shape === 'circle') {
             return enableDragToCreate(
@@ -259,6 +267,8 @@ function EditCanvasContent({
                 onCreated: () => activateMode('select', shape),
                 viewport,
                 constrainToSquare: true,
+                clickFactory: (c, point) =>
+                  createCircleAtPoint(c, point, { size: 40 }),
               },
             );
           } else {
@@ -273,7 +283,15 @@ function EditCanvasContent({
                     y: bounds.startY + bounds.height,
                   },
                 ),
-              { onCreated: () => activateMode('select', shape), viewport },
+              {
+                onCreated: () => activateMode('select', shape),
+                viewport,
+                clickFactory: (c, point) =>
+                  createPolygonAtPoint(c, point, {
+                    width: 100,
+                    height: 80,
+                  }),
+              },
             );
           }
         });
