@@ -10,6 +10,15 @@ import { DEFAULT_CONTROL_STYLE } from './styles';
 const strokeBaseMap = new WeakMap<FabricObject, number>();
 
 /**
+ * Module-level map from Rect to its original rx/ry values before the
+ * view border radius was applied. Used by serializeCanvas to strip
+ * the visual-only border radius before saving.
+ */
+const borderRadiusBaseMap = new WeakMap<Rect, { rx: number; ry: number }>();
+
+const VIEW_BORDER_RADIUS = 4;
+
+/**
  * Enable zoom-independent stroke widths on a canvas.
  *
  * On every render, each object's `strokeWidth` is set to `base / zoom` so
@@ -44,6 +53,43 @@ export function enableScaledStrokes(canvas: FabricCanvas): () => void {
       const base = strokeBaseMap.get(obj);
       if (base !== undefined) {
         obj.strokeWidth = base;
+      }
+    });
+  };
+}
+
+/**
+ * Keep border radii visually constant on Rects loaded via {@link loadCanvas}.
+ *
+ * On every render, each tracked Rect's `rx`/`ry` is recalculated as
+ * `VIEW_BORDER_RADIUS / scale` so corners always appear circular regardless
+ * of non-uniform scaling. The original rx/ry values are stored in an internal
+ * WeakMap and automatically restored before serialization by
+ * {@link serializeCanvas}.
+ *
+ * Returns a cleanup function that removes the listener and restores all
+ * rx/ry values to their originals.
+ */
+export function enableScaledBorderRadius(canvas: FabricCanvas): () => void {
+  function applyScaledBorderRadius() {
+    canvas.forEachObject((obj) => {
+      if (!(obj instanceof Rect)) return;
+      if (!borderRadiusBaseMap.has(obj)) return;
+      const rx = VIEW_BORDER_RADIUS / (obj.scaleX ?? 1);
+      const ry = VIEW_BORDER_RADIUS / (obj.scaleY ?? 1);
+      obj.set({ rx, ry });
+    });
+  }
+
+  canvas.on('before:render', applyScaledBorderRadius);
+
+  return () => {
+    canvas.off('before:render', applyScaledBorderRadius);
+    canvas.forEachObject((obj) => {
+      if (!(obj instanceof Rect)) return;
+      const base = borderRadiusBaseMap.get(obj);
+      if (base !== undefined) {
+        obj.set({ rx: base.rx, ry: base.ry });
       }
     });
   };
@@ -111,6 +157,17 @@ export function serializeCanvas(
     }
   });
 
+  // Strip visual-only border radius and restore original rx/ry
+  const appliedRadii = new Map<Rect, { rx: number; ry: number }>();
+  canvas.forEachObject((obj) => {
+    if (!(obj instanceof Rect)) return;
+    const base = borderRadiusBaseMap.get(obj);
+    if (base !== undefined) {
+      appliedRadii.set(obj, { rx: obj.rx ?? 0, ry: obj.ry ?? 0 });
+      obj.set({ rx: base.rx, ry: base.ry });
+    }
+  });
+
   const json = canvas.toObject(properties);
 
   // Strip backgroundColor — it's theme-dependent, not user data. The
@@ -120,6 +177,11 @@ export function serializeCanvas(
   // Reapply the zoom-scaled values
   scaledWidths.forEach((scaled, obj) => {
     obj.strokeWidth = scaled;
+  });
+
+  // Reapply the visual border radius
+  appliedRadii.forEach((radii, obj) => {
+    obj.set({ rx: radii.rx, ry: radii.ry });
   });
 
   return json;
@@ -187,6 +249,19 @@ export async function loadCanvas(
     // Circle-specific constraints (control visibility, lock flags).
     if (obj.shapeType === 'circle' && obj instanceof Rect) {
       restoreCircleConstraints(obj);
+    }
+    // Apply visual border radius to Rects (excluding circles and DEVICE objects).
+    // Compensate for non-uniform scaling so corners appear circular.
+    // Original values are stored so serializeCanvas can strip them before saving.
+    if (
+      obj instanceof Rect &&
+      obj.shapeType !== 'circle' &&
+      obj.data?.type !== 'DEVICE'
+    ) {
+      borderRadiusBaseMap.set(obj, { rx: obj.rx ?? 0, ry: obj.ry ?? 0 });
+      const rx = VIEW_BORDER_RADIUS / (obj.scaleX ?? 1);
+      const ry = VIEW_BORDER_RADIUS / (obj.scaleY ?? 1);
+      obj.set({ rx, ry });
     }
   });
   canvas.requestRenderAll();

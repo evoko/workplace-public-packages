@@ -90,6 +90,7 @@ export { deleteObjects, enableKeyboardShortcuts } from './keyboard';
 // --- Serialization ---
 export {
   enableScaledStrokes,
+  enableScaledBorderRadius,
   serializeCanvas,
   loadCanvas,
   getBaseStrokeWidth,

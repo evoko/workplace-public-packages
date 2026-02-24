@@ -1,11 +1,14 @@
 import { useCallback, useRef, useState } from 'react';
-import { Canvas as FabricCanvas, type FabricObject, Rect } from 'fabric';
+import { Canvas as FabricCanvas, type FabricObject } from 'fabric';
 import {
   enablePanAndZoom,
   type PanAndZoomOptions,
   type ViewportController,
 } from '../viewport';
-import { enableScaledStrokes } from '../serialization';
+import {
+  enableScaledStrokes,
+  enableScaledBorderRadius,
+} from '../serialization';
 import { fitViewportToBackground } from '../background';
 import { createViewportActions, syncZoom } from './shared';
 
@@ -37,23 +40,11 @@ export interface UseViewCanvasOptions {
   autoFitToBackground?: boolean;
 }
 
-const VIEW_BORDER_RADIUS = 4;
-
-/** Disable selection and interactivity on all objects, and apply view-only styles. */
+/** Disable selection on all objects. Border radius is applied by loadCanvas. */
 function lockCanvas(canvas: FabricCanvas) {
   canvas.selection = false;
   canvas.forEachObject((obj) => {
     obj.selectable = false;
-    if (
-      obj instanceof Rect &&
-      obj.shapeType !== 'circle' &&
-      obj.data?.type !== 'DEVICE'
-    ) {
-      // Compensate for non-uniform scaling so corners appear circular.
-      const rx = VIEW_BORDER_RADIUS / (obj.scaleX ?? 1);
-      const ry = VIEW_BORDER_RADIUS / (obj.scaleY ?? 1);
-      obj.set({ rx, ry });
-    }
   });
 }
 
@@ -84,6 +75,8 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
       if (options?.scaledStrokes !== false) {
         enableScaledStrokes(canvas);
       }
+
+      enableScaledBorderRadius(canvas);
 
       if (options?.panAndZoom !== false) {
         const panAndZoomOpts =

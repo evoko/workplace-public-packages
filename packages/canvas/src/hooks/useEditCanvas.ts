@@ -22,7 +22,10 @@ import {
   setCanvasAlignmentEnabled,
   type VertexEditOptions,
 } from '../interactions';
-import { enableScaledStrokes } from '../serialization';
+import {
+  enableScaledStrokes,
+  enableScaledBorderRadius,
+} from '../serialization';
 import { enableKeyboardShortcuts } from '../keyboard';
 import {
   fitViewportToBackground,
@@ -174,6 +177,8 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
       if (options?.scaledStrokes !== false) {
         enableScaledStrokes(canvas);
       }
+
+      enableScaledBorderRadius(canvas);
 
       if (options?.keyboardShortcuts !== false) {
         keyboardCleanupRef.current = enableKeyboardShortcuts(canvas);
