@@ -39,15 +39,15 @@ export interface ViewportController {
   /** Temporarily disable all pan and zoom input (e.g. during draw modes). */
   setEnabled: (enabled: boolean) => void;
   /**
-   * Zoom in toward the canvas center by `step` zoom units.
-   * Respects the configured min/max zoom bounds. Default step: 0.2.
+   * Zoom in toward the canvas center by a multiplicative factor.
+   * Respects the configured min/max zoom bounds. Default factor: 1.2 (20%).
    */
-  zoomIn: (step?: number) => void;
+  zoomIn: (factor?: number) => void;
   /**
-   * Zoom out from the canvas center by `step` zoom units.
-   * Respects the configured min/max zoom bounds. Default step: 0.2.
+   * Zoom out from the canvas center by a multiplicative factor.
+   * Respects the configured min/max zoom bounds. Default factor: 1.2 (20%).
    */
-  zoomOut: (step?: number) => void;
+  zoomOut: (factor?: number) => void;
   /**
    * Pan the viewport so the given object is centered on the canvas.
    * Optionally animate the transition.
@@ -321,16 +321,16 @@ export function enablePanAndZoom(
       enabled = value;
     },
 
-    zoomIn(step = DEFAULT_ZOOM_STEP) {
-      const z = Math.min(canvas.getZoom() + step, bounds.maxZoom);
+    zoomIn(factor = DEFAULT_ZOOM_STEP) {
+      const z = Math.min(canvas.getZoom() * factor, bounds.maxZoom);
       canvas.zoomToPoint(
         new Point(canvas.getWidth() / 2, canvas.getHeight() / 2),
         z,
       );
     },
 
-    zoomOut(step = DEFAULT_ZOOM_STEP) {
-      const z = Math.max(canvas.getZoom() - step, bounds.minZoom);
+    zoomOut(factor = DEFAULT_ZOOM_STEP) {
+      const z = Math.max(canvas.getZoom() / factor, bounds.minZoom);
       canvas.zoomToPoint(
         new Point(canvas.getWidth() / 2, canvas.getHeight() / 2),
         z,

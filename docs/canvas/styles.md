@@ -50,7 +50,7 @@ These are used internally but documented here for reference.
 | `DEFAULT_MIN_ZOOM` | `0.1` | Minimum zoom level |
 | `DEFAULT_MAX_ZOOM` | `10` | Maximum zoom level |
 | `DEFAULT_ZOOM_FACTOR` | `0.999` | Scroll zoom sensitivity |
-| `DEFAULT_ZOOM_STEP` | `0.2` | Programmatic zoom step |
+| `DEFAULT_ZOOM_STEP` | `1.2` | Programmatic zoom factor (multiplicative, 20% per click) |
 | `DEFAULT_VIEWPORT_PADDING` | `20` | Padding when fitting to background |
 | `BASE_CANVAS_SIZE` | `1000` | Reference size for canvas-scaled snapping |
 | `DEFAULT_SNAP_MARGIN` | `6` | Default snap distance in pixels |
