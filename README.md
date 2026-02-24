@@ -9,6 +9,7 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 | [`@bwp-web/styles`](./packages/styles)         | Shared MUI theme and styling utilities | Active |
 | [`@bwp-web/components`](./packages/components) | Shared React components                | Active |
 | [`@bwp-web/assets`](./packages/assets)         | Shared icons, image, and font assets   | Active |
+| [`@bwp-web/canvas`](./packages/canvas)         | Interactive canvas editor and viewer    | Active |
 
 ## Getting Started
 
@@ -26,7 +27,7 @@ npm install
 ### Installing All Packages
 
 ```bash
-npm install @bwp-web/assets @bwp-web/styles @bwp-web/components
+npm install @bwp-web/assets @bwp-web/styles @bwp-web/components @bwp-web/canvas
 ```
 
 ### Updating Packages
@@ -213,6 +214,84 @@ import { OpenSansRegular, MontserratBold } from '@bwp-web/assets';
 
 For further asset documentation, go to [assets.md](./docs/assets.md)
 
+## Using `@bwp-web/canvas`
+
+### Installation
+
+```bash
+npm install @bwp-web/canvas
+```
+
+### Peer Dependencies
+
+- `react` >= 18.0.0
+- `react-dom` >= 18.0.0
+- `@mui/material` >= 7.0.0
+- `@bwp-web/styles` >= 0.3.5
+
+### Quick Start
+
+**Edit canvas** — full editing with shape creation, selection, pan/zoom, alignment, and serialization:
+
+```tsx
+import { Canvas, useEditCanvas, enableDragToCreate, createRectangle } from '@bwp-web/canvas';
+
+function Editor() {
+  const canvas = useEditCanvas();
+
+  const startDragMode = () => {
+    canvas.setMode((c, viewport) =>
+      enableDragToCreate(
+        c,
+        (c, bounds) =>
+          createRectangle(c, {
+            left: bounds.startX + bounds.width / 2,
+            top: bounds.startY + bounds.height / 2,
+            width: bounds.width,
+            height: bounds.height,
+          }),
+        { onCreated: () => canvas.setMode(null), viewport },
+      ),
+    );
+  };
+
+  return (
+    <div>
+      <button onClick={startDragMode}>Draw Rectangle</button>
+      <Canvas onReady={canvas.onReady} width={800} height={600} />
+    </div>
+  );
+}
+```
+
+**View canvas** — read-only display with pan/zoom and object styling:
+
+```tsx
+import { Canvas, useViewCanvas, loadCanvas } from '@bwp-web/canvas';
+
+function Viewer({ savedJson }: { savedJson: object }) {
+  const canvas = useViewCanvas({
+    onReady: (c) => loadCanvas(c, savedJson),
+  });
+
+  return <Canvas onReady={canvas.onReady} width={800} height={600} />;
+}
+```
+
+### Canvas Documentation
+
+| Document | Contents |
+|---|---|
+| [Hooks](./docs/canvas/hooks.md) | `useEditCanvas`, `useViewCanvas` — the primary entry points |
+| [Shapes](./docs/canvas/shapes.md) | `createRectangle`, `createCircle`, `createPolygon` and variants |
+| [Interactions](./docs/canvas/interactions.md) | `enableClickToCreate`, `enableDragToCreate`, `enableDrawToCreate`, `enableVertexEdit` |
+| [Viewport](./docs/canvas/viewport.md) | `enablePanAndZoom`, `resetViewport`, `ViewportController` |
+| [Alignment & Snapping](./docs/canvas/alignment.md) | Object alignment guides, cursor snapping, rotation snapping, snap points |
+| [Serialization](./docs/canvas/serialization.md) | `serializeCanvas`, `loadCanvas`, scaled strokes |
+| [Background](./docs/canvas/background.md) | `setBackgroundImage`, opacity, invert, resize |
+| [Keyboard](./docs/canvas/keyboard.md) | `enableKeyboardShortcuts`, `deleteObjects` |
+| [Styles & Constants](./docs/canvas/styles.md) | Default style objects, configuration constants, Fabric augmentation |
+
 ## Storybook
 
 A Storybook is included in this repo so you can browse and interact with every themed component, color, and typography variant without writing any code.
@@ -270,5 +349,5 @@ Tags follow the format `vX.Y.Z` (e.g., `v0.0.0`).
 After tagging, publish all packages from the repo root:
 
 ```bash
-npm publish -w packages/assets -w packages/styles -w packages/components --access public
+npm publish -w packages/assets -w packages/styles -w packages/components -w packages/canvas --access public
 ```
