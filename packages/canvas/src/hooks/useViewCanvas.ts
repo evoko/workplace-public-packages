@@ -44,7 +44,6 @@ function lockCanvas(canvas: FabricCanvas) {
   canvas.selection = false;
   canvas.forEachObject((obj) => {
     obj.selectable = false;
-    obj.evented = false;
     if (
       obj instanceof Rect &&
       obj.shapeType !== 'circle' &&
