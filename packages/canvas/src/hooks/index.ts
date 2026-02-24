@@ -15,3 +15,6 @@ export type {
 
 export { useCanvasClick } from './useCanvasClick';
 export type { UseCanvasClickOptions } from './useCanvasClick';
+
+export { useObjectOverlay } from './useObjectOverlay';
+export type { UseObjectOverlayOptions } from './useObjectOverlay';

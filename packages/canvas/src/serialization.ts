@@ -143,7 +143,7 @@ export async function loadCanvas(
   canvas: FabricCanvas,
   json: object,
   options?: LoadCanvasOptions,
-): Promise<void> {
+): Promise<FabricObject[]> {
   await canvas.loadFromJSON(json);
 
   // Filter out non-matching objects before applying styles
@@ -166,4 +166,6 @@ export async function loadCanvas(
     }
   });
   canvas.requestRenderAll();
+
+  return canvas.getObjects() as FabricObject[];
 }

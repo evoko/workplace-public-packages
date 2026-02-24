@@ -1,4 +1,9 @@
-import { Canvas as FabricCanvas, Point, TPointerEvent } from 'fabric';
+import {
+  Canvas as FabricCanvas,
+  type FabricObject,
+  Point,
+  TPointerEvent,
+} from 'fabric';
 import {
   DEFAULT_MIN_ZOOM,
   DEFAULT_MAX_ZOOM,
@@ -7,6 +12,13 @@ import {
 } from './constants';
 
 export type ViewportMode = 'select' | 'pan';
+
+export interface PanToObjectOptions {
+  /** Animate the pan with an easing transition. Default: false. */
+  animate?: boolean;
+  /** Animation duration in milliseconds when `animate` is true. Default: 300. */
+  duration?: number;
+}
 
 export interface PanAndZoomOptions {
   /** Minimum zoom level (default: 0.2) */
@@ -36,6 +48,11 @@ export interface ViewportController {
    * Respects the configured min/max zoom bounds. Default step: 0.2.
    */
   zoomOut: (step?: number) => void;
+  /**
+   * Pan the viewport so the given object is centered on the canvas.
+   * Optionally animate the transition.
+   */
+  panToObject: (object: FabricObject, options?: PanToObjectOptions) => void;
   /** Remove all event listeners. */
   cleanup: () => void;
 }
@@ -318,6 +335,64 @@ export function enablePanAndZoom(
         new Point(canvas.getWidth() / 2, canvas.getHeight() / 2),
         z,
       );
+    },
+
+    panToObject(object: FabricObject, panOpts?: PanToObjectOptions) {
+      const zoom = canvas.getZoom();
+      const objectCenter = object.getCenterPoint();
+      const canvasCenterX = canvas.getWidth() / 2;
+      const canvasCenterY = canvas.getHeight() / 2;
+
+      const targetX = canvasCenterX - objectCenter.x * zoom;
+      const targetY = canvasCenterY - objectCenter.y * zoom;
+
+      if (!panOpts?.animate) {
+        const vt = canvas.viewportTransform;
+        if (!vt) return;
+        canvas.setViewportTransform([
+          vt[0],
+          vt[1],
+          vt[2],
+          vt[3],
+          targetX,
+          targetY,
+        ]);
+        return;
+      }
+
+      const duration = panOpts.duration ?? 300;
+      const vt = canvas.viewportTransform;
+      if (!vt) return;
+      const startX = vt[4];
+      const startY = vt[5];
+      const startTime = performance.now();
+
+      function step(now: number) {
+        const elapsed = now - startTime;
+        const t = Math.min(elapsed / duration, 1);
+        // Ease-out cubic
+        const eased = 1 - Math.pow(1 - t, 3);
+
+        const currentX = startX + (targetX - startX) * eased;
+        const currentY = startY + (targetY - startY) * eased;
+
+        const currentVt = canvas.viewportTransform;
+        if (!currentVt) return;
+        canvas.setViewportTransform([
+          currentVt[0],
+          currentVt[1],
+          currentVt[2],
+          currentVt[3],
+          currentX,
+          currentY,
+        ]);
+
+        if (t < 1) {
+          requestAnimationFrame(step);
+        }
+      }
+
+      requestAnimationFrame(step);
     },
 
     cleanup() {

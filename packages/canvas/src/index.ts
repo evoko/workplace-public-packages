@@ -18,6 +18,8 @@ export { useCanvasTooltip } from './hooks';
 export type { UseCanvasTooltipOptions, CanvasTooltipState } from './hooks';
 export { useCanvasClick } from './hooks';
 export type { UseCanvasClickOptions } from './hooks';
+export { useObjectOverlay } from './hooks';
+export type { UseObjectOverlayOptions } from './hooks';
 
 // --- Types ---
 export type {
@@ -65,6 +67,7 @@ export type {
   ViewportController,
   ViewportMode,
   PanAndZoomOptions,
+  PanToObjectOptions,
 } from './viewport';
 
 // --- Alignment ---
@@ -96,6 +99,7 @@ export type { SerializeOptions, LoadCanvasOptions } from './serialization';
 // --- Background ---
 export {
   fitViewportToBackground,
+  getBackgroundSrc,
   setBackgroundOpacity,
   getBackgroundOpacity,
   setBackgroundInverted,
@@ -129,4 +133,6 @@ export {
   FabricImage,
   Rect,
   Polygon,
+  Point,
+  util,
 } from 'fabric';

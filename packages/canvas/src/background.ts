@@ -9,6 +9,16 @@ function getBackgroundImage(canvas: FabricCanvas): FabricImage | undefined {
   return canvas.backgroundImage as FabricImage | undefined;
 }
 
+/**
+ * Get the source URL of the canvas background image, or `null` if no
+ * background image is set.
+ */
+export function getBackgroundSrc(canvas: FabricCanvas): string | null {
+  const bg = getBackgroundImage(canvas);
+  if (!bg) return null;
+  return bg.getSrc() || null;
+}
+
 // --- Viewport fitting ---
 
 export interface FitViewportOptions {
