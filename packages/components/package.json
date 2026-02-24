@@ -1,6 +1,6 @@
 {
   "name": "@bwp-web/components",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "description": "Shared Biamp Workplace React components",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -24,6 +24,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsup && tsc -p tsconfig.build.json",
+    "build:types": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore",
@@ -31,7 +32,7 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "@bwp-web/assets": ">=0.3.5",
+    "@bwp-web/assets": ">=0.4.0",
     "@mui/material": ">=7.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"

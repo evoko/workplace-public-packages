@@ -1,7 +1,6 @@
 {
-  "name": "@bwp-web/assets",
+  "name": "@bwp-web/canvas",
   "version": "0.4.0",
-  "description": "Shared Biamp Workplace icons and image assets",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -25,32 +24,28 @@
   "scripts": {
     "build": "tsup && tsc -p tsconfig.build.json",
     "build:types": "tsc -p tsconfig.build.json",
-    "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "clean": "rm -rf dist node_modules .turbo",
     "prepublishOnly": "npm run build"
   },
+  "dependencies": {
+    "fabric": "^7.2.0"
+  },
   "peerDependencies": {
+    "@bwp-web/styles": "*",
     "@mui/material": ">=7.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
   "devDependencies": {
     "@bwp-web/eslint-config": "*",
-    "@mui/material": "^7.3.7",
+    "@bwp-web/styles": "*",
     "@types/react": "^19.1.0",
     "eslint": "^9.39.2",
     "prettier": "^3.8.1",
-    "react": "^19.1.0",
-    "tsup": "^8.5.0",
+    "tsup": "^8.5.1",
     "typescript": "^5.9.2"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/evoko/workplace-public-packages.git",
-    "directory": "packages/assets"
   }
 }
