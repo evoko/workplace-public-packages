@@ -108,14 +108,12 @@ export function useObjectOverlay(
 
     // Subscribe to events that affect object screen position
     canvas.on('after:render', update);
-    canvas.on('mouse:wheel', update);
     object.on('moving', update);
     object.on('scaling', update);
     object.on('rotating', update);
 
     return () => {
       canvas.off('after:render', update);
-      canvas.off('mouse:wheel', update);
       object.off('moving', update);
       object.off('scaling', update);
       object.off('rotating', update);

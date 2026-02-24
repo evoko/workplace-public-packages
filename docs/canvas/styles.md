@@ -71,10 +71,12 @@ These are used internally but documented here for reference.
 Importing `@bwp-web/canvas` automatically augments Fabric.js types with:
 
 ```typescript
+type ObjectDataType = 'PLACE' | 'DEVICE' | 'DESK' | 'PARKING_SPACE' | 'FACILITY';
+
 interface FabricObject {
   shapeType?: 'circle';
   data?: {
-    type: 'PLACE' | 'DEVICE' | 'DESK' | 'PARKING_SPACE' | 'FACILITY';
+    type: ObjectDataType;
     id: string;
   };
 }
@@ -82,6 +84,12 @@ interface FabricObject {
 interface Canvas {
   lockLightMode?: boolean;
 }
+```
+
+`ObjectDataType` is exported from the package and can be imported directly:
+
+```typescript
+import { ObjectDataType } from '@bwp-web/canvas';
 ```
 
 This augmentation is applied automatically — no manual `declare module 'fabric'` needed by consumers.

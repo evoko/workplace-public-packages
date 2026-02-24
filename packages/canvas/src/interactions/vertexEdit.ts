@@ -19,6 +19,8 @@ export interface VertexEditOptions {
   handleFill?: string;
   handleStroke?: string;
   handleStrokeWidth?: number;
+  /** Called when vertex editing is exited (via Escape, empty-canvas click, or cleanup). */
+  onExit?: () => void;
 }
 
 // --- Coordinate helpers ---
@@ -107,6 +109,7 @@ export function enableVertexEdit(
   canvas: FabricCanvas,
   polygon: Polygon,
   options?: VertexEditOptions,
+  /** @deprecated Pass `onExit` in options instead. */
   onExit?: () => void,
 ): () => void {
   let exited = false;
@@ -294,7 +297,7 @@ export function enableVertexEdit(
     canvas.discardActiveObject();
     canvas.requestRenderAll();
 
-    onExit?.();
+    (options?.onExit ?? onExit)?.();
   }
 
   return cleanup;

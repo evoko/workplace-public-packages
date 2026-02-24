@@ -18,6 +18,17 @@ export interface CanvasProps {
   className?: string;
   style?: CSSProperties;
   onReady?: (canvas: FabricCanvas) => void;
+  /**
+   * Enable Delete/Backspace keyboard shortcuts for removing selected objects.
+   * Default: `false`. Set to `true` when using `<Canvas>` without `useEditCanvas`
+   * (which registers its own shortcuts).
+   */
+  keyboardShortcuts?: boolean;
+  /**
+   * Additional options passed to the Fabric.js `Canvas` constructor.
+   * Merged before `width`/`height`, so those props take precedence.
+   */
+  fabricOptions?: Record<string, unknown>;
 }
 
 export function Canvas({
@@ -26,6 +37,8 @@ export function Canvas({
   className,
   style,
   onReady,
+  keyboardShortcuts,
+  fabricOptions,
 }: CanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -41,13 +54,16 @@ export function Canvas({
     const initialHeight = isFixedSize ? height : wrapper.clientHeight || 600;
 
     const fabricCanvas = new FabricCanvas(el, {
+      ...fabricOptions,
       width: initialWidth,
       height: initialHeight,
     });
 
     onReady?.(fabricCanvas);
 
-    const cleanupShortcuts = enableKeyboardShortcuts(fabricCanvas);
+    const cleanupShortcuts = keyboardShortcuts
+      ? enableKeyboardShortcuts(fabricCanvas)
+      : undefined;
 
     let observer: ResizeObserver | undefined;
     let rafId = 0;
@@ -79,7 +95,7 @@ export function Canvas({
     return () => {
       cancelAnimationFrame(rafId);
       observer?.disconnect();
-      cleanupShortcuts();
+      cleanupShortcuts?.();
       fabricCanvas.dispose();
     };
     // onReady is intentionally excluded — we only want to initialise once on mount

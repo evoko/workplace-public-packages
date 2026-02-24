@@ -5,8 +5,12 @@ import {
   Line,
   Point,
 } from 'fabric';
-import type { Point2D, SnappableInteractionOptions } from '../types';
-import { createPolygonFromVertices, type PolygonStyleOptions } from '../shapes';
+import type {
+  Point2D,
+  ShapeStyleOptions,
+  SnappableInteractionOptions,
+} from '../types';
+import { createPolygonFromVertices } from '../shapes';
 import {
   DEFAULT_DRAG_SHAPE_STYLE,
   DEFAULT_GUIDELINE_SHAPE_STYLE,
@@ -21,13 +25,19 @@ import { createInteractionSnapping } from './interactionSnapping';
 
 export interface DrawToCreateOptions extends SnappableInteractionOptions {
   /** Style applied to the polygon being drawn. */
-  style?: PolygonStyleOptions;
+  style?: ShapeStyleOptions;
   /**
    * Metadata to attach to the created polygon. If provided, this is set on
    * the polygon's `data` property after creation. Takes precedence over
    * `style.data` if both are specified.
    */
   data?: FabricObject['data'];
+  /**
+   * Factory function to create the final object from placed vertices.
+   * Receives the canvas and the array of placed points.
+   * Default: creates a polygon via `createPolygonFromVertices`.
+   */
+  factory?: (canvas: FabricCanvas, points: Point2D[]) => FabricObject;
   /**
    * Snap vertex positions to multiples of `interval` degrees when Shift is
    * held while placing a vertex. The angle is measured relative to the
@@ -206,15 +216,17 @@ export function enableDrawToCreate(
     removePreviewElements();
     snapping.clearSnapResult();
 
-    const polygon = createPolygonFromVertices(canvas, points, options?.style);
+    const obj = options?.factory
+      ? options.factory(canvas, [...points])
+      : createPolygonFromVertices(canvas, points, options?.style);
     if (options?.data) {
-      polygon.data = options.data;
+      obj.data = options.data;
     }
     canvas.selection = previousSelection;
     canvas.requestRenderAll();
 
     restoreViewport(options?.viewport);
-    options?.onCreated?.(polygon);
+    options?.onCreated?.(obj);
     points.length = 0;
   };
 

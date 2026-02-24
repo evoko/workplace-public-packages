@@ -1,6 +1,7 @@
 import { Canvas as FabricCanvas, Rect, type FabricObject } from 'fabric';
 import { restoreCircleConstraints } from './shapes/circle';
 import { DEFAULT_CONTROL_STYLE } from './styles';
+import type { CanvasJSON } from './types';
 
 /**
  * Module-level map from FabricObject to its "base" (unscaled) stroke width.
@@ -16,7 +17,7 @@ const strokeBaseMap = new WeakMap<FabricObject, number>();
  */
 const borderRadiusBaseMap = new WeakMap<Rect, { rx: number; ry: number }>();
 
-const VIEW_BORDER_RADIUS = 4;
+const DEFAULT_VIEW_BORDER_RADIUS = 4;
 
 /**
  * Enable zoom-independent stroke widths on a canvas.
@@ -70,13 +71,23 @@ export function enableScaledStrokes(canvas: FabricCanvas): () => void {
  * Returns a cleanup function that removes the listener and restores all
  * rx/ry values to their originals.
  */
-export function enableScaledBorderRadius(canvas: FabricCanvas): () => void {
+export interface ScaledBorderRadiusOptions {
+  /** Visual border radius in pixels. Default: 4. */
+  radius?: number;
+}
+
+export function enableScaledBorderRadius(
+  canvas: FabricCanvas,
+  options?: ScaledBorderRadiusOptions,
+): () => void {
+  const radius = options?.radius ?? DEFAULT_VIEW_BORDER_RADIUS;
+
   function applyScaledBorderRadius() {
     canvas.forEachObject((obj) => {
       if (!(obj instanceof Rect)) return;
       if (!borderRadiusBaseMap.has(obj)) return;
-      const rx = VIEW_BORDER_RADIUS / (obj.scaleX ?? 1);
-      const ry = VIEW_BORDER_RADIUS / (obj.scaleY ?? 1);
+      const rx = radius / (obj.scaleX ?? 1);
+      const ry = radius / (obj.scaleY ?? 1);
       obj.set({ rx, ry });
     });
   }
@@ -132,7 +143,7 @@ export function getBaseStrokeWidth(obj: FabricObject): number {
 export function serializeCanvas(
   canvas: FabricCanvas,
   options?: SerializeOptions,
-): object {
+): CanvasJSON {
   const properties = [
     'data',
     'shapeType',
@@ -168,7 +179,7 @@ export function serializeCanvas(
     }
   });
 
-  const json = canvas.toObject(properties);
+  const json = canvas.toObject(properties) as CanvasJSON;
 
   // Strip backgroundColor — it's theme-dependent, not user data. The
   // container's CSS background should control the canvas background color.
@@ -197,6 +208,11 @@ export interface LoadCanvasOptions {
    * no longer exist in the application's data model.
    */
   filter?: (obj: FabricObject) => boolean;
+  /**
+   * Visual border radius applied to loaded Rects (excluding circles and DEVICE objects).
+   * Pass a number to customize, or `false` to skip entirely. Default: `4`.
+   */
+  borderRadius?: number | false;
 }
 
 /**
@@ -207,7 +223,7 @@ export interface LoadCanvasOptions {
  */
 export async function loadCanvas(
   canvas: FabricCanvas,
-  json: object,
+  json: CanvasJSON | object,
   options?: LoadCanvasOptions,
 ): Promise<FabricObject[]> {
   await canvas.loadFromJSON(json);
@@ -253,14 +269,16 @@ export async function loadCanvas(
     // Apply visual border radius to Rects (excluding circles and DEVICE objects).
     // Compensate for non-uniform scaling so corners appear circular.
     // Original values are stored so serializeCanvas can strip them before saving.
+    const borderRadius = options?.borderRadius ?? DEFAULT_VIEW_BORDER_RADIUS;
     if (
+      borderRadius !== false &&
       obj instanceof Rect &&
       obj.shapeType !== 'circle' &&
       obj.data?.type !== 'DEVICE'
     ) {
       borderRadiusBaseMap.set(obj, { rx: obj.rx ?? 0, ry: obj.ry ?? 0 });
-      const rx = VIEW_BORDER_RADIUS / (obj.scaleX ?? 1);
-      const ry = VIEW_BORDER_RADIUS / (obj.scaleY ?? 1);
+      const rx = borderRadius / (obj.scaleX ?? 1);
+      const ry = borderRadius / (obj.scaleY ?? 1);
       obj.set({ rx, ry });
     }
   });

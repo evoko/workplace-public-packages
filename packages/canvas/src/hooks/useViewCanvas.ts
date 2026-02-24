@@ -8,9 +8,10 @@ import {
 import {
   enableScaledStrokes,
   enableScaledBorderRadius,
+  type ScaledBorderRadiusOptions,
 } from '../serialization';
 import { fitViewportToBackground } from '../background';
-import { createViewportActions, syncZoom } from './shared';
+import { useViewportActions, syncZoom } from './shared';
 
 /** Visual properties that can be updated on view-canvas objects. */
 export interface ViewObjectStyle {
@@ -38,6 +39,11 @@ export interface UseViewCanvasOptions {
    * Pass `false` to disable. Default: enabled.
    */
   autoFitToBackground?: boolean;
+  /**
+   * Visual border radius applied to loaded Rects (via `loadCanvas`).
+   * Pass a number to customize (default: 4), or `false` to disable.
+   */
+  borderRadius?: number | false;
 }
 
 /** Disable selection on all objects. Border radius is applied by loadCanvas. */
@@ -65,22 +71,31 @@ function lockCanvas(canvas: FabricCanvas) {
 export function useViewCanvas(options?: UseViewCanvasOptions) {
   const canvasRef = useRef<FabricCanvas | null>(null);
   const viewportRef = useRef<ViewportController | null>(null);
+  const optionsRef = useRef(options);
+  optionsRef.current = options;
 
   const [zoom, setZoom] = useState(1);
 
   const onReady = useCallback(
     (canvas: FabricCanvas) => {
       canvasRef.current = canvas;
+      const opts = optionsRef.current;
 
-      if (options?.scaledStrokes !== false) {
+      if (opts?.scaledStrokes !== false) {
         enableScaledStrokes(canvas);
       }
 
-      enableScaledBorderRadius(canvas);
+      if (opts?.borderRadius !== false) {
+        const borderRadiusOpts: ScaledBorderRadiusOptions | undefined =
+          typeof opts?.borderRadius === 'number'
+            ? { radius: opts.borderRadius }
+            : undefined;
+        enableScaledBorderRadius(canvas, borderRadiusOpts);
+      }
 
-      if (options?.panAndZoom !== false) {
+      if (opts?.panAndZoom !== false) {
         const panAndZoomOpts =
-          typeof options?.panAndZoom === 'object' ? options.panAndZoom : {};
+          typeof opts?.panAndZoom === 'object' ? opts.panAndZoom : {};
 
         viewportRef.current = enablePanAndZoom(canvas, {
           ...panAndZoomOpts,
@@ -99,8 +114,8 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
         setZoom(canvas.getZoom());
       });
 
-      const onReadyResult = options?.onReady?.(canvas);
-      if (options?.autoFitToBackground !== false) {
+      const onReadyResult = opts?.onReady?.(canvas);
+      if (opts?.autoFitToBackground !== false) {
         Promise.resolve(onReadyResult).then(() => {
           if (canvas.backgroundImage) {
             fitViewportToBackground(canvas);
@@ -110,15 +125,11 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
       }
     },
     // onReady and panAndZoom are intentionally excluded — we only initialize once
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
 
-  const { resetViewport, zoomIn, zoomOut, panToObject } = createViewportActions(
-    canvasRef,
-    viewportRef,
-    setZoom,
-  );
+  const { resetViewport, zoomIn, zoomOut, panToObject, zoomToFit } =
+    useViewportActions(canvasRef, viewportRef, setZoom);
 
   /** Find a canvas object by its `data.id`. */
   const findObject = (id: string): FabricObject | undefined => {
@@ -192,6 +203,8 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
       zoomOut,
       /** Pan the viewport to center on a specific object. */
       panToObject,
+      /** Zoom and pan to fit a specific object in the viewport. */
+      zoomToFit,
     },
     /** Update a single object's visual style by its `data.id`. */
     setObjectStyle,

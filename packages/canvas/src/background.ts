@@ -294,7 +294,9 @@ export async function setBackgroundImage(
     : undefined;
 
   let imageUrl = url;
-  if (options !== undefined) {
+  const hasResizeOptions =
+    options?.maxSize !== undefined || options?.minSize !== undefined;
+  if (hasResizeOptions) {
     const result = await resizeImageUrl(url, options);
     imageUrl = result.url;
   }

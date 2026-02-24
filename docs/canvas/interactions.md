@@ -146,6 +146,7 @@ const cleanup = enableDrawToCreate(canvas, {
 | `snapping` | `SnappingOptions` | — | Cursor snapping to existing objects |
 | `enableAlignment` | `boolean` | — | Alignment guides |
 | `onCancel` | `() => void` | — | Called when drawing is cancelled (Escape/Backspace) |
+| `factory` | `(canvas, points: Point2D[]) => FabricObject` | — | Factory function to create the final object from placed vertices. Default: creates a polygon via `createPolygonFromVertices` |
 
 ### Drawing controls
 
@@ -156,7 +157,7 @@ const cleanup = enableDrawToCreate(canvas, {
 
 ---
 
-## `enableVertexEdit(canvas, polygon, options?, onExit?)`
+## `enableVertexEdit(canvas, polygon, options?)`
 
 Edit individual vertices of a polygon. Drag handles appear over each vertex. This is typically triggered by double-clicking a polygon (enabled by default in `useEditCanvas`).
 
@@ -166,10 +167,13 @@ const cleanup = enableVertexEdit(canvas, polygon, {
   handleFill: '#ffffff',
   handleStroke: '#0066ff',
   handleStrokeWidth: 2,
-}, () => {
-  // called when vertex edit mode exits
+  onExit: () => {
+    // called when vertex edit mode exits
+  },
 });
 ```
+
+> **Deprecation note:** The positional `onExit` parameter (`enableVertexEdit(canvas, polygon, options?, onExit?)`) still works but is deprecated. Pass `onExit` inside `options` instead.
 
 ### Exit behavior
 
@@ -184,6 +188,7 @@ const cleanup = enableVertexEdit(canvas, polygon, {
 | `handleFill` | `string` | `'#ffffff'` | Handle fill color |
 | `handleStroke` | `string` | `'#0066ff'` | Handle stroke color |
 | `handleStrokeWidth` | `number` | `2` | Handle stroke width |
+| `onExit` | `() => void` | — | Called when vertex editing is exited (via Escape, empty-canvas click, or cleanup) |
 
 ---
 

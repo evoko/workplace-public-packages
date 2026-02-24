@@ -31,6 +31,11 @@ export interface PanAndZoomOptions {
   initialMode?: ViewportMode;
 }
 
+export interface ZoomToFitOptions {
+  /** Padding fraction around the object (default: 0.1 = 10% on each side). */
+  padding?: number;
+}
+
 export interface ViewportController {
   /** Switch between select and pan modes. */
   setMode: (mode: ViewportMode) => void;
@@ -50,9 +55,15 @@ export interface ViewportController {
   zoomOut: (factor?: number) => void;
   /**
    * Pan the viewport so the given object is centered on the canvas.
-   * Optionally animate the transition.
+   * Optionally animate the transition. Automatically cancels any
+   * in-progress panToObject animation.
    */
   panToObject: (object: FabricObject, options?: PanToObjectOptions) => void;
+  /**
+   * Zoom and pan the viewport so the given object fills the canvas
+   * with optional padding.
+   */
+  zoomToFit: (object: FabricObject, options?: ZoomToFitOptions) => void;
   /** Remove all event listeners. */
   cleanup: () => void;
 }
@@ -282,8 +293,16 @@ export function enablePanAndZoom(
 
   let mode: ViewportMode = options?.initialMode ?? 'select';
   let enabled = true;
+  let currentAnimRafId: number | null = null;
   const isEnabled = () => enabled;
   const getMode = () => mode;
+
+  function cancelAnimation() {
+    if (currentAnimRafId !== null) {
+      cancelAnimationFrame(currentAnimRafId);
+      currentAnimRafId = null;
+    }
+  }
 
   const handleWheel = setupWheelZoom(canvas, bounds, zoomFactor, isEnabled);
   const panHandlers = setupMousePan(canvas, getMode, isEnabled);
@@ -338,6 +357,8 @@ export function enablePanAndZoom(
     },
 
     panToObject(object: FabricObject, panOpts?: PanToObjectOptions) {
+      cancelAnimation();
+
       const zoom = canvas.getZoom();
       const objectCenter = object.getCenterPoint();
       const canvasCenterX = canvas.getWidth() / 2;
@@ -388,14 +409,45 @@ export function enablePanAndZoom(
         ]);
 
         if (t < 1) {
-          requestAnimationFrame(step);
+          currentAnimRafId = requestAnimationFrame(step);
+        } else {
+          currentAnimRafId = null;
         }
       }
 
-      requestAnimationFrame(step);
+      currentAnimRafId = requestAnimationFrame(step);
+    },
+
+    zoomToFit(object: FabricObject, fitOpts?: ZoomToFitOptions) {
+      cancelAnimation();
+
+      const padding = fitOpts?.padding ?? 0.1;
+      const objWidth = (object.width ?? 0) * (object.scaleX ?? 1);
+      const objHeight = (object.height ?? 0) * (object.scaleY ?? 1);
+      if (!objWidth || !objHeight) return;
+
+      const canvasWidth = canvas.getWidth();
+      const canvasHeight = canvas.getHeight();
+      const availableWidth = canvasWidth * (1 - padding * 2);
+      const availableHeight = canvasHeight * (1 - padding * 2);
+
+      const zoom = Math.min(
+        Math.max(
+          Math.min(availableWidth / objWidth, availableHeight / objHeight),
+          bounds.minZoom,
+        ),
+        bounds.maxZoom,
+      );
+
+      const objectCenter = object.getCenterPoint();
+      const offsetX = canvasWidth / 2 - objectCenter.x * zoom;
+      const offsetY = canvasHeight / 2 - objectCenter.y * zoom;
+
+      canvas.setViewportTransform([zoom, 0, 0, zoom, offsetX, offsetY]);
     },
 
     cleanup() {
+      cancelAnimation();
       canvas.off('mouse:wheel', handleWheel);
       canvas.off('mouse:down', panHandlers.handleMouseDown);
       canvas.off('mouse:move', panHandlers.handleMouseMove);

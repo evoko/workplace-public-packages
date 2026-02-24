@@ -38,10 +38,15 @@ const canvas = useEditCanvas({
 | `viewport.zoomIn` | `(step?) => void` | Zoom in toward center |
 | `viewport.zoomOut` | `(step?) => void` | Zoom out from center |
 | `viewport.panToObject` | `(object, options?) => void` | Pan viewport to center on an object |
+| `viewport.zoomToFit` | `(object, options?) => void` | Zoom and pan to fit a specific object |
 | `setMode` | `(setup \| null) => void` | Activate an interaction mode or deactivate |
 | `setBackground` | `(url, opts?) => Promise<FabricImage>` | Load a background image (see below) |
 | `isDirty` | `boolean` | Whether canvas has been modified since last `resetDirty()`. Requires `trackChanges: true` |
 | `resetDirty` | `() => void` | Reset the dirty flag (e.g. after a successful save) |
+| `undo` | `() => Promise<void>` | Undo last change (requires `history: true`) |
+| `redo` | `() => Promise<void>` | Redo previously undone change (requires `history: true`) |
+| `canUndo` | `boolean` | Whether undo is available (reactive, requires `history: true`) |
+| `canRedo` | `boolean` | Whether redo is available (reactive, requires `history: true`) |
 
 ### Options
 
@@ -59,6 +64,8 @@ const canvas = useEditCanvas({
 | `autoFitToBackground` | `boolean` | `true` | Auto-fit viewport to background image after `onReady` |
 | `backgroundResize` | `boolean \| ResizeImageOptions` | `true` | Auto-downscale large images on upload |
 | `trackChanges` | `boolean` | `false` | Track object mutations and expose `isDirty` / `resetDirty` |
+| `borderRadius` | `number \| false` | `4` | Visual border radius for loaded Rects. Pass `false` to disable |
+| `history` | `boolean \| HistoryOptions` | `false` | Enable snapshot-based undo/redo |
 | `onReady` | `(canvas) => void \| Promise<void>` | — | Called after all canvas features are initialized |
 
 ### `setMode` — interaction mode lifecycle
@@ -74,6 +81,8 @@ canvas.setMode(null);
 ```
 
 The `setMode` function accepts a `ModeSetup` — a function that receives `(canvas, viewport?)` and optionally returns a cleanup function. When a new mode is set, the previous mode's cleanup is called automatically.
+
+> `setMode` now saves per-object selectability before disabling it, and restores it when returning to select mode. Objects added during the mode default to selectable.
 
 ### `setBackground` — background image replacement
 
@@ -102,6 +111,21 @@ canvas.resetDirty();
 canvas.isDirty; // false
 ```
 
+### Undo/redo
+
+Enable with `history: true` (or pass `{ maxSize: 50 }` to customize). The hook listens to object mutations and captures serialized snapshots (debounced at 300ms).
+
+```tsx
+const canvas = useEditCanvas({ history: true });
+
+canvas.undo();    // restore previous state
+canvas.redo();    // restore next state
+canvas.canUndo;   // boolean (reactive)
+canvas.canRedo;   // boolean (reactive)
+```
+
+An initial snapshot is captured after `onReady` resolves, so loaded data is included as the baseline state.
+
 ---
 
 ## `useViewCanvas(options?)`
@@ -113,11 +137,18 @@ const canvas = useViewCanvas({
   scaledStrokes: true,
   panAndZoom: true,
   autoFitToBackground: true,
+  borderRadius: 4,  // visual border radius for loaded Rects
   onReady: async (c) => {
     await loadCanvas(c, savedJson);
   },
 });
 ```
+
+### Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `borderRadius` | `number \| false` | `4` | Visual border radius for loaded Rects. Pass `false` to disable |
 
 ### Return value
 
@@ -130,6 +161,7 @@ const canvas = useViewCanvas({
 | `viewport.zoomIn` | `(step?) => void` | Zoom in |
 | `viewport.zoomOut` | `(step?) => void` | Zoom out |
 | `viewport.panToObject` | `(object, options?) => void` | Pan viewport to center on an object |
+| `viewport.zoomToFit` | `(object, options?) => void` | Zoom and pan to fit a specific object |
 | `setObjectStyle` | `(id, style) => void` | Update one object by `data.id` |
 | `setObjectStyles` | `(Record<id, style>) => void` | Batch-update multiple objects by `data.id` |
 | `setObjectStyleByType` | `(type, style) => void` | Update all objects matching `data.type` |
@@ -196,6 +228,8 @@ A thin React wrapper around a Fabric.js canvas element. By default, the canvas f
 | `height` | `number` | — | Canvas height in pixels. Omit for auto-fill |
 | `className` | `string` | — | CSS class for the container div |
 | `style` | `CSSProperties` | — | Inline styles for the container div |
+| `keyboardShortcuts` | `boolean` | `false` | Enable Delete/Backspace shortcuts. Set to `true` when using `<Canvas>` standalone without `useEditCanvas` |
+| `fabricOptions` | `Record<string, unknown>` | — | Additional options passed to the Fabric.js Canvas constructor |
 
 ---
 
