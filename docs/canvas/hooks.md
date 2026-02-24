@@ -164,23 +164,32 @@ canvas.setObjectStyleByType('DESK', { fill: '#cccccc' });
 
 ## `<Canvas>` component
 
-A thin React wrapper around a Fabric.js canvas element.
+A thin React wrapper around a Fabric.js canvas element. By default, the canvas fills its parent container and resizes automatically.
 
 ```tsx
+{/* Auto-fill mode (default) — fills 100% of parent width and height */}
+<div style={{ width: 800, height: 600 }}>
+  <Canvas onReady={canvas.onReady} />
+</div>
+
+{/* Fixed-size mode — pass both width and height */}
 <Canvas
   onReady={canvas.onReady}
   width={800}
   height={600}
-  className="my-canvas"
-  style={{ border: '1px solid #ccc' }}
 />
 ```
+
+### Sizing behavior
+
+- **Auto-fill** (default): When `width` and `height` are omitted, the canvas wrapper gets `width: 100%; height: 100%` and a `ResizeObserver` keeps the Fabric canvas in sync with the container. The viewport transform (pan/zoom) is preserved across resize.
+- **Fixed-size**: When both `width` and `height` are provided, the canvas uses those exact dimensions with no resize observer.
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `onReady` | `(canvas: FabricCanvas) => void` | — | Called when the Fabric canvas is initialized |
-| `width` | `number` | `300` | Canvas width in pixels |
-| `height` | `number` | `150` | Canvas height in pixels |
+| `width` | `number` | — | Canvas width in pixels. Omit for auto-fill |
+| `height` | `number` | — | Canvas height in pixels. Omit for auto-fill |
 | `className` | `string` | — | CSS class for the container div |
 | `style` | `CSSProperties` | — | Inline styles for the container div |
 
