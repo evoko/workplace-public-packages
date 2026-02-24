@@ -28,6 +28,8 @@ export interface UseViewCanvasOptions {
   autoFitToBackground?: boolean;
 }
 
+const VIEW_BORDER_RADIUS = 4;
+
 /** Disable selection and interactivity on all objects, and apply view-only styles. */
 function lockCanvas(canvas: FabricCanvas) {
   canvas.selection = false;
@@ -39,7 +41,10 @@ function lockCanvas(canvas: FabricCanvas) {
       obj.shapeType !== 'circle' &&
       obj.data?.type !== 'DEVICE'
     ) {
-      obj.set({ rx: 4, ry: 4 });
+      // Compensate for non-uniform scaling so corners appear circular.
+      const rx = VIEW_BORDER_RADIUS / (obj.scaleX ?? 1);
+      const ry = VIEW_BORDER_RADIUS / (obj.scaleY ?? 1);
+      obj.set({ rx, ry });
     }
   });
 }
