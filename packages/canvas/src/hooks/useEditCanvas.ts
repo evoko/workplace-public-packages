@@ -315,7 +315,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
   );
 
   const setBackground = useCallback(
-    async (url: string, bgOpts?: { preserveOpacity?: boolean }) => {
+    async (url: string, bgOpts?: { preserveContrast?: boolean }) => {
       const canvas = canvasRef.current;
       if (!canvas) throw new Error('Canvas not ready');
 
@@ -324,8 +324,8 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
           ? typeof options?.backgroundResize === 'object'
             ? { ...options.backgroundResize, ...bgOpts }
             : { ...bgOpts }
-          : bgOpts?.preserveOpacity
-            ? { preserveOpacity: true }
+          : bgOpts?.preserveContrast
+            ? { preserveContrast: true }
             : undefined;
 
       const img = await setBackgroundImageFn(canvas, url, resizeOpts);
@@ -388,7 +388,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
      * exceeds the configured limits (opt out via `backgroundResize: false`),
      * and fits the viewport after setting if `autoFitToBackground` is enabled.
      *
-     * Pass `{ preserveOpacity: true }` to keep the current background opacity
+     * Pass `{ preserveContrast: true }` to keep the current background contrast
      * when replacing the image.
      */
     setBackground,

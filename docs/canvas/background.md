@@ -19,8 +19,8 @@ reader.readAsDataURL(file);
 // With resize options
 await setBackgroundImage(canvas, url, { maxSize: 2000, minSize: 100 });
 
-// Preserve opacity when replacing the background image
-await setBackgroundImage(canvas, url, { preserveOpacity: true });
+// Preserve contrast when replacing the background image
+await setBackgroundImage(canvas, url, { preserveContrast: true });
 ```
 
 > When using `useEditCanvas`, prefer `canvas.setBackground(url)` which handles resize options from the hook config.
@@ -33,9 +33,9 @@ Extends `ResizeImageOptions` with:
 |---|---|---|---|
 | `maxSize` | `number` | `4096` | Maximum dimension in pixels |
 | `minSize` | `number` | `50` | Minimum dimension — throws if smaller |
-| `preserveOpacity` | `boolean` | `false` | Preserve the current background opacity when replacing the image |
+| `preserveContrast` | `boolean` | `false` | Preserve the current background contrast when replacing the image |
 
-When `preserveOpacity` is `true`, the current background opacity is read before loading the new image and re-applied afterwards. This avoids the manual 3-step pattern of read-opacity / set-image / restore-opacity.
+When `preserveContrast` is `true`, the current background contrast is read before loading the new image and re-applied afterwards.
 
 ---
 
@@ -74,22 +74,30 @@ if (src?.startsWith('blob:')) {
 
 ---
 
-## Opacity
+## Contrast
 
-### `setBackgroundOpacity(canvas, opacity)`
+### `setBackgroundContrast(canvas, value)`
 
-Set the background image opacity (0 = transparent, 1 = fully visible).
+Set the contrast of the background image.
+
+- **0**: minimum contrast (flat grey).
+- **1**: normal / unmodified (default).
+- **2**: maximum contrast (darks are truly dark, lights truly light).
+
+Value is clamped to the 0–2 range.
 
 ```typescript
-setBackgroundOpacity(canvas, 0.5);
+setBackgroundContrast(canvas, 0.5);  // low contrast
+setBackgroundContrast(canvas, 1);    // normal (default)
+setBackgroundContrast(canvas, 1.8);  // high contrast
 ```
 
-### `getBackgroundOpacity(canvas): number`
+### `getBackgroundContrast(canvas): number`
 
-Get the current background image opacity.
+Get the current contrast value (0–2 range, 1 = normal).
 
 ```typescript
-const opacity = getBackgroundOpacity(canvas); // 0.5
+const contrast = getBackgroundContrast(canvas); // e.g. 1.8
 ```
 
 ---

@@ -39,8 +39,8 @@ import {
   enableDrawToCreate,
   serializeCanvas,
   loadCanvas,
-  setBackgroundOpacity,
-  getBackgroundOpacity,
+  setBackgroundContrast,
+  getBackgroundContrast,
   setBackgroundInverted,
   getBackgroundInverted,
 } from '@bwp-web/canvas';
@@ -129,7 +129,7 @@ function EditCanvasContent({
 }: EditCanvasContentProps) {
   const [creationMode, setCreationMode] = useState<CreationMode>('select');
   const [activeShape, setActiveShape] = useState<ShapeType>('rectangle');
-  const [bgOpacity, setBgOpacity] = useState(1);
+  const [bgContrast, setBgContrast] = useState(1);
   const [bgInverted, setBgInverted] = useState(false);
   const [hasBackground, setHasBackground] = useState(false);
   const [hasSaved, setHasSaved] = useState(
@@ -160,7 +160,7 @@ function EditCanvasContent({
           await loadCanvas(c, JSON.parse(stored));
           if (c.backgroundImage) {
             setHasBackground(true);
-            setBgOpacity(getBackgroundOpacity(c));
+            setBgContrast(getBackgroundContrast(c));
             setBgInverted(getBackgroundInverted(c));
           }
           setHasSaved(true);
@@ -336,7 +336,7 @@ function EditCanvasContent({
         await canvas.setBackground(ev.target.result);
         const c = canvas.canvasRef.current;
         if (c) {
-          setBgOpacity(getBackgroundOpacity(c));
+          setBgContrast(getBackgroundContrast(c));
           setBgInverted(getBackgroundInverted(c));
         }
         setHasBackground(true);
@@ -346,12 +346,12 @@ function EditCanvasContent({
     [canvas.setBackground, canvas.canvasRef],
   );
 
-  const handleOpacityChange = useCallback(
+  const handleContrastChange = useCallback(
     (_: Event, value: number | number[]) => {
       const v = Array.isArray(value) ? value[0] : value;
-      setBgOpacity(v);
+      setBgContrast(v);
       const c = canvas.canvasRef.current;
-      if (c) setBackgroundOpacity(c, v);
+      if (c) setBackgroundContrast(c, v);
     },
     [canvas.canvasRef],
   );
@@ -393,7 +393,7 @@ function EditCanvasContent({
     await loadCanvas(c, JSON.parse(stored));
     if (c.backgroundImage) {
       setHasBackground(true);
-      setBgOpacity(getBackgroundOpacity(c));
+      setBgContrast(getBackgroundContrast(c));
       setBgInverted(getBackgroundInverted(c));
     }
     canvas.viewport.reset();
@@ -618,14 +618,14 @@ function EditCanvasContent({
                   <>
                     <Box>
                       <Typography variant="caption" color="text.secondary">
-                        Opacity: {Math.round(bgOpacity * 100)}%
+                        Contrast: {Math.round(bgContrast * 100)}%
                       </Typography>
                       <Slider
-                        value={bgOpacity}
+                        value={bgContrast}
                         min={0}
-                        max={1}
+                        max={2}
                         step={0.05}
-                        onChange={handleOpacityChange}
+                        onChange={handleContrastChange}
                         size="small"
                       />
                     </Box>
