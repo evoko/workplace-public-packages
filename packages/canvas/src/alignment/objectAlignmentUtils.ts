@@ -21,6 +21,26 @@ export type TransformEvent = BasicTransformEvent<TPointerEvent> & {
 
 export type OriginMap = Record<string, [TOriginX, TOriginY]>;
 
+/**
+ * Get the four bounding-box corners of a FabricObject in scene space using
+ * only geometric dimensions (width × height through the transform matrix),
+ * without stroke-width contribution. This ensures snap/alignment targets
+ * are stable regardless of stroke scaling.
+ */
+export function getStrokeFreeCoords(
+  obj: FabricObject,
+): [Point, Point, Point, Point] {
+  const m = obj.calcTransformMatrix();
+  const w = obj.width / 2;
+  const h = obj.height / 2;
+  return [
+    new Point(-w, -h).transform(m), // tl
+    new Point(w, -h).transform(m), // tr
+    new Point(w, h).transform(m), // br
+    new Point(-w, h).transform(m), // bl
+  ];
+}
+
 /** Return the absolute distance between two values. */
 export function getAbsoluteDistance(a: number, b: number): number {
   return Math.abs(a - b);
@@ -57,7 +77,7 @@ export function findNearestOnAxis(
 export function getBoundingPointMap(
   target: FabricObject,
 ): Record<string, Point> {
-  const coords = target.getCoords();
+  const coords = getStrokeFreeCoords(target);
   return {
     tl: coords[0],
     tr: coords[1],

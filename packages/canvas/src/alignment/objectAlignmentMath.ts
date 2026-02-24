@@ -1,19 +1,10 @@
-import { type FabricObject, Point, type TOriginX, type TOriginY } from 'fabric';
+import { type FabricObject, Point } from 'fabric';
 import {
   type AlignmentLine,
   type OriginMap,
   findNearestOnAxis,
+  getStrokeFreeCoords,
 } from './objectAlignmentUtils';
-import { getBaseStrokeWidth } from '../serialization';
-
-/** Origin pairs for each bounding-box corner (tl, tr, br, bl) plus center. */
-export const CORNER_ORIGINS: [TOriginX, TOriginY][] = [
-  ['left', 'top'],
-  ['right', 'top'],
-  ['right', 'bottom'],
-  ['left', 'bottom'],
-  ['center', 'center'],
-];
 
 /** Maps each corner/midpoint to the opposite origin for anchoring during scale. */
 export const OPPOSITE_ORIGIN_MAP: OriginMap = {
@@ -38,7 +29,7 @@ export function collectMovingAlignmentLines(
   points: Point[],
   margin: number,
 ): { verticalLines: AlignmentLine[]; horizontalLines: AlignmentLine[] } {
-  const list = target.getCoords();
+  const list: Point[] = [...getStrokeFreeCoords(target)];
   list.push(target.getCenterPoint());
   const opts = { target, list, points, margin };
   const verticalLines = collectMovingAxisMatches({ ...opts, axis: 'x' });
@@ -82,7 +73,12 @@ function collectMovingAxisMatches(props: {
     list.forEach((item) => {
       item[axis] += snapOffset;
     });
-    target.setXY(list[i], ...CORNER_ORIGINS[i]);
+    // Use center-based positioning to avoid stroke/origin offset issues.
+    // The center is stroke-independent, so shifting it by snapOffset
+    // moves the geometric edges by exactly that amount.
+    const center = target.getCenterPoint();
+    center[axis] += snapOffset;
+    target.setXY(center, 'center', 'center');
     target.setCoords();
   }
 
@@ -129,10 +125,7 @@ export function collectVerticalSnapOffset(
   snapOffset *= dirX;
 
   const { width, height, scaleX, scaleY } = target;
-  const strokeWidthDelta = target.strokeUniform
-    ? 0
-    : getBaseStrokeWidth(target);
-  const scaleWidth = scaleX * width + strokeWidthDelta;
+  const scaleWidth = scaleX * width;
   const sx = (snapOffset + scaleWidth) / scaleWidth;
   if (sx === 0) return [];
 
@@ -180,10 +173,7 @@ export function collectHorizontalSnapOffset(
   snapOffset *= dirY;
 
   const { width, height, scaleX, scaleY } = target;
-  const strokeWidthDelta = target.strokeUniform
-    ? 0
-    : getBaseStrokeWidth(target);
-  const scaleHeight = scaleY * height + strokeWidthDelta;
+  const scaleHeight = scaleY * height;
   const sy = (snapOffset + scaleHeight) / scaleHeight;
   if (sy === 0) return [];
 

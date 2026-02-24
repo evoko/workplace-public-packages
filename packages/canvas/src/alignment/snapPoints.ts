@@ -1,4 +1,5 @@
 import { type FabricObject, Point, Polygon, Rect, util } from 'fabric';
+import { getStrokeFreeCoords } from './objectAlignmentUtils';
 
 /**
  * Extracts alignment-relevant snap points from a FabricObject.
@@ -39,7 +40,7 @@ export function getSnapPoints(object: FabricObject): Point[] {
 }
 
 function getDefaultSnapPoints(object: FabricObject): Point[] {
-  const coords = object.getCoords(); // [tl, tr, br, bl] in scene space
+  const coords = getStrokeFreeCoords(object);
   return [...coords, object.getCenterPoint()];
 }
 
@@ -49,7 +50,7 @@ function getDefaultSnapPoints(object: FabricObject): Point[] {
 registerSnapPointExtractor(
   (obj) => obj instanceof Rect,
   (obj) => {
-    const [tl, tr, br, bl] = obj.getCoords();
+    const [tl, tr, br, bl] = getStrokeFreeCoords(obj);
     const mt = tl.add(tr).scalarDivide(2);
     const mr = tr.add(br).scalarDivide(2);
     const mb = br.add(bl).scalarDivide(2);
