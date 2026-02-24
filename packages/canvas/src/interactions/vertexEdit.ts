@@ -1,6 +1,5 @@
 import {
   Canvas as FabricCanvas,
-  Circle,
   FabricObject,
   Point,
   Polygon,
@@ -8,10 +7,12 @@ import {
 } from 'fabric';
 import type { Point2D } from '../types';
 import {
+  DEFAULT_VERTEX_HANDLE_RADIUS,
   DEFAULT_VERTEX_HANDLE_FILL,
   DEFAULT_VERTEX_HANDLE_STROKE,
   DEFAULT_VERTEX_HANDLE_STROKE_WIDTH,
 } from '../constants';
+import { createInteractionSnapping } from './interactionSnapping';
 
 export interface VertexEditOptions {
   handleRadius?: number;
@@ -41,12 +42,62 @@ function scenePointToLocal(polygon: Polygon, scenePoint: Point): Point2D {
   };
 }
 
+// --- DOM handle helpers ---
+
+function sceneToScreen(scenePoint: Point, canvas: FabricCanvas): Point {
+  return util.transformPoint(scenePoint, canvas.viewportTransform!);
+}
+
+function screenToScene(
+  screenX: number,
+  screenY: number,
+  canvas: FabricCanvas,
+): Point {
+  const inv = util.invertTransform(canvas.viewportTransform!);
+  return util.transformPoint(new Point(screenX, screenY), inv);
+}
+
+function createHandleElement(
+  radius: number,
+  fill: string,
+  stroke: string,
+  strokeWidth: number,
+): HTMLDivElement {
+  const el = document.createElement('div');
+  const size = radius * 2;
+  el.style.cssText = [
+    'position: absolute',
+    `width: ${size}px`,
+    `height: ${size}px`,
+    `margin-left: ${-radius}px`,
+    `margin-top: ${-radius}px`,
+    'border-radius: 50%',
+    `background: ${fill}`,
+    `border: ${strokeWidth}px solid ${stroke}`,
+    'box-sizing: border-box',
+    'pointer-events: auto',
+    'cursor: grab',
+    'touch-action: none',
+  ].join('; ');
+  return el;
+}
+
+function positionHandle(
+  handle: HTMLDivElement,
+  scenePoint: Point,
+  canvas: FabricCanvas,
+): void {
+  const screen = sceneToScreen(scenePoint, canvas);
+  handle.style.left = `${screen.x}px`;
+  handle.style.top = `${screen.y}px`;
+}
+
 // --- Main function ---
 
 /**
  * Enable vertex editing on a polygon.
- * Creates draggable circle handles at each vertex. Dragging a handle
- * updates the polygon's shape in real-time.
+ * Creates draggable DOM circle handles at each vertex. Dragging a handle
+ * updates the polygon's shape in real-time with cursor snapping support.
  *
  * Exit by pressing Escape or clicking on empty canvas.
  *
@@ -58,9 +109,14 @@ export function enableVertexEdit(
   options?: VertexEditOptions,
   onExit?: () => void,
 ): () => void {
-  const handles: Circle[] = [];
-  const handleIndexMap = new Map<Circle, number>();
   let exited = false;
+  let draggingIndex: number | null = null;
+
+  const handleRadius = options?.handleRadius ?? DEFAULT_VERTEX_HANDLE_RADIUS;
+  const handleFill = options?.handleFill ?? DEFAULT_VERTEX_HANDLE_FILL;
+  const handleStroke = options?.handleStroke ?? DEFAULT_VERTEX_HANDLE_STROKE;
+  const handleStrokeWidth =
+    options?.handleStrokeWidth ?? DEFAULT_VERTEX_HANDLE_STROKE_WIDTH;
 
   // Save previous state so we can restore on cleanup
   const previousState = {
@@ -94,72 +150,110 @@ export function enableVertexEdit(
     }
   });
 
-  // Create handles at each vertex
-  const points = polygon.points;
-  for (let i = 0; i < points.length; i++) {
-    const scenePos = localPointToScene(polygon, points[i]);
-    const handle = new Circle({
-      left: scenePos.x,
-      top: scenePos.y,
-      radius: options?.handleRadius ?? 6,
-      fill: options?.handleFill ?? DEFAULT_VERTEX_HANDLE_FILL,
-      stroke: options?.handleStroke ?? DEFAULT_VERTEX_HANDLE_STROKE,
-      strokeWidth:
-        options?.handleStrokeWidth ?? DEFAULT_VERTEX_HANDLE_STROKE_WIDTH,
-      strokeUniform: true,
-      originX: 'center',
-      originY: 'center',
-      hasBorders: false,
-      hasControls: false,
-    });
-    handleIndexMap.set(handle, i);
-    handles.push(handle);
-    canvas.add(handle);
-  }
+  // Set up snapping — provides snap-to-object-points + guideline rendering.
+  // Additional targets: the other vertices of this polygon (for self-alignment).
+  const snapping = createInteractionSnapping(canvas, undefined, () => {
+    if (draggingIndex === null) return [];
+    return polygon.points
+      .filter((_, i) => i !== draggingIndex)
+      .map((pt) => localPointToScene(polygon, pt));
+  });
+  snapping.excludeSet.add(polygon);
 
-  canvas.requestRenderAll();
+  // Create handle container overlay
+  const container = document.createElement('div');
+  container.style.cssText =
+    'position: absolute; inset: 0; pointer-events: none; overflow: hidden;';
+  canvas.wrapperEl.appendChild(container);
+
+  // Create DOM handles at each vertex
+  const handles: HTMLDivElement[] = [];
+  const points = polygon.points;
+
+  for (let i = 0; i < points.length; i++) {
+    const handle = createHandleElement(
+      handleRadius,
+      handleFill,
+      handleStroke,
+      handleStrokeWidth,
+    );
+    positionHandle(handle, localPointToScene(polygon, points[i]), canvas);
+    container.appendChild(handle);
+    handles.push(handle);
+
+    // --- Pointer event handlers for dragging ---
+    handle.addEventListener('pointerdown', (e: PointerEvent) => {
+      if (exited) return;
+      e.preventDefault();
+      e.stopPropagation();
+      draggingIndex = i;
+      handle.setPointerCapture(e.pointerId);
+      handle.style.cursor = 'grabbing';
+    });
+
+    handle.addEventListener('pointermove', (e: PointerEvent) => {
+      if (draggingIndex !== i) return;
+
+      // Convert pointer position to canvas-relative coordinates
+      const wrapperRect = canvas.wrapperEl.getBoundingClientRect();
+      const canvasRelX = e.clientX - wrapperRect.left;
+      const canvasRelY = e.clientY - wrapperRect.top;
+
+      // Convert to scene space
+      const rawScene = screenToScene(canvasRelX, canvasRelY, canvas);
+
+      // Apply snapping
+      const snapped = snapping.snapWithGuidelines(rawScene.x, rawScene.y);
+      const scenePoint = new Point(snapped.x, snapped.y);
+
+      // Use a non-dragged vertex as an anchor to measure visual drift
+      const anchorIdx = i === 0 ? 1 : 0;
+      const anchorBefore = localPointToScene(
+        polygon,
+        polygon.points[anchorIdx],
+      );
+
+      const localPoint = scenePointToLocal(polygon, scenePoint);
+      polygon.points[i] = localPoint;
+      polygon.setDimensions();
+
+      // setDimensions recalculates pathOffset, shifting all vertices visually.
+      // Compensate by adjusting polygon position so the anchor stays in place.
+      const anchorAfter = localPointToScene(polygon, polygon.points[anchorIdx]);
+      polygon.left += anchorBefore.x - anchorAfter.x;
+      polygon.top += anchorBefore.y - anchorAfter.y;
+      polygon.dirty = true;
+      polygon.setCoords();
+
+      repositionAllHandles();
+      canvas.requestRenderAll();
+    });
+
+    handle.addEventListener('pointerup', (e: PointerEvent) => {
+      if (draggingIndex !== i) return;
+      handle.releasePointerCapture(e.pointerId);
+      draggingIndex = null;
+      handle.style.cursor = 'grab';
+      snapping.clearSnapResult();
+      canvas.requestRenderAll();
+    });
+  }
 
   // Reposition all handles based on current polygon state
   function repositionAllHandles() {
     const pts = polygon.points;
-    for (let i = 0; i < pts.length; i++) {
-      const scenePos = localPointToScene(polygon, pts[i]);
-      handles[i].set({ left: scenePos.x, top: scenePos.y });
-      handles[i].setCoords();
+    for (let j = 0; j < pts.length; j++) {
+      positionHandle(handles[j], localPointToScene(polygon, pts[j]), canvas);
     }
   }
 
-  // Handle dragging
-  const handleObjectMoving = (e: { target: FabricObject }) => {
-    const target = e.target;
-    const index = handleIndexMap.get(target as Circle);
-    if (index === undefined) return;
-
-    const pos = { x: target.left, y: target.top };
-
-    // Use a non-dragged vertex as an anchor to measure visual drift
-    const anchorIdx = index === 0 ? 1 : 0;
-    const anchorBefore = localPointToScene(polygon, polygon.points[anchorIdx]);
-
-    const scenePoint = new Point(pos.x, pos.y);
-    const localPoint = scenePointToLocal(polygon, scenePoint);
-
-    polygon.points[index] = localPoint;
-    polygon.setDimensions();
-
-    // setDimensions recalculates pathOffset, shifting all vertices visually.
-    // Compensate by adjusting polygon position so the anchor stays in place.
-    const anchorAfter = localPointToScene(polygon, polygon.points[anchorIdx]);
-    polygon.left += anchorBefore.x - anchorAfter.x;
-    polygon.top += anchorBefore.y - anchorAfter.y;
-    polygon.dirty = true;
-    polygon.setCoords();
-
-    repositionAllHandles();
-    canvas.requestRenderAll();
+  // Reposition handles when viewport changes (zoom/pan)
+  const afterRender = () => {
+    if (draggingIndex === null) {
+      repositionAllHandles();
+    }
   };
-
-  canvas.on('object:moving', handleObjectMoving);
+  canvas.on('after:render', afterRender);
 
   // Exit on Escape (capture phase to prevent deletion shortcut)
   const handleKeyDown = (e: KeyboardEvent) => {
@@ -170,11 +264,8 @@ export function enableVertexEdit(
   };
   document.addEventListener('keydown', handleKeyDown, true);
 
-  // Exit on clicking empty canvas
-  const handleMouseDown = (e: { target?: FabricObject | null }) => {
-    if (e.target && handles.includes(e.target as Circle)) {
-      return;
-    }
+  // Exit on clicking empty canvas (clicks on DOM handles don't reach fabric)
+  const handleMouseDown = () => {
     cleanup();
   };
   canvas.on('mouse:down', handleMouseDown);
@@ -183,14 +274,12 @@ export function enableVertexEdit(
     if (exited) return;
     exited = true;
 
-    canvas.off('object:moving', handleObjectMoving);
+    snapping.cleanup();
+    canvas.off('after:render', afterRender);
     canvas.off('mouse:down', handleMouseDown);
     document.removeEventListener('keydown', handleKeyDown, true);
 
-    for (const handle of handles) {
-      canvas.remove(handle);
-    }
-    handles.length = 0;
+    container.remove();
 
     polygon.selectable = previousState.selectable;
     polygon.evented = previousState.evented;

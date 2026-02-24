@@ -1,5 +1,5 @@
 import { type Canvas, type FabricObject, Point, util } from 'fabric';
-import { BASE_CANVAS_SIZE } from '../constants';
+import { BASE_CANVAS_SIZE, DEFAULT_SNAP_MARGIN } from '../constants';
 import { getSnapPoints } from './snapPoints';
 import {
   type TransformEvent,
@@ -21,7 +21,7 @@ import {
 } from './objectAlignmentMath';
 
 export interface ObjectAlignmentOptions {
-  /** At what distance from the shape does alignment begin? Default: 4. */
+  /** At what distance from the shape does alignment begin? Default: 6. */
   margin?: number;
   /** Aligning line width. Default: 1. */
   width?: number;
@@ -71,7 +71,7 @@ class ObjectAlignmentGuides {
 
   constructor(canvas: Canvas, opts?: ObjectAlignmentOptions) {
     this.canvas = canvas;
-    this.margin = opts?.margin ?? 4;
+    this.margin = opts?.margin ?? DEFAULT_SNAP_MARGIN;
     this.scaleWithCanvasSize = opts?.scaleWithCanvasSize ?? true;
     this.renderConfig = {
       canvas,

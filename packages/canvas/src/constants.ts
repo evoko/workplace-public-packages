@@ -15,8 +15,8 @@ export const DEFAULT_VIEWPORT_PADDING = 0.05;
 
 /** Reference canvas dimension for scaling snap margins proportionally. */
 export const BASE_CANVAS_SIZE = 1000;
-/** Default snap margin in screen-pixel-equivalent units. */
-export const DEFAULT_CURSOR_SNAP_MARGIN = 6;
+/** Default snap margin in screen-pixel-equivalent units (shared by all snap systems). */
+export const DEFAULT_SNAP_MARGIN = 6;
 /** Default angle snap interval in degrees. */
 export const DEFAULT_ANGLE_SNAP_INTERVAL = 15;
 
@@ -42,6 +42,7 @@ export const DEFAULT_IMAGE_MIN_SIZE = 480;
 
 // --- Vertex edit handles ---
 
+export const DEFAULT_VERTEX_HANDLE_RADIUS = 6;
 export const DEFAULT_VERTEX_HANDLE_FILL = '#ffffff';
 export const DEFAULT_VERTEX_HANDLE_STROKE = '#2196f3';
 export const DEFAULT_VERTEX_HANDLE_STROKE_WIDTH = 2;

@@ -1,6 +1,6 @@
 import { Canvas as FabricCanvas, type FabricObject, Point } from 'fabric';
 import { getSnapPoints } from './snapPoints';
-import { DEFAULT_CURSOR_SNAP_MARGIN, BASE_CANVAS_SIZE } from '../constants';
+import { DEFAULT_SNAP_MARGIN, BASE_CANVAS_SIZE } from '../constants';
 
 export interface CursorSnapResult {
   /** The snapped point (or original if no snap occurred). */
@@ -59,8 +59,7 @@ export function snapCursorPoint(
   const sizeScale = scaleWithSize
     ? Math.max(canvas.width ?? 800, canvas.height ?? 600) / BASE_CANVAS_SIZE
     : 1;
-  const margin =
-    ((options?.margin ?? DEFAULT_CURSOR_SNAP_MARGIN) * sizeScale) / zoom;
+  const margin = ((options?.margin ?? DEFAULT_SNAP_MARGIN) * sizeScale) / zoom;
   const exclude = options?.exclude ?? new Set();
 
   let targetPoints: Point[];
