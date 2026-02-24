@@ -308,7 +308,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     setViewportModeState(mode);
   }, []);
 
-  const { resetViewport, zoomIn, zoomOut } = createViewportActions(
+  const { resetViewport, zoomIn, zoomOut, panToObject } = createViewportActions(
     canvasRef,
     viewportRef,
     setZoom,
@@ -362,6 +362,8 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
       zoomIn,
       /** Zoom out from the canvas center. Default step: 0.2. */
       zoomOut,
+      /** Pan the viewport to center on a specific object. */
+      panToObject,
     },
     /** Whether vertex edit mode is currently active (reactive). */
     isEditingVertices,

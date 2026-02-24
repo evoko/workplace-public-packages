@@ -21,15 +21,16 @@ localStorage.setItem('canvas', JSON.stringify(json));
 
 ---
 
-## `loadCanvas(canvas, json, options?): Promise<void>`
+## `loadCanvas(canvas, json, options?): Promise<FabricObject[]>`
 
-Loads a previously serialized canvas state. Restores control styles (selection handles) and circle constraints.
+Loads a previously serialized canvas state. Restores control styles (selection handles) and circle constraints. Returns the loaded objects array, already typed as `FabricObject[]`.
 
 ```typescript
 import { loadCanvas } from '@bwp-web/canvas';
 
 const json = JSON.parse(localStorage.getItem('canvas')!);
-await loadCanvas(canvas, json);
+const objects = await loadCanvas(canvas, json);
+// objects is FabricObject[] — no need for canvas.getObjects() cast
 ```
 
 ### Filtering objects on load

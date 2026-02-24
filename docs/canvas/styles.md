@@ -96,6 +96,8 @@ import {
   FabricImage,
   Rect,
   Polygon,
+  Point,           // Fabric's Point class for coordinate math
+  util,            // Fabric utilities (transformPoint, invertTransform, etc.)
 } from '@bwp-web/canvas';
 ```
 

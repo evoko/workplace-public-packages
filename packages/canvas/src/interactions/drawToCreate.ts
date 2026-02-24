@@ -23,6 +23,12 @@ export interface DrawToCreateOptions extends SnappableInteractionOptions {
   /** Style applied to the polygon being drawn. */
   style?: PolygonStyleOptions;
   /**
+   * Metadata to attach to the created polygon. If provided, this is set on
+   * the polygon's `data` property after creation. Takes precedence over
+   * `style.data` if both are specified.
+   */
+  data?: FabricObject['data'];
+  /**
    * Snap vertex positions to multiples of `interval` degrees when Shift is
    * held while placing a vertex. The angle is measured relative to the
    * previous vertex.
@@ -201,6 +207,9 @@ export function enableDrawToCreate(
     snapping.clearSnapResult();
 
     const polygon = createPolygonFromVertices(canvas, points, options?.style);
+    if (options?.data) {
+      polygon.data = options.data;
+    }
     canvas.selection = previousSelection;
     canvas.requestRenderAll();
 

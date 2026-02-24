@@ -15,6 +15,8 @@ export interface DragToCreateOptions extends SnappableInteractionOptions {
   previewStyle?: ShapeStyleOptions & { rx?: number; ry?: number };
   /** When true, constrain the drag to a 1:1 aspect ratio (square). */
   constrainToSquare?: boolean;
+  /** Called when the user cancels the drag via Escape. */
+  onCancel?: () => void;
 }
 
 /**
@@ -137,22 +139,46 @@ export function enableDragToCreate(
     previewRect = null;
   };
 
+  // Cancel drag on Escape (capture phase to prevent other handlers)
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      cleanup('cancel');
+    }
+  };
+
   canvas.on('mouse:down', handleMouseDown);
   canvas.on('mouse:move', handleMouseMove);
   canvas.on('mouse:up', handleMouseUp);
+  document.addEventListener('keydown', handleKeyDown, true);
 
-  return () => {
+  let exited = false;
+
+  function cleanup(reason?: 'cancel') {
+    if (exited) return;
+    exited = true;
+
     canvas.off('mouse:down', handleMouseDown);
     canvas.off('mouse:move', handleMouseMove);
     canvas.off('mouse:up', handleMouseUp);
+    document.removeEventListener('keydown', handleKeyDown, true);
     shiftTracker.cleanup();
 
     snapping.cleanup();
 
     if (isDrawing && previewRect) {
+      snapping.excludeSet.delete(previewRect);
       canvas.remove(previewRect);
+      canvas.selection = previousSelection;
       canvas.requestRenderAll();
     }
     restoreViewport(options?.viewport);
-  };
+
+    if (reason === 'cancel') {
+      options?.onCancel?.();
+    }
+  }
+
+  return () => cleanup();
 }

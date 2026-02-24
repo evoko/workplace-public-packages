@@ -1,7 +1,8 @@
 import { type RefObject } from 'react';
-import { Canvas as FabricCanvas } from 'fabric';
+import { Canvas as FabricCanvas, type FabricObject } from 'fabric';
 import {
   resetViewport as resetViewportFn,
+  type PanToObjectOptions,
   type ViewportController,
 } from '../viewport';
 import { fitViewportToBackground } from '../background';
@@ -45,7 +46,11 @@ export function createViewportActions(
     syncZoom(canvasRef, setZoom);
   };
 
-  return { resetViewport, zoomIn, zoomOut };
+  const panToObject = (object: FabricObject, panOpts?: PanToObjectOptions) => {
+    viewportRef.current?.panToObject(object, panOpts);
+  };
+
+  return { resetViewport, zoomIn, zoomOut, panToObject };
 }
 
 /**

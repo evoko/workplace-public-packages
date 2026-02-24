@@ -122,7 +122,7 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     [],
   );
 
-  const { resetViewport, zoomIn, zoomOut } = createViewportActions(
+  const { resetViewport, zoomIn, zoomOut, panToObject } = createViewportActions(
     canvasRef,
     viewportRef,
     setZoom,
@@ -198,6 +198,8 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
       zoomIn,
       /** Zoom out from the canvas center. Default step: 0.2. */
       zoomOut,
+      /** Pan the viewport to center on a specific object. */
+      panToObject,
     },
     /** Update a single object's visual style by its `data.id`. */
     setObjectStyle,

@@ -51,6 +51,7 @@ Returned by `enablePanAndZoom`. Also available through the hooks' `viewport` pro
 | `setEnabled(enabled)` | Enable/disable all viewport input |
 | `zoomIn(step?)` | Zoom in toward canvas center (default step: `0.2`) |
 | `zoomOut(step?)` | Zoom out from canvas center (default step: `0.2`) |
+| `panToObject(object, options?)` | Pan viewport to center on a specific object |
 | `cleanup()` | Remove all event listeners |
 
 ---
@@ -77,3 +78,24 @@ type ViewportMode = 'select' | 'pan';
 
 - **`select`** — click to select objects, Cmd/Ctrl+drag or middle-mouse to pan
 - **`pan`** — click and drag to pan (used in `useViewCanvas`)
+
+---
+
+## `panToObject(object, options?)`
+
+Pan the viewport so the given object is centered on the canvas. Available via `ViewportController` or through the hooks' `viewport.panToObject`.
+
+```typescript
+// Instant pan
+editor.viewport.panToObject(targetObject);
+
+// Animated pan with ease-out cubic
+editor.viewport.panToObject(targetObject, { animate: true, duration: 400 });
+```
+
+### Options (`PanToObjectOptions`)
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `animate` | `boolean` | `false` | Animate the pan with an ease-out cubic transition |
+| `duration` | `number` | `300` | Animation duration in milliseconds (when `animate` is true) |

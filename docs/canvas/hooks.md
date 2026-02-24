@@ -2,7 +2,7 @@
 
 The primary hooks (`useEditCanvas`, `useViewCanvas`) are the entry points for using the canvas. Both return an `onReady` callback that must be passed to the `<Canvas>` component.
 
-Additional utility hooks (`useCanvasEvents`, `useCanvasTooltip`, `useCanvasClick`) handle common patterns that would otherwise require manual event wiring.
+Additional utility hooks (`useCanvasEvents`, `useCanvasTooltip`, `useCanvasClick`, `useObjectOverlay`) handle common patterns that would otherwise require manual event wiring.
 
 ## `useEditCanvas(options?)`
 
@@ -37,6 +37,7 @@ const canvas = useEditCanvas({
 | `viewport.reset` | `() => void` | Reset viewport (fits to background if present) |
 | `viewport.zoomIn` | `(step?) => void` | Zoom in toward center |
 | `viewport.zoomOut` | `(step?) => void` | Zoom out from center |
+| `viewport.panToObject` | `(object, options?) => void` | Pan viewport to center on an object |
 | `setMode` | `(setup \| null) => void` | Activate an interaction mode or deactivate |
 | `setBackground` | `(url, opts?) => Promise<FabricImage>` | Load a background image (see below) |
 | `isDirty` | `boolean` | Whether canvas has been modified since last `resetDirty()`. Requires `trackChanges: true` |
@@ -126,6 +127,7 @@ const canvas = useViewCanvas({
 | `viewport.reset` | `() => void` | Reset viewport |
 | `viewport.zoomIn` | `(step?) => void` | Zoom in |
 | `viewport.zoomOut` | `(step?) => void` | Zoom out |
+| `viewport.panToObject` | `(object, options?) => void` | Pan viewport to center on an object |
 | `setObjectStyle` | `(id, style) => void` | Update one object by `data.id` |
 | `setObjectStyles` | `(Record<id, style>) => void` | Batch-update multiple objects by `data.id` |
 | `setObjectStyleByType` | `(type, style) => void` | Update all objects matching `data.type` |
@@ -164,23 +166,32 @@ canvas.setObjectStyleByType('DESK', { fill: '#cccccc' });
 
 ## `<Canvas>` component
 
-A thin React wrapper around a Fabric.js canvas element.
+A thin React wrapper around a Fabric.js canvas element. By default, the canvas fills its parent container and resizes automatically.
 
 ```tsx
+{/* Auto-fill mode (default) — fills 100% of parent width and height */}
+<div style={{ width: 800, height: 600 }}>
+  <Canvas onReady={canvas.onReady} />
+</div>
+
+{/* Fixed-size mode — pass both width and height */}
 <Canvas
   onReady={canvas.onReady}
   width={800}
   height={600}
-  className="my-canvas"
-  style={{ border: '1px solid #ccc' }}
 />
 ```
+
+### Sizing behavior
+
+- **Auto-fill** (default): When `width` and `height` are omitted, the canvas wrapper gets `width: 100%; height: 100%` and a `ResizeObserver` keeps the Fabric canvas in sync with the container. The viewport transform (pan/zoom) is preserved across resize.
+- **Fixed-size**: When both `width` and `height` are provided, the canvas uses those exact dimensions with no resize observer.
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `onReady` | `(canvas: FabricCanvas) => void` | — | Called when the Fabric canvas is initialized |
-| `width` | `number` | `300` | Canvas width in pixels |
-| `height` | `number` | `150` | Canvas height in pixels |
+| `width` | `number` | — | Canvas width in pixels. Omit for auto-fill |
+| `height` | `number` | — | Canvas height in pixels. Omit for auto-fill |
 | `className` | `string` | — | CSS class for the container div |
 | `style` | `CSSProperties` | — | Inline styles for the container div |
 
@@ -272,3 +283,44 @@ useCanvasClick(view.canvasRef, (target) => {
 |---|---|---|---|
 | `threshold` | `number` | `5` | Max movement in pixels before the gesture is treated as a pan |
 | `maxDuration` | `number` | `300` | Max time in milliseconds for the gesture to count as a click |
+
+---
+
+## `useObjectOverlay(canvasRef, object, options?)`
+
+Position a DOM element over a Fabric canvas object, kept in sync with pan, zoom, move, scale, and rotate transforms. Returns a ref to attach to the overlay container element.
+
+The container must be positioned absolutely within a relative-positioned parent that wraps the `<Canvas>` component.
+
+```tsx
+import { useObjectOverlay } from '@bwp-web/canvas';
+
+const overlayRef = useObjectOverlay(canvasRef, object, {
+  autoScaleContent: true,
+  textSelector: '.desk-text',
+});
+
+return (
+  <div ref={overlayRef} style={{ position: 'absolute', pointerEvents: 'none' }}>
+    <CanvasDeskIcon />
+    <span className="desk-text">{name}</span>
+  </div>
+);
+```
+
+### Options (`UseObjectOverlayOptions`)
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `autoScaleContent` | `boolean` | `false` | Scale overlay content to fit within object bounds. Sets a `--overlay-scale` CSS variable on the container |
+| `textSelector` | `string` | — | CSS selector for text elements to hide when the scale drops below `textMinScale` |
+| `textMinScale` | `number` | `0.5` | Minimum content scale at which `textSelector` elements remain visible |
+
+### How it works
+
+The hook subscribes to `after:render`, `mouse:wheel`, and per-object `moving`/`scaling`/`rotating` events. On each update it:
+
+1. Computes the object's screen-space position via `util.transformPoint`
+2. Sets `left`, `top`, `width`, `height`, and `rotate` on the container element
+3. If `autoScaleContent` is enabled, sets a `--overlay-scale` CSS custom property
+4. If `textSelector` is provided, hides matched elements when the scale is too small
