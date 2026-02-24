@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@bwp-web/eslint-config": "*",
+    "@bwp-web/styles": "*",
     "@types/react": "^19.1.0",
     "eslint": "^9.39.2",
     "prettier": "^3.8.1",
