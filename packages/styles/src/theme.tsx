@@ -1,6 +1,6 @@
 import {
-  BreadcrumbIcon,
   CheckedIcon,
+  ChevronRight,
   DatePickerIcon,
   ErrorStatusIcon,
   IndeterminateIcon,
@@ -708,14 +708,35 @@ export const biampTheme = (
         },
         MuiBreadcrumbs: {
           defaultProps: {
-            separator: <BreadcrumbIcon />,
+            separator: <ChevronRight />,
           },
           styleOverrides: {
+            root: ({ theme }) => ({
+              font: theme.typography.body2.font,
+              fontWeight: 600,
+              '& button svg': {
+                color: theme.palette.text.secondary,
+              },
+            }),
             separator: ({ theme }) => ({
+              margin: 0,
               color: theme.palette.text.secondary,
               '& svg': {
                 width: '16px',
                 height: '16px',
+              },
+            }),
+            ol: {
+              padding: 0,
+            },
+            li: ({ theme }) => ({
+              marginLeft: '8px',
+              marginRight: '8px',
+              fontSize: theme.typography.body2.fontSize,
+              fontWeight: 600,
+              color: `${theme.palette.text.secondary} !important`,
+              '&:last-child': {
+                color: theme.palette.text.secondary,
               },
             }),
           },
@@ -1402,6 +1423,98 @@ export const biampTheme = (
                 height: 0,
               },
             },
+          },
+        },
+        MuiSlider: {
+          styleOverrides: {
+            root: {
+              height: 16,
+              color: colors.blue.main,
+              '&.Mui-disabled': {
+                '& .MuiSlider-track': {
+                  '&::before, &::after': {
+                    backgroundColor: colors.grey[400],
+                  },
+                },
+              },
+            },
+            rail: ({ theme }) => ({
+              position: 'relative',
+              opacity: 1,
+              height: 16,
+              borderRadius: 8,
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? colors.grey[800]
+                  : colors.grey[100],
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                left: -8,
+                top: 0,
+                width: 30,
+                height: 16,
+                borderTopLeftRadius: 8,
+                borderBottomLeftRadius: 8,
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? colors.grey[800]
+                    : colors.grey[100],
+              },
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                right: -8,
+                top: 0,
+                width: 30,
+                height: 16,
+                borderTopRightRadius: 8,
+                borderBottomRightRadius: 8,
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? colors.grey[800]
+                    : colors.grey[100],
+              },
+            }),
+            track: {
+              height: 16,
+              borderRadius: 0,
+              border: 'none',
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                left: -8,
+                top: 0,
+                width: 8,
+                height: 16,
+                borderTopLeftRadius: 8,
+                borderBottomLeftRadius: 8,
+                backgroundColor: colors.blue.main,
+              },
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                right: -8,
+                top: 0,
+                width: 8,
+                height: 16,
+                borderTopRightRadius: 8,
+                borderBottomRightRadius: 8,
+                backgroundColor: colors.blue.main,
+              },
+            },
+            thumb: ({ theme }) => ({
+              width: 14,
+              height: 14,
+              backgroundColor: colors.white,
+              boxShadow: `0px 8px 8px 0px ${alpha(theme.palette.common.black, 0.05)}`,
+              '&:hover, &.Mui-focusVisible': {
+                boxShadow: `none`,
+              },
+              '&.Mui-active': {
+                boxShadow: `none`,
+              },
+            }),
           },
         },
       },
