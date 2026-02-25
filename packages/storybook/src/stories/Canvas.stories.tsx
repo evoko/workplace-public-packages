@@ -1190,39 +1190,28 @@ function OverlayDemoContent() {
                 object={obj}
               >
                 <OverlayContent>
-                  <Stack
-                    alignItems="center"
+                  {/* Icon scales with OverlayContent */}
+                  <Box
                     sx={{
-                      color: '#fff',
-                      py: 0.5,
-                      px: 1,
-                      borderRadius: 1,
-                      gap: 0.5,
+                      width: 24,
+                      height: 24,
+                      borderRadius: '50%',
+                      bgcolor: '#fff',
+                      flexShrink: 0,
                     }}
-                  >
-                    {/* Icon scales with OverlayContent */}
-                    <Box
+                  />
+                  {/* Text stays at fixed 12px via FixedSizeContent */}
+                  <FixedSizeContent>
+                    <Typography
                       sx={{
-                        width: 24,
-                        height: 24,
-                        borderRadius: '50%',
-                        bgcolor: '#fff',
-                        flexShrink: 0,
+                        fontSize: 12,
+                        fontWeight: 600,
+                        whiteSpace: 'nowrap',
                       }}
-                    />
-                    {/* Text stays at fixed 12px via FixedSizeContent */}
-                    <FixedSizeContent>
-                      <Typography
-                        sx={{
-                          fontSize: 12,
-                          fontWeight: 600,
-                          whiteSpace: 'nowrap',
-                        }}
-                      >
-                        {obj.data?.id ?? ''}
-                      </Typography>
-                    </FixedSizeContent>
-                  </Stack>
+                    >
+                      {obj.data?.id ?? ''}
+                    </Typography>
+                  </FixedSizeContent>
                 </OverlayContent>
               </ObjectOverlay>
             ))}

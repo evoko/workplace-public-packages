@@ -94,6 +94,7 @@ export function OverlayContent({
       <Stack
         ref={innerRef}
         sx={{
+          alignItems: 'center',
           transformOrigin: 'center center',
           flexShrink: 0,
           width: 'max-content',
