@@ -3,7 +3,10 @@ import {
   FabricImage,
   Rect,
   type FabricObject,
+  type TOriginX,
+  type TOriginY,
 } from 'fabric';
+import { getBackgroundContrast, getBackgroundInverted } from './background';
 import { restoreCircleConstraints } from './shapes/circle';
 import { DEFAULT_CONTROL_STYLE } from './styles';
 import type { CanvasJSON } from './types';
@@ -139,11 +142,13 @@ export function getBaseStrokeWidth(obj: FabricObject): number {
 /**
  * Serialize the canvas to a plain object, ready for `JSON.stringify`.
  *
- * - Always includes the `'data'` and `'shapeType'` custom properties.
- * - If {@link enableScaledStrokes} is active, temporarily restores all stroke
- *   widths to their base values before serializing, then reapplies the
- *   zoom-scaled values. This ensures the saved JSON always contains the
- *   intended visual stroke width, not the zoom-adjusted one.
+ * The output uses Fabric 6 conventions (`originX: 'left'`, `originY: 'top'`,
+ * `backgroundFilters`, `data.strokeWidthBase`) so saved data is readable by
+ * both old (Fabric 6) and new (Fabric 7) canvas implementations.
+ *
+ * Internally, the canvas keeps `center/center` origins at runtime. This
+ * function temporarily converts objects to `left/top` origin before calling
+ * `toObject()`, then restores the runtime state immediately after.
  */
 export function serializeCanvas(
   canvas: FabricCanvas,
@@ -163,7 +168,9 @@ export function serializeCanvas(
     ...(options?.properties ?? []),
   ];
 
-  // Save any currently scaled stroke widths and restore base values
+  // --- Save state & prepare for serialization ---
+
+  // 1. Restore base stroke widths (strip zoom-scaled values)
   const scaledWidths = new Map<FabricObject, number>();
   canvas.forEachObject((obj) => {
     const base = strokeBaseMap.get(obj);
@@ -173,7 +180,7 @@ export function serializeCanvas(
     }
   });
 
-  // Strip visual-only border radius and restore original rx/ry
+  // 2. Strip visual-only border radius and restore original rx/ry
   const appliedRadii = new Map<Rect, { rx: number; ry: number }>();
   canvas.forEachObject((obj) => {
     if (!(obj instanceof Rect)) return;
@@ -184,20 +191,95 @@ export function serializeCanvas(
     }
   });
 
+  // 3. Convert objects from center/center to left/top origin for backward
+  //    compatibility with old canvas implementations (Fabric 6).
+  const savedOrigins = new Map<
+    FabricObject,
+    { originX: TOriginX; originY: TOriginY; left: number; top: number }
+  >();
+  canvas.forEachObject((obj) => {
+    if (obj.originX === 'left' && obj.originY === 'top') return;
+    savedOrigins.set(obj, {
+      originX: obj.originX,
+      originY: obj.originY,
+      left: obj.left ?? 0,
+      top: obj.top ?? 0,
+    });
+    const leftTop = obj.getPositionByOrigin('left', 'top');
+    obj.set({ originX: 'left', originY: 'top', left: leftTop.x, top: leftTop.y });
+  });
+
+  // 4. Convert background image to left/top origin
+  const bg = canvas.backgroundImage;
+  let savedBgOrigin: {
+    originX: TOriginX;
+    originY: TOriginY;
+    left: number;
+    top: number;
+  } | null = null;
+  if (
+    bg instanceof FabricImage &&
+    (bg.originX !== 'left' || bg.originY !== 'top')
+  ) {
+    savedBgOrigin = {
+      originX: bg.originX,
+      originY: bg.originY,
+      left: bg.left ?? 0,
+      top: bg.top ?? 0,
+    };
+    const leftTop = bg.getPositionByOrigin('left', 'top');
+    bg.set({ originX: 'left', originY: 'top', left: leftTop.x, top: leftTop.y });
+  }
+
+  // 5. Add strokeWidthBase to obj.data for backward compatibility.
+  //    The old canvas reads base stroke width from obj.data.strokeWidthBase.
+  const savedData = new Map<FabricObject, FabricObject['data']>();
+  canvas.forEachObject((obj) => {
+    const base = strokeBaseMap.get(obj) ?? obj.strokeWidth;
+    if (base !== undefined && base !== 0 && obj.data) {
+      savedData.set(obj, obj.data);
+      (obj as unknown as { data: Record<string, unknown> }).data = {
+        ...(obj.data as Record<string, unknown>),
+        strokeWidthBase: base,
+      };
+    }
+  });
+
+  // --- Serialize ---
+
   const json = canvas.toObject(properties) as CanvasJSON;
 
-  // Strip backgroundColor — it's theme-dependent, not user data. The
-  // container's CSS background should control the canvas background color.
+  // Strip backgroundColor — it's theme-dependent, not user data.
   delete json.backgroundColor;
 
-  // Reapply the zoom-scaled values
+  // Add backgroundFilters for backward compatibility.
+  // The old canvas stores contrast/inversion state as { opacity, inverted }
+  // on the canvas object. ("opacity" is the old name for contrast.)
+  (json as Record<string, unknown>).backgroundFilters = {
+    opacity: getBackgroundContrast(canvas),
+    inverted: getBackgroundInverted(canvas),
+  };
+
+  // --- Restore runtime state ---
+
   scaledWidths.forEach((scaled, obj) => {
     obj.strokeWidth = scaled;
   });
 
-  // Reapply the visual border radius
   appliedRadii.forEach((radii, obj) => {
     obj.set({ rx: radii.rx, ry: radii.ry });
+  });
+
+  savedOrigins.forEach((saved, obj) => {
+    obj.set(saved);
+  });
+
+  if (savedBgOrigin && bg instanceof FabricImage) {
+    bg.set(savedBgOrigin);
+  }
+
+  savedData.forEach((originalData, obj) => {
+    (obj as unknown as { data: FabricObject['data'] }).data = originalData;
   });
 
   return json;
