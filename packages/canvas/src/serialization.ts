@@ -1,4 +1,9 @@
-import { Canvas as FabricCanvas, Rect, type FabricObject } from 'fabric';
+import {
+  Canvas as FabricCanvas,
+  FabricImage,
+  Rect,
+  type FabricObject,
+} from 'fabric';
 import { restoreCircleConstraints } from './shapes/circle';
 import { DEFAULT_CONTROL_STYLE } from './styles';
 import type { CanvasJSON } from './types';
@@ -233,6 +238,28 @@ export async function loadCanvas(
   // Mirrors serializeCanvas which already deletes backgroundColor on save.
   canvas.backgroundColor = '';
 
+  // Strip legacy `backgroundFilters` custom property from old canvas data.
+  // The old implementation stored contrast/inversion state as a custom canvas
+  // property; the new canvas reads actual Fabric filters on the image directly.
+  delete (canvas as unknown as Record<string, unknown>).backgroundFilters;
+
+  // Normalize background image origin: old data (Fabric 6) uses originX/Y
+  // 'left'/'top' while the new canvas uses 'center'/'center'. Compute the
+  // visual center before switching so the image stays in the same position.
+  const bg = canvas.backgroundImage;
+  if (bg instanceof FabricImage) {
+    if (bg.originX !== 'center' || bg.originY !== 'center') {
+      const center = bg.getCenterPoint();
+      bg.set({
+        originX: 'center',
+        originY: 'center',
+        left: center.x,
+        top: center.y,
+      });
+      bg.setCoords();
+    }
+  }
+
   // Filter out non-matching objects before applying styles
   if (options?.filter) {
     const toRemove: FabricObject[] = [];
@@ -259,6 +286,12 @@ export async function loadCanvas(
 
   // Re-apply per-object state that Fabric does not persist through serialization.
   canvas.forEachObject((obj) => {
+    // Strip legacy `strokeWidthBase` from obj.data — the old canvas stored the
+    // base stroke width by mutating data. The new canvas uses internal WeakMaps.
+    const data = obj.data as Record<string, unknown> | undefined;
+    if (data?.strokeWidthBase !== undefined) {
+      delete data.strokeWidthBase;
+    }
     // Control styling (borderColor, cornerColor, etc.) is absent from Fabric's
     // default toObject output, so we restore it explicitly for all objects.
     obj.set(DEFAULT_CONTROL_STYLE);
