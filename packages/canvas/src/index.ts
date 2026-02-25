@@ -18,8 +18,13 @@ export { useCanvasTooltip } from './hooks';
 export type { UseCanvasTooltipOptions, CanvasTooltipState } from './hooks';
 export { useCanvasClick } from './hooks';
 export type { UseCanvasClickOptions } from './hooks';
-export { useObjectOverlay } from './hooks';
-export type { UseObjectOverlayOptions } from './hooks';
+// --- Overlay ---
+export { ObjectOverlay } from './overlay';
+export type { ObjectOverlayProps } from './overlay';
+export { OverlayContent } from './overlay';
+export type { OverlayContentProps } from './overlay';
+export { FixedSizeContent } from './overlay';
+export type { FixedSizeContentProps } from './overlay';
 
 // --- Types ---
 export type {

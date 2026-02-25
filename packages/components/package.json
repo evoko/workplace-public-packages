@@ -1,6 +1,6 @@
 {
   "name": "@bwp-web/components",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "description": "Shared Biamp Workplace React components",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -32,7 +32,7 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "@bwp-web/assets": ">=0.6.2",
+    "@bwp-web/assets": ">=0.7.0",
     "@mui/material": ">=7.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"

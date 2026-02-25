@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type RefObject,
-} from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Box,
@@ -23,7 +17,9 @@ import {
   Canvas,
   useEditCanvas,
   useViewCanvas,
-  useObjectOverlay,
+  ObjectOverlay,
+  OverlayContent,
+  FixedSizeContent,
   createRectangle,
   createRectangleAtPoint,
   editRectangle,
@@ -1120,65 +1116,7 @@ export const ViewCanvasDemo: Story = {
 };
 
 // ============================================================
-// ObjectOverlayLabel — renders a DOM label over a canvas object
-// ============================================================
-
-function ObjectOverlayLabel({
-  canvasRef,
-  object,
-  label,
-}: {
-  canvasRef: RefObject<FabricCanvas | null>;
-  object: FabricObject;
-  label: string;
-}) {
-  const overlayRef = useObjectOverlay(canvasRef, object, {
-    textSelector: '.overlay-text',
-    textMinScale: 0.5,
-  });
-
-  return (
-    <div
-      ref={overlayRef}
-      style={{
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <div
-        style={{
-          background: 'rgba(33, 150, 243, 0.85)',
-          color: '#fff',
-          padding: '2px 8px',
-          borderRadius: 4,
-          fontSize: 12,
-          fontWeight: 600,
-          whiteSpace: 'nowrap',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 4,
-        }}
-      >
-        <span
-          style={{
-            width: 8,
-            height: 8,
-            borderRadius: '50%',
-            background: '#fff',
-            flexShrink: 0,
-          }}
-        />
-        <span className="overlay-text">{label}</span>
-      </div>
-    </div>
-  );
-}
-
-// ============================================================
-// OverlayDemoContent — useObjectOverlay + panToObject demo
+// OverlayDemoContent — ObjectOverlay + OverlayContent demo
 // ============================================================
 
 function OverlayDemoContent() {
@@ -1193,7 +1131,7 @@ function OverlayDemoContent() {
         width: 140,
         height: 90,
       });
-      r1.data = { type: 'DESK', id: 'desk-101' };
+      r1.data = { type: 'DESK', id: 'super duper uber long desk name' };
 
       const r2 = createRectangle(c, {
         left: 500,
@@ -1246,12 +1184,47 @@ function OverlayDemoContent() {
           />
           {showOverlays &&
             objects.map((obj) => (
-              <ObjectOverlayLabel
+              <ObjectOverlay
                 key={obj.data?.id}
                 canvasRef={canvas.canvasRef}
                 object={obj}
-                label={obj.data?.id ?? ''}
-              />
+              >
+                <OverlayContent>
+                  <Stack
+                    alignItems="center"
+                    sx={{
+                      color: '#fff',
+                      py: 0.5,
+                      px: 1,
+                      borderRadius: 1,
+                      gap: 0.5,
+                    }}
+                  >
+                    {/* Icon scales with OverlayContent */}
+                    <Box
+                      sx={{
+                        width: 24,
+                        height: 24,
+                        borderRadius: '50%',
+                        bgcolor: '#fff',
+                        flexShrink: 0,
+                      }}
+                    />
+                    {/* Text stays at fixed 12px via FixedSizeContent */}
+                    <FixedSizeContent>
+                      <Typography
+                        sx={{
+                          fontSize: 12,
+                          fontWeight: 600,
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {obj.data?.id ?? ''}
+                      </Typography>
+                    </FixedSizeContent>
+                  </Stack>
+                </OverlayContent>
+              </ObjectOverlay>
             ))}
         </>
       }
@@ -1303,12 +1276,10 @@ function OverlayDemoContent() {
 
           <Typography variant="body2" color="text.secondary">
             DOM overlays positioned over canvas objects using{' '}
-            <code>useObjectOverlay</code>. Overlays track with pan, zoom, move,
-            scale, and rotate.
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Zoom in/out to see auto-scaling. Text labels hide when zoomed out
-            far enough.
+            <code>ObjectOverlay</code> + <code>OverlayContent</code>. The icon
+            scales to fill the object bounds, while labels wrapped in{' '}
+            <code>FixedSizeContent</code> stay at a constant 12px and auto-hide
+            when the overlay gets too small.
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Click &ldquo;Pan to Object&rdquo; buttons to see animated panning
@@ -1325,12 +1296,15 @@ function OverlayDemoContent() {
 // ============================================================
 
 /**
- * Demonstrates `useObjectOverlay` — positioning DOM elements over canvas
- * objects that stay in sync with pan, zoom, move, scale, and rotate.
+ * Demonstrates `ObjectOverlay` + `OverlayContent` + `FixedSizeContent` —
+ * positioning scaled DOM elements over canvas objects that stay in sync with
+ * pan, zoom, move, scale, and rotate.
  *
+ * - **Mixed scaling**: the icon scales with `OverlayContent` to fill the
+ *   object bounds, while text labels stay at a constant 12px via
+ *   `FixedSizeContent` (auto-hides when the overlay is too small).
  * - **Toggle overlays**: switch the DOM labels on/off
  * - **Pan to object**: animated panning via `viewport.panToObject`
- * - **Auto-scale**: overlay content scales with zoom; text hides at low zoom
  * - **Drag objects**: overlays follow in real time
  */
 export const ObjectOverlayDemo: Story = {
