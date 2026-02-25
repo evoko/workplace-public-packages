@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type RefObject,
-} from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Box,
@@ -23,7 +17,8 @@ import {
   Canvas,
   useEditCanvas,
   useViewCanvas,
-  useObjectOverlay,
+  ObjectOverlay,
+  OverlayContent,
   createRectangle,
   createRectangleAtPoint,
   editRectangle,
@@ -1120,66 +1115,7 @@ export const ViewCanvasDemo: Story = {
 };
 
 // ============================================================
-// ObjectOverlayLabel — renders a DOM label over a canvas object
-// ============================================================
-
-function ObjectOverlayLabel({
-  canvasRef,
-  object,
-  label,
-}: {
-  canvasRef: RefObject<FabricCanvas | null>;
-  object: FabricObject;
-  label: string;
-}) {
-  const overlayRef = useObjectOverlay(canvasRef, object, {
-    textSelector: '.overlay-text',
-    textMinScale: 0.5,
-  });
-
-  return (
-    <div
-      ref={overlayRef}
-      style={{
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <div
-        style={{
-          background: 'rgba(33, 150, 243, 0.85)',
-          color: '#fff',
-          padding: '2px 8px',
-          borderRadius: 4,
-          fontSize: 12,
-          fontWeight: 600,
-          whiteSpace: 'nowrap',
-          display: 'flex',
-          alignItems: 'center',
-          flexDirection: "column",
-          gap: 4,
-        }}
-      >
-        <span
-          style={{
-            width: 24,
-            height: 24,
-            borderRadius: '50%',
-            background: '#fff',
-            flexShrink: 0,
-          }}
-        />
-        <span className="overlay-text">{label}</span>
-      </div>
-    </div>
-  );
-}
-
-// ============================================================
-// OverlayDemoContent — useObjectOverlay + panToObject demo
+// OverlayDemoContent — ObjectOverlay + OverlayContent demo
 // ============================================================
 
 function OverlayDemoContent() {
@@ -1247,12 +1183,44 @@ function OverlayDemoContent() {
           />
           {showOverlays &&
             objects.map((obj) => (
-              <ObjectOverlayLabel
+              <ObjectOverlay
                 key={obj.data?.id}
                 canvasRef={canvas.canvasRef}
                 object={obj}
-                label={obj.data?.id ?? ''}
-              />
+              >
+                <OverlayContent>
+                  <Stack
+                    alignItems="center"
+                    sx={{
+                      bgcolor: 'rgba(33, 150, 243, 0.85)',
+                      color: '#fff',
+                      py: 0.5,
+                      px: 1,
+                      borderRadius: 1,
+                      gap: 0.5,
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 24,
+                        height: 24,
+                        borderRadius: '50%',
+                        bgcolor: '#fff',
+                        flexShrink: 0,
+                      }}
+                    />
+                    <Typography
+                      sx={{
+                        fontSize: 12,
+                        fontWeight: 600,
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {obj.data?.id ?? ''}
+                    </Typography>
+                  </Stack>
+                </OverlayContent>
+              </ObjectOverlay>
             ))}
         </>
       }
@@ -1304,12 +1272,13 @@ function OverlayDemoContent() {
 
           <Typography variant="body2" color="text.secondary">
             DOM overlays positioned over canvas objects using{' '}
-            <code>useObjectOverlay</code>. Overlays track with pan, zoom, move,
-            scale, and rotate.
+            <code>ObjectOverlay</code> + <code>OverlayContent</code>. Overlays
+            track with pan, zoom, move, scale, and rotate.
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Zoom in/out to see auto-scaling. Text labels hide when zoomed out
-            far enough.
+            Zoom in/out to see auto-scaling via <code>OverlayContent</code>.
+            Content shrinks to fit small objects and scales up (max 2x) for
+            large ones.
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Click &ldquo;Pan to Object&rdquo; buttons to see animated panning
@@ -1326,12 +1295,14 @@ function OverlayDemoContent() {
 // ============================================================
 
 /**
- * Demonstrates `useObjectOverlay` — positioning DOM elements over canvas
- * objects that stay in sync with pan, zoom, move, scale, and rotate.
+ * Demonstrates `ObjectOverlay` + `OverlayContent` — positioning scaled DOM
+ * elements over canvas objects that stay in sync with pan, zoom, move,
+ * scale, and rotate.
  *
  * - **Toggle overlays**: switch the DOM labels on/off
  * - **Pan to object**: animated panning via `viewport.panToObject`
- * - **Auto-scale**: overlay content scales with zoom; text hides at low zoom
+ * - **Auto-scale**: `OverlayContent` scales content to fit within the
+ *   object's screen-space bounds (max 2x, 4px padding)
  * - **Drag objects**: overlays follow in real time
  */
 export const ObjectOverlayDemo: Story = {
