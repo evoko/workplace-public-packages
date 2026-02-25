@@ -260,6 +260,12 @@ export function serializeCanvas(
     inverted: getBackgroundInverted(canvas),
   };
 
+  // Persist lockLightMode for backward compatibility.
+  // The old canvas reads this as a top-level canvas property.
+  if (canvas.lockLightMode !== undefined) {
+    (json as Record<string, unknown>).lockLightMode = canvas.lockLightMode;
+  }
+
   // --- Restore runtime state ---
 
   scaledWidths.forEach((scaled, obj) => {
@@ -324,6 +330,14 @@ export async function loadCanvas(
   // The old implementation stored contrast/inversion state as a custom canvas
   // property; the new canvas reads actual Fabric filters on the image directly.
   delete (canvas as unknown as Record<string, unknown>).backgroundFilters;
+
+  // Restore lockLightMode from serialized data. Fabric's loadFromJSON sets
+  // unknown top-level properties on the canvas instance, so we read and
+  // re-assign it to the typed augmented property.
+  const rawCanvas = canvas as unknown as Record<string, unknown>;
+  if (rawCanvas.lockLightMode !== undefined) {
+    canvas.lockLightMode = rawCanvas.lockLightMode as boolean;
+  }
 
   // Normalize background image origin: old data (Fabric 6) uses originX/Y
   // 'left'/'top' while the new canvas uses 'center'/'center'. Compute the
