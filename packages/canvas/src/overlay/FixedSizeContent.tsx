@@ -100,14 +100,12 @@ export function FixedSizeContent({
         // vertically at natural size.  This comparison is stable because
         // totalContentHeightRef is only updated while the element is visible,
         // so the cached value does not change when the element hides.
-        const fits =
-          containerRect.height >= totalContentHeightRef.current;
+        const fits = containerRect.height >= totalContentHeightRef.current;
 
         if (fits && el.style.display === 'none') {
           // Show, then re-measure in case content changed while hidden.
           el.style.display = '';
-          totalContentHeightRef.current =
-            el.parentElement?.scrollHeight ?? 0;
+          totalContentHeightRef.current = el.parentElement?.scrollHeight ?? 0;
           // Re-check with the updated measurement to prevent showing
           // when the content barely doesn't fit.
           if (containerRect.height < totalContentHeightRef.current) {
@@ -119,8 +117,7 @@ export function FixedSizeContent({
 
         // Keep the cache fresh while visible.
         if (el.style.display !== 'none') {
-          totalContentHeightRef.current =
-            el.parentElement?.scrollHeight ?? 0;
+          totalContentHeightRef.current = el.parentElement?.scrollHeight ?? 0;
         }
       });
     }
