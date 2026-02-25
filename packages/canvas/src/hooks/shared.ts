@@ -1,9 +1,10 @@
-import { type RefObject } from 'react';
+import { type RefObject, useMemo } from 'react';
 import { Canvas as FabricCanvas, type FabricObject } from 'fabric';
 import {
   resetViewport as resetViewportFn,
   type PanToObjectOptions,
   type ViewportController,
+  type ZoomToFitOptions,
 } from '../viewport';
 import { fitViewportToBackground } from '../background';
 
@@ -17,40 +18,53 @@ export function syncZoom(
 }
 
 /**
- * Create resetViewport, zoomIn, and zoomOut actions shared between
- * useEditCanvas and useViewCanvas.
+ * Create memoized viewport action callbacks shared between
+ * useEditCanvas and useViewCanvas. The returned object is referentially
+ * stable across renders.
  */
-export function createViewportActions(
+export function useViewportActions(
   canvasRef: RefObject<FabricCanvas | null>,
   viewportRef: RefObject<ViewportController | null>,
   setZoom: (z: number) => void,
 ) {
-  const resetViewport = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    if (canvas.backgroundImage) {
-      fitViewportToBackground(canvas);
-    } else {
-      resetViewportFn(canvas);
-    }
-    setZoom(canvas.getZoom());
-  };
+  return useMemo(() => {
+    const resetViewport = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      if (canvas.backgroundImage) {
+        fitViewportToBackground(canvas);
+      } else {
+        resetViewportFn(canvas);
+      }
+      setZoom(canvas.getZoom());
+    };
 
-  const zoomIn = (step?: number) => {
-    viewportRef.current?.zoomIn(step);
-    syncZoom(canvasRef, setZoom);
-  };
+    const zoomIn = (step?: number) => {
+      viewportRef.current?.zoomIn(step);
+      syncZoom(canvasRef, setZoom);
+    };
 
-  const zoomOut = (step?: number) => {
-    viewportRef.current?.zoomOut(step);
-    syncZoom(canvasRef, setZoom);
-  };
+    const zoomOut = (step?: number) => {
+      viewportRef.current?.zoomOut(step);
+      syncZoom(canvasRef, setZoom);
+    };
 
-  const panToObject = (object: FabricObject, panOpts?: PanToObjectOptions) => {
-    viewportRef.current?.panToObject(object, panOpts);
-  };
+    const panToObject = (
+      object: FabricObject,
+      panOpts?: PanToObjectOptions,
+    ) => {
+      viewportRef.current?.panToObject(object, panOpts);
+    };
 
-  return { resetViewport, zoomIn, zoomOut, panToObject };
+    const zoomToFit = (object: FabricObject, fitOpts?: ZoomToFitOptions) => {
+      viewportRef.current?.zoomToFit(object, fitOpts);
+      syncZoom(canvasRef, setZoom);
+    };
+
+    return { resetViewport, zoomIn, zoomOut, panToObject, zoomToFit };
+    // Refs are stable — this only runs once
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 }
 
 /**

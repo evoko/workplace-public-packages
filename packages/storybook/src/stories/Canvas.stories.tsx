@@ -145,6 +145,7 @@ function EditCanvasContent({
     keyboardShortcuts: options.keyboardShortcuts,
     vertexEdit: options.vertexEdit,
     panAndZoom: options.panZoom,
+    history: true,
     onReady: async (c) => {
       // Auto-assign data.id to any new object that doesn't have one
       c.on('object:added', (e) => {
@@ -474,6 +475,14 @@ function EditCanvasContent({
             onZoomIn={canvas.viewport.zoomIn}
             onZoomOut={canvas.viewport.zoomOut}
             onReset={canvas.viewport.reset}
+            onZoomToFit={() => {
+              const c = canvas.canvasRef.current;
+              if (!c) return;
+              const target = c.getActiveObject() ?? c.getObjects()[0];
+              if (target) {
+                canvas.viewport.zoomToFit(target);
+              }
+            }}
           />
         }
         sidebar={
@@ -615,6 +624,31 @@ function EditCanvasContent({
                 )}
               </div>
             )}
+
+            <Divider />
+
+            {/* Undo / Redo */}
+            <div>
+              <Typography variant="subtitle2" gutterBottom>
+                History
+              </Typography>
+              <ButtonGroup fullWidth size="small">
+                <Button
+                  variant="outlined"
+                  onClick={() => canvas.undo()}
+                  disabled={!canvas.canUndo}
+                >
+                  Undo
+                </Button>
+                <Button
+                  variant="outlined"
+                  onClick={() => canvas.redo()}
+                  disabled={!canvas.canRedo}
+                >
+                  Redo
+                </Button>
+              </ButtonGroup>
+            </div>
 
             <Divider />
 
@@ -910,6 +944,14 @@ function ViewCanvasContent({
           onZoomIn={canvas.viewport.zoomIn}
           onZoomOut={canvas.viewport.zoomOut}
           onReset={canvas.viewport.reset}
+          onZoomToFit={() => {
+            const c = canvas.canvasRef.current;
+            if (!c) return;
+            const target = c.getActiveObject() ?? c.getObjects()[0];
+            if (target) {
+              canvas.viewport.zoomToFit(target);
+            }
+          }}
         />
       }
       sidebar={
@@ -1091,7 +1133,6 @@ function ObjectOverlayLabel({
   label: string;
 }) {
   const overlayRef = useObjectOverlay(canvasRef, object, {
-    autoScaleContent: true,
     textSelector: '.overlay-text',
     textMinScale: 0.5,
   });
@@ -1109,8 +1150,6 @@ function ObjectOverlayLabel({
     >
       <div
         style={{
-          transform: 'scale(var(--overlay-scale, 1))',
-          transformOrigin: 'center',
           background: 'rgba(33, 150, 243, 0.85)',
           color: '#fff',
           padding: '2px 8px',
@@ -1196,6 +1235,14 @@ function OverlayDemoContent() {
             onZoomIn={canvas.viewport.zoomIn}
             onZoomOut={canvas.viewport.zoomOut}
             onReset={canvas.viewport.reset}
+            onZoomToFit={() => {
+              const c = canvas.canvasRef.current;
+              if (!c) return;
+              const target = c.getActiveObject() ?? c.getObjects()[0];
+              if (target) {
+                canvas.viewport.zoomToFit(target);
+              }
+            }}
           />
           {showOverlays &&
             objects.map((obj) => (

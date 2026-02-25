@@ -58,7 +58,7 @@ export function createPolygonFromDrag(
   canvas: FabricCanvas,
   start: Point2D,
   end: Point2D,
-  style?: PolygonStyleOptions,
+  options?: ShapeStyleOptions,
 ): Polygon {
   const width = Math.abs(end.x - start.x);
   const height = Math.abs(end.y - start.y);
@@ -71,7 +71,7 @@ export function createPolygonFromDrag(
       { x: width, y: height },
       { x: 0, y: height },
     ],
-    { ...DEFAULT_SHAPE_STYLE, left, top, ...style },
+    { ...DEFAULT_SHAPE_STYLE, left, top, ...options },
   );
   canvas.add(polygon);
   canvas.requestRenderAll();
@@ -85,11 +85,11 @@ export function createPolygonFromDrag(
 export function createPolygonFromVertices(
   canvas: FabricCanvas,
   points: Point2D[],
-  style?: PolygonStyleOptions,
+  options?: ShapeStyleOptions,
 ): Polygon {
   const polygon = new Polygon(
     points.map((p) => ({ x: p.x, y: p.y })),
-    { ...DEFAULT_SHAPE_STYLE, ...style },
+    { ...DEFAULT_SHAPE_STYLE, ...options },
   );
   canvas.add(polygon);
   canvas.requestRenderAll();

@@ -31,11 +31,11 @@ Extends `ResizeImageOptions` with:
 
 | Option | Type | Default | Description |
 |---|---|---|---|
-| `maxSize` | `number` | `4096` | Maximum dimension in pixels |
-| `minSize` | `number` | `50` | Minimum dimension — throws if smaller |
-| `preserveContrast` | `boolean` | `false` | Preserve the current background contrast when replacing the image |
+| `maxSize` | `number` | `4096` | Maximum dimension in pixels. Resize only triggers when `maxSize` or `minSize` are explicitly passed |
+| `minSize` | `number` | `50` | Minimum dimension — throws if smaller. Resize only triggers when `maxSize` or `minSize` are explicitly passed |
+| `preserveContrast` | `boolean` | `false` | Preserve the current background contrast when replacing the image. Does not trigger resize on its own |
 
-When `preserveContrast` is `true`, the current background contrast is read before loading the new image and re-applied afterwards.
+When `preserveContrast` is `true`, the current background contrast is read before loading the new image and re-applied afterwards. Note that `preserveContrast` alone no longer triggers image resize — resize only occurs when `maxSize` or `minSize` are explicitly passed.
 
 ---
 

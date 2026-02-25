@@ -2,7 +2,7 @@
 
 Save and load canvas state as JSON. Handles stroke width restoration, control styles, and circle constraints automatically.
 
-## `serializeCanvas(canvas, options?): object`
+## `serializeCanvas(canvas, options?): CanvasJSON`
 
 Serializes the entire canvas (objects + background) to a JSON-compatible object. Temporarily restores base stroke widths before serializing so the saved data is zoom-independent.
 
@@ -23,7 +23,7 @@ localStorage.setItem('canvas', JSON.stringify(json));
 
 ## `loadCanvas(canvas, json, options?): Promise<FabricObject[]>`
 
-Loads a previously serialized canvas state. Restores control styles (selection handles) and circle constraints. Returns the loaded objects array, already typed as `FabricObject[]`.
+Accepts `CanvasJSON | object` as the `json` parameter. Loads a previously serialized canvas state. Restores control styles (selection handles) and circle constraints. Returns the loaded objects array, already typed as `FabricObject[]`.
 
 ```typescript
 import { loadCanvas } from '@bwp-web/canvas';
@@ -46,9 +46,10 @@ await loadCanvas(canvas, json, {
 
 ### Options (`LoadCanvasOptions`)
 
-| Option | Type | Description |
-|---|---|---|
-| `filter` | `(obj: FabricObject) => boolean` | If provided, objects for which this returns `false` are removed after loading |
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `filter` | `(obj: FabricObject) => boolean` | — | If provided, objects for which this returns `false` are removed after loading |
+| `borderRadius` | `number \| false` | `4` | Visual border radius for loaded Rects. Pass `false` to skip |
 
 ---
 
@@ -68,7 +69,7 @@ Internally, this stores the original ("base") stroke width in a WeakMap and adju
 
 ---
 
-## `enableScaledBorderRadius(canvas): () => void`
+## `enableScaledBorderRadius(canvas, options?): () => void`
 
 Keeps border radii (`rx`/`ry`) visually uniform on Rects loaded via `loadCanvas`, even when objects are non-uniformly scaled. Without this, corners would appear stretched when a rectangle is wider than it is tall (or vice versa).
 
@@ -76,7 +77,14 @@ Keeps border radii (`rx`/`ry`) visually uniform on Rects loaded via `loadCanvas`
 import { enableScaledBorderRadius } from '@bwp-web/canvas';
 
 const cleanup = enableScaledBorderRadius(canvas);
+const cleanup = enableScaledBorderRadius(canvas, { radius: 8 });
 ```
+
+### Options
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `radius` | `number` | `4` | Visual border radius in pixels |
 
 > Enabled by default in both `useEditCanvas` and `useViewCanvas`.
 
@@ -107,3 +115,17 @@ const baseWidth = getBaseStrokeWidth(myRect); // e.g. 2
 - **Control styles**: Selection handle styles are restored to match the package's theme after loading.
 - **Border radius**: `loadCanvas` applies a visual border radius to loaded Rects (excluding circles and DEVICE objects) and registers them with `enableScaledBorderRadius`. The original `rx`/`ry` values are restored before serialization.
 - **Origin normalization**: `loadCanvas` migrates legacy objects from `originX: 'left'` / `originY: 'top'` to `'center'` / `'center'`. Coordinates are adjusted so objects remain in the same visual position.
+
+---
+
+## `CanvasJSON`
+
+The type returned by `serializeCanvas` and accepted by `loadCanvas`:
+
+```typescript
+interface CanvasJSON {
+  version: string;
+  objects: Record<string, unknown>[];
+  [key: string]: unknown;
+}
+```

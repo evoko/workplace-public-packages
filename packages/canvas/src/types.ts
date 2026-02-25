@@ -1,6 +1,7 @@
 import type { Canvas as FabricCanvas, FabricObject } from 'fabric';
 import type { ViewportController } from './viewport';
 import type { GuidelineStyle } from './alignment/cursorSnapping';
+import type { ObjectDataType } from './fabricAugmentation';
 
 /** A simple 2D point. */
 export type Point2D = { x: number; y: number };
@@ -11,7 +12,14 @@ export interface ShapeStyleOptions {
   stroke?: string;
   strokeWidth?: number;
   /** Optional metadata to attach to the created object. */
-  data?: { type: string; id: string };
+  data?: { type: ObjectDataType; id: string };
+}
+
+/** JSON representation returned by {@link serializeCanvas}. */
+export interface CanvasJSON {
+  version: string;
+  objects: Record<string, unknown>[];
+  [key: string]: unknown;
 }
 
 /** Snapping configuration used by interaction modes (dragToCreate, drawToCreate). */

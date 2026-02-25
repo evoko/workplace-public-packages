@@ -30,7 +30,9 @@ export type {
   SnappableInteractionOptions,
   DragBounds,
   ModeSetup,
+  CanvasJSON,
 } from './types';
+export type { ObjectDataType } from './fabricAugmentation';
 
 // --- Shapes ---
 export {
@@ -68,6 +70,7 @@ export type {
   ViewportMode,
   PanAndZoomOptions,
   PanToObjectOptions,
+  ZoomToFitOptions,
 } from './viewport';
 
 // --- Alignment ---
@@ -87,6 +90,10 @@ export type {
 // --- Keyboard ---
 export { deleteObjects, enableKeyboardShortcuts } from './keyboard';
 
+// --- History ---
+export { createHistoryTracker } from './history';
+export type { HistoryOptions, HistoryTracker } from './history';
+
 // --- Serialization ---
 export {
   enableScaledStrokes,
@@ -95,7 +102,11 @@ export {
   loadCanvas,
   getBaseStrokeWidth,
 } from './serialization';
-export type { SerializeOptions, LoadCanvasOptions } from './serialization';
+export type {
+  SerializeOptions,
+  LoadCanvasOptions,
+  ScaledBorderRadiusOptions,
+} from './serialization';
 
 // --- Background ---
 export {

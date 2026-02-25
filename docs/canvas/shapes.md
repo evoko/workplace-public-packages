@@ -135,7 +135,7 @@ const poly = createPolygonAtPoint(canvas, { x: 200, y: 150 }, {
 });
 ```
 
-### `createPolygonFromDrag(canvas, start, end, style?): Polygon`
+### `createPolygonFromDrag(canvas, start, end, options?): Polygon`
 
 Creates a rectangular polygon from two corner points (used with `enableDragToCreate`).
 
@@ -147,7 +147,7 @@ const poly = createPolygonFromDrag(
 );
 ```
 
-### `createPolygonFromVertices(canvas, points, style?): Polygon`
+### `createPolygonFromVertices(canvas, points, options?): Polygon`
 
 Creates a polygon from an array of vertices (used with `enableDrawToCreate`).
 
@@ -178,7 +178,7 @@ interface ShapeStyleOptions {
   fill?: string;
   stroke?: string;
   strokeWidth?: number;
-  data?: { type: string; id: string };
+  data?: { type: ObjectDataType; id: string };
 }
 ```
 

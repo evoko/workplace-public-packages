@@ -7,7 +7,7 @@ import {
   type ViewportMode,
 } from '../viewport';
 import {
-  createViewportActions,
+  useViewportActions,
   resolveAlignmentEnabled,
   syncZoom,
 } from './shared';
@@ -25,6 +25,7 @@ import {
 import {
   enableScaledStrokes,
   enableScaledBorderRadius,
+  type ScaledBorderRadiusOptions,
 } from '../serialization';
 import { enableKeyboardShortcuts } from '../keyboard';
 import {
@@ -33,6 +34,11 @@ import {
   type ResizeImageOptions,
   type SetBackgroundImageOptions,
 } from '../background';
+import {
+  createHistoryTracker,
+  type HistoryOptions,
+  type HistoryTracker,
+} from '../history';
 import type { ModeSetup } from '../types';
 
 export interface UseEditCanvasOptions {
@@ -90,6 +96,17 @@ export interface UseEditCanvasOptions {
    * Default: disabled.
    */
   trackChanges?: boolean;
+  /**
+   * Visual border radius applied to loaded Rects (via `loadCanvas`).
+   * Pass a number to customize (default: 4), or `false` to disable.
+   */
+  borderRadius?: number | false;
+  /**
+   * Enable snapshot-based undo/redo. Pass `true` for defaults, or an options
+   * object to customize `maxSize` (default: 50) and `debounce` (default: 300ms).
+   * Default: disabled.
+   */
+  history?: boolean | HistoryOptions;
 }
 
 /**
@@ -122,22 +139,32 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
   const modeCleanupRef = useRef<(() => void) | null>(null);
   const vertexEditCleanupRef = useRef<(() => void) | null>(null);
   const keyboardCleanupRef = useRef<(() => void) | null>(null);
+  const historyRef = useRef<HistoryTracker | null>(null);
+  const optionsRef = useRef(options);
+  optionsRef.current = options;
+
+  // WeakMap to save per-object selectability before entering a mode
+  const savedSelectabilityRef = useRef(
+    new WeakMap<FabricObject, { selectable: boolean; evented: boolean }>(),
+  );
 
   const [zoom, setZoom] = useState(1);
   const [selected, setSelected] = useState<FabricObject[]>([]);
   const [viewportMode, setViewportModeState] = useState<ViewportMode>('select');
   const [isEditingVertices, setIsEditingVertices] = useState(false);
   const [isDirty, setIsDirty] = useState(false);
+  const [canUndo, setCanUndo] = useState(false);
+  const [canRedo, setCanRedo] = useState(false);
 
   /**
    * Activate an interaction mode, or pass `null` to return to select mode.
    *
    * When a setup function is provided, the hook automatically:
    * - Cleans up the previous mode
-   * - Disables object selectability
+   * - Saves and disables object selectability
    * - Calls `setup(canvas, viewport)` and stores its cleanup
    *
-   * When `null` is passed, selectability is restored.
+   * When `null` is passed, saved selectability is restored.
    */
   const setMode = useCallback((setup: ModeSetup | null) => {
     // Exit any active vertex edit session before switching modes
@@ -152,12 +179,21 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     if (!canvas) return;
 
     if (setup === null) {
+      // Restore saved selectability, defaulting to true for objects added during mode
       canvas.selection = true;
       canvas.forEachObject((obj) => {
-        obj.selectable = true;
-        obj.evented = true;
+        const saved = savedSelectabilityRef.current.get(obj);
+        obj.selectable = saved?.selectable ?? true;
+        obj.evented = saved?.evented ?? true;
       });
     } else {
+      // Save current selectability before disabling
+      canvas.forEachObject((obj) => {
+        savedSelectabilityRef.current.set(obj, {
+          selectable: obj.selectable,
+          evented: obj.evented,
+        });
+      });
       canvas.selection = false;
       canvas.forEachObject((obj) => {
         obj.selectable = false;
@@ -173,48 +209,51 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
   const onReady = useCallback(
     (canvas: FabricCanvas) => {
       canvasRef.current = canvas;
+      const opts = optionsRef.current;
 
-      if (options?.scaledStrokes !== false) {
+      if (opts?.scaledStrokes !== false) {
         enableScaledStrokes(canvas);
       }
 
-      enableScaledBorderRadius(canvas);
+      if (opts?.borderRadius !== false) {
+        const borderRadiusOpts: ScaledBorderRadiusOptions | undefined =
+          typeof opts?.borderRadius === 'number'
+            ? { radius: opts.borderRadius }
+            : undefined;
+        enableScaledBorderRadius(canvas, borderRadiusOpts);
+      }
 
-      if (options?.keyboardShortcuts !== false) {
+      if (opts?.keyboardShortcuts !== false) {
         keyboardCleanupRef.current = enableKeyboardShortcuts(canvas);
       }
 
       // Set canvas-level alignment state so interaction modes inherit it
-      setCanvasAlignmentEnabled(canvas, options?.enableAlignment);
+      setCanvasAlignmentEnabled(canvas, opts?.enableAlignment);
 
-      if (options?.panAndZoom !== false) {
+      if (opts?.panAndZoom !== false) {
         viewportRef.current = enablePanAndZoom(
           canvas,
-          typeof options?.panAndZoom === 'object'
-            ? options.panAndZoom
-            : undefined,
+          typeof opts?.panAndZoom === 'object' ? opts.panAndZoom : undefined,
         );
       }
 
       const alignmentEnabled = resolveAlignmentEnabled(
-        options?.enableAlignment,
-        options?.alignment,
+        opts?.enableAlignment,
+        opts?.alignment,
       );
 
       if (alignmentEnabled) {
         alignmentCleanupRef.current = enableObjectAlignment(
           canvas,
-          typeof options?.alignment === 'object'
-            ? options.alignment
-            : undefined,
+          typeof opts?.alignment === 'object' ? opts.alignment : undefined,
         );
       }
 
-      if (options?.rotationSnap !== false) {
+      if (opts?.rotationSnap !== false) {
         rotationSnapCleanupRef.current = enableRotationSnap(
           canvas,
-          typeof options?.rotationSnap === 'object'
-            ? options.rotationSnap
+          typeof opts?.rotationSnap === 'object'
+            ? opts.rotationSnap
             : undefined,
         );
       }
@@ -236,48 +275,73 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
       });
 
       // Dirty tracking — mark canvas as modified on any object mutation
-      if (options?.trackChanges) {
+      if (opts?.trackChanges) {
         canvas.on('object:added', () => setIsDirty(true));
         canvas.on('object:removed', () => setIsDirty(true));
         canvas.on('object:modified', () => setIsDirty(true));
       }
 
+      // Sync undo/redo availability when canvas changes
+      if (opts?.history) {
+        const syncHistoryState = () => {
+          const h = historyRef.current;
+          if (!h) return;
+          // Use setTimeout to read state after debounced snapshot is captured
+          setTimeout(() => {
+            setCanUndo(h.canUndo());
+            setCanRedo(h.canRedo());
+          }, 350);
+        };
+        canvas.on('object:added', syncHistoryState);
+        canvas.on('object:removed', syncHistoryState);
+        canvas.on('object:modified', syncHistoryState);
+      }
+
       // Auto-setup vertex edit on double-click for polygons
-      if (options?.vertexEdit !== false) {
+      if (opts?.vertexEdit !== false) {
         const vertexOpts =
-          typeof options?.vertexEdit === 'object'
-            ? options.vertexEdit
-            : undefined;
+          typeof opts?.vertexEdit === 'object' ? opts.vertexEdit : undefined;
 
         canvas.on('mouse:dblclick', (e) => {
           if (e.target && e.target instanceof Polygon) {
             vertexEditCleanupRef.current?.();
-            vertexEditCleanupRef.current = enableVertexEdit(
-              canvas,
-              e.target,
-              vertexOpts,
-              () => {
+            vertexEditCleanupRef.current = enableVertexEdit(canvas, e.target, {
+              ...vertexOpts,
+              onExit: () => {
                 vertexEditCleanupRef.current = null;
                 setIsEditingVertices(false);
               },
-            );
+            });
             setIsEditingVertices(true);
           }
         });
       }
 
-      const onReadyResult = options?.onReady?.(canvas);
-      if (options?.autoFitToBackground !== false) {
+      // History (undo/redo)
+      if (opts?.history) {
+        const historyOpts =
+          typeof opts.history === 'object' ? opts.history : undefined;
+        historyRef.current = createHistoryTracker(canvas, historyOpts);
+      }
+
+      const onReadyResult = opts?.onReady?.(canvas);
+      if (opts?.autoFitToBackground !== false) {
         Promise.resolve(onReadyResult).then(() => {
           if (canvas.backgroundImage) {
             fitViewportToBackground(canvas);
             syncZoom(canvasRef, setZoom);
           }
+          // Push initial snapshot after onReady resolves (includes loaded data)
+          historyRef.current?.pushSnapshot();
+        });
+      } else {
+        // Push initial snapshot even without auto-fit
+        Promise.resolve(onReadyResult).then(() => {
+          historyRef.current?.pushSnapshot();
         });
       }
     },
     // onReady and panAndZoom are intentionally excluded — we only initialize once
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
 
@@ -313,21 +377,19 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     setViewportModeState(mode);
   }, []);
 
-  const { resetViewport, zoomIn, zoomOut, panToObject } = createViewportActions(
-    canvasRef,
-    viewportRef,
-    setZoom,
-  );
+  const { resetViewport, zoomIn, zoomOut, panToObject, zoomToFit } =
+    useViewportActions(canvasRef, viewportRef, setZoom);
 
   const setBackground = useCallback(
     async (url: string, bgOpts?: { preserveContrast?: boolean }) => {
       const canvas = canvasRef.current;
       if (!canvas) throw new Error('Canvas not ready');
 
+      const opts = optionsRef.current;
       const resizeOpts: SetBackgroundImageOptions | undefined =
-        options?.backgroundResize !== false
-          ? typeof options?.backgroundResize === 'object'
-            ? { ...options.backgroundResize, ...bgOpts }
+        opts?.backgroundResize !== false
+          ? typeof opts?.backgroundResize === 'object'
+            ? { ...opts.backgroundResize, ...bgOpts }
             : { ...bgOpts }
           : bgOpts?.preserveContrast
             ? { preserveContrast: true }
@@ -335,14 +397,13 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
 
       const img = await setBackgroundImageFn(canvas, url, resizeOpts);
 
-      if (options?.autoFitToBackground !== false) {
+      if (opts?.autoFitToBackground !== false) {
         fitViewportToBackground(canvas);
         syncZoom(canvasRef, setZoom);
       }
 
       return img;
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   );
 
@@ -369,6 +430,8 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
       zoomOut,
       /** Pan the viewport to center on a specific object. */
       panToObject,
+      /** Zoom and pan to fit a specific object in the viewport. */
+      zoomToFit,
     },
     /** Whether vertex edit mode is currently active (reactive). */
     isEditingVertices,
@@ -401,5 +464,25 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     isDirty,
     /** Reset the dirty flag (e.g., after a successful save). */
     resetDirty: useCallback(() => setIsDirty(false), []),
+    /** Undo the last change. Requires `history: true`. */
+    undo: useCallback(async () => {
+      const h = historyRef.current;
+      if (!h) return;
+      await h.undo();
+      setCanUndo(h.canUndo());
+      setCanRedo(h.canRedo());
+    }, []),
+    /** Redo a previously undone change. Requires `history: true`. */
+    redo: useCallback(async () => {
+      const h = historyRef.current;
+      if (!h) return;
+      await h.redo();
+      setCanUndo(h.canUndo());
+      setCanRedo(h.canRedo());
+    }, []),
+    /** Whether an undo operation is available (reactive). Requires `history: true`. */
+    canUndo,
+    /** Whether a redo operation is available (reactive). Requires `history: true`. */
+    canRedo,
   };
 }

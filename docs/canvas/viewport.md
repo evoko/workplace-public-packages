@@ -52,6 +52,7 @@ Returned by `enablePanAndZoom`. Also available through the hooks' `viewport` pro
 | `zoomIn(factor?)` | Zoom in toward canvas center by a multiplier (default: `1.2` = 20%) |
 | `zoomOut(factor?)` | Zoom out from canvas center by a multiplier (default: `1.2` = 20%) |
 | `panToObject(object, options?)` | Pan viewport to center on a specific object |
+| `zoomToFit(object, options?)` | Zoom and pan viewport to fit a specific object |
 | `cleanup()` | Remove all event listeners |
 
 ---
@@ -85,6 +86,8 @@ type ViewportMode = 'select' | 'pan';
 
 Pan the viewport so the given object is centered on the canvas. Available via `ViewportController` or through the hooks' `viewport.panToObject`.
 
+> Calling `panToObject` automatically cancels any in-progress animation.
+
 ```typescript
 // Instant pan
 editor.viewport.panToObject(targetObject);
@@ -99,3 +102,20 @@ editor.viewport.panToObject(targetObject, { animate: true, duration: 400 });
 |---|---|---|---|
 | `animate` | `boolean` | `false` | Animate the pan with an ease-out cubic transition |
 | `duration` | `number` | `300` | Animation duration in milliseconds (when `animate` is true) |
+
+---
+
+## `zoomToFit(object, options?)`
+
+Zoom and pan the viewport so the given object fills the canvas with optional padding.
+
+```typescript
+editor.viewport.zoomToFit(targetObject);
+editor.viewport.zoomToFit(targetObject, { padding: 0.2 }); // 20% padding
+```
+
+### Options (`ZoomToFitOptions`)
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `padding` | `number` | `0.1` | Padding fraction (0.1 = 10% on each side) |

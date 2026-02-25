@@ -11,6 +11,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CropFreeIcon from '@mui/icons-material/CropFree';
+import FitScreenIcon from '@mui/icons-material/FitScreen';
 import PanToolIcon from '@mui/icons-material/PanTool';
 import NearMeIcon from '@mui/icons-material/NearMe';
 import type { ViewportMode } from '@bwp-web/canvas';
@@ -22,6 +23,8 @@ export interface ViewportControlToolbarProps {
   onZoomIn: () => void;
   onZoomOut: () => void;
   onReset: () => void;
+  /** Optional callback to zoom-to-fit the first object on the canvas. */
+  onZoomToFit?: () => void;
 }
 
 /**
@@ -51,6 +54,7 @@ export function ViewportControlToolbar({
   onZoomIn,
   onZoomOut,
   onReset,
+  onZoomToFit,
 }: ViewportControlToolbarProps) {
   return (
     <Paper
@@ -118,6 +122,15 @@ export function ViewportControlToolbar({
           <CropFreeIcon fontSize="small" />
         </IconButton>
       </Tooltip>
+
+      {/* Zoom to fit */}
+      {onZoomToFit && (
+        <Tooltip title="Zoom to Fit">
+          <IconButton size="small" onClick={onZoomToFit}>
+            <FitScreenIcon fontSize="small" />
+          </IconButton>
+        </Tooltip>
+      )}
     </Paper>
   );
 }
