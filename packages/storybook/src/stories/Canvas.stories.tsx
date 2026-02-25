@@ -1133,7 +1133,6 @@ function ObjectOverlayLabel({
   label: string;
 }) {
   const overlayRef = useObjectOverlay(canvasRef, object, {
-    autoScaleContent: true,
     textSelector: '.overlay-text',
     textMinScale: 0.5,
   });

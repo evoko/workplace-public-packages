@@ -4,9 +4,10 @@ import { util } from 'fabric';
 
 export interface UseObjectOverlayOptions {
   /**
-   * Automatically scale the overlay content so it fits within the object
-   * bounds at the current zoom level.
-   * Default: false.
+   * Scale the overlay container to the object's actual dimensions and apply
+   * a CSS `scale(zoom)` transform so content inside lays out in canvas units.
+   * Pass `false` to opt out and receive screen-space pixel dimensions instead.
+   * Default: true.
    */
   autoScaleContent?: boolean;
   /**
@@ -80,7 +81,7 @@ export function useObjectOverlay(
       const angle = object.angle ?? 0;
       const opts = optionsRef.current;
 
-      if (opts?.autoScaleContent) {
+      if (opts?.autoScaleContent !== false) {
         // Container dimensions match the object's actual size (canvas units).
         // A CSS scale transform maps it to the correct screen size so content
         // inside lays out relative to the real object dimensions.
@@ -94,8 +95,8 @@ export function useObjectOverlay(
         el.style.rotate = '';
         el.style.setProperty('--overlay-scale', String(zoom));
 
-        if (opts.textSelector) {
-          const textMinScale = opts.textMinScale ?? 0.5;
+        if (opts?.textSelector) {
+          const textMinScale = opts?.textMinScale ?? 0.5;
           const textEls = el.querySelectorAll<HTMLElement>(opts.textSelector);
           const display = zoom < textMinScale ? 'none' : '';
           textEls.forEach((t) => {

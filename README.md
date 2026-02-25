@@ -62,7 +62,7 @@ npm install @bwp-web/styles
 - `@mui/material` >= 7.0.0
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
-- `@bwp-web/components` >= 0.5.1 (optional)
+- `@bwp-web/components` >= 0.6.0 (optional)
 
 ### Usage
 
@@ -227,7 +227,7 @@ npm install @bwp-web/canvas
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
 - `@mui/material` >= 7.0.0
-- `@bwp-web/styles` >= 0.5.1
+- `@bwp-web/styles` >= 0.6.0
 
 ### Quick Start
 

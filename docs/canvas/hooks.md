@@ -332,7 +332,6 @@ The container must be positioned absolutely within a relative-positioned parent 
 import { useObjectOverlay } from '@bwp-web/canvas';
 
 const overlayRef = useObjectOverlay(canvasRef, object, {
-  autoScaleContent: true,
   textSelector: '.desk-text',
 });
 
@@ -348,15 +347,16 @@ return (
 
 | Option | Type | Default | Description |
 |---|---|---|---|
-| `autoScaleContent` | `boolean` | `false` | Scale overlay content to fit within object bounds. Sets a `--overlay-scale` CSS variable on the container |
+| `autoScaleContent` | `boolean` | `true` | Scale the overlay container to the object's actual dimensions (canvas units) and apply a CSS `scale(zoom)` transform so content inside lays out relative to the real object size. Pass `false` to opt out and receive screen-space pixel dimensions instead. Also sets a `--overlay-scale` CSS variable. |
 | `textSelector` | `string` | — | CSS selector for text elements to hide when the scale drops below `textMinScale` |
 | `textMinScale` | `number` | `0.5` | Minimum content scale at which `textSelector` elements remain visible |
 
 ### How it works
 
-The hook subscribes to `after:render`, `mouse:wheel`, and per-object `moving`/`scaling`/`rotating` events. On each update it:
+The hook subscribes to `after:render` and per-object `moving`/`scaling`/`rotating` events. On each update it:
 
 1. Computes the object's screen-space position via `util.transformPoint`
-2. Sets `left`, `top`, `width`, `height`, and `rotate` on the container element
-3. If `autoScaleContent` is enabled, sets a `--overlay-scale` CSS custom property
-4. If `textSelector` is provided, hides matched elements when the scale is too small
+2. When `autoScaleContent` is enabled (default): sizes the container to the object's actual canvas-unit dimensions and applies a CSS `scale(zoom)` transform (with rotation folded in). Content inside the container lays out relative to the real object size.
+3. When `autoScaleContent` is `false`: sizes the container to screen-space pixel dimensions with no CSS scale transform.
+4. Sets a `--overlay-scale` CSS custom property with the current zoom level.
+5. If `textSelector` is provided, hides matched elements when the zoom drops below `textMinScale`.
