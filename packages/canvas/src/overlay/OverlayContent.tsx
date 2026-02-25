@@ -70,6 +70,9 @@ export function OverlayContent({
 
     const observer = new ResizeObserver(fit);
     observer.observe(outer);
+    // Also observe the inner Stack so we recalculate when children toggle
+    // display (e.g. FixedSizeContent collapsing via display:none).
+    observer.observe(inner);
     fit();
 
     return () => observer.disconnect();

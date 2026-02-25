@@ -1131,7 +1131,7 @@ function OverlayDemoContent() {
         width: 140,
         height: 90,
       });
-      r1.data = { type: 'DESK', id: 'desk-101' };
+      r1.data = { type: 'DESK', id: 'super duper uber long desk name' };
 
       const r2 = createRectangle(c, {
         left: 500,
@@ -1193,7 +1193,6 @@ function OverlayDemoContent() {
                   <Stack
                     alignItems="center"
                     sx={{
-                      bgcolor: 'rgba(33, 150, 243, 0.85)',
                       color: '#fff',
                       py: 0.5,
                       px: 1,
