@@ -77,29 +77,39 @@ export function useObjectOverlay(
       const screenWidth = actualWidth * zoom;
       const screenHeight = actualHeight * zoom;
 
-      el.style.left = `${screenCoords.x - screenWidth / 2}px`;
-      el.style.top = `${screenCoords.y - screenHeight / 2}px`;
-      el.style.width = `${screenWidth}px`;
-      el.style.height = `${screenHeight}px`;
-
       const angle = object.angle ?? 0;
-      el.style.rotate = angle !== 0 ? `${angle}deg` : '';
-
       const opts = optionsRef.current;
+
       if (opts?.autoScaleContent) {
-        // Scale content based on the smaller dimension
-        const contentScale = Math.min(screenWidth, screenHeight) / 100;
-        const clampedScale = Math.max(0.1, Math.min(contentScale, 2));
-        el.style.setProperty('--overlay-scale', String(clampedScale));
+        // Container dimensions match the object's actual size (canvas units).
+        // A CSS scale transform maps it to the correct screen size so content
+        // inside lays out relative to the real object dimensions.
+        el.style.left = `${screenCoords.x - actualWidth / 2}px`;
+        el.style.top = `${screenCoords.y - actualHeight / 2}px`;
+        el.style.width = `${actualWidth}px`;
+        el.style.height = `${actualHeight}px`;
+        el.style.transformOrigin = 'center center';
+        el.style.transform =
+          angle !== 0 ? `scale(${zoom}) rotate(${angle}deg)` : `scale(${zoom})`;
+        el.style.rotate = '';
+        el.style.setProperty('--overlay-scale', String(zoom));
 
         if (opts.textSelector) {
           const textMinScale = opts.textMinScale ?? 0.5;
           const textEls = el.querySelectorAll<HTMLElement>(opts.textSelector);
-          const display = clampedScale < textMinScale ? 'none' : '';
+          const display = zoom < textMinScale ? 'none' : '';
           textEls.forEach((t) => {
             t.style.display = display;
           });
         }
+      } else {
+        // No auto-scaling: container sized to screen-space object bounds.
+        el.style.left = `${screenCoords.x - screenWidth / 2}px`;
+        el.style.top = `${screenCoords.y - screenHeight / 2}px`;
+        el.style.width = `${screenWidth}px`;
+        el.style.height = `${screenHeight}px`;
+        el.style.transform = '';
+        el.style.rotate = angle !== 0 ? `${angle}deg` : '';
       }
     }
 

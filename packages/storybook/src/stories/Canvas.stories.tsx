@@ -1151,8 +1151,6 @@ function ObjectOverlayLabel({
     >
       <div
         style={{
-          transform: 'scale(var(--overlay-scale, 1))',
-          transformOrigin: 'center',
           background: 'rgba(33, 150, 243, 0.85)',
           color: '#fff',
           padding: '2px 8px',
