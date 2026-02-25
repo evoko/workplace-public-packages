@@ -1,5 +1,5 @@
 import { type Canvas, type FabricObject, Point, util } from 'fabric';
-import { BASE_CANVAS_SIZE, DEFAULT_SNAP_MARGIN } from '../constants';
+import { computeSnapMargin, DEFAULT_SNAP_MARGIN } from '../constants';
 import { getSnapPoints } from './snapPoints';
 import {
   type TransformEvent,
@@ -9,16 +9,99 @@ import {
   getOppositeCornerMap,
 } from './objectAlignmentUtils';
 import {
-  type AlignmentRenderConfig,
-  drawMarkerList,
-  drawVerticalAlignmentLines,
-  drawHorizontalAlignmentLines,
-} from './objectAlignmentRendering';
-import {
   collectMovingAlignmentLines,
   collectVerticalSnapOffset,
   collectHorizontalSnapOffset,
 } from './objectAlignmentMath';
+
+// --- Alignment guideline rendering (inlined from objectAlignmentRendering) ---
+
+interface AlignmentRenderConfig {
+  canvas: Canvas;
+  width: number;
+  color: string;
+  xSize: number;
+  lineDash?: number[];
+}
+
+function drawXMarker(
+  ctx: CanvasRenderingContext2D,
+  point: Point,
+  size: number,
+): void {
+  ctx.save();
+  ctx.translate(point.x, point.y);
+  ctx.beginPath();
+  ctx.moveTo(-size, -size);
+  ctx.lineTo(size, size);
+  ctx.moveTo(size, -size);
+  ctx.lineTo(-size, size);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawAlignmentLine(
+  config: AlignmentRenderConfig,
+  origin: Point,
+  target: Point,
+): void {
+  const ctx = config.canvas.getTopContext();
+  const vt = config.canvas.viewportTransform;
+  const zoom = config.canvas.getZoom();
+  ctx.save();
+  ctx.transform(...vt);
+  ctx.lineWidth = config.width / zoom;
+  if (config.lineDash) ctx.setLineDash(config.lineDash);
+  ctx.strokeStyle = config.color;
+  ctx.beginPath();
+  ctx.moveTo(origin.x, origin.y);
+  ctx.lineTo(target.x, target.y);
+  ctx.stroke();
+  if (config.lineDash) ctx.setLineDash([]);
+  drawXMarker(ctx, origin, config.xSize / zoom);
+  drawXMarker(ctx, target, config.xSize / zoom);
+  ctx.restore();
+}
+
+function drawMarkerList(
+  config: AlignmentRenderConfig,
+  lines: AlignmentLine[],
+): void {
+  const ctx = config.canvas.getTopContext();
+  const vt = config.canvas.viewportTransform;
+  const zoom = config.canvas.getZoom();
+  const markerSize = config.xSize / zoom;
+  ctx.save();
+  ctx.transform(...vt);
+  ctx.lineWidth = config.width / zoom;
+  ctx.strokeStyle = config.color;
+  for (const item of lines) drawXMarker(ctx, item.target, markerSize);
+  ctx.restore();
+}
+
+function drawVerticalAlignmentLines(
+  config: AlignmentRenderConfig,
+  lines: Set<string>,
+): void {
+  for (const v of lines) {
+    const { origin, target }: AlignmentLine = JSON.parse(v);
+    const from = { x: target.x, y: origin.y } as Point;
+    drawAlignmentLine(config, from, target as Point);
+  }
+}
+
+function drawHorizontalAlignmentLines(
+  config: AlignmentRenderConfig,
+  lines: Set<string>,
+): void {
+  for (const h of lines) {
+    const { origin, target }: AlignmentLine = JSON.parse(h);
+    const from = { x: origin.x, y: target.y } as Point;
+    drawAlignmentLine(config, from, target as Point);
+  }
+}
+
+// --- Object alignment options & guides ---
 
 export interface ObjectAlignmentOptions {
   /** At what distance from the shape does alignment begin? Default: 6. */
@@ -107,12 +190,13 @@ class ObjectAlignmentGuides {
   // --- Margin calculation ---
 
   private computeMargin(): number {
-    const zoom = this.canvas.getZoom();
-    const sizeScale = this.scaleWithCanvasSize
-      ? Math.max(this.canvas.width ?? 800, this.canvas.height ?? 600) /
-        BASE_CANVAS_SIZE
-      : 1;
-    return (this.margin * sizeScale) / zoom;
+    return computeSnapMargin(
+      this.canvas.width ?? 800,
+      this.canvas.height ?? 600,
+      this.canvas.getZoom(),
+      this.margin,
+      this.scaleWithCanvasSize,
+    );
   }
 
   // --- Snap point caching ---

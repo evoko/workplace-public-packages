@@ -301,6 +301,13 @@ export async function setBackgroundImage(
     imageUrl = result.url;
   }
   const img = await FabricImage.fromURL(imageUrl, { crossOrigin: 'anonymous' });
+
+  // Position the image so its top-left corner sits at canvas origin (0, 0).
+  // Fabric 7 defaults to center/center origin, so we set left/top to
+  // half-dimensions. This ensures serializeCanvas produces left=0, top=0
+  // with left/top origin, matching the old (Fabric 6) canvas data format.
+  img.set({ left: img.width / 2, top: img.height / 2 });
+
   canvas.backgroundImage = img;
 
   if (prevContrast !== undefined && prevContrast !== 1) {

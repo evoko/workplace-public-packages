@@ -211,137 +211,131 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
       canvasRef.current = canvas;
       const opts = optionsRef.current;
 
-      if (opts?.scaledStrokes !== false) {
-        enableScaledStrokes(canvas);
-      }
+      setupFeatures();
+      setupEventListeners();
+      invokeOnReady();
 
-      if (opts?.borderRadius !== false) {
-        const borderRadiusOpts: ScaledBorderRadiusOptions | undefined =
-          typeof opts?.borderRadius === 'number'
-            ? { radius: opts.borderRadius }
-            : undefined;
-        enableScaledBorderRadius(canvas, borderRadiusOpts);
-      }
+      // --- Feature setup (strokes, viewport, alignment, etc.) ---
 
-      if (opts?.keyboardShortcuts !== false) {
-        keyboardCleanupRef.current = enableKeyboardShortcuts(canvas);
-      }
+      function setupFeatures() {
+        if (opts?.scaledStrokes !== false) {
+          enableScaledStrokes(canvas);
+        }
 
-      // Set canvas-level alignment state so interaction modes inherit it
-      setCanvasAlignmentEnabled(canvas, opts?.enableAlignment);
+        if (opts?.borderRadius !== false) {
+          const borderRadiusOpts: ScaledBorderRadiusOptions | undefined =
+            typeof opts?.borderRadius === 'number'
+              ? { radius: opts.borderRadius }
+              : undefined;
+          enableScaledBorderRadius(canvas, borderRadiusOpts);
+        }
 
-      if (opts?.panAndZoom !== false) {
-        viewportRef.current = enablePanAndZoom(
-          canvas,
-          typeof opts?.panAndZoom === 'object' ? opts.panAndZoom : undefined,
+        if (opts?.keyboardShortcuts !== false) {
+          keyboardCleanupRef.current = enableKeyboardShortcuts(canvas);
+        }
+
+        setCanvasAlignmentEnabled(canvas, opts?.enableAlignment);
+
+        if (opts?.panAndZoom !== false) {
+          viewportRef.current = enablePanAndZoom(
+            canvas,
+            typeof opts?.panAndZoom === 'object' ? opts.panAndZoom : undefined,
+          );
+        }
+
+        const alignmentEnabled = resolveAlignmentEnabled(
+          opts?.enableAlignment,
+          opts?.alignment,
         );
+        if (alignmentEnabled) {
+          alignmentCleanupRef.current = enableObjectAlignment(
+            canvas,
+            typeof opts?.alignment === 'object' ? opts.alignment : undefined,
+          );
+        }
+
+        if (opts?.rotationSnap !== false) {
+          rotationSnapCleanupRef.current = enableRotationSnap(
+            canvas,
+            typeof opts?.rotationSnap === 'object'
+              ? opts.rotationSnap
+              : undefined,
+          );
+        }
+
+        if (opts?.history) {
+          const historyOpts =
+            typeof opts.history === 'object' ? opts.history : undefined;
+          historyRef.current = createHistoryTracker(canvas, historyOpts);
+        }
       }
 
-      const alignmentEnabled = resolveAlignmentEnabled(
-        opts?.enableAlignment,
-        opts?.alignment,
-      );
+      // --- Event listeners (selection, zoom, dirty tracking, vertex edit) ---
 
-      if (alignmentEnabled) {
-        alignmentCleanupRef.current = enableObjectAlignment(
-          canvas,
-          typeof opts?.alignment === 'object' ? opts.alignment : undefined,
-        );
+      function setupEventListeners() {
+        canvas.on('mouse:wheel', () => setZoom(canvas.getZoom()));
+
+        canvas.on('selection:created', (e) => setSelected(e.selected ?? []));
+        canvas.on('selection:updated', (e) => setSelected(e.selected ?? []));
+        canvas.on('selection:cleared', () => setSelected([]));
+
+        if (opts?.trackChanges) {
+          canvas.on('object:added', () => setIsDirty(true));
+          canvas.on('object:removed', () => setIsDirty(true));
+          canvas.on('object:modified', () => setIsDirty(true));
+        }
+
+        if (opts?.history) {
+          const syncHistoryState = () => {
+            const h = historyRef.current;
+            if (!h) return;
+            setTimeout(() => {
+              setCanUndo(h.canUndo());
+              setCanRedo(h.canRedo());
+            }, 350);
+          };
+          canvas.on('object:added', syncHistoryState);
+          canvas.on('object:removed', syncHistoryState);
+          canvas.on('object:modified', syncHistoryState);
+        }
+
+        if (opts?.vertexEdit !== false) {
+          const vertexOpts =
+            typeof opts?.vertexEdit === 'object' ? opts.vertexEdit : undefined;
+          canvas.on('mouse:dblclick', (e) => {
+            if (e.target && e.target instanceof Polygon) {
+              vertexEditCleanupRef.current?.();
+              vertexEditCleanupRef.current = enableVertexEdit(
+                canvas,
+                e.target,
+                {
+                  ...vertexOpts,
+                  onExit: () => {
+                    vertexEditCleanupRef.current = null;
+                    setIsEditingVertices(false);
+                  },
+                },
+              );
+              setIsEditingVertices(true);
+            }
+          });
+        }
       }
 
-      if (opts?.rotationSnap !== false) {
-        rotationSnapCleanupRef.current = enableRotationSnap(
-          canvas,
-          typeof opts?.rotationSnap === 'object'
-            ? opts.rotationSnap
-            : undefined,
-        );
-      }
+      // --- Invoke consumer onReady, then auto-fit viewport + push initial history snapshot ---
 
-      canvas.on('mouse:wheel', () => {
-        setZoom(canvas.getZoom());
-      });
-
-      canvas.on('selection:created', (e) => {
-        setSelected(e.selected ?? []);
-      });
-
-      canvas.on('selection:updated', (e) => {
-        setSelected(e.selected ?? []);
-      });
-
-      canvas.on('selection:cleared', () => {
-        setSelected([]);
-      });
-
-      // Dirty tracking — mark canvas as modified on any object mutation
-      if (opts?.trackChanges) {
-        canvas.on('object:added', () => setIsDirty(true));
-        canvas.on('object:removed', () => setIsDirty(true));
-        canvas.on('object:modified', () => setIsDirty(true));
-      }
-
-      // Sync undo/redo availability when canvas changes
-      if (opts?.history) {
-        const syncHistoryState = () => {
-          const h = historyRef.current;
-          if (!h) return;
-          // Use setTimeout to read state after debounced snapshot is captured
-          setTimeout(() => {
-            setCanUndo(h.canUndo());
-            setCanRedo(h.canRedo());
-          }, 350);
-        };
-        canvas.on('object:added', syncHistoryState);
-        canvas.on('object:removed', syncHistoryState);
-        canvas.on('object:modified', syncHistoryState);
-      }
-
-      // Auto-setup vertex edit on double-click for polygons
-      if (opts?.vertexEdit !== false) {
-        const vertexOpts =
-          typeof opts?.vertexEdit === 'object' ? opts.vertexEdit : undefined;
-
-        canvas.on('mouse:dblclick', (e) => {
-          if (e.target && e.target instanceof Polygon) {
-            vertexEditCleanupRef.current?.();
-            vertexEditCleanupRef.current = enableVertexEdit(canvas, e.target, {
-              ...vertexOpts,
-              onExit: () => {
-                vertexEditCleanupRef.current = null;
-                setIsEditingVertices(false);
-              },
-            });
-            setIsEditingVertices(true);
-          }
-        });
-      }
-
-      // History (undo/redo)
-      if (opts?.history) {
-        const historyOpts =
-          typeof opts.history === 'object' ? opts.history : undefined;
-        historyRef.current = createHistoryTracker(canvas, historyOpts);
-      }
-
-      const onReadyResult = opts?.onReady?.(canvas);
-      if (opts?.autoFitToBackground !== false) {
+      function invokeOnReady() {
+        const onReadyResult = opts?.onReady?.(canvas);
         Promise.resolve(onReadyResult).then(() => {
-          if (canvas.backgroundImage) {
+          if (opts?.autoFitToBackground !== false && canvas.backgroundImage) {
             fitViewportToBackground(canvas);
             syncZoom(canvasRef, setZoom);
           }
-          // Push initial snapshot after onReady resolves (includes loaded data)
-          historyRef.current?.pushSnapshot();
-        });
-      } else {
-        // Push initial snapshot even without auto-fit
-        Promise.resolve(onReadyResult).then(() => {
           historyRef.current?.pushSnapshot();
         });
       }
     },
-    // onReady and panAndZoom are intentionally excluded — we only initialize once
+    // Dependency array intentionally empty — we only initialize once on mount
     [],
   );
 
