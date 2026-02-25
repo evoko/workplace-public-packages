@@ -1159,13 +1159,14 @@ function ObjectOverlayLabel({
           whiteSpace: 'nowrap',
           display: 'flex',
           alignItems: 'center',
+          flexDirection: "column",
           gap: 4,
         }}
       >
         <span
           style={{
-            width: 8,
-            height: 8,
+            width: 24,
+            height: 24,
             borderRadius: '50%',
             background: '#fff',
             flexShrink: 0,
