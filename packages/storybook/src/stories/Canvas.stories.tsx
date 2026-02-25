@@ -478,9 +478,9 @@ function EditCanvasContent({
             onZoomToFit={() => {
               const c = canvas.canvasRef.current;
               if (!c) return;
-              const objects = c.getObjects();
-              if (objects.length > 0) {
-                canvas.viewport.zoomToFit(objects[0]);
+              const target = c.getActiveObject() ?? c.getObjects()[0];
+              if (target) {
+                canvas.viewport.zoomToFit(target);
               }
             }}
           />
@@ -947,9 +947,9 @@ function ViewCanvasContent({
           onZoomToFit={() => {
             const c = canvas.canvasRef.current;
             if (!c) return;
-            const objects = c.getObjects();
-            if (objects.length > 0) {
-              canvas.viewport.zoomToFit(objects[0]);
+            const target = c.getActiveObject() ?? c.getObjects()[0];
+            if (target) {
+              canvas.viewport.zoomToFit(target);
             }
           }}
         />
@@ -1241,9 +1241,9 @@ function OverlayDemoContent() {
             onZoomToFit={() => {
               const c = canvas.canvasRef.current;
               if (!c) return;
-              const objs = c.getObjects();
-              if (objs.length > 0) {
-                canvas.viewport.zoomToFit(objs[0]);
+              const target = c.getActiveObject() ?? c.getObjects()[0];
+              if (target) {
+                canvas.viewport.zoomToFit(target);
               }
             }}
           />
