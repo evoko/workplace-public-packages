@@ -1044,6 +1044,46 @@ export const biampTheme = (
             }),
           },
         },
+        MuiChip: {
+          defaultProps: {
+            deleteIcon: <InputCloseIcon />,
+          },
+          styleOverrides: {
+            root: ({ theme }) => ({
+              backgroundColor: theme.palette.background.info,
+              height: "auto",
+              color: theme.palette.text.primary,
+              borderRadius: 999,
+              border:
+                theme.palette.mode === 'dark'
+                  ? `0.6px solid ${alpha(colors.white, 0.4)}`
+                  : `0.6px solid ${alpha(colors.grey[900], 0.4)}`,
+              padding: '0px 8px 0px 12px',
+              fontSize: theme.typography.caption.fontSize,
+              fontWeight: theme.typography.caption.fontWeight,
+              letterSpacing: theme.typography.caption.letterSpacing,
+              lineHeight: theme.typography.caption.lineHeight,
+            }),
+            label: ({ theme }) => ({
+              padding: 0,
+              fontSize: theme.typography.caption.fontSize,
+              fontWeight: theme.typography.caption.fontWeight,
+              letterSpacing: theme.typography.caption.letterSpacing,
+              lineHeight: theme.typography.caption.lineHeight,
+              color: theme.palette.text.primary,
+            }),
+              deleteIcon: ({ theme }) => ({
+              width: 12,
+              height: 12,
+              margin: 0,
+              marginLeft: 8,
+              color: theme.palette.text.primary,
+              '& hover': {
+                color: theme.palette.text.secondary,
+              },
+            }),
+          },
+        },
         MuiSwitch: {
           styleOverrides: {
             root: {
@@ -1303,7 +1343,7 @@ export const biampTheme = (
         },
         MuiAutocomplete: {
           defaultProps: {
-            clearIcon: <InputCloseIcon sx={{ width: 24, height: 24 }} />,
+            clearIcon: <InputCloseIcon />,
           },
           styleOverrides: {
             inputRoot: {
