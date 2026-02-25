@@ -20,6 +20,27 @@ export const DEFAULT_SNAP_MARGIN = 6;
 /** Default angle snap interval in degrees. */
 export const DEFAULT_ANGLE_SNAP_INTERVAL = 15;
 
+/**
+ * Compute the effective snap margin in scene-space units.
+ *
+ * When `scaleWithCanvasSize` is true (default), the margin grows
+ * proportionally with `max(canvasWidth, canvasHeight) / BASE_CANVAS_SIZE`
+ * so snapping feels consistent on large canvases (e.g. floor plans).
+ * The result is also divided by the current zoom level.
+ */
+export function computeSnapMargin(
+  canvasWidth: number,
+  canvasHeight: number,
+  zoom: number,
+  baseMargin: number = DEFAULT_SNAP_MARGIN,
+  scaleWithCanvasSize: boolean = true,
+): number {
+  const sizeScale = scaleWithCanvasSize
+    ? Math.max(canvasWidth || 800, canvasHeight || 600) / BASE_CANVAS_SIZE
+    : 1;
+  return (baseMargin * sizeScale) / zoom;
+}
+
 // --- Interactions ---
 
 /**

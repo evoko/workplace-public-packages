@@ -139,6 +139,118 @@ export function getBaseStrokeWidth(obj: FabricObject): number {
   return strokeBaseMap.get(obj) ?? obj.strokeWidth ?? 0;
 }
 
+// --- Serialization helpers ---
+// Each helper temporarily mutates canvas/object state for serialization
+// and returns a function that restores the original runtime state.
+
+type SavedOrigin = {
+  originX: TOriginX;
+  originY: TOriginY;
+  left: number;
+  top: number;
+};
+
+/** Strip zoom-scaled stroke widths, restoring base values for serialization. */
+function prepareStrokeWidths(canvas: FabricCanvas): () => void {
+  const scaledWidths = new Map<FabricObject, number>();
+  canvas.forEachObject((obj) => {
+    const base = strokeBaseMap.get(obj);
+    if (base !== undefined && obj.strokeWidth !== base) {
+      scaledWidths.set(obj, obj.strokeWidth ?? 0);
+      obj.strokeWidth = base;
+    }
+  });
+  return () =>
+    scaledWidths.forEach((scaled, obj) => {
+      obj.strokeWidth = scaled;
+    });
+}
+
+/** Strip visual-only border radii, restoring original rx/ry for serialization. */
+function prepareBorderRadii(canvas: FabricCanvas): () => void {
+  const appliedRadii = new Map<Rect, { rx: number; ry: number }>();
+  canvas.forEachObject((obj) => {
+    if (!(obj instanceof Rect)) return;
+    const base = borderRadiusBaseMap.get(obj);
+    if (base !== undefined) {
+      appliedRadii.set(obj, { rx: obj.rx ?? 0, ry: obj.ry ?? 0 });
+      obj.set({ rx: base.rx, ry: base.ry });
+    }
+  });
+  return () =>
+    appliedRadii.forEach((radii, obj) => {
+      obj.set(radii);
+    });
+}
+
+/** Convert objects from center/center to left/top origin for Fabric 6 compatibility. */
+function prepareObjectOrigins(canvas: FabricCanvas): () => void {
+  const savedOrigins = new Map<FabricObject, SavedOrigin>();
+  canvas.forEachObject((obj) => {
+    if (obj.originX === 'left' && obj.originY === 'top') return;
+    savedOrigins.set(obj, {
+      originX: obj.originX,
+      originY: obj.originY,
+      left: obj.left ?? 0,
+      top: obj.top ?? 0,
+    });
+    const leftTop = obj.getPositionByOrigin('left', 'top');
+    obj.set({
+      originX: 'left',
+      originY: 'top',
+      left: leftTop.x,
+      top: leftTop.y,
+    });
+  });
+  return () =>
+    savedOrigins.forEach((saved, obj) => {
+      obj.set(saved);
+    });
+}
+
+/** Convert background image from center/center to left/top origin. */
+function prepareBackgroundOrigin(canvas: FabricCanvas): () => void {
+  const bg = canvas.backgroundImage;
+  if (
+    !(bg instanceof FabricImage) ||
+    (bg.originX === 'left' && bg.originY === 'top')
+  ) {
+    return () => {};
+  }
+  const saved: SavedOrigin = {
+    originX: bg.originX,
+    originY: bg.originY,
+    left: bg.left ?? 0,
+    top: bg.top ?? 0,
+  };
+  const leftTop = bg.getPositionByOrigin('left', 'top');
+  bg.set({ originX: 'left', originY: 'top', left: leftTop.x, top: leftTop.y });
+  return () => {
+    bg.set(saved);
+  };
+}
+
+/** Add strokeWidthBase to obj.data for backward compatibility with old canvas. */
+function prepareStrokeWidthBaseData(canvas: FabricCanvas): () => void {
+  const savedData = new Map<FabricObject, FabricObject['data']>();
+  canvas.forEachObject((obj) => {
+    const base = strokeBaseMap.get(obj) ?? obj.strokeWidth;
+    if (base !== undefined && base !== 0 && obj.data) {
+      savedData.set(obj, obj.data);
+      (obj as unknown as { data: Record<string, unknown> }).data = {
+        ...(obj.data as Record<string, unknown>),
+        strokeWidthBase: base,
+      };
+    }
+  });
+  return () =>
+    savedData.forEach((originalData, obj) => {
+      (obj as unknown as { data: FabricObject['data'] }).data = originalData;
+    });
+}
+
+// --- Public serialization API ---
+
 /**
  * Serialize the canvas to a plain object, ready for `JSON.stringify`.
  *
@@ -168,125 +280,34 @@ export function serializeCanvas(
     ...(options?.properties ?? []),
   ];
 
-  // --- Save state & prepare for serialization ---
-
-  // 1. Restore base stroke widths (strip zoom-scaled values)
-  const scaledWidths = new Map<FabricObject, number>();
-  canvas.forEachObject((obj) => {
-    const base = strokeBaseMap.get(obj);
-    if (base !== undefined && obj.strokeWidth !== base) {
-      scaledWidths.set(obj, obj.strokeWidth ?? 0);
-      obj.strokeWidth = base;
-    }
-  });
-
-  // 2. Strip visual-only border radius and restore original rx/ry
-  const appliedRadii = new Map<Rect, { rx: number; ry: number }>();
-  canvas.forEachObject((obj) => {
-    if (!(obj instanceof Rect)) return;
-    const base = borderRadiusBaseMap.get(obj);
-    if (base !== undefined) {
-      appliedRadii.set(obj, { rx: obj.rx ?? 0, ry: obj.ry ?? 0 });
-      obj.set({ rx: base.rx, ry: base.ry });
-    }
-  });
-
-  // 3. Convert objects from center/center to left/top origin for backward
-  //    compatibility with old canvas implementations (Fabric 6).
-  const savedOrigins = new Map<
-    FabricObject,
-    { originX: TOriginX; originY: TOriginY; left: number; top: number }
-  >();
-  canvas.forEachObject((obj) => {
-    if (obj.originX === 'left' && obj.originY === 'top') return;
-    savedOrigins.set(obj, {
-      originX: obj.originX,
-      originY: obj.originY,
-      left: obj.left ?? 0,
-      top: obj.top ?? 0,
-    });
-    const leftTop = obj.getPositionByOrigin('left', 'top');
-    obj.set({ originX: 'left', originY: 'top', left: leftTop.x, top: leftTop.y });
-  });
-
-  // 4. Convert background image to left/top origin
-  const bg = canvas.backgroundImage;
-  let savedBgOrigin: {
-    originX: TOriginX;
-    originY: TOriginY;
-    left: number;
-    top: number;
-  } | null = null;
-  if (
-    bg instanceof FabricImage &&
-    (bg.originX !== 'left' || bg.originY !== 'top')
-  ) {
-    savedBgOrigin = {
-      originX: bg.originX,
-      originY: bg.originY,
-      left: bg.left ?? 0,
-      top: bg.top ?? 0,
-    };
-    const leftTop = bg.getPositionByOrigin('left', 'top');
-    bg.set({ originX: 'left', originY: 'top', left: leftTop.x, top: leftTop.y });
-  }
-
-  // 5. Add strokeWidthBase to obj.data for backward compatibility.
-  //    The old canvas reads base stroke width from obj.data.strokeWidthBase.
-  const savedData = new Map<FabricObject, FabricObject['data']>();
-  canvas.forEachObject((obj) => {
-    const base = strokeBaseMap.get(obj) ?? obj.strokeWidth;
-    if (base !== undefined && base !== 0 && obj.data) {
-      savedData.set(obj, obj.data);
-      (obj as unknown as { data: Record<string, unknown> }).data = {
-        ...(obj.data as Record<string, unknown>),
-        strokeWidthBase: base,
-      };
-    }
-  });
-
-  // --- Serialize ---
+  // Temporarily mutate canvas state for backward-compatible serialization.
+  // Each prepare* call returns a restore function to undo the mutation.
+  const restoreStrokeWidths = prepareStrokeWidths(canvas);
+  const restoreBorderRadii = prepareBorderRadii(canvas);
+  const restoreOrigins = prepareObjectOrigins(canvas);
+  const restoreBgOrigin = prepareBackgroundOrigin(canvas);
+  const restoreData = prepareStrokeWidthBaseData(canvas);
 
   const json = canvas.toObject(properties) as CanvasJSON;
 
   // Strip backgroundColor — it's theme-dependent, not user data.
   delete json.backgroundColor;
 
-  // Add backgroundFilters for backward compatibility.
-  // The old canvas stores contrast/inversion state as { opacity, inverted }
-  // on the canvas object. ("opacity" is the old name for contrast.)
+  // Add backward-compatible canvas-level properties.
   (json as Record<string, unknown>).backgroundFilters = {
     opacity: getBackgroundContrast(canvas),
     inverted: getBackgroundInverted(canvas),
   };
-
-  // Persist lockLightMode for backward compatibility.
-  // The old canvas reads this as a top-level canvas property.
   if (canvas.lockLightMode !== undefined) {
     (json as Record<string, unknown>).lockLightMode = canvas.lockLightMode;
   }
 
-  // --- Restore runtime state ---
-
-  scaledWidths.forEach((scaled, obj) => {
-    obj.strokeWidth = scaled;
-  });
-
-  appliedRadii.forEach((radii, obj) => {
-    obj.set({ rx: radii.rx, ry: radii.ry });
-  });
-
-  savedOrigins.forEach((saved, obj) => {
-    obj.set(saved);
-  });
-
-  if (savedBgOrigin && bg instanceof FabricImage) {
-    bg.set(savedBgOrigin);
-  }
-
-  savedData.forEach((originalData, obj) => {
-    (obj as unknown as { data: FabricObject['data'] }).data = originalData;
-  });
+  // Restore all runtime state.
+  restoreStrokeWidths();
+  restoreBorderRadii();
+  restoreOrigins();
+  restoreBgOrigin();
+  restoreData();
 
   return json;
 }

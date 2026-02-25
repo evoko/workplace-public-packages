@@ -368,13 +368,13 @@ export function enablePanAndZoom(
       const targetY = canvasCenterY - objectCenter.y * zoom;
 
       if (!panOpts?.animate) {
-        const vt = canvas.viewportTransform;
-        if (!vt) return;
+        const viewportTransform = canvas.viewportTransform;
+        if (!viewportTransform) return;
         canvas.setViewportTransform([
-          vt[0],
-          vt[1],
-          vt[2],
-          vt[3],
+          viewportTransform[0],
+          viewportTransform[1],
+          viewportTransform[2],
+          viewportTransform[3],
           targetX,
           targetY,
         ]);
@@ -382,10 +382,10 @@ export function enablePanAndZoom(
       }
 
       const duration = panOpts.duration ?? 300;
-      const vt = canvas.viewportTransform;
-      if (!vt) return;
-      const startX = vt[4];
-      const startY = vt[5];
+      const viewportTransform = canvas.viewportTransform;
+      if (!viewportTransform) return;
+      const startX = viewportTransform[4];
+      const startY = viewportTransform[5];
       const startTime = performance.now();
 
       function step(now: number) {
@@ -397,13 +397,13 @@ export function enablePanAndZoom(
         const currentX = startX + (targetX - startX) * eased;
         const currentY = startY + (targetY - startY) * eased;
 
-        const currentVt = canvas.viewportTransform;
-        if (!currentVt) return;
+        const currentTransform = canvas.viewportTransform;
+        if (!currentTransform) return;
         canvas.setViewportTransform([
-          currentVt[0],
-          currentVt[1],
-          currentVt[2],
-          currentVt[3],
+          currentTransform[0],
+          currentTransform[1],
+          currentTransform[2],
+          currentTransform[3],
           currentX,
           currentY,
         ]);
