@@ -25,7 +25,7 @@ export interface PanAndZoomOptions {
   minZoom?: number;
   /** Maximum zoom level (default: 10) */
   maxZoom?: number;
-  /** Zoom sensitivity — larger values zoom faster (default: 1.03) */
+  /** Zoom sensitivity base — raised to the power of deltaY (default: 0.999). */
   zoomFactor?: number;
   /** Initial viewport mode (default: 'select') */
   initialMode?: ViewportMode;
@@ -122,7 +122,7 @@ function setupWheelZoom(
 
     const delta = e.deltaY;
     let zoom = canvas.getZoom();
-    zoom = delta < 0 ? zoom * zoomFactor : zoom / zoomFactor;
+    zoom *= zoomFactor ** delta;
     zoom = Math.min(Math.max(zoom, bounds.minZoom), bounds.maxZoom);
 
     canvas.zoomToPoint(new Point(e.offsetX, e.offsetY), zoom);

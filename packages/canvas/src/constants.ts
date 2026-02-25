@@ -4,8 +4,8 @@
 export const DEFAULT_MIN_ZOOM = 0.2;
 /** Maximum zoom level. */
 export const DEFAULT_MAX_ZOOM = 10;
-/** Zoom sensitivity multiplier (applied per wheel tick). */
-export const DEFAULT_ZOOM_FACTOR = 1.03;
+/** Zoom sensitivity base — raised to the power of deltaY for proportional scroll zoom. */
+export const DEFAULT_ZOOM_FACTOR = 0.999;
 /** Default multiplier for programmatic zoomIn/zoomOut (1.2 = 20% per click). */
 export const DEFAULT_ZOOM_STEP = 1.2;
 /** Default viewport padding fraction (5% on each side). */
