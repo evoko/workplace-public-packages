@@ -52,6 +52,7 @@ export function OverlayContent({
 
       if (natW === 0 || natH === 0 || containerW <= 0 || containerH <= 0) {
         inner.style.transform = '';
+        inner.style.removeProperty('--overlay-scale');
         return;
       }
 
@@ -63,6 +64,8 @@ export function OverlayContent({
         maxScale,
       );
       inner.style.transform = `scale(${scale})`;
+      // Expose the scale so `FixedSizeContent` children can counter-scale.
+      inner.style.setProperty('--overlay-scale', String(scale));
     }
 
     const observer = new ResizeObserver(fit);

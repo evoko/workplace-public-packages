@@ -23,6 +23,8 @@ export { ObjectOverlay } from './overlay';
 export type { ObjectOverlayProps } from './overlay';
 export { OverlayContent } from './overlay';
 export type { OverlayContentProps } from './overlay';
+export { FixedSizeContent } from './overlay';
+export type { FixedSizeContentProps } from './overlay';
 
 // --- Types ---
 export type {

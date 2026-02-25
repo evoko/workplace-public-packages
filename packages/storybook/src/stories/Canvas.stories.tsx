@@ -19,6 +19,7 @@ import {
   useViewCanvas,
   ObjectOverlay,
   OverlayContent,
+  FixedSizeContent,
   createRectangle,
   createRectangleAtPoint,
   editRectangle,
@@ -1200,6 +1201,7 @@ function OverlayDemoContent() {
                       gap: 0.5,
                     }}
                   >
+                    {/* Icon scales with OverlayContent */}
                     <Box
                       sx={{
                         width: 24,
@@ -1209,15 +1211,18 @@ function OverlayDemoContent() {
                         flexShrink: 0,
                       }}
                     />
-                    <Typography
-                      sx={{
-                        fontSize: 12,
-                        fontWeight: 600,
-                        whiteSpace: 'nowrap',
-                      }}
-                    >
-                      {obj.data?.id ?? ''}
-                    </Typography>
+                    {/* Text stays at fixed 12px via FixedSizeContent */}
+                    <FixedSizeContent>
+                      <Typography
+                        sx={{
+                          fontSize: 12,
+                          fontWeight: 600,
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {obj.data?.id ?? ''}
+                      </Typography>
+                    </FixedSizeContent>
                   </Stack>
                 </OverlayContent>
               </ObjectOverlay>
@@ -1272,13 +1277,10 @@ function OverlayDemoContent() {
 
           <Typography variant="body2" color="text.secondary">
             DOM overlays positioned over canvas objects using{' '}
-            <code>ObjectOverlay</code> + <code>OverlayContent</code>. Overlays
-            track with pan, zoom, move, scale, and rotate.
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Zoom in/out to see auto-scaling via <code>OverlayContent</code>.
-            Content shrinks to fit small objects and scales up (max 2x) for
-            large ones.
+            <code>ObjectOverlay</code> + <code>OverlayContent</code>. The icon
+            scales to fill the object bounds, while labels wrapped in{' '}
+            <code>FixedSizeContent</code> stay at a constant 12px and auto-hide
+            when the overlay gets too small.
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Click &ldquo;Pan to Object&rdquo; buttons to see animated panning
@@ -1295,14 +1297,15 @@ function OverlayDemoContent() {
 // ============================================================
 
 /**
- * Demonstrates `ObjectOverlay` + `OverlayContent` — positioning scaled DOM
- * elements over canvas objects that stay in sync with pan, zoom, move,
- * scale, and rotate.
+ * Demonstrates `ObjectOverlay` + `OverlayContent` + `FixedSizeContent` —
+ * positioning scaled DOM elements over canvas objects that stay in sync with
+ * pan, zoom, move, scale, and rotate.
  *
+ * - **Mixed scaling**: the icon scales with `OverlayContent` to fill the
+ *   object bounds, while text labels stay at a constant 12px via
+ *   `FixedSizeContent` (auto-hides when the overlay is too small).
  * - **Toggle overlays**: switch the DOM labels on/off
  * - **Pan to object**: animated panning via `viewport.panToObject`
- * - **Auto-scale**: `OverlayContent` scales content to fit within the
- *   object's screen-space bounds (max 2x, 4px padding)
  * - **Drag objects**: overlays follow in real time
  */
 export const ObjectOverlayDemo: Story = {
