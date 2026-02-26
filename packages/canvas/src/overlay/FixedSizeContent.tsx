@@ -68,9 +68,9 @@ export function FixedSizeContent({
     if (!el) return;
 
     // Find the nearest ancestor with overflow:hidden (OverlayContent outer
-    // Stack or ObjectOverlay's Stack) to use as the clipping boundary.
-    // Its size is set by ObjectOverlay based on zoom and object dimensions,
-    // independent of content, so there is no feedback loop.
+    // Stack) to use as the clipping boundary.  Its size is set via
+    // ObjectOverlay based on zoom and object dimensions, independent of
+    // content, so there is no feedback loop.
     let clipAncestor: HTMLElement | null = el.parentElement;
     while (clipAncestor) {
       if (getComputedStyle(clipAncestor).overflow === 'hidden') break;
@@ -138,6 +138,7 @@ export function FixedSizeContent({
         flexShrink: 0,
         width: 'max-content',
         overflow: 'hidden',
+        alignItems: 'center',
         '& > *': {
           maxWidth: '100%',
           overflow: 'hidden',

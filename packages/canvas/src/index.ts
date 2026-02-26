@@ -25,6 +25,8 @@ export { OverlayContent } from './overlay';
 export type { OverlayContentProps } from './overlay';
 export { FixedSizeContent } from './overlay';
 export type { FixedSizeContentProps } from './overlay';
+export { OverlayBadge } from './overlay';
+export type { OverlayBadgeProps } from './overlay';
 
 // --- Types ---
 export type {
