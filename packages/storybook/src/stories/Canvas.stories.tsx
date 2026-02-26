@@ -1119,6 +1119,13 @@ export const ViewCanvasDemo: Story = {
 // OverlayDemoContent — ObjectOverlay + OverlayContent demo
 // ============================================================
 
+/** Subtitles for overlay objects — keyed by `data.id`. */
+const OVERLAY_SUBTITLES: Record<string, string> = {
+  'desk-102': 'Floor 3 · Building A',
+  'printer-A': 'Available',
+  'room-A1': 'Conference',
+};
+
 function OverlayDemoContent() {
   const [objects, setObjects] = useState<FabricObject[]>([]);
   const [showOverlays, setShowOverlays] = useState(true);
@@ -1200,7 +1207,7 @@ function OverlayDemoContent() {
                       flexShrink: 0,
                     }}
                   />
-                  {/* Text stays at fixed 12px via FixedSizeContent */}
+                  {/* Text stays at fixed size via FixedSizeContent */}
                   <FixedSizeContent>
                     <Typography
                       sx={{
@@ -1211,6 +1218,17 @@ function OverlayDemoContent() {
                     >
                       {obj.data?.id ?? ''}
                     </Typography>
+                    {obj.data?.id && OVERLAY_SUBTITLES[obj.data.id] && (
+                      <Typography
+                        sx={{
+                          fontSize: 10,
+                          whiteSpace: 'nowrap',
+                          color: 'text.secondary',
+                        }}
+                      >
+                        {OVERLAY_SUBTITLES[obj.data.id]}
+                      </Typography>
+                    )}
                   </FixedSizeContent>
                 </OverlayContent>
               </ObjectOverlay>
@@ -1267,8 +1285,9 @@ function OverlayDemoContent() {
             DOM overlays positioned over canvas objects using{' '}
             <code>ObjectOverlay</code> + <code>OverlayContent</code>. The icon
             scales to fill the object bounds, while labels wrapped in{' '}
-            <code>FixedSizeContent</code> stay at a constant 12px and auto-hide
-            when the overlay gets too small.
+            <code>FixedSizeContent</code> stay at a constant size and auto-hide
+            when the overlay gets too small. Some objects show a subtitle (10px)
+            below the name (12px) to demonstrate multi-line fixed-size text.
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Click &ldquo;Pan to Object&rdquo; buttons to see animated panning

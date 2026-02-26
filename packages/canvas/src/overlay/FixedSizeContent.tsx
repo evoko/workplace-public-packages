@@ -138,6 +138,7 @@ export function FixedSizeContent({
         flexShrink: 0,
         width: 'max-content',
         overflow: 'hidden',
+        alignItems: 'center',
         '& > *': {
           maxWidth: '100%',
           overflow: 'hidden',
