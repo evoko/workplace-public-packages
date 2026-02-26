@@ -97,6 +97,11 @@ const AllColors = () => {
           { color: p.success.main, label: 'main' },
           { color: p.success.light, label: 'light' },
           { color: p.success.dark, label: 'dark' },
+          {
+            color: p.success.contrastText,
+            label: 'contrastText',
+            bordered: true,
+          },
           { color: p.background.success, label: 'background' },
         ]}
       />
@@ -107,6 +112,11 @@ const AllColors = () => {
           { color: p.warning.main, label: 'main' },
           { color: p.warning.light, label: 'light' },
           { color: p.warning.dark, label: 'dark' },
+          {
+            color: p.warning.contrastText,
+            label: 'contrastText',
+            bordered: true,
+          },
           { color: p.background.warning, label: 'background' },
         ]}
       />
@@ -117,6 +127,11 @@ const AllColors = () => {
           { color: p.error.main, label: 'main' },
           { color: p.error.light, label: 'light' },
           { color: p.error.dark, label: 'dark' },
+          {
+            color: p.error.contrastText,
+            label: 'contrastText',
+            bordered: true,
+          },
           { color: p.background.error, label: 'background' },
         ]}
       />
@@ -127,6 +142,11 @@ const AllColors = () => {
           { color: p.info.main, label: 'main' },
           { color: p.info.light, label: 'light' },
           { color: p.info.dark, label: 'dark' },
+          {
+            color: p.info.contrastText,
+            label: 'contrastText',
+            bordered: true,
+          },
           { color: p.background.info, label: 'background' },
         ]}
       />
@@ -185,6 +205,16 @@ const AllColors = () => {
         ]}
       />
 
+      {/* ---- Sidebar ---- */}
+      <ColorGroup
+        title="Sidebar"
+        swatches={[
+          { color: p.sidebar.main, label: 'main' },
+          { color: p.sidebar.light, label: 'light' },
+          { color: p.sidebar.dark, label: 'dark' },
+        ]}
+      />
+
       {/* ---- Text ---- */}
       <ColorGroup
         title="Text"
@@ -192,6 +222,7 @@ const AllColors = () => {
           { color: p.text.primary, label: 'primary' },
           { color: p.text.secondary, label: 'secondary' },
           { color: p.text.disabled, label: 'disabled' },
+          { color: p.text.sidebar ?? '', label: 'sidebar' },
         ]}
       />
 

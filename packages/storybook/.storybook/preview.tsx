@@ -2,7 +2,6 @@ import React from 'react';
 import type { Preview } from '@storybook/react';
 import { ThemeProvider, CssBaseline, Box } from '@mui/material';
 import { biampTheme } from '@bwp-web/styles';
-import '@bwp-web/styles/mui-theme-augmentation';
 
 // Create two separate themes, each with ONLY one color scheme.
 // This prevents MUI from auto-detecting system preferences or

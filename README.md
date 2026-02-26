@@ -59,6 +59,7 @@ npm install @bwp-web/styles
 
 ### Peer Dependencies
 
+- `@bwp-web/assets` >= 0.8.0
 - `@mui/material` >= 7.0.0
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
@@ -67,8 +68,7 @@ npm install @bwp-web/styles
 ### Usage
 
 ```tsx
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, CssBaseline } from '@mui/material';
 import { biampTheme } from '@bwp-web/styles';
 
 const theme = biampTheme();
@@ -83,73 +83,11 @@ function App() {
 }
 ```
 
-### Customizing the Theme
+TypeScript augmentations for custom palette entries (`biamp`, `blue`, `purple`, `sidebar`, `dividers`) and component variants (`Button variant="overlay"`, `IconButton variant="transparent"`, etc.) are **included automatically** when you import from `@bwp-web/styles`.
 
-`biampTheme` accepts an optional theme options object that is deep-merged on top of the base Biamp theme, just like overriding any default MUI theme. You can override palette colors, typography, component default props, style overrides, spacing, breakpoints -- anything MUI's `createTheme` supports.
+### Styles Documentation
 
-```tsx
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { biampTheme } from '@bwp-web/styles';
-
-const theme = biampTheme({
-  // Override palette colors
-  palette: {
-    primary: {
-      main: '#ff0000',
-    },
-  },
-  // Override typography
-  typography: {
-    fontFamily: '"Inter", sans-serif',
-  },
-  // Override component defaults and styles
-  components: {
-    MuiButton: {
-      defaultProps: {
-        size: 'small',
-      },
-      styleOverrides: {
-        root: {
-          borderRadius: '8px',
-        },
-      },
-    },
-  },
-});
-
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {/* Your app with customized theme */}
-    </ThemeProvider>
-  );
-}
-```
-
-### Theme Augmentation
-
-Full TypeScript support for the custom palette colors (`biamp`, `blue`, `purple`, `sidebar`, etc.) and component variant overrides is **automatically included** when you import from `@bwp-web/styles` — no extra configuration needed.
-
-If you need the augmentations without importing the theme (rare), you can reference the file directly in your `tsconfig.json`:
-
-```json
-{
-  "include": ["src", "node_modules/@bwp-web/styles/mui-theme-augmentation.d.ts"]
-}
-```
-
-Or add a triple-slash directive in a project `.d.ts` file:
-
-```ts
-/// <reference types="@bwp-web/styles/mui-theme-augmentation" />
-```
-
-### Exports
-
-- `biampTheme(overrideOptions?)` - Creates the Biamp Workplace MUI theme. Accepts optional theme override options.
-- `appBarHeight` - Standard app bar height constant (64px).
+For the full color palette, typography variants, spacing scale, component overrides, theme customization, and TypeScript setup details, see [styles.md](./docs/styles.md).
 
 ## Using `@bwp-web/components`
 
