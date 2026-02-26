@@ -91,8 +91,10 @@ export interface UseEditCanvasOptions {
    */
   backgroundResize?: boolean | ResizeImageOptions;
   /**
-   * Track object add/remove/modify events and expose an `isDirty` flag.
-   * Call `resetDirty()` after a successful save to clear the flag.
+   * Track canvas mutations and expose an `isDirty` flag.
+   * Listens for `object:added`, `object:removed`, `object:modified`, and
+   * `background:modified` events. Call `resetDirty()` after a successful
+   * save to clear the flag, or `markDirty()` to set it manually.
    * Default: disabled.
    */
   trackChanges?: boolean;

@@ -84,6 +84,8 @@ export function fitViewportToBackground(
  * - **2**: maximum contrast (darks are truly dark, lights truly light).
  *
  * Clamped to the 0–2 range.
+ *
+ * Fires `background:modified` on the canvas when the contrast actually changes.
  */
 export function setBackgroundContrast(
   canvas: FabricCanvas,
@@ -147,6 +149,8 @@ export function getBackgroundContrast(canvas: FabricCanvas): number {
 
 /**
  * Add or remove the Invert filter from the canvas background image.
+ *
+ * Fires `background:modified` on the canvas when the invert state actually changes.
  */
 export function setBackgroundInverted(
   canvas: FabricCanvas,
@@ -292,6 +296,8 @@ export interface SetBackgroundImageOptions extends ResizeImageOptions {
  * Pass options to control auto-resize (`maxSize`, `minSize`) and/or
  * preserve the current background contrast when replacing the image.
  * Omit to load the URL as-is without resizing.
+ *
+ * Fires `background:modified` on the canvas after the image is set.
  *
  * Returns the created FabricImage for further manipulation.
  */

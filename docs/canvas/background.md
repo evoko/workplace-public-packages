@@ -4,7 +4,7 @@ Utilities for managing a background image on the canvas (e.g. a floor plan image
 
 ## `setBackgroundImage(canvas, url, options?): Promise<FabricImage>`
 
-Loads an image from a URL (or data URL) and sets it as the canvas background. Optionally resizes large images before applying.
+Loads an image from a URL (or data URL) and sets it as the canvas background. Optionally resizes large images before applying. Fires `background:modified` on the canvas after the image is set.
 
 ```typescript
 import { setBackgroundImage } from '@bwp-web/canvas';
@@ -84,7 +84,7 @@ Set the contrast of the background image.
 - **1**: normal / unmodified (default).
 - **2**: maximum contrast (darks are truly dark, lights truly light).
 
-Value is clamped to the 0–2 range.
+Value is clamped to the 0–2 range. Fires `background:modified` on the canvas when the contrast actually changes.
 
 ```typescript
 setBackgroundContrast(canvas, 0.5);  // low contrast
@@ -106,7 +106,7 @@ const contrast = getBackgroundContrast(canvas); // e.g. 1.8
 
 ### `setBackgroundInverted(canvas, inverted)`
 
-Toggle a color inversion filter on the background image. Useful for dark floor plan images.
+Toggle a color inversion filter on the background image. Useful for dark floor plan images. Fires `background:modified` on the canvas when the invert state actually changes.
 
 ```typescript
 setBackgroundInverted(canvas, true);  // apply invert filter
@@ -159,3 +159,17 @@ interface ResizeResult {
 |---|---|---|---|
 | `maxSize` | `number` | `4096` | Maximum dimension in pixels |
 | `minSize` | `number` | `50` | Minimum dimension — throws if smaller |
+
+---
+
+## `background:modified` event
+
+All background mutation functions (`setBackgroundImage`, `setBackgroundContrast`, `setBackgroundInverted`) fire a custom `background:modified` event on the canvas when the background actually changes. This event is used internally by `useEditCanvas` for dirty tracking and history, but consumers can also listen for it directly:
+
+```typescript
+canvas.on('background:modified', () => {
+  console.log('Background was changed');
+});
+```
+
+The event only fires when a real change occurs — for example, calling `setBackgroundContrast(canvas, 1)` when the contrast is already normal (no filter present) does not fire the event.
