@@ -1310,8 +1310,8 @@ function OverlayDemoContent() {
             <code>FixedSizeContent</code> stay at a constant size and auto-hide
             when the overlay gets too small. Some objects show a subtitle (10px)
             below the name (12px) to demonstrate multi-line fixed-size text.{' '}
-            <code>OverlayBadge</code> adds status dots anchored to the
-            top-right corner with independent scaling.
+            <code>OverlayBadge</code> adds status dots anchored to the top-right
+            corner with independent scaling.
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Click &ldquo;Pan to Object&rdquo; buttons to see animated panning
