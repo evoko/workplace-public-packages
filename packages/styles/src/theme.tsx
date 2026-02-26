@@ -53,7 +53,7 @@ const colors = {
   sidebar: '#E0E0E0',
   action: {
     disabled: '#11111166',
-    disabledBackground: '#D8D8D8',
+    disabledBackground: '#E0E0E0',
   },
   success: {
     dark: {
@@ -121,13 +121,13 @@ export const biampTheme = (
               main: colors.white,
             },
             success: {
-              contrastText: colors.grey[900],
+              contrastText: colors.white,
               dark: colors.success.light.main,
               light: colors.success.light.main,
               main: colors.success.light.main,
             },
             warning: {
-              contrastText: colors.grey[900],
+              contrastText: colors.white,
               dark: colors.warning.light.main,
               light: colors.warning.light.main,
               main: colors.warning.light.main,
@@ -185,7 +185,7 @@ export const biampTheme = (
               primary: colors.grey[900],
               secondary: colors.grey[400],
               disabled: alpha(colors.grey[900], 0.4),
-              sidebar: colors.white,
+              sidebar: colors.sidebar,
             },
             background: {
               default: colors.white,
@@ -279,7 +279,7 @@ export const biampTheme = (
               primary: colors.white,
               secondary: colors.grey[400],
               disabled: alpha(colors.white, 0.4),
-              sidebar: colors.white,
+              sidebar: colors.sidebar,
             },
             background: {
               default: colors.grey[900],

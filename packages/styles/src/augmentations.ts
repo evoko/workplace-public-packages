@@ -1,7 +1,15 @@
-// MUI theme augmentation for the Biamp Workplace custom theme.
-// This file is imported by index.ts so that the augmentations are automatically
-// included in the emitted declaration files — consumers don't need to add
-// triple-slash directives or tsconfig includes.
+// MUI theme augmentations for the Biamp Workplace design system.
+//
+// These augmentations are automatically available when you import from
+// `@bwp-web/styles` (e.g. `import { biampTheme } from '@bwp-web/styles'`).
+//
+// If your file does not import from `@bwp-web/styles` but still needs the
+// augmented types (e.g. a standalone component file that only uses
+// `useTheme()`), add a single global declaration file to your project:
+//
+//   // src/global.d.ts
+//   /// <reference types="@bwp-web/styles/mui-theme-augmentation" />
+//
 
 import type { PaletteColor, PaletteColorOptions } from '@mui/material/styles';
 
