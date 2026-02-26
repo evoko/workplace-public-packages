@@ -100,6 +100,8 @@ export function setBackgroundContrast(
     (f) => f instanceof filters.Contrast,
   );
 
+  let changed = false;
+
   if (contrast === 0) {
     // Normal — remove filter if present
     if (contrastIdx >= 0) {
@@ -107,16 +109,20 @@ export function setBackgroundContrast(
         (f) => !(f instanceof filters.Contrast),
       );
       bg.applyFilters();
+      changed = true;
     }
   } else if (contrastIdx >= 0) {
     (currentFilters[contrastIdx] as filters.Contrast).contrast = contrast;
     bg.applyFilters();
+    changed = true;
   } else {
     bg.filters = [...currentFilters, new filters.Contrast({ contrast })];
     bg.applyFilters();
+    changed = true;
   }
 
   canvas.requestRenderAll();
+  if (changed) canvas.fire('background:modified');
 }
 
 /**
@@ -152,15 +158,20 @@ export function setBackgroundInverted(
   const currentFilters: filters.BaseFilter<string>[] = bg.filters ?? [];
   const hasInvert = currentFilters.some((f) => f instanceof filters.Invert);
 
+  let changed = false;
+
   if (inverted && !hasInvert) {
     bg.filters = [...currentFilters, new filters.Invert()];
     bg.applyFilters();
+    changed = true;
   } else if (!inverted && hasInvert) {
     bg.filters = currentFilters.filter((f) => !(f instanceof filters.Invert));
     bg.applyFilters();
+    changed = true;
   }
 
   canvas.requestRenderAll();
+  if (changed) canvas.fire('background:modified');
 }
 
 /**
@@ -315,5 +326,6 @@ export async function setBackgroundImage(
   }
 
   canvas.requestRenderAll();
+  canvas.fire('background:modified');
   return img;
 }

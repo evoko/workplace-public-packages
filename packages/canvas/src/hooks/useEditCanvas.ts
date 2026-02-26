@@ -283,6 +283,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
           canvas.on('object:added', () => setIsDirty(true));
           canvas.on('object:removed', () => setIsDirty(true));
           canvas.on('object:modified', () => setIsDirty(true));
+          canvas.on('background:modified', () => setIsDirty(true));
         }
 
         if (opts?.history) {
@@ -297,6 +298,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
           canvas.on('object:added', syncHistoryState);
           canvas.on('object:removed', syncHistoryState);
           canvas.on('object:modified', syncHistoryState);
+          canvas.on('background:modified', syncHistoryState);
         }
 
         if (opts?.vertexEdit !== false) {
@@ -458,6 +460,8 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     isDirty,
     /** Reset the dirty flag (e.g., after a successful save). */
     resetDirty: useCallback(() => setIsDirty(false), []),
+    /** Manually mark the canvas as dirty (e.g., after a custom operation not tracked automatically). */
+    markDirty: useCallback(() => setIsDirty(true), []),
     /** Undo the last change. Requires `history: true`. */
     undo: useCallback(async () => {
       const h = historyRef.current;

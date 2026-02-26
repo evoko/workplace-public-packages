@@ -21,4 +21,7 @@ declare module 'fabric' {
   interface Canvas {
     lockLightMode?: boolean;
   }
+  interface CanvasEvents {
+    'background:modified': object;
+  }
 }
