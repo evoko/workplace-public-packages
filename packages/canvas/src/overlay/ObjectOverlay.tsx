@@ -95,7 +95,6 @@ export function ObjectOverlay({
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 1,
-        overflow: 'hidden',
         ...sx,
       }}
       {...rest}

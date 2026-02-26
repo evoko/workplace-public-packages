@@ -20,6 +20,7 @@ import {
   ObjectOverlay,
   OverlayContent,
   FixedSizeContent,
+  OverlayBadge,
   createRectangle,
   createRectangleAtPoint,
   editRectangle,
@@ -1126,6 +1127,14 @@ const OVERLAY_SUBTITLES: Record<string, string> = {
   'room-A1': 'Conference',
 };
 
+/** Badge colors for overlay objects — keyed by `data.id`. */
+const OVERLAY_BADGES: Record<string, string> = {
+  'super duper uber long desk name': '#4caf50',
+  'desk-102': '#f44336',
+  'printer-A': '#ff9800',
+  'room-A1': '#2196f3',
+};
+
 function OverlayDemoContent() {
   const [objects, setObjects] = useState<FabricObject[]>([]);
   const [showOverlays, setShowOverlays] = useState(true);
@@ -1231,6 +1240,19 @@ function OverlayDemoContent() {
                     )}
                   </FixedSizeContent>
                 </OverlayContent>
+                {obj.data?.id && OVERLAY_BADGES[obj.data.id] && (
+                  <OverlayBadge top={-6} right={-6}>
+                    <Box
+                      sx={{
+                        width: 12,
+                        height: 12,
+                        borderRadius: '50%',
+                        bgcolor: OVERLAY_BADGES[obj.data.id],
+                        border: '1.5px solid white',
+                      }}
+                    />
+                  </OverlayBadge>
+                )}
               </ObjectOverlay>
             ))}
         </>
@@ -1287,7 +1309,9 @@ function OverlayDemoContent() {
             scales to fill the object bounds, while labels wrapped in{' '}
             <code>FixedSizeContent</code> stay at a constant size and auto-hide
             when the overlay gets too small. Some objects show a subtitle (10px)
-            below the name (12px) to demonstrate multi-line fixed-size text.
+            below the name (12px) to demonstrate multi-line fixed-size text.{' '}
+            <code>OverlayBadge</code> adds status dots anchored to the
+            top-right corner with independent scaling.
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Click &ldquo;Pan to Object&rdquo; buttons to see animated panning
