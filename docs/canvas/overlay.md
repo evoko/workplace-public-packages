@@ -2,11 +2,12 @@
 
 React components for positioning DOM content over Fabric canvas objects. Overlays stay in sync with pan, zoom, move, scale, and rotate transforms, letting you render rich UI (icons, labels, badges) on top of canvas shapes.
 
-The three components compose together:
+The four components compose together:
 
 1. **`ObjectOverlay`** — positions a container over a specific canvas object
 2. **`OverlayContent`** — scales its children to fit within the overlay bounds
 3. **`FixedSizeContent`** — keeps children at a constant screen size inside `OverlayContent`
+4. **`OverlayBadge`** — an absolutely-positioned badge with baseline-relative scaling
 
 ---
 
@@ -38,7 +39,7 @@ Extends MUI `StackProps`.
 
 ### Default styles
 
-`position: absolute`, `pointerEvents: none`, `alignItems: center`, `justifyContent: center`, `zIndex: 1`, `overflow: hidden`. All overridable via `sx`.
+`position: absolute`, `pointerEvents: none`, `alignItems: center`, `justifyContent: center`, `zIndex: 1`. All overridable via `sx`.
 
 ### How it works
 
@@ -126,7 +127,7 @@ Extends MUI `StackProps`.
 ### How the vertical hide/show works
 
 1. On mount, the total parent content height (siblings + this element) is cached
-2. A `ResizeObserver` on the nearest overflow-hidden ancestor triggers a check on each resize
+2. A `ResizeObserver` on the nearest overflow-hidden ancestor (OverlayContent outer Stack) triggers a check on each resize
 3. The check compares the container height to the cached total content height
 4. If the container is too short, the element is hidden (`display: none`) — the cached height remains stable so the decision is deterministic
 5. If the container grows large enough, the element is shown, re-measured, and verified to ensure it actually fits
@@ -136,27 +137,84 @@ This avoids feedback loops: hiding the element changes `OverlayContent`'s scale,
 
 ---
 
+## `OverlayBadge`
+
+An absolutely-positioned element (icon, status dot, badge) anchored to a specific position within an `ObjectOverlay`. Unlike `OverlayContent` which scales content to fit, `OverlayBadge` uses **baseline-relative scaling** — it captures the overlay's initial dimensions and scales proportionally as the overlay grows or shrinks with zoom.
+
+```tsx
+import { ObjectOverlay, OverlayContent, OverlayBadge } from '@bwp-web/canvas';
+
+<ObjectOverlay canvasRef={canvasRef} object={obj}>
+  <OverlayContent>
+    <MyIcon />
+    <FixedSizeContent>
+      <Typography>Label</Typography>
+    </FixedSizeContent>
+  </OverlayContent>
+  <OverlayBadge top={-5} right={-5}>
+    <StatusDot />
+  </OverlayBadge>
+</ObjectOverlay>
+```
+
+### Props (`OverlayBadgeProps`)
+
+Extends MUI `StackProps`.
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | `ReactNode` | — | Content to render |
+| `maxScale` | `number` | `2` | Maximum scale factor |
+| `minScale` | `number` | `0.75` | Minimum scale factor |
+| `top` | `number \| string` | — | Top offset (number → px, string → CSS value) |
+| `right` | `number \| string` | — | Right offset |
+| `bottom` | `number \| string` | — | Bottom offset |
+| `left` | `number \| string` | — | Left offset |
+
+### Behavior
+
+- **Baseline-relative scaling**: On first render, the overlay's dimensions are captured as the baseline. As the overlay grows (zoom in), the badge scales up; as it shrinks (zoom out), the badge scales down. The scale is clamped to `[minScale, maxScale]`.
+- **Center-origin scaling**: The badge always scales from its center, so it stays visually centered at its anchor point regardless of scale.
+- **Counter-scaling inside `OverlayContent`**: When placed inside `OverlayContent`, the badge automatically reads `--overlay-scale` and counter-scales to maintain its own independent size.
+- **Pointer events**: Defaults to `pointerEvents: 'auto'`, re-enabling interaction since `ObjectOverlay` sets `pointerEvents: 'none'`. Override via `sx` if needed.
+- **Overflow**: The badge can visually overflow outside the `ObjectOverlay` bounds (e.g. negative offsets for corner badges). `ObjectOverlay` does not clip its children.
+
+### How it works
+
+1. A `ResizeObserver` watches the parent element (typically `ObjectOverlay`'s Stack)
+2. The first valid measurement is stored as the baseline dimensions
+3. On each resize, the ratio `min(currentW / baseW, currentH / baseH)` is computed
+4. The scale is clamped to `[minScale, maxScale]` and applied via `transform: scale(...)`
+5. If `--overlay-scale` is present (inside `OverlayContent`), the badge divides by it to counter-scale
+
+---
+
 ## Composing overlays
 
-A typical setup renders `ObjectOverlay` for each canvas object, with `OverlayContent` handling scaling and `FixedSizeContent` for labels:
+A typical setup renders `ObjectOverlay` for each canvas object, with `OverlayContent` handling scaling, `FixedSizeContent` for labels, and `OverlayBadge` for status indicators:
 
 ```tsx
 {objects.map((obj) => (
   <ObjectOverlay key={obj.data?.id} canvasRef={canvasRef} object={obj}>
     <OverlayContent>
-      <Stack alignItems="center">
-        <StatusIcon status={obj.data?.status} />
-        <FixedSizeContent>
-          <Typography noWrap variant="caption">
-            {obj.data?.name}
-          </Typography>
-        </FixedSizeContent>
-      </Stack>
+      <StatusIcon status={obj.data?.status} />
+      <FixedSizeContent>
+        <Typography noWrap sx={{ fontSize: 12, fontWeight: 600 }}>
+          {obj.data?.name}
+        </Typography>
+        <Typography noWrap sx={{ fontSize: 10, color: 'text.secondary' }}>
+          {obj.data?.subtitle}
+        </Typography>
+      </FixedSizeContent>
     </OverlayContent>
+    <OverlayBadge top={-5} right={-5}>
+      <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: 'green' }} />
+    </OverlayBadge>
   </ObjectOverlay>
 ))}
 ```
 
 In this pattern:
 - `StatusIcon` scales up/down with the object size
-- The `Typography` label stays at a constant font size, truncates with ellipsis when too wide, and hides entirely when the object is too small to fit it vertically
+- The `Typography` labels stay at constant font sizes (12px / 10px), truncate with ellipsis when too wide, and hide entirely when the object is too small to fit them vertically
+- The `OverlayBadge` dot stays anchored at the top-right corner and scales proportionally with zoom
