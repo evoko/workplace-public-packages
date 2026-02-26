@@ -110,6 +110,9 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
         lockCanvas(canvas);
       });
 
+      // Show pointer cursor when hovering over objects
+      canvas.hoverCursor = 'pointer';
+
       canvas.on('mouse:wheel', () => {
         setZoom(canvas.getZoom());
       });

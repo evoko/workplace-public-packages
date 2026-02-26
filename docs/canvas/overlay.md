@@ -170,11 +170,13 @@ Extends MUI `StackProps`.
 | `right` | `number \| string` | — | Right offset |
 | `bottom` | `number \| string` | — | Bottom offset |
 | `left` | `number \| string` | — | Left offset |
+| `circular` | `boolean` | `false` | Position on the inscribed ellipse instead of the rectangle edge |
 
 ### Behavior
 
 - **Baseline-relative scaling**: On first render, the overlay's dimensions are captured as the baseline. As the overlay grows (zoom in), the badge scales up; as it shrinks (zoom out), the badge scales down. The scale is clamped to `[minScale, maxScale]`.
 - **Center-origin scaling**: The badge always scales from its center, so it stays visually centered at its anchor point regardless of scale.
+- **Circular positioning**: When `circular` is `true`, the badge is placed on the inscribed ellipse of the overlay bounds rather than at the rectangle edge. The angle is derived from which anchor props are specified (`top` + `right` → 45°, `top` alone → 90°, etc.) and the anchor values are applied as pixel offsets from the ellipse point. This is useful for circular or elliptical canvas objects where the rectangle corner would be far from the visible shape edge.
 - **Counter-scaling inside `OverlayContent`**: When placed inside `OverlayContent`, the badge automatically reads `--overlay-scale` and counter-scales to maintain its own independent size.
 - **Pointer events**: Defaults to `pointerEvents: 'auto'`, re-enabling interaction since `ObjectOverlay` sets `pointerEvents: 'none'`. Override via `sx` if needed.
 - **Overflow**: The badge can visually overflow outside the `ObjectOverlay` bounds (e.g. negative offsets for corner badges). `ObjectOverlay` does not clip its children.

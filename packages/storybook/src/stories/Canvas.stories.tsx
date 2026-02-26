@@ -1241,7 +1241,11 @@ function OverlayDemoContent() {
                   </FixedSizeContent>
                 </OverlayContent>
                 {obj.data?.id && OVERLAY_BADGES[obj.data.id] && (
-                  <OverlayBadge top={-6} right={-6}>
+                  <OverlayBadge
+                    circular={obj.shapeType === 'circle'}
+                    top={obj.shapeType === 'circle' ? 0 : -6}
+                    right={obj.shapeType === 'circle' ? 0 : -6}
+                  >
                     <Box
                       sx={{
                         width: 12,

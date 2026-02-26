@@ -43,6 +43,7 @@ const canvas = useEditCanvas({
 | `setBackground` | `(url, opts?) => Promise<FabricImage>` | Load a background image (see below) |
 | `isDirty` | `boolean` | Whether canvas has been modified since last `resetDirty()`. Requires `trackChanges: true` |
 | `resetDirty` | `() => void` | Reset the dirty flag (e.g. after a successful save) |
+| `markDirty` | `() => void` | Manually mark the canvas as dirty (e.g. after a custom operation) |
 | `undo` | `() => Promise<void>` | Undo last change (requires `history: true`) |
 | `redo` | `() => Promise<void>` | Redo previously undone change (requires `history: true`) |
 | `canUndo` | `boolean` | Whether undo is available (reactive, requires `history: true`) |
@@ -63,7 +64,7 @@ const canvas = useEditCanvas({
 | `panAndZoom` | `boolean \| PanAndZoomOptions` | `true` | Pan and zoom controls |
 | `autoFitToBackground` | `boolean` | `true` | Auto-fit viewport to background image after `onReady` |
 | `backgroundResize` | `boolean \| ResizeImageOptions` | `true` | Auto-downscale large images on upload |
-| `trackChanges` | `boolean` | `false` | Track object mutations and expose `isDirty` / `resetDirty` |
+| `trackChanges` | `boolean` | `false` | Track canvas mutations (object + background changes) and expose `isDirty` / `resetDirty` / `markDirty` |
 | `borderRadius` | `number \| false` | `4` | Visual border radius for loaded Rects. Pass `false` to disable |
 | `history` | `boolean \| HistoryOptions` | `false` | Enable snapshot-based undo/redo |
 | `onReady` | `(canvas) => void \| Promise<void>` | — | Called after all canvas features are initialized |
@@ -98,17 +99,21 @@ When `preserveContrast` is set, the current background contrast is saved before 
 
 ### Dirty tracking
 
-Enable with `trackChanges: true`. The hook listens to `object:added`, `object:removed`, and `object:modified` events and sets `isDirty` to `true` on any change.
+Enable with `trackChanges: true`. The hook listens to `object:added`, `object:removed`, `object:modified`, and `background:modified` events and sets `isDirty` to `true` on any change. This covers object create/edit/delete as well as background image, contrast, and invert changes.
 
 ```tsx
 const canvas = useEditCanvas({ trackChanges: true });
 
-// After any object mutation:
+// After any object or background mutation:
 canvas.isDirty; // true
 
 // After saving:
 canvas.resetDirty();
 canvas.isDirty; // false
+
+// For custom operations not tracked automatically:
+canvas.markDirty();
+canvas.isDirty; // true
 ```
 
 ### Undo/redo

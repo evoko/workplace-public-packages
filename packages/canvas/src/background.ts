@@ -84,6 +84,8 @@ export function fitViewportToBackground(
  * - **2**: maximum contrast (darks are truly dark, lights truly light).
  *
  * Clamped to the 0–2 range.
+ *
+ * Fires `background:modified` on the canvas when the contrast actually changes.
  */
 export function setBackgroundContrast(
   canvas: FabricCanvas,
@@ -100,6 +102,8 @@ export function setBackgroundContrast(
     (f) => f instanceof filters.Contrast,
   );
 
+  let changed = false;
+
   if (contrast === 0) {
     // Normal — remove filter if present
     if (contrastIdx >= 0) {
@@ -107,16 +111,20 @@ export function setBackgroundContrast(
         (f) => !(f instanceof filters.Contrast),
       );
       bg.applyFilters();
+      changed = true;
     }
   } else if (contrastIdx >= 0) {
     (currentFilters[contrastIdx] as filters.Contrast).contrast = contrast;
     bg.applyFilters();
+    changed = true;
   } else {
     bg.filters = [...currentFilters, new filters.Contrast({ contrast })];
     bg.applyFilters();
+    changed = true;
   }
 
   canvas.requestRenderAll();
+  if (changed) canvas.fire('background:modified');
 }
 
 /**
@@ -141,6 +149,8 @@ export function getBackgroundContrast(canvas: FabricCanvas): number {
 
 /**
  * Add or remove the Invert filter from the canvas background image.
+ *
+ * Fires `background:modified` on the canvas when the invert state actually changes.
  */
 export function setBackgroundInverted(
   canvas: FabricCanvas,
@@ -152,15 +162,20 @@ export function setBackgroundInverted(
   const currentFilters: filters.BaseFilter<string>[] = bg.filters ?? [];
   const hasInvert = currentFilters.some((f) => f instanceof filters.Invert);
 
+  let changed = false;
+
   if (inverted && !hasInvert) {
     bg.filters = [...currentFilters, new filters.Invert()];
     bg.applyFilters();
+    changed = true;
   } else if (!inverted && hasInvert) {
     bg.filters = currentFilters.filter((f) => !(f instanceof filters.Invert));
     bg.applyFilters();
+    changed = true;
   }
 
   canvas.requestRenderAll();
+  if (changed) canvas.fire('background:modified');
 }
 
 /**
@@ -282,6 +297,8 @@ export interface SetBackgroundImageOptions extends ResizeImageOptions {
  * preserve the current background contrast when replacing the image.
  * Omit to load the URL as-is without resizing.
  *
+ * Fires `background:modified` on the canvas after the image is set.
+ *
  * Returns the created FabricImage for further manipulation.
  */
 export async function setBackgroundImage(
@@ -315,5 +332,6 @@ export async function setBackgroundImage(
   }
 
   canvas.requestRenderAll();
+  canvas.fire('background:modified');
   return img;
 }
