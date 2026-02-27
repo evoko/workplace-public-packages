@@ -18,6 +18,18 @@ export { useCanvasTooltip } from './hooks';
 export type { UseCanvasTooltipOptions, CanvasTooltipState } from './hooks';
 export { useCanvasClick } from './hooks';
 export type { UseCanvasClickOptions } from './hooks';
+// --- Context ---
+export { EditCanvasProvider, useEditCanvasContext } from './context';
+export type {
+  EditCanvasProviderProps,
+  EditCanvasContextValue,
+} from './context';
+export { ViewCanvasProvider, useViewCanvasContext } from './context';
+export type {
+  ViewCanvasProviderProps,
+  ViewCanvasContextValue,
+} from './context';
+
 // --- Overlay ---
 export { ObjectOverlay } from './overlay';
 export type { ObjectOverlayProps } from './overlay';

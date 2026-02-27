@@ -1,6 +1,8 @@
-# Hooks
+# Hooks & Context
 
 The primary hooks (`useEditCanvas`, `useViewCanvas`) are the entry points for using the canvas. Both return an `onReady` callback that must be passed to the `<Canvas>` component.
+
+For apps where multiple sibling components need access to canvas state, **context providers** (`EditCanvasProvider`, `ViewCanvasProvider`) wrap the hooks and expose the full API via React context — no bridge context or prop drilling needed.
 
 Additional utility hooks (`useCanvasEvents`, `useCanvasTooltip`, `useCanvasClick`, `useObjectOverlay`) handle common patterns that would otherwise require manual event wiring.
 
@@ -200,6 +202,110 @@ canvas.setObjectStyles({
 // All objects of a type
 canvas.setObjectStyleByType('DESK', { fill: '#cccccc' });
 ```
+
+---
+
+## Context providers
+
+When multiple sibling components need access to canvas state (dirty flag, viewport controls, selected objects, etc.), use the context providers instead of calling `useEditCanvas` / `useViewCanvas` directly. The providers call the hooks internally and expose the full return value via React context.
+
+### `EditCanvasProvider`
+
+```tsx
+import {
+  EditCanvasProvider,
+  useEditCanvasContext,
+  Canvas,
+} from '@bwp-web/canvas';
+
+function App() {
+  return (
+    <EditCanvasProvider options={{ trackChanges: true, history: true }}>
+      <MyCanvas />
+      <BottomAppBar />
+      <BackgroundPanel />
+    </EditCanvasProvider>
+  );
+}
+
+function MyCanvas() {
+  const { onReady } = useEditCanvasContext();
+  return <Canvas onReady={onReady} />;
+}
+
+function BottomAppBar() {
+  const { isDirty, resetDirty } = useEditCanvasContext();
+  return <SaveButton disabled={!isDirty} onClick={() => { save(); resetDirty(); }} />;
+}
+
+function BackgroundPanel() {
+  const { setBackground, markDirty } = useEditCanvasContext();
+  // ...
+}
+```
+
+`useEditCanvasContext()` returns the same object as `useEditCanvas()` — all properties listed in the [return value table](#return-value) are available. Throws if called outside of an `EditCanvasProvider`.
+
+### `ViewCanvasProvider`
+
+```tsx
+import {
+  ViewCanvasProvider,
+  useViewCanvasContext,
+  Canvas,
+} from '@bwp-web/canvas';
+
+function App() {
+  return (
+    <ViewCanvasProvider options={{ scaledStrokes: true }}>
+      <MyCanvas />
+      <MyToolbar />
+    </ViewCanvasProvider>
+  );
+}
+
+function MyCanvas() {
+  const { onReady } = useViewCanvasContext();
+  return <Canvas onReady={onReady} />;
+}
+
+function MyToolbar() {
+  const { viewport } = useViewCanvasContext();
+  return <ZoomControls onZoomIn={viewport.zoomIn} onZoomOut={viewport.zoomOut} />;
+}
+```
+
+### Using utility hooks and overlay components with context
+
+Utility hooks and overlay components accept `canvasRef` as a prop. Read it from context:
+
+```tsx
+function MyTooltipLayer() {
+  const { canvasRef } = useEditCanvasContext();
+  const tooltip = useCanvasTooltip(canvasRef, {
+    getContent: (obj) => obj.data,
+  });
+  // ...
+}
+
+function MyOverlays({ objects }) {
+  const { canvasRef } = useEditCanvasContext();
+  return objects.map((obj) => (
+    <ObjectOverlay key={obj.data?.id} canvasRef={canvasRef} object={obj}>
+      <OverlayContent>...</OverlayContent>
+    </ObjectOverlay>
+  ));
+}
+```
+
+### When to use hooks vs context
+
+| Pattern | Use when |
+|---|---|
+| `useEditCanvas()` directly | Single component owns the canvas, no sibling access needed |
+| `<EditCanvasProvider>` | Multiple sibling components need canvas state or actions |
+
+The hooks and providers are interchangeable — the provider simply wraps the hook in React context. Both support the same options.
 
 ---
 

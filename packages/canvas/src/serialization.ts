@@ -2,6 +2,7 @@ import {
   Canvas as FabricCanvas,
   FabricImage,
   Rect,
+  filters,
   type FabricObject,
   type TOriginX,
   type TOriginY,
@@ -374,6 +375,15 @@ export async function loadCanvas(
         top: center.y,
       });
       bg.setCoords();
+    }
+
+    // Strip Invert filter that may have been baked into old saved data.
+    // Inversion is a runtime concern (determined by the current theme),
+    // not something that should persist from serialized data. Callers
+    // use setBackgroundInverted() to apply the correct state after load.
+    if (bg.filters?.some((f) => f instanceof filters.Invert)) {
+      bg.filters = bg.filters.filter((f) => !(f instanceof filters.Invert));
+      bg.applyFilters();
     }
   }
 
