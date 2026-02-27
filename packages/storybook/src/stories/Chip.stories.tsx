@@ -7,7 +7,18 @@ const meta: Meta<typeof Chip> = {
   tags: ['autodocs'],
   argTypes: {
     variant: { control: 'select', options: ['filled', 'outlined'] },
-    color: { control: 'select', options: ['default', 'primary', 'secondary', 'error', 'warning', 'success', 'info'] },
+    color: {
+      control: 'select',
+      options: [
+        'default',
+        'primary',
+        'secondary',
+        'error',
+        'warning',
+        'success',
+        'info',
+      ],
+    },
     size: { control: 'select', options: ['small', 'medium'] },
     onDelete: { control: false },
   },
