@@ -1,7 +1,6 @@
 import type { RefObject } from 'react';
 import type { Canvas as FabricCanvas } from 'fabric';
-import { useViewCanvasContextSafe } from './ViewCanvasContext';
-import { useEditCanvasContextSafe } from './EditCanvasContext';
+import { useCanvasRefContext } from './CanvasRefContext';
 
 /**
  * Read `canvasRef` from the nearest {@link ViewCanvasProvider} or
@@ -9,11 +8,11 @@ import { useEditCanvasContextSafe } from './EditCanvasContext';
  *
  * Returns `null` if neither provider is present in the tree.
  *
- * Both context hooks are called unconditionally (Rules-of-Hooks compliant).
- * In practice only one provider will be active at a time.
+ * This hook reads from the shared {@link CanvasRefContext}, which holds a
+ * stable `RefObject` that never changes identity. Consumers of this hook
+ * will **not** re-render when canvas state (zoom, selection, etc.) changes
+ * — only when the provider mounts/unmounts.
  */
 export function useCanvasRef(): RefObject<FabricCanvas | null> | null {
-  const viewCtx = useViewCanvasContextSafe();
-  const editCtx = useEditCanvasContextSafe();
-  return viewCtx?.canvasRef ?? editCtx?.canvasRef ?? null;
+  return useCanvasRefContext();
 }

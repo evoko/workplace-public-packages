@@ -20,14 +20,20 @@ export { useCanvasClick } from './hooks';
 export type { UseCanvasClickOptions } from './hooks';
 // --- Context ---
 export { EditCanvasProvider, useEditCanvasContext } from './context';
+export { useEditCanvasViewport, useEditCanvasState } from './context';
 export type {
   EditCanvasProviderProps,
   EditCanvasContextValue,
+  EditCanvasViewportValue,
+  EditCanvasStateValue,
 } from './context';
 export { ViewCanvasProvider, useViewCanvasContext } from './context';
+export { useViewCanvasViewport, useViewCanvasState } from './context';
 export type {
   ViewCanvasProviderProps,
   ViewCanvasContextValue,
+  ViewCanvasViewportValue,
+  ViewCanvasStateValue,
 } from './context';
 export { useCanvasRef } from './context';
 

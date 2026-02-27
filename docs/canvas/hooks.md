@@ -229,12 +229,26 @@ canvas.setObjectStyleByType('DESK', { fill: '#cccccc' });
 
 When multiple sibling components need access to canvas state (dirty flag, viewport controls, selected objects, etc.), use the context providers instead of calling `useEditCanvas` / `useViewCanvas` directly. The providers call the hooks internally and expose the full return value via React context.
 
+### Internal context split
+
+Each provider internally splits state into **three React contexts** for performance:
+
+| Context | Contains | Changes when |
+|---|---|---|
+| **Ref context** (shared) | `canvasRef` | Never (stable ref) |
+| **Viewport context** | `zoom`, `viewport` | Every scroll/zoom |
+| **State context** | Everything else (`selected`, `isDirty`, `objects`, …) | Selection, dirty, undo/redo, etc. |
+
+This means `ObjectOverlay`, `useCanvasEvents`, `useCanvasTooltip`, and `useCanvasClick` — which only need `canvasRef` — do **not** re-render when zoom, selection, or other state changes. Consumers can use fine-grained hooks to subscribe to only the slice they need.
+
 ### `EditCanvasProvider`
 
 ```tsx
 import {
   EditCanvasProvider,
   useEditCanvasContext,
+  useEditCanvasState,
+  useEditCanvasViewport,
   Canvas,
 } from '@bwp-web/canvas';
 
@@ -247,28 +261,39 @@ function App() {
     }}>
       <MyCanvas />
       <BottomAppBar />
-      <BackgroundPanel />
+      <ZoomDisplay />
     </EditCanvasProvider>
   );
 }
 
 function MyCanvas() {
+  // Full context — subscribes to all state changes
   const { onReady } = useEditCanvasContext();
   return <Canvas onReady={onReady} />;
 }
 
 function BottomAppBar() {
-  const { isDirty, resetDirty } = useEditCanvasContext();
+  // State only — does NOT re-render on zoom/scroll
+  const { isDirty, resetDirty } = useEditCanvasState();
   return <SaveButton disabled={!isDirty} onClick={() => { save(); resetDirty(); }} />;
 }
 
-function BackgroundPanel() {
-  const { setBackground, markDirty } = useEditCanvasContext();
-  // ...
+function ZoomDisplay() {
+  // Viewport only — does NOT re-render on selection/dirty changes
+  const { zoom } = useEditCanvasViewport();
+  return <span>{Math.round(zoom * 100)}%</span>;
 }
 ```
 
-`useEditCanvasContext()` returns the same object as `useEditCanvas()` — all properties listed in the [return value table](#return-value) are available. Throws if called outside of an `EditCanvasProvider`.
+### Context hooks
+
+| Hook | Subscribes to | Use for |
+|---|---|---|
+| `useEditCanvasContext()` | All three contexts | Full API access (backward compatible) |
+| `useEditCanvasViewport()` | Viewport context only | Zoom displays, viewport toolbars |
+| `useEditCanvasState()` | State context only | Save buttons, selection panels, undo/redo UI |
+
+`useEditCanvasContext()` returns the same shape as `useEditCanvas()` — all properties listed in the [return value table](#return-value) are available. Throws if called outside of an `EditCanvasProvider`.
 
 A non-throwing variant `useEditCanvasContextSafe()` returns `null` when called outside a provider — useful for components that work with or without context.
 
@@ -278,6 +303,7 @@ A non-throwing variant `useEditCanvasContextSafe()` returns `null` when called o
 import {
   ViewCanvasProvider,
   useViewCanvasContext,
+  useViewCanvasViewport,
   Canvas,
 } from '@bwp-web/canvas';
 
@@ -300,16 +326,23 @@ function MyCanvas() {
 }
 
 function MyToolbar() {
-  const { viewport } = useViewCanvasContext();
+  // Viewport only — does NOT re-render on objects/loading changes
+  const { viewport } = useViewCanvasViewport();
   return <ZoomControls onZoomIn={viewport.zoomIn} onZoomOut={viewport.zoomOut} />;
 }
 ```
+
+| Hook | Subscribes to | Use for |
+|---|---|---|
+| `useViewCanvasContext()` | All three contexts | Full API access (backward compatible) |
+| `useViewCanvasViewport()` | Viewport context only | Zoom displays, viewport toolbars |
+| `useViewCanvasState()` | State context only | Object lists, loading indicators |
 
 A non-throwing variant `useViewCanvasContextSafe()` returns `null` when called outside a provider.
 
 ### Using utility hooks and overlay components with context
 
-When used inside a context provider, utility hooks and overlay components **read `canvasRef` from context automatically** — no need to destructure or pass it explicitly:
+When used inside a context provider, utility hooks and overlay components **read `canvasRef` from the shared ref context automatically** — no need to destructure or pass it explicitly. Because the ref context holds a stable `RefObject` that never changes identity, these components do not re-render when canvas state changes:
 
 ```tsx
 function MyTooltipLayer() {
@@ -343,7 +376,8 @@ const tooltip = useCanvasTooltip(canvasRef, { getContent: (obj) => obj.data });
 | Pattern | Use when |
 |---|---|
 | `useEditCanvas()` directly | Single component owns the canvas, no sibling access needed |
-| `<EditCanvasProvider>` | Multiple sibling components need canvas state or actions |
+| `<EditCanvasProvider>` + `useEditCanvasContext()` | Multiple siblings need canvas state; simple code, re-renders on any change |
+| `<EditCanvasProvider>` + fine-grained hooks | Multiple siblings need canvas state; optimal performance with selective subscriptions |
 
 The hooks and providers are interchangeable — the provider simply wraps the hook in React context. Both support the same options.
 
@@ -504,6 +538,8 @@ useCanvasClick(view.canvasRef, (target) => {
 ## `useCanvasRef()`
 
 Returns the `canvasRef` from the nearest `EditCanvasProvider` or `ViewCanvasProvider`, or `null` if no provider is present. This is the hook used internally by `ObjectOverlay`, `useCanvasEvents`, `useCanvasTooltip`, and `useCanvasClick` to read `canvasRef` from context.
+
+This hook reads from the shared ref context, which holds a stable `RefObject` that never changes identity. Components using `useCanvasRef()` will **not** re-render when canvas state (zoom, selection, etc.) changes — only when the provider mounts or unmounts.
 
 ```tsx
 import { useCanvasRef } from '@bwp-web/canvas';
