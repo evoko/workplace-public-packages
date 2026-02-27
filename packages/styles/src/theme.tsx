@@ -1060,7 +1060,7 @@ export const biampTheme = (
           styleOverrides: {
             root: ({ theme }) => ({
               backgroundColor: theme.palette.background.info,
-              height: "auto",
+              height: 'auto',
               color: theme.palette.text.primary,
               borderRadius: 999,
               border:
@@ -1081,7 +1081,7 @@ export const biampTheme = (
               lineHeight: theme.typography.caption.lineHeight,
               color: theme.palette.text.primary,
             }),
-              deleteIcon: ({ theme }) => ({
+            deleteIcon: ({ theme }) => ({
               width: 12,
               height: 12,
               margin: 0,
