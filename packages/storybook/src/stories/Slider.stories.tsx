@@ -17,7 +17,16 @@ type Story = StoryObj<typeof Slider>;
 
 export const Variants: Story = {
   render: () => (
-    <Stack spacing={4} sx={{ width: 300, mx: 'auto', pt: 2, backgroundColor: 'background.paper', padding: 4 }}>
+    <Stack
+      spacing={4}
+      sx={{
+        width: 300,
+        mx: 'auto',
+        pt: 2,
+        backgroundColor: 'background.paper',
+        padding: 4,
+      }}
+    >
       <Typography variant="h3">Range Slider</Typography>
       <Slider defaultValue={[30, 70]} />
 
