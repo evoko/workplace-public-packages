@@ -17,6 +17,8 @@ import {
   OpenSansRegularItalic,
   OpenSansSemiBold,
   OpenSansSemiBoldItalic,
+  RadioCheckedIcon,
+  RadioUncheckedIcon,
   SuccessStatusIcon,
   UncheckedIcon,
   WarningStatusIcon,
@@ -486,6 +488,12 @@ export const biampTheme = (
             },
           },
           styleOverrides: {
+            root: {
+              padding: '12px',
+              boxshadow: '0px 4px 50px 0px #1111111A',
+              height: 'fit-content',
+              width: 'fit-content',
+            },
             message: ({ theme }) => ({
               paddingTop: 0,
               paddingBottom: 0,
@@ -493,10 +501,13 @@ export const biampTheme = (
               fontWeight: 600,
               letterSpacing: theme.typography.body1.letterSpacing,
               lineHeight: theme.typography.body1.lineHeight,
+              alignItems: 'center',
+              display: 'flex',
             }),
             icon: {
               paddingTop: 0,
               paddingBottom: 0,
+              alignItems: 'center',
             },
             standard: ({ theme }) => ({
               color: theme.palette.text.primary,
@@ -1000,13 +1011,86 @@ export const biampTheme = (
           },
         },
         MuiRadio: {
+          defaultProps: {
+            disableRipple: true,
+            icon: <RadioUncheckedIcon />,
+            checkedIcon: (
+              <RadioCheckedIcon
+                ringColor={colors.grey[400]}
+                dotColor={colors.blue.main}
+              />
+            ),
+          },
           styleOverrides: {
-            root: {
+            root: ({ theme }) => ({
               color: colors.grey[400],
-              '&.Mui-checked': {
-                color: colors.blue.main,
+              '&:hover': {
+                backgroundColor: 'transparent',
               },
-            },
+              '&.Mui-focusVisible': {
+                backgroundColor: 'transparent',
+              },
+              '& .MuiTouchRipple-root': {
+                display: 'none',
+              },
+              '& .MuiSvgIcon-root': {
+                fontSize: 18,
+              },
+              '&.Mui-disabled': {
+                '& .radio-ring': {
+                  stroke:
+                    theme.palette.mode === 'dark'
+                      ? colors.grey[700]
+                      : colors.sidebar,
+                },
+                '& .radio-dot': {
+                  fill:
+                    theme.palette.mode === 'dark'
+                      ? colors.grey[700]
+                      : colors.sidebar,
+                },
+              },
+            }),
+          },
+        },
+        MuiChip: {
+          defaultProps: {
+            deleteIcon: <InputCloseIcon />,
+          },
+          styleOverrides: {
+            root: ({ theme }) => ({
+              backgroundColor: theme.palette.background.info,
+              height: 'auto',
+              color: theme.palette.text.primary,
+              borderRadius: 999,
+              border:
+                theme.palette.mode === 'dark'
+                  ? `0.6px solid ${alpha(colors.white, 0.4)}`
+                  : `0.6px solid ${alpha(colors.grey[900], 0.4)}`,
+              padding: '0px 8px 0px 12px',
+              fontSize: theme.typography.caption.fontSize,
+              fontWeight: theme.typography.caption.fontWeight,
+              letterSpacing: theme.typography.caption.letterSpacing,
+              lineHeight: theme.typography.caption.lineHeight,
+            }),
+            label: ({ theme }) => ({
+              padding: 0,
+              fontSize: theme.typography.caption.fontSize,
+              fontWeight: theme.typography.caption.fontWeight,
+              letterSpacing: theme.typography.caption.letterSpacing,
+              lineHeight: theme.typography.caption.lineHeight,
+              color: theme.palette.text.primary,
+            }),
+            deleteIcon: ({ theme }) => ({
+              width: 12,
+              height: 12,
+              margin: 0,
+              marginLeft: 8,
+              color: theme.palette.text.primary,
+              '& hover': {
+                color: theme.palette.text.secondary,
+              },
+            }),
           },
         },
         MuiSwitch: {
@@ -1268,7 +1352,7 @@ export const biampTheme = (
         },
         MuiAutocomplete: {
           defaultProps: {
-            clearIcon: <InputCloseIcon sx={{ width: 24, height: 24 }} />,
+            clearIcon: <InputCloseIcon />,
           },
           styleOverrides: {
             inputRoot: {
