@@ -96,6 +96,9 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
   const [zoom, setZoom] = useState(1);
   const [objects, setObjects] = useState<FabricObject[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [lockLightMode, setLockLightMode] = useState<boolean | undefined>(
+    undefined,
+  );
 
   const onReady = useCallback(
     (canvas: FabricCanvas) => {
@@ -161,6 +164,10 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
 
         if (opts?.invertBackground !== undefined) {
           setBackgroundInverted(canvas, opts.invertBackground);
+        }
+
+        if (canvas.lockLightMode !== undefined) {
+          setLockLightMode(canvas.lockLightMode);
         }
 
         if (opts?.autoFitToBackground !== false && canvas.backgroundImage) {
@@ -275,9 +282,11 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
       setObjectStyles,
       /** Apply a visual style to all objects whose `data.type` matches. */
       setObjectStyleByType,
+      /** Whether the canvas is locked to light mode. Read from loaded canvas data. */
+      lockLightMode,
     }),
     // Only reactive state in deps — refs and stable callbacks are omitted
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [zoom, objects, isLoading, viewport],
+    [zoom, objects, isLoading, viewport, lockLightMode],
   );
 }

@@ -90,10 +90,11 @@ export function ViewCanvasProvider({
       setObjectStyle: canvas.setObjectStyle,
       setObjectStyles: canvas.setObjectStyles,
       setObjectStyleByType: canvas.setObjectStyleByType,
+      lockLightMode: canvas.lockLightMode,
     }),
     // Only reactive state — stable callbacks omitted
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [canvas.objects, canvas.isLoading],
+    [canvas.objects, canvas.isLoading, canvas.lockLightMode],
   );
 
   return (

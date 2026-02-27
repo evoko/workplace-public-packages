@@ -192,6 +192,7 @@ canvas.isLoading; // boolean
 | `setObjectStyle` | `(id, style) => void` | Update one object by `data.id` |
 | `setObjectStyles` | `(Record<id, style>) => void` | Batch-update multiple objects by `data.id` |
 | `setObjectStyleByType` | `(type, style) => void` | Update all objects matching `data.type` |
+| `lockLightMode` | `boolean \| undefined` | Whether the canvas is locked to light mode. Read from loaded canvas data |
 
 ### `ViewObjectStyle`
 
