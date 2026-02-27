@@ -488,6 +488,12 @@ export const biampTheme = (
             },
           },
           styleOverrides: {
+            root: {
+              padding: '12px',
+              boxshadow: '0px 4px 50px 0px #1111111A',
+              height: 'fit-content',
+              width: 'fit-content',
+            },
             message: ({ theme }) => ({
               paddingTop: 0,
               paddingBottom: 0,
@@ -495,10 +501,13 @@ export const biampTheme = (
               fontWeight: 600,
               letterSpacing: theme.typography.body1.letterSpacing,
               lineHeight: theme.typography.body1.lineHeight,
+              alignItems: 'center',
+              display: 'flex',
             }),
             icon: {
               paddingTop: 0,
               paddingBottom: 0,
+              alignItems: 'center',
             },
             standard: ({ theme }) => ({
               color: theme.palette.text.primary,
