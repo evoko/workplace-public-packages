@@ -38,28 +38,6 @@ export const AllSeverities: Story = {
   ),
 };
 
-export const WithActions: Story = {
-  render: () => (
-    <Stack spacing={2}>
-      <Typography variant="h3" sx={{ mb: 1 }}>
-        Alerts with close actions
-      </Typography>
-      <Alert severity="success" onClose={() => {}}>
-        Success with close action.
-      </Alert>
-      <Alert severity="info" onClose={() => {}}>
-        Info with close action.
-      </Alert>
-      <Alert severity="warning" onClose={() => {}}>
-        Warning with close action.
-      </Alert>
-      <Alert severity="error" onClose={() => {}}>
-        Error with close action.
-      </Alert>
-    </Stack>
-  ),
-};
-
 export const LongContent: Story = {
   render: () => (
     <Stack spacing={2}>
