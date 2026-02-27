@@ -4,6 +4,7 @@ import type {
   CanvasEvents,
   FabricObject,
 } from 'fabric';
+import { useCanvasRef } from '../context/useCanvasRef';
 
 export interface UseCanvasTooltipOptions<T> {
   /** Extract tooltip content from a hovered object. Return `null` to skip the tooltip. */
@@ -19,6 +20,21 @@ export interface CanvasTooltipState<T> {
   position: { x: number; y: number };
 }
 
+/**
+ * Track mouse hover over canvas objects and return tooltip state, using the
+ * `canvasRef` from the nearest {@link ViewCanvasProvider} or
+ * {@link EditCanvasProvider}.
+ *
+ * @example
+ * ```tsx
+ * const tooltip = useCanvasTooltip({
+ *   getContent: (obj) => obj.data ? { id: obj.data.id, type: obj.data.type } : null,
+ * });
+ * ```
+ */
+export function useCanvasTooltip<T>(
+  options: UseCanvasTooltipOptions<T>,
+): CanvasTooltipState<T>;
 /**
  * Track mouse hover over canvas objects and return tooltip state.
  *
@@ -48,7 +64,26 @@ export interface CanvasTooltipState<T> {
 export function useCanvasTooltip<T>(
   canvasRef: RefObject<FabricCanvas | null>,
   options: UseCanvasTooltipOptions<T>,
+): CanvasTooltipState<T>;
+export function useCanvasTooltip<T>(
+  canvasRefOrOptions:
+    | RefObject<FabricCanvas | null>
+    | UseCanvasTooltipOptions<T>,
+  maybeOptions?: UseCanvasTooltipOptions<T>,
 ): CanvasTooltipState<T> {
+  const isContextOverload = maybeOptions === undefined;
+
+  // Always called unconditionally (Rules of Hooks compliant)
+  const contextCanvasRef = useCanvasRef();
+
+  const resolvedCanvasRef = isContextOverload
+    ? contextCanvasRef
+    : (canvasRefOrOptions as RefObject<FabricCanvas | null>);
+
+  const options = isContextOverload
+    ? (canvasRefOrOptions as UseCanvasTooltipOptions<T>)
+    : maybeOptions!;
+
   const [state, setState] = useState<CanvasTooltipState<T>>({
     visible: false,
     content: null,
@@ -60,7 +95,7 @@ export function useCanvasTooltip<T>(
   optionsRef.current = options;
 
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = resolvedCanvasRef?.current;
     if (!canvas) return;
 
     function calculatePosition(
@@ -119,7 +154,7 @@ export function useCanvasTooltip<T>(
       canvas.off('after:render', updatePosition);
       canvas.off('mouse:wheel', updatePosition);
     };
-  }, [canvasRef]);
+  }, [resolvedCanvasRef]);
 
   return state;
 }

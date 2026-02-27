@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas as FabricCanvas, type FabricObject } from 'fabric';
 import {
   enablePanAndZoom,
@@ -8,10 +8,12 @@ import {
 import {
   enableScaledStrokes,
   enableScaledBorderRadius,
+  loadCanvas,
   type ScaledBorderRadiusOptions,
 } from '../serialization';
-import { fitViewportToBackground } from '../background';
+import { fitViewportToBackground, setBackgroundInverted } from '../background';
 import { useViewportActions, syncZoom } from './shared';
+import type { CanvasJSON } from '../types';
 
 /** Visual properties that can be updated on view-canvas objects. */
 export interface ViewObjectStyle {
@@ -44,6 +46,23 @@ export interface UseViewCanvasOptions {
    * Pass a number to customize (default: 4), or `false` to disable.
    */
   borderRadius?: number | false;
+  /**
+   * Canvas data to load automatically after initialisation.
+   * When provided, `loadCanvas` is called internally before the user's
+   * `onReady` callback, and the resulting objects are available via the
+   * returned `objects` array.
+   */
+  canvasData?: CanvasJSON | object;
+  /**
+   * Filter function for loaded objects. Passed to `loadCanvas` as
+   * `options.filter`. Only relevant when `canvasData` is provided.
+   */
+  filter?: (obj: FabricObject) => boolean;
+  /**
+   * Whether the background image should have an Invert filter applied.
+   * Reactive — changes are applied automatically without remounting.
+   */
+  invertBackground?: boolean;
 }
 
 /** Disable selection on all objects. Border radius is applied by loadCanvas. */
@@ -75,6 +94,8 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
   optionsRef.current = options;
 
   const [zoom, setZoom] = useState(1);
+  const [objects, setObjects] = useState<FabricObject[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onReady = useCallback(
     (canvas: FabricCanvas) => {
@@ -117,22 +138,67 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
         setZoom(canvas.getZoom());
       });
 
-      const onReadyResult = opts?.onReady?.(canvas);
-      if (opts?.autoFitToBackground !== false) {
-        Promise.resolve(onReadyResult).then(() => {
-          if (canvas.backgroundImage) {
-            fitViewportToBackground(canvas);
-            syncZoom(canvasRef, setZoom);
+      // Load canvasData if provided, then call user's onReady, then finalise
+      const initPromise = (async () => {
+        if (opts?.canvasData) {
+          setIsLoading(true);
+          try {
+            const loaded = await loadCanvas(canvas, opts.canvasData, {
+              filter: opts.filter,
+              borderRadius: opts.borderRadius,
+            });
+            lockCanvas(canvas);
+            setObjects(loaded);
+          } finally {
+            setIsLoading(false);
           }
-        });
-      }
+        }
+      })();
+
+      initPromise.then(async () => {
+        const onReadyResult = opts?.onReady?.(canvas);
+        await Promise.resolve(onReadyResult);
+
+        if (opts?.invertBackground !== undefined) {
+          setBackgroundInverted(canvas, opts.invertBackground);
+        }
+
+        if (opts?.autoFitToBackground !== false && canvas.backgroundImage) {
+          fitViewportToBackground(canvas);
+          syncZoom(canvasRef, setZoom);
+        }
+      });
     },
     // onReady and panAndZoom are intentionally excluded — we only initialize once
     [],
   );
 
+  // React to invertBackground changes after initial load
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || options?.invertBackground === undefined) return;
+    setBackgroundInverted(canvas, options.invertBackground);
+  }, [options?.invertBackground]);
+
   const { resetViewport, zoomIn, zoomOut, panToObject, zoomToFit } =
     useViewportActions(canvasRef, viewportRef, setZoom);
+
+  /** Memoized viewport controls — only changes identity if methods change (they don't). */
+  const viewport = useMemo(
+    () => ({
+      /** Reset viewport to default (no pan, zoom = 1), or fit to background if one is set. */
+      reset: resetViewport,
+      /** Zoom in toward the canvas center. Default step: 0.2. */
+      zoomIn,
+      /** Zoom out from the canvas center. Default step: 0.2. */
+      zoomOut,
+      /** Pan the viewport to center on a specific object. */
+      panToObject,
+      /** Zoom and pan to fit a specific object in the viewport. */
+      zoomToFit,
+    }),
+    [resetViewport, zoomIn, zoomOut, panToObject, zoomToFit],
+  );
 
   /** Find a canvas object by its `data.id`. */
   const findObject = (id: string): FabricObject | undefined => {
@@ -189,31 +255,29 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     [],
   );
 
-  return {
-    /** Pass this to `<Canvas onReady={...} />` */
-    onReady,
-    /** Ref to the underlying Fabric canvas instance. */
-    canvasRef,
-    /** Current zoom level (reactive). */
-    zoom,
-    /** Viewport controls. */
-    viewport: {
-      /** Reset viewport to default (no pan, zoom = 1), or fit to background if one is set. */
-      reset: resetViewport,
-      /** Zoom in toward the canvas center. Default step: 0.2. */
-      zoomIn,
-      /** Zoom out from the canvas center. Default step: 0.2. */
-      zoomOut,
-      /** Pan the viewport to center on a specific object. */
-      panToObject,
-      /** Zoom and pan to fit a specific object in the viewport. */
-      zoomToFit,
-    },
-    /** Update a single object's visual style by its `data.id`. */
-    setObjectStyle,
-    /** Batch-update multiple objects' visual styles in one render. Keyed by `data.id`. */
-    setObjectStyles,
-    /** Apply a visual style to all objects whose `data.type` matches. */
-    setObjectStyleByType,
-  };
+  return useMemo(
+    () => ({
+      /** Pass this to `<Canvas onReady={...} />` */
+      onReady,
+      /** Ref to the underlying Fabric canvas instance. */
+      canvasRef,
+      /** Current zoom level (reactive). */
+      zoom,
+      /** Loaded objects (reactive). Populated when `canvasData` is provided. */
+      objects,
+      /** Whether canvas data is currently being loaded. */
+      isLoading,
+      /** Viewport controls. */
+      viewport,
+      /** Update a single object's visual style by its `data.id`. */
+      setObjectStyle,
+      /** Batch-update multiple objects' visual styles in one render. Keyed by `data.id`. */
+      setObjectStyles,
+      /** Apply a visual style to all objects whose `data.type` matches. */
+      setObjectStyleByType,
+    }),
+    // Only reactive state in deps — refs and stable callbacks are omitted
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [zoom, objects, isLoading, viewport],
+  );
 }

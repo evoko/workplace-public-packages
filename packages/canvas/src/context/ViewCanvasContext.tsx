@@ -20,18 +20,28 @@ export interface ViewCanvasProviderProps {
  * to all descendants via React context.
  *
  * Use {@link useViewCanvasContext} in any descendant to access `canvasRef`,
- * `viewport`, `setObjectStyle`, and every other value that `useViewCanvas`
- * returns — without prop drilling or bridge contexts.
+ * `viewport`, `objects`, `isLoading`, `setObjectStyle`, and every other
+ * value that `useViewCanvas` returns — without prop drilling or bridge
+ * contexts.
+ *
+ * Descendant components can also use {@link ObjectOverlay},
+ * {@link useCanvasEvents}, {@link useCanvasTooltip}, and
+ * {@link useCanvasClick} without passing `canvasRef` explicitly — they
+ * read it from the nearest provider automatically.
  *
  * @example
  * ```tsx
- * <ViewCanvasProvider options={{ scaledStrokes: true }}>
+ * <ViewCanvasProvider options={{
+ *   canvasData: savedJson,
+ *   invertBackground: isDarkMode,
+ *   scaledStrokes: true,
+ * }}>
  *   <MyCanvas />
  *   <MyToolbar />
  * </ViewCanvasProvider>
  *
  * function MyCanvas() {
- *   const { onReady } = useViewCanvasContext();
+ *   const { onReady, objects, isLoading } = useViewCanvasContext();
  *   return <Canvas onReady={onReady} />;
  * }
  *
@@ -67,4 +77,12 @@ export function useViewCanvasContext(): ViewCanvasContextValue {
     );
   }
   return ctx;
+}
+
+/**
+ * Like {@link useViewCanvasContext} but returns `null` instead of throwing
+ * when called outside of a {@link ViewCanvasProvider}.
+ */
+export function useViewCanvasContextSafe(): ViewCanvasContextValue | null {
+  return useContext(ViewCanvasContext);
 }

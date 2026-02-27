@@ -59,11 +59,11 @@ npm install @bwp-web/styles
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.8.2
+- `@bwp-web/assets` >= 0.8.3
 - `@mui/material` >= 7.0.0
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
-- `@bwp-web/components` >= 0.8.2 (optional)
+- `@bwp-web/components` >= 0.8.3 (optional)
 
 ### Usage
 
@@ -165,7 +165,7 @@ npm install @bwp-web/canvas
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
 - `@mui/material` >= 7.0.0
-- `@bwp-web/styles` >= 0.8.2
+- `@bwp-web/styles` >= 0.8.3
 
 ### Quick Start
 

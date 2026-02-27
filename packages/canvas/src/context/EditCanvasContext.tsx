@@ -20,12 +20,23 @@ export interface EditCanvasProviderProps {
  * to all descendants via React context.
  *
  * Use {@link useEditCanvasContext} in any descendant to access `canvasRef`,
- * `isDirty`, `viewport`, `setMode`, `setBackground`, and every other value
- * that `useEditCanvas` returns — without prop drilling or bridge contexts.
+ * `isDirty`, `objects`, `isLoading`, `lockLightMode`, `viewport`,
+ * `setMode`, `setBackground`, and every other value that `useEditCanvas`
+ * returns — without prop drilling or bridge contexts.
+ *
+ * Descendant components can also use {@link ObjectOverlay},
+ * {@link useCanvasEvents}, {@link useCanvasTooltip}, and
+ * {@link useCanvasClick} without passing `canvasRef` explicitly — they
+ * read it from the nearest provider automatically.
  *
  * @example
  * ```tsx
- * <EditCanvasProvider options={{ trackChanges: true, history: true }}>
+ * <EditCanvasProvider options={{
+ *   canvasData: savedJson,
+ *   invertBackground: isDarkMode,
+ *   trackChanges: true,
+ *   history: true,
+ * }}>
  *   <MyCanvas />
  *   <MySidebar />
  *   <MyToolbar />
@@ -68,4 +79,12 @@ export function useEditCanvasContext(): EditCanvasContextValue {
     );
   }
   return ctx;
+}
+
+/**
+ * Like {@link useEditCanvasContext} but returns `null` instead of throwing
+ * when called outside of an {@link EditCanvasProvider}.
+ */
+export function useEditCanvasContextSafe(): EditCanvasContextValue | null {
+  return useContext(EditCanvasContext);
 }

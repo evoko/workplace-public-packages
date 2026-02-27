@@ -18,6 +18,14 @@ A MUI `Stack` positioned absolutely over a Fabric canvas object, sized to the ob
 ```tsx
 import { ObjectOverlay } from '@bwp-web/canvas';
 
+// Inside a ViewCanvasProvider or EditCanvasProvider — canvasRef is read from context:
+<ObjectOverlay object={deskObj}>
+  <OverlayContent>
+    <MyLabel>{desk.name}</MyLabel>
+  </OverlayContent>
+</ObjectOverlay>
+
+// Or pass canvasRef explicitly (e.g. when used outside a provider):
 <ObjectOverlay canvasRef={canvasRef} object={deskObj}>
   <OverlayContent>
     <MyLabel>{desk.name}</MyLabel>
@@ -33,7 +41,7 @@ Extends MUI `StackProps`.
 
 | Prop | Type | Required | Description |
 |---|---|---|---|
-| `canvasRef` | `RefObject<FabricCanvas \| null>` | Yes | Ref to the Fabric canvas instance |
+| `canvasRef` | `RefObject<FabricCanvas \| null>` | No | Ref to the Fabric canvas instance. Optional when used inside a `ViewCanvasProvider` or `EditCanvasProvider` — the ref is read from context automatically. If provided, takes precedence over context |
 | `object` | `FabricObject \| null \| undefined` | Yes | The Fabric object to overlay. Nothing renders when `null`/`undefined` |
 | `children` | `ReactNode` | No | Content to render inside the overlay |
 
@@ -54,7 +62,7 @@ Scales its children to fit within the parent's bounds (typically an `ObjectOverl
 ```tsx
 import { OverlayContent } from '@bwp-web/canvas';
 
-<ObjectOverlay canvasRef={canvasRef} object={obj}>
+<ObjectOverlay object={obj}>
   <OverlayContent padding={4} maxScale={2}>
     <MyBadge>{label}</MyBadge>
   </OverlayContent>
@@ -95,7 +103,7 @@ Keeps children at their natural CSS pixel size inside an `OverlayContent`, count
 ```tsx
 import { ObjectOverlay, OverlayContent, FixedSizeContent } from '@bwp-web/canvas';
 
-<ObjectOverlay canvasRef={canvasRef} object={obj}>
+<ObjectOverlay object={obj}>
   <OverlayContent>
     <Stack alignItems="center">
       <MyIcon />                      {/* scales to fit */}
@@ -144,7 +152,7 @@ An absolutely-positioned element (icon, status dot, badge) anchored to a specifi
 ```tsx
 import { ObjectOverlay, OverlayContent, OverlayBadge } from '@bwp-web/canvas';
 
-<ObjectOverlay canvasRef={canvasRef} object={obj}>
+<ObjectOverlay object={obj}>
   <OverlayContent>
     <MyIcon />
     <FixedSizeContent>
@@ -197,7 +205,7 @@ A typical setup renders `ObjectOverlay` for each canvas object, with `OverlayCon
 
 ```tsx
 {objects.map((obj) => (
-  <ObjectOverlay key={obj.data?.id} canvasRef={canvasRef} object={obj}>
+  <ObjectOverlay key={obj.data?.id} object={obj}>
     <OverlayContent>
       <StatusIcon status={obj.data?.status} />
       <FixedSizeContent>
