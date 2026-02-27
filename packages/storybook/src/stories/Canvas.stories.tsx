@@ -1349,3 +1349,151 @@ export const ObjectOverlayDemo: Story = {
     return <OverlayDemoContent />;
   },
 };
+
+// ============================================================
+// StressTest — 200 polygons with overlays
+// ============================================================
+
+const STRESS_OBJECT_COUNT = 200;
+const GRID_COLS = 20;
+const CELL_SIZE = 120;
+const SHAPE_SIZE = 80;
+
+const BADGE_COLORS = ['#4caf50', '#f44336', '#ff9800', '#2196f3', '#9c27b0'];
+
+function StressTestContent() {
+  const [objects, setObjects] = useState<FabricObject[]>([]);
+  const [showOverlays, setShowOverlays] = useState(true);
+
+  const canvas = useViewCanvas({
+    scaledStrokes: true,
+    panAndZoom: true,
+    onReady: (c: FabricCanvas) => {
+      const created: FabricObject[] = [];
+      for (let i = 0; i < STRESS_OBJECT_COUNT; i++) {
+        const col = i % GRID_COLS;
+        const row = Math.floor(i / GRID_COLS);
+        const left = col * CELL_SIZE + CELL_SIZE / 2;
+        const top = row * CELL_SIZE + CELL_SIZE / 2;
+
+        const poly = createPolygon(c, {
+          points: [
+            { x: 0, y: 0 },
+            { x: SHAPE_SIZE, y: 0 },
+            { x: SHAPE_SIZE, y: SHAPE_SIZE },
+            { x: 0, y: SHAPE_SIZE },
+          ],
+          left,
+          top,
+        });
+        poly.data = { type: 'DESK', id: `desk-${i + 1}` };
+        created.push(poly);
+      }
+      setObjects(created);
+    },
+  });
+
+  return (
+    <DemoLayout
+      onReady={canvas.onReady}
+      canvasOverlay={
+        <>
+          <ViewportControlToolbar
+            zoom={canvas.zoom}
+            viewportMode="pan"
+            onModeChange={() => {}}
+            onZoomIn={canvas.viewport.zoomIn}
+            onZoomOut={canvas.viewport.zoomOut}
+            onReset={canvas.viewport.reset}
+          />
+          {showOverlays &&
+            objects.map((obj, i) => (
+              <ObjectOverlay
+                key={obj.data?.id}
+                canvasRef={canvas.canvasRef}
+                object={obj}
+              >
+                <OverlayContent>
+                  <Box
+                    sx={{
+                      width: 24,
+                      height: 24,
+                      borderRadius: '50%',
+                      bgcolor: '#fff',
+                      flexShrink: 0,
+                    }}
+                  />
+                  <FixedSizeContent>
+                    <Typography
+                      sx={{
+                        fontSize: 12,
+                        fontWeight: 600,
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {obj.data?.id}
+                    </Typography>
+                  </FixedSizeContent>
+                </OverlayContent>
+                <OverlayBadge top={-6} right={-6}>
+                  <Box
+                    sx={{
+                      width: 12,
+                      height: 12,
+                      borderRadius: '50%',
+                      bgcolor: BADGE_COLORS[i % BADGE_COLORS.length],
+                      border: '1.5px solid white',
+                    }}
+                  />
+                </OverlayBadge>
+              </ObjectOverlay>
+            ))}
+        </>
+      }
+      sidebar={
+        <>
+          <div>
+            <Typography variant="subtitle2" gutterBottom>
+              Stress Test
+            </Typography>
+            <Typography variant="body2" color="text.secondary" gutterBottom>
+              {STRESS_OBJECT_COUNT} polygons with DOM overlays (icon + name +
+              badge each).
+            </Typography>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={showOverlays}
+                  onChange={(e) => setShowOverlays(e.target.checked)}
+                />
+              }
+              label={<Typography variant="body2">Show Overlays</Typography>}
+            />
+          </div>
+
+          <Divider />
+
+          <Typography variant="body2" color="text.secondary">
+            Pan (drag) and zoom (scroll) to stress test overlay positioning and
+            rendering performance with a large number of objects. Toggle
+            overlays off to compare canvas-only rendering speed.
+          </Typography>
+        </>
+      }
+    />
+  );
+}
+
+/**
+ * Stress test with {STRESS_OBJECT_COUNT} square polygons arranged in a grid,
+ * each with a DOM overlay containing an icon, name label, and status badge.
+ *
+ * Use this to benchmark overlay rendering performance at scale. Toggle overlays
+ * on/off to compare. Pan and zoom to exercise the per-frame update path.
+ */
+export const StressTest: Story = {
+  name: 'Stress Test (200 Overlays)',
+  render: function StressTestRender() {
+    return <StressTestContent />;
+  },
+};
