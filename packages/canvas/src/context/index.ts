@@ -9,3 +9,5 @@ export type {
   ViewCanvasProviderProps,
   ViewCanvasContextValue,
 } from './ViewCanvasContext';
+
+export { useCanvasRef } from './useCanvasRef';

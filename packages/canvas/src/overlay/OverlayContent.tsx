@@ -17,7 +17,7 @@ export interface OverlayContentProps extends StackProps {
  *
  * @example
  * ```tsx
- * <ObjectOverlay canvasRef={canvasRef} object={obj}>
+ * <ObjectOverlay object={obj}>
  *   <OverlayContent padding={4} maxScale={2}>
  *     <MyBadge>{label}</MyBadge>
  *   </OverlayContent>

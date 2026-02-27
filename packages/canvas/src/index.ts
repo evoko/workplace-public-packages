@@ -29,6 +29,7 @@ export type {
   ViewCanvasProviderProps,
   ViewCanvasContextValue,
 } from './context';
+export { useCanvasRef } from './context';
 
 // --- Overlay ---
 export { ObjectOverlay } from './overlay';

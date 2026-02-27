@@ -1,5 +1,6 @@
 import { useEffect, useRef, type RefObject } from 'react';
 import type { Canvas as FabricCanvas, CanvasEvents } from 'fabric';
+import { useCanvasRef } from '../context/useCanvasRef';
 
 /**
  * A map of Fabric canvas event names to their handler functions.
@@ -17,6 +18,19 @@ export type CanvasEventHandlers = {
   [K in keyof CanvasEvents]?: (event: CanvasEvents[K]) => void;
 };
 
+/**
+ * Subscribe to Fabric canvas events using the `canvasRef` from the nearest
+ * {@link ViewCanvasProvider} or {@link EditCanvasProvider}.
+ *
+ * @example
+ * ```tsx
+ * useCanvasEvents({
+ *   'mouse:wheel': hideTooltip,
+ *   'object:moving': hideTooltip,
+ * });
+ * ```
+ */
+export function useCanvasEvents(events: CanvasEventHandlers): void;
 /**
  * Subscribe to Fabric canvas events with automatic cleanup.
  *
@@ -36,12 +50,29 @@ export type CanvasEventHandlers = {
 export function useCanvasEvents(
   canvasRef: RefObject<FabricCanvas | null>,
   events: CanvasEventHandlers,
+): void;
+export function useCanvasEvents(
+  canvasRefOrEvents: RefObject<FabricCanvas | null> | CanvasEventHandlers,
+  maybeEvents?: CanvasEventHandlers,
 ): void {
+  const isContextOverload = maybeEvents === undefined;
+
+  // Always called unconditionally (Rules of Hooks compliant)
+  const contextCanvasRef = useCanvasRef();
+
+  const resolvedCanvasRef = isContextOverload
+    ? contextCanvasRef
+    : (canvasRefOrEvents as RefObject<FabricCanvas | null>);
+
+  const events = isContextOverload
+    ? (canvasRefOrEvents as CanvasEventHandlers)
+    : maybeEvents!;
+
   const eventsRef = useRef(events);
   eventsRef.current = events;
 
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = resolvedCanvasRef?.current;
     if (!canvas) return;
 
     type EventName = keyof CanvasEvents;
@@ -65,5 +96,5 @@ export function useCanvasEvents(
         canvas.off(name, handler);
       });
     };
-  }, [canvasRef]);
+  }, [resolvedCanvasRef]);
 }

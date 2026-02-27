@@ -37,7 +37,7 @@ export interface FixedSizeContentProps extends StackProps {
  *
  * @example
  * ```tsx
- * <ObjectOverlay canvasRef={canvasRef} object={obj}>
+ * <ObjectOverlay object={obj}>
  *   <OverlayContent>
  *     <Stack alignItems="center">
  *       <MyIcon />                      {// scales to fit}

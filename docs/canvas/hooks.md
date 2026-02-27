@@ -12,6 +12,9 @@ Full-featured editing hook with shape creation, selection, pan/zoom, alignment, 
 
 ```tsx
 const canvas = useEditCanvas({
+  canvasData: savedJson,   // auto-load canvas data (objects available via canvas.objects)
+  filter: (obj) => ids.includes(obj.data?.id), // filter loaded objects
+  invertBackground: isDarkMode, // reactive background inversion
   enableAlignment: true,   // master toggle for all alignment/snapping
   scaledStrokes: true,     // zoom-independent stroke widths
   keyboardShortcuts: true, // Delete/Backspace to remove selected
@@ -21,7 +24,7 @@ const canvas = useEditCanvas({
   autoFitToBackground: true, // auto-fit viewport to background image
   backgroundResize: true,  // auto-downscale large uploaded images
   trackChanges: true,      // expose isDirty / resetDirty
-  onReady: (canvas) => {}, // called after canvas is initialized
+  onReady: (canvas) => {}, // called after canvasData load + features init
 });
 ```
 
@@ -32,6 +35,8 @@ const canvas = useEditCanvas({
 | `onReady` | `(canvas) => void` | Pass to `<Canvas onReady={...}>` |
 | `canvasRef` | `RefObject<FabricCanvas>` | Direct access to the Fabric canvas |
 | `zoom` | `number` | Current zoom level (reactive) |
+| `objects` | `FabricObject[]` | Loaded objects (reactive). Populated when `canvasData` is provided |
+| `isLoading` | `boolean` | Whether canvas data is currently being loaded |
 | `selected` | `FabricObject[]` | Currently selected objects (reactive) |
 | `isEditingVertices` | `boolean` | Whether vertex edit mode is active (reactive) |
 | `viewport.mode` | `ViewportMode` | Current viewport mode (`'select'` or `'pan'`) |
@@ -43,13 +48,15 @@ const canvas = useEditCanvas({
 | `viewport.zoomToFit` | `(object, options?) => void` | Zoom and pan to fit a specific object |
 | `setMode` | `(setup \| null) => void` | Activate an interaction mode or deactivate |
 | `setBackground` | `(url, opts?) => Promise<FabricImage>` | Load a background image (see below) |
-| `isDirty` | `boolean` | Whether canvas has been modified since last `resetDirty()`. Requires `trackChanges: true` |
+| `isDirty` | `boolean` | Whether canvas has been modified since last `resetDirty()`. Enabled by default (disable via `trackChanges: false`) |
 | `resetDirty` | `() => void` | Reset the dirty flag (e.g. after a successful save) |
 | `markDirty` | `() => void` | Manually mark the canvas as dirty (e.g. after a custom operation) |
 | `undo` | `() => Promise<void>` | Undo last change (requires `history: true`) |
 | `redo` | `() => Promise<void>` | Redo previously undone change (requires `history: true`) |
 | `canUndo` | `boolean` | Whether undo is available (reactive, requires `history: true`) |
 | `canRedo` | `boolean` | Whether redo is available (reactive, requires `history: true`) |
+| `lockLightMode` | `boolean \| undefined` | Whether the canvas is locked to light mode. Read from loaded canvas data |
+| `setLockLightMode` | `(value: boolean) => void` | Update lockLightMode on both the canvas instance and React state |
 
 ### Options
 
@@ -66,10 +73,13 @@ const canvas = useEditCanvas({
 | `panAndZoom` | `boolean \| PanAndZoomOptions` | `true` | Pan and zoom controls |
 | `autoFitToBackground` | `boolean` | `true` | Auto-fit viewport to background image after `onReady` |
 | `backgroundResize` | `boolean \| ResizeImageOptions` | `true` | Auto-downscale large images on upload |
-| `trackChanges` | `boolean` | `false` | Track canvas mutations (object + background changes) and expose `isDirty` / `resetDirty` / `markDirty` |
+| `trackChanges` | `boolean` | `true` | Track canvas mutations (object + background changes) and expose `isDirty` / `resetDirty` / `markDirty` |
 | `borderRadius` | `number \| false` | `4` | Visual border radius for loaded Rects. Pass `false` to disable |
 | `history` | `boolean \| HistoryOptions` | `false` | Enable snapshot-based undo/redo |
-| `onReady` | `(canvas) => void \| Promise<void>` | — | Called after all canvas features are initialized |
+| `canvasData` | `CanvasJSON \| object` | — | Canvas data to load automatically. Objects available via `objects` return value |
+| `filter` | `(obj: FabricObject) => boolean` | — | Filter function for loaded objects. Only relevant when `canvasData` is provided |
+| `invertBackground` | `boolean` | — | Whether background should be inverted. Reactive — changes apply automatically |
+| `onReady` | `(canvas) => void \| Promise<void>` | — | Called after canvasData load + features init |
 
 ### `setMode` — interaction mode lifecycle
 
@@ -101,10 +111,10 @@ When `preserveContrast` is set, the current background contrast is saved before 
 
 ### Dirty tracking
 
-Enable with `trackChanges: true`. The hook listens to `object:added`, `object:removed`, `object:modified`, and `background:modified` events and sets `isDirty` to `true` on any change. This covers object create/edit/delete as well as background image, contrast, and invert changes.
+Enabled by default. The hook listens to `object:added`, `object:removed`, `object:modified`, and `background:modified` events and sets `isDirty` to `true` on any change. This covers object create/edit/delete as well as background image, contrast, and invert changes. Pass `trackChanges: false` to disable.
 
 ```tsx
-const canvas = useEditCanvas({ trackChanges: true });
+const canvas = useEditCanvas();
 
 // After any object or background mutation:
 canvas.isDirty; // true
@@ -141,14 +151,18 @@ Read-only hook. Objects cannot be selected, created, edited, or deleted. The can
 
 ```tsx
 const canvas = useViewCanvas({
+  canvasData: savedJson,     // auto-load canvas data
+  filter: (obj) => objectIds.includes(obj.data?.id),
+  invertBackground: isDarkMode, // reactive background inversion
   scaledStrokes: true,
   panAndZoom: true,
   autoFitToBackground: true,
-  borderRadius: 4,  // visual border radius for loaded Rects
-  onReady: async (c) => {
-    await loadCanvas(c, savedJson);
-  },
+  borderRadius: 4,
 });
+
+// objects and loading state available from the hook:
+canvas.objects;   // FabricObject[]
+canvas.isLoading; // boolean
 ```
 
 ### Options
@@ -156,6 +170,10 @@ const canvas = useViewCanvas({
 | Option | Type | Default | Description |
 |---|---|---|---|
 | `borderRadius` | `number \| false` | `4` | Visual border radius for loaded Rects. Pass `false` to disable |
+| `canvasData` | `CanvasJSON \| object` | — | Canvas data to load automatically. Objects available via `objects` return value |
+| `filter` | `(obj: FabricObject) => boolean` | — | Filter function for loaded objects. Only relevant when `canvasData` is provided |
+| `invertBackground` | `boolean` | — | Whether background should be inverted. Reactive — changes apply automatically |
+| `onReady` | `(canvas) => void \| Promise<void>` | — | Called after canvasData load + features init |
 
 ### Return value
 
@@ -164,6 +182,8 @@ const canvas = useViewCanvas({
 | `onReady` | `(canvas) => void` | Pass to `<Canvas onReady={...}>` |
 | `canvasRef` | `RefObject<FabricCanvas>` | Direct access to the Fabric canvas |
 | `zoom` | `number` | Current zoom level (reactive) |
+| `objects` | `FabricObject[]` | Loaded objects (reactive). Populated when `canvasData` is provided |
+| `isLoading` | `boolean` | Whether canvas data is currently being loaded |
 | `viewport.reset` | `() => void` | Reset viewport |
 | `viewport.zoomIn` | `(step?) => void` | Zoom in |
 | `viewport.zoomOut` | `(step?) => void` | Zoom out |
@@ -220,7 +240,11 @@ import {
 
 function App() {
   return (
-    <EditCanvasProvider options={{ trackChanges: true, history: true }}>
+    <EditCanvasProvider options={{
+      canvasData: savedJson,
+      invertBackground: isDarkMode,
+      history: true,
+    }}>
       <MyCanvas />
       <BottomAppBar />
       <BackgroundPanel />
@@ -246,6 +270,8 @@ function BackgroundPanel() {
 
 `useEditCanvasContext()` returns the same object as `useEditCanvas()` — all properties listed in the [return value table](#return-value) are available. Throws if called outside of an `EditCanvasProvider`.
 
+A non-throwing variant `useEditCanvasContextSafe()` returns `null` when called outside a provider — useful for components that work with or without context.
+
 ### `ViewCanvasProvider`
 
 ```tsx
@@ -257,7 +283,11 @@ import {
 
 function App() {
   return (
-    <ViewCanvasProvider options={{ scaledStrokes: true }}>
+    <ViewCanvasProvider options={{
+      canvasData: savedJson,
+      invertBackground: isDarkMode,
+      scaledStrokes: true,
+    }}>
       <MyCanvas />
       <MyToolbar />
     </ViewCanvasProvider>
@@ -265,7 +295,7 @@ function App() {
 }
 
 function MyCanvas() {
-  const { onReady } = useViewCanvasContext();
+  const { onReady, objects, isLoading } = useViewCanvasContext();
   return <Canvas onReady={onReady} />;
 }
 
@@ -275,27 +305,37 @@ function MyToolbar() {
 }
 ```
 
+A non-throwing variant `useViewCanvasContextSafe()` returns `null` when called outside a provider.
+
 ### Using utility hooks and overlay components with context
 
-Utility hooks and overlay components accept `canvasRef` as a prop. Read it from context:
+When used inside a context provider, utility hooks and overlay components **read `canvasRef` from context automatically** — no need to destructure or pass it explicitly:
 
 ```tsx
 function MyTooltipLayer() {
-  const { canvasRef } = useEditCanvasContext();
-  const tooltip = useCanvasTooltip(canvasRef, {
+  // No canvasRef needed — reads from nearest provider
+  const tooltip = useCanvasTooltip({
     getContent: (obj) => obj.data,
   });
   // ...
 }
 
 function MyOverlays({ objects }) {
-  const { canvasRef } = useEditCanvasContext();
+  // ObjectOverlay reads canvasRef from context automatically
   return objects.map((obj) => (
-    <ObjectOverlay key={obj.data?.id} canvasRef={canvasRef} object={obj}>
+    <ObjectOverlay key={obj.data?.id} object={obj}>
       <OverlayContent>...</OverlayContent>
     </ObjectOverlay>
   ));
 }
+```
+
+The explicit `canvasRef` prop/argument is still supported for use outside of a provider:
+
+```tsx
+// Without context — pass canvasRef explicitly
+const tooltip = useCanvasTooltip(canvasRef, { getContent: (obj) => obj.data });
+<ObjectOverlay canvasRef={canvasRef} object={obj}>...</ObjectOverlay>
 ```
 
 ### When to use hooks vs context
@@ -344,17 +384,26 @@ A thin React wrapper around a Fabric.js canvas element. By default, the canvas f
 
 ---
 
-## `useCanvasEvents(canvasRef, events)`
+## `useCanvasEvents(events)` / `useCanvasEvents(canvasRef, events)`
 
 Subscribe to Fabric canvas events with automatic cleanup. Handlers are stored in a ref so the latest version is always called without re-subscribing.
+
+When called inside an `EditCanvasProvider` or `ViewCanvasProvider`, `canvasRef` is read from context automatically:
 
 ```tsx
 import { useCanvasEvents } from '@bwp-web/canvas';
 
-useCanvasEvents(editor.canvasRef, {
+// Inside a provider — canvasRef is implicit
+useCanvasEvents({
   'object:added': (e) => updateList(),
   'object:modified': () => setDirty(true),
   'object:removed': () => updateList(),
+});
+
+// Outside a provider — pass canvasRef explicitly
+useCanvasEvents(editor.canvasRef, {
+  'object:added': (e) => updateList(),
+  'object:modified': () => setDirty(true),
 });
 ```
 
@@ -370,13 +419,22 @@ type CanvasEventHandlers = {
 
 ---
 
-## `useCanvasTooltip<T>(canvasRef, options)`
+## `useCanvasTooltip<T>(options)` / `useCanvasTooltip<T>(canvasRef, options)`
 
 Track mouse hover over canvas objects and return tooltip state. Handles `mouse:over`/`mouse:out`, viewport-aware position calculation, and position updates during pan/zoom.
+
+When called inside a provider, `canvasRef` is read from context automatically:
 
 ```tsx
 import { useCanvasTooltip } from '@bwp-web/canvas';
 
+// Inside a provider — canvasRef is implicit
+const tooltip = useCanvasTooltip({
+  getContent: (obj) =>
+    obj.data ? { id: obj.data.id, type: obj.data.type } : null,
+});
+
+// Outside a provider — pass canvasRef explicitly
 const tooltip = useCanvasTooltip(view.canvasRef, {
   getContent: (obj) =>
     obj.data ? { id: obj.data.id, type: obj.data.type } : null,
@@ -410,13 +468,23 @@ return (
 
 ---
 
-## `useCanvasClick(canvasRef, onClick, options?)`
+## `useCanvasClick(onClick, options?)` / `useCanvasClick(canvasRef, onClick, options?)`
 
 Distinguish clicks from pan gestures on a canvas. On view-mode canvases where pan is always active, Fabric's `mouse:up` fires for both clicks and drag-to-pan. This hook tracks pointer movement and timing to determine whether the user intended a click.
+
+When called inside a provider, `canvasRef` is read from context automatically:
 
 ```tsx
 import { useCanvasClick } from '@bwp-web/canvas';
 
+// Inside a provider — canvasRef is implicit
+useCanvasClick((target) => {
+  if (target?.data?.id) {
+    navigate(`/locations/${target.data.id}`);
+  }
+});
+
+// Outside a provider — pass canvasRef explicitly
 useCanvasClick(view.canvasRef, (target) => {
   if (target?.data?.id) {
     navigate(`/locations/${target.data.id}`);
@@ -430,6 +498,23 @@ useCanvasClick(view.canvasRef, (target) => {
 |---|---|---|---|
 | `threshold` | `number` | `5` | Max movement in pixels before the gesture is treated as a pan |
 | `maxDuration` | `number` | `300` | Max time in milliseconds for the gesture to count as a click |
+
+---
+
+## `useCanvasRef()`
+
+Returns the `canvasRef` from the nearest `EditCanvasProvider` or `ViewCanvasProvider`, or `null` if no provider is present. This is the hook used internally by `ObjectOverlay`, `useCanvasEvents`, `useCanvasTooltip`, and `useCanvasClick` to read `canvasRef` from context.
+
+```tsx
+import { useCanvasRef } from '@bwp-web/canvas';
+
+function MyComponent() {
+  const canvasRef = useCanvasRef(); // RefObject<FabricCanvas | null> | null
+  // ...
+}
+```
+
+You typically don't need to call this directly — the components and hooks above handle it automatically. It's exported for advanced use cases where you need direct canvas access inside a provider without using `useEditCanvasContext` or `useViewCanvasContext`.
 
 ---
 

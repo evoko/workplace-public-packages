@@ -3,10 +3,16 @@ import { Stack } from '@mui/material';
 import type { StackProps } from '@mui/material';
 import type { Canvas as FabricCanvas, FabricObject } from 'fabric';
 import { util } from 'fabric';
+import { useCanvasRef } from '../context/useCanvasRef';
 
 export interface ObjectOverlayProps extends StackProps {
-  /** Ref to the Fabric canvas instance. */
-  canvasRef: RefObject<FabricCanvas | null>;
+  /**
+   * Ref to the Fabric canvas instance.
+   * Optional when rendered inside a {@link ViewCanvasProvider} or
+   * {@link EditCanvasProvider} — the ref is read from context automatically.
+   * If provided, takes precedence over the context value.
+   */
+  canvasRef?: RefObject<FabricCanvas | null>;
   /** The Fabric object to overlay. When `null`/`undefined`, nothing renders. */
   object: FabricObject | null | undefined;
   children?: ReactNode;
@@ -26,6 +32,14 @@ export interface ObjectOverlayProps extends StackProps {
  *
  * @example
  * ```tsx
+ * // Inside a ViewCanvasProvider or EditCanvasProvider — canvasRef is read from context:
+ * <ObjectOverlay object={deskObj}>
+ *   <OverlayContent>
+ *     <MyLabel>{desk.name}</MyLabel>
+ *   </OverlayContent>
+ * </ObjectOverlay>
+ *
+ * // Or pass canvasRef explicitly:
  * <ObjectOverlay canvasRef={canvasRef} object={deskObj}>
  *   <OverlayContent>
  *     <MyLabel>{desk.name}</MyLabel>
@@ -34,16 +48,19 @@ export interface ObjectOverlayProps extends StackProps {
  * ```
  */
 export function ObjectOverlay({
-  canvasRef,
+  canvasRef: canvasRefProp,
   object,
   sx,
   children,
   ...rest
 }: ObjectOverlayProps) {
+  const contextCanvasRef = useCanvasRef();
+  const canvasRef = canvasRefProp ?? contextCanvasRef;
+
   const stackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = canvasRef?.current;
     if (!canvas || !object) return;
 
     function update() {

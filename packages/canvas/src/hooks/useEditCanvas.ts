@@ -25,12 +25,14 @@ import {
 import {
   enableScaledStrokes,
   enableScaledBorderRadius,
+  loadCanvas,
   type ScaledBorderRadiusOptions,
 } from '../serialization';
 import { enableKeyboardShortcuts } from '../keyboard';
 import {
   fitViewportToBackground,
   setBackgroundImage as setBackgroundImageFn,
+  setBackgroundInverted,
   type ResizeImageOptions,
   type SetBackgroundImageOptions,
 } from '../background';
@@ -39,7 +41,7 @@ import {
   type HistoryOptions,
   type HistoryTracker,
 } from '../history';
-import type { ModeSetup } from '../types';
+import type { ModeSetup, CanvasJSON } from '../types';
 
 export interface UseEditCanvasOptions {
   /** Configure pan and zoom. Pass `false` to disable, or options to customize. Default: enabled. */
@@ -95,7 +97,7 @@ export interface UseEditCanvasOptions {
    * Listens for `object:added`, `object:removed`, `object:modified`, and
    * `background:modified` events. Call `resetDirty()` after a successful
    * save to clear the flag, or `markDirty()` to set it manually.
-   * Default: disabled.
+   * Pass `false` to disable. Default: enabled.
    */
   trackChanges?: boolean;
   /**
@@ -109,6 +111,23 @@ export interface UseEditCanvasOptions {
    * Default: disabled.
    */
   history?: boolean | HistoryOptions;
+  /**
+   * Canvas data to load automatically after initialisation.
+   * When provided, `loadCanvas` is called internally before the user's
+   * `onReady` callback, and the resulting objects are available via the
+   * returned `objects` array.
+   */
+  canvasData?: CanvasJSON | object;
+  /**
+   * Filter function for loaded objects. Passed to `loadCanvas` as
+   * `options.filter`. Only relevant when `canvasData` is provided.
+   */
+  filter?: (obj: FabricObject) => boolean;
+  /**
+   * Whether the background image should have an Invert filter applied.
+   * Reactive — changes are applied automatically without remounting.
+   */
+  invertBackground?: boolean;
 }
 
 /**
@@ -157,6 +176,11 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
   const [isDirty, setIsDirty] = useState(false);
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
+  const [objects, setObjects] = useState<FabricObject[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [lockLightMode, setLockLightModeState] = useState<boolean | undefined>(
+    undefined,
+  );
 
   /**
    * Activate an interaction mode, or pass `null` to return to select mode.
@@ -281,7 +305,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
         canvas.on('selection:updated', (e) => setSelected(e.selected ?? []));
         canvas.on('selection:cleared', () => setSelected([]));
 
-        if (opts?.trackChanges) {
+        if (opts?.trackChanges !== false) {
           canvas.on('object:added', () => setIsDirty(true));
           canvas.on('object:removed', () => setIsDirty(true));
           canvas.on('object:modified', () => setIsDirty(true));
@@ -326,11 +350,36 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
         }
       }
 
-      // --- Invoke consumer onReady, then auto-fit viewport + push initial history snapshot ---
+      // --- Load canvasData, invoke consumer onReady, then finalise ---
 
       function invokeOnReady() {
-        const onReadyResult = opts?.onReady?.(canvas);
-        Promise.resolve(onReadyResult).then(() => {
+        const initPromise = (async () => {
+          if (opts?.canvasData) {
+            setIsLoading(true);
+            try {
+              const loaded = await loadCanvas(canvas, opts.canvasData, {
+                filter: opts.filter,
+                borderRadius: opts.borderRadius,
+              });
+              setObjects(loaded);
+            } finally {
+              setIsLoading(false);
+            }
+          }
+        })();
+
+        initPromise.then(async () => {
+          const onReadyResult = opts?.onReady?.(canvas);
+          await Promise.resolve(onReadyResult);
+
+          if (opts?.invertBackground !== undefined) {
+            setBackgroundInverted(canvas, opts.invertBackground);
+          }
+
+          if (canvas.lockLightMode !== undefined) {
+            setLockLightModeState(canvas.lockLightMode);
+          }
+
           if (opts?.autoFitToBackground !== false && canvas.backgroundImage) {
             fitViewportToBackground(canvas);
             syncZoom(canvasRef, setZoom);
@@ -369,6 +418,21 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options?.enableAlignment]);
+
+  // React to invertBackground changes after initial load
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || options?.invertBackground === undefined) return;
+    setBackgroundInverted(canvas, options.invertBackground);
+  }, [options?.invertBackground]);
+
+  const setLockLightMode = useCallback((value: boolean) => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      canvas.lockLightMode = value;
+    }
+    setLockLightModeState(value);
+  }, []);
 
   const setViewportMode = useCallback((mode: ViewportMode) => {
     viewportRef.current?.setMode(mode);
@@ -412,6 +476,10 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     canvasRef,
     /** Current zoom level (reactive). */
     zoom,
+    /** Loaded objects (reactive). Populated when `canvasData` is provided. */
+    objects,
+    /** Whether canvas data is currently being loaded. */
+    isLoading,
     /** Currently selected objects (reactive). */
     selected,
     /** Viewport controls. */
@@ -458,7 +526,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
      * when replacing the image.
      */
     setBackground,
-    /** Whether the canvas has been modified since the last `resetDirty()` call. Requires `trackChanges: true`. */
+    /** Whether the canvas has been modified since the last `resetDirty()` call. Enabled by default (disable via `trackChanges: false`). */
     isDirty,
     /** Reset the dirty flag (e.g., after a successful save). */
     resetDirty: useCallback(() => setIsDirty(false), []),
@@ -484,5 +552,9 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
     canUndo,
     /** Whether a redo operation is available (reactive). Requires `history: true`. */
     canRedo,
+    /** Whether the canvas is locked to light mode. Read from loaded canvas data. */
+    lockLightMode,
+    /** Update lockLightMode on both the canvas instance and React state. */
+    setLockLightMode,
   };
 }

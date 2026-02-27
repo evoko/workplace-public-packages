@@ -89,7 +89,7 @@ function toNum(v: number | string | undefined): number {
  *
  * @example
  * ```tsx
- * <ObjectOverlay canvasRef={canvasRef} object={obj}>
+ * <ObjectOverlay object={obj}>
  *   <OverlayContent>
  *     <MyIcon />
  *     <FixedSizeContent><Typography>Label</Typography></FixedSizeContent>

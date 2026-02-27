@@ -4,6 +4,7 @@ import type {
   CanvasEvents,
   FabricObject,
 } from 'fabric';
+import { useCanvasRef } from '../context/useCanvasRef';
 
 export interface UseCanvasClickOptions {
   /** Maximum movement in pixels before the gesture is treated as a pan. Default: 5. */
@@ -12,6 +13,23 @@ export interface UseCanvasClickOptions {
   maxDuration?: number;
 }
 
+/**
+ * Distinguish clicks from pan gestures on a canvas, using the `canvasRef`
+ * from the nearest {@link ViewCanvasProvider} or {@link EditCanvasProvider}.
+ *
+ * @example
+ * ```tsx
+ * useCanvasClick((target) => {
+ *   if (target?.data?.id) {
+ *     navigate(`/locations/${target.data.id}`);
+ *   }
+ * });
+ * ```
+ */
+export function useCanvasClick(
+  onClick: (target: FabricObject | undefined) => void,
+  options?: UseCanvasClickOptions,
+): void;
 /**
  * Distinguish clicks from pan gestures on a canvas.
  *
@@ -33,7 +51,34 @@ export function useCanvasClick(
   canvasRef: RefObject<FabricCanvas | null>,
   onClick: (target: FabricObject | undefined) => void,
   options?: UseCanvasClickOptions,
+): void;
+export function useCanvasClick(
+  canvasRefOrOnClick:
+    | RefObject<FabricCanvas | null>
+    | ((target: FabricObject | undefined) => void),
+  onClickOrOptions?:
+    | ((target: FabricObject | undefined) => void)
+    | UseCanvasClickOptions,
+  maybeOptions?: UseCanvasClickOptions,
 ): void {
+  // Distinguish overloads: if the second arg is a function, the first is canvasRef
+  const isContextOverload = typeof canvasRefOrOnClick === 'function';
+
+  // Always called unconditionally (Rules of Hooks compliant)
+  const contextCanvasRef = useCanvasRef();
+
+  const resolvedCanvasRef = isContextOverload
+    ? contextCanvasRef
+    : (canvasRefOrOnClick as RefObject<FabricCanvas | null>);
+
+  const onClick = isContextOverload
+    ? (canvasRefOrOnClick as (target: FabricObject | undefined) => void)
+    : (onClickOrOptions as (target: FabricObject | undefined) => void);
+
+  const options = isContextOverload
+    ? (onClickOrOptions as UseCanvasClickOptions | undefined)
+    : maybeOptions;
+
   const onClickRef = useRef(onClick);
   onClickRef.current = onClick;
 
@@ -41,7 +86,7 @@ export function useCanvasClick(
   optionsRef.current = options;
 
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = resolvedCanvasRef?.current;
     if (!canvas) return;
 
     let mouseDown: { x: number; y: number; time: number } | null = null;
@@ -91,5 +136,5 @@ export function useCanvasClick(
       canvas.off('mouse:move', handleMouseMove);
       canvas.off('mouse:up', handleMouseUp);
     };
-  }, [canvasRef]);
+  }, [resolvedCanvasRef]);
 }
