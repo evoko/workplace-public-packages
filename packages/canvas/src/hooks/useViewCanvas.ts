@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas as FabricCanvas, type FabricObject } from 'fabric';
 import {
   enablePanAndZoom,
@@ -183,6 +183,23 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
   const { resetViewport, zoomIn, zoomOut, panToObject, zoomToFit } =
     useViewportActions(canvasRef, viewportRef, setZoom);
 
+  /** Memoized viewport controls — only changes identity if methods change (they don't). */
+  const viewport = useMemo(
+    () => ({
+      /** Reset viewport to default (no pan, zoom = 1), or fit to background if one is set. */
+      reset: resetViewport,
+      /** Zoom in toward the canvas center. Default step: 0.2. */
+      zoomIn,
+      /** Zoom out from the canvas center. Default step: 0.2. */
+      zoomOut,
+      /** Pan the viewport to center on a specific object. */
+      panToObject,
+      /** Zoom and pan to fit a specific object in the viewport. */
+      zoomToFit,
+    }),
+    [resetViewport, zoomIn, zoomOut, panToObject, zoomToFit],
+  );
+
   /** Find a canvas object by its `data.id`. */
   const findObject = (id: string): FabricObject | undefined => {
     const c = canvasRef.current;
@@ -238,35 +255,29 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     [],
   );
 
-  return {
-    /** Pass this to `<Canvas onReady={...} />` */
-    onReady,
-    /** Ref to the underlying Fabric canvas instance. */
-    canvasRef,
-    /** Current zoom level (reactive). */
-    zoom,
-    /** Loaded objects (reactive). Populated when `canvasData` is provided. */
-    objects,
-    /** Whether canvas data is currently being loaded. */
-    isLoading,
-    /** Viewport controls. */
-    viewport: {
-      /** Reset viewport to default (no pan, zoom = 1), or fit to background if one is set. */
-      reset: resetViewport,
-      /** Zoom in toward the canvas center. Default step: 0.2. */
-      zoomIn,
-      /** Zoom out from the canvas center. Default step: 0.2. */
-      zoomOut,
-      /** Pan the viewport to center on a specific object. */
-      panToObject,
-      /** Zoom and pan to fit a specific object in the viewport. */
-      zoomToFit,
-    },
-    /** Update a single object's visual style by its `data.id`. */
-    setObjectStyle,
-    /** Batch-update multiple objects' visual styles in one render. Keyed by `data.id`. */
-    setObjectStyles,
-    /** Apply a visual style to all objects whose `data.type` matches. */
-    setObjectStyleByType,
-  };
+  return useMemo(
+    () => ({
+      /** Pass this to `<Canvas onReady={...} />` */
+      onReady,
+      /** Ref to the underlying Fabric canvas instance. */
+      canvasRef,
+      /** Current zoom level (reactive). */
+      zoom,
+      /** Loaded objects (reactive). Populated when `canvasData` is provided. */
+      objects,
+      /** Whether canvas data is currently being loaded. */
+      isLoading,
+      /** Viewport controls. */
+      viewport,
+      /** Update a single object's visual style by its `data.id`. */
+      setObjectStyle,
+      /** Batch-update multiple objects' visual styles in one render. Keyed by `data.id`. */
+      setObjectStyles,
+      /** Apply a visual style to all objects whose `data.type` matches. */
+      setObjectStyleByType,
+    }),
+    // Only reactive state in deps — refs and stable callbacks are omitted
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [zoom, objects, isLoading, viewport],
+  );
 }
