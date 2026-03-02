@@ -489,10 +489,13 @@ export const biampTheme = (
           },
           styleOverrides: {
             root: {
-              padding: '12px',
-              boxshadow: '0px 4px 50px 0px #1111111A',
+              paddingLeft: '12px',
+              paddingRight: '12px',
+              boxShadow: '0px 4px 50px 0px #1111111A',
               height: 'fit-content',
               width: 'fit-content',
+              borderWidth: '1px !important',
+              borderStyle: 'solid',
             },
             message: ({ theme }) => ({
               paddingTop: 0,
@@ -503,6 +506,7 @@ export const biampTheme = (
               lineHeight: theme.typography.body1.lineHeight,
               alignItems: 'center',
               display: 'flex',
+              
             }),
             icon: {
               paddingTop: 0,
@@ -511,22 +515,22 @@ export const biampTheme = (
             },
             standard: ({ theme }) => ({
               color: theme.palette.text.primary,
-              border: `1px solid`,
+              border: `16px solid ${theme.palette.success.main}`,
             }),
             standardError: ({ theme }) => ({
-              borderColor: theme.palette.error.main,
+              border: `16px solid ${theme.palette.error.main}`,
               backgroundColor: theme.palette.background.error,
             }),
             standardInfo: ({ theme }) => ({
-              borderColor: theme.palette.info.main,
+              border: `16px solid ${theme.palette.info.main}`,
               backgroundColor: theme.palette.background.info,
             }),
             standardSuccess: ({ theme }) => ({
-              borderColor: theme.palette.success.main,
+              border: `16px solid ${theme.palette.success.main}`,
               backgroundColor: theme.palette.background.success,
             }),
             standardWarning: ({ theme }) => ({
-              borderColor: theme.palette.warning.main,
+              border: `16px solid ${theme.palette.warning.main}`,
               backgroundColor: theme.palette.background.warning,
             }),
           },
