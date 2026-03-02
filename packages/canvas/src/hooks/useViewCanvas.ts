@@ -61,6 +61,7 @@ export interface UseViewCanvasOptions {
   /**
    * Whether the background image should have an Invert filter applied.
    * Reactive — changes are applied automatically without remounting.
+   * Has no effect when the canvas data sets `lockLightMode: true`.
    */
   invertBackground?: boolean;
 }
@@ -162,12 +163,15 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
         const onReadyResult = opts?.onReady?.(canvas);
         await Promise.resolve(onReadyResult);
 
-        if (opts?.invertBackground !== undefined) {
-          setBackgroundInverted(canvas, opts.invertBackground);
-        }
-
         if (canvas.lockLightMode !== undefined) {
           setLockLightMode(canvas.lockLightMode);
+        }
+
+        if (opts?.invertBackground !== undefined) {
+          setBackgroundInverted(
+            canvas,
+            opts.invertBackground && !canvas.lockLightMode,
+          );
         }
 
         if (opts?.autoFitToBackground !== false && canvas.backgroundImage) {
@@ -180,12 +184,12 @@ export function useViewCanvas(options?: UseViewCanvasOptions) {
     [],
   );
 
-  // React to invertBackground changes after initial load
+  // React to invertBackground/lockLightMode changes after initial load
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || options?.invertBackground === undefined) return;
-    setBackgroundInverted(canvas, options.invertBackground);
-  }, [options?.invertBackground]);
+    setBackgroundInverted(canvas, options.invertBackground && !lockLightMode);
+  }, [options?.invertBackground, lockLightMode]);
 
   const { resetViewport, zoomIn, zoomOut, panToObject, zoomToFit } =
     useViewportActions(canvasRef, viewportRef, setZoom);
