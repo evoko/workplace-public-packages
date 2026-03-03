@@ -33,6 +33,7 @@
   },
   "peerDependencies": {
     "@bwp-web/assets": ">=0.9.4",
+    "@bwp-web/styles": ">=0.9.4",
     "@mui/material": ">=7.0.0",
     "@tanstack/react-table": ">=8.0.0",
     "react": ">=18.0.0",
@@ -41,6 +42,7 @@
   "devDependencies": {
     "@bwp-web/assets": "*",
     "@bwp-web/eslint-config": "*",
+    "@bwp-web/styles": "*",
     "@mui/material": "^7.3.7",
     "@tanstack/react-table": "^8.21.3",
     "@types/react": "^19.1.0",
