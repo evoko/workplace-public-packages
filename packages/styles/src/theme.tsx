@@ -5,7 +5,6 @@ import {
   ErrorStatusIcon,
   IndeterminateIcon,
   InfoStatusIcon,
-  InputCloseIcon,
   MontserratBold,
   MontserratMedium,
   MontserratSemiBold,
@@ -22,6 +21,7 @@ import {
   SuccessStatusIcon,
   UncheckedIcon,
   WarningStatusIcon,
+  CloseIcon,
 } from '@bwp-web/assets';
 import { alpha, createTheme } from '@mui/material/styles';
 
@@ -506,7 +506,6 @@ export const biampTheme = (
               lineHeight: theme.typography.body1.lineHeight,
               alignItems: 'center',
               display: 'flex',
-              
             }),
             icon: {
               paddingTop: 0,
@@ -1059,7 +1058,7 @@ export const biampTheme = (
         },
         MuiChip: {
           defaultProps: {
-            deleteIcon: <InputCloseIcon />,
+            deleteIcon: <CloseIcon variant="xxs" />,
           },
           styleOverrides: {
             root: ({ theme }) => ({
@@ -1086,10 +1085,9 @@ export const biampTheme = (
               color: theme.palette.text.primary,
             }),
             deleteIcon: ({ theme }) => ({
-              width: 12,
-              height: 12,
               margin: 0,
               marginLeft: 8,
+              fontSize: 12,
               color: theme.palette.text.primary,
               '& hover': {
                 color: theme.palette.text.secondary,
@@ -1356,7 +1354,7 @@ export const biampTheme = (
         },
         MuiAutocomplete: {
           defaultProps: {
-            clearIcon: <InputCloseIcon />,
+            clearIcon: <CloseIcon variant="xxs" />,
           },
           styleOverrides: {
             inputRoot: {

@@ -120,7 +120,7 @@ export const MultiSelect: Story = {
         multiple
         options={topMovies}
         defaultValue={['Fight Club']}
-        renderTags={(value, getTagProps) =>
+        renderValue={(value, getTagProps) =>
           value.map((option, index) => (
             <Chip
               label={option}
