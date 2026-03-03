@@ -316,6 +316,20 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
           canvas.on('background:modified', markDirtyIfNotLoading);
         }
 
+        // Keep `objects` state in sync when objects are added/removed after
+        // the initial load so that consumers (e.g. overlay rendering) see
+        // newly created or deleted objects immediately.
+        canvas.on('object:added', (e) => {
+          if (!isInitialLoadRef.current && e.target) {
+            setObjects((prev) => [...prev, e.target]);
+          }
+        });
+        canvas.on('object:removed', (e) => {
+          if (!isInitialLoadRef.current && e.target) {
+            setObjects((prev) => prev.filter((o) => o !== e.target));
+          }
+        });
+
         if (opts?.history) {
           const syncHistoryState = () => {
             const h = historyRef.current;
