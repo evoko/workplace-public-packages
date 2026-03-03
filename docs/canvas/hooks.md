@@ -35,7 +35,7 @@ const canvas = useEditCanvas({
 | `onReady` | `(canvas) => void` | Pass to `<Canvas onReady={...}>` |
 | `canvasRef` | `RefObject<FabricCanvas>` | Direct access to the Fabric canvas |
 | `zoom` | `number` | Current zoom level (reactive) |
-| `objects` | `FabricObject[]` | Loaded objects (reactive). Populated when `canvasData` is provided |
+| `objects` | `FabricObject[]` | Canvas objects (reactive). Populated from `canvasData` on load, and kept in sync as objects are added or removed at runtime |
 | `isLoading` | `boolean` | Whether canvas data is currently being loaded |
 | `selected` | `FabricObject[]` | Currently selected objects (reactive) |
 | `isEditingVertices` | `boolean` | Whether vertex edit mode is active (reactive) |

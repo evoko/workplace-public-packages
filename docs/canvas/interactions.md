@@ -119,7 +119,7 @@ interface DragBounds {
 
 ## `enableDrawToCreate(canvas, options?)`
 
-Vertex-by-vertex polygon drawing. Click to place vertices, double-click or click near the first vertex to close the polygon. Press **Escape** or **Backspace** to cancel.
+Vertex-by-vertex polygon drawing. Click to place vertices, click near the first vertex to close the polygon (requires 3+ vertices). Press **Escape** or **Backspace** to cancel. By default, pressing and dragging on the first interaction creates a rectangular polygon from the drag bounds.
 
 ```typescript
 const cleanup = enableDrawToCreate(canvas, {
@@ -147,11 +147,13 @@ const cleanup = enableDrawToCreate(canvas, {
 | `enableAlignment` | `boolean` | — | Alignment guides |
 | `onCancel` | `() => void` | — | Called when drawing is cancelled (Escape/Backspace) |
 | `factory` | `(canvas, points: Point2D[]) => FabricObject` | — | Factory function to create the final object from placed vertices. Default: creates a polygon via `createPolygonFromVertices` |
+| `dragOnHold` | `boolean` | `true` | When enabled, pressing and dragging on the first interaction creates a rectangular polygon from the drag bounds (exactly like `enableDragToCreate` for polygons). Shift constrains to a square. Once a vertex has been placed, normal draw behaviour applies. Pass `false` to disable |
 
 ### Drawing controls
 
 - **Click** — place a vertex
-- **Double-click** or **click near first vertex** — close the polygon
+- **Press and drag** — create a rectangular polygon from the drag bounds (when `dragOnHold` is enabled). Hold **Shift** to constrain to a square
+- **Click near first vertex** — close the polygon (requires 3+ vertices)
 - **Shift + move** — snap the next edge to 15-degree angle increments
 - **Escape / Backspace** — cancel drawing
 

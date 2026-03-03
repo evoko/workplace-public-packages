@@ -545,7 +545,7 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
       canvasRef,
       /** Current zoom level (reactive). */
       zoom,
-      /** Loaded objects (reactive). Populated when `canvasData` is provided. */
+      /** Canvas objects (reactive). Populated from `canvasData` on load, and kept in sync as objects are added or removed at runtime. */
       objects,
       /** Whether canvas data is currently being loaded. */
       isLoading,
