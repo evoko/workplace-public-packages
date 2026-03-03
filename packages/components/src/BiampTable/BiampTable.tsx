@@ -277,6 +277,8 @@ export function BiampTable<TData>({
             table.setPageIndex(0);
           }}
           rowsPerPageOptions={rowsPerPageOptions}
+          showFirstButton
+          showLastButton
         />
       )}
     </TableContainer>

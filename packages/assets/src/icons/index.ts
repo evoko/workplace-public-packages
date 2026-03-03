@@ -13,3 +13,6 @@ export { SuccessStatusIcon } from './SuccessStatusIcon';
 export { UncheckedIcon } from './UncheckedIcon';
 export { WarningStatusIcon } from './WarningStatusIcon';
 export { ChevronRight } from './ChevronRight';
+export { ChevronLeft } from './ChevronLeft';
+export { ChevronFullLeft } from './ChevronFullLeft';
+export { ChevronFullRight } from './ChevronFullRight';
