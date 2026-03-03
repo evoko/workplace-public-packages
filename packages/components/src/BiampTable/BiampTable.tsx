@@ -84,7 +84,7 @@ export function BiampTable<TData>({
   sorting: sortingProp,
   onSortingChange,
   enablePagination = false,
-  rowsPerPageOptions = [5, 10, 25],
+  rowsPerPageOptions,
   enableRowSelection = false,
   rowSelection: rowSelectionProp,
   onRowSelectionChange,
@@ -151,7 +151,7 @@ export function BiampTable<TData>({
 
     initialState: {
       ...(enablePagination && {
-        pagination: { pageSize: rowsPerPageOptions[0] ?? 10, pageIndex: 0 },
+        pagination: { pageSize: rowsPerPageOptions?.[0] ?? 25, pageIndex: 0 },
       }),
     },
   });
@@ -276,7 +276,7 @@ export function BiampTable<TData>({
             table.setPageSize(Number(e.target.value));
             table.setPageIndex(0);
           }}
-          rowsPerPageOptions={rowsPerPageOptions}
+          rowsPerPageOptions={rowsPerPageOptions ?? []}
           showFirstButton
           showLastButton
         />

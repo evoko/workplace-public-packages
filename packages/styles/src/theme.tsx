@@ -1127,6 +1127,9 @@ export const biampTheme = (
               paddingLeft: 0,
               paddingRight: 0,
             },
+            actions: {
+              marginLeft: 36,
+            },
           },
         },
         MuiInputBase: {
