@@ -67,7 +67,7 @@ export function BiampTable<TData>({
         {...restContainerProps}
         sx={
           [
-            { flex: 1, minHeight: 0, overflow: 'auto' },
+            { flex: 1, minHeight: 0, overflow: 'auto', overscrollBehavior: 'none' },
             ...(containerSx ? [containerSx] : []),
           ] as SxProps<Theme>
         }
