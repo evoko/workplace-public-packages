@@ -47,7 +47,7 @@ const preview: Preview = {
           <Box
             sx={{
               ...(!context.parameters.noPadding && { p: 3 }),
-              minHeight: '100vh',
+              height: '100vh',
               bgcolor: context.parameters.canvasBackground ?? 'grey.100',
               ...(mode === 'dark' && { bgcolor: 'grey.900' }),
             }}

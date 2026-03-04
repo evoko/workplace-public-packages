@@ -281,7 +281,7 @@ export const Default: Story = {
     });
 
     return (
-      <Stack spacing={3}>
+      <Stack spacing={3} height={'100%'}>
         <Typography variant="h3">Table</Typography>
         <BiampTable table={table} />
       </Stack>
@@ -303,7 +303,7 @@ export const WithSorting: Story = {
     });
 
     return (
-      <Stack spacing={3}>
+      <Stack spacing={3} height={'100%'}>
         <Typography variant="h3">Table with Sorting</Typography>
         <Typography variant="body2">
           Click column headers to sort ascending/descending.
@@ -325,7 +325,7 @@ export const WithPagination: Story = {
     });
 
     return (
-      <Stack spacing={3}>
+      <Stack spacing={3} height={'100%'}>
         <Typography variant="h3">Table with Pagination</Typography>
         <BiampTable table={table} />
         <BiampTablePagination table={table} rowsPerPageOptions={[5, 10, 15]} />
@@ -350,7 +350,7 @@ export const WithRowSelection: Story = {
     });
 
     return (
-      <Stack spacing={3}>
+      <Stack spacing={3} height={'100%'}>
         <Typography variant="h3">Table with Row Selection</Typography>
         <Typography variant="body2">
           {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected
@@ -377,7 +377,7 @@ export const WithColumnVisibility: Story = {
     });
 
     return (
-      <Stack spacing={3}>
+      <Stack spacing={3} height={'100%'}>
         <Typography variant="h3">Table with Column Visibility</Typography>
         <Box display="flex" justifyContent="flex-end">
           <BiampTableToolbarActionButton
@@ -408,7 +408,7 @@ export const ClickableRows: Story = {
     });
 
     return (
-      <Stack spacing={3}>
+      <Stack spacing={3} height={'100%'}>
         <Typography variant="h3">Table with Clickable Rows</Typography>
         <Typography variant="body2">
           Click a row to see its data logged to the console.
@@ -448,7 +448,7 @@ export const AllFeatures: Story = {
     });
 
     return (
-      <Stack spacing={3}>
+      <Stack spacing={3} height={'100%'}>
         <Typography variant="h3">Table with All Features</Typography>
         <Typography variant="body2">
           {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected
@@ -519,7 +519,7 @@ export const ServerSideData: Story = {
     });
 
     return (
-      <Stack spacing={3}>
+      <Stack spacing={3} height={'100%'}>
         <Typography variant="h3">Server-side Data</Typography>
         <Typography variant="body2">
           Sorting and pagination are controlled externally. Changing page or
@@ -555,7 +555,7 @@ export const PerRowControl: Story = {
     });
 
     return (
-      <Stack spacing={3}>
+      <Stack spacing={3} height={'100%'}>
         <Typography variant="h3">Per-row Control</Typography>
         <Typography variant="body2">
           Only <strong>Available</strong> rooms are selectable and clickable.
@@ -576,6 +576,63 @@ export const PerRowControl: Story = {
  * BiampTable fills its parent height and scrolls automatically — give the
  * parent a fixed height and no extra props are needed.
  */
+export const Loading: Story = {
+  render: () => {
+    const table = useReactTable({
+      data: rows5,
+      columns,
+      getCoreRowModel: coreRowModel,
+    });
+
+    return (
+      <Stack spacing={3} height={'100%'}>
+        <Typography variant="h3">Loading State</Typography>
+        <Typography variant="body2">
+          A LinearProgress bar appears below the header while data is loading.
+        </Typography>
+        <BiampTable table={table} loading />
+      </Stack>
+    );
+  },
+};
+
+export const ErrorState: Story = {
+  render: () => {
+    const table = useReactTable({
+      data: [],
+      columns,
+      getCoreRowModel: coreRowModel,
+    });
+
+    return (
+      <Stack spacing={3} height={'100%'}>
+        <Typography variant="h3">Error State</Typography>
+        <BiampTable
+          table={table}
+          error="Failed to load rooms. Please try again."
+        />
+      </Stack>
+    );
+  },
+};
+
+export const EmptyState: Story = {
+  render: () => {
+    const table = useReactTable({
+      data: [],
+      columns,
+      getCoreRowModel: coreRowModel,
+    });
+
+    return (
+      <Stack spacing={3} height={'100%'}>
+        <Typography variant="h3">Empty State</Typography>
+        <BiampTable table={table} empty="No rooms match your filters." />
+      </Stack>
+    );
+  },
+};
+
 export const ScrollDemo: Story = {
   render: () => {
     const table = useReactTable({
@@ -585,15 +642,13 @@ export const ScrollDemo: Story = {
     });
 
     return (
-      <Stack spacing={2} height="100vh">
+      <Stack spacing={2} height="100%">
         <Typography variant="h3">Scroll Demo</Typography>
         <Typography variant="body2">
           100 rows, 10 columns. BiampTable fills its parent and scrolls in both
           directions — the 400 px wrapper below is the only constraint needed.
         </Typography>
-        <Box height="100%">
-          <BiampTable table={table} />
-        </Box>
+        <BiampTable table={table} />
       </Stack>
     );
   },

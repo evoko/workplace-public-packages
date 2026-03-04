@@ -1,6 +1,7 @@
 import {
   Box,
   Checkbox,
+  LinearProgress,
   Table as MuiTable,
   TableBody,
   TableCell,
@@ -8,6 +9,7 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
+  Typography,
   type SxProps,
   type Theme,
 } from '@mui/material';
@@ -24,6 +26,12 @@ export type BiampTableProps<TData> = {
    * `onRowClick` is provided. Has no effect when `onRowClick` is not provided.
    */
   isRowClickable?: (row: TData) => boolean;
+  /** When true, shows a LinearProgress bar below the table header. */
+  loading?: boolean;
+  /** When provided, displays an error message in place of table body rows. */
+  error?: string;
+  /** When provided and the table has no rows, displays this message instead of an empty body. */
+  empty?: string;
   /** sx applied to the root TableContainer (rendered as a Box). */
   sx?: SxProps<Theme>;
 };
@@ -32,6 +40,9 @@ export function BiampTable<TData>({
   table,
   onRowClick,
   isRowClickable,
+  loading,
+  error,
+  empty,
   sx,
 }: BiampTableProps<TData>) {
   // Only show the checkbox column when the caller explicitly opted in.
@@ -53,6 +64,13 @@ export function BiampTable<TData>({
     enableRowSelection ? 48 : 0,
   );
 
+  const totalColumns =
+    table.getVisibleLeafColumns().length + (enableRowSelection ? 1 : 0);
+
+  const rows = table.getRowModel().rows;
+  const showError = !!error;
+  const showEmpty = !showError && !!empty && rows.length === 0;
+
   return (
     <TableContainer
       component={Box}
@@ -65,7 +83,8 @@ export function BiampTable<TData>({
         ...sx,
       }}
     >
-      <MuiTable sx={{ minWidth: tableMinWidth }}>
+      {loading && <LinearProgress />}
+      <MuiTable sx={{ minWidth: tableMinWidth, height: '100%' }}>
         <TableHead>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -117,61 +136,94 @@ export function BiampTable<TData>({
           ))}
         </TableHead>
 
-        <TableBody>
-          {table.getRowModel().rows.map((row) => {
-            const clickable = onRowClick
-              ? isRowClickable
-                ? isRowClickable(row.original)
-                : true
-              : false;
-
-            return (
-              <TableRow
-                key={row.id}
-                hover={clickable}
-                selected={enableRowSelection ? row.getIsSelected() : undefined}
-                sx={{ cursor: clickable ? 'pointer' : undefined }}
-                onClick={
-                  clickable ? () => onRowClick!(row.original) : undefined
-                }
+        <TableBody sx={{ opacity: loading ? 0.28 : 1 }}>
+          {showError ? (
+            <TableRow>
+              <TableCell
+                colSpan={totalColumns}
+                sx={{
+                  textAlign: 'center',
+                  verticalAlign: 'middle',
+                  height: '100%',
+                }}
               >
-                {enableRowSelection && (
-                  <TableCell
-                    padding="checkbox"
-                    sx={{
-                      position: 'sticky',
-                      left: 0,
-                      zIndex: 2,
-                      bgcolor: 'background.paper',
-                      '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
-                        bgcolor: ({ palette }) =>
-                          palette.mode === 'dark'
-                            ? palette.grey[800]
-                            : palette.grey[100],
-                      },
-                    }}
-                  >
-                    <Checkbox
-                      checked={row.getIsSelected()}
-                      disabled={!row.getCanSelect()}
-                      onChange={row.getToggleSelectedHandler()}
-                      onClick={(e) => e.stopPropagation()}
-                    />
-                  </TableCell>
-                )}
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell
-                    key={cell.id}
-                    sx={{
-                      minWidth: cell.column.columnDef.meta?.minWidth ?? 40,
-                    }}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
-              </TableRow>
-            );
-          })}
+                <Typography color="error">{error}</Typography>
+              </TableCell>
+            </TableRow>
+          ) : showEmpty ? (
+            <TableRow>
+              <TableCell
+                colSpan={totalColumns}
+                sx={{
+                  textAlign: 'center',
+                  verticalAlign: 'middle',
+                  height: '100%',
+                }}
+              >
+                <Typography color="text.secondary">{empty}</Typography>
+              </TableCell>
+            </TableRow>
+          ) : (
+            rows.map((row) => {
+              const clickable = onRowClick
+                ? isRowClickable
+                  ? isRowClickable(row.original)
+                  : true
+                : false;
+
+              return (
+                <TableRow
+                  key={row.id}
+                  hover={clickable}
+                  selected={
+                    enableRowSelection ? row.getIsSelected() : undefined
+                  }
+                  sx={{ cursor: clickable ? 'pointer' : undefined }}
+                  onClick={
+                    clickable ? () => onRowClick!(row.original) : undefined
+                  }
+                >
+                  {enableRowSelection && (
+                    <TableCell
+                      padding="checkbox"
+                      sx={{
+                        position: 'sticky',
+                        left: 0,
+                        zIndex: 2,
+                        bgcolor: 'background.paper',
+                        '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
+                          bgcolor: ({ palette }) =>
+                            palette.mode === 'dark'
+                              ? palette.grey[800]
+                              : palette.grey[100],
+                        },
+                      }}
+                    >
+                      <Checkbox
+                        checked={row.getIsSelected()}
+                        disabled={!row.getCanSelect()}
+                        onChange={row.getToggleSelectedHandler()}
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                    </TableCell>
+                  )}
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell
+                      key={cell.id}
+                      sx={{
+                        minWidth: cell.column.columnDef.meta?.minWidth ?? 40,
+                      }}
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              );
+            })
+          )}
         </TableBody>
       </MuiTable>
     </TableContainer>
