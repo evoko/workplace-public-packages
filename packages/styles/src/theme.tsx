@@ -22,6 +22,10 @@ import {
   CloseIcon,
   ChevronRightIcon,
   CalendarIcon,
+  ChevronFullLeftIcon,
+  ChevronFullRightIcon,
+  ChevronLeftIcon,
+  DropdownChevronDuoIcon,
 } from '@bwp-web/assets';
 import { alpha, createTheme } from '@mui/material/styles';
 
@@ -988,11 +992,167 @@ export const biampTheme = (
             }),
           },
         },
+        MuiTableContainer: {
+          styleOverrides: {
+            root: {
+              position: 'relative',
+              height: '100%',
+            },
+          },
+        },
+        MuiTable: {
+          defaultProps: {
+            stickyHeader: true,
+          },
+          styleOverrides: {
+            root: {
+              tableLayout: 'fixed',
+            },
+          },
+        },
+        MuiTableHead: {
+          styleOverrides: {
+            root: ({ theme }) => ({
+              '& .MuiTableCell-head': {
+                height: 40,
+                paddingTop: 0,
+                paddingBottom: 0,
+                color: theme.palette.text.secondary,
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.grey[800]
+                    : theme.palette.grey[100],
+                borderBottom: 'none',
+                '&:first-of-type': {
+                  borderTopLeftRadius: 8,
+                  borderBottomLeftRadius: 8,
+                },
+                '&:last-of-type': {
+                  borderTopRightRadius: 8,
+                  borderBottomRightRadius: 8,
+                },
+                '&:not(:last-of-type)::after': {
+                  content: '""',
+                  position: 'absolute',
+                  right: 0,
+                  top: 9,
+                  bottom: 9,
+                  width: '0.6px',
+                  backgroundColor: theme.palette.divider,
+                },
+              },
+            }),
+          },
+        },
         MuiTableCell: {
           styleOverrides: {
             root: ({ theme }) => ({
               borderBottomColor: theme.palette.divider,
+              paddingLeft: theme.spacing(1.5),
+              paddingRight: theme.spacing(1.5),
+              paddingTop: 0,
+              paddingBottom: 0,
+              height: 52,
+              overflowWrap: 'break-word',
             }),
+            paddingCheckbox: {
+              width: 40,
+              minWidth: 40,
+              maxWidth: 40,
+              padding: '0 !important',
+              textAlign: 'center',
+            },
+          },
+        },
+        MuiTableRow: {
+          styleOverrides: {
+            root: ({ theme }) => ({
+              '&.MuiTableRow-hover:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.grey[800]
+                    : theme.palette.grey[100],
+              },
+              '&.Mui-selected': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.grey[800]
+                    : theme.palette.grey[100],
+                '&:hover': {
+                  backgroundColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[800]
+                      : theme.palette.grey[100],
+                },
+              },
+              '&:last-child td': {
+                borderBottom: 'none',
+              },
+            }),
+          },
+        },
+        MuiTableSortLabel: {
+          defaultProps: {
+            IconComponent: DropdownChevronDuoIcon,
+          },
+          styleOverrides: {
+            root: ({ theme }) => ({
+              '&:hover': {
+                color: theme.palette.text.primary,
+              },
+              '&:focus:not(:hover)': {
+                color: 'unset',
+              },
+              '&:focus-visible': {
+                textDecoration: 'underline',
+                '& .MuiTableSortLabel-icon': {
+                  opacity: 0.5,
+                },
+              },
+              '&.Mui-active': {
+                color: theme.palette.text.primary,
+                fontWeight: 600,
+                '& .MuiTableSortLabel-icon': {
+                  color: theme.palette.text.primary,
+                  opacity: 1,
+                },
+              },
+            }),
+            icon: ({ theme }) => ({
+              fontSize: 16,
+              transform: 'none',
+              marginLeft: '12px',
+              marginRight: 0,
+              transition: theme.transitions.create(['transform', 'opacity'], {
+                duration: theme.transitions.duration.standard,
+                easing: theme.transitions.easing.easeInOut,
+              }),
+            }),
+          },
+        },
+        MuiTablePagination: {
+          defaultProps: {
+            slots: {
+              actions: {
+                firstButtonIcon: ChevronFullLeftIcon,
+                lastButtonIcon: ChevronFullRightIcon,
+                previousButtonIcon: ChevronLeftIcon,
+                nextButtonIcon: ChevronRightIcon,
+              },
+            },
+          },
+          styleOverrides: {
+            root: {
+              minHeight: 40,
+            },
+            toolbar: {
+              minHeight: '40px !important',
+              paddingLeft: 0,
+              paddingRight: 0,
+            },
+            actions: {
+              marginLeft: 36,
+            },
           },
         },
         MuiInputBase: {
