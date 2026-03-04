@@ -25,7 +25,7 @@ export type BiampTableToolbarFiltersProps = {
   icon?: ReactNode;
   /** Drawer heading. @default "Filters" */
   title?: string;
-  /** Reset button label. @default "Clear all" */
+  /** Reset button label. @default "Clear filters" */
   resetLabel?: string;
   /** Apply button label. @default "Apply" */
   applyLabel?: string;

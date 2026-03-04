@@ -5,6 +5,11 @@ type Status = 'idle' | 'delaying' | 'loading' | 'ending';
 /**
  * Delays showing a loading indicator so that fast loads don't cause a flicker.
  *
+ * State machine:
+ *   idle ──(loading=true)──▶ delaying ──(delay ms)──▶ loading ──(minDuration ms)──▶ ending
+ *     ▲                        │                                                      │
+ *     └──(loading=false)───────┘                        └────────(loading=false)──────┘
+ *
  * - Waits `delay` ms before showing the indicator.
  * - Once shown, keeps it visible for at least `minDuration` ms.
  * - If loading finishes before the delay, no indicator is shown at all.
@@ -27,12 +32,8 @@ export function useLoadingDelay(
     if (loading && status === 'idle') {
       clearPending();
 
+      // After the initial delay, show the indicator and schedule end.
       timeoutRef.current = setTimeout(() => {
-        if (!loading) {
-          setStatus('idle');
-          return;
-        }
-
         timeoutRef.current = setTimeout(() => {
           setStatus('ending');
         }, minDuration);

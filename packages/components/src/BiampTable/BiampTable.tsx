@@ -182,7 +182,7 @@ export function BiampTable<TData>({
                   height: '100%',
                 }}
               >
-                {!empty || empty === true ? <BiampTableEmptyState /> : empty}
+                {empty && empty !== true ? empty : <BiampTableEmptyState />}
               </TableCell>
             </TableRow>
           ) : (
@@ -202,7 +202,9 @@ export function BiampTable<TData>({
                   }
                   sx={{ cursor: clickable ? 'pointer' : undefined }}
                   onClick={
-                    clickable ? () => onRowClick!(row.original) : undefined
+                    clickable && onRowClick
+                      ? () => onRowClick(row.original)
+                      : undefined
                   }
                 >
                   {enableRowSelection && (

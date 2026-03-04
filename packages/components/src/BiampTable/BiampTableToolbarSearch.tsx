@@ -95,7 +95,11 @@ export function BiampTableToolbarSearch({
         },
       }}
       fullWidth
-      sx={[searchFieldSx, { maxWidth }, ...(Array.isArray(sx) ? sx : [sx])]}
+      sx={[
+        searchFieldSx,
+        { maxWidth },
+        ...(Array.isArray(sx) ? sx : sx ? [sx] : []),
+      ]}
       variant="outlined"
       value={inputValue}
       onChange={handleChange}

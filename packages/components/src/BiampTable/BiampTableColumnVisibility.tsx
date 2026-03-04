@@ -97,7 +97,7 @@ export function BiampTableColumnVisibility<TData>({
             boxShadow: `0px 1px 1px 0px ${alpha(palette.common.black, 0.05)}`,
             minWidth: '150px',
           }),
-          ...(slotProps?.paper as object),
+          ...((slotProps?.paper ?? {}) as Record<string, unknown>),
         },
       }}
       {...popoverProps}
