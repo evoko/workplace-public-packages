@@ -1,4 +1,6 @@
 import {
+  Box,
+  Collapse,
   IconButton,
   InputAdornment,
   TextField,
@@ -26,6 +28,10 @@ export type BiampTableToolbarSearchProps = {
   placeholder?: string;
   /** Accessible label for the clear button. @default "Clear search" */
   clearLabel?: string;
+  /** When true, the search field collapses to an icon button when empty and unfocused. @default false */
+  expandable?: boolean;
+  /** Accessible label for the collapsed icon button (only used when expandable is true). @default placeholder */
+  expandLabel?: string;
 } & Omit<TextFieldProps, 'onChange' | 'value' | 'defaultValue'>;
 
 const searchFieldSx = {
@@ -43,10 +49,13 @@ export function BiampTableToolbarSearch({
   maxWidth = 280,
   placeholder = 'Search',
   clearLabel = 'Clear search',
+  expandable = false,
+  expandLabel,
   sx,
   ...textFieldProps
 }: BiampTableToolbarSearchProps) {
   const [inputValue, setInputValue] = useState(defaultValue);
+  const [isExpanded, setIsExpanded] = useState(false);
   const debouncedOnChange = useDebouncedCallback(onChange, debounceDelay);
 
   useEffect(() => {
@@ -63,7 +72,26 @@ export function BiampTableToolbarSearch({
     debouncedOnChange('');
   };
 
-  return (
+  const handleBlur = () => {
+    if (expandable && !inputValue) {
+      setIsExpanded(false);
+    }
+  };
+
+  const clearButton = inputValue ? (
+    <InputAdornment position="end">
+      <IconButton
+        size="small"
+        onClick={handleClear}
+        aria-label={clearLabel}
+        sx={{ mr: 0.5 }}
+      >
+        <CloseIcon variant="xs" sx={{ width: 20, height: 20 }} />
+      </IconButton>
+    </InputAdornment>
+  ) : null;
+
+  const textField = (
     <TextField
       name="search"
       type="text"
@@ -80,30 +108,48 @@ export function BiampTableToolbarSearch({
               />
             </InputAdornment>
           ),
-          endAdornment: inputValue ? (
-            <InputAdornment position="end">
-              <IconButton
-                size="small"
-                onClick={handleClear}
-                aria-label={clearLabel}
-                sx={{ mr: 0.5 }}
-              >
-                <CloseIcon variant="xs" sx={{ width: 20, height: 20 }} />
-              </IconButton>
-            </InputAdornment>
-          ) : null,
+          endAdornment: clearButton,
         },
       }}
       fullWidth
       sx={[
         searchFieldSx,
-        { maxWidth },
+        expandable ? { width: 170 } : { maxWidth },
         ...(Array.isArray(sx) ? sx : sx ? [sx] : []),
       ]}
       variant="outlined"
       value={inputValue}
       onChange={handleChange}
+      onBlur={handleBlur}
+      {...(expandable && isExpanded && !defaultValue && { autoFocus: true })}
       {...textFieldProps}
     />
   );
+
+  if (expandable) {
+    return (
+      <Box display="flex" alignItems="center" minWidth={28}>
+        <IconButton
+          aria-label={expandLabel ?? placeholder}
+          onClick={() => setIsExpanded(true)}
+          sx={{ display: isExpanded || inputValue ? 'none' : 'flex' }}
+        >
+          <SearchIcon
+            variant="xs"
+            color="inherit"
+            sx={{ width: 16, height: 16 }}
+          />
+        </IconButton>
+        <Collapse
+          in={isExpanded || !!inputValue}
+          orientation="horizontal"
+          unmountOnExit
+        >
+          {textField}
+        </Collapse>
+      </Box>
+    );
+  }
+
+  return textField;
 }

@@ -11,23 +11,49 @@ import {
   type SxProps,
   type Theme,
 } from '@mui/material';
-import type { Table, VisibilityState } from '@tanstack/react-table';
+import type { Table } from '@tanstack/react-table';
 import { useEffect, useRef } from 'react';
+import './tanstack-meta';
+
+/**
+ * A looser alternative to TanStack's `VisibilityState` (`Record<string, boolean>`).
+ * Accepts `Partial<Record<string, boolean>>` so callers don't need to cast
+ * from URL params or partial objects. Internally, `undefined` values are
+ * treated as `true` (visible).
+ */
+export type ColumnVisibility = Partial<Record<string, boolean>>;
+
+/**
+ * Reads `meta.defaultVisible` from all leaf columns and returns a
+ * `ColumnVisibility` map. Columns without `defaultVisible` are omitted
+ * (treated as visible by default).
+ */
+export function getDefaultColumnVisibility<TData>(
+  table: Table<TData>,
+): ColumnVisibility {
+  const result: ColumnVisibility = {};
+  for (const col of table.getAllLeafColumns()) {
+    const dv = col.columnDef.meta?.defaultVisible;
+    if (dv !== undefined) result[col.id] = dv;
+  }
+  return result;
+}
 
 /**
  * Returns the number of columns whose visibility differs from the default.
- * Pass `defaultVisibility` if some columns start hidden; otherwise all
- * columns are assumed visible by default.
+ * When `defaultVisibility` is omitted, auto-derives from `meta.defaultVisible`
+ * on each column definition.
  */
 export function getColumnVisibilityDirtyCount<TData>(
   table: Table<TData>,
-  defaultVisibility: VisibilityState = {},
+  defaultVisibility?: ColumnVisibility,
 ): number {
   const current = table.getState().columnVisibility;
+  const defaults = defaultVisibility ?? getDefaultColumnVisibility(table);
   let count = 0;
   for (const col of table.getAllLeafColumns()) {
     const isVisible = current[col.id] ?? true;
-    const wasVisible = defaultVisibility[col.id] ?? true;
+    const wasVisible = defaults[col.id] ?? true;
     if (isVisible !== wasVisible) count++;
   }
   return count;
@@ -35,12 +61,12 @@ export function getColumnVisibilityDirtyCount<TData>(
 
 export type BiampTableColumnVisibilityProps<TData> = Omit<
   PopoverProps,
-  'open'
+  'open' | 'onChange'
 > & {
   /** TanStack Table instance to connect to. */
   table: Table<TData>;
   /** Called after column visibility changes. */
-  onChange?: (visibility: VisibilityState) => void;
+  onChange?: (visibility: ColumnVisibility) => void;
   /** Label for the "show all" toggle. @default "Show all" */
   showAllLabel?: string;
 };

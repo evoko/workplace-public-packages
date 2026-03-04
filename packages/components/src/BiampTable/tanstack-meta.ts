@@ -7,5 +7,7 @@ declare module '@tanstack/react-table' {
     minWidth?: number | string;
     /** Make this column sticky to the left or right edge of the table. */
     sticky?: 'left' | 'right';
+    /** Whether this column is visible by default. Defaults to `true` (visible). */
+    defaultVisible?: boolean;
   }
 }
