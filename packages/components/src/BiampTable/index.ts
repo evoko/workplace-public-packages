@@ -1,5 +1,9 @@
 export { BiampTable, type BiampTableProps } from './BiampTable';
 export {
+  BiampTableContainer,
+  type BiampTableContainerProps,
+} from './BiampTableContainer';
+export {
   BiampTableColumnVisibility,
   type BiampTableColumnVisibilityProps,
   getColumnVisibilityDirtyCount,
