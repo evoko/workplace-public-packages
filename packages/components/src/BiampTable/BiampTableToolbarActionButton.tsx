@@ -21,26 +21,31 @@ export function BiampTableToolbarActionButton({
   badgeContent,
   ...props
 }: BiampTableToolbarActionButtonProps) {
+  const showBadge = badgeContent != null && badgeContent !== 0;
+
   return (
     <IconButton aria-label={label} {...props}>
-      <Badge
-        badgeContent={badgeContent}
-        color="info"
-        showZero={false}
-        variant="dot"
-        sx={{
-          '& .MuiBadge-badge': {
-            width: 6,
-            height: 6,
-            minWidth: 6,
-            borderRadius: '50%',
-            top: 0,
-            right: -3,
-          },
-        }}
-      >
-        {icon}
-      </Badge>
+      {showBadge ? (
+        <Badge
+          badgeContent={badgeContent}
+          color="info"
+          variant="dot"
+          sx={{
+            '& .MuiBadge-badge': {
+              width: 6,
+              height: 6,
+              minWidth: 6,
+              borderRadius: '50%',
+              top: 0,
+              right: -3,
+            },
+          }}
+        >
+          {icon}
+        </Badge>
+      ) : (
+        icon
+      )}
     </IconButton>
   );
 }

@@ -12,6 +12,7 @@ import {
   type Theme,
 } from '@mui/material';
 import type { Table, VisibilityState } from '@tanstack/react-table';
+import { useEffect, useRef } from 'react';
 
 /**
  * Returns the number of columns whose visibility differs from the default.
@@ -38,6 +39,8 @@ export type BiampTableColumnVisibilityProps<TData> = Omit<
 > & {
   /** TanStack Table instance to connect to. */
   table: Table<TData>;
+  /** Called after column visibility changes. */
+  onChange?: (visibility: VisibilityState) => void;
 };
 
 const columnListItemSx: SxProps<Theme> = {
@@ -54,12 +57,22 @@ const columnListItemSx: SxProps<Theme> = {
 
 export function BiampTableColumnVisibility<TData>({
   table,
+  onChange,
   anchorEl,
   anchorOrigin = { vertical: 'bottom', horizontal: 'right' },
   transformOrigin = { vertical: 'top', horizontal: 'right' },
   slotProps,
   ...popoverProps
 }: BiampTableColumnVisibilityProps<TData>) {
+  const visibility = table.getState().columnVisibility;
+  const prevVisibilityRef = useRef(visibility);
+
+  useEffect(() => {
+    if (prevVisibilityRef.current === visibility) return;
+    prevVisibilityRef.current = visibility;
+    onChange?.(visibility);
+  }, [visibility, onChange]);
+
   const allVisible = table
     .getAllLeafColumns()
     .every((col) => col.getIsVisible());

@@ -12,7 +12,7 @@ import {
   type Theme,
 } from '@mui/material';
 import { flexRender, type Table } from '@tanstack/react-table';
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import './tanstack-meta';

@@ -1,14 +1,29 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Stack,
+  Typography,
+} from '@mui/material';
 import {
   BiampTable,
   BiampTableColumnVisibility,
   BiampTableEmptyState,
   BiampTableErrorState,
   BiampTablePagination,
+  BiampTableToolbar,
   BiampTableToolbarActionButton,
+  BiampTableToolbarActions,
+  BiampTableToolbarExport,
+  BiampTableToolbarFilters,
+  BiampTableToolbarSearch,
   getColumnVisibilityDirtyCount,
+  useDebouncedCallback,
 } from '@bwp-web/components';
 import { ColumnIcon } from '@bwp-web/assets';
 import {
@@ -710,6 +725,170 @@ export const WithActionColumn: Story = {
           see it stay pinned.
         </Typography>
         <BiampTable table={table} />
+      </Stack>
+    );
+  },
+};
+
+/**
+ * Simulates a server-side fetch with filtering, sorting, and pagination.
+ * Returns a page of data plus a total count after a 600ms delay.
+ */
+function simulateFetch(params: {
+  search: string;
+  status: string;
+  sorting: SortingState;
+  pagination: PaginationState;
+}): Promise<{ data: Room[]; total: number }> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      let data = [...rows];
+
+      // Filter
+      if (params.search) {
+        const lower = params.search.toLowerCase();
+        data = data.filter((r) => r.name.toLowerCase().includes(lower));
+      }
+      if (params.status) {
+        data = data.filter((r) => r.status === params.status);
+      }
+
+      // Sort
+      if (params.sorting.length) {
+        const { id, desc } = params.sorting[0];
+        data.sort((a, b) => {
+          const av = a[id as keyof Room];
+          const bv = b[id as keyof Room];
+          return (av < bv ? -1 : av > bv ? 1 : 0) * (desc ? -1 : 1);
+        });
+      }
+
+      // Paginate
+      const total = data.length;
+      const start = params.pagination.pageIndex * params.pagination.pageSize;
+      data = data.slice(start, start + params.pagination.pageSize);
+
+      resolve({ data, total });
+    }, 600);
+  });
+}
+
+export const WithToolbar: Story = {
+  render: () => {
+    const [search, setSearch] = useState('');
+    const [filterStatus, setFilterStatus] = useState('');
+    const [exporting, setExporting] = useState(false);
+    const [sorting, setSorting] = useState<SortingState>([]);
+    const [pagination, setPagination] = useState<PaginationState>({
+      pageIndex: 0,
+      pageSize: 5,
+    });
+    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
+      {},
+    );
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+    const [data, setData] = useState<Room[]>([]);
+    const [total, setTotal] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const fetchIdRef = useRef(0);
+
+    // Debounce the fetch so rapid actions (e.g. clicking sort 3 times quickly,
+    // toggling filters) collapse into a single request after 300ms of inactivity.
+    const debouncedFetch = useDebouncedCallback(() => {
+      const id = ++fetchIdRef.current;
+      setLoading(true);
+      simulateFetch({ search, status: filterStatus, sorting, pagination }).then(
+        (result) => {
+          if (id !== fetchIdRef.current) return;
+          setData(result.data);
+          setTotal(result.total);
+          setLoading(false);
+        },
+      );
+    });
+
+    useEffect(() => {
+      debouncedFetch();
+    }, [search, filterStatus, sorting, pagination, debouncedFetch]);
+
+    const table = useReactTable({
+      data,
+      columns,
+      getCoreRowModel: coreRowModel,
+      manualSorting: true,
+      manualPagination: true,
+      rowCount: total,
+      state: { sorting, pagination, columnVisibility },
+      onSortingChange: setSorting,
+      onPaginationChange: setPagination,
+      onColumnVisibilityChange: setColumnVisibility,
+    });
+
+    const activeFilterCount = filterStatus ? 1 : 0;
+
+    const handleExport = () => {
+      setExporting(true);
+      setTimeout(() => setExporting(false), 2000);
+    };
+
+    return (
+      <Stack spacing={2} height="100%">
+        <Typography variant="h3">Table with Toolbar</Typography>
+        <Typography variant="body2">
+          Simulates server-side data with a 600ms fetch delay. Search is
+          debounced (300ms) before updating state. Sort, filter, and pagination
+          changes trigger a new fetch immediately via TanStack state.
+        </Typography>
+        <BiampTableToolbar>
+          <BiampTableToolbarSearch
+            onChange={setSearch}
+            placeholder="Search rooms..."
+          />
+          <BiampTableToolbarActions>
+            <BiampTableToolbarFilters
+              activeFilterCount={activeFilterCount}
+              onReset={() => setFilterStatus('')}
+            >
+              <FormControl fullWidth size="small">
+                <InputLabel>Status</InputLabel>
+                <Select
+                  value={filterStatus}
+                  label="Status"
+                  onChange={(e) => setFilterStatus(e.target.value)}
+                >
+                  <MenuItem value="">All</MenuItem>
+                  <MenuItem value="Available">Available</MenuItem>
+                  <MenuItem value="Occupied">Occupied</MenuItem>
+                  <MenuItem value="Maintenance">Maintenance</MenuItem>
+                </Select>
+              </FormControl>
+            </BiampTableToolbarFilters>
+            <BiampTableToolbarActionButton
+              label="Toggle column visibility"
+              icon={<ColumnIcon />}
+              badgeContent={getColumnVisibilityDirtyCount(table)}
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                setAnchorEl(e.currentTarget)
+              }
+            />
+            <BiampTableColumnVisibility
+              table={table}
+              anchorEl={anchorEl}
+              onClose={() => setAnchorEl(null)}
+            />
+            <BiampTableToolbarExport
+              onExport={handleExport}
+              loading={exporting}
+            />
+          </BiampTableToolbarActions>
+        </BiampTableToolbar>
+        <BiampTable table={table} loading={loading} />
+        <BiampTablePagination
+          table={table}
+          rowsPerPageOptions={[5, 10, 15]}
+          loading={loading}
+        />
       </Stack>
     );
   },
