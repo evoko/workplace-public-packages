@@ -1,11 +1,8 @@
 import {
   CheckedIcon,
-  ChevronRight,
-  DatePickerIcon,
   ErrorStatusIcon,
   IndeterminateIcon,
   InfoStatusIcon,
-  InputCloseIcon,
   MontserratBold,
   MontserratMedium,
   MontserratSemiBold,
@@ -17,9 +14,14 @@ import {
   OpenSansRegularItalic,
   OpenSansSemiBold,
   OpenSansSemiBoldItalic,
+  RadioCheckedIcon,
+  RadioUncheckedIcon,
   SuccessStatusIcon,
   UncheckedIcon,
   WarningStatusIcon,
+  CloseIcon,
+  ChevronRightIcon,
+  CalendarIcon,
 } from '@bwp-web/assets';
 import { alpha, createTheme } from '@mui/material/styles';
 
@@ -486,6 +488,15 @@ export const biampTheme = (
             },
           },
           styleOverrides: {
+            root: {
+              paddingLeft: '12px',
+              paddingRight: '12px',
+              boxShadow: `0px 4px 50px 0px ${alpha(colors.grey[900], 0.1)}`,
+              height: 'fit-content',
+              width: 'fit-content',
+              borderWidth: '1px !important',
+              borderStyle: 'solid',
+            },
             message: ({ theme }) => ({
               paddingTop: 0,
               paddingBottom: 0,
@@ -493,29 +504,32 @@ export const biampTheme = (
               fontWeight: 600,
               letterSpacing: theme.typography.body1.letterSpacing,
               lineHeight: theme.typography.body1.lineHeight,
+              alignItems: 'center',
+              display: 'flex',
             }),
             icon: {
               paddingTop: 0,
               paddingBottom: 0,
+              alignItems: 'center',
             },
             standard: ({ theme }) => ({
               color: theme.palette.text.primary,
-              border: `1px solid`,
+              border: `16px solid ${theme.palette.success.main}`,
             }),
             standardError: ({ theme }) => ({
-              borderColor: theme.palette.error.main,
+              border: `16px solid ${theme.palette.error.main}`,
               backgroundColor: theme.palette.background.error,
             }),
             standardInfo: ({ theme }) => ({
-              borderColor: theme.palette.info.main,
+              border: `16px solid ${theme.palette.info.main}`,
               backgroundColor: theme.palette.background.info,
             }),
             standardSuccess: ({ theme }) => ({
-              borderColor: theme.palette.success.main,
+              border: `16px solid ${theme.palette.success.main}`,
               backgroundColor: theme.palette.background.success,
             }),
             standardWarning: ({ theme }) => ({
-              borderColor: theme.palette.warning.main,
+              border: `16px solid ${theme.palette.warning.main}`,
               backgroundColor: theme.palette.background.warning,
             }),
           },
@@ -708,7 +722,7 @@ export const biampTheme = (
         },
         MuiBreadcrumbs: {
           defaultProps: {
-            separator: <ChevronRight />,
+            separator: <ChevronRightIcon variant="xs" />,
           },
           styleOverrides: {
             root: ({ theme }) => ({
@@ -1000,13 +1014,77 @@ export const biampTheme = (
           },
         },
         MuiRadio: {
+          defaultProps: {
+            disableRipple: true,
+            icon: <RadioUncheckedIcon />,
+            checkedIcon: <RadioCheckedIcon />,
+          },
           styleOverrides: {
-            root: {
+            root: ({ theme }) => ({
               color: colors.grey[400],
-              '&.Mui-checked': {
-                color: colors.blue.main,
+              '&:hover': {
+                backgroundColor: 'transparent',
               },
-            },
+              '&.Mui-focusVisible': {
+                backgroundColor: 'transparent',
+              },
+              '& .MuiTouchRipple-root': {
+                display: 'none',
+              },
+              '& .MuiSvgIcon-root': {
+                fontSize: 18,
+              },
+              '&.Mui-disabled': {
+                '& .radio-ring': {
+                  stroke:
+                    theme.palette.mode === 'dark'
+                      ? colors.grey[700]
+                      : colors.sidebar,
+                },
+                '& .radio-dot': {
+                  fill:
+                    theme.palette.mode === 'dark'
+                      ? colors.grey[700]
+                      : colors.sidebar,
+                },
+              },
+            }),
+          },
+        },
+        MuiChip: {
+          defaultProps: {
+            deleteIcon: <CloseIcon variant="xxs" />,
+          },
+          styleOverrides: {
+            root: ({ theme }) => ({
+              backgroundColor: theme.palette.background.info,
+              height: 'auto',
+              color: theme.palette.text.primary,
+              borderRadius: 999,
+              border: `0.6px solid ${theme.palette.dividers.secondary}`,
+              padding: '0px 8px 0px 12px',
+              fontSize: theme.typography.caption.fontSize,
+              fontWeight: theme.typography.caption.fontWeight,
+              letterSpacing: theme.typography.caption.letterSpacing,
+              lineHeight: theme.typography.caption.lineHeight,
+            }),
+            label: ({ theme }) => ({
+              padding: 0,
+              fontSize: theme.typography.caption.fontSize,
+              fontWeight: theme.typography.caption.fontWeight,
+              letterSpacing: theme.typography.caption.letterSpacing,
+              lineHeight: theme.typography.caption.lineHeight,
+              color: theme.palette.text.primary,
+            }),
+            deleteIcon: ({ theme }) => ({
+              margin: 0,
+              marginLeft: 8,
+              fontSize: 12,
+              color: theme.palette.text.primary,
+              '& hover': {
+                color: theme.palette.text.secondary,
+              },
+            }),
           },
         },
         MuiSwitch: {
@@ -1268,7 +1346,7 @@ export const biampTheme = (
         },
         MuiAutocomplete: {
           defaultProps: {
-            clearIcon: <InputCloseIcon sx={{ width: 24, height: 24 }} />,
+            clearIcon: <CloseIcon variant="xxs" />,
           },
           styleOverrides: {
             inputRoot: {
@@ -1323,7 +1401,7 @@ export const biampTheme = (
         MuiDatePicker: {
           defaultProps: {
             slots: {
-              openPickerIcon: DatePickerIcon,
+              openPickerIcon: CalendarIcon,
             },
             slotProps: {
               openPickerButton: {

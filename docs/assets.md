@@ -33,33 +33,65 @@ function Header() {
 }
 ```
 
-### Component Icons
+### Layout Icons
 
-Icons used directly in Biamp Workplace components (header, sidebar, app launcher).
+Icons used in the Biamp Workplace shell (header, sidebar, app launcher).
 
-| Icon | Description |
-|------|-------------|
-| `BiampLogoIcon` | Biamp wordmark logo. Theme-aware — renders dark text in light mode and white text in dark mode |
-| `SearchIcon` | 16×16 magnifying glass icon using `currentColor` |
-| `AppsIcon` | 24×24 nine-dot grid icon with a fixed grey fill (#878787) |
-| `AppsIconFilled` | 24×24 filled nine-dot grid icon using `currentColor` |
+| Icon             | Description                                                                                    |
+| ---------------- | ---------------------------------------------------------------------------------------------- |
+| `BiampLogoIcon`  | Biamp wordmark logo. Theme-aware — renders dark text in light mode and white text in dark mode |
+| `SearchIcon`     | 16×16 magnifying glass icon using `currentColor`                                               |
+| `AppsIcon`       | 24×24 nine-dot grid icon with a fixed grey fill (#878787)                                      |
+| `AppsIconFilled` | 24×24 filled nine-dot grid icon using `currentColor`                                           |
 
 ### Theme Icons
 
-Icons used internally by the `@bwp-web/styles` theme for MUI component overrides (alerts, checkboxes, breadcrumbs, date picker, autocomplete).
+Icons used internally by the `@bwp-web/styles` theme for MUI component overrides (alerts, checkboxes, radio buttons). Status icons are theme-aware and adapt to dark/light mode.
 
-| Icon | Description |
-|------|-------------|
-| `CheckedIcon` | 16×16 filled checkbox with a white checkmark |
-| `UncheckedIcon` | 16×16 empty checkbox outline |
-| `IndeterminateIcon` | 16×16 checkbox with a white horizontal dash |
-| `BreadcrumbIcon` | 16×16 right-pointing arrow separator |
-| `DatePickerIcon` | 24×24 calendar icon |
-| `InputCloseIcon` | 24×24 close (×) icon for clearing inputs |
-| `ErrorStatusIcon` | 14×14 circular error indicator with exclamation mark. Theme-aware colours and drop shadow |
+| Icon                | Description                                                                                   |
+| ------------------- | --------------------------------------------------------------------------------------------- |
+| `CheckedIcon`       | 16×16 filled checkbox with a white checkmark                                                  |
+| `UncheckedIcon`     | 16×16 empty checkbox outline                                                                  |
+| `IndeterminateIcon` | 16×16 checkbox with a white horizontal dash                                                   |
+| `ErrorStatusIcon`   | 14×14 circular error indicator with exclamation mark. Theme-aware colours and drop shadow     |
 | `WarningStatusIcon` | 16×14 triangular warning indicator with exclamation mark. Theme-aware colours and drop shadow |
-| `InfoStatusIcon` | 14×14 circular info indicator with "i" mark. Theme-aware colours and drop shadow |
-| `SuccessStatusIcon` | 14×14 circular success indicator with checkmark. Theme-aware colours and drop shadow |
+| `InfoStatusIcon`    | 14×14 circular info indicator with "i" mark. Theme-aware colours and drop shadow              |
+| `SuccessStatusIcon` | 14×14 circular success indicator with checkmark. Theme-aware colours and drop shadow          |
+
+### Icon Groups
+
+Icons are organised into size-based folders. Each folder corresponds to a fixed pixel size:
+
+| Folder        | Variant | Size |
+| ------------- | ------- | ---- |
+| `icons_xxxxs` | `xxxxs` | 6px  |
+| `icons_xxxs`  | `xxxs`  | 8px  |
+| `icons_xxs`   | `xxs`   | 12px |
+| `icons_xs`    | `xs`    | 16px |
+| `icons_sm`    | `sm`    | 20px |
+| `icons_md`    | `md`    | 24px |
+| `icons_lg`    | `lg`    | 32px |
+| `icons_xl`    | `xl`    | 40px |
+| `icons_xxl`   | `xxl`   | 56px |
+| `icons_xxxl`  | `xxxl`  | 72px |
+
+Icons that appear in multiple size folders are grouped into `icons_multisize` and exported as a single component that accepts a `variant` prop. The default variant is `md` (24px).
+
+```tsx
+import { CloseIcon, BadgeLiveIcon } from '@bwp-web/assets';
+
+// Single-size icon (no variant prop)
+<BadgeLiveIcon />  // always 6px (xxxxs)
+
+// Multi-size icon — default is md (24px)
+<CloseIcon />
+
+// Multi-size icon — explicit variant
+<CloseIcon variant="xs" />  // 16px
+<CloseIcon variant="xxs" /> // 12px
+```
+
+The full icon catalog is browsable in Storybook under **Assets > Icons > Icon Groups**.
 
 ### Sizing
 
@@ -77,8 +109,8 @@ All images are inlined as data URLs during the build, so no additional asset pip
 
 ### `BiampRedLogo`
 
-| Export | Type | Description |
-|--------|------|-------------|
+| Export         | Type     | Description                              |
+| -------------- | -------- | ---------------------------------------- |
 | `BiampRedLogo` | `string` | Data URL of the 24×24 Biamp red logo PNG |
 
 #### Usage
@@ -103,12 +135,12 @@ function Logo() {
 
 PNG images for the app-launcher dialog tiles. Each export is a `string` that resolves to a data URL.
 
-| Export | Description |
-|--------|-------------|
-| `BookingApp` | Biamp Booking application icon |
-| `CommandApp` | Biamp Command application icon |
-| `ConnectApp` | Biamp Connect application icon |
-| `DesignerApp` | Biamp Designer application icon |
+| Export         | Description                      |
+| -------------- | -------------------------------- |
+| `BookingApp`   | Biamp Booking application icon   |
+| `CommandApp`   | Biamp Command application icon   |
+| `ConnectApp`   | Biamp Connect application icon   |
+| `DesignerApp`  | Biamp Designer application icon  |
 | `WorkplaceApp` | Biamp Workplace application icon |
 
 #### Usage
@@ -150,24 +182,24 @@ All font files used by the Biamp Workplace theme are bundled as data URLs, just 
 
 **Open Sans** (woff2) — used as the default body font:
 
-| Export | Weight | Style |
-|--------|--------|-------|
-| `OpenSansRegular` | 400 | normal |
-| `OpenSansRegularItalic` | 400 | italic |
-| `OpenSansSemiBold` | 600 | normal |
-| `OpenSansSemiBoldItalic` | 600 | italic |
-| `OpenSansBold` | 700 | normal |
-| `OpenSansBoldItalic` | 700 | italic |
-| `OpenSansExtraBold` | 800 | normal |
-| `OpenSansExtraBoldItalic` | 800 | italic |
+| Export                    | Weight | Style  |
+| ------------------------- | ------ | ------ |
+| `OpenSansRegular`         | 400    | normal |
+| `OpenSansRegularItalic`   | 400    | italic |
+| `OpenSansSemiBold`        | 600    | normal |
+| `OpenSansSemiBoldItalic`  | 600    | italic |
+| `OpenSansBold`            | 700    | normal |
+| `OpenSansBoldItalic`      | 700    | italic |
+| `OpenSansExtraBold`       | 800    | normal |
+| `OpenSansExtraBoldItalic` | 800    | italic |
 
 **Montserrat** (ttf) — used for headings (h0, h1, h2, h4):
 
-| Export | Weight | Style |
-|--------|--------|-------|
-| `MontserratMedium` | 500 | normal |
-| `MontserratSemiBold` | 600 | normal |
-| `MontserratBold` | 700 | normal |
+| Export               | Weight | Style  |
+| -------------------- | ------ | ------ |
+| `MontserratMedium`   | 500    | normal |
+| `MontserratSemiBold` | 600    | normal |
+| `MontserratBold`     | 700    | normal |
 
 ### Usage with the Biamp Theme (Recommended)
 
@@ -219,20 +251,26 @@ const fontFaceCSS = `
 
 ### Icons
 
+There are 220+ icon exports in total. See Storybook (**Assets > Icons > Icon Groups**) for the full catalog.
+
+**Layout icons** (used in the shell):
+
 - `BiampLogoIcon` — Biamp wordmark logo (theme-aware).
-- `SearchIcon` — Magnifying glass search icon.
+- `SearchIcon` — Magnifying glass search icon (multi-variant).
 - `AppsIcon` — Nine-dot grid icon (grey).
 - `AppsIconFilled` — Nine-dot grid icon (filled, currentColor).
+
+**Theme icons** (used internally by `@bwp-web/styles`):
+
 - `CheckedIcon` — Filled checkbox with checkmark.
 - `UncheckedIcon` — Empty checkbox outline.
 - `IndeterminateIcon` — Checkbox with horizontal dash.
-- `BreadcrumbIcon` — Right-pointing arrow separator.
-- `DatePickerIcon` — Calendar icon.
-- `InputCloseIcon` — Close (×) icon.
-- `ErrorStatusIcon` — Circular error status indicator.
-- `WarningStatusIcon` — Triangular warning status indicator.
-- `InfoStatusIcon` — Circular info status indicator.
-- `SuccessStatusIcon` — Circular success status indicator.
+- `ErrorStatusIcon` — Circular error status indicator (theme-aware).
+- `WarningStatusIcon` — Triangular warning status indicator (theme-aware).
+- `InfoStatusIcon` — Circular info status indicator (theme-aware).
+- `SuccessStatusIcon` — Circular success status indicator (theme-aware).
+
+**General icons** — 200+ icons covering common UI actions, devices, and workplace concepts. See Storybook for the full list.
 
 ### Images
 
