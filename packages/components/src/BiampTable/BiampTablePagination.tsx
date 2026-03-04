@@ -9,12 +9,15 @@ export type BiampTablePaginationProps<TData> = BoxProps & {
   rowsPerPageOptions?: number[];
   /** When true, keeps the previous row count visible instead of dropping to 0. */
   loading?: boolean;
+  /** Hide pagination when all rows fit on one page. @default true */
+  autoHide?: boolean;
 };
 
 export function BiampTablePagination<TData>({
   table,
   rowsPerPageOptions,
   loading,
+  autoHide = true,
   ...boxProps
 }: BiampTablePaginationProps<TData>) {
   const rowCount = table.getRowCount();
@@ -26,6 +29,9 @@ export function BiampTablePagination<TData>({
   }
 
   const stableCount = loading ? lastRowCountRef.current : rowCount;
+  const pageSize = table.getState().pagination.pageSize;
+
+  if (autoHide && !loading && stableCount <= pageSize) return null;
 
   return (
     <Box {...boxProps}>
