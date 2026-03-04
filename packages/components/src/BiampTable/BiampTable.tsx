@@ -11,6 +11,10 @@ import {
   TableSortLabel,
   type Theme,
 } from '@mui/material';
+import {
+  DropdownChevronDownIcon,
+  DropdownChevronUpIcon,
+} from '@bwp-web/assets';
 import { flexRender, type Table } from '@tanstack/react-table';
 import React, { type ReactNode } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
@@ -151,6 +155,12 @@ export function BiampTable<TData>({
                         active={!!header.column.getIsSorted()}
                         direction={header.column.getIsSorted() || 'asc'}
                         onClick={header.column.getToggleSortingHandler()}
+                        {...(header.column.getIsSorted() && {
+                          IconComponent:
+                            header.column.getIsSorted() === 'asc'
+                              ? DropdownChevronUpIcon
+                              : DropdownChevronDownIcon,
+                        })}
                       >
                         {flexRender(
                           header.column.columnDef.header,

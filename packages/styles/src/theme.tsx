@@ -25,6 +25,7 @@ import {
   ChevronFullLeftIcon,
   ChevronFullRightIcon,
   ChevronLeftIcon,
+  DropdownChevronDuoIcon,
 } from '@bwp-web/assets';
 import { alpha, createTheme } from '@mui/material/styles';
 
@@ -1091,10 +1092,13 @@ export const biampTheme = (
           },
         },
         MuiTableSortLabel: {
+          defaultProps: {
+            IconComponent: DropdownChevronDuoIcon,
+          },
           styleOverrides: {
             root: ({ theme }) => ({
               '&:hover': {
-                color: theme.palette.primary.main,
+                color: theme.palette.text.primary,
               },
               '&:focus:not(:hover)': {
                 color: 'unset',
@@ -1107,6 +1111,7 @@ export const biampTheme = (
               },
               '&.Mui-active': {
                 color: theme.palette.text.primary,
+                fontWeight: 600,
                 '& .MuiTableSortLabel-icon': {
                   color: theme.palette.text.primary,
                   opacity: 1,
@@ -1114,6 +1119,10 @@ export const biampTheme = (
               },
             }),
             icon: ({ theme }) => ({
+              fontSize: 16,
+              transform: 'none',
+              marginLeft: '12px',
+              marginRight: 0,
               transition: theme.transitions.create(['transform', 'opacity'], {
                 duration: theme.transitions.duration.standard,
                 easing: theme.transitions.easing.easeInOut,
