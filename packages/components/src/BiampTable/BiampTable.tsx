@@ -110,33 +110,42 @@ export function BiampTable<TData>({
                   />
                 </TableCell>
               )}
-              {headerGroup.headers.map((header) => (
-                <TableCell
-                  key={header.id}
-                  sortDirection={header.column.getIsSorted() || false}
-                  sx={{
-                    minWidth: header.column.columnDef.meta?.minWidth ?? 40,
-                  }}
-                >
-                  {header.isPlaceholder ? null : header.column.getCanSort() ? (
-                    <TableSortLabel
-                      active={!!header.column.getIsSorted()}
-                      direction={header.column.getIsSorted() || 'asc'}
-                      onClick={header.column.getToggleSortingHandler()}
-                    >
-                      {flexRender(
+              {headerGroup.headers.map((header) => {
+                const sticky = header.column.columnDef.meta?.sticky;
+                return (
+                  <TableCell
+                    key={header.id}
+                    sortDirection={header.column.getIsSorted() || false}
+                    sx={{
+                      minWidth: header.column.columnDef.meta?.minWidth ?? 40,
+                      ...(sticky && {
+                        position: 'sticky',
+                        [sticky]: 0,
+                        zIndex: 3,
+                        bgcolor: 'background.paper',
+                      }),
+                    }}
+                  >
+                    {header.isPlaceholder ? null : header.column.getCanSort() ? (
+                      <TableSortLabel
+                        active={!!header.column.getIsSorted()}
+                        direction={header.column.getIsSorted() || 'asc'}
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                      </TableSortLabel>
+                    ) : (
+                      flexRender(
                         header.column.columnDef.header,
                         header.getContext(),
-                      )}
-                    </TableSortLabel>
-                  ) : (
-                    flexRender(
-                      header.column.columnDef.header,
-                      header.getContext(),
-                    )
-                  )}
-                </TableCell>
-              ))}
+                      )
+                    )}
+                  </TableCell>
+                );
+              })}
             </TableRow>
           ))}
         </TableHead>
@@ -212,19 +221,34 @@ export function BiampTable<TData>({
                       />
                     </TableCell>
                   )}
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell
-                      key={cell.id}
-                      sx={{
-                        minWidth: cell.column.columnDef.meta?.minWidth ?? 40,
-                      }}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </TableCell>
-                  ))}
+                  {row.getVisibleCells().map((cell) => {
+                    const sticky = cell.column.columnDef.meta?.sticky;
+                    return (
+                      <TableCell
+                        key={cell.id}
+                        sx={{
+                          minWidth: cell.column.columnDef.meta?.minWidth ?? 40,
+                          ...(sticky && {
+                            position: 'sticky',
+                            [sticky]: 0,
+                            zIndex: 2,
+                            bgcolor: 'background.paper',
+                            '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
+                              bgcolor: ({ palette }: Theme) =>
+                                palette.mode === 'dark'
+                                  ? palette.grey[800]
+                                  : palette.grey[100],
+                            },
+                          }),
+                        }}
+                      >
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </TableCell>
+                    );
+                  })}
                 </TableRow>
               );
             })

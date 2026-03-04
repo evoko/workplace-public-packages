@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import {
   BiampTable,
   BiampTableColumnVisibility,
@@ -671,6 +671,39 @@ export const EmptyStateCustom: Story = {
             <BiampTableEmptyState description="No rooms match your filters." />
           }
         />
+      </Stack>
+    );
+  },
+};
+
+export const WithActionColumn: Story = {
+  render: () => {
+    const columnsWithAction = [
+      ...deviceColumns,
+      deviceColumnHelper.display({
+        id: 'actions',
+        header: '',
+        meta: { sticky: 'right', minWidth: 48 },
+        cell: ({ row }) => (
+          <Button onClick={() => console.log(row)}>Press me!</Button>
+        ),
+      }),
+    ];
+
+    const table = useReactTable({
+      data: deviceRows,
+      columns: columnsWithAction,
+      getCoreRowModel: coreRowModel,
+    });
+
+    return (
+      <Stack spacing={3} height={'100%'}>
+        <Typography variant="h3">Table with Action Column</Typography>
+        <Typography variant="body2">
+          The action column is sticky to the right edge. Scroll horizontally to
+          see it stay pinned.
+        </Typography>
+        <BiampTable table={table} />
       </Stack>
     );
   },
