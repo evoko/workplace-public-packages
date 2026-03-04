@@ -8,7 +8,7 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import { FilterIcon, InputCloseIcon } from '@bwp-web/assets';
+import { CloseIcon, FilterIcon } from '@bwp-web/assets';
 import { type ReactNode, useState } from 'react';
 import { BiampTableToolbarActionButton } from './BiampTableToolbarActionButton';
 
@@ -104,7 +104,7 @@ export function BiampTableToolbarFilters({
                 onClick={handleClose}
                 aria-label={closeLabel}
               >
-                <InputCloseIcon />
+                <CloseIcon />
               </IconButton>
             </Box>
             <Divider />

@@ -16,7 +16,7 @@ export const Default: Story = {
     <Stack spacing={3}>
       <Typography variant="h3">Breadcrumbs</Typography>
       <Typography variant="body2" color="text.secondary">
-        Uses the custom BreadcrumbIcon separator from the theme.
+        Uses the ChevronRightIcon separator from the theme.
       </Typography>
 
       <Breadcrumbs>

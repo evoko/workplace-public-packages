@@ -4,7 +4,7 @@ import {
   TextField,
   type TextFieldProps,
 } from '@mui/material';
-import { InputCloseIcon, SearchIcon } from '@bwp-web/assets';
+import { CloseIcon, SearchIcon } from '@bwp-web/assets';
 import { useEffect, useState } from 'react';
 import {
   BIAMP_TABLE_DEBOUNCE_DELAY,
@@ -84,7 +84,7 @@ export function BiampTableToolbarSearch({
                 aria-label={clearLabel}
                 sx={{ mr: 0.5 }}
               >
-                <InputCloseIcon sx={{ width: 20, height: 20 }} />
+                <CloseIcon variant="xs" sx={{ width: 20, height: 20 }} />
               </IconButton>
             </InputAdornment>
           ) : null,
