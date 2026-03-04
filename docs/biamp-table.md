@@ -10,8 +10,8 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.11.1
-- `@bwp-web/styles` >= 0.11.1
+- `@bwp-web/assets` >= 0.11.2
+- `@bwp-web/styles` >= 0.11.2
 - `@mui/material` >= 7.0.0
 - `@tanstack/react-table` >= 8.0.0
 - `react` >= 18.0.0
@@ -85,6 +85,7 @@ TanStack column definitions accept a `meta` object with these additional propert
 |----------|------|-------------|
 | `minWidth` | `number \| string` | CSS min-width applied to the column's header and body cells. Defaults to `40`. |
 | `sticky` | `'left' \| 'right'` | Makes the column sticky to the specified edge of the table. |
+| `defaultVisible` | `boolean` | Whether the column is visible by default. Defaults to `true`. Used by `getDefaultColumnVisibility` and `getColumnVisibilityDirtyCount`. |
 
 ```tsx
 columnHelper.accessor('name', {
@@ -225,6 +226,8 @@ Debounced search input with a clear button. Extends MUI `TextFieldProps` (except
 | `maxWidth` | `number` | `280` | Maximum width of the text field |
 | `placeholder` | `string` | `'Search'` | Placeholder text (also used as `aria-label`) |
 | `clearLabel` | `string` | `'Clear search'` | Accessible label for the clear button |
+| `expandable` | `boolean` | `false` | When `true`, collapses to an icon button when empty and unfocused |
+| `expandLabel` | `string` | placeholder | Accessible label for the collapsed icon button |
 | _...rest_ | `TextFieldProps` | — | All other MUI `TextField` props are forwarded |
 
 ---
@@ -342,7 +345,7 @@ Popover with a checklist for toggling column visibility. Extends MUI `PopoverPro
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `table` | `Table<TData>` | _(required)_ | TanStack Table instance |
-| `onChange` | `(visibility: VisibilityState) => void` | — | Called after column visibility changes |
+| `onChange` | `(visibility: ColumnVisibility) => void` | — | Called after column visibility changes |
 | `showAllLabel` | `string` | `'Show all'` | Label for the "show all" toggle |
 | _...rest_ | `PopoverProps` | — | All other MUI `Popover` props are forwarded |
 
@@ -360,6 +363,30 @@ const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   anchorEl={anchorEl}
   onClose={() => setAnchorEl(null)}
 />
+```
+
+---
+
+### `BiampTableToolbarColumnVisibility`
+
+Self-managing column visibility button that renders both the trigger button and the popover internally. Eliminates the boilerplate of managing `anchorEl` state, wiring up the badge count, and rendering the popover separately. Extends `BiampTableToolbarActionButtonProps` (except `icon`, `label`, `onClick`, `badgeContent`).
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `table` | `Table<TData>` | _(required)_ | TanStack Table instance |
+| `icon` | `ReactNode` | `<ColumnsIcon />` | Icon for the trigger button |
+| `label` | `string` | `'Columns'` | Accessible label for the trigger button |
+| `defaultColumnVisibility` | `ColumnVisibility` | — | Default visibility map for badge count. When omitted, auto-derived from `meta.defaultVisible` |
+| `onChange` | `(visibility: ColumnVisibility) => void` | — | Called after column visibility changes |
+| `showAllLabel` | `string` | `'Show all'` | Label for the "show all" toggle |
+| _...rest_ | `BiampTableToolbarActionButtonProps` | — | All other action button props are forwarded |
+
+```tsx
+<BiampTableToolbarActions>
+  <BiampTableToolbarColumnVisibility table={table} />
+</BiampTableToolbarActions>
 ```
 
 ---
@@ -424,7 +451,7 @@ const debouncedSearch = useDebouncedCallback((value: string) => {
 
 ### `getColumnVisibilityDirtyCount`
 
-Returns the number of columns whose visibility differs from the default state.
+Returns the number of columns whose visibility differs from the default state. When `defaultVisibility` is omitted, auto-derives from `meta.defaultVisible` on each column.
 
 ```tsx
 import { getColumnVisibilityDirtyCount } from '@bwp-web/components';
@@ -432,6 +459,46 @@ import { getColumnVisibilityDirtyCount } from '@bwp-web/components';
 const dirtyCount = getColumnVisibilityDirtyCount(table);
 // or with a custom default:
 const dirtyCount = getColumnVisibilityDirtyCount(table, { name: true, status: false });
+```
+
+### `getDefaultColumnVisibility`
+
+Reads `meta.defaultVisible` from all leaf columns and returns a `ColumnVisibility` map. Columns without `defaultVisible` are omitted (treated as visible).
+
+```tsx
+import { getDefaultColumnVisibility } from '@bwp-web/components';
+
+const defaults = getDefaultColumnVisibility(table);
+// e.g. { notes: false } if the "notes" column has meta: { defaultVisible: false }
+```
+
+### `ColumnVisibility`
+
+Type alias for `Partial<Record<string, boolean>>` — a looser alternative to TanStack's `VisibilityState` (`Record<string, boolean>`). Eliminates the need for `as VisibilityState` casts when working with URL params or partial objects.
+
+```tsx
+import { type ColumnVisibility } from '@bwp-web/components';
+
+const visibility: ColumnVisibility = { name: true, notes: false };
+```
+
+### `exportToCsv` / `buildCsvString`
+
+Pure utilities for CSV generation and download. No React dependencies.
+
+```tsx
+import { exportToCsv, buildCsvString, type ExportColumn } from '@bwp-web/components';
+
+const columns: ExportColumn<Device>[] = [
+  { header: 'Name', accessor: (row) => row.name },
+  { header: 'Status', accessor: (row) => row.status },
+];
+
+// Download as CSV file
+exportToCsv(data, columns, 'devices');
+
+// Or just build the CSV string
+const csvString = buildCsvString(data, columns);
 ```
 
 ## Accessibility
@@ -457,6 +524,7 @@ The BiampTable components follow WCAG 2.1 AA guidelines:
 | `BiampTableContainer` | component | Layout wrapper for table + toolbar + pagination |
 | `BiampTableCellActionButton` | component | Icon button with tooltip for cell actions |
 | `BiampTableColumnVisibility` | component | Column visibility popover |
+| `BiampTableToolbarColumnVisibility` | component | Self-managing column visibility button + popover |
 | `BiampTableEmptyState` | component | Default empty-state message |
 | `BiampTableErrorState` | component | Default error-state message |
 | `BiampTablePagination` | component | Pagination controls |
@@ -469,4 +537,8 @@ The BiampTable components follow WCAG 2.1 AA guidelines:
 | `BiampTableToolbarSearch` | component | Debounced search input |
 | `useDebouncedCallback` | hook | Generic debounced callback |
 | `getColumnVisibilityDirtyCount` | function | Count columns with non-default visibility |
+| `getDefaultColumnVisibility` | function | Derive default visibility from column meta |
+| `exportToCsv` | function | Convert rows + columns to CSV and download |
+| `buildCsvString` | function | Build CSV string (no download) |
+| `ColumnVisibility` | type | Loose visibility state type alias |
 | `BIAMP_TABLE_DEBOUNCE_DELAY` | constant | Default debounce delay (`300ms`) |

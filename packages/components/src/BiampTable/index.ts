@@ -11,7 +11,13 @@ export {
   BiampTableColumnVisibility,
   type BiampTableColumnVisibilityProps,
   getColumnVisibilityDirtyCount,
+  getDefaultColumnVisibility,
+  type ColumnVisibility,
 } from './BiampTableColumnVisibility';
+export {
+  BiampTableToolbarColumnVisibility,
+  type BiampTableToolbarColumnVisibilityProps,
+} from './BiampTableToolbarColumnVisibility';
 export {
   BiampTableEmptyState,
   type BiampTableEmptyStateProps,
@@ -56,3 +62,4 @@ export {
   useDebouncedCallback,
   BIAMP_TABLE_DEBOUNCE_DELAY,
 } from './useDebouncedCallback';
+export { exportToCsv, buildCsvString, type ExportColumn } from './exportCsv';
