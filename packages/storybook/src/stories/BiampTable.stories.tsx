@@ -4,14 +4,18 @@ import { Box, Stack, Typography } from '@mui/material';
 import {
   BiampTable,
   BiampTableColumnVisibility,
+  BiampTablePagination,
   BiampTableToolbarActionButton,
 } from '@bwp-web/components';
 import { ColumnIcon } from '@bwp-web/assets';
 import {
   createColumnHelper,
   getCoreRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
   useReactTable,
   type RowSelectionState,
+  type SortingState,
   type VisibilityState,
 } from '@tanstack/react-table';
 
@@ -149,44 +153,81 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Table</Typography>
-      <BiampTable data={rows.slice(0, 5)} columns={columns} />
-    </Stack>
-  ),
+  render: () => {
+    const table = useReactTable({
+      data: rows.slice(0, 5),
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+    });
+
+    return (
+      <Stack spacing={3}>
+        <Typography variant="h3">Table</Typography>
+        <BiampTable table={table} />
+      </Stack>
+    );
+  },
 };
 
 export const WithSorting: Story = {
-  render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Table with Sorting</Typography>
-      <Typography variant="body2">
-        Click column headers to sort ascending/descending.
-      </Typography>
-      <BiampTable data={rows} columns={columns} enableSorting />
-    </Stack>
-  ),
+  render: () => {
+    const [sorting, setSorting] = useState<SortingState>([]);
+
+    const table = useReactTable({
+      data: rows,
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+      state: { sorting },
+      onSortingChange: setSorting,
+    });
+
+    return (
+      <Stack spacing={3}>
+        <Typography variant="h3">Table with Sorting</Typography>
+        <Typography variant="body2">
+          Click column headers to sort ascending/descending.
+        </Typography>
+        <BiampTable table={table} />
+      </Stack>
+    );
+  },
 };
 
 export const WithPagination: Story = {
-  render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Table with Pagination</Typography>
-      <BiampTable
-        data={rows}
-        columns={columns}
-        enablePagination
-        rowsPerPageOptions={[5, 10, 15]}
-      />
-    </Stack>
-  ),
+  render: () => {
+    const table = useReactTable({
+      data: rows,
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+      getPaginationRowModel: getPaginationRowModel(),
+      initialState: { pagination: { pageSize: 5, pageIndex: 0 } },
+    });
+
+    return (
+      <Stack spacing={3}>
+        <Typography variant="h3">Table with Pagination</Typography>
+        <BiampTable table={table} />
+        <BiampTablePagination table={table} rowsPerPageOptions={[5, 10, 15]} />
+      </Stack>
+    );
+  },
 };
 
 export const WithRowSelection: Story = {
   render: () => {
-    const [selection, setSelection] = useState<RowSelectionState>({});
-    const selectedCount = Object.keys(selection).length;
+    const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+    const selectedCount = Object.keys(rowSelection).length;
+
+    const table = useReactTable({
+      data: rows.slice(0, 5),
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+      getRowId: (row) => String(row.id),
+      enableRowSelection: true,
+      state: { rowSelection },
+      onRowSelectionChange: setRowSelection,
+    });
 
     return (
       <Stack spacing={3}>
@@ -194,55 +235,103 @@ export const WithRowSelection: Story = {
         <Typography variant="body2">
           {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected
         </Typography>
-        <BiampTable
-          data={rows.slice(0, 5)}
-          columns={columns}
-          getRowId={(row) => String(row.id)}
-          enableRowSelection
-          rowSelection={selection}
-          onRowSelectionChange={setSelection}
-        />
+        <BiampTable table={table} />
       </Stack>
     );
   },
 };
 
 export const WithColumnVisibility: Story = {
-  render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Table with Column Visibility</Typography>
-      <Typography variant="body2">
-        Use the column icon button to toggle column visibility.
-      </Typography>
-      <BiampTable
-        data={rows.slice(0, 5)}
-        columns={columns}
-        enableColumnVisibility
-      />
-    </Stack>
-  ),
-};
-
-export const CustomColumnVisibilityTrigger: Story = {
   render: () => {
+    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
+      {},
+    );
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-    const [visibility, setVisibility] = useState<VisibilityState>({});
 
     const table = useReactTable({
       data: rows.slice(0, 5),
       columns,
       getCoreRowModel: getCoreRowModel(),
-      onColumnVisibilityChange: setVisibility,
-      state: { columnVisibility: visibility },
+      state: { columnVisibility },
+      onColumnVisibilityChange: setColumnVisibility,
     });
 
     return (
       <Stack spacing={3}>
-        <Typography variant="h3">Custom Column Visibility Trigger</Typography>
+        <Typography variant="h3">Table with Column Visibility</Typography>
+        <Box display="flex" justifyContent="flex-end">
+          <BiampTableToolbarActionButton
+            label="Toggle column visibility"
+            icon={<ColumnIcon />}
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+              setAnchorEl(e.currentTarget)
+            }
+          />
+          <BiampTableColumnVisibility
+            table={table}
+            anchorEl={anchorEl}
+            onClose={() => setAnchorEl(null)}
+          />
+        </Box>
+        <BiampTable table={table} />
+      </Stack>
+    );
+  },
+};
+
+export const ClickableRows: Story = {
+  render: () => {
+    const table = useReactTable({
+      data: rows.slice(0, 5),
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+    });
+
+    return (
+      <Stack spacing={3}>
+        <Typography variant="h3">Table with Clickable Rows</Typography>
         <Typography variant="body2">
-          Use <code>BiampTableToolbarActionButton</code> and{' '}
-          <code>BiampTableColumnVisibility</code> directly to build a custom
-          toolbar.
+          Click a row to see its data logged to the console.
+        </Typography>
+        <BiampTable
+          table={table}
+          onRowClick={(row) => console.log('Row clicked:', row)}
+        />
+      </Stack>
+    );
+  },
+};
+
+export const AllFeatures: Story = {
+  render: () => {
+    const [sorting, setSorting] = useState<SortingState>([]);
+    const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
+      {},
+    );
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const selectedCount = Object.keys(rowSelection).length;
+
+    const table = useReactTable({
+      data: rows,
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+      getPaginationRowModel: getPaginationRowModel(),
+      getRowId: (row) => String(row.id),
+      enableRowSelection: true,
+      state: { sorting, rowSelection, columnVisibility },
+      onSortingChange: setSorting,
+      onRowSelectionChange: setRowSelection,
+      onColumnVisibilityChange: setColumnVisibility,
+      initialState: { pagination: { pageSize: 5, pageIndex: 0 } },
+    });
+
+    return (
+      <Stack spacing={3}>
+        <Typography variant="h3">Table with All Features</Typography>
+        <Typography variant="body2">
+          {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected
         </Typography>
         <Box display="flex" justifyContent="flex-end">
           <BiampTableToolbarActionButton
@@ -259,56 +348,10 @@ export const CustomColumnVisibilityTrigger: Story = {
           />
         </Box>
         <BiampTable
-          data={rows.slice(0, 5)}
-          columns={columns}
-          columnVisibility={visibility}
-          onColumnVisibilityChange={setVisibility}
-        />
-      </Stack>
-    );
-  },
-};
-
-export const ClickableRows: Story = {
-  render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Table with Clickable Rows</Typography>
-      <Typography variant="body2">
-        Click a row to see its data logged to the console.
-      </Typography>
-      <BiampTable
-        data={rows.slice(0, 5)}
-        columns={columns}
-        onRowClick={(row) => console.log('Row clicked:', row)}
-      />
-    </Stack>
-  ),
-};
-
-export const AllFeatures: Story = {
-  render: () => {
-    const [selection, setSelection] = useState<RowSelectionState>({});
-    const selectedCount = Object.keys(selection).length;
-
-    return (
-      <Stack spacing={3}>
-        <Typography variant="h3">Table with All Features</Typography>
-        <Typography variant="body2">
-          {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected
-        </Typography>
-        <BiampTable
-          data={rows}
-          columns={columns}
-          getRowId={(row) => String(row.id)}
-          enableSorting
-          enablePagination
-          rowsPerPageOptions={[5, 10, 15]}
-          enableRowSelection
-          rowSelection={selection}
-          onRowSelectionChange={setSelection}
-          enableColumnVisibility
+          table={table}
           onRowClick={(row) => console.log('Row clicked:', row)}
         />
+        <BiampTablePagination table={table} rowsPerPageOptions={[5, 10, 15]} />
       </Stack>
     );
   },
