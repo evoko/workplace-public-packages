@@ -8,6 +8,7 @@ import {
   BiampTableErrorState,
   BiampTablePagination,
   BiampTableToolbarActionButton,
+  getColumnVisibilityDirtyCount,
 } from '@bwp-web/components';
 import { ColumnIcon } from '@bwp-web/assets';
 import {
@@ -388,6 +389,7 @@ export const WithColumnVisibility: Story = {
           <BiampTableToolbarActionButton
             label="Toggle column visibility"
             icon={<ColumnIcon />}
+            badgeContent={getColumnVisibilityDirtyCount(table)}
             onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
               setAnchorEl(e.currentTarget)
             }
@@ -462,6 +464,7 @@ export const AllFeatures: Story = {
           <BiampTableToolbarActionButton
             label="Toggle column visibility"
             icon={<ColumnIcon />}
+            badgeContent={getColumnVisibilityDirtyCount(table)}
             onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
               setAnchorEl(e.currentTarget)
             }

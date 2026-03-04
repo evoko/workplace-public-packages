@@ -11,7 +11,26 @@ import {
   type SxProps,
   type Theme,
 } from '@mui/material';
-import type { Table } from '@tanstack/react-table';
+import type { Table, VisibilityState } from '@tanstack/react-table';
+
+/**
+ * Returns the number of columns whose visibility differs from the default.
+ * Pass `defaultVisibility` if some columns start hidden; otherwise all
+ * columns are assumed visible by default.
+ */
+export function getColumnVisibilityDirtyCount<TData>(
+  table: Table<TData>,
+  defaultVisibility: VisibilityState = {},
+): number {
+  const current = table.getState().columnVisibility;
+  let count = 0;
+  for (const col of table.getAllLeafColumns()) {
+    const isVisible = current[col.id] ?? true;
+    const wasVisible = defaultVisibility[col.id] ?? true;
+    if (isVisible !== wasVisible) count++;
+  }
+  return count;
+}
 
 export type BiampTableColumnVisibilityProps<TData> = Omit<
   PopoverProps,

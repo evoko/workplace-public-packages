@@ -2,6 +2,7 @@ export { BiampTable, type BiampTableProps } from './BiampTable';
 export {
   BiampTableColumnVisibility,
   type BiampTableColumnVisibilityProps,
+  getColumnVisibilityDirtyCount,
 } from './BiampTableColumnVisibility';
 export {
   BiampTableEmptyState,
