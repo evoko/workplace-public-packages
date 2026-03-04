@@ -33,9 +33,9 @@ function Header() {
 }
 ```
 
-### Component Icons
+### Layout Icons
 
-Icons used directly in Biamp Workplace components (header, sidebar, app launcher).
+Icons used in the Biamp Workplace shell (header, sidebar, app launcher).
 
 | Icon             | Description                                                                                    |
 | ---------------- | ---------------------------------------------------------------------------------------------- |
@@ -46,7 +46,7 @@ Icons used directly in Biamp Workplace components (header, sidebar, app launcher
 
 ### Theme Icons
 
-Icons used internally by the `@bwp-web/styles` theme for MUI component overrides (alerts, checkboxes, breadcrumbs, date picker, autocomplete).
+Icons used internally by the `@bwp-web/styles` theme for MUI component overrides (alerts, checkboxes, radio buttons). Status icons are theme-aware and adapt to dark/light mode.
 
 | Icon                | Description                                                                                   |
 | ------------------- | --------------------------------------------------------------------------------------------- |
@@ -57,6 +57,41 @@ Icons used internally by the `@bwp-web/styles` theme for MUI component overrides
 | `WarningStatusIcon` | 16×14 triangular warning indicator with exclamation mark. Theme-aware colours and drop shadow |
 | `InfoStatusIcon`    | 14×14 circular info indicator with "i" mark. Theme-aware colours and drop shadow              |
 | `SuccessStatusIcon` | 14×14 circular success indicator with checkmark. Theme-aware colours and drop shadow          |
+
+### Icon Groups
+
+Icons are organised into size-based folders. Each folder corresponds to a fixed pixel size:
+
+| Folder        | Variant | Size |
+| ------------- | ------- | ---- |
+| `icons_xxxxs` | `xxxxs` | 6px  |
+| `icons_xxxs`  | `xxxs`  | 8px  |
+| `icons_xxs`   | `xxs`   | 12px |
+| `icons_xs`    | `xs`    | 16px |
+| `icons_sm`    | `sm`    | 20px |
+| `icons_md`    | `md`    | 24px |
+| `icons_lg`    | `lg`    | 32px |
+| `icons_xl`    | `xl`    | 40px |
+| `icons_xxl`   | `xxl`   | 56px |
+| `icons_xxxl`  | `xxxl`  | 72px |
+
+Icons that appear in multiple size folders are grouped into `icons_multisize` and exported as a single component that accepts a `variant` prop. The default variant is `md` (24px).
+
+```tsx
+import { CloseIcon, BadgeLiveIcon } from '@bwp-web/assets';
+
+// Single-size icon (no variant prop)
+<BadgeLiveIcon />  // always 6px (xxxxs)
+
+// Multi-size icon — default is md (24px)
+<CloseIcon />
+
+// Multi-size icon — explicit variant
+<CloseIcon variant="xs" />  // 16px
+<CloseIcon variant="xxs" /> // 12px
+```
+
+The full icon catalog is browsable in Storybook under **Assets > Icons > Icon Groups**.
 
 ### Sizing
 
@@ -216,18 +251,26 @@ const fontFaceCSS = `
 
 ### Icons
 
+There are 220+ icon exports in total. See Storybook (**Assets > Icons > Icon Groups**) for the full catalog.
+
+**Layout icons** (used in the shell):
+
 - `BiampLogoIcon` — Biamp wordmark logo (theme-aware).
-- `SearchIcon` — Magnifying glass search icon.
+- `SearchIcon` — Magnifying glass search icon (multi-variant).
 - `AppsIcon` — Nine-dot grid icon (grey).
 - `AppsIconFilled` — Nine-dot grid icon (filled, currentColor).
+
+**Theme icons** (used internally by `@bwp-web/styles`):
+
 - `CheckedIcon` — Filled checkbox with checkmark.
 - `UncheckedIcon` — Empty checkbox outline.
 - `IndeterminateIcon` — Checkbox with horizontal dash.
-- `DatePickerIcon` — Calendar icon.
-- `ErrorStatusIcon` — Circular error status indicator.
-- `WarningStatusIcon` — Triangular warning status indicator.
-- `InfoStatusIcon` — Circular info status indicator.
-- `SuccessStatusIcon` — Circular success status indicator.
+- `ErrorStatusIcon` — Circular error status indicator (theme-aware).
+- `WarningStatusIcon` — Triangular warning status indicator (theme-aware).
+- `InfoStatusIcon` — Circular info status indicator (theme-aware).
+- `SuccessStatusIcon` — Circular success status indicator (theme-aware).
+
+**General icons** — 200+ icons covering common UI actions, devices, and workplace concepts. See Storybook for the full list.
 
 ### Images
 

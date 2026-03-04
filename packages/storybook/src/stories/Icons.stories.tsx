@@ -289,10 +289,11 @@ export const AllIcons: Story = {
   render: ({ iconColor }) => (
     <Box sx={{ color: iconColor || 'inherit' }}>
       <Stack spacing={3}>
-        <Typography variant="h3">Component Icons</Typography>
+        <Typography variant="h3">Layout Icons</Typography>
         <Typography variant="body2" color="text.secondary">
-          Icons used directly in Biamp Workplace components (header, sidebar,
-          app launcher).
+          Icons used in the Biamp Workplace shell (header, sidebar, app
+          launcher). See the <strong>Icon Groups</strong> story for the full
+          catalog.
         </Typography>
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
@@ -314,8 +315,9 @@ export const AllIcons: Story = {
           Theme Icons
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Icons used internally by the theme for component overrides (alerts,
-          checkboxes, breadcrumbs, date picker, autocomplete).
+          Icons used internally by the theme for MUI component overrides
+          (alerts, checkboxes, radio buttons). Status icons are theme-aware and
+          adapt to dark/light mode.
         </Typography>
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
