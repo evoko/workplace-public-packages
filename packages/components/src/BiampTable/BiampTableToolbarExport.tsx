@@ -22,7 +22,7 @@ export type BiampTableToolbarExportProps = {
 export function BiampTableToolbarExport({
   onExport,
   loading,
-  icon = <DownloadIcon />,
+  icon = <DownloadIcon variant="xs" />,
   label = 'Export',
   ...props
 }: BiampTableToolbarExportProps) {

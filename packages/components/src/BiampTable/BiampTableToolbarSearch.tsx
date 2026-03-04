@@ -73,7 +73,11 @@ export function BiampTableToolbarSearch({
         input: {
           startAdornment: (
             <InputAdornment position="start" sx={{ ml: 1 }}>
-              <SearchIcon color="inherit" sx={{ width: 16, height: 16 }} />
+              <SearchIcon
+                variant="xs"
+                color="inherit"
+                sx={{ width: 16, height: 16 }}
+              />
             </InputAdornment>
           ),
           endAdornment: inputValue ? (

@@ -25,7 +25,7 @@ import {
   getColumnVisibilityDirtyCount,
   useDebouncedCallback,
 } from '@bwp-web/components';
-import { ColumnIcon } from '@bwp-web/assets';
+import { ColumnsIcon } from '@bwp-web/assets';
 import {
   createColumnHelper,
   getCoreRowModel,
@@ -403,7 +403,7 @@ export const WithColumnVisibility: Story = {
         <Box display="flex" justifyContent="flex-end">
           <BiampTableToolbarActionButton
             label="Toggle column visibility"
-            icon={<ColumnIcon />}
+            icon={<ColumnsIcon variant="xs" />}
             badgeContent={getColumnVisibilityDirtyCount(table)}
             onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
               setAnchorEl(e.currentTarget)
@@ -478,7 +478,7 @@ export const AllFeatures: Story = {
         <Box display="flex" justifyContent="flex-end">
           <BiampTableToolbarActionButton
             label="Toggle column visibility"
-            icon={<ColumnIcon />}
+            icon={<ColumnsIcon variant="xs" />}
             badgeContent={getColumnVisibilityDirtyCount(table)}
             onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
               setAnchorEl(e.currentTarget)
@@ -866,7 +866,7 @@ export const WithToolbar: Story = {
             </BiampTableToolbarFilters>
             <BiampTableToolbarActionButton
               label="Toggle column visibility"
-              icon={<ColumnIcon />}
+              icon={<ColumnsIcon variant="xs" />}
               badgeContent={getColumnVisibilityDirtyCount(table)}
               onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
                 setAnchorEl(e.currentTarget)

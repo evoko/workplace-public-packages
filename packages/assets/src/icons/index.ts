@@ -1,5 +1,3 @@
-export { ColumnIcon } from './ColumnIcon';
-export { ErrorStatusIcon } from './ErrorStatusIcon';
 export { AccessibleIcon } from './icons_multisize/AccessibleIcon';
 export { AddIcon } from './icons_multisize/AddIcon';
 export { AddPhotoIcon } from './icons_md/AddPhotoIcon';
@@ -86,6 +84,7 @@ export { ElectricVehicleChargingIcon } from './icons_multisize/ElectricVehicleCh
 export { EmailIcon } from './icons_multisize/EmailIcon';
 export { EqualizerIcon } from './icons_xs/EqualizerIcon';
 export { ErrorCircleIcon } from './icons_multisize/ErrorCircleIcon';
+export { ErrorStatusIcon } from './ErrorStatusIcon';
 export { ExportIcon } from './icons_multisize/ExportIcon';
 export { ExternalLinkIcon } from './icons_multisize/ExternalLinkIcon';
 export { EyeIcon } from './icons_multisize/EyeIcon';

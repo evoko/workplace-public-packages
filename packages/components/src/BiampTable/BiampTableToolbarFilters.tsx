@@ -42,7 +42,7 @@ export function BiampTableToolbarFilters({
   children,
   onReset,
   onApply,
-  icon = <FilterIcon />,
+  icon = <FilterIcon variant="xs" />,
   title = 'Filters',
   resetLabel = 'Clear filters',
   applyLabel = 'Apply',
