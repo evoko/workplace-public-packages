@@ -4,6 +4,10 @@ export {
   type BiampTableContainerProps,
 } from './BiampTableContainer';
 export {
+  BiampTableCellActionButton,
+  type BiampTableCellActionButtonProps,
+} from './BiampTableCellActionButton';
+export {
   BiampTableColumnVisibility,
   type BiampTableColumnVisibilityProps,
   getColumnVisibilityDirtyCount,

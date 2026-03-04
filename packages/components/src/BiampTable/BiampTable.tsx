@@ -36,6 +36,8 @@ export type BiampTableProps<TData> = BoxProps & {
   empty?: boolean | ReactNode;
   /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
   hideSelectAll?: boolean;
+  /** Returns a human-readable name for a row, used in ARIA labels (e.g. "Select: Conference Room A"). Falls back to row index. */
+  getRowLabel?: (row: TData) => string;
 };
 
 export function BiampTable<TData>({
@@ -46,6 +48,7 @@ export function BiampTable<TData>({
   error,
   empty,
   hideSelectAll,
+  getRowLabel,
   sx,
   ...boxProps
 }: BiampTableProps<TData>) {
@@ -209,6 +212,7 @@ export function BiampTable<TData>({
                   selected={
                     enableRowSelection ? row.getIsSelected() : undefined
                   }
+                  role={clickable ? 'button' : undefined}
                   tabIndex={clickable ? 0 : undefined}
                   sx={{ cursor: clickable ? 'pointer' : undefined }}
                   onClick={
@@ -250,7 +254,9 @@ export function BiampTable<TData>({
                         onClick={(e) => e.stopPropagation()}
                         slotProps={{
                           input: {
-                            'aria-label': `Select row ${row.index + 1}`,
+                            'aria-label': getRowLabel
+                              ? `Select ${getRowLabel(row.original)}`
+                              : `Select row ${row.index + 1}`,
                           },
                         }}
                       />
