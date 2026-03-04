@@ -1,7 +1,6 @@
 import {
   Box,
   Checkbox,
-  Paper,
   Table as MuiTable,
   TableBody,
   TableCell,
@@ -30,8 +29,6 @@ export type BiampTableProps<TData> = {
   TableContainerProps?: Omit<TableContainerProps, 'children'>;
   /** sx applied to the outer wrapper Box. */
   sx?: SxProps<Theme>;
-  /** Paper variant for the table container. Default: "outlined". */
-  paperVariant?: 'outlined' | 'elevation';
 };
 
 export function BiampTable<TData>({
@@ -40,23 +37,55 @@ export function BiampTable<TData>({
   isRowClickable,
   TableContainerProps: tableContainerProps,
   sx,
-  paperVariant = 'outlined',
 }: BiampTableProps<TData>) {
-  const enableRowSelection = !!table.options.enableRowSelection;
+  // Only show the checkbox column when the caller explicitly opted in.
+  // TanStack applies enableRowSelection=true as a runtime default for per-row
+  // checks, but we require an explicit boolean true or function here so that
+  // tables without selection don't accidentally render a checkbox column.
+  const enableRowSelection =
+    table.options.enableRowSelection === true ||
+    typeof table.options.enableRowSelection === 'function';
+  const { sx: containerSx, ...restContainerProps } = tableContainerProps ?? {};
+
+  // Sum visible column min-widths so the <table> element itself gets a concrete
+  // minWidth. Without this, `width: 100%` on the table always fills the container
+  // and columns just share available space instead of overflowing horizontally.
+  const tableMinWidth = table.getVisibleLeafColumns().reduce(
+    (sum, col) => {
+      const mw = col.columnDef.meta?.minWidth;
+      return sum + (typeof mw === 'number' ? mw : 40);
+    },
+    enableRowSelection ? 48 : 0,
+  );
 
   return (
-    <Box sx={{ ...sx }}>
+    <Box
+      sx={{ display: 'flex', flexDirection: 'column', height: '100%', ...sx }}
+    >
       <TableContainer
-        component={Paper}
-        variant={paperVariant}
-        {...tableContainerProps}
+        component={Box}
+        {...restContainerProps}
+        sx={
+          [
+            { flex: 1, minHeight: 0, overflow: 'auto' },
+            ...(containerSx ? [containerSx] : []),
+          ] as SxProps<Theme>
+        }
       >
-        <MuiTable>
+        <MuiTable sx={{ minWidth: tableMinWidth }}>
           <TableHead>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {enableRowSelection && (
-                  <TableCell padding="checkbox">
+                  <TableCell
+                    padding="checkbox"
+                    sx={{
+                      position: 'sticky',
+                      left: 0,
+                      zIndex: 3,
+                      bgcolor: 'background.paper',
+                    }}
+                  >
                     <Checkbox
                       checked={table.getIsAllPageRowsSelected()}
                       indeterminate={table.getIsSomePageRowsSelected()}
@@ -68,7 +97,9 @@ export function BiampTable<TData>({
                   <TableCell
                     key={header.id}
                     sortDirection={header.column.getIsSorted() || false}
-                    sx={{ minWidth: header.column.columnDef.meta?.minWidth }}
+                    sx={{
+                      minWidth: header.column.columnDef.meta?.minWidth ?? 40,
+                    }}
                   >
                     {header.isPlaceholder ? null : header.column.getCanSort() ? (
                       <TableSortLabel
@@ -114,7 +145,21 @@ export function BiampTable<TData>({
                   }
                 >
                   {enableRowSelection && (
-                    <TableCell padding="checkbox">
+                    <TableCell
+                      padding="checkbox"
+                      sx={{
+                        position: 'sticky',
+                        left: 0,
+                        zIndex: 2,
+                        bgcolor: 'background.paper',
+                        '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
+                          bgcolor: ({ palette }) =>
+                            palette.mode === 'dark'
+                              ? palette.grey[800]
+                              : palette.grey[100],
+                        },
+                      }}
+                    >
                       <Checkbox
                         checked={row.getIsSelected()}
                         disabled={!row.getCanSelect()}
@@ -124,7 +169,12 @@ export function BiampTable<TData>({
                     </TableCell>
                   )}
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell
+                      key={cell.id}
+                      sx={{
+                        minWidth: cell.column.columnDef.meta?.minWidth ?? 40,
+                      }}
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext(),

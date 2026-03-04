@@ -20,6 +20,13 @@ import {
   type VisibilityState,
 } from '@tanstack/react-table';
 
+// Row model factories must be stable references — calling getCoreRowModel() etc.
+// inside the render function creates new references every render, causing TanStack
+// to invalidate memoized row models and trigger autoResetPageIndex loops.
+const coreRowModel = getCoreRowModel();
+const sortedRowModel = getSortedRowModel();
+const paginationRowModel = getPaginationRowModel();
+
 type Room = {
   id: number;
   name: string;
@@ -252,10 +259,14 @@ const columnsWithMinWidth = [
 ];
 
 const perRowData = rows.slice(0, 8);
+const rows5 = rows.slice(0, 5);
 
 const meta: Meta = {
   title: 'Components/BiampTable',
   tags: ['autodocs'],
+  parameters: {
+    canvasBackground: 'background.paper',
+  },
 };
 
 export default meta;
@@ -264,9 +275,9 @@ type Story = StoryObj;
 export const Default: Story = {
   render: () => {
     const table = useReactTable({
-      data: rows.slice(0, 5),
+      data: rows5,
       columns,
-      getCoreRowModel: getCoreRowModel(),
+      getCoreRowModel: coreRowModel,
     });
 
     return (
@@ -285,8 +296,8 @@ export const WithSorting: Story = {
     const table = useReactTable({
       data: rows,
       columns,
-      getCoreRowModel: getCoreRowModel(),
-      getSortedRowModel: getSortedRowModel(),
+      getCoreRowModel: coreRowModel,
+      getSortedRowModel: sortedRowModel,
       state: { sorting },
       onSortingChange: setSorting,
     });
@@ -308,8 +319,8 @@ export const WithPagination: Story = {
     const table = useReactTable({
       data: rows,
       columns,
-      getCoreRowModel: getCoreRowModel(),
-      getPaginationRowModel: getPaginationRowModel(),
+      getCoreRowModel: coreRowModel,
+      getPaginationRowModel: paginationRowModel,
       initialState: { pagination: { pageSize: 5, pageIndex: 0 } },
     });
 
@@ -329,9 +340,9 @@ export const WithRowSelection: Story = {
     const selectedCount = Object.keys(rowSelection).length;
 
     const table = useReactTable({
-      data: rows.slice(0, 5),
+      data: rows5,
       columns,
-      getCoreRowModel: getCoreRowModel(),
+      getCoreRowModel: coreRowModel,
       getRowId: (row) => String(row.id),
       enableRowSelection: true,
       state: { rowSelection },
@@ -358,9 +369,9 @@ export const WithColumnVisibility: Story = {
     const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
     const table = useReactTable({
-      data: rows.slice(0, 5),
+      data: rows5,
       columns,
-      getCoreRowModel: getCoreRowModel(),
+      getCoreRowModel: coreRowModel,
       state: { columnVisibility },
       onColumnVisibilityChange: setColumnVisibility,
     });
@@ -391,9 +402,9 @@ export const WithColumnVisibility: Story = {
 export const ClickableRows: Story = {
   render: () => {
     const table = useReactTable({
-      data: rows.slice(0, 5),
+      data: rows5,
       columns,
-      getCoreRowModel: getCoreRowModel(),
+      getCoreRowModel: coreRowModel,
     });
 
     return (
@@ -424,9 +435,9 @@ export const AllFeatures: Story = {
     const table = useReactTable({
       data: rows,
       columns,
-      getCoreRowModel: getCoreRowModel(),
-      getSortedRowModel: getSortedRowModel(),
-      getPaginationRowModel: getPaginationRowModel(),
+      getCoreRowModel: coreRowModel,
+      getSortedRowModel: sortedRowModel,
+      getPaginationRowModel: paginationRowModel,
       getRowId: (row) => String(row.id),
       enableRowSelection: true,
       state: { sorting, rowSelection, columnVisibility },
@@ -498,7 +509,7 @@ export const ServerSideData: Story = {
     const table = useReactTable({
       data: pagedData,
       columns,
-      getCoreRowModel: getCoreRowModel(),
+      getCoreRowModel: coreRowModel,
       manualSorting: true,
       manualPagination: true,
       rowCount: rows.length, // total from "server"
@@ -535,7 +546,7 @@ export const PerRowControl: Story = {
     const table = useReactTable({
       data: perRowData,
       columns: columnsWithMinWidth,
-      getCoreRowModel: getCoreRowModel(),
+      getCoreRowModel: coreRowModel,
       getRowId: (row) => String(row.id),
       // Only "Available" rooms can be selected.
       enableRowSelection: (row) => row.original.status === 'Available',
@@ -561,26 +572,28 @@ export const PerRowControl: Story = {
 };
 
 /**
- * 100 rows × 10 columns (each with a minWidth) to verify that the table
- * scrolls both horizontally (wide columns) and vertically (many rows).
- * Pass `sx` on the TableContainer to cap the height.
+ * 100 rows × 10 columns to verify horizontal and vertical scrolling.
+ * BiampTable fills its parent height and scrolls automatically — give the
+ * parent a fixed height and no extra props are needed.
  */
 export const ScrollDemo: Story = {
   render: () => {
     const table = useReactTable({
       data: deviceRows,
       columns: deviceColumns,
-      getCoreRowModel: getCoreRowModel(),
+      getCoreRowModel: coreRowModel,
     });
 
     return (
-      <Stack spacing={2}>
+      <Stack spacing={2} height="100vh">
         <Typography variant="h3">Scroll Demo</Typography>
         <Typography variant="body2">
-          100 rows, 10 columns with minWidth. The container is capped at 400 px
-          tall — scroll vertically and horizontally to see all data.
+          100 rows, 10 columns. BiampTable fills its parent and scrolls in both
+          directions — the 400 px wrapper below is the only constraint needed.
         </Typography>
-        <BiampTable table={table} />
+        <Box height="100%">
+          <BiampTable table={table} />
+        </Box>
       </Stack>
     );
   },

@@ -48,7 +48,7 @@ const preview: Preview = {
             sx={{
               ...(!context.parameters.noPadding && { p: 3 }),
               minHeight: '100vh',
-              bgcolor: 'grey.100',
+              bgcolor: context.parameters.canvasBackground ?? 'grey.100',
               ...(mode === 'dark' && { bgcolor: 'grey.900' }),
             }}
           >
