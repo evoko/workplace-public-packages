@@ -21,7 +21,10 @@ export function BiampTableStatusMessage({
 }: BiampTableStatusMessageProps) {
   return (
     <Stack alignItems="center" gap={2} {...stackProps}>
-      {cloneElement(icon, { sx: { width: 56, height: 56, ...icon.props.sx } })}
+      {cloneElement(icon, {
+        'aria-hidden': true,
+        sx: { width: 56, height: 56, ...icon.props.sx },
+      })}
       <Typography variant="h2">{title}</Typography>
       {description && <Typography variant="body1">{description}</Typography>}
       {children}

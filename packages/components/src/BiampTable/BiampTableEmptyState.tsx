@@ -11,5 +11,12 @@ export function BiampTableEmptyState({
   title = 'Nothing to show',
   ...rest
 }: BiampTableEmptyStateProps) {
-  return <BiampTableStatusMessage icon={icon} title={title} {...rest} />;
+  return (
+    <BiampTableStatusMessage
+      role="status"
+      icon={icon}
+      title={title}
+      {...rest}
+    />
+  );
 }

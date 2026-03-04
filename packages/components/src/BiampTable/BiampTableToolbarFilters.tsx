@@ -9,7 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import { CloseIcon, FilterIcon } from '@bwp-web/assets';
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useId, useState } from 'react';
 import { BiampTableToolbarActionButton } from './BiampTableToolbarActionButton';
 
 export type BiampTableToolbarFiltersProps = {
@@ -51,6 +51,7 @@ export function BiampTableToolbarFilters({
   DrawerProps: drawerProps,
 }: BiampTableToolbarFiltersProps) {
   const [open, setOpen] = useState(false);
+  const titleId = useId();
 
   function handleClose() {
     onApply?.();
@@ -70,6 +71,7 @@ export function BiampTableToolbarFilters({
         anchor="right"
         open={open}
         onClose={handleClose}
+        aria-labelledby={titleId}
         {...drawerProps}
         PaperProps={{
           sx: { width: { xs: '100%', sm: 480 } },
@@ -91,7 +93,7 @@ export function BiampTableToolbarFilters({
               px={3.5}
               py={2.5}
             >
-              <Typography variant="h2">
+              <Typography id={titleId} variant="h2">
                 {title}
                 <Badge
                   badgeContent={activeFilterCount}
@@ -111,6 +113,8 @@ export function BiampTableToolbarFilters({
 
             {/* Body */}
             <Box
+              role="group"
+              aria-label="Filter options"
               display="flex"
               flexDirection="column"
               gap={2}

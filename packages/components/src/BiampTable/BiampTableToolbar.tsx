@@ -8,6 +8,7 @@ export function BiampTableToolbar({
 }: BiampTableToolbarProps) {
   return (
     <Box
+      role="toolbar"
       display="flex"
       justifyContent="space-between"
       alignItems="center"

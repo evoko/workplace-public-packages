@@ -12,7 +12,7 @@ import {
   type Theme,
 } from '@mui/material';
 import { flexRender, type Table } from '@tanstack/react-table';
-import { type ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import './tanstack-meta';
@@ -91,6 +91,7 @@ export function BiampTable<TData>({
       }}
     >
       <MuiTable
+        aria-busy={showLoading || undefined}
         sx={{
           minWidth: tableMinWidth,
           height: showError || showEmpty ? '100%' : undefined,
@@ -114,6 +115,7 @@ export function BiampTable<TData>({
                       checked={table.getIsAllPageRowsSelected()}
                       indeterminate={table.getIsSomePageRowsSelected()}
                       onChange={table.getToggleAllPageRowsSelectedHandler()}
+                      slotProps={{ input: { 'aria-label': 'Select all rows' } }}
                     />
                   )}
                 </TableCell>
@@ -124,6 +126,13 @@ export function BiampTable<TData>({
                   <TableCell
                     key={header.id}
                     sortDirection={header.column.getIsSorted() || false}
+                    {...(header.column.getCanSort() && {
+                      'aria-sort': header.column.getIsSorted()
+                        ? header.column.getIsSorted() === 'asc'
+                          ? 'ascending'
+                          : 'descending'
+                        : 'none',
+                    })}
                     sx={{
                       minWidth: header.column.columnDef.meta?.minWidth ?? 40,
                       ...(sticky && {
@@ -200,10 +209,21 @@ export function BiampTable<TData>({
                   selected={
                     enableRowSelection ? row.getIsSelected() : undefined
                   }
+                  tabIndex={clickable ? 0 : undefined}
                   sx={{ cursor: clickable ? 'pointer' : undefined }}
                   onClick={
                     clickable && onRowClick
                       ? () => onRowClick(row.original)
+                      : undefined
+                  }
+                  onKeyDown={
+                    clickable && onRowClick
+                      ? (e: React.KeyboardEvent) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            onRowClick(row.original);
+                          }
+                        }
                       : undefined
                   }
                 >
@@ -228,6 +248,11 @@ export function BiampTable<TData>({
                         disabled={!row.getCanSelect()}
                         onChange={row.getToggleSelectedHandler()}
                         onClick={(e) => e.stopPropagation()}
+                        slotProps={{
+                          input: {
+                            'aria-label': `Select row ${row.index + 1}`,
+                          },
+                        }}
                       />
                     </TableCell>
                   )}

@@ -24,7 +24,10 @@ export function BiampTableToolbarActionButton({
   const showBadge = badgeContent != null && badgeContent !== 0;
 
   return (
-    <IconButton aria-label={label} {...props}>
+    <IconButton
+      aria-label={showBadge ? `${label} (${badgeContent})` : label}
+      {...props}
+    >
       {showBadge ? (
         <Badge
           badgeContent={badgeContent}

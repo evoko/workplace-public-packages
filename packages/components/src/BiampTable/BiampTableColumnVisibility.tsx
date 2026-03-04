@@ -111,25 +111,34 @@ export function BiampTableColumnVisibility<TData>({
             checked={allVisible}
             indeterminate={!allVisible && someVisible}
             size="small"
+            slotProps={{ input: { 'aria-label': 'Show all columns' } }}
           />
           <Typography variant="caption">Show all</Typography>
         </ListItem>
         <Divider />
         <Box sx={{ maxHeight: 340, overflow: 'auto' }}>
-          {table.getAllLeafColumns().map((column) => (
-            <ListItem
-              key={column.id}
-              sx={columnListItemSx}
-              onClick={column.getToggleVisibilityHandler()}
-            >
-              <Checkbox checked={column.getIsVisible()} size="small" />
-              <Typography variant="caption">
-                {typeof column.columnDef.header === 'string'
-                  ? column.columnDef.header
-                  : column.id}
-              </Typography>
-            </ListItem>
-          ))}
+          {table.getAllLeafColumns().map((column) => {
+            const columnName =
+              typeof column.columnDef.header === 'string'
+                ? column.columnDef.header
+                : column.id;
+            return (
+              <ListItem
+                key={column.id}
+                sx={columnListItemSx}
+                onClick={column.getToggleVisibilityHandler()}
+              >
+                <Checkbox
+                  checked={column.getIsVisible()}
+                  size="small"
+                  slotProps={{
+                    input: { 'aria-label': `Show ${columnName}` },
+                  }}
+                />
+                <Typography variant="caption">{columnName}</Typography>
+              </ListItem>
+            );
+          })}
         </Box>
       </List>
     </Popover>

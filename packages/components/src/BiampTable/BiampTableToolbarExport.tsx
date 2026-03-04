@@ -28,7 +28,7 @@ export function BiampTableToolbarExport({
 }: BiampTableToolbarExportProps) {
   return (
     <BiampTableToolbarActionButton
-      label={label}
+      label={loading ? `${label}, loading` : label}
       icon={loading ? <CircularProgress size={20} color="inherit" /> : icon}
       disabled={loading}
       onClick={onExport}

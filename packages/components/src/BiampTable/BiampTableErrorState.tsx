@@ -11,5 +11,7 @@ export function BiampTableErrorState({
   title = 'Failed to load',
   ...rest
 }: BiampTableErrorStateProps) {
-  return <BiampTableStatusMessage icon={icon} title={title} {...rest} />;
+  return (
+    <BiampTableStatusMessage role="alert" icon={icon} title={title} {...rest} />
+  );
 }

@@ -69,7 +69,7 @@ export function BiampTableToolbarSearch({
       type="text"
       placeholder={placeholder}
       slotProps={{
-        htmlInput: { maxLength },
+        htmlInput: { maxLength, 'aria-label': placeholder },
         input: {
           startAdornment: (
             <InputAdornment position="start" sx={{ ml: 1 }}>
