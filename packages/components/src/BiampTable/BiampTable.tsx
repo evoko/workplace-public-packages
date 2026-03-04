@@ -16,6 +16,7 @@ import type { ReactNode } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import './tanstack-meta';
+import { useLoadingDelay } from './useLoadingDelay';
 
 export type BiampTableProps<TData> = {
   /** TanStack Table instance to connect to. */
@@ -67,6 +68,8 @@ export function BiampTable<TData>({
 
   const totalColumns =
     table.getVisibleLeafColumns().length + (enableRowSelection ? 1 : 0);
+
+  const showLoading = useLoadingDelay(!!loading);
 
   const rows = table.getRowModel().rows;
   const showError = !!error;
@@ -150,7 +153,7 @@ export function BiampTable<TData>({
           ))}
         </TableHead>
 
-        <TableBody sx={{ opacity: loading ? 0.28 : 1 }}>
+        <TableBody sx={{ opacity: showLoading ? 0.3 : 1 }}>
           {showError ? (
             <TableRow>
               <TableCell
