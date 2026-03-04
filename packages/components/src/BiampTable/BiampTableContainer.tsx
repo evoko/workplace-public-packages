@@ -1,13 +1,11 @@
 import { Stack, StackProps } from '@mui/material';
-import type { ReactNode } from 'react';
 
 export type BiampTableContainerProps = {
   /** Show a top border. @default true */
   withBorderTop?: boolean;
   /** Show a bottom border. @default false */
   withBorderBottom?: boolean;
-  children: ReactNode;
-} & Omit<StackProps, 'children'>;
+} & StackProps;
 
 export function BiampTableContainer({
   withBorderTop = true,
