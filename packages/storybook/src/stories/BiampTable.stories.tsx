@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Stack, Typography } from '@mui/material';
-import { BiampTable } from '@bwp-web/components';
+import { Box, Stack, Typography } from '@mui/material';
+import {
+  BiampTable,
+  BiampTableColumnVisibility,
+  BiampTableToolbarActionButton,
+} from '@bwp-web/components';
+import { ColumnIcon } from '@bwp-web/assets';
 import {
   createColumnHelper,
+  getCoreRowModel,
+  useReactTable,
   type RowSelectionState,
+  type VisibilityState,
 } from '@tanstack/react-table';
 
 type Room = {
@@ -204,7 +212,7 @@ export const WithColumnVisibility: Story = {
     <Stack spacing={3}>
       <Typography variant="h3">Table with Column Visibility</Typography>
       <Typography variant="body2">
-        Use the &quot;Columns&quot; button to toggle column visibility.
+        Use the column icon button to toggle column visibility.
       </Typography>
       <BiampTable
         data={rows.slice(0, 5)}
@@ -213,6 +221,52 @@ export const WithColumnVisibility: Story = {
       />
     </Stack>
   ),
+};
+
+export const CustomColumnVisibilityTrigger: Story = {
+  render: () => {
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+    const [visibility, setVisibility] = useState<VisibilityState>({});
+
+    const table = useReactTable({
+      data: rows.slice(0, 5),
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+      onColumnVisibilityChange: setVisibility,
+      state: { columnVisibility: visibility },
+    });
+
+    return (
+      <Stack spacing={3}>
+        <Typography variant="h3">Custom Column Visibility Trigger</Typography>
+        <Typography variant="body2">
+          Use <code>BiampTableToolbarActionButton</code> and{' '}
+          <code>BiampTableColumnVisibility</code> directly to build a custom
+          toolbar.
+        </Typography>
+        <Box display="flex" justifyContent="flex-end">
+          <BiampTableToolbarActionButton
+            label="Toggle column visibility"
+            icon={<ColumnIcon />}
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+              setAnchorEl(e.currentTarget)
+            }
+          />
+          <BiampTableColumnVisibility
+            table={table}
+            anchorEl={anchorEl}
+            onClose={() => setAnchorEl(null)}
+          />
+        </Box>
+        <BiampTable
+          data={rows.slice(0, 5)}
+          columns={columns}
+          columnVisibility={visibility}
+          onColumnVisibilityChange={setVisibility}
+        />
+      </Stack>
+    );
+  },
 };
 
 export const ClickableRows: Story = {

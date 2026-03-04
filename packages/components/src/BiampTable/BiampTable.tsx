@@ -27,8 +27,10 @@ import {
   type VisibilityState,
   type OnChangeFn,
 } from '@tanstack/react-table';
+import { ColumnIcon } from '@bwp-web/assets';
 import { BiampTableColumnVisibility } from './BiampTableColumnVisibility';
 import { BiampTablePagination } from './BiampTablePagination';
+import { BiampTableToolbarActionButton } from './BiampTableToolbarActionButton';
 
 export type BiampTableProps<TData> = {
   /** The data array to display. Each element becomes a row. */
@@ -115,6 +117,8 @@ export function BiampTable<TData>({
     useState<RowSelectionState>({});
   const [columnVisibilityInternal, setColumnVisibilityInternal] =
     useState<VisibilityState>({});
+  const [columnVisibilityAnchorEl, setColumnVisibilityAnchorEl] =
+    useState<HTMLElement | null>(null);
 
   const table = useReactTable({
     data,
@@ -166,7 +170,26 @@ export function BiampTable<TData>({
   });
 
   const toolbarElement = enableColumnVisibility ? (
-    <BiampTableColumnVisibility table={table} {...toolbarProps} />
+    <Box
+      {...toolbarProps}
+      sx={{
+        display: 'flex',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        ...toolbarProps?.sx,
+      }}
+    >
+      <BiampTableToolbarActionButton
+        label="Toggle column visibility"
+        icon={<ColumnIcon />}
+        onClick={(e) => setColumnVisibilityAnchorEl(e.currentTarget)}
+      />
+      <BiampTableColumnVisibility
+        table={table}
+        anchorEl={columnVisibilityAnchorEl}
+        onClose={() => setColumnVisibilityAnchorEl(null)}
+      />
+    </Box>
   ) : null;
 
   const paginationElement = enablePagination ? (

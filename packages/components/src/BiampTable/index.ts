@@ -7,3 +7,7 @@ export {
   BiampTablePagination,
   type BiampTablePaginationProps,
 } from './BiampTablePagination';
+export {
+  BiampTableToolbarActionButton,
+  type BiampTableToolbarActionButtonProps,
+} from './BiampTableToolbarActionButton';

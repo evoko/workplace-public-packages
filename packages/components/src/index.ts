@@ -9,4 +9,6 @@ export {
   type BiampTableColumnVisibilityProps,
   BiampTablePagination,
   type BiampTablePaginationProps,
+  BiampTableToolbarActionButton,
+  type BiampTableToolbarActionButtonProps,
 } from './BiampTable';

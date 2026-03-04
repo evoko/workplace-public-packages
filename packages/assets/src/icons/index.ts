@@ -1,4 +1,5 @@
 export { AppsIcon } from './AppsIcon';
+export { ColumnIcon } from './ColumnIcon';
 export { AppsIconFilled } from './AppsIconFilled';
 export { BiampLogoIcon } from './BiampLogoIcon';
 export { BreadcrumbIcon } from './BreadcrumbIcon';
