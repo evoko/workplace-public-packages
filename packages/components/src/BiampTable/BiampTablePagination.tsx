@@ -18,7 +18,7 @@ export function BiampTablePagination<TData>({
     <Box {...boxProps}>
       <TablePagination
         component="div"
-        count={table.getFilteredRowModel().rows.length}
+        count={table.getRowCount()}
         page={table.getState().pagination.pageIndex}
         rowsPerPage={table.getState().pagination.pageSize}
         onPageChange={(_, page) => table.setPageIndex(page)}

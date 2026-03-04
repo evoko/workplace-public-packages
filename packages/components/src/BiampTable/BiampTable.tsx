@@ -14,12 +14,18 @@ import {
   type Theme,
 } from '@mui/material';
 import { flexRender, type Table } from '@tanstack/react-table';
+import './tanstack-meta';
 
 export type BiampTableProps<TData> = {
   /** TanStack Table instance to connect to. */
   table: Table<TData>;
-  /** Called when a body row is clicked. Receives the row's original data. */
+  /** Called when a clickable body row is clicked. Receives the row's original data. */
   onRowClick?: (row: TData) => void;
+  /**
+   * Controls which rows are clickable. When omitted, all rows are clickable if
+   * `onRowClick` is provided. Has no effect when `onRowClick` is not provided.
+   */
+  isRowClickable?: (row: TData) => boolean;
   /** Props forwarded to the MUI TableContainer. */
   TableContainerProps?: Omit<TableContainerProps, 'children'>;
   /** sx applied to the outer wrapper Box. */
@@ -31,6 +37,7 @@ export type BiampTableProps<TData> = {
 export function BiampTable<TData>({
   table,
   onRowClick,
+  isRowClickable,
   TableContainerProps: tableContainerProps,
   sx,
   paperVariant = 'outlined',
@@ -61,6 +68,7 @@ export function BiampTable<TData>({
                   <TableCell
                     key={header.id}
                     sortDirection={header.column.getIsSorted() || false}
+                    sx={{ minWidth: header.column.columnDef.meta?.minWidth }}
                   >
                     {header.isPlaceholder ? null : header.column.getCanSort() ? (
                       <TableSortLabel
@@ -86,30 +94,46 @@ export function BiampTable<TData>({
           </TableHead>
 
           <TableBody>
-            {table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                hover={!!onRowClick}
-                selected={enableRowSelection ? row.getIsSelected() : undefined}
-                sx={{ cursor: onRowClick ? 'pointer' : undefined }}
-                onClick={() => onRowClick?.(row.original)}
-              >
-                {enableRowSelection && (
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      checked={row.getIsSelected()}
-                      onChange={row.getToggleSelectedHandler()}
-                      onClick={(e) => e.stopPropagation()}
-                    />
-                  </TableCell>
-                )}
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))}
+            {table.getRowModel().rows.map((row) => {
+              const clickable = onRowClick
+                ? isRowClickable
+                  ? isRowClickable(row.original)
+                  : true
+                : false;
+
+              return (
+                <TableRow
+                  key={row.id}
+                  hover={clickable}
+                  selected={
+                    enableRowSelection ? row.getIsSelected() : undefined
+                  }
+                  sx={{ cursor: clickable ? 'pointer' : undefined }}
+                  onClick={
+                    clickable ? () => onRowClick!(row.original) : undefined
+                  }
+                >
+                  {enableRowSelection && (
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        checked={row.getIsSelected()}
+                        disabled={!row.getCanSelect()}
+                        onChange={row.getToggleSelectedHandler()}
+                        onClick={(e) => e.stopPropagation()}
+                      />
+                    </TableCell>
+                  )}
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              );
+            })}
           </TableBody>
         </MuiTable>
       </TableContainer>

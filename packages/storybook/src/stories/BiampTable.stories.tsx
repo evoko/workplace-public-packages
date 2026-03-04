@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Box, Stack, Typography } from '@mui/material';
 import {
@@ -14,6 +14,7 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+  type PaginationState,
   type RowSelectionState,
   type SortingState,
   type VisibilityState,
@@ -143,6 +144,18 @@ const rows: Room[] = [
     floor: '2nd',
   },
 ];
+
+const columnsWithMinWidth = [
+  columnHelper.accessor('name', {
+    header: 'Room Name',
+    meta: { minWidth: 200 },
+  }),
+  columnHelper.accessor('status', { header: 'Status' }),
+  columnHelper.accessor('capacity', { header: 'Capacity' }),
+  columnHelper.accessor('floor', { header: 'Floor' }),
+];
+
+const perRowData = rows.slice(0, 8);
 
 const meta: Meta = {
   title: 'Components/BiampTable',
@@ -352,6 +365,100 @@ export const AllFeatures: Story = {
           onRowClick={(row) => console.log('Row clicked:', row)}
         />
         <BiampTablePagination table={table} rowsPerPageOptions={[5, 10, 15]} />
+      </Stack>
+    );
+  },
+};
+
+/**
+ * Demonstrates server-side pagination and sorting. The table uses
+ * `manualPagination` and `manualSorting` so TanStack never touches the data —
+ * the caller is responsible for fetching the right slice. Here we simulate
+ * that with an in-memory sort + slice.
+ */
+export const ServerSideData: Story = {
+  render: () => {
+    const [sorting, setSorting] = useState<SortingState>([]);
+    const [pagination, setPagination] = useState<PaginationState>({
+      pageIndex: 0,
+      pageSize: 5,
+    });
+
+    // Simulate a server response: sort then slice.
+    const pagedData = useMemo(() => {
+      let sorted = [...rows];
+      if (sorting.length) {
+        const { id, desc } = sorting[0];
+        sorted.sort((a, b) => {
+          const av = a[id as keyof Room];
+          const bv = b[id as keyof Room];
+          return (av < bv ? -1 : av > bv ? 1 : 0) * (desc ? -1 : 1);
+        });
+      }
+      const start = pagination.pageIndex * pagination.pageSize;
+      return sorted.slice(start, start + pagination.pageSize);
+    }, [sorting, pagination]);
+
+    const table = useReactTable({
+      data: pagedData,
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+      manualSorting: true,
+      manualPagination: true,
+      rowCount: rows.length, // total from "server"
+      state: { sorting, pagination },
+      onSortingChange: setSorting,
+      onPaginationChange: setPagination,
+    });
+
+    return (
+      <Stack spacing={3}>
+        <Typography variant="h3">Server-side Data</Typography>
+        <Typography variant="body2">
+          Sorting and pagination are controlled externally. Changing page or
+          sort order triggers a new &quot;fetch&quot; (simulated here with an
+          in-memory slice).
+        </Typography>
+        <BiampTable table={table} />
+        <BiampTablePagination table={table} rowsPerPageOptions={[5, 10]} />
+      </Stack>
+    );
+  },
+};
+
+/**
+ * Demonstrates per-row control:
+ * - `isRowClickable` limits which rows respond to clicks.
+ * - `enableRowSelection` as a function limits which rows can be selected.
+ * - `meta.minWidth` on a column definition constrains column width.
+ */
+export const PerRowControl: Story = {
+  render: () => {
+    const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+
+    const table = useReactTable({
+      data: perRowData,
+      columns: columnsWithMinWidth,
+      getCoreRowModel: getCoreRowModel(),
+      getRowId: (row) => String(row.id),
+      // Only "Available" rooms can be selected.
+      enableRowSelection: (row) => row.original.status === 'Available',
+      state: { rowSelection },
+      onRowSelectionChange: setRowSelection,
+    });
+
+    return (
+      <Stack spacing={3}>
+        <Typography variant="h3">Per-row Control</Typography>
+        <Typography variant="body2">
+          Only <strong>Available</strong> rooms are selectable and clickable.
+          The Room Name column has a min-width of 200px.
+        </Typography>
+        <BiampTable
+          table={table}
+          onRowClick={(row) => console.log('Row clicked:', row)}
+          isRowClickable={(row: Room) => row.status === 'Available'}
+        />
       </Stack>
     );
   },
