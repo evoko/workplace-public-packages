@@ -28,6 +28,102 @@ type Room = {
   floor: string;
 };
 
+type Device = {
+  id: number;
+  name: string;
+  type: string;
+  location: string;
+  floor: string;
+  building: string;
+  ipAddress: string;
+  macAddress: string;
+  status: string;
+  firmwareVersion: string;
+  lastSeen: string;
+};
+
+const deviceTypes = [
+  'DSP',
+  'Amplifier',
+  'Microphone',
+  'Speaker',
+  'Camera',
+  'Display',
+];
+const locations = [
+  'Lobby',
+  'Conference A',
+  'Conference B',
+  'Board Room',
+  'Huddle 1',
+  'Huddle 2',
+  'Training',
+];
+const buildings = ['HQ', 'Annex', 'East Wing'];
+const statuses = ['Online', 'Offline', 'Warning'];
+
+const deviceColumnHelper = createColumnHelper<Device>();
+const deviceColumns = [
+  deviceColumnHelper.accessor('name', {
+    header: 'Device Name',
+    meta: { minWidth: 160 },
+  }),
+  deviceColumnHelper.accessor('type', {
+    header: 'Type',
+    meta: { minWidth: 100 },
+  }),
+  deviceColumnHelper.accessor('location', {
+    header: 'Location',
+    meta: { minWidth: 130 },
+  }),
+  deviceColumnHelper.accessor('floor', {
+    header: 'Floor',
+    meta: { minWidth: 80 },
+  }),
+  deviceColumnHelper.accessor('building', {
+    header: 'Building',
+    meta: { minWidth: 90 },
+  }),
+  deviceColumnHelper.accessor('ipAddress', {
+    header: 'IP Address',
+    meta: { minWidth: 120 },
+  }),
+  deviceColumnHelper.accessor('macAddress', {
+    header: 'MAC Address',
+    meta: { minWidth: 140 },
+  }),
+  deviceColumnHelper.accessor('status', {
+    header: 'Status',
+    meta: { minWidth: 90 },
+  }),
+  deviceColumnHelper.accessor('firmwareVersion', {
+    header: 'Firmware',
+    meta: { minWidth: 100 },
+  }),
+  deviceColumnHelper.accessor('lastSeen', {
+    header: 'Last Seen',
+    meta: { minWidth: 160 },
+  }),
+];
+
+const deviceRows: Device[] = Array.from({ length: 100 }, (_, i) => {
+  const n = i + 1;
+  const type = deviceTypes[i % deviceTypes.length];
+  return {
+    id: n,
+    name: `${type} ${n.toString().padStart(3, '0')}`,
+    type,
+    location: locations[i % locations.length],
+    floor: `${(i % 5) + 1}F`,
+    building: buildings[i % buildings.length],
+    ipAddress: `192.168.${Math.floor(i / 255)}.${(i % 255) + 1}`,
+    macAddress: `AA:BB:CC:${n.toString(16).padStart(2, '0').toUpperCase()}:${(n * 3).toString(16).padStart(2, '0').toUpperCase()}:FF`,
+    status: statuses[i % statuses.length],
+    firmwareVersion: `v${1 + (i % 3)}.${i % 10}.${i % 5}`,
+    lastSeen: new Date(Date.now() - i * 60_000 * 17).toLocaleString(),
+  };
+});
+
 const columnHelper = createColumnHelper<Room>();
 
 const columns = [
@@ -459,6 +555,32 @@ export const PerRowControl: Story = {
           onRowClick={(row) => console.log('Row clicked:', row)}
           isRowClickable={(row: Room) => row.status === 'Available'}
         />
+      </Stack>
+    );
+  },
+};
+
+/**
+ * 100 rows × 10 columns (each with a minWidth) to verify that the table
+ * scrolls both horizontally (wide columns) and vertically (many rows).
+ * Pass `sx` on the TableContainer to cap the height.
+ */
+export const ScrollDemo: Story = {
+  render: () => {
+    const table = useReactTable({
+      data: deviceRows,
+      columns: deviceColumns,
+      getCoreRowModel: getCoreRowModel(),
+    });
+
+    return (
+      <Stack spacing={2}>
+        <Typography variant="h3">Scroll Demo</Typography>
+        <Typography variant="body2">
+          100 rows, 10 columns with minWidth. The container is capped at 400 px
+          tall — scroll vertically and horizontally to see all data.
+        </Typography>
+        <BiampTable table={table} />
       </Stack>
     );
   },
