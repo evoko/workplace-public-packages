@@ -84,7 +84,12 @@ export function BiampTable<TData>({
         ...sx,
       }}
     >
-      <MuiTable sx={{ minWidth: tableMinWidth, height: showError || showEmpty ? '100%' : undefined }}>
+      <MuiTable
+        sx={{
+          minWidth: tableMinWidth,
+          height: showError || showEmpty ? '100%' : undefined,
+        }}
+      >
         <TableHead>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
