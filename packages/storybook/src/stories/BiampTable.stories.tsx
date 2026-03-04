@@ -648,7 +648,7 @@ export const EmptyState: Story = {
     return (
       <Stack spacing={3} height={'100%'}>
         <Typography variant="h3">Empty State (default)</Typography>
-        <BiampTable table={table} empty />
+        <BiampTable table={table} />
       </Stack>
     );
   },

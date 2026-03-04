@@ -1,7 +1,6 @@
 import {
   Box,
   Checkbox,
-  LinearProgress,
   Table as MuiTable,
   TableBody,
   TableCell,
@@ -71,7 +70,7 @@ export function BiampTable<TData>({
 
   const rows = table.getRowModel().rows;
   const showError = !!error;
-  const showEmpty = !showError && !!empty && rows.length === 0;
+  const showEmpty = !showError && rows.length === 0;
 
   return (
     <TableContainer
@@ -85,8 +84,7 @@ export function BiampTable<TData>({
         ...sx,
       }}
     >
-      {loading && <LinearProgress />}
-      <MuiTable sx={{ minWidth: tableMinWidth, height: '100%' }}>
+      <MuiTable sx={{ minWidth: tableMinWidth, height: showError || showEmpty ? '100%' : undefined }}>
         <TableHead>
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
@@ -162,7 +160,7 @@ export function BiampTable<TData>({
                   height: '100%',
                 }}
               >
-                {empty === true ? <BiampTableEmptyState /> : empty}
+                {!empty || empty === true ? <BiampTableEmptyState /> : empty}
               </TableCell>
             </TableRow>
           ) : (
