@@ -41,6 +41,8 @@ export type BiampTableColumnVisibilityProps<TData> = Omit<
   table: Table<TData>;
   /** Called after column visibility changes. */
   onChange?: (visibility: VisibilityState) => void;
+  /** Label for the "show all" toggle. @default "Show all" */
+  showAllLabel?: string;
 };
 
 const columnListItemSx: SxProps<Theme> = {
@@ -58,6 +60,7 @@ const columnListItemSx: SxProps<Theme> = {
 export function BiampTableColumnVisibility<TData>({
   table,
   onChange,
+  showAllLabel = 'Show all',
   anchorEl,
   anchorOrigin = { vertical: 'bottom', horizontal: 'right' },
   transformOrigin = { vertical: 'top', horizontal: 'right' },
@@ -111,9 +114,9 @@ export function BiampTableColumnVisibility<TData>({
             checked={allVisible}
             indeterminate={!allVisible && someVisible}
             size="small"
-            slotProps={{ input: { 'aria-label': 'Show all columns' } }}
+            slotProps={{ input: { 'aria-label': `${showAllLabel} columns` } }}
           />
-          <Typography variant="caption">Show all</Typography>
+          <Typography variant="caption">{showAllLabel}</Typography>
         </ListItem>
         <Divider />
         <Box sx={{ maxHeight: 340, overflow: 'auto' }}>
