@@ -4,6 +4,8 @@ import { Box, Stack, Typography } from '@mui/material';
 import {
   BiampTable,
   BiampTableColumnVisibility,
+  BiampTableEmptyState,
+  BiampTableErrorState,
   BiampTablePagination,
   BiampTableToolbarActionButton,
 } from '@bwp-web/components';
@@ -606,10 +608,29 @@ export const ErrorState: Story = {
 
     return (
       <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Error State</Typography>
+        <Typography variant="h3">Error State (default)</Typography>
+        <BiampTable table={table} error />
+      </Stack>
+    );
+  },
+};
+
+export const ErrorStateCustom: Story = {
+  render: () => {
+    const table = useReactTable({
+      data: [],
+      columns,
+      getCoreRowModel: coreRowModel,
+    });
+
+    return (
+      <Stack spacing={3} height={'100%'}>
+        <Typography variant="h3">Error State (custom)</Typography>
         <BiampTable
           table={table}
-          error="Failed to load rooms. Please try again."
+          error={
+            <BiampTableErrorState description="Failed to load rooms. Please try again." />
+          }
         />
       </Stack>
     );
@@ -626,8 +647,30 @@ export const EmptyState: Story = {
 
     return (
       <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Empty State</Typography>
-        <BiampTable table={table} empty="No rooms match your filters." />
+        <Typography variant="h3">Empty State (default)</Typography>
+        <BiampTable table={table} empty />
+      </Stack>
+    );
+  },
+};
+
+export const EmptyStateCustom: Story = {
+  render: () => {
+    const table = useReactTable({
+      data: [],
+      columns,
+      getCoreRowModel: coreRowModel,
+    });
+
+    return (
+      <Stack spacing={3} height={'100%'}>
+        <Typography variant="h3">Empty State (custom)</Typography>
+        <BiampTable
+          table={table}
+          empty={
+            <BiampTableEmptyState description="No rooms match your filters." />
+          }
+        />
       </Stack>
     );
   },

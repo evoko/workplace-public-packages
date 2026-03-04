@@ -9,11 +9,13 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
-  Typography,
   type SxProps,
   type Theme,
 } from '@mui/material';
 import { flexRender, type Table } from '@tanstack/react-table';
+import type { ReactNode } from 'react';
+import { BiampTableEmptyState } from './BiampTableEmptyState';
+import { BiampTableErrorState } from './BiampTableErrorState';
 import './tanstack-meta';
 
 export type BiampTableProps<TData> = {
@@ -28,10 +30,10 @@ export type BiampTableProps<TData> = {
   isRowClickable?: (row: TData) => boolean;
   /** When true, shows a LinearProgress bar below the table header. */
   loading?: boolean;
-  /** When provided, displays an error message in place of table body rows. */
-  error?: string;
-  /** When provided and the table has no rows, displays this message instead of an empty body. */
-  empty?: string;
+  /** When truthy, shown in place of table body rows. Pass `true` for the default error state, or a custom ReactNode. */
+  error?: boolean | ReactNode;
+  /** When truthy and the table has no rows, shown instead of an empty body. Pass `true` for the default empty state, or a custom ReactNode. */
+  empty?: boolean | ReactNode;
   /** sx applied to the root TableContainer (rendered as a Box). */
   sx?: SxProps<Theme>;
 };
@@ -147,7 +149,7 @@ export function BiampTable<TData>({
                   height: '100%',
                 }}
               >
-                <Typography color="error">{error}</Typography>
+                {error === true ? <BiampTableErrorState /> : error}
               </TableCell>
             </TableRow>
           ) : showEmpty ? (
@@ -160,7 +162,7 @@ export function BiampTable<TData>({
                   height: '100%',
                 }}
               >
-                <Typography color="text.secondary">{empty}</Typography>
+                {empty === true ? <BiampTableEmptyState /> : empty}
               </TableCell>
             </TableRow>
           ) : (

@@ -17,3 +17,5 @@ export { ChevronRight } from './ChevronRight';
 export { ChevronLeft } from './ChevronLeft';
 export { ChevronFullLeft } from './ChevronFullLeft';
 export { ChevronFullRight } from './ChevronFullRight';
+export { NoResultsIcon } from './NoResultsIcon';
+export { ServiceNotReachableIcon } from './ServiceNotReachableIcon';
