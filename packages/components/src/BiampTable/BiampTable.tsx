@@ -1,5 +1,6 @@
 import {
   Box,
+  type BoxProps,
   Checkbox,
   Table as MuiTable,
   TableBody,
@@ -8,7 +9,6 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
-  type SxProps,
   type Theme,
 } from '@mui/material';
 import { flexRender, type Table } from '@tanstack/react-table';
@@ -18,7 +18,7 @@ import { BiampTableErrorState } from './BiampTableErrorState';
 import './tanstack-meta';
 import { useLoadingDelay } from './useLoadingDelay';
 
-export type BiampTableProps<TData> = {
+export type BiampTableProps<TData> = BoxProps & {
   /** TanStack Table instance to connect to. */
   table: Table<TData>;
   /** Called when a clickable body row is clicked. Receives the row's original data. */
@@ -36,8 +36,6 @@ export type BiampTableProps<TData> = {
   empty?: boolean | ReactNode;
   /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
   hideSelectAll?: boolean;
-  /** sx applied to the root TableContainer (rendered as a Box). */
-  sx?: SxProps<Theme>;
 };
 
 export function BiampTable<TData>({
@@ -49,6 +47,7 @@ export function BiampTable<TData>({
   empty,
   hideSelectAll,
   sx,
+  ...boxProps
 }: BiampTableProps<TData>) {
   // Only show the checkbox column when the caller explicitly opted in.
   // TanStack applies enableRowSelection=true as a runtime default for per-row
@@ -81,6 +80,7 @@ export function BiampTable<TData>({
   return (
     <TableContainer
       component={Box}
+      {...boxProps}
       sx={{
         display: 'flex',
         flexDirection: 'column',

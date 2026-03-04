@@ -1,7 +1,7 @@
-import { Stack, Typography } from '@mui/material';
+import { Stack, type StackProps, Typography } from '@mui/material';
 import { cloneElement, type JSX, type ReactNode } from 'react';
 
-export type BiampTableStatusMessageProps = {
+export type BiampTableStatusMessageProps = StackProps & {
   /** Required icon element. */
   icon: JSX.Element;
   /** Required title text. */
@@ -17,9 +17,10 @@ export function BiampTableStatusMessage({
   title,
   description,
   children,
+  ...stackProps
 }: BiampTableStatusMessageProps) {
   return (
-    <Stack alignItems="center" gap={2}>
+    <Stack alignItems="center" gap={2} {...stackProps}>
       {cloneElement(icon, { sx: { width: 56, height: 56, ...icon.props.sx } })}
       <Typography variant="h2">{title}</Typography>
       {description && <Typography variant="body1">{description}</Typography>}
