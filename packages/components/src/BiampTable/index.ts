@@ -12,6 +12,7 @@ export {
   type BiampTableColumnVisibilityProps,
   getColumnVisibilityDirtyCount,
   getDefaultColumnVisibility,
+  toVisibilityState,
   type ColumnVisibility,
 } from './BiampTableColumnVisibility';
 export {

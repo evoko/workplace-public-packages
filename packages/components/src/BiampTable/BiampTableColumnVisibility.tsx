@@ -11,8 +11,7 @@ import {
   type SxProps,
   type Theme,
 } from '@mui/material';
-import type { Table } from '@tanstack/react-table';
-import { useEffect, useRef } from 'react';
+import type { Table, VisibilityState } from '@tanstack/react-table';
 import './tanstack-meta';
 
 /**
@@ -22,6 +21,16 @@ import './tanstack-meta';
  * treated as `true` (visible).
  */
 export type ColumnVisibility = Partial<Record<string, boolean>>;
+
+/**
+ * Converts a `ColumnVisibility` to TanStack's `VisibilityState`.
+ * Use this when passing to `useReactTable({ state: { columnVisibility } })`.
+ */
+export function toVisibilityState(
+  visibility: ColumnVisibility,
+): VisibilityState {
+  return visibility as VisibilityState;
+}
 
 /**
  * Reads `meta.defaultVisible` from all leaf columns and returns a
@@ -61,12 +70,10 @@ export function getColumnVisibilityDirtyCount<TData>(
 
 export type BiampTableColumnVisibilityProps<TData> = Omit<
   PopoverProps,
-  'open' | 'onChange'
+  'open'
 > & {
   /** TanStack Table instance to connect to. */
   table: Table<TData>;
-  /** Called after column visibility changes. */
-  onChange?: (visibility: ColumnVisibility) => void;
   /** Label for the "show all" toggle. @default "Show all" */
   showAllLabel?: string;
 };
@@ -85,7 +92,6 @@ const columnListItemSx: SxProps<Theme> = {
 
 export function BiampTableColumnVisibility<TData>({
   table,
-  onChange,
   showAllLabel = 'Show all',
   anchorEl,
   anchorOrigin = { vertical: 'bottom', horizontal: 'right' },
@@ -93,15 +99,6 @@ export function BiampTableColumnVisibility<TData>({
   slotProps,
   ...popoverProps
 }: BiampTableColumnVisibilityProps<TData>) {
-  const visibility = table.getState().columnVisibility;
-  const prevVisibilityRef = useRef(visibility);
-
-  useEffect(() => {
-    if (prevVisibilityRef.current === visibility) return;
-    prevVisibilityRef.current = visibility;
-    onChange?.(visibility);
-  }, [visibility, onChange]);
-
   const allVisible = table
     .getAllLeafColumns()
     .every((col) => col.getIsVisible());

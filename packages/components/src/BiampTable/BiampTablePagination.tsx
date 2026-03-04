@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import { Box, BoxProps, TablePagination } from '@mui/material';
+import { Box, TablePagination, type TablePaginationProps } from '@mui/material';
 import type { Table } from '@tanstack/react-table';
 
-export type BiampTablePaginationProps<TData> = BoxProps & {
+export type BiampTablePaginationProps<TData> = {
   /** TanStack Table instance to connect to. */
   table: Table<TData>;
   /** Rows-per-page options. When omitted, the selector is hidden and defaults to 25. */
@@ -11,14 +11,24 @@ export type BiampTablePaginationProps<TData> = BoxProps & {
   loading?: boolean;
   /** Hide pagination when all rows fit on one page. @default true */
   autoHide?: boolean;
-};
+} & Omit<
+  TablePaginationProps<typeof Box>,
+  | 'component'
+  | 'count'
+  | 'page'
+  | 'rowsPerPage'
+  | 'onPageChange'
+  | 'onRowsPerPageChange'
+  | 'rowsPerPageOptions'
+>;
 
 export function BiampTablePagination<TData>({
   table,
   rowsPerPageOptions,
   loading,
   autoHide = true,
-  ...boxProps
+  sx,
+  ...paginationProps
 }: BiampTablePaginationProps<TData>) {
   const rowCount = table.getRowCount();
   const lastRowCountRef = useRef(rowCount);
@@ -34,21 +44,29 @@ export function BiampTablePagination<TData>({
   if (autoHide && !loading && stableCount <= pageSize) return null;
 
   return (
-    <Box {...boxProps}>
-      <TablePagination
-        component="div"
-        count={stableCount}
-        page={table.getState().pagination.pageIndex}
-        rowsPerPage={table.getState().pagination.pageSize}
-        onPageChange={(_, page) => table.setPageIndex(page)}
-        onRowsPerPageChange={(e) => {
-          table.setPageSize(Number(e.target.value));
-          table.setPageIndex(0);
-        }}
-        rowsPerPageOptions={rowsPerPageOptions ?? []}
-        showFirstButton
-        showLastButton
-      />
-    </Box>
+    <TablePagination
+      component={Box}
+      count={stableCount}
+      page={table.getState().pagination.pageIndex}
+      rowsPerPage={table.getState().pagination.pageSize}
+      onPageChange={(_, page) => table.setPageIndex(page)}
+      onRowsPerPageChange={(e) => {
+        table.setPageSize(Number(e.target.value));
+        table.setPageIndex(0);
+      }}
+      rowsPerPageOptions={rowsPerPageOptions ?? []}
+      showFirstButton
+      showLastButton
+      sx={{
+        height: 40,
+        minHeight: 40,
+        '& .MuiToolbar-root': {
+          minHeight: 40,
+          px: 0,
+        },
+        ...sx,
+      }}
+      {...paginationProps}
+    />
   );
 }

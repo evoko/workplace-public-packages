@@ -10,8 +10,8 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.11.2
-- `@bwp-web/styles` >= 0.11.2
+- `@bwp-web/assets` >= 0.11.3
+- `@bwp-web/styles` >= 0.11.3
 - `@mui/material` >= 7.0.0
 - `@tanstack/react-table` >= 8.0.0
 - `react` >= 18.0.0
@@ -345,7 +345,6 @@ Popover with a checklist for toggling column visibility. Extends MUI `PopoverPro
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `table` | `Table<TData>` | _(required)_ | TanStack Table instance |
-| `onChange` | `(visibility: ColumnVisibility) => void` | — | Called after column visibility changes |
 | `showAllLabel` | `string` | `'Show all'` | Label for the "show all" toggle |
 | _...rest_ | `PopoverProps` | — | All other MUI `Popover` props are forwarded |
 
@@ -379,7 +378,6 @@ Self-managing column visibility button that renders both the trigger button and 
 | `icon` | `ReactNode` | `<ColumnsIcon />` | Icon for the trigger button |
 | `label` | `string` | `'Columns'` | Accessible label for the trigger button |
 | `defaultColumnVisibility` | `ColumnVisibility` | — | Default visibility map for badge count. When omitted, auto-derived from `meta.defaultVisible` |
-| `onChange` | `(visibility: ColumnVisibility) => void` | — | Called after column visibility changes |
 | `showAllLabel` | `string` | `'Show all'` | Label for the "show all" toggle |
 | _...rest_ | `BiampTableToolbarActionButtonProps` | — | All other action button props are forwarded |
 
@@ -472,6 +470,19 @@ const defaults = getDefaultColumnVisibility(table);
 // e.g. { notes: false } if the "notes" column has meta: { defaultVisible: false }
 ```
 
+### `toVisibilityState`
+
+Converts a `ColumnVisibility` to TanStack's `VisibilityState`. Use when passing to `useReactTable({ state: { columnVisibility } })`.
+
+```tsx
+import { toVisibilityState } from '@bwp-web/components';
+
+const table = useReactTable({
+  state: { columnVisibility: toVisibilityState(visibility) },
+  onColumnVisibilityChange: setVisibility, // updates URL params, etc.
+});
+```
+
 ### `ColumnVisibility`
 
 Type alias for `Partial<Record<string, boolean>>` — a looser alternative to TanStack's `VisibilityState` (`Record<string, boolean>`). Eliminates the need for `as VisibilityState` casts when working with URL params or partial objects.
@@ -538,6 +549,7 @@ The BiampTable components follow WCAG 2.1 AA guidelines:
 | `useDebouncedCallback` | hook | Generic debounced callback |
 | `getColumnVisibilityDirtyCount` | function | Count columns with non-default visibility |
 | `getDefaultColumnVisibility` | function | Derive default visibility from column meta |
+| `toVisibilityState` | function | Convert `ColumnVisibility` to TanStack `VisibilityState` |
 | `exportToCsv` | function | Convert rows + columns to CSV and download |
 | `buildCsvString` | function | Build CSV string (no download) |
 | `ColumnVisibility` | type | Loose visibility state type alias |

@@ -24,8 +24,6 @@ export type BiampTableToolbarColumnVisibilityProps<TData> = {
    * When omitted, auto-derived from `meta.defaultVisible` on each column.
    */
   defaultColumnVisibility?: ColumnVisibility;
-  /** Called after column visibility changes. */
-  onChange?: (visibility: ColumnVisibility) => void;
   /** Label for the "show all" toggle inside the popover. @default "Show all" */
   showAllLabel?: string;
 } & Omit<
@@ -38,7 +36,6 @@ export function BiampTableToolbarColumnVisibility<TData>({
   icon = <ColumnsIcon variant="xs" />,
   label = 'Columns',
   defaultColumnVisibility,
-  onChange,
   showAllLabel,
   ...actionButtonProps
 }: BiampTableToolbarColumnVisibilityProps<TData>) {
@@ -62,7 +59,6 @@ export function BiampTableToolbarColumnVisibility<TData>({
         table={table}
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
-        onChange={onChange}
         showAllLabel={showAllLabel}
       />
     </>
