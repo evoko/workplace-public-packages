@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Box,
   Button,
+  Chip,
   FormControl,
   InputLabel,
   MenuItem,
@@ -45,6 +46,10 @@ const coreRowModel = getCoreRowModel();
 const sortedRowModel = getSortedRowModel();
 const paginationRowModel = getPaginationRowModel();
 
+// ---------------------------------------------------------------------------
+// Room data
+// ---------------------------------------------------------------------------
+
 type Room = {
   id: number;
   name: string;
@@ -53,109 +58,13 @@ type Room = {
   floor: string;
 };
 
-type Device = {
-  id: number;
-  name: string;
-  type: string;
-  location: string;
-  floor: string;
-  building: string;
-  ipAddress: string;
-  macAddress: string;
-  status: string;
-  firmwareVersion: string;
-  lastSeen: string;
-};
-
-const deviceTypes = [
-  'DSP',
-  'Amplifier',
-  'Microphone',
-  'Speaker',
-  'Camera',
-  'Display',
-];
-const locations = [
-  'Lobby',
-  'Conference A',
-  'Conference B',
-  'Board Room',
-  'Huddle 1',
-  'Huddle 2',
-  'Training',
-];
-const buildings = ['HQ', 'Annex', 'East Wing'];
-const statuses = ['Online', 'Offline', 'Warning'];
-
-const deviceColumnHelper = createColumnHelper<Device>();
-const deviceColumns = [
-  deviceColumnHelper.accessor('name', {
-    header: 'Device Name',
-    meta: { minWidth: 160 },
-  }),
-  deviceColumnHelper.accessor('type', {
-    header: 'Type',
-    meta: { minWidth: 100 },
-  }),
-  deviceColumnHelper.accessor('location', {
-    header: 'Location',
-    meta: { minWidth: 130 },
-  }),
-  deviceColumnHelper.accessor('floor', {
-    header: 'Floor',
-    meta: { minWidth: 80 },
-  }),
-  deviceColumnHelper.accessor('building', {
-    header: 'Building',
-    meta: { minWidth: 90 },
-  }),
-  deviceColumnHelper.accessor('ipAddress', {
-    header: 'IP Address',
-    enableSorting: false,
-    meta: { minWidth: 120 },
-  }),
-  deviceColumnHelper.accessor('macAddress', {
-    header: 'MAC Address',
-    enableSorting: false,
-    meta: { minWidth: 140 },
-  }),
-  deviceColumnHelper.accessor('status', {
-    header: 'Status',
-    meta: { minWidth: 90 },
-  }),
-  deviceColumnHelper.accessor('firmwareVersion', {
-    header: 'Firmware',
-    enableSorting: false,
-    meta: { minWidth: 100 },
-  }),
-  deviceColumnHelper.accessor('lastSeen', {
-    header: 'Last Seen',
-    meta: { minWidth: 160 },
-  }),
-];
-
-const deviceRows: Device[] = Array.from({ length: 100 }, (_, i) => {
-  const n = i + 1;
-  const type = deviceTypes[i % deviceTypes.length];
-  return {
-    id: n,
-    name: `${type} ${n.toString().padStart(3, '0')}`,
-    type,
-    location: locations[i % locations.length],
-    floor: `${(i % 5) + 1}F`,
-    building: buildings[i % buildings.length],
-    ipAddress: `192.168.${Math.floor(i / 255)}.${(i % 255) + 1}`,
-    macAddress: `AA:BB:CC:${n.toString(16).padStart(2, '0').toUpperCase()}:${(n * 3).toString(16).padStart(2, '0').toUpperCase()}:FF`,
-    status: statuses[i % statuses.length],
-    firmwareVersion: `v${1 + (i % 3)}.${i % 10}.${i % 5}`,
-    lastSeen: new Date(Date.now() - i * 60_000 * 17).toLocaleString(),
-  };
-});
-
 const columnHelper = createColumnHelper<Room>();
 
 const columns = [
-  columnHelper.accessor('name', { header: 'Room Name' }),
+  columnHelper.accessor('name', {
+    header: 'Room Name',
+    meta: { minWidth: 200 },
+  }),
   columnHelper.accessor('status', { header: 'Status' }),
   columnHelper.accessor('capacity', { header: 'Capacity' }),
   columnHelper.accessor('floor', { header: 'Floor' }),
@@ -269,30 +178,142 @@ const rows: Room[] = [
   },
 ];
 
-const columnsWithMinWidth = [
-  columnHelper.accessor('name', {
-    header: 'Room Name',
-    meta: { minWidth: 200 },
+const rows5 = rows.slice(0, 5);
+const emptyRows: Room[] = [];
+
+// ---------------------------------------------------------------------------
+// Device data (large dataset for scrolling demos)
+// ---------------------------------------------------------------------------
+
+type Device = {
+  id: number;
+  name: string;
+  type: string;
+  location: string;
+  floor: string;
+  building: string;
+  ipAddress: string;
+  macAddress: string;
+  status: string;
+  firmwareVersion: string;
+  lastSeen: string;
+};
+
+const deviceTypes = [
+  'DSP',
+  'Amplifier',
+  'Microphone',
+  'Speaker',
+  'Camera',
+  'Display',
+];
+const locations = [
+  'Lobby',
+  'Conference A',
+  'Conference B',
+  'Board Room',
+  'Huddle 1',
+  'Huddle 2',
+  'Training',
+];
+const buildings = ['HQ', 'Annex', 'East Wing'];
+const statuses = ['Online', 'Offline', 'Warning'];
+
+const deviceColumnHelper = createColumnHelper<Device>();
+const deviceColumns = [
+  deviceColumnHelper.accessor('name', {
+    header: 'Device Name',
+    meta: { minWidth: 160 },
   }),
-  columnHelper.accessor('status', { header: 'Status' }),
-  columnHelper.accessor('capacity', { header: 'Capacity' }),
-  columnHelper.accessor('floor', { header: 'Floor' }),
+  deviceColumnHelper.accessor('type', {
+    header: 'Type',
+    meta: { minWidth: 100 },
+  }),
+  deviceColumnHelper.accessor('location', {
+    header: 'Location',
+    meta: { minWidth: 130 },
+  }),
+  deviceColumnHelper.accessor('floor', {
+    header: 'Floor',
+    meta: { minWidth: 80 },
+  }),
+  deviceColumnHelper.accessor('building', {
+    header: 'Building',
+    meta: { minWidth: 90 },
+  }),
+  deviceColumnHelper.accessor('ipAddress', {
+    header: 'IP Address',
+    enableSorting: false,
+    meta: { minWidth: 120 },
+  }),
+  deviceColumnHelper.accessor('macAddress', {
+    header: 'MAC Address',
+    enableSorting: false,
+    meta: { minWidth: 140 },
+  }),
+  deviceColumnHelper.accessor('status', {
+    header: 'Status',
+    meta: { minWidth: 90 },
+  }),
+  deviceColumnHelper.accessor('firmwareVersion', {
+    header: 'Firmware',
+    enableSorting: false,
+    meta: { minWidth: 100 },
+  }),
+  deviceColumnHelper.accessor('lastSeen', {
+    header: 'Last Seen',
+    meta: { minWidth: 160 },
+  }),
 ];
 
-const perRowData = rows.slice(0, 8);
-const rows5 = rows.slice(0, 5);
+const deviceColumnsWithAction = [
+  ...deviceColumns,
+  deviceColumnHelper.display({
+    id: 'actions',
+    header: '',
+    meta: { sticky: 'right', minWidth: 48 },
+    cell: ({ row }) => (
+      <Button onClick={() => console.log(row)}>Press me!</Button>
+    ),
+  }),
+];
+
+const deviceRows: Device[] = Array.from({ length: 100 }, (_, i) => {
+  const n = i + 1;
+  const type = deviceTypes[i % deviceTypes.length];
+  return {
+    id: n,
+    name: `${type} ${n.toString().padStart(3, '0')}`,
+    type,
+    location: locations[i % locations.length],
+    floor: `${(i % 5) + 1}F`,
+    building: buildings[i % buildings.length],
+    ipAddress: `192.168.${Math.floor(i / 255)}.${(i % 255) + 1}`,
+    macAddress: `AA:BB:CC:${n.toString(16).padStart(2, '0').toUpperCase()}:${(n * 3).toString(16).padStart(2, '0').toUpperCase()}:FF`,
+    status: statuses[i % statuses.length],
+    firmwareVersion: `v${1 + (i % 3)}.${i % 10}.${i % 5}`,
+    lastSeen: new Date(Date.now() - i * 60_000 * 17).toLocaleString(),
+  };
+});
+
+// ---------------------------------------------------------------------------
+// Storybook meta
+// ---------------------------------------------------------------------------
 
 const meta: Meta = {
   title: 'Components/BiampTable',
   tags: ['autodocs'],
-  parameters: {
-    canvasBackground: 'background.paper',
-  },
+  parameters: { canvasBackground: 'background.paper' },
 };
 
 export default meta;
 type Story = StoryObj;
 
+// ---------------------------------------------------------------------------
+// 1. Default — minimal table
+// ---------------------------------------------------------------------------
+
+/** Minimal table with no extras — just data and columns. */
 export const Default: Story = {
   render: () => {
     const table = useReactTable({
@@ -301,150 +322,20 @@ export const Default: Story = {
       getCoreRowModel: coreRowModel,
     });
 
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Table</Typography>
-        <BiampTable table={table} />
-      </Stack>
-    );
+    return <BiampTable table={table} />;
   },
 };
 
-export const WithSorting: Story = {
-  render: () => {
-    const [sorting, setSorting] = useState<SortingState>([]);
+// ---------------------------------------------------------------------------
+// 2. Interactive — all client-side features
+// ---------------------------------------------------------------------------
 
-    const table = useReactTable({
-      data: rows,
-      columns,
-      getCoreRowModel: coreRowModel,
-      getSortedRowModel: sortedRowModel,
-      state: { sorting },
-      onSortingChange: setSorting,
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Table with Sorting</Typography>
-        <Typography variant="body2">
-          Click column headers to sort ascending/descending.
-        </Typography>
-        <BiampTable table={table} />
-      </Stack>
-    );
-  },
-};
-
-export const WithPagination: Story = {
-  render: () => {
-    const table = useReactTable({
-      data: rows,
-      columns,
-      getCoreRowModel: coreRowModel,
-      getPaginationRowModel: paginationRowModel,
-      initialState: { pagination: { pageSize: 5, pageIndex: 0 } },
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Table with Pagination</Typography>
-        <BiampTable table={table} />
-        <BiampTablePagination table={table} rowsPerPageOptions={[5, 10, 15]} />
-      </Stack>
-    );
-  },
-};
-
-export const WithRowSelection: Story = {
-  render: () => {
-    const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-    const selectedCount = Object.keys(rowSelection).length;
-
-    const table = useReactTable({
-      data: rows5,
-      columns,
-      getCoreRowModel: coreRowModel,
-      getRowId: (row) => String(row.id),
-      enableRowSelection: true,
-      state: { rowSelection },
-      onRowSelectionChange: setRowSelection,
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Table with Row Selection</Typography>
-        <Typography variant="body2">
-          {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected
-        </Typography>
-        <BiampTable table={table} />
-      </Stack>
-    );
-  },
-};
-
-export const WithColumnVisibility: Story = {
-  render: () => {
-    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
-      {},
-    );
-    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
-    const table = useReactTable({
-      data: rows5,
-      columns,
-      getCoreRowModel: coreRowModel,
-      state: { columnVisibility },
-      onColumnVisibilityChange: setColumnVisibility,
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Table with Column Visibility</Typography>
-        <Box display="flex" justifyContent="flex-end">
-          <BiampTableToolbarActionButton
-            label="Toggle column visibility"
-            icon={<ColumnsIcon variant="xs" />}
-            badgeContent={getColumnVisibilityDirtyCount(table)}
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-              setAnchorEl(e.currentTarget)
-            }
-          />
-          <BiampTableColumnVisibility
-            table={table}
-            anchorEl={anchorEl}
-            onClose={() => setAnchorEl(null)}
-          />
-        </Box>
-        <BiampTable table={table} />
-      </Stack>
-    );
-  },
-};
-
-export const ClickableRows: Story = {
-  render: () => {
-    const table = useReactTable({
-      data: rows5,
-      columns,
-      getCoreRowModel: coreRowModel,
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Table with Clickable Rows</Typography>
-        <Typography variant="body2">
-          Click a row to see its data logged to the console.
-        </Typography>
-        <BiampTable
-          table={table}
-          onRowClick={(row) => console.log('Row clicked:', row)}
-        />
-      </Stack>
-    );
-  },
-};
-
-export const AllFeatures: Story = {
+/**
+ * All client-side interactive features in one place: sorting, pagination,
+ * row selection (per-row), column visibility, and clickable rows.
+ * Only "Available" rooms are selectable and clickable.
+ */
+export const Interactive: Story = {
   render: () => {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
@@ -461,7 +352,7 @@ export const AllFeatures: Story = {
       getSortedRowModel: sortedRowModel,
       getPaginationRowModel: paginationRowModel,
       getRowId: (row) => String(row.id),
-      enableRowSelection: true,
+      enableRowSelection: (row) => row.original.status === 'Available',
       state: { sorting, rowSelection, columnVisibility },
       onSortingChange: setSorting,
       onRowSelectionChange: setRowSelection,
@@ -470,29 +361,32 @@ export const AllFeatures: Story = {
     });
 
     return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Table with All Features</Typography>
-        <Typography variant="body2">
-          {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected
-        </Typography>
-        <Box display="flex" justifyContent="flex-end">
-          <BiampTableToolbarActionButton
-            label="Toggle column visibility"
-            icon={<ColumnsIcon variant="xs" />}
-            badgeContent={getColumnVisibilityDirtyCount(table)}
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-              setAnchorEl(e.currentTarget)
-            }
-          />
-          <BiampTableColumnVisibility
-            table={table}
-            anchorEl={anchorEl}
-            onClose={() => setAnchorEl(null)}
-          />
+      <Stack spacing={2} height="100%">
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Typography variant="body2">
+            {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
+            only Available rooms are selectable &amp; clickable
+          </Typography>
+          <Box>
+            <BiampTableToolbarActionButton
+              label="Toggle column visibility"
+              icon={<ColumnsIcon variant="xs" />}
+              badgeContent={getColumnVisibilityDirtyCount(table)}
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                setAnchorEl(e.currentTarget)
+              }
+            />
+            <BiampTableColumnVisibility
+              table={table}
+              anchorEl={anchorEl}
+              onClose={() => setAnchorEl(null)}
+            />
+          </Box>
         </Box>
         <BiampTable
           table={table}
           onRowClick={(row) => console.log('Row clicked:', row)}
+          isRowClickable={(row: Room) => row.status === 'Available'}
         />
         <BiampTablePagination table={table} rowsPerPageOptions={[5, 10, 15]} />
       </Stack>
@@ -500,235 +394,115 @@ export const AllFeatures: Story = {
   },
 };
 
+// ---------------------------------------------------------------------------
+// 3. States — loading, error, and empty
+// ---------------------------------------------------------------------------
+
+type TableState =
+  | 'loading'
+  | 'error'
+  | 'error-custom'
+  | 'empty'
+  | 'empty-custom';
+
+const stateLabels: [TableState, string][] = [
+  ['loading', 'Loading'],
+  ['error', 'Error'],
+  ['error-custom', 'Error (custom)'],
+  ['empty', 'Empty'],
+  ['empty-custom', 'Empty (custom)'],
+];
+
+/** Toggle between loading, error, and empty states (default and custom variants). */
+export const States: Story = {
+  render: () => {
+    const [state, setState] = useState<TableState>('loading');
+
+    const data = state === 'loading' ? rows5 : emptyRows;
+
+    const table = useReactTable({
+      data,
+      columns,
+      getCoreRowModel: coreRowModel,
+    });
+
+    const stateProps: Record<
+      TableState,
+      {
+        loading?: boolean;
+        error?: boolean | React.ReactNode;
+        empty?: boolean | React.ReactNode;
+      }
+    > = {
+      loading: { loading: true },
+      error: { error: true },
+      'error-custom': {
+        error: (
+          <BiampTableErrorState description="Failed to load rooms. Please try again." />
+        ),
+      },
+      empty: {},
+      'empty-custom': {
+        empty: (
+          <BiampTableEmptyState description="No rooms match your filters." />
+        ),
+      },
+    };
+
+    return (
+      <Stack spacing={2} height="100%">
+        <Stack direction="row" spacing={1} flexWrap="wrap">
+          {stateLabels.map(([value, label]) => (
+            <Chip
+              key={value}
+              label={label}
+              variant={state === value ? 'filled' : 'outlined'}
+              color={state === value ? 'primary' : 'default'}
+              onClick={() => setState(value)}
+            />
+          ))}
+        </Stack>
+        <BiampTable table={table} {...stateProps[state]} />
+      </Stack>
+    );
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 4. StickyColumns — large dataset with sticky action column
+// ---------------------------------------------------------------------------
+
 /**
- * Demonstrates server-side pagination and sorting. The table uses
- * `manualPagination` and `manualSorting` so TanStack never touches the data —
- * the caller is responsible for fetching the right slice. Here we simulate
- * that with an in-memory sort + slice.
+ * 100 rows × 10 columns with a sticky action column pinned to the right.
+ * Scroll horizontally and vertically to test scrolling behaviour.
  */
-export const ServerSideData: Story = {
+export const StickyColumns: Story = {
   render: () => {
     const [sorting, setSorting] = useState<SortingState>([]);
-    const [pagination, setPagination] = useState<PaginationState>({
-      pageIndex: 0,
-      pageSize: 5,
-    });
-
-    // Simulate a server response: sort then slice.
-    const pagedData = useMemo(() => {
-      let sorted = [...rows];
-      if (sorting.length) {
-        const { id, desc } = sorting[0];
-        sorted.sort((a, b) => {
-          const av = a[id as keyof Room];
-          const bv = b[id as keyof Room];
-          return (av < bv ? -1 : av > bv ? 1 : 0) * (desc ? -1 : 1);
-        });
-      }
-      const start = pagination.pageIndex * pagination.pageSize;
-      return sorted.slice(start, start + pagination.pageSize);
-    }, [sorting, pagination]);
-
-    const table = useReactTable({
-      data: pagedData,
-      columns,
-      getCoreRowModel: coreRowModel,
-      manualSorting: true,
-      manualPagination: true,
-      rowCount: rows.length, // total from "server"
-      state: { sorting, pagination },
-      onSortingChange: setSorting,
-      onPaginationChange: setPagination,
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Server-side Data</Typography>
-        <Typography variant="body2">
-          Sorting and pagination are controlled externally. Changing page or
-          sort order triggers a new &quot;fetch&quot; (simulated here with an
-          in-memory slice).
-        </Typography>
-        <BiampTable table={table} />
-        <BiampTablePagination table={table} rowsPerPageOptions={[5, 10]} />
-      </Stack>
-    );
-  },
-};
-
-/**
- * Demonstrates per-row control:
- * - `isRowClickable` limits which rows respond to clicks.
- * - `enableRowSelection` as a function limits which rows can be selected.
- * - `meta.minWidth` on a column definition constrains column width.
- */
-export const PerRowControl: Story = {
-  render: () => {
-    const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-
-    const table = useReactTable({
-      data: perRowData,
-      columns: columnsWithMinWidth,
-      getCoreRowModel: coreRowModel,
-      getRowId: (row) => String(row.id),
-      // Only "Available" rooms can be selected.
-      enableRowSelection: (row) => row.original.status === 'Available',
-      state: { rowSelection },
-      onRowSelectionChange: setRowSelection,
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Per-row Control</Typography>
-        <Typography variant="body2">
-          Only <strong>Available</strong> rooms are selectable and clickable.
-          The Room Name column has a min-width of 200px.
-        </Typography>
-        <BiampTable
-          table={table}
-          onRowClick={(row) => console.log('Row clicked:', row)}
-          isRowClickable={(row: Room) => row.status === 'Available'}
-        />
-      </Stack>
-    );
-  },
-};
-
-/**
- * 100 rows × 10 columns to verify horizontal and vertical scrolling.
- * BiampTable fills its parent height and scrolls automatically — give the
- * parent a fixed height and no extra props are needed.
- */
-export const Loading: Story = {
-  render: () => {
-    const table = useReactTable({
-      data: rows5,
-      columns,
-      getCoreRowModel: coreRowModel,
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Loading State</Typography>
-        <Typography variant="body2">
-          A LinearProgress bar appears below the header while data is loading.
-        </Typography>
-        <BiampTable table={table} loading />
-      </Stack>
-    );
-  },
-};
-
-export const ErrorState: Story = {
-  render: () => {
-    const table = useReactTable({
-      data: [],
-      columns,
-      getCoreRowModel: coreRowModel,
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Error State (default)</Typography>
-        <BiampTable table={table} error />
-      </Stack>
-    );
-  },
-};
-
-export const ErrorStateCustom: Story = {
-  render: () => {
-    const table = useReactTable({
-      data: [],
-      columns,
-      getCoreRowModel: coreRowModel,
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Error State (custom)</Typography>
-        <BiampTable
-          table={table}
-          error={
-            <BiampTableErrorState description="Failed to load rooms. Please try again." />
-          }
-        />
-      </Stack>
-    );
-  },
-};
-
-export const EmptyState: Story = {
-  render: () => {
-    const table = useReactTable({
-      data: [],
-      columns,
-      getCoreRowModel: coreRowModel,
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Empty State (default)</Typography>
-        <BiampTable table={table} />
-      </Stack>
-    );
-  },
-};
-
-export const EmptyStateCustom: Story = {
-  render: () => {
-    const table = useReactTable({
-      data: [],
-      columns,
-      getCoreRowModel: coreRowModel,
-    });
-
-    return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Empty State (custom)</Typography>
-        <BiampTable
-          table={table}
-          empty={
-            <BiampTableEmptyState description="No rooms match your filters." />
-          }
-        />
-      </Stack>
-    );
-  },
-};
-
-export const WithActionColumn: Story = {
-  render: () => {
-    const columnsWithAction = [
-      ...deviceColumns,
-      deviceColumnHelper.display({
-        id: 'actions',
-        header: '',
-        meta: { sticky: 'right', minWidth: 48 },
-        cell: ({ row }) => (
-          <Button onClick={() => console.log(row)}>Press me!</Button>
-        ),
-      }),
-    ];
 
     const table = useReactTable({
       data: deviceRows,
-      columns: columnsWithAction,
+      columns: deviceColumnsWithAction,
       getCoreRowModel: coreRowModel,
+      getSortedRowModel: sortedRowModel,
+      state: { sorting },
+      onSortingChange: setSorting,
     });
 
     return (
-      <Stack spacing={3} height={'100%'}>
-        <Typography variant="h3">Table with Action Column</Typography>
+      <Stack spacing={2} height="100%">
         <Typography variant="body2">
-          The action column is sticky to the right edge. Scroll horizontally to
-          see it stay pinned.
+          100 rows, 10 columns + sticky action column. Scroll to test.
         </Typography>
         <BiampTable table={table} />
       </Stack>
     );
   },
 };
+
+// ---------------------------------------------------------------------------
+// 5. WithToolbar — full server-side demo
+// ---------------------------------------------------------------------------
 
 /**
  * Simulates a server-side fetch with filtering, sorting, and pagination.
@@ -744,7 +518,6 @@ function simulateFetch(params: {
     setTimeout(() => {
       let data = [...rows];
 
-      // Filter
       if (params.search) {
         const lower = params.search.toLowerCase();
         data = data.filter((r) => r.name.toLowerCase().includes(lower));
@@ -753,7 +526,6 @@ function simulateFetch(params: {
         data = data.filter((r) => r.status === params.status);
       }
 
-      // Sort
       if (params.sorting.length) {
         const { id, desc } = params.sorting[0];
         data.sort((a, b) => {
@@ -763,7 +535,6 @@ function simulateFetch(params: {
         });
       }
 
-      // Paginate
       const total = data.length;
       const start = params.pagination.pageIndex * params.pagination.pageSize;
       data = data.slice(start, start + params.pagination.pageSize);
@@ -773,6 +544,10 @@ function simulateFetch(params: {
   });
 }
 
+/**
+ * Full server-side demo with toolbar: search (debounced), filter drawer,
+ * column visibility, export button, pagination, and loading states.
+ */
 export const WithToolbar: Story = {
   render: () => {
     const [search, setSearch] = useState('');
@@ -793,8 +568,6 @@ export const WithToolbar: Story = {
     const [loading, setLoading] = useState(true);
     const fetchIdRef = useRef(0);
 
-    // Debounce the fetch so rapid actions (e.g. clicking sort 3 times quickly,
-    // toggling filters) collapse into a single request after 300ms of inactivity.
     const debouncedFetch = useDebouncedCallback(() => {
       const id = ++fetchIdRef.current;
       setLoading(true);
@@ -834,12 +607,6 @@ export const WithToolbar: Story = {
 
     return (
       <Stack spacing={2} height="100%">
-        <Typography variant="h3">Table with Toolbar</Typography>
-        <Typography variant="body2">
-          Simulates server-side data with a 600ms fetch delay. Search is
-          debounced (300ms) before updating state. Sort, filter, and pagination
-          changes trigger a new fetch immediately via TanStack state.
-        </Typography>
         <BiampTableToolbar>
           <BiampTableToolbarSearch
             onChange={setSearch}
@@ -889,32 +656,6 @@ export const WithToolbar: Story = {
           rowsPerPageOptions={[5, 10, 15]}
           loading={loading}
         />
-      </Stack>
-    );
-  },
-};
-
-export const ScrollDemo: Story = {
-  render: () => {
-    const [sorting, setSorting] = useState<SortingState>([]);
-
-    const table = useReactTable({
-      data: deviceRows,
-      columns: deviceColumns,
-      getCoreRowModel: coreRowModel,
-      getSortedRowModel: sortedRowModel,
-      state: { sorting },
-      onSortingChange: setSorting,
-    });
-
-    return (
-      <Stack spacing={2} height="100%">
-        <Typography variant="h3">Scroll Demo</Typography>
-        <Typography variant="body2">
-          100 rows, 10 columns. IP Address, MAC Address, and Firmware have
-          sorting disabled.
-        </Typography>
-        <BiampTable table={table} />
       </Stack>
     );
   },
