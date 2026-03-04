@@ -1,15 +1,6 @@
 import { SvgIcon, SvgIconProps } from '@mui/material';
 
-interface RadioCheckedIconProps extends SvgIconProps {
-  ringColor?: string;
-  dotColor?: string;
-}
-
-export function RadioCheckedIcon({
-  ringColor,
-  dotColor,
-  ...props
-}: RadioCheckedIconProps) {
+export function RadioCheckedIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props}>
       <svg
@@ -24,7 +15,7 @@ export function RadioCheckedIcon({
           cx="9"
           cy="9"
           r="8.5"
-          stroke={ringColor ?? 'currentColor'}
+          stroke="#878787"
           strokeWidth="1"
           fill="none"
         />
@@ -33,7 +24,7 @@ export function RadioCheckedIcon({
           cx="9"
           cy="9"
           r="5"
-          fill={dotColor ?? 'currentColor'}
+          fill="#1863D3"
         />
       </svg>
     </SvgIcon>

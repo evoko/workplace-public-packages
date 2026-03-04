@@ -491,7 +491,7 @@ export const biampTheme = (
             root: {
               paddingLeft: '12px',
               paddingRight: '12px',
-              boxShadow: '0px 4px 50px 0px #1111111A',
+              boxShadow: `0px 4px 50px 0px ${alpha(colors.grey[900], 0.1)}`,
               height: 'fit-content',
               width: 'fit-content',
               borderWidth: '1px !important',
@@ -1017,12 +1017,7 @@ export const biampTheme = (
           defaultProps: {
             disableRipple: true,
             icon: <RadioUncheckedIcon />,
-            checkedIcon: (
-              <RadioCheckedIcon
-                ringColor={colors.grey[400]}
-                dotColor={colors.blue.main}
-              />
-            ),
+            checkedIcon: <RadioCheckedIcon />,
           },
           styleOverrides: {
             root: ({ theme }) => ({
@@ -1066,10 +1061,7 @@ export const biampTheme = (
               height: 'auto',
               color: theme.palette.text.primary,
               borderRadius: 999,
-              border:
-                theme.palette.mode === 'dark'
-                  ? `0.6px solid ${alpha(colors.white, 0.4)}`
-                  : `0.6px solid ${alpha(colors.grey[900], 0.4)}`,
+              border: `0.6px solid ${theme.palette.dividers.secondary}`,
               padding: '0px 8px 0px 12px',
               fontSize: theme.typography.caption.fontSize,
               fontWeight: theme.typography.caption.fontWeight,
