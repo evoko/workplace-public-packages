@@ -95,10 +95,12 @@ const deviceColumns = [
   }),
   deviceColumnHelper.accessor('ipAddress', {
     header: 'IP Address',
+    enableSorting: false,
     meta: { minWidth: 120 },
   }),
   deviceColumnHelper.accessor('macAddress', {
     header: 'MAC Address',
+    enableSorting: false,
     meta: { minWidth: 140 },
   }),
   deviceColumnHelper.accessor('status', {
@@ -107,6 +109,7 @@ const deviceColumns = [
   }),
   deviceColumnHelper.accessor('firmwareVersion', {
     header: 'Firmware',
+    enableSorting: false,
     meta: { minWidth: 100 },
   }),
   deviceColumnHelper.accessor('lastSeen', {
@@ -711,18 +714,23 @@ export const WithActionColumn: Story = {
 
 export const ScrollDemo: Story = {
   render: () => {
+    const [sorting, setSorting] = useState<SortingState>([]);
+
     const table = useReactTable({
       data: deviceRows,
       columns: deviceColumns,
       getCoreRowModel: coreRowModel,
+      getSortedRowModel: sortedRowModel,
+      state: { sorting },
+      onSortingChange: setSorting,
     });
 
     return (
       <Stack spacing={2} height="100%">
         <Typography variant="h3">Scroll Demo</Typography>
         <Typography variant="body2">
-          100 rows, 10 columns. BiampTable fills its parent and scrolls in both
-          directions — the 400 px wrapper below is the only constraint needed.
+          100 rows, 10 columns. IP Address, MAC Address, and Firmware have
+          sorting disabled.
         </Typography>
         <BiampTable table={table} />
       </Stack>
