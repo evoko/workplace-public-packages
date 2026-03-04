@@ -34,6 +34,8 @@ export type BiampTableProps<TData> = {
   error?: boolean | ReactNode;
   /** When truthy and the table has no rows, shown instead of an empty body. Pass `true` for the default empty state, or a custom ReactNode. */
   empty?: boolean | ReactNode;
+  /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
+  hideSelectAll?: boolean;
   /** sx applied to the root TableContainer (rendered as a Box). */
   sx?: SxProps<Theme>;
 };
@@ -45,6 +47,7 @@ export function BiampTable<TData>({
   loading,
   error,
   empty,
+  hideSelectAll,
   sx,
 }: BiampTableProps<TData>) {
   // Only show the checkbox column when the caller explicitly opted in.
@@ -106,11 +109,13 @@ export function BiampTable<TData>({
                     bgcolor: 'background.paper',
                   }}
                 >
-                  <Checkbox
-                    checked={table.getIsAllPageRowsSelected()}
-                    indeterminate={table.getIsSomePageRowsSelected()}
-                    onChange={table.getToggleAllPageRowsSelectedHandler()}
-                  />
+                  {!hideSelectAll && (
+                    <Checkbox
+                      checked={table.getIsAllPageRowsSelected()}
+                      indeterminate={table.getIsSomePageRowsSelected()}
+                      onChange={table.getToggleAllPageRowsSelectedHandler()}
+                    />
+                  )}
                 </TableCell>
               )}
               {headerGroup.headers.map((header) => {
