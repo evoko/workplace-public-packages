@@ -34,8 +34,8 @@ export type BiampTableProps<TData> = BoxProps & {
   isRowClickable?: (row: TData) => boolean;
   /** When true, shows a LinearProgress bar below the table header. */
   loading?: boolean;
-  /** When truthy, shown in place of table body rows. Pass `true` for the default error state, or a custom ReactNode. */
-  error?: boolean | ReactNode;
+  /** When truthy, shown in place of table body rows. Pass `true` or an `Error` for the default error state (an `Error`'s message is displayed), or a custom ReactNode. */
+  error?: boolean | Error | ReactNode;
   /** When truthy and the table has no rows, shown instead of an empty body. Pass `true` for the default empty state, or a custom ReactNode. */
   empty?: boolean | ReactNode;
   /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
@@ -191,7 +191,13 @@ export function BiampTable<TData>({
                   height: '100%',
                 }}
               >
-                {error === true ? <BiampTableErrorState /> : error}
+                {error === true ? (
+                  <BiampTableErrorState />
+                ) : error instanceof Error ? (
+                  <BiampTableErrorState description={error.message} />
+                ) : (
+                  error
+                )}
               </TableCell>
             </TableRow>
           ) : showEmpty ? (

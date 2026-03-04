@@ -10,8 +10,8 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.11.0
-- `@bwp-web/styles` >= 0.11.0
+- `@bwp-web/assets` >= 0.11.1
+- `@bwp-web/styles` >= 0.11.1
 - `@mui/material` >= 7.0.0
 - `@tanstack/react-table` >= 8.0.0
 - `react` >= 18.0.0
@@ -122,7 +122,7 @@ The core table renderer. Connects to a TanStack `Table` instance and renders a s
 | `onRowClick` | `(row: TData) => void` | — | Called when a clickable body row is clicked with the row's original data |
 | `isRowClickable` | `(row: TData) => boolean` | — | Controls which rows are clickable. When omitted, all rows are clickable if `onRowClick` is provided |
 | `loading` | `boolean` | — | Reduces body opacity (debounced to avoid flicker on fast responses) |
-| `error` | `boolean \| ReactNode` | — | Pass `true` for the default error state, or a custom `ReactNode` |
+| `error` | `boolean \| Error \| ReactNode` | — | Pass `true` or an `Error` for the default error state (an `Error`'s message is displayed), or a custom `ReactNode` |
 | `empty` | `boolean \| ReactNode` | — | Pass `true` for the default empty state, or a custom `ReactNode`. Only shown when the table has zero rows |
 | `hideSelectAll` | `boolean` | — | Hides the "select all" header checkbox while keeping individual row checkboxes |
 | `getRowLabel` | `(row: TData) => string` | — | Returns a human-readable name for a row, used in ARIA labels (e.g. `"Select Conference Room A"`). Falls back to row index |
