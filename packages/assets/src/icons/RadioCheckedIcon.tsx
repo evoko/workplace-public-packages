@@ -19,13 +19,7 @@ export function RadioCheckedIcon(props: SvgIconProps) {
           strokeWidth="1"
           fill="none"
         />
-        <circle
-          className="radio-dot"
-          cx="9"
-          cy="9"
-          r="5"
-          fill="#1863D3"
-        />
+        <circle className="radio-dot" cx="9" cy="9" r="5" fill="#1863D3" />
       </svg>
     </SvgIcon>
   );
