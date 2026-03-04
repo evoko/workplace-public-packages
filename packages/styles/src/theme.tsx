@@ -1,7 +1,5 @@
 import {
   CheckedIcon,
-  ChevronRight,
-  DatePickerIcon,
   ErrorStatusIcon,
   IndeterminateIcon,
   InfoStatusIcon,
@@ -22,6 +20,8 @@ import {
   UncheckedIcon,
   WarningStatusIcon,
   CloseIcon,
+  ChevronRightIcon,
+  CalendarIcon,
 } from '@bwp-web/assets';
 import { alpha, createTheme } from '@mui/material/styles';
 
@@ -722,7 +722,7 @@ export const biampTheme = (
         },
         MuiBreadcrumbs: {
           defaultProps: {
-            separator: <ChevronRight />,
+            separator: <ChevronRightIcon variant="xs" />,
           },
           styleOverrides: {
             root: ({ theme }) => ({
@@ -1401,7 +1401,7 @@ export const biampTheme = (
         MuiDatePicker: {
           defaultProps: {
             slots: {
-              openPickerIcon: DatePickerIcon,
+              openPickerIcon: CalendarIcon,
             },
             slotProps: {
               openPickerButton: {

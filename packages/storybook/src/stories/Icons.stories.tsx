@@ -33,7 +33,6 @@ import {
   BlankIcon,
   BlockIcon,
   BookmarkIcon,
-  BreadcrumbIcon,
   BuildingIcon,
   CalendarAddIcon,
   CalendarIcon,
@@ -68,7 +67,6 @@ import {
   ControlPanelIcon,
   CopyIcon,
   CursorIcon,
-  DatePickerIcon,
   DefineIcon,
   DeleteIcon,
   DesignFileIcon,
@@ -117,7 +115,6 @@ import {
   IndeterminateIcon,
   InfoCircleIcon,
   InfoStatusIcon,
-  InputCloseIcon,
   InvertIcon,
   LayoutSidebarCollapseIcon,
   LayoutSidebarRightCollapseIcon,
@@ -322,9 +319,6 @@ export const AllIcons: Story = {
         </Typography>
 
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-          <IconDisplay name="BreadcrumbIcon">
-            <BreadcrumbIcon />
-          </IconDisplay>
           <IconDisplay name="CheckedIcon">
             <CheckedIcon />
           </IconDisplay>
@@ -333,12 +327,6 @@ export const AllIcons: Story = {
           </IconDisplay>
           <IconDisplay name="IndeterminateIcon">
             <IndeterminateIcon />
-          </IconDisplay>
-          <IconDisplay name="DatePickerIcon">
-            <DatePickerIcon />
-          </IconDisplay>
-          <IconDisplay name="InputCloseIcon">
-            <InputCloseIcon />
           </IconDisplay>
           <IconDisplay name="ErrorStatusIcon">
             <ErrorStatusIcon />
@@ -439,6 +427,13 @@ export const AllIcons: Story = {
  * Pass the matching `variant` prop to multi-size icons so you see the design intended for that size.
  */
 
+const CONFIG = {
+  gap: 4,
+  display: 'grid',
+  maxWidth: 800,
+  gridTemplateColumns: 'repeat(auto-fill, minmax(50px, 1fr))',
+};
+
 export const IconGroups: Story = {
   name: 'Icon Groups',
   args: { iconColor: undefined },
@@ -454,9 +449,7 @@ export const IconGroups: Story = {
           <Typography variant="h6" color="text.primary">
             xxxxs — 6px
           </Typography>
-          <Box
-            sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, maxWidth: 800 }}
-          >
+          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
             <IconDisplay name="BadgeClockIcon" onlyIcon>
               <BadgeClockIcon variant="xxxxs" />
             </IconDisplay>
@@ -474,9 +467,7 @@ export const IconGroups: Story = {
           <Typography variant="h6" color="text.primary">
             xxxs — 8px
           </Typography>
-          <Box
-            sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, maxWidth: 800 }}
-          >
+          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
             <IconDisplay name="BadgeClockIcon" onlyIcon>
               <BadgeClockIcon variant="xxxs" />
             </IconDisplay>
@@ -491,14 +482,7 @@ export const IconGroups: Story = {
           <Typography variant="h6" color="text.primary">
             xxs — 12px
           </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 4,
-              maxWidth: 800,
-            }}
-          >
+          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
             <IconDisplay onlyIcon name="AccessibleIcon">
               <AccessibleIcon variant="xxs" />
             </IconDisplay>
@@ -636,14 +620,7 @@ export const IconGroups: Story = {
           <Typography variant="h6" color="text.primary">
             xs — 16px
           </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 4,
-              maxWidth: 800,
-            }}
-          >
+          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
             <IconDisplay onlyIcon name="AccessibleIcon">
               <AccessibleIcon variant="xs" />
             </IconDisplay>
@@ -1030,9 +1007,7 @@ export const IconGroups: Story = {
           <Typography variant="h6" color="text.primary">
             sm — 20px
           </Typography>
-          <Box
-            sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, maxWidth: 800 }}
-          >
+          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
             <IconDisplay onlyIcon name="AccessibleIcon">
               <AccessibleIcon variant="sm" />
             </IconDisplay>
@@ -1122,9 +1097,7 @@ export const IconGroups: Story = {
           <Typography variant="h6" color="text.primary">
             md — 24px
           </Typography>
-          <Box
-            sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, maxWidth: 800 }}
-          >
+          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
             <IconDisplay onlyIcon name="AddIcon">
               <AddIcon variant="md" />
             </IconDisplay>
@@ -1344,6 +1317,9 @@ export const IconGroups: Story = {
             <IconDisplay onlyIcon name="ParkingIcon">
               <ParkingIcon variant="md" />
             </IconDisplay>
+            <IconDisplay onlyIcon name="PauseIcon">
+              <PauseIcon variant="md" />
+            </IconDisplay>
             <IconDisplay onlyIcon name="PersonIcon">
               <PersonIcon variant="md" />
             </IconDisplay>
@@ -1442,9 +1418,7 @@ export const IconGroups: Story = {
           <Typography variant="h6" color="text.primary">
             lg — 32px
           </Typography>
-          <Box
-            sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, maxWidth: 600 }}
-          >
+          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
             <IconDisplay onlyIcon name="ComputerIcon">
               <ComputerIcon />
             </IconDisplay>
@@ -1483,9 +1457,7 @@ export const IconGroups: Story = {
           <Typography variant="h6" color="text.primary">
             xl — 40px
           </Typography>
-          <Box
-            sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, maxWidth: 800 }}
-          >
+          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
             <IconDisplay onlyIcon name="ArrowDownIcon">
               <ArrowDownIcon variant="xl" />
             </IconDisplay>
@@ -1506,9 +1478,7 @@ export const IconGroups: Story = {
           <Typography variant="h6" color="text.primary">
             xxl — 56px
           </Typography>
-          <Box
-            sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, maxWidth: 800 }}
-          >
+          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
             <IconDisplay onlyIcon name="CloudNoConnectionIcon">
               <CloudNoConnectionIcon variant="xxl" />
             </IconDisplay>
@@ -1556,9 +1526,7 @@ export const IconGroups: Story = {
           <Typography variant="h6" color="text.primary">
             xxxl — 72px
           </Typography>
-          <Box
-            sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, maxWidth: 800 }}
-          >
+          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
             <IconDisplay onlyIcon name="GlobeIcon">
               <GlobeIcon />
             </IconDisplay>

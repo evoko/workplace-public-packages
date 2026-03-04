@@ -33,7 +33,7 @@ const variantMap: Record<IconVariant, PathConfig> = {
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <circle cx="12" cy="12" r="3" fill="currentColor" />
+        <circle cx="12" cy="12" r="3" fill="#FF0000" />
       </>
     ),
   },
@@ -61,7 +61,7 @@ const variantMap: Record<IconVariant, PathConfig> = {
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <circle cx="28" cy="28" r="7" fill="currentColor" />
+        <circle cx="28" cy="28" r="7" fill="#FF0000" />
       </>
     ),
   },
@@ -89,6 +89,7 @@ const variantMap: Record<IconVariant, PathConfig> = {
           d="M15.2324 10.7676C15.5448 11.0801 15.5448 11.5866 15.2324 11.899L11.899 15.2323C11.5866 15.5448 11.0801 15.5448 10.7677 15.2323C10.4553 14.9199 10.4553 14.4134 10.7677 14.101L14.101 10.7676C14.4134 10.4552 14.92 10.4552 15.2324 10.7676Z"
           fill="currentColor"
         />
+        <circle cx="5" cy="5" r="3" fill="#FF0000" />
       </>
     ),
   },
