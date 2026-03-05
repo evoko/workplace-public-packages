@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Box,
-  Button,
   Chip,
   FormControl,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -26,7 +26,7 @@ import {
   getColumnVisibilityDirtyCount,
   useDebouncedCallback,
 } from '@bwp-web/components';
-import { ColumnsIcon } from '@bwp-web/assets';
+import { AddIcon, ColumnsIcon } from '@bwp-web/assets';
 import {
   createColumnHelper,
   getCoreRowModel,
@@ -270,10 +270,12 @@ const deviceColumnsWithAction = [
   ...deviceColumns,
   deviceColumnHelper.display({
     id: 'actions',
-    header: '',
-    meta: { sticky: 'right', minWidth: 80 },
+    header: 'Actions',
+    meta: { sticky: 'right' },
     cell: ({ row }) => (
-      <Button onClick={() => console.log(row)}>Press me!</Button>
+      <IconButton>
+        <AddIcon />
+      </IconButton>
     ),
   }),
 ];

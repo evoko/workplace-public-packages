@@ -58,8 +58,7 @@ export function BiampTablePagination<TData>({
   }
 
   // Hide when there's no data or everything fits on one page
-  if (autoHide && !loading && (!stableCount || stableCount <= pageSize))
-    return null;
+  if (autoHide && (!stableCount || stableCount <= pageSize)) return null;
 
   return (
     <TablePagination

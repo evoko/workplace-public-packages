@@ -164,11 +164,16 @@ export function BiampTable<TData>({
                         : 'none',
                     })}
                     sx={{
-                      minWidth: header.column.columnDef.meta?.minWidth ?? 40,
+                      minWidth: sticky
+                        ? undefined
+                        : (header.column.columnDef.meta?.minWidth ?? 40),
                       ...(sticky && {
                         position: 'sticky',
                         [sticky]: 0,
                         zIndex: 3,
+                        width: 0,
+                        whiteSpace: 'nowrap',
+                        textAlign: 'center',
                         bgcolor: 'background.paper',
                       }),
                     }}
@@ -276,11 +281,16 @@ export function BiampTable<TData>({
                         key={cell.id}
                         data-sticky={sticky || undefined}
                         sx={{
-                          minWidth: cell.column.columnDef.meta?.minWidth ?? 40,
+                          minWidth: sticky
+                            ? undefined
+                            : (cell.column.columnDef.meta?.minWidth ?? 40),
                           ...(sticky && {
                             position: 'sticky',
                             [sticky]: 0,
                             zIndex: 2,
+                            width: 0,
+                            whiteSpace: 'nowrap',
+                            textAlign: 'center',
                             bgcolor: 'background.paper',
                             '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
                               bgcolor: ({ palette }: Theme) =>
