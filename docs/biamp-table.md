@@ -10,8 +10,8 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.11.6
-- `@bwp-web/styles` >= 0.11.6
+- `@bwp-web/assets` >= 0.11.7
+- `@bwp-web/styles` >= 0.11.7
 - `@mui/material` >= 7.0.0
 - `@tanstack/react-table` >= 8.0.0
 - `react` >= 18.0.0
@@ -231,6 +231,7 @@ Debounced search input with a clear button. Extends MUI `TextFieldProps` (except
 | `clearLabel` | `string` | `'Clear search'` | Accessible label for the clear button |
 | `expandable` | `boolean` | `false` | When `true`, collapses to an icon button when empty and unfocused |
 | `expandLabel` | `string` | placeholder | Accessible label for the collapsed icon button |
+| `enableMobileView` | `boolean` | `true` | When `true`, renders a simplified full-width `InputBase` on screens below the `md` breakpoint |
 | _...rest_ | `TextFieldProps` | — | All other MUI `TextField` props are forwarded |
 
 ---

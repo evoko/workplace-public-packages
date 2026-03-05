@@ -16,7 +16,7 @@ import {
   DropdownChevronUpIcon,
 } from '@bwp-web/assets';
 import { flexRender, type Table } from '@tanstack/react-table';
-import React, { type ReactNode, useCallback, useEffect, useRef } from 'react';
+import React, { type ReactNode, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import './tanstack-meta';
@@ -71,25 +71,6 @@ export function BiampTable<TData>({
   );
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const lastScrollLeftRef = useRef<number | null>(null);
-
-  const onContainerScroll = useCallback((target: Element) => {
-    const { scrollLeft, scrollWidth, clientWidth } = target;
-    if (!containerRef.current || lastScrollLeftRef.current === scrollLeft)
-      return;
-    containerRef.current.dataset['rightShadow'] =
-      scrollWidth - clientWidth > scrollLeft ? 'true' : 'false';
-    lastScrollLeftRef.current = scrollLeft;
-  }, []);
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const observer = new ResizeObserver(([{ target }]) =>
-      onContainerScroll(target),
-    );
-    observer.observe(containerRef.current);
-    return () => observer.disconnect();
-  }, [onContainerScroll]);
 
   const showLoading = useLoadingDelay(!!loading);
 
@@ -102,9 +83,6 @@ export function BiampTable<TData>({
       component={Box}
       {...boxProps}
       ref={containerRef}
-      onScroll={(e: React.UIEvent<HTMLDivElement>) =>
-        onContainerScroll(e.currentTarget)
-      }
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -112,13 +90,6 @@ export function BiampTable<TData>({
         overflow: 'auto',
         overscrollBehavior: 'none',
         position: 'relative',
-        '& [data-sticky="right"]': {
-          transition: 'box-shadow .2s',
-        },
-        '&[data-right-shadow="true"] [data-sticky="right"]': {
-          boxShadow: ({ palette }: Theme) =>
-            `-16px 0px 12px -2px ${palette.background.default}`,
-        },
         ...sx,
       }}
     >
@@ -144,6 +115,9 @@ export function BiampTable<TData>({
                       checked={table.getIsAllPageRowsSelected()}
                       indeterminate={table.getIsSomePageRowsSelected()}
                       onChange={table.getToggleAllPageRowsSelectedHandler()}
+                      sx={
+                        rows.length === 0 ? { visibility: 'hidden' } : undefined
+                      }
                       slotProps={{ input: { 'aria-label': 'Select all rows' } }}
                     />
                   )}
@@ -264,6 +238,11 @@ export function BiampTable<TData>({
                         disabled={!row.getCanSelect()}
                         onChange={row.getToggleSelectedHandler()}
                         onClick={(e) => e.stopPropagation()}
+                        sx={
+                          !row.getCanSelect()
+                            ? { visibility: 'hidden' }
+                            : undefined
+                        }
                         slotProps={{
                           input: {
                             'aria-label': getRowLabel
