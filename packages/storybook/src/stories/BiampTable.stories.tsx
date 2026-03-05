@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import {
   BiampTable,
+  BiampTableCellActionButton,
   BiampTableColumnVisibility,
   BiampTableEmptyState,
   BiampTableErrorState,
@@ -26,7 +27,7 @@ import {
   getColumnVisibilityDirtyCount,
   useDebouncedCallback,
 } from '@bwp-web/components';
-import { AddIcon, ColumnsIcon } from '@bwp-web/assets';
+import { AddIcon, ColumnsIcon, DeleteIcon } from '@bwp-web/assets';
 import {
   createColumnHelper,
   getCoreRowModel,
@@ -273,9 +274,10 @@ const deviceColumnsWithAction = [
     header: 'Actions',
     meta: { sticky: 'right' },
     cell: ({ row }) => (
-      <IconButton>
-        <AddIcon />
-      </IconButton>
+      <BiampTableCellActionButton
+        label={"delete"}
+        icon={<DeleteIcon />}
+      />
     ),
   }),
 ];
