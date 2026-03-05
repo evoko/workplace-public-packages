@@ -231,6 +231,7 @@ Debounced search input with a clear button. Extends MUI `TextFieldProps` (except
 | `clearLabel` | `string` | `'Clear search'` | Accessible label for the clear button |
 | `expandable` | `boolean` | `false` | When `true`, collapses to an icon button when empty and unfocused |
 | `expandLabel` | `string` | placeholder | Accessible label for the collapsed icon button |
+| `enableMobileView` | `boolean` | `true` | When `true`, renders a simplified full-width `InputBase` on screens below the `md` breakpoint |
 | _...rest_ | `TextFieldProps` | — | All other MUI `TextField` props are forwarded |
 
 ---

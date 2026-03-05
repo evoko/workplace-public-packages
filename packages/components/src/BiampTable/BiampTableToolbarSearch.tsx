@@ -35,6 +35,7 @@ export type BiampTableToolbarSearchProps = {
   expandable?: boolean;
   /** Accessible label for the collapsed icon button (only used when expandable is true). @default placeholder */
   expandLabel?: string;
+  /** When true, renders a simplified full-width InputBase on screens below the `md` breakpoint. @default true */
   enableMobileView?: boolean;
 } & Omit<TextFieldProps, 'onChange' | 'value' | 'defaultValue'>;
 
@@ -146,7 +147,12 @@ export function BiampTableToolbarSearch({
           inputProps={{ maxLength, 'aria-label': 'Search' }}
           fullWidth
           value={inputValue}
-          sx={{ paddingLeft: 1 }}
+          sx={{
+            paddingLeft: 1,
+            height: '36px !important',
+            minHeight: '36px !important',
+            fontSize: (t) => t.typography.body2.fontSize,
+          }}
           onChange={handleChange}
           endAdornment={clearButton}
         />
