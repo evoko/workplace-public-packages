@@ -274,10 +274,7 @@ const deviceColumnsWithAction = [
     header: 'Actions',
     meta: { sticky: 'right' },
     cell: ({ row }) => (
-      <BiampTableCellActionButton
-        label={"delete"}
-        icon={<DeleteIcon />}
-      />
+      <BiampTableCellActionButton label={'delete'} icon={<DeleteIcon />} />
     ),
   }),
 ];

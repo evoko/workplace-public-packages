@@ -7,7 +7,14 @@ export function BiampTableToolbarActions({
   ...props
 }: BiampTableToolbarActionsProps) {
   return (
-    <Box display="flex" alignItems="center" gap={1} ml="auto" {...props}>
+    <Box
+      display="flex"
+      alignItems="center"
+      ml="auto"
+      gap={{ xs: 0, md: 1 }}
+      mr={{ xs: 1, md: 0 }}
+      {...props}
+    >
       {children}
     </Box>
   );

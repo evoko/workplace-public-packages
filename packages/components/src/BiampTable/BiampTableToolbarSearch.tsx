@@ -3,7 +3,10 @@ import {
   Collapse,
   IconButton,
   InputAdornment,
+  InputBase,
   TextField,
+  Theme,
+  useMediaQuery,
   type TextFieldProps,
 } from '@mui/material';
 import { CloseIcon, SearchIcon } from '@bwp-web/assets';
@@ -32,6 +35,7 @@ export type BiampTableToolbarSearchProps = {
   expandable?: boolean;
   /** Accessible label for the collapsed icon button (only used when expandable is true). @default placeholder */
   expandLabel?: string;
+  enableMobileView?: boolean;
 } & Omit<TextFieldProps, 'onChange' | 'value' | 'defaultValue'>;
 
 const searchFieldSx = {
@@ -54,9 +58,11 @@ export function BiampTableToolbarSearch({
   clearLabel = 'Clear search',
   expandable = false,
   expandLabel,
+  enableMobileView = true,
   sx,
   ...textFieldProps
 }: BiampTableToolbarSearchProps) {
+  const isMobile = useMediaQuery<Theme>((t) => t.breakpoints.down('md'));
   const [inputValue, setInputValue] = useState(defaultValue);
   const [isExpanded, setIsExpanded] = useState(false);
   const debouncedOnChange = useDebouncedCallback(onChange, debounceDelay);
@@ -128,6 +134,25 @@ export function BiampTableToolbarSearch({
       {...textFieldProps}
     />
   );
+
+  if (isMobile && enableMobileView) {
+    return (
+      <Box display="flex" alignItems="center" width="100%" pr={1} gap={1}>
+        <SearchIcon sx={{ width: 16, height: 16 }} />
+        <InputBase
+          name="search"
+          type="text"
+          placeholder={placeholder}
+          inputProps={{ maxLength, 'aria-label': 'Search' }}
+          fullWidth
+          value={inputValue}
+          sx={{ paddingLeft: 1 }}
+          onChange={handleChange}
+          endAdornment={clearButton}
+        />
+      </Box>
+    );
+  }
 
   if (expandable) {
     return (
