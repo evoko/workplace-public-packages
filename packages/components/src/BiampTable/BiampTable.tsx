@@ -16,7 +16,7 @@ import {
   DropdownChevronUpIcon,
 } from '@bwp-web/assets';
 import { flexRender, type Table } from '@tanstack/react-table';
-import React, { type ReactNode } from 'react';
+import React, { type ReactNode, useCallback, useEffect, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import './tanstack-meta';
@@ -75,34 +75,61 @@ export function BiampTable<TData>({
     enableRowSelection ? 48 : 0,
   );
 
-  const totalColumns =
-    table.getVisibleLeafColumns().length + (enableRowSelection ? 1 : 0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const lastScrollLeftRef = useRef<number | null>(null);
+
+  const onContainerScroll = useCallback((target: Element) => {
+    const { scrollLeft, scrollWidth, clientWidth } = target;
+    if (!containerRef.current || lastScrollLeftRef.current === scrollLeft)
+      return;
+    containerRef.current.dataset['rightShadow'] =
+      scrollWidth - clientWidth > scrollLeft ? 'true' : 'false';
+    lastScrollLeftRef.current = scrollLeft;
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new ResizeObserver(([{ target }]) =>
+      onContainerScroll(target),
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, [onContainerScroll]);
 
   const showLoading = useLoadingDelay(!!loading);
 
   const rows = table.getRowModel().rows;
-  const showError = !!error;
-  const showEmpty = !showError && rows.length === 0;
+  const showError = !!error && !loading;
+  const showEmpty = !showError && !loading && rows.length === 0;
 
   return (
     <TableContainer
       component={Box}
       {...boxProps}
+      ref={containerRef}
+      onScroll={(e: React.UIEvent<HTMLDivElement>) =>
+        onContainerScroll(e.currentTarget)
+      }
       sx={{
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
         overflow: 'auto',
         overscrollBehavior: 'none',
+        position: 'relative',
+        '& [data-sticky="right"]': {
+          transition: 'box-shadow .2s',
+        },
+        '&[data-right-shadow="true"] [data-sticky="right"]': {
+          boxShadow: ({ palette }: Theme) =>
+            `-16px 0px 12px -2px ${palette.background.default}`,
+        },
         ...sx,
       }}
     >
       <MuiTable
         aria-busy={showLoading || undefined}
-        sx={{
-          minWidth: tableMinWidth,
-          height: showError || showEmpty ? '100%' : undefined,
-        }}
+        sx={{ minWidth: tableMinWidth }}
       >
         <TableHead>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -132,6 +159,7 @@ export function BiampTable<TData>({
                 return (
                   <TableCell
                     key={header.id}
+                    data-sticky={sticky || undefined}
                     sortDirection={header.column.getIsSorted() || false}
                     {...(header.column.getCanSort() && {
                       'aria-sort': header.column.getIsSorted()
@@ -181,39 +209,7 @@ export function BiampTable<TData>({
         </TableHead>
 
         <TableBody sx={{ opacity: showLoading ? 0.3 : 1 }}>
-          {showError ? (
-            <TableRow>
-              <TableCell
-                colSpan={totalColumns}
-                sx={{
-                  textAlign: 'center',
-                  verticalAlign: 'middle',
-                  height: '100%',
-                }}
-              >
-                {error === true ? (
-                  <BiampTableErrorState />
-                ) : error instanceof Error ? (
-                  <BiampTableErrorState description={error.message} />
-                ) : (
-                  error
-                )}
-              </TableCell>
-            </TableRow>
-          ) : showEmpty ? (
-            <TableRow>
-              <TableCell
-                colSpan={totalColumns}
-                sx={{
-                  textAlign: 'center',
-                  verticalAlign: 'middle',
-                  height: '100%',
-                }}
-              >
-                {empty && empty !== true ? empty : <BiampTableEmptyState />}
-              </TableCell>
-            </TableRow>
-          ) : (
+          {!showError &&
             rows.map((row) => {
               const clickable = onRowClick
                 ? isRowClickable
@@ -283,6 +279,7 @@ export function BiampTable<TData>({
                     return (
                       <TableCell
                         key={cell.id}
+                        data-sticky={sticky || undefined}
                         sx={{
                           minWidth: cell.column.columnDef.meta?.minWidth ?? 40,
                           ...(sticky && {
@@ -308,10 +305,58 @@ export function BiampTable<TData>({
                   })}
                 </TableRow>
               );
-            })
-          )}
+            })}
         </TableBody>
       </MuiTable>
+
+      {showError && (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            pointerEvents: 'none',
+          }}
+        >
+          {error === true ? (
+            <BiampTableErrorState sx={{ pointerEvents: 'auto' }} />
+          ) : error instanceof Error ? (
+            <BiampTableErrorState
+              description={error.message}
+              sx={{ pointerEvents: 'auto' }}
+            />
+          ) : (
+            error
+          )}
+        </Box>
+      )}
+
+      {showEmpty && (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            pointerEvents: 'none',
+          }}
+        >
+          {empty && empty !== true ? (
+            empty
+          ) : (
+            <BiampTableEmptyState sx={{ pointerEvents: 'auto' }} />
+          )}
+        </Box>
+      )}
     </TableContainer>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { Box, TablePagination, type TablePaginationProps } from '@mui/material';
+import { useRef } from 'react';
+import { TablePagination, type TablePaginationProps } from '@mui/material';
 import type { Table } from '@tanstack/react-table';
 
 export type BiampTablePaginationProps<TData> = {
@@ -11,8 +11,10 @@ export type BiampTablePaginationProps<TData> = {
   loading?: boolean;
   /** Hide pagination when all rows fit on one page. @default true */
   autoHide?: boolean;
+  /** Horizontal alignment of the pagination controls. @default 'center' */
+  position?: 'left' | 'center' | 'right';
 } & Omit<
-  TablePaginationProps<typeof Box>,
+  TablePaginationProps<'div'>,
   | 'component'
   | 'count'
   | 'page'
@@ -20,13 +22,21 @@ export type BiampTablePaginationProps<TData> = {
   | 'onPageChange'
   | 'onRowsPerPageChange'
   | 'rowsPerPageOptions'
+  | 'position'
 >;
+
+const positionMap = {
+  left: 'flex-start',
+  center: 'center',
+  right: 'flex-end',
+};
 
 export function BiampTablePagination<TData>({
   table,
   rowsPerPageOptions,
   loading,
   autoHide = true,
+  position = 'center',
   sx,
   ...paginationProps
 }: BiampTablePaginationProps<TData>) {
@@ -45,7 +55,7 @@ export function BiampTablePagination<TData>({
 
   return (
     <TablePagination
-      component={Box}
+      component="div"
       count={stableCount}
       page={table.getState().pagination.pageIndex}
       rowsPerPage={table.getState().pagination.pageSize}
@@ -58,6 +68,8 @@ export function BiampTablePagination<TData>({
       showFirstButton
       showLastButton
       sx={{
+        display: 'flex',
+        justifyContent: positionMap[position],
         height: 40,
         minHeight: 40,
         '& .MuiToolbar-root': {

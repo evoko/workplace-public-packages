@@ -10,8 +10,8 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.11.3
-- `@bwp-web/styles` >= 0.11.3
+- `@bwp-web/assets` >= 0.11.4
+- `@bwp-web/styles` >= 0.11.4
 - `@mui/material` >= 7.0.0
 - `@tanstack/react-table` >= 8.0.0
 - `react` >= 18.0.0
@@ -173,7 +173,7 @@ const table = useReactTable({
 
 ### `BiampTablePagination`
 
-Pagination controls connected to a TanStack Table instance. Extends MUI `BoxProps`.
+Pagination controls connected to a TanStack Table instance. Extends MUI `TablePaginationProps`.
 
 #### Props
 
@@ -183,13 +183,15 @@ Pagination controls connected to a TanStack Table instance. Extends MUI `BoxProp
 | `rowsPerPageOptions` | `number[]` | — | Rows-per-page selector options. When omitted, the selector is hidden |
 | `loading` | `boolean` | — | When `true`, keeps the previous row count visible instead of dropping to 0 |
 | `autoHide` | `boolean` | `true` | Hide pagination when all rows fit on one page |
-| _...rest_ | `BoxProps` | — | All other MUI `Box` props are forwarded |
+| `position` | `'left' \| 'center' \| 'right'` | `'center'` | Horizontal alignment of the pagination controls |
+| _...rest_ | `TablePaginationProps` | — | All other MUI `TablePagination` props are forwarded |
 
 ```tsx
 <BiampTablePagination
   table={table}
   rowsPerPageOptions={[10, 25, 50, 100]}
   loading={isLoading}
+  position="right"
 />
 ```
 

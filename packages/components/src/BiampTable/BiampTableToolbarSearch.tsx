@@ -36,8 +36,11 @@ export type BiampTableToolbarSearchProps = {
 
 const searchFieldSx = {
   '& .MuiInputBase-root': {
-    height: 36,
-    minHeight: 36,
+    height: '36px !important',
+    minHeight: '36px !important',
+  },
+  '& .MuiOutlinedInput-notchedOutline': {
+    height: '36px !important',
   },
 } as const;
 

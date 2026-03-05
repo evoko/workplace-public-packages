@@ -608,10 +608,6 @@ export const WithToolbar: Story = {
     return (
       <Stack spacing={2} height="100%">
         <BiampTableToolbar>
-          <BiampTableToolbarSearch
-            onChange={setSearch}
-            placeholder="Search rooms..."
-          />
           <BiampTableToolbarActions>
             <BiampTableToolbarFilters
               activeFilterCount={activeFilterCount}
@@ -647,6 +643,11 @@ export const WithToolbar: Story = {
             <BiampTableToolbarExport
               onExport={handleExport}
               loading={exporting}
+            />
+            <BiampTableToolbarSearch
+              onChange={setSearch}
+              placeholder="Search rooms..."
+              expandable
             />
           </BiampTableToolbarActions>
         </BiampTableToolbar>
