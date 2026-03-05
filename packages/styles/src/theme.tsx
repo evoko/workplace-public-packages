@@ -1004,11 +1004,6 @@ export const biampTheme = (
           defaultProps: {
             stickyHeader: true,
           },
-          styleOverrides: {
-            root: {
-              tableLayout: 'fixed',
-            },
-          },
         },
         MuiTableHead: {
           styleOverrides: {
@@ -1056,9 +1051,6 @@ export const biampTheme = (
               overflowWrap: 'break-word',
             }),
             paddingCheckbox: {
-              width: 40,
-              minWidth: 40,
-              maxWidth: 40,
               padding: '0 !important',
               textAlign: 'center',
             },
@@ -1236,6 +1228,13 @@ export const biampTheme = (
               lineHeight: theme.typography.caption.lineHeight,
               color: theme.palette.text.primary,
             }),
+            icon: {
+              marginLeft: 0,
+              marginRight: 4,
+              width: 12,
+              height: 12,
+              fontSize: 12,
+            },
             deleteIcon: ({ theme }) => ({
               margin: 0,
               marginLeft: 8,
