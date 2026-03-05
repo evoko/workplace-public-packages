@@ -49,9 +49,17 @@ export function BiampTablePagination<TData>({
   }
 
   const stableCount = loading ? lastRowCountRef.current : rowCount;
-  const pageSize = table.getState().pagination.pageSize;
+  const { pageSize, pageIndex } = table.getState().pagination;
 
-  if (autoHide && !loading && stableCount <= pageSize) return null;
+  // Auto-correct page when row count drops (e.g. after filtering)
+  const maxPage = Math.max(0, Math.ceil(stableCount / pageSize) - 1);
+  if (!loading && pageIndex > maxPage) {
+    table.setPageIndex(maxPage);
+  }
+
+  // Hide when there's no data or everything fits on one page
+  if (autoHide && !loading && (!stableCount || stableCount <= pageSize))
+    return null;
 
   return (
     <TablePagination
