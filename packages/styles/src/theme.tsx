@@ -1004,11 +1004,6 @@ export const biampTheme = (
           defaultProps: {
             stickyHeader: true,
           },
-          styleOverrides: {
-            root: {
-              tableLayout: 'fixed',
-            },
-          },
         },
         MuiTableHead: {
           styleOverrides: {
@@ -1056,9 +1051,6 @@ export const biampTheme = (
               overflowWrap: 'break-word',
             }),
             paddingCheckbox: {
-              width: 40,
-              minWidth: 40,
-              maxWidth: 40,
               padding: '0 !important',
               textAlign: 'center',
             },

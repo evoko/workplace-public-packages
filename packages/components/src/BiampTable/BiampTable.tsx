@@ -124,7 +124,7 @@ export function BiampTable<TData>({
     >
       <MuiTable
         aria-busy={showLoading || undefined}
-        sx={{ minWidth: tableMinWidth }}
+        sx={{ minWidth: tableMinWidth, tableLayout: 'auto' }}
       >
         <TableHead>
           {table.getHeaderGroups().map((headerGroup) => (

@@ -271,7 +271,7 @@ const deviceColumnsWithAction = [
   deviceColumnHelper.display({
     id: 'actions',
     header: '',
-    meta: { sticky: 'right', minWidth: 48 },
+    meta: { sticky: 'right', minWidth: 80 },
     cell: ({ row }) => (
       <Button onClick={() => console.log(row)}>Press me!</Button>
     ),
