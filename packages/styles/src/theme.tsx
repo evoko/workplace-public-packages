@@ -1236,6 +1236,13 @@ export const biampTheme = (
               lineHeight: theme.typography.caption.lineHeight,
               color: theme.palette.text.primary,
             }),
+            icon: {
+              marginLeft: 0,
+              marginRight: 4,
+              width: 12,
+              height: 12,
+              fontSize: 12,
+            },
             deleteIcon: ({ theme }) => ({
               margin: 0,
               marginLeft: 8,

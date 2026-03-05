@@ -385,6 +385,7 @@ export const Interactive: Story = {
         </Box>
         <BiampTable
           table={table}
+          enableRowSelection
           onRowClick={(row) => console.log('Row clicked:', row)}
           isRowClickable={(row: Room) => row.status === 'Available'}
         />
@@ -494,7 +495,7 @@ export const StickyColumns: Story = {
         <Typography variant="body2">
           100 rows, 10 columns + sticky action column. Scroll to test.
         </Typography>
-        <BiampTable table={table} />
+        <BiampTable table={table} enableRowSelection />
       </Stack>
     );
   },

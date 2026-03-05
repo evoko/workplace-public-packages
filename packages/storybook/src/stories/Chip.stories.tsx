@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Chip, Stack, Typography } from '@mui/material';
+import { SearchIcon } from '@bwp-web/assets';
 
 const meta: Meta<typeof Chip> = {
   title: 'Styles/Chip',
@@ -32,7 +33,13 @@ export const AllStates: Story = {
     <Stack spacing={3}>
       <Typography variant="h3">Chip States</Typography>
       <Stack direction="row" spacing={2} alignItems="center" flexWrap="wrap">
-        <Chip label="Label" onDelete={() => {}} />
+        <Chip label="Default" />
+        <Chip label="With Delete" onDelete={() => {}} />
+        <Chip label="With Icon" icon={<SearchIcon />} />
+        <Chip
+          label="Icon + Delete"
+          icon={<SearchIcon />}
+        />
       </Stack>
     </Stack>
   ),

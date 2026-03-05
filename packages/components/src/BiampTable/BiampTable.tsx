@@ -38,6 +38,8 @@ export type BiampTableProps<TData> = BoxProps & {
   error?: boolean | Error | ReactNode;
   /** When truthy and the table has no rows, shown instead of an empty body. Pass `true` for the default empty state, or a custom ReactNode. */
   empty?: boolean | ReactNode;
+  /** When true, renders a checkbox column for row selection. @default false */
+  enableRowSelection?: boolean;
   /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
   hideSelectAll?: boolean;
   /** Returns a human-readable name for a row, used in ARIA labels (e.g. "Select: Conference Room A"). Falls back to row index. */
@@ -51,19 +53,12 @@ export function BiampTable<TData>({
   loading,
   error,
   empty,
+  enableRowSelection = false,
   hideSelectAll,
   getRowLabel,
   sx,
   ...boxProps
 }: BiampTableProps<TData>) {
-  // Only show the checkbox column when the caller explicitly opted in.
-  // TanStack applies enableRowSelection=true as a runtime default for per-row
-  // checks, but we require an explicit boolean true or function here so that
-  // tables without selection don't accidentally render a checkbox column.
-  const enableRowSelection =
-    table.options.enableRowSelection === true ||
-    typeof table.options.enableRowSelection === 'function';
-
   // Sum visible column min-widths so the <table> element itself gets a concrete
   // minWidth. Without this, `width: 100%` on the table always fills the container
   // and columns just share available space instead of overflowing horizontally.
