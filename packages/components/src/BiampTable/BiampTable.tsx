@@ -83,6 +83,50 @@ export type BiampTableProps<TData> = BoxProps &
     getRowLabel?: (row: TData) => string;
   };
 
+// ── Shared sx helpers ────────────────────────────────────────────
+
+const overlaySx = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  pointerEvents: 'none',
+} as const;
+
+const stickyHoverBg = {
+  '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
+    bgcolor: ({ palette }: Theme) =>
+      palette.mode === 'dark' ? palette.grey[800] : palette.grey[100],
+  },
+} as const;
+
+function cellSx(
+  sticky: 'left' | 'right' | undefined,
+  minWidth: number | string | undefined,
+  zIndex: number,
+) {
+  if (sticky) {
+    return {
+      position: 'sticky',
+      [sticky]: 0,
+      zIndex,
+      width: 0,
+      whiteSpace: 'nowrap',
+      textAlign: 'center',
+      bgcolor: 'background.paper',
+      ...(zIndex < 3 && stickyHoverBg),
+    } as const;
+  }
+  const mw = minWidth ?? 40;
+  return { minWidth: mw, maxWidth: mw };
+}
+
+// ── Component ────────────────────────────────────────────────────
+
 export function BiampTable<TData>({
   table,
   onRowClick,
@@ -178,21 +222,11 @@ export function BiampTable<TData>({
                           : 'descending'
                         : 'none',
                     })}
-                    sx={{
-                      ...(!sticky && {
-                        minWidth: header.column.columnDef.meta?.minWidth ?? 40,
-                        maxWidth: header.column.columnDef.meta?.minWidth ?? 40,
-                      }),
-                      ...(sticky && {
-                        position: 'sticky',
-                        [sticky]: 0,
-                        zIndex: 3,
-                        width: 0,
-                        whiteSpace: 'nowrap',
-                        textAlign: 'center',
-                        bgcolor: 'background.paper',
-                      }),
-                    }}
+                    sx={cellSx(
+                      sticky,
+                      header.column.columnDef.meta?.minWidth,
+                      3,
+                    )}
                   >
                     {header.isPlaceholder ? null : header.column.getCanSort() ? (
                       <TableSortLabel
@@ -312,87 +346,73 @@ export function BiampTable<TData>({
                       <TableCell
                         key={cell.id}
                         data-sticky={sticky || undefined}
-                        sx={{
-                          ...(!sticky && {
-                            minWidth:
-                              cell.column.columnDef.meta?.minWidth ?? 40,
-                            maxWidth:
-                              cell.column.columnDef.meta?.minWidth ?? 40,
-                          }),
-                          ...(sticky && {
-                            position: 'sticky',
-                            [sticky]: 0,
-                            zIndex: 2,
-                            width: 0,
-                            whiteSpace: 'nowrap',
-                            textAlign: 'center',
-                            bgcolor: 'background.paper',
-                            '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
-                              bgcolor: ({ palette }: Theme) =>
-                                palette.mode === 'dark'
-                                  ? palette.grey[800]
-                                  : palette.grey[100],
-                            },
-                          }),
-                        }}
+                        sx={cellSx(
+                          sticky,
+                          cell.column.columnDef.meta?.minWidth,
+                          2,
+                        )}
                       >
-                        {isExpandCell ? (
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              pl: `${row.depth * 12}px`,
-                            }}
-                          >
-                            {row.getCanExpand() ? (
-                              <IconButton
-                                variant="none"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  row.toggleExpanded();
-                                }}
-                                aria-label={
-                                  row.getIsExpanded()
-                                    ? `Collapse ${getRowLabel ? getRowLabel(row.original) : `row ${row.index + 1}`}`
-                                    : `Expand ${getRowLabel ? getRowLabel(row.original) : `row ${row.index + 1}`}`
-                                }
-                                aria-expanded={row.getIsExpanded()}
-                              >
-                                <ChevronRightIcon
-                                  variant="xs"
-                                  sx={{
-                                    color: ({ palette }) =>
-                                      palette.text.secondary,
-                                    transition: 'transform 150ms ease',
-                                    transform: row.getIsExpanded()
-                                      ? 'rotate(90deg)'
-                                      : 'rotate(0deg)',
-                                  }}
-                                />
-                              </IconButton>
-                            ) : hasExpandableRows ? (
-                              <Box sx={{ width: 28 }} />
-                            ) : null}
-                            <BiampTableTruncatedCell>
-                              {flexRender(
-                                cell.column.columnDef.cell,
-                                cell.getContext(),
-                              )}
-                            </BiampTableTruncatedCell>
-                          </Box>
-                        ) : sticky ? (
-                          flexRender(
+                        {(() => {
+                          const content = flexRender(
                             cell.column.columnDef.cell,
                             cell.getContext(),
-                          )
-                        ) : (
-                          <BiampTableTruncatedCell>
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext(),
-                            )}
-                          </BiampTableTruncatedCell>
-                        )}
+                          );
+
+                          if (sticky) return content;
+
+                          const truncated = (
+                            <BiampTableTruncatedCell>
+                              {content}
+                            </BiampTableTruncatedCell>
+                          );
+
+                          if (!isExpandCell) return truncated;
+
+                          const rowLabel = getRowLabel
+                            ? getRowLabel(row.original)
+                            : `row ${row.index + 1}`;
+
+                          return (
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                pl: `${row.depth * 12}px`,
+                              }}
+                            >
+                              {row.getCanExpand() ? (
+                                <IconButton
+                                  variant="none"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    row.toggleExpanded();
+                                  }}
+                                  aria-label={
+                                    row.getIsExpanded()
+                                      ? `Collapse ${rowLabel}`
+                                      : `Expand ${rowLabel}`
+                                  }
+                                  aria-expanded={row.getIsExpanded()}
+                                >
+                                  <ChevronRightIcon
+                                    variant="xs"
+                                    sx={{
+                                      color: ({ palette }) =>
+                                        palette.text.secondary,
+                                      transition: 'transform 150ms ease',
+                                      transform: row.getIsExpanded()
+                                        ? 'rotate(90deg)'
+                                        : 'rotate(0deg)',
+                                    }}
+                                  />
+                                </IconButton>
+                              ) : hasExpandableRows ? (
+                                <Box sx={{ width: 28 }} />
+                              ) : null}
+                              {truncated}
+                            </Box>
+                          );
+                        })()}
                       </TableCell>
                     );
                   })}
@@ -403,19 +423,7 @@ export function BiampTable<TData>({
       </MuiTable>
 
       {showError && (
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            pointerEvents: 'none',
-          }}
-        >
+        <Box sx={overlaySx}>
           {error === true ? (
             <BiampTableErrorState sx={{ pointerEvents: 'auto' }} />
           ) : error instanceof Error ? (
@@ -430,19 +438,7 @@ export function BiampTable<TData>({
       )}
 
       {showEmpty && (
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            pointerEvents: 'none',
-          }}
-        >
+        <Box sx={overlaySx}>
           {empty && empty !== true ? (
             empty
           ) : (
