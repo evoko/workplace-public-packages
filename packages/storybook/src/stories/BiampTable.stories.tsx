@@ -962,6 +962,8 @@ export const ExpandableWithSelection: Story = {
   render: () => {
     const [expanded, setExpanded] = useState<ExpandedState>({});
     const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+    const [selectChildrenWithParent, setSelectChildrenWithParent] =
+      useState(true);
     const selectedCount = Object.keys(rowSelection).length;
 
     const table = useReactTable({
@@ -979,14 +981,26 @@ export const ExpandableWithSelection: Story = {
 
     return (
       <Stack spacing={2} height="100%">
-        <Typography variant="body2">
-          {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
-          only Available rows are selectable &amp; clickable
-        </Typography>
+        <Stack direction="row" spacing={2} alignItems="center">
+          <Typography variant="body2">
+            {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
+            only Available rows are selectable &amp; clickable
+          </Typography>
+          <Chip
+            label={selectChildrenWithParent ? 'Cascade: ON' : 'Cascade: OFF'}
+            color={selectChildrenWithParent ? 'primary' : 'default'}
+            variant={selectChildrenWithParent ? 'filled' : 'outlined'}
+            onClick={() => {
+              setSelectChildrenWithParent((prev) => !prev);
+              setRowSelection({});
+            }}
+          />
+        </Stack>
         <BiampTable
           table={table}
           enableExpanding
           enableRowSelection
+          selectChildrenWithParent={selectChildrenWithParent}
           onRowClick={(row) => console.log('Row clicked:', row)}
           isRowClickable={(row: Building) => row.status === 'Available'}
           getRowLabel={(row: Building) => row.name}

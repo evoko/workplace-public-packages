@@ -128,6 +128,7 @@ The core table renderer. Connects to a TanStack `Table` instance and renders a s
 | `enableRowSelection` | `boolean` | `false` | When `true`, renders a checkbox column for row selection |
 | `enableExpanding` | `boolean` | `false` | When `true`, renders an expand/collapse toggle for rows that have sub-rows |
 | `hideSelectAll` | `boolean` | — | Hides the "select all" header checkbox while keeping individual row checkboxes |
+| `selectChildrenWithParent` | `boolean` | `true` | When `true`, selecting a parent row also selects its children. When `false`, parent and child selections are independent. Only relevant when both `enableRowSelection` and `enableExpanding` are used |
 | `getRowLabel` | `(row: TData) => string` | — | Returns a human-readable name for a row, used in ARIA labels (e.g. `"Select Conference Room A"`, `"Expand Floor 1"`). Falls back to row index |
 | _...rest_ | `BoxProps` | — | All other MUI `Box` props are forwarded |
 
@@ -144,6 +145,17 @@ const table = useReactTable({
 });
 
 <BiampTable table={table} enableRowSelection getRowLabel={(row) => row.name} />
+```
+
+By default, selecting a parent row cascades to all its children. To make parent and child selections independent, pass `selectChildrenWithParent={false}`:
+
+```tsx
+<BiampTable
+  table={table}
+  enableRowSelection
+  enableExpanding
+  selectChildrenWithParent={false}
+/>
 ```
 
 #### Expandable Rows

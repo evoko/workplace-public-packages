@@ -24,31 +24,63 @@ import { BiampTableErrorState } from './BiampTableErrorState';
 import './tanstack-meta';
 import { useLoadingDelay } from './useLoadingDelay';
 
-export type BiampTableProps<TData> = BoxProps & {
-  /** TanStack Table instance to connect to. */
-  table: Table<TData>;
-  /** Called when a clickable body row is clicked. Receives the row's original data. */
-  onRowClick?: (row: TData) => void;
-  /**
-   * Controls which rows are clickable. When omitted, all rows are clickable if
-   * `onRowClick` is provided. Has no effect when `onRowClick` is not provided.
-   */
-  isRowClickable?: (row: TData) => boolean;
-  /** When true, shows a LinearProgress bar below the table header. */
-  loading?: boolean;
-  /** When truthy, shown in place of table body rows. Pass `true` or an `Error` for the default error state (an `Error`'s message is displayed), or a custom ReactNode. */
-  error?: boolean | Error | ReactNode;
-  /** When truthy and the table has no rows, shown instead of an empty body. Pass `true` for the default empty state, or a custom ReactNode. */
-  empty?: boolean | ReactNode;
-  /** When true, renders a checkbox column for row selection. @default false */
-  enableRowSelection?: boolean;
-  /** When true, renders an expand/collapse toggle column for rows that have sub-rows. @default false */
-  enableExpanding?: boolean;
-  /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
-  hideSelectAll?: boolean;
-  /** Returns a human-readable name for a row, used in ARIA labels (e.g. "Select: Conference Room A"). Falls back to row index. */
-  getRowLabel?: (row: TData) => string;
-};
+// ── Row-click props ────────────────────────────────────────────────
+type RowClickProps<TData> =
+  | {
+      /** Called when a clickable body row is clicked. Receives the row's original data. */
+      onRowClick: (row: TData) => void;
+      /**
+       * Controls which rows are clickable. When omitted, all rows are clickable if
+       * `onRowClick` is provided.
+       */
+      isRowClickable?: (row: TData) => boolean;
+    }
+  | {
+      onRowClick?: undefined;
+      isRowClickable?: never;
+    };
+
+// ── Selection + expanding props ────────────────────────────────────
+type SelectionExpandingProps =
+  | {
+      /** When true, renders a checkbox column for row selection. */
+      enableRowSelection: true;
+      /** When true, renders an expand/collapse toggle column for rows that have sub-rows. */
+      enableExpanding: true;
+      /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
+      hideSelectAll?: boolean;
+      /** When true, selecting a parent row also selects/deselects its children. @default false */
+      selectChildrenWithParent?: boolean;
+    }
+  | {
+      /** When true, renders a checkbox column for row selection. */
+      enableRowSelection: true;
+      enableExpanding?: false;
+      /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
+      hideSelectAll?: boolean;
+      selectChildrenWithParent?: never;
+    }
+  | {
+      enableRowSelection?: false;
+      enableExpanding?: boolean;
+      hideSelectAll?: never;
+      selectChildrenWithParent?: never;
+    };
+
+export type BiampTableProps<TData> = BoxProps &
+  RowClickProps<TData> &
+  SelectionExpandingProps & {
+    /** TanStack Table instance to connect to. */
+    table: Table<TData>;
+    /** When true, shows a LinearProgress bar below the table header. */
+    loading?: boolean;
+    /** When truthy, shown in place of table body rows. Pass `true` or an `Error` for the default error state (an `Error`'s message is displayed), or a custom ReactNode. */
+    error?: boolean | Error | ReactNode;
+    /** When truthy and the table has no rows, shown instead of an empty body. Pass `true` for the default empty state, or a custom ReactNode. */
+    empty?: boolean | ReactNode;
+    /** Returns a human-readable name for a row, used in ARIA labels (e.g. "Select: Conference Room A"). Falls back to row index. */
+    getRowLabel?: (row: TData) => string;
+  };
 
 export function BiampTable<TData>({
   table,
@@ -60,6 +92,7 @@ export function BiampTable<TData>({
   enableRowSelection = false,
   enableExpanding = false,
   hideSelectAll,
+  selectChildrenWithParent = false,
   getRowLabel,
   sx,
   ...boxProps
@@ -243,7 +276,11 @@ export function BiampTable<TData>({
                       <Checkbox
                         checked={row.getIsSelected()}
                         disabled={!row.getCanSelect()}
-                        onChange={row.getToggleSelectedHandler()}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          row.toggleSelected(e.target.checked, {
+                            selectChildren: selectChildrenWithParent,
+                          })
+                        }
                         onClick={(e) => e.stopPropagation()}
                         sx={
                           !row.getCanSelect()
