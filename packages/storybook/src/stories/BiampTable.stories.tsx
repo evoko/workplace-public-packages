@@ -37,7 +37,9 @@ import {
   type PaginationState,
   type RowSelectionState,
   type SortingState,
+  type ExpandedState,
   type VisibilityState,
+  getExpandedRowModel,
 } from '@tanstack/react-table';
 
 // Row model factories must be stable references — calling getCoreRowModel() etc.
@@ -46,6 +48,7 @@ import {
 const coreRowModel = getCoreRowModel();
 const sortedRowModel = getSortedRowModel();
 const paginationRowModel = getPaginationRowModel();
+const expandedRowModel = getExpandedRowModel();
 
 // ---------------------------------------------------------------------------
 // Room data
@@ -271,8 +274,8 @@ const deviceColumnsWithAction = [
   ...deviceColumns,
   deviceColumnHelper.display({
     id: 'actions',
-    header: 'Actions',
-    meta: { sticky: 'right' },
+    header: '',
+    meta: { sticky: 'right', columnLabel: 'Actions' },
     cell: ({ row }) => (
       <BiampTableCellActionButton label={'delete'} icon={<DeleteIcon />} />
     ),
@@ -481,21 +484,43 @@ export const States: Story = {
 export const StickyColumns: Story = {
   render: () => {
     const [sorting, setSorting] = useState<SortingState>([]);
+    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
+      {},
+    );
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
     const table = useReactTable({
       data: deviceRows,
       columns: deviceColumnsWithAction,
       getCoreRowModel: coreRowModel,
       getSortedRowModel: sortedRowModel,
-      state: { sorting },
+      state: { sorting, columnVisibility },
       onSortingChange: setSorting,
+      onColumnVisibilityChange: setColumnVisibility,
     });
 
     return (
       <Stack spacing={2} height="100%">
-        <Typography variant="body2">
-          100 rows, 10 columns + sticky action column. Scroll to test.
-        </Typography>
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Typography variant="body2">
+            100 rows, 10 columns + sticky action column. Scroll to test.
+          </Typography>
+          <Box>
+            <BiampTableToolbarActionButton
+              label="Toggle column visibility"
+              icon={<ColumnsIcon variant="xs" />}
+              badgeContent={getColumnVisibilityDirtyCount(table)}
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                setAnchorEl(e.currentTarget)
+              }
+            />
+            <BiampTableColumnVisibility
+              table={table}
+              anchorEl={anchorEl}
+              onClose={() => setAnchorEl(null)}
+            />
+          </Box>
+        </Box>
         <BiampTable table={table} enableRowSelection />
       </Stack>
     );
@@ -658,6 +683,313 @@ export const WithToolbar: Story = {
           table={table}
           rowsPerPageOptions={[5, 10, 15]}
           loading={loading}
+        />
+      </Stack>
+    );
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 6. Expandable — rows with children
+// ---------------------------------------------------------------------------
+
+type Building = {
+  id: number;
+  name: string;
+  status: string;
+  capacity: number;
+  floor: string;
+  children?: Building[];
+};
+
+const buildingColumnHelper = createColumnHelper<Building>();
+const buildingColumns = [
+  buildingColumnHelper.accessor('name', {
+    header: 'Name',
+    meta: { minWidth: 200 },
+  }),
+  buildingColumnHelper.accessor('status', { header: 'Status' }),
+  buildingColumnHelper.accessor('capacity', { header: 'Capacity' }),
+  buildingColumnHelper.accessor('floor', { header: 'Floor' }),
+];
+
+const buildingRows: Building[] = [
+  {
+    id: 1000,
+    name: 'HQ Building',
+    status: 'Available',
+    capacity: 200,
+    floor: '-',
+    children: [
+      {
+        id: 100,
+        name: '1st Floor',
+        status: 'Available',
+        capacity: 80,
+        floor: '1st',
+        children: [
+          {
+            id: 1,
+            name: 'Conference Room A',
+            status: 'Available',
+            capacity: 12,
+            floor: '1st',
+          },
+          {
+            id: 2,
+            name: 'Conference Room B',
+            status: 'Occupied',
+            capacity: 8,
+            floor: '1st',
+          },
+          {
+            id: 6,
+            name: 'Huddle Space 1',
+            status: 'Occupied',
+            capacity: 3,
+            floor: '1st',
+          },
+          {
+            id: 12,
+            name: 'Collaboration Hub',
+            status: 'Available',
+            capacity: 15,
+            floor: '1st',
+          },
+          {
+            id: 14,
+            name: 'Lounge Area',
+            status: 'Available',
+            capacity: 8,
+            floor: '1st',
+          },
+        ],
+      },
+      {
+        id: 200,
+        name: '2nd Floor',
+        status: 'Available',
+        capacity: 50,
+        floor: '2nd',
+        children: [
+          {
+            id: 3,
+            name: 'Meeting Room 1',
+            status: 'Available',
+            capacity: 4,
+            floor: '2nd',
+          },
+          {
+            id: 4,
+            name: 'Meeting Room 2',
+            status: 'Maintenance',
+            capacity: 6,
+            floor: '2nd',
+          },
+          {
+            id: 7,
+            name: 'Huddle Space 2',
+            status: 'Available',
+            capacity: 3,
+            floor: '2nd',
+          },
+          {
+            id: 15,
+            name: 'Innovation Lab',
+            status: 'Available',
+            capacity: 12,
+            floor: '2nd',
+          },
+        ],
+      },
+      {
+        id: 300,
+        name: '3rd Floor',
+        status: 'Available',
+        capacity: 70,
+        floor: '3rd',
+        children: [
+          {
+            id: 5,
+            name: 'Board Room',
+            status: 'Available',
+            capacity: 20,
+            floor: '3rd',
+          },
+          {
+            id: 8,
+            name: 'Training Room',
+            status: 'Available',
+            capacity: 30,
+            floor: '3rd',
+          },
+          {
+            id: 9,
+            name: 'Executive Suite',
+            status: 'Occupied',
+            capacity: 10,
+            floor: '3rd',
+          },
+          {
+            id: 13,
+            name: 'Webinar Studio',
+            status: 'Occupied',
+            capacity: 5,
+            floor: '3rd',
+          },
+        ],
+      },
+      {
+        id: 22,
+        name: 'Rooftop Terrace',
+        status: 'Available',
+        capacity: 20,
+        floor: 'R',
+      },
+    ],
+  },
+  {
+    id: 2000,
+    name: 'Annex Building',
+    status: 'Available',
+    capacity: 60,
+    floor: '-',
+    children: [
+      {
+        id: 400,
+        name: 'Ground Floor',
+        status: 'Available',
+        capacity: 35,
+        floor: 'G',
+        children: [
+          {
+            id: 16,
+            name: 'Reception Desk',
+            status: 'Available',
+            capacity: 2,
+            floor: 'G',
+          },
+          {
+            id: 17,
+            name: 'Visitor Lounge',
+            status: 'Available',
+            capacity: 10,
+            floor: 'G',
+          },
+        ],
+      },
+      {
+        id: 500,
+        name: 'Upper Floor',
+        status: 'Maintenance',
+        capacity: 25,
+        floor: '1st',
+        children: [
+          {
+            id: 18,
+            name: 'Workshop A',
+            status: 'Maintenance',
+            capacity: 15,
+            floor: '1st',
+          },
+          {
+            id: 19,
+            name: 'Workshop B',
+            status: 'Available',
+            capacity: 10,
+            floor: '1st',
+          },
+        ],
+      },
+      {
+        id: 23,
+        name: 'Storage Room',
+        status: 'Maintenance',
+        capacity: 0,
+        floor: 'B1',
+      },
+    ],
+  },
+  {
+    id: 20,
+    name: 'Outdoor Pavilion',
+    status: 'Available',
+    capacity: 50,
+    floor: '-',
+  },
+  {
+    id: 21,
+    name: 'Parking Garage',
+    status: 'Available',
+    capacity: 0,
+    floor: '-',
+  },
+];
+
+/** Expandable rows with children. Click the chevron to expand/collapse floor groups. */
+export const Expandable: Story = {
+  render: () => {
+    const [expanded, setExpanded] = useState<ExpandedState>({});
+
+    const table = useReactTable({
+      data: buildingRows,
+      columns: buildingColumns,
+      getCoreRowModel: coreRowModel,
+      getExpandedRowModel: expandedRowModel,
+      getSubRows: (row) => row.children,
+      getRowId: (row) => String(row.id),
+      state: { expanded },
+      onExpandedChange: setExpanded,
+    });
+
+    return (
+      <Stack spacing={2} height="100%">
+        <Typography variant="body2">
+          Click the chevron to expand/collapse floor groups.
+        </Typography>
+        <BiampTable table={table} enableExpanding />
+      </Stack>
+    );
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 7. ExpandableWithSelection — expanding + selection + row click
+// ---------------------------------------------------------------------------
+
+/** Expandable rows combined with row selection and row click. Only "Available" rows are selectable and clickable. */
+export const ExpandableWithSelection: Story = {
+  render: () => {
+    const [expanded, setExpanded] = useState<ExpandedState>({});
+    const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+    const selectedCount = Object.keys(rowSelection).length;
+
+    const table = useReactTable({
+      data: buildingRows,
+      columns: buildingColumns,
+      getCoreRowModel: coreRowModel,
+      getExpandedRowModel: expandedRowModel,
+      getSubRows: (row) => row.children,
+      getRowId: (row) => String(row.id),
+      enableRowSelection: (row) => row.original.status === 'Available',
+      state: { expanded, rowSelection },
+      onExpandedChange: setExpanded,
+      onRowSelectionChange: setRowSelection,
+    });
+
+    return (
+      <Stack spacing={2} height="100%">
+        <Typography variant="body2">
+          {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
+          only Available rows are selectable &amp; clickable
+        </Typography>
+        <BiampTable
+          table={table}
+          enableExpanding
+          enableRowSelection
+          onRowClick={(row) => console.log('Row clicked:', row)}
+          isRowClickable={(row: Building) => row.status === 'Available'}
+          getRowLabel={(row: Building) => row.name}
         />
       </Stack>
     );

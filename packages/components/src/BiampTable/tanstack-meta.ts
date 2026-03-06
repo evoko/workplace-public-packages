@@ -9,5 +9,7 @@ declare module '@tanstack/react-table' {
     sticky?: 'left' | 'right';
     /** Whether this column is visible by default. Defaults to `true` (visible). */
     defaultVisible?: boolean;
+    /** Human-readable label used in the column-visibility menu when `header` is not a string. */
+    columnLabel?: string;
   }
 }
