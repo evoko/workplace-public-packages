@@ -20,7 +20,7 @@ export function BiampTableStatusMessage({
   ...stackProps
 }: BiampTableStatusMessageProps) {
   return (
-    <Stack alignItems="center" gap={2} {...stackProps}>
+    <Stack alignItems="center" gap={1.5} {...stackProps}>
       {cloneElement(icon, {
         'aria-hidden': true,
         sx: { width: 56, height: 56, ...icon.props.sx },
