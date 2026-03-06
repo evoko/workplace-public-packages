@@ -130,33 +130,39 @@ export function BiampTableColumnVisibility<TData>({
     >
       <List dense disablePadding>
         <ListItem
+          dense
           sx={columnListItemSx}
           onClick={() => table.toggleAllColumnsVisible(!allVisible)}
         >
           <Checkbox
             checked={allVisible}
             indeterminate={!allVisible && someVisible}
-            size="small"
             slotProps={{ input: { 'aria-label': `${showAllLabel} columns` } }}
           />
-          <Typography variant="caption">{showAllLabel}</Typography>
+          <Typography variant="caption" fontWeight={600}>
+            {showAllLabel}
+          </Typography>
         </ListItem>
         <Divider />
-        <Box sx={{ maxHeight: 340, overflow: 'auto' }}>
+        <Box
+          sx={{ maxHeight: 340, overflow: 'auto', overscrollBehavior: 'none' }}
+        >
           {table.getAllLeafColumns().map((column) => {
             const columnName =
-              typeof column.columnDef.header === 'string'
+              column.columnDef.meta?.columnLabel ??
+              (typeof column.columnDef.header === 'string'
                 ? column.columnDef.header
-                : column.id;
+                : column.id);
             return (
               <ListItem
                 key={column.id}
+                dense
                 sx={columnListItemSx}
                 onClick={column.getToggleVisibilityHandler()}
               >
                 <Checkbox
                   checked={column.getIsVisible()}
-                  size="small"
+                  sx={{ py: 1 }}
                   slotProps={{
                     input: { 'aria-label': `Show ${columnName}` },
                   }}

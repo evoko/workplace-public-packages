@@ -271,8 +271,8 @@ const deviceColumnsWithAction = [
   ...deviceColumns,
   deviceColumnHelper.display({
     id: 'actions',
-    header: 'Actions',
-    meta: { sticky: 'right' },
+    header: '',
+    meta: { sticky: 'right', columnLabel: 'Actions' },
     cell: ({ row }) => (
       <BiampTableCellActionButton label={'delete'} icon={<DeleteIcon />} />
     ),
@@ -481,21 +481,43 @@ export const States: Story = {
 export const StickyColumns: Story = {
   render: () => {
     const [sorting, setSorting] = useState<SortingState>([]);
+    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
+      {},
+    );
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
     const table = useReactTable({
       data: deviceRows,
       columns: deviceColumnsWithAction,
       getCoreRowModel: coreRowModel,
       getSortedRowModel: sortedRowModel,
-      state: { sorting },
+      state: { sorting, columnVisibility },
       onSortingChange: setSorting,
+      onColumnVisibilityChange: setColumnVisibility,
     });
 
     return (
       <Stack spacing={2} height="100%">
-        <Typography variant="body2">
-          100 rows, 10 columns + sticky action column. Scroll to test.
-        </Typography>
+        <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Typography variant="body2">
+            100 rows, 10 columns + sticky action column. Scroll to test.
+          </Typography>
+          <Box>
+            <BiampTableToolbarActionButton
+              label="Toggle column visibility"
+              icon={<ColumnsIcon variant="xs" />}
+              badgeContent={getColumnVisibilityDirtyCount(table)}
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                setAnchorEl(e.currentTarget)
+              }
+            />
+            <BiampTableColumnVisibility
+              table={table}
+              anchorEl={anchorEl}
+              onClose={() => setAnchorEl(null)}
+            />
+          </Box>
+        </Box>
         <BiampTable table={table} enableRowSelection />
       </Stack>
     );
