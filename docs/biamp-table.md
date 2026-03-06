@@ -10,8 +10,8 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.13.0
-- `@bwp-web/styles` >= 0.13.0
+- `@bwp-web/assets` >= 0.13.1
+- `@bwp-web/styles` >= 0.13.1
 - `@mui/material` >= 7.0.0
 - `@tanstack/react-table` >= 8.0.0
 - `react` >= 18.0.0
@@ -162,7 +162,25 @@ By default, selecting a parent row cascades to all its children. To make parent 
 
 #### Expandable Rows
 
-When `enableExpanding` is passed, rows with sub-rows display a chevron toggle in the first non-sticky column. The chevron rotates 90° on expand/collapse. You must also configure TanStack for sub-rows:
+When `enableExpanding` is passed, rows with sub-rows display a chevron toggle in the first non-sticky column. The chevron rotates 90° on expand/collapse. You must also configure TanStack for sub-rows.
+
+With `useBiampServerSideTable`:
+
+```tsx
+const [expanded, setExpanded] = useState<ExpandedState>({});
+
+const table = useBiampServerSideTable({
+  data,
+  columns,
+  getSubRows: (row) => row.children,
+  expanded,
+  onExpandedChange: setExpanded,
+});
+
+<BiampTable table={table} enableExpanding getRowLabel={(row) => row.name} />
+```
+
+Or with `useReactTable` directly:
 
 ```tsx
 const table = useReactTable({
@@ -497,9 +515,9 @@ import { BiampTableTruncatedCell } from '@bwp-web/components';
 
 ### `useBiampServerSideTable`
 
-Wraps `useReactTable` with the standard server-side configuration: manual sorting, manual pagination, column visibility with dirty-tracking, and optional row selection with ID-based state. Eliminates ~40 lines of boilerplate per table implementation.
+Wraps `useReactTable` with the standard server-side configuration: manual sorting, manual pagination, column visibility with dirty-tracking, optional row selection with ID-based state, and optional expandable rows. Eliminates ~40 lines of boilerplate per table implementation.
 
-All feature groups (sorting, pagination, column visibility, row selection) are independently optional — only pass the props you need.
+All feature groups (sorting, pagination, column visibility, row selection, expanding) are independently optional — only pass the props you need.
 
 #### Options
 
@@ -519,6 +537,9 @@ All feature groups (sorting, pagination, column visibility, row selection) are i
 | `selectedRowIds` | `string[]` | — | Currently selected row IDs |
 | `onSelectedRowIdsChange` | `(ids: string[]) => void` | — | Called when selection changes |
 | `enableRowSelection` | `boolean \| ((row: Row<TData>) => boolean)` | `true` | Enable row selection. Only used when `selectedRowIds` is provided |
+| `expanded` | `ExpandedState` | — | Current expanded state. `{}` means nothing expanded; `true` expands all |
+| `onExpandedChange` | `(expanded: ExpandedState) => void` | — | Called when the user expands/collapses rows |
+| `getSubRows` | `(row: TData) => TData[] \| undefined` | — | Returns child rows for a given row (enables sub-row expanding) |
 
 #### Returns
 

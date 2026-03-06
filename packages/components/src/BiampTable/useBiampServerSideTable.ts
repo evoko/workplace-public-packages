@@ -1,6 +1,8 @@
 import {
   type ColumnDef,
+  type ExpandedState,
   getCoreRowModel,
+  getExpandedRowModel,
   type Row,
   type Table,
   useReactTable,
@@ -22,8 +24,9 @@ import {
 } from './serverSideTableUtils';
 import './tanstack-meta';
 
-// Stable reference — avoids re-creating the row model factory on every render.
+// Stable references — avoid re-creating row model factories on every render.
 const coreRowModel = getCoreRowModel();
+const expandedRowModel = getExpandedRowModel();
 
 export type UseBiampServerSideTableOptions<TData, F extends string = string> = {
   /** Row data array. */
@@ -63,6 +66,14 @@ export type UseBiampServerSideTableOptions<TData, F extends string = string> = {
   onSelectedRowIdsChange?: (ids: string[]) => void;
   /** Enable row selection. Pass `true` for all rows, or a predicate. */
   enableRowSelection?: boolean | ((row: Row<TData>) => boolean);
+
+  // ── Expanding ──────────────────────────────────────────────────
+  /** Current expanded state. `{}` means nothing expanded; `true` expands all. */
+  expanded?: ExpandedState;
+  /** Called when the user expands/collapses rows. */
+  onExpandedChange?: (expanded: ExpandedState) => void;
+  /** Returns child rows for a given row (enables sub-row expanding). */
+  getSubRows?: (row: TData) => TData[] | undefined;
 };
 
 /**
@@ -87,6 +98,9 @@ export function useBiampServerSideTable<TData, F extends string = string>({
   selectedRowIds,
   onSelectedRowIdsChange,
   enableRowSelection,
+  expanded,
+  onExpandedChange,
+  getSubRows,
 }: UseBiampServerSideTableOptions<TData, F>): Table<TData> {
   // ── Derived state (memoized) ─────────────────────────────────────
 
@@ -144,6 +158,7 @@ export function useBiampServerSideTable<TData, F extends string = string>({
       ...(pagination && { pagination }),
       columnVisibility: mergedVisibility,
       ...(rowSelection && { rowSelection }),
+      ...(expanded != null && { expanded }),
     },
     onSortingChange: onOrderChange
       ? (updater) => {
@@ -197,6 +212,25 @@ export function useBiampServerSideTable<TData, F extends string = string>({
             const next =
               typeof updater === 'function' ? updater(rowSelection!) : updater;
             onSelectedRowIdsChange(rowSelectionToSelectedIds(next));
+          }
+        : undefined,
+    }),
+
+    // Expanding — only when expanded state is provided
+    ...(expanded != null && {
+      getExpandedRowModel: expandedRowModel,
+      getSubRows,
+      onExpandedChange: onExpandedChange
+        ? (
+            updater: Parameters<
+              NonNullable<
+                Parameters<typeof useReactTable>[0]['onExpandedChange']
+              >
+            >[0],
+          ) => {
+            const next =
+              typeof updater === 'function' ? updater(expanded) : updater;
+            onExpandedChange(next);
           }
         : undefined,
     }),
