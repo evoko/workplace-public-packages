@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import HelpIcon from '@mui/icons-material/Help';
+import { ClockIcon, PinLocationIcon } from '@bwp-web/assets';
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Styles/Tooltip',
@@ -46,57 +47,13 @@ export const Playground: Story = {
   },
 };
 
-export const Placements: Story = {
+export const CustomContent: Story = {
   render: () => (
     <Stack spacing={3}>
-      <Typography variant="h3">Tooltip Placements</Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: 2,
-          justifyContent: 'center',
-          py: 4,
-        }}
-      >
-        {(
-          [
-            'top-start',
-            'top',
-            'top-end',
-            'left',
-            'right',
-            'bottom-start',
-            'bottom',
-            'bottom-end',
-          ] as const
-        ).map((placement) => (
-          <Tooltip
-            key={placement}
-            title={`Placement: ${placement}`}
-            placement={placement}
-            arrow
-          >
-            <Button variant="outlined" size="small">
-              {placement}
-            </Button>
-          </Tooltip>
-        ))}
-      </Box>
-    </Stack>
-  ),
-};
-
-export const WithArrow: Story = {
-  render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">With Arrow</Typography>
+      <Typography variant="h3">With custom content</Typography>
       <Stack direction="row" spacing={2}>
-        <Tooltip title="With arrow" arrow>
-          <Button variant="outlined">With Arrow</Button>
-        </Tooltip>
-        <Tooltip title="Without arrow">
-          <Button variant="outlined">Without Arrow</Button>
+        <Tooltip title={<CustomTooltipContent />} arrow>
+          <Button variant="outlined">Hover over</Button>
         </Tooltip>
       </Stack>
     </Stack>
@@ -122,3 +79,17 @@ export const OnIcons: Story = {
     </Stack>
   ),
 };
+
+function CustomTooltipContent() {
+  return (
+    <div style={{ display: 'flex', gap: '8px' }}>
+      <span style={{ display: 'flex', alignItems: "center", gap: '4px' }}>
+        <PinLocationIcon variant="xxs" sx={{ fontSize: '12px' }} /> 1380 W
+        Elliot Rd, Tempe, AZ 85284, US
+      </span>
+      <span style={{ display: 'flex', alignItems: "center", gap: '4px' }}>
+        <ClockIcon sx={{ fontSize: '12px' }} /> 11:45PM PST
+      </span>
+    </div>
+  );
+}

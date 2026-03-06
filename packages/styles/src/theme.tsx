@@ -1358,6 +1358,7 @@ export const biampTheme = (
               paddingBottom: '8px',
               paddingLeft: '12px',
               paddingRight: '12px',
+              maxWidth: "fit-content"
             }),
             arrow: ({ theme }) => ({
               color: theme.palette.grey[600],
