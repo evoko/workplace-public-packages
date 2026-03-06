@@ -45,20 +45,12 @@ export const AllStates: Story = {
           label="Checked"
         />
         <FormControlLabel
-          control={<Checkbox indeterminate />}
-          label="Indeterminate"
-        />
-        <FormControlLabel
           control={<Checkbox disabled />}
           label="Disabled unchecked"
         />
         <FormControlLabel
           control={<Checkbox disabled checked />}
           label="Disabled checked"
-        />
-        <FormControlLabel
-          control={<Checkbox disabled indeterminate />}
-          label="Disabled indeterminate"
         />
       </FormGroup>
 

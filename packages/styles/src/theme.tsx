@@ -884,6 +884,15 @@ export const biampTheme = (
                     ? colors.grey[700]
                     : colors.sidebar,
               },
+              '&.Mui-disabled:not(.Mui-checked):not(.MuiCheckbox-indeterminate)':
+                {
+                  '& rect:first-of-type': {
+                    fill: theme.palette.mode === 'dark' ? '#333333' : '#E0E0E0',
+                  },
+                  '& rect:last-of-type': {
+                    strokeOpacity: 0.15,
+                  },
+                },
             }),
           },
         },
