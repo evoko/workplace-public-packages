@@ -10,8 +10,8 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.11.7
-- `@bwp-web/styles` >= 0.11.7
+- `@bwp-web/assets` >= 0.12.0
+- `@bwp-web/styles` >= 0.12.0
 - `@mui/material` >= 7.0.0
 - `@tanstack/react-table` >= 8.0.0
 - `react` >= 18.0.0
@@ -126,8 +126,9 @@ The core table renderer. Connects to a TanStack `Table` instance and renders a s
 | `error` | `boolean \| Error \| ReactNode` | — | Pass `true` or an `Error` for the default error state (an `Error`'s message is displayed), or a custom `ReactNode` |
 | `empty` | `boolean \| ReactNode` | — | Pass `true` for the default empty state, or a custom `ReactNode`. Only shown when the table has zero rows |
 | `enableRowSelection` | `boolean` | `false` | When `true`, renders a checkbox column for row selection |
+| `enableExpanding` | `boolean` | `false` | When `true`, renders an expand/collapse toggle for rows that have sub-rows |
 | `hideSelectAll` | `boolean` | — | Hides the "select all" header checkbox while keeping individual row checkboxes |
-| `getRowLabel` | `(row: TData) => string` | — | Returns a human-readable name for a row, used in ARIA labels (e.g. `"Select Conference Room A"`). Falls back to row index |
+| `getRowLabel` | `(row: TData) => string` | — | Returns a human-readable name for a row, used in ARIA labels (e.g. `"Select Conference Room A"`, `"Expand Floor 1"`). Falls back to row index |
 | _...rest_ | `BoxProps` | — | All other MUI `Box` props are forwarded |
 
 #### Row Selection
@@ -143,6 +144,22 @@ const table = useReactTable({
 });
 
 <BiampTable table={table} enableRowSelection getRowLabel={(row) => row.name} />
+```
+
+#### Expandable Rows
+
+When `enableExpanding` is passed, rows with sub-rows display a chevron toggle in the first non-sticky column. The chevron rotates 90° on expand/collapse. You must also configure TanStack for sub-rows:
+
+```tsx
+const table = useReactTable({
+  data,
+  columns,
+  getSubRows: (row) => row.children,
+  getCoreRowModel: getCoreRowModel(),
+  getExpandedRowModel: getExpandedRowModel(),
+});
+
+<BiampTable table={table} enableExpanding getRowLabel={(row) => row.name} />
 ```
 
 #### Clickable Rows
@@ -525,6 +542,7 @@ The BiampTable components follow WCAG 2.1 AA guidelines:
 - **ARIA busy**: The table announces loading state via `aria-busy`
 - **Row selection labels**: Checkboxes use `getRowLabel` for descriptive labels (e.g. `"Select Conference Room A"`)
 - **Select all label**: Header checkbox is labeled `"Select all rows"`
+- **Expand/collapse labels**: Expand toggle buttons include `aria-expanded` and descriptive `aria-label` (e.g. `"Expand Floor 1"`)
 - **Error announcement**: Error state renders with `role="alert"` for assertive announcement
 - **Empty state**: Empty state renders with `role="status"` for polite announcement
 - **Toolbar role**: `BiampTableToolbar` renders with `role="toolbar"`
