@@ -2,6 +2,7 @@ import {
   Box,
   type BoxProps,
   Checkbox,
+  IconButton,
   Table as MuiTable,
   TableBody,
   TableCell,
@@ -12,6 +13,8 @@ import {
   type Theme,
 } from '@mui/material';
 import {
+  ChevronDownIcon,
+  ChevronRightIcon,
   DropdownChevronDownIcon,
   DropdownChevronUpIcon,
 } from '@bwp-web/assets';
@@ -40,6 +43,8 @@ export type BiampTableProps<TData> = BoxProps & {
   empty?: boolean | ReactNode;
   /** When true, renders a checkbox column for row selection. @default false */
   enableRowSelection?: boolean;
+  /** When true, renders an expand/collapse toggle column for rows that have sub-rows. @default false */
+  enableExpanding?: boolean;
   /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
   hideSelectAll?: boolean;
   /** Returns a human-readable name for a row, used in ARIA labels (e.g. "Select: Conference Room A"). Falls back to row index. */
@@ -54,6 +59,7 @@ export function BiampTable<TData>({
   error,
   empty,
   enableRowSelection = false,
+  enableExpanding = false,
   hideSelectAll,
   getRowLabel,
   sx,
@@ -75,6 +81,8 @@ export function BiampTable<TData>({
   const showLoading = useLoadingDelay(!!loading);
 
   const rows = table.getRowModel().rows;
+  const hasExpandableRows =
+    enableExpanding && rows.some((r) => r.getCanExpand());
   const showError = !!error && !loading;
   const showEmpty = !showError && !loading && rows.length === 0;
 
@@ -253,8 +261,15 @@ export function BiampTable<TData>({
                       />
                     </TableCell>
                   )}
-                  {row.getVisibleCells().map((cell) => {
+                  {row.getVisibleCells().map((cell, cellIndex, cells) => {
                     const sticky = cell.column.columnDef.meta?.sticky;
+                    const isExpandCell =
+                      enableExpanding &&
+                      !sticky &&
+                      cellIndex ===
+                        cells.findIndex(
+                          (c) => !c.column.columnDef.meta?.sticky,
+                        );
                     return (
                       <TableCell
                         key={cell.id}
@@ -280,9 +295,59 @@ export function BiampTable<TData>({
                           }),
                         }}
                       >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
+                        {isExpandCell ? (
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              pl: `${row.depth * 12}px`,
+                            }}
+                          >
+                            {row.getCanExpand() ? (
+                              <IconButton
+                                variant="none"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  row.toggleExpanded();
+                                }}
+                                aria-label={
+                                  row.getIsExpanded()
+                                    ? `Collapse ${getRowLabel ? getRowLabel(row.original) : `row ${row.index + 1}`}`
+                                    : `Expand ${getRowLabel ? getRowLabel(row.original) : `row ${row.index + 1}`}`
+                                }
+                                aria-expanded={row.getIsExpanded()}
+                              >
+                                {row.getIsExpanded() ? (
+                                  <ChevronDownIcon
+                                    variant="xs"
+                                    sx={{
+                                      color: ({ palette }) =>
+                                        palette.text.secondary,
+                                    }}
+                                  />
+                                ) : (
+                                  <ChevronRightIcon
+                                    variant="xs"
+                                    sx={{
+                                      color: ({ palette }) =>
+                                        palette.text.secondary,
+                                    }}
+                                  />
+                                )}
+                              </IconButton>
+                            ) : hasExpandableRows ? (
+                              <Box sx={{ width: 28 }} />
+                            ) : null}
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
+                            )}
+                          </Box>
+                        ) : (
+                          flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )
                         )}
                       </TableCell>
                     );
