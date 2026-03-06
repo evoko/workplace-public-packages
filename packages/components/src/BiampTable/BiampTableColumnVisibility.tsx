@@ -103,10 +103,6 @@ export function BiampTableColumnVisibility<TData>({
     .getAllLeafColumns()
     .every((col) => col.getIsVisible());
 
-  const someVisible = table
-    .getAllLeafColumns()
-    .some((col) => col.getIsVisible());
-
   return (
     <Popover
       anchorEl={anchorEl}
@@ -136,7 +132,6 @@ export function BiampTableColumnVisibility<TData>({
         >
           <Checkbox
             checked={allVisible}
-            indeterminate={!allVisible && someVisible}
             slotProps={{ input: { 'aria-label': `${showAllLabel} columns` } }}
           />
           <Typography variant="caption" fontWeight={600}>

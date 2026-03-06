@@ -21,34 +21,111 @@ import { flexRender, type Table } from '@tanstack/react-table';
 import React, { type ReactNode, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
+import { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
 import './tanstack-meta';
 import { useLoadingDelay } from './useLoadingDelay';
 
-export type BiampTableProps<TData> = BoxProps & {
-  /** TanStack Table instance to connect to. */
-  table: Table<TData>;
-  /** Called when a clickable body row is clicked. Receives the row's original data. */
-  onRowClick?: (row: TData) => void;
-  /**
-   * Controls which rows are clickable. When omitted, all rows are clickable if
-   * `onRowClick` is provided. Has no effect when `onRowClick` is not provided.
-   */
-  isRowClickable?: (row: TData) => boolean;
-  /** When true, shows a LinearProgress bar below the table header. */
-  loading?: boolean;
-  /** When truthy, shown in place of table body rows. Pass `true` or an `Error` for the default error state (an `Error`'s message is displayed), or a custom ReactNode. */
-  error?: boolean | Error | ReactNode;
-  /** When truthy and the table has no rows, shown instead of an empty body. Pass `true` for the default empty state, or a custom ReactNode. */
-  empty?: boolean | ReactNode;
-  /** When true, renders a checkbox column for row selection. @default false */
-  enableRowSelection?: boolean;
-  /** When true, renders an expand/collapse toggle column for rows that have sub-rows. @default false */
-  enableExpanding?: boolean;
-  /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
-  hideSelectAll?: boolean;
-  /** Returns a human-readable name for a row, used in ARIA labels (e.g. "Select: Conference Room A"). Falls back to row index. */
-  getRowLabel?: (row: TData) => string;
-};
+// ── Row-click props ────────────────────────────────────────────────
+type RowClickProps<TData> =
+  | {
+      /** Called when a clickable body row is clicked. Receives the row's original data. */
+      onRowClick: (row: TData) => void;
+      /**
+       * Controls which rows are clickable. When omitted, all rows are clickable if
+       * `onRowClick` is provided.
+       */
+      isRowClickable?: (row: TData) => boolean;
+    }
+  | {
+      onRowClick?: undefined;
+      isRowClickable?: never;
+    };
+
+// ── Selection + expanding props ────────────────────────────────────
+type SelectionExpandingProps =
+  | {
+      /** When true, renders a checkbox column for row selection. */
+      enableRowSelection: true;
+      /** When true, renders an expand/collapse toggle column for rows that have sub-rows. */
+      enableExpanding: true;
+      /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
+      hideSelectAll?: boolean;
+      /** When true, selecting a parent row also selects/deselects its children. @default false */
+      selectChildrenWithParent?: boolean;
+    }
+  | {
+      /** When true, renders a checkbox column for row selection. */
+      enableRowSelection: true;
+      enableExpanding?: false;
+      /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
+      hideSelectAll?: boolean;
+      selectChildrenWithParent?: never;
+    }
+  | {
+      enableRowSelection?: false;
+      enableExpanding?: boolean;
+      hideSelectAll?: never;
+      selectChildrenWithParent?: never;
+    };
+
+export type BiampTableProps<TData> = BoxProps &
+  RowClickProps<TData> &
+  SelectionExpandingProps & {
+    /** TanStack Table instance to connect to. */
+    table: Table<TData>;
+    /** When true, shows a LinearProgress bar below the table header. */
+    loading?: boolean;
+    /** When truthy, shown in place of table body rows. Pass `true` or an `Error` for the default error state (an `Error`'s message is displayed), or a custom ReactNode. */
+    error?: boolean | Error | ReactNode;
+    /** When truthy and the table has no rows, shown instead of an empty body. Pass `true` for the default empty state, or a custom ReactNode. */
+    empty?: boolean | ReactNode;
+    /** Returns a human-readable name for a row, used in ARIA labels (e.g. "Select: Conference Room A"). Falls back to row index. */
+    getRowLabel?: (row: TData) => string;
+  };
+
+// ── Shared sx helpers ────────────────────────────────────────────
+
+const overlaySx = {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  pointerEvents: 'none',
+} as const;
+
+const stickyHoverBg = {
+  '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
+    bgcolor: ({ palette }: Theme) =>
+      palette.mode === 'dark' ? palette.grey[800] : palette.grey[100],
+  },
+} as const;
+
+function cellSx(
+  sticky: 'left' | 'right' | undefined,
+  minWidth: number | string | undefined,
+  zIndex: number,
+) {
+  if (sticky) {
+    return {
+      position: 'sticky',
+      [sticky]: 0,
+      zIndex,
+      width: 0,
+      whiteSpace: 'nowrap',
+      textAlign: 'center',
+      bgcolor: 'background.paper',
+      ...(zIndex < 3 && stickyHoverBg),
+    } as const;
+  }
+  const mw = minWidth ?? 40;
+  return { minWidth: mw, maxWidth: mw };
+}
+
+// ── Component ────────────────────────────────────────────────────
 
 export function BiampTable<TData>({
   table,
@@ -60,6 +137,7 @@ export function BiampTable<TData>({
   enableRowSelection = false,
   enableExpanding = false,
   hideSelectAll,
+  selectChildrenWithParent = false,
   getRowLabel,
   sx,
   ...boxProps
@@ -144,20 +222,11 @@ export function BiampTable<TData>({
                           : 'descending'
                         : 'none',
                     })}
-                    sx={{
-                      minWidth: sticky
-                        ? undefined
-                        : (header.column.columnDef.meta?.minWidth ?? 40),
-                      ...(sticky && {
-                        position: 'sticky',
-                        [sticky]: 0,
-                        zIndex: 3,
-                        width: 0,
-                        whiteSpace: 'nowrap',
-                        textAlign: 'center',
-                        bgcolor: 'background.paper',
-                      }),
-                    }}
+                    sx={cellSx(
+                      sticky,
+                      header.column.columnDef.meta?.minWidth,
+                      3,
+                    )}
                   >
                     {header.isPlaceholder ? null : header.column.getCanSort() ? (
                       <TableSortLabel
@@ -243,7 +312,11 @@ export function BiampTable<TData>({
                       <Checkbox
                         checked={row.getIsSelected()}
                         disabled={!row.getCanSelect()}
-                        onChange={row.getToggleSelectedHandler()}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                          row.toggleSelected(e.target.checked, {
+                            selectChildren: selectChildrenWithParent,
+                          })
+                        }
                         onClick={(e) => e.stopPropagation()}
                         sx={
                           !row.getCanSelect()
@@ -273,75 +346,73 @@ export function BiampTable<TData>({
                       <TableCell
                         key={cell.id}
                         data-sticky={sticky || undefined}
-                        sx={{
-                          minWidth: sticky
-                            ? undefined
-                            : (cell.column.columnDef.meta?.minWidth ?? 40),
-                          ...(sticky && {
-                            position: 'sticky',
-                            [sticky]: 0,
-                            zIndex: 2,
-                            width: 0,
-                            whiteSpace: 'nowrap',
-                            textAlign: 'center',
-                            bgcolor: 'background.paper',
-                            '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
-                              bgcolor: ({ palette }: Theme) =>
-                                palette.mode === 'dark'
-                                  ? palette.grey[800]
-                                  : palette.grey[100],
-                            },
-                          }),
-                        }}
+                        sx={cellSx(
+                          sticky,
+                          cell.column.columnDef.meta?.minWidth,
+                          2,
+                        )}
                       >
-                        {isExpandCell ? (
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              pl: `${row.depth * 12}px`,
-                            }}
-                          >
-                            {row.getCanExpand() ? (
-                              <IconButton
-                                variant="none"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  row.toggleExpanded();
-                                }}
-                                aria-label={
-                                  row.getIsExpanded()
-                                    ? `Collapse ${getRowLabel ? getRowLabel(row.original) : `row ${row.index + 1}`}`
-                                    : `Expand ${getRowLabel ? getRowLabel(row.original) : `row ${row.index + 1}`}`
-                                }
-                                aria-expanded={row.getIsExpanded()}
-                              >
-                                <ChevronRightIcon
-                                  variant="xs"
-                                  sx={{
-                                    color: ({ palette }) =>
-                                      palette.text.secondary,
-                                    transition: 'transform 150ms ease',
-                                    transform: row.getIsExpanded()
-                                      ? 'rotate(90deg)'
-                                      : 'rotate(0deg)',
-                                  }}
-                                />
-                              </IconButton>
-                            ) : hasExpandableRows ? (
-                              <Box sx={{ width: 28 }} />
-                            ) : null}
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext(),
-                            )}
-                          </Box>
-                        ) : (
-                          flexRender(
+                        {(() => {
+                          const content = flexRender(
                             cell.column.columnDef.cell,
                             cell.getContext(),
-                          )
-                        )}
+                          );
+
+                          if (sticky) return content;
+
+                          const truncated = (
+                            <BiampTableTruncatedCell>
+                              {content}
+                            </BiampTableTruncatedCell>
+                          );
+
+                          if (!isExpandCell) return truncated;
+
+                          const rowLabel = getRowLabel
+                            ? getRowLabel(row.original)
+                            : `row ${row.index + 1}`;
+
+                          return (
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                pl: `${row.depth * 12}px`,
+                              }}
+                            >
+                              {row.getCanExpand() ? (
+                                <IconButton
+                                  variant="none"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    row.toggleExpanded();
+                                  }}
+                                  aria-label={
+                                    row.getIsExpanded()
+                                      ? `Collapse ${rowLabel}`
+                                      : `Expand ${rowLabel}`
+                                  }
+                                  aria-expanded={row.getIsExpanded()}
+                                >
+                                  <ChevronRightIcon
+                                    variant="xs"
+                                    sx={{
+                                      color: ({ palette }) =>
+                                        palette.text.secondary,
+                                      transition: 'transform 150ms ease',
+                                      transform: row.getIsExpanded()
+                                        ? 'rotate(90deg)'
+                                        : 'rotate(0deg)',
+                                    }}
+                                  />
+                                </IconButton>
+                              ) : hasExpandableRows ? (
+                                <Box sx={{ width: 28 }} />
+                              ) : null}
+                              {truncated}
+                            </Box>
+                          );
+                        })()}
                       </TableCell>
                     );
                   })}
@@ -352,19 +423,7 @@ export function BiampTable<TData>({
       </MuiTable>
 
       {showError && (
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            pointerEvents: 'none',
-          }}
-        >
+        <Box sx={overlaySx}>
           {error === true ? (
             <BiampTableErrorState sx={{ pointerEvents: 'auto' }} />
           ) : error instanceof Error ? (
@@ -379,19 +438,7 @@ export function BiampTable<TData>({
       )}
 
       {showEmpty && (
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            pointerEvents: 'none',
-          }}
-        >
+        <Box sx={overlaySx}>
           {empty && empty !== true ? (
             empty
           ) : (

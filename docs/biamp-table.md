@@ -10,8 +10,8 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.12.0
-- `@bwp-web/styles` >= 0.12.0
+- `@bwp-web/assets` >= 0.13.0
+- `@bwp-web/styles` >= 0.13.0
 - `@mui/material` >= 7.0.0
 - `@tanstack/react-table` >= 8.0.0
 - `react` >= 18.0.0
@@ -86,11 +86,13 @@ TanStack column definitions accept a `meta` object with these additional propert
 | `minWidth` | `number \| string` | CSS min-width applied to the column's header and body cells. Defaults to `40`. |
 | `sticky` | `'left' \| 'right'` | Makes the column sticky to the specified edge of the table. |
 | `defaultVisible` | `boolean` | Whether the column is visible by default. Defaults to `true`. Used by `getDefaultColumnVisibility` and `getColumnVisibilityDirtyCount`. |
+| `columnLabel` | `string` | Human-readable label used in the column-visibility menu when `header` is not a string. |
+| `orderField` | `string` | Server-side order field name associated with this column. Used by `useBiampServerSideTable` to map between TanStack column IDs and GraphQL order field enums. |
 
 ```tsx
 columnHelper.accessor('name', {
   header: 'Name',
-  meta: { minWidth: 200, sticky: 'left' },
+  meta: { minWidth: 200, sticky: 'left', orderField: 'NAME' },
 });
 ```
 
@@ -128,6 +130,7 @@ The core table renderer. Connects to a TanStack `Table` instance and renders a s
 | `enableRowSelection` | `boolean` | `false` | When `true`, renders a checkbox column for row selection |
 | `enableExpanding` | `boolean` | `false` | When `true`, renders an expand/collapse toggle for rows that have sub-rows |
 | `hideSelectAll` | `boolean` | — | Hides the "select all" header checkbox while keeping individual row checkboxes |
+| `selectChildrenWithParent` | `boolean` | `true` | When `true`, selecting a parent row also selects its children. When `false`, parent and child selections are independent. Only relevant when both `enableRowSelection` and `enableExpanding` are used |
 | `getRowLabel` | `(row: TData) => string` | — | Returns a human-readable name for a row, used in ARIA labels (e.g. `"Select Conference Room A"`, `"Expand Floor 1"`). Falls back to row index |
 | _...rest_ | `BoxProps` | — | All other MUI `Box` props are forwarded |
 
@@ -144,6 +147,17 @@ const table = useReactTable({
 });
 
 <BiampTable table={table} enableRowSelection getRowLabel={(row) => row.name} />
+```
+
+By default, selecting a parent row cascades to all its children. To make parent and child selections independent, pass `selectChildrenWithParent={false}`:
+
+```tsx
+<BiampTable
+  table={table}
+  enableRowSelection
+  enableExpanding
+  selectChildrenWithParent={false}
+/>
 ```
 
 #### Expandable Rows
@@ -456,7 +470,133 @@ Base component for table status messages (empty state, error state, or custom). 
 | `children` | `ReactNode` | — | Optional extra content below the description |
 | _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
 
+---
+
+### `BiampTableTruncatedCell`
+
+Renders cell content with single-line truncation (ellipsis). A tooltip showing the full text appears on hover only when the content is actually truncated (`scrollWidth > clientWidth`). The tooltip popup is only mounted when open, so there is zero DOM overhead for non-truncated cells.
+
+This component is automatically applied to all non-sticky body cells by `BiampTable` — you do not need to use it manually in most cases. It can also be used standalone when custom cell rendering needs truncation.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `ReactNode` | _(required)_ | Cell content to render with truncation |
+
+```tsx
+import { BiampTableTruncatedCell } from '@bwp-web/components';
+
+// Standalone usage (rare — BiampTable applies this automatically)
+<BiampTableTruncatedCell>
+  This is a very long string that will be truncated with an ellipsis
+</BiampTableTruncatedCell>
+```
+
 ## Utilities
+
+### `useBiampServerSideTable`
+
+Wraps `useReactTable` with the standard server-side configuration: manual sorting, manual pagination, column visibility with dirty-tracking, and optional row selection with ID-based state. Eliminates ~40 lines of boilerplate per table implementation.
+
+All feature groups (sorting, pagination, column visibility, row selection) are independently optional — only pass the props you need.
+
+#### Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `data` | `TData[]` | _(required)_ | Row data array |
+| `columns` | `ColumnDef<TData, any>[]` | _(required)_ | TanStack column definitions. Use `meta.orderField` to map columns to server-side order fields |
+| `getRowId` | `(row: TData) => string` | `(row) => row.id` | Extracts a unique ID from each row |
+| `order` | `ServerSideOrder<F>` | — | Current server-side order. `undefined` means no sorting |
+| `onOrderChange` | `(order?: ServerSideOrder<F>) => void` | — | Called when the user changes sorting. `undefined` means sorting was cleared |
+| `page` | `number` | — | Zero-based page index |
+| `rowsPerPage` | `number` | — | Number of rows per page |
+| `onPageChange` | `(page: number) => void` | — | Called when the user changes page |
+| `rowCount` | `number` | — | Total row count from the server (for pagination display) |
+| `columnVisibility` | `ColumnVisibility` | — | Current column visibility overrides. Merged with defaults from `meta.defaultVisible` |
+| `onColumnVisibilityChange` | `(visibility: ColumnVisibility) => void` | — | Called with only the entries that differ from defaults (for URL persistence) |
+| `selectedRowIds` | `string[]` | — | Currently selected row IDs |
+| `onSelectedRowIdsChange` | `(ids: string[]) => void` | — | Called when selection changes |
+| `enableRowSelection` | `boolean \| ((row: Row<TData>) => boolean)` | `true` | Enable row selection. Only used when `selectedRowIds` is provided |
+
+#### Returns
+
+`Table<TData>` — a TanStack Table instance ready to pass to `<BiampTable table={table} />`.
+
+#### Example
+
+```tsx
+import {
+  BiampTable,
+  BiampTableContainer,
+  BiampTablePagination,
+  BiampTableToolbar,
+  BiampTableToolbarSearch,
+  BiampTableToolbarActions,
+  BiampTableToolbarColumnVisibility,
+  useBiampServerSideTable,
+  type ColumnVisibility,
+  type ServerSideOrder,
+} from '@bwp-web/components';
+import { createColumnHelper } from '@tanstack/react-table';
+
+type Device = { id: string; name: string; location: string; status: string };
+type DeviceOrderField = 'NAME' | 'LOCATION' | 'STATUS';
+
+const columnHelper = createColumnHelper<Device>();
+
+const columns = [
+  columnHelper.accessor('name', {
+    header: 'Name',
+    meta: { minWidth: 200, orderField: 'NAME' },
+  }),
+  columnHelper.accessor('location', {
+    header: 'Location',
+    meta: { minWidth: 160, orderField: 'LOCATION' },
+  }),
+  columnHelper.accessor('status', {
+    header: 'Status',
+    meta: { minWidth: 120, orderField: 'STATUS', defaultVisible: false },
+  }),
+];
+
+function DeviceTable() {
+  // These would typically come from URL params + a server-side query hook
+  const [order, setOrder] = useState<ServerSideOrder<DeviceOrderField>>();
+  const [page, setPage] = useState(0);
+  const [columnVisibility, setColumnVisibility] = useState<ColumnVisibility>({});
+  const { data, totalCount } = useDevicesQuery({ order, page, limit: 25 });
+
+  const table = useBiampServerSideTable<Device, DeviceOrderField>({
+    data,
+    columns,
+    order,
+    onOrderChange: setOrder,
+    page,
+    rowsPerPage: 25,
+    onPageChange: setPage,
+    rowCount: totalCount,
+    columnVisibility,
+    onColumnVisibilityChange: setColumnVisibility,
+  });
+
+  return (
+    <BiampTableContainer>
+      <BiampTableToolbar>
+        <BiampTableToolbarSearch onChange={handleSearch} />
+        <BiampTableToolbarActions>
+          <BiampTableToolbarColumnVisibility table={table} />
+        </BiampTableToolbarActions>
+      </BiampTableToolbar>
+      <BiampTable table={table} />
+      <BiampTablePagination table={table} />
+    </BiampTableContainer>
+  );
+}
+```
+
+---
 
 ### `useDebouncedCallback`
 
@@ -533,6 +673,86 @@ exportToCsv(data, columns, 'devices');
 const csvString = buildCsvString(data, columns);
 ```
 
+### Server-Side Table Utilities
+
+Pure functions for converting between TanStack table state and server-side representations (e.g. GraphQL order types). These are used internally by `useBiampServerSideTable` but can also be used standalone.
+
+#### `ServerSideOrder<F>`
+
+Type representing a single-field server-side order, matching typical GraphQL order input types.
+
+```tsx
+import { type ServerSideOrder } from '@bwp-web/components';
+
+type DeviceOrderField = 'NAME' | 'LOCATION' | 'STATUS';
+const order: ServerSideOrder<DeviceOrderField> = { field: 'NAME', desc: false };
+```
+
+#### `orderToSorting` / `sortingToOrder`
+
+Convert between `ServerSideOrder` and TanStack `SortingState`. An optional mapping handles cases where column IDs differ from server-side field names.
+
+```tsx
+import { orderToSorting, sortingToOrder } from '@bwp-web/components';
+
+const sorting = orderToSorting({ field: 'NAME', desc: true }, fieldToColumnId);
+// [{ id: 'name', desc: true }]
+
+const order = sortingToOrder(sorting, columnIdToField);
+// { field: 'NAME', desc: true }
+```
+
+#### `selectedIdsToRowSelection` / `rowSelectionToSelectedIds`
+
+Convert between a `string[]` of row IDs and TanStack `RowSelectionState`.
+
+```tsx
+import { selectedIdsToRowSelection, rowSelectionToSelectedIds } from '@bwp-web/components';
+
+const rowSelection = selectedIdsToRowSelection(['id-1', 'id-3']);
+// { 'id-1': true, 'id-3': true }
+
+const ids = rowSelectionToSelectedIds(rowSelection);
+// ['id-1', 'id-3']
+```
+
+#### `getOrderFieldMappings`
+
+Builds bidirectional mappings between TanStack column IDs and server-side order field enum values from column definitions that carry `meta.orderField`.
+
+```tsx
+import { getOrderFieldMappings } from '@bwp-web/components';
+
+const { columnIdToField, fieldToColumnId } = getOrderFieldMappings(columns);
+// columnIdToField: { name: 'NAME', location: 'LOCATION' }
+// fieldToColumnId: { NAME: 'name', LOCATION: 'location' }
+```
+
+#### `getDefaultColumnVisibilityFromDefs`
+
+Derives default column visibility from column definitions' `meta.defaultVisible`. Columns without `defaultVisible` are omitted (treated as visible by TanStack).
+
+```tsx
+import { getDefaultColumnVisibilityFromDefs } from '@bwp-web/components';
+
+const defaults = getDefaultColumnVisibilityFromDefs(columns);
+// { status: false } if status column has meta: { defaultVisible: false }
+```
+
+#### `getDirtyColumnVisibility`
+
+Returns only the entries in a visibility state that differ from defaults. Columns not present in `defaults` are treated as visible (`true`). Use this to strip default-matching entries before persisting to URL params.
+
+```tsx
+import { getDirtyColumnVisibility } from '@bwp-web/components';
+
+const dirty = getDirtyColumnVisibility(
+  { name: true, status: true, notes: false },
+  { status: false },
+);
+// { status: true, notes: false } — only entries that differ from defaults
+```
+
 ## Accessibility
 
 The BiampTable components follow WCAG 2.1 AA guidelines:
@@ -568,11 +788,23 @@ The BiampTable components follow WCAG 2.1 AA guidelines:
 | `BiampTableToolbarExport` | component | Export button with loading state |
 | `BiampTableToolbarFilters` | component | Filter drawer with reset/apply |
 | `BiampTableToolbarSearch` | component | Debounced search input |
+| `BiampTableTruncatedCell` | component | Single-line truncation with overflow tooltip |
+| `useBiampServerSideTable` | hook | Server-side table hook wrapping `useReactTable` |
 | `useDebouncedCallback` | hook | Generic debounced callback |
 | `getColumnVisibilityDirtyCount` | function | Count columns with non-default visibility |
-| `getDefaultColumnVisibility` | function | Derive default visibility from column meta |
+| `getDefaultColumnVisibility` | function | Derive default visibility from column meta (table instance) |
 | `toVisibilityState` | function | Convert `ColumnVisibility` to TanStack `VisibilityState` |
+| `orderToSorting` | function | Convert `ServerSideOrder` to TanStack `SortingState` |
+| `sortingToOrder` | function | Convert TanStack `SortingState` to `ServerSideOrder` |
+| `selectedIdsToRowSelection` | function | Convert `string[]` to TanStack `RowSelectionState` |
+| `rowSelectionToSelectedIds` | function | Convert TanStack `RowSelectionState` to `string[]` |
+| `getOrderFieldMappings` | function | Build column ID ↔ order field bidirectional maps |
+| `getDefaultColumnVisibilityFromDefs` | function | Derive default visibility from column defs |
+| `getDirtyColumnVisibility` | function | Strip default-matching entries from visibility state |
 | `exportToCsv` | function | Convert rows + columns to CSV and download |
 | `buildCsvString` | function | Build CSV string (no download) |
+| `UseBiampServerSideTableOptions` | type | Options for `useBiampServerSideTable` |
+| `ServerSideOrder` | type | Single-field server-side order type |
 | `ColumnVisibility` | type | Loose visibility state type alias |
+| `ExportColumn` | type | Column definition for CSV export |
 | `BIAMP_TABLE_DEBOUNCE_DELAY` | constant | Default debounce delay (`300ms`) |

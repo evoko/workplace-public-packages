@@ -11,5 +11,7 @@ declare module '@tanstack/react-table' {
     defaultVisible?: boolean;
     /** Human-readable label used in the column-visibility menu when `header` is not a string. */
     columnLabel?: string;
+    /** Server-side order field name associated with this column (used by `useBiampServerSideTable`). */
+    orderField?: string;
   }
 }

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { TablePagination, type TablePaginationProps } from '@mui/material';
 import type { Table } from '@tanstack/react-table';
 
@@ -53,9 +53,11 @@ export function BiampTablePagination<TData>({
 
   // Auto-correct page when row count drops (e.g. after filtering)
   const maxPage = Math.max(0, Math.ceil(stableCount / pageSize) - 1);
-  if (!loading && pageIndex > maxPage) {
-    table.setPageIndex(maxPage);
-  }
+  useEffect(() => {
+    if (!loading && pageIndex > maxPage) {
+      table.setPageIndex(maxPage);
+    }
+  }, [loading, pageIndex, maxPage, table]);
 
   // Hide when there's no data or everything fits on one page
   if (autoHide && (!stableCount || stableCount <= pageSize)) return null;

@@ -16,6 +16,18 @@ import {
   useDebouncedCallback,
 } from './useDebouncedCallback';
 
+type ExpandableSearchProps =
+  | {
+      /** When true, the search field collapses to an icon button when empty and unfocused. */
+      expandable: true;
+      /** Accessible label for the collapsed icon button. @default placeholder */
+      expandLabel?: string;
+    }
+  | {
+      expandable?: false;
+      expandLabel?: never;
+    };
+
 export type BiampTableToolbarSearchProps = {
   /** Called with the debounced search string whenever the value changes. */
   onChange: (value: string) => void;
@@ -31,13 +43,10 @@ export type BiampTableToolbarSearchProps = {
   placeholder?: string;
   /** Accessible label for the clear button. @default "Clear search" */
   clearLabel?: string;
-  /** When true, the search field collapses to an icon button when empty and unfocused. @default false */
-  expandable?: boolean;
-  /** Accessible label for the collapsed icon button (only used when expandable is true). @default placeholder */
-  expandLabel?: string;
   /** When true, renders a simplified full-width InputBase on screens below the `md` breakpoint. @default true */
   enableMobileView?: boolean;
-} & Omit<TextFieldProps, 'onChange' | 'value' | 'defaultValue'>;
+} & ExpandableSearchProps &
+  Omit<TextFieldProps, 'onChange' | 'value' | 'defaultValue'>;
 
 const searchFieldSx = {
   '& .MuiInputBase-root': {
