@@ -61,6 +61,20 @@ export {
 } from './BiampTableToolbarSearch';
 export { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
 export {
+  useBiampServerSideTable,
+  type UseBiampServerSideTableOptions,
+} from './useBiampServerSideTable';
+export {
+  orderToSorting,
+  sortingToOrder,
+  selectedIdsToRowSelection,
+  rowSelectionToSelectedIds,
+  getOrderFieldMappings,
+  getDefaultColumnVisibilityFromDefs,
+  getDirtyColumnVisibility,
+  type ServerSideOrder,
+} from './serverSideTableUtils';
+export {
   useDebouncedCallback,
   BIAMP_TABLE_DEBOUNCE_DELAY,
 } from './useDebouncedCallback';

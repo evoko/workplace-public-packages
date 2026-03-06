@@ -25,7 +25,10 @@ import {
   BiampTableToolbarFilters,
   BiampTableToolbarSearch,
   getColumnVisibilityDirtyCount,
+  useBiampServerSideTable,
   useDebouncedCallback,
+  type ColumnVisibility,
+  type ServerSideOrder,
 } from '@bwp-web/components';
 import { AddIcon, ColumnsIcon, DeleteIcon } from '@bwp-web/assets';
 import {
@@ -1105,6 +1108,173 @@ export const ExpandableWithSelection: Story = {
           onRowClick={(row) => console.log('Row clicked:', row)}
           isRowClickable={(row: Building) => row.status === 'Available'}
           getRowLabel={(row: Building) => row.name}
+        />
+      </Stack>
+    );
+  },
+};
+
+// ---------------------------------------------------------------------------
+// 9. ServerSideHook — useBiampServerSideTable demo
+// ---------------------------------------------------------------------------
+
+/** Simulated server-side order field enum, like a GraphQL OrderField. */
+const RoomOrderField = {
+  Name: 'NAME',
+  Status: 'STATUS',
+  Capacity: 'CAPACITY',
+  Floor: 'FLOOR',
+} as const;
+type RoomOrderField = (typeof RoomOrderField)[keyof typeof RoomOrderField];
+
+const serverSideColumnHelper = createColumnHelper<Room>();
+const serverSideColumns = [
+  serverSideColumnHelper.accessor('name', {
+    header: 'Room Name',
+    meta: { minWidth: 200, orderField: RoomOrderField.Name },
+  }),
+  serverSideColumnHelper.accessor('status', {
+    header: 'Status',
+    meta: { orderField: RoomOrderField.Status },
+  }),
+  serverSideColumnHelper.accessor('capacity', {
+    header: 'Capacity',
+    meta: { orderField: RoomOrderField.Capacity },
+  }),
+  serverSideColumnHelper.accessor('floor', {
+    header: 'Floor',
+    meta: { orderField: RoomOrderField.Floor, defaultVisible: false },
+  }),
+];
+
+function simulateServerFetch(params: {
+  search: string;
+  order?: ServerSideOrder<RoomOrderField>;
+  page: number;
+  pageSize: number;
+}): Promise<{ data: Room[]; total: number }> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      let data = [...rows];
+
+      if (params.search) {
+        const lower = params.search.toLowerCase();
+        data = data.filter((r) => r.name.toLowerCase().includes(lower));
+      }
+
+      if (params.order) {
+        const field = params.order.field.toLowerCase() as keyof Room;
+        const desc = params.order.desc ?? false;
+        data.sort((a, b) => {
+          const av = a[field];
+          const bv = b[field];
+          return (av < bv ? -1 : av > bv ? 1 : 0) * (desc ? -1 : 1);
+        });
+      }
+
+      const total = data.length;
+      data = data.slice(
+        params.page * params.pageSize,
+        (params.page + 1) * params.pageSize,
+      );
+      resolve({ data, total });
+    }, 400);
+  });
+}
+
+/**
+ * Demonstrates `useBiampServerSideTable` — the hook that replaces ~40 lines
+ * of boilerplate per table. Compare with the `WithToolbar` story which uses
+ * raw `useReactTable`.
+ */
+export const ServerSideHook: Story = {
+  render: () => {
+    const [search, setSearch] = useState('');
+    const [order, setOrder] = useState<
+      ServerSideOrder<RoomOrderField> | undefined
+    >();
+    const [page, setPage] = useState(0);
+    const [columnVisibility, setColumnVisibility] = useState<
+      ColumnVisibility | undefined
+    >();
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+    const [data, setData] = useState<Room[]>([]);
+    const [total, setTotal] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const fetchIdRef = useRef(0);
+
+    const debouncedFetch = useDebouncedCallback(() => {
+      const id = ++fetchIdRef.current;
+      setLoading(true);
+      simulateServerFetch({ search, order, page, pageSize: 5 }).then(
+        (result) => {
+          if (id !== fetchIdRef.current) return;
+          setData(result.data);
+          setTotal(result.total);
+          setLoading(false);
+        },
+      );
+    });
+
+    useEffect(() => {
+      debouncedFetch();
+    }, [search, order, page, debouncedFetch]);
+
+    // This is the entire table setup — no useMemo blocks, no onChange handlers.
+    const table = useBiampServerSideTable<Room, RoomOrderField>({
+      data,
+      columns: serverSideColumns,
+      getRowId: (row) => String(row.id),
+      order,
+      onOrderChange: (next) => {
+        setOrder(next);
+        setPage(0);
+      },
+      page,
+      rowsPerPage: 5,
+      onPageChange: setPage,
+      rowCount: total,
+      columnVisibility,
+      onColumnVisibilityChange: setColumnVisibility,
+    });
+
+    return (
+      <Stack spacing={2} height="100%">
+        <Typography variant="body2">
+          Uses <code>useBiampServerSideTable</code> — compare with the
+          WithToolbar story that uses raw <code>useReactTable</code>.
+        </Typography>
+        <BiampTableToolbar>
+          <BiampTableToolbarActions>
+            <BiampTableToolbarActionButton
+              label="Toggle column visibility"
+              icon={<ColumnsIcon variant="xs" />}
+              badgeContent={getColumnVisibilityDirtyCount(table)}
+              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+                setAnchorEl(e.currentTarget)
+              }
+            />
+            <BiampTableColumnVisibility
+              table={table}
+              anchorEl={anchorEl}
+              onClose={() => setAnchorEl(null)}
+            />
+            <BiampTableToolbarSearch
+              onChange={(v) => {
+                setSearch(v);
+                setPage(0);
+              }}
+              placeholder="Search rooms..."
+              expandable
+            />
+          </BiampTableToolbarActions>
+        </BiampTableToolbar>
+        <BiampTable table={table} loading={loading} />
+        <BiampTablePagination
+          table={table}
+          rowsPerPageOptions={[5, 10, 15]}
+          loading={loading}
         />
       </Stack>
     );
