@@ -957,6 +957,107 @@ export const Expandable: Story = {
 // 7. ExpandableWithSelection — expanding + selection + row click
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// TextTruncation — demo for truncated cells with hover tooltips
+// ---------------------------------------------------------------------------
+
+type LongTextRoom = {
+  id: number;
+  name: string;
+  description: string;
+  status: string;
+  notes: string;
+};
+
+const longTextColumnHelper = createColumnHelper<LongTextRoom>();
+const longTextColumns = [
+  longTextColumnHelper.accessor('name', {
+    header: 'Room Name',
+    meta: { minWidth: 150 },
+  }),
+  longTextColumnHelper.accessor('description', {
+    header: 'Description',
+    meta: { minWidth: 200 },
+  }),
+  longTextColumnHelper.accessor('status', {
+    header: 'Status',
+    meta: { minWidth: 80 },
+  }),
+  longTextColumnHelper.accessor('notes', {
+    header: 'Notes',
+    meta: { minWidth: 200 },
+  }),
+];
+
+const longTextRows: LongTextRoom[] = [
+  {
+    id: 1,
+    name: 'Conference Room Alpha with Extended Name That Keeps Going',
+    description:
+      'Large conference room with panoramic windows overlooking the city skyline, equipped with a 4K projector and surround sound system',
+    status: 'Available',
+    notes:
+      'Recently renovated with new AV equipment. Booking requires manager approval for meetings longer than 2 hours.',
+  },
+  {
+    id: 2,
+    name: 'B',
+    description: 'Small huddle space',
+    status: 'Occupied',
+    notes: 'OK',
+  },
+  {
+    id: 3,
+    name: 'Executive Board Room — Reserved for C-Suite and VIP Guests Only',
+    description:
+      'Premium meeting space with Italian marble table seating 24 guests, integrated Crestron control system, and dedicated catering pantry',
+    status: 'Maintenance',
+    notes:
+      'Scheduled for carpet replacement and lighting upgrade. Expected completion date is end of Q2. Contact facilities for temporary alternatives.',
+  },
+  {
+    id: 4,
+    name: 'Innovation Lab & Maker Space (Building 3, Floor 2, Wing East)',
+    description:
+      'Open-plan collaborative workspace with standing desks, whiteboard walls, 3D printers, and a dedicated prototyping area for hardware projects',
+    status: 'Available',
+    notes:
+      'Access requires badge level 3 or above. All prototype materials must be logged in the inventory system before removal.',
+  },
+  {
+    id: 5,
+    name: 'Zen',
+    description: 'Quiet room',
+    status: 'Available',
+    notes: 'No meetings — meditation and focus work only.',
+  },
+];
+
+/**
+ * Demonstrates automatic text truncation with hover tooltips.
+ * Cells with long text show ellipsis and reveal the full content in a tooltip on hover.
+ * The table is constrained to 700px width to force truncation.
+ */
+export const TextTruncation: Story = {
+  render: () => {
+    const table = useReactTable({
+      data: longTextRows,
+      columns: longTextColumns,
+      getCoreRowModel: coreRowModel,
+    });
+
+    return (
+      <Stack spacing={2} height="100%">
+        <Typography variant="body2">
+          Hover over truncated cells (with &hellip;) to see the full text in a
+          tooltip. The table is constrained to 700px to force truncation.
+        </Typography>
+        <BiampTable table={table} />
+      </Stack>
+    );
+  },
+};
+
 /** Expandable rows combined with row selection and row click. Only "Available" rows are selectable and clickable. */
 export const ExpandableWithSelection: Story = {
   render: () => {

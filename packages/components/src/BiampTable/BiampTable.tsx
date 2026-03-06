@@ -21,6 +21,7 @@ import { flexRender, type Table } from '@tanstack/react-table';
 import React, { type ReactNode, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
+import { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
 import './tanstack-meta';
 import { useLoadingDelay } from './useLoadingDelay';
 
@@ -178,9 +179,10 @@ export function BiampTable<TData>({
                         : 'none',
                     })}
                     sx={{
-                      minWidth: sticky
-                        ? undefined
-                        : (header.column.columnDef.meta?.minWidth ?? 40),
+                      ...(!sticky && {
+                        minWidth: header.column.columnDef.meta?.minWidth ?? 40,
+                        maxWidth: header.column.columnDef.meta?.minWidth ?? 40,
+                      }),
                       ...(sticky && {
                         position: 'sticky',
                         [sticky]: 0,
@@ -311,9 +313,12 @@ export function BiampTable<TData>({
                         key={cell.id}
                         data-sticky={sticky || undefined}
                         sx={{
-                          minWidth: sticky
-                            ? undefined
-                            : (cell.column.columnDef.meta?.minWidth ?? 40),
+                          ...(!sticky && {
+                            minWidth:
+                              cell.column.columnDef.meta?.minWidth ?? 40,
+                            maxWidth:
+                              cell.column.columnDef.meta?.minWidth ?? 40,
+                          }),
                           ...(sticky && {
                             position: 'sticky',
                             [sticky]: 0,
@@ -368,16 +373,25 @@ export function BiampTable<TData>({
                             ) : hasExpandableRows ? (
                               <Box sx={{ width: 28 }} />
                             ) : null}
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext(),
-                            )}
+                            <BiampTableTruncatedCell>
+                              {flexRender(
+                                cell.column.columnDef.cell,
+                                cell.getContext(),
+                              )}
+                            </BiampTableTruncatedCell>
                           </Box>
-                        ) : (
+                        ) : sticky ? (
                           flexRender(
                             cell.column.columnDef.cell,
                             cell.getContext(),
                           )
+                        ) : (
+                          <BiampTableTruncatedCell>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
+                            )}
+                          </BiampTableTruncatedCell>
                         )}
                       </TableCell>
                     );

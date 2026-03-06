@@ -59,6 +59,7 @@ export {
   BiampTableToolbarSearch,
   type BiampTableToolbarSearchProps,
 } from './BiampTableToolbarSearch';
+export { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
 export {
   useDebouncedCallback,
   BIAMP_TABLE_DEBOUNCE_DELAY,
