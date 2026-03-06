@@ -13,7 +13,6 @@ import {
   type Theme,
 } from '@mui/material';
 import {
-  ChevronDownIcon,
   ChevronRightIcon,
   DropdownChevronDownIcon,
   DropdownChevronUpIcon,
@@ -317,23 +316,17 @@ export function BiampTable<TData>({
                                 }
                                 aria-expanded={row.getIsExpanded()}
                               >
-                                {row.getIsExpanded() ? (
-                                  <ChevronDownIcon
-                                    variant="xs"
-                                    sx={{
-                                      color: ({ palette }) =>
-                                        palette.text.secondary,
-                                    }}
-                                  />
-                                ) : (
-                                  <ChevronRightIcon
-                                    variant="xs"
-                                    sx={{
-                                      color: ({ palette }) =>
-                                        palette.text.secondary,
-                                    }}
-                                  />
-                                )}
+                                <ChevronRightIcon
+                                  variant="xs"
+                                  sx={{
+                                    color: ({ palette }) =>
+                                      palette.text.secondary,
+                                    transition: 'transform 150ms ease',
+                                    transform: row.getIsExpanded()
+                                      ? 'rotate(90deg)'
+                                      : 'rotate(0deg)',
+                                  }}
+                                />
                               </IconButton>
                             ) : hasExpandableRows ? (
                               <Box sx={{ width: 28 }} />
