@@ -10,8 +10,8 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.13.1
-- `@bwp-web/styles` >= 0.13.1
+- `@bwp-web/assets` >= 0.13.2
+- `@bwp-web/styles` >= 0.13.2
 - `@mui/material` >= 7.0.0
 - `@tanstack/react-table` >= 8.0.0
 - `react` >= 18.0.0

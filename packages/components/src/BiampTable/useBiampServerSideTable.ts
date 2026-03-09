@@ -218,8 +218,10 @@ export function useBiampServerSideTable<TData, F extends string = string>({
 
     // Expanding — only when expanded state is provided
     ...(expanded != null && {
-      getExpandedRowModel: expandedRowModel,
-      getSubRows,
+      // Only attach getExpandedRowModel when getSubRows is provided.
+      // Without it, the expanded model recomputes on every state change
+      // (including selection), adding unnecessary overhead.
+      ...(getSubRows && { getExpandedRowModel: expandedRowModel, getSubRows }),
       onExpandedChange: onExpandedChange
         ? (
             updater: Parameters<

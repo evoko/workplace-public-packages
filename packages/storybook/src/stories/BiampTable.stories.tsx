@@ -1280,3 +1280,50 @@ export const ServerSideHook: Story = {
     );
   },
 };
+
+// ---------------------------------------------------------------------------
+// 10. ServerSideExpandableWithSelection — useBiampServerSideTable + expand + select
+// ---------------------------------------------------------------------------
+
+/**
+ * Demonstrates `useBiampServerSideTable` with both row expansion and row
+ * selection enabled. Useful for profiling selection-click performance when
+ * the expanded row model is attached.
+ */
+export const ServerSideExpandableWithSelection: Story = {
+  render: () => {
+    const [expanded, setExpanded] = useState<ExpandedState>({});
+    const [selectedRowIds, setSelectedRowIds] = useState<string[]>([]);
+
+    const table = useBiampServerSideTable<Building>({
+      data: buildingRows,
+      columns: buildingColumns,
+      getRowId: (row) => String(row.id),
+      expanded,
+      onExpandedChange: setExpanded,
+      getSubRows: (row) => row.children,
+      selectedRowIds,
+      onSelectedRowIdsChange: setSelectedRowIds,
+      enableRowSelection: (row) => row.original.status === 'Available',
+    });
+
+    return (
+      <Stack spacing={2} height="100%">
+        <Typography variant="body2">
+          Uses <code>useBiampServerSideTable</code> with expanding + selection.{' '}
+          {selectedRowIds.length} row
+          {selectedRowIds.length !== 1 ? 's' : ''} selected. Open DevTools
+          Performance tab and click checkboxes to profile.
+        </Typography>
+        <BiampTable
+          table={table}
+          enableExpanding
+          enableRowSelection
+          onRowClick={(row) => console.log('Row clicked:', row)}
+          isRowClickable={(row: Building) => row.status === 'Available'}
+          getRowLabel={(row: Building) => row.name}
+        />
+      </Stack>
+    );
+  },
+};

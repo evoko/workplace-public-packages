@@ -2,7 +2,6 @@ import {
   Box,
   type BoxProps,
   Checkbox,
-  IconButton,
   Table as MuiTable,
   TableBody,
   TableCell,
@@ -17,7 +16,7 @@ import {
   DropdownChevronDownIcon,
   DropdownChevronUpIcon,
 } from '@bwp-web/assets';
-import { flexRender, type Table } from '@tanstack/react-table';
+import { flexRender, type Row, type Table } from '@tanstack/react-table';
 import React, { type ReactNode, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
@@ -124,6 +123,194 @@ function cellSx(
   const mw = minWidth ?? 40;
   return { minWidth: mw, maxWidth: mw };
 }
+
+// ── Memoized row ─────────────────────────────────────────────────
+
+type BiampTableRowProps<TData> = {
+  row: Row<TData>;
+  onRowClick?: (row: TData) => void;
+  isRowClickable?: (row: TData) => boolean;
+  enableRowSelection: boolean;
+  enableExpanding: boolean;
+  selectChildrenWithParent: boolean;
+  getRowLabel?: (row: TData) => string;
+  hasExpandableRows: boolean;
+};
+
+function BiampTableRowInner<TData>({
+  row,
+  onRowClick,
+  isRowClickable,
+  enableRowSelection,
+  enableExpanding,
+  selectChildrenWithParent,
+  getRowLabel,
+  hasExpandableRows,
+}: BiampTableRowProps<TData>) {
+  const clickable = onRowClick
+    ? isRowClickable
+      ? isRowClickable(row.original)
+      : true
+    : false;
+
+  return (
+    <TableRow
+      key={row.id}
+      hover={clickable}
+      selected={enableRowSelection ? row.getIsSelected() : undefined}
+      role={clickable ? 'button' : undefined}
+      tabIndex={clickable ? 0 : undefined}
+      sx={{ cursor: clickable ? 'pointer' : undefined }}
+      onClick={
+        clickable && onRowClick ? () => onRowClick(row.original) : undefined
+      }
+      onKeyDown={
+        clickable && onRowClick
+          ? (e: React.KeyboardEvent) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onRowClick(row.original);
+              }
+            }
+          : undefined
+      }
+    >
+      {enableRowSelection && (
+        <TableCell
+          padding="checkbox"
+          sx={{
+            position: 'sticky',
+            left: 0,
+            zIndex: 2,
+            bgcolor: 'background.paper',
+            '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
+              bgcolor: ({ palette }) =>
+                palette.mode === 'dark' ? palette.grey[800] : palette.grey[100],
+            },
+          }}
+        >
+          <Checkbox
+            checked={row.getIsSelected()}
+            disabled={!row.getCanSelect()}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              row.toggleSelected(e.target.checked, {
+                selectChildren: selectChildrenWithParent,
+              })
+            }
+            onClick={(e) => e.stopPropagation()}
+            sx={!row.getCanSelect() ? { visibility: 'hidden' } : undefined}
+            slotProps={{
+              input: {
+                'aria-label': getRowLabel
+                  ? `Select ${getRowLabel(row.original)}`
+                  : `Select row ${row.index + 1}`,
+              },
+            }}
+          />
+        </TableCell>
+      )}
+      {row.getVisibleCells().map((cell, cellIndex, cells) => {
+        const sticky = cell.column.columnDef.meta?.sticky;
+        const isExpandCell =
+          enableExpanding &&
+          !sticky &&
+          cellIndex ===
+            cells.findIndex((c) => !c.column.columnDef.meta?.sticky);
+        return (
+          <TableCell
+            key={cell.id}
+            data-sticky={sticky || undefined}
+            sx={cellSx(sticky, cell.column.columnDef.meta?.minWidth, 2)}
+          >
+            {(() => {
+              const content = flexRender(
+                cell.column.columnDef.cell,
+                cell.getContext(),
+              );
+
+              if (sticky) return content;
+
+              const truncated = (
+                <BiampTableTruncatedCell>{content}</BiampTableTruncatedCell>
+              );
+
+              if (!isExpandCell) return truncated;
+
+              const rowLabel = getRowLabel
+                ? getRowLabel(row.original)
+                : `row ${row.index + 1}`;
+
+              return (
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    pl: `${row.depth * 12}px`,
+                    gap: 1,
+                  }}
+                >
+                  {row.getCanExpand() ? (
+                    <ChevronRightIcon
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        row.toggleExpanded();
+                      }}
+                      aria-label={
+                        row.getIsExpanded()
+                          ? `Collapse ${rowLabel}`
+                          : `Expand ${rowLabel}`
+                      }
+                      aria-expanded={row.getIsExpanded()}
+                      variant="xs"
+                      sx={{
+                        color: ({ palette }) => palette.text.secondary,
+                        transition: 'transform 150ms ease',
+                        transform: row.getIsExpanded()
+                          ? 'rotate(90deg)'
+                          : 'rotate(0deg)',
+                        width: 16,
+                        height: 16,
+                        cursor: 'pointer',
+                      }}
+                    />
+                  ) : hasExpandableRows ? (
+                    <Box sx={{ width: 16 }} />
+                  ) : null}
+                  {truncated}
+                </Box>
+              );
+            })()}
+          </TableCell>
+        );
+      })}
+    </TableRow>
+  );
+}
+
+function biampTableRowPropsAreEqual<TData>(
+  prev: BiampTableRowProps<TData>,
+  next: BiampTableRowProps<TData>,
+) {
+  return (
+    prev.row.id === next.row.id &&
+    prev.row.original === next.row.original &&
+    prev.row.getIsSelected() === next.row.getIsSelected() &&
+    prev.row.getIsExpanded() === next.row.getIsExpanded() &&
+    prev.row.getVisibleCells().length === next.row.getVisibleCells().length &&
+    prev.enableRowSelection === next.enableRowSelection &&
+    prev.enableExpanding === next.enableExpanding &&
+    prev.hasExpandableRows === next.hasExpandableRows &&
+    prev.selectChildrenWithParent === next.selectChildrenWithParent &&
+    prev.onRowClick === next.onRowClick &&
+    prev.isRowClickable === next.isRowClickable &&
+    prev.getRowLabel === next.getRowLabel
+  );
+}
+
+const BiampTableRow = React.memo(
+  BiampTableRowInner,
+  biampTableRowPropsAreEqual,
+) as typeof BiampTableRowInner;
 
 // ── Component ────────────────────────────────────────────────────
 
@@ -260,165 +447,19 @@ export function BiampTable<TData>({
 
         <TableBody sx={{ opacity: showLoading ? 0.3 : 1 }}>
           {!showError &&
-            rows.map((row) => {
-              const clickable = onRowClick
-                ? isRowClickable
-                  ? isRowClickable(row.original)
-                  : true
-                : false;
-
-              return (
-                <TableRow
-                  key={row.id}
-                  hover={clickable}
-                  selected={
-                    enableRowSelection ? row.getIsSelected() : undefined
-                  }
-                  role={clickable ? 'button' : undefined}
-                  tabIndex={clickable ? 0 : undefined}
-                  sx={{ cursor: clickable ? 'pointer' : undefined }}
-                  onClick={
-                    clickable && onRowClick
-                      ? () => onRowClick(row.original)
-                      : undefined
-                  }
-                  onKeyDown={
-                    clickable && onRowClick
-                      ? (e: React.KeyboardEvent) => {
-                          if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            onRowClick(row.original);
-                          }
-                        }
-                      : undefined
-                  }
-                >
-                  {enableRowSelection && (
-                    <TableCell
-                      padding="checkbox"
-                      sx={{
-                        position: 'sticky',
-                        left: 0,
-                        zIndex: 2,
-                        bgcolor: 'background.paper',
-                        '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
-                          bgcolor: ({ palette }) =>
-                            palette.mode === 'dark'
-                              ? palette.grey[800]
-                              : palette.grey[100],
-                        },
-                      }}
-                    >
-                      <Checkbox
-                        checked={row.getIsSelected()}
-                        disabled={!row.getCanSelect()}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                          row.toggleSelected(e.target.checked, {
-                            selectChildren: selectChildrenWithParent,
-                          })
-                        }
-                        onClick={(e) => e.stopPropagation()}
-                        sx={
-                          !row.getCanSelect()
-                            ? { visibility: 'hidden' }
-                            : undefined
-                        }
-                        slotProps={{
-                          input: {
-                            'aria-label': getRowLabel
-                              ? `Select ${getRowLabel(row.original)}`
-                              : `Select row ${row.index + 1}`,
-                          },
-                        }}
-                      />
-                    </TableCell>
-                  )}
-                  {row.getVisibleCells().map((cell, cellIndex, cells) => {
-                    const sticky = cell.column.columnDef.meta?.sticky;
-                    const isExpandCell =
-                      enableExpanding &&
-                      !sticky &&
-                      cellIndex ===
-                        cells.findIndex(
-                          (c) => !c.column.columnDef.meta?.sticky,
-                        );
-                    return (
-                      <TableCell
-                        key={cell.id}
-                        data-sticky={sticky || undefined}
-                        sx={cellSx(
-                          sticky,
-                          cell.column.columnDef.meta?.minWidth,
-                          2,
-                        )}
-                      >
-                        {(() => {
-                          const content = flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext(),
-                          );
-
-                          if (sticky) return content;
-
-                          const truncated = (
-                            <BiampTableTruncatedCell>
-                              {content}
-                            </BiampTableTruncatedCell>
-                          );
-
-                          if (!isExpandCell) return truncated;
-
-                          const rowLabel = getRowLabel
-                            ? getRowLabel(row.original)
-                            : `row ${row.index + 1}`;
-
-                          return (
-                            <Box
-                              sx={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                pl: `${row.depth * 12}px`,
-                              }}
-                            >
-                              {row.getCanExpand() ? (
-                                <IconButton
-                                  variant="none"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    row.toggleExpanded();
-                                  }}
-                                  aria-label={
-                                    row.getIsExpanded()
-                                      ? `Collapse ${rowLabel}`
-                                      : `Expand ${rowLabel}`
-                                  }
-                                  aria-expanded={row.getIsExpanded()}
-                                >
-                                  <ChevronRightIcon
-                                    variant="xs"
-                                    sx={{
-                                      color: ({ palette }) =>
-                                        palette.text.secondary,
-                                      transition: 'transform 150ms ease',
-                                      transform: row.getIsExpanded()
-                                        ? 'rotate(90deg)'
-                                        : 'rotate(0deg)',
-                                    }}
-                                  />
-                                </IconButton>
-                              ) : hasExpandableRows ? (
-                                <Box sx={{ width: 28 }} />
-                              ) : null}
-                              {truncated}
-                            </Box>
-                          );
-                        })()}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              );
-            })}
+            rows.map((row) => (
+              <BiampTableRow
+                key={row.id}
+                row={row}
+                onRowClick={onRowClick}
+                isRowClickable={isRowClickable}
+                enableRowSelection={enableRowSelection}
+                enableExpanding={enableExpanding}
+                selectChildrenWithParent={selectChildrenWithParent}
+                getRowLabel={getRowLabel}
+                hasExpandableRows={hasExpandableRows}
+              />
+            ))}
         </TableBody>
       </MuiTable>
 
