@@ -24,9 +24,10 @@ import {
 } from './serverSideTableUtils';
 import './tanstack-meta';
 
-// Stable references — avoid re-creating row model factories on every render.
+// Stable references — avoid re-creating on every render.
 const coreRowModel = getCoreRowModel();
 const expandedRowModel = getExpandedRowModel();
+const defaultGetRowId = (row: Record<string, string>) => row.id;
 
 export type UseBiampServerSideTableOptions<TData, F extends string = string> = {
   /** Row data array. */
@@ -86,7 +87,7 @@ export type UseBiampServerSideTableOptions<TData, F extends string = string> = {
 export function useBiampServerSideTable<TData, F extends string = string>({
   data,
   columns,
-  getRowId = (row) => (row as Record<string, string>).id,
+  getRowId = defaultGetRowId as (row: TData) => string,
   order,
   onOrderChange,
   page,
@@ -104,13 +105,11 @@ export function useBiampServerSideTable<TData, F extends string = string>({
 }: UseBiampServerSideTableOptions<TData, F>): Table<TData> {
   // ── Derived state (memoized) ─────────────────────────────────────
 
-  const defaultColumnVisibility = useMemo(
-    () => getDefaultColumnVisibilityFromDefs(columns),
-    [columns],
-  );
-
-  const { columnIdToField, fieldToColumnId } = useMemo(
-    () => getOrderFieldMappings<F>(columns),
+  const { defaultColumnVisibility, columnIdToField, fieldToColumnId } = useMemo(
+    () => ({
+      defaultColumnVisibility: getDefaultColumnVisibilityFromDefs(columns),
+      ...getOrderFieldMappings<F>(columns),
+    }),
     [columns],
   );
 

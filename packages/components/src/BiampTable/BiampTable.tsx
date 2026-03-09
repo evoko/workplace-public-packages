@@ -124,6 +124,55 @@ function cellSx(
   return { minWidth: mw, maxWidth: mw };
 }
 
+// ── Hoisted sx objects (avoid re-creation per row per render) ────
+
+const rowCursorPointerSx = { cursor: 'pointer' } as const;
+
+const selectionCellSx = {
+  position: 'sticky',
+  left: 0,
+  zIndex: 2,
+  bgcolor: 'background.paper',
+  ...stickyHoverBg,
+} as const;
+
+const checkboxHiddenSx = { visibility: 'hidden' } as const;
+
+const expandCellBaseSx = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 1,
+} as const;
+
+const chevronExpandedSx = {
+  color: ({ palette }: Theme) => palette.text.secondary,
+  transition: 'transform 150ms ease',
+  transform: 'rotate(90deg)',
+  width: 16,
+  height: 16,
+  cursor: 'pointer',
+} as const;
+
+const chevronCollapsedSx = {
+  color: ({ palette }: Theme) => palette.text.secondary,
+  transition: 'transform 150ms ease',
+  transform: 'rotate(0deg)',
+  width: 16,
+  height: 16,
+  cursor: 'pointer',
+} as const;
+
+const expandPlaceholderSx = { width: 16 } as const;
+
+const headerSelectionCellSx = {
+  position: 'sticky',
+  left: 0,
+  zIndex: 3,
+  bgcolor: 'background.paper',
+} as const;
+
+const checkboxHiddenHeaderSx = { visibility: 'hidden' } as const;
+
 // ── Memoized row ─────────────────────────────────────────────────
 
 type BiampTableRowProps<TData> = {
@@ -160,7 +209,7 @@ function BiampTableRowInner<TData>({
       selected={enableRowSelection ? row.getIsSelected() : undefined}
       role={clickable ? 'button' : undefined}
       tabIndex={clickable ? 0 : undefined}
-      sx={{ cursor: clickable ? 'pointer' : undefined }}
+      sx={clickable ? rowCursorPointerSx : undefined}
       onClick={
         clickable && onRowClick ? () => onRowClick(row.original) : undefined
       }
@@ -176,19 +225,7 @@ function BiampTableRowInner<TData>({
       }
     >
       {enableRowSelection && (
-        <TableCell
-          padding="checkbox"
-          sx={{
-            position: 'sticky',
-            left: 0,
-            zIndex: 2,
-            bgcolor: 'background.paper',
-            '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
-              bgcolor: ({ palette }) =>
-                palette.mode === 'dark' ? palette.grey[800] : palette.grey[100],
-            },
-          }}
-        >
+        <TableCell padding="checkbox" sx={selectionCellSx}>
           <Checkbox
             checked={row.getIsSelected()}
             disabled={!row.getCanSelect()}
@@ -198,7 +235,7 @@ function BiampTableRowInner<TData>({
               })
             }
             onClick={(e) => e.stopPropagation()}
-            sx={!row.getCanSelect() ? { visibility: 'hidden' } : undefined}
+            sx={!row.getCanSelect() ? checkboxHiddenSx : undefined}
             slotProps={{
               input: {
                 'aria-label': getRowLabel
@@ -242,12 +279,11 @@ function BiampTableRowInner<TData>({
 
               return (
                 <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    pl: `${row.depth * 12}px`,
-                    gap: 1,
-                  }}
+                  sx={
+                    row.depth > 0
+                      ? { ...expandCellBaseSx, pl: `${row.depth * 12}px` }
+                      : expandCellBaseSx
+                  }
                 >
                   {row.getCanExpand() ? (
                     <ChevronRightIcon
@@ -262,19 +298,14 @@ function BiampTableRowInner<TData>({
                       }
                       aria-expanded={row.getIsExpanded()}
                       variant="xs"
-                      sx={{
-                        color: ({ palette }) => palette.text.secondary,
-                        transition: 'transform 150ms ease',
-                        transform: row.getIsExpanded()
-                          ? 'rotate(90deg)'
-                          : 'rotate(0deg)',
-                        width: 16,
-                        height: 16,
-                        cursor: 'pointer',
-                      }}
+                      sx={
+                        row.getIsExpanded()
+                          ? chevronExpandedSx
+                          : chevronCollapsedSx
+                      }
                     />
                   ) : hasExpandableRows ? (
-                    <Box sx={{ width: 16 }} />
+                    <Box sx={expandPlaceholderSx} />
                   ) : null}
                   {truncated}
                 </Box>
@@ -373,22 +404,14 @@ export function BiampTable<TData>({
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {enableRowSelection && (
-                <TableCell
-                  padding="checkbox"
-                  sx={{
-                    position: 'sticky',
-                    left: 0,
-                    zIndex: 3,
-                    bgcolor: 'background.paper',
-                  }}
-                >
+                <TableCell padding="checkbox" sx={headerSelectionCellSx}>
                   {!hideSelectAll && (
                     <Checkbox
                       checked={table.getIsAllPageRowsSelected()}
                       indeterminate={table.getIsSomePageRowsSelected()}
                       onChange={table.getToggleAllPageRowsSelectedHandler()}
                       sx={
-                        rows.length === 0 ? { visibility: 'hidden' } : undefined
+                        rows.length === 0 ? checkboxHiddenHeaderSx : undefined
                       }
                       slotProps={{ input: { 'aria-label': 'Select all rows' } }}
                     />
