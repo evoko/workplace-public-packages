@@ -1322,7 +1322,15 @@ export const biampTheme = (
               '& .MuiTabs-indicator': {
                 backgroundColor: colors.blue.main,
               },
-              minHeight: 44,
+              '& MuiButtonBase-root': {
+                height: 32,
+                minHeight: 32,
+              },
+              '& .MuiTouchRipple-root': {
+                display: 'none',
+              },
+              height: 32,
+              minHeight: 32,
             },
             flexContainer: {
               gap: 20,
@@ -1333,12 +1341,18 @@ export const biampTheme = (
           styleOverrides: {
             root: ({ theme }) => ({
               fontWeight: 600,
+              fontSize: theme.typography.body2.fontSize,
+              lineHeight: theme.typography.body2.lineHeight,
+              letterSpacing: theme.typography.body2.letterSpacing,
               paddingLeft: 1,
               paddingRight: 1,
               minWidth: 'auto',
-              minHeight: 44,
+              paddingTop: '0px',
+              paddingBottom: '0px',
+              height: 32,
+              minHeight: 32,
               opacity: 1,
-              color: theme.palette.text.secondary,
+              color: theme.palette.text.primary,
               '&.Mui-selected': {
                 color: theme.palette.primary.main,
               },
@@ -1358,7 +1372,7 @@ export const biampTheme = (
               paddingBottom: '8px',
               paddingLeft: '12px',
               paddingRight: '12px',
-              maxWidth: "fit-content"
+              maxWidth: 'fit-content',
             }),
             arrow: ({ theme }) => ({
               color: theme.palette.grey[600],
@@ -1762,6 +1776,33 @@ export const biampTheme = (
               },
               '&.Mui-active': {
                 boxShadow: `none`,
+              },
+            }),
+          },
+        },
+        MuiBadge: {
+          defaultProps: {
+            showZero: true,
+          },
+          styleOverrides: {
+            badge: ({ theme }) => ({
+              fontFamily: theme.typography.fontFamily,
+              fontSize: theme.typography.caption.fontSize,
+              fontWeight: theme.typography.fontWeightMedium,
+              letterSpacing: theme.typography.caption.letterSpacing,
+              lineHeight: theme.typography.caption.lineHeight,
+              paddingLeft: '8px',
+              paddingRight: '8px',
+              borderRadius: '8px',
+              position: 'relative',
+              '--Badge-translateX': 'none',
+              '--Badge-translateY': 'none',
+              '.Mui-disabled &': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.grey[700]
+                    : theme.palette.action.disabledBackground,
+                color: theme.palette.grey[400],
               },
             }),
           },
