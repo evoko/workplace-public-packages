@@ -35,6 +35,7 @@ export function BiampTableTruncatedCell({
       disableInteractive
     >
       <Box
+        data-truncate
         ref={textRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

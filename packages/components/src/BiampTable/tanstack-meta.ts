@@ -13,5 +13,7 @@ declare module '@tanstack/react-table' {
     columnLabel?: string;
     /** Server-side order field name associated with this column (used by `useBiampServerSideTable`). */
     orderField?: string;
+    /** Set to `false` on columns with custom cell renderers (buttons, badges, etc.) to skip text truncation. Defaults to `true`. */
+    truncate?: boolean;
   }
 }

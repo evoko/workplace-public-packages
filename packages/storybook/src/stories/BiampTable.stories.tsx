@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Box,
+  Button,
   Chip,
   FormControl,
   IconButton,
@@ -969,6 +970,7 @@ type LongTextRoom = {
   name: string;
   description: string;
   status: string;
+  action: string;
   notes: string;
 };
 
@@ -986,6 +988,15 @@ const longTextColumns = [
     header: 'Status',
     meta: { minWidth: 80 },
   }),
+  longTextColumnHelper.accessor('action', {
+    header: 'Action',
+    meta: { minWidth: 150, truncate: false },
+    cell: ({ getValue }) => (
+      <Button variant="contained" size="small">
+        {getValue()}
+      </Button>
+    ),
+  }),
   longTextColumnHelper.accessor('notes', {
     header: 'Notes',
     meta: { minWidth: 200 },
@@ -999,6 +1010,7 @@ const longTextRows: LongTextRoom[] = [
     description:
       'Large conference room with panoramic windows overlooking the city skyline, equipped with a 4K projector and surround sound system',
     status: 'Available',
+    action: 'Reserve Conference Room Alpha for Q3 Planning',
     notes:
       'Recently renovated with new AV equipment. Booking requires manager approval for meetings longer than 2 hours.',
   },
@@ -1007,6 +1019,7 @@ const longTextRows: LongTextRoom[] = [
     name: 'B',
     description: 'Small huddle space',
     status: 'Occupied',
+    action: 'Check Availability',
     notes: 'OK',
   },
   {
@@ -1015,6 +1028,7 @@ const longTextRows: LongTextRoom[] = [
     description:
       'Premium meeting space with Italian marble table seating 24 guests, integrated Crestron control system, and dedicated catering pantry',
     status: 'Maintenance',
+    action: 'Submit Maintenance Request for Board Room Renovation',
     notes:
       'Scheduled for carpet replacement and lighting upgrade. Expected completion date is end of Q2. Contact facilities for temporary alternatives.',
   },
@@ -1024,6 +1038,7 @@ const longTextRows: LongTextRoom[] = [
     description:
       'Open-plan collaborative workspace with standing desks, whiteboard walls, 3D printers, and a dedicated prototyping area for hardware projects',
     status: 'Available',
+    action: 'Book Innovation Lab & Request 3D Printer Access',
     notes:
       'Access requires badge level 3 or above. All prototype materials must be logged in the inventory system before removal.',
   },
@@ -1032,6 +1047,7 @@ const longTextRows: LongTextRoom[] = [
     name: 'Zen',
     description: 'Quiet room',
     status: 'Available',
+    action: 'Reserve',
     notes: 'No meetings — meditation and focus work only.',
   },
 ];

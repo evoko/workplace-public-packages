@@ -10,8 +10,8 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.13.4
-- `@bwp-web/styles` >= 0.13.4
+- `@bwp-web/assets` >= 0.13.5
+- `@bwp-web/styles` >= 0.13.5
 - `@mui/material` >= 7.0.0
 - `@tanstack/react-table` >= 8.0.0
 - `react` >= 18.0.0
@@ -88,11 +88,19 @@ TanStack column definitions accept a `meta` object with these additional propert
 | `defaultVisible` | `boolean` | Whether the column is visible by default. Defaults to `true`. Used by `getDefaultColumnVisibility` and `getColumnVisibilityDirtyCount`. |
 | `columnLabel` | `string` | Human-readable label used in the column-visibility menu when `header` is not a string. |
 | `orderField` | `string` | Server-side order field name associated with this column. Used by `useBiampServerSideTable` to map between TanStack column IDs and GraphQL order field enums. |
+| `truncate` | `boolean` | When `true` (default), wraps cell content in `BiampTableTruncatedCell` (single-line ellipsis with hover tooltip) and constrains the cell to `maxWidth`. Set to `false` on columns with custom cell renderers (buttons, badges, etc.) to skip truncation and allow the content to render at full width without shrinking. |
 
 ```tsx
 columnHelper.accessor('name', {
   header: 'Name',
   meta: { minWidth: 200, sticky: 'left', orderField: 'NAME' },
+});
+
+// Custom cell renderer — opt out of truncation
+columnHelper.accessor('action', {
+  header: 'Action',
+  meta: { minWidth: 150, truncate: false },
+  cell: ({ getValue }) => <Button size="small">{getValue()}</Button>,
 });
 ```
 

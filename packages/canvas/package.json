@@ -1,6 +1,6 @@
 {
   "name": "@bwp-web/canvas",
-  "version": "0.13.4",
+  "version": "0.13.5",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

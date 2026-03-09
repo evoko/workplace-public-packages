@@ -21,7 +21,6 @@ import React, { type ReactNode, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
-import './tanstack-meta';
 import { useLoadingDelay } from './useLoadingDelay';
 
 // ── Row-click props ────────────────────────────────────────────────
@@ -121,7 +120,11 @@ function cellSx(
     } as const;
   }
   const mw = minWidth ?? 40;
-  return { minWidth: mw, maxWidth: mw };
+  return {
+    minWidth: mw,
+    whiteSpace: 'nowrap',
+    '&:has([data-truncate])': { maxWidth: mw, whiteSpace: 'normal' },
+  };
 }
 
 // ── Hoisted sx objects (avoid re-creation per row per render) ────
@@ -253,6 +256,12 @@ function BiampTableRowInner<TData>({
           !sticky &&
           cellIndex ===
             cells.findIndex((c) => !c.column.columnDef.meta?.sticky);
+
+        const content = flexRender(
+          cell.column.columnDef.cell,
+          cell.getContext(),
+        );
+
         return (
           <TableCell
             key={cell.id}
@@ -260,20 +269,10 @@ function BiampTableRowInner<TData>({
             sx={cellSx(sticky, cell.column.columnDef.meta?.minWidth, 2)}
           >
             {(() => {
-              const content = flexRender(
-                cell.column.columnDef.cell,
-                cell.getContext(),
-              );
-
               if (sticky) return content;
 
-              // Only truncate primitive (text/number) content.
-              // Custom cell renderers (buttons, badges, etc.) are left as-is.
-              const isText =
-                typeof content === 'string' ||
-                typeof content === 'number' ||
-                typeof content === 'bigint';
-              const truncated = isText ? (
+              const truncate = cell.column.columnDef.meta?.truncate ?? true;
+              const truncated = truncate ? (
                 <BiampTableTruncatedCell>{content}</BiampTableTruncatedCell>
               ) : (
                 content
