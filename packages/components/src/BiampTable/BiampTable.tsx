@@ -267,8 +267,16 @@ function BiampTableRowInner<TData>({
 
               if (sticky) return content;
 
-              const truncated = (
+              // Only truncate primitive (text/number) content.
+              // Custom cell renderers (buttons, badges, etc.) are left as-is.
+              const isText =
+                typeof content === 'string' ||
+                typeof content === 'number' ||
+                typeof content === 'bigint';
+              const truncated = isText ? (
                 <BiampTableTruncatedCell>{content}</BiampTableTruncatedCell>
+              ) : (
+                content
               );
 
               if (!isExpandCell) return truncated;
