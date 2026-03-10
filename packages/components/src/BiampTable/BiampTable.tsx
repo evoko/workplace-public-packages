@@ -2,6 +2,7 @@ import {
   Box,
   type BoxProps,
   Checkbox,
+  IconButton,
   Table as MuiTable,
   TableBody,
   TableCell,
@@ -12,6 +13,7 @@ import {
   type Theme,
 } from '@mui/material';
 import {
+  ChevronDownIcon,
   ChevronRightIcon,
   DropdownChevronDownIcon,
   DropdownChevronUpIcon,
@@ -144,28 +146,10 @@ const checkboxHiddenSx = { visibility: 'hidden' } as const;
 const expandCellBaseSx = {
   display: 'flex',
   alignItems: 'center',
-  gap: 1,
+  gap: '2px',
 } as const;
 
-const chevronExpandedSx = {
-  color: ({ palette }: Theme) => palette.text.secondary,
-  transition: 'transform 150ms ease',
-  transform: 'rotate(90deg)',
-  width: 16,
-  height: 16,
-  cursor: 'pointer',
-} as const;
-
-const chevronCollapsedSx = {
-  color: ({ palette }: Theme) => palette.text.secondary,
-  transition: 'transform 150ms ease',
-  transform: 'rotate(0deg)',
-  width: 16,
-  height: 16,
-  cursor: 'pointer',
-} as const;
-
-const expandPlaceholderSx = { width: 16 } as const;
+const expandPlaceholderSx = { width: 28 } as const;
 
 const headerSelectionCellSx = {
   position: 'sticky',
@@ -180,6 +164,8 @@ const checkboxHiddenHeaderSx = { visibility: 'hidden' } as const;
 
 type BiampTableRowProps<TData> = {
   row: Row<TData>;
+  isExpanded: boolean;
+  isSelected: boolean;
   onRowClick?: (row: TData) => void;
   isRowClickable?: (row: TData) => boolean;
   enableRowSelection: boolean;
@@ -191,6 +177,8 @@ type BiampTableRowProps<TData> = {
 
 function BiampTableRowInner<TData>({
   row,
+  isExpanded,
+  isSelected,
   onRowClick,
   isRowClickable,
   enableRowSelection,
@@ -209,7 +197,7 @@ function BiampTableRowInner<TData>({
     <TableRow
       key={row.id}
       hover={clickable}
-      selected={enableRowSelection ? row.getIsSelected() : undefined}
+      selected={enableRowSelection ? isSelected : undefined}
       role={clickable ? 'button' : undefined}
       tabIndex={clickable ? 0 : undefined}
       sx={clickable ? rowCursorPointerSx : undefined}
@@ -230,7 +218,7 @@ function BiampTableRowInner<TData>({
       {enableRowSelection && (
         <TableCell padding="checkbox" sx={selectionCellSx}>
           <Checkbox
-            checked={row.getIsSelected()}
+            checked={isSelected}
             disabled={!row.getCanSelect()}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               row.toggleSelected(e.target.checked, {
@@ -266,7 +254,10 @@ function BiampTableRowInner<TData>({
           <TableCell
             key={cell.id}
             data-sticky={sticky || undefined}
-            sx={cellSx(sticky, cell.column.columnDef.meta?.minWidth, 2)}
+            sx={{
+              ...cellSx(sticky, cell.column.columnDef.meta?.minWidth, 2),
+              pl: isExpandCell ? '6px' : '12px',
+            }}
           >
             {(() => {
               if (sticky) return content;
@@ -293,24 +284,35 @@ function BiampTableRowInner<TData>({
                   }
                 >
                   {row.getCanExpand() ? (
-                    <ChevronRightIcon
+                    <IconButton
+                      variant="none"
                       onClick={(e) => {
                         e.stopPropagation();
                         row.toggleExpanded();
                       }}
                       aria-label={
-                        row.getIsExpanded()
+                        isExpanded
                           ? `Collapse ${rowLabel}`
                           : `Expand ${rowLabel}`
                       }
-                      aria-expanded={row.getIsExpanded()}
-                      variant="xs"
-                      sx={
-                        row.getIsExpanded()
-                          ? chevronExpandedSx
-                          : chevronCollapsedSx
-                      }
-                    />
+                      aria-expanded={isExpanded}
+                    >
+                      {isExpanded ? (
+                        <ChevronDownIcon
+                          variant="xs"
+                          sx={{
+                            color: ({ palette }) => palette.text.secondary,
+                          }}
+                        />
+                      ) : (
+                        <ChevronRightIcon
+                          variant="xs"
+                          sx={{
+                            color: ({ palette }) => palette.text.secondary,
+                          }}
+                        />
+                      )}
+                    </IconButton>
                   ) : hasExpandableRows ? (
                     <Box sx={expandPlaceholderSx} />
                   ) : null}
@@ -332,8 +334,8 @@ function biampTableRowPropsAreEqual<TData>(
   return (
     prev.row.id === next.row.id &&
     prev.row.original === next.row.original &&
-    prev.row.getIsSelected() === next.row.getIsSelected() &&
-    prev.row.getIsExpanded() === next.row.getIsExpanded() &&
+    prev.isSelected === next.isSelected &&
+    prev.isExpanded === next.isExpanded &&
     prev.row.getVisibleCells().length === next.row.getVisibleCells().length &&
     prev.enableRowSelection === next.enableRowSelection &&
     prev.enableExpanding === next.enableExpanding &&
@@ -397,8 +399,6 @@ export function BiampTable<TData>({
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
-        overflow: 'auto',
-        overscrollBehavior: 'none',
         position: 'relative',
         ...sx,
       }}
@@ -481,6 +481,8 @@ export function BiampTable<TData>({
               <BiampTableRow
                 key={row.id}
                 row={row}
+                isExpanded={row.getIsExpanded()}
+                isSelected={row.getIsSelected()}
                 onRowClick={onRowClick}
                 isRowClickable={isRowClickable}
                 enableRowSelection={enableRowSelection}

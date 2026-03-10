@@ -997,6 +997,8 @@ export const biampTheme = (
             root: {
               position: 'relative',
               height: '100%',
+              overflow: 'auto',
+              overscrollBehavior: 'none',
             },
           },
         },
