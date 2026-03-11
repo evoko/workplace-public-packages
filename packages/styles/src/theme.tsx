@@ -25,9 +25,14 @@ import {
   ChevronFullLeftIcon,
   ChevronFullRightIcon,
   ChevronLeftIcon,
+  ClockTimeIcon,
   DropdownChevronDuoIcon,
 } from '@bwp-web/assets';
-import { alpha, createTheme } from '@mui/material/styles';
+import { alpha, createTheme, type Theme } from '@mui/material/styles';
+import { CustomCalendarHeader } from './custom-components/CustomCalendarHeader';
+import { renderDigitalClockTimeView } from '@mui/x-date-pickers/timeViewRenderers';
+// Import MUI X theme augmentation to enable DatePicker/TimePicker component overrides
+import '@mui/x-date-pickers/themeAugmentation';
 
 const colors = {
   black: '#000000',
@@ -1581,10 +1586,10 @@ export const biampTheme = (
             }),
           },
         },
-        // MUI X DatePicker components
-        // @ts-expect-error - MUI X DatePicker component types may not be available
         MuiDatePicker: {
           defaultProps: {
+            enableAccessibleFieldDOMStructure: false,
+            format: 'YYYY-MM-DD',
             slots: {
               openPickerIcon: CalendarIcon,
             },
@@ -1595,7 +1600,98 @@ export const biampTheme = (
               inputAdornment: {
                 sx: { mx: '4px' },
               },
+              textField: {
+                placeholder: 'YYYY-MM-DD',
+                sx: {
+                  paddingLeft: '0px',
+                  '& .MuiInputLabel-root': {
+                    fontWeight: '600',
+                  },
+                  '& .MuiFormHelperText-root.Mui-error': {
+                    fontWeight: '400',
+                  },
+                  '& .MuiInputBase-root': {
+                    padding: '0px 12px',
+                    '& .MuiInputBase-input': {
+                      padding: '0px',
+                    },
+                  },
+                },
+              },
             },
+          },
+        },
+        MuiTimePicker: {
+          defaultProps: {
+            format: 'hh:mm A',
+            timeSteps: { minutes: 15 },
+            viewRenderers: {
+              hours: renderDigitalClockTimeView,
+              minutes: null,
+              seconds: null,
+            },
+            slots: {
+              openPickerIcon: ClockTimeIcon,
+            },
+            slotProps: {
+              openPickerButton: {
+                size: 'medium',
+              },
+              openPickerIcon: {
+                fontSize: 'medium',
+              },
+              inputAdornment: {
+                sx: {
+                  marginRight: '6px',
+                  marginLeft: '0px',
+                  '& .MuiSvgIcon-root': {
+                    width: '20px',
+                    height: '20px',
+                  },
+                },
+              },
+              digitalClockSectionItem: {
+                sx: { px: '0px', pl: '12px' },
+              },
+              toolbar: {
+                hidden: true,
+              },
+              actionBar: {
+                actions: [],
+              },
+              desktopPaper: {
+                sx: (theme) => ({
+                  border: `0.6px solid ${theme.palette.dividers.secondary}`,
+                  width: '115px',
+                }),
+              },
+            },
+          },
+        },
+        MuiDigitalClock: {
+          styleOverrides: {
+            root: {
+              fontSize: '14px',
+            },
+            item: ({ theme }) => ({
+              margin: '0px',
+              '&.Mui-selected': {
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? colors.grey[800]
+                    : colors.grey[100],
+                color: 'inherit',
+                '&:hover': {
+                  backgroundColor:
+                    theme.palette.mode === 'dark'
+                      ? colors.grey[800]
+                      : colors.grey[100],
+                },
+              },
+              '& .MuiTouchRipple-root': {
+                display: 'none',
+              },
+            }),
           },
         },
         MuiPickersTextField: {
@@ -1603,21 +1699,21 @@ export const biampTheme = (
             root: {
               '& .MuiInputBase-root': {
                 height: '44px',
-                borderRadius: '6px',
+                borderRadius: '4px',
               },
               '& .MuiOutlinedInput-root': {
                 height: '44px',
-                borderRadius: '6px',
+                borderRadius: '4px',
               },
               '& .MuiOutlinedInput-input': {
                 height: '44px',
-                padding: '10px 14px',
+                padding: '10px 12px',
                 boxSizing: 'border-box',
               },
               '& .MuiOutlinedInput-notchedOutline': {
                 height: '44px',
                 top: 0,
-                borderRadius: '6px',
+                borderRadius: '4px',
                 '& legend': {
                   display: 'none',
                   width: 0,
@@ -1631,16 +1727,18 @@ export const biampTheme = (
           styleOverrides: {
             root: {
               height: '44px !important',
-              borderRadius: '6px',
+              borderRadius: '4px',
+              backgroundColor: 'background.paper',
+              fontSize: '14px',
               '& .MuiInputBase-input': {
                 height: '44px',
-                padding: '10px 14px',
+                padding: '10px 12px',
                 boxSizing: 'border-box',
               },
               '& .MuiOutlinedInput-notchedOutline': {
                 height: '44px',
                 top: 0,
-                borderRadius: '6px',
+                borderRadius: '4px',
                 '& legend': {
                   display: 'none',
                   width: 0,
@@ -1652,40 +1750,181 @@ export const biampTheme = (
         },
         MuiPickersOutlinedInput: {
           styleOverrides: {
-            root: {
+            root: ({ theme }) => ({
               height: '44px !important',
-              borderRadius: '6px',
+              borderRadius: '4px',
+              padding: '0px 12px',
+              backgroundColor: theme.palette.background.paper,
               '& .MuiOutlinedInput-input': {
                 height: '44px',
-                padding: '10px 14px',
+                padding: '10px 12px',
                 boxSizing: 'border-box',
               },
               '& .MuiOutlinedInput-notchedOutline': {
                 height: '44px',
                 top: 0,
-                borderRadius: '6px',
+                borderRadius: '4px',
                 '& legend': {
                   display: 'none',
                   width: 0,
                   height: 0,
                 },
               },
-            },
+            }),
             input: {
               height: '44px',
-              padding: '10px 14px',
+              padding: '10px 12px',
               boxSizing: 'border-box',
             },
             notchedOutline: {
               height: '44px',
               top: 0,
-              borderRadius: '6px',
+              borderRadius: '4px',
               '& legend': {
                 display: 'none',
                 width: 0,
                 height: 0,
               },
             },
+          },
+        },
+        MuiPickersSectionList: {
+          styleOverrides: {
+            root: {
+              opacity: 1,
+            },
+          },
+        },
+        MuiPickerPopper: {
+          styleOverrides: {
+            root: () => ({
+              inset: '8px auto auto 0px !important',
+              borderColor: colors.grey[900],
+            }),
+            paper: ({ theme }: { theme: Theme }) => ({
+              borderRadius: '4px',
+              backgroundColor: theme.palette.background.paper,
+              boxShadow: 'none',
+              borderWidth: '0.6px',
+              borderStyle: 'solid',
+              borderColor: theme.palette.dividers.secondary,
+            }),
+          },
+        },
+        MuiPickersLayout: {
+          styleOverrides: {
+            root: ({ theme }) => ({
+              backgroundColor: theme.palette.background.paper,
+              borderRadius: '4px',
+              '&:has(.MuiDateCalendar-root)': {
+                minWidth: '280px',
+              },
+            }),
+          },
+        },
+        MuiPickersSlideTransition: {
+          styleOverrides: {
+            root: {
+              overflowX: 'visible',
+              minHeight: 'auto',
+            },
+          },
+        },
+        MuiDateCalendar: {
+          defaultProps: {
+            slots: {
+              calendarHeader: CustomCalendarHeader,
+            },
+          },
+          styleOverrides: {
+            root: ({ theme }) => ({
+              backgroundColor: theme.palette.background.paper,
+              borderRadius: '4px',
+              width: 'auto',
+            }),
+          },
+        },
+        MuiPickersCalendarHeader: {
+          styleOverrides: {
+            root: {
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              paddingLeft: '12px',
+              paddingRight: '4px',
+            },
+            label: ({ theme }) => ({
+              fontSize: theme.typography.body2.fontSize,
+              fontWeight: 600,
+              letterSpacing: theme.typography.body2.letterSpacing,
+              lineHeight: theme.typography.body2.lineHeight,
+              color: theme.palette.text.primary,
+            }),
+            labelContainer: {
+              order: 2, // center the label
+            },
+            switchViewButton: ({ theme }) => ({
+              color: theme.palette.text.primary,
+              order: 2,
+            }),
+          },
+        },
+        MuiPickersArrowSwitcher: {
+          styleOverrides: {
+            button: ({ theme }) => ({
+              color: theme.palette.text.primary,
+            }),
+          },
+        },
+        MuiDayCalendar: {
+          styleOverrides: {
+            weekDayLabel: ({ theme }) => ({
+              fontSize: theme.typography.body1.fontSize,
+              fontWeight: theme.typography.fontWeightMedium,
+              letterSpacing: theme.typography.body1.letterSpacing,
+              lineHeight: theme.typography.body1.lineHeight,
+              color: theme.palette.text.primary,
+              marginLeft: '0px',
+              marginRight: '0px',
+              minWidth: '40px',
+              minHeight: '40px',
+            }),
+            slideTransition: {
+              minHeight: '220px',
+            },
+          },
+        },
+        MuiPickersDay: {
+          styleOverrides: {
+            root: ({ theme }) => ({
+              fontSize: theme.typography.body2.fontSize,
+              fontWeight: theme.typography.body2.fontWeight,
+              letterSpacing: theme.typography.body2.letterSpacing,
+              lineHeight: theme.typography.body2.lineHeight,
+              color: theme.palette.text.primary,
+              minWidth: '40px',
+              minHeight: '40px',
+              marginLeft: '0px',
+              marginRight: '0px',
+              borderRadius: '4px',
+              '&.Mui-selected': {
+                backgroundColor: theme.palette.text.primary,
+                color: theme.palette.background.paper,
+                '&:hover': {
+                  backgroundColor: theme.palette.text.primary,
+                },
+                '&:focus': {
+                  backgroundColor: theme.palette.text.primary,
+                },
+              },
+              '&.MuiPickersDay-today': {
+                border: `0px solid ${theme.palette.text.primary}`,
+                '&:not(.Mui-selected)': {
+                  backgroundColor: 'transparent',
+                },
+              },
+            }),
           },
         },
         MuiSlider: {
