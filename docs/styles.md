@@ -10,7 +10,7 @@ npm install @bwp-web/styles
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.14.1
+- `@bwp-web/assets` >= 0.15.0
 - `@mui/material` >= 7.0.0
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
