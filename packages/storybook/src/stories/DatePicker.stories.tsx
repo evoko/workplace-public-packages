@@ -18,32 +18,6 @@ const meta: Meta<typeof DatePicker> = {
       </LocalizationProvider>
     ),
   ],
-  parameters: {
-    docs: {
-      description: {
-        component: `\`DatePicker\` requires a \`LocalizationProvider\` wrapper with a date adapter to function correctly.
-
-\`\`\`bash
-npm install @mui/x-date-pickers dayjs
-\`\`\`
-
-\`\`\`tsx
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import 'dayjs/locale/en-gb'; // optional — omit for default locale
-
-function MyComponent() {
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
-      <DatePicker label="Date" />
-    </LocalizationProvider>
-  );
-}
-\`\`\``,
-      },
-    },
-  },
   argTypes: {
     disabled: { control: 'boolean' },
     readOnly: { control: 'boolean' },

@@ -41,11 +41,6 @@
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
-  "peerDependenciesMeta": {
-    "@mui/x-date-pickers": {
-      "optional": true
-    }
-  },
   "devDependencies": {
     "@bwp-web/assets": "*",
     "@bwp-web/eslint-config": "*",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Badge, Button, Stack, Typography } from '@mui/material';
+import { Badge, Stack, Typography } from '@mui/material';
 
 const meta: Meta<typeof Badge> = {
   title: 'Styles/Badge',
@@ -35,49 +35,24 @@ export const Playground: Story = {
     color: 'primary',
     max: 99,
     invisible: false,
-    children: <Button variant="outlined">Notifications</Button>,
   },
 };
 
-export const Colors: Story = {
+export const Variants: Story = {
   render: () => (
     <Stack spacing={3}>
-      <Typography variant="h3">Dot Variant</Typography>
-      <Stack direction="row" spacing={4} alignItems="center" flexWrap="wrap">
+      <Typography variant="h3">All variants</Typography>
+      <Stack direction="column" spacing={4} alignItems="start" flexWrap="wrap">
         {(['primary', 'error', 'warning', 'success', 'info'] as const).map(
-          (color, i) => (
-            <Stack key={color} alignItems="center" spacing={1}>
-              <Badge color={color} badgeContent="0">
-                <Button variant="outlined">{color}</Button>
-              </Badge>
+          (color) => (
+            <Stack key={color} direction="row" alignItems="center" spacing={1}>
+              <Badge color={color} badgeContent="0" />
+              <Typography variant="body1">
+                {color[0].toUpperCase() + color.slice(1)}
+              </Typography>
             </Stack>
           ),
         )}
-      </Stack>
-    </Stack>
-  ),
-};
-
-export const ExtendedContent: Story = {
-  render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Max Overflow</Typography>
-      <Stack direction="row" spacing={4} alignItems="center">
-        <Stack alignItems="center" spacing={1}>
-          <Badge badgeContent={99} color="primary">
-            <Button variant="outlined">max=99</Button>
-          </Badge>
-        </Stack>
-        <Stack alignItems="center" spacing={1}>
-          <Badge badgeContent={100} color="primary">
-            <Button variant="outlined">100 → 99+</Button>
-          </Badge>
-        </Stack>
-        <Stack alignItems="center" spacing={1}>
-          <Badge badgeContent={1000} color="error" max={999}>
-            <Button variant="outlined">max=999</Button>
-          </Badge>
-        </Stack>
       </Stack>
     </Stack>
   ),

@@ -892,7 +892,10 @@ export const biampTheme = (
               '&.Mui-disabled:not(.Mui-checked):not(.MuiCheckbox-indeterminate)':
                 {
                   '& rect:first-of-type': {
-                    fill: theme.palette.mode === 'dark' ? '#333333' : '#E0E0E0',
+                    fill:
+                      theme.palette.mode === 'dark'
+                        ? colors.grey[700]
+                        : colors.sidebar,
                   },
                   '& rect:last-of-type': {
                     strokeOpacity: 0.15,
@@ -1408,22 +1411,13 @@ export const biampTheme = (
                 {
                   borderColor: theme.palette.dividers.secondary,
                 },
-              '& .MuiOutlinedInput-root:hover .MuiInputAdornment-root svg': {
-                color: theme.palette.dividers.secondary,
-              },
               '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
                 {
-                  borderColor:
-                    theme.palette.mode === 'dark'
-                      ? colors.white
-                      : colors.grey[900],
+                  borderColor: theme.palette.text.primary,
                 },
               '& .MuiOutlinedInput-root.Mui-focused .MuiInputAdornment-root svg':
                 {
-                  color:
-                    theme.palette.mode === 'dark'
-                      ? colors.white
-                      : colors.grey[900],
+                  color: theme.palette.text.primary,
                 },
               '& .MuiInputAdornment-positionStart': {
                 marginRight: '-4px',
@@ -1643,6 +1637,9 @@ export const biampTheme = (
             slotProps: {
               openPickerButton: {
                 size: 'medium',
+                sx: {
+                  '&:hover': { backgroundColor: 'transparent' },
+                },
               },
               inputAdornment: {
                 sx: { mx: '4px' },
@@ -1739,6 +1736,11 @@ export const biampTheme = (
                 display: 'none',
               },
             }),
+            list: {
+              '& li:first-of-type': {
+                marginTop: 0,
+              },
+            },
           },
         },
         MuiPickersTextField: {
@@ -1746,11 +1748,11 @@ export const biampTheme = (
             root: {
               '& .MuiInputBase-root': {
                 height: '44px',
-                borderRadius: '4px',
+                borderRadius: '6px',
               },
               '& .MuiOutlinedInput-root': {
                 height: '44px',
-                borderRadius: '4px',
+                borderRadius: '6px',
               },
               '& .MuiOutlinedInput-input': {
                 height: '44px',
@@ -1760,7 +1762,7 @@ export const biampTheme = (
               '& .MuiOutlinedInput-notchedOutline': {
                 height: '44px',
                 top: 0,
-                borderRadius: '4px',
+                borderRadius: '6px',
                 '& legend': {
                   display: 'none',
                   width: 0,
@@ -1774,7 +1776,7 @@ export const biampTheme = (
           styleOverrides: {
             root: {
               height: '44px !important',
-              borderRadius: '4px',
+              borderRadius: '6px',
               backgroundColor: 'background.paper',
               fontSize: '14px',
               '& .MuiInputBase-input': {
@@ -1785,7 +1787,7 @@ export const biampTheme = (
               '& .MuiOutlinedInput-notchedOutline': {
                 height: '44px',
                 top: 0,
-                borderRadius: '4px',
+                borderRadius: '6px',
                 '& legend': {
                   display: 'none',
                   width: 0,
@@ -1799,7 +1801,7 @@ export const biampTheme = (
           styleOverrides: {
             root: ({ theme }) => ({
               height: '44px !important',
-              borderRadius: '4px',
+              borderRadius: '6px',
               padding: '0px 12px',
               backgroundColor: theme.palette.background.paper,
               '& .MuiOutlinedInput-input': {
@@ -1810,7 +1812,7 @@ export const biampTheme = (
               '& .MuiOutlinedInput-notchedOutline': {
                 height: '44px',
                 top: 0,
-                borderRadius: '4px',
+                borderRadius: '6px',
                 '& legend': {
                   display: 'none',
                   width: 0,
@@ -1826,7 +1828,7 @@ export const biampTheme = (
             notchedOutline: {
               height: '44px',
               top: 0,
-              borderRadius: '4px',
+              borderRadius: '6px',
               '& legend': {
                 display: 'none',
                 width: 0,
@@ -1849,7 +1851,7 @@ export const biampTheme = (
               borderColor: colors.grey[900],
             }),
             paper: ({ theme }: { theme: Theme }) => ({
-              borderRadius: '4px',
+              borderRadius: '6px',
               backgroundColor: theme.palette.background.paper,
               boxShadow: 'none',
               borderWidth: '0.6px',
@@ -1862,7 +1864,7 @@ export const biampTheme = (
           styleOverrides: {
             root: ({ theme }) => ({
               backgroundColor: theme.palette.background.paper,
-              borderRadius: '4px',
+              borderRadius: '6px',
               '&:has(.MuiDateCalendar-root)': {
                 minWidth: '280px',
               },
@@ -1886,7 +1888,7 @@ export const biampTheme = (
           styleOverrides: {
             root: ({ theme }) => ({
               backgroundColor: theme.palette.background.paper,
-              borderRadius: '4px',
+              borderRadius: '6px',
               width: 'auto',
             }),
           },
