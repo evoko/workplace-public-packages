@@ -275,12 +275,13 @@ export function enableDrawToCreate(
     removePreviewElements();
     snapping.clearSnapResult();
 
+    const styleWithData = {
+      ...options?.style,
+      ...(options?.data != null && { data: options.data }),
+    };
     const obj = options?.factory
       ? options.factory(canvas, [...points])
-      : createPolygonFromVertices(canvas, points, options?.style);
-    if (options?.data) {
-      obj.data = options.data;
-    }
+      : createPolygonFromVertices(canvas, points, styleWithData);
     canvas.selection = previousSelection;
     canvas.requestRenderAll();
 
@@ -475,6 +476,10 @@ export function enableDrawToCreate(
         return;
       }
 
+      const dragStyleWithData = {
+        ...options?.style,
+        ...(options?.data != null && { data: options.data }),
+      };
       const obj = createPolygonFromVertices(
         canvas,
         [
@@ -483,11 +488,8 @@ export function enableDrawToCreate(
           { x: dragStartX + width, y: dragStartY + height },
           { x: dragStartX, y: dragStartY + height },
         ],
-        options?.style,
+        dragStyleWithData,
       );
-      if (options?.data) {
-        obj.data = options.data;
-      }
       canvas.selection = previousSelection;
       canvas.requestRenderAll();
 
