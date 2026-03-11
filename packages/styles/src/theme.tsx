@@ -1268,9 +1268,15 @@ export const biampTheme = (
               width: 54,
               height: 38,
               padding: 9,
+              '& .MuiTouchRipple-root': {
+                display: 'none',
+              },
             },
             switchBase: ({ theme }) => ({
               padding: 9,
+              '&:hover': {
+                backgroundColor: 'transparent !important',
+              },
               '&.Mui-checked': {
                 transform: 'translateX(16px)',
                 '& + .MuiSwitch-track': {
@@ -1310,6 +1316,9 @@ export const biampTheme = (
             }),
             thumb: ({ theme }) => ({
               boxShadow: `0px 1px 2px 0px ${alpha('#101828', 0.15)}`,
+              '& .MuiTouchRipple-root': {
+                display: 'none',
+              },
               width: 14,
               height: 14,
               margin: 3,
