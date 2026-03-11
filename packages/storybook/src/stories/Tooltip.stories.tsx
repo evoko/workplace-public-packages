@@ -83,11 +83,11 @@ export const OnIcons: Story = {
 function CustomTooltipContent() {
   return (
     <div style={{ display: 'flex', gap: '8px' }}>
-      <span style={{ display: 'flex', alignItems: "center", gap: '4px' }}>
+      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
         <PinLocationIcon variant="xxs" sx={{ fontSize: '12px' }} /> 1380 W
         Elliot Rd, Tempe, AZ 85284, US
       </span>
-      <span style={{ display: 'flex', alignItems: "center", gap: '4px' }}>
+      <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
         <ClockIcon sx={{ fontSize: '12px' }} /> 11:45PM PST
       </span>
     </div>
