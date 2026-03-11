@@ -8,7 +8,7 @@ import {
   Box,
 } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { SearchIcon } from '@bwp-web/assets';
+import { CloseIcon, SearchIcon } from '@bwp-web/assets';
 
 const meta: Meta<typeof TextField> = {
   title: 'Styles/TextField',
@@ -82,6 +82,11 @@ export const WithAdornments: Story = {
                 <SearchIcon />
               </InputAdornment>
             ),
+            endAdornment: (
+              <InputAdornment position="end">
+                <CloseIcon />
+              </InputAdornment>
+            ),
           },
         }}
       />
@@ -97,16 +102,6 @@ export const WithAdornments: Story = {
                 <VisibilityIcon />
               </InputAdornment>
             ),
-          },
-        }}
-      />
-
-      <TextField
-        label="Amount"
-        placeholder="0.00"
-        slotProps={{
-          input: {
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
           },
         }}
       />

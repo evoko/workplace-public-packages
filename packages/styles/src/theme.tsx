@@ -1399,6 +1399,44 @@ export const biampTheme = (
               shrink: true,
             },
           },
+          styleOverrides: {
+            root: ({ theme }) => ({
+              '& .MuiInputBase-input': {
+                padding: '0px 12px',
+              },
+              '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline':
+                {
+                  borderColor: theme.palette.dividers.secondary,
+                },
+              '& .MuiOutlinedInput-root:hover .MuiInputAdornment-root svg': {
+                color: theme.palette.dividers.secondary,
+              },
+              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                {
+                  borderColor:
+                    theme.palette.mode === 'dark'
+                      ? colors.white
+                      : colors.grey[900],
+                },
+              '& .MuiOutlinedInput-root.Mui-focused .MuiInputAdornment-root svg':
+                {
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? colors.white
+                      : colors.grey[900],
+                },
+              '& .MuiInputAdornment-positionStart': {
+                marginRight: '-4px',
+              },
+              '& .MuiInputAdornment-positionEnd': {
+                marginRight: '12px',
+              },
+              '& .MuiInputAdornment-root svg': {
+                width: '24px',
+                height: '24px',
+              },
+            }),
+          },
         },
         MuiInputLabel: {
           defaultProps: {
