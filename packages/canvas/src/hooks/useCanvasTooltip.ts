@@ -18,6 +18,12 @@ export interface CanvasTooltipState<T> {
   content: T | null;
   /** Screen-space position (relative to the canvas container) for the tooltip. */
   position: { x: number; y: number };
+  /**
+   * Ref to attach to the tooltip container element. When attached, position
+   * updates during pan/zoom are applied directly to the DOM — no React
+   * re-renders. The element should use `position: absolute`.
+   */
+  ref: RefObject<HTMLDivElement | null>;
 }
 
 /**
@@ -43,6 +49,9 @@ export function useCanvasTooltip<T>(
  * coordinates relative to the canvas container element — suitable for absolute
  * positioning of a tooltip component.
  *
+ * Attach {@link CanvasTooltipState.ref | tooltip.ref} to the tooltip container
+ * for smooth, re-render-free position updates during pan and zoom.
+ *
  * @example
  * ```tsx
  * const tooltip = useCanvasTooltip(view.canvasRef, {
@@ -53,7 +62,10 @@ export function useCanvasTooltip<T>(
  *   <>
  *     <Canvas onReady={view.onReady} />
  *     {tooltip.visible && (
- *       <div style={{ position: 'absolute', left: tooltip.position.x, top: tooltip.position.y }}>
+ *       <div
+ *         ref={tooltip.ref}
+ *         style={{ position: 'absolute', left: tooltip.position.x, top: tooltip.position.y }}
+ *       >
  *         {tooltip.content?.id}
  *       </div>
  *     )}
@@ -88,8 +100,10 @@ export function useCanvasTooltip<T>(
     visible: false,
     content: null,
     position: { x: 0, y: 0 },
+    ref: { current: null },
   });
 
+  const tooltipElRef = useRef<HTMLDivElement | null>(null);
   const hoveredObjectRef = useRef<FabricObject | null>(null);
   const optionsRef = useRef(options);
   optionsRef.current = options;
@@ -112,6 +126,14 @@ export function useCanvasTooltip<T>(
       };
     }
 
+    /** Apply position directly to the DOM element — no React re-render. */
+    function applyPositionToDOM(position: { x: number; y: number }) {
+      const el = tooltipElRef.current;
+      if (!el) return;
+      el.style.left = `${position.x}px`;
+      el.style.top = `${position.y}px`;
+    }
+
     const handleMouseOver = (e: CanvasEvents['mouse:over']) => {
       const target = e.target;
       if (!target) return;
@@ -123,7 +145,7 @@ export function useCanvasTooltip<T>(
         hoveredObjectRef.current = target;
         const position = calculatePosition(target);
         if (position) {
-          setState({ visible: true, content, position });
+          setState({ visible: true, content, position, ref: tooltipElRef });
         }
       }
     };
@@ -139,7 +161,7 @@ export function useCanvasTooltip<T>(
       if (!hoveredObjectRef.current) return;
       const position = calculatePosition(hoveredObjectRef.current);
       if (position) {
-        setState((prev) => (prev.visible ? { ...prev, position } : prev));
+        applyPositionToDOM(position);
       }
     };
 

@@ -479,7 +479,10 @@ return (
   <>
     <Canvas onReady={view.onReady} />
     {tooltip.visible && (
-      <div style={{ position: 'absolute', left: tooltip.position.x, top: tooltip.position.y }}>
+      <div
+        ref={tooltip.ref}
+        style={{ position: 'absolute', left: tooltip.position.x, top: tooltip.position.y }}
+      >
         {tooltip.content?.id}
       </div>
     )}
@@ -493,7 +496,10 @@ return (
 |---|---|---|
 | `visible` | `boolean` | Whether the tooltip is currently visible |
 | `content` | `T \| null` | Content extracted from the hovered object |
-| `position` | `{ x: number; y: number }` | Screen-space position relative to the canvas container |
+| `position` | `{ x: number; y: number }` | Screen-space position relative to the canvas container. Set on initial hover |
+| `ref` | `RefObject<HTMLDivElement \| null>` | Attach to the tooltip container element. When attached, position updates during pan/zoom are applied directly to the DOM with no React re-renders |
+
+> **Performance:** Attach `tooltip.ref` to the tooltip container for smooth pan/zoom. Without it, `position` is only set on initial hover (when the tooltip first appears). With the ref attached, the element's `style.left` and `style.top` are updated directly on every `after:render` and `mouse:wheel` event — matching the same direct-DOM pattern used by `ObjectOverlay`.
 
 ### Options (`UseCanvasTooltipOptions<T>`)
 

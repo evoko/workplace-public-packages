@@ -17,6 +17,7 @@ import {
   Canvas,
   useEditCanvas,
   useViewCanvas,
+  useCanvasTooltip,
   ObjectOverlay,
   OverlayContent,
   FixedSizeContent,
@@ -41,6 +42,8 @@ import {
   setBackgroundInverted,
   getBackgroundInverted,
 } from '@bwp-web/canvas';
+import InfoIcon from '@mui/icons-material/Info';
+import { Paper } from '@mui/material';
 import { DemoLayout } from './canvas/DemoLayout';
 import { ViewportControlToolbar } from './canvas/ViewportControlToolbar';
 
@@ -1111,6 +1114,117 @@ export const ViewCanvasDemo: Story = {
         key={canvasKey}
         options={options}
         onOptionToggle={handleOptionToggle}
+      />
+    );
+  },
+};
+
+// ============================================================
+// ViewCanvasTooltipDemo — useViewCanvas + useCanvasTooltip
+// ============================================================
+
+/**
+ * View-only canvas with a hover tooltip using `useCanvasTooltip`.
+ *
+ * Hover over any shape to see a "Hello World" tooltip with an info icon.
+ */
+export const ViewCanvasTooltipDemo: Story = {
+  name: 'View Canvas — Tooltip',
+  render: function ViewCanvasTooltipDemoRender() {
+    const canvas = useViewCanvas({
+      scaledStrokes: true,
+      panAndZoom: true,
+      onReady: async (c) => {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          try {
+            await loadCanvas(c, JSON.parse(stored));
+            return;
+          } catch {
+            // fall through to demo shapes
+          }
+        }
+
+        const r1 = createRectangle(c, {
+          left: 120,
+          top: 80,
+          width: 140,
+          height: 90,
+        });
+        r1.data = { type: 'PLACE', id: 'rect-1' };
+        const r2 = createRectangle(c, {
+          left: 500,
+          top: 60,
+          width: 100,
+          height: 150,
+        });
+        r2.data = { type: 'PLACE', id: 'rect-2' };
+        const c1 = createCircle(c, { left: 200, top: 230, size: 100 });
+        c1.data = { type: 'PLACE', id: 'circle-1' };
+        const p1 = createPolygon(c, {
+          points: [
+            { x: 0, y: 0 },
+            { x: 80, y: -30 },
+            { x: 120, y: 20 },
+            { x: 100, y: 80 },
+            { x: 20, y: 80 },
+          ],
+          left: 300,
+          top: 180,
+        });
+        p1.data = { type: 'PLACE', id: 'poly-1' };
+      },
+    });
+
+    const tooltip = useCanvasTooltip(canvas.canvasRef, {
+      getContent: (obj) =>
+        obj.data?.id ? { id: obj.data.id as string } : null,
+    });
+
+    return (
+      <DemoLayout
+        onReady={canvas.onReady}
+        canvasOverlay={
+          <>
+            <ViewportControlToolbar
+              zoom={canvas.zoom}
+              viewportMode="pan"
+              onModeChange={() => {}}
+              onZoomIn={canvas.viewport.zoomIn}
+              onZoomOut={canvas.viewport.zoomOut}
+              onReset={canvas.viewport.reset}
+            />
+            {tooltip.visible && tooltip.content && (
+              <Paper
+                ref={tooltip.ref}
+                elevation={4}
+                sx={{
+                  position: 'absolute',
+                  left: tooltip.position.x,
+                  top: tooltip.position.y,
+                  transform: 'translate(-50%, -100%)',
+                  px: 1.5,
+                  py: 0.75,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 0.75,
+                  pointerEvents: 'none',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                <InfoIcon fontSize="small" color="primary" />
+                <Typography variant="body2">
+                  Hello World — {tooltip.content.id}
+                </Typography>
+              </Paper>
+            )}
+          </>
+        }
+        sidebar={
+          <Typography variant="body2" color="text.secondary">
+            Hover over any shape to see the tooltip.
+          </Typography>
+        }
       />
     );
   },

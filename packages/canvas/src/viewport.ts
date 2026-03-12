@@ -163,6 +163,10 @@ function setupMousePan(
       (mode === 'select' && !opt.target);
 
     if (shouldPan) {
+      // Prevent the browser from starting a native drag, which swallows
+      // mouseup in Firefox and Safari and leaves panning stuck.
+      e.preventDefault();
+
       isPanning = true;
       lastPanX = pos.x;
       lastPanY = pos.y;
