@@ -1336,6 +1336,8 @@ export const biampTheme = (
         MuiTabs: {
           styleOverrides: {
             root: {
+              height: 44,
+              minHeight: 44,
               '& .MuiTabs-indicator': {
                 backgroundColor: colors.blue.main,
               },
@@ -1346,8 +1348,6 @@ export const biampTheme = (
               '& .MuiTouchRipple-root': {
                 display: 'none',
               },
-              height: 32,
-              minHeight: 32,
             },
             flexContainer: {
               gap: 20,
@@ -1366,8 +1366,8 @@ export const biampTheme = (
               minWidth: 'auto',
               paddingTop: '0px',
               paddingBottom: '0px',
-              height: 32,
-              minHeight: 32,
+              height: 44,
+              minHeight: 44,
               opacity: 1,
               color: theme.palette.text.primary,
               '&.Mui-selected': {
