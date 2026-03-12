@@ -8,7 +8,7 @@ import {
   Box,
 } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { SearchIcon } from '@bwp-web/assets';
+import { CloseIcon, SearchIcon } from '@bwp-web/assets';
 
 const meta: Meta<typeof TextField> = {
   title: 'Styles/TextField',
@@ -82,6 +82,11 @@ export const WithAdornments: Story = {
                 <SearchIcon />
               </InputAdornment>
             ),
+            endAdornment: (
+              <InputAdornment position="end">
+                <CloseIcon />
+              </InputAdornment>
+            ),
           },
         }}
       />
@@ -100,77 +105,6 @@ export const WithAdornments: Story = {
           },
         }}
       />
-
-      <TextField
-        label="Amount"
-        placeholder="0.00"
-        slotProps={{
-          input: {
-            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-          },
-        }}
-      />
-    </Stack>
-  ),
-};
-
-export const Multiline: Story = {
-  render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h3">Multiline TextField</Typography>
-
-      <TextField
-        label="Description"
-        placeholder="Enter a description..."
-        multiline
-        rows={4}
-      />
-
-      <TextField
-        label="Auto-resize"
-        placeholder="Start typing..."
-        multiline
-        minRows={2}
-        maxRows={6}
-      />
-
-      <TextField
-        label="Disabled multiline"
-        defaultValue="This is a disabled multiline field with some content."
-        multiline
-        rows={3}
-        disabled
-      />
-
-      <TextField
-        label="Error multiline"
-        defaultValue="This has an error."
-        multiline
-        rows={3}
-        error
-        helperText="Please fix the input"
-      />
-    </Stack>
-  ),
-};
-
-export const Sizes: Story = {
-  render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 600 }}>
-      <Typography variant="h3">Side by Side</Typography>
-      <Box sx={{ display: 'flex', gap: 2 }}>
-        <TextField label="First Name" placeholder="John" sx={{ flex: 1 }} />
-        <TextField label="Last Name" placeholder="Doe" sx={{ flex: 1 }} />
-      </Box>
-      <Box sx={{ display: 'flex', gap: 2 }}>
-        <TextField
-          label="Email"
-          placeholder="john@example.com"
-          type="email"
-          sx={{ flex: 2 }}
-        />
-        <TextField label="Phone" placeholder="+1 555 0123" sx={{ flex: 1 }} />
-      </Box>
     </Stack>
   ),
 };

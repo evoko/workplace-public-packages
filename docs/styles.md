@@ -10,7 +10,7 @@ npm install @bwp-web/styles
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 0.14.1
+- `@bwp-web/assets` >= 0.15.0
 - `@mui/material` >= 7.0.0
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
@@ -86,75 +86,75 @@ This makes the augmented types available to every file in your project without n
 
 ### Augmented Palette Types
 
-| Type | Added Properties |
-|------|-----------------|
-| `Palette` | `sidebar`, `biamp`, `blue`, `purple`, `dividers` |
-| `TypeBackground` | `success`, `warning`, `error`, `info` |
-| `TypeText` | `sidebar` |
-| `TypographyVariants` | `h0`, `sidebar` |
+| Type                 | Added Properties                                 |
+| -------------------- | ------------------------------------------------ |
+| `Palette`            | `sidebar`, `biamp`, `blue`, `purple`, `dividers` |
+| `TypeBackground`     | `success`, `warning`, `error`, `info`            |
+| `TypeText`           | `sidebar`                                        |
+| `TypographyVariants` | `h0`, `sidebar`                                  |
 
 ### Augmented Component Props
 
-| Component | Override |
-|-----------|---------|
-| `Button` | `color="biamp"`, `variant="overlay"` |
-| `Checkbox` | `color="biamp"` |
-| `Fab` | `color="biamp"` |
-| `Typography` | `variant="h0"`, `variant="sidebar"` |
-| `IconButton` | `variant="none"`, `variant="transparent"`, `variant="outlined"` |
-| `Alert` | `filled` and `outlined` variants disabled (only `standard` is available) |
+| Component    | Override                                                                 |
+| ------------ | ------------------------------------------------------------------------ |
+| `Button`     | `color="biamp"`, `variant="overlay"`                                     |
+| `Checkbox`   | `color="biamp"`                                                          |
+| `Fab`        | `color="biamp"`                                                          |
+| `Typography` | `variant="h0"`, `variant="sidebar"`                                      |
+| `IconButton` | `variant="none"`, `variant="transparent"`, `variant="outlined"`          |
+| `Alert`      | `filled` and `outlined` variants disabled (only `standard` is available) |
 
 ## Color Palette
 
 ### Standard MUI Palette
 
-| Key | Light | Dark | Description |
-|-----|-------|------|-------------|
-| `primary.main` | `#111111` | `#FFFFFF` | Primary UI color — dark in light mode, white in dark mode |
-| `secondary.main` | `#FFFFFF` | `#FFFFFF` | Secondary UI color |
-| `success.main` | `#008A05` | `#00E941` | Success signal |
-| `warning.main` | `#E06C00` | `#FFB800` | Warning signal |
-| `error.main` | `#E0002D` | `#FF1744` | Error/critical signal |
-| `info.main` | `#1863D3` | `#1863D3` | Informational signal |
+| Key              | Light     | Dark      | Description                                               |
+| ---------------- | --------- | --------- | --------------------------------------------------------- |
+| `primary.main`   | `#111111` | `#FFFFFF` | Primary UI color — dark in light mode, white in dark mode |
+| `secondary.main` | `#FFFFFF` | `#FFFFFF` | Secondary UI color                                        |
+| `success.main`   | `#008A05` | `#00E941` | Success signal                                            |
+| `warning.main`   | `#E06C00` | `#FFB800` | Warning signal                                            |
+| `error.main`     | `#E0002D` | `#FF1744` | Error/critical signal                                     |
+| `info.main`      | `#1863D3` | `#1863D3` | Informational signal                                      |
 
 ### Custom Palette Entries
 
 These are unique to the Biamp theme and available via `theme.palette.*`:
 
-| Key | Value | Description |
-|-----|-------|-------------|
-| `biamp.main` | `#d22730` | Biamp brand red |
-| `blue.main` | `#1863D3` | Action/link blue (same as `info.main`) |
-| `purple.main` | `#5B00EF` | Facility/scheduling purple |
-| `sidebar.main` | `#E0E0E0` | Sidebar UI color |
-| `dividers.primary` | `#111111` @ 15% alpha | Standard divider |
-| `dividers.secondary` | `#111111` @ 40% alpha | Button/border divider |
+| Key                  | Value                 | Description                            |
+| -------------------- | --------------------- | -------------------------------------- |
+| `biamp.main`         | `#d22730`             | Biamp brand red                        |
+| `blue.main`          | `#1863D3`             | Action/link blue (same as `info.main`) |
+| `purple.main`        | `#5B00EF`             | Facility/scheduling purple             |
+| `sidebar.main`       | `#E0E0E0`             | Sidebar UI color                       |
+| `dividers.primary`   | `#111111` @ 15% alpha | Standard divider                       |
+| `dividers.secondary` | `#111111` @ 40% alpha | Button/border divider                  |
 
 ### Background
 
-| Key | Light | Dark |
-|-----|-------|------|
+| Key                  | Light     | Dark      |
+| -------------------- | --------- | --------- |
 | `background.default` | `#F5F5F5` | `#111111` |
-| `background.paper` | `#FFFFFF` | `#111111` |
+| `background.paper`   | `#FFFFFF` | `#111111` |
 | `background.success` | `#EAFEF0` | `#093615` |
 | `background.warning` | `#FFF4D9` | `#41320E` |
-| `background.error` | `#FFEDF0` | `#2E1016` |
-| `background.info` | `#EBF7FF` | `#101C25` |
+| `background.error`   | `#FFEDF0` | `#2E1016` |
+| `background.info`    | `#EBF7FF` | `#101C25` |
 
 ### Text
 
-| Key | Light | Dark |
-|-----|-------|------|
-| `text.primary` | `#111111` | `#FFFFFF` |
-| `text.secondary` | `#878787` | `#878787` |
-| `text.disabled` | `#111111` @ 40% | `#FFFFFF` @ 40% |
-| `text.sidebar` | `#E0E0E0` | `#E0E0E0` |
+| Key              | Light           | Dark            |
+| ---------------- | --------------- | --------------- |
+| `text.primary`   | `#111111`       | `#FFFFFF`       |
+| `text.secondary` | `#878787`       | `#878787`       |
+| `text.disabled`  | `#111111` @ 40% | `#FFFFFF` @ 40% |
+| `text.sidebar`   | `#E0E0E0`       | `#E0E0E0`       |
 
 ### Grey Scale
 
-| Key | Value |
-|-----|-------|
-| `grey.50` | `#fafafa` |
+| Key        | Value     |
+| ---------- | --------- |
+| `grey.50`  | `#fafafa` |
 | `grey.100` | `#f5f5f5` |
 | `grey.200` | `#eeeeee` |
 | `grey.300` | `#c9c9c9` |
@@ -174,20 +174,20 @@ Two font families are loaded automatically via `CssBaseline`:
 
 ### Variants
 
-| Variant | Font | Size | Weight | Letter Spacing |
-|---------|------|------|--------|----------------|
-| `h0` | Montserrat | 3.5rem | 500 | -0.105rem |
-| `h1` | Montserrat | 1.75rem | 500 | -0.07rem |
-| `h2` | Montserrat | 1.25rem | 600 | -0.025rem |
-| `h3` | Open Sans | 1rem | 600 | -0.02rem |
-| `h4` | Montserrat | 1rem | 600 | -0.02rem |
-| `body1` | Open Sans | 1rem | 400 | -0.02rem |
-| `body2` | Open Sans | 0.875rem | 400 | -0.018rem |
-| `caption` | Open Sans | 0.75rem | 400 | -0.015rem |
-| `subtitle1` | Open Sans | 0.875rem | 400 | — |
-| `subtitle2` | Open Sans | 0.75rem | 400 | — |
-| `button` | Open Sans | 0.875rem | 600 | -0.018rem |
-| `sidebar` | Open Sans | 0.563rem | 700 | -0.013rem |
+| Variant     | Font       | Size     | Weight | Letter Spacing |
+| ----------- | ---------- | -------- | ------ | -------------- |
+| `h0`        | Montserrat | 3.5rem   | 500    | -0.105rem      |
+| `h1`        | Montserrat | 1.75rem  | 500    | -0.07rem       |
+| `h2`        | Montserrat | 1.25rem  | 600    | -0.025rem      |
+| `h3`        | Open Sans  | 1rem     | 600    | -0.02rem       |
+| `h4`        | Montserrat | 1rem     | 600    | -0.02rem       |
+| `body1`     | Open Sans  | 1rem     | 400    | -0.02rem       |
+| `body2`     | Open Sans  | 0.875rem | 400    | -0.018rem      |
+| `caption`   | Open Sans  | 0.75rem  | 400    | -0.015rem      |
+| `subtitle1` | Open Sans  | 0.875rem | 400    | —              |
+| `subtitle2` | Open Sans  | 0.75rem  | 400    | —              |
+| `button`    | Open Sans  | 0.875rem | 600    | -0.018rem      |
+| `sidebar`   | Open Sans  | 0.563rem | 700    | -0.013rem      |
 
 `h0` and `sidebar` are custom variants added by the theme augmentations:
 
@@ -201,17 +201,17 @@ Two font families are loaded automatically via `CssBaseline`:
 The theme uses an 8px base spacing unit (`theme.spacing(1) = 8px`):
 
 | `theme.spacing(n)` | Result |
-|---------------------|--------|
-| `0` | 0px |
-| `0.5` | 4px |
-| `1` | 8px |
-| `1.5` | 12px |
-| `2` | 16px |
-| `2.5` | 20px |
-| `3` | 24px |
-| `3.5` | 28px |
-| `4` | 32px |
-| `5` | 40px |
+| ------------------ | ------ |
+| `0`                | 0px    |
+| `0.5`              | 4px    |
+| `1`                | 8px    |
+| `1.5`              | 12px   |
+| `2`                | 16px   |
+| `2.5`              | 20px   |
+| `3`                | 24px   |
+| `3.5`              | 28px   |
+| `4`                | 32px   |
+| `5`                | 40px   |
 
 ## Component Overrides
 
@@ -240,9 +240,47 @@ Only the `standard` variant is enabled. MUI's `filled` and `outlined` variants a
 
 Styled overrides are included for: `Breadcrumbs`, `Checkbox`, `Dialog`, `Divider`, `Drawer`, `Fab`, `FormControlLabel`, `FormHelperText`, `FormLabel`, `InputBase`, `InputLabel`, `Menu`, `MenuItem`, `OutlinedInput`, `Radio`, `Slider`, `Switch`, `Tab`, `Tabs`, `Tooltip`, `TextField`, `Autocomplete`, `DatePicker`, `PickersTextField`, `PickersInputBase`, `PickersOutlinedInput`.
 
+### DatePicker & TimePicker
+
+`DatePicker` and `TimePicker` are styled but require a `LocalizationProvider` wrapper with a date adapter to function. Without it the pickers will throw at runtime.
+
+Install the required packages:
+
+```bash
+npm install @mui/x-date-pickers dayjs
+```
+
+Wrap any usage in `LocalizationProvider`:
+
+```tsx
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+
+function MyComponent() {
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DatePicker label="Date" />
+      <TimePicker label="Time" />
+    </LocalizationProvider>
+  );
+}
+```
+
+To use a specific locale (e.g. `en-gb` for DD/MM/YYYY formatting):
+
+```tsx
+import 'dayjs/locale/en-gb';
+
+<LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
+  <DatePicker label="Date" />
+</LocalizationProvider>;
+```
+
 ## Exports
 
-| Export | Type | Description |
-|--------|------|-------------|
+| Export                 | Type       | Description                                                                                  |
+| ---------------------- | ---------- | -------------------------------------------------------------------------------------------- |
 | `biampTheme(options?)` | `function` | Creates a configured MUI theme. Accepts optional `createTheme` options to override defaults. |
-| `appBarHeight` | `number` | Standard app bar height (`64`) |
+| `appBarHeight`         | `number`   | Standard app bar height (`64`)                                                               |

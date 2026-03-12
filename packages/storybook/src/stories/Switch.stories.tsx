@@ -45,22 +45,6 @@ export const AllStates: Story = {
           label="Disabled on"
         />
       </FormGroup>
-
-      <Typography variant="h3" sx={{ pt: 2 }}>
-        Label Placement
-      </Typography>
-      <FormGroup>
-        <FormControlLabel
-          control={<Switch defaultChecked />}
-          label="End (default)"
-          labelPlacement="end"
-        />
-        <FormControlLabel
-          control={<Switch defaultChecked />}
-          label="Start"
-          labelPlacement="start"
-        />
-      </FormGroup>
     </Stack>
   ),
 };

@@ -36,7 +36,7 @@ export const AllStates: Story = {
         <Chip label="Default" />
         <Chip label="With Delete" onDelete={() => {}} />
         <Chip label="With Icon" icon={<SearchIcon />} />
-        <Chip label="Icon + Delete" icon={<SearchIcon />} />
+        <Chip label="Icon + Delete" icon={<SearchIcon />} onDelete={() => {}} />
       </Stack>
     </Stack>
   ),
