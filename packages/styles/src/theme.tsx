@@ -1707,6 +1707,7 @@ export const biampTheme = (
                 sx: (theme) => ({
                   border: `0.6px solid ${theme.palette.dividers.secondary}`,
                   width: '115px',
+                  overflowX: 'hidden',
                 }),
               },
             },
