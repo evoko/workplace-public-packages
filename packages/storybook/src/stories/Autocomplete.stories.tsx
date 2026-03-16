@@ -2,6 +2,7 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Autocomplete,
+  Checkbox,
   TextField,
   Stack,
   Typography,
@@ -100,7 +101,7 @@ export const AllVariants: Story = {
 
 export const MultiSelect: Story = {
   render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
+    <Stack spacing={4} sx={{ maxWidth: 500 }}>
       <Typography variant="h3">Multi-select</Typography>
 
       <Autocomplete
@@ -132,6 +133,33 @@ export const MultiSelect: Story = {
         }
         renderInput={(params) => (
           <TextField {...params} label="With chips" placeholder="Add movies" />
+        )}
+      />
+    </Stack>
+  ),
+};
+
+export const CheckboxSelect: Story = {
+  render: () => (
+    <Stack spacing={4} sx={{ maxWidth: 400 }}>
+      <Typography variant="h3">Checkbox Select</Typography>
+
+      <Autocomplete
+        multiple
+        disableCloseOnSelect
+        options={topMovies}
+        renderOption={(props, option, { selected }) => (
+          <li {...props}>
+            <Checkbox checked={selected} sx={{ mr: 1 }} />
+            {option}
+          </li>
+        )}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Favorite movies"
+            placeholder="Add movies"
+          />
         )}
       />
     </Stack>

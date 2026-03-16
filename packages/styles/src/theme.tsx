@@ -1594,7 +1594,11 @@ export const biampTheme = (
             inputRoot: {
               minHeight: '44px',
               height: 'auto',
-              padding: '0 !important',
+              columnGap: '2px !important',
+              paddingTop: 'auto !important',
+              paddingLeft: '12px !important',
+              paddingBottom: 'auto !important',
+              paddingRight: '60px !important',
               borderRadius: '6px',
               '& .MuiOutlinedInput-input': {
                 padding: '10px 14px',
@@ -1604,9 +1608,12 @@ export const biampTheme = (
               },
             },
             input: {
-              minHeight: '44px',
-              padding: '10px 14px',
+              width: '100px !important',
+              height: 'auto',
+              padding: '0px !important',
+              paddingRight: '8px !important',
               boxSizing: 'border-box',
+              minWidth: '60px !important',
             },
             endAdornment: {
               '& .MuiAutocomplete-clearIndicator': {
