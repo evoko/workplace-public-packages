@@ -552,6 +552,16 @@ export const biampTheme = (
           styleOverrides: {
             root: {
               boxShadow: `0px 1px 1px 0px ${alpha(colors.black, 0.05)}`,
+              display: 'flex',
+              gap: '8px',
+              '& .MuiButton-startIcon': {
+                marginRight: '0px',
+                marginLeft: '0px',
+              },
+              '& .MuiButton-endIcon': {
+                marginRight: '0px',
+                marginLeft: '0px',
+              },
             },
           },
           variants: [
@@ -585,6 +595,7 @@ export const biampTheme = (
               props: { variant: 'contained', color: 'error' },
               style: {
                 backgroundColor: colors.error.light.main,
+
                 color: colors.white,
                 '&:hover': {
                   backgroundColor: colors.error.dark.main,
