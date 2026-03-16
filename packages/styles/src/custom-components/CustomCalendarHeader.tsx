@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import { PickersCalendarHeaderProps } from '@mui/x-date-pickers/PickersCalendarHeader';
+import { usePickerAdapter } from '@mui/x-date-pickers/hooks';
 import { ChevronLeftIcon, ChevronRightIcon } from '@bwp-web/assets';
 
 const CustomCalendarHeaderRoot = styled('div')(({ theme }) => ({
@@ -20,10 +21,12 @@ const CustomCalendarHeaderRoot = styled('div')(({ theme }) => ({
 
 export function CustomCalendarHeader(props: PickersCalendarHeaderProps) {
   const { currentMonth, onMonthChange } = props;
+  const adapter = usePickerAdapter();
 
-  const selectNextMonth = () => onMonthChange(currentMonth.add(1, 'month'));
+  const selectNextMonth = () =>
+    onMonthChange(adapter.addMonths(currentMonth, 1));
   const selectPreviousMonth = () =>
-    onMonthChange(currentMonth.subtract(1, 'month'));
+    onMonthChange(adapter.addMonths(currentMonth, -1));
 
   return (
     <CustomCalendarHeaderRoot>
@@ -33,7 +36,7 @@ export function CustomCalendarHeader(props: PickersCalendarHeaderProps) {
         </IconButton>
       </Stack>
       <Typography variant="body2" fontWeight="fontWeightMedium">
-        {currentMonth.format('MMMM YYYY')}
+        {`${adapter.format(currentMonth, 'month')} ${adapter.format(currentMonth, 'year')}`}
       </Typography>
       <Stack spacing={1} direction="row">
         <IconButton onClick={selectNextMonth} title="Next month">

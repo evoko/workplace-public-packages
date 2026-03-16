@@ -1630,7 +1630,6 @@ export const biampTheme = (
         MuiDatePicker: {
           defaultProps: {
             enableAccessibleFieldDOMStructure: false,
-            format: 'YYYY-MM-DD',
             slots: {
               openPickerIcon: CalendarIcon,
             },
@@ -1645,7 +1644,6 @@ export const biampTheme = (
                 sx: { mx: '4px' },
               },
               textField: {
-                placeholder: 'YYYY-MM-DD',
                 sx: {
                   paddingLeft: '0px',
                   '& .MuiInputLabel-root': {
@@ -1667,7 +1665,6 @@ export const biampTheme = (
         },
         MuiTimePicker: {
           defaultProps: {
-            format: 'hh:mm A',
             timeSteps: { minutes: 15 },
             viewRenderers: {
               hours: renderDigitalClockTimeView,
@@ -2072,20 +2069,16 @@ export const biampTheme = (
         MuiBadge: {
           defaultProps: {
             showZero: true,
+            variant: 'rectangle-inline',
           },
           styleOverrides: {
             badge: ({ theme }) => ({
               fontFamily: theme.typography.fontFamily,
-              fontSize: theme.typography.caption.fontSize,
               fontWeight: theme.typography.fontWeightMedium,
               letterSpacing: theme.typography.caption.letterSpacing,
               lineHeight: theme.typography.caption.lineHeight,
               paddingLeft: '8px',
               paddingRight: '8px',
-              borderRadius: '8px',
-              position: 'relative',
-              '--Badge-translateX': 'none',
-              '--Badge-translateY': 'none',
               '.Mui-disabled &': {
                 backgroundColor:
                   theme.palette.mode === 'dark'
@@ -2095,6 +2088,36 @@ export const biampTheme = (
               },
             }),
           },
+          variants: (() => {
+            const rectangle = { borderRadius: '8px' };
+            const round = {
+              borderRadius: '999px',
+              padding: '0px',
+              width: '14px',
+              height: '14px',
+              minWidth: 'auto',
+              fontSize: '0.563rem',
+            };
+            const inline = { position: 'static', transform: 'none' };
+            return [
+              {
+                props: { variant: 'rectangle' },
+                style: { '& .MuiBadge-badge': { ...rectangle } },
+              },
+              {
+                props: { variant: 'round' },
+                style: { '& .MuiBadge-badge': { ...round } },
+              },
+              {
+                props: { variant: 'rectangle-inline' },
+                style: { '& .MuiBadge-badge': { ...rectangle, ...inline } },
+              },
+              {
+                props: { variant: 'round-inline' },
+                style: { '& .MuiBadge-badge': { ...round, ...inline } },
+              },
+            ];
+          })(),
         },
       },
     },

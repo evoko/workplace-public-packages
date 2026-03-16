@@ -2,9 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
+
 import { Stack, Typography } from '@mui/material';
-import dayjs from 'dayjs';
-import 'dayjs/locale/en-gb';
+import { DateTime } from 'luxon';
 import type { DateValidationError } from '@mui/x-date-pickers/models';
 
 const meta: Meta<typeof DatePicker> = {
@@ -13,7 +14,7 @@ const meta: Meta<typeof DatePicker> = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
+      <LocalizationProvider dateAdapter={AdapterLuxon} adapterLocale="en-gb">
         <Story />
       </LocalizationProvider>
     ),
@@ -51,13 +52,13 @@ export const AllStates: Story = {
     <Stack spacing={2} sx={{ maxWidth: 400 }}>
       <Typography variant="h3">DatePicker States</Typography>
       <DatePicker label="Default" />
-      <DatePicker label="With value" defaultValue={dayjs()} />
+      <DatePicker label="With value" defaultValue={DateTime.now()} />
       <DatePicker label="Disabled" disabled />
       <DatePicker label="Read only" readOnly />
       <DatePicker
         label="Error (max today)"
         disableFuture
-        defaultValue={dayjs().add(1, 'day')}
+        defaultValue={DateTime.now().plus({ days: 1 })}
         slotProps={{
           textField: {
             helperText: errorMessages['disableFuture'],

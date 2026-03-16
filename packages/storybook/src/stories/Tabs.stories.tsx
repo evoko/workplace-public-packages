@@ -63,7 +63,13 @@ export const WithBadge: Story = {
             <Tab label="Analytics" />
             <Tab
               label="Users"
-              icon={<Badge color="primary" badgeContent={notifications} />}
+              icon={
+                <Badge
+                  color="primary"
+                  badgeContent={notifications}
+                  variant="rectangle-inline"
+                />
+              }
               iconPosition="end"
             />
           </Tabs>
