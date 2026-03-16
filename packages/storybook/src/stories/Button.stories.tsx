@@ -139,7 +139,12 @@ export const WithIcons: Story = {
           <Button variant="contained" color="error" startIcon={<AddIcon />}>
             Error
           </Button>
-          <Button variant="contained" color="primary" startIcon={<AddIcon />} disabled>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<AddIcon />}
+            disabled
+          >
             Disabled
           </Button>
         </Stack>
@@ -150,7 +155,12 @@ export const WithIcons: Story = {
           <Button variant="contained" color="error" endIcon={<AddIcon />}>
             Error
           </Button>
-          <Button variant="contained" color="primary" endIcon={<AddIcon />} disabled>
+          <Button
+            variant="contained"
+            color="primary"
+            endIcon={<AddIcon />}
+            disabled
+          >
             Disabled
           </Button>
         </Stack>
@@ -158,21 +168,39 @@ export const WithIcons: Story = {
           <Button
             variant="contained"
             color="primary"
-            endIcon={<Badge badgeContent={0} variant="rectangle-inline" color="secondary" />}
+            endIcon={
+              <Badge
+                badgeContent={0}
+                variant="rectangle-inline"
+                color="secondary"
+              />
+            }
           >
             Primary
           </Button>
           <Button
             variant="contained"
             color="error"
-            endIcon={<Badge badgeContent={0} variant="rectangle-inline" color="secondary" />}
+            endIcon={
+              <Badge
+                badgeContent={0}
+                variant="rectangle-inline"
+                color="secondary"
+              />
+            }
           >
             Error
           </Button>
           <Button
             variant="contained"
             color="primary"
-            endIcon={<Badge badgeContent={0} variant="rectangle-inline" color="secondary" />}
+            endIcon={
+              <Badge
+                badgeContent={0}
+                variant="rectangle-inline"
+                color="secondary"
+              />
+            }
             disabled
           >
             Disabled
@@ -189,7 +217,12 @@ export const WithIcons: Story = {
           <Button variant="outlined" color="error" startIcon={<AddIcon />}>
             Error
           </Button>
-          <Button variant="outlined" color="primary" startIcon={<AddIcon />} disabled>
+          <Button
+            variant="outlined"
+            color="primary"
+            startIcon={<AddIcon />}
+            disabled
+          >
             Disabled
           </Button>
         </Stack>
@@ -200,7 +233,12 @@ export const WithIcons: Story = {
           <Button variant="outlined" color="error" endIcon={<AddIcon />}>
             Error
           </Button>
-          <Button variant="outlined" color="primary" endIcon={<AddIcon />} disabled>
+          <Button
+            variant="outlined"
+            color="primary"
+            endIcon={<AddIcon />}
+            disabled
+          >
             Disabled
           </Button>
         </Stack>
@@ -208,21 +246,39 @@ export const WithIcons: Story = {
           <Button
             variant="outlined"
             color="primary"
-            endIcon={<Badge badgeContent={0} variant="rectangle-inline" color="secondary" />}
+            endIcon={
+              <Badge
+                badgeContent={0}
+                variant="rectangle-inline"
+                color="secondary"
+              />
+            }
           >
             Primary
           </Button>
           <Button
             variant="outlined"
             color="error"
-            endIcon={<Badge badgeContent={0} variant="rectangle-inline" color="secondary" />}
+            endIcon={
+              <Badge
+                badgeContent={0}
+                variant="rectangle-inline"
+                color="secondary"
+              />
+            }
           >
             Error
           </Button>
           <Button
             variant="outlined"
             color="primary"
-            endIcon={<Badge badgeContent={0} variant="rectangle-inline" color="secondary" />}
+            endIcon={
+              <Badge
+                badgeContent={0}
+                variant="rectangle-inline"
+                color="secondary"
+              />
+            }
             disabled
           >
             Disabled
@@ -232,18 +288,38 @@ export const WithIcons: Story = {
 
       <Typography variant="h3">Overlay with Icon</Typography>
       <Box sx={{ width: 400 }}>
-      
         <Stack spacing={2} sx={{ mt: 1 }}>
-          <Button variant="overlay" color="primary" fullWidth endIcon={<AddIcon />}>
+          <Button
+            variant="overlay"
+            color="primary"
+            fullWidth
+            endIcon={<AddIcon />}
+          >
             Primary
           </Button>
-          <Button variant="overlay" color="error" fullWidth endIcon={<AddIcon />}>
+          <Button
+            variant="overlay"
+            color="error"
+            fullWidth
+            endIcon={<AddIcon />}
+          >
             Error
           </Button>
-          <Button variant="overlay" color="secondary" fullWidth endIcon={<AddIcon />}>
+          <Button
+            variant="overlay"
+            color="secondary"
+            fullWidth
+            endIcon={<AddIcon />}
+          >
             Secondary
           </Button>
-          <Button variant="overlay" color="primary" fullWidth endIcon={<AddIcon />} disabled>
+          <Button
+            variant="overlay"
+            color="primary"
+            fullWidth
+            endIcon={<AddIcon />}
+            disabled
+          >
             Disabled
           </Button>
         </Stack>
