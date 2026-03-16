@@ -34,6 +34,7 @@ export function SegmentedButton({
         borderRadius: '4px',
         border,
         borderColor: 'divider',
+        lineHeight: 1.5,
         px: 1.5,
         py: 0,
         height: small ? '22px' : '26px',
