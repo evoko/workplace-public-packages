@@ -256,6 +256,17 @@ Use the **Color Mode** toggle in the Storybook toolbar to switch between light a
 
 ## Releasing
 
+### Branch Strategy
+
+| Branch | Tracks | npm dist-tag |
+| ------ | ------ | ------------ |
+| `main` | Current major (e.g. 2.x.y) | `latest` |
+| `1.x` | Previous major (1.x.y) | `v1-latest` |
+
+Active development happens on `main`. When a new major version is released, create a maintenance branch for the previous major (e.g. `1.x`) before merging breaking changes into `main`. Cherry-pick or backport bug fixes and security patches to the maintenance branch as needed.
+
+If you later need to maintain v2 while developing v3, the pattern extends naturally: `main` becomes v3, and you create a `2.x` branch.
+
 ### Tagging a Release
 
 1. Update the `version` field in each package's `package.json` to the new version number.
@@ -264,7 +275,7 @@ Use the **Color Mode** toggle in the Storybook toolbar to switch between light a
 
    ```bash
    git add .
-   git commit -m "Commit message here"
+   git commit -m "vX.Y.Z"
    ```
 
 3. Create an annotated git tag:
@@ -280,12 +291,26 @@ Use the **Color Mode** toggle in the Storybook toolbar to switch between light a
    git push --tags
    ```
 
-Tags follow the format `vX.Y.Z` (e.g., `v0.0.0`).
+Tags follow the format `vX.Y.Z` (e.g., `v1.0.0`).
 
 ### Publishing to npm
 
-After tagging, publish all packages from the repo root:
+After tagging, publish all packages from the repo root. Make sure to use the correct dist-tag for the branch you're publishing from:
 
 ```bash
+# From main (current major) — uses the default "latest" tag
 npm publish -w packages/assets -w packages/styles -w packages/components -w packages/canvas --access public
+
+# From a maintenance branch (e.g. 1.x) — MUST use a custom tag
+npm publish -w packages/assets -w packages/styles -w packages/components -w packages/canvas --access public --tag v1-latest
+```
+
+> **Warning:** Publishing from a maintenance branch without `--tag` will overwrite `latest` and accidentally downgrade everyone running `npm install`.
+
+Consumers get the expected behavior:
+
+```bash
+npm install @bwp-web/styles          # gets current major (latest)
+npm install @bwp-web/styles@1        # gets newest 1.x via semver range
+npm install @bwp-web/styles@v1-latest # explicit dist-tag for 1.x line
 ```
