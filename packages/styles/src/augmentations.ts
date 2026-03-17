@@ -94,6 +94,15 @@ declare module '@mui/material/Typography' {
   }
 }
 
+declare module '@mui/material/Badge' {
+  interface BadgePropsVariantOverrides {
+    rectangle: true;
+    round: true;
+    'rectangle-inline': true;
+    'round-inline': true;
+  }
+}
+
 declare module '@mui/material/IconButton' {
   interface IconButtonOwnProps {
     variant?: 'none' | 'transparent' | 'outlined';

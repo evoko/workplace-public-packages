@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tabs, Tab, Stack, Typography, Box } from '@mui/material';
+import { Tabs, Tab, Stack, Typography, Box, Badge } from '@mui/material';
 
 const meta: Meta<typeof Tabs> = {
   title: 'Styles/Tabs',
@@ -50,19 +50,28 @@ export const Default: Story = {
   },
 };
 
-export const ManyTabs: Story = {
+export const WithBadge: Story = {
   render: () => {
     const [value, setValue] = useState(0);
+    const [notifications, setNotifications] = useState(1);
     return (
       <Stack spacing={2}>
-        <Typography variant="h3">Many Tabs</Typography>
+        <Typography variant="h3">Many Tabs with badge</Typography>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={value} onChange={(_, v) => setValue(v)}>
             <Tab label="Dashboard" />
             <Tab label="Analytics" />
-            <Tab label="Users" />
-            <Tab label="Reports" />
-            <Tab label="Settings" />
+            <Tab
+              label="Users"
+              icon={
+                <Badge
+                  color="primary"
+                  badgeContent={notifications}
+                  variant="rectangle-inline"
+                />
+              }
+              iconPosition="end"
+            />
           </Tabs>
         </Box>
       </Stack>
@@ -73,6 +82,7 @@ export const ManyTabs: Story = {
 export const DisabledTab: Story = {
   render: () => {
     const [value, setValue] = useState(0);
+    const [notifications, setNotifications] = useState(0);
     return (
       <Stack spacing={2}>
         <Typography variant="h3">With Disabled Tab</Typography>
@@ -80,7 +90,12 @@ export const DisabledTab: Story = {
           <Tabs value={value} onChange={(_, v) => setValue(v)}>
             <Tab label="Active" />
             <Tab label="Disabled" disabled />
-            <Tab label="Another Active" />
+            <Tab
+              label="Disabled with badge"
+              icon={<Badge color="primary" badgeContent={notifications} />}
+              iconPosition="end"
+              disabled
+            />
           </Tabs>
         </Box>
       </Stack>

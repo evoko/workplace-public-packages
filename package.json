@@ -1,7 +1,9 @@
 {
   "name": "workplace-public-packages",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
