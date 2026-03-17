@@ -552,6 +552,16 @@ export const biampTheme = (
           styleOverrides: {
             root: {
               boxShadow: `0px 1px 1px 0px ${alpha(colors.black, 0.05)}`,
+              display: 'flex',
+              gap: '8px',
+              '& .MuiButton-startIcon': {
+                marginRight: '0px',
+                marginLeft: '0px',
+              },
+              '& .MuiButton-endIcon': {
+                marginRight: '0px',
+                marginLeft: '0px',
+              },
             },
           },
           variants: [
@@ -585,6 +595,7 @@ export const biampTheme = (
               props: { variant: 'contained', color: 'error' },
               style: {
                 backgroundColor: colors.error.light.main,
+
                 color: colors.white,
                 '&:hover': {
                   backgroundColor: colors.error.dark.main,
@@ -1336,6 +1347,8 @@ export const biampTheme = (
         MuiTabs: {
           styleOverrides: {
             root: {
+              height: 44,
+              minHeight: 44,
               '& .MuiTabs-indicator': {
                 backgroundColor: colors.blue.main,
               },
@@ -1346,8 +1359,6 @@ export const biampTheme = (
               '& .MuiTouchRipple-root': {
                 display: 'none',
               },
-              height: 32,
-              minHeight: 32,
             },
             flexContainer: {
               gap: 20,
@@ -1366,8 +1377,8 @@ export const biampTheme = (
               minWidth: 'auto',
               paddingTop: '0px',
               paddingBottom: '0px',
-              height: 32,
-              minHeight: 32,
+              height: 44,
+              minHeight: 44,
               opacity: 1,
               color: theme.palette.text.primary,
               '&.Mui-selected': {
@@ -1583,7 +1594,11 @@ export const biampTheme = (
             inputRoot: {
               minHeight: '44px',
               height: 'auto',
-              padding: '0 !important',
+              columnGap: '2px !important',
+              paddingTop: 'auto !important',
+              paddingLeft: '12px !important',
+              paddingBottom: 'auto !important',
+              paddingRight: '60px !important',
               borderRadius: '6px',
               '& .MuiOutlinedInput-input': {
                 padding: '10px 14px',
@@ -1593,9 +1608,12 @@ export const biampTheme = (
               },
             },
             input: {
-              minHeight: '44px',
-              padding: '10px 14px',
+              width: '100px !important',
+              height: 'auto',
+              padding: '0px !important',
+              paddingRight: '8px !important',
               boxSizing: 'border-box',
+              minWidth: '60px !important',
             },
             endAdornment: {
               '& .MuiAutocomplete-clearIndicator': {
@@ -1630,7 +1648,6 @@ export const biampTheme = (
         MuiDatePicker: {
           defaultProps: {
             enableAccessibleFieldDOMStructure: false,
-            format: 'YYYY-MM-DD',
             slots: {
               openPickerIcon: CalendarIcon,
             },
@@ -1645,7 +1662,6 @@ export const biampTheme = (
                 sx: { mx: '4px' },
               },
               textField: {
-                placeholder: 'YYYY-MM-DD',
                 sx: {
                   paddingLeft: '0px',
                   '& .MuiInputLabel-root': {
@@ -1667,7 +1683,6 @@ export const biampTheme = (
         },
         MuiTimePicker: {
           defaultProps: {
-            format: 'hh:mm A',
             timeSteps: { minutes: 15 },
             viewRenderers: {
               hours: renderDigitalClockTimeView,
@@ -2072,20 +2087,16 @@ export const biampTheme = (
         MuiBadge: {
           defaultProps: {
             showZero: true,
+            variant: 'rectangle-inline',
           },
           styleOverrides: {
             badge: ({ theme }) => ({
               fontFamily: theme.typography.fontFamily,
-              fontSize: theme.typography.caption.fontSize,
               fontWeight: theme.typography.fontWeightMedium,
               letterSpacing: theme.typography.caption.letterSpacing,
               lineHeight: theme.typography.caption.lineHeight,
               paddingLeft: '8px',
               paddingRight: '8px',
-              borderRadius: '8px',
-              position: 'relative',
-              '--Badge-translateX': 'none',
-              '--Badge-translateY': 'none',
               '.Mui-disabled &': {
                 backgroundColor:
                   theme.palette.mode === 'dark'
@@ -2095,6 +2106,36 @@ export const biampTheme = (
               },
             }),
           },
+          variants: (() => {
+            const rectangle = { borderRadius: '8px' };
+            const round = {
+              borderRadius: '999px',
+              padding: '0px',
+              width: '14px',
+              height: '14px',
+              minWidth: 'auto',
+              fontSize: '0.563rem',
+            };
+            const inline = { position: 'static', transform: 'none' };
+            return [
+              {
+                props: { variant: 'rectangle' },
+                style: { '& .MuiBadge-badge': { ...rectangle } },
+              },
+              {
+                props: { variant: 'round' },
+                style: { '& .MuiBadge-badge': { ...round } },
+              },
+              {
+                props: { variant: 'rectangle-inline' },
+                style: { '& .MuiBadge-badge': { ...rectangle, ...inline } },
+              },
+              {
+                props: { variant: 'round-inline' },
+                style: { '& .MuiBadge-badge': { ...round, ...inline } },
+              },
+            ];
+          })(),
         },
       },
     },
