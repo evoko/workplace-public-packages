@@ -165,7 +165,7 @@ npm install @bwp-web/canvas
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
 - `@mui/material` >= 7.0.0
-- `@bwp-web/styles` >= 1.0.0
+- `@bwp-web/styles` >= 1.0.1
 
 ### Quick Start
 
