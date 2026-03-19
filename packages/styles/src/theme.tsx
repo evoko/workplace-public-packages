@@ -2087,7 +2087,7 @@ export const biampTheme = (
         MuiBadge: {
           defaultProps: {
             showZero: true,
-            variant: 'rectangle-inline',
+            variant: 'round',
           },
           styleOverrides: {
             badge: ({ theme }) => ({
@@ -2095,8 +2095,9 @@ export const biampTheme = (
               fontWeight: theme.typography.fontWeightMedium,
               letterSpacing: theme.typography.caption.letterSpacing,
               lineHeight: theme.typography.caption.lineHeight,
-              paddingLeft: '8px',
-              paddingRight: '8px',
+              '&.MuiBadge-dot': {
+                padding: '0px',
+              },
               '.Mui-disabled &': {
                 backgroundColor:
                   theme.palette.mode === 'dark'
@@ -2107,7 +2108,11 @@ export const biampTheme = (
             }),
           },
           variants: (() => {
-            const rectangle = { borderRadius: '8px' };
+            const rectangle = {
+              borderRadius: '8px',
+              paddingLeft: '8px',
+              paddingRight: '8px',
+            };
             const round = {
               borderRadius: '999px',
               padding: '0px',

@@ -46,6 +46,7 @@ export const Playground: Story = {
     color: 'primary',
     max: 99,
     invisible: false,
+    variant: 'rectangle-inline',
   },
 };
 
@@ -53,30 +54,55 @@ const COLORS = ['primary', 'error', 'warning', 'success', 'info'] as const;
 
 export const Variants: Story = {
   render: () => (
-    <Stack spacing={4}>
+    <Stack spacing={4} sx={{ paddingBottom: '40px' }}>
       {(
         [
           {
-            variant: 'rectangle',
-            label: 'Rectangle (wraps another item)',
+            variant: 'standard',
+            label: 'Standard',
+            description: 'Floats on another component',
             inline: false,
           },
           {
-            variant: 'round',
-            label: 'Round (wraps another item)',
+            variant: 'dot',
+            label: 'Dot',
+            description: 'Floats on another component',
+            inline: false,
+          },
+          {
+            variant: 'rectangle',
+            label: 'Rectangle',
+            description: 'Floats on another component',
             inline: false,
           },
           {
             variant: 'rectangle-inline',
             label: 'Rectangle inline',
+            description: 'Block behavior - no float',
             inline: true,
           },
-          { variant: 'round-inline', label: 'Round inline', inline: true },
+          {
+            variant: 'round',
+            label: 'Round',
+            description: 'Floats on another component',
+            inline: false,
+          },
+          {
+            variant: 'round-inline',
+            label: 'Round inline',
+            description: 'Block behavior - no float',
+            inline: true,
+          },
         ] as const
-      ).map(({ variant, label, inline }) => (
-        <Stack key={variant} spacing={1}>
-          <Typography variant="subtitle2" sx={{ paddingBottom: '8px' }}>
-            {label}
+      ).map(({ variant, label, description, inline }) => (
+        <Stack key={variant} spacing={0}>
+          <Typography variant="subtitle2">{label}</Typography>
+          <Typography
+            variant="caption"
+            color="textSecondary"
+            sx={{ paddingBottom: '20px' }}
+          >
+            {description}
           </Typography>
           <Stack
             direction="row"
