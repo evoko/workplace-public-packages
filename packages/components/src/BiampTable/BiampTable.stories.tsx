@@ -321,22 +321,80 @@ type Story = StoryObj;
 // 1. Default — minimal table
 // ---------------------------------------------------------------------------
 
+function DefaultDemo() {
+  const table = useReactTable({
+    data: rows5,
+    columns,
+    getCoreRowModel: coreRowModel,
+  });
+
+  return <BiampTable table={table} />;
+}
+
 /** Minimal table with no extras — just data and columns. */
 export const Default: Story = {
-  render: () => {
-    const table = useReactTable({
-      data: rows5,
-      columns,
-      getCoreRowModel: coreRowModel,
-    });
-
-    return <BiampTable table={table} />;
-  },
+  render: () => <DefaultDemo />,
 };
 
 // ---------------------------------------------------------------------------
 // 2. Interactive — all client-side features
 // ---------------------------------------------------------------------------
+
+function InteractiveDemo() {
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const selectedCount = Object.keys(rowSelection).length;
+
+  const table = useReactTable({
+    data: rows,
+    columns,
+    getCoreRowModel: coreRowModel,
+    getSortedRowModel: sortedRowModel,
+    getPaginationRowModel: paginationRowModel,
+    getRowId: (row) => String(row.id),
+    enableRowSelection: (row) => row.original.status === 'Available',
+    state: { sorting, rowSelection, columnVisibility },
+    onSortingChange: setSorting,
+    onRowSelectionChange: setRowSelection,
+    onColumnVisibilityChange: setColumnVisibility,
+    initialState: { pagination: { pageSize: 5, pageIndex: 0 } },
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Typography variant="body2">
+          {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
+          only Available rooms are selectable &amp; clickable
+        </Typography>
+        <Box>
+          <BiampTableToolbarActionButton
+            label="Toggle column visibility"
+            icon={<ColumnsIcon variant="xs" />}
+            badgeContent={getColumnVisibilityDirtyCount(table)}
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+              setAnchorEl(e.currentTarget)
+            }
+          />
+          <BiampTableColumnVisibility
+            table={table}
+            anchorEl={anchorEl}
+            onClose={() => setAnchorEl(null)}
+          />
+        </Box>
+      </Box>
+      <BiampTable
+        table={table}
+        enableRowSelection
+        onRowClick={(row) => console.log('Row clicked:', row)}
+        isRowClickable={(row: Room) => row.status === 'Available'}
+      />
+      <BiampTablePagination table={table} rowsPerPageOptions={[5, 10, 15]} />
+    </Stack>
+  );
+}
 
 /**
  * All client-side interactive features in one place: sorting, pagination,
@@ -344,63 +402,7 @@ export const Default: Story = {
  * Only "Available" rooms are selectable and clickable.
  */
 export const Interactive: Story = {
-  render: () => {
-    const [sorting, setSorting] = useState<SortingState>([]);
-    const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
-      {},
-    );
-    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-    const selectedCount = Object.keys(rowSelection).length;
-
-    const table = useReactTable({
-      data: rows,
-      columns,
-      getCoreRowModel: coreRowModel,
-      getSortedRowModel: sortedRowModel,
-      getPaginationRowModel: paginationRowModel,
-      getRowId: (row) => String(row.id),
-      enableRowSelection: (row) => row.original.status === 'Available',
-      state: { sorting, rowSelection, columnVisibility },
-      onSortingChange: setSorting,
-      onRowSelectionChange: setRowSelection,
-      onColumnVisibilityChange: setColumnVisibility,
-      initialState: { pagination: { pageSize: 5, pageIndex: 0 } },
-    });
-
-    return (
-      <Stack spacing={2} height="100%">
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Typography variant="body2">
-            {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
-            only Available rooms are selectable &amp; clickable
-          </Typography>
-          <Box>
-            <BiampTableToolbarActionButton
-              label="Toggle column visibility"
-              icon={<ColumnsIcon variant="xs" />}
-              badgeContent={getColumnVisibilityDirtyCount(table)}
-              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                setAnchorEl(e.currentTarget)
-              }
-            />
-            <BiampTableColumnVisibility
-              table={table}
-              anchorEl={anchorEl}
-              onClose={() => setAnchorEl(null)}
-            />
-          </Box>
-        </Box>
-        <BiampTable
-          table={table}
-          enableRowSelection
-          onRowClick={(row) => console.log('Row clicked:', row)}
-          isRowClickable={(row: Room) => row.status === 'Available'}
-        />
-        <BiampTablePagination table={table} rowsPerPageOptions={[5, 10, 15]} />
-      </Stack>
-    );
-  },
+  render: () => <InteractiveDemo />,
 };
 
 // ---------------------------------------------------------------------------
@@ -422,113 +424,115 @@ const stateLabels: [TableState, string][] = [
   ['empty-custom', 'Empty (custom)'],
 ];
 
+function StatesDemo() {
+  const [state, setState] = useState<TableState>('loading');
+
+  const data = state === 'loading' ? rows5 : emptyRows;
+
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: coreRowModel,
+  });
+
+  const stateProps: Record<
+    TableState,
+    {
+      loading?: boolean;
+      error?: boolean | React.ReactNode;
+      empty?: boolean | React.ReactNode;
+    }
+  > = {
+    loading: { loading: true },
+    error: { error: true },
+    'error-custom': {
+      error: (
+        <BiampTableErrorState description="Failed to load rooms. Please try again." />
+      ),
+    },
+    empty: {},
+    'empty-custom': {
+      empty: (
+        <BiampTableEmptyState description="No rooms match your filters." />
+      ),
+    },
+  };
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Stack direction="row" spacing={1} flexWrap="wrap">
+        {stateLabels.map(([value, label]) => (
+          <Chip
+            key={value}
+            label={label}
+            variant={state === value ? 'filled' : 'outlined'}
+            color={state === value ? 'primary' : 'default'}
+            onClick={() => setState(value)}
+          />
+        ))}
+      </Stack>
+      <BiampTable table={table} {...stateProps[state]} />
+    </Stack>
+  );
+}
+
 /** Toggle between loading, error, and empty states (default and custom variants). */
 export const States: Story = {
-  render: () => {
-    const [state, setState] = useState<TableState>('loading');
-
-    const data = state === 'loading' ? rows5 : emptyRows;
-
-    const table = useReactTable({
-      data,
-      columns,
-      getCoreRowModel: coreRowModel,
-    });
-
-    const stateProps: Record<
-      TableState,
-      {
-        loading?: boolean;
-        error?: boolean | React.ReactNode;
-        empty?: boolean | React.ReactNode;
-      }
-    > = {
-      loading: { loading: true },
-      error: { error: true },
-      'error-custom': {
-        error: (
-          <BiampTableErrorState description="Failed to load rooms. Please try again." />
-        ),
-      },
-      empty: {},
-      'empty-custom': {
-        empty: (
-          <BiampTableEmptyState description="No rooms match your filters." />
-        ),
-      },
-    };
-
-    return (
-      <Stack spacing={2} height="100%">
-        <Stack direction="row" spacing={1} flexWrap="wrap">
-          {stateLabels.map(([value, label]) => (
-            <Chip
-              key={value}
-              label={label}
-              variant={state === value ? 'filled' : 'outlined'}
-              color={state === value ? 'primary' : 'default'}
-              onClick={() => setState(value)}
-            />
-          ))}
-        </Stack>
-        <BiampTable table={table} {...stateProps[state]} />
-      </Stack>
-    );
-  },
+  render: () => <StatesDemo />,
 };
 
 // ---------------------------------------------------------------------------
 // 4. StickyColumns — large dataset with sticky action column
 // ---------------------------------------------------------------------------
 
+function StickyColumnsDemo() {
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const table = useReactTable({
+    data: deviceRows,
+    columns: deviceColumnsWithAction,
+    getCoreRowModel: coreRowModel,
+    getSortedRowModel: sortedRowModel,
+    state: { sorting, columnVisibility },
+    onSortingChange: setSorting,
+    onColumnVisibilityChange: setColumnVisibility,
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Typography variant="body2">
+          100 rows, 10 columns + sticky action column. Scroll to test.
+        </Typography>
+        <Box>
+          <BiampTableToolbarActionButton
+            label="Toggle column visibility"
+            icon={<ColumnsIcon variant="xs" />}
+            badgeContent={getColumnVisibilityDirtyCount(table)}
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+              setAnchorEl(e.currentTarget)
+            }
+          />
+          <BiampTableColumnVisibility
+            table={table}
+            anchorEl={anchorEl}
+            onClose={() => setAnchorEl(null)}
+          />
+        </Box>
+      </Box>
+      <BiampTable table={table} enableRowSelection />
+    </Stack>
+  );
+}
+
 /**
  * 100 rows × 10 columns with a sticky action column pinned to the right.
  * Scroll horizontally and vertically to test scrolling behaviour.
  */
 export const StickyColumns: Story = {
-  render: () => {
-    const [sorting, setSorting] = useState<SortingState>([]);
-    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
-      {},
-    );
-    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
-    const table = useReactTable({
-      data: deviceRows,
-      columns: deviceColumnsWithAction,
-      getCoreRowModel: coreRowModel,
-      getSortedRowModel: sortedRowModel,
-      state: { sorting, columnVisibility },
-      onSortingChange: setSorting,
-      onColumnVisibilityChange: setColumnVisibility,
-    });
-
-    return (
-      <Stack spacing={2} height="100%">
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Typography variant="body2">
-            100 rows, 10 columns + sticky action column. Scroll to test.
-          </Typography>
-          <Box>
-            <BiampTableToolbarActionButton
-              label="Toggle column visibility"
-              icon={<ColumnsIcon variant="xs" />}
-              badgeContent={getColumnVisibilityDirtyCount(table)}
-              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                setAnchorEl(e.currentTarget)
-              }
-            />
-            <BiampTableColumnVisibility
-              table={table}
-              anchorEl={anchorEl}
-              onClose={() => setAnchorEl(null)}
-            />
-          </Box>
-        </Box>
-        <BiampTable table={table} enableRowSelection />
-      </Stack>
-    );
-  },
+  render: () => <StickyColumnsDemo />,
 };
 
 // ---------------------------------------------------------------------------
@@ -575,122 +579,122 @@ function simulateFetch(params: {
   });
 }
 
+function WithToolbarDemo() {
+  const [search, setSearch] = useState('');
+  const [filterStatus, setFilterStatus] = useState('');
+  const [exporting, setExporting] = useState(false);
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 5,
+  });
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const [data, setData] = useState<Room[]>([]);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const fetchIdRef = useRef(0);
+
+  const debouncedFetch = useDebouncedCallback(() => {
+    const id = ++fetchIdRef.current;
+    setLoading(true);
+    simulateFetch({ search, status: filterStatus, sorting, pagination }).then(
+      (result) => {
+        if (id !== fetchIdRef.current) return;
+        setData(result.data);
+        setTotal(result.total);
+        setLoading(false);
+      },
+    );
+  });
+
+  useEffect(() => {
+    debouncedFetch();
+  }, [search, filterStatus, sorting, pagination, debouncedFetch]);
+
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: coreRowModel,
+    manualSorting: true,
+    manualPagination: true,
+    rowCount: total,
+    state: { sorting, pagination, columnVisibility },
+    onSortingChange: setSorting,
+    onPaginationChange: setPagination,
+    onColumnVisibilityChange: setColumnVisibility,
+  });
+
+  const activeFilterCount = filterStatus ? 1 : 0;
+
+  const handleExport = () => {
+    setExporting(true);
+    setTimeout(() => setExporting(false), 2000);
+  };
+
+  return (
+    <Stack spacing={2} height="100%">
+      <BiampTableToolbar>
+        <BiampTableToolbarActions>
+          <BiampTableToolbarFilters
+            activeFilterCount={activeFilterCount}
+            onReset={() => setFilterStatus('')}
+          >
+            <FormControl fullWidth size="small">
+              <InputLabel>Status</InputLabel>
+              <Select
+                value={filterStatus}
+                label="Status"
+                onChange={(e) => setFilterStatus(e.target.value)}
+              >
+                <MenuItem value="">All</MenuItem>
+                <MenuItem value="Available">Available</MenuItem>
+                <MenuItem value="Occupied">Occupied</MenuItem>
+                <MenuItem value="Maintenance">Maintenance</MenuItem>
+              </Select>
+            </FormControl>
+          </BiampTableToolbarFilters>
+          <BiampTableToolbarActionButton
+            label="Toggle column visibility"
+            icon={<ColumnsIcon variant="xs" />}
+            badgeContent={getColumnVisibilityDirtyCount(table)}
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+              setAnchorEl(e.currentTarget)
+            }
+          />
+          <BiampTableColumnVisibility
+            table={table}
+            anchorEl={anchorEl}
+            onClose={() => setAnchorEl(null)}
+          />
+          <BiampTableToolbarExport
+            onExport={handleExport}
+            loading={exporting}
+          />
+          <BiampTableToolbarSearch
+            onChange={setSearch}
+            placeholder="Search rooms..."
+            expandable
+          />
+        </BiampTableToolbarActions>
+      </BiampTableToolbar>
+      <BiampTable table={table} loading={loading} />
+      <BiampTablePagination
+        table={table}
+        rowsPerPageOptions={[5, 10, 15]}
+        loading={loading}
+      />
+    </Stack>
+  );
+}
+
 /**
  * Full server-side demo with toolbar: search (debounced), filter drawer,
  * column visibility, export button, pagination, and loading states.
  */
 export const WithToolbar: Story = {
-  render: () => {
-    const [search, setSearch] = useState('');
-    const [filterStatus, setFilterStatus] = useState('');
-    const [exporting, setExporting] = useState(false);
-    const [sorting, setSorting] = useState<SortingState>([]);
-    const [pagination, setPagination] = useState<PaginationState>({
-      pageIndex: 0,
-      pageSize: 5,
-    });
-    const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
-      {},
-    );
-    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
-    const [data, setData] = useState<Room[]>([]);
-    const [total, setTotal] = useState(0);
-    const [loading, setLoading] = useState(true);
-    const fetchIdRef = useRef(0);
-
-    const debouncedFetch = useDebouncedCallback(() => {
-      const id = ++fetchIdRef.current;
-      setLoading(true);
-      simulateFetch({ search, status: filterStatus, sorting, pagination }).then(
-        (result) => {
-          if (id !== fetchIdRef.current) return;
-          setData(result.data);
-          setTotal(result.total);
-          setLoading(false);
-        },
-      );
-    });
-
-    useEffect(() => {
-      debouncedFetch();
-    }, [search, filterStatus, sorting, pagination, debouncedFetch]);
-
-    const table = useReactTable({
-      data,
-      columns,
-      getCoreRowModel: coreRowModel,
-      manualSorting: true,
-      manualPagination: true,
-      rowCount: total,
-      state: { sorting, pagination, columnVisibility },
-      onSortingChange: setSorting,
-      onPaginationChange: setPagination,
-      onColumnVisibilityChange: setColumnVisibility,
-    });
-
-    const activeFilterCount = filterStatus ? 1 : 0;
-
-    const handleExport = () => {
-      setExporting(true);
-      setTimeout(() => setExporting(false), 2000);
-    };
-
-    return (
-      <Stack spacing={2} height="100%">
-        <BiampTableToolbar>
-          <BiampTableToolbarActions>
-            <BiampTableToolbarFilters
-              activeFilterCount={activeFilterCount}
-              onReset={() => setFilterStatus('')}
-            >
-              <FormControl fullWidth size="small">
-                <InputLabel>Status</InputLabel>
-                <Select
-                  value={filterStatus}
-                  label="Status"
-                  onChange={(e) => setFilterStatus(e.target.value)}
-                >
-                  <MenuItem value="">All</MenuItem>
-                  <MenuItem value="Available">Available</MenuItem>
-                  <MenuItem value="Occupied">Occupied</MenuItem>
-                  <MenuItem value="Maintenance">Maintenance</MenuItem>
-                </Select>
-              </FormControl>
-            </BiampTableToolbarFilters>
-            <BiampTableToolbarActionButton
-              label="Toggle column visibility"
-              icon={<ColumnsIcon variant="xs" />}
-              badgeContent={getColumnVisibilityDirtyCount(table)}
-              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                setAnchorEl(e.currentTarget)
-              }
-            />
-            <BiampTableColumnVisibility
-              table={table}
-              anchorEl={anchorEl}
-              onClose={() => setAnchorEl(null)}
-            />
-            <BiampTableToolbarExport
-              onExport={handleExport}
-              loading={exporting}
-            />
-            <BiampTableToolbarSearch
-              onChange={setSearch}
-              placeholder="Search rooms..."
-              expandable
-            />
-          </BiampTableToolbarActions>
-        </BiampTableToolbar>
-        <BiampTable table={table} loading={loading} />
-        <BiampTablePagination
-          table={table}
-          rowsPerPageOptions={[5, 10, 15]}
-          loading={loading}
-        />
-      </Stack>
-    );
-  },
+  render: () => <WithToolbarDemo />,
 };
 
 // ---------------------------------------------------------------------------
@@ -930,31 +934,33 @@ const buildingRows: Building[] = [
   },
 ];
 
+function ExpandableDemo() {
+  const [expanded, setExpanded] = useState<ExpandedState>({});
+
+  const table = useReactTable({
+    data: buildingRows,
+    columns: buildingColumns,
+    getCoreRowModel: coreRowModel,
+    getExpandedRowModel: expandedRowModel,
+    getSubRows: (row) => row.children,
+    getRowId: (row) => String(row.id),
+    state: { expanded },
+    onExpandedChange: setExpanded,
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Typography variant="body2">
+        Click the chevron to expand/collapse floor groups.
+      </Typography>
+      <BiampTable table={table} enableExpanding />
+    </Stack>
+  );
+}
+
 /** Expandable rows with children. Click the chevron to expand/collapse floor groups. */
 export const Expandable: Story = {
-  render: () => {
-    const [expanded, setExpanded] = useState<ExpandedState>({});
-
-    const table = useReactTable({
-      data: buildingRows,
-      columns: buildingColumns,
-      getCoreRowModel: coreRowModel,
-      getExpandedRowModel: expandedRowModel,
-      getSubRows: (row) => row.children,
-      getRowId: (row) => String(row.id),
-      state: { expanded },
-      onExpandedChange: setExpanded,
-    });
-
-    return (
-      <Stack spacing={2} height="100%">
-        <Typography variant="body2">
-          Click the chevron to expand/collapse floor groups.
-        </Typography>
-        <BiampTable table={table} enableExpanding />
-      </Stack>
-    );
-  },
+  render: () => <ExpandableDemo />,
 };
 
 // ---------------------------------------------------------------------------
@@ -1052,82 +1058,86 @@ const longTextRows: LongTextRoom[] = [
   },
 ];
 
+function TextTruncationDemo() {
+  const table = useReactTable({
+    data: longTextRows,
+    columns: longTextColumns,
+    getCoreRowModel: coreRowModel,
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Typography variant="body2">
+        Hover over truncated cells (with &hellip;) to see the full text in a
+        tooltip. The table is constrained to 700px to force truncation.
+      </Typography>
+      <BiampTable table={table} />
+    </Stack>
+  );
+}
+
 /**
  * Demonstrates automatic text truncation with hover tooltips.
  * Cells with long text show ellipsis and reveal the full content in a tooltip on hover.
  * The table is constrained to 700px width to force truncation.
  */
 export const TextTruncation: Story = {
-  render: () => {
-    const table = useReactTable({
-      data: longTextRows,
-      columns: longTextColumns,
-      getCoreRowModel: coreRowModel,
-    });
-
-    return (
-      <Stack spacing={2} height="100%">
-        <Typography variant="body2">
-          Hover over truncated cells (with &hellip;) to see the full text in a
-          tooltip. The table is constrained to 700px to force truncation.
-        </Typography>
-        <BiampTable table={table} />
-      </Stack>
-    );
-  },
+  render: () => <TextTruncationDemo />,
 };
+
+function ExpandableWithSelectionDemo() {
+  const [expanded, setExpanded] = useState<ExpandedState>({});
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+  const [selectChildrenWithParent, setSelectChildrenWithParent] =
+    useState(true);
+  const selectedCount = Object.keys(rowSelection).length;
+
+  const table = useReactTable({
+    data: buildingRows,
+    columns: buildingColumns,
+    getCoreRowModel: coreRowModel,
+    getExpandedRowModel: expandedRowModel,
+    getSubRows: (row) => row.children,
+    getRowId: (row) => String(row.id),
+    enableRowSelection: (row) => row.original.status === 'Available',
+    state: { expanded, rowSelection },
+    onExpandedChange: setExpanded,
+    onRowSelectionChange: setRowSelection,
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Stack direction="row" spacing={2} alignItems="center">
+        <Typography variant="body2">
+          {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
+          only Available rows are selectable &amp; clickable
+        </Typography>
+        <Chip
+          label={selectChildrenWithParent ? 'Cascade: ON' : 'Cascade: OFF'}
+          color={selectChildrenWithParent ? 'primary' : 'default'}
+          variant={selectChildrenWithParent ? 'filled' : 'outlined'}
+          onClick={() => {
+            setSelectChildrenWithParent((prev) => !prev);
+            setRowSelection({});
+          }}
+        />
+      </Stack>
+      <BiampTable
+        table={table}
+        enableExpanding
+        enableRowSelection
+        selectChildrenWithParent={selectChildrenWithParent}
+        onRowClick={(row) => console.log('Row clicked:', row)}
+        isRowClickable={(row: Building) => row.status === 'Available'}
+        getRowLabel={(row: Building) => row.name}
+      />
+    </Stack>
+  );
+}
 
 /** Expandable rows combined with row selection and row click. Only "Available" rows are selectable and clickable. */
 export const ExpandableWithSelection: Story = {
-  render: () => {
-    const [expanded, setExpanded] = useState<ExpandedState>({});
-    const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
-    const [selectChildrenWithParent, setSelectChildrenWithParent] =
-      useState(true);
-    const selectedCount = Object.keys(rowSelection).length;
-
-    const table = useReactTable({
-      data: buildingRows,
-      columns: buildingColumns,
-      getCoreRowModel: coreRowModel,
-      getExpandedRowModel: expandedRowModel,
-      getSubRows: (row) => row.children,
-      getRowId: (row) => String(row.id),
-      enableRowSelection: (row) => row.original.status === 'Available',
-      state: { expanded, rowSelection },
-      onExpandedChange: setExpanded,
-      onRowSelectionChange: setRowSelection,
-    });
-
-    return (
-      <Stack spacing={2} height="100%">
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Typography variant="body2">
-            {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
-            only Available rows are selectable &amp; clickable
-          </Typography>
-          <Chip
-            label={selectChildrenWithParent ? 'Cascade: ON' : 'Cascade: OFF'}
-            color={selectChildrenWithParent ? 'primary' : 'default'}
-            variant={selectChildrenWithParent ? 'filled' : 'outlined'}
-            onClick={() => {
-              setSelectChildrenWithParent((prev) => !prev);
-              setRowSelection({});
-            }}
-          />
-        </Stack>
-        <BiampTable
-          table={table}
-          enableExpanding
-          enableRowSelection
-          selectChildrenWithParent={selectChildrenWithParent}
-          onRowClick={(row) => console.log('Row clicked:', row)}
-          isRowClickable={(row: Building) => row.status === 'Available'}
-          getRowLabel={(row: Building) => row.name}
-        />
-      </Stack>
-    );
-  },
+  render: () => <ExpandableWithSelectionDemo />,
 };
 
 // ---------------------------------------------------------------------------
@@ -1198,108 +1208,144 @@ function simulateServerFetch(params: {
   });
 }
 
+function ServerSideHookDemo() {
+  const [search, setSearch] = useState('');
+  const [order, setOrder] = useState<
+    ServerSideOrder<RoomOrderField> | undefined
+  >();
+  const [page, setPage] = useState(0);
+  const [columnVisibility, setColumnVisibility] = useState<
+    ColumnVisibility | undefined
+  >();
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const [data, setData] = useState<Room[]>([]);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const fetchIdRef = useRef(0);
+
+  const debouncedFetch = useDebouncedCallback(() => {
+    const id = ++fetchIdRef.current;
+    setLoading(true);
+    simulateServerFetch({ search, order, page, pageSize: 5 }).then((result) => {
+      if (id !== fetchIdRef.current) return;
+      setData(result.data);
+      setTotal(result.total);
+      setLoading(false);
+    });
+  });
+
+  useEffect(() => {
+    debouncedFetch();
+  }, [search, order, page, debouncedFetch]);
+
+  // This is the entire table setup — no useMemo blocks, no onChange handlers.
+  const table = useBiampServerSideTable<Room, RoomOrderField>({
+    data,
+    columns: serverSideColumns,
+    getRowId: (row) => String(row.id),
+    order,
+    onOrderChange: (next) => {
+      setOrder(next);
+      setPage(0);
+    },
+    page,
+    rowsPerPage: 5,
+    onPageChange: setPage,
+    rowCount: total,
+    columnVisibility,
+    onColumnVisibilityChange: setColumnVisibility,
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Typography variant="body2">
+        Uses <code>useBiampServerSideTable</code> — compare with the WithToolbar
+        story that uses raw <code>useReactTable</code>.
+      </Typography>
+      <BiampTableToolbar>
+        <BiampTableToolbarActions>
+          <BiampTableToolbarActionButton
+            label="Toggle column visibility"
+            icon={<ColumnsIcon variant="xs" />}
+            badgeContent={getColumnVisibilityDirtyCount(table)}
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+              setAnchorEl(e.currentTarget)
+            }
+          />
+          <BiampTableColumnVisibility
+            table={table}
+            anchorEl={anchorEl}
+            onClose={() => setAnchorEl(null)}
+          />
+          <BiampTableToolbarSearch
+            onChange={(v) => {
+              setSearch(v);
+              setPage(0);
+            }}
+            placeholder="Search rooms..."
+            expandable
+          />
+        </BiampTableToolbarActions>
+      </BiampTableToolbar>
+      <BiampTable table={table} loading={loading} />
+      <BiampTablePagination
+        table={table}
+        rowsPerPageOptions={[5, 10, 15]}
+        loading={loading}
+      />
+    </Stack>
+  );
+}
+
 /**
  * Demonstrates `useBiampServerSideTable` — the hook that replaces ~40 lines
  * of boilerplate per table. Compare with the `WithToolbar` story which uses
  * raw `useReactTable`.
  */
 export const ServerSideHook: Story = {
-  render: () => {
-    const [search, setSearch] = useState('');
-    const [order, setOrder] = useState<
-      ServerSideOrder<RoomOrderField> | undefined
-    >();
-    const [page, setPage] = useState(0);
-    const [columnVisibility, setColumnVisibility] = useState<
-      ColumnVisibility | undefined
-    >();
-    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
-
-    const [data, setData] = useState<Room[]>([]);
-    const [total, setTotal] = useState(0);
-    const [loading, setLoading] = useState(true);
-    const fetchIdRef = useRef(0);
-
-    const debouncedFetch = useDebouncedCallback(() => {
-      const id = ++fetchIdRef.current;
-      setLoading(true);
-      simulateServerFetch({ search, order, page, pageSize: 5 }).then(
-        (result) => {
-          if (id !== fetchIdRef.current) return;
-          setData(result.data);
-          setTotal(result.total);
-          setLoading(false);
-        },
-      );
-    });
-
-    useEffect(() => {
-      debouncedFetch();
-    }, [search, order, page, debouncedFetch]);
-
-    // This is the entire table setup — no useMemo blocks, no onChange handlers.
-    const table = useBiampServerSideTable<Room, RoomOrderField>({
-      data,
-      columns: serverSideColumns,
-      getRowId: (row) => String(row.id),
-      order,
-      onOrderChange: (next) => {
-        setOrder(next);
-        setPage(0);
-      },
-      page,
-      rowsPerPage: 5,
-      onPageChange: setPage,
-      rowCount: total,
-      columnVisibility,
-      onColumnVisibilityChange: setColumnVisibility,
-    });
-
-    return (
-      <Stack spacing={2} height="100%">
-        <Typography variant="body2">
-          Uses <code>useBiampServerSideTable</code> — compare with the
-          WithToolbar story that uses raw <code>useReactTable</code>.
-        </Typography>
-        <BiampTableToolbar>
-          <BiampTableToolbarActions>
-            <BiampTableToolbarActionButton
-              label="Toggle column visibility"
-              icon={<ColumnsIcon variant="xs" />}
-              badgeContent={getColumnVisibilityDirtyCount(table)}
-              onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-                setAnchorEl(e.currentTarget)
-              }
-            />
-            <BiampTableColumnVisibility
-              table={table}
-              anchorEl={anchorEl}
-              onClose={() => setAnchorEl(null)}
-            />
-            <BiampTableToolbarSearch
-              onChange={(v) => {
-                setSearch(v);
-                setPage(0);
-              }}
-              placeholder="Search rooms..."
-              expandable
-            />
-          </BiampTableToolbarActions>
-        </BiampTableToolbar>
-        <BiampTable table={table} loading={loading} />
-        <BiampTablePagination
-          table={table}
-          rowsPerPageOptions={[5, 10, 15]}
-          loading={loading}
-        />
-      </Stack>
-    );
-  },
+  render: () => <ServerSideHookDemo />,
 };
 
 // ---------------------------------------------------------------------------
 // 10. ServerSideExpandableWithSelection — useBiampServerSideTable + expand + select
 // ---------------------------------------------------------------------------
+
+function ServerSideExpandableWithSelectionDemo() {
+  const [expanded, setExpanded] = useState<ExpandedState>({});
+  const [selectedRowIds, setSelectedRowIds] = useState<string[]>([]);
+
+  const table = useBiampServerSideTable<Building>({
+    data: buildingRows,
+    columns: buildingColumns,
+    getRowId: (row) => String(row.id),
+    expanded,
+    onExpandedChange: setExpanded,
+    getSubRows: (row) => row.children,
+    selectedRowIds,
+    onSelectedRowIdsChange: setSelectedRowIds,
+    enableRowSelection: (row) => row.original.status === 'Available',
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Typography variant="body2">
+        Uses <code>useBiampServerSideTable</code> with expanding + selection.{' '}
+        {selectedRowIds.length} row
+        {selectedRowIds.length !== 1 ? 's' : ''} selected. Open DevTools
+        Performance tab and click checkboxes to profile.
+      </Typography>
+      <BiampTable
+        table={table}
+        enableExpanding
+        enableRowSelection
+        onRowClick={(row) => console.log('Row clicked:', row)}
+        isRowClickable={(row: Building) => row.status === 'Available'}
+        getRowLabel={(row: Building) => row.name}
+      />
+    </Stack>
+  );
+}
 
 /**
  * Demonstrates `useBiampServerSideTable` with both row expansion and row
@@ -1307,39 +1353,5 @@ export const ServerSideHook: Story = {
  * the expanded row model is attached.
  */
 export const ServerSideExpandableWithSelection: Story = {
-  render: () => {
-    const [expanded, setExpanded] = useState<ExpandedState>({});
-    const [selectedRowIds, setSelectedRowIds] = useState<string[]>([]);
-
-    const table = useBiampServerSideTable<Building>({
-      data: buildingRows,
-      columns: buildingColumns,
-      getRowId: (row) => String(row.id),
-      expanded,
-      onExpandedChange: setExpanded,
-      getSubRows: (row) => row.children,
-      selectedRowIds,
-      onSelectedRowIdsChange: setSelectedRowIds,
-      enableRowSelection: (row) => row.original.status === 'Available',
-    });
-
-    return (
-      <Stack spacing={2} height="100%">
-        <Typography variant="body2">
-          Uses <code>useBiampServerSideTable</code> with expanding + selection.{' '}
-          {selectedRowIds.length} row
-          {selectedRowIds.length !== 1 ? 's' : ''} selected. Open DevTools
-          Performance tab and click checkboxes to profile.
-        </Typography>
-        <BiampTable
-          table={table}
-          enableExpanding
-          enableRowSelection
-          onRowClick={(row) => console.log('Row clicked:', row)}
-          isRowClickable={(row: Building) => row.status === 'Available'}
-          getRowLabel={(row: Building) => row.name}
-        />
-      </Stack>
-    );
-  },
+  render: () => <ServerSideExpandableWithSelectionDemo />,
 };

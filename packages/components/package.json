@@ -42,6 +42,8 @@
   "devDependencies": {
     "@bwp-web/assets": "*",
     "@bwp-web/eslint-config": "*",
+    "@mui/icons-material": "^7.3.7",
+    "@storybook/react": "^8.6.0",
     "@bwp-web/styles": "*",
     "@mui/material": "^7.3.7",
     "@tanstack/react-table": "^8.21.3",
