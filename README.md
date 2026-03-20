@@ -73,8 +73,8 @@ Additional documentation lives in the [`/docs`](./docs) folder:
 
 | Document                                                    | Contents                                                        |
 | ----------------------------------------------------------- | --------------------------------------------------------------- |
-| [styles.md](./docs/styles.md)                               | Full color palette, typography, spacing, component overrides    |
-| [assets.md](./docs/assets.md)                               | Icons (220+), images, fonts                                     |
+| [packages/styles/README.md](./packages/styles/README.md)   | Full color palette, typography, spacing, component overrides    |
+| [packages/assets/README.md](./packages/assets/README.md)   | Icons (220+), images, fonts                                     |
 | [biamp-layout.md](./docs/biamp-layout.md)                   | BiampLayout — full-page layout shell                            |
 | [biamp-wrapper.md](./docs/biamp-wrapper.md)                 | BiampWrapper — content wrapper                                  |
 | [biamp-sidebar.md](./docs/biamp-sidebar.md)                 | BiampSidebar — vertical sidebar                                 |

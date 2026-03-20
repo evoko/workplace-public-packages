@@ -266,3 +266,20 @@ When used inside a provider, all utility hooks read `canvasRef` from context aut
 | Background    | `setBackgroundImage`, `fitViewportToBackground`, `getBackgroundSrc`, `setBackgroundContrast`, `setBackgroundInverted`, `resizeImageUrl` |
 | Keyboard      | `enableKeyboardShortcuts`, `deleteObjects`                                                                            |
 | Overlay       | `ObjectOverlay`, `OverlayContent`, `FixedSizeContent`, `OverlayBadge`                                                |
+
+## Full Documentation
+
+Detailed reference docs are available in the repository's [`/docs/canvas`](../../docs/canvas) folder (GitHub links):
+
+| Document | Contents |
+| --- | --- |
+| [hooks.md](../../docs/canvas/hooks.md) | `useEditCanvas`, `useViewCanvas`, context providers, utility hooks — full options and return value tables |
+| [shapes.md](../../docs/canvas/shapes.md) | `createRectangle`, `createCircle`, `createPolygon` and all point/drag variants |
+| [interactions.md](../../docs/canvas/interactions.md) | `enableClickToCreate`, `enableDragToCreate`, `enableDrawToCreate`, `enableVertexEdit` — all options |
+| [viewport.md](../../docs/canvas/viewport.md) | `enablePanAndZoom`, `resetViewport`, `ViewportController` — all methods and options |
+| [alignment.md](../../docs/canvas/alignment.md) | Object alignment guides, cursor snapping, rotation snapping, snap point extractors |
+| [serialization.md](../../docs/canvas/serialization.md) | `serializeCanvas`, `loadCanvas`, scaled strokes, scaled border radius |
+| [background.md](../../docs/canvas/background.md) | `setBackgroundImage`, contrast, invert, resize — all options |
+| [keyboard.md](../../docs/canvas/keyboard.md) | `enableKeyboardShortcuts`, `deleteObjects` |
+| [styles.md](../../docs/canvas/styles.md) | Default style objects, configuration constants, Fabric type augmentation |
+| [overlay.md](../../docs/canvas/overlay.md) | `ObjectOverlay`, `OverlayContent`, `FixedSizeContent`, `OverlayBadge` — full API |

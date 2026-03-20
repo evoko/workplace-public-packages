@@ -220,3 +220,16 @@ Horizontal header container. Compose with `BiampHeaderTitle`, `BiampHeaderSearch
 A composable data table built on TanStack React Table v8 with support for sorting, row selection, pagination, column visibility, global search, column filters, and CSV export.
 
 Requires `@tanstack/react-table` >= 8.0.0 as a peer dependency.
+
+## Full Documentation
+
+Detailed per-component docs are available in the repository's [`/docs`](../../docs) folder (GitHub links):
+
+| Document | Contents |
+| --- | --- |
+| [biamp-layout.md](../../docs/biamp-layout.md) | `BiampLayout` — props, examples, design details |
+| [biamp-wrapper.md](../../docs/biamp-wrapper.md) | `BiampWrapper` — props, examples, design details |
+| [biamp-sidebar.md](../../docs/biamp-sidebar.md) | `BiampSidebar`, `BiampSidebarIconList`, `BiampSidebarIcon`, `BiampSidebarComponent` |
+| [biamp-header.md](../../docs/biamp-header.md) | `BiampHeader` family + app-launcher components |
+| [biamp-banner.md](../../docs/biamp-banner.md) | `BiampBanner` family — props, examples, design details |
+| [biamp-table.md](../../docs/biamp-table.md) | `BiampTable` — columns, sorting, selection, pagination, filters, export |
