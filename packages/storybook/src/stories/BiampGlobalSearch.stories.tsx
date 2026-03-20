@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Box, Typography } from '@mui/material';
 import {
@@ -153,6 +153,7 @@ export const InHeader: Story = {
           <BiampGlobalSearch
             options={inputValue ? filtered : []}
             inputValue={inputValue}
+            clearOnSelect={false}
             onInputChange={(_e, value) => setInputValue(value)}
             open={open && inputValue.length > 0}
             onOpen={() => setOpen(true)}
@@ -208,7 +209,7 @@ export const EmptyState: Story = {
     ),
   ],
   render: () => {
-    const [inputValue, setInputValue] = useState('xyznotfound');
+    const [inputValue, setInputValue] = useState('random text');
     const [open, setOpen] = useState(true);
 
     return (
@@ -226,30 +227,134 @@ export const EmptyState: Story = {
 };
 
 /**
- * Loading state using MUI Autocomplete's built-in loading indicator.
+ * Demonstrates `onClick` navigation. Selecting an option opens biamp.com
+ * in a new tab and clears the search input.
  */
-export const Loading: Story = {
-  decorators: [
-    (Story) => (
-      <Box sx={{ maxWidth: 600 }}>
-        <Story />
-      </Box>
-    ),
-  ],
+export const WithNavigation: Story = {
   render: () => {
-    const [inputValue, setInputValue] = useState('searching');
-    const [open, setOpen] = useState(true);
+    const [inputValue, setInputValue] = useState('');
+    const [open, setOpen] = useState(false);
+    const [lastNav, setLastNav] = useState('');
+
+    const navigationOptions: BiampGlobalSearchOption[] = [
+      {
+        icon: <CalendarIcon variant="md" />,
+        title: 'Biamp Home',
+        subtitle: 'biamp.com',
+        endIcon,
+        onClick: () => setLastNav('https://www.biamp.com'),
+      },
+      {
+        icon: <PersonIcon variant="md" />,
+        title: 'Biamp Support',
+        subtitle: 'support.biamp.com',
+        endIcon,
+        onClick: () => setLastNav('https://support.biamp.com'),
+      },
+      {
+        icon: <PinLocationIcon variant="md" />,
+        title: 'Biamp Blog',
+        subtitle: 'blog.biamp.com',
+        endIcon,
+        onClick: () => setLastNav('https://blog.biamp.com'),
+      },
+    ];
+
+    const filtered = navigationOptions.filter(
+      (o) =>
+        o.title.toLowerCase().includes(inputValue.toLowerCase()) ||
+        (o.subtitle?.toLowerCase().includes(inputValue.toLowerCase()) ?? false),
+    );
 
     return (
-      <BiampGlobalSearch
-        options={[]}
-        inputValue={inputValue}
-        onInputChange={(_e, value) => setInputValue(value)}
-        loading
-        open={open}
-        onOpen={() => setOpen(true)}
-        onClose={() => setOpen(false)}
-      />
+      <>
+        <BiampHeader>
+          <BiampHeaderTitle title="Workplace" subtitle="Booking" />
+          <Box sx={{ px: 1.5, flexGrow: 1 }}>
+            <BiampGlobalSearch
+              options={inputValue ? filtered : []}
+              inputValue={inputValue}
+              onInputChange={(_e, value) => setInputValue(value)}
+              open={open && inputValue.length > 0}
+              onOpen={() => setOpen(true)}
+              onClose={() => setOpen(false)}
+            />
+          </Box>
+          <BiampHeaderActions>
+            <BiampHeaderButtonList>
+              <BiampHeaderButton icon={<NotificationsNoneIcon />} />
+              <BiampHeaderButton icon={<SettingsOutlinedIcon />} />
+            </BiampHeaderButtonList>
+            <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
+          </BiampHeaderActions>
+        </BiampHeader>
+        {lastNav && (
+          <Typography variant="body2" sx={{ mt: 2, px: 2 }}>
+            Navigated to: <strong>{lastNav}</strong>
+          </Typography>
+        )}
+      </>
+    );
+  },
+};
+
+/**
+ * Simulated async search inside a BiampHeader. Typing triggers a 1s loading
+ * state before results appear.
+ */
+export const LoadingState: Story = {
+  render: () => {
+    const [inputValue, setInputValue] = useState('');
+    const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [results, setResults] = useState<BiampGlobalSearchOption[]>([]);
+    const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+    useEffect(() => {
+      clearTimeout(timerRef.current);
+      if (!inputValue) {
+        setLoading(false);
+        setResults([]);
+        return;
+      }
+      setLoading(true);
+      setResults([]);
+      timerRef.current = setTimeout(() => {
+        setResults(
+          sampleOptions.filter(
+            (o) =>
+              o.title.toLowerCase().includes(inputValue.toLowerCase()) ||
+              (o.subtitle?.toLowerCase().includes(inputValue.toLowerCase()) ??
+                false),
+          ),
+        );
+        setLoading(false);
+      }, 1000);
+      return () => clearTimeout(timerRef.current);
+    }, [inputValue]);
+
+    return (
+      <BiampHeader>
+        <BiampHeaderTitle title="Workplace" subtitle="Booking" />
+        <Box sx={{ px: 1.5, flexGrow: 1 }}>
+          <BiampGlobalSearch
+            options={results}
+            inputValue={inputValue}
+            onInputChange={(_e, value) => setInputValue(value)}
+            loading={loading}
+            open={open && inputValue.length > 0}
+            onOpen={() => setOpen(true)}
+            onClose={() => setOpen(false)}
+          />
+        </Box>
+        <BiampHeaderActions>
+          <BiampHeaderButtonList>
+            <BiampHeaderButton icon={<NotificationsNoneIcon />} />
+            <BiampHeaderButton icon={<SettingsOutlinedIcon />} />
+          </BiampHeaderButtonList>
+          <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
+        </BiampHeaderActions>
+      </BiampHeader>
     );
   },
 };

@@ -23,6 +23,7 @@ export interface BiampGlobalSearchOption {
   subtitle?: string;
   associatedItems?: { label: string }[];
   endIcon?: React.ReactNode;
+  onClick?: () => void;
 }
 
 export type BiampGlobalSearchProps = Omit<
@@ -32,6 +33,7 @@ export type BiampGlobalSearchProps = Omit<
   placeholder?: string;
   noResultsText?: string;
   inputSx?: SxProps<Theme>;
+  clearOnSelect?: boolean;
 };
 
 // ---------------------------------------------------------------------------
@@ -40,10 +42,12 @@ export type BiampGlobalSearchProps = Omit<
 
 const SearchContext = createContext<{
   hasOptions: boolean;
+  loading: boolean;
   noResultsText: string;
   query: string;
 }>({
   hasOptions: true,
+  loading: false,
   noResultsText: 'No results found',
   query: '',
 });
@@ -91,11 +95,11 @@ function KeyCap({
 
 const BiampGlobalSearchPaper = forwardRef<HTMLDivElement, PaperProps>(
   function BiampGlobalSearchPaper({ children, ...props }, ref) {
-    const { hasOptions, noResultsText } = useContext(SearchContext);
+    const { hasOptions, loading, noResultsText } = useContext(SearchContext);
 
     return (
       <Paper ref={ref} {...props}>
-        {hasOptions ? (
+        {hasOptions || loading ? (
           children
         ) : (
           <Typography
@@ -326,17 +330,49 @@ export function BiampGlobalSearch({
   noResultsText = 'No results found',
   options = [],
   inputValue: inputValueProp,
+  loading = false,
+  clearOnSelect = true,
+  onChange,
+  onInputChange,
   ...props
 }: BiampGlobalSearchProps) {
   const hasOptions = options.length > 0;
 
+  const handleChange: typeof onChange = (event, value, reason, details) => {
+    if (value && typeof value !== 'string' && value.onClick) {
+      value.onClick();
+    }
+    onChange?.(event, value, reason, details);
+  };
+
+  const handleInputChange: typeof onInputChange = (event, value, reason) => {
+    if (clearOnSelect && (reason === 'selectOption' || reason === 'reset')) {
+      onInputChange?.(event, '', reason);
+      return;
+    }
+    onInputChange?.(event, value, reason);
+  };
+
   return (
     <SearchContext.Provider
-      value={{ hasOptions, noResultsText, query: inputValueProp ?? '' }}
+      value={{
+        hasOptions,
+        loading,
+        noResultsText,
+        query: inputValueProp ?? '',
+      }}
     >
       <Autocomplete<BiampGlobalSearchOption, false, false, true>
         options={options}
         inputValue={inputValueProp}
+        loading={loading}
+        onChange={handleChange}
+        onInputChange={handleInputChange}
+        loadingText={
+          <Typography variant="body2" color="text.secondary">
+            Loading…
+          </Typography>
+        }
         freeSolo
         filterOptions={(x) => x}
         getOptionLabel={(option) =>
