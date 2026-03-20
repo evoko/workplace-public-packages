@@ -1,4 +1,4 @@
-# Styles
+# @bwp-web/styles
 
 Shared MUI theme and styling utilities for Biamp Workplace applications. Provides a fully configured MUI theme with light and dark color schemes, typography, spacing, and component overrides that match the Biamp Workplace design system.
 
@@ -75,14 +75,12 @@ import { biampTheme } from '@bwp-web/styles';
 // TypeScript now knows about theme.palette.biamp, theme.palette.blue, etc.
 ```
 
-If you have files that use `useTheme()` or `theme.palette` but don't import from `@bwp-web/styles` directly (e.g. standalone component files), add a single global declaration file to your project:
+If you have files that use `useTheme()` or `theme.palette` but don't import from `@bwp-web/styles` directly, add a single global declaration file to your project:
 
 ```ts
 // src/global.d.ts
 /// <reference types="@bwp-web/styles/mui-theme-augmentation" />
 ```
-
-This makes the augmented types available to every file in your project without needing per-file imports.
 
 ### Augmented Palette Types
 
@@ -118,8 +116,6 @@ This makes the augmented types available to every file in your project without n
 | `info.main`      | `#1863D3` | `#1863D3` | Informational signal                                      |
 
 ### Custom Palette Entries
-
-These are unique to the Biamp theme and available via `theme.palette.*`:
 
 | Key                  | Value                 | Description                            |
 | -------------------- | --------------------- | -------------------------------------- |
@@ -242,7 +238,7 @@ Styled overrides are included for: `Breadcrumbs`, `Checkbox`, `Dialog`, `Divider
 
 ### DatePicker & TimePicker
 
-`DatePicker` and `TimePicker` are styled but require a `LocalizationProvider` wrapper with a date adapter to function. Without it the pickers will throw at runtime.
+`DatePicker` and `TimePicker` are styled but require a `LocalizationProvider` wrapper with a date adapter to function.
 
 Install the required packages:
 

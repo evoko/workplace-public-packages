@@ -1,4 +1,4 @@
-# Assets
+# @bwp-web/assets
 
 Shared Biamp Workplace icons and image assets. All visual assets are centralised in this package so that `@bwp-web/components`, `@bwp-web/styles`, and consumer applications can import them from a single source.
 
@@ -58,24 +58,24 @@ Icons used internally by the `@bwp-web/styles` theme for MUI component overrides
 | `InfoStatusIcon`    | 14×14 circular info indicator with "i" mark. Theme-aware colours and drop shadow              |
 | `SuccessStatusIcon` | 14×14 circular success indicator with checkmark. Theme-aware colours and drop shadow          |
 
-### Icon Groups
+### Icon Sizes
 
-Icons are organised into size-based folders. Each folder corresponds to a fixed pixel size:
+Icons are organised into size-based groups. Each group corresponds to a fixed pixel size:
 
-| Folder        | Variant | Size |
-| ------------- | ------- | ---- |
-| `icons_xxxxs` | `xxxxs` | 6px  |
-| `icons_xxxs`  | `xxxs`  | 8px  |
-| `icons_xxs`   | `xxs`   | 12px |
-| `icons_xs`    | `xs`    | 16px |
-| `icons_sm`    | `sm`    | 20px |
-| `icons_md`    | `md`    | 24px |
-| `icons_lg`    | `lg`    | 32px |
-| `icons_xl`    | `xl`    | 40px |
-| `icons_xxl`   | `xxl`   | 56px |
-| `icons_xxxl`  | `xxxl`  | 72px |
+| Variant | Size |
+| ------- | ---- |
+| `xxxxs` | 6px  |
+| `xxxs`  | 8px  |
+| `xxs`   | 12px |
+| `xs`    | 16px |
+| `sm`    | 20px |
+| `md`    | 24px |
+| `lg`    | 32px |
+| `xl`    | 40px |
+| `xxl`   | 56px |
+| `xxxl`  | 72px |
 
-Icons that appear in multiple size folders are grouped into `icons_multisize` and exported as a single component that accepts a `variant` prop. The default variant is `md` (24px).
+Icons that appear in multiple sizes are exported as a single component that accepts a `variant` prop. The default variant is `md` (24px).
 
 ```tsx
 import { CloseIcon, BadgeLiveIcon } from '@bwp-web/assets';
@@ -91,29 +91,20 @@ import { CloseIcon, BadgeLiveIcon } from '@bwp-web/assets';
 <CloseIcon variant="xxs" /> // 12px
 ```
 
-The full icon catalog is browsable in Storybook under **Assets > Icons > Icon Groups**.
-
-### Sizing
-
 All icons respect MUI's `sx` prop for sizing:
 
 ```tsx
 <SuccessStatusIcon sx={{ width: 14, height: 14 }} />
 <SuccessStatusIcon sx={{ width: 24, height: 24 }} />
-<SuccessStatusIcon sx={{ width: 48, height: 48 }} />
 ```
+
+There are 220+ icon exports in total. See Storybook (**Assets > Icons > Icon Groups**) for the full catalog.
 
 ## Images
 
 All images are inlined as data URLs during the build, so no additional asset pipeline is required.
 
 ### `BiampRedLogo`
-
-| Export         | Type     | Description                              |
-| -------------- | -------- | ---------------------------------------- |
-| `BiampRedLogo` | `string` | Data URL of the 24×24 Biamp red logo PNG |
-
-#### Usage
 
 ```tsx
 import { BiampRedLogo } from '@bwp-web/assets';
@@ -137,13 +128,12 @@ PNG images for the app-launcher dialog tiles. Each export is a `string` that res
 
 | Export         | Description                      |
 | -------------- | -------------------------------- |
+| `BiampRedLogo` | Biamp red logo PNG (data URL)    |
 | `BookingApp`   | Biamp Booking application icon   |
 | `CommandApp`   | Biamp Command application icon   |
 | `ConnectApp`   | Biamp Connect application icon   |
 | `DesignerApp`  | Biamp Designer application icon  |
 | `WorkplaceApp` | Biamp Workplace application icon |
-
-#### Usage
 
 ```tsx
 import { BookingApp, DesignerApp, ConnectApp } from '@bwp-web/assets';
@@ -176,60 +166,17 @@ function AppLauncher() {
 
 ## Fonts
 
-All font files used by the Biamp Workplace theme are bundled as data URLs, just like images. This means fonts are embedded directly in the JavaScript bundle — no need to configure static file serving, copy font files to a public directory, or set up any additional asset pipeline.
-
-### Included Fonts
-
-**Open Sans** (woff2) — used as the default body font:
-
-| Export                    | Weight | Style  |
-| ------------------------- | ------ | ------ |
-| `OpenSansRegular`         | 400    | normal |
-| `OpenSansRegularItalic`   | 400    | italic |
-| `OpenSansSemiBold`        | 600    | normal |
-| `OpenSansSemiBoldItalic`  | 600    | italic |
-| `OpenSansBold`            | 700    | normal |
-| `OpenSansBoldItalic`      | 700    | italic |
-| `OpenSansExtraBold`       | 800    | normal |
-| `OpenSansExtraBoldItalic` | 800    | italic |
-
-**Montserrat** (ttf) — used for headings (h0, h1, h2, h4):
-
-| Export               | Weight | Style  |
-| -------------------- | ------ | ------ |
-| `MontserratMedium`   | 500    | normal |
-| `MontserratSemiBold` | 600    | normal |
-| `MontserratBold`     | 700    | normal |
+All font files used by the Biamp Workplace theme are bundled as data URLs. Fonts are embedded directly in the JavaScript bundle — no need to configure static file serving or copy font files.
 
 ### Usage with the Biamp Theme (Recommended)
 
-If you are using `biampTheme()` from `@bwp-web/styles` with MUI's `<CssBaseline />`, **fonts are loaded automatically**. The theme's CSS baseline injects `@font-face` declarations that reference the embedded font data URLs. No extra imports or configuration needed.
-
-```tsx
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { biampTheme } from '@bwp-web/styles';
-
-const theme = biampTheme();
-
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* Fonts are loaded here automatically */}
-      {/* Your app */}
-    </ThemeProvider>
-  );
-}
-```
+If you are using `biampTheme()` from `@bwp-web/styles` with MUI's `<CssBaseline />`, **fonts are loaded automatically**. No extra imports or configuration needed.
 
 ### Standalone Usage
-
-If you need to use the font files outside of the Biamp theme (e.g. custom `@font-face` rules or non-MUI projects), you can import them directly. Each export is a `string` containing a `data:` URL.
 
 ```tsx
 import { OpenSansRegular, MontserratBold } from '@bwp-web/assets';
 
-// Use in a custom @font-face declaration
 const fontFaceCSS = `
   @font-face {
     font-family: 'Open Sans';
@@ -247,50 +194,25 @@ const fontFaceCSS = `
 `;
 ```
 
-## Exports
+### Included Fonts
 
-### Icons
+**Open Sans** (woff2) — default body font:
 
-There are 220+ icon exports in total. See Storybook (**Assets > Icons > Icon Groups**) for the full catalog.
+| Export                    | Weight | Style  |
+| ------------------------- | ------ | ------ |
+| `OpenSansRegular`         | 400    | normal |
+| `OpenSansRegularItalic`   | 400    | italic |
+| `OpenSansSemiBold`        | 600    | normal |
+| `OpenSansSemiBoldItalic`  | 600    | italic |
+| `OpenSansBold`            | 700    | normal |
+| `OpenSansBoldItalic`      | 700    | italic |
+| `OpenSansExtraBold`       | 800    | normal |
+| `OpenSansExtraBoldItalic` | 800    | italic |
 
-**Layout icons** (used in the shell):
+**Montserrat** (ttf) — headings (h0, h1, h2, h4):
 
-- `BiampLogoIcon` — Biamp wordmark logo (theme-aware).
-- `SearchIcon` — Magnifying glass search icon (multi-variant).
-- `AppsIcon` — Nine-dot grid icon (grey).
-- `AppsIconFilled` — Nine-dot grid icon (filled, currentColor).
-
-**Theme icons** (used internally by `@bwp-web/styles`):
-
-- `CheckedIcon` — Filled checkbox with checkmark.
-- `UncheckedIcon` — Empty checkbox outline.
-- `IndeterminateIcon` — Checkbox with horizontal dash.
-- `ErrorStatusIcon` — Circular error status indicator (theme-aware).
-- `WarningStatusIcon` — Triangular warning status indicator (theme-aware).
-- `InfoStatusIcon` — Circular info status indicator (theme-aware).
-- `SuccessStatusIcon` — Circular success status indicator (theme-aware).
-
-**General icons** — 200+ icons covering common UI actions, devices, and workplace concepts. See Storybook for the full list.
-
-### Images
-
-- `BiampRedLogo` — Biamp red logo PNG (data URL).
-- `BookingApp` — Biamp Booking app icon PNG (data URL).
-- `CommandApp` — Biamp Command app icon PNG (data URL).
-- `ConnectApp` — Biamp Connect app icon PNG (data URL).
-- `DesignerApp` — Biamp Designer app icon PNG (data URL).
-- `WorkplaceApp` — Biamp Workplace app icon PNG (data URL).
-
-### Fonts
-
-- `OpenSansRegular` — Open Sans 400 normal (woff2 data URL).
-- `OpenSansRegularItalic` — Open Sans 400 italic (woff2 data URL).
-- `OpenSansSemiBold` — Open Sans 600 normal (woff2 data URL).
-- `OpenSansSemiBoldItalic` — Open Sans 600 italic (woff2 data URL).
-- `OpenSansBold` — Open Sans 700 normal (woff2 data URL).
-- `OpenSansBoldItalic` — Open Sans 700 italic (woff2 data URL).
-- `OpenSansExtraBold` — Open Sans 800 normal (woff2 data URL).
-- `OpenSansExtraBoldItalic` — Open Sans 800 italic (woff2 data URL).
-- `MontserratMedium` — Montserrat 500 normal (ttf data URL).
-- `MontserratSemiBold` — Montserrat 600 normal (ttf data URL).
-- `MontserratBold` — Montserrat 700 normal (ttf data URL).
+| Export               | Weight | Style  |
+| -------------------- | ------ | ------ |
+| `MontserratMedium`   | 500    | normal |
+| `MontserratSemiBold` | 600    | normal |
+| `MontserratBold`     | 700    | normal |
