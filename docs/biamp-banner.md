@@ -10,7 +10,7 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/assets` >= 1.0.0
+- `@bwp-web/assets` >= 1.0.1
 - `@mui/material` >= 7.0.0
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
@@ -23,11 +23,11 @@ The root container. Renders as an `<aside>` wrapped in a MUI `Collapse` for anim
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `show` | `boolean` | — | Controls visibility; animates in/out via `Collapse` |
-| `severity` | `'error' \| 'warning' \| 'success' \| 'info'` | — | Sets the background color and border color |
-| `children` | `React.ReactNode` | — | Compose with `BiampBannerIcon`, `BiampBannerContent`, `BiampBannerActions` |
+| Prop       | Type                                          | Default | Description                                                                |
+| ---------- | --------------------------------------------- | ------- | -------------------------------------------------------------------------- |
+| `show`     | `boolean`                                     | —       | Controls visibility; animates in/out via `Collapse`                        |
+| `severity` | `'error' \| 'warning' \| 'success' \| 'info'` | —       | Sets the background color and border color                                 |
+| `children` | `React.ReactNode`                             | —       | Compose with `BiampBannerIcon`, `BiampBannerContent`, `BiampBannerActions` |
 
 ---
 
@@ -37,10 +37,10 @@ The leading icon slot. Pass `severity` to render the matching status icon automa
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `severity` | `AlertColor` | — | Renders the matching default status icon |
-| `children` | `React.ReactNode` | — | Custom icon; used when `severity` is not provided |
+| Prop       | Type              | Default | Description                                       |
+| ---------- | ----------------- | ------- | ------------------------------------------------- |
+| `severity` | `AlertColor`      | —       | Renders the matching default status icon          |
+| `children` | `React.ReactNode` | —       | Custom icon; used when `severity` is not provided |
 
 ---
 
@@ -50,10 +50,10 @@ The center content slot. Renders a `Typography` (`variant="h3"`) with `textAlign
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Banner message text |
-| _...rest_ | `TypographyProps` | — | All MUI `Typography` props are forwarded |
+| Prop       | Type              | Default | Description                              |
+| ---------- | ----------------- | ------- | ---------------------------------------- |
+| `children` | `React.ReactNode` | —       | Banner message text                      |
+| _...rest_  | `TypographyProps` | —       | All MUI `Typography` props are forwarded |
 
 ---
 
@@ -63,10 +63,10 @@ The trailing actions slot. Renders a horizontal flex row with 8px gap. Extends `
 
 #### Props
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `children` | `React.ReactNode` | — | Action elements (e.g. `Button`) |
-| _...rest_ | `BoxProps` | — | All MUI `Box` props are forwarded |
+| Prop       | Type              | Default | Description                       |
+| ---------- | ----------------- | ------- | --------------------------------- |
+| `children` | `React.ReactNode` | —       | Action elements (e.g. `Button`)   |
+| _...rest_  | `BoxProps`        | —       | All MUI `Box` props are forwarded |
 
 ---
 
@@ -147,7 +147,7 @@ import MyCustomIcon from './MyCustomIcon';
     <MyCustomIcon />
   </BiampBannerIcon>
   <BiampBannerContent>Custom icon banner.</BiampBannerContent>
-</BiampBanner>
+</BiampBanner>;
 ```
 
 ## Design Details

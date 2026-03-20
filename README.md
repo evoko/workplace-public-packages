@@ -81,6 +81,7 @@ Additional documentation lives in the [`/docs`](./docs) folder:
 | [biamp-header.md](./docs/biamp-header.md)                   | BiampHeader — header with app launcher                          |
 | [biamp-banner.md](./docs/biamp-banner.md)                   | BiampBanner — notification banner                               |
 | [biamp-table.md](./docs/biamp-table.md)                     | BiampTable — TanStack-based data table                          |
+| [biamp-global-search.md](./docs/biamp-global-search.md)     | BiampGlobalSearch — global search component                     |
 | [canvas/hooks.md](./docs/canvas/hooks.md)                   | `useEditCanvas`, `useViewCanvas`, providers, utility hooks      |
 | [canvas/shapes.md](./docs/canvas/shapes.md)                 | `createRectangle`, `createCircle`, `createPolygon` and variants |
 | [canvas/interactions.md](./docs/canvas/interactions.md)     | Click/drag/draw creation modes, vertex editing                  |
