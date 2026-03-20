@@ -37,12 +37,14 @@ function Header() {
 
 Icons used in the Biamp Workplace shell (header, sidebar, app launcher).
 
-| Icon             | Description                                                                                    |
-| ---------------- | ---------------------------------------------------------------------------------------------- |
-| `BiampLogoIcon`  | Biamp wordmark logo. Theme-aware — renders dark text in light mode and white text in dark mode |
-| `SearchIcon`     | 16×16 magnifying glass icon using `currentColor`                                               |
-| `AppsIcon`       | 24×24 nine-dot grid icon with a fixed grey fill (#878787)                                      |
-| `AppsIconFilled` | 24×24 filled nine-dot grid icon using `currentColor`                                           |
+| Icon               | Description                                                                                    |
+| ------------------ | ---------------------------------------------------------------------------------------------- |
+| `BiampLogoIcon`    | Biamp wordmark logo. Theme-aware — renders dark text in light mode and white text in dark mode |
+| `SearchIcon`       | 16×16 magnifying glass icon using `currentColor`                                               |
+| `AppsIcon`         | 24×24 nine-dot grid icon with a fixed grey fill (#878787)                                      |
+| `AppsIconFilled`   | 24×24 filled nine-dot grid icon using `currentColor`                                           |
+| `KeyArrowDownIcon` | Keyboard arrow-down key visual for search/navigation hints                                     |
+| `KeyArrowUpIcon`   | Keyboard arrow-up key visual for search/navigation hints                                       |
 
 ### Theme Icons
 

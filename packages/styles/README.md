@@ -12,6 +12,7 @@ npm install @bwp-web/styles
 
 - `@bwp-web/assets` >= 1.0.1
 - `@mui/material` >= 7.0.0
+- `@mui/x-date-pickers` >= 7.0.0
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
 
@@ -93,14 +94,15 @@ If you have files that use `useTheme()` or `theme.palette` but don't import from
 
 ### Augmented Component Props
 
-| Component    | Override                                                                 |
-| ------------ | ------------------------------------------------------------------------ |
-| `Button`     | `color="biamp"`, `variant="overlay"`                                     |
-| `Checkbox`   | `color="biamp"`                                                          |
-| `Fab`        | `color="biamp"`                                                          |
-| `Typography` | `variant="h0"`, `variant="sidebar"`                                      |
-| `IconButton` | `variant="none"`, `variant="transparent"`, `variant="outlined"`          |
-| `Alert`      | `filled` and `outlined` variants disabled (only `standard` is available) |
+| Component    | Override                                                                                         |
+| ------------ | ------------------------------------------------------------------------------------------------ |
+| `Button`     | `color="biamp"`, `variant="overlay"`                                                             |
+| `Checkbox`   | `color="biamp"`                                                                                  |
+| `Fab`        | `color="biamp"`                                                                                  |
+| `Typography` | `variant="h0"`, `variant="sidebar"`                                                              |
+| `IconButton` | `variant="none"`, `variant="transparent"`, `variant="outlined"`                                  |
+| `Badge`      | `variant="rectangle"`, `variant="round"`, `variant="rectangle-inline"`, `variant="round-inline"` |
+| `Alert`      | `filled` and `outlined` variants disabled (only `standard` is available)                         |
 
 ## Color Palette
 
@@ -234,7 +236,7 @@ Only the `standard` variant is enabled. MUI's `filled` and `outlined` variants a
 
 ### Other Components
 
-Styled overrides are included for: `Breadcrumbs`, `Checkbox`, `Dialog`, `Divider`, `Drawer`, `Fab`, `FormControlLabel`, `FormHelperText`, `FormLabel`, `InputBase`, `InputLabel`, `Menu`, `MenuItem`, `OutlinedInput`, `Radio`, `Slider`, `Switch`, `Tab`, `Tabs`, `Tooltip`, `TextField`, `Autocomplete`, `DatePicker`, `PickersTextField`, `PickersInputBase`, `PickersOutlinedInput`.
+Styled overrides are included for: `Breadcrumbs`, `Checkbox`, `Chip`, `Dialog`, `Divider`, `Drawer`, `Fab`, `FormControlLabel`, `FormHelperText`, `FormLabel`, `InputBase`, `InputLabel`, `Menu`, `MenuItem`, `OutlinedInput`, `Radio`, `Select`, `Slider`, `Switch`, `Tab`, `Tabs`, `Tooltip`, `TextField`, `Autocomplete`, `DatePicker`, `PickersTextField`, `PickersInputBase`, `PickersOutlinedInput`.
 
 ### DatePicker & TimePicker
 

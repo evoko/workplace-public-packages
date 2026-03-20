@@ -10,8 +10,8 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/styles` >= 1.0.1
-- `@bwp-web/assets` >= 1.0.0
+- `@bwp-web/styles` >= 1.0.2
+- `@bwp-web/assets` >= 1.0.1
 - `@mui/material` >= 7.0.0
 - `react` >= 18.0.0
 - `react-dom` >= 18.0.0
@@ -44,6 +44,9 @@ For `BiampTable` only:
 | `BiampBannerIcon`       | Leading icon slot for `BiampBanner`                                              |
 | `BiampBannerContent`    | Center message slot for `BiampBanner`                                            |
 | `BiampBannerActions`    | Trailing actions slot for `BiampBanner`                                          |
+| `BiampGlobalSearch`     | Searchable autocomplete with icons, subtitles, chips, and keyboard hints         |
+| `SegmentedButtonGroup`  | Horizontal container for grouping segmented toggle buttons                       |
+| `SegmentedButton`       | Individual toggle button for use inside `SegmentedButtonGroup`                   |
 | `BiampTable`            | Composable data table with sorting, selection, pagination, and more              |
 
 ## Usage
@@ -223,11 +226,12 @@ Requires `@tanstack/react-table` >= 8.0.0 as a peer dependency.
 
 Detailed per-component docs are available in the repository's [`/docs`](../../docs) folder (GitHub links):
 
-| Document                                        | Contents                                                                            |
-| ----------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [biamp-layout.md](../../docs/biamp-layout.md)   | `BiampLayout` — props, examples, design details                                     |
-| [biamp-wrapper.md](../../docs/biamp-wrapper.md) | `BiampWrapper` — props, examples, design details                                    |
-| [biamp-sidebar.md](../../docs/biamp-sidebar.md) | `BiampSidebar`, `BiampSidebarIconList`, `BiampSidebarIcon`, `BiampSidebarComponent` |
-| [biamp-header.md](../../docs/biamp-header.md)   | `BiampHeader` family + app-launcher components                                      |
-| [biamp-banner.md](../../docs/biamp-banner.md)   | `BiampBanner` family — props, examples, design details                              |
-| [biamp-table.md](../../docs/biamp-table.md)     | `BiampTable` — columns, sorting, selection, pagination, filters, export             |
+| Document                                                    | Contents                                                                            |
+| ----------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [biamp-layout.md](../../docs/biamp-layout.md)               | `BiampLayout` — props, examples, design details                                     |
+| [biamp-wrapper.md](../../docs/biamp-wrapper.md)             | `BiampWrapper` — props, examples, design details                                    |
+| [biamp-sidebar.md](../../docs/biamp-sidebar.md)             | `BiampSidebar`, `BiampSidebarIconList`, `BiampSidebarIcon`, `BiampSidebarComponent` |
+| [biamp-header.md](../../docs/biamp-header.md)               | `BiampHeader` family + app-launcher components                                      |
+| [biamp-banner.md](../../docs/biamp-banner.md)               | `BiampBanner` family — props, examples, design details                              |
+| [biamp-global-search.md](../../docs/biamp-global-search.md) | `BiampGlobalSearch` — options, filtering, async loading, navigation                 |
+| [biamp-table.md](../../docs/biamp-table.md)                 | `BiampTable` — columns, sorting, selection, pagination, filters, export             |
