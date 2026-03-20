@@ -161,11 +161,11 @@ function App() {
 
 #### BiampBanner Props
 
-| Prop       | Type                                           | Description                                                               |
-| ---------- | ---------------------------------------------- | ------------------------------------------------------------------------- |
-| `show`     | `boolean`                                      | Controls visibility; animates in/out via `Collapse`                       |
-| `severity` | `'error' \| 'warning' \| 'success' \| 'info'` | Sets the background color and border color                                |
-| `children` | `React.ReactNode`                              | Compose with `BiampBannerIcon`, `BiampBannerContent`, `BiampBannerActions` |
+| Prop       | Type                                          | Description                                                                |
+| ---------- | --------------------------------------------- | -------------------------------------------------------------------------- |
+| `show`     | `boolean`                                     | Controls visibility; animates in/out via `Collapse`                        |
+| `severity` | `'error' \| 'warning' \| 'success' \| 'info'` | Sets the background color and border color                                 |
+| `children` | `React.ReactNode`                             | Compose with `BiampBannerIcon`, `BiampBannerContent`, `BiampBannerActions` |
 
 ### BiampLayout
 
@@ -184,9 +184,7 @@ Full-viewport (`100vh`) layout with optional `header` and `sidebar` slots. Appli
 Full-page content wrapper with 16px padding, 8px border-radius, scrollable overflow, and a white (light mode) or `grey.800` (dark mode) background.
 
 ```tsx
-<BiampWrapper>
-  {/* page content */}
-</BiampWrapper>
+<BiampWrapper>{/* page content */}</BiampWrapper>
 ```
 
 ### BiampSidebar
@@ -225,11 +223,11 @@ Requires `@tanstack/react-table` >= 8.0.0 as a peer dependency.
 
 Detailed per-component docs are available in the repository's [`/docs`](../../docs) folder (GitHub links):
 
-| Document | Contents |
-| --- | --- |
-| [biamp-layout.md](../../docs/biamp-layout.md) | `BiampLayout` — props, examples, design details |
-| [biamp-wrapper.md](../../docs/biamp-wrapper.md) | `BiampWrapper` — props, examples, design details |
+| Document                                        | Contents                                                                            |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [biamp-layout.md](../../docs/biamp-layout.md)   | `BiampLayout` — props, examples, design details                                     |
+| [biamp-wrapper.md](../../docs/biamp-wrapper.md) | `BiampWrapper` — props, examples, design details                                    |
 | [biamp-sidebar.md](../../docs/biamp-sidebar.md) | `BiampSidebar`, `BiampSidebarIconList`, `BiampSidebarIcon`, `BiampSidebarComponent` |
-| [biamp-header.md](../../docs/biamp-header.md) | `BiampHeader` family + app-launcher components |
-| [biamp-banner.md](../../docs/biamp-banner.md) | `BiampBanner` family — props, examples, design details |
-| [biamp-table.md](../../docs/biamp-table.md) | `BiampTable` — columns, sorting, selection, pagination, filters, export |
+| [biamp-header.md](../../docs/biamp-header.md)   | `BiampHeader` family + app-launcher components                                      |
+| [biamp-banner.md](../../docs/biamp-banner.md)   | `BiampBanner` family — props, examples, design details                              |
+| [biamp-table.md](../../docs/biamp-table.md)     | `BiampTable` — columns, sorting, selection, pagination, filters, export             |

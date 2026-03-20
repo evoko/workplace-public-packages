@@ -23,7 +23,12 @@ npm install @bwp-web/canvas
 Full editing with shape creation, selection, pan/zoom, alignment, and serialization:
 
 ```tsx
-import { Canvas, useEditCanvas, enableDragToCreate, createRectangle } from '@bwp-web/canvas';
+import {
+  Canvas,
+  useEditCanvas,
+  enableDragToCreate,
+  createRectangle,
+} from '@bwp-web/canvas';
 
 function Editor() {
   const canvas = useEditCanvas();
@@ -77,20 +82,20 @@ Full-featured editing hook with shape creation, selection, pan/zoom, alignment, 
 
 ```tsx
 const canvas = useEditCanvas({
-  canvasData: savedJson,          // auto-load canvas data
+  canvasData: savedJson, // auto-load canvas data
   filter: (obj) => ids.includes(obj.data?.id),
-  invertBackground: isDarkMode,   // reactive background inversion
-  enableAlignment: true,          // object alignment guides
-  scaledStrokes: true,            // zoom-independent stroke widths
-  keyboardShortcuts: true,        // Delete/Backspace to remove selected
-  vertexEdit: true,               // double-click polygon to edit vertices
-  panAndZoom: true,               // scroll to zoom, Cmd/Ctrl+drag to pan
+  invertBackground: isDarkMode, // reactive background inversion
+  enableAlignment: true, // object alignment guides
+  scaledStrokes: true, // zoom-independent stroke widths
+  keyboardShortcuts: true, // Delete/Backspace to remove selected
+  vertexEdit: true, // double-click polygon to edit vertices
+  panAndZoom: true, // scroll to zoom, Cmd/Ctrl+drag to pan
   rotationSnap: { interval: 15 }, // Shift+rotate snaps to 15°
-  autoFitToBackground: true,      // auto-fit viewport to background image
-  backgroundResize: true,         // auto-downscale large uploaded images
-  trackChanges: true,             // expose isDirty / resetDirty
-  history: true,                  // undo/redo support
-  onReady: (canvas) => {},        // called after canvasData load + features init
+  autoFitToBackground: true, // auto-fit viewport to background image
+  backgroundResize: true, // auto-downscale large uploaded images
+  trackChanges: true, // expose isDirty / resetDirty
+  history: true, // undo/redo support
+  onReady: (canvas) => {}, // called after canvasData load + features init
 });
 ```
 
@@ -132,7 +137,10 @@ const canvas = useViewCanvas({
 
 // Style objects dynamically
 canvas.setObjectStyle('room-42', { fill: '#ff0000' });
-canvas.setObjectStyles({ 'room-42': { fill: '#ff0000' }, 'room-43': { opacity: 0.5 } });
+canvas.setObjectStyles({
+  'room-42': { fill: '#ff0000' },
+  'room-43': { opacity: 0.5 },
+});
 canvas.setObjectStyleByType('DESK', { fill: '#cccccc' });
 ```
 
@@ -167,7 +175,11 @@ function MyCanvas() {
 function SaveButton() {
   // Does NOT re-render on zoom/scroll
   const { isDirty, resetDirty } = useEditCanvasState();
-  return <button disabled={!isDirty} onClick={resetDirty}>Save</button>;
+  return (
+    <button disabled={!isDirty} onClick={resetDirty}>
+      Save
+    </button>
+  );
 }
 
 function ZoomDisplay() {
@@ -184,13 +196,17 @@ function ZoomDisplay() {
 A thin React wrapper around a Fabric.js canvas. By default it fills its parent container and resizes automatically.
 
 ```tsx
-{/* Auto-fill mode (default) */}
+{
+  /* Auto-fill mode (default) */
+}
 <div style={{ width: 800, height: 600 }}>
   <Canvas onReady={canvas.onReady} />
-</div>
+</div>;
 
-{/* Fixed-size mode */}
-<Canvas onReady={canvas.onReady} width={800} height={600} />
+{
+  /* Fixed-size mode */
+}
+<Canvas onReady={canvas.onReady} width={800} height={600} />;
 ```
 
 ## Shapes
@@ -200,7 +216,13 @@ import { createRectangle, createCircle, createPolygon } from '@bwp-web/canvas';
 
 createRectangle(canvas, { left: 100, top: 100, width: 200, height: 150 });
 createCircle(canvas, { left: 200, top: 200, radius: 50 });
-createPolygon(canvas, { points: [{ x: 0, y: 0 }, { x: 100, y: 0 }, { x: 50, y: 100 }] });
+createPolygon(canvas, {
+  points: [
+    { x: 0, y: 0 },
+    { x: 100, y: 0 },
+    { x: 50, y: 100 },
+  ],
+});
 ```
 
 ## Interaction Modes
@@ -246,7 +268,7 @@ await loadCanvas(canvas, json, { filter: (obj) => obj.data?.type === 'DESK' });
 | Hook                                            | Description                                                                       |
 | ----------------------------------------------- | --------------------------------------------------------------------------------- |
 | `useCanvasEvents(events)`                       | Subscribe to Fabric canvas events with automatic cleanup                          |
-| `useCanvasTooltip({ getContent })`              | Track hover over canvas objects, returns `{ visible, content, position, ref }`   |
+| `useCanvasTooltip({ getContent })`              | Track hover over canvas objects, returns `{ visible, content, position, ref }`    |
 | `useCanvasClick(onClick, options?)`             | Distinguish clicks from pan gestures; fires only on genuine clicks                |
 | `useObjectOverlay(canvasRef, object, options?)` | Position a DOM element over a Fabric object, kept in sync with pan/zoom/transform |
 
@@ -254,32 +276,32 @@ When used inside a provider, all utility hooks read `canvasRef` from context aut
 
 ## API Reference
 
-| Module        | Contents                                                                                                              |
-| ------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Hooks         | `useEditCanvas`, `useViewCanvas`, `Canvas`, `useCanvasEvents`, `useCanvasTooltip`, `useCanvasClick`                   |
-| Context       | `EditCanvasProvider`, `ViewCanvasProvider`, `useEditCanvasContext`, `useViewCanvasContext`                             |
-| Shapes        | `createRectangle`, `createCircle`, `createPolygon` and point/drag variants                                            |
-| Interactions  | `enableClickToCreate`, `enableDragToCreate`, `enableDrawToCreate`, `enableVertexEdit`                                 |
-| Viewport      | `enablePanAndZoom`, `resetViewport`, `ViewportController`                                                             |
-| Alignment     | `enableObjectAlignment`, `snapCursorPoint`, `enableRotationSnap`                                                      |
-| Serialization | `serializeCanvas`, `loadCanvas`, `enableScaledStrokes`                                                                |
+| Module        | Contents                                                                                                                                |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| Hooks         | `useEditCanvas`, `useViewCanvas`, `Canvas`, `useCanvasEvents`, `useCanvasTooltip`, `useCanvasClick`                                     |
+| Context       | `EditCanvasProvider`, `ViewCanvasProvider`, `useEditCanvasContext`, `useViewCanvasContext`                                              |
+| Shapes        | `createRectangle`, `createCircle`, `createPolygon` and point/drag variants                                                              |
+| Interactions  | `enableClickToCreate`, `enableDragToCreate`, `enableDrawToCreate`, `enableVertexEdit`                                                   |
+| Viewport      | `enablePanAndZoom`, `resetViewport`, `ViewportController`                                                                               |
+| Alignment     | `enableObjectAlignment`, `snapCursorPoint`, `enableRotationSnap`                                                                        |
+| Serialization | `serializeCanvas`, `loadCanvas`, `enableScaledStrokes`                                                                                  |
 | Background    | `setBackgroundImage`, `fitViewportToBackground`, `getBackgroundSrc`, `setBackgroundContrast`, `setBackgroundInverted`, `resizeImageUrl` |
-| Keyboard      | `enableKeyboardShortcuts`, `deleteObjects`                                                                            |
-| Overlay       | `ObjectOverlay`, `OverlayContent`, `FixedSizeContent`, `OverlayBadge`                                                |
+| Keyboard      | `enableKeyboardShortcuts`, `deleteObjects`                                                                                              |
+| Overlay       | `ObjectOverlay`, `OverlayContent`, `FixedSizeContent`, `OverlayBadge`                                                                   |
 
 ## Full Documentation
 
 Detailed reference docs are available in the repository's [`/docs/canvas`](../../docs/canvas) folder (GitHub links):
 
-| Document | Contents |
-| --- | --- |
-| [hooks.md](../../docs/canvas/hooks.md) | `useEditCanvas`, `useViewCanvas`, context providers, utility hooks — full options and return value tables |
-| [shapes.md](../../docs/canvas/shapes.md) | `createRectangle`, `createCircle`, `createPolygon` and all point/drag variants |
-| [interactions.md](../../docs/canvas/interactions.md) | `enableClickToCreate`, `enableDragToCreate`, `enableDrawToCreate`, `enableVertexEdit` — all options |
-| [viewport.md](../../docs/canvas/viewport.md) | `enablePanAndZoom`, `resetViewport`, `ViewportController` — all methods and options |
-| [alignment.md](../../docs/canvas/alignment.md) | Object alignment guides, cursor snapping, rotation snapping, snap point extractors |
-| [serialization.md](../../docs/canvas/serialization.md) | `serializeCanvas`, `loadCanvas`, scaled strokes, scaled border radius |
-| [background.md](../../docs/canvas/background.md) | `setBackgroundImage`, contrast, invert, resize — all options |
-| [keyboard.md](../../docs/canvas/keyboard.md) | `enableKeyboardShortcuts`, `deleteObjects` |
-| [styles.md](../../docs/canvas/styles.md) | Default style objects, configuration constants, Fabric type augmentation |
-| [overlay.md](../../docs/canvas/overlay.md) | `ObjectOverlay`, `OverlayContent`, `FixedSizeContent`, `OverlayBadge` — full API |
+| Document                                               | Contents                                                                                                  |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| [hooks.md](../../docs/canvas/hooks.md)                 | `useEditCanvas`, `useViewCanvas`, context providers, utility hooks — full options and return value tables |
+| [shapes.md](../../docs/canvas/shapes.md)               | `createRectangle`, `createCircle`, `createPolygon` and all point/drag variants                            |
+| [interactions.md](../../docs/canvas/interactions.md)   | `enableClickToCreate`, `enableDragToCreate`, `enableDrawToCreate`, `enableVertexEdit` — all options       |
+| [viewport.md](../../docs/canvas/viewport.md)           | `enablePanAndZoom`, `resetViewport`, `ViewportController` — all methods and options                       |
+| [alignment.md](../../docs/canvas/alignment.md)         | Object alignment guides, cursor snapping, rotation snapping, snap point extractors                        |
+| [serialization.md](../../docs/canvas/serialization.md) | `serializeCanvas`, `loadCanvas`, scaled strokes, scaled border radius                                     |
+| [background.md](../../docs/canvas/background.md)       | `setBackgroundImage`, contrast, invert, resize — all options                                              |
+| [keyboard.md](../../docs/canvas/keyboard.md)           | `enableKeyboardShortcuts`, `deleteObjects`                                                                |
+| [styles.md](../../docs/canvas/styles.md)               | Default style objects, configuration constants, Fabric type augmentation                                  |
+| [overlay.md](../../docs/canvas/overlay.md)             | `ObjectOverlay`, `OverlayContent`, `FixedSizeContent`, `OverlayBadge` — full API                          |
