@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -11,7 +11,6 @@ import type { DateValidationError } from '@mui/x-date-pickers/models';
 const meta: Meta<typeof DatePicker> = {
   title: 'Styles/DatePicker',
   component: DatePicker,
-  tags: ['autodocs'],
   decorators: [
     (Story) => (
       <LocalizationProvider dateAdapter={AdapterLuxon} adapterLocale="en-gb">

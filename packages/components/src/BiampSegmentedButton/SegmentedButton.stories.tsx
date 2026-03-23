@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Stack, Typography } from '@mui/material';
 import { SegmentedButton, SegmentedButtonGroup } from '@bwp-web/components';
 
 const meta: Meta<typeof SegmentedButtonGroup> = {
   title: 'Components/SegmentedButton',
   component: SegmentedButtonGroup,
-  tags: ['autodocs'],
 };
 
 export default meta;

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button, Stack, Typography } from '@mui/material';
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { Button, Stack } from '@mui/material';
 import {
   BiampBanner,
   BiampBannerIcon,
@@ -11,7 +11,6 @@ import {
 const meta: Meta<typeof BiampBanner> = {
   title: 'Components/BiampBanner',
   component: BiampBanner,
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
   },

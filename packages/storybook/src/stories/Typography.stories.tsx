@@ -1,11 +1,9 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Typography, Stack, Divider, Box } from '@mui/material';
 
 const meta: Meta<typeof Typography> = {
   title: 'Styles/Typography',
   component: Typography,
-  tags: ['autodocs'],
 };
 
 export default meta;

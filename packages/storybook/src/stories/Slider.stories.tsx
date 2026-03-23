@@ -1,10 +1,9 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Slider, Stack, Typography } from '@mui/material';
 
 const meta: Meta<typeof Slider> = {
   title: 'Styles/Slider',
   component: Slider,
-  tags: ['autodocs'],
   argTypes: {
     value: { control: 'number' },
     min: { control: 'number' },

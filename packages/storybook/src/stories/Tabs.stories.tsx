@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { type ReactNode, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Tabs, Tab, Stack, Typography, Box, Badge } from '@mui/material';
 
 const meta: Meta<typeof Tabs> = {
   title: 'Styles/Tabs',
   component: Tabs,
-  tags: ['autodocs'],
 };
 
 export default meta;
@@ -16,7 +15,7 @@ function TabPanel({
   value,
   index,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   value: number;
   index: number;
 }) {

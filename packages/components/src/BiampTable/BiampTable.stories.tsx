@@ -1,11 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import {
+  type MouseEvent,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Box,
   Button,
   Chip,
   FormControl,
-  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -31,7 +36,7 @@ import {
   type ColumnVisibility,
   type ServerSideOrder,
 } from '@bwp-web/components';
-import { AddIcon, ColumnsIcon, DeleteIcon } from '@bwp-web/assets';
+import { ColumnsIcon, DeleteIcon } from '@bwp-web/assets';
 import {
   createColumnHelper,
   getCoreRowModel,
@@ -280,7 +285,7 @@ const deviceColumnsWithAction = [
     id: 'actions',
     header: '',
     meta: { sticky: 'right', columnLabel: 'Actions' },
-    cell: ({ row }) => (
+    cell: () => (
       <BiampTableCellActionButton label={'delete'} icon={<DeleteIcon />} />
     ),
   }),
@@ -310,7 +315,6 @@ const deviceRows: Device[] = Array.from({ length: 100 }, (_, i) => {
 
 const meta: Meta = {
   title: 'Components/BiampTable',
-  tags: ['autodocs'],
   parameters: { canvasBackground: 'background.paper' },
 };
 
@@ -374,7 +378,7 @@ function InteractiveDemo() {
             label="Toggle column visibility"
             icon={<ColumnsIcon variant="xs" />}
             badgeContent={getColumnVisibilityDirtyCount(table)}
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            onClick={(e: MouseEvent<HTMLButtonElement>) =>
               setAnchorEl(e.currentTarget)
             }
           />
@@ -439,8 +443,8 @@ function StatesDemo() {
     TableState,
     {
       loading?: boolean;
-      error?: boolean | React.ReactNode;
-      empty?: boolean | React.ReactNode;
+      error?: boolean | ReactNode;
+      empty?: boolean | ReactNode;
     }
   > = {
     loading: { loading: true },
@@ -511,7 +515,7 @@ function StickyColumnsDemo() {
             label="Toggle column visibility"
             icon={<ColumnsIcon variant="xs" />}
             badgeContent={getColumnVisibilityDirtyCount(table)}
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            onClick={(e: MouseEvent<HTMLButtonElement>) =>
               setAnchorEl(e.currentTarget)
             }
           />
@@ -659,7 +663,7 @@ function WithToolbarDemo() {
             label="Toggle column visibility"
             icon={<ColumnsIcon variant="xs" />}
             badgeContent={getColumnVisibilityDirtyCount(table)}
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            onClick={(e: MouseEvent<HTMLButtonElement>) =>
               setAnchorEl(e.currentTarget)
             }
           />
@@ -1269,7 +1273,7 @@ function ServerSideHookDemo() {
             label="Toggle column visibility"
             icon={<ColumnsIcon variant="xs" />}
             badgeContent={getColumnVisibilityDirtyCount(table)}
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            onClick={(e: MouseEvent<HTMLButtonElement>) =>
               setAnchorEl(e.currentTarget)
             }
           />

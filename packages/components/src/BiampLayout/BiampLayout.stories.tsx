@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box, Stack, Typography } from '@mui/material';
 import {
   BiampLayout,
@@ -40,7 +40,6 @@ import {
 const meta: Meta<typeof BiampLayout> = {
   title: 'Components/BiampLayout',
   component: BiampLayout,
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
     noPadding: true,

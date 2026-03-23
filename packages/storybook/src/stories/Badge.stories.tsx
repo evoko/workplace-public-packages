@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Badge, Box, Stack, Typography } from '@mui/material';
 import { EmailIcon } from '@bwp-web/assets';
 
 const meta: Meta<typeof Badge> = {
   title: 'Styles/Badge',
   component: Badge,
-  tags: ['autodocs'],
   argTypes: {
     badgeContent: { control: 'text' },
     color: {

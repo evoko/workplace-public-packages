@@ -1,11 +1,9 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Breadcrumbs, Link, Typography, Stack } from '@mui/material';
 
 const meta: Meta<typeof Breadcrumbs> = {
   title: 'Styles/Breadcrumbs',
   component: Breadcrumbs,
-  tags: ['autodocs'],
 };
 
 export default meta;

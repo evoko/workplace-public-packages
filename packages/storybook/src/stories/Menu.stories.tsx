@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Menu,
   MenuItem,
@@ -19,7 +19,6 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 const meta: Meta<typeof Menu> = {
   title: 'Styles/Menu',
   component: Menu,
-  tags: ['autodocs'],
 };
 
 export default meta;

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box, Stack, Typography, Divider } from '@mui/material';
 import {
   BiampHeader,
@@ -33,7 +33,6 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 const meta: Meta<typeof BiampHeader> = {
   title: 'Components/BiampHeader',
   component: BiampHeader,
-  tags: ['autodocs'],
   decorators: [
     (Story) => (
       <Box sx={{ width: '100%' }}>

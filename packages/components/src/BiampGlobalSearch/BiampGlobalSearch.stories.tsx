@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { useEffect, useRef, useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box, Typography } from '@mui/material';
 import {
   BiampHeader,
@@ -82,7 +82,6 @@ const sampleOptions: BiampGlobalSearchOption[] = [
 
 const meta: Meta = {
   title: 'Components/BiampGlobalSearch',
-  tags: ['autodocs'],
   decorators: [
     (Story) => (
       <Box sx={{ width: '100%' }}>

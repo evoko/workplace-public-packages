@@ -1,5 +1,5 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { ReactNode } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Stack, Typography, Box, Tooltip, Icon } from '@mui/material';
 
 import {
@@ -227,7 +227,6 @@ import {
 
 const meta: Meta = {
   title: 'Assets/Icons',
-  tags: ['autodocs'],
   argTypes: {
     iconColor: {
       control: 'color',
@@ -245,7 +244,7 @@ const IconDisplay = ({
   onlyIcon = false,
 }: {
   name?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   onlyIcon?: boolean;
 }) => {
   const box = (

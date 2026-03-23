@@ -1,5 +1,4 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Checkbox,
   FormControlLabel,
@@ -11,7 +10,6 @@ import {
 const meta: Meta<typeof Checkbox> = {
   title: 'Styles/Checkbox',
   component: Checkbox,
-  tags: ['autodocs'],
   argTypes: {
     checked: { control: 'boolean' },
     indeterminate: { control: 'boolean' },

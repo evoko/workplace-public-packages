@@ -17,6 +17,9 @@ Thumbs.db
 .idea/
 .claude/skills/
 
+# Logs
+*.log
+
 # Environment
 .env
 .env.local

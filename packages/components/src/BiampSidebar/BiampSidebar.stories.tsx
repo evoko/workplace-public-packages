@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box, Stack, Typography, Divider } from '@mui/material';
 import {
   BiampSidebar,
@@ -20,7 +20,6 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 const meta: Meta<typeof BiampSidebar> = {
   title: 'Components/BiampSidebar',
   component: BiampSidebar,
-  tags: ['autodocs'],
   decorators: [
     (Story) => (
       <Box sx={{ height: '100vh' }}>

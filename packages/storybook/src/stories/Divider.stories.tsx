@@ -1,11 +1,10 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Fragment } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Divider, Stack, Typography, Box, Chip } from '@mui/material';
 
 const meta: Meta<typeof Divider> = {
   title: 'Styles/Divider',
   component: Divider,
-  tags: ['autodocs'],
 };
 
 export default meta;
@@ -51,12 +50,12 @@ export const InList: Story = {
       <Box>
         {['First section', 'Second section', 'Third section'].map(
           (text, index, arr) => (
-            <React.Fragment key={text}>
+            <Fragment key={text}>
               <Typography variant="body1" sx={{ py: 1.5 }}>
                 {text}
               </Typography>
               {index < arr.length - 1 && <Divider />}
-            </React.Fragment>
+            </Fragment>
           ),
         )}
       </Box>

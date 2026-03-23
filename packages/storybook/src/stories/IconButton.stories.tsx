@@ -1,5 +1,4 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { IconButton, Stack, Typography, Box } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -10,7 +9,6 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 const meta: Meta<typeof IconButton> = {
   title: 'Styles/IconButton',
   component: IconButton,
-  tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'select',

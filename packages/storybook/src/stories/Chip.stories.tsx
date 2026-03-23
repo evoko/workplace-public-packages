@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Chip, Stack, Typography } from '@mui/material';
 import { SearchIcon } from '@bwp-web/assets';
 
 const meta: Meta<typeof Chip> = {
   title: 'Styles/Chip',
   component: Chip,
-  tags: ['autodocs'],
   argTypes: {
     variant: { control: 'select', options: ['filled', 'outlined'] },
     color: {

@@ -1,12 +1,10 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
 import { BiampWrapper } from '@bwp-web/components';
 
 const meta: Meta<typeof BiampWrapper> = {
   title: 'Components/BiampWrapper',
   component: BiampWrapper,
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
     backgrounds: {

@@ -1,5 +1,4 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   TextField,
   Stack,
@@ -13,7 +12,6 @@ import { CloseIcon, SearchIcon } from '@bwp-web/assets';
 const meta: Meta<typeof TextField> = {
   title: 'Styles/TextField',
   component: TextField,
-  tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'select',

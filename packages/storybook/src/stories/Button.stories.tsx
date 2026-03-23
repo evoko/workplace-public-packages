@@ -1,12 +1,11 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Fragment } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, Stack, Typography, Box, Badge } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 
 const meta: Meta<typeof Button> = {
   title: 'Styles/Button',
   component: Button,
-  tags: ['autodocs'],
   argTypes: {
     variant: {
       control: 'select',
@@ -358,7 +357,7 @@ export const AllVariantsAndColors: Story = {
                     {variant}
                   </Typography>
                   {colors.map((color) => (
-                    <React.Fragment key={color}>
+                    <Fragment key={color}>
                       <Button variant={variant} color={color} size={size}>
                         {color}
                       </Button>
@@ -370,7 +369,7 @@ export const AllVariantsAndColors: Story = {
                       >
                         {color} disabled
                       </Button>
-                    </React.Fragment>
+                    </Fragment>
                   ))}
                 </Stack>
               ))}
@@ -384,11 +383,11 @@ export const AllVariantsAndColors: Story = {
           <Box sx={{ width: 400 }}>
             <Stack spacing={0}>
               {overlayColors.map((color) => (
-                <React.Fragment key={color}>
+                <Fragment key={color}>
                   <Button variant="overlay" color={color} fullWidth>
                     {color}
                   </Button>
-                </React.Fragment>
+                </Fragment>
               ))}
               <Button variant="overlay" color="primary" fullWidth disabled>
                 disabled

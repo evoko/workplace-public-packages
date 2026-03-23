@@ -1,5 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import {
+  type ChangeEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Box,
   Button,
@@ -50,7 +56,6 @@ import { ViewportControlToolbar } from './canvas/ViewportControlToolbar';
 const meta: Meta<typeof Canvas> = {
   title: 'Canvas/Canvas',
   component: Canvas,
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
     noPadding: true,
@@ -345,7 +350,7 @@ function EditCanvasContent({
   // --- Background ---
 
   const handleFileChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (!file) return;
       e.target.value = '';
@@ -376,7 +381,7 @@ function EditCanvasContent({
   );
 
   const handleInvertChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       setBgInverted(e.target.checked);
       const c = canvas.canvasRef.current;
       if (c) setBackgroundInverted(c, e.target.checked);

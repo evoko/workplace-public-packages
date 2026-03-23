@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Dialog,
   DialogTitle,
@@ -15,7 +15,6 @@ import {
 const meta: Meta<typeof Dialog> = {
   title: 'Styles/Dialog',
   component: Dialog,
-  tags: ['autodocs'],
 };
 
 export default meta;

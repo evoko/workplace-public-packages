@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-vite';
 import { ThemeProvider, CssBaseline, Box } from '@mui/material';
 import { biampTheme } from '@bwp-web/styles';
 
@@ -17,6 +17,7 @@ const darkTheme = biampTheme({
 });
 
 const preview: Preview = {
+  tags: ['autodocs'],
   globalTypes: {
     colorMode: {
       description: 'Color mode for the Biamp theme',
@@ -65,7 +66,15 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+
     layout: 'fullscreen',
+
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: 'todo',
+    },
   },
 };
 

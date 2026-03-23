@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Drawer,
   Button,
@@ -22,7 +22,6 @@ import BarChartIcon from '@mui/icons-material/BarChart';
 const meta: Meta<typeof Drawer> = {
   title: 'Styles/Drawer',
   component: Drawer,
-  tags: ['autodocs'],
 };
 
 export default meta;
