@@ -242,8 +242,8 @@ export const IconStates: Story = {
       <Divider />
       <Typography variant="h3">Extends ListItemButton</Typography>
       <Typography variant="body2" sx={{ maxWidth: 500 }}>
-        BiampSidebarIcon extends MUI's ListItemButtonProps, so you can pass any
-        prop that ListItemButton accepts, such as <code>disabled</code>,{' '}
+        BiampSidebarIcon extends MUI&apos;s ListItemButtonProps, so you can pass
+        any prop that ListItemButton accepts, such as <code>disabled</code>,{' '}
         <code>onClick</code>, <code>sx</code>, and more.
       </Typography>
     </Stack>
