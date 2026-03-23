@@ -15,6 +15,7 @@
     "clean": "turbo run clean && rm -rf node_modules .turbo"
   },
   "devDependencies": {
+    "@storybook/addon-vitest": "^10.3.1",
     "turbo": "^2.8.3",
     "typescript": "^5.9.2"
   },

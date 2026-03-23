@@ -1,5 +1,4 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box, Stack, Typography, useTheme } from '@mui/material';
 
 /**
@@ -259,7 +258,6 @@ const AllColors = () => {
 
 const meta: Meta = {
   title: 'Styles/Colors',
-  tags: ['autodocs'],
 };
 
 export default meta;

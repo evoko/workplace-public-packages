@@ -1,5 +1,4 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Autocomplete,
   Checkbox,
@@ -12,7 +11,6 @@ import {
 const meta: Meta<typeof Autocomplete> = {
   title: 'Styles/Autocomplete',
   component: Autocomplete,
-  tags: ['autodocs'],
 };
 
 export default meta;

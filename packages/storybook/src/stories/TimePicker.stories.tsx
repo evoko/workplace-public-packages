@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
@@ -8,7 +8,6 @@ import { DateTime } from 'luxon';
 const meta: Meta<typeof TimePicker> = {
   title: 'Styles/TimePicker',
   component: TimePicker,
-  tags: ['autodocs'],
   decorators: [
     (Story) => (
       <LocalizationProvider dateAdapter={AdapterLuxon}>

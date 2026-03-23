@@ -1,5 +1,4 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Switch,
   FormControlLabel,
@@ -11,7 +10,6 @@ import {
 const meta: Meta<typeof Switch> = {
   title: 'Styles/Switch',
   component: Switch,
-  tags: ['autodocs'],
   argTypes: {
     checked: { control: 'boolean' },
     disabled: { control: 'boolean' },

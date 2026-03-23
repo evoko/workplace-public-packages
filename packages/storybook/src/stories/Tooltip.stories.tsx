@@ -1,5 +1,4 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Tooltip,
   Button,
@@ -15,7 +14,6 @@ import { ClockIcon, PinLocationIcon } from '@bwp-web/assets';
 const meta: Meta<typeof Tooltip> = {
   title: 'Styles/Tooltip',
   component: Tooltip,
-  tags: ['autodocs'],
   argTypes: {
     title: { control: 'text' },
     placement: {

@@ -42,6 +42,7 @@
   "devDependencies": {
     "@bwp-web/assets": "*",
     "@bwp-web/eslint-config": "*",
+    "@mui/icons-material": "^7.3.7",
     "@bwp-web/styles": "*",
     "@mui/material": "^7.3.7",
     "@tanstack/react-table": "^8.21.3",
@@ -49,6 +50,7 @@
     "eslint": "^9.39.2",
     "prettier": "^3.8.1",
     "tsup": "^8.5.1",
+    "@storybook/react-vite": "^10.3.1",
     "typescript": "^5.9.2"
   },
   "license": "MIT",

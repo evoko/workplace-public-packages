@@ -1,5 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import {
+  type ChangeEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Box,
   Button,
@@ -50,7 +56,6 @@ import { ViewportControlToolbar } from './canvas/ViewportControlToolbar';
 const meta: Meta<typeof Canvas> = {
   title: 'Canvas/Canvas',
   component: Canvas,
-  tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',
     noPadding: true,
@@ -345,7 +350,7 @@ function EditCanvasContent({
   // --- Background ---
 
   const handleFileChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (!file) return;
       e.target.value = '';
@@ -376,7 +381,7 @@ function EditCanvasContent({
   );
 
   const handleInvertChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       setBgInverted(e.target.checked);
       const c = canvas.canvasRef.current;
       if (c) setBackgroundInverted(c, e.target.checked);
@@ -775,37 +780,39 @@ function EditCanvasContent({
  *   marked **(live)** take effect immediately; options marked **(remounts)**
  *   auto-save and reload the canvas with the new setting.
  */
+function EditCanvasDemoWrapper() {
+  const [options, setOptions] = useState<EditCanvasOptions>({
+    alignmentEnabled: true,
+    scaledStrokes: true,
+    keyboardShortcuts: true,
+    vertexEdit: true,
+    panZoom: true,
+  });
+
+  // Key from non-reactive options — changes force EditCanvasContent to remount.
+  // The component auto-saves to localStorage on unmount and auto-loads on mount,
+  // so canvas state is preserved across option changes.
+  const nonReactiveKey = `${options.scaledStrokes}-${options.keyboardShortcuts}-${options.vertexEdit}-${options.panZoom}`;
+
+  const handleOptionToggle = useCallback(
+    (key: keyof EditCanvasOptions, value: boolean) => {
+      setOptions((prev) => ({ ...prev, [key]: value }));
+    },
+    [],
+  );
+
+  return (
+    <EditCanvasContent
+      key={nonReactiveKey}
+      options={options}
+      onOptionToggle={handleOptionToggle}
+    />
+  );
+}
+
 export const EditCanvasDemo: Story = {
   name: 'Edit Canvas',
-  render: function EditCanvasDemoRender() {
-    const [options, setOptions] = useState<EditCanvasOptions>({
-      alignmentEnabled: true,
-      scaledStrokes: true,
-      keyboardShortcuts: true,
-      vertexEdit: true,
-      panZoom: true,
-    });
-
-    // Key from non-reactive options — changes force EditCanvasContent to remount.
-    // The component auto-saves to localStorage on unmount and auto-loads on mount,
-    // so canvas state is preserved across option changes.
-    const nonReactiveKey = `${options.scaledStrokes}-${options.keyboardShortcuts}-${options.vertexEdit}-${options.panZoom}`;
-
-    const handleOptionToggle = useCallback(
-      (key: keyof EditCanvasOptions, value: boolean) => {
-        setOptions((prev) => ({ ...prev, [key]: value }));
-      },
-      [],
-    );
-
-    return (
-      <EditCanvasContent
-        key={nonReactiveKey}
-        options={options}
-        onOptionToggle={handleOptionToggle}
-      />
-    );
-  },
+  render: () => <EditCanvasDemoWrapper />,
 };
 
 // ============================================================
@@ -1092,31 +1099,33 @@ function ViewCanvasContent({
  * affect the view experience (both remount the canvas, restoring the same
  * content).
  */
+function ViewCanvasDemoWrapper() {
+  const [options, setOptions] = useState<ViewCanvasOptions>({
+    scaledStrokes: true,
+    panZoom: true,
+  });
+
+  const canvasKey = `${options.scaledStrokes}-${options.panZoom}`;
+
+  const handleOptionToggle = useCallback(
+    (key: keyof ViewCanvasOptions, value: boolean) => {
+      setOptions((prev) => ({ ...prev, [key]: value }));
+    },
+    [],
+  );
+
+  return (
+    <ViewCanvasContent
+      key={canvasKey}
+      options={options}
+      onOptionToggle={handleOptionToggle}
+    />
+  );
+}
+
 export const ViewCanvasDemo: Story = {
   name: 'View Canvas',
-  render: function ViewCanvasDemoRender() {
-    const [options, setOptions] = useState<ViewCanvasOptions>({
-      scaledStrokes: true,
-      panZoom: true,
-    });
-
-    const canvasKey = `${options.scaledStrokes}-${options.panZoom}`;
-
-    const handleOptionToggle = useCallback(
-      (key: keyof ViewCanvasOptions, value: boolean) => {
-        setOptions((prev) => ({ ...prev, [key]: value }));
-      },
-      [],
-    );
-
-    return (
-      <ViewCanvasContent
-        key={canvasKey}
-        options={options}
-        onOptionToggle={handleOptionToggle}
-      />
-    );
-  },
+  render: () => <ViewCanvasDemoWrapper />,
 };
 
 // ============================================================
@@ -1128,106 +1137,107 @@ export const ViewCanvasDemo: Story = {
  *
  * Hover over any shape to see a "Hello World" tooltip with an info icon.
  */
+function ViewCanvasTooltipContent() {
+  const canvas = useViewCanvas({
+    scaledStrokes: true,
+    panAndZoom: true,
+    onReady: async (c) => {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          await loadCanvas(c, JSON.parse(stored));
+          return;
+        } catch {
+          // fall through to demo shapes
+        }
+      }
+
+      const r1 = createRectangle(c, {
+        left: 120,
+        top: 80,
+        width: 140,
+        height: 90,
+      });
+      r1.data = { type: 'PLACE', id: 'rect-1' };
+      const r2 = createRectangle(c, {
+        left: 500,
+        top: 60,
+        width: 100,
+        height: 150,
+      });
+      r2.data = { type: 'PLACE', id: 'rect-2' };
+      const c1 = createCircle(c, { left: 200, top: 230, size: 100 });
+      c1.data = { type: 'PLACE', id: 'circle-1' };
+      const p1 = createPolygon(c, {
+        points: [
+          { x: 0, y: 0 },
+          { x: 80, y: -30 },
+          { x: 120, y: 20 },
+          { x: 100, y: 80 },
+          { x: 20, y: 80 },
+        ],
+        left: 300,
+        top: 180,
+      });
+      p1.data = { type: 'PLACE', id: 'poly-1' };
+    },
+  });
+
+  const tooltip = useCanvasTooltip(canvas.canvasRef, {
+    getContent: (obj) => (obj.data?.id ? { id: obj.data.id as string } : null),
+  });
+
+  return (
+    <DemoLayout
+      onReady={canvas.onReady}
+      canvasOverlay={
+        <>
+          <ViewportControlToolbar
+            zoom={canvas.zoom}
+            viewportMode="pan"
+            onModeChange={() => {}}
+            onZoomIn={canvas.viewport.zoomIn}
+            onZoomOut={canvas.viewport.zoomOut}
+            onReset={canvas.viewport.reset}
+          />
+          {tooltip.visible && tooltip.content && (
+            <Paper
+              ref={tooltip.ref}
+              elevation={4}
+              sx={{
+                position: 'absolute',
+                left: tooltip.position.x,
+                top: tooltip.position.y,
+                transform: 'translate(-50%, -100%)',
+                px: 1.5,
+                py: 0.75,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 0.75,
+                pointerEvents: 'none',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <InfoIcon fontSize="small" color="primary" />
+              <Typography variant="body2">
+                Hello World — {tooltip.content.id}
+              </Typography>
+            </Paper>
+          )}
+        </>
+      }
+      sidebar={
+        <Typography variant="body2" color="text.secondary">
+          Hover over any shape to see the tooltip.
+        </Typography>
+      }
+    />
+  );
+}
+
 export const ViewCanvasTooltipDemo: Story = {
   name: 'View Canvas — Tooltip',
-  render: function ViewCanvasTooltipDemoRender() {
-    const canvas = useViewCanvas({
-      scaledStrokes: true,
-      panAndZoom: true,
-      onReady: async (c) => {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored) {
-          try {
-            await loadCanvas(c, JSON.parse(stored));
-            return;
-          } catch {
-            // fall through to demo shapes
-          }
-        }
-
-        const r1 = createRectangle(c, {
-          left: 120,
-          top: 80,
-          width: 140,
-          height: 90,
-        });
-        r1.data = { type: 'PLACE', id: 'rect-1' };
-        const r2 = createRectangle(c, {
-          left: 500,
-          top: 60,
-          width: 100,
-          height: 150,
-        });
-        r2.data = { type: 'PLACE', id: 'rect-2' };
-        const c1 = createCircle(c, { left: 200, top: 230, size: 100 });
-        c1.data = { type: 'PLACE', id: 'circle-1' };
-        const p1 = createPolygon(c, {
-          points: [
-            { x: 0, y: 0 },
-            { x: 80, y: -30 },
-            { x: 120, y: 20 },
-            { x: 100, y: 80 },
-            { x: 20, y: 80 },
-          ],
-          left: 300,
-          top: 180,
-        });
-        p1.data = { type: 'PLACE', id: 'poly-1' };
-      },
-    });
-
-    const tooltip = useCanvasTooltip(canvas.canvasRef, {
-      getContent: (obj) =>
-        obj.data?.id ? { id: obj.data.id as string } : null,
-    });
-
-    return (
-      <DemoLayout
-        onReady={canvas.onReady}
-        canvasOverlay={
-          <>
-            <ViewportControlToolbar
-              zoom={canvas.zoom}
-              viewportMode="pan"
-              onModeChange={() => {}}
-              onZoomIn={canvas.viewport.zoomIn}
-              onZoomOut={canvas.viewport.zoomOut}
-              onReset={canvas.viewport.reset}
-            />
-            {tooltip.visible && tooltip.content && (
-              <Paper
-                ref={tooltip.ref}
-                elevation={4}
-                sx={{
-                  position: 'absolute',
-                  left: tooltip.position.x,
-                  top: tooltip.position.y,
-                  transform: 'translate(-50%, -100%)',
-                  px: 1.5,
-                  py: 0.75,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 0.75,
-                  pointerEvents: 'none',
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                <InfoIcon fontSize="small" color="primary" />
-                <Typography variant="body2">
-                  Hello World — {tooltip.content.id}
-                </Typography>
-              </Paper>
-            )}
-          </>
-        }
-        sidebar={
-          <Typography variant="body2" color="text.secondary">
-            Hover over any shape to see the tooltip.
-          </Typography>
-        }
-      />
-    );
-  },
+  render: () => <ViewCanvasTooltipContent />,
 };
 
 // ============================================================

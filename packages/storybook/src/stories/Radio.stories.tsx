@@ -1,5 +1,4 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Radio,
   RadioGroup,
@@ -13,7 +12,6 @@ import {
 const meta: Meta<typeof Radio> = {
   title: 'Styles/Radio',
   component: Radio,
-  tags: ['autodocs'],
   argTypes: {
     disabled: { control: 'boolean' },
   },

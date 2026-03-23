@@ -1,5 +1,4 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Table,
   TableBody,
@@ -16,7 +15,6 @@ import {
 const meta: Meta<typeof Table> = {
   title: 'Styles/Table',
   component: Table,
-  tags: ['autodocs'],
 };
 
 export default meta;

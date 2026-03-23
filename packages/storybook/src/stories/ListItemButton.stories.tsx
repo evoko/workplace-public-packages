@@ -1,5 +1,4 @@
-import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   List,
   ListItemButton,
@@ -19,7 +18,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const meta: Meta<typeof ListItemButton> = {
   title: 'Styles/ListItemButton',
   component: ListItemButton,
-  tags: ['autodocs'],
 };
 
 export default meta;

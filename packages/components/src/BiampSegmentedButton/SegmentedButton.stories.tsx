@@ -1,34 +1,35 @@
-import React, { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Stack, Typography } from '@mui/material';
 import { SegmentedButton, SegmentedButtonGroup } from '@bwp-web/components';
 
 const meta: Meta<typeof SegmentedButtonGroup> = {
   title: 'Components/SegmentedButton',
   component: SegmentedButtonGroup,
-  tags: ['autodocs'],
 };
 
 export default meta;
 type Story = StoryObj<typeof SegmentedButtonGroup>;
 
+function DefaultDemo() {
+  const [active, setActive] = useState(0);
+  return (
+    <SegmentedButtonGroup>
+      <SegmentedButton active={active === 0} onClick={() => setActive(0)}>
+        Option 1
+      </SegmentedButton>
+      <SegmentedButton active={active === 1} onClick={() => setActive(1)}>
+        Option 2
+      </SegmentedButton>
+      <SegmentedButton active={active === 2} onClick={() => setActive(2)}>
+        Option 3
+      </SegmentedButton>
+    </SegmentedButtonGroup>
+  );
+}
+
 export const Default: Story = {
-  render: () => {
-    const [active, setActive] = useState(0);
-    return (
-      <SegmentedButtonGroup>
-        <SegmentedButton active={active === 0} onClick={() => setActive(0)}>
-          Option 1
-        </SegmentedButton>
-        <SegmentedButton active={active === 1} onClick={() => setActive(1)}>
-          Option 2
-        </SegmentedButton>
-        <SegmentedButton active={active === 2} onClick={() => setActive(2)}>
-          Option 3
-        </SegmentedButton>
-      </SegmentedButtonGroup>
-    );
-  },
+  render: () => <DefaultDemo />,
 };
 
 export const Sizes: Story = {
