@@ -482,7 +482,7 @@ export const biampTheme = (
           src: url(${MontserratBold}) format('truetype');
         }
 
-        [class*="Mui"] {
+        [class*="Mui"]:not([class*="MuiDivider"]) {
           border-width: 0.6px !important;
         }
     `,
@@ -990,8 +990,17 @@ export const biampTheme = (
           styleOverrides: {
             root: ({ theme }) => ({
               borderColor: theme.palette.divider,
-              borderTopWidth: '0px !important',
-              borderBottomWidth: '0.6px !important',
+              fontSize: theme.typography.body2.fontSize,
+              fontWeight: 600,
+              '&:not(.MuiDivider-withChildren)': {
+                borderTopWidth: '0.6px',
+                borderBottomWidth: 0,
+              },
+              '&.MuiDivider-withChildren': {
+                '&::before, &::after': {
+                  borderWidth: '0.6px',
+                },
+              },
             }),
           },
         },
@@ -1244,7 +1253,10 @@ export const biampTheme = (
               color: theme.palette.text.primary,
               borderRadius: 999,
               border: `0.6px solid ${theme.palette.dividers.secondary}`,
-              padding: '0px 8px 0px 12px',
+              padding: '0px 12px',
+              '&:has(.MuiChip-deleteIcon)': {
+                padding: '0px 8px 0px 12px',
+              },
               fontSize: theme.typography.caption.fontSize,
               fontWeight: theme.typography.caption.fontWeight,
               letterSpacing: theme.typography.caption.letterSpacing,
