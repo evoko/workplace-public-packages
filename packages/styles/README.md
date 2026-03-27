@@ -1,6 +1,6 @@
 # @bwp-web/styles
 
-Shared MUI theme and styling utilities for Biamp Workplace applications. Provides a fully configured MUI theme with light and dark color schemes, typography, spacing, and component overrides that match the Biamp Workplace design system.
+Shared MUI theme and styling utilities for Biamp Workplace applications. Provides a fully configured MUI theme with light and dark color schemes, typography, spacing, and component overrides that match the SOLAR® Biamp Design System.
 
 ## Installation
 
@@ -112,51 +112,51 @@ If you have files that use `useTheme()` or `theme.palette` but don't import from
 | ---------------- | --------- | --------- | --------------------------------------------------------- |
 | `primary.main`   | `#111111` | `#FFFFFF` | Primary UI color — dark in light mode, white in dark mode |
 | `secondary.main` | `#FFFFFF` | `#FFFFFF` | Secondary UI color                                        |
-| `success.main`   | `#008A05` | `#00E941` | Success signal                                            |
-| `warning.main`   | `#E06C00` | `#FFB800` | Warning signal                                            |
-| `error.main`     | `#E0002D` | `#FF1744` | Error/critical signal                                     |
-| `info.main`      | `#1863D3` | `#1863D3` | Informational signal                                      |
+| `success.main`   | `#009600` | `#009600` | Success signal (green)                                    |
+| `warning.main`   | `#cf4700` | `#c39900` | Warning signal (orange/amber)                             |
+| `error.main`     | `#e0032d` | `#c00024` | Error/critical signal (red)                               |
+| `info.main`      | `#08b8c9` | `#0896a6` | Informational signal (turquoise)                          |
 
 ### Custom Palette Entries
 
-| Key                  | Value                 | Description                            |
-| -------------------- | --------------------- | -------------------------------------- |
-| `biamp.main`         | `#d22730`             | Biamp brand red                        |
-| `blue.main`          | `#1863D3`             | Action/link blue (same as `info.main`) |
-| `purple.main`        | `#5B00EF`             | Facility/scheduling purple             |
-| `sidebar.main`       | `#E0E0E0`             | Sidebar UI color                       |
-| `dividers.primary`   | `#111111` @ 15% alpha | Standard divider                       |
-| `dividers.secondary` | `#111111` @ 40% alpha | Button/border divider                  |
+| Key                  | Value                 | Description                     |
+| -------------------- | --------------------- | ------------------------------- |
+| `biamp.main`         | `#d22730`             | Biamp brand red                 |
+| `blue.main`          | `#2569fd`             | Action/link blue                |
+| `purple.main`        | `#7b3aff`             | Facility/scheduling purple      |
+| `sidebar.main`       | `#E0E0E0`             | Sidebar UI color                |
+| `dividers.primary`   | `#111111` @ 15% alpha | Standard divider                |
+| `dividers.secondary` | `#111111` @ 40% alpha | Button/border divider           |
 
 ### Background
 
 | Key                  | Light     | Dark      |
 | -------------------- | --------- | --------- |
-| `background.default` | `#F5F5F5` | `#111111` |
-| `background.paper`   | `#FFFFFF` | `#111111` |
-| `background.success` | `#EAFEF0` | `#093615` |
-| `background.warning` | `#FFF4D9` | `#41320E` |
-| `background.error`   | `#FFEDF0` | `#2E1016` |
-| `background.info`    | `#EBF7FF` | `#101C25` |
+| `background.default` | `#f5f5f5` | `#111111` |
+| `background.paper`   | `#ffffff` | `#222222` |
+| `background.success` | `#ecffe9` | `#002400` |
+| `background.warning` | `#ffeeda` | `#3a2600` |
+| `background.error`   | `#ffe4df` | `#410001` |
+| `background.info`    | `#f0ffff` | `#002b30` |
 
 ### Text
 
 | Key              | Light           | Dark            |
 | ---------------- | --------------- | --------------- |
-| `text.primary`   | `#111111`       | `#FFFFFF`       |
-| `text.secondary` | `#878787`       | `#878787`       |
+| `text.primary`   | `#111111`       | `#f5f5f5`       |
+| `text.secondary` | `#646464`       | `#646464`       |
 | `text.disabled`  | `#111111` @ 40% | `#FFFFFF` @ 40% |
 | `text.sidebar`   | `#E0E0E0`       | `#E0E0E0`       |
 
-### Grey Scale
+### Grey Scale (Neutral)
 
 | Key        | Value     |
 | ---------- | --------- |
-| `grey.50`  | `#fafafa` |
-| `grey.100` | `#f5f5f5` |
-| `grey.200` | `#eeeeee` |
-| `grey.300` | `#c9c9c9` |
-| `grey.400` | `#878787` |
+| `grey.50`  | `#f5f5f5` |
+| `grey.100` | `#e0e0e0` |
+| `grey.200` | `#c9c9c9` |
+| `grey.300` | `#a8a8a8` |
+| `grey.400` | `#8c8c8c` |
 | `grey.500` | `#646464` |
 | `grey.600` | `#484848` |
 | `grey.700` | `#333333` |
@@ -165,27 +165,24 @@ If you have files that use `useTheme()` or `theme.palette` but don't import from
 
 ## Typography
 
-Two font families are loaded automatically via `CssBaseline`:
-
-- **Open Sans** (400, 600, 700, 800) — body text, buttons, labels
-- **Montserrat** (500, 600, 700) — headings
+The **Inter** font family is loaded automatically via `CssBaseline` (weights: 400, 500, 600, 700).
 
 ### Variants
 
-| Variant     | Font       | Size     | Weight | Letter Spacing |
-| ----------- | ---------- | -------- | ------ | -------------- |
-| `h0`        | Montserrat | 3.5rem   | 500    | -0.105rem      |
-| `h1`        | Montserrat | 1.75rem  | 500    | -0.07rem       |
-| `h2`        | Montserrat | 1.25rem  | 600    | -0.025rem      |
-| `h3`        | Open Sans  | 1rem     | 600    | -0.02rem       |
-| `h4`        | Montserrat | 1rem     | 600    | -0.02rem       |
-| `body1`     | Open Sans  | 1rem     | 400    | -0.02rem       |
-| `body2`     | Open Sans  | 0.875rem | 400    | -0.018rem      |
-| `caption`   | Open Sans  | 0.75rem  | 400    | -0.015rem      |
-| `subtitle1` | Open Sans  | 0.875rem | 400    | —              |
-| `subtitle2` | Open Sans  | 0.75rem  | 400    | —              |
-| `button`    | Open Sans  | 0.875rem | 600    | -0.018rem      |
-| `sidebar`   | Open Sans  | 0.563rem | 700    | -0.013rem      |
+| Variant     | Size     | Weight | Letter Spacing |
+| ----------- | -------- | ------ | -------------- |
+| `h0`        | 2.5rem   | 500    | -0.05rem       |
+| `h1`        | 1.75rem  | 600    | -0.035rem      |
+| `h2`        | 1.25rem  | 600    | -0.025rem      |
+| `h3`        | 1rem     | 600    | -0.02rem       |
+| `h4`        | 1rem     | 600    | -0.02rem       |
+| `body1`     | 1rem     | 400    | -0.02rem       |
+| `body2`     | 0.875rem | 400    | -0.018rem      |
+| `caption`   | 0.75rem  | 400    | -0.015rem      |
+| `subtitle1` | 0.875rem | 600    | —              |
+| `subtitle2` | 0.75rem  | 600    | —              |
+| `button`    | 0.875rem | 600    | -0.018rem      |
+| `sidebar`   | 0.563rem | 700    | -0.013rem      |
 
 `h0` and `sidebar` are custom variants added by the theme augmentations:
 

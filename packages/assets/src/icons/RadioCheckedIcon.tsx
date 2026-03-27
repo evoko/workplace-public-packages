@@ -15,11 +15,11 @@ export function RadioCheckedIcon(props: SvgIconProps) {
           cx="9"
           cy="9"
           r="8.5"
-          stroke="#878787"
+          stroke="#8c8c8c"
           strokeWidth="1"
           fill="none"
         />
-        <circle className="radio-dot" cx="9" cy="9" r="5" fill="#1863D3" />
+        <circle className="radio-dot" cx="9" cy="9" r="5" fill="#2569fd" />
       </svg>
     </SvgIcon>
   );

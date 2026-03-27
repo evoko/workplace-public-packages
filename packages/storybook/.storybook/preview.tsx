@@ -36,10 +36,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      // Force light mode in the Docs tab so the story content matches
-      // the always-light Storybook docs page background.
-      const isDocs = context.viewMode === 'docs';
-      const mode = isDocs ? 'light' : context.globals.colorMode || 'light';
+      const mode = context.globals.colorMode ;
       const theme = mode === 'dark' ? darkTheme : lightTheme;
 
       return (
@@ -49,8 +46,6 @@ const preview: Preview = {
             sx={{
               ...(!context.parameters.noPadding && { p: 3 }),
               height: '100vh',
-              bgcolor: context.parameters.canvasBackground ?? 'grey.100',
-              ...(mode === 'dark' && { bgcolor: 'grey.900' }),
             }}
           >
             <Story />

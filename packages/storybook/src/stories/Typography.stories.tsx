@@ -16,26 +16,26 @@ export const AllVariants: Story = {
     <Stack spacing={3}>
       {(
         [
-          { variant: 'h0', label: 'h0 — Montserrat 3.5rem / 500' },
-          { variant: 'h1', label: 'h1 — Montserrat 1.75rem / 500' },
-          { variant: 'h2', label: 'h2 — Montserrat 1.25rem / 600' },
-          { variant: 'h3', label: 'h3 — Open Sans 1rem / 600' },
-          { variant: 'h4', label: 'h4 — Montserrat 1rem / 600' },
-          { variant: 'body1', label: 'body1 — Open Sans 1rem / 400' },
-          { variant: 'body2', label: 'body2 — Open Sans 0.875rem / 400' },
-          { variant: 'caption', label: 'caption — Open Sans 0.75rem / 400' },
+          { variant: 'h0', label: 'h0 — Inter 2.5rem / 500' },
+          { variant: 'h1', label: 'h1 — Inter 1.75rem / 600' },
+          { variant: 'h2', label: 'h2 — Inter 1.25rem / 600' },
+          { variant: 'h3', label: 'h3 — Inter 1rem / 600' },
+          { variant: 'h4', label: 'h4 — Inter 1rem / 600' },
+          { variant: 'body1', label: 'body1 — Inter 1rem / 400' },
+          { variant: 'body2', label: 'body2 — Inter 0.875rem / 400' },
+          { variant: 'caption', label: 'caption — Inter 0.75rem / 400' },
           {
             variant: 'subtitle1',
-            label: 'subtitle1 — Open Sans 0.875rem',
+            label: 'subtitle1 — Inter 0.875rem / 600',
           },
           {
             variant: 'subtitle2',
-            label: 'subtitle2 — Open Sans 0.75rem',
+            label: 'subtitle2 — Inter 0.75rem / 600',
           },
-          { variant: 'button', label: 'button — Open Sans 0.875rem / 600' },
+          { variant: 'button', label: 'button — Inter 0.875rem / 600' },
           {
             variant: 'sidebar',
-            label: 'sidebar — Open Sans 0.563rem / 700',
+            label: 'sidebar — Inter 0.563rem / 700',
           },
         ] as const
       ).map(({ variant, label }) => (

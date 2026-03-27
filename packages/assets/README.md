@@ -177,28 +177,37 @@ If you are using `biampTheme()` from `@bwp-web/styles` with MUI's `<CssBaseline 
 ### Standalone Usage
 
 ```tsx
-import { OpenSansRegular, MontserratBold } from '@bwp-web/assets';
+import { InterRegular, InterSemiBold } from '@bwp-web/assets';
 
 const fontFaceCSS = `
   @font-face {
-    font-family: 'Open Sans';
+    font-family: 'Inter';
     font-weight: 400;
     font-style: normal;
-    src: url(${OpenSansRegular}) format('woff2');
+    src: url(${InterRegular}) format('woff2');
   }
 
   @font-face {
-    font-family: 'Montserrat';
-    font-weight: 700;
+    font-family: 'Inter';
+    font-weight: 600;
     font-style: normal;
-    src: url(${MontserratBold}) format('truetype');
+    src: url(${InterSemiBold}) format('woff2');
   }
 `;
 ```
 
 ### Included Fonts
 
-**Open Sans** (woff2) — default body font:
+**Inter** (woff2) — primary font for all text:
+
+| Export          | Weight | Style  |
+| --------------- | ------ | ------ |
+| `InterRegular`  | 400    | normal |
+| `InterMedium`   | 500    | normal |
+| `InterSemiBold` | 600    | normal |
+| `InterBold`     | 700    | normal |
+
+**Open Sans** (woff2) — legacy body font:
 
 | Export                    | Weight | Style  |
 | ------------------------- | ------ | ------ |
@@ -211,7 +220,7 @@ const fontFaceCSS = `
 | `OpenSansExtraBold`       | 800    | normal |
 | `OpenSansExtraBoldItalic` | 800    | italic |
 
-**Montserrat** (ttf) — headings (h0, h1, h2, h4):
+**Montserrat** (ttf) — legacy headings:
 
 | Export               | Weight | Style  |
 | -------------------- | ------ | ------ |

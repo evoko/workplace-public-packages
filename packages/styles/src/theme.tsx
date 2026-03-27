@@ -3,17 +3,10 @@ import {
   ErrorStatusIcon,
   IndeterminateIcon,
   InfoStatusIcon,
-  MontserratBold,
-  MontserratMedium,
-  MontserratSemiBold,
-  OpenSansBold,
-  OpenSansBoldItalic,
-  OpenSansExtraBold,
-  OpenSansExtraBoldItalic,
-  OpenSansRegular,
-  OpenSansRegularItalic,
-  OpenSansSemiBold,
-  OpenSansSemiBoldItalic,
+  InterRegular,
+  InterMedium,
+  InterSemiBold,
+  InterBold,
   RadioCheckedIcon,
   RadioUncheckedIcon,
   SuccessStatusIcon,
@@ -38,11 +31,11 @@ const colors = {
   black: '#000000',
   white: '#ffffff',
   grey: {
-    50: '#fafafa',
-    100: '#f5f5f5',
-    200: '#eeeeee',
-    300: '#c9c9c9',
-    400: '#878787',
+    50: '#f5f5f5',
+    100: '#e0e0e0',
+    200: '#c9c9c9',
+    300: '#a8a8a8',
+    400: '#8c8c8c',
     500: '#646464',
     600: '#484848',
     700: '#333333',
@@ -50,15 +43,34 @@ const colors = {
     900: '#111111',
   },
   blue: {
-    dark: '#1863D3',
-    light: '#1863D3',
-    main: '#1863D3',
-    drawer: '#3F8CFF',
+    main: '#2569fd',
+    hover: '#1450d4',
+    dark: '#2658d5',
   },
   purple: {
-    dark: '#635BFF',
-    light: '#A64DEF',
-    main: '#5B00EF',
+    main: '#7b3aff',
+    dark: '#6226d1',
+    light: '#8e4bff',
+  },
+  green: {
+    main: '#009600',
+    dark: '#24791d',
+  },
+  orange: {
+    main: '#cf4700',
+    dark: '#b33200',
+  },
+  yellow: {
+    main: '#ecb600',
+    dark: '#c39900',
+  },
+  turquoise: {
+    main: '#08b8c9',
+    dark: '#0896a6',
+  },
+  red: {
+    main: '#e0032d',
+    dark: '#c00024',
   },
   biamp: '#d22730',
   sidebar: '#E0E0E0',
@@ -68,42 +80,42 @@ const colors = {
   },
   success: {
     dark: {
-      main: '#00E941',
-      background: '#093615',
+      main: '#009600',
+      background: '#002400',
     },
     light: {
-      main: '#008A05',
-      background: '#EAFEF0',
+      main: '#009600',
+      background: '#ecffe9',
     },
   },
   warning: {
     dark: {
-      main: '#FFB800',
-      background: '#41320E',
+      main: '#c39900',
+      background: '#3a2600',
     },
     light: {
-      main: '#E06C00',
-      background: '#FFF4D9',
+      main: '#cf4700',
+      background: '#ffeeda',
     },
   },
   error: {
     dark: {
-      main: '#FF1744',
-      background: '#2E1016',
+      main: '#c00024',
+      background: '#410001',
     },
     light: {
-      main: '#E0002D',
-      background: '#FFEDF0',
+      main: '#e0032d',
+      background: '#ffe4df',
     },
   },
   info: {
     dark: {
-      main: '#1863D3',
-      background: '#101C25',
+      main: '#0896a6',
+      background: '#002b30',
     },
     light: {
-      main: '#1863D3',
-      background: '#EBF7FF',
+      main: '#08b8c9',
+      background: '#f0ffff',
     },
   },
 } as const;
@@ -151,9 +163,9 @@ export const biampTheme = (
             },
             info: {
               contrastText: colors.white,
-              dark: colors.info.light.main,
-              light: colors.info.light.main,
-              main: colors.info.light.main,
+              dark: colors.turquoise.dark,
+              light: colors.turquoise.main,
+              main: colors.turquoise.main,
             },
             grey: {
               ...colors.grey,
@@ -177,7 +189,7 @@ export const biampTheme = (
             blue: {
               contrastText: colors.white,
               dark: colors.blue.dark,
-              light: colors.blue.light,
+              light: colors.blue.hover,
               main: colors.blue.main,
             },
             sidebar: {
@@ -194,12 +206,12 @@ export const biampTheme = (
             },
             text: {
               primary: colors.grey[900],
-              secondary: colors.grey[400],
+              secondary: colors.grey[500],
               disabled: alpha(colors.grey[900], 0.4),
               sidebar: colors.sidebar,
             },
             background: {
-              default: colors.white,
+              default: colors.grey[50],
               paper: colors.white,
               success: colors.success.light.background,
               warning: colors.warning.light.background,
@@ -245,9 +257,9 @@ export const biampTheme = (
             },
             info: {
               contrastText: colors.white,
-              light: colors.info.dark.main,
-              dark: colors.info.dark.main,
-              main: colors.info.dark.main,
+              light: colors.turquoise.dark,
+              dark: colors.turquoise.dark,
+              main: colors.turquoise.dark,
             },
             grey: {
               ...colors.grey,
@@ -271,7 +283,7 @@ export const biampTheme = (
             blue: {
               contrastText: colors.white,
               dark: colors.blue.dark,
-              light: colors.blue.light,
+              light: colors.blue.hover,
               main: colors.blue.main,
             },
             sidebar: {
@@ -287,14 +299,14 @@ export const biampTheme = (
               main: colors.white,
             },
             text: {
-              primary: colors.white,
-              secondary: colors.grey[400],
+              primary: colors.grey[50],
+              secondary: colors.grey[500],
               disabled: alpha(colors.white, 0.4),
               sidebar: colors.sidebar,
             },
             background: {
               default: colors.grey[900],
-              paper: colors.grey[900],
+              paper: colors.grey[800],
               success: colors.success.dark.background,
               warning: colors.warning.dark.background,
               error: colors.error.dark.background,
@@ -313,30 +325,27 @@ export const biampTheme = (
         },
       },
       typography: {
-        fontFamily: '"Open Sans", sans-serif',
+        fontFamily: '"Inter", sans-serif',
         fontWeightRegular: 400,
-        fontWeightMedium: 600,
-        fontWeightBold: 600,
+        fontWeightMedium: 500,
+        fontWeightBold: 700,
         h0: {
-          fontFamily: '"Montserrat", sans-serif',
-          fontSize: '3.5rem',
+          fontSize: '2.5rem',
           fontWeight: 500,
-          letterSpacing: '-0.105rem',
-          lineHeight: 1.1,
+          letterSpacing: '-0.05rem',
+          lineHeight: 1,
         },
         h1: {
-          fontFamily: '"Montserrat", sans-serif',
           fontSize: '1.75rem',
-          fontWeight: 500,
-          letterSpacing: '-0.07rem',
+          fontWeight: 600,
+          letterSpacing: '-0.035rem',
           lineHeight: 1.2,
         },
         h2: {
-          fontFamily: '"Montserrat", sans-serif',
           fontSize: '1.25rem',
           fontWeight: 600,
           letterSpacing: '-0.025rem',
-          lineHeight: 1.5,
+          lineHeight: 1.25,
         },
         h3: {
           fontSize: '1rem',
@@ -345,7 +354,6 @@ export const biampTheme = (
           lineHeight: 1.5,
         },
         h4: {
-          fontFamily: '"Montserrat", sans-serif',
           fontSize: '1rem',
           fontWeight: 600,
           letterSpacing: '-0.02rem',
@@ -361,7 +369,7 @@ export const biampTheme = (
           fontSize: '0.875rem',
           fontWeight: 400,
           letterSpacing: '-0.018rem',
-          lineHeight: 1.5,
+          lineHeight: 1.43,
         },
         caption: {
           fontSize: '0.75rem',
@@ -371,10 +379,12 @@ export const biampTheme = (
         },
         subtitle1: {
           fontSize: '0.875rem',
-          lineHeight: 1.5,
+          fontWeight: 600,
+          lineHeight: 1.43,
         },
         subtitle2: {
           fontSize: '0.75rem',
+          fontWeight: 600,
           lineHeight: 1.5,
         },
         button: {
@@ -382,7 +392,7 @@ export const biampTheme = (
           letterSpacing: '-0.018rem',
           fontWeight: 600,
           textTransform: 'none',
-          lineHeight: 1.5,
+          lineHeight: 1.43,
         },
         sidebar: {
           fontWeight: 700,
@@ -395,91 +405,35 @@ export const biampTheme = (
         MuiCssBaseline: {
           styleOverrides: `
         @font-face {
-          font-family: 'Open Sans';
+          font-family: 'Inter';
           font-weight: 400;
           font-style: normal;
           font-display: swap;
-          src: url(${OpenSansRegular}) format('woff2');
+          src: url(${InterRegular}) format('woff2');
         }
 
         @font-face {
-          font-family: 'Open Sans';
-          font-weight: 400;
-          font-style: italic;
-          font-display: swap;
-          src: url(${OpenSansRegularItalic}) format('woff2');
-        }
-
-        @font-face {
-          font-family: 'Open Sans';
-          font-weight: 600;
-          font-style: normal;
-          font-display: swap;
-          src: url(${OpenSansSemiBold}) format('woff2');
-        }
-
-        @font-face {
-          font-family: 'Open Sans';
-          font-weight: 600;
-          font-style: italic;
-          font-display: swap;
-          src: url(${OpenSansSemiBoldItalic}) format('woff2');
-        }
-
-        @font-face {
-          font-family: 'Open Sans';
-          font-weight: 700;
-          font-style: normal;
-          font-display: swap;
-          src: url(${OpenSansBold}) format('woff2');
-        }
-
-        @font-face {
-          font-family: 'Open Sans';
-          font-weight: 700;
-          font-style: italic;
-          font-display: swap;
-          src: url(${OpenSansBoldItalic}) format('woff2');
-        }
-
-        @font-face {
-          font-family: 'Open Sans';
-          font-weight: 800;
-          font-style: normal;
-          font-display: swap;
-          src: url(${OpenSansExtraBold}) format('woff2');
-        }
-
-        @font-face {
-          font-family: 'Open Sans';
-          font-weight: 800;
-          font-style: italic;
-          font-display: swap;
-          src: url(${OpenSansExtraBoldItalic}) format('woff2');
-        }
-
-        @font-face {
-          font-family: 'Montserrat';
+          font-family: 'Inter';
           font-weight: 500;
           font-style: normal;
           font-display: swap;
-          src: url(${MontserratMedium}) format('truetype');
+          src: url(${InterMedium}) format('woff2');
         }
 
         @font-face {
-          font-family: 'Montserrat';
+          font-family: 'Inter';
           font-weight: 600;
           font-style: normal;
           font-display: swap;
-          src: url(${MontserratSemiBold}) format('truetype');
+          src: url(${InterSemiBold}) format('woff2');
         }
 
         @font-face {
-          font-family: 'Montserrat';
+          font-family: 'Inter';
           font-weight: 700;
           font-style: normal;
           font-display: swap;
-          src: url(${MontserratBold}) format('truetype');
+          src: url(${InterBold}) format('woff2');
         }
 
         [class*="Mui"]:not([class*="MuiDivider"]) {
@@ -584,7 +538,7 @@ export const biampTheme = (
                 backgroundColor: colors.blue.main,
                 color: colors.white,
                 '&:hover': {
-                  backgroundColor: colors.blue.drawer,
+                  backgroundColor: colors.blue.hover,
                 },
                 '&:active': {
                   backgroundColor: colors.blue.main,
@@ -594,14 +548,13 @@ export const biampTheme = (
             {
               props: { variant: 'contained', color: 'error' },
               style: {
-                backgroundColor: colors.error.light.main,
-
+                backgroundColor: colors.red.main,
                 color: colors.white,
                 '&:hover': {
-                  backgroundColor: colors.error.dark.main,
+                  backgroundColor: colors.red.dark,
                 },
                 '&:active': {
-                  backgroundColor: colors.error.light.main,
+                  backgroundColor: colors.red.main,
                 },
               },
             },
@@ -632,12 +585,12 @@ export const biampTheme = (
             {
               props: { variant: 'outlined', color: 'error' },
               style: {
-                border: `0.6px solid ${alpha(colors.error.light.main, 0.1)}`,
+                border: `0.6px solid ${alpha(colors.red.main, 0.1)}`,
                 '&:hover': {
-                  border: `0.6px solid ${alpha(colors.error.light.main, 0.4)}`,
+                  border: `0.6px solid ${alpha(colors.red.main, 0.4)}`,
                 },
                 '&:active': {
-                  border: `0.6px solid ${colors.error.light.main}`,
+                  border: `0.6px solid ${colors.red.main}`,
                 },
               },
             },
@@ -656,7 +609,7 @@ export const biampTheme = (
                 backgroundColor: colors.blue.main,
                 color: colors.white,
                 '&:hover': {
-                  backgroundColor: colors.blue.drawer,
+                  backgroundColor: colors.blue.hover,
                 },
                 '&:active': {
                   backgroundColor: colors.blue.main,
@@ -672,13 +625,13 @@ export const biampTheme = (
             {
               props: { variant: 'overlay', color: 'error' },
               style: ({ theme }) => ({
-                backgroundColor: colors.error.light.main,
+                backgroundColor: colors.red.main,
                 color: colors.white,
                 '&:hover': {
-                  backgroundColor: colors.error.dark.main,
+                  backgroundColor: colors.red.dark,
                 },
                 '&:active': {
-                  backgroundColor: colors.error.light.main,
+                  backgroundColor: colors.red.main,
                 },
                 '&.Mui-disabled': {
                   backgroundColor:
@@ -825,13 +778,13 @@ export const biampTheme = (
                   backgroundColor:
                     theme.palette.mode === 'dark'
                       ? colors.grey[800]
-                      : colors.grey[100],
+                      : colors.grey[50],
                 },
                 '&:active': {
                   backgroundColor:
                     theme.palette.mode === 'dark'
                       ? colors.grey[700]
-                      : colors.grey[200],
+                      : colors.grey[100],
                 },
               }),
             },
@@ -1055,7 +1008,7 @@ export const biampTheme = (
                 backgroundColor:
                   theme.palette.mode === 'dark'
                     ? theme.palette.grey[800]
-                    : theme.palette.grey[100],
+                    : theme.palette.grey[50],
                 borderBottom: 'none',
                 '&:first-of-type': {
                   borderTopLeftRadius: 8,
@@ -1102,18 +1055,18 @@ export const biampTheme = (
                 backgroundColor:
                   theme.palette.mode === 'dark'
                     ? theme.palette.grey[800]
-                    : theme.palette.grey[100],
+                    : theme.palette.grey[50],
               },
               '&.Mui-selected': {
                 backgroundColor:
                   theme.palette.mode === 'dark'
                     ? theme.palette.grey[800]
-                    : theme.palette.grey[100],
+                    : theme.palette.grey[50],
                 '&:hover': {
                   backgroundColor:
                     theme.palette.mode === 'dark'
                       ? theme.palette.grey[800]
-                      : theme.palette.grey[100],
+                      : theme.palette.grey[50],
                 },
               },
               '&:last-child td': {
@@ -1333,7 +1286,7 @@ export const biampTheme = (
               backgroundColor:
                 theme.palette.mode === 'dark'
                   ? colors.grey[800]
-                  : colors.grey[100],
+                  : colors.grey[50],
               opacity: 1,
               border:
                 theme.palette.mode === 'dark'
@@ -1751,13 +1704,13 @@ export const biampTheme = (
                 backgroundColor:
                   theme.palette.mode === 'dark'
                     ? colors.grey[800]
-                    : colors.grey[100],
+                    : colors.grey[50],
                 color: 'inherit',
                 '&:hover': {
                   backgroundColor:
                     theme.palette.mode === 'dark'
                       ? colors.grey[800]
-                      : colors.grey[100],
+                      : colors.grey[50],
                 },
               },
               '& .MuiTouchRipple-root': {
@@ -2025,7 +1978,7 @@ export const biampTheme = (
               backgroundColor:
                 theme.palette.mode === 'dark'
                   ? colors.grey[800]
-                  : colors.grey[100],
+                  : colors.grey[50],
               '&::before': {
                 content: '""',
                 position: 'absolute',
@@ -2038,7 +1991,7 @@ export const biampTheme = (
                 backgroundColor:
                   theme.palette.mode === 'dark'
                     ? colors.grey[800]
-                    : colors.grey[100],
+                    : colors.grey[50],
               },
               '&::after': {
                 content: '""',
@@ -2052,7 +2005,7 @@ export const biampTheme = (
                 backgroundColor:
                   theme.palette.mode === 'dark'
                     ? colors.grey[800]
-                    : colors.grey[100],
+                    : colors.grey[50],
               },
             }),
             track: {
