@@ -1,6 +1,6 @@
 # @bwp-web/styles
 
-Shared MUI theme and styling utilities for Biamp Workplace applications. Provides a fully configured MUI theme with light and dark color schemes, typography, spacing, and component overrides that match the SOLAR® Biamp Design System.
+Shared MUI theme and styling utilities for the SOLAR Base UI design system. Provides pre-built light and dark MUI themes with semantic color tokens, typography scales, shadow effects, and component overrides.
 
 ## Installation
 
@@ -20,17 +20,15 @@ npm install @bwp-web/styles
 
 ### Basic Setup
 
-Wrap your application in MUI's `ThemeProvider` with the Biamp theme and include `CssBaseline` to inject the font-face declarations and global resets:
+Wrap your application in MUI's `ThemeProvider` with one of the SOLAR themes and include `CssBaseline` for global resets:
 
 ```tsx
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { biampTheme } from '@bwp-web/styles';
+import { solarLightTheme, solarDarkTheme } from '@bwp-web/styles';
 
-const theme = biampTheme();
-
-function App() {
+function App({ isDark }: { isDark: boolean }) {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={isDark ? solarDarkTheme : solarLightTheme}>
       <CssBaseline />
       {/* your app */}
     </ThemeProvider>
@@ -38,45 +36,25 @@ function App() {
 }
 ```
 
-### Overriding the Theme
-
-Pass any valid `createTheme` options to `biampTheme()` and they will be merged on top of the defaults:
-
-```tsx
-const theme = biampTheme({
-  defaultColorScheme: 'light',
-  colorSchemes: { dark: false },
-});
-```
-
 ### Light and Dark Mode
 
-The theme includes both `light` and `dark` color schemes. MUI will select the scheme based on the `defaultColorScheme` option or the CSS class on the root element (controlled by `cssVariables.colorSchemeSelector: 'class'`).
+Two pre-built theme objects are exported:
 
-To create separate theme objects for each mode (useful in Storybook or togglable UIs):
+- **`solarLightTheme`** — Light color scheme
+- **`solarDarkTheme`** — Dark color scheme
 
-```tsx
-const lightTheme = biampTheme({
-  defaultColorScheme: 'light',
-  colorSchemes: { dark: false },
-});
-
-const darkTheme = biampTheme({
-  defaultColorScheme: 'dark',
-  colorSchemes: { light: false },
-});
-```
+Switch between them by passing the appropriate theme to `ThemeProvider`.
 
 ## TypeScript
 
-The theme extends MUI's default type definitions with custom palette entries, typography variants, and component props. **These augmentations are included automatically** when you import from `@bwp-web/styles` — no extra configuration needed:
+The theme extends MUI's default type definitions with a custom `neutral` palette entry. **These augmentations are included automatically** when you import from `@bwp-web/styles`:
 
 ```tsx
-import { biampTheme } from '@bwp-web/styles';
-// TypeScript now knows about theme.palette.biamp, theme.palette.blue, etc.
+import { solarLightTheme } from '@bwp-web/styles';
+// TypeScript now knows about theme.palette.neutral (with 50–900 scale)
 ```
 
-If you have files that use `useTheme()` or `theme.palette` but don't import from `@bwp-web/styles` directly, add a single global declaration file to your project:
+If you have files that use `useTheme()` or `theme.palette` but don't import from `@bwp-web/styles` directly, add a global declaration file:
 
 ```ts
 // src/global.d.ts
@@ -85,197 +63,169 @@ If you have files that use `useTheme()` or `theme.palette` but don't import from
 
 ### Augmented Palette Types
 
-| Type                 | Added Properties                                 |
-| -------------------- | ------------------------------------------------ |
-| `Palette`            | `sidebar`, `biamp`, `blue`, `purple`, `dividers` |
-| `TypeBackground`     | `success`, `warning`, `error`, `info`            |
-| `TypeText`           | `sidebar`                                        |
-| `TypographyVariants` | `h0`, `sidebar`                                  |
+| Type             | Added Properties                                |
+| ---------------- | ----------------------------------------------- |
+| `Palette`        | `neutral` (PaletteColor + 50–900 numeric scale) |
+| `PaletteOptions` | `neutral` (PaletteColorOptions + 50–900 scale)  |
 
-### Augmented Component Props
+## Exports
 
-| Component    | Override                                                                                         |
-| ------------ | ------------------------------------------------------------------------------------------------ |
-| `Button`     | `color="biamp"`, `variant="overlay"`                                                             |
-| `Checkbox`   | `color="biamp"`                                                                                  |
-| `Fab`        | `color="biamp"`                                                                                  |
-| `Typography` | `variant="h0"`, `variant="sidebar"`                                                              |
-| `IconButton` | `variant="none"`, `variant="transparent"`, `variant="outlined"`                                  |
-| `Badge`      | `variant="rectangle"`, `variant="round"`, `variant="rectangle-inline"`, `variant="round-inline"` |
-| `Alert`      | `filled` and `outlined` variants disabled (only `standard` is available)                         |
+| Export            | Type     | Description                                                                  |
+| ----------------- | -------- | ---------------------------------------------------------------------------- |
+| `solarLightTheme` | `Theme`  | Pre-built MUI theme for light mode                                           |
+| `solarDarkTheme`  | `Theme`  | Pre-built MUI theme for dark mode                                            |
+| `solarTypography` | `object` | Raw typography scale (display, title, body, label, helper, code, link)       |
+| `solarShadows`    | `object` | Named shadow tokens (subtle, control, focus, danger, warning, modal, strong) |
+| `solarPrimitives` | `object` | Primitive color palette (neutral, brand, red, orange, green, blue, alpha)    |
 
-## Color Palette
+## Color System
 
-### Standard MUI Palette
+### Semantic Token Architecture
 
-| Key              | Light     | Dark      | Description                                               |
-| ---------------- | --------- | --------- | --------------------------------------------------------- |
-| `primary.main`   | `#111111` | `#FFFFFF` | Primary UI color — dark in light mode, white in dark mode |
-| `secondary.main` | `#FFFFFF` | `#FFFFFF` | Secondary UI color                                        |
-| `success.main`   | `#009600` | `#009600` | Success signal (green)                                    |
-| `warning.main`   | `#cf4700` | `#c39900` | Warning signal (orange/amber)                             |
-| `error.main`     | `#e0032d` | `#c00024` | Error/critical signal (red)                               |
-| `info.main`      | `#08b8c9` | `#0896a6` | Informational signal (turquoise)                          |
+Colors are organized as **semantic tokens** that map to primitive color scales. Each token has a light and dark mode value.
 
-### Custom Palette Entries
+| Token Category | Examples                                                                                                     |
+| -------------- | ------------------------------------------------------------------------------------------------------------ |
+| `surface.*`    | `default`, `secondary`, `tertiary`, `overlay`, `inverse`, `brand`, `danger`, `warning`, `success`, `info`    |
+| `text.*`       | `default`, `secondary`, `tertiary`, `disabled`, `inverse`, `brand`, `danger`, `link`                         |
+| `icon.*`       | `default`, `secondary`, `tertiary`, `disabled`, `inverse`, `brand`, `danger`                                 |
+| `border.*`     | `default`, `secondary`, `strong`, `inverse`, `brand`, `danger`, `warning`, `success`, `info`                 |
+| `action.*`     | `primary.bg.*`, `primary.text.*`, `primary.icon.*`, `secondary.bg.*`, `secondary.text.*`, `secondary.icon.*` |
+| `shadow.*`     | `default`, `focus`, `danger`                                                                                 |
 
-| Key                  | Value                 | Description                     |
-| -------------------- | --------------------- | ------------------------------- |
-| `biamp.main`         | `#d22730`             | Biamp brand red                 |
-| `blue.main`          | `#2569fd`             | Action/link blue                |
-| `purple.main`        | `#7b3aff`             | Facility/scheduling purple      |
-| `sidebar.main`       | `#E0E0E0`             | Sidebar UI color                |
-| `dividers.primary`   | `#111111` @ 15% alpha | Standard divider                |
-| `dividers.secondary` | `#111111` @ 40% alpha | Button/border divider           |
+### MUI Palette Mapping
+
+| Key            | Light                   | Dark                    |
+| -------------- | ----------------------- | ----------------------- |
+| `primary.main` | Brand 600 (`#0284C7`)   | Brand 500 (`#0EA5E9`)   |
+| `error.main`   | Red 500 (`#F5222D`)     | Red 500 (`#F5222D`)     |
+| `warning.main` | Orange 500 (`#FA8C16`)  | Orange 500 (`#FA8C16`)  |
+| `success.main` | Green 500 (`#52C41A`)   | Green 500 (`#52C41A`)   |
+| `info.main`    | Blue 500 (`#1677FF`)    | Blue 500 (`#1677FF`)    |
+| `divider`      | Neutral 200 (`#E4E7EC`) | Neutral 700 (`#344054`) |
+
+### Primitive Color Scales
+
+| Scale     | Range  | Description              |
+| --------- | ------ | ------------------------ |
+| `neutral` | 50–900 | Grey/neutral UI tones    |
+| `brand`   | 50–900 | Primary brand (sky blue) |
+| `red`     | 50–700 | Error/danger feedback    |
+| `orange`  | 50–700 | Warning feedback         |
+| `green`   | 50–700 | Success feedback         |
+| `blue`    | 50–700 | Info feedback            |
 
 ### Background
 
-| Key                  | Light     | Dark      |
-| -------------------- | --------- | --------- |
-| `background.default` | `#f5f5f5` | `#111111` |
-| `background.paper`   | `#ffffff` | `#222222` |
-| `background.success` | `#ecffe9` | `#002400` |
-| `background.warning` | `#ffeeda` | `#3a2600` |
-| `background.error`   | `#ffe4df` | `#410001` |
-| `background.info`    | `#f0ffff` | `#002b30` |
+| Key                  | Light                  | Dark                    |
+| -------------------- | ---------------------- | ----------------------- |
+| `background.default` | White (`#FFFFFF`)      | Neutral 900 (`#101828`) |
+| `background.paper`   | Neutral 50 (`#F9FAFB`) | Neutral 800 (`#1D2939`) |
 
 ### Text
 
-| Key              | Light           | Dark            |
-| ---------------- | --------------- | --------------- |
-| `text.primary`   | `#111111`       | `#f5f5f5`       |
-| `text.secondary` | `#646464`       | `#646464`       |
-| `text.disabled`  | `#111111` @ 40% | `#FFFFFF` @ 40% |
-| `text.sidebar`   | `#E0E0E0`       | `#E0E0E0`       |
-
-### Grey Scale (Neutral)
-
-| Key        | Value     |
-| ---------- | --------- |
-| `grey.50`  | `#f5f5f5` |
-| `grey.100` | `#e0e0e0` |
-| `grey.200` | `#c9c9c9` |
-| `grey.300` | `#a8a8a8` |
-| `grey.400` | `#8c8c8c` |
-| `grey.500` | `#646464` |
-| `grey.600` | `#484848` |
-| `grey.700` | `#333333` |
-| `grey.800` | `#222222` |
-| `grey.900` | `#111111` |
+| Key              | Light                   | Dark                    |
+| ---------------- | ----------------------- | ----------------------- |
+| `text.primary`   | Neutral 900 (`#101828`) | Neutral 50 (`#F9FAFB`)  |
+| `text.secondary` | Neutral 700 (`#344054`) | Neutral 300 (`#D0D5DD`) |
+| `text.disabled`  | Neutral 300 (`#D0D5DD`) | Neutral 500 (`#667085`) |
 
 ## Typography
 
-The **Inter** font family is loaded automatically via `CssBaseline` (weights: 400, 500, 600, 700).
+The **Inter** font family is the primary typeface; **JetBrains Mono** is used for code.
 
-### Variants
+### MUI Variant Mapping
 
-| Variant     | Size     | Weight | Letter Spacing |
-| ----------- | -------- | ------ | -------------- |
-| `h0`        | 2.5rem   | 500    | -0.05rem       |
-| `h1`        | 1.75rem  | 600    | -0.035rem      |
-| `h2`        | 1.25rem  | 600    | -0.025rem      |
-| `h3`        | 1rem     | 600    | -0.02rem       |
-| `h4`        | 1rem     | 600    | -0.02rem       |
-| `body1`     | 1rem     | 400    | -0.02rem       |
-| `body2`     | 0.875rem | 400    | -0.018rem      |
-| `caption`   | 0.75rem  | 400    | -0.015rem      |
-| `subtitle1` | 0.875rem | 600    | —              |
-| `subtitle2` | 0.75rem  | 600    | —              |
-| `button`    | 0.875rem | 600    | -0.018rem      |
-| `sidebar`   | 0.563rem | 700    | -0.013rem      |
+| MUI Variant | SOLAR Scale | Size     | Weight |
+| ----------- | ----------- | -------- | ------ |
+| `h1`        | display/lg  | 3.75rem  | 700    |
+| `h2`        | display/md  | 3rem     | 700    |
+| `h3`        | display/sm  | 2.25rem  | 700    |
+| `h4`        | title/lg    | 1.875rem | 600    |
+| `h5`        | title/md    | 1.5rem   | 600    |
+| `h6`        | title/sm    | 1.25rem  | 600    |
+| `subtitle1` | title/xs    | 1.125rem | 600    |
+| `subtitle2` | label/md    | 0.875rem | 500    |
+| `body1`     | body/md     | 1rem     | 400    |
+| `body2`     | body/sm     | 0.875rem | 400    |
+| `caption`   | helper/sm   | 0.75rem  | 400    |
+| `overline`  | label/sm    | 0.75rem  | 500    |
+| `button`    | label/md    | 0.875rem | 500    |
 
-`h0` and `sidebar` are custom variants added by the theme augmentations:
+### Extended Typography (via `solarTypography`)
+
+The full SOLAR typography scale is available as a standalone export for use with `sx` or `styled`:
 
 ```tsx
-<Typography variant="h0">Large heading</Typography>
-<Typography variant="sidebar">Sidebar label</Typography>
+import { solarTypography } from '@bwp-web/styles';
+
+// Use in sx prop
+<Box sx={{ ...solarTypography.codeMd }} />
+<Box sx={{ ...solarTypography.linkSm }} />
+```
+
+Available tokens: `displayLg`, `displayMd`, `displaySm`, `titleLg`, `titleMd`, `titleSm`, `titleXs`, `bodyMdRegular`/`Medium`/`Semibold`/`Bold`, `bodySmRegular`/`Medium`/`Semibold`/`Bold`, `bodyXsRegular`/`Medium`/`Semibold`/`Bold`, `labelMd`, `labelSm`, `helperMd`, `helperSm`, `linkMd`, `linkSm`, `linkXs`, `codeMd`, `codeSm`.
+
+## Shadows
+
+Named shadow tokens from the design system's effect styles:
+
+| Token     | Description                       |
+| --------- | --------------------------------- |
+| `subtle`  | Minimal elevation (cards)         |
+| `control` | Form controls (inputs, selects)   |
+| `focus`   | Focus ring (blue glow)            |
+| `danger`  | Error focus ring (red glow)       |
+| `warning` | Warning focus ring (orange glow)  |
+| `modal`   | Dialogs and modals                |
+| `strong`  | High elevation (dropdowns, menus) |
+
+```tsx
+import { solarShadows } from '@bwp-web/styles';
+
+<Box sx={{ boxShadow: solarShadows.modal }} />;
 ```
 
 ## Spacing
 
-The theme uses an 8px base spacing unit (`theme.spacing(1) = 8px`):
-
-| `theme.spacing(n)` | Result |
-| ------------------ | ------ |
-| `0`                | 0px    |
-| `0.5`              | 4px    |
-| `1`                | 8px    |
-| `1.5`              | 12px   |
-| `2`                | 16px   |
-| `2.5`              | 20px   |
-| `3`                | 24px   |
-| `3.5`              | 28px   |
-| `4`                | 32px   |
-| `5`                | 40px   |
+The theme uses an 8px base spacing unit (`theme.spacing(1) = 8px`).
 
 ## Component Overrides
 
-The theme includes style overrides for the following MUI components. These are applied automatically — no extra configuration needed.
+The theme includes style overrides for the following MUI components, applied automatically:
 
-### Button
-
-Three variants are available: `contained` (default), `outlined`, and `overlay`.
-
-- **`variant="overlay"`** — Full-width, zero-border-radius button for overlay/bottom-bar UIs. Height is fixed at 48px.
-- **`color="biamp"`** — Biamp brand red button.
-- **`size="medium"`** (default) — 44px height, 6px border-radius.
-- **`size="small"`** — 32px height, 4px border-radius.
-
-### IconButton
-
-- **`variant="transparent"`** (default) — Hover/active background tint on a transparent base.
-- **`variant="outlined"`** — 32x32 with a bordered outline.
-- **`variant="none"`** — Bare 28x28 icon, no hover/active background.
-
-### Alert
-
-Only the `standard` variant is enabled. MUI's `filled` and `outlined` variants are disabled.
-
-### Other Components
-
-Styled overrides are included for: `Breadcrumbs`, `Checkbox`, `Chip`, `Dialog`, `Divider`, `Drawer`, `Fab`, `FormControlLabel`, `FormHelperText`, `FormLabel`, `InputBase`, `InputLabel`, `Menu`, `MenuItem`, `OutlinedInput`, `Radio`, `Select`, `Slider`, `Switch`, `Tab`, `Tabs`, `Tooltip`, `TextField`, `Autocomplete`, `DatePicker`, `PickersTextField`, `PickersInputBase`, `PickersOutlinedInput`.
+- **Button** — `contained`, `outlined`, `text` variants with semantic action token colors. Sizes: `small`, `medium`, `large`.
+- **OutlinedInput / TextField** — Border, focus ring, error states using semantic tokens.
+- **Card** — Border, subtle shadow, surface background.
+- **Chip** — Compact with outlined variant styling.
+- **Dialog** — Modal shadow, border, rounded corners (12px).
+- **Alert** — Standard variant with feedback surface/border/text colors for error, warning, success, info.
+- **Table** — Header/cell styling with typography tokens.
+- **Checkbox / Radio / Switch** — Brand color on checked state.
+- **Tooltip** — Dark background with body/sm typography.
+- **Tabs** — Brand indicator with border-bottom.
+- **Breadcrumbs** — Link styling with brand color.
+- **Link** — Brand color with underline.
+- **Skeleton** — Tertiary surface color.
+- **Divider** — Border default color.
+- **Select** — Secondary icon color.
+- **FormLabel / FormHelperText** — Semantic text colors with error states.
+- **CssBaseline** — Global body, code, and pre styling.
 
 ### DatePicker & TimePicker
 
-`DatePicker` and `TimePicker` are styled but require a `LocalizationProvider` wrapper with a date adapter to function.
-
-Install the required packages:
-
-```bash
-npm install @mui/x-date-pickers dayjs
-```
-
-Wrap any usage in `LocalizationProvider`:
+`DatePicker` and `TimePicker` are styled but require a `LocalizationProvider` wrapper:
 
 ```tsx
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 
 function MyComponent() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker label="Date" />
-      <TimePicker label="Time" />
     </LocalizationProvider>
   );
 }
 ```
-
-To use a specific locale (e.g. `en-gb` for DD/MM/YYYY formatting):
-
-```tsx
-import 'dayjs/locale/en-gb';
-
-<LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en-gb">
-  <DatePicker label="Date" />
-</LocalizationProvider>;
-```
-
-## Exports
-
-| Export                 | Type       | Description                                                                                  |
-| ---------------------- | ---------- | -------------------------------------------------------------------------------------------- |
-| `biampTheme(options?)` | `function` | Creates a configured MUI theme. Accepts optional `createTheme` options to override defaults. |
-| `appBarHeight`         | `number`   | Standard app bar height (`64`)                                                               |

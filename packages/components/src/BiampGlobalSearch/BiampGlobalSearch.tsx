@@ -113,8 +113,7 @@ const BiampGlobalSearchPaper = forwardRef<HTMLDivElement, PaperProps>(
         {hasOptions && (
           <Box
             sx={{
-              borderTop: ({ palette }) =>
-                `0.6px solid ${palette.dividers.secondary}`,
+              borderTop: ({ palette }) => `0.6px solid ${palette.divider}`,
               display: 'flex',
               alignItems: 'center',
               gap: 1,
@@ -175,7 +174,7 @@ function HighlightText({ text, query }: { text: string; query: string }) {
       <Box
         component="span"
         sx={{
-          bgcolor: 'background.info',
+          bgcolor: 'info.light',
           borderRadius: '4px',
           color: 'info.main',
           paddingTop: '2px',
@@ -267,9 +266,9 @@ function BiampGlobalSearchListItem({
               size="small"
               label={item.label}
               sx={{
-                bgcolor: 'background.info',
+                bgcolor: 'info.light',
                 borderRadius: '2px',
-                borderColor: ({ palette }: Theme) => palette.dividers.primary,
+                borderColor: ({ palette }: Theme) => palette.divider,
                 padding: '0px 6px',
                 '& .MuiChip-label': {
                   typography: 'caption',
@@ -284,9 +283,9 @@ function BiampGlobalSearchListItem({
               size="small"
               label={`+${overflow}`}
               sx={{
-                bgcolor: 'background.info',
+                bgcolor: 'info.light',
                 borderRadius: '2px',
-                borderColor: ({ palette }: Theme) => palette.dividers.primary,
+                borderColor: ({ palette }: Theme) => palette.divider,
                 padding: '0px 6px',
                 '& .MuiChip-label': {
                   typography: 'caption',

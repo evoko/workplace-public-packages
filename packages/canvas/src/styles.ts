@@ -1,7 +1,7 @@
 import { alpha } from '@mui/material/styles';
-import { biampTheme } from '@bwp-web/styles';
+import { solarLightTheme } from '@bwp-web/styles';
 
-const { palette } = biampTheme();
+const { palette } = solarLightTheme;
 
 /** Selection handle appearance (border, corner color). Applied to all objects. */
 export const DEFAULT_CONTROL_STYLE = {

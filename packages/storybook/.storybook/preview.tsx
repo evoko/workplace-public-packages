@@ -1,26 +1,13 @@
 import React from 'react';
 import type { Preview } from '@storybook/react-vite';
 import { ThemeProvider, CssBaseline, Box } from '@mui/material';
-import { biampTheme } from '@bwp-web/styles';
-
-// Create two separate themes, each with ONLY one color scheme.
-// This prevents MUI from auto-detecting system preferences or
-// fighting over which scheme to show — there's only one option each.
-const lightTheme = biampTheme({
-  defaultColorScheme: 'light',
-  colorSchemes: { dark: false },
-});
-
-const darkTheme = biampTheme({
-  defaultColorScheme: 'dark',
-  colorSchemes: { light: false },
-});
+import { solarLightTheme, solarDarkTheme } from '@bwp-web/styles';
 
 const preview: Preview = {
   tags: ['autodocs'],
   globalTypes: {
     colorMode: {
-      description: 'Color mode for the Biamp theme',
+      description: 'Color mode for the SOLAR theme',
       toolbar: {
         title: 'Color Mode',
         items: [
@@ -36,8 +23,8 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      const mode = context.globals.colorMode ;
-      const theme = mode === 'dark' ? darkTheme : lightTheme;
+      const mode = context.globals.colorMode;
+      const theme = mode === 'dark' ? solarDarkTheme : solarLightTheme;
 
       return (
         <ThemeProvider theme={theme}>

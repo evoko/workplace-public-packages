@@ -115,7 +115,7 @@ export function BiampTableColumnVisibility<TData>({
           sx: ({ palette }) => ({
             borderRadius: '6px',
             backgroundImage: 'none',
-            border: `0.6px solid ${palette.dividers.secondary}`,
+            border: `0.6px solid ${palette.divider}`,
             boxShadow: `0px 1px 1px 0px ${alpha(palette.common.black, 0.05)}`,
             minWidth: '150px',
           }),

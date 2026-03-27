@@ -16,26 +16,33 @@ export const AllVariants: Story = {
     <Stack spacing={3}>
       {(
         [
-          { variant: 'h0', label: 'h0 — Inter 2.5rem / 500' },
-          { variant: 'h1', label: 'h1 — Inter 1.75rem / 600' },
-          { variant: 'h2', label: 'h2 — Inter 1.25rem / 600' },
-          { variant: 'h3', label: 'h3 — Inter 1rem / 600' },
-          { variant: 'h4', label: 'h4 — Inter 1rem / 600' },
-          { variant: 'body1', label: 'body1 — Inter 1rem / 400' },
-          { variant: 'body2', label: 'body2 — Inter 0.875rem / 400' },
-          { variant: 'caption', label: 'caption — Inter 0.75rem / 400' },
+          { variant: 'h1', label: 'h1 (display/lg) — Inter 3.75rem / 700' },
+          { variant: 'h2', label: 'h2 (display/md) — Inter 3rem / 700' },
+          { variant: 'h3', label: 'h3 (display/sm) — Inter 2.25rem / 700' },
+          { variant: 'h4', label: 'h4 (title/lg) — Inter 1.875rem / 600' },
+          { variant: 'h5', label: 'h5 (title/md) — Inter 1.5rem / 600' },
+          { variant: 'h6', label: 'h6 (title/sm) — Inter 1.25rem / 600' },
           {
             variant: 'subtitle1',
-            label: 'subtitle1 — Inter 0.875rem / 600',
+            label: 'subtitle1 (title/xs) — Inter 1.125rem / 600',
           },
           {
             variant: 'subtitle2',
-            label: 'subtitle2 — Inter 0.75rem / 600',
+            label: 'subtitle2 (label/md) — Inter 0.875rem / 500',
           },
-          { variant: 'button', label: 'button — Inter 0.875rem / 600' },
+          { variant: 'body1', label: 'body1 (body/md) — Inter 1rem / 400' },
+          { variant: 'body2', label: 'body2 (body/sm) — Inter 0.875rem / 400' },
           {
-            variant: 'sidebar',
-            label: 'sidebar — Inter 0.563rem / 700',
+            variant: 'caption',
+            label: 'caption (helper/sm) — Inter 0.75rem / 400',
+          },
+          {
+            variant: 'overline',
+            label: 'overline (label/sm) — Inter 0.75rem / 500 uppercase',
+          },
+          {
+            variant: 'button',
+            label: 'button (label/md) — Inter 0.875rem / 500',
           },
         ] as const
       ).map(({ variant, label }) => (
@@ -55,24 +62,28 @@ export const AllVariants: Story = {
   ),
 };
 
-export const Heading0: Story = {
-  args: { variant: 'h0', children: 'Heading 0' },
-};
-
 export const Heading1: Story = {
-  args: { variant: 'h1', children: 'Heading 1' },
+  args: { variant: 'h1', children: 'Display Large' },
 };
 
 export const Heading2: Story = {
-  args: { variant: 'h2', children: 'Heading 2' },
+  args: { variant: 'h2', children: 'Display Medium' },
 };
 
 export const Heading3: Story = {
-  args: { variant: 'h3', children: 'Heading 3' },
+  args: { variant: 'h3', children: 'Display Small' },
 };
 
 export const Heading4: Story = {
-  args: { variant: 'h4', children: 'Heading 4' },
+  args: { variant: 'h4', children: 'Title Large' },
+};
+
+export const Heading5: Story = {
+  args: { variant: 'h5', children: 'Title Medium' },
+};
+
+export const Heading6: Story = {
+  args: { variant: 'h6', children: 'Title Small' },
 };
 
 export const Body1: Story = {
@@ -85,8 +96,4 @@ export const Body2: Story = {
 
 export const Caption: Story = {
   args: { variant: 'caption', children: sampleText },
-};
-
-export const Sidebar: Story = {
-  args: { variant: 'sidebar', children: 'Sidebar Label' },
 };

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box, Stack, Typography, useTheme } from '@mui/material';
+import { solarPrimitives } from '@bwp-web/styles';
 
 /**
  * Helper: a single color swatch with label + hex value.
@@ -44,7 +45,7 @@ const ColorGroup = ({
   swatches: { color: string; label: string; bordered?: boolean }[];
 }) => (
   <Box sx={{ mb: 4 }}>
-    <Typography variant="h2" sx={{ mb: 2 }}>
+    <Typography variant="h5" sx={{ mb: 2 }}>
       {title}
     </Typography>
     <Stack direction="row" flexWrap="wrap" gap={2}>
@@ -56,7 +57,7 @@ const ColorGroup = ({
 );
 
 /**
- * Renders the full color palette pulled from the active MUI theme.
+ * Renders the full SOLAR color palette from the active MUI theme + primitives.
  */
 const AllColors = () => {
   const theme = useTheme();
@@ -64,12 +65,11 @@ const AllColors = () => {
 
   return (
     <Stack spacing={2}>
-      {/* ---- Primary / Secondary ---- */}
+      {/* ---- MUI Palette: Primary / Secondary ---- */}
       <ColorGroup
         title="Primary"
         swatches={[
           { color: p.primary.main, label: 'main' },
-          { color: p.primary.light, label: 'light' },
           { color: p.primary.dark, label: 'dark' },
           {
             color: p.primary.contrastText,
@@ -82,26 +82,23 @@ const AllColors = () => {
       <ColorGroup
         title="Secondary"
         swatches={[
-          { color: p.secondary.main, label: 'main', bordered: true },
-          { color: p.secondary.light, label: 'light', bordered: true },
-          { color: p.secondary.dark, label: 'dark', bordered: true },
+          { color: p.secondary.main, label: 'main' },
           { color: p.secondary.contrastText, label: 'contrastText' },
         ]}
       />
 
       {/* ---- Status colors ---- */}
       <ColorGroup
-        title="Success"
+        title="Error"
         swatches={[
-          { color: p.success.main, label: 'main' },
-          { color: p.success.light, label: 'light' },
-          { color: p.success.dark, label: 'dark' },
+          { color: p.error.main, label: 'main' },
+          { color: p.error.light, label: 'light' },
+          { color: p.error.dark, label: 'dark' },
           {
-            color: p.success.contrastText,
+            color: p.error.contrastText,
             label: 'contrastText',
             bordered: true,
           },
-          { color: p.background.success, label: 'background' },
         ]}
       />
 
@@ -116,22 +113,20 @@ const AllColors = () => {
             label: 'contrastText',
             bordered: true,
           },
-          { color: p.background.warning, label: 'background' },
         ]}
       />
 
       <ColorGroup
-        title="Error"
+        title="Success"
         swatches={[
-          { color: p.error.main, label: 'main' },
-          { color: p.error.light, label: 'light' },
-          { color: p.error.dark, label: 'dark' },
+          { color: p.success.main, label: 'main' },
+          { color: p.success.light, label: 'light' },
+          { color: p.success.dark, label: 'dark' },
           {
-            color: p.error.contrastText,
+            color: p.success.contrastText,
             label: 'contrastText',
             bordered: true,
           },
-          { color: p.background.error, label: 'background' },
         ]}
       />
 
@@ -146,52 +141,97 @@ const AllColors = () => {
             label: 'contrastText',
             bordered: true,
           },
-          { color: p.background.info, label: 'background' },
         ]}
       />
 
-      {/* ---- Custom brand colors ---- */}
+      {/* ---- Primitives: Brand scale ---- */}
       <ColorGroup
-        title="Biamp"
+        title="Brand"
         swatches={[
-          { color: p.biamp.main, label: 'main' },
-          { color: p.biamp.light, label: 'light' },
-          { color: p.biamp.dark, label: 'dark' },
+          { color: solarPrimitives.brand[50], label: '50', bordered: true },
+          { color: solarPrimitives.brand[100], label: '100', bordered: true },
+          { color: solarPrimitives.brand[200], label: '200' },
+          { color: solarPrimitives.brand[300], label: '300' },
+          { color: solarPrimitives.brand[400], label: '400' },
+          { color: solarPrimitives.brand[500], label: '500' },
+          { color: solarPrimitives.brand[600], label: '600' },
+          { color: solarPrimitives.brand[700], label: '700' },
+          { color: solarPrimitives.brand[800], label: '800' },
+          { color: solarPrimitives.brand[900], label: '900' },
+        ]}
+      />
+
+      {/* ---- Primitives: Neutral scale ---- */}
+      <ColorGroup
+        title="Neutral"
+        swatches={[
+          { color: solarPrimitives.neutral[50], label: '50', bordered: true },
+          { color: solarPrimitives.neutral[100], label: '100', bordered: true },
+          { color: solarPrimitives.neutral[200], label: '200', bordered: true },
+          { color: solarPrimitives.neutral[300], label: '300' },
+          { color: solarPrimitives.neutral[400], label: '400' },
+          { color: solarPrimitives.neutral[500], label: '500' },
+          { color: solarPrimitives.neutral[600], label: '600' },
+          { color: solarPrimitives.neutral[700], label: '700' },
+          { color: solarPrimitives.neutral[800], label: '800' },
+          { color: solarPrimitives.neutral[900], label: '900' },
+        ]}
+      />
+
+      {/* ---- Primitives: Feedback scales ---- */}
+      <ColorGroup
+        title="Red"
+        swatches={[
+          { color: solarPrimitives.red[50], label: '50', bordered: true },
+          { color: solarPrimitives.red[100], label: '100' },
+          { color: solarPrimitives.red[200], label: '200' },
+          { color: solarPrimitives.red[300], label: '300' },
+          { color: solarPrimitives.red[400], label: '400' },
+          { color: solarPrimitives.red[500], label: '500' },
+          { color: solarPrimitives.red[600], label: '600' },
+          { color: solarPrimitives.red[700], label: '700' },
         ]}
       />
 
       <ColorGroup
-        title="Purple"
+        title="Orange"
         swatches={[
-          { color: p.purple.main, label: 'main' },
-          { color: p.purple.light, label: 'light' },
-          { color: p.purple.dark, label: 'dark' },
+          { color: solarPrimitives.orange[50], label: '50', bordered: true },
+          { color: solarPrimitives.orange[100], label: '100' },
+          { color: solarPrimitives.orange[200], label: '200' },
+          { color: solarPrimitives.orange[300], label: '300' },
+          { color: solarPrimitives.orange[400], label: '400' },
+          { color: solarPrimitives.orange[500], label: '500' },
+          { color: solarPrimitives.orange[600], label: '600' },
+          { color: solarPrimitives.orange[700], label: '700' },
+        ]}
+      />
+
+      <ColorGroup
+        title="Green"
+        swatches={[
+          { color: solarPrimitives.green[50], label: '50', bordered: true },
+          { color: solarPrimitives.green[100], label: '100' },
+          { color: solarPrimitives.green[200], label: '200' },
+          { color: solarPrimitives.green[300], label: '300' },
+          { color: solarPrimitives.green[400], label: '400' },
+          { color: solarPrimitives.green[500], label: '500' },
+          { color: solarPrimitives.green[600], label: '600' },
+          { color: solarPrimitives.green[700], label: '700' },
         ]}
       />
 
       <ColorGroup
         title="Blue"
         swatches={[
-          { color: p.blue.main, label: 'main' },
-          { color: p.blue.light, label: 'light' },
-          { color: p.blue.dark, label: 'dark' },
-        ]}
-      />
-
-      {/* ---- Grey scale ---- */}
-      <ColorGroup
-        title="Grey"
-        swatches={[
-          { color: p.grey[50], label: '50', bordered: true },
-          { color: p.grey[100], label: '100', bordered: true },
-          { color: p.grey[200], label: '200', bordered: true },
-          { color: p.grey[300], label: '300' },
-          { color: p.grey[400], label: '400' },
-          { color: p.grey[500], label: '500' },
-          { color: p.grey[600], label: '600' },
-          { color: p.grey[700], label: '700' },
-          { color: p.grey[800], label: '800' },
-          { color: p.grey[900], label: '900' },
+          { color: solarPrimitives.blue[50], label: '50', bordered: true },
+          { color: solarPrimitives.blue[100], label: '100' },
+          { color: solarPrimitives.blue[200], label: '200' },
+          { color: solarPrimitives.blue[300], label: '300' },
+          { color: solarPrimitives.blue[400], label: '400' },
+          { color: solarPrimitives.blue[500], label: '500' },
+          { color: solarPrimitives.blue[600], label: '600' },
+          { color: solarPrimitives.blue[700], label: '700' },
         ]}
       />
 
@@ -204,16 +244,6 @@ const AllColors = () => {
         ]}
       />
 
-      {/* ---- Sidebar ---- */}
-      <ColorGroup
-        title="Sidebar"
-        swatches={[
-          { color: p.sidebar.main, label: 'main' },
-          { color: p.sidebar.light, label: 'light' },
-          { color: p.sidebar.dark, label: 'dark' },
-        ]}
-      />
-
       {/* ---- Text ---- */}
       <ColorGroup
         title="Text"
@@ -221,7 +251,6 @@ const AllColors = () => {
           { color: p.text.primary, label: 'primary' },
           { color: p.text.secondary, label: 'secondary' },
           { color: p.text.disabled, label: 'disabled' },
-          { color: p.text.sidebar ?? '', label: 'sidebar' },
         ]}
       />
 
@@ -234,14 +263,10 @@ const AllColors = () => {
         ]}
       />
 
-      {/* ---- Dividers ---- */}
+      {/* ---- Divider ---- */}
       <ColorGroup
-        title="Dividers"
-        swatches={[
-          { color: p.divider, label: 'divider' },
-          { color: p.dividers.primary, label: 'primary' },
-          { color: p.dividers.secondary, label: 'secondary' },
-        ]}
+        title="Divider"
+        swatches={[{ color: p.divider, label: 'divider' }]}
       />
 
       {/* ---- Action ---- */}

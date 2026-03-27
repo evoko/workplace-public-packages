@@ -128,7 +128,7 @@ export function BiampTableToolbarFilters({
           {/* Footer */}
           <Box display="flex">
             <Button
-              variant="overlay"
+              variant="contained"
               color="secondary"
               fullWidth
               onClick={onReset}
@@ -137,7 +137,7 @@ export function BiampTableToolbarFilters({
               {resetLabel}
             </Button>
             <Button
-              variant="overlay"
+              variant="contained"
               color="primary"
               fullWidth
               onClick={handleClose}

@@ -15,7 +15,7 @@ const CustomCalendarHeaderRoot = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
   borderBottomWidth: '0.6px',
   borderBottomStyle: 'solid',
-  borderBottomColor: theme.palette.dividers.secondary,
+  borderBottomColor: theme.palette.divider,
   minHeight: '44px',
 }));
 

@@ -285,7 +285,6 @@ function BiampTableRowInner<TData>({
                 >
                   {row.getCanExpand() ? (
                     <IconButton
-                      variant="none"
                       onClick={(e) => {
                         e.stopPropagation();
                         row.toggleExpanded();

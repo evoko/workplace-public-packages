@@ -29,7 +29,7 @@ export function BiampBanner({ show, children, severity }: BiampBannerProps) {
   return (
     <Collapse in={show} unmountOnExit component="aside">
       <Box
-        bgcolor={({ palette }) => palette.background[severity]}
+        bgcolor={`${severity}.light`}
         display="flex"
         flexDirection="row"
         alignItems="center"
