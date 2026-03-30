@@ -149,6 +149,12 @@ export function useBiampServerSideTable<TData, F extends string = string>({
     getCoreRowModel: coreRowModel,
     getRowId,
 
+    // Server-side tables manage their own state — disable TanStack's auto-reset
+    // heuristic which watches for data reference changes and resets page index,
+    // selection, etc. With unstable data references (e.g. `items ?? []`) this
+    // causes infinite re-render loops.
+    autoResetAll: false,
+
     // Sorting — always manual for server-side tables
     manualSorting: true,
     sortDescFirst: false,

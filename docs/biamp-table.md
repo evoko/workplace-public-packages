@@ -527,6 +527,8 @@ Wraps `useReactTable` with the standard server-side configuration: manual sortin
 
 All feature groups (sorting, pagination, column visibility, row selection, expanding) are independently optional — only pass the props you need.
 
+> **Note:** This hook sets `autoResetAll: false` on the underlying TanStack Table instance. TanStack's default auto-reset behaviour watches for data reference changes and resets client-side state (page index, selection, expanded rows), which is designed for client-side filtering — not server-side tables. With server-side data sources (e.g. GraphQL/Apollo), unstable data references during loading (such as `items ?? []`) can trigger infinite re-render loops. Disabling auto-reset prevents this entire class of bugs.
+
 #### Options
 
 | Option                     | Type                                        | Default           | Description                                                                                   |
