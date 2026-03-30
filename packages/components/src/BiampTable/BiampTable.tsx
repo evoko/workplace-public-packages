@@ -42,31 +42,16 @@ type RowClickProps<TData> =
     };
 
 // ── Selection + expanding props ────────────────────────────────────
-type SelectionExpandingProps =
-  | {
-      /** When true, renders a checkbox column for row selection. */
-      enableRowSelection: true;
-      /** When true, renders an expand/collapse toggle column for rows that have sub-rows. */
-      enableExpanding: true;
-      /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
-      hideSelectAll?: boolean;
-      /** When true, selecting a parent row also selects/deselects its children. @default false */
-      selectChildrenWithParent?: boolean;
-    }
-  | {
-      /** When true, renders a checkbox column for row selection. */
-      enableRowSelection: true;
-      enableExpanding?: false;
-      /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. */
-      hideSelectAll?: boolean;
-      selectChildrenWithParent?: never;
-    }
-  | {
-      enableRowSelection?: false;
-      enableExpanding?: boolean;
-      hideSelectAll?: never;
-      selectChildrenWithParent?: never;
-    };
+type SelectionExpandingProps = {
+  /** When true, renders a checkbox column for row selection. */
+  enableRowSelection?: boolean;
+  /** When true, renders an expand/collapse toggle column for rows that have sub-rows. */
+  enableExpanding?: boolean;
+  /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. Only applies when `enableRowSelection` is true. */
+  hideSelectAll?: boolean;
+  /** When true, selecting a parent row also selects/deselects its children. Only applies when both `enableRowSelection` and `enableExpanding` are true. @default false */
+  selectChildrenWithParent?: boolean;
+};
 
 export type BiampTableProps<TData> = BoxProps &
   RowClickProps<TData> &
