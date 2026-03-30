@@ -10,13 +10,13 @@ const meta: Meta<typeof IconButton> = {
   title: 'Styles/IconButton',
   component: IconButton,
   argTypes: {
-    variant: {
-      control: 'select',
-      options: ['none', 'transparent', 'outlined'],
-    },
     size: {
       control: 'select',
-      options: ['small', 'medium'],
+      options: ['small', 'medium', 'large'],
+    },
+    color: {
+      control: 'select',
+      options: ['default', 'primary', 'error'],
     },
     disabled: { control: 'boolean' },
   },
@@ -27,46 +27,72 @@ type Story = StoryObj<typeof IconButton>;
 
 export const Playground: Story = {
   args: {
-    variant: 'transparent',
-    size: 'small',
+    size: 'medium',
     children: <EditIcon />,
   },
 };
 
-export const AllVariants: Story = {
+export const AllSizes: Story = {
   render: () => (
     <Stack spacing={4}>
-      {(['none', 'transparent', 'outlined'] as const).map((variant) => (
-        <Box key={variant}>
-          <Typography variant="h3" sx={{ mb: 2 }}>
-            Variant: {variant}
+      {(['small', 'medium', 'large'] as const).map((size) => (
+        <Box key={size}>
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            Size: {size}
           </Typography>
-          <Stack spacing={2}>
-            {(['small', 'medium'] as const).map((size) => (
-              <Stack key={size} direction="row" spacing={2} alignItems="center">
-                <Typography variant="caption" sx={{ width: 60, flexShrink: 0 }}>
-                  {size}
-                </Typography>
-                <IconButton variant={variant} size={size}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton variant={variant} size={size}>
-                  <DeleteIcon />
-                </IconButton>
-                <IconButton variant={variant} size={size}>
-                  <SettingsIcon />
-                </IconButton>
-                <IconButton variant={variant} size={size}>
-                  <CloseIcon />
-                </IconButton>
-                <IconButton variant={variant} size={size}>
-                  <MoreVertIcon />
-                </IconButton>
-                <IconButton variant={variant} size={size} disabled>
-                  <EditIcon />
-                </IconButton>
-              </Stack>
-            ))}
+          <Stack direction="row" spacing={2} alignItems="center">
+            <IconButton size={size}>
+              <EditIcon />
+            </IconButton>
+            <IconButton size={size}>
+              <DeleteIcon />
+            </IconButton>
+            <IconButton size={size}>
+              <SettingsIcon />
+            </IconButton>
+            <IconButton size={size}>
+              <CloseIcon />
+            </IconButton>
+            <IconButton size={size}>
+              <MoreVertIcon />
+            </IconButton>
+            <IconButton size={size} disabled>
+              <EditIcon />
+            </IconButton>
+          </Stack>
+        </Box>
+      ))}
+    </Stack>
+  ),
+};
+
+export const Colors: Story = {
+  render: () => (
+    <Stack spacing={4}>
+      {(
+        [
+          { color: 'default', label: 'Default' },
+          { color: 'primary', label: 'Primary' },
+          { color: 'error', label: 'Error' },
+        ] as const
+      ).map(({ color, label }) => (
+        <Box key={color}>
+          <Typography variant="h6" sx={{ mb: 2 }}>
+            {label}
+          </Typography>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <IconButton color={color}>
+              <EditIcon />
+            </IconButton>
+            <IconButton color={color}>
+              <DeleteIcon />
+            </IconButton>
+            <IconButton color={color}>
+              <SettingsIcon />
+            </IconButton>
+            <IconButton color={color} disabled>
+              <EditIcon />
+            </IconButton>
           </Stack>
         </Box>
       ))}

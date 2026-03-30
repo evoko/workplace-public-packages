@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, Stack, Typography, Box } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const meta: Meta<typeof Button> = {
   title: 'Styles/Button',
@@ -13,7 +14,7 @@ const meta: Meta<typeof Button> = {
     },
     color: {
       control: 'select',
-      options: ['primary', 'error', 'secondary'],
+      options: ['primary', 'error'],
     },
     size: {
       control: 'select',
@@ -36,191 +37,201 @@ export const Playground: Story = {
   },
 };
 
-export const ContainedButtons: Story = {
-  render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h6">Contained Buttons</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="contained" color="primary">
-          Primary
-        </Button>
-        <Button variant="contained" color="error">
-          Error
-        </Button>
-        <Button variant="contained" color="primary" disabled>
-          Disabled
-        </Button>
+/**
+ * Maps SOLAR priority → MUI variant:
+ * - **Primary** → `contained` (filled background, white text)
+ * - **Secondary** → `outlined` (border, transparent background)
+ * - **Tertiary** → `text` (no border, no background)
+ *
+ * Each priority supports a **danger** mode via `color="error"`.
+ */
+export const AllPriorities: Story = {
+  name: 'All Priorities',
+  render: () => {
+    const priorities = [
+      { label: 'Primary', variant: 'contained' as const },
+      { label: 'Secondary', variant: 'outlined' as const },
+      { label: 'Tertiary', variant: 'text' as const },
+    ];
+
+    return (
+      <Stack spacing={4}>
+        {priorities.map(({ label, variant }) => (
+          <Box key={label}>
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              {label}
+            </Typography>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Button variant={variant} color="primary">
+                Default
+              </Button>
+              <Button variant={variant} color="error">
+                Danger
+              </Button>
+              <Button variant={variant} color="primary" disabled>
+                Disabled
+              </Button>
+              <Button variant={variant} color="error" disabled>
+                Danger Disabled
+              </Button>
+            </Stack>
+          </Box>
+        ))}
       </Stack>
-      <Typography variant="h6" sx={{ pt: 2 }}>
-        Small Contained
-      </Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="contained" color="primary" size="small">
-          Primary Small
-        </Button>
-        <Button variant="contained" color="error" size="small">
-          Error Small
-        </Button>
-        <Button variant="contained" color="primary" size="small" disabled>
-          Disabled Small
-        </Button>
-      </Stack>
-      <Typography variant="h6" sx={{ pt: 2 }}>
-        Large Contained
-      </Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="contained" color="primary" size="large">
-          Primary Large
-        </Button>
-        <Button variant="contained" color="error" size="large">
-          Error Large
-        </Button>
-        <Button variant="contained" color="primary" size="large" disabled>
-          Disabled Large
-        </Button>
-      </Stack>
-    </Stack>
-  ),
+    );
+  },
 };
 
-export const OutlinedButtons: Story = {
-  render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h6">Outlined Buttons</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="outlined" color="primary">
-          Primary
-        </Button>
-        <Button variant="outlined" color="error">
-          Error
-        </Button>
-        <Button variant="outlined" color="primary" disabled>
-          Disabled
-        </Button>
+/**
+ * Three sizes: **sm** (36px), **md** (44px), **lg** (48px).
+ *
+ * - `sm` — Dense contexts: tables, toolbars. Pad to 4px/6px areas in code.
+ * - `md` — Default. Forms, dialogs, page actions.
+ * - `lg` — Reserved for future differentiation.
+ */
+export const Sizes: Story = {
+  render: () => {
+    const sizes = [
+      { label: 'Small (sm)', size: 'small' as const },
+      { label: 'Medium (md)', size: 'medium' as const },
+      { label: 'Large (lg)', size: 'large' as const },
+    ];
+
+    return (
+      <Stack spacing={4}>
+        {sizes.map(({ label, size }) => (
+          <Box key={label}>
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              {label}
+            </Typography>
+            <Stack direction="row" spacing={2} alignItems="center">
+              <Button variant="contained" size={size}>
+                Primary
+              </Button>
+              <Button variant="outlined" size={size}>
+                Secondary
+              </Button>
+              <Button variant="text" size={size}>
+                Tertiary
+              </Button>
+            </Stack>
+          </Box>
+        ))}
       </Stack>
-      <Typography variant="h6" sx={{ pt: 2 }}>
-        Small Outlined
-      </Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="outlined" color="primary" size="small">
-          Primary Small
-        </Button>
-        <Button variant="outlined" color="error" size="small">
-          Error Small
-        </Button>
-        <Button variant="outlined" color="primary" size="small" disabled>
-          Disabled Small
-        </Button>
-      </Stack>
-    </Stack>
-  ),
+    );
+  },
 };
 
-export const TextButtons: Story = {
+/**
+ * Danger mode for destructive, irreversible actions — delete, remove, revoke.
+ * Works with any priority. Never use for Cancel or Close.
+ */
+export const DangerButtons: Story = {
+  name: 'Danger',
   render: () => (
     <Stack spacing={3}>
-      <Typography variant="h6">Text Buttons</Typography>
+      <Typography variant="h6">Danger variants</Typography>
       <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="text" color="primary">
-          Primary
+        <Button variant="contained" color="error" startIcon={<DeleteIcon />}>
+          Delete project
+        </Button>
+        <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>
+          Remove access
         </Button>
         <Button variant="text" color="error">
-          Error
+          Revoke
         </Button>
-        <Button variant="text" color="primary" disabled>
-          Disabled
+      </Stack>
+      <Stack direction="row" spacing={2} alignItems="center">
+        <Button variant="contained" color="error" disabled>
+          Delete project
+        </Button>
+        <Button variant="outlined" color="error" disabled>
+          Remove access
+        </Button>
+        <Button variant="text" color="error" disabled>
+          Revoke
         </Button>
       </Stack>
     </Stack>
   ),
 };
 
+/**
+ * Leading icon → reinforces action (trash = Delete).
+ * Trailing icon → indicates direction (arrow = Continue).
+ * Icon is always label-paired.
+ */
 export const WithIcons: Story = {
+  name: 'Labels & Icons',
   render: () => (
     <Stack spacing={4}>
-      <Typography variant="h6">Contained with Icon</Typography>
-      <Stack spacing={2}>
+      <Box>
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          Leading icon
+        </Typography>
         <Stack direction="row" spacing={2} alignItems="center">
-          <Button variant="contained" color="primary" startIcon={<AddIcon />}>
-            Primary
+          <Button variant="contained" startIcon={<AddIcon />}>
+            Add item
           </Button>
-          <Button variant="contained" color="error" startIcon={<AddIcon />}>
-            Error
+          <Button variant="outlined" startIcon={<AddIcon />}>
+            Add item
           </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<AddIcon />}
-            disabled
-          >
-            Disabled
+          <Button variant="text" startIcon={<AddIcon />}>
+            Add item
           </Button>
         </Stack>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Button variant="contained" color="primary" endIcon={<AddIcon />}>
-            Primary
-          </Button>
-          <Button variant="contained" color="error" endIcon={<AddIcon />}>
-            Error
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            endIcon={<AddIcon />}
-            disabled
-          >
-            Disabled
-          </Button>
-        </Stack>
-      </Stack>
+      </Box>
 
-      <Typography variant="h6">Outlined with Icon</Typography>
-      <Stack spacing={2}>
+      <Box>
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          Trailing icon
+        </Typography>
         <Stack direction="row" spacing={2} alignItems="center">
-          <Button variant="outlined" color="primary" startIcon={<AddIcon />}>
-            Primary
+          <Button variant="contained" endIcon={<AddIcon />}>
+            Continue
           </Button>
-          <Button variant="outlined" color="error" startIcon={<AddIcon />}>
-            Error
+          <Button variant="outlined" endIcon={<AddIcon />}>
+            Continue
           </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            startIcon={<AddIcon />}
-            disabled
-          >
-            Disabled
+          <Button variant="text" endIcon={<AddIcon />}>
+            Continue
           </Button>
         </Stack>
+      </Box>
+
+      <Box>
+        <Typography variant="h6" sx={{ mb: 2 }}>
+          Danger with icon
+        </Typography>
         <Stack direction="row" spacing={2} alignItems="center">
-          <Button variant="outlined" color="primary" endIcon={<AddIcon />}>
-            Primary
+          <Button variant="contained" color="error" startIcon={<DeleteIcon />}>
+            Delete
           </Button>
-          <Button variant="outlined" color="error" endIcon={<AddIcon />}>
-            Error
+          <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>
+            Remove
           </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            endIcon={<AddIcon />}
-            disabled
-          >
-            Disabled
+          <Button variant="text" color="error" startIcon={<DeleteIcon />}>
+            Revoke
           </Button>
         </Stack>
-      </Stack>
+      </Box>
     </Stack>
   ),
 };
 
-export const AllVariantsAndColors: Story = {
+/**
+ * Full matrix: every variant × color × size × disabled state.
+ */
+export const FullMatrix: Story = {
+  name: 'Full Matrix',
   render: () => {
     const variants = ['contained', 'outlined', 'text'] as const;
     const colors = ['primary', 'error'] as const;
     const sizes = ['small', 'medium', 'large'] as const;
 
     return (
-      <Stack spacing={4}>
+      <Stack spacing={5}>
         {sizes.map((size) => (
           <Box key={size}>
             <Typography variant="h6" sx={{ mb: 2 }}>

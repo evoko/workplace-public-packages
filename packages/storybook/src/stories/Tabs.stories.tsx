@@ -26,7 +26,7 @@ function DefaultDemo() {
   const [value, setValue] = useState(0);
   return (
     <Stack spacing={2}>
-      <Typography variant="h3">Tabs</Typography>
+      <Typography variant="h6">Tabs</Typography>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={(_, v) => setValue(v)}>
           <Tab label="Overview" />
@@ -56,7 +56,7 @@ function WithBadgeDemo() {
   const [notifications, setNotifications] = useState(1);
   return (
     <Stack spacing={2}>
-      <Typography variant="h3">Many Tabs with badge</Typography>
+      <Typography variant="h6">Many Tabs with badge</Typography>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={(_, v) => setValue(v)}>
           <Tab label="Dashboard" />
@@ -67,7 +67,7 @@ function WithBadgeDemo() {
               <Badge
                 color="primary"
                 badgeContent={notifications}
-                variant="rectangle-inline"
+                variant="standard"
               />
             }
             iconPosition="end"
@@ -87,7 +87,7 @@ function DisabledTabDemo() {
   const [notifications, setNotifications] = useState(0);
   return (
     <Stack spacing={2}>
-      <Typography variant="h3">With Disabled Tab</Typography>
+      <Typography variant="h6">With Disabled Tab</Typography>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={(_, v) => setValue(v)}>
           <Tab label="Active" />
