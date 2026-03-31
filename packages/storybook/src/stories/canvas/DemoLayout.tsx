@@ -1,5 +1,4 @@
 import React from 'react';
-import { Box, Stack } from '@mui/material';
 import { Canvas } from '@bwp-web/canvas';
 import type { Canvas as FabricCanvas } from 'fabric';
 
@@ -23,29 +22,30 @@ export function DemoLayout({
   canvasOverlay,
 }: DemoLayoutProps) {
   return (
-    <Box sx={{ display: 'flex', height: '100vh' }}>
-      <Box
-        sx={{
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <div
+        style={{
           width: 260,
-          p: 2,
-          borderRight: 1,
-          borderColor: 'divider',
+          padding: 16,
+          borderRight: '1px solid var(--solar-border-default, #e0e0e0)',
           overflow: 'auto',
         }}
       >
-        <Stack spacing={3}>{sidebar}</Stack>
-      </Box>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+          {sidebar}
+        </div>
+      </div>
 
-      <Box
-        sx={{
+      <div
+        style={{
           flex: 1,
           position: 'relative',
-          bgcolor: 'grey.100',
+          backgroundColor: '#f5f5f5',
         }}
       >
         <Canvas onReady={onReady} style={{ background: '#fff' }} />
         {canvasOverlay}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }

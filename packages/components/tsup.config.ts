@@ -9,8 +9,8 @@ export default defineConfig({
   external: [
     'react',
     'react-dom',
-    '@mui/material',
     '@bwp-web/assets',
+    '@bwp-web/styles',
     '@tanstack/react-table',
   ],
   jsx: 'automatic',

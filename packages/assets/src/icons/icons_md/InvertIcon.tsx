@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function InvertIcon(props: SvgIconProps) {
+export function InvertIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 24 24" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -13,6 +19,6 @@ export function InvertIcon(props: SvgIconProps) {
         d="M5 14H19V15C19 18.3137 16.3137 21 13 21H11C7.68629 21 5 18.3137 5 15V14Z"
         fill="currentColor"
       />
-    </SvgIcon>
+    </svg>
   );
 }

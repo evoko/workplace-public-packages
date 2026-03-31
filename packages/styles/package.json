@@ -1,7 +1,7 @@
 {
   "name": "@bwp-web/styles",
-  "version": "1.0.3",
-  "description": "Shared Biamp Workplace theme and styling utilities built on MUI",
+  "version": "2.0.0",
+  "description": "SOLAR design tokens, Tailwind CSS preset, and styling utilities for Biamp Workplace",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -17,13 +17,25 @@
         "default": "./dist/index.cjs"
       }
     },
-    "./mui-theme-augmentation": "./mui-theme-augmentation.d.ts"
+    "./tokens.css": "./src/tokens.css",
+    "./preset": {
+      "import": {
+        "types": "./dist/preset.d.ts",
+        "default": "./dist/preset.js"
+      },
+      "require": {
+        "types": "./dist/preset.d.ts",
+        "default": "./dist/preset.cjs"
+      }
+    }
   },
   "files": [
     "dist",
-    "mui-theme-augmentation.d.ts"
+    "src/tokens.css"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "build": "tsup && tsc -p tsconfig.build.json",
     "build:types": "tsc -p tsconfig.build.json",
@@ -35,21 +47,23 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "@bwp-web/assets": ">=1.0.1",
-    "@mui/material": ">=7.0.0",
-    "@mui/x-date-pickers": ">=7.0.0",
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
+    "tailwindcss": ">=3.4.0"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
-    "@bwp-web/assets": "*",
     "@bwp-web/eslint-config": "*",
-    "@mui/material": "^7.3.7",
-    "@mui/x-date-pickers": "^8.0.0",
     "@types/react": "^19.1.0",
     "eslint": "^9.39.2",
     "prettier": "^3.8.1",
-    "react": "^19.1.0",
+    "tailwindcss": "^3.4.17",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2"
   },

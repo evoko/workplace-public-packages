@@ -8,17 +8,6 @@ import {
 } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
-  Box,
-  Button,
-  Chip,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Stack,
-  Typography,
-} from '@mui/material';
-import {
   BiampTable,
   BiampTableCellActionButton,
   BiampTableColumnVisibility,
@@ -368,13 +357,26 @@ function InteractiveDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
-      <Box display="flex" alignItems="center" justifyContent="space-between">
-        <Typography variant="body2">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        height: '100%',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <span style={{ fontSize: 14 }}>
           {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
           only Available rooms are selectable &amp; clickable
-        </Typography>
-        <Box>
+        </span>
+        <div>
           <BiampTableToolbarActionButton
             label="Toggle column visibility"
             icon={<ColumnsIcon variant="xs" />}
@@ -388,8 +390,8 @@ function InteractiveDemo() {
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
           />
-        </Box>
-      </Box>
+        </div>
+      </div>
       <BiampTable
         table={table}
         enableRowSelection
@@ -397,7 +399,7 @@ function InteractiveDemo() {
         isRowClickable={(row: Room) => row.status === 'Available'}
       />
       <BiampTablePagination table={table} rowsPerPageOptions={[5, 10, 15]} />
-    </Stack>
+    </div>
   );
 }
 
@@ -464,20 +466,43 @@ function StatesDemo() {
   };
 
   return (
-    <Stack spacing={2} height="100%">
-      <Stack direction="row" spacing={1} flexWrap="wrap">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        height: '100%',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: 8,
+          flexWrap: 'wrap',
+        }}
+      >
         {stateLabels.map(([value, label]) => (
-          <Chip
+          <button
             key={value}
-            label={label}
-            variant={state === value ? 'filled' : 'outlined'}
-            color={state === value ? 'primary' : 'default'}
+            style={{
+              padding: '4px 12px',
+              fontSize: 13,
+              border:
+                state === value ? '1px solid #1976d2' : '1px solid #bdbdbd',
+              borderRadius: 16,
+              background: state === value ? '#1976d2' : 'transparent',
+              color: state === value ? 'white' : 'inherit',
+              cursor: 'pointer',
+            }}
             onClick={() => setState(value)}
-          />
+          >
+            {label}
+          </button>
         ))}
-      </Stack>
+      </div>
       <BiampTable table={table} {...stateProps[state]} />
-    </Stack>
+    </div>
   );
 }
 
@@ -506,12 +531,25 @@ function StickyColumnsDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
-      <Box display="flex" alignItems="center" justifyContent="space-between">
-        <Typography variant="body2">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        height: '100%',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
+        <span style={{ fontSize: 14 }}>
           100 rows, 10 columns + sticky action column. Scroll to test.
-        </Typography>
-        <Box>
+        </span>
+        <div>
           <BiampTableToolbarActionButton
             label="Toggle column visibility"
             icon={<ColumnsIcon variant="xs" />}
@@ -525,15 +563,15 @@ function StickyColumnsDemo() {
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
           />
-        </Box>
-      </Box>
+        </div>
+      </div>
       <BiampTable table={table} enableRowSelection />
-    </Stack>
+    </div>
   );
 }
 
 /**
- * 100 rows × 10 columns with a sticky action column pinned to the right.
+ * 100 rows x 10 columns with a sticky action column pinned to the right.
  * Scroll horizontally and vertically to test scrolling behaviour.
  */
 export const StickyColumns: Story = {
@@ -639,26 +677,45 @@ function WithToolbarDemo() {
   };
 
   return (
-    <Stack spacing={2} height="100%">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        height: '100%',
+      }}
+    >
       <BiampTableToolbar>
         <BiampTableToolbarActions>
           <BiampTableToolbarFilters
             activeFilterCount={activeFilterCount}
             onReset={() => setFilterStatus('')}
           >
-            <FormControl fullWidth size="small">
-              <InputLabel>Status</InputLabel>
-              <Select
-                value={filterStatus}
-                label="Status"
-                onChange={(e) => setFilterStatus(e.target.value)}
+            <div>
+              <label
+                htmlFor="status-filter"
+                style={{ display: 'block', fontSize: 12, marginBottom: 4 }}
               >
-                <MenuItem value="">All</MenuItem>
-                <MenuItem value="Available">Available</MenuItem>
-                <MenuItem value="Occupied">Occupied</MenuItem>
-                <MenuItem value="Maintenance">Maintenance</MenuItem>
-              </Select>
-            </FormControl>
+                Status
+              </label>
+              <select
+                id="status-filter"
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '6px 8px',
+                  fontSize: 14,
+                  borderRadius: 4,
+                  border: '1px solid #bdbdbd',
+                }}
+              >
+                <option value="">All</option>
+                <option value="Available">Available</option>
+                <option value="Occupied">Occupied</option>
+                <option value="Maintenance">Maintenance</option>
+              </select>
+            </div>
           </BiampTableToolbarFilters>
           <BiampTableToolbarActionButton
             label="Toggle column visibility"
@@ -690,7 +747,7 @@ function WithToolbarDemo() {
         rowsPerPageOptions={[5, 10, 15]}
         loading={loading}
       />
-    </Stack>
+    </div>
   );
 }
 
@@ -954,12 +1011,19 @@ function ExpandableDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
-      <Typography variant="body2">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        height: '100%',
+      }}
+    >
+      <span style={{ fontSize: 14 }}>
         Click the chevron to expand/collapse floor groups.
-      </Typography>
+      </span>
       <BiampTable table={table} enableExpanding />
-    </Stack>
+    </div>
   );
 }
 
@@ -1003,9 +1067,19 @@ const longTextColumns = [
     header: 'Action',
     meta: { minWidth: 150, truncate: false },
     cell: ({ getValue }) => (
-      <Button variant="contained" size="small">
+      <button
+        style={{
+          padding: '4px 10px',
+          fontSize: 13,
+          border: 'none',
+          borderRadius: 4,
+          background: '#1976d2',
+          color: 'white',
+          cursor: 'pointer',
+        }}
+      >
         {getValue()}
-      </Button>
+      </button>
     ),
   }),
   longTextColumnHelper.accessor('notes', {
@@ -1071,13 +1145,20 @@ function TextTruncationDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
-      <Typography variant="body2">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        height: '100%',
+      }}
+    >
+      <span style={{ fontSize: 14 }}>
         Hover over truncated cells (with &hellip;) to see the full text in a
         tooltip. The table is constrained to 700px to force truncation.
-      </Typography>
+      </span>
       <BiampTable table={table} />
-    </Stack>
+    </div>
   );
 }
 
@@ -1111,22 +1192,46 @@ function ExpandableWithSelectionDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Typography variant="body2">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        height: '100%',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: 16,
+          alignItems: 'center',
+        }}
+      >
+        <span style={{ fontSize: 14 }}>
           {selectedCount} row{selectedCount !== 1 ? 's' : ''} selected &mdash;
           only Available rows are selectable &amp; clickable
-        </Typography>
-        <Chip
-          label={selectChildrenWithParent ? 'Cascade: ON' : 'Cascade: OFF'}
-          color={selectChildrenWithParent ? 'primary' : 'default'}
-          variant={selectChildrenWithParent ? 'filled' : 'outlined'}
+        </span>
+        <button
+          style={{
+            padding: '4px 12px',
+            fontSize: 13,
+            border: selectChildrenWithParent
+              ? '1px solid #1976d2'
+              : '1px solid #bdbdbd',
+            borderRadius: 16,
+            background: selectChildrenWithParent ? '#1976d2' : 'transparent',
+            color: selectChildrenWithParent ? 'white' : 'inherit',
+            cursor: 'pointer',
+          }}
           onClick={() => {
             setSelectChildrenWithParent((prev) => !prev);
             setRowSelection({});
           }}
-        />
-      </Stack>
+        >
+          {selectChildrenWithParent ? 'Cascade: ON' : 'Cascade: OFF'}
+        </button>
+      </div>
       <BiampTable
         table={table}
         enableExpanding
@@ -1136,7 +1241,7 @@ function ExpandableWithSelectionDemo() {
         isRowClickable={(row: Building) => row.status === 'Available'}
         getRowLabel={(row: Building) => row.name}
       />
-    </Stack>
+    </div>
   );
 }
 
@@ -1263,11 +1368,18 @@ function ServerSideHookDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
-      <Typography variant="body2">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        height: '100%',
+      }}
+    >
+      <span style={{ fontSize: 14 }}>
         Uses <code>useBiampServerSideTable</code> — compare with the WithToolbar
         story that uses raw <code>useReactTable</code>.
-      </Typography>
+      </span>
       <BiampTableToolbar>
         <BiampTableToolbarActions>
           <BiampTableToolbarActionButton
@@ -1299,7 +1411,7 @@ function ServerSideHookDemo() {
         rowsPerPageOptions={[5, 10, 15]}
         loading={loading}
       />
-    </Stack>
+    </div>
   );
 }
 
@@ -1333,13 +1445,20 @@ function ServerSideExpandableWithSelectionDemo() {
   });
 
   return (
-    <Stack spacing={2} height="100%">
-      <Typography variant="body2">
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        height: '100%',
+      }}
+    >
+      <span style={{ fontSize: 14 }}>
         Uses <code>useBiampServerSideTable</code> with expanding + selection.{' '}
         {selectedRowIds.length} row
         {selectedRowIds.length !== 1 ? 's' : ''} selected. Open DevTools
         Performance tab and click checkboxes to profile.
-      </Typography>
+      </span>
       <BiampTable
         table={table}
         enableExpanding
@@ -1348,7 +1467,7 @@ function ServerSideExpandableWithSelectionDemo() {
         isRowClickable={(row: Building) => row.status === 'Available'}
         getRowLabel={(row: Building) => row.name}
       />
-    </Stack>
+    </div>
   );
 }
 

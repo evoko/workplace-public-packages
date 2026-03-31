@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function MusicNoteIcon(props: SvgIconProps) {
+export function MusicNoteIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 16 16" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      {...props}
+    >
       <path
         d="M4.89209 12.0793C4.89186 11.5018 4.42284 11.0334 3.84521 11.0334C3.2678 11.0336 2.79955 11.5019 2.79932 12.0793C2.79932 12.6569 3.26764 13.1259 3.84521 13.1262C4.423 13.1262 4.89209 12.6571 4.89209 12.0793ZM6.4917 12.0793C6.4917 13.5408 5.30664 14.7258 3.84521 14.7258C2.384 14.7255 1.19971 13.5406 1.19971 12.0793C1.19994 10.6183 2.38413 9.43404 3.84521 9.43379C5.30651 9.43379 6.49147 10.6181 6.4917 12.0793Z"
         fill="currentColor"
@@ -19,6 +25,6 @@ export function MusicNoteIcon(props: SvgIconProps) {
         d="M13.7847 3.9248C14.2103 3.80661 14.6508 4.05576 14.769 4.48144C14.8872 4.90711 14.6381 5.34758 14.2124 5.46582L5.90478 7.77344C5.47911 7.8916 5.03864 7.64246 4.9204 7.2168C4.8023 6.79115 5.05141 6.35065 5.47704 6.23242L13.7847 3.9248Z"
         fill="currentColor"
       />
-    </SvgIcon>
+    </svg>
   );
 }

@@ -1,25 +1,11 @@
 import {
-  Box,
-  type BoxProps,
-  Checkbox,
-  IconButton,
-  Table as MuiTable,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  TableSortLabel,
-  type Theme,
-} from '@mui/material';
-import {
   ChevronDownIcon,
   ChevronRightIcon,
   DropdownChevronDownIcon,
   DropdownChevronUpIcon,
 } from '@bwp-web/assets';
 import { flexRender, type Row, type Table } from '@tanstack/react-table';
-import React, { type ReactNode, useRef } from 'react';
+import React, { type HTMLAttributes, type ReactNode, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
@@ -68,12 +54,12 @@ type SelectionExpandingProps =
       selectChildrenWithParent?: never;
     };
 
-export type BiampTableProps<TData> = BoxProps &
+export type BiampTableProps<TData> = HTMLAttributes<HTMLDivElement> &
   RowClickProps<TData> &
   SelectionExpandingProps & {
     /** TanStack Table instance to connect to. */
     table: Table<TData>;
-    /** When true, shows a LinearProgress bar below the table header. */
+    /** When true, shows a loading indicator. */
     loading?: boolean;
     /** When truthy, shown in place of table body rows. Pass `true` or an `Error` for the default error state (an `Error`'s message is displayed), or a custom ReactNode. */
     error?: boolean | Error | ReactNode;
@@ -83,9 +69,9 @@ export type BiampTableProps<TData> = BoxProps &
     getRowLabel?: (row: TData) => string;
   };
 
-// ── Shared sx helpers ────────────────────────────────────────────
+// ── Style helpers ────────────────────────────────────────────────
 
-const overlaySx = {
+const overlayStyle: React.CSSProperties = {
   position: 'absolute',
   top: 0,
   left: 0,
@@ -95,20 +81,13 @@ const overlaySx = {
   alignItems: 'center',
   justifyContent: 'center',
   pointerEvents: 'none',
-} as const;
+};
 
-const stickyHoverBg = {
-  '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
-    bgcolor: ({ palette }: Theme) =>
-      palette.mode === 'dark' ? palette.grey[800] : palette.grey[100],
-  },
-} as const;
-
-function cellSx(
+function cellStyle(
   sticky: 'left' | 'right' | undefined,
   minWidth: number | string | undefined,
   zIndex: number,
-) {
+): React.CSSProperties {
   if (sticky) {
     return {
       position: 'sticky',
@@ -117,48 +96,35 @@ function cellSx(
       width: 0,
       whiteSpace: 'nowrap',
       textAlign: 'center',
-      bgcolor: 'background.paper',
-      ...(zIndex < 3 && stickyHoverBg),
-    } as const;
+      backgroundColor: 'var(--solar-surface-default, #fff)',
+    };
   }
   const mw = minWidth ?? 40;
   return {
-    minWidth: mw,
+    minWidth: typeof mw === 'number' ? mw : undefined,
     whiteSpace: 'nowrap',
-    '&:has([data-truncate])': { maxWidth: mw, whiteSpace: 'normal' },
   };
 }
 
-// ── Hoisted sx objects (avoid re-creation per row per render) ────
-
-const rowCursorPointerSx = { cursor: 'pointer' } as const;
-
-const selectionCellSx = {
+const selectionCellStyle: React.CSSProperties = {
   position: 'sticky',
   left: 0,
   zIndex: 2,
-  bgcolor: 'background.paper',
-  ...stickyHoverBg,
-} as const;
+  backgroundColor: 'var(--solar-surface-default, #fff)',
+};
 
-const checkboxHiddenSx = { visibility: 'hidden' } as const;
-
-const expandCellBaseSx = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '2px',
-} as const;
-
-const expandPlaceholderSx = { width: 28 } as const;
-
-const headerSelectionCellSx = {
+const headerSelectionCellStyle: React.CSSProperties = {
   position: 'sticky',
   left: 0,
   zIndex: 3,
-  bgcolor: 'background.paper',
-} as const;
+  backgroundColor: 'var(--solar-surface-default, #fff)',
+};
 
-const checkboxHiddenHeaderSx = { visibility: 'hidden' } as const;
+const expandCellBaseStyle: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '2px',
+};
 
 // ── Memoized row ─────────────────────────────────────────────────
 
@@ -194,13 +160,16 @@ function BiampTableRowInner<TData>({
     : false;
 
   return (
-    <TableRow
-      key={row.id}
-      hover={clickable}
-      selected={enableRowSelection ? isSelected : undefined}
+    <tr
       role={clickable ? 'button' : undefined}
       tabIndex={clickable ? 0 : undefined}
-      sx={clickable ? rowCursorPointerSx : undefined}
+      style={{
+        cursor: clickable ? 'pointer' : undefined,
+        backgroundColor:
+          enableRowSelection && isSelected
+            ? 'var(--solar-surface-selected, rgba(25, 118, 210, 0.08))'
+            : undefined,
+      }}
       onClick={
         clickable && onRowClick ? () => onRowClick(row.original) : undefined
       }
@@ -216,8 +185,9 @@ function BiampTableRowInner<TData>({
       }
     >
       {enableRowSelection && (
-        <TableCell padding="checkbox" sx={selectionCellSx}>
-          <Checkbox
+        <td style={{ ...selectionCellStyle, padding: '0 4px' }}>
+          <input
+            type="checkbox"
             checked={isSelected}
             disabled={!row.getCanSelect()}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -226,16 +196,17 @@ function BiampTableRowInner<TData>({
               })
             }
             onClick={(e) => e.stopPropagation()}
-            sx={!row.getCanSelect() ? checkboxHiddenSx : undefined}
-            slotProps={{
-              input: {
-                'aria-label': getRowLabel
-                  ? `Select ${getRowLabel(row.original)}`
-                  : `Select row ${row.index + 1}`,
-              },
+            style={{
+              visibility: !row.getCanSelect() ? 'hidden' : undefined,
+              cursor: 'pointer',
             }}
+            aria-label={
+              getRowLabel
+                ? `Select ${getRowLabel(row.original)}`
+                : `Select row ${row.index + 1}`
+            }
           />
-        </TableCell>
+        </td>
       )}
       {row.getVisibleCells().map((cell, cellIndex, cells) => {
         const sticky = cell.column.columnDef.meta?.sticky;
@@ -251,12 +222,16 @@ function BiampTableRowInner<TData>({
         );
 
         return (
-          <TableCell
+          <td
             key={cell.id}
             data-sticky={sticky || undefined}
-            sx={{
-              ...cellSx(sticky, cell.column.columnDef.meta?.minWidth, 2),
-              pl: isExpandCell ? '6px' : '12px',
+            style={{
+              ...cellStyle(sticky, cell.column.columnDef.meta?.minWidth, 2),
+              paddingLeft: isExpandCell ? '6px' : '12px',
+              paddingRight: '12px',
+              paddingTop: '8px',
+              paddingBottom: '8px',
+              borderBottom: '1px solid var(--solar-border-default)',
             }}
           >
             {(() => {
@@ -276,15 +251,19 @@ function BiampTableRowInner<TData>({
                 : `row ${row.index + 1}`;
 
               return (
-                <Box
-                  sx={
+                <div
+                  style={
                     row.depth > 0
-                      ? { ...expandCellBaseSx, pl: `${row.depth * 12}px` }
-                      : expandCellBaseSx
+                      ? {
+                          ...expandCellBaseStyle,
+                          paddingLeft: `${row.depth * 12}px`,
+                        }
+                      : expandCellBaseStyle
                   }
                 >
                   {row.getCanExpand() ? (
-                    <IconButton
+                    <button
+                      type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         row.toggleExpanded();
@@ -295,34 +274,41 @@ function BiampTableRowInner<TData>({
                           : `Expand ${rowLabel}`
                       }
                       aria-expanded={isExpanded}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'none',
+                        border: 'none',
+                        borderRadius: '50%',
+                        cursor: 'pointer',
+                        padding: '4px',
+                        color: 'var(--solar-text-secondary)',
+                      }}
                     >
                       {isExpanded ? (
                         <ChevronDownIcon
                           variant="xs"
-                          sx={{
-                            color: ({ palette }) => palette.text.secondary,
-                          }}
+                          style={{ color: 'var(--solar-text-secondary)' }}
                         />
                       ) : (
                         <ChevronRightIcon
                           variant="xs"
-                          sx={{
-                            color: ({ palette }) => palette.text.secondary,
-                          }}
+                          style={{ color: 'var(--solar-text-secondary)' }}
                         />
                       )}
-                    </IconButton>
+                    </button>
                   ) : hasExpandableRows ? (
-                    <Box sx={expandPlaceholderSx} />
+                    <div style={{ width: 28 }} />
                   ) : null}
                   {truncated}
-                </Box>
+                </div>
               );
             })()}
-          </TableCell>
+          </td>
         );
       })}
-    </TableRow>
+    </tr>
   );
 }
 
@@ -365,8 +351,8 @@ export function BiampTable<TData>({
   hideSelectAll,
   selectChildrenWithParent = false,
   getRowLabel,
-  sx,
-  ...boxProps
+  style,
+  ...divProps
 }: BiampTableProps<TData>) {
   // Sum visible column min-widths so the <table> element itself gets a concrete
   // minWidth. Without this, `width: 100%` on the table always fills the container
@@ -390,91 +376,149 @@ export function BiampTable<TData>({
   const showEmpty = !showError && !loading && rows.length === 0;
 
   return (
-    <TableContainer
-      component={Box}
-      {...boxProps}
+    <div
       ref={containerRef}
-      sx={{
+      style={{
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
         position: 'relative',
-        ...sx,
+        overflow: 'auto',
+        ...style,
       }}
+      {...divProps}
     >
-      <MuiTable
+      <table
         aria-busy={showLoading || undefined}
-        sx={{ minWidth: tableMinWidth, tableLayout: 'auto' }}
+        style={{
+          minWidth: tableMinWidth,
+          tableLayout: 'auto',
+          width: '100%',
+          borderCollapse: 'collapse',
+          borderSpacing: 0,
+          fontSize: '0.875rem',
+          color: 'var(--solar-text-default)',
+        }}
       >
-        <TableHead>
+        <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
+            <tr key={headerGroup.id}>
               {enableRowSelection && (
-                <TableCell padding="checkbox" sx={headerSelectionCellSx}>
+                <th
+                  style={{
+                    ...headerSelectionCellStyle,
+                    padding: '0 4px',
+                    borderBottom: '2px solid var(--solar-border-default)',
+                    textAlign: 'left',
+                    fontWeight: 600,
+                  }}
+                >
                   {!hideSelectAll && (
-                    <Checkbox
+                    <input
+                      type="checkbox"
                       checked={table.getIsAllPageRowsSelected()}
-                      indeterminate={table.getIsSomePageRowsSelected()}
+                      ref={(el) => {
+                        if (el) {
+                          el.indeterminate = table.getIsSomePageRowsSelected();
+                        }
+                      }}
                       onChange={table.getToggleAllPageRowsSelectedHandler()}
-                      sx={
-                        rows.length === 0 ? checkboxHiddenHeaderSx : undefined
-                      }
-                      slotProps={{ input: { 'aria-label': 'Select all rows' } }}
+                      style={{
+                        visibility: rows.length === 0 ? 'hidden' : undefined,
+                        cursor: 'pointer',
+                      }}
+                      aria-label="Select all rows"
                     />
                   )}
-                </TableCell>
+                </th>
               )}
               {headerGroup.headers.map((header) => {
                 const sticky = header.column.columnDef.meta?.sticky;
+                const sorted = header.column.getIsSorted();
                 return (
-                  <TableCell
+                  <th
                     key={header.id}
                     data-sticky={sticky || undefined}
-                    sortDirection={header.column.getIsSorted() || false}
-                    {...(header.column.getCanSort() && {
-                      'aria-sort': header.column.getIsSorted()
-                        ? header.column.getIsSorted() === 'asc'
-                          ? 'ascending'
-                          : 'descending'
-                        : 'none',
-                    })}
-                    sx={cellSx(
-                      sticky,
-                      header.column.columnDef.meta?.minWidth,
-                      3,
-                    )}
+                    aria-sort={
+                      header.column.getCanSort()
+                        ? sorted
+                          ? sorted === 'asc'
+                            ? 'ascending'
+                            : 'descending'
+                          : 'none'
+                        : undefined
+                    }
+                    style={{
+                      ...cellStyle(
+                        sticky,
+                        header.column.columnDef.meta?.minWidth,
+                        3,
+                      ),
+                      padding: '8px 12px',
+                      borderBottom: '2px solid var(--solar-border-default)',
+                      textAlign: 'left',
+                      fontWeight: 600,
+                      fontSize: '0.75rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: 'var(--solar-text-secondary)',
+                    }}
                   >
                     {header.isPlaceholder ? null : header.column.getCanSort() ? (
-                      <TableSortLabel
-                        active={!!header.column.getIsSorted()}
-                        direction={header.column.getIsSorted() || 'asc'}
+                      <button
+                        type="button"
                         onClick={header.column.getToggleSortingHandler()}
-                        {...(header.column.getIsSorted() && {
-                          IconComponent:
-                            header.column.getIsSorted() === 'asc'
-                              ? DropdownChevronUpIcon
-                              : DropdownChevronDownIcon,
-                        })}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px',
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          padding: 0,
+                          font: 'inherit',
+                          color: 'inherit',
+                          fontWeight: 'inherit',
+                          textTransform: 'inherit',
+                          letterSpacing: 'inherit',
+                        }}
                       >
                         {flexRender(
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
-                      </TableSortLabel>
+                        {sorted &&
+                          (sorted === 'asc' ? (
+                            <DropdownChevronUpIcon />
+                          ) : (
+                            <DropdownChevronDownIcon />
+                          ))}
+                        {!sorted && (
+                          <span
+                            style={{
+                              display: 'inline-flex',
+                              opacity: 0,
+                              width: 0,
+                              overflow: 'hidden',
+                            }}
+                            aria-hidden
+                          />
+                        )}
+                      </button>
                     ) : (
                       flexRender(
                         header.column.columnDef.header,
                         header.getContext(),
                       )
                     )}
-                  </TableCell>
+                  </th>
                 );
               })}
-            </TableRow>
+            </tr>
           ))}
-        </TableHead>
+        </thead>
 
-        <TableBody sx={{ opacity: showLoading ? 0.3 : 1 }}>
+        <tbody style={{ opacity: showLoading ? 0.3 : 1 }}>
           {!showError &&
             rows.map((row) => (
               <BiampTableRow
@@ -491,33 +535,33 @@ export function BiampTable<TData>({
                 hasExpandableRows={hasExpandableRows}
               />
             ))}
-        </TableBody>
-      </MuiTable>
+        </tbody>
+      </table>
 
       {showError && (
-        <Box sx={overlaySx}>
+        <div style={overlayStyle}>
           {error === true ? (
-            <BiampTableErrorState sx={{ pointerEvents: 'auto' }} />
+            <BiampTableErrorState style={{ pointerEvents: 'auto' }} />
           ) : error instanceof Error ? (
             <BiampTableErrorState
               description={error.message}
-              sx={{ pointerEvents: 'auto' }}
+              style={{ pointerEvents: 'auto' }}
             />
           ) : (
             error
           )}
-        </Box>
+        </div>
       )}
 
       {showEmpty && (
-        <Box sx={overlaySx}>
+        <div style={overlayStyle}>
           {empty && empty !== true ? (
             empty
           ) : (
-            <BiampTableEmptyState sx={{ pointerEvents: 'auto' }} />
+            <BiampTableEmptyState style={{ pointerEvents: 'auto' }} />
           )}
-        </Box>
+        </div>
       )}
-    </TableContainer>
+    </div>
   );
 }

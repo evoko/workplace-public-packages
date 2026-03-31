@@ -1,9 +1,3 @@
-import {
-  Badge,
-  type BadgeProps,
-  IconButton,
-  type IconButtonProps,
-} from '@mui/material';
 import type React from 'react';
 
 export type BiampTableToolbarActionButtonProps = {
@@ -12,8 +6,13 @@ export type BiampTableToolbarActionButtonProps = {
   /** Icon to display inside the button. */
   icon: React.ReactNode;
   /** Optional badge content. Shown as a dot indicator when provided. */
-  badgeContent?: BadgeProps['badgeContent'];
-} & Omit<IconButtonProps, 'children' | 'aria-label'>;
+  badgeContent?: number | string | null;
+  disabled?: boolean;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+} & Omit<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  'children' | 'aria-label'
+>;
 
 export function BiampTableToolbarActionButton({
   label,
@@ -24,31 +23,42 @@ export function BiampTableToolbarActionButton({
   const showBadge = badgeContent != null && badgeContent !== 0;
 
   return (
-    <IconButton
+    <button
+      type="button"
       aria-label={showBadge ? `${label} (${badgeContent})` : label}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        background: 'none',
+        border: 'none',
+        borderRadius: '50%',
+        cursor: props.disabled ? 'default' : 'pointer',
+        padding: '8px',
+        color: 'inherit',
+        opacity: props.disabled ? 0.5 : 1,
+      }}
       {...props}
     >
       {showBadge ? (
-        <Badge
-          badgeContent={badgeContent}
-          color="info"
-          variant="dot"
-          sx={{
-            '& .MuiBadge-badge': {
-              width: 6,
-              height: 6,
-              minWidth: 6,
-              borderRadius: '50%',
+        <span style={{ position: 'relative', display: 'inline-flex' }}>
+          {icon}
+          <span
+            style={{
+              position: 'absolute',
               top: 0,
               right: -3,
-            },
-          }}
-        >
-          {icon}
-        </Badge>
+              width: 6,
+              height: 6,
+              borderRadius: '50%',
+              backgroundColor: 'var(--solar-status-info, #2196f3)',
+            }}
+          />
+        </span>
       ) : (
         icon
       )}
-    </IconButton>
+    </button>
   );
 }

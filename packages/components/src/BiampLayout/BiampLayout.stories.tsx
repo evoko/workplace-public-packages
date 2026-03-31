@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Box, Stack, Typography } from '@mui/material';
 import {
   BiampLayout,
   BiampHeader,
@@ -19,14 +18,6 @@ import {
   BiampAppDialogItem,
   BiampAppPopover,
 } from '@bwp-web/components';
-import HomeIcon from '@mui/icons-material/Home';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import PeopleIcon from '@mui/icons-material/People';
-import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import SettingsIcon from '@mui/icons-material/Settings';
 import {
   AppsIcon,
   AppsIconFilled,
@@ -36,6 +27,22 @@ import {
   DesignerApp,
   WorkplaceApp,
 } from '@bwp-web/assets';
+
+const iconLabel = (text: string, filled = false) => (
+  <span
+    style={{
+      fontSize: 11,
+      fontWeight: filled ? 700 : 400,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 24,
+      height: 24,
+    }}
+  >
+    {text}
+  </span>
+);
 
 const meta: Meta<typeof BiampLayout> = {
   title: 'Components/BiampLayout',
@@ -53,10 +60,10 @@ function WithHeaderSidebarAndWrapperDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const sidebarItems = [
-    { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
-    { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
-    { icon: <PeopleOutlinedIcon />, selectedIcon: <PeopleIcon /> },
-    { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    { icon: iconLabel('Home'), selectedIcon: iconLabel('Home', true) },
+    { icon: iconLabel('Dash'), selectedIcon: iconLabel('Dash', true) },
+    { icon: iconLabel('Ppl'), selectedIcon: iconLabel('Ppl', true) },
+    { icon: iconLabel('Set'), selectedIcon: iconLabel('Set', true) },
   ];
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -87,8 +94,8 @@ function WithHeaderSidebarAndWrapperDemo() {
                 }
               />
               <BiampHeaderButton
-                icon={<SettingsOutlinedIcon />}
-                selectedIcon={<SettingsIcon />}
+                icon={iconLabel('Set')}
+                selectedIcon={iconLabel('Set', true)}
               />
             </BiampHeaderButtonList>
             <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
@@ -101,11 +108,10 @@ function WithHeaderSidebarAndWrapperDemo() {
             <BiampAppDialog>
               {apps.map((app, i) => (
                 <BiampAppDialogItem key={i} name={app.name}>
-                  <Box
-                    component="img"
+                  <img
                     src={app.image}
                     alt={app.name}
-                    sx={{
+                    style={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'contain',
@@ -119,22 +125,26 @@ function WithHeaderSidebarAndWrapperDemo() {
       }
       sidebar={
         <BiampSidebar>
-          <Stack direction="column" gap={1}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <BiampSidebarComponent
-              sx={{
-                my: '8px',
-                bgcolor: 'primary.main',
+              style={{
+                marginTop: 8,
+                marginBottom: 8,
+                backgroundColor: '#1976d2',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
             >
-              <Typography
-                variant="caption"
-                sx={{ color: 'primary.contrastText', fontWeight: 'bold' }}
+              <span
+                style={{
+                  fontSize: 12,
+                  color: 'white',
+                  fontWeight: 'bold',
+                }}
               >
                 AV
-              </Typography>
+              </span>
             </BiampSidebarComponent>
             <BiampSidebarIconList>
               {sidebarItems.map((item, i) => (
@@ -147,18 +157,16 @@ function WithHeaderSidebarAndWrapperDemo() {
                 />
               ))}
             </BiampSidebarIconList>
-          </Stack>
+          </div>
         </BiampSidebar>
       }
     >
       <BiampWrapper>
-        <Typography variant="h4" gutterBottom>
-          Page Content
-        </Typography>
-        <Typography variant="body1">
+        <h4 style={{ margin: '0 0 8px' }}>Page Content</h4>
+        <p style={{ margin: 0 }}>
           This layout includes a header, sidebar, and wrapper — the full
           opinionated Biamp page layout.
-        </Typography>
+        </p>
       </BiampWrapper>
     </BiampLayout>
   );
@@ -202,8 +210,8 @@ function WithHeaderAndWrapperDemo() {
                 }
               />
               <BiampHeaderButton
-                icon={<SettingsOutlinedIcon />}
-                selectedIcon={<SettingsIcon />}
+                icon={iconLabel('Set')}
+                selectedIcon={iconLabel('Set', true)}
               />
             </BiampHeaderButtonList>
             <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
@@ -216,11 +224,10 @@ function WithHeaderAndWrapperDemo() {
             <BiampAppDialog>
               {apps.map((app, i) => (
                 <BiampAppDialogItem key={i} name={app.name}>
-                  <Box
-                    component="img"
+                  <img
                     src={app.image}
                     alt={app.name}
-                    sx={{
+                    style={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'contain',
@@ -234,12 +241,10 @@ function WithHeaderAndWrapperDemo() {
       }
     >
       <BiampWrapper>
-        <Typography variant="h4" gutterBottom>
-          Page Content
-        </Typography>
-        <Typography variant="body1">
+        <h4 style={{ margin: '0 0 8px' }}>Page Content</h4>
+        <p style={{ margin: 0 }}>
           This layout includes a header and wrapper, but no sidebar.
-        </Typography>
+        </p>
       </BiampWrapper>
     </BiampLayout>
   );
@@ -263,12 +268,10 @@ export const WrapperOnly: Story = {
   render: () => (
     <BiampLayout>
       <BiampWrapper>
-        <Typography variant="h4" gutterBottom>
-          Page Content
-        </Typography>
-        <Typography variant="body1">
+        <h4 style={{ margin: '0 0 8px' }}>Page Content</h4>
+        <p style={{ margin: 0 }}>
           This layout uses only the wrapper with no header or sidebar.
-        </Typography>
+        </p>
       </BiampWrapper>
     </BiampLayout>
   ),

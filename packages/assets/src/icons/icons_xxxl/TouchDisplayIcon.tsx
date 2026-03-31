@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function TouchDisplayIcon(props: SvgIconProps) {
+export function TouchDisplayIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 72 72" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 72 72"
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -18,6 +24,6 @@ export function TouchDisplayIcon(props: SvgIconProps) {
         strokeWidth="4.35"
         strokeLinecap="round"
       />
-    </SvgIcon>
+    </svg>
   );
 }

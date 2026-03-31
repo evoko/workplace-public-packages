@@ -1,28 +1,31 @@
-import { Stack, StackProps, useTheme } from '@mui/material';
+import { cn } from '@bwp-web/styles';
 
-type Props = StackProps & {
+type Props = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode[];
   component?: React.ElementType;
 };
 
-export function SegmentedButtonGroup({ children, sx, ...props }: Props) {
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
+export function SegmentedButtonGroup({
+  children,
+  className,
+  style,
+  ...props
+}: Props) {
   return (
-    <Stack
-      direction="row"
-      p={0.5}
-      borderRadius="6px"
-      gap={1}
-      sx={{
-        backgroundColor: isDarkMode
-          ? theme.palette.grey[800]
-          : theme.palette.grey[100],
-        ...sx,
+    <div
+      className={cn(className)}
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        padding: '4px',
+        borderRadius: '6px',
+        gap: '8px',
+        backgroundColor: 'var(--solar-surface-tertiary)',
+        ...style,
       }}
       {...props}
     >
       {children}
-    </Stack>
+    </div>
   );
 }

@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function DropdownChevronDuoIcon(props: SvgIconProps) {
+export function DropdownChevronDuoIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 12 12" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 12 12"
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -15,6 +21,6 @@ export function DropdownChevronDuoIcon(props: SvgIconProps) {
         d="M5.33657 11.2311C5.70296 11.5911 6.29941 11.5881 6.66237 11.2311L9.79796 8.15084C10.1643 7.79152 10.0186 7.5 9.47247 7.5L2.52641 7.5C1.98024 7.5 1.83708 7.79453 2.20092 8.15084L5.33657 11.2311Z"
         fill="currentColor"
       />
-    </SvgIcon>
+    </svg>
   );
 }

@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function MaximizeIcon(props: SvgIconProps) {
+export function MaximizeIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 24 24" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      {...props}
+    >
       <path
         d="M16 20H20M20 20V16M20 20L14 14M8 4H4M4 4V8M4 4L10 10"
         stroke="currentColor"
@@ -10,6 +16,6 @@ export function MaximizeIcon(props: SvgIconProps) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </SvgIcon>
+    </svg>
   );
 }

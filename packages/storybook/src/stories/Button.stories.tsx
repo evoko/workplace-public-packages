@@ -1,277 +1,266 @@
 import { Fragment } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button, Stack, Typography, Box } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import DeleteIcon from '@mui/icons-material/Delete';
 
-const meta: Meta<typeof Button> = {
+const meta: Meta = {
   title: 'Styles/Button',
-  component: Button,
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['contained', 'outlined', 'text'],
-    },
-    color: {
-      control: 'select',
-      options: ['primary', 'error'],
-    },
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-    },
-    disabled: { control: 'boolean' },
-  },
 };
 
 export default meta;
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj;
 
-export const Playground: Story = {
-  args: {
-    children: 'Button',
-    variant: 'contained',
-    color: 'primary',
-    size: 'medium',
-    disabled: false,
-  },
+const base: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  fontWeight: 500,
+  fontSize: '0.875rem',
+  lineHeight: 1,
+  borderRadius: 'var(--solar-radius-base)',
+  cursor: 'pointer',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: 6,
+  border: 'none',
+  transition: 'background 0.15s, color 0.15s, border-color 0.15s',
+};
+
+const sizes: Record<string, React.CSSProperties> = {
+  small: { height: 36, padding: '0 12px' },
+  medium: { height: 44, padding: '0 16px' },
+  large: { height: 48, padding: '0 20px' },
+};
+
+function btn(
+  variant: 'primary' | 'secondary' | 'tertiary',
+  color: 'default' | 'danger' = 'default',
+  size: 'small' | 'medium' | 'large' = 'medium',
+  disabled = false,
+): React.CSSProperties {
+  let bg: string;
+  let fg: string;
+  let border: string;
+
+  if (variant === 'primary' && color === 'default') {
+    bg = disabled
+      ? 'var(--solar-action-primary-bg-disabled)'
+      : 'var(--solar-action-primary-bg)';
+    fg = disabled
+      ? 'var(--solar-action-primary-text-disabled)'
+      : 'var(--solar-action-primary-text)';
+    border = 'transparent';
+  } else if (variant === 'primary' && color === 'danger') {
+    bg = disabled
+      ? 'var(--solar-action-primary-bg-danger-disabled)'
+      : 'var(--solar-action-primary-bg-danger)';
+    fg = disabled
+      ? 'var(--solar-action-primary-text-disabled)'
+      : 'var(--solar-action-primary-text-danger)';
+    border = 'transparent';
+  } else if (variant === 'secondary' && color === 'default') {
+    bg = disabled
+      ? 'var(--solar-action-secondary-bg-disabled)'
+      : 'var(--solar-action-secondary-bg)';
+    fg = disabled
+      ? 'var(--solar-action-secondary-text-disabled)'
+      : 'var(--solar-action-secondary-text)';
+    border = disabled
+      ? 'var(--solar-border-default)'
+      : 'var(--solar-border-secondary)';
+  } else if (variant === 'secondary' && color === 'danger') {
+    bg = disabled
+      ? 'var(--solar-action-secondary-bg-danger-disabled)'
+      : 'var(--solar-action-secondary-bg-danger)';
+    fg = disabled
+      ? 'var(--solar-action-secondary-text-disabled)'
+      : 'var(--solar-action-secondary-text-danger)';
+    border = disabled
+      ? 'var(--solar-border-default)'
+      : 'var(--solar-border-danger)';
+  } else if (variant === 'tertiary' && color === 'danger') {
+    bg = 'transparent';
+    fg = disabled
+      ? 'var(--solar-action-secondary-text-disabled)'
+      : 'var(--solar-text-danger)';
+    border = 'transparent';
+  } else {
+    // tertiary default
+    bg = 'transparent';
+    fg = disabled
+      ? 'var(--solar-action-secondary-text-disabled)'
+      : 'var(--solar-action-secondary-text)';
+    border = 'transparent';
+  }
+
+  return {
+    ...base,
+    ...sizes[size],
+    backgroundColor: bg,
+    color: fg,
+    border: border === 'transparent' ? 'none' : `1px solid ${border}`,
+    opacity: 1,
+    cursor: disabled ? 'not-allowed' : 'pointer',
+  };
+}
+
+const heading: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  color: 'var(--solar-text-default)',
+  fontSize: '1.25rem',
+  fontWeight: 600,
+  margin: 0,
+};
+
+const row: React.CSSProperties = {
+  display: 'flex',
+  gap: 16,
+  alignItems: 'center',
+};
+
+const col: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 16,
 };
 
 /**
- * Maps SOLAR priority → MUI variant:
- * - **Primary** → `contained` (filled background, white text)
- * - **Secondary** → `outlined` (border, transparent background)
- * - **Tertiary** → `text` (no border, no background)
+ * Maps SOLAR priority:
+ * - Primary = filled background, white text
+ * - Secondary = border, transparent background
+ * - Tertiary = no border, no background
  *
- * Each priority supports a **danger** mode via `color="error"`.
+ * Each priority supports a danger mode.
  */
 export const AllPriorities: Story = {
   name: 'All Priorities',
   render: () => {
     const priorities = [
-      { label: 'Primary', variant: 'contained' as const },
-      { label: 'Secondary', variant: 'outlined' as const },
-      { label: 'Tertiary', variant: 'text' as const },
+      { label: 'Primary', variant: 'primary' as const },
+      { label: 'Secondary', variant: 'secondary' as const },
+      { label: 'Tertiary', variant: 'tertiary' as const },
     ];
 
     return (
-      <Stack spacing={4}>
+      <div style={col}>
         {priorities.map(({ label, variant }) => (
-          <Box key={label}>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              {label}
-            </Typography>
-            <Stack direction="row" spacing={2} alignItems="center">
-              <Button variant={variant} color="primary">
-                Default
-              </Button>
-              <Button variant={variant} color="error">
-                Danger
-              </Button>
-              <Button variant={variant} color="primary" disabled>
+          <div key={label} style={col}>
+            <h6 style={heading}>{label}</h6>
+            <div style={row}>
+              <button style={btn(variant, 'default')}>Default</button>
+              <button style={btn(variant, 'danger')}>Danger</button>
+              <button style={btn(variant, 'default', 'medium', true)} disabled>
                 Disabled
-              </Button>
-              <Button variant={variant} color="error" disabled>
+              </button>
+              <button style={btn(variant, 'danger', 'medium', true)} disabled>
                 Danger Disabled
-              </Button>
-            </Stack>
-          </Box>
+              </button>
+            </div>
+          </div>
         ))}
-      </Stack>
+      </div>
     );
   },
 };
 
 /**
- * Three sizes: **sm** (36px), **md** (44px), **lg** (48px).
- *
- * - `sm` — Dense contexts: tables, toolbars. Pad to 4px/6px areas in code.
- * - `md` — Default. Forms, dialogs, page actions.
- * - `lg` — Reserved for future differentiation.
+ * Three sizes: sm (36px), md (44px), lg (48px).
  */
 export const Sizes: Story = {
   render: () => {
-    const sizes = [
+    const szList = [
       { label: 'Small (sm)', size: 'small' as const },
       { label: 'Medium (md)', size: 'medium' as const },
       { label: 'Large (lg)', size: 'large' as const },
     ];
 
     return (
-      <Stack spacing={4}>
-        {sizes.map(({ label, size }) => (
-          <Box key={label}>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              {label}
-            </Typography>
-            <Stack direction="row" spacing={2} alignItems="center">
-              <Button variant="contained" size={size}>
-                Primary
-              </Button>
-              <Button variant="outlined" size={size}>
+      <div style={col}>
+        {szList.map(({ label, size }) => (
+          <div key={label} style={col}>
+            <h6 style={heading}>{label}</h6>
+            <div style={row}>
+              <button style={btn('primary', 'default', size)}>Primary</button>
+              <button style={btn('secondary', 'default', size)}>
                 Secondary
-              </Button>
-              <Button variant="text" size={size}>
-                Tertiary
-              </Button>
-            </Stack>
-          </Box>
+              </button>
+              <button style={btn('tertiary', 'default', size)}>Tertiary</button>
+            </div>
+          </div>
         ))}
-      </Stack>
+      </div>
     );
   },
 };
 
 /**
- * Danger mode for destructive, irreversible actions — delete, remove, revoke.
- * Works with any priority. Never use for Cancel or Close.
+ * Danger mode for destructive, irreversible actions.
  */
 export const DangerButtons: Story = {
   name: 'Danger',
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h6">Danger variants</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="contained" color="error" startIcon={<DeleteIcon />}>
+    <div style={col}>
+      <h6 style={heading}>Danger variants</h6>
+      <div style={row}>
+        <button style={btn('primary', 'danger')}>Delete project</button>
+        <button style={btn('secondary', 'danger')}>Remove access</button>
+        <button style={btn('tertiary', 'danger')}>Revoke</button>
+      </div>
+      <div style={row}>
+        <button style={btn('primary', 'danger', 'medium', true)} disabled>
           Delete project
-        </Button>
-        <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>
+        </button>
+        <button style={btn('secondary', 'danger', 'medium', true)} disabled>
           Remove access
-        </Button>
-        <Button variant="text" color="error">
+        </button>
+        <button style={btn('tertiary', 'danger', 'medium', true)} disabled>
           Revoke
-        </Button>
-      </Stack>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="contained" color="error" disabled>
-          Delete project
-        </Button>
-        <Button variant="outlined" color="error" disabled>
-          Remove access
-        </Button>
-        <Button variant="text" color="error" disabled>
-          Revoke
-        </Button>
-      </Stack>
-    </Stack>
+        </button>
+      </div>
+    </div>
   ),
 };
 
 /**
- * Leading icon → reinforces action (trash = Delete).
- * Trailing icon → indicates direction (arrow = Continue).
- * Icon is always label-paired.
- */
-export const WithIcons: Story = {
-  name: 'Labels & Icons',
-  render: () => (
-    <Stack spacing={4}>
-      <Box>
-        <Typography variant="h6" sx={{ mb: 2 }}>
-          Leading icon
-        </Typography>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Button variant="contained" startIcon={<AddIcon />}>
-            Add item
-          </Button>
-          <Button variant="outlined" startIcon={<AddIcon />}>
-            Add item
-          </Button>
-          <Button variant="text" startIcon={<AddIcon />}>
-            Add item
-          </Button>
-        </Stack>
-      </Box>
-
-      <Box>
-        <Typography variant="h6" sx={{ mb: 2 }}>
-          Trailing icon
-        </Typography>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Button variant="contained" endIcon={<AddIcon />}>
-            Continue
-          </Button>
-          <Button variant="outlined" endIcon={<AddIcon />}>
-            Continue
-          </Button>
-          <Button variant="text" endIcon={<AddIcon />}>
-            Continue
-          </Button>
-        </Stack>
-      </Box>
-
-      <Box>
-        <Typography variant="h6" sx={{ mb: 2 }}>
-          Danger with icon
-        </Typography>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Button variant="contained" color="error" startIcon={<DeleteIcon />}>
-            Delete
-          </Button>
-          <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>
-            Remove
-          </Button>
-          <Button variant="text" color="error" startIcon={<DeleteIcon />}>
-            Revoke
-          </Button>
-        </Stack>
-      </Box>
-    </Stack>
-  ),
-};
-
-/**
- * Full matrix: every variant × color × size × disabled state.
+ * Full matrix: every variant x color x size x disabled state.
  */
 export const FullMatrix: Story = {
   name: 'Full Matrix',
   render: () => {
-    const variants = ['contained', 'outlined', 'text'] as const;
-    const colors = ['primary', 'error'] as const;
-    const sizes = ['small', 'medium', 'large'] as const;
+    const variants = ['primary', 'secondary', 'tertiary'] as const;
+    const colors = ['default', 'danger'] as const;
+    const szList = ['small', 'medium', 'large'] as const;
 
     return (
-      <Stack spacing={5}>
-        {sizes.map((size) => (
-          <Box key={size}>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              Size: {size}
-            </Typography>
-            <Stack spacing={2}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+        {szList.map((size) => (
+          <div key={size} style={col}>
+            <h6 style={heading}>Size: {size}</h6>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {variants.map((variant) => (
-                <Stack
-                  key={variant}
-                  direction="row"
-                  spacing={2}
-                  alignItems="center"
-                >
-                  <Typography
-                    variant="caption"
-                    sx={{ width: 80, flexShrink: 0 }}
+                <div key={variant} style={{ ...row, gap: 12 }}>
+                  <span
+                    style={{
+                      width: 80,
+                      flexShrink: 0,
+                      fontFamily: 'var(--solar-font-sans)',
+                      fontSize: '0.75rem',
+                      color: 'var(--solar-text-secondary)',
+                    }}
                   >
                     {variant}
-                  </Typography>
+                  </span>
                   {colors.map((color) => (
                     <Fragment key={color}>
-                      <Button variant={variant} color={color} size={size}>
-                        {color}
-                      </Button>
-                      <Button
-                        variant={variant}
-                        color={color}
-                        size={size}
-                        disabled
-                      >
+                      <button style={btn(variant, color, size)}>{color}</button>
+                      <button style={btn(variant, color, size, true)} disabled>
                         {color} disabled
-                      </Button>
+                      </button>
                     </Fragment>
                   ))}
-                </Stack>
+                </div>
               ))}
-            </Stack>
-          </Box>
+            </div>
+          </div>
         ))}
-      </Stack>
+      </div>
     );
   },
 };

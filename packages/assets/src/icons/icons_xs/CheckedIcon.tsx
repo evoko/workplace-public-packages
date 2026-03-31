@@ -1,8 +1,8 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function CheckedIcon(props: SvgIconProps) {
+export function CheckedIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon {...props}>
+    <svg width="1em" height="1em" fill="currentColor" {...props}>
       <svg
         width="16"
         height="16"
@@ -17,6 +17,6 @@ export function CheckedIcon(props: SvgIconProps) {
           fill="white"
         />
       </svg>
-    </SvgIcon>
+    </svg>
   );
 }

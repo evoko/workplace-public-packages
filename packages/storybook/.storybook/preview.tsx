@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Preview } from '@storybook/react-vite';
-import { ThemeProvider, CssBaseline, Box } from '@mui/material';
-import { solarLightTheme, solarDarkTheme } from '@bwp-web/styles';
+import '@bwp-web/styles/tokens.css';
 
 const preview: Preview = {
   tags: ['autodocs'],
@@ -24,20 +23,21 @@ const preview: Preview = {
   decorators: [
     (Story, context) => {
       const mode = context.globals.colorMode;
-      const theme = mode === 'dark' ? solarDarkTheme : solarLightTheme;
 
       return (
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Box
-            sx={{
-              ...(!context.parameters.noPadding && { p: 3 }),
-              height: '100vh',
-            }}
-          >
-            <Story />
-          </Box>
-        </ThemeProvider>
+        <div
+          data-theme={mode}
+          className={mode === 'dark' ? 'dark' : ''}
+          style={{
+            backgroundColor: 'var(--solar-surface-default)',
+            color: 'var(--solar-text-default)',
+            fontFamily: 'var(--solar-font-sans)',
+            minHeight: '100vh',
+            ...(!context.parameters.noPadding && { padding: '1.5rem' }),
+          }}
+        >
+          <Story />
+        </div>
       );
     },
   ],
@@ -52,9 +52,6 @@ const preview: Preview = {
     layout: 'fullscreen',
 
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
       test: 'todo',
     },
   },

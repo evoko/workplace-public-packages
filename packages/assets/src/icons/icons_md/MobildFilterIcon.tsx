@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function MobildFilterIcon(props: SvgIconProps) {
+export function MobildFilterIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 24 24" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -39,6 +45,6 @@ export function MobildFilterIcon(props: SvgIconProps) {
         d="M18.2 15C18.2 14.5582 18.5582 14.2 19 14.2H20C20.4418 14.2 20.8 14.5582 20.8 15C20.8 15.4418 20.4418 15.8 20 15.8H19C18.5582 15.8 18.2 15.4418 18.2 15Z"
         fill="currentColor"
       />
-    </SvgIcon>
+    </svg>
   );
 }

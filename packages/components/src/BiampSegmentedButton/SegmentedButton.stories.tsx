@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack, Typography } from '@mui/material';
 import { SegmentedButton, SegmentedButtonGroup } from '@bwp-web/components';
 
 const meta: Meta<typeof SegmentedButtonGroup> = {
@@ -43,9 +42,9 @@ export const Sizes: Story = {
       'Option 6',
     ];
     return (
-      <Stack spacing={3}>
-        <Stack spacing={1}>
-          <Typography variant="caption">Default</Typography>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <span style={{ fontSize: 12 }}>Default</span>
           <SegmentedButtonGroup>
             {options.map((label, i) => (
               <SegmentedButton key={i} active={i === 0}>
@@ -53,9 +52,9 @@ export const Sizes: Story = {
               </SegmentedButton>
             ))}
           </SegmentedButtonGroup>
-        </Stack>
-        <Stack spacing={1}>
-          <Typography variant="caption">Small</Typography>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <span style={{ fontSize: 12 }}>Small</span>
           <SegmentedButtonGroup>
             {options.map((label, i) => (
               <SegmentedButton key={i} small active={i === 0}>
@@ -63,8 +62,8 @@ export const Sizes: Story = {
               </SegmentedButton>
             ))}
           </SegmentedButtonGroup>
-        </Stack>
-      </Stack>
+        </div>
+      </div>
     );
   },
 };
@@ -80,7 +79,7 @@ export const MultipleLines: Story = {
       'Option 6',
     ];
     return (
-      <Stack spacing={2}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
         {options.map((_, activeIndex) => (
           <SegmentedButtonGroup key={activeIndex}>
             {options.map((label, i) => (
@@ -90,7 +89,7 @@ export const MultipleLines: Story = {
             ))}
           </SegmentedButtonGroup>
         ))}
-      </Stack>
+      </div>
     );
   },
 };

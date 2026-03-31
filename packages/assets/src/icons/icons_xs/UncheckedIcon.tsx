@@ -1,10 +1,8 @@
-import { SvgIcon, SvgIconProps, useTheme } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function UncheckedIcon(props: SvgIconProps) {
-  const theme = useTheme();
-
+export function UncheckedIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon {...props}>
+    <svg width="1em" height="1em" fill="currentColor" {...props}>
       <svg
         width="16"
         height="16"
@@ -18,10 +16,10 @@ export function UncheckedIcon(props: SvgIconProps) {
           width="15"
           height="15"
           rx="3.5"
-          stroke={theme.palette.text.primary}
+          stroke="currentColor"
           strokeOpacity="0.4"
         />
       </svg>
-    </SvgIcon>
+    </svg>
   );
 }

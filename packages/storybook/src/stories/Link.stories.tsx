@@ -1,40 +1,67 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Link, Stack, Typography, Box } from '@mui/material';
 
-const meta: Meta<typeof Link> = {
+const meta: Meta = {
   title: 'Styles/Link',
-  component: Link,
 };
 
 export default meta;
-type Story = StoryObj<typeof Link>;
+type Story = StoryObj;
+
+const heading: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  color: 'var(--solar-text-default)',
+  fontSize: '1.25rem',
+  fontWeight: 600,
+  margin: 0,
+};
+
+const linkStyle: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.875rem',
+  color: 'var(--solar-text-link)',
+  textDecoration: 'underline',
+};
 
 export const Default: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h6">Links</Typography>
-      <Stack spacing={2}>
-        <Link href="#">Default link</Link>
-        <Link href="#" underline="hover">
-          Underline on hover
-        </Link>
-        <Link href="#" underline="none">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <h6 style={heading}>Links</h6>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <a href="#" style={linkStyle}>
+          Default link
+        </a>
+        <a href="#" style={{ ...linkStyle, textDecoration: 'none' }}>
+          Underline on hover (no underline by default)
+        </a>
+        <a href="#" style={{ ...linkStyle, textDecoration: 'none' }}>
           No underline
-        </Link>
-      </Stack>
-    </Stack>
+        </a>
+      </div>
+    </div>
   ),
 };
 
 export const InContext: Story = {
   render: () => (
-    <Box sx={{ maxWidth: 500 }}>
-      <Typography variant="body1">
-        Visit the <Link href="#">documentation</Link> for more details about
-        configuring the SOLAR theme. You can also check the{' '}
-        <Link href="#">design tokens reference</Link> for color and typography
-        values.
-      </Typography>
-    </Box>
+    <p
+      style={{
+        fontFamily: 'var(--solar-font-sans)',
+        fontSize: '1rem',
+        color: 'var(--solar-text-default)',
+        maxWidth: 500,
+        lineHeight: 1.6,
+        margin: 0,
+      }}
+    >
+      Visit the{' '}
+      <a href="#" style={linkStyle}>
+        documentation
+      </a>{' '}
+      for more details about configuring the SOLAR theme. You can also check the{' '}
+      <a href="#" style={linkStyle}>
+        design tokens reference
+      </a>{' '}
+      for color and typography values.
+    </p>
   ),
 };

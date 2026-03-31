@@ -1,0 +1,337 @@
+/*
+ * SOLAR Base UI Web v1 2026 — Design Tokens
+ *
+ * CSS custom properties for the full token system.
+ * Light mode is the default; dark mode activates via .dark class or
+ * prefers-color-scheme media query.
+ *
+ * Usage:
+ *   @import '@bwp-web/styles/tokens.css';
+ *   — or —
+ *   <link href="node_modules/@bwp-web/styles/dist/tokens.css" />
+ */
+
+/* ─── Primitive palette (static — not theme-dependent) ──────────────── */
+:root {
+  /* Neutrals */
+  --solar-white: #ffffff;
+  --solar-black: #000000;
+  --solar-neutral-50: #f9fafb;
+  --solar-neutral-100: #f2f4f7;
+  --solar-neutral-200: #e4e7ec;
+  --solar-neutral-300: #d0d5dd;
+  --solar-neutral-400: #98a2b3;
+  --solar-neutral-500: #667085;
+  --solar-neutral-600: #475467;
+  --solar-neutral-700: #344054;
+  --solar-neutral-800: #1d2939;
+  --solar-neutral-900: #101828;
+
+  /* Brand */
+  --solar-brand-50: #f0f9ff;
+  --solar-brand-100: #e0f2fe;
+  --solar-brand-200: #bae6fd;
+  --solar-brand-300: #7dd3fc;
+  --solar-brand-400: #38bdf8;
+  --solar-brand-500: #0ea5e9;
+  --solar-brand-600: #0284c7;
+  --solar-brand-700: #0369a1;
+  --solar-brand-800: #075985;
+  --solar-brand-900: #0c4a6e;
+
+  /* Red */
+  --solar-red-50: #fff1f0;
+  --solar-red-100: #ffccc7;
+  --solar-red-200: #ffa39e;
+  --solar-red-300: #ff7875;
+  --solar-red-400: #ff4d4f;
+  --solar-red-500: #f5222d;
+  --solar-red-600: #cf1322;
+  --solar-red-700: #a8071a;
+
+  /* Orange */
+  --solar-orange-50: #fff7e6;
+  --solar-orange-100: #ffe7ba;
+  --solar-orange-200: #ffd591;
+  --solar-orange-300: #ffc069;
+  --solar-orange-400: #ffa940;
+  --solar-orange-500: #fa8c16;
+  --solar-orange-600: #d46b08;
+  --solar-orange-700: #ad4e00;
+
+  /* Green */
+  --solar-green-50: #f6ffed;
+  --solar-green-100: #d9f7be;
+  --solar-green-200: #b7eb8f;
+  --solar-green-300: #95de64;
+  --solar-green-400: #73d13d;
+  --solar-green-500: #52c41a;
+  --solar-green-600: #389e0d;
+  --solar-green-700: #237804;
+
+  /* Blue */
+  --solar-blue-50: #e6f4ff;
+  --solar-blue-100: #bae0ff;
+  --solar-blue-200: #91caff;
+  --solar-blue-300: #69b1ff;
+  --solar-blue-400: #4096ff;
+  --solar-blue-500: #1677ff;
+  --solar-blue-600: #0958d9;
+  --solar-blue-700: #003eb3;
+
+  /* ─── Font families ─────────────────────────────────────────────── */
+  --solar-font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --solar-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  /* ─── Border radius ─────────────────────────────────────────────── */
+  --solar-radius-sm: 4px;
+  --solar-radius-md: 6px;
+  --solar-radius-base: 8px;
+  --solar-radius-lg: 12px;
+  --solar-radius-xl: 16px;
+  --solar-radius-full: 9999px;
+
+  /* ─── Shadows (static) ──────────────────────────────────────────── */
+  --solar-shadow-subtle: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  --solar-shadow-control:
+    0px 1px 2px rgba(16, 24, 40, 0.06), 0px 1px 3px rgba(16, 24, 40, 0.1);
+  --solar-shadow-focus: 0px 0px 0px 4px rgba(22, 119, 255, 0.1);
+  --solar-shadow-danger: 0px 0px 0px 4px rgba(245, 34, 45, 0.1);
+  --solar-shadow-warning: 0px 0px 0px 4px rgba(250, 140, 22, 0.1);
+  --solar-shadow-modal: 0px 8px 24px rgba(16, 24, 40, 0.18);
+  --solar-shadow-strong: 0px 24px 48px rgba(16, 24, 40, 0.25);
+}
+
+/* ─── Semantic tokens: Light mode (default) ─────────────────────────── */
+:root,
+[data-theme='light'],
+.light {
+  /* Surface */
+  --solar-surface-default: var(--solar-white);
+  --solar-surface-secondary: var(--solar-neutral-50);
+  --solar-surface-tertiary: var(--solar-neutral-100);
+  --solar-surface-overlay: var(--solar-white);
+  --solar-surface-inverse: var(--solar-neutral-900);
+  --solar-surface-brand: var(--solar-brand-500);
+  --solar-surface-brand-subtle: var(--solar-brand-50);
+  --solar-surface-danger: var(--solar-red-50);
+  --solar-surface-warning: var(--solar-orange-50);
+  --solar-surface-success: var(--solar-green-50);
+  --solar-surface-info: var(--solar-blue-50);
+
+  /* Text */
+  --solar-text-default: var(--solar-neutral-900);
+  --solar-text-secondary: var(--solar-neutral-700);
+  --solar-text-tertiary: var(--solar-neutral-500);
+  --solar-text-disabled: var(--solar-neutral-300);
+  --solar-text-inverse: var(--solar-white);
+  --solar-text-brand: var(--solar-brand-600);
+  --solar-text-danger: var(--solar-red-500);
+  --solar-text-warning: var(--solar-orange-600);
+  --solar-text-success: var(--solar-green-600);
+  --solar-text-info: var(--solar-blue-600);
+  --solar-text-link: var(--solar-brand-600);
+
+  /* Icon */
+  --solar-icon-default: var(--solar-neutral-900);
+  --solar-icon-secondary: var(--solar-neutral-700);
+  --solar-icon-tertiary: var(--solar-neutral-500);
+  --solar-icon-disabled: var(--solar-neutral-300);
+  --solar-icon-inverse: var(--solar-white);
+  --solar-icon-brand: var(--solar-brand-500);
+  --solar-icon-danger: var(--solar-red-500);
+
+  /* Border */
+  --solar-border-default: var(--solar-neutral-200);
+  --solar-border-secondary: var(--solar-neutral-300);
+  --solar-border-strong: var(--solar-neutral-400);
+  --solar-border-inverse: var(--solar-neutral-800);
+  --solar-border-brand: var(--solar-brand-500);
+  --solar-border-danger: var(--solar-red-500);
+  --solar-border-warning: var(--solar-orange-500);
+  --solar-border-success: var(--solar-green-500);
+  --solar-border-info: var(--solar-blue-500);
+
+  /* Action — Primary */
+  --solar-action-primary-bg: var(--solar-brand-600);
+  --solar-action-primary-bg-hover: var(--solar-brand-700);
+  --solar-action-primary-bg-active: var(--solar-brand-700);
+  --solar-action-primary-bg-disabled: var(--solar-neutral-100);
+  --solar-action-primary-bg-danger: var(--solar-red-500);
+  --solar-action-primary-bg-danger-hover: var(--solar-red-600);
+  --solar-action-primary-bg-danger-active: var(--solar-red-700);
+  --solar-action-primary-bg-danger-disabled: var(--solar-neutral-100);
+  --solar-action-primary-text: var(--solar-white);
+  --solar-action-primary-text-disabled: var(--solar-neutral-400);
+  --solar-action-primary-text-danger: var(--solar-white);
+  --solar-action-primary-icon: var(--solar-white);
+  --solar-action-primary-icon-disabled: var(--solar-neutral-300);
+
+  /* Action — Secondary */
+  --solar-action-secondary-bg: transparent;
+  --solar-action-secondary-bg-hover: var(--solar-neutral-50);
+  --solar-action-secondary-bg-active: var(--solar-neutral-100);
+  --solar-action-secondary-bg-disabled: var(--solar-neutral-100);
+  --solar-action-secondary-bg-danger: transparent;
+  --solar-action-secondary-bg-danger-hover: rgba(245, 34, 45, 0.05);
+  --solar-action-secondary-bg-danger-active: transparent;
+  --solar-action-secondary-bg-danger-disabled: var(--solar-neutral-100);
+  --solar-action-secondary-text: var(--solar-neutral-900);
+  --solar-action-secondary-text-disabled: var(--solar-neutral-300);
+  --solar-action-secondary-text-danger: var(--solar-red-500);
+  --solar-action-secondary-icon: var(--solar-neutral-900);
+  --solar-action-secondary-icon-disabled: var(--solar-neutral-300);
+  --solar-action-secondary-icon-danger: var(--solar-red-500);
+
+  /* Shadow (theme-aware) */
+  --solar-shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Semantic tokens: Dark mode ────────────────────────────────────── */
+[data-theme='dark'],
+.dark {
+  /* Surface */
+  --solar-surface-default: var(--solar-neutral-900);
+  --solar-surface-secondary: var(--solar-neutral-800);
+  --solar-surface-tertiary: var(--solar-neutral-700);
+  --solar-surface-overlay: var(--solar-neutral-800);
+  --solar-surface-inverse: var(--solar-white);
+  --solar-surface-brand: var(--solar-brand-500);
+  --solar-surface-brand-subtle: var(--solar-brand-900);
+  --solar-surface-danger: var(--solar-red-700);
+  --solar-surface-warning: var(--solar-orange-700);
+  --solar-surface-success: var(--solar-green-700);
+  --solar-surface-info: var(--solar-blue-700);
+
+  /* Text */
+  --solar-text-default: var(--solar-neutral-50);
+  --solar-text-secondary: var(--solar-neutral-300);
+  --solar-text-tertiary: var(--solar-neutral-500);
+  --solar-text-disabled: var(--solar-neutral-500);
+  --solar-text-inverse: var(--solar-neutral-900);
+  --solar-text-brand: var(--solar-brand-300);
+  --solar-text-danger: var(--solar-red-400);
+  --solar-text-warning: var(--solar-orange-400);
+  --solar-text-success: var(--solar-green-400);
+  --solar-text-info: var(--solar-blue-300);
+  --solar-text-link: var(--solar-brand-300);
+
+  /* Icon */
+  --solar-icon-default: var(--solar-neutral-50);
+  --solar-icon-secondary: var(--solar-neutral-300);
+  --solar-icon-tertiary: var(--solar-neutral-500);
+  --solar-icon-disabled: var(--solar-neutral-500);
+  --solar-icon-inverse: var(--solar-neutral-900);
+  --solar-icon-brand: var(--solar-brand-300);
+  --solar-icon-danger: var(--solar-red-400);
+
+  /* Border */
+  --solar-border-default: var(--solar-neutral-700);
+  --solar-border-secondary: var(--solar-neutral-600);
+  --solar-border-strong: var(--solar-neutral-500);
+  --solar-border-inverse: var(--solar-neutral-100);
+  --solar-border-brand: var(--solar-brand-400);
+  --solar-border-danger: var(--solar-red-500);
+  --solar-border-warning: var(--solar-orange-500);
+  --solar-border-success: var(--solar-green-500);
+  --solar-border-info: var(--solar-blue-400);
+
+  /* Action — Primary */
+  --solar-action-primary-bg: var(--solar-brand-500);
+  --solar-action-primary-bg-hover: var(--solar-brand-400);
+  --solar-action-primary-bg-active: var(--solar-brand-300);
+  --solar-action-primary-bg-disabled: var(--solar-neutral-800);
+  --solar-action-primary-text: var(--solar-neutral-900);
+  --solar-action-primary-text-disabled: var(--solar-neutral-300);
+  --solar-action-primary-icon: var(--solar-white);
+
+  /* Action — Secondary */
+  --solar-action-secondary-bg: transparent;
+  --solar-action-secondary-bg-hover: var(--solar-neutral-800);
+  --solar-action-secondary-bg-active: var(--solar-neutral-700);
+  --solar-action-secondary-bg-disabled: var(--solar-neutral-800);
+  --solar-action-secondary-text: var(--solar-neutral-50);
+  --solar-action-secondary-text-disabled: var(--solar-neutral-500);
+  --solar-action-secondary-text-danger: var(--solar-red-500);
+  --solar-action-secondary-icon: var(--solar-neutral-50);
+  --solar-action-secondary-icon-disabled: var(--solar-neutral-500);
+  --solar-action-secondary-icon-danger: var(--solar-red-500);
+
+  /* Shadow (theme-aware) */
+  --solar-shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* ─── Auto dark mode via system preference ──────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']):not(.light) {
+    /* Surface */
+    --solar-surface-default: var(--solar-neutral-900);
+    --solar-surface-secondary: var(--solar-neutral-800);
+    --solar-surface-tertiary: var(--solar-neutral-700);
+    --solar-surface-overlay: var(--solar-neutral-800);
+    --solar-surface-inverse: var(--solar-white);
+    --solar-surface-brand: var(--solar-brand-500);
+    --solar-surface-brand-subtle: var(--solar-brand-900);
+    --solar-surface-danger: var(--solar-red-700);
+    --solar-surface-warning: var(--solar-orange-700);
+    --solar-surface-success: var(--solar-green-700);
+    --solar-surface-info: var(--solar-blue-700);
+
+    /* Text */
+    --solar-text-default: var(--solar-neutral-50);
+    --solar-text-secondary: var(--solar-neutral-300);
+    --solar-text-tertiary: var(--solar-neutral-500);
+    --solar-text-disabled: var(--solar-neutral-500);
+    --solar-text-inverse: var(--solar-neutral-900);
+    --solar-text-brand: var(--solar-brand-300);
+    --solar-text-danger: var(--solar-red-400);
+    --solar-text-warning: var(--solar-orange-400);
+    --solar-text-success: var(--solar-green-400);
+    --solar-text-info: var(--solar-blue-300);
+    --solar-text-link: var(--solar-brand-300);
+
+    /* Icon */
+    --solar-icon-default: var(--solar-neutral-50);
+    --solar-icon-secondary: var(--solar-neutral-300);
+    --solar-icon-tertiary: var(--solar-neutral-500);
+    --solar-icon-disabled: var(--solar-neutral-500);
+    --solar-icon-inverse: var(--solar-neutral-900);
+    --solar-icon-brand: var(--solar-brand-300);
+    --solar-icon-danger: var(--solar-red-400);
+
+    /* Border */
+    --solar-border-default: var(--solar-neutral-700);
+    --solar-border-secondary: var(--solar-neutral-600);
+    --solar-border-strong: var(--solar-neutral-500);
+    --solar-border-inverse: var(--solar-neutral-100);
+    --solar-border-brand: var(--solar-brand-400);
+    --solar-border-danger: var(--solar-red-500);
+    --solar-border-warning: var(--solar-orange-500);
+    --solar-border-success: var(--solar-green-500);
+    --solar-border-info: var(--solar-blue-400);
+
+    /* Action — Primary */
+    --solar-action-primary-bg: var(--solar-brand-500);
+    --solar-action-primary-bg-hover: var(--solar-brand-400);
+    --solar-action-primary-bg-active: var(--solar-brand-300);
+    --solar-action-primary-bg-disabled: var(--solar-neutral-800);
+    --solar-action-primary-text: var(--solar-neutral-900);
+    --solar-action-primary-text-disabled: var(--solar-neutral-300);
+    --solar-action-primary-icon: var(--solar-white);
+
+    /* Action — Secondary */
+    --solar-action-secondary-bg: transparent;
+    --solar-action-secondary-bg-hover: var(--solar-neutral-800);
+    --solar-action-secondary-bg-active: var(--solar-neutral-700);
+    --solar-action-secondary-bg-disabled: var(--solar-neutral-800);
+    --solar-action-secondary-text: var(--solar-neutral-50);
+    --solar-action-secondary-text-disabled: var(--solar-neutral-500);
+    --solar-action-secondary-text-danger: var(--solar-red-500);
+    --solar-action-secondary-icon: var(--solar-neutral-50);
+    --solar-action-secondary-icon-disabled: var(--solar-neutral-500);
+    --solar-action-secondary-icon-danger: var(--solar-red-500);
+
+    /* Shadow (theme-aware) */
+    --solar-shadow-color: rgba(0, 0, 0, 0.3);
+  }
+}

@@ -1,10 +1,10 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 import { type ReactNode } from 'react';
 
 type PathConfig = { viewBox: string; paths: ReactNode };
 type IconVariant = 'md' | 'xs';
 
-interface RefreshIconProps extends SvgIconProps {
+interface RefreshIconProps extends SVGProps<SVGSVGElement> {
   variant?: IconVariant;
 }
 
@@ -52,8 +52,14 @@ const variantMap: Record<IconVariant, PathConfig> = {
 export function RefreshIcon({ variant = 'md', ...props }: RefreshIconProps) {
   const { viewBox, paths } = variantMap[variant];
   return (
-    <SvgIcon viewBox={viewBox} {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox={viewBox}
+      {...props}
+    >
       {paths}
-    </SvgIcon>
+    </svg>
   );
 }

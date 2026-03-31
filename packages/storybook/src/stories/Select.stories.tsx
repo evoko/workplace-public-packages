@@ -1,40 +1,70 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Stack,
-  Typography,
-  FormHelperText,
-  Box,
-} from '@mui/material';
 
-const meta: Meta<typeof Select> = {
+const meta: Meta = {
   title: 'Styles/Select',
-  component: Select,
 };
 
 export default meta;
-type Story = StoryObj<typeof Select>;
+type Story = StoryObj;
+
+const selectStyle: React.CSSProperties = {
+  width: '100%',
+  height: 44,
+  padding: '0 12px',
+  borderRadius: 'var(--solar-radius-base)',
+  border: '1px solid var(--solar-border-default)',
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.875rem',
+  color: 'var(--solar-text-default)',
+  backgroundColor: 'var(--solar-surface-default)',
+  cursor: 'pointer',
+  appearance: 'auto',
+};
+
+const labelStyle: React.CSSProperties = {
+  display: 'block',
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.8125rem',
+  fontWeight: 500,
+  color: 'var(--solar-text-secondary)',
+  marginBottom: 4,
+};
+
+const helperStyle: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.75rem',
+  color: 'var(--solar-text-tertiary)',
+  marginTop: 4,
+};
+
+const heading: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  color: 'var(--solar-text-default)',
+  fontSize: '1.25rem',
+  fontWeight: 600,
+  margin: 0,
+};
 
 function SelectDemo() {
   const [value, setValue] = useState('');
   return (
-    <FormControl sx={{ minWidth: 200 }}>
-      <InputLabel>Option</InputLabel>
-      <Select
+    <div style={{ minWidth: 200 }}>
+      <label style={labelStyle}>Option</label>
+      <select
+        style={selectStyle}
         value={value}
-        label="Option"
-        onChange={(e) => setValue(e.target.value as string)}
+        onChange={(e) => setValue(e.target.value)}
       >
-        <MenuItem value="alpha">Alpha</MenuItem>
-        <MenuItem value="beta">Beta</MenuItem>
-        <MenuItem value="gamma">Gamma</MenuItem>
-        <MenuItem value="delta">Delta</MenuItem>
-      </Select>
-    </FormControl>
+        <option value="" disabled>
+          Select...
+        </option>
+        <option value="alpha">Alpha</option>
+        <option value="beta">Beta</option>
+        <option value="gamma">Gamma</option>
+        <option value="delta">Delta</option>
+      </select>
+    </div>
   );
 }
 
@@ -44,41 +74,64 @@ export const Default: Story = {
 
 export const States: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h6">Select states</Typography>
-      <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
-        <FormControl sx={{ minWidth: 180 }}>
-          <InputLabel>Default</InputLabel>
-          <Select label="Default" defaultValue="">
-            <MenuItem value="one">Option one</MenuItem>
-            <MenuItem value="two">Option two</MenuItem>
-          </Select>
-        </FormControl>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <h6 style={heading}>Select states</h6>
+      <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+        <div style={{ minWidth: 180 }}>
+          <label style={labelStyle}>Default</label>
+          <select style={selectStyle} defaultValue="">
+            <option value="" disabled>
+              Select...
+            </option>
+            <option value="one">Option one</option>
+            <option value="two">Option two</option>
+          </select>
+        </div>
 
-        <FormControl sx={{ minWidth: 180 }} disabled>
-          <InputLabel>Disabled</InputLabel>
-          <Select label="Disabled" defaultValue="">
-            <MenuItem value="one">Option one</MenuItem>
-          </Select>
-        </FormControl>
+        <div style={{ minWidth: 180 }}>
+          <label style={labelStyle}>Disabled</label>
+          <select
+            style={{ ...selectStyle, opacity: 0.5, cursor: 'not-allowed' }}
+            disabled
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select...
+            </option>
+            <option value="one">Option one</option>
+          </select>
+        </div>
 
-        <FormControl sx={{ minWidth: 180 }} error>
-          <InputLabel>Error</InputLabel>
-          <Select label="Error" defaultValue="">
-            <MenuItem value="one">Option one</MenuItem>
-          </Select>
-          <FormHelperText>Required field</FormHelperText>
-        </FormControl>
+        <div style={{ minWidth: 180 }}>
+          <label style={{ ...labelStyle, color: 'var(--solar-text-danger)' }}>
+            Error
+          </label>
+          <select
+            style={{
+              ...selectStyle,
+              borderColor: 'var(--solar-border-danger)',
+            }}
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select...
+            </option>
+            <option value="one">Option one</option>
+          </select>
+          <div style={{ ...helperStyle, color: 'var(--solar-text-danger)' }}>
+            Required field
+          </div>
+        </div>
 
-        <FormControl sx={{ minWidth: 180 }}>
-          <InputLabel>With value</InputLabel>
-          <Select label="With value" defaultValue="one">
-            <MenuItem value="one">Option one</MenuItem>
-            <MenuItem value="two">Option two</MenuItem>
-          </Select>
-          <FormHelperText>Helper text</FormHelperText>
-        </FormControl>
-      </Stack>
-    </Stack>
+        <div style={{ minWidth: 180 }}>
+          <label style={labelStyle}>With value</label>
+          <select style={selectStyle} defaultValue="one">
+            <option value="one">Option one</option>
+            <option value="two">Option two</option>
+          </select>
+          <div style={helperStyle}>Helper text</div>
+        </div>
+      </div>
+    </div>
   ),
 };

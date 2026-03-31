@@ -6,17 +6,6 @@ import {
   useState,
 } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Divider,
-  FormControlLabel,
-  Slider,
-  Stack,
-  Switch,
-  Typography,
-} from '@mui/material';
 import { Polygon, Rect } from 'fabric';
 import type { Canvas as FabricCanvas, FabricObject } from 'fabric';
 import {
@@ -48,8 +37,6 @@ import {
   setBackgroundInverted,
   getBackgroundInverted,
 } from '@bwp-web/canvas';
-import InfoIcon from '@mui/icons-material/Info';
-import { Paper } from '@mui/material';
 import { DemoLayout } from './canvas/DemoLayout';
 import { ViewportControlToolbar } from './canvas/ViewportControlToolbar';
 
@@ -117,6 +104,117 @@ function applyEdit(
   } else if (obj instanceof Rect) {
     editRectangle(c, obj, { [field]: value });
   }
+}
+
+// --- Shared inline style helpers ---
+
+const sidebarSubtitle: React.CSSProperties = {
+  display: 'block',
+  fontSize: 14,
+  fontWeight: 600,
+  marginBottom: 4,
+  color: 'var(--solar-text-default, #212121)',
+};
+
+const bodyText: React.CSSProperties = {
+  fontSize: 14,
+  color: 'var(--solar-text-default, #212121)',
+};
+
+const secondaryText: React.CSSProperties = {
+  fontSize: 14,
+  color: 'var(--solar-text-secondary, #666)',
+};
+
+const captionText: React.CSSProperties = {
+  fontSize: 12,
+  color: 'var(--solar-text-secondary, #666)',
+};
+
+const btnOutlined: React.CSSProperties = {
+  width: '100%',
+  padding: '4px 10px',
+  fontSize: 13,
+  cursor: 'pointer',
+  border: '1px solid var(--solar-border-default, #bdbdbd)',
+  backgroundColor: 'transparent',
+  color: 'var(--solar-text-default, #212121)',
+  borderRadius: 4,
+};
+
+const btnContained: React.CSSProperties = {
+  ...btnOutlined,
+  backgroundColor: 'var(--solar-surface-primary, #1976d2)',
+  color: '#fff',
+  border: '1px solid var(--solar-surface-primary, #1976d2)',
+};
+
+const btnError: React.CSSProperties = {
+  ...btnOutlined,
+  color: '#d32f2f',
+  borderColor: '#d32f2f',
+};
+
+function ToggleGroupBtn({
+  active,
+  label,
+  onClick,
+  style,
+}: {
+  active: boolean;
+  label: string;
+  onClick: () => void;
+  style?: React.CSSProperties;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        padding: '4px 10px',
+        fontSize: 13,
+        cursor: 'pointer',
+        border: '1px solid var(--solar-border-default, #bdbdbd)',
+        backgroundColor: active
+          ? 'var(--solar-surface-primary, #1976d2)'
+          : 'transparent',
+        color: active ? '#fff' : 'var(--solar-text-default, #212121)',
+        flex: 1,
+        ...style,
+      }}
+    >
+      {label}
+    </button>
+  );
+}
+
+function VerticalToggleBtn({
+  active,
+  label,
+  onClick,
+}: {
+  active: boolean;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        padding: '4px 10px',
+        fontSize: 13,
+        cursor: 'pointer',
+        border: '1px solid var(--solar-border-default, #bdbdbd)',
+        backgroundColor: active
+          ? 'var(--solar-surface-primary, #1976d2)'
+          : 'transparent',
+        color: active ? '#fff' : 'var(--solar-text-default, #212121)',
+        width: '100%',
+        marginTop: -1,
+      }}
+    >
+      {label}
+    </button>
+  );
 }
 
 // ============================================================
@@ -371,8 +469,8 @@ function EditCanvasContent({
   );
 
   const handleContrastChange = useCallback(
-    (_: Event, value: number | number[]) => {
-      const v = Array.isArray(value) ? value[0] : value;
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const v = Number(e.target.value);
       setBgContrast(v);
       const c = canvas.canvasRef.current;
       if (c) setBackgroundContrast(c, v);
@@ -494,116 +592,132 @@ function EditCanvasContent({
           <>
             {/* Features */}
             <div>
-              <Typography variant="subtitle2" gutterBottom>
-                Features
-              </Typography>
-              <Stack>
+              <span style={sidebarSubtitle}>Features</span>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {FEATURE_TOGGLES.map(({ key, label, hint }) => (
-                  <FormControlLabel
+                  <label
                     key={key}
-                    control={
-                      <Switch
-                        checked={options[key]}
-                        onChange={(e) => onOptionToggle(key, e.target.checked)}
-                      />
-                    }
-                    label={
-                      <Box
-                        sx={{
-                          display: 'flex',
-                          alignItems: 'baseline',
-                          gap: 0.5,
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      cursor: 'pointer',
+                      padding: '2px 0',
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={options[key]}
+                      onChange={(e) => onOptionToggle(key, e.target.checked)}
+                    />
+                    <span
+                      style={{
+                        display: 'flex',
+                        alignItems: 'baseline',
+                        gap: 4,
+                      }}
+                    >
+                      <span style={bodyText}>{label}</span>
+                      <span
+                        style={{
+                          ...captionText,
+                          color:
+                            hint === 'live'
+                              ? '#2e7d32'
+                              : 'var(--solar-text-disabled, #9e9e9e)',
                         }}
                       >
-                        <Typography variant="body2">{label}</Typography>
-                        <Typography
-                          variant="caption"
-                          color={
-                            hint === 'live' ? 'success.main' : 'text.disabled'
-                          }
-                        >
-                          ({hint})
-                        </Typography>
-                      </Box>
-                    }
-                  />
+                        ({hint})
+                      </span>
+                    </span>
+                  </label>
                 ))}
-              </Stack>
+              </div>
             </div>
 
-            <Divider />
+            <hr
+              style={{
+                border: 'none',
+                borderTop: '1px solid var(--solar-border-default, #e0e0e0)',
+              }}
+            />
 
             {/* Draw Tools */}
             <div>
-              <Typography variant="subtitle2" gutterBottom>
-                Shape
-              </Typography>
-              <ButtonGroup fullWidth size="small" sx={{ mb: 2 }}>
+              <span style={sidebarSubtitle}>Shape</span>
+              <div style={{ display: 'flex', marginBottom: 16 }}>
                 {(['rectangle', 'circle', 'polygon'] as ShapeType[]).map(
                   (s) => (
-                    <Button
+                    <ToggleGroupBtn
                       key={s}
-                      variant={activeShape === s ? 'contained' : 'outlined'}
+                      active={activeShape === s}
+                      label={s[0].toUpperCase() + s.slice(1)}
                       onClick={() => handleShapeChange(s)}
-                    >
-                      {s[0].toUpperCase() + s.slice(1)}
-                    </Button>
+                    />
                   ),
                 )}
-              </ButtonGroup>
-              <Typography variant="subtitle2" gutterBottom>
-                Mode
-              </Typography>
-              <ButtonGroup orientation="vertical" fullWidth size="small">
+              </div>
+              <span style={sidebarSubtitle}>Mode</span>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {availableModes.map((m) => (
-                  <Button
+                  <VerticalToggleBtn
                     key={m.key}
-                    variant={creationMode === m.key ? 'contained' : 'outlined'}
+                    active={creationMode === m.key}
+                    label={m.label}
                     onClick={() => handleModeChange(m.key)}
-                  >
-                    {m.label}
-                  </Button>
+                  />
                 ))}
-              </ButtonGroup>
+              </div>
             </div>
 
             {/* Status: vertex editing */}
             {canvas.isEditingVertices && (
-              <Box sx={{ p: 1.5, bgcolor: 'info.light', borderRadius: 1 }}>
-                <Typography variant="body2" sx={{ color: 'info.contrastText' }}>
+              <div
+                style={{
+                  padding: 12,
+                  backgroundColor: '#e3f2fd',
+                  borderRadius: 4,
+                }}
+              >
+                <span style={{ ...bodyText, color: '#01579b' }}>
                   Editing vertices — drag handles to reshape.
                   <br />
                   Press <strong>Esc</strong> or click canvas to exit.
-                </Typography>
-              </Box>
+                </span>
+              </div>
             )}
 
             {/* Status: selection & edit */}
             {canvas.selected.length > 0 && !canvas.isEditingVertices && (
               <div>
-                <Typography variant="body2" color="text.secondary" gutterBottom>
+                <p style={{ ...secondaryText, marginBottom: 4 }}>
                   {canvas.selected.length} object
                   {canvas.selected.length > 1 ? 's' : ''} selected
-                  {options.keyboardShortcuts ? ' · Del to remove' : ''}
-                </Typography>
+                  {options.keyboardShortcuts ? ' \u00b7 Del to remove' : ''}
+                </p>
                 {selectedObj && editFields.length > 0 && (
-                  <Stack spacing={0.75}>
+                  <div
+                    style={{ display: 'flex', flexDirection: 'column', gap: 6 }}
+                  >
                     {editFields.map((field) => (
-                      <Box
+                      <div
                         key={field}
-                        sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 8,
+                        }}
                       >
-                        <Typography
-                          variant="caption"
-                          sx={{
+                        <span
+                          style={{
+                            ...captionText,
                             minWidth: 44,
-                            color: 'text.secondary',
                             textTransform: 'uppercase',
                             flexShrink: 0,
                           }}
                         >
                           {field}
-                        </Typography>
+                        </span>
                         <input
                           type="number"
                           value={editValues[field] ?? 0}
@@ -618,140 +732,134 @@ function EditCanvasContent({
                             fontSize: 13,
                           }}
                         />
-                      </Box>
+                      </div>
                     ))}
                     {selectedObj instanceof Polygon && options.vertexEdit && (
-                      <Typography variant="caption" color="text.secondary">
+                      <span style={captionText}>
                         Double-click to edit vertices.
-                      </Typography>
+                      </span>
                     )}
-                  </Stack>
+                  </div>
                 )}
               </div>
             )}
 
-            <Divider />
+            <hr
+              style={{
+                border: 'none',
+                borderTop: '1px solid var(--solar-border-default, #e0e0e0)',
+              }}
+            />
 
             {/* Undo / Redo */}
             <div>
-              <Typography variant="subtitle2" gutterBottom>
-                History
-              </Typography>
-              <ButtonGroup fullWidth size="small">
-                <Button
-                  variant="outlined"
+              <span style={sidebarSubtitle}>History</span>
+              <div style={{ display: 'flex' }}>
+                <button
                   onClick={() => canvas.undo()}
                   disabled={!canvas.canUndo}
+                  style={{ ...btnOutlined, flex: 1 }}
                 >
                   Undo
-                </Button>
-                <Button
-                  variant="outlined"
+                </button>
+                <button
                   onClick={() => canvas.redo()}
                   disabled={!canvas.canRedo}
+                  style={{ ...btnOutlined, flex: 1, marginLeft: -1 }}
                 >
                   Redo
-                </Button>
-              </ButtonGroup>
+                </button>
+              </div>
             </div>
 
-            <Divider />
+            <hr
+              style={{
+                border: 'none',
+                borderTop: '1px solid var(--solar-border-default, #e0e0e0)',
+              }}
+            />
 
             {/* Background Image */}
             <div>
-              <Typography variant="subtitle2" gutterBottom>
-                Background Image
-              </Typography>
-              <Stack spacing={1}>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  fullWidth
+              <span style={sidebarSubtitle}>Background Image</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <button
+                  style={btnOutlined}
                   onClick={() => fileInputRef.current?.click()}
                 >
                   Upload Image
-                </Button>
+                </button>
                 {hasBackground && (
                   <>
-                    <Box>
-                      <Typography variant="caption" color="text.secondary">
+                    <div>
+                      <span style={captionText}>
                         Contrast: {Math.round(bgContrast * 100)}%
-                      </Typography>
-                      <Slider
+                      </span>
+                      <input
+                        type="range"
                         value={bgContrast}
                         min={0}
                         max={2}
                         step={0.05}
                         onChange={handleContrastChange}
-                        size="small"
+                        style={{ width: '100%' }}
                       />
-                    </Box>
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          checked={bgInverted}
-                          onChange={handleInvertChange}
-                        />
-                      }
-                      label={<Typography variant="body2">Invert</Typography>}
-                    />
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      fullWidth
-                      color="error"
-                      onClick={handleClearBackground}
+                    </div>
+                    <label
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 8,
+                        cursor: 'pointer',
+                      }}
                     >
+                      <input
+                        type="checkbox"
+                        checked={bgInverted}
+                        onChange={handleInvertChange}
+                      />
+                      <span style={bodyText}>Invert</span>
+                    </label>
+                    <button style={btnError} onClick={handleClearBackground}>
                       Clear Background
-                    </Button>
+                    </button>
                   </>
                 )}
-              </Stack>
+              </div>
             </div>
 
-            <Divider />
+            <hr
+              style={{
+                border: 'none',
+                borderTop: '1px solid var(--solar-border-default, #e0e0e0)',
+              }}
+            />
 
             {/* Canvas Actions */}
             <div>
-              <Typography variant="subtitle2" gutterBottom>
-                Canvas
-              </Typography>
-              <Stack spacing={1}>
-                <Button
-                  variant="contained"
-                  size="small"
-                  fullWidth
-                  onClick={handleSave}
-                >
+              <span style={sidebarSubtitle}>Canvas</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <button style={btnContained} onClick={handleSave}>
                   Save
-                </Button>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  fullWidth
+                </button>
+                <button
+                  style={btnOutlined}
                   onClick={handleLoad}
                   disabled={!hasSaved}
                 >
                   Load
-                </Button>
-                <Button
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  color="error"
-                  onClick={handleClear}
-                >
+                </button>
+                <button style={btnError} onClick={handleClear}>
                   Clear
-                </Button>
-              </Stack>
+                </button>
+              </div>
               {savedCharCount !== null && (
-                <Typography
-                  variant="caption"
-                  color="text.secondary"
-                  sx={{ mt: 0.5, display: 'block' }}
+                <span
+                  style={{ ...captionText, marginTop: 4, display: 'block' }}
                 >
-                  Saved: {savedCharCount} chars · ViewCanvas will use this
-                </Typography>
+                  Saved: {savedCharCount} chars &middot; ViewCanvas will use
+                  this
+                </span>
               )}
             </div>
           </>
@@ -964,63 +1072,82 @@ function ViewCanvasContent({
       sidebar={
         <>
           <div>
-            <Typography variant="subtitle2" gutterBottom>
-              Features
-            </Typography>
-            <Stack>
+            <span style={sidebarSubtitle}>Features</span>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
               {(
                 [
                   { key: 'scaledStrokes', label: 'Scaled Strokes' },
                   { key: 'panZoom', label: 'Pan & Zoom' },
                 ] as Array<{ key: keyof ViewCanvasOptions; label: string }>
               ).map(({ key, label }) => (
-                <FormControlLabel
+                <label
                   key={key}
-                  control={
-                    <Switch
-                      checked={options[key]}
-                      onChange={(e) => onOptionToggle(key, e.target.checked)}
-                    />
-                  }
-                  label={
-                    <Box
-                      sx={{ display: 'flex', alignItems: 'baseline', gap: 0.5 }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    cursor: 'pointer',
+                    padding: '2px 0',
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    checked={options[key]}
+                    onChange={(e) => onOptionToggle(key, e.target.checked)}
+                  />
+                  <span
+                    style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}
+                  >
+                    <span style={bodyText}>{label}</span>
+                    <span
+                      style={{
+                        ...captionText,
+                        color: 'var(--solar-text-disabled, #9e9e9e)',
+                      }}
                     >
-                      <Typography variant="body2">{label}</Typography>
-                      <Typography variant="caption" color="text.disabled">
-                        (remounts)
-                      </Typography>
-                    </Box>
-                  }
-                />
+                      (remounts)
+                    </span>
+                  </span>
+                </label>
               ))}
-            </Stack>
+            </div>
           </div>
 
-          <Divider />
+          <hr
+            style={{
+              border: 'none',
+              borderTop: '1px solid var(--solar-border-default, #e0e0e0)',
+            }}
+          />
 
           {objectEntries.length > 0 && (
             <>
               <div>
-                <Typography variant="subtitle2" gutterBottom>
-                  Object Styling
-                </Typography>
-                <Stack spacing={1.5}>
+                <span style={sidebarSubtitle}>Object Styling</span>
+                <div
+                  style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
+                >
                   {objectEntries.map((entry) => (
-                    <Box key={entry.id}>
-                      <Typography
-                        variant="caption"
-                        color="text.secondary"
-                        sx={{ display: 'block', mb: 0.5 }}
+                    <div key={entry.id}>
+                      <span
+                        style={{
+                          ...captionText,
+                          display: 'block',
+                          marginBottom: 4,
+                        }}
                       >
                         {entry.label}
-                      </Typography>
-                      <Box
-                        sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+                      </span>
+                      <div
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 8,
+                        }}
                       >
-                        <Typography variant="caption" sx={{ minWidth: 28 }}>
+                        <span style={{ ...captionText, minWidth: 28 }}>
                           Fill
-                        </Typography>
+                        </span>
                         <input
                           type="color"
                           value={entry.fill || '#000000'}
@@ -1036,9 +1163,9 @@ function ViewCanvasContent({
                             cursor: 'pointer',
                           }}
                         />
-                        <Typography variant="caption" sx={{ minWidth: 38 }}>
+                        <span style={{ ...captionText, minWidth: 38 }}>
                           Stroke
-                        </Typography>
+                        </span>
                         <input
                           type="color"
                           value={entry.stroke || '#000000'}
@@ -1058,25 +1185,30 @@ function ViewCanvasContent({
                             cursor: 'pointer',
                           }}
                         />
-                      </Box>
-                    </Box>
+                      </div>
+                    </div>
                   ))}
-                </Stack>
+                </div>
               </div>
 
-              <Divider />
+              <hr
+                style={{
+                  border: 'none',
+                  borderTop: '1px solid var(--solar-border-default, #e0e0e0)',
+                }}
+              />
             </>
           )}
 
-          <Typography variant="subtitle2">View-Only Canvas</Typography>
-          <Typography variant="body2" color="text.secondary">
+          <span style={sidebarSubtitle}>View-Only Canvas</span>
+          <p style={secondaryText}>
             Uses <code>useViewCanvas</code>. Objects cannot be selected,
             created, edited, or deleted. Drag to pan, scroll to zoom.
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
+          </p>
+          <p style={secondaryText}>
             If a canvas has been saved from the <em>Edit Canvas</em> demo, it is
             loaded here automatically. Otherwise a default demo canvas is shown.
-          </Typography>
+          </p>
         </>
       }
     />
@@ -1201,35 +1333,42 @@ function ViewCanvasTooltipContent() {
             onReset={canvas.viewport.reset}
           />
           {tooltip.visible && tooltip.content && (
-            <Paper
+            <div
               ref={tooltip.ref}
-              elevation={4}
-              sx={{
+              style={{
                 position: 'absolute',
                 left: tooltip.position.x,
                 top: tooltip.position.y,
                 transform: 'translate(-50%, -100%)',
-                px: 1.5,
-                py: 0.75,
+                paddingLeft: 12,
+                paddingRight: 12,
+                paddingTop: 6,
+                paddingBottom: 6,
                 display: 'flex',
                 alignItems: 'center',
-                gap: 0.75,
+                gap: 6,
                 pointerEvents: 'none',
                 whiteSpace: 'nowrap',
+                backgroundColor: 'var(--solar-surface-default, #fff)',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                borderRadius: 4,
               }}
             >
-              <InfoIcon fontSize="small" color="primary" />
-              <Typography variant="body2">
-                Hello World — {tooltip.content.id}
-              </Typography>
-            </Paper>
+              <span
+                style={{
+                  fontSize: 16,
+                  color: 'var(--solar-surface-primary, #1976d2)',
+                }}
+              >
+                &#9432;
+              </span>
+              <span style={bodyText}>Hello World — {tooltip.content.id}</span>
+            </div>
           )}
         </>
       }
       sidebar={
-        <Typography variant="body2" color="text.secondary">
-          Hover over any shape to see the tooltip.
-        </Typography>
+        <p style={secondaryText}>Hover over any shape to see the tooltip.</p>
       }
     />
   );
@@ -1246,7 +1385,7 @@ export const ViewCanvasTooltipDemo: Story = {
 
 /** Subtitles for overlay objects — keyed by `data.id`. */
 const OVERLAY_SUBTITLES: Record<string, string> = {
-  'desk-102': 'Floor 3 · Building A',
+  'desk-102': 'Floor 3 \u00b7 Building A',
   'printer-A': 'Available',
   'room-A1': 'Conference',
 };
@@ -1331,36 +1470,37 @@ function OverlayDemoContent() {
               >
                 <OverlayContent>
                   {/* Icon scales with OverlayContent */}
-                  <Box
-                    sx={{
+                  <div
+                    style={{
                       width: 24,
                       height: 24,
                       borderRadius: '50%',
-                      bgcolor: '#fff',
+                      backgroundColor: '#fff',
                       flexShrink: 0,
                     }}
                   />
                   {/* Text stays at fixed size via FixedSizeContent */}
                   <FixedSizeContent>
-                    <Typography
-                      sx={{
+                    <span
+                      style={{
                         fontSize: 12,
                         fontWeight: 600,
                         whiteSpace: 'nowrap',
                       }}
                     >
                       {obj.data?.id ?? ''}
-                    </Typography>
+                    </span>
                     {obj.data?.id && OVERLAY_SUBTITLES[obj.data.id] && (
-                      <Typography
-                        sx={{
+                      <span
+                        style={{
                           fontSize: 10,
                           whiteSpace: 'nowrap',
-                          color: 'text.secondary',
+                          color: 'var(--solar-text-secondary, #666)',
+                          display: 'block',
                         }}
                       >
                         {OVERLAY_SUBTITLES[obj.data.id]}
-                      </Typography>
+                      </span>
                     )}
                   </FixedSizeContent>
                 </OverlayContent>
@@ -1370,12 +1510,12 @@ function OverlayDemoContent() {
                     top={obj.shapeType === 'circle' ? 0 : -6}
                     right={obj.shapeType === 'circle' ? 0 : -6}
                   >
-                    <Box
-                      sx={{
+                    <div
+                      style={{
                         width: 12,
                         height: 12,
                         borderRadius: '50%',
-                        bgcolor: OVERLAY_BADGES[obj.data.id],
+                        backgroundColor: OVERLAY_BADGES[obj.data.id],
                         border: '1.5px solid white',
                       }}
                     />
@@ -1388,50 +1528,62 @@ function OverlayDemoContent() {
       sidebar={
         <>
           <div>
-            <Typography variant="subtitle2" gutterBottom>
-              Object Overlay
-            </Typography>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={showOverlays}
-                  onChange={(e) => setShowOverlays(e.target.checked)}
-                />
-              }
-              label={<Typography variant="body2">Show Overlays</Typography>}
-            />
+            <span style={sidebarSubtitle}>Object Overlay</span>
+            <label
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                cursor: 'pointer',
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={showOverlays}
+                onChange={(e) => setShowOverlays(e.target.checked)}
+              />
+              <span style={bodyText}>Show Overlays</span>
+            </label>
           </div>
 
-          <Divider />
+          <hr
+            style={{
+              border: 'none',
+              borderTop: '1px solid var(--solar-border-default, #e0e0e0)',
+            }}
+          />
 
           {objects.length > 0 && (
             <>
               <div>
-                <Typography variant="subtitle2" gutterBottom>
-                  Pan to Object
-                </Typography>
-                <Stack spacing={0.5}>
+                <span style={sidebarSubtitle}>Pan to Object</span>
+                <div
+                  style={{ display: 'flex', flexDirection: 'column', gap: 4 }}
+                >
                   {objects.map((obj) => (
-                    <Button
+                    <button
                       key={obj.data?.id}
-                      variant="outlined"
-                      size="small"
-                      fullWidth
+                      style={btnOutlined}
                       onClick={() =>
                         canvas.viewport.panToObject(obj, { animate: true })
                       }
                     >
                       {obj.data?.id ?? 'unknown'}
-                    </Button>
+                    </button>
                   ))}
-                </Stack>
+                </div>
               </div>
 
-              <Divider />
+              <hr
+                style={{
+                  border: 'none',
+                  borderTop: '1px solid var(--solar-border-default, #e0e0e0)',
+                }}
+              />
             </>
           )}
 
-          <Typography variant="body2" color="text.secondary">
+          <p style={secondaryText}>
             DOM overlays positioned over canvas objects using{' '}
             <code>ObjectOverlay</code> + <code>OverlayContent</code>. The icon
             scales to fill the object bounds, while labels wrapped in{' '}
@@ -1440,11 +1592,11 @@ function OverlayDemoContent() {
             below the name (12px) to demonstrate multi-line fixed-size text.{' '}
             <code>OverlayBadge</code> adds status dots anchored to the top-right
             corner with independent scaling.
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
+          </p>
+          <p style={secondaryText}>
             Click &ldquo;Pan to Object&rdquo; buttons to see animated panning
             via <code>viewport.panToObject</code>.
-          </Typography>
+          </p>
         </>
       }
     />
@@ -1538,34 +1690,34 @@ function StressTestContent() {
                 object={obj}
               >
                 <OverlayContent>
-                  <Box
-                    sx={{
+                  <div
+                    style={{
                       width: 24,
                       height: 24,
                       borderRadius: '50%',
-                      bgcolor: '#fff',
+                      backgroundColor: '#fff',
                       flexShrink: 0,
                     }}
                   />
                   <FixedSizeContent>
-                    <Typography
-                      sx={{
+                    <span
+                      style={{
                         fontSize: 12,
                         fontWeight: 600,
                         whiteSpace: 'nowrap',
                       }}
                     >
                       {obj.data?.id}
-                    </Typography>
+                    </span>
                   </FixedSizeContent>
                 </OverlayContent>
                 <OverlayBadge top={-6} right={-6}>
-                  <Box
-                    sx={{
+                  <div
+                    style={{
                       width: 12,
                       height: 12,
                       borderRadius: '50%',
-                      bgcolor: BADGE_COLORS[i % BADGE_COLORS.length],
+                      backgroundColor: BADGE_COLORS[i % BADGE_COLORS.length],
                       border: '1.5px solid white',
                     }}
                   />
@@ -1577,31 +1729,40 @@ function StressTestContent() {
       sidebar={
         <>
           <div>
-            <Typography variant="subtitle2" gutterBottom>
-              Stress Test
-            </Typography>
-            <Typography variant="body2" color="text.secondary" gutterBottom>
+            <span style={sidebarSubtitle}>Stress Test</span>
+            <p style={{ ...secondaryText, marginBottom: 4 }}>
               {STRESS_OBJECT_COUNT} polygons with DOM overlays (icon + name +
               badge each).
-            </Typography>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={showOverlays}
-                  onChange={(e) => setShowOverlays(e.target.checked)}
-                />
-              }
-              label={<Typography variant="body2">Show Overlays</Typography>}
-            />
+            </p>
+            <label
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                cursor: 'pointer',
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={showOverlays}
+                onChange={(e) => setShowOverlays(e.target.checked)}
+              />
+              <span style={bodyText}>Show Overlays</span>
+            </label>
           </div>
 
-          <Divider />
+          <hr
+            style={{
+              border: 'none',
+              borderTop: '1px solid var(--solar-border-default, #e0e0e0)',
+            }}
+          />
 
-          <Typography variant="body2" color="text.secondary">
+          <p style={secondaryText}>
             Pan (drag) and zoom (scroll) to stress test overlay positioning and
             rendering performance with a large number of objects. Toggle
             overlays off to compare canvas-only rendering speed.
-          </Typography>
+          </p>
         </>
       }
     />

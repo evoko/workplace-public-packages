@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function CalendarAddIcon(props: SvgIconProps) {
+export function CalendarAddIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 24 24" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -39,6 +45,6 @@ export function CalendarAddIcon(props: SvgIconProps) {
         d="M18 14.2C18.4418 14.2 18.8 14.5582 18.8 15V21C18.8 21.4418 18.4418 21.8 18 21.8C17.5582 21.8 17.2 21.4418 17.2 21V15C17.2 14.5582 17.5582 14.2 18 14.2Z"
         fill="currentColor"
       />
-    </SvgIcon>
+    </svg>
   );
 }

@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function CeilingIcon(props: SvgIconProps) {
+export function CeilingIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 16 16" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      {...props}
+    >
       <rect
         x="2.8"
         y="2.8"
@@ -13,6 +19,6 @@ export function CeilingIcon(props: SvgIconProps) {
         strokeWidth="1.6"
       />
       <circle cx="8" cy="8" r="2" fill="currentColor" />
-    </SvgIcon>
+    </svg>
   );
 }

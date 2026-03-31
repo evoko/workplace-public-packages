@@ -1,7 +1,6 @@
-import { Button, ButtonProps, useTheme } from '@mui/material';
-import { alpha } from '@mui/material/styles';
+import { cn } from '@bwp-web/styles';
 
-type Props = ButtonProps & {
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
   active?: boolean;
   small?: boolean;
@@ -12,41 +11,40 @@ export function SegmentedButton({
   children,
   active,
   small,
-  sx,
+  className,
+  style,
   ...props
 }: Props) {
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
-  const backgroundColor = active
-    ? isDarkMode
-      ? theme.palette.grey[900]
-      : theme.palette.common.white
-    : 'transparent';
-  const textColor = active
-    ? theme.palette.text.primary
-    : theme.palette.text.secondary;
-  const border = active ? 'solid' : undefined;
   return (
-    <Button
-      sx={{
-        backgroundColor,
-        color: textColor,
+    <button
+      className={cn(className)}
+      style={{
+        backgroundColor: active
+          ? 'var(--solar-surface-default)'
+          : 'transparent',
+        color: active
+          ? 'var(--solar-text-default)'
+          : 'var(--solar-text-secondary)',
         borderRadius: '4px',
-        border,
-        borderColor: 'divider',
+        border: active ? '1px solid var(--solar-border-default)' : 'none',
         lineHeight: 1.5,
-        px: 1.5,
-        py: 0,
+        paddingLeft: '12px',
+        paddingRight: '12px',
+        paddingTop: 0,
+        paddingBottom: 0,
         height: small ? '22px' : '26px',
-        ...(small && { fontSize: '12px', letterSpacing: '-0.24px' }),
-        boxShadow: active
-          ? `0 1px 2px 0 ${alpha(theme.palette.common.black, 0.05)} !important`
-          : 'none !important',
-        ...sx,
+        fontSize: small ? '12px' : 'inherit',
+        letterSpacing: small ? '-0.24px' : undefined,
+        boxShadow: active ? '0 1px 2px 0 rgba(0, 0, 0, 0.05)' : 'none',
+        cursor: 'pointer',
+        whiteSpace: 'nowrap',
+        textTransform: 'none',
+        fontFamily: 'inherit',
+        ...style,
       }}
       {...props}
     >
       {children}
-    </Button>
+    </button>
   );
 }

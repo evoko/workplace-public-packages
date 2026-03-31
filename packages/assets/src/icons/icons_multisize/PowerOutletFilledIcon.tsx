@@ -1,10 +1,10 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 import { type ReactNode } from 'react';
 
 type PathConfig = { viewBox: string; paths: ReactNode };
 type IconVariant = 'sm' | 'xs' | 'xxs';
 
-interface PowerOutletFilledIconProps extends SvgIconProps {
+interface PowerOutletFilledIconProps extends SVGProps<SVGSVGElement> {
   variant?: IconVariant;
 }
 
@@ -44,8 +44,14 @@ export function PowerOutletFilledIcon({
 }: PowerOutletFilledIconProps) {
   const { viewBox, paths } = variantMap[variant];
   return (
-    <SvgIcon viewBox={viewBox} {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox={viewBox}
+      {...props}
+    >
       {paths}
-    </SvgIcon>
+    </svg>
   );
 }

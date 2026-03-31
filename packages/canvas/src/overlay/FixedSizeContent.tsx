@@ -1,7 +1,12 @@
-import { Stack, StackProps } from '@mui/material';
-import { useEffect, useRef, type ReactNode } from 'react';
+import {
+  useEffect,
+  useRef,
+  type ReactNode,
+  type CSSProperties,
+  type HTMLAttributes,
+} from 'react';
 
-export interface FixedSizeContentProps extends StackProps {
+export interface FixedSizeContentProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   /**
    * When `true` (default), content is collapsed (`display: none`) if showing
@@ -39,12 +44,12 @@ export interface FixedSizeContentProps extends StackProps {
  * ```tsx
  * <ObjectOverlay object={obj}>
  *   <OverlayContent>
- *     <Stack alignItems="center">
- *       <MyIcon />                      {// scales to fit}
+ *     <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+ *       <MyIcon />
  *       <FixedSizeContent>
- *         <Typography noWrap>Always 14px, truncates</Typography>
+ *         <span style={{ whiteSpace: 'nowrap' }}>Always 14px, truncates</span>
  *       </FixedSizeContent>
- *     </Stack>
+ *     </div>
  *   </OverlayContent>
  * </ObjectOverlay>
  * ```
@@ -53,14 +58,11 @@ export function FixedSizeContent({
   children,
   hideOnOverflow = true,
   truncationPadding = 4,
-  sx,
+  style,
   ...rest
 }: FixedSizeContentProps) {
   const ref = useRef<HTMLDivElement>(null);
   // Total parent content height (siblings + this text) measured while visible.
-  // Used to decide whether showing the text would cause OverlayContent to
-  // shrink below scale 1.  Stable across show/hide cycles because it is only
-  // updated while the element is visible.
   const totalContentHeightRef = useRef(0);
 
   useEffect(() => {
@@ -68,9 +70,7 @@ export function FixedSizeContent({
     if (!el) return;
 
     // Find the nearest ancestor with overflow:hidden (OverlayContent outer
-    // Stack) to use as the clipping boundary.  Its size is set via
-    // ObjectOverlay based on zoom and object dimensions, independent of
-    // content, so there is no feedback loop.
+    // div) to use as the clipping boundary.
     let clipAncestor: HTMLElement | null = el.parentElement;
     while (clipAncestor) {
       if (getComputedStyle(clipAncestor).overflow === 'hidden') break;
@@ -84,8 +84,6 @@ export function FixedSizeContent({
     totalContentHeightRef.current = el.parentElement?.scrollHeight ?? 0;
 
     function check() {
-      // Defer to the next frame so OverlayContent's ResizeObserver has
-      // already updated --overlay-scale.
       requestAnimationFrame(() => {
         if (!el) return;
         const containerRect = ancestor.getBoundingClientRect();
@@ -96,18 +94,11 @@ export function FixedSizeContent({
 
         if (!hideOnOverflow) return;
 
-        // Check whether the total content (siblings + this text) fits
-        // vertically at natural size.  This comparison is stable because
-        // totalContentHeightRef is only updated while the element is visible,
-        // so the cached value does not change when the element hides.
         const fits = containerRect.height >= totalContentHeightRef.current;
 
         if (fits && el.style.display === 'none') {
-          // Show, then re-measure in case content changed while hidden.
           el.style.display = '';
           totalContentHeightRef.current = el.parentElement?.scrollHeight ?? 0;
-          // Re-check with the updated measurement to prevent showing
-          // when the content barely doesn't fit.
           if (containerRect.height < totalContentHeightRef.current) {
             el.style.display = 'none';
           }
@@ -115,7 +106,6 @@ export function FixedSizeContent({
           el.style.display = 'none';
         }
 
-        // Keep the cache fresh while visible.
         if (el.style.display !== 'none') {
           totalContentHeightRef.current = el.parentElement?.scrollHeight ?? 0;
         }
@@ -129,26 +119,21 @@ export function FixedSizeContent({
     return () => observer.disconnect();
   }, [hideOnOverflow, truncationPadding]);
 
+  const baseStyle: CSSProperties = {
+    transform: 'scale(calc(1 / var(--overlay-scale, 1)))',
+    transformOrigin: 'center center',
+    flexShrink: 0,
+    width: 'max-content',
+    overflow: 'hidden',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    ...style,
+  };
+
   return (
-    <Stack
-      ref={ref}
-      sx={{
-        transform: 'scale(calc(1 / var(--overlay-scale, 1)))',
-        transformOrigin: 'center center',
-        flexShrink: 0,
-        width: 'max-content',
-        overflow: 'hidden',
-        alignItems: 'center',
-        '& > *': {
-          maxWidth: '100%',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-        },
-        ...sx,
-      }}
-      {...rest}
-    >
+    <div ref={ref} style={baseStyle} {...rest}>
       {children}
-    </Stack>
+    </div>
   );
 }

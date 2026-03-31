@@ -1,14 +1,49 @@
 import { type ReactNode, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Tabs, Tab, Stack, Typography, Box, Badge } from '@mui/material';
 
-const meta: Meta<typeof Tabs> = {
+const meta: Meta = {
   title: 'Styles/Tabs',
-  component: Tabs,
 };
 
 export default meta;
-type Story = StoryObj<typeof Tabs>;
+type Story = StoryObj;
+
+const tabBtnStyle = (
+  active: boolean,
+  disabled = false,
+): React.CSSProperties => ({
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.875rem',
+  fontWeight: active ? 600 : 400,
+  color: disabled
+    ? 'var(--solar-text-disabled)'
+    : active
+      ? 'var(--solar-text-brand)'
+      : 'var(--solar-text-secondary)',
+  background: 'none',
+  border: 'none',
+  borderBottom: active
+    ? '2px solid var(--solar-border-brand)'
+    : '2px solid transparent',
+  padding: '12px 16px',
+  cursor: disabled ? 'not-allowed' : 'pointer',
+  position: 'relative',
+});
+
+const badgeDot = (count: number): React.CSSProperties => ({
+  display: count > 0 ? 'inline-flex' : 'none',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minWidth: 18,
+  height: 18,
+  borderRadius: 'var(--solar-radius-full)',
+  backgroundColor: 'var(--solar-brand-500)',
+  color: 'var(--solar-white)',
+  fontSize: '0.7rem',
+  fontWeight: 600,
+  padding: '0 4px',
+  marginLeft: 6,
+});
 
 function TabPanel({
   children,
@@ -19,31 +54,62 @@ function TabPanel({
   value: number;
   index: number;
 }) {
-  return value === index ? <Box sx={{ p: 2 }}>{children}</Box> : null;
+  return value === index ? (
+    <div
+      style={{
+        padding: 16,
+        fontFamily: 'var(--solar-font-sans)',
+        color: 'var(--solar-text-default)',
+        fontSize: '0.875rem',
+      }}
+    >
+      {children}
+    </div>
+  ) : null;
 }
 
 function DefaultDemo() {
   const [value, setValue] = useState(0);
+  const tabs = ['Overview', 'Details', 'Settings'];
   return (
-    <Stack spacing={2}>
-      <Typography variant="h6">Tabs</Typography>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={(_, v) => setValue(v)}>
-          <Tab label="Overview" />
-          <Tab label="Details" />
-          <Tab label="Settings" />
-        </Tabs>
-      </Box>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <h6
+        style={{
+          fontFamily: 'var(--solar-font-sans)',
+          color: 'var(--solar-text-default)',
+          fontSize: '1.25rem',
+          fontWeight: 600,
+          margin: 0,
+        }}
+      >
+        Tabs
+      </h6>
+      <div
+        style={{
+          display: 'flex',
+          borderBottom: '1px solid var(--solar-border-default)',
+        }}
+      >
+        {tabs.map((tab, i) => (
+          <button
+            key={tab}
+            style={tabBtnStyle(value === i)}
+            onClick={() => setValue(i)}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
       <TabPanel value={value} index={0}>
-        <Typography>Overview content goes here.</Typography>
+        Overview content goes here.
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Typography>Details content goes here.</Typography>
+        Details content goes here.
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Typography>Settings content goes here.</Typography>
+        Settings content goes here.
       </TabPanel>
-    </Stack>
+    </div>
   );
 }
 
@@ -53,28 +119,38 @@ export const Default: Story = {
 
 function WithBadgeDemo() {
   const [value, setValue] = useState(0);
-  const [notifications, setNotifications] = useState(1);
+  const notifications = 1;
   return (
-    <Stack spacing={2}>
-      <Typography variant="h6">Many Tabs with badge</Typography>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={(_, v) => setValue(v)}>
-          <Tab label="Dashboard" />
-          <Tab label="Analytics" />
-          <Tab
-            label="Users"
-            icon={
-              <Badge
-                color="primary"
-                badgeContent={notifications}
-                variant="standard"
-              />
-            }
-            iconPosition="end"
-          />
-        </Tabs>
-      </Box>
-    </Stack>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <h6
+        style={{
+          fontFamily: 'var(--solar-font-sans)',
+          color: 'var(--solar-text-default)',
+          fontSize: '1.25rem',
+          fontWeight: 600,
+          margin: 0,
+        }}
+      >
+        Many Tabs with badge
+      </h6>
+      <div
+        style={{
+          display: 'flex',
+          borderBottom: '1px solid var(--solar-border-default)',
+        }}
+      >
+        <button style={tabBtnStyle(value === 0)} onClick={() => setValue(0)}>
+          Dashboard
+        </button>
+        <button style={tabBtnStyle(value === 1)} onClick={() => setValue(1)}>
+          Analytics
+        </button>
+        <button style={tabBtnStyle(value === 2)} onClick={() => setValue(2)}>
+          Users
+          <span style={badgeDot(notifications)}>{notifications}</span>
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -84,23 +160,37 @@ export const WithBadge: Story = {
 
 function DisabledTabDemo() {
   const [value, setValue] = useState(0);
-  const [notifications, setNotifications] = useState(0);
   return (
-    <Stack spacing={2}>
-      <Typography variant="h6">With Disabled Tab</Typography>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={(_, v) => setValue(v)}>
-          <Tab label="Active" />
-          <Tab label="Disabled" disabled />
-          <Tab
-            label="Disabled with badge"
-            icon={<Badge color="primary" badgeContent={notifications} />}
-            iconPosition="end"
-            disabled
-          />
-        </Tabs>
-      </Box>
-    </Stack>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <h6
+        style={{
+          fontFamily: 'var(--solar-font-sans)',
+          color: 'var(--solar-text-default)',
+          fontSize: '1.25rem',
+          fontWeight: 600,
+          margin: 0,
+        }}
+      >
+        With Disabled Tab
+      </h6>
+      <div
+        style={{
+          display: 'flex',
+          borderBottom: '1px solid var(--solar-border-default)',
+        }}
+      >
+        <button style={tabBtnStyle(value === 0)} onClick={() => setValue(0)}>
+          Active
+        </button>
+        <button style={tabBtnStyle(false, true)} disabled>
+          Disabled
+        </button>
+        <button style={tabBtnStyle(false, true)} disabled>
+          Disabled with badge
+          <span style={badgeDot(0)} />
+        </button>
+      </div>
+    </div>
   );
 }
 

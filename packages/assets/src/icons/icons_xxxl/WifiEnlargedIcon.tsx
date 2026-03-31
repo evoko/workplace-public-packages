@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function WifiEnlargedIcon(props: SvgIconProps) {
+export function WifiEnlargedIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 72 72" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 72 72"
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -27,6 +33,6 @@ export function WifiEnlargedIcon(props: SvgIconProps) {
         d="M58.0183 30.6898C45.8199 18.5664 26.1784 18.5736 14.0698 30.6848C13.2047 31.5501 11.802 31.5503 10.9367 30.6852C10.0715 29.8201 10.0713 28.4174 10.9364 27.5522C24.781 13.7046 47.2207 13.7118 61.1417 27.5472C62.0095 28.4097 62.0138 29.8124 61.1513 30.6802C60.2888 31.548 58.8861 31.5523 58.0183 30.6898Z"
         fill="currentColor"
       />
-    </SvgIcon>
+    </svg>
   );
 }

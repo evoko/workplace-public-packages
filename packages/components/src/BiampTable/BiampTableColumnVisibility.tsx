@@ -1,17 +1,5 @@
-import {
-  alpha,
-  Box,
-  Checkbox,
-  Divider,
-  List,
-  ListItem,
-  Popover,
-  type PopoverProps,
-  Typography,
-  type SxProps,
-  type Theme,
-} from '@mui/material';
 import type { Table, VisibilityState } from '@tanstack/react-table';
+import React, { useCallback, useEffect, useRef } from 'react';
 import './tanstack-meta';
 
 /**
@@ -68,106 +56,193 @@ export function getColumnVisibilityDirtyCount<TData>(
   return count;
 }
 
-export type BiampTableColumnVisibilityProps<TData> = Omit<
-  PopoverProps,
-  'open'
-> & {
+export type BiampTableColumnVisibilityProps<TData> = {
   /** TanStack Table instance to connect to. */
   table: Table<TData>;
   /** Label for the "show all" toggle. @default "Show all" */
   showAllLabel?: string;
+  /** The anchor element to position the popover near. When null, the popover is hidden. */
+  anchorEl: HTMLElement | null;
+  /** Called when the popover should close. */
+  onClose: () => void;
 };
 
-const columnListItemSx: SxProps<Theme> = {
-  py: 0,
-  pr: 1.5,
-  pl: 0,
+const listItemStyle: React.CSSProperties = {
+  display: 'flex',
   alignItems: 'center',
+  padding: '0 12px 0 0',
   cursor: 'pointer',
-  '&:hover': {
-    backgroundColor: ({ palette }) =>
-      palette.mode === 'dark' ? palette.grey[800] : palette.grey[100],
-  },
+  listStyle: 'none',
 };
 
 export function BiampTableColumnVisibility<TData>({
   table,
   showAllLabel = 'Show all',
   anchorEl,
-  anchorOrigin = { vertical: 'bottom', horizontal: 'right' },
-  transformOrigin = { vertical: 'top', horizontal: 'right' },
-  slotProps,
-  ...popoverProps
+  onClose,
 }: BiampTableColumnVisibilityProps<TData>) {
+  const popoverRef = useRef<HTMLDivElement>(null);
+  const open = Boolean(anchorEl);
+
+  // Click-outside handling
+  const handleClickOutside = useCallback(
+    (e: MouseEvent) => {
+      if (
+        popoverRef.current &&
+        !popoverRef.current.contains(e.target as Node) &&
+        anchorEl &&
+        !anchorEl.contains(e.target as Node)
+      ) {
+        onClose();
+      }
+    },
+    [anchorEl, onClose],
+  );
+
+  useEffect(() => {
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () =>
+        document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [open, handleClickOutside]);
+
+  // Close on Escape
+  useEffect(() => {
+    if (!open) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [open, onClose]);
+
+  if (!open) return null;
+
   const allVisible = table
     .getAllLeafColumns()
     .every((col) => col.getIsVisible());
 
+  // Position below and to the right of the anchor
+  const rect = anchorEl!.getBoundingClientRect();
+
   return (
-    <Popover
-      anchorEl={anchorEl}
-      open={Boolean(anchorEl)}
-      anchorOrigin={anchorOrigin}
-      transformOrigin={transformOrigin}
-      slotProps={{
-        ...slotProps,
-        paper: {
-          sx: ({ palette }) => ({
-            borderRadius: '6px',
-            backgroundImage: 'none',
-            border: `0.6px solid ${palette.divider}`,
-            boxShadow: `0px 1px 1px 0px ${alpha(palette.common.black, 0.05)}`,
-            minWidth: '150px',
-          }),
-          ...((slotProps?.paper ?? {}) as Record<string, unknown>),
-        },
+    <div
+      ref={popoverRef}
+      style={{
+        position: 'fixed',
+        top: rect.bottom + 4,
+        right: window.innerWidth - rect.right,
+        zIndex: 1300,
+        borderRadius: 6,
+        border: '0.6px solid var(--solar-border-default)',
+        boxShadow: '0px 1px 1px 0px rgba(0,0,0,0.05)',
+        backgroundColor: 'var(--solar-surface-default, #fff)',
+        minWidth: 150,
       }}
-      {...popoverProps}
     >
-      <List dense disablePadding>
-        <ListItem
-          dense
-          sx={columnListItemSx}
+      <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+        <li
+          style={listItemStyle}
           onClick={() => table.toggleAllColumnsVisible(!allVisible)}
         >
-          <Checkbox
-            checked={allVisible}
-            slotProps={{ input: { 'aria-label': `${showAllLabel} columns` } }}
+          <label
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              cursor: 'pointer',
+              padding: '6px 0 6px 8px',
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={allVisible}
+              onChange={() => table.toggleAllColumnsVisible(!allVisible)}
+              aria-label={`${showAllLabel} columns`}
+              style={{ marginRight: 8 }}
+            />
+            <span
+              style={{
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                color: 'var(--solar-text-default)',
+              }}
+            >
+              {showAllLabel}
+            </span>
+          </label>
+        </li>
+        <li>
+          <hr
+            style={{
+              margin: 0,
+              border: 'none',
+              borderTop: '1px solid var(--solar-border-default)',
+            }}
           />
-          <Typography variant="caption" fontWeight={600}>
-            {showAllLabel}
-          </Typography>
-        </ListItem>
-        <Divider />
-        <Box
-          sx={{ maxHeight: 340, overflow: 'auto', overscrollBehavior: 'none' }}
+        </li>
+        <li
+          style={{
+            maxHeight: 340,
+            overflow: 'auto',
+            overscrollBehavior: 'none',
+          }}
         >
-          {table.getAllLeafColumns().map((column) => {
-            const columnName =
-              column.columnDef.meta?.columnLabel ??
-              (typeof column.columnDef.header === 'string'
-                ? column.columnDef.header
-                : column.id);
-            return (
-              <ListItem
-                key={column.id}
-                dense
-                sx={columnListItemSx}
-                onClick={column.getToggleVisibilityHandler()}
-              >
-                <Checkbox
-                  checked={column.getIsVisible()}
-                  sx={{ py: 1 }}
-                  slotProps={{
-                    input: { 'aria-label': `Show ${columnName}` },
+          <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+            {table.getAllLeafColumns().map((column) => {
+              const columnName =
+                column.columnDef.meta?.columnLabel ??
+                (typeof column.columnDef.header === 'string'
+                  ? column.columnDef.header
+                  : column.id);
+              return (
+                <li
+                  key={column.id}
+                  style={{
+                    ...listItemStyle,
+                    padding: '0 12px 0 0',
                   }}
-                />
-                <Typography variant="caption">{columnName}</Typography>
-              </ListItem>
-            );
-          })}
-        </Box>
-      </List>
-    </Popover>
+                  onClick={column.getToggleVisibilityHandler()}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.backgroundColor =
+                      'var(--solar-surface-hover, rgba(0,0,0,0.04))';
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.backgroundColor =
+                      'transparent';
+                  }}
+                >
+                  <label
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      cursor: 'pointer',
+                      padding: '8px 0 8px 8px',
+                      width: '100%',
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={column.getIsVisible()}
+                      onChange={column.getToggleVisibilityHandler()}
+                      aria-label={`Show ${columnName}`}
+                      style={{ marginRight: 8 }}
+                    />
+                    <span
+                      style={{
+                        fontSize: '0.75rem',
+                        color: 'var(--solar-text-default)',
+                      }}
+                    >
+                      {columnName}
+                    </span>
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+        </li>
+      </ul>
+    </div>
   );
 }

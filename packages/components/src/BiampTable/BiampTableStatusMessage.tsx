@@ -1,8 +1,13 @@
-import { Stack, type StackProps, Typography } from '@mui/material';
-import { cloneElement, type JSX, type ReactNode } from 'react';
+import {
+  cloneElement,
+  type HTMLAttributes,
+  type JSX,
+  type ReactNode,
+} from 'react';
+import { cn } from '@bwp-web/styles';
 
-export type BiampTableStatusMessageProps = StackProps & {
-  /** Required icon element rendered at 56×56. */
+export type BiampTableStatusMessageProps = HTMLAttributes<HTMLDivElement> & {
+  /** Required icon element rendered at 56x56. */
   icon: JSX.Element;
   /** Required title text. */
   title: string;
@@ -10,6 +15,8 @@ export type BiampTableStatusMessageProps = StackProps & {
   description?: string;
   /** Optional extra content (e.g. retry buttons). */
   children?: ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
 };
 
 export function BiampTableStatusMessage({
@@ -17,17 +24,48 @@ export function BiampTableStatusMessage({
   title,
   description,
   children,
-  ...stackProps
+  className,
+  style,
+  ...divProps
 }: BiampTableStatusMessageProps) {
   return (
-    <Stack alignItems="center" gap={1.5} {...stackProps}>
+    <div
+      className={cn(className)}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '12px',
+        ...style,
+      }}
+      {...divProps}
+    >
       {cloneElement(icon, {
         'aria-hidden': true,
-        sx: { width: 56, height: 56, ...icon.props.sx },
+        style: { width: 56, height: 56, ...icon.props.style },
       })}
-      <Typography variant="h2">{title}</Typography>
-      {description && <Typography variant="body1">{description}</Typography>}
+      <h2
+        style={{
+          margin: 0,
+          fontSize: 'var(--solar-font-size-h2, 1.25rem)',
+          fontWeight: 'var(--solar-font-weight-h2, 600)',
+          color: 'var(--solar-text-default)',
+        }}
+      >
+        {title}
+      </h2>
+      {description && (
+        <p
+          style={{
+            margin: 0,
+            fontSize: 'var(--solar-font-size-body1, 1rem)',
+            color: 'var(--solar-text-default)',
+          }}
+        >
+          {description}
+        </p>
+      )}
       {children}
-    </Stack>
+    </div>
   );
 }

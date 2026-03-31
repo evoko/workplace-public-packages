@@ -1,108 +1,197 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  TextField,
-  Stack,
-  Typography,
-  InputAdornment,
-  Box,
-} from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import { CloseIcon, SearchIcon } from '@bwp-web/assets';
 
-const meta: Meta<typeof TextField> = {
+const meta: Meta = {
   title: 'Styles/TextField',
-  component: TextField,
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['outlined'],
-    },
-    disabled: { control: 'boolean' },
-    error: { control: 'boolean' },
-    multiline: { control: 'boolean' },
-  },
 };
 
 export default meta;
-type Story = StoryObj<typeof TextField>;
+type Story = StoryObj;
 
-export const Playground: Story = {
-  args: {
-    label: 'Label',
-    placeholder: 'Enter text...',
-    helperText: 'Helper text',
-    disabled: false,
-    error: false,
-  },
+const heading: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  color: 'var(--solar-text-default)',
+  fontSize: '1.25rem',
+  fontWeight: 600,
+  margin: 0,
+};
+
+const fieldWrap: React.CSSProperties = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 4,
+};
+
+const labelStyle: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.8125rem',
+  fontWeight: 500,
+  color: 'var(--solar-text-secondary)',
+};
+
+const inputStyle: React.CSSProperties = {
+  height: 44,
+  padding: '0 12px',
+  borderRadius: 'var(--solar-radius-base)',
+  border: '1px solid var(--solar-border-default)',
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.875rem',
+  color: 'var(--solar-text-default)',
+  backgroundColor: 'var(--solar-surface-default)',
+  outline: 'none',
+  width: '100%',
+  boxSizing: 'border-box',
+};
+
+const helperStyle: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.75rem',
+  color: 'var(--solar-text-tertiary)',
 };
 
 export const AllStates: Story = {
   render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h3">TextField States</Typography>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 24,
+        maxWidth: 400,
+      }}
+    >
+      <h3 style={heading}>TextField States</h3>
 
-      <TextField label="Default" placeholder="Enter text..." />
+      <div style={fieldWrap}>
+        <label style={labelStyle}>Default</label>
+        <input style={inputStyle} placeholder="Enter text..." />
+      </div>
 
-      <TextField label="With value" defaultValue="Hello World" />
+      <div style={fieldWrap}>
+        <label style={labelStyle}>With value</label>
+        <input style={inputStyle} defaultValue="Hello World" />
+      </div>
 
-      <TextField
-        label="With helper text"
-        placeholder="Enter text..."
-        helperText="This is helper text"
-      />
+      <div style={fieldWrap}>
+        <label style={labelStyle}>With helper text</label>
+        <input style={inputStyle} placeholder="Enter text..." />
+        <span style={helperStyle}>This is helper text</span>
+      </div>
 
-      <TextField
-        label="Error state"
-        defaultValue="Invalid input"
-        error
-        helperText="This field is required"
-      />
+      <div style={fieldWrap}>
+        <label style={{ ...labelStyle, color: 'var(--solar-text-danger)' }}>
+          Error state
+        </label>
+        <input
+          style={{
+            ...inputStyle,
+            borderColor: 'var(--solar-border-danger)',
+          }}
+          defaultValue="Invalid input"
+        />
+        <span style={{ ...helperStyle, color: 'var(--solar-text-danger)' }}>
+          This field is required
+        </span>
+      </div>
 
-      <TextField label="Disabled" defaultValue="Cannot edit" disabled />
+      <div style={fieldWrap}>
+        <label style={labelStyle}>Disabled</label>
+        <input
+          style={{
+            ...inputStyle,
+            opacity: 0.5,
+            cursor: 'not-allowed',
+          }}
+          defaultValue="Cannot edit"
+          disabled
+        />
+      </div>
 
-      <TextField label="Required" placeholder="Required field" required />
-    </Stack>
+      <div style={fieldWrap}>
+        <label style={labelStyle}>
+          Required <span style={{ color: 'var(--solar-text-danger)' }}>*</span>
+        </label>
+        <input style={inputStyle} placeholder="Required field" required />
+      </div>
+    </div>
   ),
 };
 
 export const WithAdornments: Story = {
   render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h3">Input Adornments</Typography>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 24,
+        maxWidth: 400,
+      }}
+    >
+      <h3 style={heading}>Input Adornments</h3>
 
-      <TextField
-        label="Search"
-        placeholder="Search..."
-        slotProps={{
-          input: {
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-            endAdornment: (
-              <InputAdornment position="end">
-                <CloseIcon />
-              </InputAdornment>
-            ),
-          },
-        }}
-      />
+      <div style={fieldWrap}>
+        <label style={labelStyle}>Search</label>
+        <div
+          style={{
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <span
+            style={{
+              position: 'absolute',
+              left: 12,
+              color: 'var(--solar-icon-tertiary)',
+              fontSize: '0.875rem',
+              pointerEvents: 'none',
+            }}
+          >
+            &#128269;
+          </span>
+          <input
+            style={{ ...inputStyle, paddingLeft: 36, paddingRight: 36 }}
+            placeholder="Search..."
+          />
+          <span
+            style={{
+              position: 'absolute',
+              right: 12,
+              color: 'var(--solar-icon-tertiary)',
+              fontSize: '0.875rem',
+              cursor: 'pointer',
+            }}
+          >
+            &#x2715;
+          </span>
+        </div>
+      </div>
 
-      <TextField
-        label="Password"
-        type="password"
-        placeholder="Enter password"
-        slotProps={{
-          input: {
-            endAdornment: (
-              <InputAdornment position="end">
-                <VisibilityIcon />
-              </InputAdornment>
-            ),
-          },
-        }}
-      />
-    </Stack>
+      <div style={fieldWrap}>
+        <label style={labelStyle}>Password</label>
+        <div
+          style={{
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <input
+            type="password"
+            style={{ ...inputStyle, paddingRight: 36 }}
+            placeholder="Enter password"
+          />
+          <span
+            style={{
+              position: 'absolute',
+              right: 12,
+              color: 'var(--solar-icon-tertiary)',
+              fontSize: '0.875rem',
+              cursor: 'pointer',
+            }}
+          >
+            &#128065;
+          </span>
+        </div>
+      </div>
+    </div>
   ),
 };

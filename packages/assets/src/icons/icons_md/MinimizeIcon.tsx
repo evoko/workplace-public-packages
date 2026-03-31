@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function MinimizeIcon(props: SvgIconProps) {
+export function MinimizeIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 24 24" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      {...props}
+    >
       <path
         d="M6 10H10M10 10V6M10 10L4 4M18 14H14M14 14V18M14 14L20 20"
         stroke="currentColor"
@@ -10,6 +16,6 @@ export function MinimizeIcon(props: SvgIconProps) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </SvgIcon>
+    </svg>
   );
 }

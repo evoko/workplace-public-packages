@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, ButtonGroup, Typography } from '@mui/material';
 
 export interface ModeButtonsProps<TMode extends string> {
   modes: Array<{ key: TMode; label: string }>;
@@ -14,20 +13,42 @@ export function ModeButtons<TMode extends string>({
 }: ModeButtonsProps<TMode>) {
   return (
     <div>
-      <Typography variant="subtitle2" gutterBottom>
+      <span
+        style={{
+          display: 'block',
+          fontSize: 14,
+          fontWeight: 600,
+          marginBottom: 4,
+          color: 'var(--solar-text-default, #212121)',
+        }}
+      >
         Creation Mode
-      </Typography>
-      <ButtonGroup orientation="vertical" fullWidth size="small">
+      </span>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
         {modes.map((m) => (
-          <Button
+          <button
             key={m.key}
-            variant={activeMode === m.key ? 'contained' : 'outlined'}
             onClick={() => onModeChange(m.key)}
+            style={{
+              padding: '4px 10px',
+              fontSize: 13,
+              cursor: 'pointer',
+              border: '1px solid var(--solar-border-default, #bdbdbd)',
+              backgroundColor:
+                activeMode === m.key
+                  ? 'var(--solar-surface-primary, #1976d2)'
+                  : 'transparent',
+              color:
+                activeMode === m.key
+                  ? '#fff'
+                  : 'var(--solar-text-default, #212121)',
+              marginTop: -1,
+            }}
           >
             {m.label}
-          </Button>
+          </button>
         ))}
-      </ButtonGroup>
+      </div>
     </div>
   );
 }

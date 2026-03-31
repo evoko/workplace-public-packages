@@ -1,7 +1,7 @@
 import React from 'react';
-import { Stack, StackProps } from '@mui/material';
+import { cn } from '@bwp-web/styles';
 
-export type BiampWrapperProps = StackProps & {
+export type BiampWrapperProps = React.HTMLAttributes<HTMLDivElement> & {
   children?: React.ReactNode;
 };
 
@@ -10,26 +10,26 @@ export type BiampWrapperProps = StackProps & {
  * with 16px padding, 8px border radius, and scrollable overflow.
  * Background: white (light) / `grey.800` (dark).
  */
-export function BiampWrapper({ children, sx, ...props }: BiampWrapperProps) {
+export function BiampWrapper({
+  children,
+  className,
+  style,
+  ...props
+}: BiampWrapperProps) {
   return (
-    <Stack
-      direction="column"
-      padding="16px"
-      alignItems="flex-start"
-      sx={{
-        flex: 1,
-        height: '100%',
-        width: '100%',
-        borderRadius: '8px',
-        overflow: 'auto',
+    <div
+      className={cn(
+        'flex flex-col items-start flex-1 h-full w-full rounded-lg overflow-auto p-4',
+        className,
+      )}
+      style={{
         overscrollBehavior: 'none',
-        backgroundColor: ({ palette }) =>
-          palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
-        ...sx,
+        backgroundColor: 'var(--solar-surface-overlay)',
+        ...style,
       }}
       {...props}
     >
       {children}
-    </Stack>
+    </div>
   );
 }

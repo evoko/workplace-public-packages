@@ -1,4 +1,3 @@
-import { CircularProgress } from '@mui/material';
 import { DownloadIcon } from '@bwp-web/assets';
 import {
   BiampTableToolbarActionButton,
@@ -19,6 +18,30 @@ export type BiampTableToolbarExportProps = {
   'icon' | 'label' | 'onClick' | 'badgeContent'
 >;
 
+/** Simple CSS spinner for loading state */
+function CssSpinner({ size = 20 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox={`0 0 ${size} ${size}`}
+      style={{ animation: 'biamp-spin 1s linear infinite' }}
+    >
+      <style>{`@keyframes biamp-spin { to { transform: rotate(360deg); } }`}</style>
+      <circle
+        cx={size / 2}
+        cy={size / 2}
+        r={size / 2 - 2}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeDasharray={`${Math.PI * (size - 4) * 0.75} ${Math.PI * (size - 4) * 0.25}`}
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function BiampTableToolbarExport({
   onExport,
   loading,
@@ -29,7 +52,7 @@ export function BiampTableToolbarExport({
   return (
     <BiampTableToolbarActionButton
       label={loading ? `${label}, loading` : label}
-      icon={loading ? <CircularProgress size={20} color="inherit" /> : icon}
+      icon={loading ? <CssSpinner size={20} /> : icon}
       disabled={loading}
       onClick={onExport}
       {...props}

@@ -1,7 +1,12 @@
-import { Stack, StackProps } from '@mui/material';
-import { useEffect, useRef, type ReactNode } from 'react';
+import {
+  useEffect,
+  useRef,
+  type ReactNode,
+  type CSSProperties,
+  type HTMLAttributes,
+} from 'react';
 
-export interface OverlayContentProps extends StackProps {
+export interface OverlayContentProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   /** Padding in pixels between the content and the parent bounds. Default: 4 */
   padding?: number;
@@ -28,7 +33,7 @@ export function OverlayContent({
   children,
   padding = 4,
   maxScale = 2,
-  sx,
+  style,
   ...rest
 }: OverlayContentProps) {
   const outerRef = useRef<HTMLDivElement>(null);
@@ -70,7 +75,7 @@ export function OverlayContent({
 
     const observer = new ResizeObserver(fit);
     observer.observe(outer);
-    // Also observe the inner Stack so we recalculate when children toggle
+    // Also observe the inner div so we recalculate when children toggle
     // display (e.g. FixedSizeContent collapsing via display:none).
     observer.observe(inner);
     fit();
@@ -78,30 +83,31 @@ export function OverlayContent({
     return () => observer.disconnect();
   }, [padding, maxScale]);
 
+  const outerStyle: CSSProperties = {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    ...style,
+  };
+
+  const innerStyle: CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    transformOrigin: 'center center',
+    flexShrink: 0,
+    width: 'max-content',
+  };
+
   return (
-    <Stack
-      ref={outerRef}
-      sx={{
-        width: '100%',
-        height: '100%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        overflow: 'hidden',
-        ...sx,
-      }}
-      {...rest}
-    >
-      <Stack
-        ref={innerRef}
-        sx={{
-          alignItems: 'center',
-          transformOrigin: 'center center',
-          flexShrink: 0,
-          width: 'max-content',
-        }}
-      >
+    <div ref={outerRef} style={outerStyle} {...rest}>
+      <div ref={innerRef} style={innerStyle}>
         {children}
-      </Stack>
-    </Stack>
+      </div>
+    </div>
   );
 }

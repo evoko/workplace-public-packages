@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function OtherIcon(props: SvgIconProps) {
+export function OtherIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 12 12" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 12 12"
+      {...props}
+    >
       <path
         d="M3.72727 6.36364C3.72727 7.11675 3.11675 7.72727 2.36364 7.72727C1.61052 7.72727 1 7.11675 1 6.36364C1 5.61052 1.61052 5 2.36364 5C3.11675 5 3.72727 5.61052 3.72727 6.36364Z"
         fill="currentColor"
@@ -15,6 +21,6 @@ export function OtherIcon(props: SvgIconProps) {
         d="M9.63634 7.72727C10.3895 7.72727 11 7.11675 11 6.36364C11 5.61052 10.3895 5 9.63634 5C8.88323 5 8.27271 5.61052 8.27271 6.36364C8.27271 7.11675 8.88323 7.72727 9.63634 7.72727Z"
         fill="currentColor"
       />
-    </SvgIcon>
+    </svg>
   );
 }

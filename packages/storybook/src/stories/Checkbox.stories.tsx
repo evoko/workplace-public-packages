@@ -1,90 +1,110 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
-  Stack,
-  Typography,
-} from '@mui/material';
 
-const meta: Meta<typeof Checkbox> = {
+const meta: Meta = {
   title: 'Styles/Checkbox',
-  component: Checkbox,
-  argTypes: {
-    checked: { control: 'boolean' },
-    indeterminate: { control: 'boolean' },
-    disabled: { control: 'boolean' },
-  },
 };
 
 export default meta;
-type Story = StoryObj<typeof Checkbox>;
+type Story = StoryObj;
 
-export const Playground: Story = {
-  args: {
-    checked: false,
-    indeterminate: false,
-    disabled: false,
-  },
+const labelRow: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.875rem',
+  color: 'var(--solar-text-default)',
+};
+
+const checkboxStyle: React.CSSProperties = {
+  width: 18,
+  height: 18,
+  accentColor: 'var(--solar-brand-600)',
+  cursor: 'pointer',
 };
 
 export const AllStates: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Checkbox States</Typography>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 24,
+        fontFamily: 'var(--solar-font-sans)',
+      }}
+    >
+      <h3
+        style={{
+          color: 'var(--solar-text-default)',
+          fontSize: '1.25rem',
+          fontWeight: 600,
+          margin: 0,
+        }}
+      >
+        Checkbox States
+      </h3>
 
-      <FormGroup>
-        <FormControlLabel
-          control={<Checkbox defaultChecked={false} />}
-          label="Unchecked"
-        />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="Checked"
-        />
-        <FormControlLabel
-          control={<Checkbox indeterminate />}
-          label="Indeterminate"
-        />
-        <FormControlLabel
-          control={<Checkbox disabled />}
-          label="Disabled unchecked"
-        />
-        <FormControlLabel
-          control={<Checkbox disabled checked />}
-          label="Disabled checked"
-        />
-        <FormControlLabel
-          control={<Checkbox disabled indeterminate />}
-          label="Disabled indeterminate"
-        />
-      </FormGroup>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <label style={labelRow}>
+          <input type="checkbox" style={checkboxStyle} />
+          Unchecked
+        </label>
+        <label style={labelRow}>
+          <input type="checkbox" style={checkboxStyle} defaultChecked />
+          Checked
+        </label>
+        <label style={labelRow}>
+          <input type="checkbox" style={checkboxStyle} disabled />
+          Disabled unchecked
+        </label>
+        <label style={labelRow}>
+          <input
+            type="checkbox"
+            style={checkboxStyle}
+            disabled
+            defaultChecked
+          />
+          Disabled checked
+        </label>
+      </div>
 
-      <Typography variant="h3" sx={{ pt: 2 }}>
+      <h3
+        style={{
+          color: 'var(--solar-text-default)',
+          fontSize: '1.25rem',
+          fontWeight: 600,
+          margin: 0,
+          paddingTop: 16,
+        }}
+      >
         Label Placement
-      </Typography>
-      <FormGroup row>
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="End (default)"
-          labelPlacement="end"
-        />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="Start"
-          labelPlacement="start"
-        />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="Top"
-          labelPlacement="top"
-        />
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="Bottom"
-          labelPlacement="bottom"
-        />
-      </FormGroup>
-    </Stack>
+      </h3>
+      <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+        <label style={labelRow}>
+          <input type="checkbox" style={checkboxStyle} defaultChecked />
+          End (default)
+        </label>
+        <label style={{ ...labelRow, flexDirection: 'row-reverse' }}>
+          <input type="checkbox" style={checkboxStyle} defaultChecked />
+          Start
+        </label>
+        <label
+          style={{
+            ...labelRow,
+            flexDirection: 'column-reverse',
+            textAlign: 'center',
+          }}
+        >
+          <input type="checkbox" style={checkboxStyle} defaultChecked />
+          Top
+        </label>
+        <label
+          style={{ ...labelRow, flexDirection: 'column', textAlign: 'center' }}
+        >
+          <input type="checkbox" style={checkboxStyle} defaultChecked />
+          Bottom
+        </label>
+      </div>
+    </div>
   ),
 };

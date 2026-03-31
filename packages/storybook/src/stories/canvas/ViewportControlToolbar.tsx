@@ -1,19 +1,4 @@
 import React from 'react';
-import {
-  Box,
-  IconButton,
-  Paper,
-  ToggleButton,
-  ToggleButtonGroup,
-  Tooltip,
-  Typography,
-} from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import CropFreeIcon from '@mui/icons-material/CropFree';
-import FitScreenIcon from '@mui/icons-material/FitScreen';
-import PanToolIcon from '@mui/icons-material/PanTool';
-import NearMeIcon from '@mui/icons-material/NearMe';
 import type { ViewportMode } from '@bwp-web/canvas';
 
 export interface ViewportControlToolbarProps {
@@ -56,81 +41,108 @@ export function ViewportControlToolbar({
   onReset,
   onZoomToFit,
 }: ViewportControlToolbarProps) {
+  const iconBtnStyle: React.CSSProperties = {
+    padding: 4,
+    border: 'none',
+    background: 'none',
+    cursor: 'pointer',
+    borderRadius: 4,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 16,
+    color: 'var(--solar-text-default, #424242)',
+  };
+
+  const toggleBtnStyle = (active: boolean): React.CSSProperties => ({
+    padding: '4px 8px',
+    border: '1px solid var(--solar-border-default, #bdbdbd)',
+    background: active
+      ? 'var(--solar-surface-primary, #1976d2)'
+      : 'transparent',
+    color: active ? '#fff' : 'var(--solar-text-default, #424242)',
+    cursor: 'pointer',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 14,
+  });
+
   return (
-    <Paper
-      elevation={2}
-      sx={{
+    <div
+      style={{
         position: 'absolute',
         bottom: 16,
         left: 16,
         display: 'flex',
         alignItems: 'center',
-        gap: 0.5,
-        px: 1,
-        py: 0.5,
-        borderRadius: 2,
-        bgcolor: 'background.paper',
+        gap: 4,
+        paddingLeft: 8,
+        paddingRight: 8,
+        paddingTop: 4,
+        paddingBottom: 4,
+        borderRadius: 8,
+        backgroundColor: 'var(--solar-surface-default, #fff)',
+        boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
       }}
     >
       {/* Mode toggle */}
-      <ToggleButtonGroup
-        value={viewportMode}
-        exclusive
-        size="small"
-        onChange={(_, value) => value && onModeChange(value as ViewportMode)}
-        sx={{ mr: 0.5 }}
-      >
-        <Tooltip title="Select mode">
-          <ToggleButton value="select" sx={{ px: 1 }}>
-            <NearMeIcon fontSize="small" />
-          </ToggleButton>
-        </Tooltip>
-        <Tooltip title="Pan mode">
-          <ToggleButton value="pan" sx={{ px: 1 }}>
-            <PanToolIcon fontSize="small" />
-          </ToggleButton>
-        </Tooltip>
-      </ToggleButtonGroup>
+      <div style={{ display: 'inline-flex', marginRight: 4 }}>
+        <button
+          title="Select mode"
+          onClick={() => onModeChange('select')}
+          style={toggleBtnStyle(viewportMode === 'select')}
+        >
+          ↖
+        </button>
+        <button
+          title="Pan mode"
+          onClick={() => onModeChange('pan')}
+          style={{
+            ...toggleBtnStyle(viewportMode === 'pan'),
+            marginLeft: -1,
+          }}
+        >
+          ✋
+        </button>
+      </div>
 
       {/* Zoom controls */}
-      <Tooltip title="Zoom out">
-        <IconButton size="small" onClick={() => onZoomOut()}>
-          <RemoveIcon fontSize="small" />
-        </IconButton>
-      </Tooltip>
+      <button title="Zoom out" onClick={() => onZoomOut()} style={iconBtnStyle}>
+        −
+      </button>
 
-      <Typography
-        variant="caption"
-        sx={{
+      <span
+        style={{
           minWidth: 40,
           textAlign: 'center',
           fontVariantNumeric: 'tabular-nums',
+          fontSize: 12,
+          color: 'var(--solar-text-default, #424242)',
         }}
       >
         {Math.round(zoom * 100)}%
-      </Typography>
+      </span>
 
-      <Tooltip title="Zoom in">
-        <IconButton size="small" onClick={() => onZoomIn()}>
-          <AddIcon fontSize="small" />
-        </IconButton>
-      </Tooltip>
+      <button title="Zoom in" onClick={() => onZoomIn()} style={iconBtnStyle}>
+        +
+      </button>
 
       {/* Reset viewport */}
-      <Tooltip title="Reset viewport">
-        <IconButton size="small" onClick={onReset} sx={{ ml: 0.5 }}>
-          <CropFreeIcon fontSize="small" />
-        </IconButton>
-      </Tooltip>
+      <button
+        title="Reset viewport"
+        onClick={onReset}
+        style={{ ...iconBtnStyle, marginLeft: 4 }}
+      >
+        ⊡
+      </button>
 
       {/* Zoom to fit */}
       {onZoomToFit && (
-        <Tooltip title="Zoom to Fit">
-          <IconButton size="small" onClick={onZoomToFit}>
-            <FitScreenIcon fontSize="small" />
-          </IconButton>
-        </Tooltip>
+        <button title="Zoom to Fit" onClick={onZoomToFit} style={iconBtnStyle}>
+          ⊞
+        </button>
       )}
-    </Paper>
+    </div>
   );
 }

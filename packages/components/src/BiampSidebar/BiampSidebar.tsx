@@ -1,14 +1,8 @@
-import {
-  Box,
-  ListItemButton,
-  ListItemButtonProps,
-  Stack,
-  StackProps,
-} from '@mui/material';
 import { BiampLogoIcon } from '@bwp-web/assets';
+import { cn } from '@bwp-web/styles';
 import { JSX } from 'react';
 
-type BiampSidebarProps = StackProps & {
+type BiampSidebarProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
   bottomLogoIcon?: JSX.Element;
 };
@@ -16,36 +10,48 @@ type BiampSidebarProps = StackProps & {
 export function BiampSidebar({
   children,
   bottomLogoIcon,
-  sx,
+  className,
+  style,
   ...props
 }: BiampSidebarProps) {
   return (
-    <Stack width="48px" height="100%" sx={{ ...sx }} {...props}>
-      <Stack height="100%">{children}</Stack>
+    <div
+      className={cn('flex flex-col', className)}
+      style={{ width: '48px', height: '100%', ...style }}
+      {...props}
+    >
+      <div className="flex flex-col" style={{ height: '100%' }}>
+        {children}
+      </div>
       {bottomLogoIcon ?? (
-        <BiampLogoIcon sx={{ width: '48px', height: '15px' }} />
+        <BiampLogoIcon style={{ width: '48px', height: '15px' }} />
       )}
-    </Stack>
+    </div>
   );
 }
 
-type BiampSidebarIconList = StackProps & {
+type BiampSidebarIconList = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
 };
 
 export function BiampSidebarIconList({
   children,
-  sx,
+  className,
+  style,
   ...props
 }: BiampSidebarIconList) {
   return (
-    <Stack height="100%" sx={{ gap: '4px', ...sx }} {...props}>
+    <div
+      className={cn('flex flex-col', className)}
+      style={{ height: '100%', gap: '4px', ...style }}
+      {...props}
+    >
       {children}
-    </Stack>
+    </div>
   );
 }
 
-type BiampSidebarIconProps = ListItemButtonProps & {
+type BiampSidebarIconProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   selected?: boolean;
   icon: JSX.Element;
   selectedIcon?: JSX.Element;
@@ -55,58 +61,63 @@ export function BiampSidebarIcon({
   selected,
   icon,
   selectedIcon,
-  sx,
+  className,
+  style,
   ...props
 }: BiampSidebarIconProps) {
   const displayedSelectedIcon = selectedIcon ?? icon;
   return (
-    <ListItemButton
-      selected={selected}
-      disableGutters
-      disableRipple
-      sx={{
+    <button
+      className={cn(
+        'flex items-center justify-center rounded-lg',
+        selected && 'bg-[var(--solar-surface-default)]',
+        className,
+      )}
+      style={{
         minWidth: '48px',
         maxWidth: '48px',
         minHeight: '48px',
         maxHeight: '48px',
-        borderRadius: '8px',
-        justifyContent: 'center',
-        alignItems: 'center',
-        ...sx,
+        border: 'none',
+        background: selected ? undefined : 'transparent',
+        cursor: 'pointer',
+        padding: 0,
+        ...style,
       }}
       {...props}
     >
       {selected ? displayedSelectedIcon : icon}
-    </ListItemButton>
+    </button>
   );
 }
 
-type BiampSidebarComponentProps = ListItemButtonProps & {
+type BiampSidebarComponentProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
 };
 
 export function BiampSidebarComponent({
   children,
-  sx,
+  className,
+  style,
   ...props
 }: BiampSidebarComponentProps) {
   return (
-    <Box
-      sx={{
+    <div
+      className={cn(
+        'flex items-center justify-center overflow-hidden rounded-lg',
+        className,
+      )}
+      style={{
         minWidth: '48px',
         maxWidth: '48px',
         minHeight: '48px',
         maxHeight: '48px',
-        borderRadius: '8px',
-        overflow: 'hidden',
-        justifyContent: 'center',
-        alignItems: 'center',
-        border: ({ palette }) => `0.6px solid ${palette.divider}`,
-        ...sx,
+        border: '0.6px solid var(--solar-border-default)',
+        ...style,
       }}
       {...props}
     >
       {children}
-    </Box>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
-import { Stack, StackProps } from '@mui/material';
 import React from 'react';
+import { cn } from '@bwp-web/styles';
 
-type BiampLayoutProps = StackProps & {
+type BiampLayoutProps = React.HTMLAttributes<HTMLDivElement> & {
   header?: React.ReactNode;
   sidebar?: React.ReactNode;
   children: React.ReactNode;
@@ -11,33 +11,30 @@ export function BiampLayout({
   header,
   sidebar,
   children,
-  sx,
+  className,
+  style,
   ...props
 }: BiampLayoutProps) {
   return (
-    <Stack
-      direction="column"
-      height="100vh"
-      sx={{
-        backgroundColor: ({ palette }) =>
-          palette.mode === 'dark' ? palette.grey[900] : palette.grey[100],
-        ...sx,
+    <div
+      className={cn('flex flex-col h-screen', className)}
+      style={{
+        backgroundColor: 'var(--solar-surface-tertiary)',
+        ...style,
       }}
       {...props}
     >
       {header}
-      <Stack
-        direction="row"
-        flex={1}
-        minHeight={0}
-        gap={{ xs: 1.5, md: 2.5 }}
-        px={{ xs: 1.5, md: 2.5 }}
-        pb={{ xs: 1.5, md: 2.5 }}
-        pt={{ xs: header ? 0 : 1.5, md: header ? 0 : 2.5 }}
+      <div
+        className={cn(
+          'flex flex-row flex-1 min-h-0',
+          'gap-3 px-3 pb-3 md:gap-5 md:px-5 md:pb-5',
+          header ? 'pt-0' : 'pt-3 md:pt-5',
+        )}
       >
         {sidebar}
         {children}
-      </Stack>
-    </Stack>
+      </div>
+    </div>
   );
 }

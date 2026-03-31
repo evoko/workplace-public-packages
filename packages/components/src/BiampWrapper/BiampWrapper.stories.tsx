@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
 import { BiampWrapper } from '@bwp-web/components';
 
 const meta: Meta<typeof BiampWrapper> = {
@@ -25,20 +24,18 @@ type Story = StoryObj<typeof BiampWrapper>;
  */
 export const Default: Story = {
   render: () => (
-    <Stack height="100vh">
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <BiampWrapper>
-        <Box>
-          <Typography variant="h4" gutterBottom>
-            Page Content
-          </Typography>
-          <Typography variant="body1">
+        <div>
+          <h4 style={{ margin: '0 0 8px' }}>Page Content</h4>
+          <p style={{ margin: 0 }}>
             This is an example of content inside the BiampWrapper. The wrapper
             provides a full-height container with 16px padding, a white
             background with 8px rounded corners, and scrollable overflow.
-          </Typography>
-        </Box>
+          </p>
+        </div>
       </BiampWrapper>
-    </Stack>
+    </div>
   ),
 };
 
@@ -48,27 +45,34 @@ export const Default: Story = {
  */
 export const WithCards: Story = {
   render: () => (
-    <Stack height="100vh">
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <BiampWrapper>
-        <Box sx={{ p: 3 }}>
-          <Typography variant="h4" gutterBottom>
-            Dashboard
-          </Typography>
-          <Stack direction={{ xs: 'column', md: 'row' }} spacing={2}>
+        <div style={{ padding: 24 }}>
+          <h4 style={{ margin: '0 0 8px' }}>Dashboard</h4>
+          <div style={{ display: 'flex', gap: 16 }}>
             {['Devices', 'Rooms', 'Users'].map((title) => (
-              <Card key={title} sx={{ flex: 1 }}>
-                <CardContent>
-                  <Typography variant="h6">{title}</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Manage your {title.toLowerCase()} here.
-                  </Typography>
-                </CardContent>
-              </Card>
+              <div
+                key={title}
+                style={{
+                  flex: 1,
+                  border: '1px solid #e0e0e0',
+                  borderRadius: 4,
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.12)',
+                  padding: 16,
+                }}
+              >
+                <h6 style={{ margin: '0 0 4px' }}>{title}</h6>
+                <p
+                  style={{ margin: 0, fontSize: 14, color: 'rgba(0,0,0,0.6)' }}
+                >
+                  Manage your {title.toLowerCase()} here.
+                </p>
+              </div>
             ))}
-          </Stack>
-        </Box>
+          </div>
+        </div>
       </BiampWrapper>
-    </Stack>
+    </div>
   ),
 };
 
@@ -82,31 +86,44 @@ export const Mobile: Story = {
     },
   },
   render: () => (
-    <Stack height="100vh">
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <BiampWrapper>
-        <Box sx={{ p: 2 }}>
-          <Typography variant="h5" gutterBottom>
-            Mobile View
-          </Typography>
-          <Typography variant="body2">
+        <div style={{ padding: 16 }}>
+          <h5 style={{ margin: '0 0 8px' }}>Mobile View</h5>
+          <p style={{ margin: 0, fontSize: 14 }}>
             The wrapper uses 16px padding around the content area at all
             breakpoints.
-          </Typography>
-          <Stack spacing={2} sx={{ mt: 2 }}>
+          </p>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 16,
+              marginTop: 16,
+            }}
+          >
             {['Devices', 'Rooms', 'Users'].map((title) => (
-              <Card key={title}>
-                <CardContent>
-                  <Typography variant="h6">{title}</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Manage your {title.toLowerCase()} here.
-                  </Typography>
-                </CardContent>
-              </Card>
+              <div
+                key={title}
+                style={{
+                  border: '1px solid #e0e0e0',
+                  borderRadius: 4,
+                  boxShadow: '0 1px 3px rgba(0,0,0,0.12)',
+                  padding: 16,
+                }}
+              >
+                <h6 style={{ margin: '0 0 4px' }}>{title}</h6>
+                <p
+                  style={{ margin: 0, fontSize: 14, color: 'rgba(0,0,0,0.6)' }}
+                >
+                  Manage your {title.toLowerCase()} here.
+                </p>
+              </div>
             ))}
-          </Stack>
-        </Box>
+          </div>
+        </div>
       </BiampWrapper>
-    </Stack>
+    </div>
   ),
 };
 
@@ -116,9 +133,9 @@ export const Mobile: Story = {
  */
 export const Empty: Story = {
   render: () => (
-    <Box height="100vh">
+    <div style={{ height: '100vh' }}>
       <BiampWrapper />
-    </Box>
+    </div>
   ),
 };
 
@@ -128,31 +145,34 @@ export const Empty: Story = {
  */
 export const MultipleSideBySide: Story = {
   render: () => (
-    <Stack height="100vh" gap={2}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        gap: 16,
+      }}
+    >
       <BiampWrapper>
-        <Box>
-          <Typography variant="h5" gutterBottom>
-            First Wrapper
-          </Typography>
-          <Typography variant="body2">
+        <div>
+          <h5 style={{ margin: '0 0 8px' }}>First Wrapper</h5>
+          <p style={{ margin: 0, fontSize: 14 }}>
             This wrapper stretches to fill available space. With flex: 1
             built-in, it shares space equally with other wrappers in the
             container.
-          </Typography>
-        </Box>
+          </p>
+        </div>
       </BiampWrapper>
       <BiampWrapper>
-        <Box>
-          <Typography variant="h5" gutterBottom>
-            Second Wrapper
-          </Typography>
-          <Typography variant="body2">
+        <div>
+          <h5 style={{ margin: '0 0 8px' }}>Second Wrapper</h5>
+          <p style={{ margin: 0, fontSize: 14 }}>
             Each wrapper automatically fills its share of the available height
             within the parent Stack, creating equal-sized sections.
-          </Typography>
-        </Box>
+          </p>
+        </div>
       </BiampWrapper>
-    </Stack>
+    </div>
   ),
 };
 
@@ -162,51 +182,50 @@ export const MultipleSideBySide: Story = {
  */
 export const FourSideBySide: Story = {
   render: () => (
-    <Stack height="100vh" gap={2}>
-      <Stack direction={'row'} gap={2} flex={1}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        gap: 16,
+      }}
+    >
+      <div style={{ display: 'flex', flexDirection: 'row', gap: 16, flex: 1 }}>
         <BiampWrapper>
-          <Box>
-            <Typography variant="h5" gutterBottom>
-              First Wrapper
-            </Typography>
-            <Typography variant="body2">
+          <div>
+            <h5 style={{ margin: '0 0 8px' }}>First Wrapper</h5>
+            <p style={{ margin: 0, fontSize: 14 }}>
               This wrapper stretches to fill available space. With flex: 1
               built-in, it shares space equally with other wrappers in the
               container.
-            </Typography>
-          </Box>
+            </p>
+          </div>
         </BiampWrapper>
         <BiampWrapper>
-          <Box>
-            <Typography variant="h5" gutterBottom>
-              Second Wrapper
-            </Typography>
-            <Typography variant="body2">
+          <div>
+            <h5 style={{ margin: '0 0 8px' }}>Second Wrapper</h5>
+            <p style={{ margin: 0, fontSize: 14 }}>
               Each wrapper automatically fills its share of the available height
               within the parent Stack, creating equal-sized sections.
-            </Typography>
-          </Box>
+            </p>
+          </div>
         </BiampWrapper>
-      </Stack>
+      </div>
 
-      <Stack direction={'row'} gap={2} flex={1}>
+      <div style={{ display: 'flex', flexDirection: 'row', gap: 16, flex: 1 }}>
         <BiampWrapper>
-          <Box>
-            <Typography variant="h5" gutterBottom>
-              Third Wrapper
-            </Typography>
-            <Typography variant="body2"></Typography>
-          </Box>
+          <div>
+            <h5 style={{ margin: '0 0 8px' }}>Third Wrapper</h5>
+            <p style={{ margin: 0, fontSize: 14 }}></p>
+          </div>
         </BiampWrapper>
         <BiampWrapper>
-          <Box>
-            <Typography variant="h5" gutterBottom>
-              Fourth Wrapper
-            </Typography>
-            <Typography variant="body2"></Typography>
-          </Box>
+          <div>
+            <h5 style={{ margin: '0 0 8px' }}>Fourth Wrapper</h5>
+            <p style={{ margin: 0, fontSize: 14 }}></p>
+          </div>
         </BiampWrapper>
-      </Stack>
-    </Stack>
+      </div>
+    </div>
   ),
 };

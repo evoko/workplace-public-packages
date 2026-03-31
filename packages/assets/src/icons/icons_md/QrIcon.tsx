@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function QrIcon(props: SvgIconProps) {
+export function QrIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 24 24" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -67,6 +73,6 @@ export function QrIcon(props: SvgIconProps) {
         d="M3.84 16C4.17137 16 4.44 16.2686 4.44 16.6V18.96C4.44 19.2914 4.70863 19.56 5.04 19.56H7.4C7.73137 19.56 8 19.8286 8 20.16V20.4C8 20.7314 7.73137 21 7.4 21H4.44C3.64471 21 3 20.3553 3 19.56V16.6C3 16.2686 3.26863 16 3.6 16H3.84Z"
         fill="currentColor"
       />
-    </SvgIcon>
+    </svg>
   );
 }

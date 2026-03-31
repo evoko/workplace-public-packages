@@ -1,39 +1,35 @@
-import {
-  alpha,
-  Box,
-  BoxProps,
-  InputAdornment,
-  ListItemButton,
-  ListItemButtonProps,
-  Popover,
-  PopoverProps,
-  Stack,
-  StackProps,
-  TextField,
-  TextFieldProps,
-  Typography,
-} from '@mui/material';
-import { JSX } from 'react';
+import React, { JSX, useRef, useEffect } from 'react';
 import { BiampRedLogo, SearchIcon } from '@bwp-web/assets';
+import { cn } from '@bwp-web/styles';
 
-type BiampHeaderProps = StackProps & {
+type BiampHeaderProps = React.HTMLAttributes<HTMLDivElement> & {
   children?: React.ReactNode;
 };
 
-export function BiampHeader({ children, sx, ...props }: BiampHeaderProps) {
+export function BiampHeader({
+  children,
+  className,
+  style,
+  ...props
+}: BiampHeaderProps) {
   return (
-    <Stack
-      direction="row"
-      alignItems="center"
-      sx={{ px: 2.5, py: 1.5, ...sx }}
+    <div
+      className={cn(className)}
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: '12px 20px',
+        ...style,
+      }}
       {...props}
     >
       {children}
-    </Stack>
+    </div>
   );
 }
 
-type BiampHeaderTitleProps = BoxProps & {
+type BiampHeaderTitleProps = React.HTMLAttributes<HTMLDivElement> & {
   icon?: JSX.Element;
   title?: string;
   subtitle?: string;
@@ -43,17 +39,25 @@ export function BiampHeaderTitle({
   icon,
   title,
   subtitle,
-  sx,
+  className,
+  style,
   ...props
 }: BiampHeaderTitleProps) {
   return (
-    <Box
-      sx={{ pr: 3, display: 'flex', alignItems: 'center', gap: '12px', ...sx }}
+    <div
+      className={cn(className)}
+      style={{
+        paddingRight: 24,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        ...style,
+      }}
       {...props}
     >
       {icon ? (
-        <Box
-          sx={{
+        <div
+          style={{
             width: 24,
             height: 24,
             display: 'flex',
@@ -62,109 +66,152 @@ export function BiampHeaderTitle({
           }}
         >
           {icon}
-        </Box>
+        </div>
       ) : (
-        <Box
-          component="img"
-          src={BiampRedLogo}
-          alt="Biamp"
-          sx={{ width: 24, height: 24 }}
-        />
+        <img src={BiampRedLogo} alt="Biamp" style={{ width: 24, height: 24 }} />
       )}
-      <Stack direction="row" gap={0.5}>
-        {title && <Typography variant="h4">{title}</Typography>}
-        {subtitle && (
-          <Typography variant="h4" color="text.secondary">
-            {subtitle}
-          </Typography>
+      <div style={{ display: 'flex', flexDirection: 'row', gap: 4 }}>
+        {title && (
+          <h4
+            style={{
+              margin: 0,
+              fontSize: 'var(--solar-font-size-h4, 1.25rem)',
+              fontWeight: 'var(--solar-font-weight-h4, 600)',
+              lineHeight: 'var(--solar-line-height-h4, 1.4)',
+            }}
+          >
+            {title}
+          </h4>
         )}
-      </Stack>
-    </Box>
+        {subtitle && (
+          <h4
+            style={{
+              margin: 0,
+              fontSize: 'var(--solar-font-size-h4, 1.25rem)',
+              fontWeight: 'var(--solar-font-weight-h4, 600)',
+              lineHeight: 'var(--solar-line-height-h4, 1.4)',
+              color: 'var(--solar-text-secondary)',
+            }}
+          >
+            {subtitle}
+          </h4>
+        )}
+      </div>
+    </div>
   );
 }
 
-type BiampHeaderSearchProps = TextFieldProps;
+type BiampHeaderSearchProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  className?: string;
+};
 
-export function BiampHeaderSearch({ sx, ...props }: BiampHeaderSearchProps) {
+export function BiampHeaderSearch({
+  className,
+  style,
+  placeholder = 'Search...',
+  ...props
+}: BiampHeaderSearchProps) {
   return (
-    <TextField
-      placeholder="Search..."
-      fullWidth
-      sx={{
-        px: 1.5,
-        '& .MuiOutlinedInput-root': {
-          height: '40px !important',
-          minHeight: '40px',
-        },
-        '& .MuiOutlinedInput-input': {
-          height: '40px !important',
-        },
-        '& .MuiOutlinedInput-notchedOutline': {
-          height: '40px !important',
-          border: 'none',
-          boxShadow: 'none',
-        },
-        ...sx,
+    <div
+      className={cn(className)}
+      style={{
+        padding: '0 12px',
+        display: 'flex',
+        alignItems: 'center',
+        width: '100%',
       }}
-      slotProps={{
-        input: {
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          ),
-        },
-      }}
-      {...props}
-    />
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+          height: 40,
+          gap: 8,
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            color: 'var(--solar-text-secondary)',
+          }}
+        >
+          <SearchIcon />
+        </div>
+        <input
+          placeholder={placeholder}
+          style={{
+            flex: 1,
+            height: 40,
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            font: 'inherit',
+            color: 'var(--solar-text-default)',
+            ...style,
+          }}
+          {...props}
+        />
+      </div>
+    </div>
   );
 }
 
-type BiampHeaderActionsProps = BoxProps & {
+type BiampHeaderActionsProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
 };
 
 export function BiampHeaderActions({
   children,
-  sx,
+  className,
+  style,
   ...props
 }: BiampHeaderActionsProps) {
   return (
-    <Box
-      sx={{
-        pl: 3,
-        gap: 2,
+    <div
+      className={cn(className)}
+      style={{
+        paddingLeft: 24,
+        gap: 16,
         display: 'flex',
         alignItems: 'center',
-        ...sx,
+        ...style,
       }}
       {...props}
     >
       {children}
-    </Box>
+    </div>
   );
 }
 
-type BiampHeaderButtonListProps = BoxProps & {
+type BiampHeaderButtonListProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
 };
 
 export function BiampHeaderButtonList({
   children,
-  sx,
+  className,
+  style,
   ...props
 }: BiampHeaderButtonListProps) {
   return (
-    <Box
-      sx={{ display: 'flex', alignItems: 'center', gap: 0.5, ...sx }}
+    <div
+      className={cn(className)}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 4,
+        ...style,
+      }}
       {...props}
     >
       {children}
-    </Box>
+    </div>
   );
 }
 
-type BiampHeaderButtonProps = ListItemButtonProps & {
+type BiampHeaderButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   icon: JSX.Element;
   selectedIcon?: JSX.Element;
   selected?: boolean;
@@ -174,96 +221,132 @@ export function BiampHeaderButton({
   icon,
   selectedIcon,
   selected,
-  sx,
+  className,
+  style,
   ...props
 }: BiampHeaderButtonProps) {
   const displayedSelectedIcon = selectedIcon ?? icon;
   return (
-    <ListItemButton
-      selected={selected}
-      disableGutters
-      disableRipple
-      sx={{
-        minWidth: '40px',
-        maxWidth: '40px',
-        minHeight: '40px',
-        maxHeight: '40px',
-        borderRadius: '4px',
+    <button
+      className={cn(className)}
+      style={{
+        minWidth: 40,
+        maxWidth: 40,
+        minHeight: 40,
+        maxHeight: 40,
+        borderRadius: 4,
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        ...sx,
+        border: 'none',
+        padding: 0,
+        cursor: 'pointer',
+        background: selected
+          ? 'var(--solar-surface-selected, rgba(0,0,0,0.08))'
+          : 'transparent',
+        color: 'inherit',
+        ...style,
       }}
       {...props}
     >
       {selected ? displayedSelectedIcon : icon}
-    </ListItemButton>
+    </button>
   );
 }
 
-type BiampAppPopoverProps = PopoverProps & {
+type BiampAppPopoverProps = React.HTMLAttributes<HTMLDivElement> & {
+  open: boolean;
+  anchorEl?: HTMLElement | null;
+  onClose?: () => void;
   children: React.ReactNode;
 };
 
 export function BiampAppPopover({
   children,
   open,
-  sx,
+  anchorEl,
+  onClose,
+  className,
+  style,
   ...props
 }: BiampAppPopoverProps) {
+  const popoverRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open || !onClose) return;
+
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        popoverRef.current &&
+        !popoverRef.current.contains(event.target as Node) &&
+        anchorEl &&
+        !anchorEl.contains(event.target as Node)
+      ) {
+        onClose?.();
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [open, onClose, anchorEl]);
+
+  if (!open) return null;
+
+  const anchorRect = anchorEl?.getBoundingClientRect();
+
   return (
-    <Popover
-      open={open}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-      sx={{ ...sx }}
-      transformOrigin={{ vertical: -4, horizontal: 150 }}
-      slotProps={{
-        paper: {
-          sx: {
-            borderRadius: '16px',
-            backgroundImage: 'none',
-            border: ({ palette }) => `0.6px solid ${palette.divider}`,
-            boxShadow: ({ palette }) =>
-              `0px 4px 24px 0px ${alpha(palette.common.black, 0.15)};`,
-          },
-        },
+    <div
+      ref={popoverRef}
+      className={cn(className)}
+      style={{
+        position: 'fixed',
+        top: anchorRect ? anchorRect.bottom + 4 : undefined,
+        left: anchorRect ? anchorRect.left - 150 + anchorRect.width : undefined,
+        zIndex: 1300,
+        borderRadius: 16,
+        border: '0.6px solid var(--solar-border-default)',
+        boxShadow: '0px 4px 24px 0px rgba(0, 0, 0, 0.15)',
+        background: 'var(--solar-surface-default)',
+        ...style,
       }}
       {...props}
     >
       {children}
-    </Popover>
+    </div>
   );
 }
 
-type BiampAppDialogProps = BoxProps & {
+type BiampAppDialogProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
 };
 
 export function BiampAppDialog({
   children,
-  sx,
+  className,
+  style,
   ...props
 }: BiampAppDialogProps) {
   return (
-    <Box
-      sx={{
-        p: 2,
+    <div
+      className={cn(className)}
+      style={{
+        padding: 16,
         display: 'inline-flex',
         flexWrap: 'wrap',
-        gap: 1.5,
-        maxWidth: '284px',
-        borderRadius: '16px',
-        backgroundColor: ({ palette }) =>
-          palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
-        ...sx,
+        gap: 12,
+        maxWidth: 284,
+        borderRadius: 16,
+        backgroundColor: 'var(--solar-surface-default)',
+        ...style,
       }}
       {...props}
     >
       {children}
-    </Box>
+    </div>
   );
 }
 
-type BiampAppDialogItemProps = BoxProps & {
+type BiampAppDialogItemProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
   name: string;
 };
@@ -271,47 +354,45 @@ type BiampAppDialogItemProps = BoxProps & {
 export function BiampAppDialogItem({
   children,
   name,
-  sx,
+  className,
+  style,
   ...props
 }: BiampAppDialogItemProps) {
   return (
-    <Box
-      sx={{
-        width: '76px',
-        height: '89px',
+    <div
+      className={cn('biamp-app-dialog-item', className)}
+      style={{
+        width: 76,
+        height: 89,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         cursor: 'pointer',
         justifyContent: 'center',
-        gap: '4px',
-        borderRadius: '12px',
+        gap: 4,
+        borderRadius: 12,
         border: '0.6px solid transparent',
         transition: 'background-color 0.2s ease, border-color 0.2s ease',
-        ':hover': {
-          backgroundColor: ({ palette }) => alpha(palette.info.main, 0.1),
-          borderColor: ({ palette }) => palette.info.main,
-        },
-        ...sx,
+        ...style,
       }}
       {...props}
     >
-      <Box
-        sx={{
-          mt: '8px',
-          width: '54px',
-          height: '54px',
+      <div
+        style={{
+          marginTop: 8,
+          width: 54,
+          height: 54,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
         }}
       >
         {children}
-      </Box>
-      <Typography
-        variant="caption"
-        fontWeight={600}
-        sx={{
+      </div>
+      <span
+        style={{
+          fontSize: 'var(--solar-font-size-caption, 0.75rem)',
+          fontWeight: 600,
           textAlign: 'center',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
@@ -320,12 +401,12 @@ export function BiampAppDialogItem({
         }}
       >
         {name}
-      </Typography>
-    </Box>
+      </span>
+    </div>
   );
 }
 
-type BiampHeaderProfileProps = ListItemButtonProps & {
+type BiampHeaderProfileProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   image: string;
   selected?: boolean;
 };
@@ -333,38 +414,44 @@ type BiampHeaderProfileProps = ListItemButtonProps & {
 export function BiampHeaderProfile({
   image,
   selected,
-  sx,
+  className,
+  style,
   ...props
 }: BiampHeaderProfileProps) {
   return (
-    <ListItemButton
-      selected={selected}
-      disableGutters
-      disableRipple
-      sx={{
-        minWidth: '36px',
-        maxWidth: '36px',
-        minHeight: '36px',
-        maxHeight: '36px',
-        borderRadius: '6px',
+    <button
+      className={cn(className)}
+      style={{
+        minWidth: 36,
+        maxWidth: 36,
+        minHeight: 36,
+        maxHeight: 36,
+        borderRadius: 6,
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        ...sx,
+        border: 'none',
+        padding: 0,
+        cursor: 'pointer',
+        background: selected
+          ? 'var(--solar-surface-selected, rgba(0,0,0,0.08))'
+          : 'transparent',
+        color: 'inherit',
+        ...style,
       }}
       {...props}
     >
-      <Box
-        component="img"
+      <img
         src={image}
-        alt={'Profile Image'}
-        sx={{
+        alt="Profile Image"
+        style={{
           width: 32,
           height: 32,
-          borderRadius: '4px',
-          border: ({ palette }) =>
-            `0.6px solid var(--Divider-divider_primary, ${alpha(palette.background.paper, 0.15)})`,
+          borderRadius: 4,
+          border:
+            '0.6px solid var(--solar-border-default, rgba(0, 0, 0, 0.15))',
         }}
       />
-    </ListItemButton>
+    </button>
   );
 }

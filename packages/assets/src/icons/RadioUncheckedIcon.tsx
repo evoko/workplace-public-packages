@@ -1,8 +1,8 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function RadioUncheckedIcon(props: SvgIconProps) {
+export function RadioUncheckedIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon {...props}>
+    <svg width="1em" height="1em" fill="currentColor" {...props}>
       <svg
         width="18"
         height="18"
@@ -19,6 +19,6 @@ export function RadioUncheckedIcon(props: SvgIconProps) {
           strokeWidth="1"
         />
       </svg>
-    </SvgIcon>
+    </svg>
   );
 }

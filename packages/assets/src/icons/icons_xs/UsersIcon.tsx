@@ -1,8 +1,14 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function UsersIcon(props: SvgIconProps) {
+export function UsersIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 16 16" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -47,6 +53,6 @@ export function UsersIcon(props: SvgIconProps) {
         strokeWidth="0.5"
         strokeLinejoin="round"
       />
-    </SvgIcon>
+    </svg>
   );
 }

@@ -1,30 +1,20 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Box, Stack, Typography, Divider } from '@mui/material';
 import {
   BiampSidebar,
   BiampSidebarIcon,
   BiampSidebarIconList,
   BiampSidebarComponent,
 } from '@bwp-web/components';
-import HomeIcon from '@mui/icons-material/Home';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import SettingsIcon from '@mui/icons-material/Settings';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import PeopleIcon from '@mui/icons-material/People';
-import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import ApartmentIcon from '@mui/icons-material/Apartment';
 
 const meta: Meta<typeof BiampSidebar> = {
   title: 'Components/BiampSidebar',
   component: BiampSidebar,
   decorators: [
     (Story) => (
-      <Box sx={{ height: '100vh' }}>
+      <div style={{ height: '100vh' }}>
         <Story />
-      </Box>
+      </div>
     ),
   ],
 };
@@ -32,14 +22,30 @@ const meta: Meta<typeof BiampSidebar> = {
 export default meta;
 type Story = StoryObj<typeof BiampSidebar>;
 
+const iconLabel = (text: string, filled = false) => (
+  <span
+    style={{
+      fontSize: 12,
+      fontWeight: filled ? 700 : 400,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 24,
+      height: 24,
+    }}
+  >
+    {text}
+  </span>
+);
+
 function DefaultDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const items = [
-    { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
-    { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
-    { icon: <PeopleOutlinedIcon />, selectedIcon: <PeopleIcon /> },
-    { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    { icon: iconLabel('Home'), selectedIcon: iconLabel('Home', true) },
+    { icon: iconLabel('Dash'), selectedIcon: iconLabel('Dash', true) },
+    { icon: iconLabel('Ppl'), selectedIcon: iconLabel('Ppl', true) },
+    { icon: iconLabel('Set'), selectedIcon: iconLabel('Set', true) },
   ];
 
   return (
@@ -69,22 +75,20 @@ function CustomLogoDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const items = [
-    { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
-    { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
-    { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    { icon: iconLabel('Home'), selectedIcon: iconLabel('Home', true) },
+    { icon: iconLabel('Dash'), selectedIcon: iconLabel('Dash', true) },
+    { icon: iconLabel('Set'), selectedIcon: iconLabel('Set', true) },
   ];
 
   return (
-    <Stack direction="row" spacing={4}>
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          Default logo
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+    <div style={{ display: 'flex', flexDirection: 'row', gap: 32 }}>
+      <div>
+        <h3 style={{ marginBottom: 16 }}>Default logo</h3>
+        <p style={{ marginBottom: 16, maxWidth: 300, fontSize: 14 }}>
           The Biamp logo is rendered at the bottom when no{' '}
           <code>bottomLogoIcon</code> prop is provided.
-        </Typography>
-        <Box sx={{ height: 400 }}>
+        </p>
+        <div style={{ height: 400 }}>
           <BiampSidebar>
             {items.map((item, i) => (
               <BiampSidebarIcon
@@ -96,22 +100,30 @@ function CustomLogoDemo() {
               />
             ))}
           </BiampSidebar>
-        </Box>
-      </Box>
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          Custom logo
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+        </div>
+      </div>
+      <div>
+        <h3 style={{ marginBottom: 16 }}>Custom logo</h3>
+        <p style={{ marginBottom: 16, maxWidth: 300, fontSize: 14 }}>
           Any JSX element can be passed as the <code>bottomLogoIcon</code> prop
           to replace the default Biamp logo.
-        </Typography>
-        <Box sx={{ height: 400 }}>
+        </p>
+        <div style={{ height: 400 }}>
           <BiampSidebar
             bottomLogoIcon={
-              <ApartmentIcon
-                sx={{ width: '48px', height: '24px', alignSelf: 'center' }}
-              />
+              <span
+                style={{
+                  width: 48,
+                  height: 24,
+                  alignSelf: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: 12,
+                }}
+              >
+                Bldg
+              </span>
             }
           >
             {items.map((item, i) => (
@@ -124,9 +136,9 @@ function CustomLogoDemo() {
               />
             ))}
           </BiampSidebar>
-        </Box>
-      </Box>
-    </Stack>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -143,55 +155,51 @@ function WithSelectedIconsDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   return (
-    <Stack direction="row" spacing={4}>
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          With selectedIcon
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+    <div style={{ display: 'flex', flexDirection: 'row', gap: 32 }}>
+      <div>
+        <h3 style={{ marginBottom: 16 }}>With selectedIcon</h3>
+        <p style={{ marginBottom: 16, maxWidth: 300, fontSize: 14 }}>
           The icon changes from outlined to filled when selected.
-        </Typography>
-        <Box sx={{ height: 400 }}>
+        </p>
+        <div style={{ height: 400 }}>
           <BiampSidebar>
             <BiampSidebarIcon
               selected={selectedIndex === 0}
-              icon={<HomeOutlinedIcon />}
-              selectedIcon={<HomeIcon />}
+              icon={iconLabel('Home')}
+              selectedIcon={iconLabel('Home', true)}
               onClick={() => setSelectedIndex(0)}
             />
             <BiampSidebarIcon
               selected={selectedIndex === 1}
-              icon={<SettingsOutlinedIcon />}
-              selectedIcon={<SettingsIcon />}
+              icon={iconLabel('Set')}
+              selectedIcon={iconLabel('Set', true)}
               onClick={() => setSelectedIndex(1)}
             />
           </BiampSidebar>
-        </Box>
-      </Box>
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          Without selectedIcon
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+        </div>
+      </div>
+      <div>
+        <h3 style={{ marginBottom: 16 }}>Without selectedIcon</h3>
+        <p style={{ marginBottom: 16, maxWidth: 300, fontSize: 14 }}>
           When no selectedIcon is provided, the same icon is used for both
           states.
-        </Typography>
-        <Box sx={{ height: 400 }}>
+        </p>
+        <div style={{ height: 400 }}>
           <BiampSidebar>
             <BiampSidebarIcon
               selected={selectedIndex === 0}
-              icon={<HomeIcon />}
+              icon={iconLabel('Home', true)}
               onClick={() => setSelectedIndex(0)}
             />
             <BiampSidebarIcon
               selected={selectedIndex === 1}
-              icon={<SettingsIcon />}
+              icon={iconLabel('Set', true)}
               onClick={() => setSelectedIndex(1)}
             />
           </BiampSidebar>
-        </Box>
-      </Box>
-    </Stack>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -213,40 +221,79 @@ export const WithSelectedIcons: Story = {
 export const IconStates: Story = {
   name: 'Icon States',
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">BiampSidebarIcon States</Typography>
-      <Stack direction="row" spacing={3} alignItems="flex-start">
-        <Stack alignItems="center" spacing={1}>
-          <BiampSidebarIcon icon={<HomeOutlinedIcon />} />
-          <Typography variant="caption">Default</Typography>
-        </Stack>
-        <Stack alignItems="center" spacing={1}>
-          <BiampSidebarIcon selected icon={<HomeOutlinedIcon />} />
-          <Typography variant="caption">Selected</Typography>
-        </Stack>
-        <Stack alignItems="center" spacing={1}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <h3>BiampSidebarIcon States</h3>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: 24,
+          alignItems: 'flex-start',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 8,
+          }}
+        >
+          <BiampSidebarIcon icon={iconLabel('Home')} />
+          <span style={{ fontSize: 12 }}>Default</span>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 8,
+          }}
+        >
+          <BiampSidebarIcon selected icon={iconLabel('Home')} />
+          <span style={{ fontSize: 12 }}>Selected</span>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 8,
+          }}
+        >
           <BiampSidebarIcon
             selected
-            icon={<HomeOutlinedIcon />}
-            selectedIcon={<HomeIcon />}
+            icon={iconLabel('Home')}
+            selectedIcon={iconLabel('Home', true)}
           />
-          <Typography variant="caption">
-            Selected (with selectedIcon)
-          </Typography>
-        </Stack>
-        <Stack alignItems="center" spacing={1}>
-          <BiampSidebarIcon icon={<HomeOutlinedIcon />} disabled />
-          <Typography variant="caption">Disabled</Typography>
-        </Stack>
-      </Stack>
-      <Divider />
-      <Typography variant="h3">Extends ListItemButton</Typography>
-      <Typography variant="body2" sx={{ maxWidth: 500 }}>
+          <span style={{ fontSize: 12 }}>Selected (with selectedIcon)</span>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 8,
+          }}
+        >
+          <BiampSidebarIcon icon={iconLabel('Home')} disabled />
+          <span style={{ fontSize: 12 }}>Disabled</span>
+        </div>
+      </div>
+      <hr
+        style={{
+          width: '100%',
+          border: 'none',
+          borderTop: '1px solid #e0e0e0',
+        }}
+      />
+      <h3>Extends ListItemButton</h3>
+      <p style={{ maxWidth: 500, fontSize: 14 }}>
         BiampSidebarIcon extends MUI&apos;s ListItemButtonProps, so you can pass
         any prop that ListItemButton accepts, such as <code>disabled</code>,{' '}
         <code>onClick</code>, <code>sx</code>, and more.
-      </Typography>
-    </Stack>
+      </p>
+    </div>
   ),
 };
 
@@ -254,23 +301,21 @@ function WithIconListDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const items = [
-    { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
-    { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
-    { icon: <PeopleOutlinedIcon />, selectedIcon: <PeopleIcon /> },
-    { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    { icon: iconLabel('Home'), selectedIcon: iconLabel('Home', true) },
+    { icon: iconLabel('Dash'), selectedIcon: iconLabel('Dash', true) },
+    { icon: iconLabel('Ppl'), selectedIcon: iconLabel('Ppl', true) },
+    { icon: iconLabel('Set'), selectedIcon: iconLabel('Set', true) },
   ];
 
   return (
-    <Stack direction="row" spacing={4}>
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          With BiampSidebarIconList
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+    <div style={{ display: 'flex', flexDirection: 'row', gap: 32 }}>
+      <div>
+        <h3 style={{ marginBottom: 16 }}>With BiampSidebarIconList</h3>
+        <p style={{ marginBottom: 16, maxWidth: 300, fontSize: 14 }}>
           Icons are wrapped in <code>BiampSidebarIconList</code> which adds
           standardised 4px gaps between each item.
-        </Typography>
-        <Box sx={{ height: 400 }}>
+        </p>
+        <div style={{ height: 400 }}>
           <BiampSidebar>
             <BiampSidebarIconList>
               {items.map((item, i) => (
@@ -284,16 +329,14 @@ function WithIconListDemo() {
               ))}
             </BiampSidebarIconList>
           </BiampSidebar>
-        </Box>
-      </Box>
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          Without BiampSidebarIconList
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 300 }}>
+        </div>
+      </div>
+      <div>
+        <h3 style={{ marginBottom: 16 }}>Without BiampSidebarIconList</h3>
+        <p style={{ marginBottom: 16, maxWidth: 300, fontSize: 14 }}>
           Without the list wrapper, icons stack with no gap between them.
-        </Typography>
-        <Box sx={{ height: 400 }}>
+        </p>
+        <div style={{ height: 400 }}>
           <BiampSidebar>
             {items.map((item, i) => (
               <BiampSidebarIcon
@@ -305,9 +348,9 @@ function WithIconListDemo() {
               />
             ))}
           </BiampSidebar>
-        </Box>
-      </Box>
-    </Stack>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -325,41 +368,42 @@ function WithSidebarComponentDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const items = [
-    { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
-    { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
-    { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    { icon: iconLabel('Home'), selectedIcon: iconLabel('Home', true) },
+    { icon: iconLabel('Dash'), selectedIcon: iconLabel('Dash', true) },
+    { icon: iconLabel('Set'), selectedIcon: iconLabel('Set', true) },
   ];
 
   return (
-    <Stack spacing={3}>
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          BiampSidebarComponent
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div>
+        <h3 style={{ marginBottom: 16 }}>BiampSidebarComponent</h3>
+        <p style={{ marginBottom: 16, maxWidth: 500, fontSize: 14 }}>
           Use <code>BiampSidebarComponent</code> to embed arbitrary content in
-          the sidebar. It provides the same 48×48px rounded-box dimensions as{' '}
+          the sidebar. It provides the same 48x48px rounded-box dimensions as{' '}
           <code>BiampSidebarIcon</code>, but renders a plain <code>Box</code>{' '}
           instead of a button.
-        </Typography>
-      </Box>
-      <Box sx={{ height: 500 }}>
+        </p>
+      </div>
+      <div style={{ height: 500 }}>
         <BiampSidebar>
           <BiampSidebarIconList>
             <BiampSidebarComponent
-              sx={{
-                bgcolor: 'primary.main',
+              style={{
+                backgroundColor: '#1976d2',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
             >
-              <Typography
-                variant="caption"
-                sx={{ color: 'primary.contrastText', fontWeight: 'bold' }}
+              <span
+                style={{
+                  fontSize: 12,
+                  color: 'white',
+                  fontWeight: 'bold',
+                }}
               >
                 AV
-              </Typography>
+              </span>
             </BiampSidebarComponent>
             {items.map((item, i) => (
               <BiampSidebarIcon
@@ -371,26 +415,24 @@ function WithSidebarComponentDemo() {
               />
             ))}
             <BiampSidebarComponent
-              sx={{
-                bgcolor: 'grey.300',
+              style={{
+                backgroundColor: '#e0e0e0',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
             >
-              <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
-                42
-              </Typography>
+              <span style={{ fontSize: 12, fontWeight: 'bold' }}>42</span>
             </BiampSidebarComponent>
           </BiampSidebarIconList>
         </BiampSidebar>
-      </Box>
-    </Stack>
+      </div>
+    </div>
   );
 }
 
 /**
- * `BiampSidebarComponent` renders a 48×48px rounded box that matches the
+ * `BiampSidebarComponent` renders a 48x48px rounded box that matches the
  * dimensions and shape of `BiampSidebarIcon`. Use it to place arbitrary
  * content (avatars, status indicators, custom widgets, etc.) in the sidebar
  * alongside icon buttons while maintaining a consistent visual rhythm.

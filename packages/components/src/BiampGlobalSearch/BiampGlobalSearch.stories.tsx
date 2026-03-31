@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Box, Typography } from '@mui/material';
 import {
   BiampHeader,
   BiampHeaderTitle,
@@ -19,10 +18,22 @@ import {
   PersonIcon,
   PinLocationIcon,
 } from '@bwp-web/assets';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import DevicesOutlinedIcon from '@mui/icons-material/DevicesOutlined';
-import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
+
+const iconLabel = (text: string, filled = false) => (
+  <span
+    style={{
+      fontSize: 11,
+      fontWeight: filled ? 700 : 400,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: 24,
+      height: 24,
+    }}
+  >
+    {text}
+  </span>
+);
 
 // ---------------------------------------------------------------------------
 // Sample data — 5 entity types matching design requirements
@@ -51,7 +62,7 @@ const sampleOptions: BiampGlobalSearchOption[] = [
     endIcon,
   },
   {
-    icon: <DevicesOutlinedIcon fontSize="small" />,
+    icon: iconLabel('Dev'),
     title: 'Parlor A-1',
     subtitle: 'Parlor A · Floor 2 · Main Campus · Portland',
     endIcon,
@@ -63,7 +74,7 @@ const sampleOptions: BiampGlobalSearchOption[] = [
     endIcon,
   },
   {
-    icon: <AutorenewOutlinedIcon fontSize="small" />,
+    icon: iconLabel('Sync'),
     title: 'Enterprise Plan',
     subtitle: 'Renews Nov 29, 2026',
     associatedItems: [
@@ -84,9 +95,9 @@ const meta: Meta = {
   title: 'Components/BiampGlobalSearch',
   decorators: [
     (Story) => (
-      <Box sx={{ width: '100%' }}>
+      <div style={{ width: '100%' }}>
         <Story />
-      </Box>
+      </div>
     ),
   ],
 };
@@ -124,9 +135,9 @@ function DefaultDemo() {
 export const Default: Story = {
   decorators: [
     (Story) => (
-      <Box sx={{ maxWidth: 600 }}>
+      <div style={{ maxWidth: 600 }}>
         <Story />
-      </Box>
+      </div>
     ),
   ],
   render: () => <DefaultDemo />,
@@ -145,7 +156,7 @@ function InHeaderDemo() {
   return (
     <BiampHeader>
       <BiampHeaderTitle title="Workplace" subtitle="Booking" />
-      <Box sx={{ px: 1.5, flexGrow: 1 }}>
+      <div style={{ padding: '0 12px', flexGrow: 1 }}>
         <BiampGlobalSearch
           options={inputValue ? filtered : []}
           inputValue={inputValue}
@@ -155,11 +166,11 @@ function InHeaderDemo() {
           onOpen={() => setOpen(true)}
           onClose={() => setOpen(false)}
         />
-      </Box>
+      </div>
       <BiampHeaderActions>
         <BiampHeaderButtonList>
-          <BiampHeaderButton icon={<NotificationsNoneIcon />} />
-          <BiampHeaderButton icon={<SettingsOutlinedIcon />} />
+          <BiampHeaderButton icon={iconLabel('Bell')} />
+          <BiampHeaderButton icon={iconLabel('Set')} />
         </BiampHeaderButtonList>
         <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
       </BiampHeaderActions>
@@ -180,7 +191,7 @@ function WithAssociatedItemsDemo() {
   const [open, setOpen] = useState(true);
 
   return (
-    <Box sx={{ maxWidth: 1200 }}>
+    <div style={{ maxWidth: 1200 }}>
       <BiampGlobalSearch
         options={sampleOptions}
         inputValue={inputValue}
@@ -189,7 +200,7 @@ function WithAssociatedItemsDemo() {
         onOpen={() => setOpen(true)}
         onClose={() => setOpen(false)}
       />
-    </Box>
+    </div>
   );
 }
 
@@ -225,9 +236,9 @@ function EmptyStateDemo() {
 export const EmptyState: Story = {
   decorators: [
     (Story) => (
-      <Box sx={{ maxWidth: 600 }}>
+      <div style={{ maxWidth: 600 }}>
         <Story />
-      </Box>
+      </div>
     ),
   ],
   render: () => <EmptyStateDemo />,
@@ -272,7 +283,7 @@ function WithNavigationDemo() {
     <>
       <BiampHeader>
         <BiampHeaderTitle title="Workplace" subtitle="Booking" />
-        <Box sx={{ px: 1.5, flexGrow: 1 }}>
+        <div style={{ padding: '0 12px', flexGrow: 1 }}>
           <BiampGlobalSearch
             options={inputValue ? filtered : []}
             inputValue={inputValue}
@@ -281,19 +292,26 @@ function WithNavigationDemo() {
             onOpen={() => setOpen(true)}
             onClose={() => setOpen(false)}
           />
-        </Box>
+        </div>
         <BiampHeaderActions>
           <BiampHeaderButtonList>
-            <BiampHeaderButton icon={<NotificationsNoneIcon />} />
-            <BiampHeaderButton icon={<SettingsOutlinedIcon />} />
+            <BiampHeaderButton icon={iconLabel('Bell')} />
+            <BiampHeaderButton icon={iconLabel('Set')} />
           </BiampHeaderButtonList>
           <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
         </BiampHeaderActions>
       </BiampHeader>
       {lastNav && (
-        <Typography variant="body2" sx={{ mt: 2, px: 2 }}>
+        <p
+          style={{
+            marginTop: 16,
+            paddingLeft: 16,
+            paddingRight: 16,
+            fontSize: 14,
+          }}
+        >
           Navigated to: <strong>{lastNav}</strong>
-        </Typography>
+        </p>
       )}
     </>
   );
@@ -340,7 +358,7 @@ function LoadingStateDemo() {
   return (
     <BiampHeader>
       <BiampHeaderTitle title="Workplace" subtitle="Booking" />
-      <Box sx={{ px: 1.5, flexGrow: 1 }}>
+      <div style={{ padding: '0 12px', flexGrow: 1 }}>
         <BiampGlobalSearch
           options={results}
           inputValue={inputValue}
@@ -350,11 +368,11 @@ function LoadingStateDemo() {
           onOpen={() => setOpen(true)}
           onClose={() => setOpen(false)}
         />
-      </Box>
+      </div>
       <BiampHeaderActions>
         <BiampHeaderButtonList>
-          <BiampHeaderButton icon={<NotificationsNoneIcon />} />
-          <BiampHeaderButton icon={<SettingsOutlinedIcon />} />
+          <BiampHeaderButton icon={iconLabel('Bell')} />
+          <BiampHeaderButton icon={iconLabel('Set')} />
         </BiampHeaderButtonList>
         <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
       </BiampHeaderActions>

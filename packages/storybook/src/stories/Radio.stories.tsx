@@ -1,93 +1,160 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-  FormLabel,
-  Stack,
-  Typography,
-} from '@mui/material';
 
-const meta: Meta<typeof Radio> = {
+const meta: Meta = {
   title: 'Styles/Radio',
-  component: Radio,
-  argTypes: {
-    disabled: { control: 'boolean' },
-  },
 };
 
 export default meta;
-type Story = StoryObj<typeof Radio>;
+type Story = StoryObj;
 
-export const Playground: Story = {
-  args: {
-    checked: true,
-    disabled: false,
-  },
+const labelRow: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.875rem',
+  color: 'var(--solar-text-default)',
+  cursor: 'pointer',
+};
+
+const radioStyle: React.CSSProperties = {
+  width: 18,
+  height: 18,
+  accentColor: 'var(--solar-brand-600)',
+  cursor: 'pointer',
+};
+
+const heading: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  color: 'var(--solar-text-default)',
+  fontSize: '1.25rem',
+  fontWeight: 600,
+  margin: 0,
+};
+
+const fieldsetStyle: React.CSSProperties = {
+  border: 'none',
+  padding: 0,
+  margin: 0,
+};
+
+const legendStyle: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.875rem',
+  fontWeight: 500,
+  color: 'var(--solar-text-brand)',
+  marginBottom: 8,
 };
 
 export const RadioGroupExample: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Radio Group</Typography>
-      <FormControl>
-        <FormLabel>Select an option</FormLabel>
-        <RadioGroup defaultValue="option1">
-          <FormControlLabel
-            value="option1"
-            control={<Radio />}
-            label="Option 1"
-          />
-          <FormControlLabel
-            value="option2"
-            control={<Radio />}
-            label="Option 2"
-          />
-          <FormControlLabel
-            value="option3"
-            control={<Radio />}
-            label="Option 3"
-          />
-          <FormControlLabel
-            value="disabled"
-            control={<Radio disabled />}
-            label="Disabled option"
-          />
-        </RadioGroup>
-      </FormControl>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <h3 style={heading}>Radio Group</h3>
+      <fieldset style={fieldsetStyle}>
+        <legend style={legendStyle}>Select an option</legend>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <label style={labelRow}>
+            <input
+              type="radio"
+              name="option"
+              value="option1"
+              defaultChecked
+              style={radioStyle}
+            />
+            Option 1
+          </label>
+          <label style={labelRow}>
+            <input
+              type="radio"
+              name="option"
+              value="option2"
+              style={radioStyle}
+            />
+            Option 2
+          </label>
+          <label style={labelRow}>
+            <input
+              type="radio"
+              name="option"
+              value="option3"
+              style={radioStyle}
+            />
+            Option 3
+          </label>
+          <label style={{ ...labelRow, color: 'var(--solar-text-disabled)' }}>
+            <input
+              type="radio"
+              name="option"
+              value="disabled"
+              disabled
+              style={radioStyle}
+            />
+            Disabled option
+          </label>
+        </div>
+      </fieldset>
 
-      <Typography variant="h3" sx={{ pt: 2 }}>
-        Horizontal Layout
-      </Typography>
-      <FormControl>
-        <FormLabel>Pick a size</FormLabel>
-        <RadioGroup defaultValue="medium" row>
-          <FormControlLabel value="small" control={<Radio />} label="Small" />
-          <FormControlLabel value="medium" control={<Radio />} label="Medium" />
-          <FormControlLabel value="large" control={<Radio />} label="Large" />
-        </RadioGroup>
-      </FormControl>
-    </Stack>
+      <h3 style={{ ...heading, paddingTop: 16 }}>Horizontal Layout</h3>
+      <fieldset style={fieldsetStyle}>
+        <legend style={legendStyle}>Pick a size</legend>
+        <div style={{ display: 'flex', gap: 16 }}>
+          <label style={labelRow}>
+            <input type="radio" name="size" value="small" style={radioStyle} />
+            Small
+          </label>
+          <label style={labelRow}>
+            <input
+              type="radio"
+              name="size"
+              value="medium"
+              defaultChecked
+              style={radioStyle}
+            />
+            Medium
+          </label>
+          <label style={labelRow}>
+            <input type="radio" name="size" value="large" style={radioStyle} />
+            Large
+          </label>
+        </div>
+      </fieldset>
+    </div>
   ),
 };
 
 export const AllStates: Story = {
   render: () => (
-    <Stack spacing={2}>
-      <Typography variant="h3">Radio States</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <FormControlLabel
-          control={<Radio checked={false} />}
-          label="Unchecked"
-        />
-        <FormControlLabel control={<Radio checked />} label="Checked" />
-        <FormControlLabel control={<Radio disabled />} label="Disabled" />
-        <FormControlLabel
-          control={<Radio disabled checked />}
-          label="Disabled checked"
-        />
-      </Stack>
-    </Stack>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <h3 style={heading}>Radio States</h3>
+      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+        <label style={labelRow}>
+          <input type="radio" name="states" style={radioStyle} />
+          Unchecked
+        </label>
+        <label style={labelRow}>
+          <input
+            type="radio"
+            name="states-checked"
+            defaultChecked
+            style={radioStyle}
+          />
+          Checked
+        </label>
+        <label style={{ ...labelRow, color: 'var(--solar-text-disabled)' }}>
+          <input type="radio" name="states-dis" disabled style={radioStyle} />
+          Disabled
+        </label>
+        <label style={{ ...labelRow, color: 'var(--solar-text-disabled)' }}>
+          <input
+            type="radio"
+            name="states-dis-checked"
+            disabled
+            defaultChecked
+            style={radioStyle}
+          />
+          Disabled checked
+        </label>
+      </div>
+    </div>
   ),
 };

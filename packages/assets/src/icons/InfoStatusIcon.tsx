@@ -1,11 +1,8 @@
-import { SvgIcon, SvgIconProps, useTheme } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function InfoStatusIcon(props: SvgIconProps) {
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
-
+export function InfoStatusIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon {...props}>
+    <svg width="1em" height="1em" fill="currentColor" {...props}>
       <svg
         width="14"
         height="14"
@@ -20,9 +17,7 @@ export function InfoStatusIcon(props: SvgIconProps) {
           width="13.4"
           height="13.4"
           rx="6.7"
-          stroke={
-            isDarkMode ? theme.palette.common.white : theme.palette.grey[900]
-          }
+          stroke={'currentColor'}
           strokeOpacity="0.4"
           strokeWidth="0.6"
         />
@@ -70,6 +65,6 @@ export function InfoStatusIcon(props: SvgIconProps) {
           </filter>
         </defs>
       </svg>
-    </SvgIcon>
+    </svg>
   );
 }

@@ -1,15 +1,16 @@
-import { Stack, StackProps } from '@mui/material';
-import { useEffect, useRef, type ReactNode } from 'react';
+import {
+  useEffect,
+  useRef,
+  type ReactNode,
+  type CSSProperties,
+  type HTMLAttributes,
+} from 'react';
 
-export interface OverlayBadgeProps extends StackProps {
+export interface OverlayBadgeProps extends HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
-  /**
-   * Maximum scale factor applied to the badge. Default: 2
-   */
+  /** Maximum scale factor applied to the badge. Default: 2 */
   maxScale?: number;
-  /**
-   * Minimum scale factor applied to the badge. Default: 0.75
-   */
+  /** Minimum scale factor applied to the badge. Default: 0.75 */
   minScale?: number;
   /** Top offset. Number values are interpreted as pixels. */
   top?: number | string;
@@ -92,7 +93,7 @@ function toNum(v: number | string | undefined): number {
  * <ObjectOverlay object={obj}>
  *   <OverlayContent>
  *     <MyIcon />
- *     <FixedSizeContent><Typography>Label</Typography></FixedSizeContent>
+ *     <FixedSizeContent><span>Label</span></FixedSizeContent>
  *   </OverlayContent>
  *   <OverlayBadge top={2} right={2}>
  *     <StatusDot />
@@ -109,22 +110,16 @@ export function OverlayBadge({
   bottom,
   left,
   circular = false,
-  sx,
+  style,
   ...rest
 }: OverlayBadgeProps) {
   const ref = useRef<HTMLDivElement>(null);
-  // Capture the overlay's initial dimensions as the baseline (zoom ≈ 1).
-  // The scale is then relative to this baseline — larger overlay → scale up,
-  // smaller overlay → scale down.
   const baseSize = useRef<{ w: number; h: number } | null>(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
 
-    // Use the parent element (typically ObjectOverlay's Stack) as the
-    // sizing boundary.  Its dimensions are set by ObjectOverlay's effect
-    // and reflect the canvas object's screen-space size.
     const ancestor = el.parentElement;
     if (!ancestor) return;
 
@@ -140,20 +135,16 @@ export function OverlayBadge({
           return;
         }
 
-        // Record the first valid measurement as the baseline.
         if (!baseSize.current) {
           baseSize.current = { w: containerW, h: containerH };
         }
 
-        // Scale relative to the baseline, clamped to [minScale, maxScale].
         const ratio = Math.min(
           containerW / baseSize.current.w,
           containerH / baseSize.current.h,
         );
         const ownScale = Math.max(minScale, Math.min(ratio, maxScale));
 
-        // When inside OverlayContent the parent's scale transform creates a
-        // containing block. Counter-scale so the badge keeps its own size.
         const overlayScale =
           parseFloat(
             getComputedStyle(el).getPropertyValue('--overlay-scale'),
@@ -177,7 +168,7 @@ export function OverlayBadge({
   }, [maxScale, minScale, circular]);
 
   // For circular mode, compute position on the inscribed ellipse.
-  const positionSx = circular
+  const positionStyle: CSSProperties = circular
     ? (() => {
         const angle = deriveAngle(top, right, bottom, left);
         const { pctX, pctY } = ellipsePosition(angle);
@@ -195,22 +186,22 @@ export function OverlayBadge({
         left: toPx(left),
       };
 
+  const baseStyle: CSSProperties = {
+    position: 'absolute',
+    ...positionStyle,
+    transformOrigin: 'center center',
+    pointerEvents: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    width: 'max-content',
+    height: 'max-content',
+    flexShrink: 0,
+    ...style,
+  };
+
   return (
-    <Stack
-      ref={ref}
-      sx={{
-        position: 'absolute',
-        ...positionSx,
-        transformOrigin: 'center center',
-        pointerEvents: 'auto',
-        width: 'max-content',
-        height: 'max-content',
-        flexShrink: 0,
-        ...sx,
-      }}
-      {...rest}
-    >
+    <div ref={ref} style={baseStyle} {...rest}>
       {children}
-    </Stack>
+    </div>
   );
 }

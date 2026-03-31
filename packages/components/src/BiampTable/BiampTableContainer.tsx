@@ -1,41 +1,45 @@
-import { Stack, StackProps } from '@mui/material';
+import type { HTMLAttributes, ReactNode } from 'react';
+import { cn } from '@bwp-web/styles';
 
 export type BiampTableContainerProps = {
   /** Show a top border. @default true */
   withBorderTop?: boolean;
   /** Show a bottom border. @default false */
   withBorderBottom?: boolean;
-} & StackProps;
+  children?: ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+} & Omit<HTMLAttributes<HTMLDivElement>, 'className' | 'style'>;
 
 export function BiampTableContainer({
   withBorderTop = true,
   withBorderBottom = false,
   children,
-  sx,
+  className,
+  style,
   ...props
 }: BiampTableContainerProps) {
   return (
-    <Stack
-      direction="column"
-      height="100%"
-      overflow="hidden"
-      px={{ xs: 2, sm: 3, xl: 12.5 }}
-      py={{ xs: 0, md: 1.5 }}
-      gap={{ xs: 0, md: 1 }}
-      borderTop={
-        withBorderTop
-          ? ({ palette }) => `0.6px solid ${palette.divider}`
-          : undefined
-      }
-      borderBottom={
-        withBorderBottom
-          ? ({ palette }) => `0.6px solid ${palette.divider}`
-          : undefined
-      }
-      sx={{ ...sx }}
+    <div
+      className={cn(className)}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        overflow: 'hidden',
+        padding: '0 24px',
+        gap: '0px',
+        borderTop: withBorderTop
+          ? '0.6px solid var(--solar-border-default)'
+          : undefined,
+        borderBottom: withBorderBottom
+          ? '0.6px solid var(--solar-border-default)'
+          : undefined,
+        ...style,
+      }}
       {...props}
     >
       {children}
-    </Stack>
+    </div>
   );
 }

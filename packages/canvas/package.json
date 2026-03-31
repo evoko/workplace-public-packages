@@ -33,15 +33,12 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "@bwp-web/styles": "*",
-    "@mui/material": ">=7.0.0",
     "fabric": "^7.2.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
   "devDependencies": {
     "@bwp-web/eslint-config": "*",
-    "@bwp-web/styles": "*",
     "fabric": "^7.2.0",
     "@types/react": "^19.1.0",
     "eslint": "^9.39.2",

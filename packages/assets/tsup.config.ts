@@ -6,7 +6,7 @@ export default defineConfig({
   dts: false,
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', '@mui/material'],
+  external: ['react', 'react-dom'],
   jsx: 'automatic',
   loader: {
     '.png': 'dataurl',

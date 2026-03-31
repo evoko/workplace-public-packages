@@ -1,83 +1,108 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Slider, Stack, Typography, Box } from '@mui/material';
 
-const meta: Meta<typeof Slider> = {
+const meta: Meta = {
   title: 'Styles/Slider',
-  component: Slider,
-  argTypes: {
-    disabled: { control: 'boolean' },
-    size: { control: 'select', options: ['small', 'medium'] },
-  },
 };
 
 export default meta;
-type Story = StoryObj<typeof Slider>;
+type Story = StoryObj;
 
-export const Playground: Story = {
-  args: {
-    defaultValue: 40,
-    disabled: false,
-    size: 'medium',
-  },
-  decorators: [
-    (Story) => (
-      <Box sx={{ width: 300, p: 2 }}>
-        <Story />
-      </Box>
-    ),
-  ],
+const rangeStyle: React.CSSProperties = {
+  width: '100%',
+  accentColor: 'var(--solar-brand-600)',
+  cursor: 'pointer',
+};
+
+const labelText: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.875rem',
+  color: 'var(--solar-text-secondary)',
+  margin: '0 0 8px',
+};
+
+const heading: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  color: 'var(--solar-text-default)',
+  fontSize: '1.25rem',
+  fontWeight: 600,
+  margin: 0,
 };
 
 export const SingleSlider: Story = {
   name: 'Single slider',
   render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h6">Single slider</Typography>
-      <Box>
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          Volume
-        </Typography>
-        <Slider defaultValue={30} />
-      </Box>
-      <Box>
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          Disabled
-        </Typography>
-        <Slider defaultValue={50} disabled />
-      </Box>
-      <Box>
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          Small
-        </Typography>
-        <Slider defaultValue={60} size="small" />
-      </Box>
-    </Stack>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 32,
+        maxWidth: 400,
+      }}
+    >
+      <h6 style={heading}>Single slider</h6>
+      <div>
+        <p style={labelText}>Volume</p>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          defaultValue={30}
+          style={rangeStyle}
+        />
+      </div>
+      <div>
+        <p style={labelText}>Disabled</p>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          defaultValue={50}
+          disabled
+          style={{ ...rangeStyle, opacity: 0.5, cursor: 'not-allowed' }}
+        />
+      </div>
+    </div>
   ),
 };
 
 function RangeDemo() {
-  const [value, setValue] = useState<number[]>([20, 60]);
+  const [min, setMin] = useState(20);
+  const [max, setMax] = useState(60);
   return (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h6">Range slider</Typography>
-      <Box>
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          Price range: ${value[0]} – ${value[1]}
-        </Typography>
-        <Slider
-          value={value}
-          onChange={(_, v) => setValue(v as number[])}
-          valueLabelDisplay="auto"
-        />
-      </Box>
-      <Box>
-        <Typography variant="body2" color="text.secondary" gutterBottom>
-          Disabled range
-        </Typography>
-        <Slider defaultValue={[30, 70]} disabled />
-      </Box>
-    </Stack>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 32,
+        maxWidth: 400,
+      }}
+    >
+      <h6 style={heading}>Range slider (two inputs)</h6>
+      <div>
+        <p style={labelText}>
+          Price range: ${min} - ${max}
+        </p>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          <input
+            type="range"
+            min={0}
+            max={100}
+            value={min}
+            onChange={(e) => setMin(Math.min(Number(e.target.value), max - 1))}
+            style={rangeStyle}
+          />
+          <input
+            type="range"
+            min={0}
+            max={100}
+            value={max}
+            onChange={(e) => setMax(Math.max(Number(e.target.value), min + 1))}
+            style={rangeStyle}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -89,16 +114,29 @@ export const RangeSlider: Story = {
 export const WithSteps: Story = {
   name: 'With steps & marks',
   render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h6">Discrete slider with marks</Typography>
-      <Slider
-        defaultValue={20}
-        step={10}
-        marks
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 32,
+        maxWidth: 400,
+      }}
+    >
+      <h6 style={heading}>Discrete slider with steps</h6>
+      <input
+        type="range"
         min={0}
         max={100}
-        valueLabelDisplay="auto"
+        step={10}
+        defaultValue={20}
+        style={rangeStyle}
+        list="step-marks"
       />
-    </Stack>
+      <datalist id="step-marks">
+        {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map((v) => (
+          <option key={v} value={v} />
+        ))}
+      </datalist>
+    </div>
   ),
 };

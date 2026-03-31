@@ -1,16 +1,5 @@
-import {
-  Box,
-  Collapse,
-  IconButton,
-  InputAdornment,
-  InputBase,
-  TextField,
-  Theme,
-  useMediaQuery,
-  type TextFieldProps,
-} from '@mui/material';
 import { CloseIcon, SearchIcon } from '@bwp-web/assets';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   BIAMP_TABLE_DEBOUNCE_DELAY,
   useDebouncedCallback,
@@ -43,20 +32,41 @@ export type BiampTableToolbarSearchProps = {
   placeholder?: string;
   /** Accessible label for the clear button. @default "Clear search" */
   clearLabel?: string;
-  /** When true, renders a simplified full-width InputBase on screens below the `md` breakpoint. @default true */
+  /** When true, renders a simplified full-width input on narrow screens. @default true */
   enableMobileView?: boolean;
-} & ExpandableSearchProps &
-  Omit<TextFieldProps, 'onChange' | 'value' | 'defaultValue'>;
+  className?: string;
+  style?: React.CSSProperties;
+} & ExpandableSearchProps;
 
-const searchFieldSx = {
-  '& .MuiInputBase-root': {
-    height: '36px !important',
-    minHeight: '36px !important',
-  },
-  '& .MuiOutlinedInput-notchedOutline': {
-    height: '36px !important',
-  },
-} as const;
+/** Simple hook to match a media query */
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia(query).matches : false,
+  );
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mql = window.matchMedia(query);
+    const handler = (e: MediaQueryListEvent) => setMatches(e.matches);
+    mql.addEventListener('change', handler);
+    setMatches(mql.matches);
+    return () => mql.removeEventListener('change', handler);
+  }, [query]);
+  return matches;
+}
+
+const inputBaseStyle: React.CSSProperties = {
+  height: 36,
+  minHeight: 36,
+  padding: '4px 8px 4px 12px',
+  border: '1px solid var(--solar-border-default)',
+  borderRadius: 4,
+  background: 'var(--solar-surface-default, transparent)',
+  color: 'var(--solar-text-default)',
+  fontSize: '0.875rem',
+  outline: 'none',
+  width: '100%',
+  boxSizing: 'border-box',
+};
 
 export function BiampTableToolbarSearch({
   onChange,
@@ -69,128 +79,214 @@ export function BiampTableToolbarSearch({
   expandable = false,
   expandLabel,
   enableMobileView = true,
-  sx,
-  ...textFieldProps
+  className,
+  style,
 }: BiampTableToolbarSearchProps) {
-  const isMobile = useMediaQuery<Theme>((t) => t.breakpoints.down('md'));
+  // Below 900px is roughly MUI's "md" breakpoint
+  const isMobile = useMediaQuery('(max-width: 899.95px)');
   const [inputValue, setInputValue] = useState(defaultValue);
   const [isExpanded, setIsExpanded] = useState(false);
   const debouncedOnChange = useDebouncedCallback(onChange, debounceDelay);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     setInputValue(defaultValue);
   }, [defaultValue]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    debouncedOnChange(e.target.value);
-  };
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInputValue(e.target.value);
+      debouncedOnChange(e.target.value);
+    },
+    [debouncedOnChange],
+  );
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     setInputValue('');
     debouncedOnChange('');
-  };
+  }, [debouncedOnChange]);
 
-  const handleBlur = () => {
+  const handleBlur = useCallback(() => {
     if (expandable && !inputValue) {
       setIsExpanded(false);
     }
-  };
+  }, [expandable, inputValue]);
 
   const clearButton = inputValue ? (
-    <InputAdornment position="end">
-      <IconButton
-        size="small"
-        onClick={handleClear}
-        aria-label={clearLabel}
-        sx={{ mr: 0.5 }}
-      >
-        <CloseIcon variant="xs" sx={{ width: 20, height: 20 }} />
-      </IconButton>
-    </InputAdornment>
+    <button
+      type="button"
+      onClick={handleClear}
+      aria-label={clearLabel}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'none',
+        border: 'none',
+        cursor: 'pointer',
+        padding: '4px',
+        marginRight: 4,
+        color: 'inherit',
+      }}
+    >
+      <CloseIcon variant="xs" style={{ width: 20, height: 20 }} />
+    </button>
   ) : null;
 
-  const textField = (
-    <TextField
-      name="search"
-      type="text"
-      placeholder={placeholder}
-      slotProps={{
-        htmlInput: { maxLength, 'aria-label': placeholder },
-        input: {
-          startAdornment: (
-            <InputAdornment position="start" sx={{ ml: 1 }}>
-              <SearchIcon
-                variant="xs"
-                color="inherit"
-                sx={{ width: 16, height: 16 }}
-              />
-            </InputAdornment>
-          ),
-          endAdornment: clearButton,
-        },
-      }}
-      fullWidth
-      sx={[
-        searchFieldSx,
-        expandable ? { width: 170 } : { maxWidth },
-        ...(Array.isArray(sx) ? sx : sx ? [sx] : []),
-      ]}
-      variant="outlined"
-      value={inputValue}
-      onChange={handleChange}
-      onBlur={handleBlur}
-      {...(expandable && isExpanded && !defaultValue && { autoFocus: true })}
-      {...textFieldProps}
-    />
-  );
-
+  // Mobile view
   if (isMobile && enableMobileView) {
     return (
-      <Box display="flex" alignItems="center" width="100%" pr={1} gap={1}>
-        <SearchIcon sx={{ width: 16, height: 16 }} />
-        <InputBase
-          name="search"
-          type="text"
-          placeholder={placeholder}
-          inputProps={{ maxLength, 'aria-label': 'Search' }}
-          fullWidth
-          value={inputValue}
-          sx={{
-            paddingLeft: 1,
-            height: '36px !important',
-            minHeight: '36px !important',
-            fontSize: (t) => t.typography.body2.fontSize,
+      <div
+        className={className}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          width: '100%',
+          paddingRight: 8,
+          gap: 8,
+          ...style,
+        }}
+      >
+        <SearchIcon style={{ width: 16, height: 16, flexShrink: 0 }} />
+        <div
+          style={{
+            position: 'relative',
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
           }}
-          onChange={handleChange}
-          endAdornment={clearButton}
-        />
-      </Box>
+        >
+          <input
+            name="search"
+            type="text"
+            placeholder={placeholder}
+            maxLength={maxLength}
+            aria-label="Search"
+            value={inputValue}
+            onChange={handleChange}
+            style={{
+              ...inputBaseStyle,
+              border: 'none',
+              paddingLeft: 8,
+            }}
+          />
+          {clearButton && (
+            <div
+              style={{
+                position: 'absolute',
+                right: 0,
+                top: '50%',
+                transform: 'translateY(-50%)',
+              }}
+            >
+              {clearButton}
+            </div>
+          )}
+        </div>
+      </div>
     );
   }
 
+  const textField = (
+    <div
+      className={className}
+      style={{
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        maxWidth: expandable ? 170 : maxWidth,
+        width: '100%',
+        ...style,
+      }}
+    >
+      <div
+        style={{
+          position: 'absolute',
+          left: 8,
+          top: '50%',
+          transform: 'translateY(-50%)',
+          display: 'flex',
+          pointerEvents: 'none',
+        }}
+      >
+        <SearchIcon
+          variant="xs"
+          color="inherit"
+          style={{ width: 16, height: 16 }}
+        />
+      </div>
+      <input
+        ref={inputRef}
+        name="search"
+        type="text"
+        placeholder={placeholder}
+        maxLength={maxLength}
+        aria-label={placeholder}
+        value={inputValue}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        autoFocus={expandable && isExpanded && !defaultValue ? true : undefined}
+        style={{
+          ...inputBaseStyle,
+          paddingLeft: 32,
+          paddingRight: clearButton ? 32 : 8,
+        }}
+      />
+      {clearButton && (
+        <div
+          style={{
+            position: 'absolute',
+            right: 4,
+            top: '50%',
+            transform: 'translateY(-50%)',
+          }}
+        >
+          {clearButton}
+        </div>
+      )}
+    </div>
+  );
+
   if (expandable) {
+    const showField = isExpanded || !!inputValue;
     return (
-      <Box display="flex" alignItems="center" minWidth={28}>
-        <IconButton
+      <div style={{ display: 'flex', alignItems: 'center', minWidth: 28 }}>
+        <button
+          type="button"
           aria-label={expandLabel ?? placeholder}
-          onClick={() => setIsExpanded(true)}
-          sx={{ display: isExpanded || inputValue ? 'none' : 'flex' }}
+          onClick={() => {
+            setIsExpanded(true);
+            // Focus the input after it appears
+            requestAnimationFrame(() => inputRef.current?.focus());
+          }}
+          style={{
+            display: showField ? 'none' : 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            padding: '8px',
+            color: 'inherit',
+          }}
         >
           <SearchIcon
             variant="xs"
             color="inherit"
-            sx={{ width: 16, height: 16 }}
+            style={{ width: 16, height: 16 }}
           />
-        </IconButton>
-        <Collapse
-          in={isExpanded || !!inputValue}
-          orientation="horizontal"
-          unmountOnExit
+        </button>
+        <div
+          style={{
+            overflow: 'hidden',
+            maxWidth: showField ? 300 : 0,
+            opacity: showField ? 1 : 0,
+            transition: 'max-width 300ms ease, opacity 300ms ease',
+          }}
         >
           {textField}
-        </Collapse>
-      </Box>
+        </div>
+      </div>
     );
   }
 

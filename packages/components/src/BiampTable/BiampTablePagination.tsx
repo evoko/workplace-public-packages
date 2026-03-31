@@ -1,5 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { TablePagination, type TablePaginationProps } from '@mui/material';
 import type { Table } from '@tanstack/react-table';
 
 export type BiampTablePaginationProps<TData> = {
@@ -13,17 +12,9 @@ export type BiampTablePaginationProps<TData> = {
   autoHide?: boolean;
   /** Horizontal alignment of the pagination controls. @default 'center' */
   position?: 'left' | 'center' | 'right';
-} & Omit<
-  TablePaginationProps<'div'>,
-  | 'component'
-  | 'count'
-  | 'page'
-  | 'rowsPerPage'
-  | 'onPageChange'
-  | 'onRowsPerPageChange'
-  | 'rowsPerPageOptions'
-  | 'position'
->;
+  className?: string;
+  style?: React.CSSProperties;
+};
 
 const positionMap = {
   left: 'flex-start',
@@ -37,8 +28,8 @@ export function BiampTablePagination<TData>({
   loading,
   autoHide = true,
   position = 'center',
-  sx,
-  ...paginationProps
+  className,
+  style,
 }: BiampTablePaginationProps<TData>) {
   const rowCount = table.getRowCount();
   const lastRowCountRef = useRef(rowCount);
@@ -62,32 +53,112 @@ export function BiampTablePagination<TData>({
   // Hide when there's no data or everything fits on one page
   if (autoHide && (!stableCount || stableCount <= pageSize)) return null;
 
+  const totalPages = Math.ceil(stableCount / pageSize);
+  const from = pageIndex * pageSize + 1;
+  const to = Math.min((pageIndex + 1) * pageSize, stableCount);
+
   return (
-    <TablePagination
-      component="div"
-      count={stableCount}
-      page={table.getState().pagination.pageIndex}
-      rowsPerPage={table.getState().pagination.pageSize}
-      onPageChange={(_, page) => table.setPageIndex(page)}
-      onRowsPerPageChange={(e) => {
-        table.setPageSize(Number(e.target.value));
-        table.setPageIndex(0);
-      }}
-      rowsPerPageOptions={rowsPerPageOptions ?? []}
-      showFirstButton
-      showLastButton
-      sx={{
+    <div
+      className={className}
+      style={{
         display: 'flex',
         justifyContent: positionMap[position],
+        alignItems: 'center',
         height: 40,
         minHeight: 40,
-        '& .MuiToolbar-root': {
-          minHeight: 40,
-          px: 0,
-        },
-        ...sx,
+        gap: '8px',
+        fontSize: '0.875rem',
+        color: 'var(--solar-text-default)',
+        ...style,
       }}
-      {...paginationProps}
-    />
+    >
+      {/* Rows per page selector */}
+      {rowsPerPageOptions && rowsPerPageOptions.length > 0 && (
+        <label style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+          <span>Rows per page:</span>
+          <select
+            value={pageSize}
+            onChange={(e) => {
+              table.setPageSize(Number(e.target.value));
+              table.setPageIndex(0);
+            }}
+            style={{
+              padding: '2px 4px',
+              border: '1px solid var(--solar-border-default)',
+              borderRadius: 4,
+              background: 'var(--solar-surface-default, transparent)',
+              color: 'inherit',
+              fontSize: 'inherit',
+            }}
+          >
+            {rowsPerPageOptions.map((opt) => (
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
+            ))}
+          </select>
+        </label>
+      )}
+
+      {/* Row count display */}
+      <span>
+        {from}-{to} of {stableCount}
+      </span>
+
+      {/* Navigation buttons */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+        <button
+          type="button"
+          aria-label="Go to first page"
+          disabled={pageIndex === 0}
+          onClick={() => table.setPageIndex(0)}
+          style={navButtonStyle}
+        >
+          {'\u00AB'}
+        </button>
+        <button
+          type="button"
+          aria-label="Go to previous page"
+          disabled={pageIndex === 0}
+          onClick={() => table.setPageIndex(pageIndex - 1)}
+          style={navButtonStyle}
+        >
+          {'\u2039'}
+        </button>
+        <button
+          type="button"
+          aria-label="Go to next page"
+          disabled={pageIndex >= totalPages - 1}
+          onClick={() => table.setPageIndex(pageIndex + 1)}
+          style={navButtonStyle}
+        >
+          {'\u203A'}
+        </button>
+        <button
+          type="button"
+          aria-label="Go to last page"
+          disabled={pageIndex >= totalPages - 1}
+          onClick={() => table.setPageIndex(totalPages - 1)}
+          style={navButtonStyle}
+        >
+          {'\u00BB'}
+        </button>
+      </div>
+    </div>
   );
 }
+
+const navButtonStyle: React.CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: 32,
+  height: 32,
+  padding: 0,
+  border: 'none',
+  borderRadius: '50%',
+  background: 'none',
+  color: 'inherit',
+  cursor: 'pointer',
+  fontSize: '1.25rem',
+};

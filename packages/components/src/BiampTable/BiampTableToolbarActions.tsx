@@ -1,21 +1,31 @@
-import { Box, type BoxProps } from '@mui/material';
+import type { HTMLAttributes, ReactNode } from 'react';
+import { cn } from '@bwp-web/styles';
 
-export type BiampTableToolbarActionsProps = BoxProps;
+export type BiampTableToolbarActionsProps = HTMLAttributes<HTMLDivElement> & {
+  children?: ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+};
 
 export function BiampTableToolbarActions({
   children,
+  className,
+  style,
   ...props
 }: BiampTableToolbarActionsProps) {
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      ml="auto"
-      gap={{ xs: 0, md: 1 }}
-      mr={{ xs: 1, md: 0 }}
+    <div
+      className={cn(className)}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        marginLeft: 'auto',
+        gap: '8px',
+        ...style,
+      }}
       {...props}
     >
       {children}
-    </Box>
+    </div>
   );
 }

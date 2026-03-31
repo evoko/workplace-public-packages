@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button, ButtonGroup, Typography } from '@mui/material';
 import type { ViewportMode } from '@bwp-web/canvas';
 
 export interface ViewportControlsProps {
@@ -15,39 +14,96 @@ export function ViewportControls({
   onModeChange,
   onReset,
 }: ViewportControlsProps) {
+  const btnBase: React.CSSProperties = {
+    padding: '4px 10px',
+    fontSize: 13,
+    cursor: 'pointer',
+    border: '1px solid var(--solar-border-default, #bdbdbd)',
+    flex: 1,
+  };
+
   return (
     <div>
-      <Typography variant="subtitle2" gutterBottom>
+      <span
+        style={{
+          display: 'block',
+          fontSize: 14,
+          fontWeight: 600,
+          marginBottom: 4,
+          color: 'var(--solar-text-default, #212121)',
+        }}
+      >
         Viewport
-      </Typography>
-      <ButtonGroup fullWidth size="small" sx={{ mb: 1 }}>
-        <Button
-          variant={viewportMode === 'select' ? 'contained' : 'outlined'}
+      </span>
+      <div style={{ display: 'flex', marginBottom: 8 }}>
+        <button
           onClick={() => onModeChange('select')}
+          style={{
+            ...btnBase,
+            backgroundColor:
+              viewportMode === 'select'
+                ? 'var(--solar-surface-primary, #1976d2)'
+                : 'transparent',
+            color:
+              viewportMode === 'select'
+                ? '#fff'
+                : 'var(--solar-text-default, #212121)',
+          }}
         >
           Select
-        </Button>
-        <Button
-          variant={viewportMode === 'pan' ? 'contained' : 'outlined'}
+        </button>
+        <button
           onClick={() => onModeChange('pan')}
+          style={{
+            ...btnBase,
+            marginLeft: -1,
+            backgroundColor:
+              viewportMode === 'pan'
+                ? 'var(--solar-surface-primary, #1976d2)'
+                : 'transparent',
+            color:
+              viewportMode === 'pan'
+                ? '#fff'
+                : 'var(--solar-text-default, #212121)',
+          }}
         >
           Pan
-        </Button>
-      </ButtonGroup>
-      <Typography variant="body2" color="text.secondary" gutterBottom>
+        </button>
+      </div>
+      <p
+        style={{
+          fontSize: 14,
+          color: 'var(--solar-text-secondary, #666)',
+          marginBottom: 4,
+        }}
+      >
         Zoom: {Math.round(zoom * 100)}%
-      </Typography>
-      <Button variant="outlined" size="small" fullWidth onClick={onReset}>
+      </p>
+      <button
+        onClick={onReset}
+        style={{
+          width: '100%',
+          padding: '4px 10px',
+          fontSize: 13,
+          cursor: 'pointer',
+          border: '1px solid var(--solar-border-default, #bdbdbd)',
+          backgroundColor: 'transparent',
+          color: 'var(--solar-text-default, #212121)',
+        }}
+      >
         Reset View
-      </Button>
-      <Typography
-        variant="caption"
-        color="text.secondary"
-        sx={{ mt: 1, display: 'block' }}
+      </button>
+      <span
+        style={{
+          display: 'block',
+          marginTop: 8,
+          fontSize: 12,
+          color: 'var(--solar-text-secondary, #666)',
+        }}
       >
         Scroll to zoom.{' '}
         {viewportMode === 'select' ? 'Cmd/Ctrl+drag to pan.' : 'Drag to pan.'}
-      </Typography>
+      </span>
     </div>
   );
 }

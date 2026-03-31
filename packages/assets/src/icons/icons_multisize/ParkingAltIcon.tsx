@@ -1,10 +1,10 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 import { type ReactNode } from 'react';
 
 type PathConfig = { viewBox: string; paths: ReactNode };
 type IconVariant = 'md' | 'xs';
 
-interface ParkingAltIconProps extends SvgIconProps {
+interface ParkingAltIconProps extends SVGProps<SVGSVGElement> {
   variant?: IconVariant;
 }
 
@@ -37,8 +37,14 @@ export function ParkingAltIcon({
 }: ParkingAltIconProps) {
   const { viewBox, paths } = variantMap[variant];
   return (
-    <SvgIcon viewBox={viewBox} {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox={viewBox}
+      {...props}
+    >
       {paths}
-    </SvgIcon>
+    </svg>
   );
 }

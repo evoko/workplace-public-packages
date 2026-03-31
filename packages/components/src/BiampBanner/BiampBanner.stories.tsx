@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button, Stack } from '@mui/material';
 import {
   BiampBanner,
   BiampBannerIcon,
@@ -22,34 +21,48 @@ type Story = StoryObj<typeof BiampBanner>;
 function DefaultDemo() {
   const [show, setShow] = useState(true);
   return (
-    <Stack>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <BiampBanner show={show} severity="info">
         <BiampBannerIcon severity="info" />
         <BiampBannerContent>
           Your session will expire in 5 minutes.
         </BiampBannerContent>
         <BiampBannerActions>
-          <Button
-            size="small"
-            variant="outlined"
-            color="inherit"
+          <button
+            style={{
+              padding: '4px 10px',
+              fontSize: 13,
+              border: '1px solid currentColor',
+              borderRadius: 4,
+              background: 'transparent',
+              color: 'inherit',
+              cursor: 'pointer',
+            }}
             onClick={() => setShow(false)}
           >
             Dismiss
-          </Button>
+          </button>
         </BiampBannerActions>
       </BiampBanner>
-      <Stack p={3}>
-        <Button
-          variant="contained"
+      <div style={{ padding: 24 }}>
+        <button
+          style={{
+            padding: '6px 16px',
+            fontSize: 14,
+            border: 'none',
+            borderRadius: 4,
+            background: show ? '#bdbdbd' : '#1976d2',
+            color: show ? '#757575' : 'white',
+            cursor: show ? 'default' : 'pointer',
+            alignSelf: 'flex-start',
+          }}
           onClick={() => setShow(true)}
           disabled={show}
-          sx={{ alignSelf: 'flex-start' }}
         >
           Show banner
-        </Button>
-      </Stack>
-    </Stack>
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -61,23 +74,36 @@ export const Default: Story = {
   render: () => <DefaultDemo />,
 };
 
+const bannerButton = (label: string, onClick?: () => void) => (
+  <button
+    style={{
+      padding: '4px 10px',
+      fontSize: 13,
+      border: '1px solid currentColor',
+      borderRadius: 4,
+      background: 'transparent',
+      color: 'inherit',
+      cursor: 'pointer',
+    }}
+    onClick={onClick}
+  >
+    {label}
+  </button>
+);
+
 /**
  * All four severity variants shown at once: `info`, `success`, `warning`, and `error`.
  * Each uses the matching default icon via the `severity` prop on `BiampBannerIcon`.
  */
 export const AllSeverities: Story = {
   render: () => (
-    <Stack gap={1}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       <BiampBanner show severity="info">
         <BiampBannerIcon severity="info" />
         <BiampBannerContent>
           Info — A new software update is available.
         </BiampBannerContent>
-        <BiampBannerActions>
-          <Button size="small" variant="outlined" color="inherit">
-            Learn more
-          </Button>
-        </BiampBannerActions>
+        <BiampBannerActions>{bannerButton('Learn more')}</BiampBannerActions>
       </BiampBanner>
 
       <BiampBanner show severity="success">
@@ -85,11 +111,7 @@ export const AllSeverities: Story = {
         <BiampBannerContent>
           Success — Changes saved successfully.
         </BiampBannerContent>
-        <BiampBannerActions>
-          <Button size="small" variant="outlined" color="inherit">
-            View
-          </Button>
-        </BiampBannerActions>
+        <BiampBannerActions>{bannerButton('View')}</BiampBannerActions>
       </BiampBanner>
 
       <BiampBanner show severity="warning">
@@ -97,11 +119,7 @@ export const AllSeverities: Story = {
         <BiampBannerContent>
           Warning — Your license expires in 3 days.
         </BiampBannerContent>
-        <BiampBannerActions>
-          <Button size="small" variant="outlined" color="inherit">
-            Renew
-          </Button>
-        </BiampBannerActions>
+        <BiampBannerActions>{bannerButton('Renew')}</BiampBannerActions>
       </BiampBanner>
 
       <BiampBanner show severity="error">
@@ -109,13 +127,9 @@ export const AllSeverities: Story = {
         <BiampBannerContent>
           Error — Unable to connect to the server.
         </BiampBannerContent>
-        <BiampBannerActions>
-          <Button size="small" variant="outlined" color="inherit">
-            Retry
-          </Button>
-        </BiampBannerActions>
+        <BiampBannerActions>{bannerButton('Retry')}</BiampBannerActions>
       </BiampBanner>
-    </Stack>
+    </div>
   ),
 };
 
@@ -142,17 +156,8 @@ function MultipleActionsDemo() {
         A firmware update is ready to install. Reboot required.
       </BiampBannerContent>
       <BiampBannerActions>
-        <Button size="small" variant="outlined" color="inherit">
-          Update now
-        </Button>
-        <Button
-          size="small"
-          variant="outlined"
-          color="inherit"
-          onClick={() => setShow(false)}
-        >
-          Dismiss
-        </Button>
+        {bannerButton('Update now')}
+        {bannerButton('Dismiss', () => setShow(false))}
       </BiampBannerActions>
     </BiampBanner>
   );
@@ -185,39 +190,49 @@ function IndependentTogglesDemo() {
   });
 
   return (
-    <Stack>
-      <Stack gap={1}>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {severities.map((s) => (
           <BiampBanner key={s} show={visible[s]} severity={s}>
             <BiampBannerIcon severity={s} />
             <BiampBannerContent>{messages[s]}</BiampBannerContent>
             <BiampBannerActions>
-              <Button
-                size="small"
-                variant="outlined"
-                color="inherit"
-                onClick={() => setVisible((v) => ({ ...v, [s]: false }))}
-              >
-                Dismiss
-              </Button>
+              {bannerButton('Dismiss', () =>
+                setVisible((v) => ({ ...v, [s]: false })),
+              )}
             </BiampBannerActions>
           </BiampBanner>
         ))}
-      </Stack>
-      <Stack direction="row" gap={1} p={2} flexWrap="wrap">
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: 8,
+          padding: 16,
+          flexWrap: 'wrap',
+        }}
+      >
         {severities.map((s) => (
-          <Button
+          <button
             key={s}
-            size="small"
-            variant="outlined"
+            style={{
+              padding: '4px 10px',
+              fontSize: 13,
+              border: '1px solid #1976d2',
+              borderRadius: 4,
+              background: 'transparent',
+              color: visible[s] ? '#bdbdbd' : '#1976d2',
+              cursor: visible[s] ? 'default' : 'pointer',
+            }}
             disabled={visible[s]}
             onClick={() => setVisible((v) => ({ ...v, [s]: true }))}
           >
             Show {s}
-          </Button>
+          </button>
         ))}
-      </Stack>
-    </Stack>
+      </div>
+    </div>
   );
 }
 

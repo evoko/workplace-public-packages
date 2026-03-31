@@ -1,14 +1,20 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function KeyArrowUpIcon(props: SvgIconProps) {
+export function KeyArrowUpIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 9 11" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 9 11"
+      {...props}
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
         d="M4.15004 10.3C3.79105 10.3 3.50004 10.009 3.50004 9.65L3.50004 2.37994L1.13922 5.07803C0.902822 5.34819 0.492176 5.37557 0.222012 5.13918C-0.0481515 4.90278 -0.0755286 4.49214 0.160865 4.22197L3.66087 0.221975C3.78429 0.0809151 3.96261 3.43551e-06 4.15004 3.45189e-06C4.33748 3.46828e-06 4.51579 0.0809151 4.63922 0.221975L8.13922 4.22198C8.37561 4.49214 8.34823 4.90278 8.07807 5.13918C7.8079 5.37557 7.39726 5.34819 7.16087 5.07803L4.80004 2.37994L4.80004 9.65C4.80004 10.009 4.50903 10.3 4.15004 10.3Z"
         fill="currentColor"
       />
-    </SvgIcon>
+    </svg>
   );
 }

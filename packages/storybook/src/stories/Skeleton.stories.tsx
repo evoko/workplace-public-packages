@@ -1,52 +1,135 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  Skeleton,
-  Stack,
-  Card,
-  CardContent,
-  Box,
-  Typography,
-} from '@mui/material';
 
-const meta: Meta<typeof Skeleton> = {
+const meta: Meta = {
   title: 'Styles/Skeleton',
-  component: Skeleton,
 };
 
 export default meta;
-type Story = StoryObj<typeof Skeleton>;
+type Story = StoryObj;
+
+const pulseKeyframes = `
+@keyframes skeleton-pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+`;
+
+const skeletonBase: React.CSSProperties = {
+  backgroundColor: 'var(--solar-neutral-200)',
+  animation: 'skeleton-pulse 1.5s ease-in-out infinite',
+};
+
+const SkeletonText = ({ width = '100%' }: { width?: string | number }) => (
+  <div
+    style={{
+      ...skeletonBase,
+      height: 16,
+      width,
+      borderRadius: 'var(--solar-radius-sm)',
+    }}
+  />
+);
+
+const SkeletonCircle = ({ size = 40 }: { size?: number }) => (
+  <div
+    style={{
+      ...skeletonBase,
+      width: size,
+      height: size,
+      borderRadius: 'var(--solar-radius-full)',
+    }}
+  />
+);
+
+const SkeletonRect = ({
+  width = 300,
+  height = 60,
+  rounded = false,
+}: {
+  width?: number;
+  height?: number;
+  rounded?: boolean;
+}) => (
+  <div
+    style={{
+      ...skeletonBase,
+      width,
+      height,
+      borderRadius: rounded
+        ? 'var(--solar-radius-base)'
+        : 'var(--solar-radius-sm)',
+    }}
+  />
+);
 
 export const Variants: Story = {
   render: () => (
-    <Stack spacing={3} sx={{ maxWidth: 300 }}>
-      <Typography variant="h6">Skeleton variants</Typography>
-      <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
-      <Skeleton variant="circular" width={40} height={40} />
-      <Skeleton variant="rectangular" width={300} height={60} />
-      <Skeleton variant="rounded" width={300} height={60} />
-    </Stack>
+    <>
+      <style>{pulseKeyframes}</style>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 24,
+          maxWidth: 300,
+          fontFamily: 'var(--solar-font-sans)',
+        }}
+      >
+        <h6
+          style={{
+            color: 'var(--solar-text-default)',
+            fontSize: '1.25rem',
+            fontWeight: 600,
+            margin: 0,
+          }}
+        >
+          Skeleton variants
+        </h6>
+        <SkeletonText />
+        <SkeletonCircle />
+        <SkeletonRect width={300} height={60} />
+        <SkeletonRect width={300} height={60} rounded />
+      </div>
+    </>
   ),
 };
 
 export const CardLoading: Story = {
   name: 'Card loading state',
   render: () => (
-    <Stack direction="row" spacing={2}>
-      {[0, 1].map((i) => (
-        <Card key={i} sx={{ width: 280 }}>
-          <CardContent>
-            <Stack spacing={1}>
-              <Skeleton variant="text" width="40%" />
-              <Skeleton variant="text" width="80%" />
-              <Skeleton variant="rectangular" height={120} />
-              <Box sx={{ display: 'flex', gap: 1, pt: 1 }}>
-                <Skeleton variant="rounded" width={80} height={36} />
-                <Skeleton variant="rounded" width={80} height={36} />
-              </Box>
-            </Stack>
-          </CardContent>
-        </Card>
-      ))}
-    </Stack>
+    <>
+      <style>{pulseKeyframes}</style>
+      <div style={{ display: 'flex', gap: 16 }}>
+        {[0, 1].map((i) => (
+          <div
+            key={i}
+            style={{
+              width: 280,
+              backgroundColor: 'var(--solar-surface-default)',
+              border: '1px solid var(--solar-border-default)',
+              borderRadius: 'var(--solar-radius-lg)',
+              padding: 16,
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 8,
+              }}
+            >
+              <SkeletonText width="40%" />
+              <SkeletonText width="80%" />
+              <SkeletonRect width={248} height={120} />
+              <div style={{ display: 'flex', gap: 8, paddingTop: 8 }}>
+                <SkeletonRect width={80} height={36} rounded />
+                <SkeletonRect width={80} height={36} rounded />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
   ),
 };

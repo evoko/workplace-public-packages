@@ -1,24 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Stack,
-  Typography,
-  Checkbox,
-} from '@mui/material';
 
-const meta: Meta<typeof Table> = {
+const meta: Meta = {
   title: 'Styles/Table',
-  component: Table,
 };
 
 export default meta;
-type Story = StoryObj<typeof Table>;
+type Story = StoryObj;
 
 const rows = [
   { id: 1, name: 'Conference Room A', status: 'Available', capacity: 12 },
@@ -28,64 +15,121 @@ const rows = [
   { id: 5, name: 'Board Room', status: 'Available', capacity: 20 },
 ];
 
+const tableWrap: React.CSSProperties = {
+  border: '1px solid var(--solar-border-default)',
+  borderRadius: 'var(--solar-radius-base)',
+  overflow: 'hidden',
+};
+
+const tableStyle: React.CSSProperties = {
+  width: '100%',
+  borderCollapse: 'collapse',
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.875rem',
+  color: 'var(--solar-text-default)',
+};
+
+const thStyle: React.CSSProperties = {
+  textAlign: 'left',
+  padding: '12px 16px',
+  fontWeight: 600,
+  fontSize: '0.8125rem',
+  color: 'var(--solar-text-secondary)',
+  backgroundColor: 'var(--solar-surface-secondary)',
+  borderBottom: '1px solid var(--solar-border-default)',
+};
+
+const tdStyle: React.CSSProperties = {
+  padding: '12px 16px',
+  borderBottom: '1px solid var(--solar-border-default)',
+};
+
+const heading: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  color: 'var(--solar-text-default)',
+  fontSize: '1.25rem',
+  fontWeight: 600,
+  margin: 0,
+};
+
 export const Default: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Table</Typography>
-      <TableContainer component={Paper} variant="outlined">
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Room Name</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell align="right">Capacity</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <h3 style={heading}>Table</h3>
+      <div style={tableWrap}>
+        <table style={tableStyle}>
+          <thead>
+            <tr>
+              <th style={thStyle}>Room Name</th>
+              <th style={thStyle}>Status</th>
+              <th style={{ ...thStyle, textAlign: 'right' }}>Capacity</th>
+            </tr>
+          </thead>
+          <tbody>
             {rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.status}</TableCell>
-                <TableCell align="right">{row.capacity}</TableCell>
-              </TableRow>
+              <tr key={row.id}>
+                <td style={tdStyle}>{row.name}</td>
+                <td style={tdStyle}>{row.status}</td>
+                <td style={{ ...tdStyle, textAlign: 'right' }}>
+                  {row.capacity}
+                </td>
+              </tr>
             ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Stack>
+          </tbody>
+        </table>
+      </div>
+    </div>
   ),
 };
 
 export const WithSelection: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Table with Selection</Typography>
-      <TableContainer component={Paper} variant="outlined">
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell padding="checkbox">
-                <Checkbox />
-              </TableCell>
-              <TableCell>Room Name</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell align="right">Capacity</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <h3 style={heading}>Table with Selection</h3>
+      <div style={tableWrap}>
+        <table style={tableStyle}>
+          <thead>
+            <tr>
+              <th style={{ ...thStyle, width: 48, textAlign: 'center' }}>
+                <input
+                  type="checkbox"
+                  style={{ accentColor: 'var(--solar-brand-600)' }}
+                />
+              </th>
+              <th style={thStyle}>Room Name</th>
+              <th style={thStyle}>Status</th>
+              <th style={{ ...thStyle, textAlign: 'right' }}>Capacity</th>
+            </tr>
+          </thead>
+          <tbody>
             {rows.map((row, index) => (
-              <TableRow key={row.id} selected={index === 1}>
-                <TableCell padding="checkbox">
-                  <Checkbox checked={index === 1} />
-                </TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.status}</TableCell>
-                <TableCell align="right">{row.capacity}</TableCell>
-              </TableRow>
+              <tr
+                key={row.id}
+                style={
+                  index === 1
+                    ? {
+                        backgroundColor: 'var(--solar-surface-brand-subtle)',
+                      }
+                    : undefined
+                }
+              >
+                <td style={{ ...tdStyle, textAlign: 'center' }}>
+                  <input
+                    type="checkbox"
+                    defaultChecked={index === 1}
+                    style={{ accentColor: 'var(--solar-brand-600)' }}
+                  />
+                </td>
+                <td style={tdStyle}>{row.name}</td>
+                <td style={tdStyle}>{row.status}</td>
+                <td style={{ ...tdStyle, textAlign: 'right' }}>
+                  {row.capacity}
+                </td>
+              </tr>
             ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Stack>
+          </tbody>
+        </table>
+      </div>
+    </div>
   ),
 };

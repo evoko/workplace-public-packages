@@ -1,8 +1,8 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function RadioCheckedIcon(props: SvgIconProps) {
+export function RadioCheckedIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon {...props}>
+    <svg width="1em" height="1em" fill="currentColor" {...props}>
       <svg
         width="18"
         height="18"
@@ -21,6 +21,6 @@ export function RadioCheckedIcon(props: SvgIconProps) {
         />
         <circle className="radio-dot" cx="9" cy="9" r="5" fill="#2569fd" />
       </svg>
-    </SvgIcon>
+    </svg>
   );
 }

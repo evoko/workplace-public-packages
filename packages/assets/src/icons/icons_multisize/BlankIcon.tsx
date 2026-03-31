@@ -1,10 +1,10 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 import { type ReactNode } from 'react';
 
 type PathConfig = { viewBox: string; paths: ReactNode };
 type IconVariant = 'md' | 'xs' | 'xxs';
 
-interface BlankIconProps extends SvgIconProps {
+interface BlankIconProps extends SVGProps<SVGSVGElement> {
   variant?: IconVariant;
 }
 
@@ -55,8 +55,14 @@ const variantMap: Record<IconVariant, PathConfig> = {
 export function BlankIcon({ variant = 'md', ...props }: BlankIconProps) {
   const { viewBox, paths } = variantMap[variant];
   return (
-    <SvgIcon viewBox={viewBox} {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox={viewBox}
+      {...props}
+    >
       {paths}
-    </SvgIcon>
+    </svg>
   );
 }

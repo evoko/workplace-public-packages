@@ -1,8 +1,8 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function AppsIconFilled(props: SvgIconProps) {
+export function AppsIconFilled(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon {...props}>
+    <svg width="1em" height="1em" fill="currentColor" {...props}>
       <svg
         width="24"
         height="24"
@@ -15,6 +15,6 @@ export function AppsIconFilled(props: SvgIconProps) {
           fill="currentColor"
         />
       </svg>
-    </SvgIcon>
+    </svg>
   );
 }

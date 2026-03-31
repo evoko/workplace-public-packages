@@ -1,11 +1,8 @@
-import { SvgIcon, SvgIconProps, useTheme } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function SuccessStatusIcon(props: SvgIconProps) {
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
-
+export function SuccessStatusIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon {...props}>
+    <svg width="1em" height="1em" fill="currentColor" {...props}>
       <svg
         width="14"
         height="14"
@@ -20,9 +17,7 @@ export function SuccessStatusIcon(props: SvgIconProps) {
           width="13.4"
           height="13.4"
           rx="6.7"
-          stroke={
-            isDarkMode ? theme.palette.common.white : theme.palette.grey[900]
-          }
+          stroke={'currentColor'}
           strokeOpacity="0.4"
           strokeWidth="0.6"
         />
@@ -31,9 +26,7 @@ export function SuccessStatusIcon(props: SvgIconProps) {
             fillRule="evenodd"
             clipRule="evenodd"
             d="M10.0279 4.41561C10.3328 4.54591 10.6867 5.04261 10.4654 5.29062L6.9525 9.02403C6.57226 9.45014 6.38214 9.66319 6.13689 9.6656C5.89164 9.66802 5.69741 9.45876 5.30894 9.04023L3.58698 7.18499C3.45389 7.0416 3.42727 6.82846 3.52095 6.65639C3.65295 6.41394 3.96768 6.34523 4.18765 6.51085L5.37782 7.40696C5.7414 7.6807 5.92319 7.81758 6.12825 7.8043C6.3333 7.79102 6.49616 7.63184 6.82188 7.31346L9.59039 4.41562C9.72976 4.27939 9.84906 4.33918 10.0279 4.41561Z"
-            fill={
-              isDarkMode ? theme.palette.grey[900] : theme.palette.common.white
-            }
+            fill="white"
           />
         </g>
         <defs>
@@ -74,6 +67,6 @@ export function SuccessStatusIcon(props: SvgIconProps) {
           </filter>
         </defs>
       </svg>
-    </SvgIcon>
+    </svg>
   );
 }

@@ -1,9 +1,15 @@
-import { SvgIcon, SvgIconProps } from '@mui/material';
+import type { SVGProps } from 'react';
 
-export function BadgeLiveIcon(props: SvgIconProps) {
+export function BadgeLiveIcon(props: SVGProps<SVGSVGElement>) {
   return (
-    <SvgIcon viewBox="0 0 6 6" {...props}>
+    <svg
+      width="1em"
+      height="1em"
+      fill="currentColor"
+      viewBox="0 0 6 6"
+      {...props}
+    >
       <circle cx="3" cy="3" r="2" fill="#e0032d" />
-    </SvgIcon>
+    </svg>
   );
 }

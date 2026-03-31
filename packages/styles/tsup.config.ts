@@ -1,11 +1,10 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: ['src/index.ts'],
+  entry: ['src/index.ts', 'src/preset.ts'],
   format: ['esm', 'cjs'],
   dts: false, // We use tsc for declarations (see build script)
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', '@mui/material', '@bwp-web/assets'],
-  jsx: 'automatic',
+  external: ['tailwindcss', 'clsx', 'tailwind-merge'],
 });

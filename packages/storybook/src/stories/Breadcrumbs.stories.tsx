@@ -1,105 +1,175 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Breadcrumbs, Link, Typography, Stack } from '@mui/material';
 
-const meta: Meta<typeof Breadcrumbs> = {
+const meta: Meta = {
   title: 'Styles/Breadcrumbs',
-  component: Breadcrumbs,
 };
 
 export default meta;
-type Story = StoryObj<typeof Breadcrumbs>;
+type Story = StoryObj;
+
+const navStyle: React.CSSProperties = {
+  fontFamily: 'var(--solar-font-sans)',
+  fontSize: '0.875rem',
+};
+
+const olStyle: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  listStyle: 'none',
+  padding: 0,
+  margin: 0,
+  gap: 4,
+};
+
+const linkStyle: React.CSSProperties = {
+  color: 'var(--solar-text-secondary)',
+  textDecoration: 'none',
+};
+
+const currentStyle: React.CSSProperties = {
+  color: 'var(--solar-text-tertiary)',
+  fontWeight: 600,
+};
+
+const separator = (
+  <li
+    style={{
+      color: 'var(--solar-text-tertiary)',
+      userSelect: 'none',
+      fontSize: '0.875rem',
+    }}
+  >
+    /
+  </li>
+);
 
 export const Default: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Breadcrumbs</Typography>
-      <Typography variant="body2" color="text.secondary">
-        Uses the ChevronRightIcon separator from the theme.
-      </Typography>
-
-      <Breadcrumbs>
-        <Link underline="hover" color="inherit" href="#">
-          Home
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Settings
-        </Link>
-        <Typography color="text.secondary" variant="body2" fontWeight={600}>
-          General
-        </Typography>
-      </Breadcrumbs>
-    </Stack>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <h3
+        style={{
+          fontFamily: 'var(--solar-font-sans)',
+          color: 'var(--solar-text-default)',
+          fontSize: '1.25rem',
+          fontWeight: 600,
+          margin: 0,
+        }}
+      >
+        Breadcrumbs
+      </h3>
+      <p
+        style={{
+          fontFamily: 'var(--solar-font-sans)',
+          color: 'var(--solar-text-secondary)',
+          fontSize: '0.875rem',
+          margin: 0,
+        }}
+      >
+        Uses a simple "/" separator.
+      </p>
+      <nav style={navStyle}>
+        <ol style={olStyle}>
+          <li>
+            <a href="#" style={linkStyle}>
+              Home
+            </a>
+          </li>
+          {separator}
+          <li>
+            <a href="#" style={linkStyle}>
+              Settings
+            </a>
+          </li>
+          {separator}
+          <li>
+            <span style={currentStyle}>General</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
   ),
 };
 
 export const MultipleDepths: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Multiple Depths</Typography>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <h3
+        style={{
+          fontFamily: 'var(--solar-font-sans)',
+          color: 'var(--solar-text-default)',
+          fontSize: '1.25rem',
+          fontWeight: 600,
+          margin: 0,
+        }}
+      >
+        Multiple Depths
+      </h3>
 
-      <Breadcrumbs>
-        <Link underline="hover" color="inherit" href="#">
-          Home
-        </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
-          Dashboard
-        </Typography>
-      </Breadcrumbs>
+      <nav style={navStyle}>
+        <ol style={olStyle}>
+          <li>
+            <a href="#" style={linkStyle}>
+              Home
+            </a>
+          </li>
+          {separator}
+          <li>
+            <span style={currentStyle}>Dashboard</span>
+          </li>
+        </ol>
+      </nav>
 
-      <Breadcrumbs>
-        <Link underline="hover" color="inherit" href="#">
-          Home
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Users
-        </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
-          John Doe
-        </Typography>
-      </Breadcrumbs>
+      <nav style={navStyle}>
+        <ol style={olStyle}>
+          <li>
+            <a href="#" style={linkStyle}>
+              Home
+            </a>
+          </li>
+          {separator}
+          <li>
+            <a href="#" style={linkStyle}>
+              Users
+            </a>
+          </li>
+          {separator}
+          <li>
+            <span style={currentStyle}>John Doe</span>
+          </li>
+        </ol>
+      </nav>
 
-      <Breadcrumbs>
-        <Link underline="hover" color="inherit" href="#">
-          Home
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Settings
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Advanced
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Network
-        </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
-          Proxy Configuration
-        </Typography>
-      </Breadcrumbs>
-    </Stack>
-  ),
-};
-
-export const Collapsed: Story = {
-  render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Collapsed (maxItems)</Typography>
-      <Breadcrumbs maxItems={3}>
-        <Link underline="hover" color="inherit" href="#">
-          Home
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Category
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Sub-category
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Item Type
-        </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
-          Item Detail
-        </Typography>
-      </Breadcrumbs>
-    </Stack>
+      <nav style={navStyle}>
+        <ol style={olStyle}>
+          <li>
+            <a href="#" style={linkStyle}>
+              Home
+            </a>
+          </li>
+          {separator}
+          <li>
+            <a href="#" style={linkStyle}>
+              Settings
+            </a>
+          </li>
+          {separator}
+          <li>
+            <a href="#" style={linkStyle}>
+              Advanced
+            </a>
+          </li>
+          {separator}
+          <li>
+            <a href="#" style={linkStyle}>
+              Network
+            </a>
+          </li>
+          {separator}
+          <li>
+            <span style={currentStyle}>Proxy Configuration</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
   ),
 };

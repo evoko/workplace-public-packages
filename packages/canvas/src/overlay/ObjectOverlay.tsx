@@ -1,11 +1,16 @@
-import { useEffect, useRef, type RefObject, type ReactNode } from 'react';
-import { Stack } from '@mui/material';
-import type { StackProps } from '@mui/material';
+import {
+  useEffect,
+  useRef,
+  type RefObject,
+  type ReactNode,
+  type CSSProperties,
+  type HTMLAttributes,
+} from 'react';
 import type { Canvas as FabricCanvas, FabricObject } from 'fabric';
 import { util } from 'fabric';
 import { useCanvasRef } from '../context/useCanvasRef';
 
-export interface ObjectOverlayProps extends StackProps {
+export interface ObjectOverlayProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Ref to the Fabric canvas instance.
    * Optional when rendered inside a {@link ViewCanvasProvider} or
@@ -19,13 +24,13 @@ export interface ObjectOverlayProps extends StackProps {
 }
 
 /**
- * A MUI `Stack` positioned absolutely over a Fabric canvas object, sized to
+ * A `div` positioned absolutely over a Fabric canvas object, sized to
  * the object's screen-space dimensions and kept in sync with pan, zoom, move,
  * scale, and rotate transforms.
  *
  * Default styles: `position: absolute`, `pointerEvents: none`,
  * `alignItems: center`, `justifyContent: center`, `zIndex: 1`.
- * All can be overridden via the `sx` prop.
+ * All can be overridden via the `style` prop.
  *
  * Must be rendered inside a container that is `position: relative` and wraps
  * the `<Canvas>` component (e.g. the `canvasOverlay` slot of `DemoLayout`).
@@ -50,21 +55,21 @@ export interface ObjectOverlayProps extends StackProps {
 export function ObjectOverlay({
   canvasRef: canvasRefProp,
   object,
-  sx,
+  style,
   children,
   ...rest
 }: ObjectOverlayProps) {
   const contextCanvasRef = useCanvasRef();
   const canvasRef = canvasRefProp ?? contextCanvasRef;
 
-  const stackRef = useRef<HTMLDivElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef?.current;
     if (!canvas || !object) return;
 
     function update() {
-      const el = stackRef.current;
+      const el = divRef.current;
       if (!el || !canvas || !object) return;
 
       const zoom = canvas.getZoom();
@@ -103,20 +108,20 @@ export function ObjectOverlay({
 
   if (!object) return null;
 
+  const baseStyle: CSSProperties = {
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+    ...style,
+  };
+
   return (
-    <Stack
-      ref={stackRef}
-      sx={{
-        position: 'absolute',
-        pointerEvents: 'none',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 1,
-        ...sx,
-      }}
-      {...rest}
-    >
+    <div ref={divRef} style={baseStyle} {...rest}>
       {children}
-    </Stack>
+    </div>
   );
 }

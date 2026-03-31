@@ -1,17 +1,13 @@
-import React, { createContext, forwardRef, useContext } from 'react';
-import {
-  Autocomplete,
-  AutocompleteProps,
-  Box,
-  Chip,
-  InputAdornment,
-  Paper,
-  PaperProps,
-  TextField,
-  Typography,
-} from '@mui/material';
-import type { SxProps, Theme } from '@mui/material/styles';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { KeyArrowDownIcon, KeyArrowUpIcon, SearchIcon } from '@bwp-web/assets';
+import { cn } from '@bwp-web/styles';
 
 // ---------------------------------------------------------------------------
 // Types
@@ -26,15 +22,30 @@ export interface BiampGlobalSearchOption {
   onClick?: () => void;
 }
 
-export type BiampGlobalSearchProps = Omit<
-  AutocompleteProps<BiampGlobalSearchOption, false, false, true>,
-  'renderInput' | 'renderOption' | 'PaperComponent'
-> & {
+export interface BiampGlobalSearchProps {
+  options?: BiampGlobalSearchOption[];
   placeholder?: string;
   noResultsText?: string;
-  inputSx?: SxProps<Theme>;
+  inputValue?: string;
+  loading?: boolean;
   clearOnSelect?: boolean;
-};
+  open?: boolean;
+  groupBy?: (option: BiampGlobalSearchOption) => string;
+  className?: string;
+  style?: React.CSSProperties;
+  onChange?: (
+    event: React.SyntheticEvent,
+    value: BiampGlobalSearchOption | string | null,
+    reason: string,
+  ) => void;
+  onInputChange?: (
+    event: React.SyntheticEvent | null,
+    value: string,
+    reason: string,
+  ) => void;
+  onOpen?: (event: React.SyntheticEvent) => void;
+  onClose?: (event: React.SyntheticEvent, reason: string) => void;
+}
 
 // ---------------------------------------------------------------------------
 // SearchContext
@@ -64,95 +75,82 @@ function KeyCap({
   variant?: 'icon' | 'text';
 }) {
   return (
-    <Box
-      component="kbd"
-      sx={{
+    <kbd
+      style={{
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
         minWidth: 20,
         height: 20,
-        px: variant === 'text' ? '8px' : 0.5,
-        borderRadius: '4px',
-        bgcolor: 'grey.100',
-        color: 'grey.400',
+        padding: variant === 'text' ? '0 8px' : '0 4px',
+        borderRadius: 'var(--solar-radius-sm)',
+        backgroundColor: 'var(--solar-neutral-100)',
+        color: 'var(--solar-neutral-400)',
         fontFamily: 'inherit',
-        fontSize: 'caption.fontSize',
+        fontSize: '0.75rem',
         fontStyle: 'normal',
-        fontWeight: (theme: Theme) => theme.typography.fontWeightMedium,
+        fontWeight: 500,
         border: 'none',
-        '& svg': { width: 12, height: 12 },
       }}
     >
-      {children}
-    </Box>
+      <span style={{ display: 'contents' }}>{children}</span>
+      <style>{`kbd > span > svg { width: 12px; height: 12px; }`}</style>
+    </kbd>
   );
 }
 
 // ---------------------------------------------------------------------------
-// BiampGlobalSearchPaper
+// DropdownFooter
 // ---------------------------------------------------------------------------
 
-const BiampGlobalSearchPaper = forwardRef<HTMLDivElement, PaperProps>(
-  function BiampGlobalSearchPaper({ children, ...props }, ref) {
-    const { hasOptions, loading, noResultsText } = useContext(SearchContext);
+function DropdownFooter() {
+  const { hasOptions } = useContext(SearchContext);
+  if (!hasOptions) return null;
 
-    return (
-      <Paper ref={ref} {...props}>
-        {hasOptions || loading ? (
-          children
-        ) : (
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ px: 2, py: 1.5 }}
-          >
-            {noResultsText}
-          </Typography>
-        )}
-        {hasOptions && (
-          <Box
-            sx={{
-              borderTop: ({ palette }) => `0.6px solid ${palette.divider}`,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 1,
-              p: 1.5,
-            }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                <KeyCap>
-                  <KeyArrowDownIcon />
-                </KeyCap>
-                <KeyCap>
-                  <KeyArrowUpIcon />
-                </KeyCap>
-              </Box>
-              <Typography
-                variant="caption"
-                fontWeight={(theme) => theme.typography.fontWeightMedium}
-                color="text.secondary"
-              >
-                Select
-              </Typography>
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <KeyCap variant="text">Enter</KeyCap>
-              <Typography
-                variant="caption"
-                fontWeight={(theme) => theme.typography.fontWeightMedium}
-                color="text.secondary"
-              >
-                Open
-              </Typography>
-            </Box>
-          </Box>
-        )}
-      </Paper>
-    );
-  },
-);
+  return (
+    <div
+      style={{
+        borderTop: `0.6px solid var(--solar-border-default)`,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8,
+        padding: 12,
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <KeyCap>
+            <KeyArrowDownIcon />
+          </KeyCap>
+          <KeyCap>
+            <KeyArrowUpIcon />
+          </KeyCap>
+        </div>
+        <span
+          style={{
+            fontSize: '0.75rem',
+            fontWeight: 500,
+            color: 'var(--solar-text-secondary)',
+          }}
+        >
+          Select
+        </span>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <KeyCap variant="text">Enter</KeyCap>
+        <span
+          style={{
+            fontSize: '0.75rem',
+            fontWeight: 500,
+            color: 'var(--solar-text-secondary)',
+          }}
+        >
+          Open
+        </span>
+      </div>
+    </div>
+  );
+}
 
 // ---------------------------------------------------------------------------
 // HighlightText
@@ -171,20 +169,44 @@ function HighlightText({ text, query }: { text: string; query: string }) {
   return (
     <>
       {before}
-      <Box
-        component="span"
-        sx={{
-          bgcolor: 'info.light',
-          borderRadius: '4px',
-          color: 'info.main',
-          paddingTop: '2px',
-          paddingBottom: '2px',
+      <span
+        style={{
+          backgroundColor: 'var(--solar-surface-info)',
+          borderRadius: 'var(--solar-radius-sm)',
+          color: 'var(--solar-text-info)',
+          paddingTop: 2,
+          paddingBottom: 2,
         }}
       >
         {match}
-      </Box>
+      </span>
       {after}
     </>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Chip
+// ---------------------------------------------------------------------------
+
+function SearchChip({ label }: { label: string }) {
+  return (
+    <span
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        backgroundColor: 'var(--solar-surface-info)',
+        borderRadius: 2,
+        border: '1px solid var(--solar-border-default)',
+        padding: '0 6px',
+        fontSize: '0.75rem',
+        fontWeight: 500,
+        lineHeight: '24px',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      {label}
+    </span>
   );
 }
 
@@ -194,32 +216,45 @@ function HighlightText({ text, query }: { text: string; query: string }) {
 
 function BiampGlobalSearchListItem({
   option,
-  props: liProps,
+  highlighted,
+  onSelect,
+  onMouseEnter,
 }: {
   option: BiampGlobalSearchOption;
-  props: React.HTMLAttributes<HTMLLIElement> & { key?: React.Key };
+  highlighted: boolean;
+  onSelect: (option: BiampGlobalSearchOption) => void;
+  onMouseEnter: () => void;
 }) {
   const { query } = useContext(SearchContext);
-  const { key, ...rest } = liProps;
   const maxChips = 3;
   const chips = option.associatedItems?.slice(0, maxChips) ?? [];
   const overflow = (option.associatedItems?.length ?? 0) - maxChips;
 
+  const showHoverContent = highlighted;
+
   return (
     <li
-      key={key}
-      {...rest}
+      role="option"
+      aria-selected={highlighted}
       style={{
         display: 'flex',
         alignItems: 'center',
         width: '100%',
         gap: 8,
-        ...rest.style,
+        padding: '6px 16px',
+        paddingRight: 0,
+        cursor: 'pointer',
+        backgroundColor: highlighted
+          ? 'var(--solar-surface-secondary)'
+          : 'transparent',
+        listStyle: 'none',
       }}
+      onClick={() => onSelect(option)}
+      onMouseEnter={onMouseEnter}
     >
       {option.icon && (
-        <Box
-          sx={{
+        <div
+          style={{
             width: 24,
             height: 24,
             flexShrink: 0,
@@ -229,92 +264,71 @@ function BiampGlobalSearchListItem({
           }}
         >
           {option.icon}
-        </Box>
+        </div>
       )}
 
-      <Typography variant="body2" noWrap sx={{ flexShrink: 0 }}>
+      <span
+        style={{
+          fontSize: '0.875rem',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          flexShrink: 0,
+        }}
+      >
         <HighlightText text={option.title} query={query} />
-      </Typography>
+      </span>
 
       {option.subtitle && (
-        <Typography
-          className="hoverContent"
-          variant="body2"
-          color="text.secondary"
-          noWrap
-          sx={{ flexShrink: 1, minWidth: 0, display: 'none' }}
+        <span
+          style={{
+            fontSize: '0.875rem',
+            color: 'var(--solar-text-secondary)',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            flexShrink: 1,
+            minWidth: 0,
+            display: showHoverContent ? 'block' : 'none',
+          }}
         >
           {option.subtitle}
-        </Typography>
+        </span>
       )}
 
       {chips.length > 0 && (
-        <Box
-          className="hoverContent"
-          sx={{
-            display: 'none',
+        <div
+          style={{
+            display: showHoverContent ? 'flex' : 'none',
             alignItems: 'center',
-            gap: 1,
-            ml: 'auto',
+            gap: 8,
+            marginLeft: 'auto',
             flexShrink: 0,
-            px: 2,
+            padding: '0 16px',
           }}
         >
           {chips.map((item, i) => (
-            <Chip
-              key={i}
-              size="small"
-              label={item.label}
-              sx={{
-                bgcolor: 'info.light',
-                borderRadius: '2px',
-                borderColor: ({ palette }: Theme) => palette.divider,
-                padding: '0px 6px',
-                '& .MuiChip-label': {
-                  typography: 'caption',
-                  fontWeight: (theme: Theme) =>
-                    theme.typography.fontWeightMedium,
-                },
-              }}
-            />
+            <SearchChip key={i} label={item.label} />
           ))}
-          {overflow > 0 && (
-            <Chip
-              size="small"
-              label={`+${overflow}`}
-              sx={{
-                bgcolor: 'info.light',
-                borderRadius: '2px',
-                borderColor: ({ palette }: Theme) => palette.divider,
-                padding: '0px 6px',
-                '& .MuiChip-label': {
-                  typography: 'caption',
-                  fontWeight: (theme: Theme) =>
-                    theme.typography.fontWeightMedium,
-                },
-              }}
-            />
-          )}
-        </Box>
+          {overflow > 0 && <SearchChip label={`+${overflow}`} />}
+        </div>
       )}
 
       {option.endIcon && (
-        <Box
-          className="endIcon"
-          sx={{
+        <div
+          style={{
             width: 48,
             height: 48,
             flexShrink: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            ml: chips.length > 0 ? 0 : 'auto',
-            visibility: 'hidden',
-            '& .MuiSvgIcon-root': { fontSize: 14 },
+            marginLeft: chips.length > 0 ? 0 : 'auto',
+            visibility: showHoverContent ? 'visible' : 'hidden',
           }}
         >
           {option.endIcon}
-        </Box>
+        </div>
       )}
     </li>
   );
@@ -331,26 +345,146 @@ export function BiampGlobalSearch({
   inputValue: inputValueProp,
   loading = false,
   clearOnSelect = true,
+  open: openProp,
+  className,
+  style,
   onChange,
   onInputChange,
-  ...props
+  onOpen,
+  onClose,
 }: BiampGlobalSearchProps) {
   const hasOptions = options.length > 0;
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const [internalOpen, setInternalOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const listboxRef = useRef<HTMLUListElement>(null);
 
-  const handleChange: typeof onChange = (event, value, reason, details) => {
-    if (value && typeof value !== 'string' && value.onClick) {
-      value.onClick();
-    }
-    onChange?.(event, value, reason, details);
-  };
+  // The open state is controlled externally if openProp is provided
+  const isOpen = openProp !== undefined ? openProp : internalOpen;
 
-  const handleInputChange: typeof onInputChange = (event, value, reason) => {
-    if (clearOnSelect && (reason === 'selectOption' || reason === 'reset')) {
-      onInputChange?.(event, '', reason);
-      return;
+  // Reset highlight when options change
+  useEffect(() => {
+    setHighlightedIndex(-1);
+  }, [options]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    if (!isOpen) return;
+
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        if (openProp === undefined) {
+          setInternalOpen(false);
+        }
+        onClose?.(event as unknown as React.SyntheticEvent, 'blur');
+      }
     }
-    onInputChange?.(event, value, reason);
-  };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen, onClose, openProp]);
+
+  // Scroll highlighted item into view
+  useEffect(() => {
+    if (highlightedIndex >= 0 && listboxRef.current) {
+      const items = listboxRef.current.querySelectorAll('[role="option"]');
+      items[highlightedIndex]?.scrollIntoView({ block: 'nearest' });
+    }
+  }, [highlightedIndex]);
+
+  const handleSelect = useCallback(
+    (option: BiampGlobalSearchOption) => {
+      if (option.onClick) {
+        option.onClick();
+      }
+      onChange?.(
+        new Event('change') as unknown as React.SyntheticEvent,
+        option,
+        'selectOption',
+      );
+
+      if (clearOnSelect) {
+        onInputChange?.(null, '', 'selectOption');
+      }
+
+      if (openProp === undefined) {
+        setInternalOpen(false);
+      }
+      onClose?.(
+        new Event('change') as unknown as React.SyntheticEvent,
+        'selectOption',
+      );
+    },
+    [onChange, onInputChange, clearOnSelect, openProp, onClose],
+  );
+
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      onInputChange?.(e, value, 'input');
+
+      if (value && !isOpen) {
+        if (openProp === undefined) {
+          setInternalOpen(true);
+        }
+        onOpen?.(e);
+      }
+    },
+    [onInputChange, isOpen, openProp, onOpen],
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (!isOpen || options.length === 0) return;
+
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          setHighlightedIndex((prev) =>
+            prev < options.length - 1 ? prev + 1 : 0,
+          );
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          setHighlightedIndex((prev) =>
+            prev > 0 ? prev - 1 : options.length - 1,
+          );
+          break;
+        case 'Enter':
+          e.preventDefault();
+          if (highlightedIndex >= 0 && highlightedIndex < options.length) {
+            handleSelect(options[highlightedIndex]);
+          }
+          break;
+        case 'Escape':
+          e.preventDefault();
+          if (openProp === undefined) {
+            setInternalOpen(false);
+          }
+          onClose?.(e, 'escape');
+          break;
+      }
+    },
+    [isOpen, options, highlightedIndex, handleSelect, openProp, onClose],
+  );
+
+  const handleFocus = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      if (inputValueProp && !isOpen) {
+        if (openProp === undefined) {
+          setInternalOpen(true);
+        }
+        onOpen?.(e);
+      }
+    },
+    [inputValueProp, isOpen, openProp, onOpen],
+  );
+
+  const showDropdown = isOpen && (hasOptions || loading || !hasOptions);
 
   return (
     <SearchContext.Provider
@@ -361,75 +495,126 @@ export function BiampGlobalSearch({
         query: inputValueProp ?? '',
       }}
     >
-      <Autocomplete<BiampGlobalSearchOption, false, false, true>
-        options={options}
-        inputValue={inputValueProp}
-        loading={loading}
-        onChange={handleChange}
-        onInputChange={handleInputChange}
-        loadingText={
-          <Typography variant="body2" color="text.secondary">
-            Loading…
-          </Typography>
-        }
-        freeSolo
-        filterOptions={(x) => x}
-        getOptionLabel={(option) =>
-          typeof option === 'string' ? option : option.title
-        }
-        noOptionsText={noResultsText}
-        slots={{ paper: BiampGlobalSearchPaper }}
-        slotProps={{
-          listbox: {
-            sx: {
-              '& .MuiAutocomplete-option': {
-                paddingRight: '0px !important',
-              },
-              '& li:hover .hoverContent, & li.Mui-focused .hoverContent': {
-                display: 'flex',
-              },
-              '& li:hover p.hoverContent, & li.Mui-focused p.hoverContent': {
-                display: 'block',
-              },
-              '& li:hover .endIcon, & li.Mui-focused .endIcon': {
-                visibility: 'visible',
-              },
-            },
-          },
-        }}
-        renderInput={(params) => (
-          <TextField
-            {...params}
+      <div
+        ref={containerRef}
+        className={cn(className)}
+        style={{ position: 'relative', ...style }}
+      >
+        {/* Input wrapper */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            border: '1px solid var(--solar-border-default)',
+            borderRadius: 'var(--solar-radius-base)',
+            backgroundColor: 'var(--solar-surface-default)',
+            padding: '0 12px',
+            height: 40,
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginRight: 8,
+              color: 'var(--solar-icon-tertiary)',
+            }}
+          >
+            <SearchIcon />
+          </div>
+          <input
+            ref={inputRef}
+            type="text"
+            role="combobox"
+            aria-expanded={isOpen}
+            aria-haspopup="listbox"
+            aria-autocomplete="list"
             placeholder={placeholder}
-            fullWidth
-            sx={{
-              '& .MuiOutlinedInput-root': { padding: '0px !important' },
-              '& .MuiInputBase-input': { paddingLeft: '8px !important' },
-            }}
-            slotProps={{
-              input: {
-                ...params.InputProps,
-                startAdornment: (
-                  <>
-                    <InputAdornment position="start">
-                      <SearchIcon />
-                    </InputAdornment>
-                    {params.InputProps.startAdornment}
-                  </>
-                ),
-              },
+            value={inputValueProp ?? ''}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+            onFocus={handleFocus}
+            style={{
+              flex: 1,
+              border: 'none',
+              outline: 'none',
+              backgroundColor: 'transparent',
+              fontSize: '0.875rem',
+              fontFamily: 'var(--solar-font-sans)',
+              color: 'var(--solar-text-default)',
+              padding: '8px 0',
+              width: '100%',
             }}
           />
+        </div>
+
+        {/* Dropdown */}
+        {showDropdown && isOpen && (
+          <div
+            style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              right: 0,
+              zIndex: 1300,
+              marginTop: 4,
+              backgroundColor: 'var(--solar-surface-default)',
+              borderRadius: 'var(--solar-radius-base)',
+              boxShadow: 'var(--solar-shadow-modal)',
+              border: '1px solid var(--solar-border-default)',
+              overflow: 'hidden',
+            }}
+          >
+            {hasOptions || loading ? (
+              <ul
+                ref={listboxRef}
+                role="listbox"
+                style={{
+                  margin: 0,
+                  padding: '8px 0',
+                  maxHeight: 300,
+                  overflowY: 'auto',
+                  listStyle: 'none',
+                }}
+              >
+                {loading && options.length === 0 ? (
+                  <li
+                    style={{
+                      padding: '6px 16px',
+                      fontSize: '0.875rem',
+                      color: 'var(--solar-text-secondary)',
+                    }}
+                  >
+                    Loading...
+                  </li>
+                ) : (
+                  options.map((option, index) => (
+                    <BiampGlobalSearchListItem
+                      key={`${option.title}-${index}`}
+                      option={option}
+                      highlighted={index === highlightedIndex}
+                      onSelect={handleSelect}
+                      onMouseEnter={() => setHighlightedIndex(index)}
+                    />
+                  ))
+                )}
+              </ul>
+            ) : (
+              <p
+                style={{
+                  fontSize: '0.875rem',
+                  color: 'var(--solar-text-secondary)',
+                  padding: '12px 16px',
+                  margin: 0,
+                }}
+              >
+                {noResultsText}
+              </p>
+            )}
+            <DropdownFooter />
+          </div>
         )}
-        renderOption={(optionProps, option) => (
-          <BiampGlobalSearchListItem
-            key={optionProps.key}
-            option={option as BiampGlobalSearchOption}
-            props={optionProps}
-          />
-        )}
-        {...props}
-      />
+      </div>
     </SearchContext.Provider>
   );
 }
