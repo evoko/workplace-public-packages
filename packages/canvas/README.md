@@ -287,7 +287,7 @@ When used inside a provider, all utility hooks read `canvasRef` from context aut
 | Serialization | `serializeCanvas`, `loadCanvas`, `enableScaledStrokes`                                                                                  |
 | Background    | `setBackgroundImage`, `fitViewportToBackground`, `getBackgroundSrc`, `setBackgroundContrast`, `setBackgroundInverted`, `resizeImageUrl` |
 | Keyboard      | `enableKeyboardShortcuts`, `deleteObjects`                                                                                              |
-| Overlay       | `OverlayContainer`, `ObjectOverlay`, `OverlayContent`, `FixedSizeContent`, `OverlayBadge`                                                |
+| Overlay       | `OverlayContainer`, `ObjectOverlay`, `OverlayContent`, `FixedSizeContent`, `OverlayBadge`                                               |
 
 ## Full Documentation
 
