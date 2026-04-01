@@ -4,6 +4,7 @@ import type { StackProps } from '@mui/material';
 import type { Canvas as FabricCanvas, FabricObject } from 'fabric';
 import { util } from 'fabric';
 import { useCanvasRef } from '../context/useCanvasRef';
+import { useIsInsideOverlayContainer } from './OverlayContainer';
 
 export interface ObjectOverlayProps extends StackProps {
   /**
@@ -22,6 +23,10 @@ export interface ObjectOverlayProps extends StackProps {
  * A MUI `Stack` positioned absolutely over a Fabric canvas object, sized to
  * the object's screen-space dimensions and kept in sync with pan, zoom, move,
  * scale, and rotate transforms.
+ *
+ * When rendered inside an {@link OverlayContainer}, positioning excludes the
+ * viewport translation (the container handles it), and position is cached so
+ * that pan-only frames require **zero DOM writes** on individual overlays.
  *
  * Default styles: `position: absolute`, `pointerEvents: none`,
  * `alignItems: center`, `justifyContent: center`, `zIndex: 1`.
@@ -56,11 +61,13 @@ export function ObjectOverlay({
 }: ObjectOverlayProps) {
   const contextCanvasRef = useCanvasRef();
   const canvasRef = canvasRefProp ?? contextCanvasRef;
+  const insideContainer = useIsInsideOverlayContainer();
 
   const stackRef = useRef<HTMLDivElement>(null);
-  // Track previous width/height to skip redundant writes during pan
-  // (only position changes during pan, not size).
-  const prevSize = useRef({ w: '', h: '' });
+  // Cache previous transform and size to skip redundant DOM writes.
+  // During pan inside an OverlayContainer, position is unchanged
+  // (container handles the translation) so all writes are skipped.
+  const prev = useRef({ transform: '', w: '', h: '' });
 
   useEffect(() => {
     const canvas = canvasRef?.current;
@@ -77,28 +84,43 @@ export function ObjectOverlay({
       const center = object.getCenterPoint();
       const actualWidth = (object.width ?? 0) * (object.scaleX ?? 1);
       const actualHeight = (object.height ?? 0) * (object.scaleY ?? 1);
-      const screenCoords = util.transformPoint(center, vt);
       const screenWidth = actualWidth * zoom;
       const screenHeight = actualHeight * zoom;
       const angle = object.angle ?? 0;
 
-      // Use transform for positioning — avoids layout recalculation,
-      // only triggers compositing (GPU-accelerated).
-      const tx = screenCoords.x - screenWidth / 2;
-      const ty = screenCoords.y - screenHeight / 2;
-      el.style.transform =
+      // When inside an OverlayContainer, the container applies the viewport
+      // translation (vt[4], vt[5]). Position relative to canvas origin only.
+      // Otherwise, include the full viewport transform for standalone usage.
+      let tx: number;
+      let ty: number;
+      if (insideContainer) {
+        tx = center.x * zoom - screenWidth / 2;
+        ty = center.y * zoom - screenHeight / 2;
+      } else {
+        const screenCoords = util.transformPoint(center, vt);
+        tx = screenCoords.x - screenWidth / 2;
+        ty = screenCoords.y - screenHeight / 2;
+      }
+
+      const transform =
         angle !== 0
           ? `translate(${tx}px, ${ty}px) rotate(${angle}deg)`
           : `translate(${tx}px, ${ty}px)`;
 
-      // Only write width/height when they actually change to avoid
-      // triggering ResizeObserver during pan (where only position changes).
+      // Skip DOM writes when nothing changed — critical for pan performance
+      // inside OverlayContainer where position is stable across pan frames.
+      if (transform !== prev.current.transform) {
+        el.style.transform = transform;
+        prev.current.transform = transform;
+      }
+
       const w = `${screenWidth}px`;
       const h = `${screenHeight}px`;
-      if (prevSize.current.w !== w || prevSize.current.h !== h) {
+      if (prev.current.w !== w || prev.current.h !== h) {
         el.style.width = w;
         el.style.height = h;
-        prevSize.current = { w, h };
+        prev.current.w = w;
+        prev.current.h = h;
       }
     }
 
@@ -114,9 +136,9 @@ export function ObjectOverlay({
       object.off('moving', update);
       object.off('scaling', update);
       object.off('rotating', update);
-      prevSize.current = { w: '', h: '' };
+      prev.current = { transform: '', w: '', h: '' };
     };
-  }, [canvasRef, object]);
+  }, [canvasRef, object, insideContainer]);
 
   if (!object) return null;
 

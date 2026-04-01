@@ -40,6 +40,8 @@ export { useCanvasRef } from './context';
 // --- Overlay ---
 export { ObjectOverlay } from './overlay';
 export type { ObjectOverlayProps } from './overlay';
+export { OverlayContainer } from './overlay';
+export type { OverlayContainerProps } from './overlay';
 export { OverlayContent } from './overlay';
 export type { OverlayContentProps } from './overlay';
 export { FixedSizeContent } from './overlay';
