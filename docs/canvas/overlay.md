@@ -2,12 +2,46 @@
 
 React components for positioning DOM content over Fabric canvas objects. Overlays stay in sync with pan, zoom, move, scale, and rotate transforms, letting you render rich UI (icons, labels, badges) on top of canvas shapes.
 
-The four components compose together:
+The five components compose together:
 
-1. **`ObjectOverlay`** — positions a container over a specific canvas object
-2. **`OverlayContent`** — scales its children to fit within the overlay bounds
-3. **`FixedSizeContent`** — keeps children at a constant screen size inside `OverlayContent`
-4. **`OverlayBadge`** — an absolutely-positioned badge with baseline-relative scaling
+1. **`OverlayContainer`** — optional wrapper that optimises panning performance for many overlays
+2. **`ObjectOverlay`** — positions a container over a specific canvas object
+3. **`OverlayContent`** — scales its children to fit within the overlay bounds
+4. **`FixedSizeContent`** — keeps children at a constant screen size inside `OverlayContent`
+5. **`OverlayBadge`** — an absolutely-positioned badge with baseline-relative scaling
+
+---
+
+## `OverlayContainer`
+
+An optional wrapper for `ObjectOverlay` elements that optimises panning performance. During pan, every overlay moves by the same pixel delta (the viewport translation changes, but object positions and zoom stay the same). `OverlayContainer` applies the viewport translation on a single wrapper element, so panning requires **one DOM write** instead of one per overlay.
+
+```tsx
+import { OverlayContainer, ObjectOverlay, OverlayContent } from '@bwp-web/canvas';
+
+<OverlayContainer canvasRef={canvasRef}>
+  {objects.map((obj) => (
+    <ObjectOverlay key={obj.data?.id} object={obj}>
+      <OverlayContent>
+        <MyLabel>{obj.data?.name}</MyLabel>
+      </OverlayContent>
+    </ObjectOverlay>
+  ))}
+</OverlayContainer>
+```
+
+### Props (`OverlayContainerProps`)
+
+| Prop | Type | Required | Description |
+|---|---|---|---|
+| `canvasRef` | `RefObject<FabricCanvas \| null>` | No | Ref to the Fabric canvas instance. Optional when used inside a provider — read from context automatically |
+| `children` | `ReactNode` | No | `ObjectOverlay` elements to wrap |
+
+### How it works
+
+The container renders a `position: absolute` wrapper that applies `transform: translate(vt[4], vt[5])` — the viewport translation — on every `after:render` event. `ObjectOverlay` instances inside the container detect it via React context and position themselves relative to the canvas origin (without viewport translation). During pan, only the container's transform changes (1 DOM write); individual overlays cache their position and skip redundant writes since their base coordinates haven't changed.
+
+Without `OverlayContainer`, `ObjectOverlay` works standalone — it includes the full viewport transform in its own position, which is correct but requires a DOM write per overlay per pan frame.
 
 ---
 
@@ -51,7 +85,9 @@ Extends MUI `StackProps`.
 
 ### How it works
 
-The component subscribes to `after:render` and per-object `moving`/`scaling`/`rotating` events. On each update it computes the object's screen-space position, size, and rotation via `util.transformPoint` and applies them as inline styles.
+The component subscribes to `after:render` and per-object `moving`/`scaling`/`rotating` events. On each update it computes the object's screen-space position, size, and rotation and applies them as inline styles using `transform: translate()` (GPU-composited, no layout recalculation). Width and height are only written when they actually change, preventing unnecessary `ResizeObserver` notifications during pan.
+
+When inside an `OverlayContainer`, positioning excludes the viewport translation (the container handles it) and the previous transform is cached — during pan, all individual overlay writes are skipped entirely.
 
 ---
 
@@ -63,7 +99,7 @@ Scales its children to fit within the parent's bounds (typically an `ObjectOverl
 import { OverlayContent } from '@bwp-web/canvas';
 
 <ObjectOverlay object={obj}>
-  <OverlayContent padding={4} maxScale={2}>
+  <OverlayContent padding={6} maxScale={2}>
     <MyBadge>{label}</MyBadge>
   </OverlayContent>
 </ObjectOverlay>
@@ -76,7 +112,7 @@ Extends MUI `StackProps`.
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `children` | `ReactNode` | — | Content to render |
-| `padding` | `number` | `4` | Padding in pixels between the content and the parent bounds |
+| `padding` | `number` | `6` | Padding in pixels between the content and the parent bounds |
 | `maxScale` | `number` | `2` | Maximum scale factor applied to the content |
 
 ### CSS custom property: `--overlay-scale`
@@ -172,8 +208,8 @@ Extends MUI `StackProps`.
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `children` | `ReactNode` | — | Content to render |
-| `maxScale` | `number` | `2` | Maximum scale factor |
-| `minScale` | `number` | `0.75` | Minimum scale factor |
+| `maxScale` | `number` | `1.5` | Maximum scale factor |
+| `minScale` | `number` | `0.5` | Minimum scale factor |
 | `top` | `number \| string` | — | Top offset (number → px, string → CSS value) |
 | `right` | `number \| string` | — | Right offset |
 | `bottom` | `number \| string` | — | Bottom offset |
@@ -201,30 +237,33 @@ Extends MUI `StackProps`.
 
 ## Composing overlays
 
-A typical setup renders `ObjectOverlay` for each canvas object, with `OverlayContent` handling scaling, `FixedSizeContent` for labels, and `OverlayBadge` for status indicators:
+A typical setup wraps all overlays in an `OverlayContainer` for pan performance, then renders `ObjectOverlay` for each canvas object with `OverlayContent` handling scaling, `FixedSizeContent` for labels, and `OverlayBadge` for status indicators:
 
 ```tsx
-{objects.map((obj) => (
-  <ObjectOverlay key={obj.data?.id} object={obj}>
-    <OverlayContent>
-      <StatusIcon status={obj.data?.status} />
-      <FixedSizeContent>
-        <Typography noWrap sx={{ fontSize: 12, fontWeight: 600 }}>
-          {obj.data?.name}
-        </Typography>
-        <Typography noWrap sx={{ fontSize: 10, color: 'text.secondary' }}>
-          {obj.data?.subtitle}
-        </Typography>
-      </FixedSizeContent>
-    </OverlayContent>
-    <OverlayBadge top={-5} right={-5}>
-      <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: 'green' }} />
-    </OverlayBadge>
-  </ObjectOverlay>
-))}
+<OverlayContainer>
+  {objects.map((obj) => (
+    <ObjectOverlay key={obj.data?.id} object={obj}>
+      <OverlayContent>
+        <StatusIcon status={obj.data?.status} />
+        <FixedSizeContent>
+          <Typography noWrap sx={{ fontSize: 12, fontWeight: 600 }}>
+            {obj.data?.name}
+          </Typography>
+          <Typography noWrap sx={{ fontSize: 10, color: 'text.secondary' }}>
+            {obj.data?.subtitle}
+          </Typography>
+        </FixedSizeContent>
+      </OverlayContent>
+      <OverlayBadge top={-5} right={-5}>
+        <Box sx={{ width: 10, height: 10, borderRadius: '50%', bgcolor: 'green' }} />
+      </OverlayBadge>
+    </ObjectOverlay>
+  ))}
+</OverlayContainer>
 ```
 
 In this pattern:
+- `OverlayContainer` handles viewport translation during pan — one DOM write instead of one per overlay
 - `StatusIcon` scales up/down with the object size
 - The `Typography` labels stay at constant font sizes (12px / 10px), truncate with ellipsis when too wide, and hide entirely when the object is too small to fit them vertically
 - The `OverlayBadge` dot stays anchored at the top-right corner and scales proportionally with zoom

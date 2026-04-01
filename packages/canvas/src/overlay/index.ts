@@ -1,6 +1,9 @@
 export { ObjectOverlay } from './ObjectOverlay';
 export type { ObjectOverlayProps } from './ObjectOverlay';
 
+export { OverlayContainer } from './OverlayContainer';
+export type { OverlayContainerProps } from './OverlayContainer';
+
 export { OverlayContent } from './OverlayContent';
 export type { OverlayContentProps } from './OverlayContent';
 

@@ -4,6 +4,7 @@ import type { StackProps } from '@mui/material';
 import type { Canvas as FabricCanvas, FabricObject } from 'fabric';
 import { util } from 'fabric';
 import { useCanvasRef } from '../context/useCanvasRef';
+import { useIsInsideOverlayContainer } from './OverlayContainer';
 
 export interface ObjectOverlayProps extends StackProps {
   /**
@@ -22,6 +23,10 @@ export interface ObjectOverlayProps extends StackProps {
  * A MUI `Stack` positioned absolutely over a Fabric canvas object, sized to
  * the object's screen-space dimensions and kept in sync with pan, zoom, move,
  * scale, and rotate transforms.
+ *
+ * When rendered inside an {@link OverlayContainer}, positioning excludes the
+ * viewport translation (the container handles it), and position is cached so
+ * that pan-only frames require **zero DOM writes** on individual overlays.
  *
  * Default styles: `position: absolute`, `pointerEvents: none`,
  * `alignItems: center`, `justifyContent: center`, `zIndex: 1`.
@@ -56,8 +61,13 @@ export function ObjectOverlay({
 }: ObjectOverlayProps) {
   const contextCanvasRef = useCanvasRef();
   const canvasRef = canvasRefProp ?? contextCanvasRef;
+  const insideContainer = useIsInsideOverlayContainer();
 
   const stackRef = useRef<HTMLDivElement>(null);
+  // Cache previous transform and size to skip redundant DOM writes.
+  // During pan inside an OverlayContainer, position is unchanged
+  // (container handles the translation) so all writes are skipped.
+  const prev = useRef({ transform: '', w: '', h: '' });
 
   useEffect(() => {
     const canvas = canvasRef?.current;
@@ -74,16 +84,44 @@ export function ObjectOverlay({
       const center = object.getCenterPoint();
       const actualWidth = (object.width ?? 0) * (object.scaleX ?? 1);
       const actualHeight = (object.height ?? 0) * (object.scaleY ?? 1);
-      const screenCoords = util.transformPoint(center, vt);
       const screenWidth = actualWidth * zoom;
       const screenHeight = actualHeight * zoom;
       const angle = object.angle ?? 0;
 
-      el.style.left = `${screenCoords.x - screenWidth / 2}px`;
-      el.style.top = `${screenCoords.y - screenHeight / 2}px`;
-      el.style.width = `${screenWidth}px`;
-      el.style.height = `${screenHeight}px`;
-      el.style.transform = angle !== 0 ? `rotate(${angle}deg)` : '';
+      // When inside an OverlayContainer, the container applies the viewport
+      // translation (vt[4], vt[5]). Position relative to canvas origin only.
+      // Otherwise, include the full viewport transform for standalone usage.
+      let tx: number;
+      let ty: number;
+      if (insideContainer) {
+        tx = center.x * zoom - screenWidth / 2;
+        ty = center.y * zoom - screenHeight / 2;
+      } else {
+        const screenCoords = util.transformPoint(center, vt);
+        tx = screenCoords.x - screenWidth / 2;
+        ty = screenCoords.y - screenHeight / 2;
+      }
+
+      const transform =
+        angle !== 0
+          ? `translate(${tx}px, ${ty}px) rotate(${angle}deg)`
+          : `translate(${tx}px, ${ty}px)`;
+
+      // Skip DOM writes when nothing changed — critical for pan performance
+      // inside OverlayContainer where position is stable across pan frames.
+      if (transform !== prev.current.transform) {
+        el.style.transform = transform;
+        prev.current.transform = transform;
+      }
+
+      const w = `${screenWidth}px`;
+      const h = `${screenHeight}px`;
+      if (prev.current.w !== w || prev.current.h !== h) {
+        el.style.width = w;
+        el.style.height = h;
+        prev.current.w = w;
+        prev.current.h = h;
+      }
     }
 
     update();
@@ -98,8 +136,9 @@ export function ObjectOverlay({
       object.off('moving', update);
       object.off('scaling', update);
       object.off('rotating', update);
+      prev.current = { transform: '', w: '', h: '' };
     };
-  }, [canvasRef, object]);
+  }, [canvasRef, object, insideContainer]);
 
   if (!object) return null;
 
@@ -108,10 +147,13 @@ export function ObjectOverlay({
       ref={stackRef}
       sx={{
         position: 'absolute',
+        left: 0,
+        top: 0,
         pointerEvents: 'none',
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 1,
+        willChange: 'transform',
         ...sx,
       }}
       {...rest}

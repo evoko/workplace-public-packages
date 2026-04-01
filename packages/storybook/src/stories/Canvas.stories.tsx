@@ -28,6 +28,7 @@ import {
   OverlayContent,
   FixedSizeContent,
   OverlayBadge,
+  OverlayContainer,
   createRectangle,
   createRectangleAtPoint,
   editRectangle,
@@ -1322,67 +1323,70 @@ function OverlayDemoContent() {
               }
             }}
           />
-          {showOverlays &&
-            objects.map((obj) => (
-              <ObjectOverlay
-                key={obj.data?.id}
-                canvasRef={canvas.canvasRef}
-                object={obj}
-              >
-                <OverlayContent>
-                  {/* Icon scales with OverlayContent */}
-                  <Box
-                    sx={{
-                      width: 24,
-                      height: 24,
-                      borderRadius: '50%',
-                      bgcolor: '#fff',
-                      flexShrink: 0,
-                    }}
-                  />
-                  {/* Text stays at fixed size via FixedSizeContent */}
-                  <FixedSizeContent>
-                    <Typography
-                      sx={{
-                        fontSize: 12,
-                        fontWeight: 600,
-                        whiteSpace: 'nowrap',
-                      }}
-                    >
-                      {obj.data?.id ?? ''}
-                    </Typography>
-                    {obj.data?.id && OVERLAY_SUBTITLES[obj.data.id] && (
-                      <Typography
-                        sx={{
-                          fontSize: 10,
-                          whiteSpace: 'nowrap',
-                          color: 'text.secondary',
-                        }}
-                      >
-                        {OVERLAY_SUBTITLES[obj.data.id]}
-                      </Typography>
-                    )}
-                  </FixedSizeContent>
-                </OverlayContent>
-                {obj.data?.id && OVERLAY_BADGES[obj.data.id] && (
-                  <OverlayBadge
-                    circular={obj.shapeType === 'circle'}
-                    top={obj.shapeType === 'circle' ? 0 : -6}
-                    right={obj.shapeType === 'circle' ? 0 : -6}
-                  >
+          {showOverlays && (
+            <OverlayContainer canvasRef={canvas.canvasRef}>
+              {objects.map((obj) => (
+                <ObjectOverlay
+                  key={obj.data?.id}
+                  canvasRef={canvas.canvasRef}
+                  object={obj}
+                >
+                  <OverlayContent>
+                    {/* Icon scales with OverlayContent */}
                     <Box
                       sx={{
-                        width: 12,
-                        height: 12,
+                        width: 24,
+                        height: 24,
                         borderRadius: '50%',
-                        bgcolor: OVERLAY_BADGES[obj.data.id],
-                        border: '1.5px solid white',
+                        bgcolor: '#fff',
+                        flexShrink: 0,
                       }}
                     />
-                  </OverlayBadge>
-                )}
-              </ObjectOverlay>
-            ))}
+                    {/* Text stays at fixed size via FixedSizeContent */}
+                    <FixedSizeContent>
+                      <Typography
+                        sx={{
+                          fontSize: 12,
+                          fontWeight: 600,
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {obj.data?.id ?? ''}
+                      </Typography>
+                      {obj.data?.id && OVERLAY_SUBTITLES[obj.data.id] && (
+                        <Typography
+                          sx={{
+                            fontSize: 10,
+                            whiteSpace: 'nowrap',
+                            color: 'text.secondary',
+                          }}
+                        >
+                          {OVERLAY_SUBTITLES[obj.data.id]}
+                        </Typography>
+                      )}
+                    </FixedSizeContent>
+                  </OverlayContent>
+                  {obj.data?.id && OVERLAY_BADGES[obj.data.id] && (
+                    <OverlayBadge
+                      circular={obj.shapeType === 'circle'}
+                      top={obj.shapeType === 'circle' ? 0 : -6}
+                      right={obj.shapeType === 'circle' ? 0 : -6}
+                    >
+                      <Box
+                        sx={{
+                          width: 12,
+                          height: 12,
+                          borderRadius: '50%',
+                          bgcolor: OVERLAY_BADGES[obj.data.id],
+                          border: '1.5px solid white',
+                        }}
+                      />
+                    </OverlayBadge>
+                  )}
+                </ObjectOverlay>
+              ))}
+            </OverlayContainer>
+          )}
         </>
       }
       sidebar={
@@ -1530,48 +1534,51 @@ function StressTestContent() {
             onZoomOut={canvas.viewport.zoomOut}
             onReset={canvas.viewport.reset}
           />
-          {showOverlays &&
-            objects.map((obj, i) => (
-              <ObjectOverlay
-                key={obj.data?.id}
-                canvasRef={canvas.canvasRef}
-                object={obj}
-              >
-                <OverlayContent>
-                  <Box
-                    sx={{
-                      width: 24,
-                      height: 24,
-                      borderRadius: '50%',
-                      bgcolor: '#fff',
-                      flexShrink: 0,
-                    }}
-                  />
-                  <FixedSizeContent>
-                    <Typography
+          {showOverlays && (
+            <OverlayContainer canvasRef={canvas.canvasRef}>
+              {objects.map((obj, i) => (
+                <ObjectOverlay
+                  key={obj.data?.id}
+                  canvasRef={canvas.canvasRef}
+                  object={obj}
+                >
+                  <OverlayContent>
+                    <Box
                       sx={{
-                        fontSize: 12,
-                        fontWeight: 600,
-                        whiteSpace: 'nowrap',
+                        width: 24,
+                        height: 24,
+                        borderRadius: '50%',
+                        bgcolor: '#fff',
+                        flexShrink: 0,
                       }}
-                    >
-                      {obj.data?.id}
-                    </Typography>
-                  </FixedSizeContent>
-                </OverlayContent>
-                <OverlayBadge top={-6} right={-6}>
-                  <Box
-                    sx={{
-                      width: 12,
-                      height: 12,
-                      borderRadius: '50%',
-                      bgcolor: BADGE_COLORS[i % BADGE_COLORS.length],
-                      border: '1.5px solid white',
-                    }}
-                  />
-                </OverlayBadge>
-              </ObjectOverlay>
-            ))}
+                    />
+                    <FixedSizeContent>
+                      <Typography
+                        sx={{
+                          fontSize: 12,
+                          fontWeight: 600,
+                          whiteSpace: 'nowrap',
+                        }}
+                      >
+                        {obj.data?.id}
+                      </Typography>
+                    </FixedSizeContent>
+                  </OverlayContent>
+                  <OverlayBadge top={-6} right={-6}>
+                    <Box
+                      sx={{
+                        width: 12,
+                        height: 12,
+                        borderRadius: '50%',
+                        bgcolor: BADGE_COLORS[i % BADGE_COLORS.length],
+                        border: '1.5px solid white',
+                      }}
+                    />
+                  </OverlayBadge>
+                </ObjectOverlay>
+              ))}
+            </OverlayContainer>
+          )}
         </>
       }
       sidebar={
