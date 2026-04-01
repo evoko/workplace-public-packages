@@ -63,7 +63,7 @@ Scales its children to fit within the parent's bounds (typically an `ObjectOverl
 import { OverlayContent } from '@bwp-web/canvas';
 
 <ObjectOverlay object={obj}>
-  <OverlayContent padding={4} maxScale={2}>
+  <OverlayContent padding={6} maxScale={2}>
     <MyBadge>{label}</MyBadge>
   </OverlayContent>
 </ObjectOverlay>
@@ -76,7 +76,7 @@ Extends MUI `StackProps`.
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `children` | `ReactNode` | — | Content to render |
-| `padding` | `number` | `4` | Padding in pixels between the content and the parent bounds |
+| `padding` | `number` | `6` | Padding in pixels between the content and the parent bounds |
 | `maxScale` | `number` | `2` | Maximum scale factor applied to the content |
 
 ### CSS custom property: `--overlay-scale`
@@ -172,8 +172,8 @@ Extends MUI `StackProps`.
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `children` | `ReactNode` | — | Content to render |
-| `maxScale` | `number` | `2` | Maximum scale factor |
-| `minScale` | `number` | `0.75` | Minimum scale factor |
+| `maxScale` | `number` | `1.5` | Maximum scale factor |
+| `minScale` | `number` | `0.5` | Minimum scale factor |
 | `top` | `number \| string` | — | Top offset (number → px, string → CSS value) |
 | `right` | `number \| string` | — | Right offset |
 | `bottom` | `number \| string` | — | Bottom offset |

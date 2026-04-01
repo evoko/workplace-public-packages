@@ -4,11 +4,11 @@ import { useEffect, useRef, type ReactNode } from 'react';
 export interface OverlayBadgeProps extends StackProps {
   children?: ReactNode;
   /**
-   * Maximum scale factor applied to the badge. Default: 2
+   * Maximum scale factor applied to the badge. Default: 1.5
    */
   maxScale?: number;
   /**
-   * Minimum scale factor applied to the badge. Default: 0.75
+   * Minimum scale factor applied to the badge. Default: 0.5
    */
   minScale?: number;
   /** Top offset. Number values are interpreted as pixels. */
@@ -102,8 +102,8 @@ function toNum(v: number | string | undefined): number {
  */
 export function OverlayBadge({
   children,
-  maxScale = 2,
-  minScale = 0.75,
+  maxScale = 1.5,
+  minScale = 0.5,
   top,
   right,
   bottom,

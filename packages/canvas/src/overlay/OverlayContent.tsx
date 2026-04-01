@@ -3,7 +3,7 @@ import { useEffect, useRef, type ReactNode } from 'react';
 
 export interface OverlayContentProps extends StackProps {
   children?: ReactNode;
-  /** Padding in pixels between the content and the parent bounds. Default: 4 */
+  /** Padding in pixels between the content and the parent bounds. Default: 6 */
   padding?: number;
   /** Maximum scale factor applied to the content. Default: 2 */
   maxScale?: number;
@@ -18,7 +18,7 @@ export interface OverlayContentProps extends StackProps {
  * @example
  * ```tsx
  * <ObjectOverlay object={obj}>
- *   <OverlayContent padding={4} maxScale={2}>
+ *   <OverlayContent padding={6} maxScale={2}>
  *     <MyBadge>{label}</MyBadge>
  *   </OverlayContent>
  * </ObjectOverlay>
@@ -26,7 +26,7 @@ export interface OverlayContentProps extends StackProps {
  */
 export function OverlayContent({
   children,
-  padding = 4,
+  padding = 6,
   maxScale = 2,
   sx,
   ...rest
