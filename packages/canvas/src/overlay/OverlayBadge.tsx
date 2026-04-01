@@ -73,6 +73,21 @@ function toNum(v: number | string | undefined): number {
 }
 
 /**
+ * Read the `--overlay-scale` CSS custom property by walking up the DOM and
+ * checking inline styles. This avoids `getComputedStyle` which forces a
+ * synchronous style recalculation — significant with many overlays.
+ */
+function readOverlayScale(el: HTMLElement): number {
+  let node: HTMLElement | null = el.parentElement;
+  while (node) {
+    const val = node.style.getPropertyValue('--overlay-scale');
+    if (val) return parseFloat(val) || 1;
+    node = node.parentElement;
+  }
+  return 1;
+}
+
+/**
  * An absolutely-positioned badge that scales proportionally within an
  * `ObjectOverlay` (or `OverlayContent`). The badge captures the overlay's
  * initial dimensions as a baseline and scales relative to that — growing
@@ -128,49 +143,56 @@ export function OverlayBadge({
     const ancestor = el.parentElement;
     if (!ancestor) return;
 
-    function update() {
-      requestAnimationFrame(() => {
-        if (!el || !ancestor) return;
+    let rafId = 0;
 
-        const containerW = ancestor.clientWidth;
-        const containerH = ancestor.clientHeight;
+    function doUpdate() {
+      if (!el || !ancestor) return;
 
-        if (containerW <= 0 || containerH <= 0) {
-          el.style.transform = '';
-          return;
-        }
+      const containerW = ancestor.clientWidth;
+      const containerH = ancestor.clientHeight;
 
-        // Record the first valid measurement as the baseline.
-        if (!baseSize.current) {
-          baseSize.current = { w: containerW, h: containerH };
-        }
+      if (containerW <= 0 || containerH <= 0) {
+        el.style.transform = '';
+        return;
+      }
 
-        // Scale relative to the baseline, clamped to [minScale, maxScale].
-        const ratio = Math.min(
-          containerW / baseSize.current.w,
-          containerH / baseSize.current.h,
-        );
-        const ownScale = Math.max(minScale, Math.min(ratio, maxScale));
+      // Record the first valid measurement as the baseline.
+      if (!baseSize.current) {
+        baseSize.current = { w: containerW, h: containerH };
+      }
 
-        // When inside OverlayContent the parent's scale transform creates a
-        // containing block. Counter-scale so the badge keeps its own size.
-        const overlayScale =
-          parseFloat(
-            getComputedStyle(el).getPropertyValue('--overlay-scale'),
-          ) || 1;
+      // Scale relative to the baseline, clamped to [minScale, maxScale].
+      const ratio = Math.min(
+        containerW / baseSize.current.w,
+        containerH / baseSize.current.h,
+      );
+      const ownScale = Math.max(minScale, Math.min(ratio, maxScale));
 
-        const scale = `scale(${ownScale / overlayScale})`;
-        el.style.transform = circular
-          ? `translate(-50%, -50%) ${scale}`
-          : scale;
-      });
+      // When inside OverlayContent the parent's scale transform creates a
+      // containing block. Counter-scale so the badge keeps its own size.
+      // Uses inline style walk instead of getComputedStyle to avoid
+      // forced style recalculation.
+      const overlayScale = readOverlayScale(el);
+
+      const scale = `scale(${ownScale / overlayScale})`;
+      el.style.transform = circular ? `translate(-50%, -50%) ${scale}` : scale;
     }
 
-    const observer = new ResizeObserver(update);
+    function scheduleUpdate() {
+      if (!rafId) {
+        rafId = requestAnimationFrame(() => {
+          rafId = 0;
+          doUpdate();
+        });
+      }
+    }
+
+    const observer = new ResizeObserver(scheduleUpdate);
     observer.observe(ancestor);
-    update();
+    scheduleUpdate();
 
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       observer.disconnect();
       baseSize.current = null;
     };

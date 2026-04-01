@@ -83,50 +83,67 @@ export function FixedSizeContent({
     // Measure total content height while the element is visible on mount.
     totalContentHeightRef.current = el.parentElement?.scrollHeight ?? 0;
 
-    function check() {
-      // Defer to the next frame so OverlayContent's ResizeObserver has
-      // already updated --overlay-scale.
-      requestAnimationFrame(() => {
-        if (!el) return;
-        const containerRect = ancestor.getBoundingClientRect();
+    let rafId = 0;
 
-        // Constrain width to the container (minus padding) so text truncates
-        // with ellipsis before reaching the edge.
-        el.style.maxWidth = `${Math.max(0, containerRect.width - truncationPadding * 2)}px`;
+    function doCheck() {
+      if (!el) return;
+      // Use clientWidth/clientHeight instead of getBoundingClientRect —
+      // cheaper (no transform computation) and gives CSS-pixel dimensions
+      // which are correct for text truncation and overflow checks.
+      const containerW = ancestor.clientWidth;
+      const containerH = ancestor.clientHeight;
 
-        if (!hideOnOverflow) return;
+      // Constrain width to the container (minus padding) so text truncates
+      // with ellipsis before reaching the edge.
+      el.style.maxWidth = `${Math.max(0, containerW - truncationPadding * 2)}px`;
 
-        // Check whether the total content (siblings + this text) fits
-        // vertically at natural size.  This comparison is stable because
-        // totalContentHeightRef is only updated while the element is visible,
-        // so the cached value does not change when the element hides.
-        const fits = containerRect.height >= totalContentHeightRef.current;
+      if (!hideOnOverflow) return;
 
-        if (fits && el.style.display === 'none') {
-          // Show, then re-measure in case content changed while hidden.
-          el.style.display = '';
-          totalContentHeightRef.current = el.parentElement?.scrollHeight ?? 0;
-          // Re-check with the updated measurement to prevent showing
-          // when the content barely doesn't fit.
-          if (containerRect.height < totalContentHeightRef.current) {
-            el.style.display = 'none';
-          }
-        } else if (!fits && el.style.display !== 'none') {
+      // Check whether the total content (siblings + this text) fits
+      // vertically at natural size.  This comparison is stable because
+      // totalContentHeightRef is only updated while the element is visible,
+      // so the cached value does not change when the element hides.
+      const fits = containerH >= totalContentHeightRef.current;
+
+      if (fits && el.style.display === 'none') {
+        // Show, then re-measure in case content changed while hidden.
+        el.style.display = '';
+        totalContentHeightRef.current = el.parentElement?.scrollHeight ?? 0;
+        // Re-check with the updated measurement to prevent showing
+        // when the content barely doesn't fit.
+        if (containerH < totalContentHeightRef.current) {
           el.style.display = 'none';
         }
+      } else if (!fits && el.style.display !== 'none') {
+        el.style.display = 'none';
+      }
 
-        // Keep the cache fresh while visible.
-        if (el.style.display !== 'none') {
-          totalContentHeightRef.current = el.parentElement?.scrollHeight ?? 0;
-        }
-      });
+      // Keep the cache fresh while visible.
+      if (el.style.display !== 'none') {
+        totalContentHeightRef.current = el.parentElement?.scrollHeight ?? 0;
+      }
     }
 
-    const observer = new ResizeObserver(check);
-    observer.observe(ancestor);
-    check();
+    // Defer to the next frame so OverlayContent's ResizeObserver has
+    // already updated --overlay-scale. Coalesce multiple notifications
+    // into a single rAF callback.
+    function scheduleCheck() {
+      if (!rafId) {
+        rafId = requestAnimationFrame(() => {
+          rafId = 0;
+          doCheck();
+        });
+      }
+    }
 
-    return () => observer.disconnect();
+    const observer = new ResizeObserver(scheduleCheck);
+    observer.observe(ancestor);
+    scheduleCheck();
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      observer.disconnect();
+    };
   }, [hideOnOverflow, truncationPadding]);
 
   return (

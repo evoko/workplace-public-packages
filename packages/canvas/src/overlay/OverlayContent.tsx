@@ -39,16 +39,18 @@ export function OverlayContent({
     const inner = innerRef.current;
     if (!outer || !inner) return;
 
+    // Cache natural content dimensions to avoid expensive
+    // scrollWidth/scrollHeight reads on every container resize (e.g. zoom).
+    // These only change when the inner content changes (children toggle
+    // display, text changes, etc.), not when the container resizes.
+    let natW = 0;
+    let natH = 0;
+
     function fit() {
       if (!outer || !inner) return;
 
       const containerW = outer.clientWidth;
       const containerH = outer.clientHeight;
-
-      // scrollWidth/scrollHeight give the intrinsic size regardless of
-      // CSS transforms, so we always get the natural content dimensions.
-      const natW = inner.scrollWidth;
-      const natH = inner.scrollHeight;
 
       if (natW === 0 || natH === 0 || containerW <= 0 || containerH <= 0) {
         inner.style.transform = '';
@@ -68,11 +70,25 @@ export function OverlayContent({
       inner.style.setProperty('--overlay-scale', String(scale));
     }
 
-    const observer = new ResizeObserver(fit);
+    const observer = new ResizeObserver((entries) => {
+      // Only re-measure natural content dimensions when the inner element
+      // changes (e.g. FixedSizeContent collapsing via display:none).
+      // Container-only resizes (zoom/pan) reuse the cached values.
+      for (const entry of entries) {
+        if (entry.target === inner) {
+          natW = inner.scrollWidth;
+          natH = inner.scrollHeight;
+          break;
+        }
+      }
+      fit();
+    });
     observer.observe(outer);
-    // Also observe the inner Stack so we recalculate when children toggle
-    // display (e.g. FixedSizeContent collapsing via display:none).
     observer.observe(inner);
+
+    // Initial measurement and fit.
+    natW = inner.scrollWidth;
+    natH = inner.scrollHeight;
     fit();
 
     return () => observer.disconnect();

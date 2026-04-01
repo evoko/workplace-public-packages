@@ -58,6 +58,9 @@ export function ObjectOverlay({
   const canvasRef = canvasRefProp ?? contextCanvasRef;
 
   const stackRef = useRef<HTMLDivElement>(null);
+  // Track previous width/height to skip redundant writes during pan
+  // (only position changes during pan, not size).
+  const prevSize = useRef({ w: '', h: '' });
 
   useEffect(() => {
     const canvas = canvasRef?.current;
@@ -79,11 +82,24 @@ export function ObjectOverlay({
       const screenHeight = actualHeight * zoom;
       const angle = object.angle ?? 0;
 
-      el.style.left = `${screenCoords.x - screenWidth / 2}px`;
-      el.style.top = `${screenCoords.y - screenHeight / 2}px`;
-      el.style.width = `${screenWidth}px`;
-      el.style.height = `${screenHeight}px`;
-      el.style.transform = angle !== 0 ? `rotate(${angle}deg)` : '';
+      // Use transform for positioning — avoids layout recalculation,
+      // only triggers compositing (GPU-accelerated).
+      const tx = screenCoords.x - screenWidth / 2;
+      const ty = screenCoords.y - screenHeight / 2;
+      el.style.transform =
+        angle !== 0
+          ? `translate(${tx}px, ${ty}px) rotate(${angle}deg)`
+          : `translate(${tx}px, ${ty}px)`;
+
+      // Only write width/height when they actually change to avoid
+      // triggering ResizeObserver during pan (where only position changes).
+      const w = `${screenWidth}px`;
+      const h = `${screenHeight}px`;
+      if (prevSize.current.w !== w || prevSize.current.h !== h) {
+        el.style.width = w;
+        el.style.height = h;
+        prevSize.current = { w, h };
+      }
     }
 
     update();
@@ -98,6 +114,7 @@ export function ObjectOverlay({
       object.off('moving', update);
       object.off('scaling', update);
       object.off('rotating', update);
+      prevSize.current = { w: '', h: '' };
     };
   }, [canvasRef, object]);
 
@@ -108,10 +125,13 @@ export function ObjectOverlay({
       ref={stackRef}
       sx={{
         position: 'absolute',
+        left: 0,
+        top: 0,
         pointerEvents: 'none',
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 1,
+        willChange: 'transform',
         ...sx,
       }}
       {...rest}
