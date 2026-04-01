@@ -1,0 +1,55 @@
+name: Auto Tag Packages
+
+on:
+  push:
+    branches:
+      - main
+      - 'v[0-9]+'
+    paths:
+      - 'packages/*/package.json'
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect version changes and create tags
+        run: |
+          PACKAGES=("assets" "canvas" "components" "styles")
+          CREATED_TAGS=()
+
+          for pkg in "${PACKAGES[@]}"; do
+            PKG_JSON="packages/${pkg}/package.json"
+
+            # Skip if this package.json wasn't changed in this push
+            if ! git diff HEAD~1 --name-only | grep -q "^${PKG_JSON}$"; then
+              continue
+            fi
+
+            # Get current version
+            VERSION=$(node -p "require('./${PKG_JSON}').version")
+            TAG="@bwp-web/${pkg}@${VERSION}"
+
+            # Skip if tag already exists on remote
+            if git ls-remote --tags origin | grep -q "refs/tags/${TAG}$"; then
+              echo "Tag ${TAG} already exists, skipping"
+              continue
+            fi
+
+            echo "Creating tag: ${TAG}"
+            git tag "${TAG}"
+            CREATED_TAGS+=("${TAG}")
+          done
+
+          if [ ${#CREATED_TAGS[@]} -gt 0 ]; then
+            echo "Pushing tags: ${CREATED_TAGS[*]}"
+            git push origin "${CREATED_TAGS[@]}"
+          else
+            echo "No new tags to create"
+          fi
