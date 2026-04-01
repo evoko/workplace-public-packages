@@ -8,7 +8,7 @@ The five components compose together:
 2. **`ObjectOverlay`** — positions a container over a specific canvas object
 3. **`OverlayContent`** — scales its children to fit within the overlay bounds
 4. **`FixedSizeContent`** — keeps children at a constant screen size inside `OverlayContent`
-5. **`OverlayBadge`** — an absolutely-positioned badge with baseline-relative scaling
+5. **`OverlayBadge`** — an absolutely-positioned badge with zoom-based scaling
 
 ---
 
@@ -183,7 +183,7 @@ This avoids feedback loops: hiding the element changes `OverlayContent`'s scale,
 
 ## `OverlayBadge`
 
-An absolutely-positioned element (icon, status dot, badge) anchored to a specific position within an `ObjectOverlay`. Unlike `OverlayContent` which scales content to fit, `OverlayBadge` uses **baseline-relative scaling** — it captures the overlay's initial dimensions and scales proportionally as the overlay grows or shrinks with zoom.
+An absolutely-positioned element (icon, status dot, badge) anchored to a specific position within an `ObjectOverlay`. Unlike `OverlayContent` which scales content to fit, `OverlayBadge` uses **zoom-based scaling** — it reads the current zoom level from the `--overlay-zoom` CSS variable set by `ObjectOverlay` and scales to `clamp(zoom, minScale, maxScale)`, giving deterministic sizing regardless of the initial zoom level.
 
 ```tsx
 import { ObjectOverlay, OverlayContent, OverlayBadge } from '@bwp-web/canvas';
@@ -218,7 +218,7 @@ Extends MUI `StackProps`.
 
 ### Behavior
 
-- **Baseline-relative scaling**: On first render, the overlay's dimensions are captured as the baseline. As the overlay grows (zoom in), the badge scales up; as it shrinks (zoom out), the badge scales down. The scale is clamped to `[minScale, maxScale]`.
+- **Zoom-based scaling**: The badge reads the `--overlay-zoom` CSS variable from `ObjectOverlay` and scales to `clamp(zoom, minScale, maxScale)`. Scaling is deterministic — the same zoom level always produces the same badge size, regardless of the initial zoom when the overlay was mounted.
 - **Center-origin scaling**: The badge always scales from its center, so it stays visually centered at its anchor point regardless of scale.
 - **Circular positioning**: When `circular` is `true`, the badge is placed on the inscribed ellipse of the overlay bounds rather than at the rectangle edge. The angle is derived from which anchor props are specified (`top` + `right` → 45°, `top` alone → 90°, etc.) and the anchor values are applied as pixel offsets from the ellipse point. This is useful for circular or elliptical canvas objects where the rectangle corner would be far from the visible shape edge.
 - **Counter-scaling inside `OverlayContent`**: When placed inside `OverlayContent`, the badge automatically reads `--overlay-scale` and counter-scales to maintain its own independent size.
@@ -228,10 +228,9 @@ Extends MUI `StackProps`.
 ### How it works
 
 1. A `ResizeObserver` watches the parent element (typically `ObjectOverlay`'s Stack)
-2. The first valid measurement is stored as the baseline dimensions
-3. On each resize, the ratio `min(currentW / baseW, currentH / baseH)` is computed
-4. The scale is clamped to `[minScale, maxScale]` and applied via `transform: scale(...)`
-5. If `--overlay-scale` is present (inside `OverlayContent`), the badge divides by it to counter-scale
+2. On each resize, the `--overlay-zoom` CSS variable (set by `ObjectOverlay`) is read via inline style walk (no `getComputedStyle`)
+3. The scale is computed as `clamp(zoom, minScale, maxScale)` and applied via `transform: scale(...)`
+4. If `--overlay-scale` is present (inside `OverlayContent`), the badge divides by it to counter-scale
 
 ---
 

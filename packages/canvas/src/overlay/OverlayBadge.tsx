@@ -73,14 +73,14 @@ function toNum(v: number | string | undefined): number {
 }
 
 /**
- * Read the `--overlay-scale` CSS custom property by walking up the DOM and
- * checking inline styles. This avoids `getComputedStyle` which forces a
- * synchronous style recalculation — significant with many overlays.
+ * Read a CSS custom property by walking up the DOM and checking inline styles.
+ * This avoids `getComputedStyle` which forces a synchronous style
+ * recalculation — significant with many overlays.
  */
-function readOverlayScale(el: HTMLElement): number {
+function readInlineProperty(el: HTMLElement, prop: string): number {
   let node: HTMLElement | null = el.parentElement;
   while (node) {
-    const val = node.style.getPropertyValue('--overlay-scale');
+    const val = node.style.getPropertyValue(prop);
     if (val) return parseFloat(val) || 1;
     node = node.parentElement;
   }
@@ -89,10 +89,10 @@ function readOverlayScale(el: HTMLElement): number {
 
 /**
  * An absolutely-positioned badge that scales proportionally within an
- * `ObjectOverlay` (or `OverlayContent`). The badge captures the overlay's
- * initial dimensions as a baseline and scales relative to that — growing
- * when the overlay gets larger (zoom in) and shrinking when it gets smaller
- * (zoom out), clamped between `minScale` and `maxScale`.
+ * `ObjectOverlay` (or `OverlayContent`). The badge reads the current zoom
+ * level from the `--overlay-zoom` CSS variable set by `ObjectOverlay` and
+ * scales to `clamp(zoom, minScale, maxScale)` — deterministic regardless
+ * of the initial zoom level when the overlay was first mounted.
  *
  * Position the badge using the `top`, `right`, `bottom`, and `left` props.
  * Scaling always happens from the center so the badge stays visually
@@ -128,10 +128,6 @@ export function OverlayBadge({
   ...rest
 }: OverlayBadgeProps) {
   const ref = useRef<HTMLDivElement>(null);
-  // Capture the overlay's initial dimensions as the baseline (zoom ≈ 1).
-  // The scale is then relative to this baseline — larger overlay → scale up,
-  // smaller overlay → scale down.
-  const baseSize = useRef<{ w: number; h: number } | null>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -148,31 +144,20 @@ export function OverlayBadge({
     function doUpdate() {
       if (!el || !ancestor) return;
 
-      const containerW = ancestor.clientWidth;
-      const containerH = ancestor.clientHeight;
-
-      if (containerW <= 0 || containerH <= 0) {
+      if (ancestor.clientWidth <= 0 || ancestor.clientHeight <= 0) {
         el.style.transform = '';
         return;
       }
 
-      // Record the first valid measurement as the baseline.
-      if (!baseSize.current) {
-        baseSize.current = { w: containerW, h: containerH };
-      }
-
-      // Scale relative to the baseline, clamped to [minScale, maxScale].
-      const ratio = Math.min(
-        containerW / baseSize.current.w,
-        containerH / baseSize.current.h,
-      );
-      const ownScale = Math.max(minScale, Math.min(ratio, maxScale));
+      // Read zoom directly from the --overlay-zoom CSS variable set by
+      // ObjectOverlay. This gives deterministic scaling regardless of
+      // the initial zoom level when the overlay was first mounted.
+      const zoom = readInlineProperty(el, '--overlay-zoom');
+      const ownScale = Math.max(minScale, Math.min(zoom, maxScale));
 
       // When inside OverlayContent the parent's scale transform creates a
       // containing block. Counter-scale so the badge keeps its own size.
-      // Uses inline style walk instead of getComputedStyle to avoid
-      // forced style recalculation.
-      const overlayScale = readOverlayScale(el);
+      const overlayScale = readInlineProperty(el, '--overlay-scale');
 
       const scale = `scale(${ownScale / overlayScale})`;
       el.style.transform = circular ? `translate(-50%, -50%) ${scale}` : scale;
@@ -194,7 +179,6 @@ export function OverlayBadge({
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
       observer.disconnect();
-      baseSize.current = null;
     };
   }, [maxScale, minScale, circular]);
 

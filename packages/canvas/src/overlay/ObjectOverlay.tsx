@@ -67,7 +67,7 @@ export function ObjectOverlay({
   // Cache previous transform and size to skip redundant DOM writes.
   // During pan inside an OverlayContainer, position is unchanged
   // (container handles the translation) so all writes are skipped.
-  const prev = useRef({ transform: '', w: '', h: '' });
+  const prev = useRef({ transform: '', w: '', h: '', z: '' });
 
   useEffect(() => {
     const canvas = canvasRef?.current;
@@ -114,6 +114,13 @@ export function ObjectOverlay({
         prev.current.transform = transform;
       }
 
+      // Expose zoom level for OverlayBadge to use for deterministic scaling.
+      const z = String(zoom);
+      if (prev.current.z !== z) {
+        el.style.setProperty('--overlay-zoom', z);
+        prev.current.z = z;
+      }
+
       const w = `${screenWidth}px`;
       const h = `${screenHeight}px`;
       if (prev.current.w !== w || prev.current.h !== h) {
@@ -136,7 +143,7 @@ export function ObjectOverlay({
       object.off('moving', update);
       object.off('scaling', update);
       object.off('rotating', update);
-      prev.current = { transform: '', w: '', h: '' };
+      prev.current = { transform: '', w: '', h: '', z: '' };
     };
   }, [canvasRef, object, insideContainer]);
 
