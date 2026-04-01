@@ -85,7 +85,9 @@ Extends MUI `StackProps`.
 
 ### How it works
 
-The component subscribes to `after:render` and per-object `moving`/`scaling`/`rotating` events. On each update it computes the object's screen-space position, size, and rotation via `util.transformPoint` and applies them as inline styles.
+The component subscribes to `after:render` and per-object `moving`/`scaling`/`rotating` events. On each update it computes the object's screen-space position, size, and rotation and applies them as inline styles using `transform: translate()` (GPU-composited, no layout recalculation). Width and height are only written when they actually change, preventing unnecessary `ResizeObserver` notifications during pan.
+
+When inside an `OverlayContainer`, positioning excludes the viewport translation (the container handles it) and the previous transform is cached — during pan, all individual overlay writes are skipped entirely.
 
 ---
 
