@@ -134,22 +134,81 @@ Tags follow the format `vX.Y.Z` (e.g., `v1.0.0`).
 
 ### Publishing to npm
 
-After tagging, publish all packages from the repo root. Make sure to use the correct dist-tag for the branch you're publishing from:
+After tagging, publish each changed package from the repo root. Use the correct dist-tag for the branch you're publishing from:
 
 ```bash
-# From main (current major) — uses the default "latest" tag
-npm publish -w packages/assets -w packages/styles -w packages/components -w packages/canvas --access public
+# From main (current major) — publish with the major dist-tag, then update latest
+npm publish -w packages/canvas --access public --tag v2-latest
+npm dist-tag add @bwp-web/canvas@2.2.0 latest
 
-# From a maintenance branch (e.g. 1.x) — MUST use a custom tag
-npm publish -w packages/assets -w packages/styles -w packages/components -w packages/canvas --access public --tag v1-latest
+# From a maintenance branch (e.g. v1) — publish with the major dist-tag only
+npm publish -w packages/canvas --access public --tag v1-latest
 ```
 
-> **Warning:** Publishing from a maintenance branch without `--tag` will overwrite `latest` and accidentally downgrade everyone running `npm install`.
+> **Warning:** Never publish from a maintenance branch without `--tag` or with `--tag latest`. This will overwrite `latest` and accidentally downgrade everyone running `npm install`.
 
-Consumers get the expected behavior:
+#### Dist-tag conventions
+
+| Dist tag       | Points to                  | Who updates it            |
+| -------------- | -------------------------- | ------------------------- |
+| `latest`       | Highest stable version     | Only from `main`          |
+| `v1-latest`    | Highest stable 1.x.y       | From `v1` branch          |
+| `v2-latest`    | Highest stable 2.x.y       | From `main` or `v2` branch |
+| `v3-latest`    | Highest stable 3.x.y       | From `main` or `v3` branch |
+
+#### Managing dist-tags
 
 ```bash
-npm install @bwp-web/styles          # gets current major (latest)
-npm install @bwp-web/styles@1        # gets newest 1.x via semver range
-npm install @bwp-web/styles@v1-latest # explicit dist-tag for 1.x line
+# View all dist-tags for a package
+npm dist-tag ls @bwp-web/canvas
+
+# Set a dist-tag to a specific version
+npm dist-tag add @bwp-web/canvas@2.2.0 v2-latest
+npm dist-tag add @bwp-web/canvas@2.2.0 latest
+
+# Remove a dist-tag (e.g. cleaning up after a major goes EOL)
+npm dist-tag rm @bwp-web/canvas v1-latest
+
+# Fix latest if it was accidentally overwritten
+npm dist-tag add @bwp-web/canvas@2.2.0 latest
+```
+
+#### Full publish example: v1 patch while v2 is current
+
+```bash
+# On the v1 branch, after bumping to 1.4.0:
+git checkout v1
+npm run build -w packages/canvas
+npm publish -w packages/canvas --access public --tag v1-latest
+
+# Verify: latest should still point to v2, not v1
+npm dist-tag ls @bwp-web/canvas
+# v1-latest: 1.4.0
+# v2-latest: 2.2.0
+# latest: 2.2.0   ← unchanged, correct
+```
+
+#### Full publish example: new v2 minor on main
+
+```bash
+# On main, after bumping to 2.3.0:
+npm run build -w packages/canvas
+npm publish -w packages/canvas --access public --tag v2-latest
+npm dist-tag add @bwp-web/canvas@2.3.0 latest
+
+# Verify
+npm dist-tag ls @bwp-web/canvas
+# v1-latest: 1.4.0
+# v2-latest: 2.3.0
+# latest: 2.3.0
+```
+
+#### Consumers
+
+```bash
+npm install @bwp-web/styles              # gets current major (latest)
+npm install @bwp-web/styles@v1-latest    # gets newest stable 1.x
+npm install @bwp-web/styles@v2-latest    # gets newest stable 2.x
+npm install @bwp-web/styles@1            # gets newest 1.x via semver range
+npm install @bwp-web/styles@1.3.0        # pins to exact version
 ```
