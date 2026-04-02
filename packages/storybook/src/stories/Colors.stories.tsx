@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box, Stack, Typography, useTheme } from '@mui/material';
+import { solarPalette } from '@bwp-web/styles';
 
 const Swatch = ({
   color,
@@ -43,18 +44,99 @@ const ColorGroup = ({
     </Typography>
     <Stack direction="row" flexWrap="wrap" gap={1.5}>
       {swatches.map((s) => (
-        <Swatch key={s.label} {...s} />
+        <Swatch key={`${s.label}-${s.color}`} {...s} />
       ))}
     </Stack>
   </Box>
 );
 
-const AllColors = () => {
+const PrimitivePalette = () => {
+  const p = solarPalette;
+  return (
+    <Stack spacing={1}>
+      <Typography variant="h5" sx={{ mb: 2 }}>
+        Primitive Colors
+      </Typography>
+
+      <ColorGroup
+        title="Neutral"
+        swatches={Object.entries(p.neutral).map(([k, v]) => ({
+          label: k,
+          color: v,
+          bordered: Number(k) < 200,
+        }))}
+      />
+      <ColorGroup
+        title="Red"
+        swatches={Object.entries(p.red).map(([k, v]) => ({
+          label: k,
+          color: v,
+        }))}
+      />
+      <ColorGroup
+        title="Green"
+        swatches={Object.entries(p.green).map(([k, v]) => ({
+          label: k,
+          color: v,
+        }))}
+      />
+      <ColorGroup
+        title="Orange"
+        swatches={Object.entries(p.orange).map(([k, v]) => ({
+          label: k,
+          color: v,
+        }))}
+      />
+      <ColorGroup
+        title="Blue"
+        swatches={Object.entries(p.blue).map(([k, v]) => ({
+          label: k,
+          color: v,
+        }))}
+      />
+      <ColorGroup
+        title="Turquoise"
+        swatches={Object.entries(p.turquoise).map(([k, v]) => ({
+          label: k,
+          color: v,
+        }))}
+      />
+      <ColorGroup
+        title="Yellow"
+        swatches={Object.entries(p.yellow).map(([k, v]) => ({
+          label: k,
+          color: v,
+        }))}
+      />
+      <ColorGroup
+        title="Purple"
+        swatches={Object.entries(p.purple).map(([k, v]) => ({
+          label: k,
+          color: v,
+        }))}
+      />
+      <ColorGroup
+        title="Brand"
+        swatches={[
+          { label: 'red', color: p.brand.red },
+          { label: 'black', color: p.brand.black },
+          { label: 'white', color: p.brand.white, bordered: true },
+        ]}
+      />
+    </Stack>
+  );
+};
+
+const SemanticPalette = () => {
   const theme = useTheme();
   const p = theme.palette;
 
   return (
     <Stack spacing={1}>
+      <Typography variant="h5" sx={{ mb: 2 }}>
+        Semantic Colors (Theme)
+      </Typography>
+
       <ColorGroup
         title="Primary"
         swatches={[
@@ -82,34 +164,34 @@ const AllColors = () => {
         ]}
       />
       <ColorGroup
-        title="Success"
+        title="Error"
         swatches={[
-          { color: p.success.main, label: 'main' },
-          { color: p.success.light, label: 'light' },
-          { color: p.success.dark, label: 'dark' },
+          { color: p.error.main, label: 'main' },
+          { color: p.error.light, label: 'light', bordered: true },
+          { color: p.error.dark, label: 'dark' },
         ]}
       />
       <ColorGroup
         title="Warning"
         swatches={[
           { color: p.warning.main, label: 'main' },
-          { color: p.warning.light, label: 'light' },
+          { color: p.warning.light, label: 'light', bordered: true },
           { color: p.warning.dark, label: 'dark' },
         ]}
       />
       <ColorGroup
-        title="Error"
+        title="Success"
         swatches={[
-          { color: p.error.main, label: 'main' },
-          { color: p.error.light, label: 'light' },
-          { color: p.error.dark, label: 'dark' },
+          { color: p.success.main, label: 'main' },
+          { color: p.success.light, label: 'light', bordered: true },
+          { color: p.success.dark, label: 'dark' },
         ]}
       />
       <ColorGroup
         title="Info"
         swatches={[
           { color: p.info.main, label: 'main' },
-          { color: p.info.light, label: 'light' },
+          { color: p.info.light, label: 'light', bordered: true },
           { color: p.info.dark, label: 'dark' },
         ]}
       />
@@ -144,13 +226,6 @@ const AllColors = () => {
         ]}
       />
       <ColorGroup
-        title="Common"
-        swatches={[
-          { color: p.common.black, label: 'black' },
-          { color: p.common.white, label: 'white', bordered: true },
-        ]}
-      />
-      <ColorGroup
         title="Divider"
         swatches={[{ color: p.divider, label: 'divider' }]}
       />
@@ -172,6 +247,10 @@ const meta: Meta = {
 export default meta;
 type Story = StoryObj;
 
-export const Palette: Story = {
-  render: () => <AllColors />,
+export const Primitives: Story = {
+  render: () => <PrimitivePalette />,
+};
+
+export const Semantic: Story = {
+  render: () => <SemanticPalette />,
 };

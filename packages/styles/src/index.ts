@@ -1,1 +1,1 @@
-export { biampTheme } from './theme';
+export { biampTheme, solarPalette } from './theme';
