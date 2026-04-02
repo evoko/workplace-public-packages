@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Breadcrumbs, Link, Typography, Stack } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 const meta: Meta<typeof Breadcrumbs> = {
   title: 'Styles/Breadcrumbs',
@@ -9,97 +11,81 @@ const meta: Meta<typeof Breadcrumbs> = {
 export default meta;
 type Story = StoryObj<typeof Breadcrumbs>;
 
-export const Default: Story = {
+export const Basic: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Breadcrumbs</Typography>
-      <Typography variant="body2" color="text.secondary">
-        Uses the ChevronRightIcon separator from the theme.
-      </Typography>
+    <Breadcrumbs>
+      <Link underline="hover" color="inherit" href="#">
+        MUI
+      </Link>
+      <Link underline="hover" color="inherit" href="#">
+        Core
+      </Link>
+      <Typography color="text.primary">Breadcrumbs</Typography>
+    </Breadcrumbs>
+  ),
+};
 
-      <Breadcrumbs>
+export const CustomSeparator: Story = {
+  render: () => (
+    <Stack spacing={2}>
+      <Breadcrumbs separator="›">
         <Link underline="hover" color="inherit" href="#">
           Home
         </Link>
         <Link underline="hover" color="inherit" href="#">
-          Settings
+          Catalog
         </Link>
-        <Typography color="text.secondary" variant="body2" fontWeight={600}>
-          General
-        </Typography>
+        <Typography color="text.primary">Accessories</Typography>
+      </Breadcrumbs>
+      <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />}>
+        <Link underline="hover" color="inherit" href="#">
+          Home
+        </Link>
+        <Link underline="hover" color="inherit" href="#">
+          Catalog
+        </Link>
+        <Typography color="text.primary">Accessories</Typography>
       </Breadcrumbs>
     </Stack>
   ),
 };
 
-export const MultipleDepths: Story = {
+export const WithIcons: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Multiple Depths</Typography>
-
-      <Breadcrumbs>
-        <Link underline="hover" color="inherit" href="#">
-          Home
-        </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
-          Dashboard
-        </Typography>
-      </Breadcrumbs>
-
-      <Breadcrumbs>
-        <Link underline="hover" color="inherit" href="#">
-          Home
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Users
-        </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
-          John Doe
-        </Typography>
-      </Breadcrumbs>
-
-      <Breadcrumbs>
-        <Link underline="hover" color="inherit" href="#">
-          Home
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Settings
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Advanced
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Network
-        </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
-          Proxy Configuration
-        </Typography>
-      </Breadcrumbs>
-    </Stack>
+    <Breadcrumbs>
+      <Link
+        underline="hover"
+        color="inherit"
+        href="#"
+        sx={{ display: 'flex', alignItems: 'center' }}
+      >
+        <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+        Home
+      </Link>
+      <Link underline="hover" color="inherit" href="#">
+        Core
+      </Link>
+      <Typography color="text.primary">Breadcrumbs</Typography>
+    </Breadcrumbs>
   ),
 };
 
 export const Collapsed: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Collapsed (maxItems)</Typography>
-      <Breadcrumbs maxItems={3}>
-        <Link underline="hover" color="inherit" href="#">
-          Home
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Category
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Sub-category
-        </Link>
-        <Link underline="hover" color="inherit" href="#">
-          Item Type
-        </Link>
-        <Typography color="text.secondary" fontWeight={600} variant="body2">
-          Item Detail
-        </Typography>
-      </Breadcrumbs>
-    </Stack>
+    <Breadcrumbs maxItems={3}>
+      <Link underline="hover" color="inherit" href="#">
+        Home
+      </Link>
+      <Link underline="hover" color="inherit" href="#">
+        Catalog
+      </Link>
+      <Link underline="hover" color="inherit" href="#">
+        Accessories
+      </Link>
+      <Link underline="hover" color="inherit" href="#">
+        New Collection
+      </Link>
+      <Typography color="text.primary">Belts</Typography>
+    </Breadcrumbs>
   ),
 };

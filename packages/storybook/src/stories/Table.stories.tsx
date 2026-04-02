@@ -9,8 +9,10 @@ import {
   Paper,
   Stack,
   Typography,
-  Checkbox,
+  TablePagination,
+  TableSortLabel,
 } from '@mui/material';
+import { useState } from 'react';
 
 const meta: Meta<typeof Table> = {
   title: 'Styles/Table',
@@ -20,72 +22,156 @@ const meta: Meta<typeof Table> = {
 export default meta;
 type Story = StoryObj<typeof Table>;
 
+function createData(
+  name: string,
+  calories: number,
+  fat: number,
+  carbs: number,
+  protein: number,
+) {
+  return { name, calories, fat, carbs, protein };
+}
+
 const rows = [
-  { id: 1, name: 'Conference Room A', status: 'Available', capacity: 12 },
-  { id: 2, name: 'Conference Room B', status: 'Occupied', capacity: 8 },
-  { id: 3, name: 'Meeting Room 1', status: 'Available', capacity: 4 },
-  { id: 4, name: 'Meeting Room 2', status: 'Maintenance', capacity: 6 },
-  { id: 5, name: 'Board Room', status: 'Available', capacity: 20 },
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('Eclair', 262, 16.0, 24, 6.0),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-export const Default: Story = {
+export const Basic: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Table</Typography>
-      <TableContainer component={Paper} variant="outlined">
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Room Name</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell align="right">Capacity</TableCell>
+    <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Dessert</TableCell>
+            <TableCell align="right">Calories</TableCell>
+            <TableCell align="right">Fat (g)</TableCell>
+            <TableCell align="right">Carbs (g)</TableCell>
+            <TableCell align="right">Protein (g)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.name}>
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.protein}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.status}</TableCell>
-                <TableCell align="right">{row.capacity}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </Stack>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   ),
 };
 
-export const WithSelection: Story = {
+export const Dense: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Table with Selection</Typography>
-      <TableContainer component={Paper} variant="outlined">
-        <Table>
+    <TableContainer component={Paper}>
+      <Table size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell>Dessert</TableCell>
+            <TableCell align="right">Calories</TableCell>
+            <TableCell align="right">Fat (g)</TableCell>
+            <TableCell align="right">Carbs (g)</TableCell>
+            <TableCell align="right">Protein (g)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.name}>
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
+              <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">{row.protein}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  ),
+};
+
+export const StickyHeader: Story = {
+  render: () => (
+    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <TableContainer sx={{ maxHeight: 200 }}>
+        <Table stickyHeader>
           <TableHead>
             <TableRow>
-              <TableCell padding="checkbox">
-                <Checkbox />
-              </TableCell>
-              <TableCell>Room Name</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell align="right">Capacity</TableCell>
+              <TableCell>Dessert</TableCell>
+              <TableCell align="right">Calories</TableCell>
+              <TableCell align="right">Fat (g)</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
-              <TableRow key={row.id} selected={index === 1}>
-                <TableCell padding="checkbox">
-                  <Checkbox checked={index === 1} />
-                </TableCell>
+            {[...rows, ...rows].map((row, i) => (
+              <TableRow key={i}>
                 <TableCell>{row.name}</TableCell>
-                <TableCell>{row.status}</TableCell>
-                <TableCell align="right">{row.capacity}</TableCell>
+                <TableCell align="right">{row.calories}</TableCell>
+                <TableCell align="right">{row.fat}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-    </Stack>
+    </Paper>
   ),
+};
+
+const PaginationDemo = () => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(2);
+  const paged = rows.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage,
+  );
+
+  return (
+    <Paper>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Dessert</TableCell>
+              <TableCell align="right">Calories</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {paged.map((row) => (
+              <TableRow key={row.name}>
+                <TableCell>{row.name}</TableCell>
+                <TableCell align="right">{row.calories}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        component="div"
+        count={rows.length}
+        page={page}
+        onPageChange={(_, p) => setPage(p)}
+        rowsPerPage={rowsPerPage}
+        onRowsPerPageChange={(e) => {
+          setRowsPerPage(parseInt(e.target.value, 10));
+          setPage(0);
+        }}
+      />
+    </Paper>
+  );
+};
+
+export const WithPagination: Story = {
+  render: () => <PaginationDemo />,
 };

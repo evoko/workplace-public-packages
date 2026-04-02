@@ -1,12 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  Autocomplete,
-  Checkbox,
-  TextField,
-  Stack,
-  Typography,
-  Chip,
-} from '@mui/material';
+import { Autocomplete, TextField, Stack, Chip } from '@mui/material';
 
 const meta: Meta<typeof Autocomplete> = {
   title: 'Styles/Autocomplete',
@@ -14,172 +7,73 @@ const meta: Meta<typeof Autocomplete> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Autocomplete>;
+type Story = StoryObj;
 
-const topMovies = [
-  'The Shawshank Redemption',
-  'The Godfather',
-  'The Dark Knight',
-  'Pulp Fiction',
-  'Forrest Gump',
-  'Inception',
-  'The Matrix',
-  'Goodfellas',
-  'Fight Club',
-  'Interstellar',
+const top5Films = [
+  { label: 'The Shawshank Redemption', year: 1994 },
+  { label: 'The Godfather', year: 1972 },
+  { label: 'The Dark Knight', year: 2008 },
+  { label: 'Pulp Fiction', year: 1994 },
+  { label: 'Fight Club', year: 1999 },
 ];
 
-const countries = [
-  { code: 'US', label: 'United States' },
-  { code: 'GB', label: 'United Kingdom' },
-  { code: 'DE', label: 'Germany' },
-  { code: 'FR', label: 'France' },
-  { code: 'JP', label: 'Japan' },
-  { code: 'AU', label: 'Australia' },
-  { code: 'CA', label: 'Canada' },
-  { code: 'BR', label: 'Brazil' },
-];
-
-export const Default: Story = {
+export const Basic: Story = {
   render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h3">Autocomplete</Typography>
+    <Autocomplete
+      options={top5Films}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Movie" />}
+    />
+  ),
+};
 
+export const FreeSolo: Story = {
+  render: () => (
+    <Autocomplete
+      freeSolo
+      options={top5Films.map((f) => f.label)}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Free solo" />}
+    />
+  ),
+};
+
+export const Multiple: Story = {
+  render: () => (
+    <Autocomplete
+      multiple
+      options={top5Films}
+      defaultValue={[top5Films[0]]}
+      sx={{ width: 400 }}
+      renderInput={(params) => <TextField {...params} label="Movies" />}
+    />
+  ),
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <Stack spacing={2} sx={{ width: 300 }}>
       <Autocomplete
-        options={topMovies}
-        renderInput={(params) => (
-          <TextField {...params} label="Movie" placeholder="Select a movie" />
-        )}
+        size="small"
+        options={top5Films}
+        renderInput={(params) => <TextField {...params} label="Small" />}
+      />
+      <Autocomplete
+        options={top5Films}
+        renderInput={(params) => <TextField {...params} label="Medium" />}
       />
     </Stack>
   ),
 };
 
-export const AllVariants: Story = {
+export const Disabled: Story = {
   render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h3">Autocomplete Variants</Typography>
-
-      <Autocomplete
-        options={topMovies}
-        renderInput={(params) => (
-          <TextField {...params} label="Default" placeholder="Select a movie" />
-        )}
-      />
-
-      <Autocomplete
-        options={topMovies}
-        defaultValue="The Matrix"
-        renderInput={(params) => (
-          <TextField {...params} label="With default value" />
-        )}
-      />
-
-      <Autocomplete
-        options={topMovies}
-        disabled
-        defaultValue="Inception"
-        renderInput={(params) => <TextField {...params} label="Disabled" />}
-      />
-
-      <Autocomplete
-        options={topMovies}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Error state"
-            error
-            helperText="Please select a valid option"
-          />
-        )}
-      />
-    </Stack>
-  ),
-};
-
-export const MultiSelect: Story = {
-  render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 500 }}>
-      <Typography variant="h3">Multi-select</Typography>
-
-      <Autocomplete
-        multiple
-        options={topMovies}
-        defaultValue={['The Matrix', 'Inception']}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Favorite movies"
-            placeholder="Add movies"
-          />
-        )}
-      />
-
-      <Autocomplete
-        multiple
-        options={topMovies}
-        defaultValue={['Fight Club']}
-        renderValue={(value, getTagProps) =>
-          value.map((option, index) => (
-            <Chip
-              label={option}
-              size="small"
-              {...getTagProps({ index })}
-              key={option}
-            />
-          ))
-        }
-        renderInput={(params) => (
-          <TextField {...params} label="With chips" placeholder="Add movies" />
-        )}
-      />
-    </Stack>
-  ),
-};
-
-export const CheckboxSelect: Story = {
-  render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h3">Checkbox Select</Typography>
-
-      <Autocomplete
-        multiple
-        disableCloseOnSelect
-        options={topMovies}
-        renderOption={(props, option, { selected }) => (
-          <li {...props}>
-            <Checkbox checked={selected} sx={{ mr: 1 }} />
-            {option}
-          </li>
-        )}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Favorite movies"
-            placeholder="Add movies"
-          />
-        )}
-      />
-    </Stack>
-  ),
-};
-
-export const ObjectOptions: Story = {
-  render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h3">Object Options</Typography>
-
-      <Autocomplete
-        options={countries}
-        getOptionLabel={(option) => option.label}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Country"
-            placeholder="Select a country"
-          />
-        )}
-      />
-    </Stack>
+    <Autocomplete
+      disabled
+      options={top5Films}
+      defaultValue={top5Films[0]}
+      sx={{ width: 300 }}
+      renderInput={(params) => <TextField {...params} label="Disabled" />}
+    />
   ),
 };

@@ -1,70 +1,46 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
+import { Stack } from '@mui/material';
 
-import { Stack, Typography } from '@mui/material';
-import { DateTime } from 'luxon';
-import type { DateValidationError } from '@mui/x-date-pickers/models';
-
-const meta: Meta<typeof DatePicker> = {
+const meta: Meta = {
   title: 'Styles/DatePicker',
-  component: DatePicker,
   decorators: [
     (Story) => (
-      <LocalizationProvider dateAdapter={AdapterLuxon} adapterLocale="en-gb">
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Story />
       </LocalizationProvider>
     ),
   ],
-  argTypes: {
-    disabled: { control: 'boolean' },
-    readOnly: { control: 'boolean' },
-  },
 };
 
 export default meta;
-type Story = StoryObj<typeof DatePicker>;
+type Story = StoryObj;
 
-export const Playground: Story = {
-  args: {
-    label: 'Date',
-    disabled: false,
-    readOnly: false,
-  },
+export const BasicDatePicker: Story = {
+  render: () => <DatePicker label="Pick a date" />,
 };
 
-const errorMessages: Record<NonNullable<DateValidationError>, string> = {
-  invalidDate: 'Invalid date format.',
-  minDate: 'Date is before the minimum allowed date.',
-  maxDate: 'Date is after the maximum allowed date.',
-  disablePast: 'Past dates are not allowed.',
-  disableFuture: 'Future dates are not allowed.',
-  shouldDisableDate: 'This date is not available.',
-  shouldDisableMonth: 'This month is not available.',
-  shouldDisableYear: 'This year is not available.',
+export const BasicTimePicker: Story = {
+  render: () => <TimePicker label="Pick a time" />,
 };
 
-export const AllStates: Story = {
+export const Disabled: Story = {
   render: () => (
-    <Stack spacing={2} sx={{ maxWidth: 400 }}>
-      <Typography variant="h3">DatePicker States</Typography>
-      <DatePicker label="Default" />
-      <DatePicker label="With value" defaultValue={DateTime.now()} />
-      <DatePicker label="Disabled" disabled />
-      <DatePicker label="Read only" readOnly />
-      <DatePicker
-        label="Error (max today)"
-        disableFuture
-        defaultValue={DateTime.now().plus({ days: 1 })}
-        slotProps={{
-          textField: {
-            helperText: errorMessages['disableFuture'],
-            error: true,
-          },
-        }}
-      />
+    <Stack spacing={2}>
+      <DatePicker label="Disabled date" disabled />
+      <TimePicker label="Disabled time" disabled />
+    </Stack>
+  ),
+};
+
+export const ReadOnly: Story = {
+  render: () => (
+    <Stack spacing={2}>
+      <DatePicker label="Read only date" readOnly />
+      <TimePicker label="Read only time" readOnly />
     </Stack>
   ),
 };

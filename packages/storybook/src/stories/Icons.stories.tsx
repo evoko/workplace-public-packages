@@ -1,7 +1,5 @@
-import type { ReactNode } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack, Typography, Box, Tooltip, Icon } from '@mui/material';
-
+import { Box, Stack, Typography, Tooltip, Divider } from '@mui/material';
 import {
   AccessibleIcon,
   AddIcon,
@@ -116,6 +114,8 @@ import {
   InfoCircleIcon,
   InfoStatusIcon,
   InvertIcon,
+  KeyArrowDownIcon,
+  KeyArrowUpIcon,
   LayoutSidebarCollapseIcon,
   LayoutSidebarRightCollapseIcon,
   LicencesIcon,
@@ -124,9 +124,9 @@ import {
   LinkOffIcon,
   ListIcon,
   LoaderIcon,
+  LockerIcon,
   LockIcon,
   LockOpenIcon,
-  LockerIcon,
   LoginIcon,
   LogoutIcon,
   MapSiteIcon,
@@ -165,6 +165,8 @@ import {
   QrIcon,
   QuestionmarkIcon,
   QueueAnnouncementIcon,
+  RadioCheckedIcon,
+  RadioUncheckedIcon,
   ReceptionIcon,
   RefreshIcon,
   RepeatIcon,
@@ -217,1356 +219,516 @@ import {
   WirelessChargingFilledIcon,
   WorkshopIcon,
   ZoneIcon,
-  BiampRedLogo,
-  BookingApp,
-  CommandApp,
-  ConnectApp,
-  DesignerApp,
-  WorkplaceApp,
 } from '@bwp-web/assets';
+
+/* ── helpers ── */
+
+const IconCell = ({
+  name,
+  children,
+}: {
+  name: string;
+  children: React.ReactNode;
+}) => (
+  <Tooltip title={name} placement="top">
+    <Stack
+      alignItems="center"
+      spacing={0.5}
+      sx={{
+        width: 100,
+        p: 1,
+        borderRadius: 1,
+        '&:hover': { bgcolor: 'action.hover' },
+      }}
+    >
+      <Box sx={{ fontSize: 28, display: 'flex' }}>{children}</Box>
+      <Typography
+        variant="caption"
+        noWrap
+        sx={{ maxWidth: 90, fontSize: 9, textAlign: 'center' }}
+      >
+        {name}
+      </Typography>
+    </Stack>
+  </Tooltip>
+);
+
+type IconEntry = [string, React.ReactNode];
+
+const IconGroup = ({ title, icons }: { title: string; icons: IconEntry[] }) => (
+  <Box>
+    <Typography variant="h6" sx={{ mb: 1 }}>
+      {title} ({icons.length})
+    </Typography>
+    <Stack direction="row" flexWrap="wrap" gap={0.5}>
+      {icons.map(([name, node]) => (
+        <IconCell key={name} name={name}>
+          {node}
+        </IconCell>
+      ))}
+    </Stack>
+    <Divider sx={{ mt: 3 }} />
+  </Box>
+);
+
+/* ── icon lists per size group ──
+   Single-size icons appear once in their group.
+   Multisize icons appear in EVERY group they support, rendered with that variant. */
+
+const xxxxsIcons: IconEntry[] = [
+  // single-size
+  ['BadgeLiveIcon', <BadgeLiveIcon />],
+  // multisize
+  ['BadgeClockIcon', <BadgeClockIcon variant="xxxxs" />],
+  ['BadgeSpeakIcon', <BadgeSpeakIcon variant="xxxxs" />],
+];
+
+const xxxsIcons: IconEntry[] = [
+  // multisize only
+  ['BadgeClockIcon', <BadgeClockIcon variant="xxxs" />],
+  ['BadgeSpeakIcon', <BadgeSpeakIcon variant="xxxs" />],
+];
+
+const xxsIcons: IconEntry[] = [
+  // single-size
+  ['BookmarkIcon', <BookmarkIcon />],
+  ['CameraIcon', <CameraIcon />],
+  ['ClockIcon', <ClockIcon />],
+  ['ControlPanelIcon', <ControlPanelIcon />],
+  ['DisplayIcon', <DisplayIcon />],
+  ['DropdownChevronDownIcon', <DropdownChevronDownIcon />],
+  ['DropdownChevronDuoIcon', <DropdownChevronDuoIcon />],
+  ['DropdownChevronUpIcon', <DropdownChevronUpIcon />],
+  ['LockerIcon', <LockerIcon />],
+  ['MicIcon', <MicIcon />],
+  ['NetworkIcon', <NetworkIcon />],
+  ['OtherIcon', <OtherIcon />],
+  ['PrivateIcon', <PrivateIcon />],
+  ['RepeatIcon', <RepeatIcon />],
+  ['RoomTempIcon', <RoomTempIcon />],
+  ['StarIcon', <StarIcon />],
+  // multisize
+  ['AccessibleIcon', <AccessibleIcon variant="xxs" />],
+  ['AdjustableDeskIcon', <AdjustableDeskIcon variant="xxs" />],
+  ['ArrowDownIcon', <ArrowDownIcon variant="xxs" />],
+  ['BikeIcon', <BikeIcon variant="xxs" />],
+  ['BlankIcon', <BlankIcon variant="xxs" />],
+  ['CloseIcon', <CloseIcon variant="xxs" />],
+  ['DeleteIcon', <DeleteIcon variant="xxs" />],
+  ['DeskIcon', <DeskIcon variant="xxs" />],
+  ['DualMonitorFilledIcon', <DualMonitorFilledIcon variant="xxs" />],
+  ['EarIcon', <EarIcon variant="xxs" />],
+  [
+    'ElectricVehicleChargingIcon',
+    <ElectricVehicleChargingIcon variant="xxs" />,
+  ],
+  ['FurnitureIcon', <FurnitureIcon variant="xxs" />],
+  ['LightsIcon', <LightsIcon variant="xxs" />],
+  ['LinkIcon', <LinkIcon variant="xxs" />],
+  ['MonitorFilledIcon', <MonitorFilledIcon variant="xxs" />],
+  ['MotorcycleFilledIcon', <MotorcycleFilledIcon variant="xxs" />],
+  ['ParkingIcon', <ParkingIcon variant="xxs" />],
+  ['PersonIcon', <PersonIcon variant="xxs" />],
+  ['PhoneIcon', <PhoneIcon variant="xxs" />],
+  ['PinLocationIcon', <PinLocationIcon variant="xxs" />],
+  ['PowerOutletFilledIcon', <PowerOutletFilledIcon variant="xxs" />],
+  ['ProjectorIcon', <ProjectorIcon variant="xxs" />],
+  ['RoomIcon', <RoomIcon variant="xxs" />],
+  ['SpeakerIcon', <SpeakerIcon variant="xxs" />],
+  [
+    'WeatherProtectionFilledIcon',
+    <WeatherProtectionFilledIcon variant="xxs" />,
+  ],
+  ['WhiteboardIcon', <WhiteboardIcon variant="xxs" />],
+  ['WirelessChargingFilledIcon', <WirelessChargingFilledIcon variant="xxs" />],
+];
+
+const xsIcons: IconEntry[] = [
+  // single-size
+  ['AddScreenTvIcon', <AddScreenTvIcon />],
+  ['ArrowsMinimizeIcon', <ArrowsMinimizeIcon />],
+  ['AudioFileIcon', <AudioFileIcon />],
+  ['BlockIcon', <BlockIcon />],
+  ['CeilingIcon', <CeilingIcon />],
+  ['CheckedIcon', <CheckedIcon />],
+  ['ChevronFullLeftIcon', <ChevronFullLeftIcon />],
+  ['ChevronFullRightIcon', <ChevronFullRightIcon />],
+  ['CircleFilledIcon', <CircleFilledIcon />],
+  ['CircleHalfIcon', <CircleHalfIcon />],
+  ['CircleIcon', <CircleIcon />],
+  ['ClipboardListIcon', <ClipboardListIcon />],
+  ['CloudUploadIcon', <CloudUploadIcon />],
+  ['CodeIcon', <CodeIcon />],
+  ['CollapseTreeviewIcon', <CollapseTreeviewIcon />],
+  ['CommandFileIcon', <CommandFileIcon />],
+  ['DesignFileIcon', <DesignFileIcon />],
+  ['DeviceSpeakerIcon', <DeviceSpeakerIcon />],
+  ['DistanceIcon', <DistanceIcon />],
+  ['DragIcon', <DragIcon />],
+  ['EqualizerIcon', <EqualizerIcon />],
+  ['FavoriteIcon', <FavoriteIcon />],
+  ['FileIcon', <FileIcon />],
+  ['FolderOpenIcon', <FolderOpenIcon />],
+  ['GhostDeskIcon', <GhostDeskIcon />],
+  ['GroupIcon', <GroupIcon />],
+  ['IndeterminateIcon', <IndeterminateIcon />],
+  ['LayoutSidebarCollapseIcon', <LayoutSidebarCollapseIcon />],
+  ['LoaderIcon', <LoaderIcon />],
+  ['LockOpenIcon', <LockOpenIcon />],
+  ['MusicNoteIcon', <MusicNoteIcon />],
+  ['PinFilledIcon', <PinFilledIcon />],
+  ['PinOutlinedIcon', <PinOutlinedIcon />],
+  ['RotateIcon', <RotateIcon />],
+  ['RulerIcon', <RulerIcon />],
+  ['SelectIcon', <SelectIcon />],
+  ['SendIcon', <SendIcon />],
+  ['SoundIcon', <SoundIcon />],
+  ['SupportIcon', <SupportIcon />],
+  ['UncheckedIcon', <UncheckedIcon />],
+  ['UsersIcon', <UsersIcon />],
+  ['VideoCameraIcon', <VideoCameraIcon />],
+  ['VideoProcessorFilledIcon', <VideoProcessorFilledIcon />],
+  ['VideoProcessorIcon', <VideoProcessorIcon />],
+  ['ZoneIcon', <ZoneIcon />],
+  // multisize
+  ['AccessibleIcon', <AccessibleIcon variant="xs" />],
+  ['AddIcon', <AddIcon variant="xs" />],
+  ['AdjustableDeskIcon', <AdjustableDeskIcon variant="xs" />],
+  ['ArrowLeftIcon', <ArrowLeftIcon variant="xs" />],
+  ['ArrowsMaximizeIcon', <ArrowsMaximizeIcon variant="xs" />],
+  ['ArrowsMoveIcon', <ArrowsMoveIcon variant="xs" />],
+  ['ArrowUpRightIcon', <ArrowUpRightIcon variant="xs" />],
+  ['AudioLibraryIcon', <AudioLibraryIcon variant="xs" />],
+  ['AudioPolarityInversionIcon', <AudioPolarityInversionIcon variant="xs" />],
+  ['BikeIcon', <BikeIcon variant="xs" />],
+  ['BlankIcon', <BlankIcon variant="xs" />],
+  ['BuildingIcon', <BuildingIcon variant="xs" />],
+  ['CalendarIcon', <CalendarIcon variant="xs" />],
+  ['ChevronDownIcon', <ChevronDownIcon variant="xs" />],
+  ['ChevronLeftIcon', <ChevronLeftIcon variant="xs" />],
+  ['ChevronRightIcon', <ChevronRightIcon variant="xs" />],
+  ['ChevronUpIcon', <ChevronUpIcon variant="xs" />],
+  ['CircleCheckIcon', <CircleCheckIcon variant="xs" />],
+  ['ClockTimeIcon', <ClockTimeIcon variant="xs" />],
+  ['CloseIcon', <CloseIcon variant="xs" />],
+  ['CloudIcon', <CloudIcon variant="xs" />],
+  ['CloudNoConnectionIcon', <CloudNoConnectionIcon variant="xs" />],
+  ['ColumnsIcon', <ColumnsIcon variant="xs" />],
+  ['CopyIcon', <CopyIcon variant="xs" />],
+  ['DeleteIcon', <DeleteIcon variant="xs" />],
+  ['DeskIcon', <DeskIcon variant="xs" />],
+  ['DoorRoomIcon', <DoorRoomIcon variant="xs" />],
+  ['DownloadIcon', <DownloadIcon variant="xs" />],
+  ['DualMonitorFilledIcon', <DualMonitorFilledIcon variant="xs" />],
+  ['EarIcon', <EarIcon variant="xs" />],
+  ['EditIcon', <EditIcon variant="xs" />],
+  ['ElectricVehicleChargingIcon', <ElectricVehicleChargingIcon variant="xs" />],
+  ['EmailIcon', <EmailIcon variant="xs" />],
+  ['ErrorCircleIcon', <ErrorCircleIcon variant="xs" />],
+  ['ExportIcon', <ExportIcon variant="xs" />],
+  ['ExternalLinkIcon', <ExternalLinkIcon variant="xs" />],
+  ['EyeIcon', <EyeIcon variant="xs" />],
+  ['EyeOffIcon', <EyeOffIcon variant="xs" />],
+  ['FileReportIcon', <FileReportIcon variant="xs" />],
+  ['FileTypeLogIcon', <FileTypeLogIcon variant="xs" />],
+  ['FilterIcon', <FilterIcon variant="xs" />],
+  ['FirmwareUpdateIcon', <FirmwareUpdateIcon variant="xs" />],
+  ['FloorPlanIcon', <FloorPlanIcon variant="xs" />],
+  ['FurnitureIcon', <FurnitureIcon variant="xs" />],
+  ['InfoCircleIcon', <InfoCircleIcon variant="xs" />],
+  ['LicencesIcon', <LicencesIcon variant="xs" />],
+  ['LinkIcon', <LinkIcon variant="xs" />],
+  ['LinkOffIcon', <LinkOffIcon variant="xs" />],
+  ['ListIcon', <ListIcon variant="xs" />],
+  ['LockIcon', <LockIcon variant="xs" />],
+  ['LoginIcon', <LoginIcon variant="xs" />],
+  ['LogoutIcon', <LogoutIcon variant="xs" />],
+  ['MapSiteIcon', <MapSiteIcon variant="xs" />],
+  ['MapZoomIcon', <MapZoomIcon variant="xs" />],
+  ['MicrophoneIcon', <MicrophoneIcon variant="xs" />],
+  ['MinusIcon', <MinusIcon variant="xs" />],
+  ['MonitorFilledIcon', <MonitorFilledIcon variant="xs" />],
+  ['MotorcycleFilledIcon', <MotorcycleFilledIcon variant="xs" />],
+  [
+    'NoiseCancellingPanelsQuietZoneIcon',
+    <NoiseCancellingPanelsQuietZoneIcon variant="xs" />,
+  ],
+  ['ParkingAltIcon', <ParkingAltIcon variant="xs" />],
+  ['ParkingIcon', <ParkingIcon variant="xs" />],
+  ['PauseIcon', <PauseIcon variant="xs" />],
+  ['PersonIcon', <PersonIcon variant="xs" />],
+  ['PhotoIcon', <PhotoIcon variant="xs" />],
+  ['PinLocationIcon', <PinLocationIcon variant="xs" />],
+  ['PlaybackSpeedIcon', <PlaybackSpeedIcon variant="xs" />],
+  ['PowerOutletFilledIcon', <PowerOutletFilledIcon variant="xs" />],
+  ['RefreshIcon', <RefreshIcon variant="xs" />],
+  ['RocketLaunchIcon', <RocketLaunchIcon variant="xs" />],
+  ['SearchIcon', <SearchIcon variant="xs" />],
+  ['SettingsIcon', <SettingsIcon variant="xs" />],
+  ['ShareIcon', <ShareIcon variant="xs" />],
+  ['SourceIcon', <SourceIcon variant="xs" />],
+  ['SpeakerFilledIcon', <SpeakerFilledIcon variant="xs" />],
+  [
+    'SpeakerMinimumVolumeFilledIcon',
+    <SpeakerMinimumVolumeFilledIcon variant="xs" />,
+  ],
+  ['SpeakerOffFilledIcon', <SpeakerOffFilledIcon variant="xs" />],
+  ['SquareRoundedPlusIcon', <SquareRoundedPlusIcon variant="xs" />],
+  ['StopIcon', <StopIcon variant="xs" />],
+  ['UploadIcon', <UploadIcon variant="xs" />],
+  ['UsersPlusSigninIcon', <UsersPlusSigninIcon variant="xs" />],
+  ['WarningTriangleIcon', <WarningTriangleIcon variant="xs" />],
+  ['WeatherProtectionFilledIcon', <WeatherProtectionFilledIcon variant="xs" />],
+  ['WirelessChargingFilledIcon', <WirelessChargingFilledIcon variant="xs" />],
+];
+
+const smIcons: IconEntry[] = [
+  // single-size
+  ['AppleIcon', <AppleIcon />],
+  ['DeskAltIcon', <DeskAltIcon />],
+  ['ForgotPasswordIcon', <ForgotPasswordIcon />],
+  ['ReceptionIcon', <ReceptionIcon />],
+  ['RestroomIcon', <RestroomIcon />],
+  // multisize
+  ['AccessibleIcon', <AccessibleIcon variant="sm" />],
+  ['AdjustableDeskIcon', <AdjustableDeskIcon variant="sm" />],
+  ['BikeIcon', <BikeIcon variant="sm" />],
+  ['CircleCheckIcon', <CircleCheckIcon variant="sm" />],
+  ['DeskIcon', <DeskIcon variant="sm" />],
+  ['DualMonitorFilledIcon', <DualMonitorFilledIcon variant="sm" />],
+  ['ElectricVehicleChargingIcon', <ElectricVehicleChargingIcon variant="sm" />],
+  ['EmailIcon', <EmailIcon variant="sm" />],
+  ['ErrorCircleIcon', <ErrorCircleIcon variant="sm" />],
+  ['InfoCircleIcon', <InfoCircleIcon variant="sm" />],
+  ['MonitorFilledIcon', <MonitorFilledIcon variant="sm" />],
+  ['MotorcycleFilledIcon', <MotorcycleFilledIcon variant="sm" />],
+  ['MsTeamsIcon', <MsTeamsIcon variant="sm" />],
+  [
+    'NoiseCancellingPanelsQuietZoneIcon',
+    <NoiseCancellingPanelsQuietZoneIcon variant="sm" />,
+  ],
+  ['ParkingIcon', <ParkingIcon variant="sm" />],
+  ['PhoneIcon', <PhoneIcon variant="sm" />],
+  ['PhotoIcon', <PhotoIcon variant="sm" />],
+  ['PowerOutletFilledIcon', <PowerOutletFilledIcon variant="sm" />],
+  ['RoomIcon', <RoomIcon variant="sm" />],
+  ['WarningTriangleIcon', <WarningTriangleIcon variant="sm" />],
+  ['WeatherProtectionFilledIcon', <WeatherProtectionFilledIcon variant="sm" />],
+  ['WirelessChargingFilledIcon', <WirelessChargingFilledIcon variant="sm" />],
+];
+
+const mdIcons: IconEntry[] = [
+  // single-size
+  ['AddPhotoIcon', <AddPhotoIcon />],
+  ['AppsIcon', <AppsIcon />],
+  ['AppsIconFilled', <AppsIconFilled />],
+  ['AutoFitFilledIcon', <AutoFitFilledIcon />],
+  ['AutoFitIcon', <AutoFitIcon />],
+  ['CalendarAddIcon', <CalendarAddIcon />],
+  ['CircleStopIcon', <CircleStopIcon />],
+  ['ContrastIcon', <ContrastIcon />],
+  ['CursorIcon', <CursorIcon />],
+  ['DefineIcon', <DefineIcon />],
+  ['DeskSolidIcon', <DeskSolidIcon />],
+  ['FileTypePdfIcon', <FileTypePdfIcon />],
+  ['FollowScreenFilledIcon', <FollowScreenFilledIcon />],
+  ['FollowScreenIcon', <FollowScreenIcon />],
+  ['InvertIcon', <InvertIcon />],
+  ['LayoutSidebarRightCollapseIcon', <LayoutSidebarRightCollapseIcon />],
+  ['MaximizeIcon', <MaximizeIcon />],
+  ['MicrophoneOffIcon', <MicrophoneOffIcon />],
+  ['MinimizeIcon', <MinimizeIcon />],
+  ['MobildFilterIcon', <MobildFilterIcon />],
+  ['MoreIcon', <MoreIcon />],
+  ['PlayAnnouncementIcon', <PlayAnnouncementIcon />],
+  ['QrIcon', <QrIcon />],
+  ['QuestionmarkIcon', <QuestionmarkIcon />],
+  ['QueueAnnouncementIcon', <QueueAnnouncementIcon />],
+  ['RoomSolidIcon', <RoomSolidIcon />],
+  ['SaveIcon', <SaveIcon />],
+  ['SpeakerOffIcon', <SpeakerOffIcon />],
+  ['SquareRoundedArrowRightFilledIcon', <SquareRoundedArrowRightFilledIcon />],
+  ['SquareRoundedArrowRightIcon', <SquareRoundedArrowRightIcon />],
+  ['VideoIcon', <VideoIcon />],
+  // multisize
+  ['AddIcon', <AddIcon variant="md" />],
+  ['ArrowDownIcon', <ArrowDownIcon variant="md" />],
+  ['ArrowLeftIcon', <ArrowLeftIcon variant="md" />],
+  ['ArrowRightIcon', <ArrowRightIcon variant="md" />],
+  ['ArrowsMaximizeIcon', <ArrowsMaximizeIcon variant="md" />],
+  ['ArrowsMoveIcon', <ArrowsMoveIcon variant="md" />],
+  ['ArrowUpIcon', <ArrowUpIcon variant="md" />],
+  ['AudioLibraryIcon', <AudioLibraryIcon variant="md" />],
+  ['AudioPolarityInversionIcon', <AudioPolarityInversionIcon variant="md" />],
+  ['BlankIcon', <BlankIcon variant="md" />],
+  ['BuildingIcon', <BuildingIcon variant="md" />],
+  ['CalendarIcon', <CalendarIcon variant="md" />],
+  ['ChevronDownIcon', <ChevronDownIcon variant="md" />],
+  ['ChevronLeftIcon', <ChevronLeftIcon variant="md" />],
+  ['ChevronRightIcon', <ChevronRightIcon variant="md" />],
+  ['ChevronUpIcon', <ChevronUpIcon variant="md" />],
+  ['CircleCheckIcon', <CircleCheckIcon variant="md" />],
+  ['ClockTimeIcon', <ClockTimeIcon variant="md" />],
+  ['CloseIcon', <CloseIcon variant="md" />],
+  ['CloudIcon', <CloudIcon variant="md" />],
+  ['CloudNoConnectionIcon', <CloudNoConnectionIcon variant="md" />],
+  ['ColumnsIcon', <ColumnsIcon variant="md" />],
+  ['CopyIcon', <CopyIcon variant="md" />],
+  ['DeleteIcon', <DeleteIcon variant="md" />],
+  ['DeskIcon', <DeskIcon variant="md" />],
+  ['DoorRoomIcon', <DoorRoomIcon variant="md" />],
+  ['DownloadIcon', <DownloadIcon variant="md" />],
+  ['EditIcon', <EditIcon variant="md" />],
+  ['EmailIcon', <EmailIcon variant="md" />],
+  ['ErrorCircleIcon', <ErrorCircleIcon variant="md" />],
+  ['ExportIcon', <ExportIcon variant="md" />],
+  ['ExternalLinkIcon', <ExternalLinkIcon variant="md" />],
+  ['EyeIcon', <EyeIcon variant="md" />],
+  ['EyeOffIcon', <EyeOffIcon variant="md" />],
+  ['FileReportIcon', <FileReportIcon variant="md" />],
+  ['FileTypeLogIcon', <FileTypeLogIcon variant="md" />],
+  ['FilterIcon', <FilterIcon variant="md" />],
+  ['FirmwareUpdateIcon', <FirmwareUpdateIcon variant="md" />],
+  ['FloorPlanIcon', <FloorPlanIcon variant="md" />],
+  ['InfoCircleIcon', <InfoCircleIcon variant="md" />],
+  ['LicencesIcon', <LicencesIcon variant="md" />],
+  ['LinkIcon', <LinkIcon variant="md" />],
+  ['LinkOffIcon', <LinkOffIcon variant="md" />],
+  ['ListIcon', <ListIcon variant="md" />],
+  ['LockIcon', <LockIcon variant="md" />],
+  ['LoginIcon', <LoginIcon variant="md" />],
+  ['LogoutIcon', <LogoutIcon variant="md" />],
+  ['MapSiteIcon', <MapSiteIcon variant="md" />],
+  ['MapZoomIcon', <MapZoomIcon variant="md" />],
+  ['MicrophoneIcon', <MicrophoneIcon variant="md" />],
+  ['MinusIcon', <MinusIcon variant="md" />],
+  ['MsTeamsIcon', <MsTeamsIcon variant="md" />],
+  ['ParkingAltIcon', <ParkingAltIcon variant="md" />],
+  ['ParkingIcon', <ParkingIcon variant="md" />],
+  ['PauseIcon', <PauseIcon variant="md" />],
+  ['PersonIcon', <PersonIcon variant="md" />],
+  ['PhotoIcon', <PhotoIcon variant="md" />],
+  ['PinLocationIcon', <PinLocationIcon variant="md" />],
+  ['PlaybackSpeedIcon', <PlaybackSpeedIcon variant="md" />],
+  ['RefreshIcon', <RefreshIcon variant="md" />],
+  ['RocketLaunchIcon', <RocketLaunchIcon variant="md" />],
+  ['SearchIcon', <SearchIcon variant="md" />],
+  ['SettingsIcon', <SettingsIcon variant="md" />],
+  ['ShareIcon', <ShareIcon variant="md" />],
+  ['SourceIcon', <SourceIcon variant="md" />],
+  ['SpeakerFilledIcon', <SpeakerFilledIcon variant="md" />],
+  ['SpeakerIcon', <SpeakerIcon variant="md" />],
+  [
+    'SpeakerMinimumVolumeFilledIcon',
+    <SpeakerMinimumVolumeFilledIcon variant="md" />,
+  ],
+  ['SpeakerOffFilledIcon', <SpeakerOffFilledIcon variant="md" />],
+  ['SquareRoundedPlusIcon', <SquareRoundedPlusIcon variant="md" />],
+  ['StopIcon', <StopIcon variant="md" />],
+  ['UploadIcon', <UploadIcon variant="md" />],
+  ['UsersPlusSigninIcon', <UsersPlusSigninIcon variant="md" />],
+  ['WarningTriangleIcon', <WarningTriangleIcon variant="md" />],
+  ['WifiIcon', <WifiIcon variant="md" />],
+];
+
+const lgIcons: IconEntry[] = [
+  // single-size
+  ['ComputerIcon', <ComputerIcon />],
+  ['ConditionerIcon', <ConditionerIcon />],
+  // multisize
+  ['FilterIcon', <FilterIcon variant="lg" />],
+  ['LightsIcon', <LightsIcon variant="lg" />],
+  ['PersonIcon', <PersonIcon variant="lg" />],
+  ['PhoneIcon', <PhoneIcon variant="lg" />],
+  ['ProjectorIcon', <ProjectorIcon variant="lg" />],
+  ['VideoConferenceIcon', <VideoConferenceIcon variant="lg" />],
+  ['WhiteboardIcon', <WhiteboardIcon variant="lg" />],
+  ['WifiIcon', <WifiIcon variant="lg" />],
+];
+
+const xlIcons: IconEntry[] = [
+  // multisize only
+  ['ArrowDownIcon', <ArrowDownIcon variant="xl" />],
+  ['ArrowLeftIcon', <ArrowLeftIcon variant="xl" />],
+  ['ArrowRightIcon', <ArrowRightIcon variant="xl" />],
+  ['ArrowUpIcon', <ArrowUpIcon variant="xl" />],
+];
+
+const xxlIcons: IconEntry[] = [
+  // single-size
+  ['FileDesignIcon', <FileDesignIcon />],
+  ['FocusModeIcon', <FocusModeIcon />],
+  ['NoCardIcon', <NoCardIcon />],
+  ['NoResultsIcon', <NoResultsIcon />],
+  ['ServiceNotReachableIcon', <ServiceNotReachableIcon />],
+  ['TeamMeetingIcon', <TeamMeetingIcon />],
+  ['WorkshopIcon', <WorkshopIcon />],
+  // multisize
+  ['CloudNoConnectionIcon', <CloudNoConnectionIcon variant="xxl" />],
+  ['DeskIcon', <DeskIcon variant="xxl" />],
+  ['ParkingIcon', <ParkingIcon variant="xxl" />],
+  ['RoomIcon', <RoomIcon variant="xxl" />],
+  ['VideoConferenceIcon', <VideoConferenceIcon variant="xxl" />],
+  ['WarningTriangleIcon', <WarningTriangleIcon variant="xxl" />],
+];
+
+const xxxlIcons: IconEntry[] = [
+  // single-size
+  ['GlobeIcon', <GlobeIcon />],
+  ['RoomHubIcon', <RoomHubIcon />],
+  ['TouchDisplayIcon', <TouchDisplayIcon />],
+  ['WifiEnlargedIcon', <WifiEnlargedIcon />],
+];
+
+const rootIcons: IconEntry[] = [
+  ['BiampLaunchIcon', <BiampLaunchIcon />],
+  ['BiampLogoIcon', <BiampLogoIcon />],
+  ['ErrorStatusIcon', <ErrorStatusIcon />],
+  ['InfoStatusIcon', <InfoStatusIcon />],
+  ['KeyArrowDownIcon', <KeyArrowDownIcon />],
+  ['KeyArrowUpIcon', <KeyArrowUpIcon />],
+  ['RadioCheckedIcon', <RadioCheckedIcon />],
+  ['RadioUncheckedIcon', <RadioUncheckedIcon />],
+  ['SuccessStatusIcon', <SuccessStatusIcon />],
+  ['WarningStatusIcon', <WarningStatusIcon />],
+];
+
+const groups: { title: string; icons: IconEntry[] }[] = [
+  { title: 'xxxxs', icons: xxxxsIcons },
+  { title: 'xxxs', icons: xxxsIcons },
+  { title: 'xxs', icons: xxsIcons },
+  { title: 'xs', icons: xsIcons },
+  { title: 'sm', icons: smIcons },
+  { title: 'md', icons: mdIcons },
+  { title: 'lg', icons: lgIcons },
+  { title: 'xl', icons: xlIcons },
+  { title: 'xxl', icons: xxlIcons },
+  { title: 'xxxl', icons: xxxlIcons },
+  { title: 'Root / Status', icons: rootIcons },
+];
 
 const meta: Meta = {
   title: 'Assets/Icons',
   argTypes: {
-    iconColor: {
+    color: {
       control: 'color',
-      description: 'Override color for all icons',
+      description: 'Icon color — icons use currentColor so they inherit this.',
     },
   },
 };
 
 export default meta;
-type Story = StoryObj<{ iconColor?: string }>;
+type Story = StoryObj<{ color: string }>;
 
-const IconDisplay = ({
-  name,
-  children,
-  onlyIcon = false,
-}: {
-  name?: string;
-  children: ReactNode;
-  onlyIcon?: boolean;
-}) => {
-  const box = (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 1,
-        p: 2,
-        borderRadius: 1,
-        border: '1px solid',
-        borderColor: 'divider',
-        ...(onlyIcon ? { width: 56, height: 56 } : { minWidth: 120 }),
-      }}
-    >
-      <Box sx={{ '& svg': { width: 24, height: 24 } }}>{children}</Box>
-      {!onlyIcon && name && (
-        <Typography variant="caption" align="center">
-          {name}
-        </Typography>
-      )}
-    </Box>
-  );
-
-  return onlyIcon && name ? (
-    <Tooltip title={name} placement="top">
-      {box}
-    </Tooltip>
-  ) : (
-    box
-  );
-};
-
-/**
- * All icons and images exported by `@bwp-web/assets`, organised by category.
- */
 export const AllIcons: Story = {
-  args: { iconColor: undefined },
-  render: ({ iconColor }) => (
-    <Box sx={{ color: iconColor || 'inherit' }}>
-      <Stack spacing={3}>
-        <Typography variant="h3">Layout Icons</Typography>
-        <Typography variant="body2" color="text.secondary">
-          Icons used in the Biamp Workplace shell (header, sidebar, app
-          launcher). See the <strong>Icon Groups</strong> story for the full
-          catalog.
-        </Typography>
-
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-          <IconDisplay name="BiampLogoIcon">
-            <BiampLogoIcon />
-          </IconDisplay>
-          <IconDisplay name="SearchIcon">
-            <SearchIcon />
-          </IconDisplay>
-          <IconDisplay name="AppsIcon">
-            <AppsIcon />
-          </IconDisplay>
-          <IconDisplay name="AppsIconFilled">
-            <AppsIconFilled />
-          </IconDisplay>
-        </Box>
-
-        <Typography variant="h3" sx={{ pt: 2 }}>
-          Theme Icons
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Icons used internally by the theme for MUI component overrides
-          (alerts, checkboxes, radio buttons). Status icons are theme-aware and
-          adapt to dark/light mode.
-        </Typography>
-
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-          <IconDisplay name="CheckedIcon">
-            <CheckedIcon />
-          </IconDisplay>
-          <IconDisplay name="UncheckedIcon">
-            <UncheckedIcon />
-          </IconDisplay>
-          <IconDisplay name="IndeterminateIcon">
-            <IndeterminateIcon />
-          </IconDisplay>
-          <IconDisplay name="ErrorStatusIcon">
-            <ErrorStatusIcon />
-          </IconDisplay>
-          <IconDisplay name="WarningStatusIcon">
-            <WarningStatusIcon />
-          </IconDisplay>
-          <IconDisplay name="InfoStatusIcon">
-            <InfoStatusIcon />
-          </IconDisplay>
-          <IconDisplay name="SuccessStatusIcon">
-            <SuccessStatusIcon />
-          </IconDisplay>
-        </Box>
-
-        <Typography variant="h3" sx={{ pt: 2 }}>
-          Images
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Static image assets exported as data URLs.
-        </Typography>
-
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 1,
-              p: 2,
-              borderRadius: 1,
-              border: '1px solid',
-              borderColor: 'divider',
-              minWidth: 120,
-            }}
-          >
-            <Box
-              component="img"
-              src={BiampRedLogo}
-              alt="Biamp Red Logo"
-              sx={{ width: 24, height: 24 }}
-            />
-            <Typography variant="caption" align="center">
-              BiampRedLogo
-            </Typography>
-          </Box>
-        </Box>
-
-        <Typography variant="h3" sx={{ pt: 2 }}>
-          App Images
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          PNG images for the app-launcher dialog tiles. Each export is a data
-          URL string.
-        </Typography>
-
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-          {[
-            { src: BookingApp, name: 'BookingApp' },
-            { src: CommandApp, name: 'CommandApp' },
-            { src: ConnectApp, name: 'ConnectApp' },
-            { src: DesignerApp, name: 'DesignerApp' },
-            { src: WorkplaceApp, name: 'WorkplaceApp' },
-          ].map((img) => (
-            <Box
-              key={img.name}
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 1,
-                p: 2,
-                borderRadius: 1,
-                border: '1px solid',
-                borderColor: 'divider',
-                minWidth: 120,
-              }}
-            >
-              <Box
-                component="img"
-                src={img.src}
-                alt={img.name}
-                sx={{ width: 54, height: 54, objectFit: 'contain' }}
-              />
-              <Typography variant="caption" align="center">
-                {img.name}
-              </Typography>
-            </Box>
-          ))}
-        </Box>
-      </Stack>
-    </Box>
-  ),
-};
-
-/**
- * New SVG icons grouped by their size variant, rendered at 24px for visual consistency.
- * Pass the matching `variant` prop to multi-size icons so you see the design intended for that size.
- */
-
-const CONFIG = {
-  gap: 4,
-  display: 'grid',
-  maxWidth: 800,
-  gridTemplateColumns: 'repeat(auto-fill, minmax(50px, 1fr))',
-};
-
-export const IconGroups: Story = {
-  name: 'Icon Groups',
-  args: { iconColor: undefined },
-  render: ({ iconColor }) => (
-    <Box sx={{ color: iconColor || 'inherit' }}>
-      <Stack spacing={6}>
-        <Typography variant="h3" color="text.primary">
-          Icon Groups by Size
-        </Typography>
-
-        {/* xxxxs — 6px */}
-        <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
-            xxxxs — 6px
-          </Typography>
-          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
-            <IconDisplay name="BadgeClockIcon" onlyIcon>
-              <BadgeClockIcon variant="xxxxs" />
-            </IconDisplay>
-            <IconDisplay name="BadgeLiveIcon" onlyIcon>
-              <BadgeLiveIcon />
-            </IconDisplay>
-            <IconDisplay name="BadgeSpeakIcon" onlyIcon>
-              <BadgeSpeakIcon variant="xxxxs" />
-            </IconDisplay>
-          </Box>
-        </Stack>
-
-        {/* xxxs — 8px */}
-        <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
-            xxxs — 8px
-          </Typography>
-          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
-            <IconDisplay name="BadgeClockIcon" onlyIcon>
-              <BadgeClockIcon variant="xxxs" />
-            </IconDisplay>
-            <IconDisplay name="BadgeSpeakIcon" onlyIcon>
-              <BadgeSpeakIcon variant="xxxs" />
-            </IconDisplay>
-          </Box>
-        </Stack>
-
-        {/* xxs — 12px */}
-        <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
-            xxs — 12px
-          </Typography>
-          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
-            <IconDisplay onlyIcon name="AccessibleIcon">
-              <AccessibleIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AdjustableDeskIcon">
-              <AdjustableDeskIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowDownIcon">
-              <ArrowDownIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="BikeIcon">
-              <BikeIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="BlankIcon">
-              <BlankIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="BookmarkIcon">
-              <BookmarkIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CameraIcon">
-              <CameraIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ClockIcon">
-              <ClockIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CloseIcon">
-              <CloseIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ControlPanelIcon">
-              <ControlPanelIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeleteIcon">
-              <DeleteIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeskIcon">
-              <DeskIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DisplayIcon">
-              <DisplayIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DropdownChevronDownIcon">
-              <DropdownChevronDownIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DropdownChevronDuoIcon">
-              <DropdownChevronDuoIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DropdownChevronUpIcon">
-              <DropdownChevronUpIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DualMonitorFilledIcon">
-              <DualMonitorFilledIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EarIcon">
-              <EarIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ElectricVehicleChargingIcon">
-              <ElectricVehicleChargingIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FurnitureIcon">
-              <FurnitureIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LightsIcon">
-              <LightsIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LinkIcon">
-              <LinkIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LockerIcon">
-              <LockerIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MicIcon">
-              <MicIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MonitorFilledIcon">
-              <MonitorFilledIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MotorcycleFilledIcon">
-              <MotorcycleFilledIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="NetworkIcon">
-              <NetworkIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="OtherIcon">
-              <OtherIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ParkingIcon">
-              <ParkingIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PersonIcon">
-              <PersonIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PhoneIcon">
-              <PhoneIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PinLocationIcon">
-              <PinLocationIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PowerOutletFilledIcon">
-              <PowerOutletFilledIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PrivateIcon">
-              <PrivateIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ProjectorIcon">
-              <ProjectorIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RepeatIcon">
-              <RepeatIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RoomIcon">
-              <RoomIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RoomTempIcon">
-              <RoomTempIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SpeakerIcon">
-              <SpeakerIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="StarIcon">
-              <StarIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WeatherProtectionFilledIcon">
-              <WeatherProtectionFilledIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WhiteboardIcon">
-              <WhiteboardIcon variant="xxs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WirelessChargingFilledIcon">
-              <WirelessChargingFilledIcon variant="xxs" />
-            </IconDisplay>
-          </Box>
-        </Stack>
-
-        {/* xs — 16px */}
-        <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
-            xs — 16px
-          </Typography>
-          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
-            <IconDisplay onlyIcon name="AccessibleIcon">
-              <AccessibleIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AddIcon">
-              <AddIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AddScreenTvIcon">
-              <AddScreenTvIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AdjustableDeskIcon">
-              <AdjustableDeskIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowLeftIcon">
-              <ArrowLeftIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowsMaximizeIcon">
-              <ArrowsMaximizeIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowsMinimizeIcon">
-              <ArrowsMinimizeIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowsMoveIcon">
-              <ArrowsMoveIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowUpRightIcon">
-              <ArrowUpRightIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AudioFileIcon">
-              <AudioFileIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AudioLibraryIcon">
-              <AudioLibraryIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AudioPolarityInversionIcon">
-              <AudioPolarityInversionIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="BiampLaunchIcon">
-              <BiampLaunchIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="BikeIcon">
-              <BikeIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="BlankIcon">
-              <BlankIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="BlockIcon">
-              <BlockIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="BuildingIcon">
-              <BuildingIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CalendarIcon">
-              <CalendarIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CeilingIcon">
-              <CeilingIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ChevronDownIcon">
-              <ChevronDownIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ChevronFullLeftIcon">
-              <ChevronFullLeftIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ChevronFullRightIcon">
-              <ChevronFullRightIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ChevronLeftIcon">
-              <ChevronLeftIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ChevronRightIcon">
-              <ChevronRightIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ChevronUpIcon">
-              <ChevronUpIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CircleCheckIcon">
-              <CircleCheckIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CircleFilledIcon">
-              <CircleFilledIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CircleHalfIcon">
-              <CircleHalfIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CircleIcon">
-              <CircleIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ClipboardListIcon">
-              <ClipboardListIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ClockTimeIcon">
-              <ClockTimeIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CloseIcon">
-              <CloseIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CloudIcon">
-              <CloudIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CloudNoConnectionIcon">
-              <CloudNoConnectionIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CloudUploadIcon">
-              <CloudUploadIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CodeIcon">
-              <CodeIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CollapseTreeviewIcon">
-              <CollapseTreeviewIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ColumnsIcon">
-              <ColumnsIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CommandFileIcon">
-              <CommandFileIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CopyIcon">
-              <CopyIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeleteIcon">
-              <DeleteIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DesignFileIcon">
-              <DesignFileIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeskIcon">
-              <DeskIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeviceSpeakerIcon">
-              <DeviceSpeakerIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DistanceIcon">
-              <DistanceIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DoorRoomIcon">
-              <DoorRoomIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DownloadIcon">
-              <DownloadIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DragIcon">
-              <DragIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DualMonitorFilledIcon">
-              <DualMonitorFilledIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EarIcon">
-              <EarIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EditIcon">
-              <EditIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ElectricVehicleChargingIcon">
-              <ElectricVehicleChargingIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EmailIcon">
-              <EmailIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EqualizerIcon">
-              <EqualizerIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ErrorCircleIcon">
-              <ErrorCircleIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ExportIcon">
-              <ExportIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ExternalLinkIcon">
-              <ExternalLinkIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EyeIcon">
-              <EyeIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EyeOffIcon">
-              <EyeOffIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FavoriteIcon">
-              <FavoriteIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FileIcon">
-              <FileIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FileReportIcon">
-              <FileReportIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FileTypeLogIcon">
-              <FileTypeLogIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FilterIcon">
-              <FilterIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FirmwareUpdateIcon">
-              <FirmwareUpdateIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FloorPlanIcon">
-              <FloorPlanIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FolderOpenIcon">
-              <FolderOpenIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FurnitureIcon">
-              <FurnitureIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="GhostDeskIcon">
-              <GhostDeskIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="GroupIcon">
-              <GroupIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="InfoCircleIcon">
-              <InfoCircleIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LayoutSidebarCollapseIcon">
-              <LayoutSidebarCollapseIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LicencesIcon">
-              <LicencesIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LinkIcon">
-              <LinkIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LinkOffIcon">
-              <LinkOffIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ListIcon">
-              <ListIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LoaderIcon">
-              <LoaderIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LockIcon">
-              <LockIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LockOpenIcon">
-              <LockOpenIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LoginIcon">
-              <LoginIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LogoutIcon">
-              <LogoutIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MapSiteIcon">
-              <MapSiteIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MapZoomIcon">
-              <MapZoomIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MicrophoneIcon">
-              <MicrophoneIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MinusIcon">
-              <MinusIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MonitorFilledIcon">
-              <MonitorFilledIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MotorcycleFilledIcon">
-              <MotorcycleFilledIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MusicNoteIcon">
-              <MusicNoteIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="NoiseCancellingPanelsQuietZoneIcon">
-              <NoiseCancellingPanelsQuietZoneIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ParkingAltIcon">
-              <ParkingAltIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ParkingIcon">
-              <ParkingIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PauseIcon">
-              <PauseIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PersonIcon">
-              <PersonIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PhotoIcon">
-              <PhotoIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PinFilledIcon">
-              <PinFilledIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PinLocationIcon">
-              <PinLocationIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PinOutlinedIcon">
-              <PinOutlinedIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PlaybackSpeedIcon">
-              <PlaybackSpeedIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PowerOutletFilledIcon">
-              <PowerOutletFilledIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RefreshIcon">
-              <RefreshIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RocketLaunchIcon">
-              <RocketLaunchIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RotateIcon">
-              <RotateIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RulerIcon">
-              <RulerIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SearchIcon">
-              <SearchIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SelectIcon">
-              <SelectIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SendIcon">
-              <SendIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SettingsIcon">
-              <SettingsIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ShareIcon">
-              <ShareIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SoundIcon">
-              <SoundIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SourceIcon">
-              <SourceIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SpeakerFilledIcon">
-              <SpeakerFilledIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SpeakerMinimumVolumeFilledIcon">
-              <SpeakerMinimumVolumeFilledIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SpeakerOffFilledIcon">
-              <SpeakerOffFilledIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SquareRoundedPlusIcon">
-              <SquareRoundedPlusIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="StopIcon">
-              <StopIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SupportIcon">
-              <SupportIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="UploadIcon">
-              <UploadIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="UsersIcon">
-              <UsersIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="UsersPlusSigninIcon">
-              <UsersPlusSigninIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="VideoCameraIcon">
-              <VideoCameraIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="VideoProcessorFilledIcon">
-              <VideoProcessorFilledIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="VideoProcessorIcon">
-              <VideoProcessorIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WarningTriangleIcon">
-              <WarningTriangleIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WeatherProtectionFilledIcon">
-              <WeatherProtectionFilledIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WirelessChargingFilledIcon">
-              <WirelessChargingFilledIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ZoneIcon">
-              <ZoneIcon />
-            </IconDisplay>
-          </Box>
-        </Stack>
-
-        {/* sm — 20px */}
-        <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
-            sm — 20px
-          </Typography>
-          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
-            <IconDisplay onlyIcon name="AccessibleIcon">
-              <AccessibleIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AdjustableDeskIcon">
-              <AdjustableDeskIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AppleIcon">
-              <AppleIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="BikeIcon">
-              <BikeIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CircleCheckIcon">
-              <CircleCheckIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeskAltIcon">
-              <DeskAltIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeskIcon">
-              <DeskIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DualMonitorFilledIcon">
-              <DualMonitorFilledIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ElectricVehicleChargingIcon">
-              <ElectricVehicleChargingIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EmailIcon">
-              <EmailIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ErrorCircleIcon">
-              <ErrorCircleIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ForgotPasswordIcon">
-              <ForgotPasswordIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="InfoCircleIcon">
-              <InfoCircleIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MonitorFilledIcon">
-              <MonitorFilledIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MotorcycleFilledIcon">
-              <MotorcycleFilledIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MsTeamsIcon">
-              <MsTeamsIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="NoiseCancellingPanelsQuietZoneIcon">
-              <NoiseCancellingPanelsQuietZoneIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ParkingIcon">
-              <ParkingIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PhoneIcon">
-              <PhoneIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PhotoIcon">
-              <PhotoIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PowerOutletFilledIcon">
-              <PowerOutletFilledIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ReceptionIcon">
-              <ReceptionIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RestroomIcon">
-              <RestroomIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RoomIcon">
-              <RoomIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WarningTriangleIcon">
-              <WarningTriangleIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WeatherProtectionFilledIcon">
-              <WeatherProtectionFilledIcon variant="sm" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WirelessChargingFilledIcon">
-              <WirelessChargingFilledIcon variant="sm" />
-            </IconDisplay>
-          </Box>
-        </Stack>
-
-        {/* md — 24px */}
-        <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
-            md — 24px
-          </Typography>
-          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
-            <IconDisplay onlyIcon name="AddIcon">
-              <AddIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AddPhotoIcon">
-              <AddPhotoIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowDownIcon">
-              <ArrowDownIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowLeftIcon">
-              <ArrowLeftIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowRightIcon">
-              <ArrowRightIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowsMaximizeIcon">
-              <ArrowsMaximizeIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowsMoveIcon">
-              <ArrowsMoveIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowUpIcon">
-              <ArrowUpIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AudioLibraryIcon">
-              <AudioLibraryIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AudioPolarityInversionIcon">
-              <AudioPolarityInversionIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AutoFitFilledIcon">
-              <AutoFitFilledIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="AutoFitIcon">
-              <AutoFitIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="BlankIcon">
-              <BlankIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="BuildingIcon">
-              <BuildingIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CalendarAddIcon">
-              <CalendarAddIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CalendarIcon">
-              <CalendarIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ChevronDownIcon">
-              <ChevronDownIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ChevronLeftIcon">
-              <ChevronLeftIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ChevronRightIcon">
-              <ChevronRightIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ChevronUpIcon">
-              <ChevronUpIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CircleCheckIcon">
-              <CircleCheckIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CircleStopIcon">
-              <CircleStopIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ClockTimeIcon">
-              <ClockTimeIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CloseIcon">
-              <CloseIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CloudIcon">
-              <CloudIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CloudNoConnectionIcon">
-              <CloudNoConnectionIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ColumnsIcon">
-              <ColumnsIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ContrastIcon">
-              <ContrastIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CopyIcon">
-              <CopyIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CursorIcon">
-              <CursorIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DefineIcon">
-              <DefineIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeleteIcon">
-              <DeleteIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeskIcon">
-              <DeskIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeskSolidIcon">
-              <DeskSolidIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DoorRoomIcon">
-              <DoorRoomIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DownloadIcon">
-              <DownloadIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EditIcon">
-              <EditIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EmailIcon">
-              <EmailIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ErrorCircleIcon">
-              <ErrorCircleIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ExportIcon">
-              <ExportIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ExternalLinkIcon">
-              <ExternalLinkIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EyeIcon">
-              <EyeIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="EyeOffIcon">
-              <EyeOffIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FileReportIcon">
-              <FileReportIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FileTypeLogIcon">
-              <FileTypeLogIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FileTypePdfIcon">
-              <FileTypePdfIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FilterIcon">
-              <FilterIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FirmwareUpdateIcon">
-              <FirmwareUpdateIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FloorPlanIcon">
-              <FloorPlanIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FollowScreenFilledIcon">
-              <FollowScreenFilledIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FollowScreenIcon">
-              <FollowScreenIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="InfoCircleIcon">
-              <InfoCircleIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="InvertIcon">
-              <InvertIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LayoutSidebarRightCollapseIcon">
-              <LayoutSidebarRightCollapseIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LicencesIcon">
-              <LicencesIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LinkIcon">
-              <LinkIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LinkOffIcon">
-              <LinkOffIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ListIcon">
-              <ListIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LockIcon">
-              <LockIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LoginIcon">
-              <LoginIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LogoutIcon">
-              <LogoutIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MapSiteIcon">
-              <MapSiteIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MapZoomIcon">
-              <MapZoomIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MaximizeIcon">
-              <MaximizeIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MicrophoneIcon">
-              <MicrophoneIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MicrophoneOffIcon">
-              <MicrophoneOffIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MinimizeIcon">
-              <MinimizeIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MinusIcon">
-              <MinusIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MobildFilterIcon">
-              <MobildFilterIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MoreIcon">
-              <MoreIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="MsTeamsIcon">
-              <MsTeamsIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ParkingAltIcon">
-              <ParkingAltIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ParkingIcon">
-              <ParkingIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PauseIcon">
-              <PauseIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PersonIcon">
-              <PersonIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PhotoIcon">
-              <PhotoIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PinLocationIcon">
-              <PinLocationIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PlayAnnouncementIcon">
-              <PlayAnnouncementIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PlaybackSpeedIcon">
-              <PlaybackSpeedIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="QrIcon">
-              <QrIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="QuestionmarkIcon">
-              <QuestionmarkIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="QueueAnnouncementIcon">
-              <QueueAnnouncementIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RefreshIcon">
-              <RefreshIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RocketLaunchIcon">
-              <RocketLaunchIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RoomSolidIcon">
-              <RoomSolidIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SaveIcon">
-              <SaveIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SearchIcon">
-              <SearchIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SettingsIcon">
-              <SettingsIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ShareIcon">
-              <ShareIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SourceIcon">
-              <SourceIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SpeakerFilledIcon">
-              <SpeakerFilledIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SpeakerIcon">
-              <SpeakerIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SpeakerMinimumVolumeFilledIcon">
-              <SpeakerMinimumVolumeFilledIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SpeakerOffFilledIcon">
-              <SpeakerOffFilledIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SpeakerOffIcon">
-              <SpeakerOffIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SquareRoundedArrowRightFilledIcon">
-              <SquareRoundedArrowRightFilledIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SquareRoundedArrowRightIcon">
-              <SquareRoundedArrowRightIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="SquareRoundedPlusIcon">
-              <SquareRoundedPlusIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="StopIcon">
-              <StopIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="UploadIcon">
-              <UploadIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="UsersPlusSigninIcon">
-              <UsersPlusSigninIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="VideoIcon">
-              <VideoIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WarningTriangleIcon">
-              <WarningTriangleIcon variant="md" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WifiIcon">
-              <WifiIcon variant="md" />
-            </IconDisplay>
-          </Box>
-        </Stack>
-
-        {/* lg — 32px */}
-        <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
-            lg — 32px
-          </Typography>
-          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
-            <IconDisplay onlyIcon name="ComputerIcon">
-              <ComputerIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ConditionerIcon">
-              <ConditionerIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FilterIcon">
-              <FilterIcon variant="lg" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="LightsIcon">
-              <LightsIcon variant="lg" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PersonIcon">
-              <PersonIcon variant="lg" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="PhoneIcon">
-              <PhoneIcon variant="lg" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ProjectorIcon">
-              <ProjectorIcon variant="lg" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="VideoConferenceIcon">
-              <VideoConferenceIcon variant="lg" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WhiteboardIcon">
-              <WhiteboardIcon variant="lg" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WifiIcon">
-              <WifiIcon variant="lg" />
-            </IconDisplay>
-          </Box>
-        </Stack>
-
-        {/* xl — 40px */}
-        <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
-            xl — 40px
-          </Typography>
-          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
-            <IconDisplay onlyIcon name="ArrowDownIcon">
-              <ArrowDownIcon variant="xl" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowLeftIcon">
-              <ArrowLeftIcon variant="xl" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowRightIcon">
-              <ArrowRightIcon variant="xl" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ArrowUpIcon">
-              <ArrowUpIcon variant="xl" />
-            </IconDisplay>
-          </Box>
-        </Stack>
-
-        {/* xxl — 56px */}
-        <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
-            xxl — 56px
-          </Typography>
-          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
-            <IconDisplay onlyIcon name="CloudNoConnectionIcon">
-              <CloudNoConnectionIcon variant="xxl" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeskIcon">
-              <DeskIcon variant="xxl" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FileDesignIcon">
-              <FileDesignIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="FocusModeIcon">
-              <FocusModeIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="NoCardIcon">
-              <NoCardIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="NoResultsIcon">
-              <NoResultsIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ParkingIcon">
-              <ParkingIcon variant="xxl" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RoomIcon">
-              <RoomIcon variant="xxl" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="ServiceNotReachableIcon">
-              <ServiceNotReachableIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="TeamMeetingIcon">
-              <TeamMeetingIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="VideoConferenceIcon">
-              <VideoConferenceIcon variant="xxl" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WarningTriangleIcon">
-              <WarningTriangleIcon variant="xxl" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WorkshopIcon">
-              <WorkshopIcon />
-            </IconDisplay>
-          </Box>
-        </Stack>
-
-        {/* xxxl — 72px */}
-        <Stack spacing={4}>
-          <Typography variant="h6" color="text.primary">
-            xxxl — 72px
-          </Typography>
-          <Box sx={{ ...CONFIG, flexWrap: 'wrap' }}>
-            <IconDisplay onlyIcon name="GlobeIcon">
-              <GlobeIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="RoomHubIcon">
-              <RoomHubIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="TouchDisplayIcon">
-              <TouchDisplayIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="WifiEnlargedIcon">
-              <WifiEnlargedIcon />
-            </IconDisplay>
-          </Box>
-        </Stack>
-      </Stack>
-    </Box>
-  ),
-};
-
-/**
- * Icons rendered at multiple sizes to verify they scale correctly.
- */
-export const Sizes: Story = {
-  args: { iconColor: undefined },
-  render: ({ iconColor }) => (
-    <Box sx={{ color: iconColor || 'inherit' }}>
-      <Stack spacing={3}>
-        <Typography variant="h3">Icons at Different Sizes</Typography>
-        <Box sx={{ display: 'flex', gap: 3, alignItems: 'center' }}>
-          {[14, 16, 20, 24, 32, 48].map((size) => (
-            <Box key={size} sx={{ textAlign: 'center' }}>
-              <SuccessStatusIcon sx={{ width: size, height: size }} />
-              <Typography variant="caption" display="block">
-                {size}px
-              </Typography>
-            </Box>
-          ))}
-        </Box>
-      </Stack>
-    </Box>
+  args: {
+    color: '#000000',
+  },
+  render: ({ color }) => (
+    <Stack spacing={4} sx={{ color }}>
+      {groups.map((g) => (
+        <IconGroup key={g.title} title={g.title} icons={g.icons} />
+      ))}
+    </Stack>
   ),
 };

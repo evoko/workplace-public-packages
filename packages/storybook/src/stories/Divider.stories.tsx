@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Divider, Stack, Typography, Box, Chip } from '@mui/material';
 
@@ -10,32 +9,38 @@ const meta: Meta<typeof Divider> = {
 export default meta;
 type Story = StoryObj<typeof Divider>;
 
-export const Default: Story = {
+export const Horizontal: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Divider</Typography>
+    <Stack spacing={2} sx={{ width: 300 }}>
+      <Typography>Item 1</Typography>
+      <Divider />
+      <Typography>Item 2</Typography>
+      <Divider />
+      <Typography>Item 3</Typography>
+    </Stack>
+  ),
+};
 
-      <Box>
-        <Typography variant="body1" sx={{ mb: 1 }}>
-          Content above the divider
-        </Typography>
-        <Divider />
-        <Typography variant="body1" sx={{ mt: 1 }}>
-          Content below the divider
-        </Typography>
-      </Box>
+export const Vertical: Story = {
+  render: () => (
+    <Stack
+      direction="row"
+      spacing={2}
+      divider={<Divider orientation="vertical" flexItem />}
+    >
+      <Typography>Item 1</Typography>
+      <Typography>Item 2</Typography>
+      <Typography>Item 3</Typography>
     </Stack>
   ),
 };
 
 export const WithText: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Divider with Text</Typography>
-
-      <Divider>Center</Divider>
-      <Divider textAlign="left">Left</Divider>
-      <Divider textAlign="right">Right</Divider>
+    <Stack spacing={2}>
+      <Divider>CENTER</Divider>
+      <Divider textAlign="left">LEFT</Divider>
+      <Divider textAlign="right">RIGHT</Divider>
       <Divider>
         <Chip label="Chip" size="small" />
       </Divider>
@@ -43,22 +48,17 @@ export const WithText: Story = {
   ),
 };
 
-export const InList: Story = {
+export const Variants: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Dividers in a List</Typography>
-      <Box>
-        {['First section', 'Second section', 'Third section'].map(
-          (text, index, arr) => (
-            <Fragment key={text}>
-              <Typography variant="body1" sx={{ py: 1.5 }}>
-                {text}
-              </Typography>
-              {index < arr.length - 1 && <Divider />}
-            </Fragment>
-          ),
-        )}
-      </Box>
-    </Stack>
+    <Box sx={{ width: 300 }}>
+      <Stack spacing={2}>
+        <Typography variant="caption">Full width</Typography>
+        <Divider />
+        <Typography variant="caption">Inset</Typography>
+        <Divider variant="inset" />
+        <Typography variant="caption">Middle</Typography>
+        <Divider variant="middle" />
+      </Stack>
+    </Box>
   ),
 };

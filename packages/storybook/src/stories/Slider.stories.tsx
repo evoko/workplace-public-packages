@@ -1,36 +1,98 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Slider, Stack, Typography } from '@mui/material';
+import { Slider, Stack, Typography, Box } from '@mui/material';
+import VolumeDown from '@mui/icons-material/VolumeDown';
+import VolumeUp from '@mui/icons-material/VolumeUp';
 
 const meta: Meta<typeof Slider> = {
   title: 'Styles/Slider',
   component: Slider,
-  argTypes: {
-    value: { control: 'number' },
-    min: { control: 'number' },
-    max: { control: 'number' },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Slider>;
 
-export const Variants: Story = {
-  render: () => (
-    <Stack
-      spacing={4}
-      sx={{
-        width: 300,
-        mx: 'auto',
-        pt: 2,
-        backgroundColor: 'background.paper',
-        padding: 4,
-      }}
-    >
-      <Typography variant="h3">Range Slider</Typography>
-      <Slider defaultValue={[30, 70]} />
+export const Playground: Story = {
+  args: { defaultValue: 30 },
+  decorators: [
+    (Story) => (
+      <Box sx={{ width: 300 }}>
+        <Story />
+      </Box>
+    ),
+  ],
+};
 
-      <Typography variant="h3">Single Slider</Typography>
-      <Slider defaultValue={40} />
-    </Stack>
+export const Continuous: Story = {
+  render: () => (
+    <Box sx={{ width: 300 }}>
+      <Stack spacing={2} direction="row" alignItems="center">
+        <VolumeDown />
+        <Slider defaultValue={30} />
+        <VolumeUp />
+      </Stack>
+    </Box>
+  ),
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <Box sx={{ width: 300 }}>
+      <Stack spacing={3}>
+        <Slider defaultValue={30} size="small" />
+        <Slider defaultValue={30} />
+      </Stack>
+    </Box>
+  ),
+};
+
+export const Discrete: Story = {
+  render: () => (
+    <Box sx={{ width: 300 }}>
+      <Slider
+        defaultValue={30}
+        step={10}
+        marks
+        min={0}
+        max={100}
+        valueLabelDisplay="auto"
+      />
+    </Box>
+  ),
+};
+
+export const Range: Story = {
+  render: () => (
+    <Box sx={{ width: 300 }}>
+      <Slider defaultValue={[20, 60]} valueLabelDisplay="auto" />
+    </Box>
+  ),
+};
+
+export const Colors: Story = {
+  render: () => (
+    <Box sx={{ width: 300 }}>
+      <Stack spacing={2}>
+        {(
+          [
+            'primary',
+            'secondary',
+            'error',
+            'info',
+            'success',
+            'warning',
+          ] as const
+        ).map((color) => (
+          <Slider key={color} defaultValue={40} color={color} />
+        ))}
+      </Stack>
+    </Box>
+  ),
+};
+
+export const Disabled: Story = {
+  render: () => (
+    <Box sx={{ width: 300 }}>
+      <Slider defaultValue={30} disabled />
+    </Box>
   ),
 };

@@ -1,25 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  TextField,
-  Stack,
-  Typography,
-  InputAdornment,
-  Box,
-} from '@mui/material';
+import { TextField, Stack, Typography, InputAdornment } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { CloseIcon, SearchIcon } from '@bwp-web/assets';
 
 const meta: Meta<typeof TextField> = {
   title: 'Styles/TextField',
   component: TextField,
   argTypes: {
-    variant: {
-      control: 'select',
-      options: ['outlined'],
-    },
-    disabled: { control: 'boolean' },
-    error: { control: 'boolean' },
-    multiline: { control: 'boolean' },
+    variant: { control: 'select', options: ['outlined', 'filled', 'standard'] },
+    size: { control: 'select', options: ['small', 'medium'] },
   },
 };
 
@@ -29,50 +18,86 @@ type Story = StoryObj<typeof TextField>;
 export const Playground: Story = {
   args: {
     label: 'Label',
-    placeholder: 'Enter text...',
-    helperText: 'Helper text',
-    disabled: false,
-    error: false,
+    variant: 'outlined',
   },
 };
 
-export const AllStates: Story = {
+export const Variants: Story = {
   render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h3">TextField States</Typography>
+    <Stack direction="row" spacing={2}>
+      <TextField label="Outlined" variant="outlined" />
+      <TextField label="Filled" variant="filled" />
+      <TextField label="Standard" variant="standard" />
+    </Stack>
+  ),
+};
 
-      <TextField label="Default" placeholder="Enter text..." />
+export const Sizes: Story = {
+  render: () => (
+    <Stack direction="row" spacing={2} alignItems="center">
+      <TextField label="Small" size="small" />
+      <TextField label="Medium" size="medium" />
+    </Stack>
+  ),
+};
 
-      <TextField label="With value" defaultValue="Hello World" />
+export const States: Story = {
+  render: () => (
+    <Stack spacing={2}>
+      <Stack direction="row" spacing={2}>
+        <TextField label="Default" />
+        <TextField label="Disabled" disabled />
+        <TextField
+          label="Read Only"
+          defaultValue="Read only"
+          slotProps={{ input: { readOnly: true } }}
+        />
+      </Stack>
+      <Stack direction="row" spacing={2}>
+        <TextField label="Error" error />
+        <TextField label="Error with helper" error helperText="Error message" />
+        <TextField label="With helper text" helperText="Some helper text" />
+      </Stack>
+    </Stack>
+  ),
+};
 
+export const Types: Story = {
+  render: () => (
+    <Stack spacing={2}>
+      <Stack direction="row" spacing={2}>
+        <TextField label="Text" type="text" />
+        <TextField label="Password" type="password" defaultValue="password" />
+        <TextField label="Number" type="number" />
+      </Stack>
+      <Stack direction="row" spacing={2}>
+        <TextField label="Search" type="search" />
+        <TextField label="Email" type="email" />
+        <TextField label="URL" type="url" />
+      </Stack>
+    </Stack>
+  ),
+};
+
+export const Multiline: Story = {
+  render: () => (
+    <Stack direction="row" spacing={2}>
       <TextField
-        label="With helper text"
-        placeholder="Enter text..."
-        helperText="This is helper text"
+        label="Multiline"
+        multiline
+        rows={4}
+        defaultValue="Default value"
       />
-
-      <TextField
-        label="Error state"
-        defaultValue="Invalid input"
-        error
-        helperText="This field is required"
-      />
-
-      <TextField label="Disabled" defaultValue="Cannot edit" disabled />
-
-      <TextField label="Required" placeholder="Required field" required />
+      <TextField label="Min rows" multiline minRows={2} maxRows={6} />
     </Stack>
   ),
 };
 
 export const WithAdornments: Story = {
   render: () => (
-    <Stack spacing={4} sx={{ maxWidth: 400 }}>
-      <Typography variant="h3">Input Adornments</Typography>
-
+    <Stack direction="row" spacing={2}>
       <TextField
         label="Search"
-        placeholder="Search..."
         slotProps={{
           input: {
             startAdornment: (
@@ -80,19 +105,12 @@ export const WithAdornments: Story = {
                 <SearchIcon />
               </InputAdornment>
             ),
-            endAdornment: (
-              <InputAdornment position="end">
-                <CloseIcon />
-              </InputAdornment>
-            ),
           },
         }}
       />
-
       <TextField
         label="Password"
         type="password"
-        placeholder="Enter password"
         slotProps={{
           input: {
             endAdornment: (
@@ -103,6 +121,18 @@ export const WithAdornments: Story = {
           },
         }}
       />
+      <TextField
+        label="Amount"
+        slotProps={{
+          input: {
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          },
+        }}
+      />
     </Stack>
   ),
+};
+
+export const FullWidth: Story = {
+  render: () => <TextField label="Full Width" fullWidth />,
 };

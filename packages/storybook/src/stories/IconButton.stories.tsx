@@ -1,75 +1,75 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconButton, Stack, Typography, Box } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+import { IconButton, Stack, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import SettingsIcon from '@mui/icons-material/Settings';
-import CloseIcon from '@mui/icons-material/Close';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import AlarmIcon from '@mui/icons-material/Alarm';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FingerprintIcon from '@mui/icons-material/Fingerprint';
 
 const meta: Meta<typeof IconButton> = {
   title: 'Styles/IconButton',
   component: IconButton,
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['none', 'transparent', 'outlined'],
-    },
-    size: {
-      control: 'select',
-      options: ['small', 'medium'],
-    },
-    disabled: { control: 'boolean' },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof IconButton>;
 
 export const Playground: Story = {
-  args: {
-    variant: 'transparent',
-    size: 'small',
-    children: <EditIcon />,
-  },
+  args: { children: <DeleteIcon /> },
 };
 
-export const AllVariants: Story = {
+export const Colors: Story = {
   render: () => (
-    <Stack spacing={4}>
-      {(['none', 'transparent', 'outlined'] as const).map((variant) => (
-        <Box key={variant}>
-          <Typography variant="h3" sx={{ mb: 2 }}>
-            Variant: {variant}
-          </Typography>
-          <Stack spacing={2}>
-            {(['small', 'medium'] as const).map((size) => (
-              <Stack key={size} direction="row" spacing={2} alignItems="center">
-                <Typography variant="caption" sx={{ width: 60, flexShrink: 0 }}>
-                  {size}
-                </Typography>
-                <IconButton variant={variant} size={size}>
-                  <EditIcon />
-                </IconButton>
-                <IconButton variant={variant} size={size}>
-                  <DeleteIcon />
-                </IconButton>
-                <IconButton variant={variant} size={size}>
-                  <SettingsIcon />
-                </IconButton>
-                <IconButton variant={variant} size={size}>
-                  <CloseIcon />
-                </IconButton>
-                <IconButton variant={variant} size={size}>
-                  <MoreVertIcon />
-                </IconButton>
-                <IconButton variant={variant} size={size} disabled>
-                  <EditIcon />
-                </IconButton>
-              </Stack>
-            ))}
-          </Stack>
-        </Box>
-      ))}
+    <Stack direction="row" spacing={1}>
+      <IconButton>
+        <FingerprintIcon />
+      </IconButton>
+      <IconButton color="primary">
+        <FingerprintIcon />
+      </IconButton>
+      <IconButton color="secondary">
+        <FingerprintIcon />
+      </IconButton>
+      <IconButton color="success">
+        <FingerprintIcon />
+      </IconButton>
+      <IconButton color="error">
+        <FingerprintIcon />
+      </IconButton>
+      <IconButton color="info">
+        <FingerprintIcon />
+      </IconButton>
+      <IconButton color="warning">
+        <FingerprintIcon />
+      </IconButton>
+    </Stack>
+  ),
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <Stack direction="row" spacing={1} alignItems="center">
+      <IconButton size="small">
+        <DeleteIcon fontSize="small" />
+      </IconButton>
+      <IconButton size="medium">
+        <DeleteIcon />
+      </IconButton>
+      <IconButton size="large">
+        <DeleteIcon fontSize="large" />
+      </IconButton>
+    </Stack>
+  ),
+};
+
+export const Disabled: Story = {
+  render: () => (
+    <Stack direction="row" spacing={1}>
+      <IconButton disabled>
+        <DeleteIcon />
+      </IconButton>
+      <IconButton disabled color="primary">
+        <DeleteIcon />
+      </IconButton>
     </Stack>
   ),
 };

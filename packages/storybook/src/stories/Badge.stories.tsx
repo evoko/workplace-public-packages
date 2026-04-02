@@ -1,38 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Badge, Box, Stack, Typography } from '@mui/material';
-import { EmailIcon } from '@bwp-web/assets';
+import { Badge, Stack, IconButton } from '@mui/material';
+import MailIcon from '@mui/icons-material/Mail';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const meta: Meta<typeof Badge> = {
   title: 'Styles/Badge',
   component: Badge,
   argTypes: {
-    badgeContent: { control: 'text' },
     color: {
       control: 'select',
       options: [
         'default',
         'primary',
         'secondary',
-        'error',
-        'warning',
         'success',
+        'error',
         'info',
+        'warning',
       ],
     },
-    variant: {
-      control: 'select',
-      options: [
-        'standard',
-        'dot',
-        'rectangle',
-        'round',
-        'rectangle-inline',
-        'round-inline',
-      ],
-    },
-    max: { control: 'number' },
-    invisible: { control: 'boolean' },
-    anchorOrigin: { control: false },
+    variant: { control: 'select', options: ['standard', 'dot'] },
   },
 };
 
@@ -40,109 +27,74 @@ export default meta;
 type Story = StoryObj<typeof Badge>;
 
 export const Playground: Story = {
-  args: {
-    badgeContent: 4,
-    color: 'primary',
-    max: 99,
-    invisible: false,
-    variant: 'rectangle-inline',
-  },
+  args: { badgeContent: 4, color: 'primary', children: <MailIcon /> },
 };
 
-const COLORS = ['primary', 'error', 'warning', 'success', 'info'] as const;
-
-export const Variants: Story = {
+export const BasicBadges: Story = {
   render: () => (
-    <Stack spacing={4} sx={{ paddingBottom: '40px' }}>
+    <Stack direction="row" spacing={4}>
+      <Badge badgeContent={4} color="primary">
+        <MailIcon />
+      </Badge>
+      <Badge badgeContent={99} color="secondary">
+        <MailIcon />
+      </Badge>
+      <Badge badgeContent={1000} max={999} color="error">
+        <MailIcon />
+      </Badge>
+    </Stack>
+  ),
+};
+
+export const Colors: Story = {
+  render: () => (
+    <Stack direction="row" spacing={4}>
       {(
-        [
-          {
-            variant: 'standard',
-            label: 'Standard',
-            description: 'Floats on another component',
-            inline: false,
-          },
-          {
-            variant: 'dot',
-            label: 'Dot',
-            description: 'Floats on another component',
-            inline: false,
-          },
-          {
-            variant: 'rectangle',
-            label: 'Rectangle',
-            description: 'Floats on another component',
-            inline: false,
-          },
-          {
-            variant: 'rectangle-inline',
-            label: 'Rectangle inline',
-            description: 'Block behavior - no float',
-            inline: true,
-          },
-          {
-            variant: 'round',
-            label: 'Round',
-            description: 'Floats on another component',
-            inline: false,
-          },
-          {
-            variant: 'round-inline',
-            label: 'Round inline',
-            description: 'Block behavior - no float',
-            inline: true,
-          },
-        ] as const
-      ).map(({ variant, label, description, inline }) => (
-        <Stack key={variant} spacing={0}>
-          <Typography variant="subtitle2">{label}</Typography>
-          <Typography
-            variant="caption"
-            color="textSecondary"
-            sx={{ paddingBottom: '20px' }}
-          >
-            {description}
-          </Typography>
-          <Stack
-            direction="row"
-            spacing={3}
-            alignItems="center"
-            flexWrap="wrap"
-          >
-            {COLORS.map((color) =>
-              inline ? (
-                <Badge
-                  key={color}
-                  color={color}
-                  badgeContent="9"
-                  variant={variant}
-                />
-              ) : (
-                <Badge
-                  key={color}
-                  color={color}
-                  badgeContent="9"
-                  variant={variant}
-                >
-                  <Box
-                    sx={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: 1,
-                      bgcolor: 'action.selected',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <EmailIcon variant="md" />
-                  </Box>
-                </Badge>
-              ),
-            )}
-          </Stack>
-        </Stack>
+        ['primary', 'secondary', 'success', 'error', 'info', 'warning'] as const
+      ).map((color) => (
+        <Badge key={color} badgeContent={4} color={color}>
+          <MailIcon />
+        </Badge>
       ))}
+    </Stack>
+  ),
+};
+
+export const DotVariant: Story = {
+  render: () => (
+    <Stack direction="row" spacing={4}>
+      <Badge variant="dot" color="primary">
+        <MailIcon />
+      </Badge>
+      <Badge variant="dot" color="secondary">
+        <MailIcon />
+      </Badge>
+    </Stack>
+  ),
+};
+
+export const ShowZero: Story = {
+  render: () => (
+    <Stack direction="row" spacing={4}>
+      <Badge badgeContent={0} color="primary">
+        <MailIcon />
+      </Badge>
+      <Badge badgeContent={0} color="primary" showZero>
+        <MailIcon />
+      </Badge>
+    </Stack>
+  ),
+};
+
+export const Invisible: Story = {
+  render: () => (
+    <Stack direction="row" spacing={4}>
+      <Badge badgeContent={4} color="primary" invisible>
+        <MailIcon />
+      </Badge>
+      <Badge badgeContent={4} color="primary">
+        <MailIcon />
+      </Badge>
     </Stack>
   ),
 };

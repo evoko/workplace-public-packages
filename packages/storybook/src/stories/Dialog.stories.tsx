@@ -8,7 +8,6 @@ import {
   DialogActions,
   Button,
   Stack,
-  Typography,
   TextField,
 } from '@mui/material';
 
@@ -20,174 +19,135 @@ const meta: Meta<typeof Dialog> = {
 export default meta;
 type Story = StoryObj<typeof Dialog>;
 
-function ConfirmationDemo() {
+const SimpleDialogDemo = () => {
   const [open, setOpen] = useState(false);
   return (
-    <Stack spacing={2}>
-      <Typography variant="h3">Confirmation Dialog</Typography>
-      <Button variant="contained" onClick={() => setOpen(true)}>
+    <>
+      <Button variant="outlined" onClick={() => setOpen(true)}>
         Open Dialog
       </Button>
       <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>Confirm Action</DialogTitle>
+        <DialogTitle>Dialog Title</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to proceed with this action? This cannot be
-            undone.
+            This is a simple dialog with some content text. You can put any
+            content here.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={() => setOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setOpen(false)}
-          >
+          <Button onClick={() => setOpen(false)}>Cancel</Button>
+          <Button onClick={() => setOpen(false)} variant="contained">
             Confirm
           </Button>
         </DialogActions>
       </Dialog>
-    </Stack>
+    </>
   );
-}
-
-export const Confirmation: Story = {
-  render: () => <ConfirmationDemo />,
 };
 
-function DeleteConfirmationDemo() {
+export const Simple: Story = {
+  render: () => <SimpleDialogDemo />,
+};
+
+const FormDialogDemo = () => {
   const [open, setOpen] = useState(false);
   return (
-    <Stack spacing={2}>
-      <Typography variant="h3">Delete Confirmation</Typography>
-      <Button variant="contained" color="error" onClick={() => setOpen(true)}>
-        Delete Item
+    <>
+      <Button variant="outlined" onClick={() => setOpen(true)}>
+        Open Form Dialog
       </Button>
       <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>Delete Item</DialogTitle>
+        <DialogTitle>Subscribe</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            This will permanently delete the selected item. This action cannot
-            be undone.
+            Enter your email address to subscribe to this newsletter.
           </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Email Address"
+            type="email"
+            fullWidth
+            variant="standard"
+          />
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={() => setOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            variant="contained"
-            color="error"
-            onClick={() => setOpen(false)}
-          >
-            Delete
-          </Button>
+          <Button onClick={() => setOpen(false)}>Cancel</Button>
+          <Button onClick={() => setOpen(false)}>Subscribe</Button>
         </DialogActions>
       </Dialog>
-    </Stack>
+    </>
   );
-}
-
-export const DeleteConfirmation: Story = {
-  render: () => <DeleteConfirmationDemo />,
 };
 
-function WithFormDemo() {
+export const FormDialog: Story = {
+  render: () => <FormDialogDemo />,
+};
+
+const FullWidthDialogDemo = () => {
   const [open, setOpen] = useState(false);
   return (
-    <Stack spacing={2}>
-      <Typography variant="h3">Dialog with Form</Typography>
-      <Button variant="contained" onClick={() => setOpen(true)}>
-        Create New
+    <>
+      <Button variant="outlined" onClick={() => setOpen(true)}>
+        Full Width Dialog
       </Button>
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
-        maxWidth="sm"
         fullWidth
+        maxWidth="sm"
       >
-        <DialogTitle>Create New Item</DialogTitle>
-        <DialogContent>
-          <DialogContentText sx={{ mb: 2 }}>
-            Fill in the details below to create a new item.
-          </DialogContentText>
-          <Stack spacing={2}>
-            <TextField label="Name" placeholder="Enter name" fullWidth />
-            <TextField
-              label="Description"
-              placeholder="Enter description"
-              multiline
-              rows={3}
-              fullWidth
-            />
-          </Stack>
-        </DialogContent>
-        <DialogActions>
-          <Button variant="outlined" onClick={() => setOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setOpen(false)}
-          >
-            Create
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Stack>
-  );
-}
-
-export const WithForm: Story = {
-  render: () => <WithFormDemo />,
-};
-
-function ThreeButtonActionsDemo() {
-  const [open, setOpen] = useState(false);
-  return (
-    <Stack spacing={2}>
-      <Typography variant="h3">Three-button Dialog</Typography>
-      <Typography variant="body2" color="text.secondary">
-        The theme auto-pushes the first button to the left when there are 3+
-        action buttons.
-      </Typography>
-      <Button variant="contained" onClick={() => setOpen(true)}>
-        Open Dialog
-      </Button>
-      <Dialog open={open} onClose={() => setOpen(false)}>
-        <DialogTitle>Review Changes</DialogTitle>
+        <DialogTitle>Full Width</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            You have unsaved changes. What would you like to do?
+            This dialog takes the full width of its max-width container.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button
-            variant="outlined"
-            color="error"
-            onClick={() => setOpen(false)}
-          >
-            Discard
-          </Button>
-          <Button variant="outlined" onClick={() => setOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setOpen(false)}
-          >
-            Save
-          </Button>
+          <Button onClick={() => setOpen(false)}>Close</Button>
         </DialogActions>
       </Dialog>
-    </Stack>
+    </>
   );
-}
+};
 
-export const ThreeButtonActions: Story = {
-  render: () => <ThreeButtonActionsDemo />,
+export const FullWidth: Story = {
+  render: () => <FullWidthDialogDemo />,
+};
+
+const SizesDemo = () => {
+  const [open, setOpen] = useState<false | 'xs' | 'sm' | 'md' | 'lg' | 'xl'>(
+    false,
+  );
+  return (
+    <>
+      <Stack direction="row" spacing={2}>
+        {(['xs', 'sm', 'md', 'lg', 'xl'] as const).map((size) => (
+          <Button key={size} variant="outlined" onClick={() => setOpen(size)}>
+            {size}
+          </Button>
+        ))}
+      </Stack>
+      <Dialog
+        open={!!open}
+        onClose={() => setOpen(false)}
+        maxWidth={open || 'sm'}
+        fullWidth
+      >
+        <DialogTitle>Max Width: {open}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Dialog content at {open} max width.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>Close</Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+};
+
+export const Sizes: Story = {
+  render: () => <SizesDemo />,
 };

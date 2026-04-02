@@ -1,48 +1,64 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  Switch,
-  FormControlLabel,
-  FormGroup,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Switch, FormControlLabel, FormGroup, Stack } from '@mui/material';
 
 const meta: Meta<typeof Switch> = {
   title: 'Styles/Switch',
   component: Switch,
-  argTypes: {
-    checked: { control: 'boolean' },
-    disabled: { control: 'boolean' },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Switch>;
 
 export const Playground: Story = {
-  args: {
-    checked: false,
-    disabled: false,
-  },
+  args: { defaultChecked: true },
 };
 
-export const AllStates: Story = {
+export const BasicSwitches: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Switch States</Typography>
+    <Stack direction="row">
+      <Switch defaultChecked />
+      <Switch />
+      <Switch disabled defaultChecked />
+      <Switch disabled />
+    </Stack>
+  ),
+};
 
-      <FormGroup>
-        <FormControlLabel
-          control={<Switch defaultChecked={false} />}
-          label="Off"
-        />
-        <FormControlLabel control={<Switch defaultChecked />} label="On" />
-        <FormControlLabel control={<Switch disabled />} label="Disabled off" />
-        <FormControlLabel
-          control={<Switch disabled checked />}
-          label="Disabled on"
-        />
-      </FormGroup>
+export const WithLabels: Story = {
+  render: () => (
+    <FormGroup>
+      <FormControlLabel control={<Switch defaultChecked />} label="On" />
+      <FormControlLabel control={<Switch />} label="Off" />
+      <FormControlLabel control={<Switch disabled />} label="Disabled" />
+    </FormGroup>
+  ),
+};
+
+export const Colors: Story = {
+  render: () => (
+    <Stack direction="row">
+      {(
+        [
+          'primary',
+          'secondary',
+          'success',
+          'error',
+          'info',
+          'warning',
+          'default',
+        ] as const
+      ).map((color) => (
+        <Switch key={color} defaultChecked color={color} />
+      ))}
+    </Stack>
+  ),
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <Stack direction="row" alignItems="center">
+      <Switch defaultChecked size="small" />
+      <Switch defaultChecked size="medium" />
     </Stack>
   ),
 };

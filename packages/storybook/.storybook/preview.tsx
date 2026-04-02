@@ -3,9 +3,6 @@ import type { Preview } from '@storybook/react-vite';
 import { ThemeProvider, CssBaseline, Box } from '@mui/material';
 import { biampTheme } from '@bwp-web/styles';
 
-// Create two separate themes, each with ONLY one color scheme.
-// This prevents MUI from auto-detecting system preferences or
-// fighting over which scheme to show — there's only one option each.
 const lightTheme = biampTheme({
   defaultColorScheme: 'light',
   colorSchemes: { dark: false },
@@ -20,7 +17,7 @@ const preview: Preview = {
   tags: ['autodocs'],
   globalTypes: {
     colorMode: {
-      description: 'Color mode for the Biamp theme',
+      description: 'Color mode',
       toolbar: {
         title: 'Color Mode',
         items: [
@@ -36,8 +33,6 @@ const preview: Preview = {
   },
   decorators: [
     (Story, context) => {
-      // Force light mode in the Docs tab so the story content matches
-      // the always-light Storybook docs page background.
       const isDocs = context.viewMode === 'docs';
       const mode = isDocs ? 'light' : context.globals.colorMode || 'light';
       const theme = mode === 'dark' ? darkTheme : lightTheme;
@@ -45,14 +40,7 @@ const preview: Preview = {
       return (
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Box
-            sx={{
-              ...(!context.parameters.noPadding && { p: 3 }),
-              height: '100vh',
-              bgcolor: context.parameters.canvasBackground ?? 'grey.100',
-              ...(mode === 'dark' && { bgcolor: 'grey.900' }),
-            }}
-          >
+          <Box sx={{ p: 3 }}>
             <Story />
           </Box>
         </ThemeProvider>
@@ -66,13 +54,8 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-
     layout: 'fullscreen',
-
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
       test: 'todo',
     },
   },

@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Box, Stack, Typography, useTheme } from '@mui/material';
 
-/**
- * Helper: a single color swatch with label + hex value.
- */
 const Swatch = ({
   color,
   label,
@@ -13,11 +10,11 @@ const Swatch = ({
   label: string;
   bordered?: boolean;
 }) => (
-  <Stack alignItems="center" spacing={0.5} sx={{ width: 100 }}>
+  <Stack alignItems="center" spacing={0.5} sx={{ width: 90 }}>
     <Box
       sx={{
-        width: 64,
-        height: 64,
+        width: 56,
+        height: 56,
         borderRadius: 1,
         backgroundColor: color,
         border: bordered ? '1px solid' : 'none',
@@ -27,15 +24,12 @@ const Swatch = ({
     <Typography variant="caption" fontWeight={600}>
       {label}
     </Typography>
-    <Typography variant="caption" color="text.secondary">
+    <Typography variant="caption" color="text.secondary" sx={{ fontSize: 10 }}>
       {color}
     </Typography>
   </Stack>
 );
 
-/**
- * A labelled row of swatches.
- */
 const ColorGroup = ({
   title,
   swatches,
@@ -43,11 +37,11 @@ const ColorGroup = ({
   title: string;
   swatches: { color: string; label: string; bordered?: boolean }[];
 }) => (
-  <Box sx={{ mb: 4 }}>
-    <Typography variant="h2" sx={{ mb: 2 }}>
+  <Box sx={{ mb: 3 }}>
+    <Typography variant="h6" sx={{ mb: 1 }}>
       {title}
     </Typography>
-    <Stack direction="row" flexWrap="wrap" gap={2}>
+    <Stack direction="row" flexWrap="wrap" gap={1.5}>
       {swatches.map((s) => (
         <Swatch key={s.label} {...s} />
       ))}
@@ -55,16 +49,12 @@ const ColorGroup = ({
   </Box>
 );
 
-/**
- * Renders the full color palette pulled from the active MUI theme.
- */
 const AllColors = () => {
   const theme = useTheme();
   const p = theme.palette;
 
   return (
-    <Stack spacing={2}>
-      {/* ---- Primary / Secondary ---- */}
+    <Stack spacing={1}>
       <ColorGroup
         title="Primary"
         swatches={[
@@ -78,107 +68,51 @@ const AllColors = () => {
           },
         ]}
       />
-
       <ColorGroup
         title="Secondary"
         swatches={[
-          { color: p.secondary.main, label: 'main', bordered: true },
-          { color: p.secondary.light, label: 'light', bordered: true },
-          { color: p.secondary.dark, label: 'dark', bordered: true },
-          { color: p.secondary.contrastText, label: 'contrastText' },
+          { color: p.secondary.main, label: 'main' },
+          { color: p.secondary.light, label: 'light' },
+          { color: p.secondary.dark, label: 'dark' },
+          {
+            color: p.secondary.contrastText,
+            label: 'contrastText',
+            bordered: true,
+          },
         ]}
       />
-
-      {/* ---- Status colors ---- */}
       <ColorGroup
         title="Success"
         swatches={[
           { color: p.success.main, label: 'main' },
           { color: p.success.light, label: 'light' },
           { color: p.success.dark, label: 'dark' },
-          {
-            color: p.success.contrastText,
-            label: 'contrastText',
-            bordered: true,
-          },
-          { color: p.background.success, label: 'background' },
         ]}
       />
-
       <ColorGroup
         title="Warning"
         swatches={[
           { color: p.warning.main, label: 'main' },
           { color: p.warning.light, label: 'light' },
           { color: p.warning.dark, label: 'dark' },
-          {
-            color: p.warning.contrastText,
-            label: 'contrastText',
-            bordered: true,
-          },
-          { color: p.background.warning, label: 'background' },
         ]}
       />
-
       <ColorGroup
         title="Error"
         swatches={[
           { color: p.error.main, label: 'main' },
           { color: p.error.light, label: 'light' },
           { color: p.error.dark, label: 'dark' },
-          {
-            color: p.error.contrastText,
-            label: 'contrastText',
-            bordered: true,
-          },
-          { color: p.background.error, label: 'background' },
         ]}
       />
-
       <ColorGroup
         title="Info"
         swatches={[
           { color: p.info.main, label: 'main' },
           { color: p.info.light, label: 'light' },
           { color: p.info.dark, label: 'dark' },
-          {
-            color: p.info.contrastText,
-            label: 'contrastText',
-            bordered: true,
-          },
-          { color: p.background.info, label: 'background' },
         ]}
       />
-
-      {/* ---- Custom brand colors ---- */}
-      <ColorGroup
-        title="Biamp"
-        swatches={[
-          { color: p.biamp.main, label: 'main' },
-          { color: p.biamp.light, label: 'light' },
-          { color: p.biamp.dark, label: 'dark' },
-        ]}
-      />
-
-      <ColorGroup
-        title="Purple"
-        swatches={[
-          { color: p.purple.main, label: 'main' },
-          { color: p.purple.light, label: 'light' },
-          { color: p.purple.dark, label: 'dark' },
-        ]}
-      />
-
-      <ColorGroup
-        title="Blue"
-        swatches={[
-          { color: p.blue.main, label: 'main' },
-          { color: p.blue.light, label: 'light' },
-          { color: p.blue.dark, label: 'dark' },
-        ]}
-      />
-
-      {/* ---- Grey scale ---- */}
       <ColorGroup
         title="Grey"
         swatches={[
@@ -194,38 +128,14 @@ const AllColors = () => {
           { color: p.grey[900], label: '900' },
         ]}
       />
-
-      {/* ---- Common ---- */}
-      <ColorGroup
-        title="Common"
-        swatches={[
-          { color: p.common.black, label: 'black' },
-          { color: p.common.white, label: 'white', bordered: true },
-        ]}
-      />
-
-      {/* ---- Sidebar ---- */}
-      <ColorGroup
-        title="Sidebar"
-        swatches={[
-          { color: p.sidebar.main, label: 'main' },
-          { color: p.sidebar.light, label: 'light' },
-          { color: p.sidebar.dark, label: 'dark' },
-        ]}
-      />
-
-      {/* ---- Text ---- */}
       <ColorGroup
         title="Text"
         swatches={[
           { color: p.text.primary, label: 'primary' },
           { color: p.text.secondary, label: 'secondary' },
           { color: p.text.disabled, label: 'disabled' },
-          { color: p.text.sidebar ?? '', label: 'sidebar' },
         ]}
       />
-
-      {/* ---- Background ---- */}
       <ColorGroup
         title="Background"
         swatches={[
@@ -233,18 +143,17 @@ const AllColors = () => {
           { color: p.background.paper, label: 'paper', bordered: true },
         ]}
       />
-
-      {/* ---- Dividers ---- */}
       <ColorGroup
-        title="Dividers"
+        title="Common"
         swatches={[
-          { color: p.divider, label: 'divider' },
-          { color: p.dividers.primary, label: 'primary' },
-          { color: p.dividers.secondary, label: 'secondary' },
+          { color: p.common.black, label: 'black' },
+          { color: p.common.white, label: 'white', bordered: true },
         ]}
       />
-
-      {/* ---- Action ---- */}
+      <ColorGroup
+        title="Divider"
+        swatches={[{ color: p.divider, label: 'divider' }]}
+      />
       <ColorGroup
         title="Action"
         swatches={[

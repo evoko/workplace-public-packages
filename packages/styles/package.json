@@ -35,17 +35,13 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "@bwp-web/assets": ">=1.0.2",
     "@mui/material": ">=7.0.0",
-    "@mui/x-date-pickers": ">=7.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
   "devDependencies": {
-    "@bwp-web/assets": "*",
     "@bwp-web/eslint-config": "*",
     "@mui/material": "^7.3.7",
-    "@mui/x-date-pickers": "^8.0.0",
     "@types/react": "^19.1.0",
     "eslint": "^9.39.2",
     "prettier": "^3.8.1",

@@ -1,1 +1,0 @@
-export { BiampLayout } from './BiampLayout';

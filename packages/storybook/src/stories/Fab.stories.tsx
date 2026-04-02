@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Fab, Stack, Typography } from '@mui/material';
+import { Fab, Stack } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import NavigationIcon from '@mui/icons-material/Navigation';
@@ -7,71 +7,72 @@ import NavigationIcon from '@mui/icons-material/Navigation';
 const meta: Meta<typeof Fab> = {
   title: 'Styles/Fab',
   component: Fab,
-  argTypes: {
-    color: {
-      control: 'select',
-      options: ['primary', 'secondary', 'default'],
-    },
-    size: {
-      control: 'select',
-      options: ['small', 'medium', 'large'],
-    },
-    disabled: { control: 'boolean' },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Fab>;
 
 export const Playground: Story = {
-  args: {
-    color: 'primary',
-    children: <AddIcon />,
-    disabled: false,
-  },
+  args: { children: <AddIcon />, color: 'primary' },
 };
 
-export const AllVariants: Story = {
+export const Variants: Story = {
   render: () => (
-    <Stack spacing={4}>
-      <Typography variant="h3">FAB Variants</Typography>
+    <Stack direction="row" spacing={2}>
+      <Fab color="primary">
+        <AddIcon />
+      </Fab>
+      <Fab color="secondary">
+        <EditIcon />
+      </Fab>
+      <Fab variant="extended" color="primary">
+        <NavigationIcon sx={{ mr: 1 }} />
+        Navigate
+      </Fab>
+      <Fab disabled>
+        <AddIcon />
+      </Fab>
+    </Stack>
+  ),
+};
 
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Fab color="primary" aria-label="add">
-          <AddIcon />
-        </Fab>
-        <Fab color="primary" aria-label="edit">
-          <EditIcon />
-        </Fab>
-        <Fab color="primary" disabled aria-label="disabled">
-          <AddIcon />
-        </Fab>
-      </Stack>
+export const Sizes: Story = {
+  render: () => (
+    <Stack direction="row" spacing={2} alignItems="center">
+      <Fab size="small" color="primary">
+        <AddIcon />
+      </Fab>
+      <Fab size="medium" color="primary">
+        <AddIcon />
+      </Fab>
+      <Fab size="large" color="primary">
+        <AddIcon />
+      </Fab>
+    </Stack>
+  ),
+};
 
-      <Typography variant="h3">Sizes</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Fab color="primary" size="small" aria-label="small">
-          <AddIcon />
-        </Fab>
-        <Fab color="primary" size="medium" aria-label="medium">
-          <AddIcon />
-        </Fab>
-        <Fab color="primary" size="large" aria-label="large">
-          <AddIcon />
-        </Fab>
-      </Stack>
-
-      <Typography variant="h3">Extended</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Fab color="primary" variant="extended">
-          <NavigationIcon sx={{ mr: 1 }} />
-          Navigate
-        </Fab>
-        <Fab color="primary" variant="extended" disabled>
-          <AddIcon sx={{ mr: 1 }} />
-          Disabled
-        </Fab>
-      </Stack>
+export const Colors: Story = {
+  render: () => (
+    <Stack direction="row" spacing={2}>
+      <Fab color="primary">
+        <AddIcon />
+      </Fab>
+      <Fab color="secondary">
+        <AddIcon />
+      </Fab>
+      <Fab color="success">
+        <AddIcon />
+      </Fab>
+      <Fab color="error">
+        <AddIcon />
+      </Fab>
+      <Fab color="info">
+        <AddIcon />
+      </Fab>
+      <Fab color="warning">
+        <AddIcon />
+      </Fab>
     </Stack>
   ),
 };

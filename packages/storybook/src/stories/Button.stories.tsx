@@ -1,24 +1,19 @@
-import { Fragment } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button, Stack, Typography, Box, Badge } from '@mui/material';
+import { Button, Stack, Typography, ButtonGroup } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
 
 const meta: Meta<typeof Button> = {
   title: 'Styles/Button',
   component: Button,
   argTypes: {
-    variant: {
-      control: 'select',
-      options: ['contained', 'outlined', 'overlay'],
-    },
+    variant: { control: 'select', options: ['text', 'contained', 'outlined'] },
     color: {
       control: 'select',
-      options: ['primary', 'error', 'secondary'],
+      options: ['primary', 'secondary', 'success', 'error', 'info', 'warning'],
     },
-    size: {
-      control: 'select',
-      options: ['small', 'medium'],
-    },
+    size: { control: 'select', options: ['small', 'medium', 'large'] },
     disabled: { control: 'boolean' },
   },
 };
@@ -32,370 +27,144 @@ export const Playground: Story = {
     variant: 'contained',
     color: 'primary',
     size: 'medium',
-    disabled: false,
   },
 };
 
-export const ContainedButtons: Story = {
+export const Variants: Story = {
   render: () => (
     <Stack spacing={3}>
-      <Typography variant="h3">Contained Buttons</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="contained" color="primary">
-          Primary
+      <Typography variant="h6">Text</Typography>
+      <Stack direction="row" spacing={2}>
+        <Button variant="text">Primary</Button>
+        <Button variant="text" color="secondary">
+          Secondary
         </Button>
-        <Button variant="contained" color="error">
-          Error
-        </Button>
-        <Button variant="contained" color="primary" disabled>
+        <Button variant="text" disabled>
           Disabled
         </Button>
       </Stack>
-      <Typography variant="h3" sx={{ pt: 2 }}>
-        Small Contained
-      </Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="contained" color="primary" size="small">
-          Primary Small
+
+      <Typography variant="h6">Contained</Typography>
+      <Stack direction="row" spacing={2}>
+        <Button variant="contained">Primary</Button>
+        <Button variant="contained" color="secondary">
+          Secondary
         </Button>
-        <Button variant="contained" color="error" size="small">
-          Error Small
+        <Button variant="contained" disabled>
+          Disabled
         </Button>
-        <Button variant="contained" color="primary" size="small" disabled>
-          Disabled Small
+      </Stack>
+
+      <Typography variant="h6">Outlined</Typography>
+      <Stack direction="row" spacing={2}>
+        <Button variant="outlined">Primary</Button>
+        <Button variant="outlined" color="secondary">
+          Secondary
+        </Button>
+        <Button variant="outlined" disabled>
+          Disabled
         </Button>
       </Stack>
     </Stack>
   ),
 };
 
-export const OutlinedButtons: Story = {
+export const Colors: Story = {
   render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Outlined Buttons</Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="outlined" color="primary">
-          Primary
-        </Button>
-        <Button variant="outlined" color="error">
-          Error
-        </Button>
-        <Button variant="outlined" color="primary" disabled>
-          Disabled
-        </Button>
-      </Stack>
-      <Typography variant="h3" sx={{ pt: 2 }}>
-        Small Outlined
-      </Typography>
-      <Stack direction="row" spacing={2} alignItems="center">
-        <Button variant="outlined" color="primary" size="small">
-          Primary Small
-        </Button>
-        <Button variant="outlined" color="error" size="small">
-          Error Small
-        </Button>
-        <Button variant="outlined" color="primary" size="small" disabled>
-          Disabled Small
-        </Button>
-      </Stack>
-    </Stack>
-  ),
-};
-
-export const OverlayButtons: Story = {
-  render: () => (
-    <Stack spacing={3}>
-      <Typography variant="h3">Overlay Buttons</Typography>
-      <Box sx={{ width: 400 }}>
-        <Stack spacing={2}>
-          <Button variant="overlay" color="primary" fullWidth>
-            Primary Overlay
+    <Stack spacing={2}>
+      {(
+        ['primary', 'secondary', 'success', 'error', 'info', 'warning'] as const
+      ).map((color) => (
+        <Stack key={color} direction="row" spacing={2} alignItems="center">
+          <Typography variant="caption" sx={{ width: 80 }}>
+            {color}
+          </Typography>
+          <Button variant="text" color={color}>
+            Text
           </Button>
-          <Button variant="overlay" color="error" fullWidth>
-            Error Overlay
+          <Button variant="contained" color={color}>
+            Contained
           </Button>
-          <Button variant="overlay" color="secondary" fullWidth>
-            Secondary Overlay
-          </Button>
-          <Button variant="overlay" color="primary" fullWidth disabled>
-            Disabled Overlay
+          <Button variant="outlined" color={color}>
+            Outlined
           </Button>
         </Stack>
-      </Box>
+      ))}
+    </Stack>
+  ),
+};
+
+export const Sizes: Story = {
+  render: () => (
+    <Stack spacing={2}>
+      {(['small', 'medium', 'large'] as const).map((size) => (
+        <Stack key={size} direction="row" spacing={2} alignItems="center">
+          <Typography variant="caption" sx={{ width: 80 }}>
+            {size}
+          </Typography>
+          <Button variant="text" size={size}>
+            Text
+          </Button>
+          <Button variant="contained" size={size}>
+            Contained
+          </Button>
+          <Button variant="outlined" size={size}>
+            Outlined
+          </Button>
+        </Stack>
+      ))}
     </Stack>
   ),
 };
 
 export const WithIcons: Story = {
   render: () => (
-    <Stack spacing={4}>
-      <Typography variant="h3">Contained with Icon</Typography>
-      <Stack spacing={2}>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Button variant="contained" color="primary" startIcon={<AddIcon />}>
-            Primary
-          </Button>
-          <Button variant="contained" color="error" startIcon={<AddIcon />}>
-            Error
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<AddIcon />}
-            disabled
-          >
-            Disabled
-          </Button>
-        </Stack>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Button variant="contained" color="primary" endIcon={<AddIcon />}>
-            Primary
-          </Button>
-          <Button variant="contained" color="error" endIcon={<AddIcon />}>
-            Error
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            endIcon={<AddIcon />}
-            disabled
-          >
-            Disabled
-          </Button>
-        </Stack>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Button
-            variant="contained"
-            color="primary"
-            endIcon={
-              <Badge
-                badgeContent={0}
-                variant="rectangle-inline"
-                color="secondary"
-              />
-            }
-          >
-            Primary
-          </Button>
-          <Button
-            variant="contained"
-            color="error"
-            endIcon={
-              <Badge
-                badgeContent={0}
-                variant="rectangle-inline"
-                color="secondary"
-              />
-            }
-          >
-            Error
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            endIcon={
-              <Badge
-                badgeContent={0}
-                variant="rectangle-inline"
-                color="secondary"
-              />
-            }
-            disabled
-          >
-            Disabled
-          </Button>
-        </Stack>
+    <Stack spacing={2}>
+      <Stack direction="row" spacing={2}>
+        <Button variant="contained" startIcon={<AddIcon />}>
+          Add
+        </Button>
+        <Button variant="contained" endIcon={<SendIcon />}>
+          Send
+        </Button>
+        <Button variant="outlined" startIcon={<DeleteIcon />} color="error">
+          Delete
+        </Button>
       </Stack>
-
-      <Typography variant="h3">Outlined with Icon</Typography>
-      <Stack spacing={2}>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Button variant="outlined" color="primary" startIcon={<AddIcon />}>
-            Primary
-          </Button>
-          <Button variant="outlined" color="error" startIcon={<AddIcon />}>
-            Error
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            startIcon={<AddIcon />}
-            disabled
-          >
-            Disabled
-          </Button>
-        </Stack>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Button variant="outlined" color="primary" endIcon={<AddIcon />}>
-            Primary
-          </Button>
-          <Button variant="outlined" color="error" endIcon={<AddIcon />}>
-            Error
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            endIcon={<AddIcon />}
-            disabled
-          >
-            Disabled
-          </Button>
-        </Stack>
-        <Stack direction="row" spacing={2} alignItems="center">
-          <Button
-            variant="outlined"
-            color="primary"
-            endIcon={
-              <Badge
-                badgeContent={0}
-                variant="rectangle-inline"
-                color="secondary"
-              />
-            }
-          >
-            Primary
-          </Button>
-          <Button
-            variant="outlined"
-            color="error"
-            endIcon={
-              <Badge
-                badgeContent={0}
-                variant="rectangle-inline"
-                color="secondary"
-              />
-            }
-          >
-            Error
-          </Button>
-          <Button
-            variant="outlined"
-            color="primary"
-            endIcon={
-              <Badge
-                badgeContent={0}
-                variant="rectangle-inline"
-                color="secondary"
-              />
-            }
-            disabled
-          >
-            Disabled
-          </Button>
-        </Stack>
-      </Stack>
-
-      <Typography variant="h3">Overlay with Icon</Typography>
-      <Box sx={{ width: 400 }}>
-        <Stack spacing={2} sx={{ mt: 1 }}>
-          <Button
-            variant="overlay"
-            color="primary"
-            fullWidth
-            endIcon={<AddIcon />}
-          >
-            Primary
-          </Button>
-          <Button
-            variant="overlay"
-            color="error"
-            fullWidth
-            endIcon={<AddIcon />}
-          >
-            Error
-          </Button>
-          <Button
-            variant="overlay"
-            color="secondary"
-            fullWidth
-            endIcon={<AddIcon />}
-          >
-            Secondary
-          </Button>
-          <Button
-            variant="overlay"
-            color="primary"
-            fullWidth
-            endIcon={<AddIcon />}
-            disabled
-          >
-            Disabled
-          </Button>
-        </Stack>
-      </Box>
     </Stack>
   ),
 };
 
-export const AllVariantsAndColors: Story = {
-  render: () => {
-    const variants = ['contained', 'outlined'] as const;
-    const colors = ['primary', 'error'] as const;
-    const sizes = ['medium', 'small'] as const;
+export const ButtonGroups: Story = {
+  render: () => (
+    <Stack spacing={3}>
+      <Typography variant="h6">Contained</Typography>
+      <ButtonGroup variant="contained">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
 
-    const overlayColors = ['primary', 'error', 'secondary'] as const;
+      <Typography variant="h6">Outlined</Typography>
+      <ButtonGroup variant="outlined">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
 
-    return (
-      <Stack spacing={4}>
-        {sizes.map((size) => (
-          <Box key={size}>
-            <Typography variant="h3" sx={{ mb: 2 }}>
-              Size: {size}
-            </Typography>
-            <Stack spacing={2}>
-              {variants.map((variant) => (
-                <Stack
-                  key={variant}
-                  direction="row"
-                  spacing={2}
-                  alignItems="center"
-                >
-                  <Typography
-                    variant="caption"
-                    sx={{ width: 80, flexShrink: 0 }}
-                  >
-                    {variant}
-                  </Typography>
-                  {colors.map((color) => (
-                    <Fragment key={color}>
-                      <Button variant={variant} color={color} size={size}>
-                        {color}
-                      </Button>
-                      <Button
-                        variant={variant}
-                        color={color}
-                        size={size}
-                        disabled
-                      >
-                        {color} disabled
-                      </Button>
-                    </Fragment>
-                  ))}
-                </Stack>
-              ))}
-            </Stack>
-          </Box>
-        ))}
-        <Box>
-          <Typography variant="h3" sx={{ mb: 2 }}>
-            Overlay
-          </Typography>
-          <Box sx={{ width: 400 }}>
-            <Stack spacing={0}>
-              {overlayColors.map((color) => (
-                <Fragment key={color}>
-                  <Button variant="overlay" color={color} fullWidth>
-                    {color}
-                  </Button>
-                </Fragment>
-              ))}
-              <Button variant="overlay" color="primary" fullWidth disabled>
-                disabled
-              </Button>
-            </Stack>
-          </Box>
-        </Box>
-      </Stack>
-    );
-  },
+      <Typography variant="h6">Text</Typography>
+      <ButtonGroup variant="text">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+
+      <Typography variant="h6">Vertical</Typography>
+      <ButtonGroup orientation="vertical" variant="contained">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+      </ButtonGroup>
+    </Stack>
+  ),
 };

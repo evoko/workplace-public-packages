@@ -5,16 +5,13 @@ import {
   MenuItem,
   Button,
   Stack,
-  Typography,
   ListItemIcon,
   ListItemText,
   Divider,
 } from '@mui/material';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import ContentPasteIcon from '@mui/icons-material/ContentPaste';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import ContentCut from '@mui/icons-material/ContentCut';
+import ContentCopy from '@mui/icons-material/ContentCopy';
+import ContentPaste from '@mui/icons-material/ContentPaste';
 
 const meta: Meta<typeof Menu> = {
   title: 'Styles/Menu',
@@ -24,99 +21,102 @@ const meta: Meta<typeof Menu> = {
 export default meta;
 type Story = StoryObj<typeof Menu>;
 
-function DefaultDemo() {
+const BasicMenuDemo = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-
   return (
-    <Stack spacing={2}>
-      <Typography variant="h3">Menu</Typography>
+    <>
       <Button variant="outlined" onClick={(e) => setAnchorEl(e.currentTarget)}>
         Open Menu
       </Button>
-      <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={() => setAnchorEl(null)}
+      >
         <MenuItem onClick={() => setAnchorEl(null)}>Profile</MenuItem>
-        <MenuItem onClick={() => setAnchorEl(null)}>My Account</MenuItem>
-        <MenuItem onClick={() => setAnchorEl(null)}>Settings</MenuItem>
+        <MenuItem onClick={() => setAnchorEl(null)}>My account</MenuItem>
         <MenuItem onClick={() => setAnchorEl(null)}>Logout</MenuItem>
       </Menu>
-    </Stack>
+    </>
   );
-}
-
-export const Default: Story = {
-  render: () => <DefaultDemo />,
 };
 
-function WithIconsDemo() {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+export const Basic: Story = {
+  render: () => <BasicMenuDemo />,
+};
 
+const WithIconsDemo = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   return (
-    <Stack spacing={2}>
-      <Typography variant="h3">Menu with Icons</Typography>
+    <>
       <Button variant="outlined" onClick={(e) => setAnchorEl(e.currentTarget)}>
-        Actions
+        Edit Menu
       </Button>
-      <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={() => setAnchorEl(null)}
+      >
         <MenuItem onClick={() => setAnchorEl(null)}>
           <ListItemIcon>
-            <EditIcon fontSize="small" />
+            <ContentCut fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Edit</ListItemText>
+          <ListItemText>Cut</ListItemText>
         </MenuItem>
         <MenuItem onClick={() => setAnchorEl(null)}>
           <ListItemIcon>
-            <ContentCopyIcon fontSize="small" />
+            <ContentCopy fontSize="small" />
           </ListItemIcon>
           <ListItemText>Copy</ListItemText>
         </MenuItem>
         <MenuItem onClick={() => setAnchorEl(null)}>
           <ListItemIcon>
-            <ContentPasteIcon fontSize="small" />
+            <ContentPaste fontSize="small" />
           </ListItemIcon>
           <ListItemText>Paste</ListItemText>
         </MenuItem>
         <Divider />
-        <MenuItem onClick={() => setAnchorEl(null)}>
-          <ListItemIcon>
-            <DeleteIcon fontSize="small" color="error" />
-          </ListItemIcon>
-          <ListItemText sx={{ color: 'error.main' }}>Delete</ListItemText>
+        <MenuItem onClick={() => setAnchorEl(null)} disabled>
+          <ListItemText>Disabled</ListItemText>
         </MenuItem>
       </Menu>
-    </Stack>
+    </>
   );
-}
+};
 
 export const WithIcons: Story = {
   render: () => <WithIconsDemo />,
 };
 
-function ContextMenuDemo() {
+const DenseMenuDemo = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-
   return (
-    <Stack spacing={2}>
-      <Typography variant="h3">Triggered from IconButton</Typography>
-      <Button
-        variant="outlined"
-        startIcon={<MoreVertIcon />}
-        onClick={(e) => setAnchorEl(e.currentTarget)}
-      >
-        More Options
+    <>
+      <Button variant="outlined" onClick={(e) => setAnchorEl(e.currentTarget)}>
+        Dense Menu
       </Button>
-      <Menu anchorEl={anchorEl} open={open} onClose={() => setAnchorEl(null)}>
-        <MenuItem onClick={() => setAnchorEl(null)}>Option A</MenuItem>
-        <MenuItem onClick={() => setAnchorEl(null)}>Option B</MenuItem>
-        <MenuItem onClick={() => setAnchorEl(null)}>Option C</MenuItem>
-        <MenuItem disabled>Option D (disabled)</MenuItem>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={() => setAnchorEl(null)}
+      >
+        <MenuItem dense onClick={() => setAnchorEl(null)}>
+          Single
+        </MenuItem>
+        <MenuItem dense onClick={() => setAnchorEl(null)}>
+          1.15
+        </MenuItem>
+        <MenuItem dense onClick={() => setAnchorEl(null)}>
+          Double
+        </MenuItem>
+        <MenuItem dense onClick={() => setAnchorEl(null)}>
+          Custom: 1.2
+        </MenuItem>
       </Menu>
-    </Stack>
+    </>
   );
-}
+};
 
-export const ContextMenu: Story = {
-  render: () => <ContextMenuDemo />,
+export const Dense: Story = {
+  render: () => <DenseMenuDemo />,
 };
