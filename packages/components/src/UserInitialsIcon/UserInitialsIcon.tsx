@@ -3,8 +3,8 @@ import { darken } from '@mui/material/styles';
 import randomColor from 'randomcolor';
 
 type Props = BoxProps & {
-    name: string
-    id: string
+  name: string;
+  id: string;
 };
 
 const DEFAULT_SIZE = 40;
@@ -18,7 +18,6 @@ export function InitialsIcon({
   sx,
   ...props
 }: Props) {
-
   const userInitials = getInitials(name);
   const bgColor = randomColor({ luminosity: 'light', seed: id });
   const textColor = darken(randomColor({ luminosity: 'dark', seed: id }), 0.3);
