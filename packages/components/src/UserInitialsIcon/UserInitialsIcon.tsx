@@ -10,7 +10,7 @@ type Props = BoxProps & {
 const DEFAULT_SIZE = 40;
 const TEXT_RATIO = 0.4; // 16px (h3) / 40px default box
 
-export function InitialsIcon({
+export function UserInitialsIcon({
   name,
   id,
   width = DEFAULT_SIZE,
