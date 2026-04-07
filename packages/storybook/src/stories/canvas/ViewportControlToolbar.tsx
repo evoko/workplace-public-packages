@@ -1,13 +1,11 @@
-import React from 'react';
 import {
-  Box,
   IconButton,
   Paper,
   ToggleButton,
   ToggleButtonGroup,
   Tooltip,
   Typography,
-} from '@mui/material';
+} from '@bwp-web/styles';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import CropFreeIcon from '@mui/icons-material/CropFree';

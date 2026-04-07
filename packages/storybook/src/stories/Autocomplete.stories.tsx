@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Autocomplete, TextField, Stack, Chip } from '@mui/material';
+import { Autocomplete, TextField, Stack } from '@bwp-web/styles';
 
 const meta: Meta<typeof Autocomplete> = {
   title: 'Styles/Autocomplete',

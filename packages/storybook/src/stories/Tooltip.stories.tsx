@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Tooltip, Button, IconButton, Stack, Typography } from '@mui/material';
+import { Tooltip, Button, IconButton, Stack } from '@bwp-web/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Styles/Tooltip',

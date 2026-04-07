@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Box, Stack, Typography, useTheme } from '@mui/material';
+import { Box, Stack, Typography } from '@bwp-web/styles';
+import { useTheme } from '@mui/material';
 import { solarPalette } from '@bwp-web/styles';
 
 const Swatch = ({

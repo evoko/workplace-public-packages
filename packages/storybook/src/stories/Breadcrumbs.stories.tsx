@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Breadcrumbs, Link, Typography, Stack } from '@mui/material';
+import { Breadcrumbs, Link, Typography, Stack } from '@bwp-web/styles';
 import HomeIcon from '@mui/icons-material/Home';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 

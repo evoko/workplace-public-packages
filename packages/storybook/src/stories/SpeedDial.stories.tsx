@@ -1,5 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { SpeedDial, SpeedDialAction, SpeedDialIcon, Box } from '@mui/material';
+import {
+  SpeedDial,
+  SpeedDialAction,
+  SpeedDialIcon,
+  Box,
+} from '@bwp-web/styles';
 import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 import SaveIcon from '@mui/icons-material/Save';
 import PrintIcon from '@mui/icons-material/Print';

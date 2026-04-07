@@ -5,7 +5,7 @@ import {
   AccordionDetails,
   Typography,
   Stack,
-} from '@mui/material';
+} from '@bwp-web/styles';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const meta: Meta<typeof Accordion> = {

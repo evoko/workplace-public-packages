@@ -16,7 +16,7 @@ import {
   Stack,
   Switch,
   Typography,
-} from '@mui/material';
+} from '@bwp-web/styles';
 import { Polygon, Rect } from 'fabric';
 import type { Canvas as FabricCanvas, FabricObject } from 'fabric';
 import {
@@ -50,7 +50,7 @@ import {
   getBackgroundInverted,
 } from '@bwp-web/canvas';
 import InfoIcon from '@mui/icons-material/Info';
-import { Paper } from '@mui/material';
+import { Paper } from '@bwp-web/styles';
 import { DemoLayout } from './canvas/DemoLayout';
 import { ViewportControlToolbar } from './canvas/ViewportControlToolbar';
 

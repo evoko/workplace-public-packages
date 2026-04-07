@@ -6,7 +6,7 @@ import {
   InputLabel,
   Stack,
   FormHelperText,
-} from '@mui/material';
+} from '@bwp-web/styles';
 
 const meta: Meta<typeof Select> = {
   title: 'Styles/Select',

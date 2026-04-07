@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button, Stack, Typography, ButtonGroup } from '@mui/material';
+import { Button, Stack, Typography, ButtonGroup } from '@bwp-web/styles';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Avatar, AvatarGroup, Stack } from '@mui/material';
+import { Avatar, AvatarGroup, Stack } from '@bwp-web/styles';
 import FolderIcon from '@mui/icons-material/Folder';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 

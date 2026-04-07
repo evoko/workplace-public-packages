@@ -2,13 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Skeleton,
   Stack,
-  Box,
   Typography,
-  Avatar,
   Card,
   CardContent,
   CardHeader,
-} from '@mui/material';
+} from '@bwp-web/styles';
 
 const meta: Meta<typeof Skeleton> = {
   title: 'Styles/Skeleton',

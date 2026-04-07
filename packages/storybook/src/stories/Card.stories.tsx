@@ -4,13 +4,12 @@ import {
   CardContent,
   CardActions,
   CardHeader,
-  CardMedia,
   Typography,
   Button,
   Stack,
   IconButton,
   Avatar,
-} from '@mui/material';
+} from '@bwp-web/styles';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const meta: Meta<typeof Card> = {

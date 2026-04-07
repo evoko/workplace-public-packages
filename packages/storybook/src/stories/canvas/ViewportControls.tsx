@@ -1,5 +1,4 @@
-import React from 'react';
-import { Button, ButtonGroup, Typography } from '@mui/material';
+import { Button, ButtonGroup, Typography } from '@bwp-web/styles';
 import type { ViewportMode } from '@bwp-web/canvas';
 
 export interface ViewportControlsProps {

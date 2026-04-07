@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Typography, Stack, Divider, Box } from '@mui/material';
+import { Typography, Stack, Divider, Box } from '@bwp-web/styles';
 
 const meta: Meta<typeof Typography> = {
   title: 'Styles/Typography',

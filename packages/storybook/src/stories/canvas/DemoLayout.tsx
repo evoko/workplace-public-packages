@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Stack } from '@mui/material';
+import { Box, Stack } from '@bwp-web/styles';
 import { Canvas } from '@bwp-web/canvas';
 import type { Canvas as FabricCanvas } from 'fabric';
 

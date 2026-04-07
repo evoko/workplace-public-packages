@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconButton, Stack, Typography } from '@mui/material';
+import { IconButton, Stack } from '@bwp-web/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AlarmIcon from '@mui/icons-material/Alarm';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 
 const meta: Meta<typeof IconButton> = {

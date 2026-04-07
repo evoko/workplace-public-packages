@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Link, Stack, Typography } from '@mui/material';
+import { Link, Stack } from '@bwp-web/styles';
 
 const meta: Meta<typeof Link> = {
   title: 'Styles/Link',

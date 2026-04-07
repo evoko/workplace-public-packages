@@ -11,7 +11,7 @@ import {
   ListItemText,
   Divider,
   Box,
-} from '@mui/material';
+} from '@bwp-web/styles';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 

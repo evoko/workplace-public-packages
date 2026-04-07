@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import {
   Radio,
@@ -7,7 +6,7 @@ import {
   FormControl,
   FormLabel,
   Stack,
-} from '@mui/material';
+} from '@bwp-web/styles';
 
 const meta: Meta<typeof Radio> = {
   title: 'Styles/Radio',

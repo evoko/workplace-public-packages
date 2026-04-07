@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Box, Stack, Typography, Paper } from '@mui/material';
+import { Box, Stack, Typography, Paper } from '@bwp-web/styles';
 import {
   BiampRedLogo,
   BookingApp,

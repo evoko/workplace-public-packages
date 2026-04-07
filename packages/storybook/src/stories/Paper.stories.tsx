@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Paper, Stack, Typography, Box } from '@mui/material';
+import { Paper, Stack, Typography } from '@bwp-web/styles';
 
 const meta: Meta<typeof Paper> = {
   title: 'Styles/Paper',

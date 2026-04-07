@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { TextField, Stack, Typography, InputAdornment } from '@mui/material';
+import { TextField, Stack, InputAdornment } from '@bwp-web/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 

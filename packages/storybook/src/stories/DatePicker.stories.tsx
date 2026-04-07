@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DatePicker } from '@bwp-web/styles';
+import { TimePicker } from '@bwp-web/styles';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { Stack } from '@mui/material';
+import { Stack } from '@bwp-web/styles';
 
 const meta: Meta = {
   title: 'Styles/DatePicker',

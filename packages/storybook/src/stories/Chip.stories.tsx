@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Chip, Stack, Avatar } from '@mui/material';
+import { Chip, Stack, Avatar } from '@bwp-web/styles';
 import FaceIcon from '@mui/icons-material/Face';
 import DoneIcon from '@mui/icons-material/Done';
 

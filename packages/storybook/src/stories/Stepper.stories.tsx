@@ -9,7 +9,7 @@ import {
   Box,
   Typography,
   Stack,
-} from '@mui/material';
+} from '@bwp-web/styles';
 
 const meta: Meta<typeof Stepper> = {
   title: 'Styles/Stepper',

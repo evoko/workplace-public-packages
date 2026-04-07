@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Box, Stack, Typography, Tooltip, Divider } from '@mui/material';
+import { Box, Stack, Typography, Tooltip, Divider } from '@bwp-web/styles';
 import {
   AccessibleIcon,
   AddIcon,

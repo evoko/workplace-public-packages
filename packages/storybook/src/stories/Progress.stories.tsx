@@ -1,11 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  LinearProgress,
-  CircularProgress,
-  Stack,
-  Typography,
-  Box,
-} from '@mui/material';
+import { LinearProgress, CircularProgress, Stack, Box } from '@bwp-web/styles';
 
 const meta: Meta = {
   title: 'Styles/Progress',

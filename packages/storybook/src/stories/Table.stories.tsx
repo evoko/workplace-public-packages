@@ -7,11 +7,8 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Stack,
-  Typography,
   TablePagination,
-  TableSortLabel,
-} from '@mui/material';
+} from '@bwp-web/styles';
 import { useState } from 'react';
 
 const meta: Meta<typeof Table> = {

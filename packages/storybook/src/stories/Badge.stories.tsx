@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Badge, Stack, IconButton } from '@mui/material';
+import { Badge, Stack } from '@bwp-web/styles';
 import MailIcon from '@mui/icons-material/Mail';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const meta: Meta<typeof Badge> = {
   title: 'Styles/Badge',

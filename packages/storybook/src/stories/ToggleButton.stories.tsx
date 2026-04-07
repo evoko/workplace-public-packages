@@ -1,11 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import {
-  ToggleButton,
-  ToggleButtonGroup,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { ToggleButton, ToggleButtonGroup, Stack } from '@bwp-web/styles';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
 import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';

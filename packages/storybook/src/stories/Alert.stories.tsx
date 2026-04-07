@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Alert, AlertTitle, Stack, Button } from '@mui/material';
+import { Alert, AlertTitle, Stack, Button } from '@bwp-web/styles';
 
 const meta: Meta<typeof Alert> = {
   title: 'Styles/Alert',

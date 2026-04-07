@@ -9,16 +9,12 @@ import {
   ListSubheader,
   Avatar,
   Divider,
-  Stack,
-  Typography,
   Checkbox,
   IconButton,
   Paper,
-} from '@mui/material';
+} from '@bwp-web/styles';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
-import StarIcon from '@mui/icons-material/Star';
-import DeleteIcon from '@mui/icons-material/Delete';
 import FolderIcon from '@mui/icons-material/Folder';
 import CommentIcon from '@mui/icons-material/Comment';
 

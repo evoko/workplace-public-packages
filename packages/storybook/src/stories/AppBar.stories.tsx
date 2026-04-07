@@ -6,8 +6,7 @@ import {
   Button,
   IconButton,
   Stack,
-  Box,
-} from '@mui/material';
+} from '@bwp-web/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const meta: Meta<typeof AppBar> = {

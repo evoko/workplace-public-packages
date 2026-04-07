@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Divider, Stack, Typography, Box, Chip } from '@mui/material';
+import { Divider, Stack, Typography, Box, Chip } from '@bwp-web/styles';
 
 const meta: Meta<typeof Divider> = {
   title: 'Styles/Divider',

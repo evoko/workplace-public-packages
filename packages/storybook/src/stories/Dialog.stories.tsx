@@ -9,7 +9,7 @@ import {
   Button,
   Stack,
   TextField,
-} from '@mui/material';
+} from '@bwp-web/styles';
 
 const meta: Meta<typeof Dialog> = {
   title: 'Styles/Dialog',

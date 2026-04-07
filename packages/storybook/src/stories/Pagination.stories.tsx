@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Pagination, Stack, Typography } from '@mui/material';
+import { Pagination, Stack, Typography } from '@bwp-web/styles';
 
 const meta: Meta<typeof Pagination> = {
   title: 'Styles/Pagination',

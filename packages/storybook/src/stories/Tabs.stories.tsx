@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Tabs, Tab, Box, Typography, Stack } from '@mui/material';
+import { Tabs, Tab, Box, Typography, Stack } from '@bwp-web/styles';
 import PhoneIcon from '@mui/icons-material/Phone';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import PersonPinIcon from '@mui/icons-material/PersonPin';

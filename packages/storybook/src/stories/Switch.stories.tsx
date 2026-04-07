@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Switch, FormControlLabel, FormGroup, Stack } from '@mui/material';
+import { Switch, FormControlLabel, FormGroup, Stack } from '@bwp-web/styles';
 
 const meta: Meta<typeof Switch> = {
   title: 'Styles/Switch',

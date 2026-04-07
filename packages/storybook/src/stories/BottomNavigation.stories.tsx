@@ -5,7 +5,7 @@ import {
   BottomNavigationAction,
   Paper,
   Box,
-} from '@mui/material';
+} from '@bwp-web/styles';
 import RestoreIcon from '@mui/icons-material/Restore';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LocationOnIcon from '@mui/icons-material/LocationOn';

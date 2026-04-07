@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Snackbar, Button, Alert, Stack, IconButton } from '@mui/material';
+import { Snackbar, Button, Alert, Stack, IconButton } from '@bwp-web/styles';
 import CloseIcon from '@mui/icons-material/Close';
 
 const meta: Meta<typeof Snackbar> = {
