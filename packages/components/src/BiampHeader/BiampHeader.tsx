@@ -13,7 +13,7 @@ import {
   TextFieldProps,
   Typography,
 } from '@mui/material';
-import { JSX } from 'react';
+import { JSX, ReactNode } from 'react';
 import { BiampRedLogo, SearchIcon } from '@bwp-web/assets';
 
 type BiampHeaderProps = StackProps & {
@@ -326,13 +326,15 @@ export function BiampAppDialogItem({
 }
 
 type BiampHeaderProfileProps = ListItemButtonProps & {
-  image: string;
+  image?: string;
+  children?: ReactNode;
   selected?: boolean;
 };
 
 export function BiampHeaderProfile({
   image,
   selected,
+  children,
   sx,
   ...props
 }: BiampHeaderProfileProps) {
@@ -353,18 +355,22 @@ export function BiampHeaderProfile({
       }}
       {...props}
     >
-      <Box
-        component="img"
-        src={image}
-        alt={'Profile Image'}
-        sx={{
-          width: 32,
-          height: 32,
-          borderRadius: '4px',
-          border: ({ palette }) =>
-            `0.6px solid var(--Divider-divider_primary, ${alpha(palette.background.paper, 0.15)})`,
-        }}
-      />
+      {image ? (
+        <Box
+          component="img"
+          src={image}
+          alt={'Profile Image'}
+          sx={{
+            width: 32,
+            height: 32,
+            borderRadius: '4px',
+            border: ({ palette }) =>
+              `0.6px solid var(--Divider-divider_primary, ${alpha(palette.background.paper, 0.15)})`,
+          }}
+        />
+      ) : (
+        children
+      )}
     </ListItemButton>
   );
 }

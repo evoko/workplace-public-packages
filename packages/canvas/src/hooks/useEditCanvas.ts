@@ -382,15 +382,18 @@ export function useEditCanvas(options?: UseEditCanvasOptions) {
               });
               setObjects(loaded);
             } finally {
-              isInitialLoadRef.current = false;
               setIsLoading(false);
             }
           }
         })();
 
         initPromise.then(async () => {
-          const onReadyResult = opts?.onReady?.(canvas);
-          await Promise.resolve(onReadyResult);
+          try {
+            const onReadyResult = opts?.onReady?.(canvas);
+            await Promise.resolve(onReadyResult);
+          } finally {
+            isInitialLoadRef.current = false;
+          }
 
           if (opts?.invertBackground !== undefined) {
             setBackgroundInverted(canvas, opts.invertBackground);

@@ -36,7 +36,7 @@ For `BiampTable` only:
 | `BiampHeaderActions`    | Flex container for grouping action buttons and profile                           |
 | `BiampHeaderButtonList` | Horizontal list with 4px gaps for header buttons                                 |
 | `BiampHeaderButton`     | Selectable 40×40px icon button for header actions                                |
-| `BiampHeaderProfile`    | Profile image button                                                             |
+| `BiampHeaderProfile`    | Profile button with image or custom children (e.g. `UserInitialsIcon`)           |
 | `BiampAppPopover`       | Styled popover for the app-launcher dialog                                       |
 | `BiampAppDialog`        | Rounded dialog container for app-launcher grid                                   |
 | `BiampAppDialogItem`    | Clickable app tile with children content and label                               |
@@ -216,6 +216,14 @@ Horizontal header container. Compose with `BiampHeaderTitle`, `BiampHeaderSearch
 | `icon`     | `React.ReactNode` | Optional leading icon  |
 | `title`    | `string`          | Optional title text    |
 | `subtitle` | `string`          | Optional subtitle text |
+
+#### BiampHeaderProfile Props
+
+| Prop       | Type              | Description                                                            |
+| ---------- | ----------------- | ---------------------------------------------------------------------- |
+| `image`    | `string`          | Optional profile image URL; when omitted, `children` are rendered      |
+| `children` | `React.ReactNode` | Fallback content when no `image` is provided (e.g. `UserInitialsIcon`) |
+| `selected` | `boolean`         | Whether the profile button is currently selected                       |
 
 ### UserInitialsIcon
 

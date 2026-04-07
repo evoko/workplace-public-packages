@@ -13,6 +13,7 @@ import {
   BiampAppDialogItem,
   BiampAppPopover,
 } from '@bwp-web/components';
+import { UserInitialsIcon } from '@bwp-web/components';
 import {
   BookingApp,
   WorkplaceApp,
@@ -634,8 +635,9 @@ function SubComponentsDemo() {
           BiampHeaderProfile
         </Typography>
         <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-          A 36x36 profile button container holding a 32x32 image with a 4px
-          border radius.
+          A 36x36 profile button container holding a 32x32 image or custom
+          children (e.g. <code>UserInitialsIcon</code>) with a 4px border
+          radius.
         </Typography>
         <Box
           sx={{
@@ -876,4 +878,67 @@ export const AppDialog: Story = {
       </Stack>
     );
   },
+};
+
+/**
+ * `BiampHeaderProfile` accepts either an `image` URL or `children`.
+ * When no image is provided, the children are rendered inside the
+ * profile button — here we use `UserInitialsIcon` to show the user's
+ * initials as a fallback.
+ */
+export const ProfileWithInitials: Story = {
+  name: 'Profile with Initials',
+  render: () => (
+    <Stack spacing={4}>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          With image
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
+          When an <code>image</code> prop is provided, the profile displays the
+          avatar image.
+        </Typography>
+        <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
+      </Box>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          With UserInitialsIcon as children
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
+          When no <code>image</code> is provided, pass a <code>children</code>{' '}
+          component instead. Here we use <code>UserInitialsIcon</code> to render
+          the user&apos;s initials as a colorful fallback.
+        </Typography>
+        <Stack direction="row" spacing={2}>
+          <BiampHeaderProfile>
+            <UserInitialsIcon
+              name="John Doe"
+              id="user-1"
+              width={32}
+              height={32}
+              borderRadius="4px"
+            />
+          </BiampHeaderProfile>
+          <BiampHeaderProfile>
+            <UserInitialsIcon
+              name="Jane Smith"
+              id="user-2"
+              width={32}
+              height={32}
+              borderRadius="4px"
+            />
+          </BiampHeaderProfile>
+          <BiampHeaderProfile>
+            <UserInitialsIcon
+              name="Alex Johnson"
+              id="user-3"
+              width={32}
+              height={32}
+              borderRadius="4px"
+            />
+          </BiampHeaderProfile>
+        </Stack>
+      </Box>
+    </Stack>
+  ),
 };

@@ -8,6 +8,7 @@ type Props = BoxProps & {
 };
 
 const DEFAULT_SIZE = 40;
+const DEFAULT_BORDER_RADIUS = 1.5;
 const TEXT_RATIO = 0.4; // 16px (h3) / 40px default box
 
 export function UserInitialsIcon({
@@ -15,6 +16,7 @@ export function UserInitialsIcon({
   id,
   width = DEFAULT_SIZE,
   height = DEFAULT_SIZE,
+  borderRadius = DEFAULT_BORDER_RADIUS,
   sx,
   ...props
 }: Props) {
@@ -31,7 +33,7 @@ export function UserInitialsIcon({
       width={width}
       minHeight={height}
       height={height}
-      borderRadius={1.5}
+      borderRadius={borderRadius}
       bgcolor={bgColor}
       display="flex"
       alignItems="center"
