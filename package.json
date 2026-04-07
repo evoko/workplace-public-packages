@@ -22,8 +22,5 @@
   "engines": {
     "node": ">=20"
   },
-  "packageManager": "npm@10.9.0",
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.57.1"
-  }
+  "packageManager": "npm@10.9.0"
 }

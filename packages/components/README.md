@@ -48,6 +48,7 @@ For `BiampTable` only:
 | `SegmentedButtonGroup`  | Horizontal container for grouping segmented toggle buttons                       |
 | `SegmentedButton`       | Individual toggle button for use inside `SegmentedButtonGroup`                   |
 | `BiampTable`            | Composable data table with sorting, selection, pagination, and more              |
+| `UserInitialsIcon`      | Avatar-style icon showing a user's initials with a deterministic color           |
 
 ## Usage
 
@@ -216,6 +217,28 @@ Horizontal header container. Compose with `BiampHeaderTitle`, `BiampHeaderSearch
 | `title`    | `string`          | Optional title text    |
 | `subtitle` | `string`          | Optional subtitle text |
 
+### UserInitialsIcon
+
+An avatar-style icon that displays a user's initials over a deterministic background color. The color is seeded by the user's `id`, so the same user always gets the same color. The icon scales proportionally — font size adjusts automatically with `width`/`height`.
+
+```tsx
+import { UserInitialsIcon } from '@bwp-web/components';
+
+<UserInitialsIcon name="Jane Doe" id="user-123" />
+<UserInitialsIcon name="Jane Doe" id="user-123" width={64} height={64} />
+```
+
+#### UserInitialsIcon Props
+
+| Prop     | Type       | Default | Description                                                 |
+| -------- | ---------- | ------- | ----------------------------------------------------------- |
+| `name`   | `string`   | —       | Full name; initials are derived from the first two words    |
+| `id`     | `string`   | —       | Seed for deterministic background and text color            |
+| `width`  | `number`   | `40`    | Icon width in pixels                                        |
+| `height` | `number`   | `40`    | Icon height in pixels                                       |
+| `sx`     | `SxProps`  | —       | MUI `sx` style overrides                                    |
+| `...`    | `BoxProps` | —       | All other MUI `Box` props are forwarded to the root element |
+
 ### BiampTable
 
 A composable data table built on TanStack React Table v8 with support for sorting, row selection, pagination, column visibility, global search, column filters, and CSV export.
@@ -235,3 +258,4 @@ Detailed per-component docs are available in the repository's [`/docs`](../../do
 | [biamp-banner.md](../../docs/biamp-banner.md)               | `BiampBanner` family — props, examples, design details                              |
 | [biamp-global-search.md](../../docs/biamp-global-search.md) | `BiampGlobalSearch` — options, filtering, async loading, navigation                 |
 | [biamp-table.md](../../docs/biamp-table.md)                 | `BiampTable` — columns, sorting, selection, pagination, filters, export             |
+| [user-initials-icon.md](../../docs/user-initials-icon.md)   | `UserInitialsIcon` — props, color seeding, sizing, edge cases                       |
