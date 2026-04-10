@@ -221,7 +221,9 @@ export function BiampAppPopover({
           sx: {
             borderRadius: '16px',
             backgroundImage: 'none',
-            border: ({ palette }) => `0.6px solid ${palette.divider}`,
+            outlineWidth: '0.6px',
+            outlineStyle: 'solid',
+            outlineColor: ({ palette }) => palette.divider,
             boxShadow: ({ palette }) =>
               `0px 4px 24px 0px ${alpha(palette.common.black, 0.15)};`,
           },
