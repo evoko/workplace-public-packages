@@ -406,6 +406,10 @@ export function BiampGlobalSearch({
             sx={{
               '& .MuiOutlinedInput-root': { padding: '0px !important' },
               '& .MuiInputBase-input': { paddingLeft: '8px !important' },
+              '& .MuiOutlinedInput-root:not(:hover):not(.Mui-focused) .MuiOutlinedInput-notchedOutline':
+                {
+                  border: 'none',
+                },
             }}
             slotProps={{
               input: {
