@@ -49,6 +49,7 @@ For `BiampTable` only:
 | `SegmentedButton`       | Individual toggle button for use inside `SegmentedButtonGroup`                   |
 | `BiampTable`            | Composable data table with sorting, selection, pagination, and more              |
 | `UserInitialsIcon`      | Avatar-style icon showing a user's initials with a deterministic color           |
+| `DynamicSvgIcon`        | Renders a remotely-fetched SVG with a skeleton loader and required fallback      |
 
 ## Usage
 
@@ -247,6 +248,35 @@ import { UserInitialsIcon } from '@bwp-web/components';
 | `sx`     | `SxProps`  | —       | MUI `sx` style overrides                                    |
 | `...`    | `BoxProps` | —       | All other MUI `Box` props are forwarded to the root element |
 
+### DynamicSvgIcon
+
+Fetches an SVG from a URL and renders it as a MUI `SvgIcon`. Shows a `Skeleton` placeholder while loading and a required fallback on error. The `width` and `height` props are enforced across all three states so the layout never shifts.
+
+```tsx
+import { DynamicSvgIcon } from '@bwp-web/components';
+import BrokenImageIcon from '@mui/icons-material/BrokenImage';
+
+<DynamicSvgIcon
+  url="https://example.com/icon.svg"
+  width={32}
+  height={32}
+  fallback={<BrokenImageIcon />}
+/>;
+```
+
+#### DynamicSvgIcon Props
+
+| Prop                | Type                                       | Default      | Description                                       |
+| ------------------- | ------------------------------------------ | ------------ | ------------------------------------------------- |
+| `url`               | `string`                                   | —            | URL of the SVG to fetch                           |
+| `fallback`          | `React.ReactNode`                          | **required** | Element shown when loading fails                  |
+| `width`             | `number`                                   | `24`         | Width in pixels for icon, skeleton, and fallback  |
+| `height`            | `number`                                   | `24`         | Height in pixels for icon, skeleton, and fallback |
+| `skeletonVariant`   | `'circular' \| 'rectangular' \| 'rounded'` | `'circular'` | Skeleton shape during loading                     |
+| `skeletonAnimation` | `'pulse' \| 'wave' \| false`               | `'pulse'`    | Skeleton animation type                           |
+| `onLoad`            | `() => void`                               | —            | Called when the SVG loads successfully            |
+| `onError`           | `(error: string) => void`                  | —            | Called when loading fails                         |
+
 ### BiampTable
 
 A composable data table built on TanStack React Table v8 with support for sorting, row selection, pagination, column visibility, global search, column filters, and CSV export.
@@ -267,3 +297,4 @@ Detailed per-component docs are available in the repository's [`/docs`](../../do
 | [biamp-global-search.md](../../docs/biamp-global-search.md) | `BiampGlobalSearch` — options, filtering, async loading, navigation                 |
 | [biamp-table.md](../../docs/biamp-table.md)                 | `BiampTable` — columns, sorting, selection, pagination, filters, export             |
 | [user-initials-icon.md](../../docs/user-initials-icon.md)   | `UserInitialsIcon` — props, color seeding, sizing, edge cases                       |
+| [dynamic-svg-icon.md](../../docs/dynamic-svg-icon.md)       | `DynamicSvgIcon` — props, hook API, caching, skeleton, fallback                     |

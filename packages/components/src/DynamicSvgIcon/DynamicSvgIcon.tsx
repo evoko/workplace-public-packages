@@ -36,6 +36,18 @@ export interface UseDynamicSvgIconResult {
  * Hook that fetches an SVG from a URL and returns the parsed content.
  * The SVG is rendered as-is — colors and viewBox are preserved from the source.
  * Results are cached in-memory so subsequent renders with the same URL are instant.
+ *
+ * @param url - URL of the SVG to fetch (supports any URL that `fetch` can handle, including data URLs)
+ * @param options - Optional callbacks for load/error events
+ * @returns Object with `loading`, `error`, `svgContent`, and `svgViewBox` fields
+ *
+ * @example
+ * ```tsx
+ * const { loading, error, svgContent, svgViewBox } = useDynamicSvgIcon(
+ *   'https://example.com/icon.svg',
+ *   { onError: (msg) => console.warn(msg) },
+ * );
+ * ```
  */
 export function useDynamicSvgIcon(
   url: string,
@@ -155,9 +167,27 @@ export interface DynamicSvgIconProps extends Omit<
 }
 
 /**
- * Renders an SVG icon fetched from a URL with a Skeleton placeholder during loading
- * and a required fallback on error. The `width` and `height` props control the
- * dimensions of all three states (skeleton, icon, fallback).
+ * Renders an SVG icon fetched from a URL with a MUI Skeleton placeholder during
+ * loading and a required fallback on error. The `width` and `height` props
+ * control the dimensions of all three states (skeleton, icon, fallback).
+ *
+ * The SVG is rendered as-is — fill, stroke, and viewBox are preserved from the
+ * source. Paths without an explicit fill will inherit `currentColor` from MUI
+ * SvgIcon's CSS, so they respond to the parent's text color.
+ *
+ * Fetched SVGs are cached in-memory; the same URL will only be fetched once
+ * per page session. Use {@link clearDynamicSvgIconCache} to force a refetch.
+ *
+ * @example
+ * ```tsx
+ * <DynamicSvgIcon
+ *   url="https://example.com/icon.svg"
+ *   width={32}
+ *   height={32}
+ *   fallback={<BrokenImageIcon />}
+ *   onError={(msg) => console.warn(msg)}
+ * />
+ * ```
  */
 export function DynamicSvgIcon({
   url,
