@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography } from '@mui/material';
 import {
   BiampLayout,
   BiampHeader,
@@ -15,8 +15,8 @@ import {
   BiampWrapper,
   BiampSidebarIconList,
   BiampSidebarComponent,
-  BiampAppDialog,
-  BiampAppDialogItem,
+  BiampBuildAppContent,
+  BiampBuildAppContentItem,
   BiampAppPopover,
 } from '@bwp-web/components';
 import HomeIcon from '@mui/icons-material/Home';
@@ -63,11 +63,15 @@ function WithHeaderSidebarAndWrapperDemo() {
   const open = Boolean(anchorEl);
 
   const apps = [
-    { image: BookingApp, name: 'Booking' },
-    { image: DesignerApp, name: 'Designer' },
-    { image: ConnectApp, name: 'Connect' },
-    { image: CommandApp, name: 'Command' },
-    { image: WorkplaceApp, name: 'Workplace' },
+    { image: BookingApp, name: 'Booking', description: 'Room & desk booking' },
+    { image: DesignerApp, name: 'Designer', description: 'Space design tool' },
+    { image: ConnectApp, name: 'Connect', description: 'Device management' },
+    { image: CommandApp, name: 'Command', description: 'System monitoring' },
+    {
+      image: WorkplaceApp,
+      name: 'Workplace',
+      description: 'Workplace management',
+    },
   ];
 
   return (
@@ -98,22 +102,32 @@ function WithHeaderSidebarAndWrapperDemo() {
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
           >
-            <BiampAppDialog>
+            <BiampBuildAppContent>
               {apps.map((app, i) => (
-                <BiampAppDialogItem key={i} name={app.name}>
-                  <Box
-                    component="img"
-                    src={app.image}
-                    alt={app.name}
-                    sx={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'contain',
-                    }}
-                  />
-                </BiampAppDialogItem>
+                <BiampBuildAppContentItem
+                  key={i}
+                  name={app.name}
+                  description={app.description}
+                  image={
+                    <Box
+                      component="img"
+                      src={app.image}
+                      alt={app.name}
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                      }}
+                    />
+                  }
+                  button={
+                    <Button variant="text" size="small">
+                      Open
+                    </Button>
+                  }
+                />
               ))}
-            </BiampAppDialog>
+            </BiampBuildAppContent>
           </BiampAppPopover>
         </BiampHeader>
       }
@@ -178,11 +192,15 @@ function WithHeaderAndWrapperDemo() {
   const open = Boolean(anchorEl);
 
   const apps = [
-    { image: BookingApp, name: 'Booking' },
-    { image: DesignerApp, name: 'Designer' },
-    { image: ConnectApp, name: 'Connect' },
-    { image: CommandApp, name: 'Command' },
-    { image: WorkplaceApp, name: 'Workplace' },
+    { image: BookingApp, name: 'Booking', description: 'Room & desk booking' },
+    { image: DesignerApp, name: 'Designer', description: 'Space design tool' },
+    { image: ConnectApp, name: 'Connect', description: 'Device management' },
+    { image: CommandApp, name: 'Command', description: 'System monitoring' },
+    {
+      image: WorkplaceApp,
+      name: 'Workplace',
+      description: 'Workplace management',
+    },
   ];
 
   return (
@@ -213,22 +231,32 @@ function WithHeaderAndWrapperDemo() {
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
           >
-            <BiampAppDialog>
+            <BiampBuildAppContent>
               {apps.map((app, i) => (
-                <BiampAppDialogItem key={i} name={app.name}>
-                  <Box
-                    component="img"
-                    src={app.image}
-                    alt={app.name}
-                    sx={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'contain',
-                    }}
-                  />
-                </BiampAppDialogItem>
+                <BiampBuildAppContentItem
+                  key={i}
+                  name={app.name}
+                  description={app.description}
+                  image={
+                    <Box
+                      component="img"
+                      src={app.image}
+                      alt={app.name}
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                      }}
+                    />
+                  }
+                  button={
+                    <Button variant="text" size="small">
+                      Open
+                    </Button>
+                  }
+                />
               ))}
-            </BiampAppDialog>
+            </BiampBuildAppContent>
           </BiampAppPopover>
         </BiampHeader>
       }

@@ -9,4 +9,6 @@ export {
   BiampAppDialog,
   BiampAppDialogItem,
   BiampAppPopover,
+  BiampBuildAppContent,
+  BiampBuildAppContentItem,
 } from './BiampHeader';

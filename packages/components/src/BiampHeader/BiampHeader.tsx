@@ -226,6 +226,9 @@ export function BiampAppPopover({
             outlineColor: ({ palette }) => palette.divider,
             boxShadow: ({ palette }) =>
               `0px 4px 24px 0px ${alpha(palette.common.black, 0.15)};`,
+            maxWidth: '450px',
+            width: '100%',
+            p: 2,
           },
         },
       }}
@@ -233,6 +236,75 @@ export function BiampAppPopover({
     >
       {children}
     </Popover>
+  );
+}
+
+type BiampBuildAppContentProps = BoxProps & {
+  children: React.ReactNode;
+};
+
+export function BiampBuildAppContent({
+  children,
+  sx,
+  ...props
+}: BiampBuildAppContentProps) {
+  return (
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: 1.5,
+        ...sx,
+      }}
+      {...props}
+    >
+      {children}
+    </Box>
+  );
+}
+
+type BiampBuildAppContentItemProps = StackProps & {
+  image: ReactNode;
+  name: string;
+  description: string;
+  button: ReactNode;
+};
+
+export function BiampBuildAppContentItem({
+  image,
+  name,
+  description,
+  button,
+  sx,
+  ...props
+}: BiampBuildAppContentItemProps) {
+  return (
+    <Stack
+      direction="column"
+      position="relative"
+      sx={{
+        p: 1.5,
+        borderRadius: 1.5,
+        outlineWidth: '0.6px',
+        outlineStyle: 'solid',
+        outlineColor: ({ palette }) => palette.divider,
+        ...sx,
+      }}
+      {...props}
+    >
+      <Box sx={{ width: 54, height: 54 }} mb={0.5}>
+        {image}
+      </Box>
+      <Typography variant="caption" fontWeight={600} mb={0.5}>
+        {name}
+      </Typography>
+      <Typography variant="caption" color="text.secondary">
+        {description}
+      </Typography>
+      <Box position="absolute" top={0} right={0}>
+        {button}
+      </Box>
+    </Stack>
   );
 }
 
