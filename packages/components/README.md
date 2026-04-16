@@ -266,16 +266,17 @@ import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 
 #### DynamicSvgIcon Props
 
-| Prop                | Type                                       | Default      | Description                                       |
-| ------------------- | ------------------------------------------ | ------------ | ------------------------------------------------- |
-| `url`               | `string`                                   | —            | URL of the SVG to fetch                           |
-| `fallback`          | `React.ReactNode`                          | **required** | Element shown when loading fails                  |
-| `width`             | `number`                                   | `24`         | Width in pixels for icon, skeleton, and fallback  |
-| `height`            | `number`                                   | `24`         | Height in pixels for icon, skeleton, and fallback |
-| `skeletonVariant`   | `'circular' \| 'rectangular' \| 'rounded'` | `'circular'` | Skeleton shape during loading                     |
-| `skeletonAnimation` | `'pulse' \| 'wave' \| false`               | `'pulse'`    | Skeleton animation type                           |
-| `onLoad`            | `() => void`                               | —            | Called when the SVG loads successfully            |
-| `onError`           | `(error: string) => void`                  | —            | Called when loading fails                         |
+| Prop                | Type                                       | Default      | Description                                                    |
+| ------------------- | ------------------------------------------ | ------------ | -------------------------------------------------------------- |
+| `url`               | `string`                                   | —            | URL of the SVG to fetch                                        |
+| `fallback`          | `React.ReactNode`                          | **required** | Element shown when loading fails                               |
+| `width`             | `number`                                   | `24`         | Width in pixels for icon, skeleton, and fallback               |
+| `height`            | `number`                                   | `24`         | Height in pixels for icon, skeleton, and fallback              |
+| `replaceColors`     | `boolean`                                  | `false`      | Replace all fill/stroke colors with `currentColor` for theming |
+| `skeletonVariant`   | `'circular' \| 'rectangular' \| 'rounded'` | `'circular'` | Skeleton shape during loading                                  |
+| `skeletonAnimation` | `'pulse' \| 'wave' \| false`               | `'pulse'`    | Skeleton animation type                                        |
+| `onLoad`            | `() => void`                               | —            | Called when the SVG loads successfully                         |
+| `onError`           | `(error: string) => void`                  | —            | Called when loading fails                                      |
 
 ### BiampTable
 

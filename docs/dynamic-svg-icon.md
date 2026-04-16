@@ -26,6 +26,7 @@ npm install @bwp-web/components
 | `fallback`          | `React.ReactNode`                        | **required** | Element shown when loading fails                       |
 | `width`             | `number`                                 | `24`         | Width in pixels for icon, skeleton, and fallback       |
 | `height`            | `number`                                 | `24`         | Height in pixels for icon, skeleton, and fallback      |
+| `replaceColors`     | `boolean`                                | `false`      | Replace all fill/stroke colors (except `"none"` and `"currentColor"`) with `"currentColor"` for full theming support |
 | `skeletonVariant`   | `'circular' \| 'rectangular' \| 'rounded'` | `'circular'` | Skeleton shape during loading                          |
 | `skeletonAnimation` | `'pulse' \| 'wave' \| false`            | `'pulse'`    | Skeleton animation type                                |
 | `onLoad`            | `() => void`                             | —            | Called when the SVG loads successfully                  |
@@ -46,10 +47,11 @@ function useDynamicSvgIcon(
 
 **Options:**
 
-| Field     | Type                          | Description                       |
-| --------- | ----------------------------- | --------------------------------- |
-| `onLoad`  | `() => void`                  | Called when the SVG loads          |
-| `onError` | `(error: string) => void`     | Called when loading fails          |
+| Field           | Type                          | Default | Description                                                                                             |
+| --------------- | ----------------------------- | ------- | ------------------------------------------------------------------------------------------------------- |
+| `replaceColors` | `boolean`                     | `false` | Replace all fill/stroke colors (except `"none"` and `"currentColor"`) with `"currentColor"` for theming |
+| `onLoad`        | `() => void`                  | —       | Called when the SVG loads                                                                                |
+| `onError`       | `(error: string) => void`     | —       | Called when loading fails                                                                                |
 
 **Result:**
 
@@ -132,6 +134,23 @@ Available animations: `pulse` (default), `wave`, `false` (disabled).
 />
 ```
 
+## Color Theming
+
+By default, the SVG's original colors are preserved. Set `replaceColors` to override all hard-coded fill and stroke values with `currentColor`, so the icon inherits its color from CSS:
+
+```tsx
+<DynamicSvgIcon
+  url={iconUrl}
+  width={32}
+  height={32}
+  replaceColors
+  sx={{ color: 'primary.main' }}
+  fallback={<BrokenImageIcon />}
+/>
+```
+
+`fill="none"` and `stroke="none"` are preserved — only actual color values are replaced.
+
 ## Using the Hook Directly
 
 For advanced use cases where you need full control over rendering:
@@ -159,7 +178,7 @@ function CustomIcon({ url }: { url: string }) {
 2. **Validate** — The response is checked for `<svg` content or an SVG content-type header.
 3. **Parse** — The viewBox is extracted from the root `<svg>` element. The inner content (paths, groups, etc.) is extracted and rendered inside a MUI `SvgIcon`.
 4. **Cache** — The parsed content and viewBox are stored in an in-memory `Map`. Subsequent renders with the same URL skip the fetch entirely.
-5. **Render** — Colors and viewBox are preserved as-is from the source SVG. Paths without an explicit `fill` attribute inherit `currentColor` from MUI SvgIcon's CSS, so they respond to the parent's text color.
+5. **Render** — By default, colors and viewBox are preserved as-is from the source SVG. Paths without an explicit `fill` attribute inherit `currentColor` from MUI SvgIcon's CSS. When `replaceColors` is `true`, all fill and stroke values (except `"none"` and `"currentColor"`) are replaced with `"currentColor"`, making the icon fully themeable via CSS `color`.
 
 ## Storybook
 
@@ -172,4 +191,5 @@ Interactive demos are available in Storybook under **Components / DynamicSvgIcon
 - **SkeletonVariants** — circular, rectangular, and rounded
 - **SkeletonAnimations** — pulse, wave, and disabled
 - **FallbackTypes** — MUI icons, colored icons, text, disabled icons
+- **ReplaceColors** — original vs. themed colors side by side
 - **Callbacks** — onLoad and onError firing in real time
