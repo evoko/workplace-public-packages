@@ -10,7 +10,10 @@ interface CustomCalendarActionBarProps extends DialogActionsProps {
   actions?: PickersActionBarAction[];
 }
 
-export function CustomCalendarActionBar({ actions, ...other }: CustomCalendarActionBarProps) {
+export function CustomCalendarActionBar({
+  actions,
+  ...other
+}: CustomCalendarActionBarProps) {
   const translations = usePickerTranslations();
   const {
     clearValue,
@@ -29,41 +32,78 @@ export function CustomCalendarActionBar({ actions, ...other }: CustomCalendarAct
     switch (actionType) {
       case 'clear':
         return (
-          <Button key={actionType} variant="outlined" size='small' onClick={clearValue}>
+          <Button
+            key={actionType}
+            variant="outlined"
+            size="small"
+            onClick={clearValue}
+          >
             {translations.clearButtonLabel}
           </Button>
         );
       case 'cancel':
         return (
-          <Button key={actionType} variant="outlined" size='small' onClick={cancelValueChanges}>
+          <Button
+            key={actionType}
+            variant="outlined"
+            size="small"
+            onClick={cancelValueChanges}
+          >
             {translations.cancelButtonLabel}
           </Button>
         );
       case 'accept':
         return (
-          <Button key={actionType} variant="contained" size='small' color="primary" onClick={acceptValueChanges}>
+          <Button
+            key={actionType}
+            variant="contained"
+            size="small"
+            color="primary"
+            onClick={acceptValueChanges}
+          >
             {translations.okButtonLabel}
           </Button>
         );
       case 'today':
         return (
-          <Button key={actionType} variant="outlined" size='small' onClick={setValueToToday}>
+          <Button
+            key={actionType}
+            variant="outlined"
+            size="small"
+            onClick={setValueToToday}
+          >
             {translations.todayButtonLabel}
           </Button>
         );
       case 'next':
         return (
-          <Button key={actionType} variant="outlined" size='small' onClick={goToNextStep}>
+          <Button
+            key={actionType}
+            variant="outlined"
+            size="small"
+            onClick={goToNextStep}
+          >
             {translations.nextStepButtonLabel}
           </Button>
         );
       case 'nextOrAccept':
         return hasNextStep ? (
-          <Button key={actionType} variant="outlined" size='small' onClick={goToNextStep}>
+          <Button
+            key={actionType}
+            variant="outlined"
+            size="small"
+            onClick={goToNextStep}
+          >
             {translations.nextStepButtonLabel}
           </Button>
         ) : (
-          <Button key={actionType} variant="contained" size='small' color="primary" onClick={acceptValueChanges}>
+          <Button
+            key={actionType}
+            variant="contained"
+            size="small"
+            color="primary"
+            onClick={acceptValueChanges}
+          >
             {translations.okButtonLabel}
           </Button>
         );
@@ -72,5 +112,9 @@ export function CustomCalendarActionBar({ actions, ...other }: CustomCalendarAct
     }
   });
 
-  return <DialogActions sx={{p:1}} {...other}>{buttons}</DialogActions>;
+  return (
+    <DialogActions sx={{ p: 1 }} {...other}>
+      {buttons}
+    </DialogActions>
+  );
 }

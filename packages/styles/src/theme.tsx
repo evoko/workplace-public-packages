@@ -1667,12 +1667,14 @@ export const biampTheme = (
             slotProps: {
               openPickerButton: {
                 size: 'medium',
-                sx: {
-                  '&:hover': { backgroundColor: 'transparent' },
-                },
               },
               inputAdornment: {
-                sx: { mx: '4px' },
+                sx: {
+                  '& .MuiSvgIcon-root': {
+                    width: '24px',
+                    height: '24px',
+                  },
+                },
               },
               textField: {
                 sx: {
@@ -1684,7 +1686,8 @@ export const biampTheme = (
                     fontWeight: '400',
                   },
                   '& .MuiInputBase-root': {
-                    padding: '0px 12px',
+                    paddingLeft: '12px',
+                    paddingRight: '8px',
                     '& .MuiInputBase-input': {
                       padding: '0px',
                     },
@@ -1708,17 +1711,25 @@ export const biampTheme = (
             slotProps: {
               openPickerButton: {
                 size: 'medium',
+                edge: false,
               },
               openPickerIcon: {
                 fontSize: 'medium',
               },
               inputAdornment: {
                 sx: {
-                  marginRight: '6px',
-                  marginLeft: '0px',
+                  mx: 0,
                   '& .MuiSvgIcon-root': {
-                    width: '20px',
-                    height: '20px',
+                    width: '24px',
+                    height: '24px',
+                  },
+                },
+              },
+              textField: {
+                sx: {
+                  '& .MuiPickersOutlinedInput-root': {
+                    paddingLeft: '12px',
+                    paddingRight: '8px',
                   },
                 },
               },
@@ -1731,10 +1742,24 @@ export const biampTheme = (
               actionBar: {
                 actions: [],
               },
+              popper: {
+                modifiers: [
+                  {
+                    name: 'matchAnchorWidth',
+                    enabled: true,
+                    phase: 'beforeWrite' as const,
+                    requires: ['computeStyles'],
+                    fn: ({ state }) => {
+                      state.styles['popper'].width =
+                        `${state.rects.reference.width}px`;
+                    },
+                  },
+                ],
+              },
               desktopPaper: {
                 sx: (theme) => ({
                   border: `0.6px solid ${theme.palette.dividers.secondary}`,
-                  width: '115px',
+                  minWidth: '115px',
                   overflowX: 'hidden',
                 }),
               },
@@ -1745,6 +1770,30 @@ export const biampTheme = (
           defaultProps: {
             slots: {
               actionBar: CustomCalendarActionBar,
+              openPickerIcon: CalendarIcon,
+            },
+            slotProps: {
+              openPickerButton: {
+                size: 'medium',
+                edge: false,
+              },
+              inputAdornment: {
+                sx: {
+                  mx: 0,
+                  '& .MuiSvgIcon-root': {
+                    width: '24px',
+                    height: '24px',
+                  },
+                },
+              },
+              textField: {
+                sx: {
+                  '& .MuiPickersOutlinedInput-root': {
+                    paddingLeft: '12px',
+                    paddingRight: '8px',
+                  },
+                },
+              },
             },
           },
         },
@@ -1775,6 +1824,15 @@ export const biampTheme = (
             list: {
               '& li:first-of-type': {
                 marginTop: 0,
+              },
+            },
+          },
+        },
+        MuiMultiSectionDigitalClockSection: {
+          styleOverrides: {
+            item: {
+              '& .MuiTouchRipple-root': {
+                display: 'none',
               },
             },
           },
@@ -1981,6 +2039,9 @@ export const biampTheme = (
           },
         },
         MuiPickersDay: {
+          defaultProps: {
+            disableRipple: true,
+          },
           styleOverrides: {
             root: ({ theme }) => ({
               fontSize: theme.typography.body2.fontSize,
