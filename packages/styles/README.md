@@ -236,11 +236,11 @@ Only the `standard` variant is enabled. MUI's `filled` and `outlined` variants a
 
 ### Other Components
 
-Styled overrides are included for: `Breadcrumbs`, `Checkbox`, `Chip`, `Dialog`, `Divider`, `Drawer`, `Fab`, `FormControlLabel`, `FormHelperText`, `FormLabel`, `InputBase`, `InputLabel`, `Menu`, `MenuItem`, `OutlinedInput`, `Radio`, `Select`, `Slider`, `Switch`, `Tab`, `Tabs`, `Tooltip`, `TextField`, `Autocomplete`, `DatePicker`, `PickersTextField`, `PickersInputBase`, `PickersOutlinedInput`.
+Styled overrides are included for: `Breadcrumbs`, `Checkbox`, `Chip`, `Dialog`, `Divider`, `Drawer`, `Fab`, `FormControlLabel`, `FormHelperText`, `FormLabel`, `InputBase`, `InputLabel`, `Menu`, `MenuItem`, `OutlinedInput`, `Radio`, `Select`, `Slider`, `Switch`, `Tab`, `Tabs`, `Tooltip`, `TextField`, `Autocomplete`, `DatePicker`, `TimePicker`, `DateTimePicker`, `PickersTextField`, `PickersInputBase`, `PickersOutlinedInput`.
 
-### DatePicker & TimePicker
+### DatePicker, TimePicker & DateTimePicker
 
-`DatePicker` and `TimePicker` are styled but require a `LocalizationProvider` wrapper with a date adapter to function.
+`DatePicker`, `TimePicker`, and `DateTimePicker` are styled but require a `LocalizationProvider` wrapper with a date adapter to function.
 
 Install the required packages:
 
@@ -255,12 +255,14 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 function MyComponent() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker label="Date" />
       <TimePicker label="Time" />
+      <DateTimePicker label="Date & Time" />
     </LocalizationProvider>
   );
 }
@@ -275,6 +277,8 @@ import 'dayjs/locale/en-gb';
   <DatePicker label="Date" />
 </LocalizationProvider>;
 ```
+
+The `DateTimePicker` includes a custom action bar with outlined Cancel and contained primary OK buttons.
 
 ## Exports
 
