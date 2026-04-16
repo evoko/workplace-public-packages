@@ -45,7 +45,7 @@
     "fabric": "^7.2.0",
     "@types/react": "^19.1.0",
     "eslint": "^9.39.2",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.3",
     "tsup": "^8.5.1",
     "typescript": "^5.9.2"
   }

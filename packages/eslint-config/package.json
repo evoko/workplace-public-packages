@@ -17,9 +17,9 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "typescript-eslint": "^8.54.0"
+    "typescript-eslint": "^8.58.2"
   },
   "devDependencies": {
-    "prettier": "^3.8.1"
+    "prettier": "^3.8.3"
   }
 }
