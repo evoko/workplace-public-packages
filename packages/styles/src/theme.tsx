@@ -30,6 +30,7 @@ import {
 } from '@bwp-web/assets';
 import { alpha, createTheme, type Theme } from '@mui/material/styles';
 import { CustomCalendarHeader } from './custom-components/CustomCalendarHeader';
+import { CustomCalendarActionBar } from './custom-components/CustomCalendarActionBar';
 import { renderDigitalClockTimeView } from '@mui/x-date-pickers/timeViewRenderers';
 // Import MUI X theme augmentation to enable DatePicker/TimePicker component overrides
 import '@mui/x-date-pickers/themeAugmentation';
@@ -482,7 +483,7 @@ export const biampTheme = (
           src: url(${MontserratBold}) format('truetype');
         }
 
-        [class*="Mui"]:not([class*="MuiDivider"]) {
+        [class*="Mui"]:not([class*="MuiDivider"]):not([class*="MuiMultiSectionDigitalClock"]) {
           border-width: 0.6px !important;
         }
     `,
@@ -1737,6 +1738,13 @@ export const biampTheme = (
                   overflowX: 'hidden',
                 }),
               },
+            },
+          },
+        },
+        MuiDateTimePicker: {
+          defaultProps: {
+            slots: {
+              actionBar: CustomCalendarActionBar,
             },
           },
         },
