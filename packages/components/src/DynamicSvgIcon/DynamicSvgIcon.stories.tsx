@@ -20,6 +20,13 @@ const ICONS = {
   star: svgUrl(
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>`,
   ),
+  /** Multi-color icon with explicit fill & stroke values */
+  colorful: svgUrl(
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="#4CAF50" stroke="#388E3C" stroke-width="1.5"/>
+      <path d="M9 12l2 2 4-4" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`,
+  ),
 };
 
 const INVALID_URL = 'https://invalid.example.test/does-not-exist.svg';
@@ -35,6 +42,7 @@ const meta: Meta<typeof DynamicSvgIcon> = {
     url: { control: 'text' },
     width: { control: 'number' },
     height: { control: 'number' },
+    replaceColors: { control: 'boolean' },
     skeletonVariant: {
       control: 'select',
       options: ['circular', 'rectangular', 'rounded'],
@@ -301,7 +309,85 @@ export const FallbackTypes: Story = {
 };
 
 // ---------------------------------------------------------------------------
-// 8. Callback Props
+// 8. Replace Colors
+// ---------------------------------------------------------------------------
+/**
+ * When `replaceColors` is `true`, all `fill` and `stroke` values (except
+ * `"none"` and `"currentColor"`) are replaced with `"currentColor"`, making
+ * the icon fully themeable via the CSS `color` property.
+ */
+export const ReplaceColors: Story = {
+  render: () => (
+    <Stack spacing={3}>
+      <Typography variant="subtitle2">
+        <code>replaceColors</code> converts hard-coded SVG colors to{' '}
+        <code>currentColor</code>
+      </Typography>
+
+      <Stack direction="row" spacing={6} alignItems="flex-start">
+        <Stack alignItems="center" spacing={1}>
+          <DynamicSvgIcon
+            url={ICONS.colorful}
+            width={48}
+            height={48}
+            fallback={FALLBACK}
+          />
+          <Typography variant="caption">Default (original colors)</Typography>
+        </Stack>
+
+        <Stack alignItems="center" spacing={1}>
+          <DynamicSvgIcon
+            url={ICONS.colorful}
+            width={48}
+            height={48}
+            replaceColors
+            fallback={FALLBACK}
+          />
+          <Typography variant="caption">
+            <code>replaceColors</code> (inherits text color)
+          </Typography>
+        </Stack>
+
+        <Stack alignItems="center" spacing={1}>
+          <DynamicSvgIcon
+            url={ICONS.colorful}
+            width={48}
+            height={48}
+            replaceColors
+            sx={{ color: '#1976d2' }}
+            fallback={FALLBACK}
+          />
+          <Typography variant="caption">
+            <code>replaceColors</code> + blue
+          </Typography>
+        </Stack>
+
+        <Stack alignItems="center" spacing={1}>
+          <DynamicSvgIcon
+            url={ICONS.colorful}
+            width={48}
+            height={48}
+            replaceColors
+            sx={{ color: '#d32f2f' }}
+            fallback={FALLBACK}
+          />
+          <Typography variant="caption">
+            <code>replaceColors</code> + red
+          </Typography>
+        </Stack>
+      </Stack>
+
+      <Typography variant="caption" color="text.secondary">
+        <code>fill=&quot;none&quot;</code> and{' '}
+        <code>stroke=&quot;none&quot;</code> are preserved — only actual color
+        values are replaced.
+      </Typography>
+    </Stack>
+  ),
+};
+
+// ---------------------------------------------------------------------------
+// 9. Callback Props
 // ---------------------------------------------------------------------------
 function CallbackDemo() {
   const [log, setLog] = useState<string[]>([]);

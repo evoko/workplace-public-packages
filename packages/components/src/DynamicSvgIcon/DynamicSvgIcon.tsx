@@ -14,7 +14,25 @@ export function clearDynamicSvgIconCache() {
   svgCache.clear();
 }
 
+/**
+ * Replace all fill/stroke attribute values (except "none" and "currentColor")
+ * with "currentColor" so the SVG inherits its color from CSS.
+ */
+function applyCurrentColor(svg: string): string {
+  return svg
+    .replace(/fill="(?!none|currentColor)[^"]*"/g, 'fill="currentColor"')
+    .replace(/stroke="(?!none|currentColor)[^"]*"/g, 'stroke="currentColor"');
+}
+
 export interface UseDynamicSvgIconOptions {
+  /**
+   * When `true`, all `fill` and `stroke` attribute values (except `"none"` and
+   * `"currentColor"`) are replaced with `"currentColor"`.  This makes the SVG
+   * fully themeable via the CSS `color` property or MUI's `sx={{ color }}`.
+   *
+   * @default false
+   */
+  replaceColors?: boolean;
   /** Called when the SVG loads successfully */
   onLoad?: () => void;
   /** Called when loading fails */
@@ -34,7 +52,8 @@ export interface UseDynamicSvgIconResult {
 
 /**
  * Hook that fetches an SVG from a URL and returns the parsed content.
- * The SVG is rendered as-is — colors and viewBox are preserved from the source.
+ * The SVG is rendered as-is by default. Pass `replaceColors: true` to replace
+ * all fill/stroke colors with `currentColor` for full theming support.
  * Results are cached in-memory so subsequent renders with the same URL are instant.
  *
  * @param url - URL of the SVG to fetch (supports any URL that `fetch` can handle, including data URLs)
@@ -53,11 +72,13 @@ export function useDynamicSvgIcon(
   url: string,
   options: UseDynamicSvgIconOptions = {},
 ): UseDynamicSvgIconResult {
-  const { onLoad, onError } = options;
+  const { replaceColors = false, onLoad, onError } = options;
+
+  const transform = replaceColors ? applyCurrentColor : (s: string) => s;
 
   const [svgContent, setSvgContent] = useState<string | null>(() => {
     const cached = svgCache.get(url);
-    return cached ? cached.innerContent : null;
+    return cached ? transform(cached.innerContent) : null;
   });
   const [svgViewBox, setSvgViewBox] = useState<string | null>(() => {
     const cached = svgCache.get(url);
@@ -79,7 +100,7 @@ export function useDynamicSvgIcon(
 
     const cached = svgCache.get(url);
     if (cached) {
-      setSvgContent(cached.innerContent);
+      setSvgContent(transform(cached.innerContent));
       setSvgViewBox(cached.viewBox);
       setLoading(false);
       setError(null);
@@ -117,7 +138,7 @@ export function useDynamicSvgIcon(
         svgCache.set(url, { innerContent, viewBox });
 
         if (!cancelled) {
-          setSvgContent(innerContent);
+          setSvgContent(transform(innerContent));
           setSvgViewBox(viewBox);
           setLoading(false);
           onLoad?.();
@@ -156,6 +177,14 @@ export interface DynamicSvgIconProps extends Omit<
   width?: number;
   /** Height in pixels — applied to icon, skeleton, and fallback (default: 24) */
   height?: number;
+  /**
+   * Replace all fill/stroke colors (except `"none"` and `"currentColor"`) with
+   * `"currentColor"`, making the icon fully themeable via CSS `color`.
+   * Set to `false` to preserve the SVG's original colors.
+   *
+   * @default false
+   */
+  replaceColors?: boolean;
   /** Skeleton shape shown during loading (default: 'circular') */
   skeletonVariant?: 'circular' | 'rectangular' | 'rounded';
   /** Skeleton animation type (default: 'pulse') */
@@ -173,7 +202,8 @@ export interface DynamicSvgIconProps extends Omit<
  *
  * The SVG is rendered as-is — fill, stroke, and viewBox are preserved from the
  * source. Paths without an explicit fill will inherit `currentColor` from MUI
- * SvgIcon's CSS, so they respond to the parent's text color.
+ * SvgIcon's CSS. Set `replaceColors` to force **all** fills and strokes to
+ * `"currentColor"`, making the icon fully themeable via CSS `color`.
  *
  * Fetched SVGs are cached in-memory; the same URL will only be fetched once
  * per page session. Use {@link clearDynamicSvgIconCache} to force a refetch.
@@ -194,6 +224,7 @@ export function DynamicSvgIcon({
   fallback,
   width = DEFAULT_SIZE,
   height = DEFAULT_SIZE,
+  replaceColors,
   skeletonVariant = 'circular',
   skeletonAnimation = 'pulse',
   onLoad,
@@ -202,6 +233,7 @@ export function DynamicSvgIcon({
   ...svgIconProps
 }: DynamicSvgIconProps) {
   const { loading, error, svgContent, svgViewBox } = useDynamicSvgIcon(url, {
+    replaceColors,
     onLoad,
     onError,
   });
