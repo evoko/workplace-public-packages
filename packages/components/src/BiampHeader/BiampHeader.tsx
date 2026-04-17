@@ -229,6 +229,7 @@ export function BiampAppPopover({
             maxWidth: '450px',
             width: '100%',
             p: 2,
+            gap: 2.5,
           },
         },
       }}
@@ -285,7 +286,7 @@ export function BiampBuildAppContentItem({
       sx={{
         p: 1.5,
         borderRadius: 1.5,
-        outlineWidth: '0.6px',
+        outlineWidth: '1px',
         outlineStyle: 'solid',
         outlineColor: ({ palette }) => palette.divider,
         ...sx,
@@ -301,101 +302,10 @@ export function BiampBuildAppContentItem({
       <Typography variant="caption" color="text.secondary">
         {description}
       </Typography>
-      <Box position="absolute" top={0} right={0}>
+      <Box position="absolute" top="12px" right="12px">
         {button}
       </Box>
     </Stack>
-  );
-}
-
-type BiampAppDialogProps = BoxProps & {
-  children: React.ReactNode;
-};
-
-export function BiampAppDialog({
-  children,
-  sx,
-  ...props
-}: BiampAppDialogProps) {
-  return (
-    <Box
-      sx={{
-        p: 2,
-        display: 'inline-flex',
-        flexWrap: 'wrap',
-        gap: 1.5,
-        maxWidth: '284px',
-        borderRadius: '16px',
-        backgroundColor: ({ palette }) =>
-          palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
-        ...sx,
-      }}
-      {...props}
-    >
-      {children}
-    </Box>
-  );
-}
-
-type BiampAppDialogItemProps = BoxProps & {
-  children: React.ReactNode;
-  name: string;
-};
-
-export function BiampAppDialogItem({
-  children,
-  name,
-  sx,
-  ...props
-}: BiampAppDialogItemProps) {
-  return (
-    <Box
-      sx={{
-        width: '76px',
-        height: '89px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        cursor: 'pointer',
-        justifyContent: 'center',
-        gap: '4px',
-        borderRadius: '12px',
-        border: '0.6px solid transparent',
-        transition: 'background-color 0.2s ease, border-color 0.2s ease',
-        ':hover': {
-          backgroundColor: ({ palette }) => alpha(palette.info.main, 0.1),
-          borderColor: ({ palette }) => palette.info.main,
-        },
-        ...sx,
-      }}
-      {...props}
-    >
-      <Box
-        sx={{
-          mt: '8px',
-          width: '54px',
-          height: '54px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {children}
-      </Box>
-      <Typography
-        variant="caption"
-        fontWeight={600}
-        sx={{
-          textAlign: 'center',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-          maxWidth: '100%',
-        }}
-      >
-        {name}
-      </Typography>
-    </Box>
   );
 }
 

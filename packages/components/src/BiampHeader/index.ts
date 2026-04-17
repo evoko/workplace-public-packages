@@ -6,8 +6,6 @@ export {
   BiampHeaderButtonList,
   BiampHeaderButton,
   BiampHeaderProfile,
-  BiampAppDialog,
-  BiampAppDialogItem,
   BiampAppPopover,
   BiampBuildAppContent,
   BiampBuildAppContentItem,

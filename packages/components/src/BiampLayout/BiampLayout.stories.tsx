@@ -121,7 +121,7 @@ function WithHeaderSidebarAndWrapperDemo() {
                     />
                   }
                   button={
-                    <Button variant="text" size="small">
+                    <Button variant="outlined" size="small">
                       Open
                     </Button>
                   }
@@ -250,7 +250,7 @@ function WithHeaderAndWrapperDemo() {
                     />
                   }
                   button={
-                    <Button variant="text" size="small">
+                    <Button variant="outlined" size="small">
                       Open
                     </Button>
                   }

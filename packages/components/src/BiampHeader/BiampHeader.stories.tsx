@@ -103,7 +103,7 @@ function DefaultDemo() {
                 />
               }
               button={
-                <Button variant="text" size="small">
+                <Button variant="outlined" size="small">
                   Open
                 </Button>
               }
@@ -313,7 +313,7 @@ function WithActionsDemo() {
                 />
               }
               button={
-                <Button variant="text" size="small">
+                <Button variant="outlined" size="small">
                   Open
                 </Button>
               }
@@ -772,7 +772,7 @@ function WithBorderDemo() {
                 />
               }
               button={
-                <Button variant="text" size="small">
+                <Button variant="outlined" size="small">
                   Open
                 </Button>
               }
@@ -850,7 +850,7 @@ function AppDialogToggleDemo() {
                 />
               }
               button={
-                <Button variant="text" size="small">
+                <Button variant="outlined" size="small">
                   Open
                 </Button>
               }
