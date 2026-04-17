@@ -659,12 +659,9 @@ function SubComponentsDemo() {
                     />
                   }
                   button={
-                    <Typography
-                      variant="caption"
-                      sx={{ cursor: 'pointer', color: 'primary.main' }}
-                    >
+                    <Button variant="outlined" size="small">
                       Open
-                    </Typography>
+                    </Button>
                   }
                 />
               ))}
@@ -793,7 +790,7 @@ export const WithBorder: Story = {
   render: () => <WithBorderDemo />,
 };
 
-function AppDialogToggleDemo() {
+function BuildAppContentToggleDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
@@ -866,17 +863,17 @@ function AppDialogToggleDemo() {
  * Clicking the Apps button in the header opens a BiampBuildAppContent
  * as a popover anchored below the button.
  */
-export const AppDialogToggle: Story = {
-  name: 'App Dialog (Toggle)',
-  render: () => <AppDialogToggleDemo />,
+export const BuildAppContentToggle: Story = {
+  name: 'Build App Content (Toggle)',
+  render: () => <BuildAppContentToggleDemo />,
 };
 
 /**
  * A BiampBuildAppContent with only 2 items, showing how the layout
  * behaves with fewer than a full row.
  */
-export const AppDialogFewItems: Story = {
-  name: 'App Dialog (Few Items)',
+export const BuildAppContentFewItems: Story = {
+  name: 'Build App Content (Few Items)',
   render: () => (
     <Stack spacing={4}>
       <Box>
@@ -900,12 +897,9 @@ export const AppDialogFewItems: Story = {
               />
             }
             button={
-              <Typography
-                variant="caption"
-                sx={{ cursor: 'pointer', color: 'primary.main' }}
-              >
+              <Button variant="outlined" size="small">
                 Open
-              </Typography>
+              </Button>
             }
           />
           <BiampBuildAppContentItem
@@ -920,12 +914,9 @@ export const AppDialogFewItems: Story = {
               />
             }
             button={
-              <Typography
-                variant="caption"
-                sx={{ cursor: 'pointer', color: 'primary.main' }}
-              >
+              <Button variant="outlined" size="small">
                 Open
-              </Typography>
+              </Button>
             }
           />
         </BiampBuildAppContent>
@@ -938,8 +929,8 @@ export const AppDialogFewItems: Story = {
  * A grid of BiampBuildAppContentItems inside BiampBuildAppContent, simulating
  * an app-launcher popover with sample applications.
  */
-export const AppDialog: Story = {
-  name: 'App Dialog',
+export const BuildAppContent: Story = {
+  name: 'Build App Content',
   render: () => {
     const apps = [
       {
@@ -986,12 +977,9 @@ export const AppDialog: Story = {
                   />
                 }
                 button={
-                  <Typography
-                    variant="caption"
-                    sx={{ cursor: 'pointer', color: 'primary.main' }}
-                  >
+                  <Button variant="outlined" size="small">
                     Open
-                  </Typography>
+                  </Button>
                 }
               />
             ))}
