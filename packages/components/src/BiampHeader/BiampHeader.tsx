@@ -204,6 +204,8 @@ type BiampAppPopoverProps = PopoverProps & {
   children: React.ReactNode;
 };
 
+const POPOVER_MAX_WIDTH = 530;
+
 export function BiampAppPopover({
   children,
   open,
@@ -213,9 +215,9 @@ export function BiampAppPopover({
   return (
     <Popover
       open={open}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      transformOrigin={{ vertical: -8, horizontal: POPOVER_MAX_WIDTH - 4 }}
       sx={{ ...sx }}
-      transformOrigin={{ vertical: -4, horizontal: 150 }}
       slotProps={{
         paper: {
           sx: {
@@ -226,7 +228,7 @@ export function BiampAppPopover({
             outlineColor: ({ palette }) => palette.divider,
             boxShadow: ({ palette }) =>
               `0px 4px 24px 0px ${alpha(palette.common.black, 0.15)};`,
-            maxWidth: '450px',
+            maxWidth: POPOVER_MAX_WIDTH,
             width: '100%',
             p: 2,
             display: 'flex',
@@ -340,17 +342,24 @@ type BiampEndUserAppContentItemProps = StackProps & {
   image: ReactNode;
   name: string;
   description: string;
+  href?: string;
+  target?: string;
 };
 
 export function BiampEndUserAppContentItem({
   image,
   name,
   description,
+  href,
+  target,
   sx,
   ...props
 }: BiampEndUserAppContentItemProps) {
   return (
     <Stack
+      component={href ? 'a' : 'div'}
+      href={href}
+      target={target}
       direction="row"
       alignItems="center"
       sx={{
@@ -360,6 +369,9 @@ export function BiampEndUserAppContentItem({
         outlineWidth: '1px',
         outlineStyle: 'solid',
         outlineColor: ({ palette }) => palette.divider,
+        textDecoration: 'none',
+        color: 'inherit',
+        cursor: href ? 'pointer' : undefined,
         ...sx,
       }}
       {...props}

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Box, Button, Stack, Typography, Divider } from '@mui/material';
+import { Box, Stack, Typography, Divider } from '@mui/material';
 import {
   BiampHeader,
   BiampHeaderTitle,
@@ -9,22 +9,10 @@ import {
   BiampHeaderButtonList,
   BiampHeaderButton,
   BiampHeaderProfile,
-  BiampBuildAppContent,
-  BiampBuildAppContentItem,
-  BiampEndUserAppContent,
-  BiampEndUserAppContentItem,
   BiampAppPopover,
 } from '@bwp-web/components';
 import { UserInitialsIcon } from '@bwp-web/components';
-import {
-  BookingApp,
-  WorkplaceApp,
-  CommandApp,
-  DesignerApp,
-  ConnectApp,
-  AppsIcon,
-  AppsIconFilled,
-} from '@bwp-web/assets';
+import { AppsIcon, AppsIconFilled } from '@bwp-web/assets';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
@@ -32,6 +20,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import { AppPopoverContent } from './BiampHeader.storyhelpers';
 
 const meta: Meta<typeof BiampHeader> = {
   title: 'Components/BiampHeader',
@@ -51,35 +40,6 @@ type Story = StoryObj<typeof BiampHeader>;
 function DefaultDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
-
-  const buildApps = [
-    {
-      image: WorkplaceApp,
-      name: 'Workplace',
-      description:
-        'Monitor and manage your entire AV infrastructure in one place.',
-    },
-    {
-      image: DesignerApp,
-      name: 'Designer',
-      description: 'Design AV systems, specify equipment, generate BOMs.',
-    },
-    {
-      image: CommandApp,
-      name: 'Command',
-      description: 'Instantly send commands to Tesira devices from anywhere.',
-    },
-    {
-      image: ConnectApp,
-      name: 'Connect',
-      description:
-        'Discover and add supported devices to Biamp Workplace organizations.',
-    },
-  ];
-
-  const endUserApps = [
-    { image: BookingApp, name: 'Booking', description: 'Find & Book rooms' },
-  ];
 
   return (
     <BiampHeader>
@@ -107,47 +67,7 @@ function DefaultDemo() {
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
       >
-        <Divider>Configure &amp; Build</Divider>
-        <BiampBuildAppContent>
-          {buildApps.map((app, i) => (
-            <BiampBuildAppContentItem
-              key={i}
-              name={app.name}
-              description={app.description}
-              image={
-                <Box
-                  component="img"
-                  src={app.image}
-                  alt={app.name}
-                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                />
-              }
-              button={
-                <Button variant="outlined" size="small">
-                  Open
-                </Button>
-              }
-            />
-          ))}
-        </BiampBuildAppContent>
-        <Divider>End user apps</Divider>
-        <BiampEndUserAppContent>
-          {endUserApps.map((app, i) => (
-            <BiampEndUserAppContentItem
-              key={i}
-              name={app.name}
-              description={app.description}
-              image={
-                <Box
-                  component="img"
-                  src={app.image}
-                  alt={app.name}
-                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                />
-              }
-            />
-          ))}
-        </BiampEndUserAppContent>
+        <AppPopoverContent />
       </BiampAppPopover>
     </BiampHeader>
   );
@@ -294,35 +214,6 @@ function WithActionsDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const buildApps = [
-    {
-      image: WorkplaceApp,
-      name: 'Workplace',
-      description:
-        'Monitor and manage your entire AV infrastructure in one place.',
-    },
-    {
-      image: DesignerApp,
-      name: 'Designer',
-      description: 'Design AV systems, specify equipment, generate BOMs.',
-    },
-    {
-      image: CommandApp,
-      name: 'Command',
-      description: 'Instantly send commands to Tesira devices from anywhere.',
-    },
-    {
-      image: ConnectApp,
-      name: 'Connect',
-      description:
-        'Discover and add supported devices to Biamp Workplace organizations.',
-    },
-  ];
-
-  const endUserApps = [
-    { image: BookingApp, name: 'Booking', description: 'Find & Book rooms' },
-  ];
-
   return (
     <BiampHeader>
       <BiampHeaderTitle title="Overview" />
@@ -353,47 +244,7 @@ function WithActionsDemo() {
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
       >
-        <Divider>Configure &amp; Build</Divider>
-        <BiampBuildAppContent>
-          {buildApps.map((app, i) => (
-            <BiampBuildAppContentItem
-              key={i}
-              name={app.name}
-              description={app.description}
-              image={
-                <Box
-                  component="img"
-                  src={app.image}
-                  alt={app.name}
-                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                />
-              }
-              button={
-                <Button variant="outlined" size="small">
-                  Open
-                </Button>
-              }
-            />
-          ))}
-        </BiampBuildAppContent>
-        <Divider>End user apps</Divider>
-        <BiampEndUserAppContent>
-          {endUserApps.map((app, i) => (
-            <BiampEndUserAppContentItem
-              key={i}
-              name={app.name}
-              description={app.description}
-              image={
-                <Box
-                  component="img"
-                  src={app.image}
-                  alt={app.name}
-                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                />
-              }
-            />
-          ))}
-        </BiampEndUserAppContent>
+        <AppPopoverContent />
       </BiampAppPopover>
     </BiampHeader>
   );
@@ -614,35 +465,6 @@ function SubComponentsDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const buildApps = [
-    {
-      image: WorkplaceApp,
-      name: 'Workplace',
-      description:
-        'Monitor and manage your entire AV infrastructure in one place.',
-    },
-    {
-      image: DesignerApp,
-      name: 'Designer',
-      description: 'Design AV systems, specify equipment, generate BOMs.',
-    },
-    {
-      image: CommandApp,
-      name: 'Command',
-      description: 'Instantly send commands to Tesira devices from anywhere.',
-    },
-    {
-      image: ConnectApp,
-      name: 'Connect',
-      description:
-        'Discover and add supported devices to Biamp Workplace organizations.',
-    },
-  ];
-
-  const endUserApps = [
-    { image: BookingApp, name: 'Booking', description: 'Find & Book rooms' },
-  ];
-
   return (
     <Stack spacing={4}>
       <Box>
@@ -731,55 +553,7 @@ function SubComponentsDemo() {
             onClose={() => setAnchorEl(null)}
             anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           >
-            <Divider>Configure &amp; Build</Divider>
-            <BiampBuildAppContent>
-              {buildApps.map((app, i) => (
-                <BiampBuildAppContentItem
-                  key={i}
-                  name={app.name}
-                  description={app.description}
-                  image={
-                    <Box
-                      component="img"
-                      src={app.image}
-                      alt={app.name}
-                      sx={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'contain',
-                      }}
-                    />
-                  }
-                  button={
-                    <Button variant="outlined" size="small">
-                      Open
-                    </Button>
-                  }
-                />
-              ))}
-            </BiampBuildAppContent>
-            <Divider>End user apps</Divider>
-            <BiampEndUserAppContent>
-              {endUserApps.map((app, i) => (
-                <BiampEndUserAppContentItem
-                  key={i}
-                  name={app.name}
-                  description={app.description}
-                  image={
-                    <Box
-                      component="img"
-                      src={app.image}
-                      alt={app.name}
-                      sx={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'contain',
-                      }}
-                    />
-                  }
-                />
-              ))}
-            </BiampEndUserAppContent>
+            <AppPopoverContent />
           </BiampAppPopover>
         </Box>
       </Box>
@@ -822,35 +596,6 @@ function WithBorderDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const buildApps = [
-    {
-      image: WorkplaceApp,
-      name: 'Workplace',
-      description:
-        'Monitor and manage your entire AV infrastructure in one place.',
-    },
-    {
-      image: DesignerApp,
-      name: 'Designer',
-      description: 'Design AV systems, specify equipment, generate BOMs.',
-    },
-    {
-      image: CommandApp,
-      name: 'Command',
-      description: 'Instantly send commands to Tesira devices from anywhere.',
-    },
-    {
-      image: ConnectApp,
-      name: 'Connect',
-      description:
-        'Discover and add supported devices to Biamp Workplace organizations.',
-    },
-  ];
-
-  const endUserApps = [
-    { image: BookingApp, name: 'Booking', description: 'Find & Book rooms' },
-  ];
-
   return (
     <BiampHeader sx={{ border: '1px solid', borderColor: 'divider' }}>
       <BiampHeaderTitle title="Dashboard" />
@@ -885,47 +630,7 @@ function WithBorderDemo() {
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
       >
-        <Divider>Configure &amp; Build</Divider>
-        <BiampBuildAppContent>
-          {buildApps.map((app, i) => (
-            <BiampBuildAppContentItem
-              key={i}
-              name={app.name}
-              description={app.description}
-              image={
-                <Box
-                  component="img"
-                  src={app.image}
-                  alt={app.name}
-                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                />
-              }
-              button={
-                <Button variant="outlined" size="small">
-                  Open
-                </Button>
-              }
-            />
-          ))}
-        </BiampBuildAppContent>
-        <Divider>End user apps</Divider>
-        <BiampEndUserAppContent>
-          {endUserApps.map((app, i) => (
-            <BiampEndUserAppContentItem
-              key={i}
-              name={app.name}
-              description={app.description}
-              image={
-                <Box
-                  component="img"
-                  src={app.image}
-                  alt={app.name}
-                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                />
-              }
-            />
-          ))}
-        </BiampEndUserAppContent>
+        <AppPopoverContent />
       </BiampAppPopover>
     </BiampHeader>
   );
@@ -943,35 +648,6 @@ export const WithBorder: Story = {
 function BuildAppContentToggleDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
-
-  const buildApps = [
-    {
-      image: WorkplaceApp,
-      name: 'Workplace',
-      description:
-        'Monitor and manage your entire AV infrastructure in one place.',
-    },
-    {
-      image: DesignerApp,
-      name: 'Designer',
-      description: 'Design AV systems, specify equipment, generate BOMs.',
-    },
-    {
-      image: CommandApp,
-      name: 'Command',
-      description: 'Instantly send commands to Tesira devices from anywhere.',
-    },
-    {
-      image: ConnectApp,
-      name: 'Connect',
-      description:
-        'Discover and add supported devices to Biamp Workplace organizations.',
-    },
-  ];
-
-  const endUserApps = [
-    { image: BookingApp, name: 'Booking', description: 'Find & Book rooms' },
-  ];
 
   return (
     <BiampHeader>
@@ -999,47 +675,7 @@ function BuildAppContentToggleDemo() {
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
       >
-        <Divider>Configure &amp; Build</Divider>
-        <BiampBuildAppContent>
-          {buildApps.map((app, i) => (
-            <BiampBuildAppContentItem
-              key={i}
-              name={app.name}
-              description={app.description}
-              image={
-                <Box
-                  component="img"
-                  src={app.image}
-                  alt={app.name}
-                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                />
-              }
-              button={
-                <Button variant="outlined" size="small">
-                  Open
-                </Button>
-              }
-            />
-          ))}
-        </BiampBuildAppContent>
-        <Divider>End user apps</Divider>
-        <BiampEndUserAppContent>
-          {endUserApps.map((app, i) => (
-            <BiampEndUserAppContentItem
-              key={i}
-              name={app.name}
-              description={app.description}
-              image={
-                <Box
-                  component="img"
-                  src={app.image}
-                  alt={app.name}
-                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                />
-              }
-            />
-          ))}
-        </BiampEndUserAppContent>
+        <AppPopoverContent />
       </BiampAppPopover>
     </BiampHeader>
   );
@@ -1050,160 +686,8 @@ function BuildAppContentToggleDemo() {
  * as a popover anchored below the button.
  */
 export const BuildAppContentToggle: Story = {
-  name: 'Build App Content (Toggle)',
+  name: 'App Content (Toggle)',
   render: () => <BuildAppContentToggleDemo />,
-};
-
-/**
- * A BiampBuildAppContent with only 2 items, showing how the layout
- * behaves with fewer than a full row.
- */
-export const BuildAppContentFewItems: Story = {
-  name: 'Build App Content (Few Items)',
-  render: () => (
-    <Stack spacing={4}>
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          BiampBuildAppContent — Few Items
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-          The dialog with only 2 items. Items maintain their fixed width and
-          align to the start of the row.
-        </Typography>
-        <BiampBuildAppContent>
-          <BiampBuildAppContentItem
-            name="Booking"
-            description="Room & desk booking"
-            image={
-              <Box
-                component="img"
-                src={BookingApp}
-                alt="Booking"
-                sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            }
-            button={
-              <Button variant="outlined" size="small">
-                Open
-              </Button>
-            }
-          />
-          <BiampBuildAppContentItem
-            name="Designer"
-            description="Space design tool"
-            image={
-              <Box
-                component="img"
-                src={DesignerApp}
-                alt="Designer"
-                sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            }
-            button={
-              <Button variant="outlined" size="small">
-                Open
-              </Button>
-            }
-          />
-        </BiampBuildAppContent>
-      </Box>
-    </Stack>
-  ),
-};
-
-/**
- * Both BiampBuildAppContent and BiampEndUserAppContent sections shown
- * together, simulating the full app-launcher popover layout.
- */
-export const BuildAppContent: Story = {
-  name: 'Build App Content',
-  render: () => {
-    const buildApps = [
-      {
-        image: WorkplaceApp,
-        name: 'Workplace',
-        description:
-          'Monitor and manage your entire AV infrastructure in one place.',
-      },
-      {
-        image: DesignerApp,
-        name: 'Designer',
-        description: 'Design AV systems, specify equipment, generate BOMs.',
-      },
-      {
-        image: CommandApp,
-        name: 'Command',
-        description: 'Instantly send commands to Tesira devices from anywhere.',
-      },
-      {
-        image: ConnectApp,
-        name: 'Connect',
-        description:
-          'Discover and add supported devices to Biamp Workplace organizations.',
-      },
-    ];
-
-    const endUserApps = [
-      { image: BookingApp, name: 'Booking', description: 'Find & Book rooms' },
-    ];
-
-    return (
-      <Stack spacing={4}>
-        <Box>
-          <Typography variant="h3" sx={{ mb: 2 }}>
-            BiampBuildAppContent &amp; BiampEndUserAppContent
-          </Typography>
-          <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-            A 2-column grid of <code>BiampBuildAppContentItem</code> tiles under
-            &quot;Configure &amp; Build&quot;, followed by a vertical list of{' '}
-            <code>BiampEndUserAppContentItem</code> rows under &quot;End user
-            apps&quot;.
-          </Typography>
-          <Divider>Configure &amp; Build</Divider>
-          <BiampBuildAppContent>
-            {buildApps.map((app, i) => (
-              <BiampBuildAppContentItem
-                key={i}
-                name={app.name}
-                description={app.description}
-                image={
-                  <Box
-                    component="img"
-                    src={app.image}
-                    alt={app.name}
-                    sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
-                }
-                button={
-                  <Button variant="outlined" size="small">
-                    Open
-                  </Button>
-                }
-              />
-            ))}
-          </BiampBuildAppContent>
-          <Divider>End user apps</Divider>
-          <BiampEndUserAppContent>
-            {endUserApps.map((app, i) => (
-              <BiampEndUserAppContentItem
-                key={i}
-                name={app.name}
-                description={app.description}
-                image={
-                  <Box
-                    component="img"
-                    src={app.image}
-                    alt={app.name}
-                    sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
-                }
-              />
-            ))}
-          </BiampEndUserAppContent>
-        </Box>
-      </Stack>
-    );
-  },
 };
 
 /**
