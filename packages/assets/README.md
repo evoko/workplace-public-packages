@@ -138,30 +138,65 @@ PNG images for the app-launcher dialog tiles. Each export is a `string` that res
 | `WorkplaceApp` | Biamp Workplace application icon |
 
 ```tsx
-import { BookingApp, DesignerApp, ConnectApp } from '@bwp-web/assets';
-import { BiampAppDialog, BiampAppDialogItem } from '@bwp-web/components';
-import { Box } from '@mui/material';
+import { WorkplaceApp, DesignerApp, BookingApp } from '@bwp-web/assets';
+import {
+  BiampBuildAppContent,
+  BiampBuildAppContentItem,
+  BiampEndUserAppContent,
+  BiampEndUserAppContentItem,
+} from '@bwp-web/components';
+import { Box, Button } from '@mui/material';
 
 function AppLauncher() {
-  const apps = [
-    { image: BookingApp, name: 'Booking' },
-    { image: DesignerApp, name: 'Designer' },
-    { image: ConnectApp, name: 'Connect' },
-  ];
-
   return (
-    <BiampAppDialog>
-      {apps.map((app) => (
-        <BiampAppDialogItem key={app.name} name={app.name}>
-          <Box
-            component="img"
-            src={app.image}
-            alt={app.name}
-            sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-          />
-        </BiampAppDialogItem>
-      ))}
-    </BiampAppDialog>
+    <>
+      <BiampBuildAppContent>
+        <BiampBuildAppContentItem
+          name="Workplace"
+          description="Monitor and manage your entire AV infrastructure."
+          image={
+            <Box
+              component="img"
+              src={WorkplaceApp}
+              alt="Workplace"
+              sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
+          }
+        />
+        <BiampBuildAppContentItem
+          name="Designer"
+          description="Design AV systems, specify equipment."
+          image={
+            <Box
+              component="img"
+              src={DesignerApp}
+              alt="Designer"
+              sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
+          }
+          button={
+            <Button variant="outlined" size="small">
+              Open
+            </Button>
+          }
+        />
+      </BiampBuildAppContent>
+      <BiampEndUserAppContent>
+        <BiampEndUserAppContentItem
+          name="Booking"
+          description="Find & Book rooms"
+          href="#"
+          image={
+            <Box
+              component="img"
+              src={BookingApp}
+              alt="Booking"
+              sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
+          }
+        />
+      </BiampEndUserAppContent>
+    </>
   );
 }
 ```

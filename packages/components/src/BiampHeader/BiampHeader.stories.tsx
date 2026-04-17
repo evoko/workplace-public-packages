@@ -9,20 +9,10 @@ import {
   BiampHeaderButtonList,
   BiampHeaderButton,
   BiampHeaderProfile,
-  BiampAppDialog,
-  BiampAppDialogItem,
   BiampAppPopover,
 } from '@bwp-web/components';
 import { UserInitialsIcon } from '@bwp-web/components';
-import {
-  BookingApp,
-  WorkplaceApp,
-  CommandApp,
-  DesignerApp,
-  ConnectApp,
-  AppsIcon,
-  AppsIconFilled,
-} from '@bwp-web/assets';
+import { AppsIcon, AppsIconFilled } from '@bwp-web/assets';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
@@ -30,6 +20,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import { AppPopoverContent } from './BiampHeader.storyhelpers';
 
 const meta: Meta<typeof BiampHeader> = {
   title: 'Components/BiampHeader',
@@ -49,14 +40,6 @@ type Story = StoryObj<typeof BiampHeader>;
 function DefaultDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
-
-  const apps = [
-    { image: BookingApp, name: 'Booking' },
-    { image: DesignerApp, name: 'Designer' },
-    { image: ConnectApp, name: 'Connect' },
-    { image: CommandApp, name: 'Command' },
-    { image: WorkplaceApp, name: 'Workplace' },
-  ];
 
   return (
     <BiampHeader>
@@ -84,18 +67,7 @@ function DefaultDemo() {
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
       >
-        <BiampAppDialog>
-          {apps.map((app, i) => (
-            <BiampAppDialogItem key={i} name={app.name}>
-              <Box
-                component="img"
-                src={app.image}
-                alt={app.name}
-                sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            </BiampAppDialogItem>
-          ))}
-        </BiampAppDialog>
+        <AppPopoverContent />
       </BiampAppPopover>
     </BiampHeader>
   );
@@ -242,14 +214,6 @@ function WithActionsDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const apps = [
-    { image: BookingApp, name: 'Booking' },
-    { image: DesignerApp, name: 'Designer' },
-    { image: ConnectApp, name: 'Connect' },
-    { image: CommandApp, name: 'Command' },
-    { image: WorkplaceApp, name: 'Workplace' },
-  ];
-
   return (
     <BiampHeader>
       <BiampHeaderTitle title="Overview" />
@@ -280,18 +244,7 @@ function WithActionsDemo() {
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
       >
-        <BiampAppDialog>
-          {apps.map((app, i) => (
-            <BiampAppDialogItem key={i} name={app.name}>
-              <Box
-                component="img"
-                src={app.image}
-                alt={app.name}
-                sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            </BiampAppDialogItem>
-          ))}
-        </BiampAppDialog>
+        <AppPopoverContent />
       </BiampAppPopover>
     </BiampHeader>
   );
@@ -512,14 +465,6 @@ function SubComponentsDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const apps = [
-    { image: BookingApp, name: 'Booking' },
-    { image: DesignerApp, name: 'Designer' },
-    { image: ConnectApp, name: 'Connect' },
-    { image: CommandApp, name: 'Command' },
-    { image: WorkplaceApp, name: 'Workplace' },
-  ];
-
   return (
     <Stack spacing={4}>
       <Box>
@@ -608,22 +553,7 @@ function SubComponentsDemo() {
             onClose={() => setAnchorEl(null)}
             anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
           >
-            <BiampAppDialog>
-              {apps.map((app, i) => (
-                <BiampAppDialogItem key={i} name={app.name}>
-                  <Box
-                    component="img"
-                    src={app.image}
-                    alt={app.name}
-                    sx={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'contain',
-                    }}
-                  />
-                </BiampAppDialogItem>
-              ))}
-            </BiampAppDialog>
+            <AppPopoverContent />
           </BiampAppPopover>
         </Box>
       </Box>
@@ -666,14 +596,6 @@ function WithBorderDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const apps = [
-    { image: BookingApp, name: 'Booking' },
-    { image: DesignerApp, name: 'Designer' },
-    { image: ConnectApp, name: 'Connect' },
-    { image: CommandApp, name: 'Command' },
-    { image: WorkplaceApp, name: 'Workplace' },
-  ];
-
   return (
     <BiampHeader sx={{ border: '1px solid', borderColor: 'divider' }}>
       <BiampHeaderTitle title="Dashboard" />
@@ -708,18 +630,7 @@ function WithBorderDemo() {
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
       >
-        <BiampAppDialog>
-          {apps.map((app, i) => (
-            <BiampAppDialogItem key={i} name={app.name}>
-              <Box
-                component="img"
-                src={app.image}
-                alt={app.name}
-                sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            </BiampAppDialogItem>
-          ))}
-        </BiampAppDialog>
+        <AppPopoverContent />
       </BiampAppPopover>
     </BiampHeader>
   );
@@ -734,17 +645,9 @@ export const WithBorder: Story = {
   render: () => <WithBorderDemo />,
 };
 
-function AppDialogToggleDemo() {
+function BuildAppContentToggleDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
-
-  const apps = [
-    { image: BookingApp, name: 'Booking' },
-    { image: DesignerApp, name: 'Designer' },
-    { image: ConnectApp, name: 'Connect' },
-    { image: CommandApp, name: 'Command' },
-    { image: WorkplaceApp, name: 'Workplace' },
-  ];
 
   return (
     <BiampHeader>
@@ -772,112 +675,19 @@ function AppDialogToggleDemo() {
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
       >
-        <BiampAppDialog>
-          {apps.map((app, i) => (
-            <BiampAppDialogItem key={i} name={app.name}>
-              <Box
-                component="img"
-                src={app.image}
-                alt={app.name}
-                sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            </BiampAppDialogItem>
-          ))}
-        </BiampAppDialog>
+        <AppPopoverContent />
       </BiampAppPopover>
     </BiampHeader>
   );
 }
 
 /**
- * Clicking the Apps button in the header opens a BiampAppDialog
+ * Clicking the Apps button in the header opens a BiampBuildAppContent
  * as a popover anchored below the button.
  */
-export const AppDialogToggle: Story = {
-  name: 'App Dialog (Toggle)',
-  render: () => <AppDialogToggleDemo />,
-};
-
-/**
- * A BiampAppDialog with only 2 items, showing how the layout
- * behaves with fewer than a full row.
- */
-export const AppDialogFewItems: Story = {
-  name: 'App Dialog (Few Items)',
-  render: () => (
-    <Stack spacing={4}>
-      <Box>
-        <Typography variant="h3" sx={{ mb: 2 }}>
-          BiampAppDialog — Few Items
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-          The dialog with only 2 items. Items maintain their fixed width and
-          align to the start of the row.
-        </Typography>
-        <BiampAppDialog>
-          <BiampAppDialogItem name="Booking">
-            <Box
-              component="img"
-              src={BookingApp}
-              alt="Booking"
-              sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-            />
-          </BiampAppDialogItem>
-          <BiampAppDialogItem name="Designer">
-            <Box
-              component="img"
-              src={DesignerApp}
-              alt="Designer"
-              sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-            />
-          </BiampAppDialogItem>
-        </BiampAppDialog>
-      </Box>
-    </Stack>
-  ),
-};
-
-/**
- * A grid of BiampAppDialogItems inside BiampAppDialog, simulating
- * an app-launcher popover with 9 sample applications.
- */
-export const AppDialog: Story = {
-  name: 'App Dialog',
-  render: () => {
-    const apps = [
-      { image: BookingApp, name: 'Booking' },
-      { image: DesignerApp, name: 'Designer' },
-      { image: ConnectApp, name: 'Connect' },
-      { image: CommandApp, name: 'Command' },
-      { image: WorkplaceApp, name: 'Workplace' },
-    ];
-
-    return (
-      <Stack spacing={4}>
-        <Box>
-          <Typography variant="h3" sx={{ mb: 2 }}>
-            BiampAppDialog
-          </Typography>
-          <Typography variant="body2" sx={{ mb: 2, maxWidth: 500 }}>
-            A 3-column grid of <code>BiampAppDialogItem</code> tiles inside a
-            rounded, shadowed container. Each item renders a 76×89px tile.
-          </Typography>
-          <BiampAppDialog>
-            {apps.map((app, i) => (
-              <BiampAppDialogItem key={i} name={app.name}>
-                <Box
-                  component="img"
-                  src={app.image}
-                  alt={app.name}
-                  sx={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                />
-              </BiampAppDialogItem>
-            ))}
-          </BiampAppDialog>
-        </Box>
-      </Stack>
-    );
-  },
+export const BuildAppContentToggle: Story = {
+  name: 'App Content (Toggle)',
+  render: () => <BuildAppContentToggleDemo />,
 };
 
 /**

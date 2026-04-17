@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 import { JSX, ReactNode } from 'react';
-import { BiampRedLogo, SearchIcon } from '@bwp-web/assets';
+import { BiampRedLogo, ExternalLinkIcon, SearchIcon } from '@bwp-web/assets';
 
 type BiampHeaderProps = StackProps & {
   children?: React.ReactNode;
@@ -204,6 +204,8 @@ type BiampAppPopoverProps = PopoverProps & {
   children: React.ReactNode;
 };
 
+const POPOVER_MAX_WIDTH = 530;
+
 export function BiampAppPopover({
   children,
   open,
@@ -213,9 +215,9 @@ export function BiampAppPopover({
   return (
     <Popover
       open={open}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      transformOrigin={{ vertical: -8, horizontal: POPOVER_MAX_WIDTH - 4 }}
       sx={{ ...sx }}
-      transformOrigin={{ vertical: -4, horizontal: 150 }}
       slotProps={{
         paper: {
           sx: {
@@ -226,6 +228,12 @@ export function BiampAppPopover({
             outlineColor: ({ palette }) => palette.divider,
             boxShadow: ({ palette }) =>
               `0px 4px 24px 0px ${alpha(palette.common.black, 0.15)};`,
+            maxWidth: POPOVER_MAX_WIDTH,
+            width: '100%',
+            p: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 2,
           },
         },
       }}
@@ -236,26 +244,21 @@ export function BiampAppPopover({
   );
 }
 
-type BiampAppDialogProps = BoxProps & {
+type BiampBuildAppContentProps = BoxProps & {
   children: React.ReactNode;
 };
 
-export function BiampAppDialog({
+export function BiampBuildAppContent({
   children,
   sx,
   ...props
-}: BiampAppDialogProps) {
+}: BiampBuildAppContentProps) {
   return (
     <Box
       sx={{
-        p: 2,
-        display: 'inline-flex',
-        flexWrap: 'wrap',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
         gap: 1.5,
-        maxWidth: '284px',
-        borderRadius: '16px',
-        backgroundColor: ({ palette }) =>
-          palette.mode === 'dark' ? palette.grey[800] : palette.common.white,
         ...sx,
       }}
       {...props}
@@ -265,65 +268,125 @@ export function BiampAppDialog({
   );
 }
 
-type BiampAppDialogItemProps = BoxProps & {
-  children: React.ReactNode;
+type BiampBuildAppContentItemProps = StackProps & {
+  image: ReactNode;
   name: string;
+  description: string;
+  button?: ReactNode;
 };
 
-export function BiampAppDialogItem({
-  children,
+export function BiampBuildAppContentItem({
+  image,
   name,
+  description,
+  button,
   sx,
   ...props
-}: BiampAppDialogItemProps) {
+}: BiampBuildAppContentItemProps) {
   return (
-    <Box
+    <Stack
+      direction="column"
+      position="relative"
       sx={{
-        width: '76px',
-        height: '89px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        cursor: 'pointer',
-        justifyContent: 'center',
-        gap: '4px',
-        borderRadius: '12px',
-        border: '0.6px solid transparent',
-        transition: 'background-color 0.2s ease, border-color 0.2s ease',
-        ':hover': {
-          backgroundColor: ({ palette }) => alpha(palette.info.main, 0.1),
-          borderColor: ({ palette }) => palette.info.main,
-        },
+        p: 1.5,
+        borderRadius: 1.5,
+        outlineWidth: '1px',
+        outlineStyle: 'solid',
+        outlineColor: ({ palette }) => palette.divider,
         ...sx,
       }}
       {...props}
     >
-      <Box
-        sx={{
-          mt: '8px',
-          width: '54px',
-          height: '54px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {children}
+      <Box sx={{ width: 54, height: 54 }} mb={0.5}>
+        {image}
       </Box>
-      <Typography
-        variant="caption"
-        fontWeight={600}
-        sx={{
-          textAlign: 'center',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-          maxWidth: '100%',
-        }}
-      >
+      <Typography variant="caption" fontWeight={600} mb={0.5}>
         {name}
       </Typography>
-    </Box>
+      <Typography variant="caption" color="text.secondary">
+        {description}
+      </Typography>
+      {button && (
+        <Box position="absolute" top="12px" right="12px">
+          {button}
+        </Box>
+      )}
+    </Stack>
+  );
+}
+
+type BiampEndUserAppContentProps = StackProps & {
+  children: React.ReactNode;
+};
+
+export function BiampEndUserAppContent({
+  children,
+  sx,
+  ...props
+}: BiampEndUserAppContentProps) {
+  return (
+    <Stack
+      direction="column"
+      sx={{
+        gap: 1.5,
+        ...sx,
+      }}
+      {...props}
+    >
+      {children}
+    </Stack>
+  );
+}
+
+type BiampEndUserAppContentItemProps = StackProps & {
+  image: ReactNode;
+  name: string;
+  description: string;
+  href?: string;
+  target?: string;
+};
+
+export function BiampEndUserAppContentItem({
+  image,
+  name,
+  description,
+  href,
+  target,
+  sx,
+  ...props
+}: BiampEndUserAppContentItemProps) {
+  return (
+    <Stack
+      component={href ? 'a' : 'div'}
+      href={href}
+      target={target}
+      direction="row"
+      alignItems="center"
+      sx={{
+        gap: 1.5,
+        p: 1.5,
+        borderRadius: 1.5,
+        outlineWidth: '1px',
+        outlineStyle: 'solid',
+        outlineColor: ({ palette }) => palette.divider,
+        textDecoration: 'none',
+        color: 'inherit',
+        cursor: href ? 'pointer' : undefined,
+        ...sx,
+      }}
+      {...props}
+    >
+      <Box sx={{ width: 32, height: 32 }}>{image}</Box>
+      <Stack direction="column">
+        <Typography variant="caption" fontWeight={600}>
+          {name}
+        </Typography>
+        <Typography variant="caption" color="text.secondary">
+          {description}
+        </Typography>
+      </Stack>
+      <ExternalLinkIcon sx={{ width: 16, height: 16, ml: 'auto' }} />
+    </Stack>
   );
 }
 
