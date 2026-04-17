@@ -14,7 +14,7 @@ import {
   Typography,
 } from '@mui/material';
 import { JSX, ReactNode } from 'react';
-import { BiampRedLogo, SearchIcon } from '@bwp-web/assets';
+import { BiampRedLogo, ExternalLinkIcon, SearchIcon } from '@bwp-web/assets';
 
 type BiampHeaderProps = StackProps & {
   children?: React.ReactNode;
@@ -229,7 +229,9 @@ export function BiampAppPopover({
             maxWidth: '450px',
             width: '100%',
             p: 2,
-            gap: 2.5,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 2,
           },
         },
       }}
@@ -268,7 +270,7 @@ type BiampBuildAppContentItemProps = StackProps & {
   image: ReactNode;
   name: string;
   description: string;
-  button: ReactNode;
+  button?: ReactNode;
 };
 
 export function BiampBuildAppContentItem({
@@ -302,9 +304,76 @@ export function BiampBuildAppContentItem({
       <Typography variant="caption" color="text.secondary">
         {description}
       </Typography>
-      <Box position="absolute" top="12px" right="12px">
-        {button}
-      </Box>
+      {button && (
+        <Box position="absolute" top="12px" right="12px">
+          {button}
+        </Box>
+      )}
+    </Stack>
+  );
+}
+
+type BiampEndUserAppContentProps = StackProps & {
+  children: React.ReactNode;
+};
+
+export function BiampEndUserAppContent({
+  children,
+  sx,
+  ...props
+}: BiampEndUserAppContentProps) {
+  return (
+    <Stack
+      direction="column"
+      sx={{
+        gap: 1.5,
+        ...sx,
+      }}
+      {...props}
+    >
+      {children}
+    </Stack>
+  );
+}
+
+type BiampEndUserAppContentItemProps = StackProps & {
+  image: ReactNode;
+  name: string;
+  description: string;
+};
+
+export function BiampEndUserAppContentItem({
+  image,
+  name,
+  description,
+  sx,
+  ...props
+}: BiampEndUserAppContentItemProps) {
+  return (
+    <Stack
+      direction="row"
+      alignItems="center"
+      sx={{
+        gap: 1.5,
+        p: 1.5,
+        borderRadius: 1.5,
+        outlineWidth: '1px',
+        outlineStyle: 'solid',
+        outlineColor: ({ palette }) => palette.divider,
+        ...sx,
+      }}
+      {...props}
+    >
+      <Box sx={{ width: 32, height: 32 }}>{image}</Box>
+      <Stack direction="column">
+        <Typography variant="caption" fontWeight={600}>
+          {name}
+        </Typography>
+        <Typography variant="caption" color="text.secondary">
+          {description}
+        </Typography>
+      </Stack>
+      <ExternalLinkIcon sx={{ width: 16, height: 16, ml: 'auto' }} />
     </Stack>
   );
 }

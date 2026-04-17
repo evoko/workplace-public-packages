@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 import {
   BiampLayout,
   BiampHeader,
@@ -17,6 +17,8 @@ import {
   BiampSidebarComponent,
   BiampBuildAppContent,
   BiampBuildAppContentItem,
+  BiampEndUserAppContent,
+  BiampEndUserAppContentItem,
   BiampAppPopover,
 } from '@bwp-web/components';
 import HomeIcon from '@mui/icons-material/Home';
@@ -62,16 +64,33 @@ function WithHeaderSidebarAndWrapperDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const apps = [
-    { image: BookingApp, name: 'Booking', description: 'Room & desk booking' },
-    { image: DesignerApp, name: 'Designer', description: 'Space design tool' },
-    { image: ConnectApp, name: 'Connect', description: 'Device management' },
-    { image: CommandApp, name: 'Command', description: 'System monitoring' },
+  const buildApps = [
     {
       image: WorkplaceApp,
       name: 'Workplace',
-      description: 'Workplace management',
+      description:
+        'Monitor and manage your entire AV infrastructure in one place.',
     },
+    {
+      image: DesignerApp,
+      name: 'Designer',
+      description: 'Design AV systems, specify equipment, generate BOMs.',
+    },
+    {
+      image: CommandApp,
+      name: 'Command',
+      description: 'Instantly send commands to Tesira devices from anywhere.',
+    },
+    {
+      image: ConnectApp,
+      name: 'Connect',
+      description:
+        'Discover and add supported devices to Biamp Workplace organizations.',
+    },
+  ];
+
+  const endUserApps = [
+    { image: BookingApp, name: 'Booking', description: 'Find & Book rooms' },
   ];
 
   return (
@@ -102,8 +121,9 @@ function WithHeaderSidebarAndWrapperDemo() {
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
           >
+            <Divider>Configure &amp; Build</Divider>
             <BiampBuildAppContent>
-              {apps.map((app, i) => (
+              {buildApps.map((app, i) => (
                 <BiampBuildAppContentItem
                   key={i}
                   name={app.name}
@@ -128,6 +148,28 @@ function WithHeaderSidebarAndWrapperDemo() {
                 />
               ))}
             </BiampBuildAppContent>
+            <Divider>End user apps</Divider>
+            <BiampEndUserAppContent>
+              {endUserApps.map((app, i) => (
+                <BiampEndUserAppContentItem
+                  key={i}
+                  name={app.name}
+                  description={app.description}
+                  image={
+                    <Box
+                      component="img"
+                      src={app.image}
+                      alt={app.name}
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                      }}
+                    />
+                  }
+                />
+              ))}
+            </BiampEndUserAppContent>
           </BiampAppPopover>
         </BiampHeader>
       }
@@ -191,16 +233,33 @@ function WithHeaderAndWrapperDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
-  const apps = [
-    { image: BookingApp, name: 'Booking', description: 'Room & desk booking' },
-    { image: DesignerApp, name: 'Designer', description: 'Space design tool' },
-    { image: ConnectApp, name: 'Connect', description: 'Device management' },
-    { image: CommandApp, name: 'Command', description: 'System monitoring' },
+  const buildApps = [
     {
       image: WorkplaceApp,
       name: 'Workplace',
-      description: 'Workplace management',
+      description:
+        'Monitor and manage your entire AV infrastructure in one place.',
     },
+    {
+      image: DesignerApp,
+      name: 'Designer',
+      description: 'Design AV systems, specify equipment, generate BOMs.',
+    },
+    {
+      image: CommandApp,
+      name: 'Command',
+      description: 'Instantly send commands to Tesira devices from anywhere.',
+    },
+    {
+      image: ConnectApp,
+      name: 'Connect',
+      description:
+        'Discover and add supported devices to Biamp Workplace organizations.',
+    },
+  ];
+
+  const endUserApps = [
+    { image: BookingApp, name: 'Booking', description: 'Find & Book rooms' },
   ];
 
   return (
@@ -231,8 +290,9 @@ function WithHeaderAndWrapperDemo() {
             anchorEl={anchorEl}
             onClose={() => setAnchorEl(null)}
           >
+            <Divider>Configure &amp; Build</Divider>
             <BiampBuildAppContent>
-              {apps.map((app, i) => (
+              {buildApps.map((app, i) => (
                 <BiampBuildAppContentItem
                   key={i}
                   name={app.name}
@@ -257,6 +317,28 @@ function WithHeaderAndWrapperDemo() {
                 />
               ))}
             </BiampBuildAppContent>
+            <Divider>End user apps</Divider>
+            <BiampEndUserAppContent>
+              {endUserApps.map((app, i) => (
+                <BiampEndUserAppContentItem
+                  key={i}
+                  name={app.name}
+                  description={app.description}
+                  image={
+                    <Box
+                      component="img"
+                      src={app.image}
+                      alt={app.name}
+                      sx={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'contain',
+                      }}
+                    />
+                  }
+                />
+              ))}
+            </BiampEndUserAppContent>
           </BiampAppPopover>
         </BiampHeader>
       }
