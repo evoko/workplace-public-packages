@@ -1360,3 +1360,79 @@ function ServerSideExpandableWithSelectionDemo() {
 export const ServerSideExpandableWithSelection: Story = {
   render: () => <ServerSideExpandableWithSelectionDemo />,
 };
+
+// ---------------------------------------------------------------------------
+// 12. SlotProps — merging props onto internal MUI elements
+// ---------------------------------------------------------------------------
+
+function SlotPropsDemo() {
+  const table = useReactTable({
+    data: rows5,
+    columns,
+    getCoreRowModel: coreRowModel,
+    getRowId: (row) => String(row.id),
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Typography variant="body2">
+        <code>slotProps</code> merges arbitrary props onto the internal MUI
+        elements. <code>sx</code> composes with the component&apos;s defaults
+        instead of replacing them. Pass a function to <code>row</code>,{' '}
+        <code>cell</code>, or <code>headerCell</code> for data-aware overrides.
+      </Typography>
+      <BiampTable
+        table={table}
+        slotProps={{
+          head: {
+            sx: (theme) => ({
+              bgcolor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.grey[900]
+                  : theme.palette.grey[100],
+            }),
+          },
+          headerCell: ({ header }) => ({
+            sx:
+              header.column.id === 'status'
+                ? {
+                    '&.MuiTableCell-head': {
+                      fontWeight: 700,
+                      color: 'info.main',
+                    },
+                  }
+                : undefined,
+          }),
+          row: ({ row }) => ({
+            'data-status': row.original.status,
+            sx:
+              row.original.status === 'Occupied'
+                ? { bgcolor: 'action.hover' }
+                : undefined,
+            onClick: () => console.log('Row clicked:', row.original),
+          }),
+          cell: ({ cell }) => ({
+            sx:
+              cell.column.id === 'capacity' && cell.getValue<number>() >= 15
+                ? { color: 'success.main', fontWeight: 600 }
+                : undefined,
+          }),
+        }}
+      />
+    </Stack>
+  );
+}
+
+/**
+ * Demonstrates the `slotProps` API: static props for `table` / `head` / `body`
+ * / `headerRow`, and functions for `headerCell` / `row` / `cell` that receive
+ * the TanStack header / row / cell for data-aware overrides. `sx` composes
+ * with the component's defaults rather than replacing them, so partial
+ * overrides don't clobber internal styles.
+ *
+ * **Memoize** function-form callbacks in real apps — passing a new function
+ * each render will break the internal row memoization.
+ */
+export const SlotProps: Story = {
+  render: () => <SlotPropsDemo />,
+};

@@ -140,6 +140,7 @@ The core table renderer. Connects to a TanStack `Table` instance and renders a s
 | `hideSelectAll`            | `boolean`                       | —            | Hides the "select all" header checkbox while keeping individual row checkboxes                                                                                                                        |
 | `selectChildrenWithParent` | `boolean`                       | `true`       | When `true`, selecting a parent row also selects its children. When `false`, parent and child selections are independent. Only relevant when both `enableRowSelection` and `enableExpanding` are used |
 | `getRowLabel`              | `(row: TData) => string`        | —            | Returns a human-readable name for a row, used in ARIA labels (e.g. `"Select Conference Room A"`, `"Expand Floor 1"`). Falls back to row index                                                         |
+| `slotProps`                | `BiampTableSlotProps<TData>`    | —            | Per-slot props merged onto the internal MUI elements. `sx` composes with the component's defaults instead of replacing them. See [Slot Props](#slot-props)                                            |
 | _...rest_                  | `BoxProps`                      | —            | All other MUI `Box` props are forwarded                                                                                                                                                               |
 
 #### Row Selection
@@ -225,6 +226,75 @@ const table = useReactTable({
   getCoreRowModel: getCoreRowModel(),
   getSortedRowModel: getSortedRowModel(),
 });
+```
+
+#### Slot Props
+
+`slotProps` lets you merge arbitrary props onto the internal MUI elements without forking the component. `sx` composes with the component's defaults (via an array) rather than replacing them, so partial overrides don't clobber internal styling.
+
+| Slot         | Type                                                                | Description                                       |
+| ------------ | ------------------------------------------------------------------- | ------------------------------------------------- |
+| `table`      | `TableProps`                                                        | Props merged onto the MUI `<Table>`               |
+| `head`       | `TableHeadProps`                                                    | Props merged onto the `<TableHead>`               |
+| `body`       | `TableBodyProps`                                                    | Props merged onto the `<TableBody>`               |
+| `headerRow`  | `TableRowProps`                                                     | Props merged onto the header `<TableRow>`         |
+| `headerCell` | `TableCellProps \| ({ header }) => TableCellProps`                  | Props merged onto each header `<TableCell>`       |
+| `row`        | `TableRowProps \| ({ row }) => TableRowProps`                       | Props merged onto each body `<TableRow>`          |
+| `cell`       | `TableCellProps \| ({ cell }) => TableCellProps`                    | Props merged onto each body `<TableCell>`         |
+
+`row`, `cell`, and `headerCell` accept either a static props object or a function that receives the TanStack `Row` / `Cell` / `Header` for data-aware overrides.
+
+```tsx
+<BiampTable
+  table={table}
+  slotProps={{
+    head: {
+      sx: (theme) => ({ bgcolor: theme.palette.grey[100] }),
+    },
+    headerCell: ({ header }) => ({
+      sx:
+        header.column.id === 'status'
+          ? { fontWeight: 700, color: 'primary.main' }
+          : undefined,
+    }),
+    row: ({ row }) => ({
+      'data-status': row.original.status,
+      sx:
+        row.original.status === 'Occupied'
+          ? { bgcolor: 'action.hover' }
+          : undefined,
+      onClick: () => console.log('clicked', row.original),
+    }),
+    cell: ({ cell }) => ({
+      sx:
+        cell.column.id === 'capacity' && cell.getValue<number>() >= 15
+          ? { color: 'success.main', fontWeight: 600 }
+          : undefined,
+    }),
+  }}
+/>
+```
+
+**Composition rules:**
+
+- `sx` is composed, not replaced — the component's defaults run first, then yours, so your styles can override specific properties without losing the rest.
+- `onClick` / `onKeyDown` on `row` are composed with the internal handlers (internal runs first, then yours). The internal Enter/Space keyboard handler still triggers `onRowClick` when set.
+- Internal a11y props (`role`, `tabIndex`, `hover`, `selected`, `aria-sort`, `data-sticky`) are set after your props and cannot be overridden.
+
+**Memoize function-form callbacks.** The body rows are memoized on slot-prop identity, so passing a fresh arrow each render will break row memoization. Wrap the callbacks in `useCallback` (or hoist them to module scope if they don't close over state).
+
+```tsx
+const rowSlot = useCallback<
+  NonNullable<BiampTableSlotProps<Room>['row']>
+>(
+  ({ row }) =>
+    row.original.status === 'Occupied'
+      ? { sx: { bgcolor: 'action.hover' } }
+      : {},
+  [],
+);
+
+<BiampTable table={table} slotProps={{ row: rowSlot }} />;
 ```
 
 ---
@@ -853,4 +923,5 @@ The BiampTable components follow WCAG 2.1 AA guidelines:
 | `ServerSideOrder`                    | type      | Single-field server-side order type                         |
 | `ColumnVisibility`                   | type      | Loose visibility state type alias                           |
 | `ExportColumn`                       | type      | Column definition for CSV export                            |
+| `BiampTableSlotProps`                | type      | Per-slot props map for `BiampTable`'s `slotProps`           |
 | `BIAMP_TABLE_DEBOUNCE_DELAY`         | constant  | Default debounce delay (`300ms`)                            |

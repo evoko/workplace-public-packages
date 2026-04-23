@@ -282,7 +282,7 @@ import BrokenImageIcon from '@mui/icons-material/BrokenImage';
 
 ### BiampTable
 
-A composable data table built on TanStack React Table v8 with support for sorting, row selection, pagination, column visibility, global search, column filters, and CSV export.
+A composable data table built on TanStack React Table v8 with support for sorting, row selection, pagination, column visibility, global search, column filters, CSV export, and per-slot prop overrides for restyling internal MUI elements.
 
 Requires `@tanstack/react-table` >= 8.0.0 as a peer dependency.
 

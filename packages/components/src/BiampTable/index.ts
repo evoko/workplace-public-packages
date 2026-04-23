@@ -1,4 +1,8 @@
-export { BiampTable, type BiampTableProps } from './BiampTable';
+export {
+  BiampTable,
+  type BiampTableProps,
+  type BiampTableSlotProps,
+} from './BiampTable';
 export {
   BiampTableContainer,
   type BiampTableContainerProps,

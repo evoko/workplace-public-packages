@@ -5,10 +5,15 @@ import {
   IconButton,
   Table as MuiTable,
   TableBody,
+  type TableBodyProps as MuiTableBodyProps,
   TableCell,
+  type TableCellProps as MuiTableCellProps,
   TableContainer,
   TableHead,
+  type TableHeadProps as MuiTableHeadProps,
+  type TableProps as MuiTableProps,
   TableRow,
+  type TableRowProps as MuiTableRowProps,
   TableSortLabel,
   type Theme,
 } from '@mui/material';
@@ -18,12 +23,41 @@ import {
   DropdownChevronDownIcon,
   DropdownChevronUpIcon,
 } from '@bwp-web/assets';
-import { flexRender, type Row, type Table } from '@tanstack/react-table';
+import {
+  flexRender,
+  type Cell,
+  type Header,
+  type Row,
+  type Table,
+} from '@tanstack/react-table';
 import React, { type ReactNode, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
 import { useLoadingDelay } from './useLoadingDelay';
+import { mergeSx, resolveSlot, type SlotPropsOrFn } from './slotProps';
+
+// ── Slot props ─────────────────────────────────────────────────────
+
+export type BiampTableSlotProps<TData> = {
+  /** Props merged onto the MUI `<Table>`. `sx` composes with defaults. */
+  table?: MuiTableProps;
+  /** Props merged onto the `<TableHead>`. `sx` composes with defaults. */
+  head?: MuiTableHeadProps;
+  /** Props merged onto the `<TableBody>`. `sx` composes with defaults. */
+  body?: MuiTableBodyProps;
+  /** Props merged onto the header `<TableRow>`. `sx` composes with defaults. */
+  headerRow?: MuiTableRowProps;
+  /** Props merged onto each header `<TableCell>`. Pass a function for per-column overrides. `sx` composes with defaults. */
+  headerCell?: SlotPropsOrFn<
+    MuiTableCellProps,
+    { header: Header<TData, unknown> }
+  >;
+  /** Props merged onto each body `<TableRow>`. Pass a function for per-row overrides. `sx` composes with defaults. */
+  row?: SlotPropsOrFn<MuiTableRowProps, { row: Row<TData> }>;
+  /** Props merged onto each body `<TableCell>`. Pass a function for per-cell overrides. `sx` composes with defaults. */
+  cell?: SlotPropsOrFn<MuiTableCellProps, { cell: Cell<TData, unknown> }>;
+};
 
 // ── Row-click props ────────────────────────────────────────────────
 type RowClickProps<TData> =
@@ -66,6 +100,14 @@ export type BiampTableProps<TData> = BoxProps &
     empty?: boolean | ReactNode;
     /** Returns a human-readable name for a row, used in ARIA labels (e.g. "Select: Conference Room A"). Falls back to row index. */
     getRowLabel?: (row: TData) => string;
+    /**
+     * Per-slot props merged onto the internal MUI elements (`table`, `head`, `body`,
+     * `headerRow`, `headerCell`, `row`, `cell`). `sx` composes with the defaults
+     * instead of replacing them. `row`, `cell`, and `headerCell` accept a function
+     * of the row/cell/header for data-aware overrides — memoize these callbacks to
+     * avoid breaking row memoization.
+     */
+    slotProps?: BiampTableSlotProps<TData>;
   };
 
 // ── Shared sx helpers ────────────────────────────────────────────
@@ -158,6 +200,11 @@ type BiampTableRowProps<TData> = {
   selectChildrenWithParent: boolean;
   getRowLabel?: (row: TData) => string;
   hasExpandableRows: boolean;
+  rowSlotProps?: SlotPropsOrFn<MuiTableRowProps, { row: Row<TData> }>;
+  cellSlotProps?: SlotPropsOrFn<
+    MuiTableCellProps,
+    { cell: Cell<TData, unknown> }
+  >;
 };
 
 function BiampTableRowInner<TData>({
@@ -171,6 +218,8 @@ function BiampTableRowInner<TData>({
   selectChildrenWithParent,
   getRowLabel,
   hasExpandableRows,
+  rowSlotProps,
+  cellSlotProps,
 }: BiampTableRowProps<TData>) {
   const clickable = onRowClick
     ? isRowClickable
@@ -178,26 +227,41 @@ function BiampTableRowInner<TData>({
       : true
     : false;
 
+  const resolvedRow = resolveSlot(rowSlotProps, { row });
+  const {
+    sx: userRowSx,
+    onClick: userRowOnClick,
+    onKeyDown: userRowOnKeyDown,
+    ...restRowProps
+  } = resolvedRow ?? {};
+
   return (
     <TableRow
       key={row.id}
+      {...restRowProps}
       hover={clickable}
       selected={enableRowSelection ? isSelected : undefined}
       role={clickable ? 'button' : undefined}
       tabIndex={clickable ? 0 : undefined}
-      sx={clickable ? rowCursorPointerSx : undefined}
+      sx={mergeSx(clickable && rowCursorPointerSx, userRowSx)}
       onClick={
-        clickable && onRowClick ? () => onRowClick(row.original) : undefined
+        clickable && onRowClick
+          ? (e) => {
+              onRowClick(row.original);
+              userRowOnClick?.(e);
+            }
+          : userRowOnClick
       }
       onKeyDown={
         clickable && onRowClick
-          ? (e: React.KeyboardEvent) => {
+          ? (e: React.KeyboardEvent<HTMLTableRowElement>) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 onRowClick(row.original);
               }
+              userRowOnKeyDown?.(e);
             }
-          : undefined
+          : userRowOnKeyDown
       }
     >
       {enableRowSelection && (
@@ -235,14 +299,19 @@ function BiampTableRowInner<TData>({
           cell.getContext(),
         );
 
+        const resolvedCell = resolveSlot(cellSlotProps, { cell });
+        const { sx: userCellSx, ...restCellProps } = resolvedCell ?? {};
+
         return (
           <TableCell
             key={cell.id}
+            {...restCellProps}
             data-sticky={sticky || undefined}
-            sx={{
-              ...cellSx(sticky, cell.column.columnDef.meta?.minWidth, 2),
-              pl: isExpandCell ? '6px' : '12px',
-            }}
+            sx={mergeSx(
+              cellSx(sticky, cell.column.columnDef.meta?.minWidth, 2),
+              { pl: isExpandCell ? '6px' : '12px' },
+              userCellSx,
+            )}
           >
             {(() => {
               if (sticky) return content;
@@ -328,7 +397,9 @@ function biampTableRowPropsAreEqual<TData>(
     prev.selectChildrenWithParent === next.selectChildrenWithParent &&
     prev.onRowClick === next.onRowClick &&
     prev.isRowClickable === next.isRowClickable &&
-    prev.getRowLabel === next.getRowLabel
+    prev.getRowLabel === next.getRowLabel &&
+    prev.rowSlotProps === next.rowSlotProps &&
+    prev.cellSlotProps === next.cellSlotProps
   );
 }
 
@@ -351,9 +422,15 @@ export function BiampTable<TData>({
   hideSelectAll,
   selectChildrenWithParent = false,
   getRowLabel,
+  slotProps,
   sx,
   ...boxProps
 }: BiampTableProps<TData>) {
+  const { sx: userTableSx, ...restTableSlotProps } = slotProps?.table ?? {};
+  const { sx: userHeadSx, ...restHeadSlotProps } = slotProps?.head ?? {};
+  const { sx: userBodySx, ...restBodySlotProps } = slotProps?.body ?? {};
+  const { sx: userHeaderRowSx, ...restHeaderRowSlotProps } =
+    slotProps?.headerRow ?? {};
   // Sum visible column min-widths so the <table> element itself gets a concrete
   // minWidth. Without this, `width: 100%` on the table always fills the container
   // and columns just share available space instead of overflowing horizontally.
@@ -390,11 +467,19 @@ export function BiampTable<TData>({
     >
       <MuiTable
         aria-busy={showLoading || undefined}
-        sx={{ minWidth: tableMinWidth, tableLayout: 'auto' }}
+        {...restTableSlotProps}
+        sx={mergeSx(
+          { minWidth: tableMinWidth, tableLayout: 'auto' },
+          userTableSx,
+        )}
       >
-        <TableHead>
+        <TableHead {...restHeadSlotProps} sx={mergeSx(userHeadSx)}>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
+            <TableRow
+              key={headerGroup.id}
+              {...restHeaderRowSlotProps}
+              sx={mergeSx(userHeaderRowSx)}
+            >
               {enableRowSelection && (
                 <TableCell padding="checkbox" sx={headerSelectionCellSx}>
                   {!hideSelectAll && (
@@ -412,9 +497,15 @@ export function BiampTable<TData>({
               )}
               {headerGroup.headers.map((header) => {
                 const sticky = header.column.columnDef.meta?.sticky;
+                const resolvedHeaderCell = resolveSlot(slotProps?.headerCell, {
+                  header,
+                });
+                const { sx: userHeaderCellSx, ...restHeaderCellProps } =
+                  resolvedHeaderCell ?? {};
                 return (
                   <TableCell
                     key={header.id}
+                    {...restHeaderCellProps}
                     data-sticky={sticky || undefined}
                     sortDirection={header.column.getIsSorted() || false}
                     {...(header.column.getCanSort() && {
@@ -424,10 +515,9 @@ export function BiampTable<TData>({
                           : 'descending'
                         : 'none',
                     })}
-                    sx={cellSx(
-                      sticky,
-                      header.column.columnDef.meta?.minWidth,
-                      3,
+                    sx={mergeSx(
+                      cellSx(sticky, header.column.columnDef.meta?.minWidth, 3),
+                      userHeaderCellSx,
                     )}
                   >
                     {header.isPlaceholder ? null : header.column.getCanSort() ? (
@@ -460,7 +550,10 @@ export function BiampTable<TData>({
           ))}
         </TableHead>
 
-        <TableBody sx={{ opacity: showLoading ? 0.3 : 1 }}>
+        <TableBody
+          {...restBodySlotProps}
+          sx={mergeSx({ opacity: showLoading ? 0.3 : 1 }, userBodySx)}
+        >
           {!showError &&
             rows.map((row) => (
               <BiampTableRow
@@ -475,6 +568,8 @@ export function BiampTable<TData>({
                 selectChildrenWithParent={selectChildrenWithParent}
                 getRowLabel={getRowLabel}
                 hasExpandableRows={hasExpandableRows}
+                rowSlotProps={slotProps?.row}
+                cellSlotProps={slotProps?.cell}
               />
             ))}
         </TableBody>
