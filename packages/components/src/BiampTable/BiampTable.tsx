@@ -15,7 +15,6 @@ import {
   TableRow,
   type TableRowProps as MuiTableRowProps,
   TableSortLabel,
-  type SxProps,
   type Theme,
 } from '@mui/material';
 import {
@@ -36,9 +35,9 @@ import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
 import { useLoadingDelay } from './useLoadingDelay';
+import { mergeSx, resolveSlot, type SlotPropsOrFn } from './slotProps';
 
 // ── Slot props ─────────────────────────────────────────────────────
-type SlotPropsOrFn<TProps, TCtx> = TProps | ((ctx: TCtx) => TProps);
 
 export type BiampTableSlotProps<TData> = {
   /** Props merged onto the MUI `<Table>`. `sx` composes with defaults. */
@@ -59,22 +58,6 @@ export type BiampTableSlotProps<TData> = {
   /** Props merged onto each body `<TableCell>`. Pass a function for per-cell overrides. `sx` composes with defaults. */
   cell?: SlotPropsOrFn<MuiTableCellProps, { cell: Cell<TData, unknown> }>;
 };
-
-function resolveSlot<TProps, TCtx>(
-  slot: SlotPropsOrFn<TProps, TCtx> | undefined,
-  ctx: TCtx,
-): TProps | undefined {
-  if (!slot) return undefined;
-  return typeof slot === 'function' ? (slot as (c: TCtx) => TProps)(ctx) : slot;
-}
-
-function mergeSx(
-  ...inputs: Array<SxProps<Theme> | false | null | undefined>
-): SxProps<Theme> {
-  return inputs
-    .filter((v): v is SxProps<Theme> => Boolean(v))
-    .flatMap((v) => (Array.isArray(v) ? v : [v])) as SxProps<Theme>;
-}
 
 // ── Row-click props ────────────────────────────────────────────────
 type RowClickProps<TData> =
@@ -263,16 +246,20 @@ function BiampTableRowInner<TData>({
       sx={mergeSx(clickable && rowCursorPointerSx, userRowSx)}
       onClick={
         clickable && onRowClick
-          ? () => onRowClick(row.original)
+          ? (e) => {
+              onRowClick(row.original);
+              userRowOnClick?.(e);
+            }
           : userRowOnClick
       }
       onKeyDown={
         clickable && onRowClick
-          ? (e: React.KeyboardEvent) => {
+          ? (e: React.KeyboardEvent<HTMLTableRowElement>) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
                 onRowClick(row.original);
               }
+              userRowOnKeyDown?.(e);
             }
           : userRowOnKeyDown
       }
