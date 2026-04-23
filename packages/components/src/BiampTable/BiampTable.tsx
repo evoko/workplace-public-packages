@@ -101,6 +101,15 @@ export type BiampTableProps<TData> = BoxProps &
     /** Returns a human-readable name for a row, used in ARIA labels (e.g. "Select: Conference Room A"). Falls back to row index. */
     getRowLabel?: (row: TData) => string;
     /**
+     * Returns a background color for a row (any valid CSS color). Applied to
+     * the row and to all sticky cells (selection column, sticky action columns)
+     * so the row reads as a single tinted band. Hover and selected backgrounds
+     * override the custom color — whatever the theme defines for those states
+     * wins. Use opaque colors so sticky cells fully cover scrolled content.
+     * Return `undefined` to leave a row at its default color.
+     */
+    setRowColor?: (row: TData) => string | undefined;
+    /**
      * Per-slot props merged onto the internal MUI elements (`table`, `head`, `body`,
      * `headerRow`, `headerCell`, `row`, `cell`). `sx` composes with the defaults
      * instead of replacing them. `row`, `cell`, and `headerCell` accept a function
@@ -200,6 +209,7 @@ type BiampTableRowProps<TData> = {
   selectChildrenWithParent: boolean;
   getRowLabel?: (row: TData) => string;
   hasExpandableRows: boolean;
+  customColor?: string;
   rowSlotProps?: SlotPropsOrFn<MuiTableRowProps, { row: Row<TData> }>;
   cellSlotProps?: SlotPropsOrFn<
     MuiTableCellProps,
@@ -218,6 +228,7 @@ function BiampTableRowInner<TData>({
   selectChildrenWithParent,
   getRowLabel,
   hasExpandableRows,
+  customColor,
   rowSlotProps,
   cellSlotProps,
 }: BiampTableRowProps<TData>) {
@@ -243,7 +254,11 @@ function BiampTableRowInner<TData>({
       selected={enableRowSelection ? isSelected : undefined}
       role={clickable ? 'button' : undefined}
       tabIndex={clickable ? 0 : undefined}
-      sx={mergeSx(clickable && rowCursorPointerSx, userRowSx)}
+      sx={mergeSx(
+        clickable && rowCursorPointerSx,
+        customColor ? { backgroundColor: customColor } : undefined,
+        userRowSx,
+      )}
       onClick={
         clickable && onRowClick
           ? (e) => {
@@ -265,7 +280,13 @@ function BiampTableRowInner<TData>({
       }
     >
       {enableRowSelection && (
-        <TableCell padding="checkbox" sx={selectionCellSx}>
+        <TableCell
+          padding="checkbox"
+          sx={mergeSx(
+            selectionCellSx,
+            customColor ? { backgroundColor: customColor } : undefined,
+          )}
+        >
           <Checkbox
             checked={isSelected}
             disabled={!row.getCanSelect()}
@@ -310,6 +331,9 @@ function BiampTableRowInner<TData>({
             sx={mergeSx(
               cellSx(sticky, cell.column.columnDef.meta?.minWidth, 2),
               { pl: isExpandCell ? '6px' : '12px' },
+              sticky && customColor
+                ? { backgroundColor: customColor }
+                : undefined,
               userCellSx,
             )}
           >
@@ -398,6 +422,7 @@ function biampTableRowPropsAreEqual<TData>(
     prev.onRowClick === next.onRowClick &&
     prev.isRowClickable === next.isRowClickable &&
     prev.getRowLabel === next.getRowLabel &&
+    prev.customColor === next.customColor &&
     prev.rowSlotProps === next.rowSlotProps &&
     prev.cellSlotProps === next.cellSlotProps
   );
@@ -422,6 +447,7 @@ export function BiampTable<TData>({
   hideSelectAll,
   selectChildrenWithParent = false,
   getRowLabel,
+  setRowColor,
   slotProps,
   sx,
   ...boxProps
@@ -568,6 +594,7 @@ export function BiampTable<TData>({
                 selectChildrenWithParent={selectChildrenWithParent}
                 getRowLabel={getRowLabel}
                 hasExpandableRows={hasExpandableRows}
+                customColor={setRowColor?.(row.original)}
                 rowSlotProps={slotProps?.row}
                 cellSlotProps={slotProps?.cell}
               />

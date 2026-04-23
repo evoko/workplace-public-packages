@@ -1436,3 +1436,81 @@ function SlotPropsDemo() {
 export const SlotProps: Story = {
   render: () => <SlotPropsDemo />,
 };
+
+// ---------------------------------------------------------------------------
+// 13. SetRowColor — per-row background color with sticky columns + selection
+// ---------------------------------------------------------------------------
+
+function SetRowColorDemo() {
+  const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+
+  const rowColorColumns = [
+    columnHelper.accessor('name', {
+      header: 'Room Name',
+      meta: { minWidth: 200 },
+    }),
+    columnHelper.accessor('status', { header: 'Status' }),
+    columnHelper.accessor('capacity', { header: 'Capacity' }),
+    columnHelper.accessor('floor', { header: 'Floor' }),
+    columnHelper.display({
+      id: 'actions',
+      header: '',
+      meta: { sticky: 'right', columnLabel: 'Actions' },
+      cell: () => (
+        <BiampTableCellActionButton label="delete" icon={<DeleteIcon />} />
+      ),
+    }),
+  ];
+
+  const table = useReactTable({
+    data: rows,
+    columns: rowColorColumns,
+    getCoreRowModel: coreRowModel,
+    getRowId: (row) => String(row.id),
+    state: { rowSelection },
+    onRowSelectionChange: setRowSelection,
+  });
+
+  // Memoize so row memoization stays intact across renders.
+  const setRowColor = (row: Room): string | undefined => {
+    switch (row.status) {
+      case 'Maintenance':
+        return '#fde7e9';
+      case 'Occupied':
+        return '#fff4e0';
+      case 'Available':
+        return '#e6f6ea';
+      default:
+        return undefined;
+    }
+  };
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Typography variant="body2">
+        Rows are tinted by status via <code>setRowColor</code>. The sticky
+        selection column (left) and sticky action column (right) pick up the
+        same color. Hover and selected backgrounds fully overpower the custom
+        color — whatever hover/selected color the theme defines wins.
+      </Typography>
+      <BiampTable
+        table={table}
+        enableRowSelection
+        onRowClick={(row) => console.log('Row clicked:', row)}
+        setRowColor={setRowColor}
+        getRowLabel={(row: Room) => row.name}
+      />
+    </Stack>
+  );
+}
+
+/**
+ * Demonstrates the `setRowColor` prop. The returned color is applied to the
+ * row and to every sticky cell (selection column, right-pinned action column)
+ * so the row reads as a single tinted band. Hover and selection still show
+ * visible feedback because MUI's `action.hover` / `action.selected` tokens
+ * are layered on top of the custom color.
+ */
+export const SetRowColor: Story = {
+  render: () => <SetRowColorDemo />,
+};

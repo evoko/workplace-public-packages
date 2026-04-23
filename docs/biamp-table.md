@@ -140,6 +140,7 @@ The core table renderer. Connects to a TanStack `Table` instance and renders a s
 | `hideSelectAll`            | `boolean`                       | —            | Hides the "select all" header checkbox while keeping individual row checkboxes                                                                                                                        |
 | `selectChildrenWithParent` | `boolean`                       | `true`       | When `true`, selecting a parent row also selects its children. When `false`, parent and child selections are independent. Only relevant when both `enableRowSelection` and `enableExpanding` are used |
 | `getRowLabel`              | `(row: TData) => string`        | —            | Returns a human-readable name for a row, used in ARIA labels (e.g. `"Select Conference Room A"`, `"Expand Floor 1"`). Falls back to row index                                                         |
+| `setRowColor`              | `(row: TData) => string \| undefined` | —      | Returns a background color (any valid CSS color) for the row. Applied to the row and to sticky cells (selection column, sticky action columns) so the row reads as a single tinted band. Hover and selected backgrounds fully override the custom color. See [Row Coloring](#row-coloring) |
 | `slotProps`                | `BiampTableSlotProps<TData>`    | —            | Per-slot props merged onto the internal MUI elements. `sx` composes with the component's defaults instead of replacing them. See [Slot Props](#slot-props)                                            |
 | _...rest_                  | `BoxProps`                      | —            | All other MUI `Box` props are forwarded                                                                                                                                                               |
 
@@ -214,6 +215,37 @@ When `onRowClick` is provided, rows receive `role="button"`, `tabIndex={0}`, a p
   isRowClickable={(row) => row.status !== 'offline'}
 />
 ```
+
+#### Row Coloring
+
+`setRowColor` returns a background color (any valid CSS color) for each row. The color is applied to the row and to every sticky cell — the left-pinned selection column and any right-pinned action columns — so the row reads as one tinted band rather than a colored middle with default-bg sticky ends.
+
+```tsx
+<BiampTable
+  table={table}
+  enableRowSelection
+  setRowColor={(row) => {
+    switch (row.status) {
+      case 'Maintenance':
+        return '#fde7e9';
+      case 'Occupied':
+        return '#fff4e0';
+      default:
+        return undefined;
+    }
+  }}
+/>
+```
+
+**Behavior:**
+
+- Only the base `backgroundColor` is set. MUI's default hover and selected backgrounds (and the sticky-cell hover override) have higher CSS specificity and fully overpower the custom color — so hover and selected feedback looks exactly like uncolored rows.
+- Non-sticky cells are transparent; they inherit the row's color, so only sticky cells need the explicit override.
+- Use **opaque** colors. Sticky cells rely on an opaque background to cover content scrolled underneath; a semi-transparent color will show through.
+- Return `undefined` to leave a row at its default color.
+- If you also pass `slotProps.row` / `slotProps.cell` with an `sx` that sets `backgroundColor`, your sx runs later and wins.
+
+**Memoization:** rows are memoized, and the resolved color is compared by string — so recreating `setRowColor` each render is fine as long as the colors it returns are stable.
 
 #### Sorting
 
