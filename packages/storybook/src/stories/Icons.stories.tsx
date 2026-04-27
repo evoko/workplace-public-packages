@@ -71,6 +71,7 @@ import {
   DeleteIcon,
   DesignFileIcon,
   DeskAltIcon,
+  DeskChairIcon,
   DeskIcon,
   DeskSolidIcon,
   DeviceSpeakerIcon,
@@ -750,6 +751,9 @@ export const IconGroups: Story = {
             </IconDisplay>
             <IconDisplay onlyIcon name="DeskIcon">
               <DeskIcon variant="xs" />
+            </IconDisplay>
+            <IconDisplay onlyIcon name="DeskChairIcon">
+              <DeskChairIcon />
             </IconDisplay>
             <IconDisplay onlyIcon name="DeviceSpeakerIcon">
               <DeviceSpeakerIcon />
