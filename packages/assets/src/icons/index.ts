@@ -66,6 +66,7 @@ export { DefineIcon } from './icons_md/DefineIcon';
 export { DeleteIcon } from './icons_multisize/DeleteIcon';
 export { DesignFileIcon } from './icons_xs/DesignFileIcon';
 export { DeskAltIcon } from './icons_sm/DeskAltIcon';
+export { DeskChairIcon } from './icons_xs/DeskChairIcon';
 export { DeskIcon } from './icons_multisize/DeskIcon';
 export { DeskSolidIcon } from './icons_md/DeskSolidIcon';
 export { DeviceSpeakerIcon } from './icons_xs/DeviceSpeakerIcon';
