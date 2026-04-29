@@ -969,6 +969,40 @@ export const Expandable: Story = {
 };
 
 // ---------------------------------------------------------------------------
+// 6b. ExpandableAlwaysExpanded — all rows forced open, no toggles
+// ---------------------------------------------------------------------------
+
+function ExpandableAlwaysExpandedDemo() {
+  const table = useReactTable({
+    data: buildingRows,
+    columns: buildingColumns,
+    getCoreRowModel: coreRowModel,
+    getExpandedRowModel: expandedRowModel,
+    getSubRows: (row) => row.children,
+    getRowId: (row) => String(row.id),
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Typography variant="body2">
+        All rows stay expanded; no chevron toggles are rendered. Depth is shown
+        through indentation only.
+      </Typography>
+      <BiampTable table={table} enableExpanding alwaysExpanded />
+    </Stack>
+  );
+}
+
+/**
+ * Pairs `enableExpanding` with `alwaysExpanded` to keep every row open.
+ * The expand/collapse toggles are not rendered and rows cannot be collapsed —
+ * useful when the hierarchy is informational rather than interactive.
+ */
+export const ExpandableAlwaysExpanded: Story = {
+  render: () => <ExpandableAlwaysExpandedDemo />,
+};
+
+// ---------------------------------------------------------------------------
 // 7. ExpandableWithSelection — expanding + selection + row click
 // ---------------------------------------------------------------------------
 

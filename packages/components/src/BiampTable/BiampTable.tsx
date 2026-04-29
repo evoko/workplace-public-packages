@@ -30,7 +30,7 @@ import {
   type Row,
   type Table,
 } from '@tanstack/react-table';
-import React, { type ReactNode, useRef } from 'react';
+import React, { type ReactNode, useEffect, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
@@ -81,6 +81,8 @@ type SelectionExpandingProps = {
   enableRowSelection?: boolean;
   /** When true, renders an expand/collapse toggle column for rows that have sub-rows. */
   enableExpanding?: boolean;
+  /** When true with `enableExpanding`, all rows stay expanded and the expand/collapse toggles are not rendered. */
+  alwaysExpanded?: boolean;
   /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. Only applies when `enableRowSelection` is true. */
   hideSelectAll?: boolean;
   /** When true, selecting a parent row also selects/deselects its children. Only applies when both `enableRowSelection` and `enableExpanding` are true. @default false */
@@ -206,6 +208,7 @@ type BiampTableRowProps<TData> = {
   isRowClickable?: (row: TData) => boolean;
   enableRowSelection: boolean;
   enableExpanding: boolean;
+  alwaysExpanded: boolean;
   selectChildrenWithParent: boolean;
   getRowLabel?: (row: TData) => string;
   hasExpandableRows: boolean;
@@ -225,6 +228,7 @@ function BiampTableRowInner<TData>({
   isRowClickable,
   enableRowSelection,
   enableExpanding,
+  alwaysExpanded,
   selectChildrenWithParent,
   getRowLabel,
   hasExpandableRows,
@@ -330,7 +334,7 @@ function BiampTableRowInner<TData>({
             data-sticky={sticky || undefined}
             sx={mergeSx(
               cellSx(sticky, cell.column.columnDef.meta?.minWidth, 2),
-              { pl: isExpandCell ? '6px' : '12px' },
+              { pl: isExpandCell && !alwaysExpanded ? '6px' : '12px' },
               sticky && customColor
                 ? { backgroundColor: customColor }
                 : undefined,
@@ -348,6 +352,14 @@ function BiampTableRowInner<TData>({
               );
 
               if (!isExpandCell) return truncated;
+
+              if (alwaysExpanded) {
+                return row.depth > 0 ? (
+                  <Box sx={{ pl: `${row.depth * 28}px` }}>{truncated}</Box>
+                ) : (
+                  truncated
+                );
+              }
 
               const rowLabel = getRowLabel
                 ? getRowLabel(row.original)
@@ -417,6 +429,7 @@ function biampTableRowPropsAreEqual<TData>(
     prev.row.getVisibleCells().length === next.row.getVisibleCells().length &&
     prev.enableRowSelection === next.enableRowSelection &&
     prev.enableExpanding === next.enableExpanding &&
+    prev.alwaysExpanded === next.alwaysExpanded &&
     prev.hasExpandableRows === next.hasExpandableRows &&
     prev.selectChildrenWithParent === next.selectChildrenWithParent &&
     prev.onRowClick === next.onRowClick &&
@@ -444,6 +457,7 @@ export function BiampTable<TData>({
   empty,
   enableRowSelection = false,
   enableExpanding = false,
+  alwaysExpanded = false,
   hideSelectAll,
   selectChildrenWithParent = false,
   getRowLabel,
@@ -469,6 +483,12 @@ export function BiampTable<TData>({
   );
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (enableExpanding && alwaysExpanded) {
+      table.toggleAllRowsExpanded(true);
+    }
+  }, [enableExpanding, alwaysExpanded, table]);
 
   const showLoading = useLoadingDelay(!!loading);
 
@@ -591,6 +611,7 @@ export function BiampTable<TData>({
                 isRowClickable={isRowClickable}
                 enableRowSelection={enableRowSelection}
                 enableExpanding={enableExpanding}
+                alwaysExpanded={alwaysExpanded}
                 selectChildrenWithParent={selectChildrenWithParent}
                 getRowLabel={getRowLabel}
                 hasExpandableRows={hasExpandableRows}
