@@ -137,6 +137,8 @@ The core table renderer. Connects to a TanStack `Table` instance and renders a s
 | `empty`                    | `boolean \| ReactNode`          | —            | Pass `true` for the default empty state, or a custom `ReactNode`. Only shown when the table has zero rows                                                                                             |
 | `enableRowSelection`       | `boolean`                       | `false`      | When `true`, renders a checkbox column for row selection                                                                                                                                              |
 | `enableExpanding`          | `boolean`                       | `false`      | When `true`, renders an expand/collapse toggle for rows that have sub-rows                                                                                                                            |
+| `alwaysExpanded`           | `boolean`                       | `false`      | When paired with `enableExpanding`, every row stays open and the chevron toggles are not rendered. Useful when the hierarchy is informational rather than interactive                                  |
+| `showExpandGuidelines`     | `boolean`                       | `false`      | Draws non-interactive tree guidelines (verticals + elbow connectors) linking parent rows to their children. Only applies when `alwaysExpanded` is also `true`                                          |
 | `hideSelectAll`            | `boolean`                       | —            | Hides the "select all" header checkbox while keeping individual row checkboxes                                                                                                                        |
 | `selectChildrenWithParent` | `boolean`                       | `true`       | When `true`, selecting a parent row also selects its children. When `false`, parent and child selections are independent. Only relevant when both `enableRowSelection` and `enableExpanding` are used |
 | `getRowLabel`              | `(row: TData) => string`        | —            | Returns a human-readable name for a row, used in ARIA labels (e.g. `"Select Conference Room A"`, `"Expand Floor 1"`). Falls back to row index                                                         |
@@ -203,6 +205,20 @@ const table = useReactTable({
 
 <BiampTable table={table} enableExpanding getRowLabel={(row) => row.name} />;
 ```
+
+Pairing `enableExpanding` with `alwaysExpanded` keeps every row open and removes the chevron toggles entirely — depth is then read through indentation only:
+
+```tsx
+<BiampTable table={table} enableExpanding alwaysExpanded />
+```
+
+When `alwaysExpanded` is on, you can also pass `showExpandGuidelines` to draw non-interactive tree-style guidelines (vertical lines plus an elbow connector) from each parent row down to its children, which makes the hierarchy easier to read at a glance:
+
+```tsx
+<BiampTable table={table} enableExpanding alwaysExpanded showExpandGuidelines />
+```
+
+`showExpandGuidelines` has no effect unless `alwaysExpanded` is also `true`.
 
 #### Clickable Rows
 
