@@ -2,7 +2,6 @@ import {
   Box,
   type BoxProps,
   Checkbox,
-  IconButton,
   Table as MuiTable,
   TableBody,
   type TableBodyProps as MuiTableBodyProps,
@@ -15,11 +14,8 @@ import {
   TableRow,
   type TableRowProps as MuiTableRowProps,
   TableSortLabel,
-  type Theme,
 } from '@mui/material';
 import {
-  ChevronDownIcon,
-  ChevronRightIcon,
   DropdownChevronDownIcon,
   DropdownChevronUpIcon,
 } from '@bwp-web/assets';
@@ -30,12 +26,13 @@ import {
   type Row,
   type Table,
 } from '@tanstack/react-table';
-import React, { type ReactNode, useRef } from 'react';
+import { type ReactNode, useEffect, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
-import { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
+import { BiampTableRow } from './BiampTableRow';
 import { useLoadingDelay } from './useLoadingDelay';
 import { mergeSx, resolveSlot, type SlotPropsOrFn } from './slotProps';
+import { cellSx } from './cellSx';
 
 // ── Slot props ─────────────────────────────────────────────────────
 
@@ -81,10 +78,14 @@ type SelectionExpandingProps = {
   enableRowSelection?: boolean;
   /** When true, renders an expand/collapse toggle column for rows that have sub-rows. */
   enableExpanding?: boolean;
+  /** When true with `enableExpanding`, all rows stay expanded and the expand/collapse toggles are not rendered. */
+  alwaysExpanded?: boolean;
   /** When true, hides the "select all" header checkbox while keeping individual row checkboxes. Only applies when `enableRowSelection` is true. */
   hideSelectAll?: boolean;
   /** When true, selecting a parent row also selects/deselects its children. Only applies when both `enableRowSelection` and `enableExpanding` are true. @default false */
   selectChildrenWithParent?: boolean;
+  /** When true, draws non-interactive tree-style guidelines connecting parent rows to their child rows. Only applies when `alwaysExpanded` is also true. */
+  showExpandGuidelines?: boolean;
 };
 
 export type BiampTableProps<TData> = BoxProps &
@@ -119,7 +120,7 @@ export type BiampTableProps<TData> = BoxProps &
     slotProps?: BiampTableSlotProps<TData>;
   };
 
-// ── Shared sx helpers ────────────────────────────────────────────
+// ── Local sx helpers ─────────────────────────────────────────────
 
 const overlaySx = {
   position: 'absolute',
@@ -133,60 +134,6 @@ const overlaySx = {
   pointerEvents: 'none',
 } as const;
 
-const stickyHoverBg = {
-  '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
-    bgcolor: ({ palette }: Theme) =>
-      palette.mode === 'dark' ? palette.grey[800] : palette.grey[100],
-  },
-} as const;
-
-function cellSx(
-  sticky: 'left' | 'right' | undefined,
-  minWidth: number | string | undefined,
-  zIndex: number,
-) {
-  if (sticky) {
-    return {
-      position: 'sticky',
-      [sticky]: 0,
-      zIndex,
-      width: 0,
-      whiteSpace: 'nowrap',
-      textAlign: 'center',
-      bgcolor: 'background.paper',
-      ...(zIndex < 3 && stickyHoverBg),
-    } as const;
-  }
-  const mw = minWidth ?? 40;
-  return {
-    minWidth: mw,
-    whiteSpace: 'nowrap',
-    '&:has([data-truncate])': { maxWidth: mw, whiteSpace: 'normal' },
-  };
-}
-
-// ── Hoisted sx objects (avoid re-creation per row per render) ────
-
-const rowCursorPointerSx = { cursor: 'pointer' } as const;
-
-const selectionCellSx = {
-  position: 'sticky',
-  left: 0,
-  zIndex: 2,
-  bgcolor: 'background.paper',
-  ...stickyHoverBg,
-} as const;
-
-const checkboxHiddenSx = { visibility: 'hidden' } as const;
-
-const expandCellBaseSx = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '2px',
-} as const;
-
-const expandPlaceholderSx = { width: 28 } as const;
-
 const headerSelectionCellSx = {
   position: 'sticky',
   left: 0,
@@ -195,243 +142,6 @@ const headerSelectionCellSx = {
 } as const;
 
 const checkboxHiddenHeaderSx = { visibility: 'hidden' } as const;
-
-// ── Memoized row ─────────────────────────────────────────────────
-
-type BiampTableRowProps<TData> = {
-  row: Row<TData>;
-  isExpanded: boolean;
-  isSelected: boolean;
-  onRowClick?: (row: TData) => void;
-  isRowClickable?: (row: TData) => boolean;
-  enableRowSelection: boolean;
-  enableExpanding: boolean;
-  selectChildrenWithParent: boolean;
-  getRowLabel?: (row: TData) => string;
-  hasExpandableRows: boolean;
-  customColor?: string;
-  rowSlotProps?: SlotPropsOrFn<MuiTableRowProps, { row: Row<TData> }>;
-  cellSlotProps?: SlotPropsOrFn<
-    MuiTableCellProps,
-    { cell: Cell<TData, unknown> }
-  >;
-};
-
-function BiampTableRowInner<TData>({
-  row,
-  isExpanded,
-  isSelected,
-  onRowClick,
-  isRowClickable,
-  enableRowSelection,
-  enableExpanding,
-  selectChildrenWithParent,
-  getRowLabel,
-  hasExpandableRows,
-  customColor,
-  rowSlotProps,
-  cellSlotProps,
-}: BiampTableRowProps<TData>) {
-  const clickable = onRowClick
-    ? isRowClickable
-      ? isRowClickable(row.original)
-      : true
-    : false;
-
-  const resolvedRow = resolveSlot(rowSlotProps, { row });
-  const {
-    sx: userRowSx,
-    onClick: userRowOnClick,
-    onKeyDown: userRowOnKeyDown,
-    ...restRowProps
-  } = resolvedRow ?? {};
-
-  return (
-    <TableRow
-      key={row.id}
-      {...restRowProps}
-      hover={clickable}
-      selected={enableRowSelection ? isSelected : undefined}
-      role={clickable ? 'button' : undefined}
-      tabIndex={clickable ? 0 : undefined}
-      sx={mergeSx(
-        clickable && rowCursorPointerSx,
-        customColor ? { backgroundColor: customColor } : undefined,
-        userRowSx,
-      )}
-      onClick={
-        clickable && onRowClick
-          ? (e) => {
-              onRowClick(row.original);
-              userRowOnClick?.(e);
-            }
-          : userRowOnClick
-      }
-      onKeyDown={
-        clickable && onRowClick
-          ? (e: React.KeyboardEvent<HTMLTableRowElement>) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onRowClick(row.original);
-              }
-              userRowOnKeyDown?.(e);
-            }
-          : userRowOnKeyDown
-      }
-    >
-      {enableRowSelection && (
-        <TableCell
-          padding="checkbox"
-          sx={mergeSx(
-            selectionCellSx,
-            customColor ? { backgroundColor: customColor } : undefined,
-          )}
-        >
-          <Checkbox
-            checked={isSelected}
-            disabled={!row.getCanSelect()}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              row.toggleSelected(e.target.checked, {
-                selectChildren: selectChildrenWithParent,
-              })
-            }
-            onClick={(e) => e.stopPropagation()}
-            sx={!row.getCanSelect() ? checkboxHiddenSx : undefined}
-            slotProps={{
-              input: {
-                'aria-label': getRowLabel
-                  ? `Select ${getRowLabel(row.original)}`
-                  : `Select row ${row.index + 1}`,
-              },
-            }}
-          />
-        </TableCell>
-      )}
-      {row.getVisibleCells().map((cell, cellIndex, cells) => {
-        const sticky = cell.column.columnDef.meta?.sticky;
-        const isExpandCell =
-          enableExpanding &&
-          !sticky &&
-          cellIndex ===
-            cells.findIndex((c) => !c.column.columnDef.meta?.sticky);
-
-        const content = flexRender(
-          cell.column.columnDef.cell,
-          cell.getContext(),
-        );
-
-        const resolvedCell = resolveSlot(cellSlotProps, { cell });
-        const { sx: userCellSx, ...restCellProps } = resolvedCell ?? {};
-
-        return (
-          <TableCell
-            key={cell.id}
-            {...restCellProps}
-            data-sticky={sticky || undefined}
-            sx={mergeSx(
-              cellSx(sticky, cell.column.columnDef.meta?.minWidth, 2),
-              { pl: isExpandCell ? '6px' : '12px' },
-              sticky && customColor
-                ? { backgroundColor: customColor }
-                : undefined,
-              userCellSx,
-            )}
-          >
-            {(() => {
-              if (sticky) return content;
-
-              const truncate = cell.column.columnDef.meta?.truncate ?? true;
-              const truncated = truncate ? (
-                <BiampTableTruncatedCell>{content}</BiampTableTruncatedCell>
-              ) : (
-                content
-              );
-
-              if (!isExpandCell) return truncated;
-
-              const rowLabel = getRowLabel
-                ? getRowLabel(row.original)
-                : `row ${row.index + 1}`;
-
-              return (
-                <Box
-                  sx={
-                    row.depth > 0
-                      ? { ...expandCellBaseSx, pl: `${row.depth * 12}px` }
-                      : expandCellBaseSx
-                  }
-                >
-                  {row.getCanExpand() ? (
-                    <IconButton
-                      variant="none"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        row.toggleExpanded();
-                      }}
-                      aria-label={
-                        isExpanded
-                          ? `Collapse ${rowLabel}`
-                          : `Expand ${rowLabel}`
-                      }
-                      aria-expanded={isExpanded}
-                    >
-                      {isExpanded ? (
-                        <ChevronDownIcon
-                          variant="xs"
-                          sx={{
-                            color: ({ palette }) => palette.text.secondary,
-                          }}
-                        />
-                      ) : (
-                        <ChevronRightIcon
-                          variant="xs"
-                          sx={{
-                            color: ({ palette }) => palette.text.secondary,
-                          }}
-                        />
-                      )}
-                    </IconButton>
-                  ) : hasExpandableRows ? (
-                    <Box sx={expandPlaceholderSx} />
-                  ) : null}
-                  {truncated}
-                </Box>
-              );
-            })()}
-          </TableCell>
-        );
-      })}
-    </TableRow>
-  );
-}
-
-function biampTableRowPropsAreEqual<TData>(
-  prev: BiampTableRowProps<TData>,
-  next: BiampTableRowProps<TData>,
-) {
-  return (
-    prev.row.id === next.row.id &&
-    prev.row.original === next.row.original &&
-    prev.isSelected === next.isSelected &&
-    prev.isExpanded === next.isExpanded &&
-    prev.row.getVisibleCells().length === next.row.getVisibleCells().length &&
-    prev.enableRowSelection === next.enableRowSelection &&
-    prev.enableExpanding === next.enableExpanding &&
-    prev.hasExpandableRows === next.hasExpandableRows &&
-    prev.selectChildrenWithParent === next.selectChildrenWithParent &&
-    prev.onRowClick === next.onRowClick &&
-    prev.isRowClickable === next.isRowClickable &&
-    prev.getRowLabel === next.getRowLabel &&
-    prev.customColor === next.customColor &&
-    prev.rowSlotProps === next.rowSlotProps &&
-    prev.cellSlotProps === next.cellSlotProps
-  );
-}
-
-const BiampTableRow = React.memo(
-  BiampTableRowInner,
-  biampTableRowPropsAreEqual,
-) as typeof BiampTableRowInner;
 
 // ── Component ────────────────────────────────────────────────────
 
@@ -444,8 +154,10 @@ export function BiampTable<TData>({
   empty,
   enableRowSelection = false,
   enableExpanding = false,
+  alwaysExpanded = false,
   hideSelectAll,
   selectChildrenWithParent = false,
+  showExpandGuidelines = false,
   getRowLabel,
   setRowColor,
   slotProps,
@@ -469,6 +181,12 @@ export function BiampTable<TData>({
   );
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (enableExpanding && alwaysExpanded) {
+      table.toggleAllRowsExpanded(true);
+    }
+  }, [enableExpanding, alwaysExpanded, table]);
 
   const showLoading = useLoadingDelay(!!loading);
 
@@ -591,7 +309,9 @@ export function BiampTable<TData>({
                 isRowClickable={isRowClickable}
                 enableRowSelection={enableRowSelection}
                 enableExpanding={enableExpanding}
+                alwaysExpanded={alwaysExpanded}
                 selectChildrenWithParent={selectChildrenWithParent}
+                showExpandGuidelines={showExpandGuidelines}
                 getRowLabel={getRowLabel}
                 hasExpandableRows={hasExpandableRows}
                 customColor={setRowColor?.(row.original)}

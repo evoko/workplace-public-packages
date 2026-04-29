@@ -969,6 +969,78 @@ export const Expandable: Story = {
 };
 
 // ---------------------------------------------------------------------------
+// 6b. ExpandableAlwaysExpanded — all rows forced open, no toggles
+// ---------------------------------------------------------------------------
+
+function ExpandableAlwaysExpandedDemo() {
+  const table = useReactTable({
+    data: buildingRows,
+    columns: buildingColumns,
+    getCoreRowModel: coreRowModel,
+    getExpandedRowModel: expandedRowModel,
+    getSubRows: (row) => row.children,
+    getRowId: (row) => String(row.id),
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Typography variant="body2">
+        All rows stay expanded; no chevron toggles are rendered. Depth is shown
+        through indentation only.
+      </Typography>
+      <BiampTable table={table} enableExpanding alwaysExpanded />
+    </Stack>
+  );
+}
+
+/**
+ * Pairs `enableExpanding` with `alwaysExpanded` to keep every row open.
+ * The expand/collapse toggles are not rendered and rows cannot be collapsed —
+ * useful when the hierarchy is informational rather than interactive.
+ */
+export const ExpandableAlwaysExpanded: Story = {
+  render: () => <ExpandableAlwaysExpandedDemo />,
+};
+
+// ---------------------------------------------------------------------------
+// 6c. ExpandableAlwaysExpandedWithGuidelines — forced open + tree guidelines
+// ---------------------------------------------------------------------------
+
+function ExpandableAlwaysExpandedWithGuidelinesDemo() {
+  const table = useReactTable({
+    data: buildingRows,
+    columns: buildingColumns,
+    getCoreRowModel: coreRowModel,
+    getExpandedRowModel: expandedRowModel,
+    getSubRows: (row) => row.children,
+    getRowId: (row) => String(row.id),
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Typography variant="body2">
+        All rows stay expanded; tree guidelines visualize the parent/child
+        hierarchy in place of chevron toggles.
+      </Typography>
+      <BiampTable
+        table={table}
+        enableExpanding
+        alwaysExpanded
+        showExpandGuidelines
+      />
+    </Stack>
+  );
+}
+
+/**
+ * Pairs `alwaysExpanded` with `showExpandGuidelines`, so the hierarchy reads
+ * through indentation plus tree lines instead of chevron toggles.
+ */
+export const ExpandableAlwaysExpandedWithGuidelines: Story = {
+  render: () => <ExpandableAlwaysExpandedWithGuidelinesDemo />,
+};
+
+// ---------------------------------------------------------------------------
 // 7. ExpandableWithSelection — expanding + selection + row click
 // ---------------------------------------------------------------------------
 
