@@ -20,6 +20,7 @@ const BiampSidebarContext = createContext<BiampSidebarContextValue>({
 type BiampSidebarProps = StackProps & {
   children: React.ReactNode;
   bottomLogoIcon?: JSX.Element;
+  bottomLogoText?: string;
   expandable?: boolean;
   expanded?: boolean;
   defaultExpanded?: boolean;
@@ -29,6 +30,7 @@ type BiampSidebarProps = StackProps & {
 export function BiampSidebar({
   children,
   bottomLogoIcon,
+  bottomLogoText,
   expandable = true,
   expanded: expandedProp,
   defaultExpanded = false,
@@ -85,9 +87,37 @@ export function BiampSidebar({
             onClick={toggleExpanded}
           />
         )}
-        {bottomLogoIcon ?? (
-          <BiampLogoIcon sx={{ width: '48px', height: '15px', mt: 2 }} />
-        )}
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          sx={{ mt: 2, overflow: 'hidden' }}
+        >
+          {bottomLogoIcon ?? (
+            <BiampLogoIcon
+              sx={{ width: '48px', height: '15px', flexShrink: 0 }}
+            />
+          )}
+          {bottomLogoText && (
+            <Typography
+              variant="caption"
+              fontWeight={500}
+              color="sidebar.main"
+              noWrap
+              sx={{
+                opacity: expanded ? 1 : 0,
+                transition: ({ transitions }) =>
+                  transitions.create('opacity', {
+                    duration: expanded
+                      ? transitions.duration.enteringScreen
+                      : transitions.duration.leavingScreen,
+                  }),
+              }}
+            >
+              {`© ${new Date().getFullYear()} ${bottomLogoText}`}
+            </Typography>
+          )}
+        </Stack>
       </Stack>
     </BiampSidebarContext.Provider>
   );

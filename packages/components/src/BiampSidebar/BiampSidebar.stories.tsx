@@ -55,7 +55,7 @@ function DefaultDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   return (
-    <BiampSidebar sx={{ height: 600 }}>
+    <BiampSidebar sx={{ height: 600 }} bottomLogoText="Biamp LLC. v.1.2-b-fd">
       {navItems.map((item, i) => (
         <BiampSidebarIcon
           key={i}
@@ -74,7 +74,9 @@ function DefaultDemo() {
  * The default sidebar with selectable navigation icons.
  * Click any icon to select it. Click the arrow button at the bottom to
  * expand the sidebar to 240px and reveal each item's `name` next to its icon.
- * The Biamp logo is automatically rendered at the bottom.
+ * Pass `bottomLogoText` to render a copyright/version caption next to the
+ * Biamp logo when the sidebar is expanded — the component automatically
+ * prepends `© [current year]` to the value.
  */
 export const Default: Story = {
   render: () => <DefaultDemo />,
