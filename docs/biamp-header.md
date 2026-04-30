@@ -288,13 +288,13 @@ A card-style tile with a 54×54 image area, a bold name, a description, and an o
 
 ### `BiampEndUserAppContent`
 
-A vertical stack container with `gap: 1.5` (12px) for laying out `BiampEndUserAppContentItem` rows. Used inside `BiampAppPopover` under an "End user apps" section heading. Extends MUI `StackProps`.
+A responsive container for `BiampEndUserAppContentItem` rows with `gap: 1.5` (12px). With a single child it renders as a vertical stack; with two or more children it switches to a 2-column CSS grid (`gridTemplateColumns: '1fr 1fr'`) — matching the layout of `BiampBuildAppContent`. Used inside `BiampAppPopover` under an "End user apps" section heading. Extends MUI `StackProps`.
 
 #### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `React.ReactNode` | _(required)_ | List content — typically `BiampEndUserAppContentItem` elements |
+| `children` | `React.ReactNode` | _(required)_ | List content — typically `BiampEndUserAppContentItem` elements. The layout auto-switches to a 2-column grid when more than one child is provided |
 | `sx` | `SxProps` | — | MUI system styles passed to the root `Stack` |
 | _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
 
@@ -399,5 +399,5 @@ function AppLauncher() {
 - `BiampAppPopover` — Styled popover for the app-launcher content.
 - `BiampBuildAppContent` — 2-column grid container for "Configure & Build" app tiles.
 - `BiampBuildAppContentItem` — App tile with image, name, description, and optional action button.
-- `BiampEndUserAppContent` — Vertical list container for end-user app items.
+- `BiampEndUserAppContent` — Responsive container for end-user app items: vertical stack for one child, 2-column grid for multiple.
 - `BiampEndUserAppContentItem` — Row-style app item with image, name, description, and external link; supports `href`.
