@@ -49,6 +49,12 @@ export const endUserApps = [
     description: 'Find & Book rooms',
     href: '#',
   },
+  {
+    image: BookingApp,
+    name: 'Booking Plus',
+    description: 'Find & Book rooms',
+    href: '#',
+  },
 ];
 
 export function AppPopoverContent() {

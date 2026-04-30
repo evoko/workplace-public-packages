@@ -22,36 +22,36 @@ For `BiampTable` only:
 
 ## Components
 
-| Component                    | Description                                                                          |
-| ---------------------------- | ------------------------------------------------------------------------------------ |
-| `BiampLayout`                | Full-page layout shell with optional header and sidebar slots                        |
-| `BiampWrapper`               | Full-page content wrapper with padding, rounded corners, and scrollable overflow     |
-| `BiampSidebar`               | Fixed-width vertical sidebar with Biamp logo                                         |
-| `BiampSidebarIconList`       | Vertical list with 4px gaps for sidebar items                                        |
-| `BiampSidebarIcon`           | Selectable 48×48px icon button for sidebar navigation                                |
-| `BiampSidebarComponent`      | 48×48px rounded box for arbitrary sidebar content                                    |
-| `BiampHeader`                | Horizontal header container with padding                                             |
-| `BiampHeaderTitle`           | Title section with icon, optional title, and optional subtitle                       |
-| `BiampHeaderSearch`          | Search input with leading search icon                                                |
-| `BiampHeaderActions`         | Flex container for grouping action buttons and profile                               |
-| `BiampHeaderButtonList`      | Horizontal list with 4px gaps for header buttons                                     |
-| `BiampHeaderButton`          | Selectable 40×40px icon button for header actions                                    |
-| `BiampHeaderProfile`         | Profile button with image or custom children (e.g. `UserInitialsIcon`)               |
-| `BiampAppPopover`            | Styled popover for the app-launcher content                                          |
-| `BiampBuildAppContent`       | 2-column grid container for "Configure & Build" app tiles                            |
-| `BiampBuildAppContentItem`   | App tile with image, name, description, and optional action button                   |
-| `BiampEndUserAppContent`     | Vertical list container for end-user app items                                       |
-| `BiampEndUserAppContentItem` | Row-style app item with image, name, description, and external link; supports `href` |
-| `BiampBanner`                | Full-width animated notification banner                                              |
-| `BiampBannerIcon`            | Leading icon slot for `BiampBanner`                                                  |
-| `BiampBannerContent`         | Center message slot for `BiampBanner`                                                |
-| `BiampBannerActions`         | Trailing actions slot for `BiampBanner`                                              |
-| `BiampGlobalSearch`          | Searchable autocomplete with icons, subtitles, chips, and keyboard hints             |
-| `SegmentedButtonGroup`       | Horizontal container for grouping segmented toggle buttons                           |
-| `SegmentedButton`            | Individual toggle button for use inside `SegmentedButtonGroup`                       |
-| `BiampTable`                 | Composable data table with sorting, selection, pagination, and more                  |
-| `UserInitialsIcon`           | Avatar-style icon showing a user's initials with a deterministic color               |
-| `DynamicSvgIcon`             | Renders a remotely-fetched SVG with a skeleton loader and required fallback          |
+| Component                    | Description                                                                              |
+| ---------------------------- | ---------------------------------------------------------------------------------------- |
+| `BiampLayout`                | Full-page layout shell with optional header and sidebar slots                            |
+| `BiampWrapper`               | Full-page content wrapper with padding, rounded corners, and scrollable overflow         |
+| `BiampSidebar`               | Expandable vertical sidebar (48px ↔ 240px) with animated toggle and copyright caption    |
+| `BiampSidebarIconList`       | Scrollable vertical list with 4px gaps for sidebar items                                 |
+| `BiampSidebarIcon`           | Selectable 48px-tall icon button for sidebar navigation, with optional `name` label      |
+| `BiampSidebarComponent`      | 48×48px rounded box for arbitrary sidebar content                                        |
+| `BiampHeader`                | Horizontal header container with padding                                                 |
+| `BiampHeaderTitle`           | Title section with icon, optional title, and optional subtitle                           |
+| `BiampHeaderSearch`          | Search input with leading search icon                                                    |
+| `BiampHeaderActions`         | Flex container for grouping action buttons and profile                                   |
+| `BiampHeaderButtonList`      | Horizontal list with 4px gaps for header buttons                                         |
+| `BiampHeaderButton`          | Selectable 40×40px icon button for header actions                                        |
+| `BiampHeaderProfile`         | Profile button with image or custom children (e.g. `UserInitialsIcon`)                   |
+| `BiampAppPopover`            | Styled popover for the app-launcher content                                              |
+| `BiampBuildAppContent`       | 2-column grid container for "Configure & Build" app tiles                                |
+| `BiampBuildAppContentItem`   | App tile with image, name, description, and optional action button                       |
+| `BiampEndUserAppContent`     | Responsive container for end-user app items: stack for one child, 2-column grid for many |
+| `BiampEndUserAppContentItem` | Row-style app item with image, name, description, and external link; supports `href`     |
+| `BiampBanner`                | Full-width animated notification banner                                                  |
+| `BiampBannerIcon`            | Leading icon slot for `BiampBanner`                                                      |
+| `BiampBannerContent`         | Center message slot for `BiampBanner`                                                    |
+| `BiampBannerActions`         | Trailing actions slot for `BiampBanner`                                                  |
+| `BiampGlobalSearch`          | Searchable autocomplete with icons, subtitles, chips, and keyboard hints                 |
+| `SegmentedButtonGroup`       | Horizontal container for grouping segmented toggle buttons                               |
+| `SegmentedButton`            | Individual toggle button for use inside `SegmentedButtonGroup`                           |
+| `BiampTable`                 | Composable data table with sorting, selection, pagination, and more                      |
+| `UserInitialsIcon`           | Avatar-style icon showing a user's initials with a deterministic color                   |
+| `DynamicSvgIcon`             | Renders a remotely-fetched SVG with a skeleton loader and required fallback              |
 
 ## Usage
 
@@ -100,18 +100,20 @@ function App() {
         </BiampHeader>
       }
       sidebar={
-        <BiampSidebar>
+        <BiampSidebar bottomLogoText="Biamp LLC. v.1.0.0">
           <BiampSidebarIconList>
             <BiampSidebarIcon
               selected={selected === 0}
               icon={<HomeOutlinedIcon />}
               selectedIcon={<HomeIcon />}
+              name="Home"
               onClick={() => setSelected(0)}
             />
             <BiampSidebarIcon
               selected={selected === 1}
               icon={<SettingsOutlinedIcon />}
               selectedIcon={<SettingsIcon />}
+              name="Settings"
               onClick={() => setSelected(1)}
             />
           </BiampSidebarIconList>
@@ -196,17 +198,28 @@ Full-page content wrapper with 16px padding, 8px border-radius, scrollable overf
 
 ### BiampSidebar
 
-Fixed 48px-wide vertical sidebar with the Biamp logo at the top.
+Vertical sidebar that animates between a collapsed (48px) and expanded (240px) width. A toggle button is rendered between the children and the bottom logo by default; pass `expandable={false}` to hide it. When expanded, each `BiampSidebarIcon`'s `name` fades in next to its icon and the optional `bottomLogoText` (auto-prefixed with `© [current year]`) appears next to the logo.
+
+#### BiampSidebar Props
+
+| Prop               | Type                          | Default | Description                                                                             |
+| ------------------ | ----------------------------- | ------- | --------------------------------------------------------------------------------------- |
+| `expandable`       | `boolean`                     | `true`  | Whether the toggle button is rendered                                                   |
+| `expanded`         | `boolean`                     | —       | Controlled expansion state                                                              |
+| `defaultExpanded`  | `boolean`                     | `false` | Initial uncontrolled expansion state                                                    |
+| `onExpandedChange` | `(expanded: boolean) => void` | —       | Callback fired when the toggle is clicked                                               |
+| `bottomLogoIcon`   | `JSX.Element`                 | logo    | Custom element rendered at the bottom; defaults to the Biamp logo                       |
+| `bottomLogoText`   | `string`                      | —       | Copyright suffix shown next to the bottom logo when expanded; auto-prepends `© [year] ` |
 
 #### BiampSidebarIcon Props
 
-| Prop           | Type              | Description                           |
-| -------------- | ----------------- | ------------------------------------- |
-| `icon`         | `React.ReactNode` | Icon shown when not selected          |
-| `selectedIcon` | `React.ReactNode` | Icon shown when selected              |
-| `selected`     | `boolean`         | Whether this item is currently active |
-| `label`        | `string`          | Accessible label                      |
-| `onClick`      | `() => void`      | Click handler                         |
+| Prop           | Type              | Description                                                                          |
+| -------------- | ----------------- | ------------------------------------------------------------------------------------ |
+| `icon`         | `React.ReactNode` | Icon shown when not selected                                                         |
+| `selectedIcon` | `React.ReactNode` | Icon shown when selected                                                             |
+| `selected`     | `boolean`         | Whether this item is currently active                                                |
+| `name`         | `string`          | Optional label rendered to the right of the icon when the parent sidebar is expanded |
+| `onClick`      | `() => void`      | Click handler                                                                        |
 
 ### BiampHeader
 

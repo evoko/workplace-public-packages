@@ -79,18 +79,20 @@ function App() {
         </BiampHeader>
       }
       sidebar={
-        <BiampSidebar>
+        <BiampSidebar bottomLogoText="Biamp LLC. v.1.0.0">
           <BiampSidebarIconList>
             <BiampSidebarIcon
               selected={selected === 0}
               icon={<HomeOutlinedIcon />}
               selectedIcon={<HomeIcon />}
+              name="Home"
               onClick={() => setSelected(0)}
             />
             <BiampSidebarIcon
               selected={selected === 1}
               icon={<SettingsOutlinedIcon />}
               selectedIcon={<SettingsIcon />}
+              name="Settings"
               onClick={() => setSelected(1)}
             />
           </BiampSidebarIconList>

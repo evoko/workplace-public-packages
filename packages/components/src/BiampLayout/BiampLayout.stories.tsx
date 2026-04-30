@@ -44,10 +44,22 @@ function WithHeaderSidebarAndWrapperDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const sidebarItems = [
-    { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
-    { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
-    { icon: <PeopleOutlinedIcon />, selectedIcon: <PeopleIcon /> },
-    { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    { name: 'Home', icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
+    {
+      name: 'Dashboard',
+      icon: <DashboardOutlinedIcon />,
+      selectedIcon: <DashboardIcon />,
+    },
+    {
+      name: 'People',
+      icon: <PeopleOutlinedIcon />,
+      selectedIcon: <PeopleIcon />,
+    },
+    {
+      name: 'Settings',
+      icon: <SettingsOutlinedIcon />,
+      selectedIcon: <SettingsIcon />,
+    },
   ];
 
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -111,6 +123,7 @@ function WithHeaderSidebarAndWrapperDemo() {
                   selected={selectedIndex === i}
                   icon={item.icon}
                   selectedIcon={item.selectedIcon}
+                  name={item.name}
                   onClick={() => setSelectedIndex(i)}
                 />
               ))}
