@@ -67,7 +67,7 @@ export function BiampSidebar({
         }}
         {...props}
       >
-        <Stack height="100%">{children}</Stack>
+        <Stack sx={{ flex: 1, minHeight: 0 }}>{children}</Stack>
         {expandable && (
           <BiampSidebarIcon
             icon={
@@ -86,7 +86,7 @@ export function BiampSidebar({
           />
         )}
         {bottomLogoIcon ?? (
-          <BiampLogoIcon sx={{ width: '48px', height: '15px' }} />
+          <BiampLogoIcon sx={{ width: '48px', height: '15px', mt: 2 }} />
         )}
       </Stack>
     </BiampSidebarContext.Provider>
@@ -103,7 +103,16 @@ export function BiampSidebarIconList({
   ...props
 }: BiampSidebarIconList) {
   return (
-    <Stack height="100%" sx={{ gap: '4px', ...sx }} {...props}>
+    <Stack
+      sx={{
+        flex: 1,
+        minHeight: 0,
+        gap: '4px',
+        overflowY: 'auto',
+        ...sx,
+      }}
+      {...props}
+    >
       {children}
     </Stack>
   );

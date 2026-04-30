@@ -13,7 +13,7 @@ import {
   TextFieldProps,
   Typography,
 } from '@mui/material';
-import { JSX, ReactNode } from 'react';
+import { Children, JSX, ReactNode } from 'react';
 import { BiampRedLogo, ExternalLinkIcon, SearchIcon } from '@bwp-web/assets';
 
 type BiampHeaderProps = StackProps & {
@@ -324,11 +324,16 @@ export function BiampEndUserAppContent({
   sx,
   ...props
 }: BiampEndUserAppContentProps) {
+  const isGrid = Children.count(children) > 1;
   return (
     <Stack
       direction="column"
       sx={{
         gap: 1.5,
+        ...(isGrid && {
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+        }),
         ...sx,
       }}
       {...props}

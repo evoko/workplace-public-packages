@@ -478,6 +478,93 @@ export const WithIconList: Story = {
   render: () => <WithIconListDemo />,
 };
 
+function ScrollableIconListDemo() {
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+  const overflowItems = Array.from({ length: 20 }, (_, i) => {
+    const baseIcons = [
+      { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
+      { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
+      { icon: <PeopleOutlinedIcon />, selectedIcon: <PeopleIcon /> },
+      { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
+    ];
+    const base = baseIcons[i % baseIcons.length];
+    return {
+      name: `Item ${i + 1}`,
+      icon: base.icon,
+      selectedIcon: base.selectedIcon,
+    };
+  });
+
+  return (
+    <Stack direction="row" spacing={4}>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          Scrollable list (collapsed)
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, maxWidth: 320 }}>
+          When the icon list is taller than the available space, only{' '}
+          <code>BiampSidebarIconList</code> scrolls vertically. The
+          expand/collapse toggle and the bottom logo stay pinned in place.
+        </Typography>
+        <Box sx={{ height: 360 }}>
+          <BiampSidebar>
+            <BiampSidebarIconList>
+              {overflowItems.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  name={item.name}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampSidebarIconList>
+          </BiampSidebar>
+        </Box>
+      </Box>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          Scrollable list (expanded)
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, maxWidth: 320 }}>
+          The same scroll behavior applies when expanded — names render next to
+          each icon and the list still scrolls independently of the toggle
+          button below.
+        </Typography>
+        <Box sx={{ height: 360 }}>
+          <BiampSidebar defaultExpanded>
+            <BiampSidebarIconList>
+              {overflowItems.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  name={item.name}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampSidebarIconList>
+          </BiampSidebar>
+        </Box>
+      </Box>
+    </Stack>
+  );
+}
+
+/**
+ * `BiampSidebarIconList` flex-grows to fill the remaining vertical space in
+ * `BiampSidebar` and scrolls (`overflowY: auto`) when its content exceeds
+ * that space. Sibling content in the sidebar — such as the expand/collapse
+ * toggle and the bottom logo — stays anchored and does not scroll.
+ */
+export const ScrollableIconList: Story = {
+  name: 'Scrollable Icon List',
+  render: () => <ScrollableIconListDemo />,
+};
+
 function WithSidebarComponentDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
