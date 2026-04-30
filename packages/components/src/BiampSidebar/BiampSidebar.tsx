@@ -4,28 +4,92 @@ import {
   ListItemButtonProps,
   Stack,
   StackProps,
+  Typography,
 } from '@mui/material';
-import { BiampLogoIcon } from '@bwp-web/assets';
-import { JSX } from 'react';
+import { BiampLogoIcon, SquareRoundedArrowRightIcon } from '@bwp-web/assets';
+import { JSX, createContext, useContext, useState } from 'react';
+
+type BiampSidebarContextValue = {
+  expanded: boolean;
+};
+
+const BiampSidebarContext = createContext<BiampSidebarContextValue>({
+  expanded: false,
+});
 
 type BiampSidebarProps = StackProps & {
   children: React.ReactNode;
   bottomLogoIcon?: JSX.Element;
+  expandable?: boolean;
+  expanded?: boolean;
+  defaultExpanded?: boolean;
+  onExpandedChange?: (expanded: boolean) => void;
 };
 
 export function BiampSidebar({
   children,
   bottomLogoIcon,
+  expandable = true,
+  expanded: expandedProp,
+  defaultExpanded = false,
+  onExpandedChange,
   sx,
   ...props
 }: BiampSidebarProps) {
+  const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
+  const isControlled = expandedProp !== undefined;
+  const expanded = isControlled ? expandedProp : internalExpanded;
+
+  const toggleExpanded = () => {
+    const next = !expanded;
+    if (!isControlled) setInternalExpanded(next);
+    onExpandedChange?.(next);
+  };
+
+  const width = expanded ? '240px' : '48px';
+
   return (
-    <Stack width="48px" height="100%" sx={{ ...sx }} {...props}>
-      <Stack height="100%">{children}</Stack>
-      {bottomLogoIcon ?? (
-        <BiampLogoIcon sx={{ width: '48px', height: '15px' }} />
-      )}
-    </Stack>
+    <BiampSidebarContext.Provider value={{ expanded }}>
+      <Stack
+        sx={{
+          width,
+          minWidth: width,
+          height: '100%',
+          overflowX: 'hidden',
+          transition: ({ transitions }) =>
+            transitions.create(['width', 'min-width'], {
+              easing: transitions.easing.sharp,
+              duration: expanded
+                ? transitions.duration.enteringScreen
+                : transitions.duration.leavingScreen,
+            }),
+          ...sx,
+        }}
+        {...props}
+      >
+        <Stack height="100%">{children}</Stack>
+        {expandable && (
+          <BiampSidebarIcon
+            icon={
+              <SquareRoundedArrowRightIcon
+                sx={{
+                  transform: expanded ? 'rotate(180deg)' : 'none',
+                  transition: ({ transitions }) =>
+                    transitions.create('transform', {
+                      duration: transitions.duration.shorter,
+                    }),
+                }}
+              />
+            }
+            name="Collapse menu"
+            onClick={toggleExpanded}
+          />
+        )}
+        {bottomLogoIcon ?? (
+          <BiampLogoIcon sx={{ width: '48px', height: '15px' }} />
+        )}
+      </Stack>
+    </BiampSidebarContext.Provider>
   );
 }
 
@@ -49,15 +113,18 @@ type BiampSidebarIconProps = ListItemButtonProps & {
   selected?: boolean;
   icon: JSX.Element;
   selectedIcon?: JSX.Element;
+  name?: string;
 };
 
 export function BiampSidebarIcon({
   selected,
   icon,
   selectedIcon,
+  name,
   sx,
   ...props
 }: BiampSidebarIconProps) {
+  const { expanded } = useContext(BiampSidebarContext);
   const displayedSelectedIcon = selectedIcon ?? icon;
   return (
     <ListItemButton
@@ -66,17 +133,50 @@ export function BiampSidebarIcon({
       disableRipple
       sx={{
         minWidth: '48px',
-        maxWidth: '48px',
         minHeight: '48px',
         maxHeight: '48px',
         borderRadius: '8px',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
+        padding: 0,
+        overflow: 'hidden',
+        color: 'text.secondary',
         ...sx,
       }}
       {...props}
     >
-      {selected ? displayedSelectedIcon : icon}
+      <Box
+        sx={{
+          width: '48px',
+          height: '48px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+        }}
+      >
+        {selected ? displayedSelectedIcon : icon}
+      </Box>
+      {name && (
+        <Typography
+          variant="body1"
+          fontWeight={600}
+          color="inherit"
+          noWrap
+          sx={{
+            pr: 2,
+            opacity: expanded ? 1 : 0,
+            transition: ({ transitions }) =>
+              transitions.create('opacity', {
+                duration: expanded
+                  ? transitions.duration.enteringScreen
+                  : transitions.duration.leavingScreen,
+              }),
+          }}
+        >
+          {name}
+        </Typography>
+      )}
     </ListItemButton>
   );
 }

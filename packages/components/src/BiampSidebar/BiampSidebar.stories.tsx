@@ -32,24 +32,37 @@ const meta: Meta<typeof BiampSidebar> = {
 export default meta;
 type Story = StoryObj<typeof BiampSidebar>;
 
+const navItems = [
+  { name: 'Home', icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
+  {
+    name: 'Dashboard',
+    icon: <DashboardOutlinedIcon />,
+    selectedIcon: <DashboardIcon />,
+  },
+  {
+    name: 'People',
+    icon: <PeopleOutlinedIcon />,
+    selectedIcon: <PeopleIcon />,
+  },
+  {
+    name: 'Settings',
+    icon: <SettingsOutlinedIcon />,
+    selectedIcon: <SettingsIcon />,
+  },
+];
+
 function DefaultDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  const items = [
-    { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
-    { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
-    { icon: <PeopleOutlinedIcon />, selectedIcon: <PeopleIcon /> },
-    { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
-  ];
-
   return (
     <BiampSidebar sx={{ height: 600 }}>
-      {items.map((item, i) => (
+      {navItems.map((item, i) => (
         <BiampSidebarIcon
           key={i}
           selected={selectedIndex === i}
           icon={item.icon}
           selectedIcon={item.selectedIcon}
+          name={item.name}
           onClick={() => setSelectedIndex(i)}
         />
       ))}
@@ -59,20 +72,162 @@ function DefaultDemo() {
 
 /**
  * The default sidebar with selectable navigation icons.
- * Click any icon to select it. The Biamp logo is automatically rendered at the bottom.
+ * Click any icon to select it. Click the arrow button at the bottom to
+ * expand the sidebar to 240px and reveal each item's `name` next to its icon.
+ * The Biamp logo is automatically rendered at the bottom.
  */
 export const Default: Story = {
   render: () => <DefaultDemo />,
 };
 
+function ExpandableDemo() {
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+  return (
+    <Stack direction="row" spacing={4}>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          Expandable (default)
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, maxWidth: 320 }}>
+          The sidebar is expandable by default. Click the arrow button to toggle
+          between the collapsed (48px) and expanded (240px) widths. Each{' '}
+          <code>BiampSidebarIcon</code>&apos;s <code>name</code> appears to the
+          right of its icon when expanded.
+        </Typography>
+        <Box sx={{ height: 500 }}>
+          <BiampSidebar>
+            <BiampSidebarIconList>
+              {navItems.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  name={item.name}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampSidebarIconList>
+          </BiampSidebar>
+        </Box>
+      </Box>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          Default expanded
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, maxWidth: 320 }}>
+          Pass <code>defaultExpanded</code> to start in the expanded state. The
+          arrow rotates to indicate the &quot;Collapse menu&quot; action.
+        </Typography>
+        <Box sx={{ height: 500 }}>
+          <BiampSidebar defaultExpanded>
+            <BiampSidebarIconList>
+              {navItems.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  name={item.name}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampSidebarIconList>
+          </BiampSidebar>
+        </Box>
+      </Box>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          Not expandable
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, maxWidth: 320 }}>
+          Pass <code>expandable=&#123;false&#125;</code> to hide the toggle
+          button. The sidebar stays at 48px and item names never appear.
+        </Typography>
+        <Box sx={{ height: 500 }}>
+          <BiampSidebar expandable={false}>
+            <BiampSidebarIconList>
+              {navItems.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  name={item.name}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampSidebarIconList>
+          </BiampSidebar>
+        </Box>
+      </Box>
+    </Stack>
+  );
+}
+
+/**
+ * The sidebar can expand from 48px to 240px (min-width 240px so long names
+ * push it wider). The toggle button is rendered between the children and the
+ * bottom logo, styled as a `BiampSidebarIcon` with the label
+ * &quot;Collapse menu&quot;. Set `expandable={false}` to disable it, or use
+ * `defaultExpanded` / the controlled `expanded` + `onExpandedChange` props
+ * to drive the state from outside.
+ */
+export const Expandable: Story = {
+  render: () => <ExpandableDemo />,
+};
+
+function ControlledExpansionDemo() {
+  const [expanded, setExpanded] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+  return (
+    <Stack direction="row" spacing={4}>
+      <Box>
+        <Typography variant="h3" sx={{ mb: 2 }}>
+          Controlled expansion
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, maxWidth: 320 }}>
+          Pass <code>expanded</code> and <code>onExpandedChange</code> to
+          control the expansion state from a parent component. State:{' '}
+          <strong>{expanded ? 'expanded' : 'collapsed'}</strong>.
+        </Typography>
+        <Box sx={{ height: 500 }}>
+          <BiampSidebar expanded={expanded} onExpandedChange={setExpanded}>
+            <BiampSidebarIconList>
+              {navItems.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  name={item.name}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampSidebarIconList>
+          </BiampSidebar>
+        </Box>
+      </Box>
+    </Stack>
+  );
+}
+
+/**
+ * Use `expanded` + `onExpandedChange` to drive expansion from a parent.
+ * Useful when expansion needs to coordinate with other UI (e.g. resizing
+ * a content area).
+ */
+export const ControlledExpansion: Story = {
+  name: 'Controlled Expansion',
+  render: () => <ControlledExpansionDemo />,
+};
+
 function CustomLogoDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  const items = [
-    { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
-    { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
-    { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
-  ];
+  const items = navItems.slice(0, 3);
 
   return (
     <Stack direction="row" spacing={4}>
@@ -92,6 +247,7 @@ function CustomLogoDemo() {
                 selected={selectedIndex === i}
                 icon={item.icon}
                 selectedIcon={item.selectedIcon}
+                name={item.name}
                 onClick={() => setSelectedIndex(i)}
               />
             ))}
@@ -120,6 +276,7 @@ function CustomLogoDemo() {
                 selected={selectedIndex === i}
                 icon={item.icon}
                 selectedIcon={item.selectedIcon}
+                name={item.name}
                 onClick={() => setSelectedIndex(i)}
               />
             ))}
@@ -157,12 +314,14 @@ function WithSelectedIconsDemo() {
               selected={selectedIndex === 0}
               icon={<HomeOutlinedIcon />}
               selectedIcon={<HomeIcon />}
+              name="Home"
               onClick={() => setSelectedIndex(0)}
             />
             <BiampSidebarIcon
               selected={selectedIndex === 1}
               icon={<SettingsOutlinedIcon />}
               selectedIcon={<SettingsIcon />}
+              name="Settings"
               onClick={() => setSelectedIndex(1)}
             />
           </BiampSidebar>
@@ -181,11 +340,13 @@ function WithSelectedIconsDemo() {
             <BiampSidebarIcon
               selected={selectedIndex === 0}
               icon={<HomeIcon />}
+              name="Home"
               onClick={() => setSelectedIndex(0)}
             />
             <BiampSidebarIcon
               selected={selectedIndex === 1}
               icon={<SettingsIcon />}
+              name="Settings"
               onClick={() => setSelectedIndex(1)}
             />
           </BiampSidebar>
@@ -208,7 +369,8 @@ export const WithSelectedIcons: Story = {
 /**
  * Individual `BiampSidebarIcon` states shown side by side.
  * Each icon is a `ListItemButton` under the hood, so it supports
- * `selected`, `disabled`, and `onClick` props.
+ * `selected`, `disabled`, and `onClick` props. The optional `name`
+ * prop is only rendered when the surrounding `BiampSidebar` is expanded.
  */
 export const IconStates: Story = {
   name: 'Icon States',
@@ -253,13 +415,6 @@ export const IconStates: Story = {
 function WithIconListDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  const items = [
-    { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
-    { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
-    { icon: <PeopleOutlinedIcon />, selectedIcon: <PeopleIcon /> },
-    { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
-  ];
-
   return (
     <Stack direction="row" spacing={4}>
       <Box>
@@ -273,12 +428,13 @@ function WithIconListDemo() {
         <Box sx={{ height: 400 }}>
           <BiampSidebar>
             <BiampSidebarIconList>
-              {items.map((item, i) => (
+              {navItems.map((item, i) => (
                 <BiampSidebarIcon
                   key={i}
                   selected={selectedIndex === i}
                   icon={item.icon}
                   selectedIcon={item.selectedIcon}
+                  name={item.name}
                   onClick={() => setSelectedIndex(i)}
                 />
               ))}
@@ -295,12 +451,13 @@ function WithIconListDemo() {
         </Typography>
         <Box sx={{ height: 400 }}>
           <BiampSidebar>
-            {items.map((item, i) => (
+            {navItems.map((item, i) => (
               <BiampSidebarIcon
                 key={i}
                 selected={selectedIndex === i}
                 icon={item.icon}
                 selectedIcon={item.selectedIcon}
+                name={item.name}
                 onClick={() => setSelectedIndex(i)}
               />
             ))}
@@ -324,11 +481,7 @@ export const WithIconList: Story = {
 function WithSidebarComponentDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  const items = [
-    { icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
-    { icon: <DashboardOutlinedIcon />, selectedIcon: <DashboardIcon /> },
-    { icon: <SettingsOutlinedIcon />, selectedIcon: <SettingsIcon /> },
-  ];
+  const items = navItems.slice(0, 3);
 
   return (
     <Stack spacing={3}>
@@ -367,6 +520,7 @@ function WithSidebarComponentDemo() {
                 selected={selectedIndex === i}
                 icon={item.icon}
                 selectedIcon={item.selectedIcon}
+                name={item.name}
                 onClick={() => setSelectedIndex(i)}
               />
             ))}
