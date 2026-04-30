@@ -57,7 +57,6 @@ export function BiampSidebar({
           width,
           minWidth: width,
           height: '100%',
-          overflowX: 'hidden',
           transition: ({ transitions }) =>
             transitions.create(['width', 'min-width'], {
               easing: transitions.easing.sharp,
