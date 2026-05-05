@@ -1694,6 +1694,14 @@ export const biampTheme = (
                   },
                 },
               },
+              popper: {
+                modifiers: [
+                  {
+                    name: 'offset',
+                    options: { offset: [0, 8] },
+                  },
+                ],
+              },
             },
           },
         },
@@ -1745,6 +1753,10 @@ export const biampTheme = (
               popper: {
                 modifiers: [
                   {
+                    name: 'offset',
+                    options: { offset: [0, 8] },
+                  },
+                  {
                     name: 'matchAnchorWidth',
                     enabled: true,
                     phase: 'beforeWrite' as const,
@@ -1793,6 +1805,14 @@ export const biampTheme = (
                     paddingRight: '8px',
                   },
                 },
+              },
+              popper: {
+                modifiers: [
+                  {
+                    name: 'offset',
+                    options: { offset: [0, 8] },
+                  },
+                ],
               },
             },
           },
@@ -1941,7 +1961,6 @@ export const biampTheme = (
         MuiPickerPopper: {
           styleOverrides: {
             root: () => ({
-              inset: '8px auto auto 0px !important',
               borderColor: colors.grey[900],
             }),
             paper: ({ theme }: { theme: Theme }) => ({
