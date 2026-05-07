@@ -101,7 +101,7 @@ export function BiampSidebar({
             <Typography
               variant="caption"
               fontWeight={500}
-              color="sidebar.main"
+              color="text.secondary"
               noWrap
               sx={{
                 opacity: expanded ? 1 : 0,
@@ -126,6 +126,9 @@ type BiampSidebarIconList = StackProps & {
   children: React.ReactNode;
 };
 
+/**
+ * Vertical, scrollable list container for sidebar items with 4px gaps.
+ */
 export function BiampSidebarIconList({
   children,
   sx,
@@ -138,6 +141,7 @@ export function BiampSidebarIconList({
         minHeight: 0,
         gap: '4px',
         overflowY: 'auto',
+        overscrollBehavior: 'none',
         ...sx,
       }}
       {...props}

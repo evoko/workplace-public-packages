@@ -111,7 +111,7 @@ function AppShell() {
 
 ### `BiampSidebarIconList`
 
-A vertical list container for `BiampSidebarIcon` (and `BiampSidebarComponent`) children with standardised 4px gaps. The list flex-grows to fill the remaining vertical space inside `BiampSidebar` and scrolls (`overflowY: 'auto'`) when its content exceeds the available height. Sibling content in the sidebar — such as the expand/collapse toggle and the bottom logo — stays anchored and does not scroll. Extends MUI `StackProps`.
+A vertical list container for `BiampSidebarIcon` (and `BiampSidebarComponent`) children with standardised 4px gaps. The list flex-grows to fill the remaining vertical space inside `BiampSidebar` and scrolls (`overflowY: 'auto'`) when its content exceeds the available height. Sibling content in the sidebar — such as the expand/collapse toggle and the bottom logo — stays anchored and does not scroll. The list uses `overscrollBehavior: 'none'` so scrolling past the edges does not rubber-band on macOS/iOS, and scroll chaining to the page is suppressed. Extends MUI `StackProps`.
 
 #### Props
 

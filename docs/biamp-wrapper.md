@@ -22,10 +22,13 @@ npm install @bwp-web/components
 
 A flexible container component designed to wrap page content with a clean, consistent appearance. It automatically stretches to fill available space (using `flex: 1`, `width: '100%'`, and `height: '100%'`) and provides 16px padding, 8px border radius, and scrollable overflow when content exceeds the container size. The background is white in light mode and `grey.800` in dark mode. Extends MUI `StackProps`.
 
+The wrapper also supports rendering a debounced `LinearProgress` indicator at the top of the wrapper while a page is loading.
+
 #### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
+| `loading` | `boolean` | `false` | When `true`, shows a `LinearProgress` bar pinned to the top of the wrapper. The indicator is debounced via `useLoadingDelay` — it appears after 150ms and stays visible for at least 500ms once shown, so fast loads don't cause a flicker |
 | `children` | `React.ReactNode` | — | Content to render inside the wrapper |
 | `sx` | `SxProps` | — | MUI system styles passed to the root `Stack` |
 | _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
@@ -130,6 +133,26 @@ function MultipleWrappers() {
 }
 ```
 
+#### Loading State
+
+Pass `loading` to show a debounced progress bar at the top of the wrapper while data is being fetched:
+
+```tsx
+import { BiampWrapper } from '@bwp-web/components';
+import { Typography } from '@mui/material';
+
+function Devices() {
+  const { data, isLoading } = useDevicesQuery();
+
+  return (
+    <BiampWrapper loading={isLoading}>
+      <Typography variant="h4">Devices</Typography>
+      {/* render data */}
+    </BiampWrapper>
+  );
+}
+```
+
 #### Styling and Customization
 
 Override default styles using the `sx` prop:
@@ -165,8 +188,9 @@ function CustomWrapper() {
 - **Padding**: 16px on all sides
 - **Border Radius**: 8px rounded corners
 - **Background**: White in light mode, `grey.800` in dark mode
-- **Overflow**: Scrollable (`auto`) when content exceeds container size
+- **Overflow**: Scrollable (`auto`) when content exceeds container size, with `overscrollBehavior: 'none'` to suppress the bounce on macOS/iOS
 - **Layout**: Uses `Stack` (column direction) with `alignItems: flex-start` for content alignment
+- **Loading indicator**: Debounced via `useLoadingDelay` (150ms appear delay, 500ms minimum visible duration) and pinned to the top of the wrapper at `zIndex.appBar + 1`
 
 ## Exports
 

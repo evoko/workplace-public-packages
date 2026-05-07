@@ -30,7 +30,7 @@ import { type ReactNode, useEffect, useRef } from 'react';
 import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import { BiampTableRow } from './BiampTableRow';
-import { useLoadingDelay } from './useLoadingDelay';
+import { useLoadingDelay } from '../hooks';
 import { mergeSx, resolveSlot, type SlotPropsOrFn } from './slotProps';
 import { cellSx } from './cellSx';
 

@@ -1,5 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
+import { useState } from 'react';
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Stack,
+  Typography,
+} from '@mui/material';
 import { BiampWrapper } from '@bwp-web/components';
 
 const meta: Meta<typeof BiampWrapper> = {
@@ -108,6 +116,72 @@ export const Mobile: Story = {
       </BiampWrapper>
     </Stack>
   ),
+};
+
+/**
+ * The wrapper with `loading={true}`, showing the `LinearProgress` bar
+ * pinned to the top. The indicator is debounced via `useLoadingDelay` —
+ * it appears 150ms after `loading` flips true and stays visible for at
+ * least 500ms, so fast loads won't flicker.
+ */
+export const Loading: Story = {
+  args: { loading: true },
+  render: (args) => (
+    <Stack height="100vh">
+      <BiampWrapper {...args}>
+        <Box>
+          <Typography variant="h4" gutterBottom>
+            Page Content
+          </Typography>
+          <Typography variant="body1">
+            Toggle the `loading` control in the Storybook panel to see the
+            progress bar appear and disappear.
+          </Typography>
+        </Box>
+      </BiampWrapper>
+    </Stack>
+  ),
+};
+
+/**
+ * Demonstrates the debounce behavior of `useLoadingDelay`. Click the
+ * button to simulate a 1.5s load — the bar appears after ~150ms and
+ * remains visible for at least 500ms once shown.
+ */
+export const LoadingInteractive: Story = {
+  render: () => {
+    function Demo() {
+      const [loading, setLoading] = useState(false);
+
+      function startLoad() {
+        setLoading(true);
+        setTimeout(() => setLoading(false), 1500);
+      }
+
+      return (
+        <Stack height="100vh">
+          <BiampWrapper loading={loading}>
+            <Stack spacing={2}>
+              <Typography variant="h4">Simulated Load</Typography>
+              <Button
+                variant="contained"
+                onClick={startLoad}
+                disabled={loading}
+                sx={{ alignSelf: 'flex-start' }}
+              >
+                {loading ? 'Loading…' : 'Start 1.5s load'}
+              </Button>
+              <Typography variant="body2">
+                The progress bar at the top is debounced: it waits 150ms before
+                appearing, then stays at least 500ms.
+              </Typography>
+            </Stack>
+          </BiampWrapper>
+        </Stack>
+      );
+    }
+    return <Demo />;
+  },
 };
 
 /**
