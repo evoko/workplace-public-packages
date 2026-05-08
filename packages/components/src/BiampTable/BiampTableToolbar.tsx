@@ -14,9 +14,8 @@ export function BiampTableToolbar({
       justifyContent="space-between"
       alignItems="center"
       gap={{ xs: 0, md: 1 }}
+      width="100%"
       minHeight={44}
-      pl={{ xs: 2, sm: 3, xl: 12.5 }}
-      pr={{ xs: 0, md: 3, xl: 12.5 }}
       sx={{ ...sx }}
       {...props}
     >

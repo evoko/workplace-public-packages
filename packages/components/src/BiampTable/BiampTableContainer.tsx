@@ -17,9 +17,9 @@ export function BiampTableContainer({
   return (
     <Stack
       direction="column"
+      width="100%"
       height="100%"
       overflow="hidden"
-      px={{ xs: 2, sm: 3, xl: 12.5 }}
       py={{ xs: 0, md: 1.5 }}
       gap={{ xs: 0, md: 1 }}
       borderTop={

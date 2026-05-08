@@ -555,6 +555,8 @@ export const biampTheme = (
               boxShadow: `0px 1px 1px 0px ${alpha(colors.black, 0.05)}`,
               display: 'flex',
               gap: '8px',
+              flexShrink: 0,
+              whiteSpace: 'nowrap',
               '& .MuiButton-startIcon': {
                 marginRight: '0px',
                 marginLeft: '0px',
@@ -649,6 +651,8 @@ export const biampTheme = (
                 height: '48px !important',
                 borderRadius: '0px !important',
                 width: '100%',
+                flexShrink: 1,
+                whiteSpace: 'normal',
               },
             },
             {
