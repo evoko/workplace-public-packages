@@ -27,7 +27,6 @@ export function BiampWrapper({
     <Stack
       direction="column"
       padding="16px"
-      alignItems="flex-start"
       sx={{
         position: 'relative',
         flex: 1,

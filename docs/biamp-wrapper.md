@@ -189,7 +189,7 @@ function CustomWrapper() {
 - **Border Radius**: 8px rounded corners
 - **Background**: White in light mode, `grey.800` in dark mode
 - **Overflow**: Scrollable (`auto`) when content exceeds container size, with `overscrollBehavior: 'none'` to suppress the bounce on macOS/iOS
-- **Layout**: Uses `Stack` (column direction) with `alignItems: flex-start` for content alignment
+- **Layout**: Uses `Stack` (column direction); children stretch to the wrapper's width by default. Pass `alignItems` if you need a different alignment.
 - **Loading indicator**: Debounced via `useLoadingDelay` (150ms appear delay, 500ms minimum visible duration) and pinned to the top of the wrapper at `zIndex.appBar + 1`
 
 ## Exports
