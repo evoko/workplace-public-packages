@@ -20,7 +20,7 @@ export function BiampTableContainer({
       width="100%"
       height="100%"
       overflow="hidden"
-      py={{ xs: 0, md: 1.5 }}
+      pt={{ xs: 0, md: 1.5 }}
       gap={{ xs: 0, md: 1 }}
       borderTop={
         withBorderTop

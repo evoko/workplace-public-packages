@@ -108,7 +108,7 @@ columnHelper.accessor('action', {
 
 ### `BiampTableContainer`
 
-Layout wrapper that stacks toolbar, table, and pagination into a full-width, full-height column with responsive vertical spacing and optional borders. Outer horizontal padding is the consumer's responsibility (e.g. via `BiampWrapper`). Extends MUI `StackProps`.
+Layout wrapper that stacks toolbar, table, and pagination into a full-width, full-height column with responsive top spacing and optional borders. Outer horizontal padding is the consumer's responsibility (e.g. via `BiampWrapper`). Extends MUI `StackProps`.
 
 #### Props
 
