@@ -967,9 +967,17 @@ export const biampTheme = (
         MuiDrawer: {
           styleOverrides: {
             root: { width: drawerWidth },
-            paper: {
+            paper: ({ theme }) => ({
               width: drawerWidth,
               backgroundImage: 'none',
+              margin: theme.spacing(1.5),
+              borderRadius: '8px',
+              '&.MuiDrawer-paperAnchorLeft, &.MuiDrawer-paperAnchorRight': {
+                height: `calc(100% - ${theme.spacing(3)})`,
+              },
+              '&.MuiDrawer-paperAnchorTop, &.MuiDrawer-paperAnchorBottom': {
+                width: `calc(100% - ${theme.spacing(3)})`,
+              },
               '& .MuiListItemButton-root': {
                 color: colors.sidebar,
               },
@@ -984,7 +992,7 @@ export const biampTheme = (
                 backgroundColor: alpha(colors.white, 0.1),
                 color: colors.white,
               },
-            },
+            }),
           },
         },
         MuiDivider: {
