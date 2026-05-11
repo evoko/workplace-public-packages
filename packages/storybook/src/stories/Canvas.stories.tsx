@@ -10,6 +10,10 @@ import {
   Box,
   Button,
   ButtonGroup,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   Divider,
   FormControlLabel,
   Slider,
@@ -23,6 +27,7 @@ import {
   Canvas,
   useEditCanvas,
   useViewCanvas,
+  useCanvasClick,
   useCanvasTooltip,
   ObjectOverlay,
   OverlayContent,
@@ -1239,6 +1244,125 @@ function ViewCanvasTooltipContent() {
 export const ViewCanvasTooltipDemo: Story = {
   name: 'View Canvas — Tooltip',
   render: () => <ViewCanvasTooltipContent />,
+};
+
+// ============================================================
+// ViewCanvasClickDemo — useViewCanvas + useCanvasClick
+// ============================================================
+
+/**
+ * View-only canvas wired up with `useCanvasClick`.
+ *
+ * Click any shape to open a dialog showing its `data`. Panning the canvas
+ * does not trigger a click (the hook distinguishes clicks from pan
+ * gestures by movement and duration).
+ */
+function ViewCanvasClickContent() {
+  const [clickedData, setClickedData] = useState<unknown | null>(null);
+
+  const canvas = useViewCanvas({
+    scaledStrokes: true,
+    panAndZoom: true,
+    onReady: async (c) => {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored) {
+        try {
+          await loadCanvas(c, JSON.parse(stored));
+          return;
+        } catch {
+          // fall through to demo shapes
+        }
+      }
+
+      const r1 = createRectangle(c, {
+        left: 120,
+        top: 80,
+        width: 140,
+        height: 90,
+      });
+      r1.data = { type: 'PLACE', id: 'rect-1' };
+      const r2 = createRectangle(c, {
+        left: 500,
+        top: 60,
+        width: 100,
+        height: 150,
+      });
+      r2.data = { type: 'PLACE', id: 'rect-2' };
+      const c1 = createCircle(c, { left: 200, top: 230, size: 100 });
+      c1.data = { type: 'PLACE', id: 'circle-1' };
+      const p1 = createPolygon(c, {
+        points: [
+          { x: 0, y: 0 },
+          { x: 80, y: -30 },
+          { x: 120, y: 20 },
+          { x: 100, y: 80 },
+          { x: 20, y: 80 },
+        ],
+        left: 300,
+        top: 180,
+      });
+      p1.data = { type: 'PLACE', id: 'poly-1' };
+    },
+  });
+
+  useCanvasClick(canvas.canvasRef, (target) => {
+    if (target) setClickedData(target.data ?? null);
+  });
+
+  return (
+    <>
+      <DemoLayout
+        onReady={canvas.onReady}
+        canvasOverlay={
+          <ViewportControlToolbar
+            zoom={canvas.zoom}
+            viewportMode="pan"
+            onModeChange={() => {}}
+            onZoomIn={canvas.viewport.zoomIn}
+            onZoomOut={canvas.viewport.zoomOut}
+            onReset={canvas.viewport.reset}
+          />
+        }
+        sidebar={
+          <Typography variant="body2" color="text.secondary">
+            Click any shape to open a dialog with its <code>data</code>.
+            Panning the canvas does not fire a click.
+          </Typography>
+        }
+      />
+      <Dialog
+        open={clickedData !== null}
+        onClose={() => setClickedData(null)}
+        maxWidth="xs"
+        fullWidth
+      >
+        <DialogTitle>Object data</DialogTitle>
+        <DialogContent>
+          <Box
+            component="pre"
+            sx={{
+              m: 0,
+              p: 1.5,
+              bgcolor: 'action.hover',
+              borderRadius: 1,
+              fontSize: 13,
+              overflow: 'auto',
+            }}
+          >
+            {JSON.stringify(clickedData, null, 2)}
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setClickedData(null)}>Close</Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
+}
+
+export const ViewCanvasClickDemo: Story = {
+  name: 'View Canvas — Click',
+  render: () => <ViewCanvasClickContent />,
 };
 
 // ============================================================

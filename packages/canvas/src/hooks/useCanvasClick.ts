@@ -93,7 +93,10 @@ export function useCanvasClick(
     let isPanning = false;
 
     const handleMouseDown = (e: CanvasEvents['mouse:down']) => {
-      const native = e.e instanceof TouchEvent ? e.e.touches[0] : e.e;
+      const native: MouseEvent | Touch | undefined =
+        typeof TouchEvent !== 'undefined' && e.e instanceof TouchEvent
+          ? e.e.touches[0]
+          : (e.e as MouseEvent);
       if (native) {
         mouseDown = { x: native.clientX, y: native.clientY, time: Date.now() };
         isPanning = false;
@@ -102,7 +105,10 @@ export function useCanvasClick(
 
     const handleMouseMove = (e: CanvasEvents['mouse:move']) => {
       if (!mouseDown) return;
-      const native = e.e instanceof TouchEvent ? e.e.touches[0] : e.e;
+      const native: MouseEvent | Touch | undefined =
+        typeof TouchEvent !== 'undefined' && e.e instanceof TouchEvent
+          ? e.e.touches[0]
+          : (e.e as MouseEvent);
       if (!native) return;
 
       const threshold = optionsRef.current?.threshold ?? 5;
