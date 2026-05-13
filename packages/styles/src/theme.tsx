@@ -295,7 +295,7 @@ export const biampTheme = (
             },
             background: {
               default: colors.grey[900],
-              paper: colors.grey[900],
+              paper: colors.grey[800],
               success: colors.success.dark.background,
               warning: colors.warning.dark.background,
               error: colors.error.dark.background,
