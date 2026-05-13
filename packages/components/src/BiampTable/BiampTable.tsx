@@ -14,6 +14,7 @@ import {
   TableRow,
   type TableRowProps as MuiTableRowProps,
   TableSortLabel,
+  type Theme,
 } from '@mui/material';
 import {
   DropdownChevronDownIcon,
@@ -138,7 +139,8 @@ const headerSelectionCellSx = {
   position: 'sticky',
   left: 0,
   zIndex: 3,
-  bgcolor: 'background.paper',
+  bgcolor: ({ palette }: Theme) =>
+    palette.mode === 'dark' ? palette.grey[900] : palette.background.paper,
 } as const;
 
 const checkboxHiddenHeaderSx = { visibility: 'hidden' } as const;

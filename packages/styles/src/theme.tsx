@@ -1063,7 +1063,7 @@ export const biampTheme = (
                 color: theme.palette.text.secondary,
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.grey[800]
+                    ? theme.palette.grey[900]
                     : theme.palette.grey[100],
                 borderBottom: 'none',
                 '&:first-of-type': {

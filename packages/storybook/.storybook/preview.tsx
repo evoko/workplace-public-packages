@@ -48,7 +48,8 @@ const preview: Preview = {
           <Box
             sx={{
               ...(!context.parameters.noPadding && { p: 3 }),
-              minHeight: '100vh',
+              height: '100vh',
+              overflow: 'auto',
               bgcolor: context.parameters.canvasBackground ?? 'grey.100',
               ...(mode === 'dark' && { bgcolor: 'background.paper' }),
             }}
