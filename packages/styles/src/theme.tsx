@@ -1108,21 +1108,12 @@ export const biampTheme = (
           styleOverrides: {
             root: ({ theme }) => ({
               '&.MuiTableRow-hover:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.grey[800]
-                    : theme.palette.grey[100],
+                backgroundColor: theme.palette.background.info,
               },
               '&.Mui-selected': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.grey[800]
-                    : theme.palette.grey[100],
+                backgroundColor: theme.palette.background.info,
                 '&:hover': {
-                  backgroundColor:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.grey[800]
-                      : theme.palette.grey[100],
+                  backgroundColor: theme.palette.background.info,
                 },
               },
               '&:last-child td': {

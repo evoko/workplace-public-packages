@@ -2,8 +2,7 @@ import { type Theme } from '@mui/material';
 
 export const stickyHoverBg = {
   '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
-    bgcolor: ({ palette }: Theme) =>
-      palette.mode === 'dark' ? palette.grey[800] : palette.grey[100],
+    bgcolor: ({ palette }: Theme) => palette.background.info,
   },
 } as const;
 
