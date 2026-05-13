@@ -183,6 +183,9 @@ export function BiampSidebarIcon({
         padding: 0,
         overflow: 'hidden',
         color: 'text.secondary',
+        '&.Mui-selected': {
+          color: 'primary.main',
+        },
         ...sx,
       }}
       {...props}
