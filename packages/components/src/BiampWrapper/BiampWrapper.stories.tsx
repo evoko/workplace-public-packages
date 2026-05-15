@@ -191,7 +191,7 @@ export const LoadingInteractive: Story = {
  */
 export const WithStickyTop: Story = {
   render: () => (
-    <Stack height="100vh">
+    <Stack height="100%">
       <BiampWrapper
         stickyTop={
           <Box
