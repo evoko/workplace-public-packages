@@ -133,7 +133,7 @@ If you have files that use `useTheme()` or `theme.palette` but don't import from
 | Key                  | Light     | Dark      |
 | -------------------- | --------- | --------- |
 | `background.default` | `#F5F5F5` | `#111111` |
-| `background.paper`   | `#FFFFFF` | `#111111` |
+| `background.paper`   | `#FFFFFF` | `#222222` |
 | `background.success` | `#EAFEF0` | `#093615` |
 | `background.warning` | `#FFF4D9` | `#41320E` |
 | `background.error`   | `#FFEDF0` | `#2E1016` |

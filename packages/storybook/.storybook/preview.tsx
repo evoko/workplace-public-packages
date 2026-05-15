@@ -49,8 +49,9 @@ const preview: Preview = {
             sx={{
               ...(!context.parameters.noPadding && { p: 3 }),
               height: '100vh',
+              overflow: 'auto',
               bgcolor: context.parameters.canvasBackground ?? 'grey.100',
-              ...(mode === 'dark' && { bgcolor: 'grey.900' }),
+              ...(mode === 'dark' && { bgcolor: 'background.paper' }),
             }}
           >
             <Story />

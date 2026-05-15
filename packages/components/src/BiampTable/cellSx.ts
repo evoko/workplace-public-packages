@@ -2,8 +2,7 @@ import { type Theme } from '@mui/material';
 
 export const stickyHoverBg = {
   '.MuiTableRow-hover:hover > &, .Mui-selected > &': {
-    bgcolor: ({ palette }: Theme) =>
-      palette.mode === 'dark' ? palette.grey[800] : palette.grey[100],
+    bgcolor: ({ palette }: Theme) => palette.background.info,
   },
 } as const;
 
@@ -13,6 +12,7 @@ export function cellSx(
   zIndex: number,
 ) {
   if (sticky) {
+    const isHeader = zIndex >= 3;
     return {
       position: 'sticky',
       [sticky]: 0,
@@ -20,8 +20,13 @@ export function cellSx(
       width: 0,
       whiteSpace: 'nowrap',
       textAlign: 'center',
-      bgcolor: 'background.paper',
-      ...(zIndex < 3 && stickyHoverBg),
+      bgcolor: isHeader
+        ? ({ palette }: Theme) =>
+            palette.mode === 'dark'
+              ? palette.grey[900]
+              : palette.background.paper
+        : 'background.paper',
+      ...(!isHeader && stickyHoverBg),
     } as const;
   }
   const mw = minWidth ?? 40;

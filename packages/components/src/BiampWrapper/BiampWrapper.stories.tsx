@@ -185,6 +185,53 @@ export const LoadingInteractive: Story = {
 };
 
 /**
+ * The wrapper with a `stickyTop` slot — header content pinned flush to the
+ * wrapper's top edge (ignoring the 16px padding) while a long list of cards
+ * scrolls underneath it.
+ */
+export const WithStickyTop: Story = {
+  render: () => (
+    <Stack height="100%">
+      <BiampWrapper
+        stickyTop={
+          <Box
+            sx={{
+              p: 2,
+              borderBottom: '0.6px solid',
+              borderColor: 'divider',
+              backgroundColor: 'inherit',
+            }}
+          >
+            <Typography variant="h5">Sticky Header</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Pinned to the wrapper&apos;s top edge — ignores the 16px padding
+              and stays visible as the rest of the content scrolls.
+            </Typography>
+          </Box>
+        }
+      >
+        <Typography variant="h4" gutterBottom>
+          Scrollable Content
+        </Typography>
+        <Stack spacing={2}>
+          {Array.from({ length: 30 }).map((_, i) => (
+            <Card key={i}>
+              <CardContent>
+                <Typography variant="h6">Card {i + 1}</Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Scroll the wrapper to see the sticky header stay pinned at the
+                  top while these cards pass underneath.
+                </Typography>
+              </CardContent>
+            </Card>
+          ))}
+        </Stack>
+      </BiampWrapper>
+    </Stack>
+  ),
+};
+
+/**
  * An empty wrapper showing the rounded white container against
  * the `grey.100` (dark: `grey.800`) page background.
  */

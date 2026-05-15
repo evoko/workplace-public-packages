@@ -5,6 +5,12 @@ import { useLoadingDelay } from '../hooks';
 export type BiampWrapperProps = StackProps & {
   loading?: boolean;
   children?: React.ReactNode;
+  /**
+   * Optional content pinned to the top of the wrapper. Extends edge-to-edge,
+   * ignoring the wrapper's 16px padding, and stays visible as the rest of
+   * the content scrolls underneath it.
+   */
+  stickyTop?: React.ReactNode;
 };
 
 /**
@@ -14,10 +20,14 @@ export type BiampWrapperProps = StackProps & {
  *
  * Optional `loading` shows a `LinearProgress` bar pinned to the top,
  * debounced via `useLoadingDelay` so fast loads don't flicker.
+ *
+ * Optional `stickyTop` renders content flush against the wrapper's top edge
+ * (ignoring the 16px padding) and keeps it pinned while the rest scrolls.
  */
 export function BiampWrapper({
   loading = false,
   children,
+  stickyTop,
   sx,
   ...props
 }: BiampWrapperProps) {
@@ -52,6 +62,21 @@ export function BiampWrapper({
           })}
         >
           <LinearProgress />
+        </Box>
+      )}
+      {stickyTop && (
+        <Box
+          sx={{
+            position: 'sticky',
+            top: -16,
+            mt: -2,
+            mx: -2,
+            mb: 2,
+            zIndex: 1,
+            backgroundColor: ({ palette }) => palette.background.paper,
+          }}
+        >
+          {stickyTop}
         </Box>
       )}
       {children}

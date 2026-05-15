@@ -162,7 +162,7 @@ function AppShell() {
 
 A 48px-tall icon button designed for use inside `BiampSidebar`. Supports an optional `selectedIcon` that is shown when the icon is selected (useful for swapping between outlined and filled icon variants), and an optional `name` label that fades in next to the icon when the parent sidebar is expanded.
 
-The icon stays in a fixed 48×48px column on the left so it never shifts horizontally between collapsed and expanded states. The button defaults to `text.secondary` color, which propagates through `currentColor` to the SVG icon and via inheritance to the label — pass `sx={{ color: '...' }}` to override both.
+The icon stays in a fixed 48×48px column on the left so it never shifts horizontally between collapsed and expanded states. The button defaults to `text.secondary` color, which propagates through `currentColor` to the SVG icon and via inheritance to the label. When `selected` is `true`, the color switches to `primary.main` so both the icon and label highlight as active. Pass `sx={{ color: '...' }}` to override either state.
 
 Extends MUI `ListItemButtonProps`.
 

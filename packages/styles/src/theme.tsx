@@ -295,7 +295,7 @@ export const biampTheme = (
             },
             background: {
               default: colors.grey[900],
-              paper: colors.grey[900],
+              paper: colors.grey[800],
               success: colors.success.dark.background,
               warning: colors.warning.dark.background,
               error: colors.error.dark.background,
@@ -1063,7 +1063,7 @@ export const biampTheme = (
                 color: theme.palette.text.secondary,
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.grey[800]
+                    ? theme.palette.grey[900]
                     : theme.palette.grey[100],
                 borderBottom: 'none',
                 '&:first-of-type': {
@@ -1108,21 +1108,12 @@ export const biampTheme = (
           styleOverrides: {
             root: ({ theme }) => ({
               '&.MuiTableRow-hover:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.grey[800]
-                    : theme.palette.grey[100],
+                backgroundColor: theme.palette.background.info,
               },
               '&.Mui-selected': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.grey[800]
-                    : theme.palette.grey[100],
+                backgroundColor: theme.palette.background.info,
                 '&:hover': {
-                  backgroundColor:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.grey[800]
-                      : theme.palette.grey[100],
+                  backgroundColor: theme.palette.background.info,
                 },
               },
               '&:last-child td': {

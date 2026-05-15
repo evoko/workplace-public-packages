@@ -1325,8 +1325,8 @@ function ViewCanvasClickContent() {
         }
         sidebar={
           <Typography variant="body2" color="text.secondary">
-            Click any shape to open a dialog with its <code>data</code>.
-            Panning the canvas does not fire a click.
+            Click any shape to open a dialog with its <code>data</code>. Panning
+            the canvas does not fire a click.
           </Typography>
         }
       />

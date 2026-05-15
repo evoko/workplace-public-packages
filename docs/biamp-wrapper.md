@@ -22,13 +22,14 @@ npm install @bwp-web/components
 
 A flexible container component designed to wrap page content with a clean, consistent appearance. It automatically stretches to fill available space (using `flex: 1`, `width: '100%'`, and `height: '100%'`) and provides 16px padding, 8px border radius, and scrollable overflow when content exceeds the container size. The background is white in light mode and `grey.800` in dark mode. Extends MUI `StackProps`.
 
-The wrapper also supports rendering a debounced `LinearProgress` indicator at the top of the wrapper while a page is loading.
+The wrapper also supports rendering a debounced `LinearProgress` indicator at the top of the wrapper while a page is loading, and an optional `stickyTop` slot for header content that stays pinned to the wrapper's top edge while the rest scrolls.
 
 #### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `loading` | `boolean` | `false` | When `true`, shows a `LinearProgress` bar pinned to the top of the wrapper. The indicator is debounced via `useLoadingDelay` — it appears after 150ms and stays visible for at least 500ms once shown, so fast loads don't cause a flicker |
+| `stickyTop` | `React.ReactNode` | — | Optional content pinned to the top of the wrapper. Extends edge-to-edge (ignores the wrapper's 16px padding) and stays visible while the rest of the content scrolls underneath it |
 | `children` | `React.ReactNode` | — | Content to render inside the wrapper |
 | `sx` | `SxProps` | — | MUI system styles passed to the root `Stack` |
 | _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
@@ -133,6 +134,29 @@ function MultipleWrappers() {
 }
 ```
 
+#### Sticky Header
+
+Pass `stickyTop` to pin header content to the wrapper's top edge while the rest of the content scrolls. The slot extends edge-to-edge — it negates the wrapper's 16px padding so the header sits flush against the rounded corners — and the rest of the content scrolls underneath it.
+
+```tsx
+import { BiampWrapper } from '@bwp-web/components';
+import { Box, Stack, Typography } from '@mui/material';
+
+function Devices() {
+  return (
+    <BiampWrapper
+      stickyTop={
+        <Box sx={{ p: 2, borderBottom: '0.6px solid', borderColor: 'divider' }}>
+          <Typography variant="h5">Devices</Typography>
+        </Box>
+      }
+    >
+      <Stack spacing={2}>{/* scrollable content */}</Stack>
+    </BiampWrapper>
+  );
+}
+```
+
 #### Loading State
 
 Pass `loading` to show a debounced progress bar at the top of the wrapper while data is being fetched:
@@ -191,6 +215,7 @@ function CustomWrapper() {
 - **Overflow**: Scrollable (`auto`) when content exceeds container size, with `overscrollBehavior: 'none'` to suppress the bounce on macOS/iOS
 - **Layout**: Uses `Stack` (column direction); children stretch to the wrapper's width by default. Pass `alignItems` if you need a different alignment.
 - **Loading indicator**: Debounced via `useLoadingDelay` (150ms appear delay, 500ms minimum visible duration) and pinned to the top of the wrapper at `zIndex.appBar + 1`
+- **Sticky top slot**: Negates the wrapper's 16px padding (`mt: -2`, `mx: -2`, `top: -16`) so the header extends edge-to-edge against the rounded corners, with a 16px bottom margin separating it from the scrollable content. Uses `background.paper` so the header stays opaque as content scrolls underneath
 
 ## Exports
 
