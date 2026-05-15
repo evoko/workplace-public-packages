@@ -204,7 +204,7 @@ export const WithStickyTop: Story = {
           >
             <Typography variant="h5">Sticky Header</Typography>
             <Typography variant="body2" color="text.secondary">
-              Pinned to the wrapper's top edge — ignores the 16px padding and
+              Pinned to the wrapper&apos;s top edge — ignores the 16px padding and
               stays visible as the rest of the content scrolls.
             </Typography>
           </Box>
