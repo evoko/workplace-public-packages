@@ -21,7 +21,6 @@ export function BiampTableContainer({
       height="100%"
       overflow="hidden"
       pt={{ xs: 0, md: 1.5 }}
-      gap={{ xs: 0, md: 1 }}
       borderTop={
         withBorderTop
           ? ({ palette }) => `0.6px solid ${palette.divider}`
