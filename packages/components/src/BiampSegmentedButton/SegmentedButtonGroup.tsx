@@ -16,7 +16,7 @@ export function SegmentedButtonGroup({ children, sx, ...props }: Props) {
       gap={1}
       sx={{
         backgroundColor: isDarkMode
-          ? theme.palette.grey[800]
+          ? theme.palette.grey[900]
           : theme.palette.grey[100],
         ...sx,
       }}

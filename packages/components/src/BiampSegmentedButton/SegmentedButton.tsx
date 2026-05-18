@@ -19,7 +19,7 @@ export function SegmentedButton({
   const isDarkMode = theme.palette.mode === 'dark';
   const backgroundColor = active
     ? isDarkMode
-      ? theme.palette.grey[900]
+      ? theme.palette.grey[800]
       : theme.palette.common.white
     : 'transparent';
   const textColor = active
