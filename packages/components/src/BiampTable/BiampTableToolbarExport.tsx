@@ -46,7 +46,7 @@ export type BiampTableToolbarExportTextButtonProps = {
   icon?: React.ReactNode;
   /** Button text. @default "Export" */
   label?: string;
-} & Omit<ButtonProps, 'children' | 'onClick' | 'startIcon' | 'disabled'>;
+} & Omit<ButtonProps, 'children' | 'onClick' | 'startIcon'>;
 
 export function BiampTableToolbarExportTextButton({
   onExport,
