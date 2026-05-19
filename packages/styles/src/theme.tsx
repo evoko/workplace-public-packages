@@ -2111,7 +2111,7 @@ export const biampTheme = (
               borderRadius: 8,
               backgroundColor:
                 theme.palette.mode === 'dark'
-                  ? colors.grey[800]
+                  ? colors.grey[700]
                   : colors.grey[100],
               '&::before': {
                 content: '""',
@@ -2124,7 +2124,7 @@ export const biampTheme = (
                 borderBottomLeftRadius: 8,
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? colors.grey[800]
+                    ? colors.grey[700]
                     : colors.grey[100],
               },
               '&::after': {
@@ -2138,7 +2138,7 @@ export const biampTheme = (
                 borderBottomRightRadius: 8,
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? colors.grey[800]
+                    ? colors.grey[700]
                     : colors.grey[100],
               },
             }),
