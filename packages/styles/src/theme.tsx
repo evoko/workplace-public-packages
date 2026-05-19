@@ -581,16 +581,16 @@ export const biampTheme = (
             },
             {
               props: { variant: 'contained', color: 'primary' },
-              style: {
-                backgroundColor: colors.blue.main,
-                color: colors.white,
+              style: ({ theme }) => ({
+                backgroundColor: theme.palette.text.primary,
+                color: theme.palette.background.default,
                 '&:hover': {
-                  backgroundColor: colors.blue.drawer,
+                  backgroundColor: alpha(theme.palette.text.primary, 0.85),
                 },
                 '&:active': {
-                  backgroundColor: colors.blue.main,
+                  backgroundColor: theme.palette.text.primary,
                 },
-              },
+              }),
             },
             {
               props: { variant: 'contained', color: 'error' },
@@ -654,13 +654,13 @@ export const biampTheme = (
             {
               props: { variant: 'overlay', color: 'primary' },
               style: ({ theme }) => ({
-                backgroundColor: colors.blue.main,
-                color: colors.white,
+                backgroundColor: theme.palette.text.primary,
+                color: theme.palette.background.default,
                 '&:hover': {
-                  backgroundColor: colors.blue.drawer,
+                  backgroundColor: alpha(theme.palette.text.primary, 0.85),
                 },
                 '&:active': {
-                  backgroundColor: colors.blue.main,
+                  backgroundColor: theme.palette.text.primary,
                 },
                 '&.Mui-disabled': {
                   backgroundColor:
