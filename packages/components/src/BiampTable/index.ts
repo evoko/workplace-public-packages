@@ -54,6 +54,8 @@ export {
 export {
   BiampTableToolbarExport,
   type BiampTableToolbarExportProps,
+  BiampTableToolbarExportTextButton,
+  type BiampTableToolbarExportTextButtonProps,
 } from './BiampTableToolbarExport';
 export {
   BiampTableToolbarFilters,

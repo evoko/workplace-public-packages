@@ -448,17 +448,33 @@ Filter panel rendered in a right-anchored MUI Drawer with reset and apply button
 
 ### `BiampTableToolbarExport`
 
-Export button with a loading spinner. Extends `BiampTableToolbarActionButtonProps` (except `icon`, `label`, `onClick`, `badgeContent`).
+Icon-only export button with a loading state. Extends `BiampTableToolbarActionButtonProps` (except `icon`, `label`, `onClick`, `badgeContent`).
 
 #### Props
 
 | Prop       | Type                                 | Default            | Description                                 |
 | ---------- | ------------------------------------ | ------------------ | ------------------------------------------- |
 | `onExport` | `() => void`                         | _(required)_       | Called when the export button is clicked    |
-| `loading`  | `boolean`                            | —                  | Shows a spinner and disables the button     |
+| `loading`  | `boolean`                            | —                  | Shows a loading spinner and disables the button |
 | `icon`     | `ReactNode`                          | `<DownloadIcon />` | Icon element                                |
 | `label`    | `string`                             | `'Export'`         | Accessible label                            |
 | _...rest_  | `BiampTableToolbarActionButtonProps` | —                  | All other action button props are forwarded |
+
+---
+
+### `BiampTableToolbarExportTextButton`
+
+Text-button variant of the export action — renders the `label` as visible button text. Use when the toolbar benefits from an explicit label like "Export to CSV". Extends MUI `ButtonProps` (except `children`, `onClick`, `startIcon`, `disabled`).
+
+#### Props
+
+| Prop       | Type          | Default      | Description                                          |
+| ---------- | ------------- | ------------ | ---------------------------------------------------- |
+| `onExport` | `() => void`  | _(required)_ | Called when the export button is clicked             |
+| `loading`  | `boolean`     | —            | Shows a loading spinner and disables the button      |
+| `icon`     | `ReactNode`   | —            | Optional leading icon. Omit for a text-only button   |
+| `label`    | `string`      | `'Export'`   | Button text                                          |
+| _...rest_  | `ButtonProps` | —            | All other MUI `Button` props are forwarded           |
 
 ---
 
@@ -949,7 +965,8 @@ The BiampTable components follow WCAG 2.1 AA guidelines:
 | `BiampTableToolbar`                  | component | Toolbar container                                           |
 | `BiampTableToolbarActionButton`      | component | Icon button with badge for toolbar                          |
 | `BiampTableToolbarActions`           | component | Right-aligned toolbar actions container                     |
-| `BiampTableToolbarExport`            | component | Export button with loading state                            |
+| `BiampTableToolbarExport`            | component | Icon-only export button with loading state                  |
+| `BiampTableToolbarExportTextButton`  | component | Text-button export action with loading state                |
 | `BiampTableToolbarFilters`           | component | Filter drawer with reset/apply                              |
 | `BiampTableToolbarSearch`            | component | Debounced search input                                      |
 | `BiampTableTruncatedCell`            | component | Single-line truncation with overflow tooltip                |

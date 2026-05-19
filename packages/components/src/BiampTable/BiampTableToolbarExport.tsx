@@ -1,4 +1,4 @@
-import { CircularProgress } from '@mui/material';
+import { Button, type ButtonProps } from '@mui/material';
 import { DownloadIcon } from '@bwp-web/assets';
 import {
   BiampTableToolbarActionButton,
@@ -8,7 +8,7 @@ import {
 export type BiampTableToolbarExportProps = {
   /** Called when the export button is clicked. */
   onExport: () => void;
-  /** When true, shows a spinner instead of the icon and disables the button. */
+  /** When true, shows a loading spinner and disables the button. */
   loading?: boolean;
   /** Icon element for the button. @default DownloadIcon */
   icon?: React.ReactNode;
@@ -28,11 +28,43 @@ export function BiampTableToolbarExport({
 }: BiampTableToolbarExportProps) {
   return (
     <BiampTableToolbarActionButton
-      label={loading ? `${label}, loading` : label}
-      icon={loading ? <CircularProgress size={20} color="inherit" /> : icon}
-      disabled={loading}
+      label={label}
+      icon={icon}
+      loading={loading}
       onClick={onExport}
       {...props}
     />
+  );
+}
+
+export type BiampTableToolbarExportTextButtonProps = {
+  /** Called when the export button is clicked. */
+  onExport: () => void;
+  /** When true, shows a loading spinner and disables the button. */
+  loading?: boolean;
+  /** Optional leading icon. No default — omit for a text-only button. */
+  icon?: React.ReactNode;
+  /** Button text. @default "Export" */
+  label?: string;
+} & Omit<ButtonProps, 'children' | 'onClick' | 'startIcon' | 'disabled'>;
+
+export function BiampTableToolbarExportTextButton({
+  onExport,
+  loading,
+  icon,
+  label = 'Export',
+  ...props
+}: BiampTableToolbarExportTextButtonProps) {
+  return (
+    <Button
+      variant="outlined"
+      size="small"
+      startIcon={icon}
+      loading={loading}
+      onClick={onExport}
+      {...props}
+    >
+      {label}
+    </Button>
   );
 }

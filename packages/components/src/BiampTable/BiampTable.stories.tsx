@@ -29,6 +29,7 @@ import {
   BiampTableToolbarActionButton,
   BiampTableToolbarActions,
   BiampTableToolbarExport,
+  BiampTableToolbarExportTextButton,
   BiampTableToolbarFilters,
   BiampTableToolbarSearch,
   getColumnVisibilityDirtyCount,
@@ -37,7 +38,7 @@ import {
   type ColumnVisibility,
   type ServerSideOrder,
 } from '@bwp-web/components';
-import { ColumnsIcon, DeleteIcon } from '@bwp-web/assets';
+import { ColumnsIcon, DeleteIcon, DownloadIcon } from '@bwp-web/assets';
 import {
   createColumnHelper,
   getCoreRowModel,
@@ -700,6 +701,40 @@ function WithToolbarDemo() {
  */
 export const WithToolbar: Story = {
   render: () => <WithToolbarDemo />,
+};
+
+function ExportTextButtonDemo() {
+  const [exporting, setExporting] = useState(false);
+  const handleExport = () => {
+    setExporting(true);
+    setTimeout(() => setExporting(false), 2000);
+  };
+
+  return (
+    <Stack direction="row" spacing={2}>
+      <BiampTableToolbarExportTextButton
+        onExport={handleExport}
+        loading={exporting}
+        label="Export to CSV"
+      />
+      <BiampTableToolbarExportTextButton
+        onExport={handleExport}
+        loading={exporting}
+        label="Export to CSV"
+        icon={<DownloadIcon variant="xs" />}
+      />
+    </Stack>
+  );
+}
+
+/**
+ * `BiampTableToolbarExportTextButton` renders the export action as a text
+ * button instead of an icon button — useful for toolbars where the action
+ * benefits from an explicit label like "Export to CSV". Shown here without
+ * an icon, with an optional leading icon, and styled as MUI `outlined`.
+ */
+export const ToolbarExportTextButton: Story = {
+  render: () => <ExportTextButtonDemo />,
 };
 
 // ---------------------------------------------------------------------------
