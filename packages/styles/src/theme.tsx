@@ -581,16 +581,16 @@ export const biampTheme = (
             },
             {
               props: { variant: 'contained', color: 'primary' },
-              style: {
-                backgroundColor: colors.blue.main,
-                color: colors.white,
+              style: ({ theme }) => ({
+                backgroundColor: theme.palette.text.primary,
+                color: theme.palette.background.default,
                 '&:hover': {
-                  backgroundColor: colors.blue.drawer,
+                  backgroundColor: alpha(theme.palette.text.primary, 0.85),
                 },
                 '&:active': {
-                  backgroundColor: colors.blue.main,
+                  backgroundColor: theme.palette.text.primary,
                 },
-              },
+              }),
             },
             {
               props: { variant: 'contained', color: 'error' },
@@ -654,13 +654,13 @@ export const biampTheme = (
             {
               props: { variant: 'overlay', color: 'primary' },
               style: ({ theme }) => ({
-                backgroundColor: colors.blue.main,
-                color: colors.white,
+                backgroundColor: theme.palette.text.primary,
+                color: theme.palette.background.default,
                 '&:hover': {
-                  backgroundColor: colors.blue.drawer,
+                  backgroundColor: alpha(theme.palette.text.primary, 0.85),
                 },
                 '&:active': {
-                  backgroundColor: colors.blue.main,
+                  backgroundColor: theme.palette.text.primary,
                 },
                 '&.Mui-disabled': {
                   backgroundColor:
@@ -2111,7 +2111,7 @@ export const biampTheme = (
               borderRadius: 8,
               backgroundColor:
                 theme.palette.mode === 'dark'
-                  ? colors.grey[800]
+                  ? colors.grey[700]
                   : colors.grey[100],
               '&::before': {
                 content: '""',
@@ -2124,7 +2124,7 @@ export const biampTheme = (
                 borderBottomLeftRadius: 8,
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? colors.grey[800]
+                    ? colors.grey[700]
                     : colors.grey[100],
               },
               '&::after': {
@@ -2138,7 +2138,7 @@ export const biampTheme = (
                 borderBottomRightRadius: 8,
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? colors.grey[800]
+                    ? colors.grey[700]
                     : colors.grey[100],
               },
             }),
@@ -2194,6 +2194,11 @@ export const biampTheme = (
               fontWeight: theme.typography.fontWeightMedium,
               letterSpacing: theme.typography.caption.letterSpacing,
               lineHeight: theme.typography.caption.lineHeight,
+              '.MuiButton-contained &, .MuiBadge-root:has(.MuiButton-contained) &':
+                {
+                  backgroundColor: theme.palette.background.default,
+                  color: theme.palette.text.primary,
+                },
               '&.MuiBadge-dot': {
                 padding: '0px',
               },
