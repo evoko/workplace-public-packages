@@ -66,15 +66,15 @@ export function BiampWrapper({
       )}
       {stickyTop && (
         <Box
-          sx={{
+          sx={({ zIndex }) => ({
             position: 'sticky',
             top: -16,
             mt: -2,
             mx: -2,
             mb: 2,
-            zIndex: 1,
+            zIndex: zIndex.appBar + 1,
             backgroundColor: ({ palette }) => palette.background.paper,
-          }}
+          })}
         >
           {stickyTop}
         </Box>
