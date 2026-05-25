@@ -1392,9 +1392,9 @@ export const biampTheme = (
               height: 44,
               minHeight: 44,
               opacity: 1,
-              color: theme.palette.text.primary,
+              color: theme.palette.text.secondary,
               '&.Mui-selected': {
-                color: theme.palette.primary.main,
+                color: theme.palette.text.primary,
               },
             }),
           },
