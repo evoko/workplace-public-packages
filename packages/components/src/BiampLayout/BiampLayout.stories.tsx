@@ -446,6 +446,145 @@ export const Responsive: Story = {
   render: () => <ResponsiveDemo />,
 };
 
+function HeaderOnlyResponsiveDemo() {
+  const [appsAnchorEl, setAppsAnchorEl] = useState<HTMLElement | null>(null);
+  const appsOpen = Boolean(appsAnchorEl);
+  const [orgsAnchorEl, setOrgsAnchorEl] = useState<HTMLElement | null>(null);
+  const orgsOpen = Boolean(orgsAnchorEl);
+  const [currentOrgId, setCurrentOrgId] = useState('acme-001');
+
+  const handleAppsClick = (e: React.MouseEvent<HTMLElement>) => {
+    setAppsAnchorEl(appsOpen ? null : (e.currentTarget as HTMLElement));
+  };
+  const handleOrgsClick = (e: React.MouseEvent<HTMLElement>) => {
+    setOrgsAnchorEl(orgsOpen ? null : (e.currentTarget as HTMLElement));
+  };
+
+  const orgListContent = (
+    <OrganizationItemList>
+      {responsiveOrgs.map((org) => (
+        <OrganizationItem
+          key={org.id}
+          primaryText={org.name}
+          secondaryText={`ID: ${org.id}`}
+          logo={org.logo}
+          meta={org.region === 'EU' ? 'EU region' : undefined}
+          isCurrent={org.id === currentOrgId}
+          onClick={() => {
+            setCurrentOrgId(org.id);
+            setOrgsAnchorEl(null);
+          }}
+        />
+      ))}
+    </OrganizationItemList>
+  );
+
+  return (
+    <BiampLayout
+      responsive
+      mobileSidebarOnly
+      drawerHeader={<BiampHeaderTitle title="Header-only app" />}
+      header={
+        <BiampHeader>
+          <BiampHeaderMenuButton />
+          <BiampHeaderTitle title="Header-only app" />
+          <BiampHeaderSearch sx={{ display: { xs: 'none', md: 'flex' } }} />
+          <BiampHeaderActions>
+            <BiampHeaderButtonList sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <BiampHeaderButton
+                icon={<BuildingIcon />}
+                selected={orgsOpen}
+                onClick={handleOrgsClick}
+              />
+              <BiampHeaderButton
+                icon={<AppsIcon />}
+                selectedIcon={<AppsIconFilled />}
+                selected={appsOpen}
+                onClick={handleAppsClick}
+              />
+            </BiampHeaderButtonList>
+            <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
+          </BiampHeaderActions>
+          <BiampAppPopover
+            open={appsOpen}
+            anchorEl={appsAnchorEl}
+            onClose={() => setAppsAnchorEl(null)}
+          >
+            <AppPopoverContent />
+          </BiampAppPopover>
+          <OrganizationSelectorPopover
+            open={orgsOpen}
+            anchorEl={orgsAnchorEl}
+            onClose={() => setOrgsAnchorEl(null)}
+          >
+            {orgListContent}
+          </OrganizationSelectorPopover>
+        </BiampHeader>
+      }
+      sidebar={
+        <BiampSidebar expandable={false}>
+          <Stack gap={2}>
+            <BiampHeaderSearch
+              sx={{
+                px: 0,
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: ({ palette }) =>
+                    palette.mode === 'dark'
+                      ? palette.grey[800]
+                      : palette.grey[100],
+                },
+              }}
+            />
+            <BiampSidebarIconList>
+              <BiampSidebarIcon
+                icon={<BuildingIcon />}
+                name="Organizations"
+                selected={orgsOpen}
+                closeDrawerOnClick={false}
+                onClick={handleOrgsClick}
+              />
+              <BiampSidebarIcon
+                icon={<AppsIcon />}
+                selectedIcon={<AppsIconFilled />}
+                name="Apps"
+                selected={appsOpen}
+                closeDrawerOnClick={false}
+                onClick={handleAppsClick}
+              />
+            </BiampSidebarIconList>
+          </Stack>
+        </BiampSidebar>
+      }
+    >
+      <BiampWrapper>
+        <Typography variant="h4" gutterBottom>
+          Header-only on desktop
+        </Typography>
+        <Typography variant="body1" paragraph>
+          Above the <code>md</code> breakpoint there is no sidebar — search,
+          organizations, and apps all live in the header. Below the breakpoint,
+          the menu button reveals a drawer containing the same controls.
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Set with <code>responsive</code> + <code>drawerOnly</code> on{' '}
+          <code>BiampLayout</code>. The sidebar is never rendered inline.
+        </Typography>
+      </BiampWrapper>
+    </BiampLayout>
+  );
+}
+
+/**
+ * Header-only desktop layout that moves search, organizations, and apps into
+ * a mobile drawer below the breakpoint. Enabled with `responsive` +
+ * `drawerOnly` on `BiampLayout` — the sidebar prop is treated as drawer
+ * content only and is never shown inline.
+ */
+export const HeaderOnlyResponsive: Story = {
+  name: 'Responsive (Header only, mobile drawer)',
+  render: () => <HeaderOnlyResponsiveDemo />,
+};
+
 /**
  * A layout with only the wrapper.
  * The simplest configuration, providing just the content area.

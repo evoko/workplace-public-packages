@@ -49,6 +49,13 @@ type BiampLayoutProps = StackProps & {
    * is always rendered in drawer mode; this slot is optional.
    */
   drawerHeader?: React.ReactNode;
+  /**
+   * When combined with `responsive`, the sidebar is never rendered inline —
+   * only as the mobile drawer. Use for layouts that show only a header on
+   * desktop and move some of its content into a drawer on mobile. Has no
+   * effect when `responsive` is false.
+   */
+  mobileSidebarOnly?: boolean;
 };
 
 const DRAWER_RIGHT_GAP_PX = 50;
@@ -61,6 +68,7 @@ export function BiampLayout({
   responsive = false,
   breakpoint = 'md',
   drawerHeader,
+  mobileSidebarOnly = false,
   sx,
   ...props
 }: BiampLayoutProps) {
@@ -97,7 +105,7 @@ export function BiampLayout({
           pb={{ xs: 1.5, md: 2.5 }}
           pt={{ xs: header ? 0 : 1.5, md: header ? 0 : 2.5 }}
         >
-          {!isDrawer && sidebar}
+          {!isDrawer && !(responsive && mobileSidebarOnly) && sidebar}
           {children}
         </Stack>
         {isDrawer && (
