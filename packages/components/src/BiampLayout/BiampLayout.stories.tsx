@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import {
   BiampLayout,
   BiampHeader,
@@ -19,6 +19,7 @@ import {
   BiampAppPopover,
   OrganizationItem,
   OrganizationItemList,
+  OrganizationSelectorButton,
   OrganizationSelectorPopover,
 } from '@bwp-web/components';
 import { AppPopoverContent } from '../BiampHeader/BiampHeader.storyhelpers';
@@ -281,6 +282,7 @@ function ResponsiveDemo() {
   const [orgsAnchorEl, setOrgsAnchorEl] = useState<HTMLElement | null>(null);
   const orgsOpen = Boolean(orgsAnchorEl);
   const [currentOrgId, setCurrentOrgId] = useState('acme-001');
+  const currentOrg = responsiveOrgs.find((o) => o.id === currentOrgId);
 
   const handleAppsClick = (e: React.MouseEvent<HTMLElement>) => {
     setAppsAnchorEl(appsOpen ? null : (e.currentTarget as HTMLElement));
@@ -338,12 +340,24 @@ function ResponsiveDemo() {
           <BiampHeaderTitle title="Responsive" />
           <BiampHeaderSearch sx={{ display: { xs: 'none', md: 'flex' } }} />
           <BiampHeaderActions>
+            <OrganizationSelectorButton
+              icon={
+                currentOrg?.logo ? (
+                  <Box
+                    component="img"
+                    src={currentOrg.logo}
+                    sx={{ width: 24, height: 24, borderRadius: 0.5 }}
+                  />
+                ) : (
+                  <BuildingIcon />
+                )
+              }
+              name={currentOrg?.name ?? ''}
+              open={orgsOpen}
+              onClick={handleOrgsClick}
+              sx={{ display: { xs: 'none', md: 'flex' } }}
+            />
             <BiampHeaderButtonList sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <BiampHeaderButton
-                icon={<BuildingIcon />}
-                selected={orgsOpen}
-                onClick={handleOrgsClick}
-              />
               <BiampHeaderButton
                 icon={<AppsIcon />}
                 selectedIcon={<AppsIconFilled />}
@@ -452,6 +466,7 @@ function HeaderOnlyResponsiveDemo() {
   const [orgsAnchorEl, setOrgsAnchorEl] = useState<HTMLElement | null>(null);
   const orgsOpen = Boolean(orgsAnchorEl);
   const [currentOrgId, setCurrentOrgId] = useState('acme-001');
+  const currentOrg = responsiveOrgs.find((o) => o.id === currentOrgId);
 
   const handleAppsClick = (e: React.MouseEvent<HTMLElement>) => {
     setAppsAnchorEl(appsOpen ? null : (e.currentTarget as HTMLElement));
@@ -490,12 +505,24 @@ function HeaderOnlyResponsiveDemo() {
           <BiampHeaderTitle title="Header-only app" />
           <BiampHeaderSearch sx={{ display: { xs: 'none', md: 'flex' } }} />
           <BiampHeaderActions>
+            <OrganizationSelectorButton
+              icon={
+                currentOrg?.logo ? (
+                  <Box
+                    component="img"
+                    src={currentOrg.logo}
+                    sx={{ width: 24, height: 24, borderRadius: 0.5 }}
+                  />
+                ) : (
+                  <BuildingIcon />
+                )
+              }
+              name={currentOrg?.name ?? ''}
+              open={orgsOpen}
+              onClick={handleOrgsClick}
+              sx={{ display: { xs: 'none', md: 'flex' } }}
+            />
             <BiampHeaderButtonList sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <BiampHeaderButton
-                icon={<BuildingIcon />}
-                selected={orgsOpen}
-                onClick={handleOrgsClick}
-              />
               <BiampHeaderButton
                 icon={<AppsIcon />}
                 selectedIcon={<AppsIconFilled />}

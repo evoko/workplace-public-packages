@@ -1,6 +1,8 @@
 import {
   alpha,
   Box,
+  ButtonBase,
+  ButtonBaseProps,
   CircularProgress,
   Divider,
   List,
@@ -16,7 +18,11 @@ import {
   Typography,
 } from '@mui/material';
 import { Children, Fragment, isValidElement, ReactNode } from 'react';
-import { ChevronRightIcon } from '@bwp-web/assets';
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  ChevronUpIcon,
+} from '@bwp-web/assets';
 
 type OrganizationSelectorProps = StackProps & {
   /** Replaces children with a centered spinner. */
@@ -229,6 +235,83 @@ export function OrganizationItem({
         />
       </ListItemButton>
     </ListItem>
+  );
+}
+
+type OrganizationSelectorButtonProps = Omit<ButtonBaseProps, 'children'> & {
+  /**
+   * Leading visual — typically an image element representing the current
+   * organization (similar to `OrganizationItem`'s `logo`). Rendered as-is,
+   * no wrapping applied.
+   */
+  icon: ReactNode;
+  /** Text label, typically the current organization's name. */
+  name: string;
+  /**
+   * Whether the linked `OrganizationSelectorPopover` is open. Flips the
+   * trailing chevron from down to up. Default: false.
+   */
+  open?: boolean;
+};
+
+/**
+ * Minimal button intended to open an `OrganizationSelectorPopover`. Renders
+ * `icon` followed by `name` inside a `ButtonBase` (no padding, border, or
+ * background by default) — apply your own styling via `sx`.
+ */
+export function OrganizationSelectorButton({
+  icon,
+  name,
+  open = false,
+  sx,
+  ...props
+}: OrganizationSelectorButtonProps) {
+  return (
+    <ButtonBase
+      disableRipple
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 1,
+        borderRadius: 1,
+        p: 0.75,
+        border: ({ palette }) => `0.6px solid ${palette.dividers.secondary}`,
+        ...sx,
+      }}
+      {...props}
+    >
+      <Box
+        sx={{
+          width: 20,
+          height: 20,
+          flexShrink: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {icon}
+      </Box>
+      <Typography
+        variant="caption"
+        fontWeight={600}
+        noWrap
+        sx={{ flexShrink: 0 }}
+      >
+        {name}
+      </Typography>
+      {open ? (
+        <ChevronUpIcon
+          variant="xs"
+          sx={{ width: 16, height: 16, flexShrink: 0, color: 'text.secondary' }}
+        />
+      ) : (
+        <ChevronDownIcon
+          variant="xs"
+          sx={{ width: 16, height: 16, flexShrink: 0, color: 'text.secondary' }}
+        />
+      )}
+    </ButtonBase>
   );
 }
 
