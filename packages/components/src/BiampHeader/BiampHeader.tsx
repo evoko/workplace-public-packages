@@ -25,6 +25,7 @@ export function BiampHeader({ children, sx, ...props }: BiampHeaderProps) {
     <Stack
       direction="row"
       alignItems="center"
+      gap={{ xs: 0.5, md: 3 }}
       sx={{ px: 2.5, py: 1.5, ...sx }}
       {...props}
     >
@@ -49,7 +50,6 @@ export function BiampHeaderTitle({
   return (
     <Box
       sx={{
-        pr: { xs: 0, md: 3 },
         display: 'flex',
         alignItems: 'center',
         gap: '12px',
@@ -138,7 +138,6 @@ export function BiampHeaderActions({
   return (
     <Box
       sx={{
-        pl: { xs: 0, md: 3 },
         ml: 'auto',
         gap: { xs: 1, md: 2 },
         display: 'flex',
