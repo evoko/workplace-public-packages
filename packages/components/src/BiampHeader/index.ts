@@ -5,6 +5,7 @@ export {
   BiampHeaderActions,
   BiampHeaderButtonList,
   BiampHeaderButton,
+  BiampHeaderMenuButton,
   BiampHeaderProfile,
   BiampAppPopover,
   BiampBuildAppContent,

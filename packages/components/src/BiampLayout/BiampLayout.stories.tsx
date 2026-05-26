@@ -9,6 +9,7 @@ import {
   BiampHeaderActions,
   BiampHeaderButtonList,
   BiampHeaderButton,
+  BiampHeaderMenuButton,
   BiampHeaderProfile,
   BiampSidebar,
   BiampSidebarIcon,
@@ -210,6 +211,102 @@ function WithHeaderAndWrapperDemo() {
 export const WithHeaderAndWrapper: Story = {
   name: 'Header + Wrapper',
   render: () => <WithHeaderAndWrapperDemo />,
+};
+
+function ResponsiveDemo() {
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+  const sidebarItems = [
+    { name: 'Home', icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
+    {
+      name: 'Dashboard',
+      icon: <DashboardOutlinedIcon />,
+      selectedIcon: <DashboardIcon />,
+    },
+    {
+      name: 'People',
+      icon: <PeopleOutlinedIcon />,
+      selectedIcon: <PeopleIcon />,
+    },
+    {
+      name: 'Settings',
+      icon: <SettingsOutlinedIcon />,
+      selectedIcon: <SettingsIcon />,
+    },
+  ];
+
+  return (
+    <BiampLayout
+      responsive
+      drawerHeader={<BiampHeaderTitle title="Responsive" />}
+      header={
+        <BiampHeader>
+          <BiampHeaderMenuButton />
+          <BiampHeaderTitle title="Responsive" />
+          <BiampHeaderSearch sx={{ display: { xs: 'none', md: 'flex' } }} />
+          <BiampHeaderActions>
+            <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
+          </BiampHeaderActions>
+        </BiampHeader>
+      }
+      sidebar={
+        <BiampSidebar>
+          <Stack gap={{ xs: 2, md: 0 }}>
+            <BiampHeaderSearch
+              sx={{
+                display: { xs: 'flex', md: 'none' },
+                px: 0,
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: ({ palette }) =>
+                    palette.mode === 'dark'
+                      ? palette.grey[800]
+                      : palette.grey[100],
+                },
+              }}
+            />
+            <BiampSidebarIconList>
+              {sidebarItems.map((item, i) => (
+                <BiampSidebarIcon
+                  key={i}
+                  selected={selectedIndex === i}
+                  icon={item.icon}
+                  selectedIcon={item.selectedIcon}
+                  name={item.name}
+                  onClick={() => setSelectedIndex(i)}
+                />
+              ))}
+            </BiampSidebarIconList>
+          </Stack>
+        </BiampSidebar>
+      }
+    >
+      <BiampWrapper>
+        <Typography variant="h4" gutterBottom>
+          Responsive layout
+        </Typography>
+        <Typography variant="body1" paragraph>
+          Resize the viewport below the <code>md</code> breakpoint (900px) to
+          see the sidebar collapse into a drawer. A menu toggle appears in the
+          header and the drawer auto-closes when you pick an item.
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Tip: in the Storybook toolbar, switch the viewport to a mobile preset
+          (or just narrow the browser window) to trigger drawer mode.
+        </Typography>
+      </BiampWrapper>
+    </BiampLayout>
+  );
+}
+
+/**
+ * Responsive layout: above the `md` breakpoint the sidebar renders inline as
+ * usual; below it, the sidebar collapses into a left-anchored drawer with a
+ * 50px right gap, toggled by `BiampHeaderMenuButton` in the header.
+ * Selecting a sidebar item auto-closes the drawer.
+ */
+export const Responsive: Story = {
+  name: 'Responsive (Header + Sidebar)',
+  render: () => <ResponsiveDemo />,
 };
 
 /**

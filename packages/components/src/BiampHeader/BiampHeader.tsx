@@ -9,12 +9,15 @@ import {
   PopoverProps,
   Stack,
   StackProps,
+  SvgIcon,
+  SvgIconProps,
   TextField,
   TextFieldProps,
   Typography,
 } from '@mui/material';
 import { Children, JSX, ReactNode } from 'react';
 import { BiampRedLogo, ExternalLinkIcon, SearchIcon } from '@bwp-web/assets';
+import { useBiampLayoutDrawer } from '../BiampLayout/BiampLayout';
 
 type BiampHeaderProps = StackProps & {
   children?: React.ReactNode;
@@ -172,6 +175,48 @@ export function BiampHeaderButtonList({
     >
       {children}
     </Box>
+  );
+}
+
+function DefaultMenuIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props}>
+      <path
+        fill="currentColor"
+        d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"
+      />
+    </SvgIcon>
+  );
+}
+
+type BiampHeaderMenuButtonProps = Omit<ListItemButtonProps, 'children'> & {
+  /** Override the default hamburger icon. */
+  icon?: JSX.Element;
+};
+
+/**
+ * Header toggle for the responsive sidebar drawer. Renders only when the
+ * parent `BiampLayout` is in drawer mode and has a sidebar; otherwise
+ * returns `null`. Safe to leave in the header at all viewport sizes.
+ */
+export function BiampHeaderMenuButton({
+  icon,
+  sx,
+  onClick,
+  ...props
+}: BiampHeaderMenuButtonProps) {
+  const drawer = useBiampLayoutDrawer();
+  if (!drawer?.isDrawer || !drawer.hasSidebar) return null;
+  return (
+    <BiampHeaderButton
+      icon={icon ?? <DefaultMenuIcon />}
+      onClick={(e) => {
+        drawer.setOpen(!drawer.open);
+        onClick?.(e);
+      }}
+      sx={sx}
+      {...props}
+    />
   );
 }
 

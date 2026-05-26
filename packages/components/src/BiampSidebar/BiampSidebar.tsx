@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import { BiampLogoIcon, SquareRoundedArrowRightIcon } from '@bwp-web/assets';
 import { JSX, createContext, useContext, useState } from 'react';
+import { useBiampLayoutDrawer } from '../BiampLayout/BiampLayout';
 
 type BiampSidebarContextValue = {
   expanded: boolean;
@@ -38,9 +39,17 @@ export function BiampSidebar({
   sx,
   ...props
 }: BiampSidebarProps) {
+  const layoutDrawer = useBiampLayoutDrawer();
+  const isInDrawer = layoutDrawer?.isDrawer ?? false;
+
   const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
   const isControlled = expandedProp !== undefined;
-  const expanded = isControlled ? expandedProp : internalExpanded;
+  const expanded = isInDrawer
+    ? true
+    : isControlled
+      ? expandedProp
+      : internalExpanded;
+  const showCollapseButton = !isInDrawer && expandable;
 
   const toggleExpanded = () => {
     const next = !expanded;
@@ -48,7 +57,7 @@ export function BiampSidebar({
     onExpandedChange?.(next);
   };
 
-  const width = expanded ? '240px' : '48px';
+  const width = isInDrawer ? '100%' : expanded ? '240px' : '48px';
 
   return (
     <BiampSidebarContext.Provider value={{ expanded }}>
@@ -69,7 +78,7 @@ export function BiampSidebar({
         {...props}
       >
         <Stack sx={{ flex: 1, minHeight: 0 }}>{children}</Stack>
-        {expandable && (
+        {showCollapseButton && (
           <BiampSidebarIcon
             icon={
               <SquareRoundedArrowRightIcon
@@ -164,15 +173,23 @@ export function BiampSidebarIcon({
   selectedIcon,
   name,
   sx,
+  onClick,
   ...props
 }: BiampSidebarIconProps) {
   const { expanded } = useContext(BiampSidebarContext);
+  const layoutDrawer = useBiampLayoutDrawer();
   const displayedSelectedIcon = selectedIcon ?? icon;
   return (
     <ListItemButton
       selected={selected}
       disableGutters
       disableRipple
+      onClick={(e) => {
+        onClick?.(e);
+        if (layoutDrawer?.isDrawer && layoutDrawer.open) {
+          layoutDrawer.setOpen(false);
+        }
+      }}
       sx={{
         minWidth: '48px',
         minHeight: '48px',

@@ -1,1 +1,1 @@
-export { BiampLayout } from './BiampLayout';
+export { BiampLayout, useBiampLayoutDrawer } from './BiampLayout';
