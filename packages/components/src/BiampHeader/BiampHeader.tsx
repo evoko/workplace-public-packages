@@ -48,7 +48,13 @@ export function BiampHeaderTitle({
 }: BiampHeaderTitleProps) {
   return (
     <Box
-      sx={{ pr: 3, display: 'flex', alignItems: 'center', gap: '12px', ...sx }}
+      sx={{
+        pr: { xs: 0, md: 3 },
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        ...sx,
+      }}
       {...props}
     >
       {icon ? (
@@ -132,8 +138,9 @@ export function BiampHeaderActions({
   return (
     <Box
       sx={{
-        pl: 3,
-        gap: 2,
+        pl: { xs: 0, md: 3 },
+        ml: 'auto',
+        gap: { xs: 1, md: 2 },
         display: 'flex',
         alignItems: 'center',
         ...sx,
@@ -156,7 +163,12 @@ export function BiampHeaderButtonList({
 }: BiampHeaderButtonListProps) {
   return (
     <Box
-      sx={{ display: 'flex', alignItems: 'center', gap: 0.5, ...sx }}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: { xs: 0, md: 0.5 },
+        ...sx,
+      }}
       {...props}
     >
       {children}
