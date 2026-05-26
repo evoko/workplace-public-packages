@@ -10,7 +10,7 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/styles` >= 1.0.5
+- `@bwp-web/styles` >= 1.0.12
 - `@bwp-web/assets` >= 1.0.2
 - `@mui/material` >= 7.0.0
 - `react` >= 18.0.0
@@ -174,6 +174,7 @@ Extends MUI `ListItemButtonProps`.
 | `selectedIcon` | `JSX.Element` | Same as `icon` | Icon shown when `selected` is `true`. Falls back to `icon` if not provided |
 | `selected` | `boolean` | `false` | Whether the icon is in the selected state |
 | `name` | `string` | — | Optional label rendered to the right of the icon when the parent `BiampSidebar` is expanded. Hidden via opacity when collapsed so the layout never reflows |
+| `closeDrawerOnClick` | `boolean` | `true` | When inside a `BiampLayout` responsive drawer, whether clicking auto-closes the drawer. Set to `false` for items that open menus/popovers anchored to this element — closing the drawer would unmount the anchor |
 | `sx` | `SxProps` | — | MUI system styles passed to the underlying `ListItemButton`. Setting `color` here cascades to both the icon and the label |
 | _...rest_ | `ListItemButtonProps` | — | All other MUI `ListItemButton` props (e.g. `disabled`, `onClick`) are forwarded |
 
@@ -246,6 +247,16 @@ function AppShell() {
   );
 }
 ```
+
+## Responsive Drawer Behavior
+
+When rendered inside a `BiampLayout` with `responsive` enabled (and the viewport is below the configured breakpoint), `BiampSidebar` automatically:
+
+- Forces `expanded={true}` and ignores the controlled `expanded` prop.
+- Hides the expand/collapse toggle (the chevron arrow) — there is nothing to collapse into.
+- Sets its width to `100%` so it fills the drawer paper.
+
+`BiampSidebarIcon` reads the same context: when the layout is in drawer mode and open, clicking an icon auto-closes the drawer. Opt out per item with `closeDrawerOnClick={false}` for icons that open menus or popovers anchored to themselves (closing the drawer would unmount the anchor element). See [biamp-layout.md](./biamp-layout.md) for the full responsive layout pattern.
 
 ## Exports
 

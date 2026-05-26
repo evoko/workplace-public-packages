@@ -10,7 +10,7 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/styles` >= 1.0.5
+- `@bwp-web/styles` >= 1.0.12
 - `@bwp-web/assets` >= 1.0.2
 - `@mui/material` >= 7.0.0
 - `react` >= 18.0.0
@@ -29,6 +29,10 @@ A full-viewport (`100vh`) column layout that stacks an optional header on top an
 | `header` | `React.ReactNode` | — | Optional header rendered at the top of the layout (typically a `BiampHeader`) |
 | `sidebar` | `React.ReactNode` | — | Optional sidebar rendered to the left of the content area (typically a `BiampSidebar`) |
 | `children` | `React.ReactNode` | _(required)_ | Main content area — typically one or more `BiampWrapper` components |
+| `responsive` | `boolean` | `false` | Collapses the sidebar into a left-anchored drawer below `breakpoint` |
+| `breakpoint` | `Breakpoint` | `'md'` | MUI breakpoint at which the sidebar becomes a drawer |
+| `drawerHeader` | `React.ReactNode` | — | Content rendered next to the auto-rendered close button at the top of the drawer (typically a `BiampHeaderTitle`) |
+| `mobileSidebarOnly` | `boolean` | `false` | When combined with `responsive`, the sidebar is never rendered inline — only as the mobile drawer. Has no effect when `responsive` is false |
 | `sx` | `SxProps` | — | MUI system styles passed to the root `Stack` |
 | _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
 
@@ -167,6 +171,92 @@ function SimplePage() {
 }
 ```
 
+#### Responsive Drawer (Sidebar Collapses on Mobile)
+
+Add `responsive` to collapse the sidebar into a left-anchored drawer below `breakpoint`. Pair with `<BiampHeaderMenuButton />` in the header — it auto-renders a hamburger toggle only when the layout is in drawer mode. The drawer's paper is capped at `min(calc(100vw - 50px), 350px)` so there is always a tap-zone to dismiss it. A close button is rendered at the top of the drawer automatically; pass `drawerHeader` for any content (e.g. a title) next to it.
+
+When `BiampSidebarIcon` is clicked inside the drawer, it auto-closes — opt out per item with `closeDrawerOnClick={false}` (useful for items that open menus or popovers anchored to themselves).
+
+```tsx
+import {
+  BiampLayout,
+  BiampHeader,
+  BiampHeaderTitle,
+  BiampHeaderMenuButton,
+  BiampSidebar,
+  BiampSidebarIconList,
+  BiampSidebarIcon,
+  BiampWrapper,
+} from '@bwp-web/components';
+
+<BiampLayout
+  responsive
+  drawerHeader={<BiampHeaderTitle title="My App" />}
+  header={
+    <BiampHeader>
+      <BiampHeaderMenuButton />
+      <BiampHeaderTitle title="My App" />
+    </BiampHeader>
+  }
+  sidebar={
+    <BiampSidebar>
+      <BiampSidebarIconList>{/* nav items */}</BiampSidebarIconList>
+    </BiampSidebar>
+  }
+>
+  <BiampWrapper>{/* content */}</BiampWrapper>
+</BiampLayout>;
+```
+
+#### Header-Only Desktop (Mobile Drawer Only)
+
+For apps that have everything in the header on desktop but want to collapse some controls into a drawer on mobile, add `mobileSidebarOnly` alongside `responsive`. The sidebar prop is treated as drawer content only — never rendered inline. Use `display: { xs, md }` (or `useBiampLayoutDrawer()`) inside the header to control what shows where.
+
+```tsx
+<BiampLayout
+  responsive
+  mobileSidebarOnly
+  header={
+    <BiampHeader>
+      <BiampHeaderMenuButton />
+      <BiampHeaderTitle title="App" />
+      <BiampHeaderSearch sx={{ display: { xs: 'none', md: 'flex' } }} />
+      {/* desktop-only header actions */}
+    </BiampHeader>
+  }
+  sidebar={
+    <BiampSidebar expandable={false}>
+      {/* same controls re-rendered as drawer items */}
+    </BiampSidebar>
+  }
+>
+  {/* content */}
+</BiampLayout>;
+```
+
+### `useBiampLayoutDrawer`
+
+Hook for reading and controlling the responsive drawer from descendants. Returns `null` when called outside a `BiampLayout`, so it is always safe to call. Used internally by `BiampHeaderMenuButton` and `BiampSidebarIcon`'s drawer auto-close behavior — exposed publicly so consumers can drive the drawer from custom UI.
+
+```tsx
+import { useBiampLayoutDrawer } from '@bwp-web/components';
+
+function CustomTrigger() {
+  const drawer = useBiampLayoutDrawer();
+  if (!drawer?.isDrawer) return null;
+  return (
+    <button onClick={() => drawer.setOpen(true)}>Open drawer</button>
+  );
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `isDrawer` | `boolean` | True when the layout is below `breakpoint` and has a sidebar |
+| `open` | `boolean` | Current open state of the drawer |
+| `setOpen` | `(open: boolean) => void` | Setter for the drawer's open state |
+| `hasSidebar` | `boolean` | Whether the layout was given a `sidebar` prop |
+
 ## Design Details
 
 - **Viewport**: Fills the full viewport height (`100vh`)
@@ -174,7 +264,9 @@ function SimplePage() {
 - **Header-aware padding**: When a header is present, top padding is `0` (the header provides its own spacing); when absent, top padding matches the bottom padding
 - **Background**: `grey.100` in light mode, `grey.900` in dark mode
 - **Slot-based composition**: Pass `header`, `sidebar`, and `children` — unused slots are simply omitted from the DOM
+- **Drawer paper**: `min(calc(100vw - 50px), 350px)` wide so there's always a tap-zone to dismiss it; anchored left
 
 ## Exports
 
 - `BiampLayout` — Full-page layout shell with optional header and sidebar slots.
+- `useBiampLayoutDrawer` — Hook for reading and controlling the responsive drawer state.
