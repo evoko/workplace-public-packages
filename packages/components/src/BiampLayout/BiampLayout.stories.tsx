@@ -215,6 +215,12 @@ export const WithHeaderAndWrapper: Story = {
 
 function ResponsiveDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [appsAnchorEl, setAppsAnchorEl] = useState<HTMLElement | null>(null);
+  const appsOpen = Boolean(appsAnchorEl);
+
+  const handleAppsClick = (e: React.MouseEvent<HTMLElement>) => {
+    setAppsAnchorEl(appsOpen ? null : (e.currentTarget as HTMLElement));
+  };
 
   const sidebarItems = [
     { name: 'Home', icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
@@ -245,8 +251,23 @@ function ResponsiveDemo() {
           <BiampHeaderTitle title="Responsive" />
           <BiampHeaderSearch sx={{ display: { xs: 'none', md: 'flex' } }} />
           <BiampHeaderActions>
+            <BiampHeaderButtonList sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <BiampHeaderButton
+                icon={<AppsIcon />}
+                selectedIcon={<AppsIconFilled />}
+                selected={appsOpen}
+                onClick={handleAppsClick}
+              />
+            </BiampHeaderButtonList>
             <BiampHeaderProfile image="https://i.pravatar.cc/32?img=1" />
           </BiampHeaderActions>
+          <BiampAppPopover
+            open={appsOpen}
+            anchorEl={appsAnchorEl}
+            onClose={() => setAppsAnchorEl(null)}
+          >
+            <AppPopoverContent />
+          </BiampAppPopover>
         </BiampHeader>
       }
       sidebar={
@@ -265,6 +286,15 @@ function ResponsiveDemo() {
               }}
             />
             <BiampSidebarIconList>
+              <BiampSidebarIcon
+                icon={<AppsIcon />}
+                selectedIcon={<AppsIconFilled />}
+                name="Apps"
+                selected={appsOpen}
+                closeDrawerOnClick={false}
+                onClick={handleAppsClick}
+                sx={{ display: { xs: 'flex', md: 'none' } }}
+              />
               {sidebarItems.map((item, i) => (
                 <BiampSidebarIcon
                   key={i}

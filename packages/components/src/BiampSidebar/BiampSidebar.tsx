@@ -165,6 +165,13 @@ type BiampSidebarIconProps = ListItemButtonProps & {
   icon: JSX.Element;
   selectedIcon?: JSX.Element;
   name?: string;
+  /**
+   * When inside a `BiampLayout` responsive drawer, whether clicking this
+   * icon should also close the drawer. Default: true (navigation pattern).
+   * Set to false for items that open menus or popovers anchored to this
+   * element, since closing the drawer would unmount the anchor.
+   */
+  closeDrawerOnClick?: boolean;
 };
 
 export function BiampSidebarIcon({
@@ -172,6 +179,7 @@ export function BiampSidebarIcon({
   icon,
   selectedIcon,
   name,
+  closeDrawerOnClick = true,
   sx,
   onClick,
   ...props
@@ -186,7 +194,7 @@ export function BiampSidebarIcon({
       disableRipple
       onClick={(e) => {
         onClick?.(e);
-        if (layoutDrawer?.isDrawer && layoutDrawer.open) {
+        if (closeDrawerOnClick && layoutDrawer?.isDrawer && layoutDrawer.open) {
           layoutDrawer.setOpen(false);
         }
       }}
