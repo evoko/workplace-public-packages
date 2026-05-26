@@ -44,6 +44,7 @@ export function OrganizationSelector({
         borderRadius: 3,
         p: 1.5,
         boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.15)',
+        overflow: 'auto',
         ...sx,
       }}
       {...props}
@@ -251,9 +252,7 @@ export function OrganizationSelectorPopover({
   return (
     <Popover
       anchorOrigin={anchorOrigin ?? { vertical: 'bottom', horizontal: 'right' }}
-      transformOrigin={
-        transformOrigin ?? { vertical: 'top', horizontal: 'right' }
-      }
+      transformOrigin={transformOrigin ?? { vertical: -8, horizontal: 'right' }}
       slotProps={{
         paper: {
           sx: {

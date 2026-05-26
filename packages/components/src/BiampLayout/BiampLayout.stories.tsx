@@ -17,6 +17,9 @@ import {
   BiampSidebarIconList,
   BiampSidebarComponent,
   BiampAppPopover,
+  OrganizationItem,
+  OrganizationItemList,
+  OrganizationSelectorPopover,
 } from '@bwp-web/components';
 import { AppPopoverContent } from '../BiampHeader/BiampHeader.storyhelpers';
 import HomeIcon from '@mui/icons-material/Home';
@@ -27,7 +30,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { AppsIcon, AppsIconFilled } from '@bwp-web/assets';
+import { AppsIcon, AppsIconFilled, BuildingIcon } from '@bwp-web/assets';
 
 const meta: Meta<typeof BiampLayout> = {
   title: 'Components/BiampLayout',
@@ -213,14 +216,98 @@ export const WithHeaderAndWrapper: Story = {
   render: () => <WithHeaderAndWrapperDemo />,
 };
 
+const responsiveOrgs = [
+  {
+    id: 'acme-001',
+    name: 'Acme Corporation',
+    logo: 'https://picsum.photos/seed/acme/80',
+    region: 'EU',
+  },
+  {
+    id: 'globex-002',
+    name: 'Globex Industries',
+    logo: 'https://picsum.photos/seed/globex/80',
+  },
+  {
+    id: 'initech-003',
+    name: 'Initech Systems',
+    logo: 'https://picsum.photos/seed/initech/80',
+    region: 'EU',
+  },
+  {
+    id: 'umbrella-004',
+    name: 'Umbrella Co',
+    logo: 'https://picsum.photos/seed/umbrella/80',
+  },
+  {
+    id: 'soylent-005',
+    name: 'Soylent Group',
+    logo: 'https://picsum.photos/seed/soylent/80',
+    region: 'EU',
+  },
+  {
+    id: 'wayne-006',
+    name: 'Wayne Enterprises',
+    logo: 'https://picsum.photos/seed/wayne/80',
+  },
+  {
+    id: 'stark-007',
+    name: 'Stark Industries',
+    logo: 'https://picsum.photos/seed/stark/80',
+  },
+  {
+    id: 'oscorp-008',
+    name: 'Oscorp Industries',
+    logo: 'https://picsum.photos/seed/oscorp/80',
+    region: 'EU',
+  },
+  {
+    id: 'tyrell-009',
+    name: 'Tyrell Corporation',
+    logo: 'https://picsum.photos/seed/tyrell/80',
+  },
+  {
+    id: 'cyberdyne-010',
+    name: 'Cyberdyne Systems',
+    logo: 'https://picsum.photos/seed/cyberdyne/80',
+    region: 'EU',
+  },
+];
+
 function ResponsiveDemo() {
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [appsAnchorEl, setAppsAnchorEl] = useState<HTMLElement | null>(null);
   const appsOpen = Boolean(appsAnchorEl);
+  const [orgsAnchorEl, setOrgsAnchorEl] = useState<HTMLElement | null>(null);
+  const orgsOpen = Boolean(orgsAnchorEl);
+  const [currentOrgId, setCurrentOrgId] = useState('acme-001');
 
   const handleAppsClick = (e: React.MouseEvent<HTMLElement>) => {
     setAppsAnchorEl(appsOpen ? null : (e.currentTarget as HTMLElement));
   };
+
+  const handleOrgsClick = (e: React.MouseEvent<HTMLElement>) => {
+    setOrgsAnchorEl(orgsOpen ? null : (e.currentTarget as HTMLElement));
+  };
+
+  const orgListContent = (
+    <OrganizationItemList>
+      {responsiveOrgs.map((org) => (
+        <OrganizationItem
+          key={org.id}
+          primaryText={org.name}
+          secondaryText={`ID: ${org.id}`}
+          logo={org.logo}
+          meta={org.region === 'EU' ? 'EU region' : undefined}
+          isCurrent={org.id === currentOrgId}
+          onClick={() => {
+            setCurrentOrgId(org.id);
+            setOrgsAnchorEl(null);
+          }}
+        />
+      ))}
+    </OrganizationItemList>
+  );
 
   const sidebarItems = [
     { name: 'Home', icon: <HomeOutlinedIcon />, selectedIcon: <HomeIcon /> },
@@ -253,6 +340,11 @@ function ResponsiveDemo() {
           <BiampHeaderActions>
             <BiampHeaderButtonList sx={{ display: { xs: 'none', md: 'flex' } }}>
               <BiampHeaderButton
+                icon={<BuildingIcon />}
+                selected={orgsOpen}
+                onClick={handleOrgsClick}
+              />
+              <BiampHeaderButton
                 icon={<AppsIcon />}
                 selectedIcon={<AppsIconFilled />}
                 selected={appsOpen}
@@ -268,6 +360,13 @@ function ResponsiveDemo() {
           >
             <AppPopoverContent />
           </BiampAppPopover>
+          <OrganizationSelectorPopover
+            open={orgsOpen}
+            anchorEl={orgsAnchorEl}
+            onClose={() => setOrgsAnchorEl(null)}
+          >
+            {orgListContent}
+          </OrganizationSelectorPopover>
         </BiampHeader>
       }
       sidebar={
@@ -286,6 +385,14 @@ function ResponsiveDemo() {
               }}
             />
             <BiampSidebarIconList>
+              <BiampSidebarIcon
+                icon={<BuildingIcon />}
+                name="Organizations"
+                selected={orgsOpen}
+                closeDrawerOnClick={false}
+                onClick={handleOrgsClick}
+                sx={{ display: { xs: 'flex', md: 'none' } }}
+              />
               <BiampSidebarIcon
                 icon={<AppsIcon />}
                 selectedIcon={<AppsIconFilled />}
