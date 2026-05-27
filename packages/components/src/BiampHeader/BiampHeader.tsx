@@ -9,12 +9,15 @@ import {
   PopoverProps,
   Stack,
   StackProps,
+  SvgIcon,
+  SvgIconProps,
   TextField,
   TextFieldProps,
   Typography,
 } from '@mui/material';
 import { Children, JSX, ReactNode } from 'react';
 import { BiampRedLogo, ExternalLinkIcon, SearchIcon } from '@bwp-web/assets';
+import { useBiampLayoutDrawer } from '../BiampLayout/BiampLayout';
 
 type BiampHeaderProps = StackProps & {
   children?: React.ReactNode;
@@ -25,6 +28,7 @@ export function BiampHeader({ children, sx, ...props }: BiampHeaderProps) {
     <Stack
       direction="row"
       alignItems="center"
+      gap={{ xs: 0.5, md: 3 }}
       sx={{ px: 2.5, py: 1.5, ...sx }}
       {...props}
     >
@@ -48,7 +52,12 @@ export function BiampHeaderTitle({
 }: BiampHeaderTitleProps) {
   return (
     <Box
-      sx={{ pr: 3, display: 'flex', alignItems: 'center', gap: '12px', ...sx }}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        ...sx,
+      }}
       {...props}
     >
       {icon ? (
@@ -132,8 +141,8 @@ export function BiampHeaderActions({
   return (
     <Box
       sx={{
-        pl: 3,
-        gap: 2,
+        ml: 'auto',
+        gap: { xs: 1, md: 2 },
         display: 'flex',
         alignItems: 'center',
         ...sx,
@@ -156,11 +165,58 @@ export function BiampHeaderButtonList({
 }: BiampHeaderButtonListProps) {
   return (
     <Box
-      sx={{ display: 'flex', alignItems: 'center', gap: 0.5, ...sx }}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: { xs: 0, md: 0.5 },
+        ...sx,
+      }}
       {...props}
     >
       {children}
     </Box>
+  );
+}
+
+function DefaultMenuIcon(props: SvgIconProps) {
+  return (
+    <SvgIcon {...props}>
+      <path
+        fill="currentColor"
+        d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"
+      />
+    </SvgIcon>
+  );
+}
+
+type BiampHeaderMenuButtonProps = Omit<ListItemButtonProps, 'children'> & {
+  /** Override the default hamburger icon. */
+  icon?: JSX.Element;
+};
+
+/**
+ * Header toggle for the responsive sidebar drawer. Renders only when the
+ * parent `BiampLayout` is in drawer mode and has a sidebar; otherwise
+ * returns `null`. Safe to leave in the header at all viewport sizes.
+ */
+export function BiampHeaderMenuButton({
+  icon,
+  sx,
+  onClick,
+  ...props
+}: BiampHeaderMenuButtonProps) {
+  const drawer = useBiampLayoutDrawer();
+  if (!drawer?.isDrawer || !drawer.hasSidebar) return null;
+  return (
+    <BiampHeaderButton
+      icon={icon ?? <DefaultMenuIcon />}
+      onClick={(e) => {
+        drawer.setOpen(!drawer.open);
+        onClick?.(e);
+      }}
+      sx={sx}
+      {...props}
+    />
   );
 }
 

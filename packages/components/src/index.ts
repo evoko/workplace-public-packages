@@ -6,5 +6,6 @@ export * from './BiampTable';
 export * from './BiampBanner';
 export * from './BiampSegmentedButton';
 export * from './BiampGlobalSearch';
+export * from './OrganizationSelector';
 export * from './UserInitialsIcon';
 export * from './DynamicSvgIcon';

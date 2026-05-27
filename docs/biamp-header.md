@@ -10,7 +10,7 @@ npm install @bwp-web/components
 
 ### Peer Dependencies
 
-- `@bwp-web/styles` >= 1.0.5
+- `@bwp-web/styles` >= 1.0.12
 - `@bwp-web/assets` >= 1.0.2
 - `@mui/material` >= 7.0.0
 - `react` >= 18.0.0
@@ -223,6 +223,46 @@ When `selectedIcon` is provided, the component automatically swaps between the t
 />
 ```
 
+### `BiampHeaderMenuButton`
+
+A self-hiding hamburger toggle for the `BiampLayout` responsive drawer. Only renders when the parent `BiampLayout` is in drawer mode (i.e. below `breakpoint` with `responsive` enabled) **and** has a `sidebar` — otherwise returns `null`. Safe to leave in the header at all viewport sizes. Clicking toggles the drawer's open/closed state. Extends MUI `ListItemButtonProps` (minus `children`).
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `icon` | `JSX.Element` | hamburger SVG | Override the default hamburger icon |
+| `onClick` | `(e) => void` | — | Optional handler called in addition to the drawer toggle |
+| `sx` | `SxProps` | — | MUI system styles passed to the underlying `BiampHeaderButton` |
+| _...rest_ | `ListItemButtonProps` | — | All other MUI `ListItemButton` props are forwarded |
+
+#### Usage
+
+```tsx
+import {
+  BiampLayout,
+  BiampHeader,
+  BiampHeaderMenuButton,
+  BiampHeaderTitle,
+  BiampSidebar,
+  BiampWrapper,
+} from '@bwp-web/components';
+
+<BiampLayout
+  responsive
+  header={
+    <BiampHeader>
+      {/* Auto-hides on md+ — visible only when drawer mode is active */}
+      <BiampHeaderMenuButton />
+      <BiampHeaderTitle title="My App" />
+    </BiampHeader>
+  }
+  sidebar={<BiampSidebar>{/* ... */}</BiampSidebar>}
+>
+  <BiampWrapper>{/* content */}</BiampWrapper>
+</BiampLayout>;
+```
+
 ### `BiampHeaderProfile`
 
 A 36×36px profile button that renders a 32×32 image with a 4px border radius. Extends MUI `ListItemButtonProps`.
@@ -395,6 +435,7 @@ function AppLauncher() {
 - `BiampHeaderActions` — Flex container for grouping action buttons and profile.
 - `BiampHeaderButtonList` — Horizontal list with 4px gaps for header buttons.
 - `BiampHeaderButton` — Selectable 40×40px icon button for header actions.
+- `BiampHeaderMenuButton` — Self-hiding hamburger toggle for the responsive `BiampLayout` drawer.
 - `BiampHeaderProfile` — Profile image button.
 - `BiampAppPopover` — Styled popover for the app-launcher content.
 - `BiampBuildAppContent` — 2-column grid container for "Configure & Build" app tiles.

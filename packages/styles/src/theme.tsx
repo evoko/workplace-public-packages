@@ -978,20 +978,6 @@ export const biampTheme = (
               '&.MuiDrawer-paperAnchorTop, &.MuiDrawer-paperAnchorBottom': {
                 width: `calc(100% - ${theme.spacing(3)})`,
               },
-              '& .MuiListItemButton-root': {
-                color: colors.sidebar,
-              },
-              '& .MuiListItemButton-root.Mui-selected': {
-                backgroundColor: alpha(colors.white, 0.1),
-                color: colors.white,
-                '&:hover': {
-                  backgroundColor: alpha(colors.white, 0.1),
-                },
-              },
-              '& .MuiListItemButton-root:hover': {
-                backgroundColor: alpha(colors.white, 0.1),
-                color: colors.white,
-              },
             }),
           },
         },
