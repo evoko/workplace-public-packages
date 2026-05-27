@@ -1,4 +1,4 @@
-import React, { createContext, forwardRef, useContext } from 'react';
+import React, { createContext, forwardRef, useContext, useState } from 'react';
 import {
   Autocomplete,
   AutocompleteProps,
@@ -29,7 +29,7 @@ export interface BiampGlobalSearchOption {
 
 export type BiampGlobalSearchProps = Omit<
   AutocompleteProps<BiampGlobalSearchOption, false, false, true>,
-  'renderInput' | 'renderOption' | 'PaperComponent'
+  'renderInput' | 'renderOption' | 'PaperComponent' | 'value' | 'defaultValue'
 > & {
   placeholder?: string;
   noResultsText?: string;
@@ -359,6 +359,14 @@ export function BiampGlobalSearch({
 }: BiampGlobalSearchProps) {
   const hasOptions = options.length > 0;
 
+  // BiampGlobalSearch is a launcher, not a value-bound field — selecting an option
+  // fires its `onClick` (e.g. navigation) but should never store a selected value
+  // on the Autocomplete. We hardcode `value={null}` below to enforce that; the
+  // internal input state below covers the case where the consumer hasn't
+  // controlled `inputValue` themselves, so `clearOnSelect` works in all modes.
+  const [internalInputValue, setInternalInputValue] = useState('');
+  const inputValue = inputValueProp ?? internalInputValue;
+
   const handleChange: typeof onChange = (event, value, reason, details) => {
     if (value && typeof value !== 'string' && value.onClick) {
       value.onClick();
@@ -367,11 +375,18 @@ export function BiampGlobalSearch({
   };
 
   const handleInputChange: typeof onInputChange = (event, value, reason) => {
-    if (clearOnSelect && (reason === 'selectOption' || reason === 'reset')) {
-      onInputChange?.(event, '', reason);
-      return;
+    let nextValue: string;
+    if (reason === 'selectOption' || reason === 'reset') {
+      // On selection the launcher should never adopt the option's label —
+      // either clear the field or keep the user's typed text in place.
+      nextValue = clearOnSelect ? '' : inputValue;
+    } else {
+      nextValue = value;
     }
-    onInputChange?.(event, value, reason);
+    if (inputValueProp === undefined) {
+      setInternalInputValue(nextValue);
+    }
+    onInputChange?.(event, nextValue, reason);
   };
 
   return (
@@ -380,12 +395,13 @@ export function BiampGlobalSearch({
         hasOptions,
         loading,
         noResultsText,
-        query: inputValueProp ?? '',
+        query: inputValue,
       }}
     >
       <Autocomplete<BiampGlobalSearchOption, false, false, true>
         options={options}
-        inputValue={inputValueProp}
+        value={null}
+        inputValue={inputValue}
         loading={loading}
         fullWidth={fullWidth}
         sx={{

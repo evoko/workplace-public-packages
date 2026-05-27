@@ -6,6 +6,8 @@ The component ships with a header-friendly look out of the box: 40px input heigh
 
 > **Important:** This component uses `freeSolo` mode with `filterOptions={(x) => x}` — it does **not** filter options internally. Consumers must provide their own filtering logic and pass already-filtered options.
 
+> **Launcher pattern, not a value-bound field:** `BiampGlobalSearch` is designed as a navigation launcher. Selecting an option fires its `onClick` (and the consumer's `onChange`) but does **not** set a value on the Autocomplete — the input is not "filled" with the option's label, and the clear (`×`) button never appears. The `value` and `defaultValue` props from MUI's Autocomplete are intentionally omitted from `BiampGlobalSearchProps` for this reason.
+
 ## Installation
 
 ```bash
