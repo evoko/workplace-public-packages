@@ -593,7 +593,7 @@ function HeaderOnlyResponsiveDemo() {
           the menu button reveals a drawer containing the same controls.
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Set with <code>responsive</code> + <code>drawerOnly</code> on{' '}
+          Set with <code>responsive</code> + <code>mobileSidebarOnly</code> on{' '}
           <code>BiampLayout</code>. The sidebar is never rendered inline.
         </Typography>
       </BiampWrapper>
@@ -604,7 +604,7 @@ function HeaderOnlyResponsiveDemo() {
 /**
  * Header-only desktop layout that moves search, organizations, and apps into
  * a mobile drawer below the breakpoint. Enabled with `responsive` +
- * `drawerOnly` on `BiampLayout` — the sidebar prop is treated as drawer
+ * `mobileSidebarOnly` on `BiampLayout` — the sidebar prop is treated as drawer
  * content only and is never shown inline.
  */
 export const HeaderOnlyResponsive: Story = {

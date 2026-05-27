@@ -49,7 +49,8 @@ export function OrganizationSelector({
           palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
         borderRadius: 3,
         p: 1.5,
-        boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.15)',
+        boxShadow: ({ palette }) =>
+          `0 4px 24px 0 ${alpha(palette.common.black, 0.15)}`,
         overflow: 'auto',
         ...sx,
       }}
