@@ -203,6 +203,8 @@ function BiampGlobalSearchListItem({
 }) {
   const { query } = useContext(SearchContext);
   const { key, ...rest } = liProps;
+  // Below `md` the chips would crowd out the title/subtitle on narrow viewports,
+  // so we skip rendering them (and the `+N` overflow chip) entirely.
   const isMobile = useMediaQuery<Theme>((theme) =>
     theme.breakpoints.down('md'),
   );

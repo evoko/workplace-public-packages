@@ -98,6 +98,8 @@ type BiampHeaderSearchProps = Omit<BiampGlobalSearchProps, 'options'> & {
   options?: BiampGlobalSearchOption[];
 };
 
+// Backward-compat wrapper: header-friendly styling now lives in `BiampGlobalSearch`,
+// so this exists only to keep prop-less `<BiampHeaderSearch />` call sites working.
 export function BiampHeaderSearch({
   options = [],
   ...props

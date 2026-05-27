@@ -2,6 +2,8 @@
 
 A searchable autocomplete component with support for icons, subtitles, associated-item chips, keyboard navigation hints, and click handlers. Built on MUI's `Autocomplete` in `freeSolo` mode.
 
+The component ships with a header-friendly look out of the box: 40px input height, `px: 1.5` outer padding, no visible border, and `fullWidth` enabled — so it can be dropped straight into a `BiampHeader` without extra styling. All of this is overridable via the standard `sx` prop.
+
 > **Important:** This component uses `freeSolo` mode with `filterOptions={(x) => x}` — it does **not** filter options internally. Consumers must provide their own filtering logic and pass already-filtered options.
 
 ## Installation
@@ -22,14 +24,14 @@ npm install @bwp-web/components
 
 ### `BiampGlobalSearchOption`
 
-| Property          | Type                  | Required | Description                                                          |
-| ----------------- | --------------------- | -------- | -------------------------------------------------------------------- |
-| `title`           | `string`              | Yes      | Primary label for the option                                         |
-| `icon`            | `React.ReactNode`     | No       | Leading icon (rendered in a 24x24 container)                         |
-| `subtitle`        | `string`              | No       | Secondary text shown on hover/focus                                  |
-| `associatedItems` | `{ label: string }[]` | No       | Chip labels shown on hover/focus (max 3 displayed, overflow counted) |
-| `endIcon`         | `React.ReactNode`     | No       | Trailing icon shown on hover/focus                                   |
-| `onClick`         | `() => void`          | No       | Called when the option is selected — useful for navigation           |
+| Property          | Type                  | Required | Description                                                                                                          |
+| ----------------- | --------------------- | -------- | -------------------------------------------------------------------------------------------------------------------- |
+| `title`           | `string`              | Yes      | Primary label for the option                                                                                         |
+| `icon`            | `React.ReactNode`     | No       | Leading icon. Rendered in a 16×16 container; child `svg`/`MuiSvgIcon-root` is forced to 16×16 — override with an inline `style` or wrapping element if needed |
+| `subtitle`        | `string`              | No       | Secondary text shown on hover/focus                                                                                  |
+| `associatedItems` | `{ label: string }[]` | No       | Chip labels shown on hover/focus on `md`+ viewports (max 3 displayed, overflow counted). Hidden entirely below `md` to save horizontal space |
+| `endIcon`         | `React.ReactNode`     | No       | Trailing icon shown on hover/focus. Same 16×16 sizing rule as `icon`                                                 |
+| `onClick`         | `() => void`          | No       | Called when the option is selected — useful for navigation                                                           |
 
 ## Props
 
@@ -45,6 +47,8 @@ npm install @bwp-web/components
 | `placeholder`   | `string`                                  | `'Search...'`        | Placeholder text for the input                     |
 | `noResultsText` | `string`                                  | `'No results found'` | Text shown when `options` is empty and not loading |
 | `clearOnSelect` | `boolean`                                 | `true`               | Clears the input after an option is selected       |
+| `fullWidth`     | `boolean`                                 | `true`               | Whether the Autocomplete root stretches to fill its container |
+| `sx`            | `SxProps<Theme>`                          | header preset        | Merges with the built-in 40px / `px: 1.5` / borderless preset on the Autocomplete root |
 | `inputSx`       | `SxProps<Theme>`                          | —                    | Additional styles for the input field              |
 | _...rest_       | `AutocompleteProps`                       | —                    | All other MUI Autocomplete props are forwarded     |
 
@@ -173,6 +177,10 @@ function AsyncSearch() {
   );
 }
 ```
+
+## Responsive Behavior
+
+Below the `md` breakpoint (900px by default), `associatedItems` chips — and the `+N` overflow chip — are not rendered at all. They would otherwise eat into the limited horizontal space available on mobile. The leading `icon`, `title`, `subtitle`, and `endIcon` continue to render normally.
 
 ## Exports
 
