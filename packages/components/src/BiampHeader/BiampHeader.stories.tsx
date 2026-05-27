@@ -10,9 +10,16 @@ import {
   BiampHeaderButton,
   BiampHeaderProfile,
   BiampAppPopover,
+  type BiampGlobalSearchOption,
 } from '@bwp-web/components';
 import { UserInitialsIcon } from '@bwp-web/components';
-import { AppsIcon, AppsIconFilled } from '@bwp-web/assets';
+import {
+  AppsIcon,
+  AppsIconFilled,
+  CalendarIcon,
+  PersonIcon,
+  PinLocationIcon,
+} from '@bwp-web/assets';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
@@ -37,6 +44,12 @@ const meta: Meta<typeof BiampHeader> = {
 export default meta;
 type Story = StoryObj<typeof BiampHeader>;
 
+const sampleSearchOptions: BiampGlobalSearchOption[] = [
+  { icon: <CalendarIcon variant="md" />, title: 'Weekly Standup' },
+  { icon: <PersonIcon variant="md" />, title: 'Jane Doe' },
+  { icon: <PinLocationIcon variant="md" />, title: 'Floor 2' },
+];
+
 function DefaultDemo() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
@@ -44,7 +57,7 @@ function DefaultDemo() {
   return (
     <BiampHeader>
       <BiampHeaderTitle title="Workplace" subtitle="Booking" />
-      <BiampHeaderSearch />
+      <BiampHeaderSearch options={sampleSearchOptions} />
       <BiampHeaderActions>
         <BiampHeaderButtonList>
           <BiampHeaderButton
@@ -205,7 +218,7 @@ export const WithSearch: Story = {
   render: () => (
     <BiampHeader>
       <BiampHeaderTitle title="Buildings" />
-      <BiampHeaderSearch />
+      <BiampHeaderSearch options={sampleSearchOptions} />
     </BiampHeader>
   ),
 };
@@ -504,7 +517,7 @@ function SubComponentsDemo() {
             width: 400,
           }}
         >
-          <BiampHeaderSearch />
+          <BiampHeaderSearch options={sampleSearchOptions} />
         </Box>
       </Box>
 
@@ -599,7 +612,7 @@ function WithBorderDemo() {
   return (
     <BiampHeader sx={{ border: '1px solid', borderColor: 'divider' }}>
       <BiampHeaderTitle title="Dashboard" />
-      <BiampHeaderSearch />
+      <BiampHeaderSearch options={sampleSearchOptions} />
       <BiampHeaderActions>
         <BiampHeaderButtonList>
           <BiampHeaderButton
@@ -652,7 +665,7 @@ function BuildAppContentToggleDemo() {
   return (
     <BiampHeader>
       <BiampHeaderTitle title="Dashboard" />
-      <BiampHeaderSearch />
+      <BiampHeaderSearch options={sampleSearchOptions} />
       <BiampHeaderActions>
         <BiampHeaderButtonList>
           <BiampHeaderButton

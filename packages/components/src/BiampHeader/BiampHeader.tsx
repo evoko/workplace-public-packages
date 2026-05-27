@@ -2,7 +2,6 @@ import {
   alpha,
   Box,
   BoxProps,
-  InputAdornment,
   ListItemButton,
   ListItemButtonProps,
   Popover,
@@ -11,13 +10,16 @@ import {
   StackProps,
   SvgIcon,
   SvgIconProps,
-  TextField,
-  TextFieldProps,
   Typography,
 } from '@mui/material';
 import { Children, JSX, ReactNode } from 'react';
-import { BiampRedLogo, ExternalLinkIcon, SearchIcon } from '@bwp-web/assets';
+import { BiampRedLogo, ExternalLinkIcon } from '@bwp-web/assets';
 import { useBiampLayoutDrawer } from '../BiampLayout/BiampLayout';
+import {
+  BiampGlobalSearch,
+  type BiampGlobalSearchOption,
+  type BiampGlobalSearchProps,
+} from '../BiampGlobalSearch/BiampGlobalSearch';
 
 type BiampHeaderProps = StackProps & {
   children?: React.ReactNode;
@@ -92,41 +94,15 @@ export function BiampHeaderTitle({
   );
 }
 
-type BiampHeaderSearchProps = TextFieldProps;
+type BiampHeaderSearchProps = Omit<BiampGlobalSearchProps, 'options'> & {
+  options?: BiampGlobalSearchOption[];
+};
 
-export function BiampHeaderSearch({ sx, ...props }: BiampHeaderSearchProps) {
-  return (
-    <TextField
-      placeholder="Search..."
-      fullWidth
-      sx={{
-        px: 1.5,
-        '& .MuiOutlinedInput-root': {
-          height: '40px !important',
-          minHeight: '40px',
-        },
-        '& .MuiOutlinedInput-input': {
-          height: '40px !important',
-        },
-        '& .MuiOutlinedInput-notchedOutline': {
-          height: '40px !important',
-          border: 'none',
-          boxShadow: 'none',
-        },
-        ...sx,
-      }}
-      slotProps={{
-        input: {
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon />
-            </InputAdornment>
-          ),
-        },
-      }}
-      {...props}
-    />
-  );
+export function BiampHeaderSearch({
+  options = [],
+  ...props
+}: BiampHeaderSearchProps) {
+  return <BiampGlobalSearch options={options} {...props} />;
 }
 
 type BiampHeaderActionsProps = BoxProps & {

@@ -221,12 +221,17 @@ function BiampGlobalSearchListItem({
       {option.icon && (
         <Box
           sx={{
-            width: 24,
-            height: 24,
+            width: 16,
+            height: 16,
             flexShrink: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            '& > svg, & > .MuiSvgIcon-root': {
+              width: 16,
+              height: 16,
+              fontSize: 16,
+            },
           }}
         >
           {option.icon}
@@ -311,7 +316,11 @@ function BiampGlobalSearchListItem({
             justifyContent: 'center',
             ml: chips.length > 0 ? 0 : 'auto',
             visibility: 'hidden',
-            '& .MuiSvgIcon-root': { fontSize: 14 },
+            '& > svg, & > .MuiSvgIcon-root': {
+              width: 16,
+              height: 16,
+              fontSize: 16,
+            },
           }}
         >
           {option.endIcon}
@@ -332,8 +341,10 @@ export function BiampGlobalSearch({
   inputValue: inputValueProp,
   loading = false,
   clearOnSelect = true,
+  fullWidth = true,
   onChange,
   onInputChange,
+  sx,
   ...props
 }: BiampGlobalSearchProps) {
   const hasOptions = options.length > 0;
@@ -366,6 +377,23 @@ export function BiampGlobalSearch({
         options={options}
         inputValue={inputValueProp}
         loading={loading}
+        fullWidth={fullWidth}
+        sx={{
+          px: 1.5,
+          '& .MuiOutlinedInput-root': {
+            height: '40px !important',
+            minHeight: '40px',
+          },
+          '& .MuiOutlinedInput-input': {
+            height: '40px !important',
+          },
+          '& .MuiOutlinedInput-notchedOutline': {
+            height: '40px !important',
+            border: 'none',
+            boxShadow: 'none',
+          },
+          ...sx,
+        }}
         onChange={handleChange}
         onInputChange={handleInputChange}
         loadingText={
@@ -406,10 +434,6 @@ export function BiampGlobalSearch({
             sx={{
               '& .MuiOutlinedInput-root': { padding: '0px !important' },
               '& .MuiInputBase-input': { paddingLeft: '8px !important' },
-              '& .MuiOutlinedInput-root:not(:hover):not(.Mui-focused) .MuiOutlinedInput-notchedOutline':
-                {
-                  border: 'none',
-                },
             }}
             slotProps={{
               input: {
