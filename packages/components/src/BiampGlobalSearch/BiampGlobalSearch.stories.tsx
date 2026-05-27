@@ -28,7 +28,7 @@ import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
 // Sample data — 5 entity types matching design requirements
 // ---------------------------------------------------------------------------
 
-const endIcon = <ArrowUpRightIcon variant="xxs" />;
+const endIcon = <ArrowUpRightIcon variant="xs" />;
 
 const sampleOptions: BiampGlobalSearchOption[] = [
   {

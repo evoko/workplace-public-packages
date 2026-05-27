@@ -119,25 +119,39 @@ function App() {
 
 ### `BiampHeaderSearch`
 
-A search input with a leading search icon adornment and `px: 1.5` horizontal padding. The input is styled with a fixed 40px height and no visible border. Extends MUI `TextFieldProps`.
+A thin convenience wrapper around [`BiampGlobalSearch`](./biamp-global-search.md) that preserves the original header-search call site (`<BiampHeaderSearch />`). It forwards every prop straight through and defaults `options` to `[]` so prop-less usages keep compiling. The 40px height, `px: 1.5` outer padding, leading search icon, and borderless input now live inside `BiampGlobalSearch` itself.
+
+For new code, prefer using `BiampGlobalSearch` directly — `BiampHeaderSearch` exists primarily for backward compatibility.
 
 #### Props
 
+`BiampHeaderSearchProps` is `Omit<BiampGlobalSearchProps, 'options'> & { options?: BiampGlobalSearchOption[] }`. See the [BiampGlobalSearch docs](./biamp-global-search.md) for the full prop list (`placeholder`, `inputValue`, `onInputChange`, `loading`, `clearOnSelect`, `sx`, etc.).
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `sx` | `SxProps` | — | MUI system styles passed to the `TextField` |
-| _...rest_ | `TextFieldProps` | — | All other MUI `TextField` props (e.g. `placeholder`, `onChange`, `value`) are forwarded |
+| `options` | `BiampGlobalSearchOption[]` | `[]` | Pre-filtered option list to render in the dropdown |
+| _...rest_ | `BiampGlobalSearchProps` | — | All other props are forwarded to the underlying `BiampGlobalSearch` |
 
 #### Usage
 
 ```tsx
-import { BiampHeader, BiampHeaderTitle, BiampHeaderSearch } from '@bwp-web/components';
+import {
+  BiampHeader,
+  BiampHeaderTitle,
+  BiampHeaderSearch,
+  type BiampGlobalSearchOption,
+} from '@bwp-web/components';
+
+const options: BiampGlobalSearchOption[] = [
+  { title: 'Conference Room A' },
+  { title: 'Conference Room B' },
+];
 
 function App() {
   return (
     <BiampHeader>
       <BiampHeaderTitle title="Buildings" />
-      <BiampHeaderSearch sx={{ flexGrow: 1 }} />
+      <BiampHeaderSearch options={options} sx={{ flexGrow: 1 }} />
     </BiampHeader>
   );
 }
@@ -431,7 +445,7 @@ function AppLauncher() {
 
 - `BiampHeader` — Horizontal header container with padding.
 - `BiampHeaderTitle` — Title section with icon, optional title, and optional subtitle.
-- `BiampHeaderSearch` — Search input with leading search icon.
+- `BiampHeaderSearch` — Backward-compat wrapper around `BiampGlobalSearch` for header search.
 - `BiampHeaderActions` — Flex container for grouping action buttons and profile.
 - `BiampHeaderButtonList` — Horizontal list with 4px gaps for header buttons.
 - `BiampHeaderButton` — Selectable 40×40px icon button for header actions.

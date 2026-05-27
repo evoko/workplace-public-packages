@@ -21,6 +21,7 @@ import {
   OrganizationItemList,
   OrganizationSelectorButton,
   OrganizationSelectorPopover,
+  type BiampGlobalSearchOption,
 } from '@bwp-web/components';
 import { AppPopoverContent } from '../BiampHeader/BiampHeader.storyhelpers';
 import HomeIcon from '@mui/icons-material/Home';
@@ -31,7 +32,20 @@ import PeopleIcon from '@mui/icons-material/People';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { AppsIcon, AppsIconFilled, BuildingIcon } from '@bwp-web/assets';
+import {
+  AppsIcon,
+  AppsIconFilled,
+  BuildingIcon,
+  CalendarIcon,
+  PersonIcon,
+  PinLocationIcon,
+} from '@bwp-web/assets';
+
+const sampleSearchOptions: BiampGlobalSearchOption[] = [
+  { icon: <CalendarIcon variant="md" />, title: 'Weekly Standup' },
+  { icon: <PersonIcon variant="md" />, title: 'Jane Doe' },
+  { icon: <PinLocationIcon variant="md" />, title: 'Floor 2' },
+];
 
 const meta: Meta<typeof BiampLayout> = {
   title: 'Components/BiampLayout',
@@ -75,7 +89,7 @@ function WithHeaderSidebarAndWrapperDemo() {
       header={
         <BiampHeader>
           <BiampHeaderTitle title="Dashboard" />
-          <BiampHeaderSearch />
+          <BiampHeaderSearch options={sampleSearchOptions} />
           <BiampHeaderActions>
             <BiampHeaderButtonList>
               <BiampHeaderButton
@@ -168,7 +182,7 @@ function WithHeaderAndWrapperDemo() {
       header={
         <BiampHeader>
           <BiampHeaderTitle title="Settings" />
-          <BiampHeaderSearch />
+          <BiampHeaderSearch options={sampleSearchOptions} />
           <BiampHeaderActions>
             <BiampHeaderButtonList>
               <BiampHeaderButton
@@ -338,7 +352,10 @@ function ResponsiveDemo() {
         <BiampHeader>
           <BiampHeaderMenuButton />
           <BiampHeaderTitle title="Responsive" />
-          <BiampHeaderSearch sx={{ display: { xs: 'none', md: 'flex' } }} />
+          <BiampHeaderSearch
+            options={sampleSearchOptions}
+            sx={{ display: { xs: 'none', md: 'flex' } }}
+          />
           <BiampHeaderActions>
             <OrganizationSelectorButton
               icon={
@@ -387,6 +404,7 @@ function ResponsiveDemo() {
         <BiampSidebar>
           <Stack gap={{ xs: 2, md: 0 }}>
             <BiampHeaderSearch
+              options={sampleSearchOptions}
               sx={{
                 display: { xs: 'flex', md: 'none' },
                 px: 0,
@@ -503,7 +521,10 @@ function HeaderOnlyResponsiveDemo() {
         <BiampHeader>
           <BiampHeaderMenuButton />
           <BiampHeaderTitle title="Header-only app" />
-          <BiampHeaderSearch sx={{ display: { xs: 'none', md: 'flex' } }} />
+          <BiampHeaderSearch
+            options={sampleSearchOptions}
+            sx={{ display: { xs: 'none', md: 'flex' } }}
+          />
           <BiampHeaderActions>
             <OrganizationSelectorButton
               icon={
@@ -552,6 +573,7 @@ function HeaderOnlyResponsiveDemo() {
         <BiampSidebar expandable={false}>
           <Stack gap={2}>
             <BiampHeaderSearch
+              options={sampleSearchOptions}
               sx={{
                 px: 0,
                 '& .MuiOutlinedInput-root': {

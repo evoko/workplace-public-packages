@@ -1,4 +1,4 @@
-import React, { createContext, forwardRef, useContext } from 'react';
+import React, { createContext, forwardRef, useContext, useState } from 'react';
 import {
   Autocomplete,
   AutocompleteProps,
@@ -9,6 +9,7 @@ import {
   PaperProps,
   TextField,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 import type { SxProps, Theme } from '@mui/material/styles';
 import { KeyArrowDownIcon, KeyArrowUpIcon, SearchIcon } from '@bwp-web/assets';
@@ -28,7 +29,7 @@ export interface BiampGlobalSearchOption {
 
 export type BiampGlobalSearchProps = Omit<
   AutocompleteProps<BiampGlobalSearchOption, false, false, true>,
-  'renderInput' | 'renderOption' | 'PaperComponent'
+  'renderInput' | 'renderOption' | 'PaperComponent' | 'value' | 'defaultValue'
 > & {
   placeholder?: string;
   noResultsText?: string;
@@ -202,9 +203,18 @@ function BiampGlobalSearchListItem({
 }) {
   const { query } = useContext(SearchContext);
   const { key, ...rest } = liProps;
+  // Below `md` the chips would crowd out the title/subtitle on narrow viewports,
+  // so we skip rendering them (and the `+N` overflow chip) entirely.
+  const isMobile = useMediaQuery<Theme>((theme) =>
+    theme.breakpoints.down('md'),
+  );
   const maxChips = 3;
-  const chips = option.associatedItems?.slice(0, maxChips) ?? [];
-  const overflow = (option.associatedItems?.length ?? 0) - maxChips;
+  const chips = isMobile
+    ? []
+    : (option.associatedItems?.slice(0, maxChips) ?? []);
+  const overflow = isMobile
+    ? 0
+    : (option.associatedItems?.length ?? 0) - maxChips;
 
   return (
     <li
@@ -221,12 +231,17 @@ function BiampGlobalSearchListItem({
       {option.icon && (
         <Box
           sx={{
-            width: 24,
-            height: 24,
+            width: 16,
+            height: 16,
             flexShrink: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            '& > svg, & > .MuiSvgIcon-root': {
+              width: 16,
+              height: 16,
+              fontSize: 16,
+            },
           }}
         >
           {option.icon}
@@ -311,7 +326,11 @@ function BiampGlobalSearchListItem({
             justifyContent: 'center',
             ml: chips.length > 0 ? 0 : 'auto',
             visibility: 'hidden',
-            '& .MuiSvgIcon-root': { fontSize: 14 },
+            '& > svg, & > .MuiSvgIcon-root': {
+              width: 16,
+              height: 16,
+              fontSize: 16,
+            },
           }}
         >
           {option.endIcon}
@@ -332,11 +351,21 @@ export function BiampGlobalSearch({
   inputValue: inputValueProp,
   loading = false,
   clearOnSelect = true,
+  fullWidth = true,
   onChange,
   onInputChange,
+  sx,
   ...props
 }: BiampGlobalSearchProps) {
   const hasOptions = options.length > 0;
+
+  // BiampGlobalSearch is a launcher, not a value-bound field — selecting an option
+  // fires its `onClick` (e.g. navigation) but should never store a selected value
+  // on the Autocomplete. We hardcode `value={null}` below to enforce that; the
+  // internal input state below covers the case where the consumer hasn't
+  // controlled `inputValue` themselves, so `clearOnSelect` works in all modes.
+  const [internalInputValue, setInternalInputValue] = useState('');
+  const inputValue = inputValueProp ?? internalInputValue;
 
   const handleChange: typeof onChange = (event, value, reason, details) => {
     if (value && typeof value !== 'string' && value.onClick) {
@@ -346,11 +375,18 @@ export function BiampGlobalSearch({
   };
 
   const handleInputChange: typeof onInputChange = (event, value, reason) => {
-    if (clearOnSelect && (reason === 'selectOption' || reason === 'reset')) {
-      onInputChange?.(event, '', reason);
-      return;
+    let nextValue: string;
+    if (reason === 'selectOption' || reason === 'reset') {
+      // On selection the launcher should never adopt the option's label —
+      // either clear the field or keep the user's typed text in place.
+      nextValue = clearOnSelect ? '' : inputValue;
+    } else {
+      nextValue = value;
     }
-    onInputChange?.(event, value, reason);
+    if (inputValueProp === undefined) {
+      setInternalInputValue(nextValue);
+    }
+    onInputChange?.(event, nextValue, reason);
   };
 
   return (
@@ -359,13 +395,31 @@ export function BiampGlobalSearch({
         hasOptions,
         loading,
         noResultsText,
-        query: inputValueProp ?? '',
+        query: inputValue,
       }}
     >
       <Autocomplete<BiampGlobalSearchOption, false, false, true>
         options={options}
-        inputValue={inputValueProp}
+        value={null}
+        inputValue={inputValue}
         loading={loading}
+        fullWidth={fullWidth}
+        sx={{
+          px: 1.5,
+          '& .MuiOutlinedInput-root': {
+            height: '40px !important',
+            minHeight: '40px',
+          },
+          '& .MuiOutlinedInput-input': {
+            height: '40px !important',
+          },
+          '& .MuiOutlinedInput-notchedOutline': {
+            height: '40px !important',
+            border: 'none',
+            boxShadow: 'none',
+          },
+          ...sx,
+        }}
         onChange={handleChange}
         onInputChange={handleInputChange}
         loadingText={
@@ -406,10 +460,6 @@ export function BiampGlobalSearch({
             sx={{
               '& .MuiOutlinedInput-root': { padding: '0px !important' },
               '& .MuiInputBase-input': { paddingLeft: '8px !important' },
-              '& .MuiOutlinedInput-root:not(:hover):not(.Mui-focused) .MuiOutlinedInput-notchedOutline':
-                {
-                  border: 'none',
-                },
             }}
             slotProps={{
               input: {
