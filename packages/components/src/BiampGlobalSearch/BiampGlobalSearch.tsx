@@ -9,6 +9,7 @@ import {
   PaperProps,
   TextField,
   Typography,
+  useMediaQuery,
 } from '@mui/material';
 import type { SxProps, Theme } from '@mui/material/styles';
 import { KeyArrowDownIcon, KeyArrowUpIcon, SearchIcon } from '@bwp-web/assets';
@@ -202,9 +203,16 @@ function BiampGlobalSearchListItem({
 }) {
   const { query } = useContext(SearchContext);
   const { key, ...rest } = liProps;
+  const isMobile = useMediaQuery<Theme>((theme) =>
+    theme.breakpoints.down('md'),
+  );
   const maxChips = 3;
-  const chips = option.associatedItems?.slice(0, maxChips) ?? [];
-  const overflow = (option.associatedItems?.length ?? 0) - maxChips;
+  const chips = isMobile
+    ? []
+    : (option.associatedItems?.slice(0, maxChips) ?? []);
+  const overflow = isMobile
+    ? 0
+    : (option.associatedItems?.length ?? 0) - maxChips;
 
   return (
     <li
