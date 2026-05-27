@@ -22,42 +22,42 @@ For `BiampTable` only:
 
 ## Components
 
-| Component                    | Description                                                                                                                                      |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `BiampLayout`                | Full-page layout shell with optional header and sidebar slots                                                                                    |
-| `BiampWrapper`               | Full-page content wrapper with padding, rounded corners, scrollable overflow, an optional debounced loading bar, and an optional sticky top slot |
-| `BiampSidebar`               | Expandable vertical sidebar (48px ↔ 240px) with animated toggle and copyright caption                                                            |
-| `BiampSidebarIconList`       | Scrollable vertical list with 4px gaps for sidebar items; suppresses overscroll bounce                                                           |
-| `BiampSidebarIcon`           | Selectable 48px-tall icon button for sidebar navigation, with optional `name` label                                                              |
-| `BiampSidebarComponent`      | 48×48px rounded box for arbitrary sidebar content                                                                                                |
-| `BiampHeader`                | Horizontal header container with padding                                                                                                         |
-| `BiampHeaderTitle`           | Title section with icon, optional title, and optional subtitle                                                                                   |
-| `BiampHeaderSearch`          | Search input with leading search icon                                                                                                            |
-| `BiampHeaderActions`         | Flex container for grouping action buttons and profile                                                                                           |
-| `BiampHeaderButtonList`      | Horizontal list with 4px gaps for header buttons                                                                                                 |
-| `BiampHeaderButton`          | Selectable 40×40px icon button for header actions                                                                                                |
-| `BiampHeaderMenuButton`      | Self-hiding hamburger toggle for the `BiampLayout` responsive drawer — renders only when the layout is in drawer mode                            |
-| `BiampHeaderProfile`         | Profile button with image or custom children (e.g. `UserInitialsIcon`)                                                                           |
-| `BiampAppPopover`            | Styled popover for the app-launcher content                                                                                                      |
-| `BiampBuildAppContent`       | 2-column grid container for "Configure & Build" app tiles                                                                                        |
-| `BiampBuildAppContentItem`   | App tile with image, name, description, and optional action button                                                                               |
-| `BiampEndUserAppContent`     | Responsive container for end-user app items: stack for one child, 2-column grid for many                                                         |
-| `BiampEndUserAppContentItem` | Row-style app item with image, name, description, and external link; supports `href`                                                             |
-| `BiampBanner`                | Full-width animated notification banner                                                                                                          |
-| `BiampBannerIcon`            | Leading icon slot for `BiampBanner`                                                                                                              |
-| `BiampBannerContent`         | Center message slot for `BiampBanner`                                                                                                            |
-| `BiampBannerActions`         | Trailing actions slot for `BiampBanner`                                                                                                          |
-| `BiampGlobalSearch`          | Searchable autocomplete with icons, subtitles, chips, and keyboard hints                                                                         |
-| `OrganizationSelector`       | Styled outer container for an organization-switcher list (used inline or inside `OrganizationSelectorPopover`); `loading` shows a centered spinner |
-| `OrganizationItemList`       | Bordered list grouping that auto-renders dividers between children; optional `label` divider below and `maxHeight` for sticky-footer scroll       |
-| `OrganizationItem`           | Single clickable row (logo, primary/secondary text, optional `meta` badge, chevron) built on `ListItemButton`; `isCurrent` hides chevron + adds ring |
-| `OrganizationSelectorButton` | Minimal `ButtonBase` trigger with an `icon` (20×20 enforced), `name`, and a trailing chevron that flips on `open`                                |
-| `OrganizationSelectorPopover`| `Popover` pre-positioned bottom-right of the anchor, wrapping an `OrganizationSelector` (8px vertical offset from the trigger)                   |
-| `SegmentedButtonGroup`       | Horizontal container for grouping segmented toggle buttons                                                                                       |
-| `SegmentedButton`            | Individual toggle button for use inside `SegmentedButtonGroup`                                                                                   |
-| `BiampTable`                 | Composable data table with sorting, selection, pagination, and more                                                                              |
-| `UserInitialsIcon`           | Avatar-style icon showing a user's initials with a deterministic color                                                                           |
-| `DynamicSvgIcon`             | Renders a remotely-fetched SVG with a skeleton loader and required fallback                                                                      |
+| Component                     | Description                                                                                                                                          |
+| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `BiampLayout`                 | Full-page layout shell with optional header and sidebar slots                                                                                        |
+| `BiampWrapper`                | Full-page content wrapper with padding, rounded corners, scrollable overflow, an optional debounced loading bar, and an optional sticky top slot     |
+| `BiampSidebar`                | Expandable vertical sidebar (48px ↔ 240px) with animated toggle and copyright caption                                                                |
+| `BiampSidebarIconList`        | Scrollable vertical list with 4px gaps for sidebar items; suppresses overscroll bounce                                                               |
+| `BiampSidebarIcon`            | Selectable 48px-tall icon button for sidebar navigation, with optional `name` label                                                                  |
+| `BiampSidebarComponent`       | 48×48px rounded box for arbitrary sidebar content                                                                                                    |
+| `BiampHeader`                 | Horizontal header container with padding                                                                                                             |
+| `BiampHeaderTitle`            | Title section with icon, optional title, and optional subtitle                                                                                       |
+| `BiampHeaderSearch`           | Search input with leading search icon                                                                                                                |
+| `BiampHeaderActions`          | Flex container for grouping action buttons and profile                                                                                               |
+| `BiampHeaderButtonList`       | Horizontal list with 4px gaps for header buttons                                                                                                     |
+| `BiampHeaderButton`           | Selectable 40×40px icon button for header actions                                                                                                    |
+| `BiampHeaderMenuButton`       | Self-hiding hamburger toggle for the `BiampLayout` responsive drawer — renders only when the layout is in drawer mode                                |
+| `BiampHeaderProfile`          | Profile button with image or custom children (e.g. `UserInitialsIcon`)                                                                               |
+| `BiampAppPopover`             | Styled popover for the app-launcher content                                                                                                          |
+| `BiampBuildAppContent`        | 2-column grid container for "Configure & Build" app tiles                                                                                            |
+| `BiampBuildAppContentItem`    | App tile with image, name, description, and optional action button                                                                                   |
+| `BiampEndUserAppContent`      | Responsive container for end-user app items: stack for one child, 2-column grid for many                                                             |
+| `BiampEndUserAppContentItem`  | Row-style app item with image, name, description, and external link; supports `href`                                                                 |
+| `BiampBanner`                 | Full-width animated notification banner                                                                                                              |
+| `BiampBannerIcon`             | Leading icon slot for `BiampBanner`                                                                                                                  |
+| `BiampBannerContent`          | Center message slot for `BiampBanner`                                                                                                                |
+| `BiampBannerActions`          | Trailing actions slot for `BiampBanner`                                                                                                              |
+| `BiampGlobalSearch`           | Searchable autocomplete with icons, subtitles, chips, and keyboard hints                                                                             |
+| `OrganizationSelector`        | Styled outer container for an organization-switcher list (used inline or inside `OrganizationSelectorPopover`); `loading` shows a centered spinner   |
+| `OrganizationItemList`        | Bordered list grouping that auto-renders dividers between children; optional `label` divider below and `maxHeight` for sticky-footer scroll          |
+| `OrganizationItem`            | Single clickable row (logo, primary/secondary text, optional `meta` badge, chevron) built on `ListItemButton`; `isCurrent` hides chevron + adds ring |
+| `OrganizationSelectorButton`  | Minimal `ButtonBase` trigger with an `icon` (20×20 enforced), `name`, and a trailing chevron that flips on `open`                                    |
+| `OrganizationSelectorPopover` | `Popover` pre-positioned bottom-right of the anchor, wrapping an `OrganizationSelector` (8px vertical offset from the trigger)                       |
+| `SegmentedButtonGroup`        | Horizontal container for grouping segmented toggle buttons                                                                                           |
+| `SegmentedButton`             | Individual toggle button for use inside `SegmentedButtonGroup`                                                                                       |
+| `BiampTable`                  | Composable data table with sorting, selection, pagination, and more                                                                                  |
+| `UserInitialsIcon`            | Avatar-style icon showing a user's initials with a deterministic color                                                                               |
+| `DynamicSvgIcon`              | Renders a remotely-fetched SVG with a skeleton loader and required fallback                                                                          |
 
 ## Usage
 
@@ -190,15 +190,15 @@ Pass `responsive` to collapse the sidebar into a left-anchored drawer below `bre
 
 #### BiampLayout Props
 
-| Prop                | Type                | Default | Description                                                                                                                  |
-| ------------------- | ------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `header`            | `React.ReactNode`   | —       | Optional header (typically a `BiampHeader`)                                                                                  |
-| `sidebar`           | `React.ReactNode`   | —       | Optional sidebar (typically a `BiampSidebar`)                                                                                |
-| `children`          | `React.ReactNode`   | —       | Main content area — typically one or more `BiampWrapper` components                                                          |
-| `responsive`        | `boolean`           | `false` | When true, the sidebar collapses into a left-anchored drawer below `breakpoint`                                              |
-| `breakpoint`        | `Breakpoint`        | `'md'`  | Breakpoint at which the sidebar becomes a drawer                                                                             |
-| `drawerHeader`      | `React.ReactNode`   | —       | Content rendered next to the auto-rendered close button at the top of the responsive drawer                                  |
-| `mobileSidebarOnly` | `boolean`           | `false` | When combined with `responsive`, the sidebar is never rendered inline — only as the mobile drawer. Ignored when `responsive` is false |
+| Prop                | Type              | Default | Description                                                                                                                           |
+| ------------------- | ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `header`            | `React.ReactNode` | —       | Optional header (typically a `BiampHeader`)                                                                                           |
+| `sidebar`           | `React.ReactNode` | —       | Optional sidebar (typically a `BiampSidebar`)                                                                                         |
+| `children`          | `React.ReactNode` | —       | Main content area — typically one or more `BiampWrapper` components                                                                   |
+| `responsive`        | `boolean`         | `false` | When true, the sidebar collapses into a left-anchored drawer below `breakpoint`                                                       |
+| `breakpoint`        | `Breakpoint`      | `'md'`  | Breakpoint at which the sidebar becomes a drawer                                                                                      |
+| `drawerHeader`      | `React.ReactNode` | —       | Content rendered next to the auto-rendered close button at the top of the responsive drawer                                           |
+| `mobileSidebarOnly` | `boolean`         | `false` | When combined with `responsive`, the sidebar is never rendered inline — only as the mobile drawer. Ignored when `responsive` is false |
 
 #### useBiampLayoutDrawer
 
@@ -214,12 +214,12 @@ function MyTrigger() {
 }
 ```
 
-| Field        | Type                            | Description                                                  |
-| ------------ | ------------------------------- | ------------------------------------------------------------ |
-| `isDrawer`   | `boolean`                       | True when the layout is below `breakpoint` and has a sidebar |
-| `open`       | `boolean`                       | Current open state of the drawer                             |
-| `setOpen`    | `(open: boolean) => void`       | Setter for the drawer's open state                           |
-| `hasSidebar` | `boolean`                       | Whether the layout was given a `sidebar` prop                |
+| Field        | Type                      | Description                                                  |
+| ------------ | ------------------------- | ------------------------------------------------------------ |
+| `isDrawer`   | `boolean`                 | True when the layout is below `breakpoint` and has a sidebar |
+| `open`       | `boolean`                 | Current open state of the drawer                             |
+| `setOpen`    | `(open: boolean) => void` | Setter for the drawer's open state                           |
+| `hasSidebar` | `boolean`                 | Whether the layout was given a `sidebar` prop                |
 
 ### BiampWrapper
 
@@ -265,14 +265,14 @@ Vertical sidebar that animates between a collapsed (48px) and expanded (240px) w
 
 #### BiampSidebarIcon Props
 
-| Prop                  | Type              | Default | Description                                                                                                                                                            |
-| --------------------- | ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `icon`                | `React.ReactNode` | —       | Icon shown when not selected                                                                                                                                          |
-| `selectedIcon`        | `React.ReactNode` | —       | Icon shown when selected                                                                                                                                              |
-| `selected`            | `boolean`         | —       | Whether this item is currently active                                                                                                                                 |
-| `name`                | `string`          | —       | Optional label rendered to the right of the icon when the parent sidebar is expanded                                                                                  |
-| `closeDrawerOnClick`  | `boolean`         | `true`  | When inside a `BiampLayout` responsive drawer, whether clicking auto-closes the drawer. Set to `false` for items that open menus/popovers anchored to this element    |
-| `onClick`             | `() => void`      | —       | Click handler                                                                                                                                                         |
+| Prop                 | Type              | Default | Description                                                                                                                                                        |
+| -------------------- | ----------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `icon`               | `React.ReactNode` | —       | Icon shown when not selected                                                                                                                                       |
+| `selectedIcon`       | `React.ReactNode` | —       | Icon shown when selected                                                                                                                                           |
+| `selected`           | `boolean`         | —       | Whether this item is currently active                                                                                                                              |
+| `name`               | `string`          | —       | Optional label rendered to the right of the icon when the parent sidebar is expanded                                                                               |
+| `closeDrawerOnClick` | `boolean`         | `true`  | When inside a `BiampLayout` responsive drawer, whether clicking auto-closes the drawer. Set to `false` for items that open menus/popovers anchored to this element |
+| `onClick`            | `() => void`      | —       | Click handler                                                                                                                                                      |
 
 ### BiampHeader
 
@@ -410,31 +410,31 @@ function OrgSwitcher({ orgs, currentOrgId }) {
 
 #### OrganizationSelector Props
 
-| Prop      | Type              | Default | Description                                    |
-| --------- | ----------------- | ------- | ---------------------------------------------- |
-| `loading` | `boolean`         | `false` | Replaces children with a centered spinner       |
-| `sx`      | `SxProps<Theme>`  | —       | MUI `sx` overrides; all other `StackProps` flow |
+| Prop      | Type             | Default | Description                                     |
+| --------- | ---------------- | ------- | ----------------------------------------------- |
+| `loading` | `boolean`        | `false` | Replaces children with a centered spinner       |
+| `sx`      | `SxProps<Theme>` | —       | MUI `sx` overrides; all other `StackProps` flow |
 
 #### OrganizationItemList Props
 
-| Prop        | Type                 | Description                                                                                |
-| ----------- | -------------------- | ------------------------------------------------------------------------------------------ |
-| `children`  | `React.ReactNode`    | `OrganizationItem` children — dividers are auto-rendered between them                      |
-| `label`     | `React.ReactNode`    | Optional divider with a label rendered below the list (e.g. "Private organizations")        |
-| `maxHeight` | `number \| string`   | Caps list height and enables vertical scrolling within the list                            |
-| `sx`        | `SxProps<Theme>`     | MUI `sx` overrides                                                                         |
+| Prop        | Type               | Description                                                                          |
+| ----------- | ------------------ | ------------------------------------------------------------------------------------ |
+| `children`  | `React.ReactNode`  | `OrganizationItem` children — dividers are auto-rendered between them                |
+| `label`     | `React.ReactNode`  | Optional divider with a label rendered below the list (e.g. "Private organizations") |
+| `maxHeight` | `number \| string` | Caps list height and enables vertical scrolling within the list                      |
+| `sx`        | `SxProps<Theme>`   | MUI `sx` overrides                                                                   |
 
 #### OrganizationItem Props
 
 Extends `ListItemButtonProps` — `onClick`, `component`, `to`, `href`, `disabled`, `selected` all work natively.
 
-| Prop            | Type                       | Default | Description                                                                                   |
-| --------------- | -------------------------- | ------- | --------------------------------------------------------------------------------------------- |
-| `primaryText`   | `React.ReactNode`          | —       | Top-left text. Strings get default styling; pass a node to override                            |
-| `secondaryText` | `React.ReactNode`          | —       | Optional second line below `primaryText`. No auto-prefix — pass the full text you want         |
-| `meta`          | `React.ReactNode`          | —       | Optional right-side text on the same row as `primaryText`                                     |
-| `logo`          | `React.ReactNode \| string` | —       | Logo element (e.g. `<Avatar />`) or an image URL                                              |
-| `isCurrent`     | `boolean`                  | `false` | Highlights the logo with a ring, hides the chevron, and disables interaction without dimming  |
+| Prop            | Type                        | Default | Description                                                                                  |
+| --------------- | --------------------------- | ------- | -------------------------------------------------------------------------------------------- |
+| `primaryText`   | `React.ReactNode`           | —       | Top-left text. Strings get default styling; pass a node to override                          |
+| `secondaryText` | `React.ReactNode`           | —       | Optional second line below `primaryText`. No auto-prefix — pass the full text you want       |
+| `meta`          | `React.ReactNode`           | —       | Optional right-side text on the same row as `primaryText`                                    |
+| `logo`          | `React.ReactNode \| string` | —       | Logo element (e.g. `<Avatar />`) or an image URL                                             |
+| `isCurrent`     | `boolean`                   | `false` | Highlights the logo with a ring, hides the chevron, and disables interaction without dimming |
 
 #### OrganizationSelectorButton Props
 
@@ -442,18 +442,18 @@ Extends `ButtonBaseProps` — pass `onClick`, `component`, or any standard butto
 
 | Prop   | Type              | Default | Description                                                                                                                |
 | ------ | ----------------- | ------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `icon` | `React.ReactNode` | —       | Leading visual rendered inside a 20×20 fixed-size slot (typically an image of the current org's logo)                       |
+| `icon` | `React.ReactNode` | —       | Leading visual rendered inside a 20×20 fixed-size slot (typically an image of the current org's logo)                      |
 | `name` | `string`          | —       | Text label rendered in `caption` variant with `fontWeight: 600`; uses `noWrap` + `flexShrink: 0` so it never shrinks/wraps |
-| `open` | `boolean`         | `false` | When true, the trailing chevron switches from `ChevronDownIcon` to `ChevronUpIcon`                                          |
+| `open` | `boolean`         | `false` | When true, the trailing chevron switches from `ChevronDownIcon` to `ChevronUpIcon`                                         |
 
 #### OrganizationSelectorPopover Props
 
 Extends `PopoverProps`. Defaults: `anchorOrigin: { vertical: 'bottom', horizontal: 'right' }`, `transformOrigin: { vertical: -8, horizontal: 'right' }` — both overridable.
 
-| Prop      | Type              | Default | Description                                                  |
-| --------- | ----------------- | ------- | ------------------------------------------------------------ |
-| `children`| `React.ReactNode` | —       | Items rendered inside the wrapped `OrganizationSelector`     |
-| `loading` | `boolean`         | `false` | Forwarded to the inner `OrganizationSelector`'s `loading`    |
+| Prop       | Type              | Default | Description                                               |
+| ---------- | ----------------- | ------- | --------------------------------------------------------- |
+| `children` | `React.ReactNode` | —       | Items rendered inside the wrapped `OrganizationSelector`  |
+| `loading`  | `boolean`         | `false` | Forwarded to the inner `OrganizationSelector`'s `loading` |
 
 ### BiampTable
 
@@ -465,15 +465,15 @@ Requires `@tanstack/react-table` >= 8.0.0 as a peer dependency.
 
 Detailed per-component docs are available in the repository's [`/docs`](../../docs) folder (GitHub links):
 
-| Document                                                    | Contents                                                                            |
-| ----------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [biamp-layout.md](../../docs/biamp-layout.md)               | `BiampLayout` — props, examples, design details                                     |
-| [biamp-wrapper.md](../../docs/biamp-wrapper.md)             | `BiampWrapper` — props, examples, design details                                    |
-| [biamp-sidebar.md](../../docs/biamp-sidebar.md)             | `BiampSidebar`, `BiampSidebarIconList`, `BiampSidebarIcon`, `BiampSidebarComponent` |
-| [biamp-header.md](../../docs/biamp-header.md)               | `BiampHeader` family + app-launcher components                                      |
-| [biamp-banner.md](../../docs/biamp-banner.md)               | `BiampBanner` family — props, examples, design details                              |
-| [biamp-global-search.md](../../docs/biamp-global-search.md) | `BiampGlobalSearch` — options, filtering, async loading, navigation                 |
-| [organization-selector.md](../../docs/organization-selector.md) | `OrganizationSelector` family — items, popover, trigger button, list grouping     |
-| [biamp-table.md](../../docs/biamp-table.md)                 | `BiampTable` — columns, sorting, selection, pagination, filters, export             |
-| [user-initials-icon.md](../../docs/user-initials-icon.md)   | `UserInitialsIcon` — props, color seeding, sizing, edge cases                       |
-| [dynamic-svg-icon.md](../../docs/dynamic-svg-icon.md)       | `DynamicSvgIcon` — props, hook API, caching, skeleton, fallback                     |
+| Document                                                        | Contents                                                                            |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [biamp-layout.md](../../docs/biamp-layout.md)                   | `BiampLayout` — props, examples, design details                                     |
+| [biamp-wrapper.md](../../docs/biamp-wrapper.md)                 | `BiampWrapper` — props, examples, design details                                    |
+| [biamp-sidebar.md](../../docs/biamp-sidebar.md)                 | `BiampSidebar`, `BiampSidebarIconList`, `BiampSidebarIcon`, `BiampSidebarComponent` |
+| [biamp-header.md](../../docs/biamp-header.md)                   | `BiampHeader` family + app-launcher components                                      |
+| [biamp-banner.md](../../docs/biamp-banner.md)                   | `BiampBanner` family — props, examples, design details                              |
+| [biamp-global-search.md](../../docs/biamp-global-search.md)     | `BiampGlobalSearch` — options, filtering, async loading, navigation                 |
+| [organization-selector.md](../../docs/organization-selector.md) | `OrganizationSelector` family — items, popover, trigger button, list grouping       |
+| [biamp-table.md](../../docs/biamp-table.md)                     | `BiampTable` — columns, sorting, selection, pagination, filters, export             |
+| [user-initials-icon.md](../../docs/user-initials-icon.md)       | `UserInitialsIcon` — props, color seeding, sizing, edge cases                       |
+| [dynamic-svg-icon.md](../../docs/dynamic-svg-icon.md)           | `DynamicSvgIcon` — props, hook API, caching, skeleton, fallback                     |
