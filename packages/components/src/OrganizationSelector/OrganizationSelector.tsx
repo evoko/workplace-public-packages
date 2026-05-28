@@ -281,18 +281,7 @@ export function OrganizationSelectorButton({
       }}
       {...props}
     >
-      <Box
-        sx={{
-          width: 20,
-          height: 20,
-          flexShrink: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {icon}
-      </Box>
+      {icon}
       <Typography
         variant="caption"
         fontWeight={600}
