@@ -555,6 +555,11 @@ export const biampTheme = (
               boxShadow: `0px 1px 1px 0px ${alpha(colors.black, 0.05)}`,
               display: 'flex',
               gap: '8px',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              '&.MuiButton-fullWidth': {
+                flexShrink: 1,
+              },
               '& .MuiButton-startIcon': {
                 marginRight: '0px',
                 marginLeft: '0px',

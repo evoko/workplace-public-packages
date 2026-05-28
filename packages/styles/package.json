@@ -1,6 +1,6 @@
 {
   "name": "@bwp-web/styles",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Shared Biamp Workplace theme and styling utilities built on MUI",
   "type": "module",
   "main": "./dist/index.cjs",
