@@ -139,7 +139,10 @@ export function BiampLayout({
                 onClick={() => setOpen(false)}
                 aria-label="Close drawer"
               >
-                <CloseIcon variant="md" />
+                <CloseIcon
+                  variant="md"
+                  sx={{ color: ({ palette }) => palette.text.secondary }}
+                />
               </IconButton>
               {drawerHeader}
             </Stack>

@@ -8,12 +8,10 @@ import {
   PopoverProps,
   Stack,
   StackProps,
-  SvgIcon,
-  SvgIconProps,
   Typography,
 } from '@mui/material';
 import { Children, JSX, ReactNode } from 'react';
-import { BiampRedLogo, ExternalLinkIcon } from '@bwp-web/assets';
+import { BiampRedLogo, ColumnsIcon, ExternalLinkIcon } from '@bwp-web/assets';
 import { useBiampLayoutDrawer } from '../BiampLayout/BiampLayout';
 import {
   BiampGlobalSearch,
@@ -156,17 +154,6 @@ export function BiampHeaderButtonList({
   );
 }
 
-function DefaultMenuIcon(props: SvgIconProps) {
-  return (
-    <SvgIcon {...props}>
-      <path
-        fill="currentColor"
-        d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z"
-      />
-    </SvgIcon>
-  );
-}
-
 type BiampHeaderMenuButtonProps = Omit<ListItemButtonProps, 'children'> & {
   /** Override the default hamburger icon. */
   icon?: JSX.Element;
@@ -187,7 +174,16 @@ export function BiampHeaderMenuButton({
   if (!drawer?.isDrawer || !drawer.hasSidebar) return null;
   return (
     <BiampHeaderButton
-      icon={icon ?? <DefaultMenuIcon />}
+      icon={
+        icon ?? (
+          <ColumnsIcon
+            sx={{
+              transform: 'rotate(90deg)',
+              color: ({ palette }) => palette.text.secondary,
+            }}
+          />
+        )
+      }
       onClick={(e) => {
         drawer.setOpen(!drawer.open);
         onClick?.(e);
