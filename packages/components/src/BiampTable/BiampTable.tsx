@@ -182,6 +182,15 @@ export function BiampTable<TData>({
     enableRowSelection ? 48 : 0,
   );
 
+  // Snapshot of which columns are visible (and their order), captured at render
+  // time. Passed to each memoized row so visibility/order changes force a
+  // re-render — the row object reference is stable across visibility changes, so
+  // the memo can't detect them by querying the row itself.
+  const visibleColumnsKey = table
+    .getVisibleLeafColumns()
+    .map((col) => col.id)
+    .join(',');
+
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -305,6 +314,7 @@ export function BiampTable<TData>({
               <BiampTableRow
                 key={row.id}
                 row={row}
+                visibleColumnsKey={visibleColumnsKey}
                 isExpanded={row.getIsExpanded()}
                 isSelected={row.getIsSelected()}
                 onRowClick={onRowClick}

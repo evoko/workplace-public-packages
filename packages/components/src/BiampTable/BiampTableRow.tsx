@@ -150,6 +150,13 @@ function renderCellContent<TData>({
 
 export type BiampTableRowProps<TData> = {
   row: Row<TData>;
+  /**
+   * Snapshot of the visible leaf column ids (in order), e.g. `"name,status,size"`.
+   * Used by the memo comparator to detect column visibility/order changes — the
+   * `row` object reference is stable across those changes, so they can't be
+   * detected by querying the row itself.
+   */
+  visibleColumnsKey: string;
   isExpanded: boolean;
   isSelected: boolean;
   onRowClick?: (row: TData) => void;
@@ -169,6 +176,8 @@ export type BiampTableRowProps<TData> = {
   >;
 };
 
+// `visibleColumnsKey` is intentionally not destructured here — it's only read by
+// the memo comparator below, not by the render body.
 function BiampTableRowInner<TData>({
   row,
   isExpanded,
@@ -319,7 +328,7 @@ function biampTableRowPropsAreEqual<TData>(
     prev.row.original === next.row.original &&
     prev.isSelected === next.isSelected &&
     prev.isExpanded === next.isExpanded &&
-    prev.row.getVisibleCells().length === next.row.getVisibleCells().length &&
+    prev.visibleColumnsKey === next.visibleColumnsKey &&
     prev.enableRowSelection === next.enableRowSelection &&
     prev.enableExpanding === next.enableExpanding &&
     prev.alwaysExpanded === next.alwaysExpanded &&
