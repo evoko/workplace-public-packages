@@ -12,4 +12,6 @@ export {
   BiampBuildAppContentItem,
   BiampEndUserAppContent,
   BiampEndUserAppContentItem,
+  BiampAppListContent,
+  BiampAppListItem,
 } from './BiampHeader';

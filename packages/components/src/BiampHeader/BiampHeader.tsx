@@ -2,6 +2,9 @@ import {
   alpha,
   Box,
   BoxProps,
+  Button,
+  Divider,
+  IconButton,
   ListItemButton,
   ListItemButtonProps,
   Popover,
@@ -234,7 +237,7 @@ type BiampAppPopoverProps = PopoverProps & {
   children: React.ReactNode;
 };
 
-const POPOVER_MAX_WIDTH = 530;
+const POPOVER_MAX_WIDTH = 320;
 
 export function BiampAppPopover({
   children,
@@ -421,6 +424,102 @@ export function BiampEndUserAppContentItem({
         </Typography>
       </Stack>
       <ExternalLinkIcon sx={{ width: 16, height: 16, ml: 'auto' }} />
+    </Stack>
+  );
+}
+
+type BiampAppListContentProps = StackProps & {
+  children: React.ReactNode;
+};
+
+export function BiampAppListContent({
+  children,
+  sx,
+  ...props
+}: BiampAppListContentProps) {
+  return (
+    <Stack
+      direction="column"
+      divider={<Divider />}
+      sx={{
+        borderRadius: 2,
+        border: ({ palette }) => `1px solid ${palette.divider}`,
+        overflow: 'hidden',
+        ...sx,
+      }}
+      {...props}
+    >
+      {children}
+    </Stack>
+  );
+}
+
+type BiampAppListItemProps = StackProps & {
+  image: ReactNode;
+  name: string;
+  onOpen?: () => void;
+  href?: string;
+};
+
+export function BiampAppListItem({
+  image,
+  name,
+  onOpen,
+  href,
+  sx,
+  ...props
+}: BiampAppListItemProps) {
+  const hasActions = onOpen || href;
+  return (
+    <Stack
+      direction="row"
+      alignItems="center"
+      sx={{ gap: 1.5, py: 1.5, px: 2, ...sx }}
+      {...props}
+    >
+      <Box sx={{ width: 40, height: 40, flexShrink: 0 }}>{image}</Box>
+      <Typography variant="body2" fontWeight={600} sx={{ flex: 1 }}>
+        {name}
+      </Typography>
+      {hasActions && (
+        <Stack
+          direction="row"
+          sx={{
+            borderRadius: 1,
+            border: ({ palette }) => `1px solid ${palette.divider}`,
+            overflow: 'hidden',
+          }}
+        >
+          {onOpen && (
+            <Button
+              variant="text"
+              size="small"
+              onClick={onOpen}
+              sx={{
+                borderRadius: 0,
+                px: 1.5,
+                minWidth: 0,
+                color: 'text.primary',
+                '&:hover': { bgcolor: 'action.hover' },
+              }}
+            >
+              Open
+            </Button>
+          )}
+          {onOpen && href && <Divider orientation="vertical" flexItem />}
+          {href && (
+            <IconButton
+              component="a"
+              href={href}
+              target="_blank"
+              size="small"
+              sx={{ borderRadius: 0, px: 1 }}
+            >
+              <ExternalLinkIcon sx={{ width: 14, height: 14 }} />
+            </IconButton>
+          )}
+        </Stack>
+      )}
     </Stack>
   );
 }
