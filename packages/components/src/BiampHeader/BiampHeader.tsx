@@ -236,7 +236,7 @@ type BiampAppPopoverProps = PopoverProps & {
   children: React.ReactNode;
 };
 
-const POPOVER_MAX_WIDTH = 320;
+const POPOVER_MAX_WIDTH = 350;
 
 export function BiampAppPopover({
   children,
