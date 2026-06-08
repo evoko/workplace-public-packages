@@ -695,7 +695,7 @@ function BuildAppContentToggleDemo() {
 }
 
 /**
- * Clicking the Apps button in the header opens a BiampBuildAppContent
+ * Clicking the Apps button in the header opens a BiampAppListContent
  * as a popover anchored below the button.
  */
 export const BuildAppContentToggle: Story = {

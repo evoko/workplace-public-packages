@@ -281,6 +281,7 @@ type BiampBuildAppContentProps = BoxProps & {
   children: React.ReactNode;
 };
 
+/** @deprecated Use `BiampAppListContent` + `BiampAppListItem` instead. */
 export function BiampBuildAppContent({
   children,
   sx,
@@ -308,6 +309,7 @@ type BiampBuildAppContentItemProps = StackProps & {
   button?: ReactNode;
 };
 
+/** @deprecated Use `BiampAppListItem` instead. */
 export function BiampBuildAppContentItem({
   image,
   name,
@@ -352,6 +354,7 @@ type BiampEndUserAppContentProps = StackProps & {
   children: React.ReactNode;
 };
 
+/** @deprecated Use `BiampAppListContent` + `BiampAppListItem` instead. */
 export function BiampEndUserAppContent({
   children,
   sx,
@@ -384,6 +387,7 @@ type BiampEndUserAppContentItemProps = StackProps & {
   target?: string;
 };
 
+/** @deprecated Use `BiampAppListItem` instead. */
 export function BiampEndUserAppContentItem({
   image,
   name,
@@ -428,7 +432,7 @@ export function BiampEndUserAppContentItem({
   );
 }
 
-type BiampAppListContentProps = StackProps & {
+type BiampAppListContentProps = Omit<StackProps, 'direction'> & {
   children: React.ReactNode;
 };
 
@@ -454,7 +458,7 @@ export function BiampAppListContent({
   );
 }
 
-type BiampAppListItemProps = StackProps & {
+type BiampAppListItemProps = Omit<StackProps, 'direction' | 'alignItems'> & {
   image: ReactNode;
   name: string;
   onOpen?: () => void;
@@ -512,6 +516,8 @@ export function BiampAppListItem({
               component="a"
               href={href}
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open in new tab"
               size="small"
               sx={{ borderRadius: 0, px: 1 }}
             >
