@@ -4,7 +4,6 @@ import {
   BoxProps,
   Button,
   Divider,
-  IconButton,
   ListItemButton,
   ListItemButtonProps,
   Popover,
@@ -254,13 +253,13 @@ export function BiampAppPopover({
       slotProps={{
         paper: {
           sx: {
-            borderRadius: '16px',
+            borderRadius: '12px',
             backgroundImage: 'none',
             outlineWidth: '0.6px',
             outlineStyle: 'solid',
             outlineColor: ({ palette }) => palette.divider,
             boxShadow: ({ palette }) =>
-              `0px 4px 24px 0px ${alpha(palette.common.black, 0.15)};`,
+              `0px 4px 50px 0px ${alpha(palette.grey[900], 0.1)}`,
             maxWidth: POPOVER_MAX_WIDTH,
             width: '100%',
             p: 2,
@@ -327,7 +326,7 @@ export function BiampBuildAppContentItem({
         borderRadius: 1.5,
         outlineWidth: '1px',
         outlineStyle: 'solid',
-        outlineColor: ({ palette }) => palette.divider,
+        outlineColor: ({ palette }) => palette.dividers,
         ...sx,
       }}
       {...props}
@@ -444,10 +443,14 @@ export function BiampAppListContent({
   return (
     <Stack
       direction="column"
-      divider={<Divider />}
+      divider={
+        <Divider
+          sx={{ borderColor: ({ palette }) => palette.dividers.secondary }}
+        />
+      }
       sx={{
         borderRadius: 2,
-        border: ({ palette }) => `1px solid ${palette.divider}`,
+        border: ({ palette }) => `1px solid ${palette.dividers.secondary}`,
         overflow: 'hidden',
         ...sx,
       }}
@@ -490,8 +493,10 @@ export function BiampAppListItem({
           direction="row"
           sx={{
             borderRadius: 1,
-            border: ({ palette }) => `1px solid ${palette.divider}`,
+            border: ({ palette }) => `1px solid ${palette.dividers.secondary}`,
             overflow: 'hidden',
+            boxShadow: ({ palette }) =>
+              `0px 1px 1px 0px ${alpha(palette.common.black, 0.05)}`,
           }}
         >
           {onOpen && (
@@ -512,17 +517,25 @@ export function BiampAppListItem({
           )}
           {onOpen && href && <Divider orientation="vertical" flexItem />}
           {href && (
-            <IconButton
+            <Box
               component="a"
               href={href}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open in new tab"
-              size="small"
-              sx={{ borderRadius: 0, px: 1 }}
+              sx={{
+                px: 1,
+                display: 'flex',
+                alignItems: 'center',
+                alignSelf: 'stretch',
+                cursor: 'pointer',
+                color: 'text.secondary',
+                textDecoration: 'none',
+                '&:hover': { bgcolor: 'action.hover' },
+              }}
             >
               <ExternalLinkIcon sx={{ width: 14, height: 14 }} />
-            </IconButton>
+            </Box>
           )}
         </Stack>
       )}
