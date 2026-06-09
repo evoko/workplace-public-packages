@@ -1,6 +1,6 @@
 {
   "name": "@bwp-web/components",
-  "version": "1.8.3",
+  "version": "1.9.0",
   "description": "Shared Biamp Workplace React components",
   "type": "module",
   "main": "./dist/index.cjs",

@@ -2,6 +2,8 @@ import {
   alpha,
   Box,
   BoxProps,
+  Button,
+  Divider,
   ListItemButton,
   ListItemButtonProps,
   Popover,
@@ -234,7 +236,7 @@ type BiampAppPopoverProps = PopoverProps & {
   children: React.ReactNode;
 };
 
-const POPOVER_MAX_WIDTH = 530;
+const POPOVER_MAX_WIDTH = 350;
 
 export function BiampAppPopover({
   children,
@@ -251,13 +253,13 @@ export function BiampAppPopover({
       slotProps={{
         paper: {
           sx: {
-            borderRadius: '16px',
+            borderRadius: '12px',
             backgroundImage: 'none',
             outlineWidth: '0.6px',
             outlineStyle: 'solid',
             outlineColor: ({ palette }) => palette.divider,
             boxShadow: ({ palette }) =>
-              `0px 4px 24px 0px ${alpha(palette.common.black, 0.15)};`,
+              `0px 4px 50px 0px ${alpha(palette.grey[900], 0.1)}`,
             maxWidth: POPOVER_MAX_WIDTH,
             width: '100%',
             p: 2,
@@ -278,6 +280,7 @@ type BiampBuildAppContentProps = BoxProps & {
   children: React.ReactNode;
 };
 
+/** @deprecated Use `BiampAppListContent` + `BiampAppListItem` instead. */
 export function BiampBuildAppContent({
   children,
   sx,
@@ -305,6 +308,7 @@ type BiampBuildAppContentItemProps = StackProps & {
   button?: ReactNode;
 };
 
+/** @deprecated Use `BiampAppListItem` instead. */
 export function BiampBuildAppContentItem({
   image,
   name,
@@ -322,7 +326,7 @@ export function BiampBuildAppContentItem({
         borderRadius: 1.5,
         outlineWidth: '1px',
         outlineStyle: 'solid',
-        outlineColor: ({ palette }) => palette.divider,
+        outlineColor: ({ palette }) => palette.dividers,
         ...sx,
       }}
       {...props}
@@ -349,6 +353,7 @@ type BiampEndUserAppContentProps = StackProps & {
   children: React.ReactNode;
 };
 
+/** @deprecated Use `BiampAppListContent` + `BiampAppListItem` instead. */
 export function BiampEndUserAppContent({
   children,
   sx,
@@ -381,6 +386,7 @@ type BiampEndUserAppContentItemProps = StackProps & {
   target?: string;
 };
 
+/** @deprecated Use `BiampAppListItem` instead. */
 export function BiampEndUserAppContentItem({
   image,
   name,
@@ -421,6 +427,118 @@ export function BiampEndUserAppContentItem({
         </Typography>
       </Stack>
       <ExternalLinkIcon sx={{ width: 16, height: 16, ml: 'auto' }} />
+    </Stack>
+  );
+}
+
+type BiampAppListContentProps = Omit<StackProps, 'direction'> & {
+  children: React.ReactNode;
+};
+
+export function BiampAppListContent({
+  children,
+  sx,
+  ...props
+}: BiampAppListContentProps) {
+  return (
+    <Stack
+      direction="column"
+      divider={
+        <Divider
+          sx={{ borderColor: ({ palette }) => palette.dividers.secondary }}
+        />
+      }
+      sx={{
+        borderRadius: 2,
+        border: ({ palette }) => `1px solid ${palette.dividers.secondary}`,
+        overflow: 'hidden',
+        ...sx,
+      }}
+      {...props}
+    >
+      {children}
+    </Stack>
+  );
+}
+
+type BiampAppListItemProps = Omit<StackProps, 'direction' | 'alignItems'> & {
+  image: ReactNode;
+  name: string;
+  onOpen?: () => void;
+  href?: string;
+};
+
+export function BiampAppListItem({
+  image,
+  name,
+  onOpen,
+  href,
+  sx,
+  ...props
+}: BiampAppListItemProps) {
+  const hasActions = onOpen || href;
+  return (
+    <Stack
+      direction="row"
+      alignItems="center"
+      sx={{ gap: 1.5, py: 1.5, px: 2, ...sx }}
+      {...props}
+    >
+      <Box sx={{ width: 40, height: 40, flexShrink: 0 }}>{image}</Box>
+      <Typography variant="body2" fontWeight={600} sx={{ flex: 1 }}>
+        {name}
+      </Typography>
+      {hasActions && (
+        <Stack
+          direction="row"
+          sx={{
+            borderRadius: 1,
+            border: ({ palette }) => `1px solid ${palette.dividers.secondary}`,
+            overflow: 'hidden',
+            boxShadow: ({ palette }) =>
+              `0px 1px 1px 0px ${alpha(palette.common.black, 0.05)}`,
+          }}
+        >
+          {onOpen && (
+            <Button
+              variant="text"
+              size="small"
+              onClick={onOpen}
+              sx={{
+                borderRadius: 0,
+                px: 1.5,
+                minWidth: 0,
+                color: 'text.primary',
+                '&:hover': { bgcolor: 'action.hover' },
+              }}
+            >
+              Open
+            </Button>
+          )}
+          {onOpen && href && <Divider orientation="vertical" flexItem />}
+          {href && (
+            <Box
+              component="a"
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open in new tab"
+              sx={{
+                px: 1,
+                display: 'flex',
+                alignItems: 'center',
+                alignSelf: 'stretch',
+                cursor: 'pointer',
+                color: 'text.secondary',
+                textDecoration: 'none',
+                '&:hover': { bgcolor: 'action.hover' },
+              }}
+            >
+              <ExternalLinkIcon sx={{ width: 14, height: 14 }} />
+            </Box>
+          )}
+        </Stack>
+      )}
     </Stack>
   );
 }

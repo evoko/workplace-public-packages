@@ -302,13 +302,13 @@ import { BiampHeaderProfile } from '@bwp-web/components';
 
 ### `BiampAppPopover`
 
-A styled `Popover` with a 16px border radius, no background image, a subtle border, and a drop shadow. Uses a flex-column layout with `gap: 2` so children space themselves automatically. Anchors to the bottom-right of its trigger by default. Designed to wrap `BiampBuildAppContent` and `BiampEndUserAppContent` sections for the app-launcher popover. Extends MUI `PopoverProps`.
+A styled `Popover` with a 16px border radius, no background image, a subtle border, and a drop shadow. Uses a flex-column layout with `gap: 2` so children space themselves automatically. Anchors to the bottom-right of its trigger by default. Designed to wrap `BiampAppListContent` for the app-launcher popover. Extends MUI `PopoverProps`.
 
 #### Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `React.ReactNode` | _(required)_ | Popover content — typically `Divider` headings, `BiampBuildAppContent`, and `BiampEndUserAppContent` |
+| `children` | `React.ReactNode` | _(required)_ | Popover content — typically `BiampAppListContent` |
 | `open` | `boolean` | _(required)_ | Whether the popover is open |
 | `sx` | `SxProps` | — | MUI system styles passed to the `Popover` |
 | _...rest_ | `PopoverProps` | — | All other MUI `Popover` props (e.g. `anchorEl`, `onClose`) are forwarded |
@@ -368,20 +368,45 @@ A horizontal row with a 32×32 image, a bold name, a description, and a trailing
 | `sx` | `SxProps` | — | MUI system styles passed to the root element |
 | _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
 
+### `BiampAppListContent`
+
+A flat-list container with a `1px` divider-colored border, `8px` border radius, and `overflow: hidden` so internal `<Divider />` lines extend cleanly edge-to-edge. Renders children separated by `<Divider />` automatically. Use with `BiampAppListItem`. Extends MUI `StackProps`.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `children` | `React.ReactNode` | _(required)_ | List items — typically `BiampAppListItem` elements |
+| `sx` | `SxProps` | — | MUI system styles passed to the root `Stack` |
+| _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
+
+### `BiampAppListItem`
+
+A horizontal row with a 40×40 image slot, a bold app name, and an optional inline action group. When both `onOpen` and `href` are provided the action group renders as `[Open | ↗]` split with a vertical divider. Omitting `onOpen` shows only the external-link button; omitting `href` shows only "Open". When neither is provided no action group is rendered (useful for the currently active app). Extends MUI `StackProps`.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `image` | `React.ReactNode` | _(required)_ | Content rendered inside the 40×40 image slot |
+| `name` | `string` | _(required)_ | Bold `body2` app name |
+| `onOpen` | `() => void` | — | Click handler for the "Open" button |
+| `href` | `string` | — | URL opened in a new tab by the external-link icon button |
+| `sx` | `SxProps` | — | MUI system styles passed to the root `Stack` |
+| _...rest_ | `StackProps` | — | All other MUI `Stack` props are forwarded |
+
 #### App Launcher Usage
 
 ```tsx
 import { useState } from 'react';
-import { Box, Button, Divider } from '@mui/material';
+import { Box } from '@mui/material';
 import {
   BiampHeaderButton,
   BiampAppPopover,
-  BiampBuildAppContent,
-  BiampBuildAppContentItem,
-  BiampEndUserAppContent,
-  BiampEndUserAppContentItem,
+  BiampAppListContent,
+  BiampAppListItem,
 } from '@bwp-web/components';
-import { AppsIcon, AppsIconFilled, WorkplaceApp, BookingApp } from '@bwp-web/assets';
+import { AppsIcon, AppsIconFilled, WorkplaceApp, DesignerApp, BookingApp } from '@bwp-web/assets';
 
 function AppLauncher() {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -400,41 +425,33 @@ function AppLauncher() {
         anchorEl={anchorEl}
         onClose={() => setAnchorEl(null)}
       >
-        <Divider>Configure & Build</Divider>
-        <BiampBuildAppContent>
-          <BiampBuildAppContentItem
+        <BiampAppListContent>
+          <BiampAppListItem
             name="Workplace"
-            description="Monitor and manage your entire AV infrastructure."
             image={
               <Box component="img" src={WorkplaceApp} alt="Workplace"
                 sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             }
           />
-          <BiampBuildAppContentItem
+          <BiampAppListItem
             name="Designer"
-            description="Design AV systems, specify equipment."
+            onOpen={() => window.location.href = '/designer'}
+            href="https://designer.example.com"
             image={
-              <Box component="img" src={WorkplaceApp} alt="Designer"
+              <Box component="img" src={DesignerApp} alt="Designer"
                 sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             }
-            button={
-              <Button variant="outlined" size="small">Open</Button>
-            }
           />
-        </BiampBuildAppContent>
-        <Divider>End user apps</Divider>
-        <BiampEndUserAppContent>
-          <BiampEndUserAppContentItem
+          <BiampAppListItem
             name="Booking"
-            description="Find & Book rooms"
+            onOpen={() => window.location.href = '/booking'}
             href="https://booking.example.com"
-            target="_blank"
             image={
               <Box component="img" src={BookingApp} alt="Booking"
                 sx={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             }
           />
-        </BiampEndUserAppContent>
+        </BiampAppListContent>
       </BiampAppPopover>
     </>
   );
@@ -452,7 +469,9 @@ function AppLauncher() {
 - `BiampHeaderMenuButton` — Self-hiding hamburger toggle for the responsive `BiampLayout` drawer.
 - `BiampHeaderProfile` — Profile image button.
 - `BiampAppPopover` — Styled popover for the app-launcher content.
-- `BiampBuildAppContent` — 2-column grid container for "Configure & Build" app tiles.
-- `BiampBuildAppContentItem` — App tile with image, name, description, and optional action button.
-- `BiampEndUserAppContent` — Responsive container for end-user app items: vertical stack for one child, 2-column grid for multiple.
-- `BiampEndUserAppContentItem` — Row-style app item with image, name, description, and external link; supports `href`.
+- `BiampAppListContent` — Bordered flat-list container with rounded corners and auto-dividers between items.
+- `BiampAppListItem` — Horizontal app row with 40×40 icon, name, and optional `[Open | ↗]` action group.
+- `BiampBuildAppContent` — _(legacy)_ 2-column grid container for "Configure & Build" app tiles.
+- `BiampBuildAppContentItem` — _(legacy)_ App tile with image, name, description, and optional action button.
+- `BiampEndUserAppContent` — _(legacy)_ Responsive container for end-user app items: vertical stack for one child, 2-column grid for multiple.
+- `BiampEndUserAppContentItem` — _(legacy)_ Row-style app item with image, name, description, and external link; supports `href`.

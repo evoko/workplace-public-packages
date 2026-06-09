@@ -43,6 +43,8 @@ For `BiampTable` only:
 | `BiampBuildAppContentItem`    | App tile with image, name, description, and optional action button                                                                                   |
 | `BiampEndUserAppContent`      | Responsive container for end-user app items: stack for one child, 2-column grid for many                                                             |
 | `BiampEndUserAppContentItem`  | Row-style app item with image, name, description, and external link; supports `href`                                                                 |
+| `BiampAppListContent`         | Bordered flat-list container with rounded corners and dividers between items; use with `BiampAppListItem`                                            |
+| `BiampAppListItem`            | Horizontal row with a 40×40 icon, app name, and an optional inline `[Open \| ↗]` action group                                                        |
 | `BiampBanner`                 | Full-width animated notification banner                                                                                                              |
 | `BiampBannerIcon`             | Leading icon slot for `BiampBanner`                                                                                                                  |
 | `BiampBannerContent`          | Center message slot for `BiampBanner`                                                                                                                |
