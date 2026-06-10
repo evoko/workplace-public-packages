@@ -4,6 +4,7 @@ import {
   BookingApp,
   CommandApp,
   ConnectApp,
+  ControlApp,
   DesignerApp,
   WorkplaceApp,
 } from '@bwp-web/assets';
@@ -25,7 +26,7 @@ export const apps = [
     hasButton: true,
   },
   {
-    image: ConnectApp,
+    image: ControlApp,
     name: 'Control Designer',
     hasButton: true,
   },

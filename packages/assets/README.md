@@ -128,14 +128,15 @@ function Logo() {
 
 PNG images for the app-launcher dialog tiles. Each export is a `string` that resolves to a data URL.
 
-| Export         | Description                      |
-| -------------- | -------------------------------- |
-| `BiampRedLogo` | Biamp red logo PNG (data URL)    |
-| `BookingApp`   | Biamp Booking application icon   |
-| `CommandApp`   | Biamp Command application icon   |
-| `ConnectApp`   | Biamp Connect application icon   |
-| `DesignerApp`  | Biamp Designer application icon  |
-| `WorkplaceApp` | Biamp Workplace application icon |
+| Export         | Description                             |
+| -------------- | --------------------------------------- |
+| `BiampRedLogo` | Biamp red logo PNG (data URL)           |
+| `BookingApp`   | Biamp Booking application icon          |
+| `CommandApp`   | Biamp Command application icon          |
+| `ConnectApp`   | Biamp Connect application icon          |
+| `ControlApp`   | Biamp Control Designer application icon |
+| `DesignerApp`  | Biamp Designer application icon         |
+| `WorkplaceApp` | Biamp Workplace application icon        |
 
 ```tsx
 import { WorkplaceApp, DesignerApp, BookingApp } from '@bwp-web/assets';
