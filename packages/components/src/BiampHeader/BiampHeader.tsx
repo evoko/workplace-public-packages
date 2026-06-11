@@ -520,7 +520,10 @@ export function BiampAppListItem({
               orientation="vertical"
               flexItem
               sx={{
-                borderColor: (theme) => theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.4)',
+                borderColor: (theme) =>
+                  theme.palette.mode === 'light'
+                    ? 'rgba(0, 0, 0, 0.2)'
+                    : 'rgba(255, 255, 255, 0.4)',
                 opacity: 0.3,
               }}
             />
