@@ -2185,8 +2185,6 @@ export const biampTheme = (
               fontWeight: theme.typography.fontWeightMedium,
               letterSpacing: theme.typography.caption.letterSpacing,
               lineHeight: theme.typography.caption.lineHeight,
-              backgroundColor: theme.palette.text.primary,
-              color: theme.palette.background.paper,
               '.MuiButton-contained &, .MuiBadge-root:has(.MuiButton-contained) &':
                 {
                   backgroundColor: theme.palette.background.default,

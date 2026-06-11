@@ -7,6 +7,7 @@ import {
   type DrawerProps,
   IconButton,
   Typography,
+  useTheme,
 } from '@mui/material';
 import { CloseIcon, FilterIcon } from '@bwp-web/assets';
 import { type ReactNode, useId, useState } from 'react';
@@ -52,6 +53,7 @@ export function BiampTableToolbarFilters({
 }: BiampTableToolbarFiltersProps) {
   const [open, setOpen] = useState(false);
   const titleId = useId();
+  const theme = useTheme();
 
   function handleClose() {
     onApply?.();
@@ -98,7 +100,14 @@ export function BiampTableToolbarFilters({
                 <Badge
                   badgeContent={activeFilterCount}
                   color="secondary"
-                  sx={{ ml: 1.5, mb: 0.5 }}
+                  sx={{
+                    ml: 1.5,
+                    mb: 0.5,
+                    '& .MuiBadge-badge': {
+                      backgroundColor: theme.palette.text.primary,
+                      color: theme.palette.background.paper,
+                    },
+                  }}
                 />
               </Typography>
               <IconButton
