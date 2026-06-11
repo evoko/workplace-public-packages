@@ -98,14 +98,25 @@ export function BiampTableToolbarSearch({
   };
 
   const clearButton = inputValue ? (
-    <InputAdornment position="end">
+    <InputAdornment
+      position="end"
+      sx={{
+        '&.MuiInputAdornment-root.MuiInputAdornment-positionEnd': {
+          marginRight: 0,
+        },
+        '&.MuiInputAdornment-root svg': {
+          width: 16,
+          height: 16,
+        },
+      }}
+    >
       <IconButton
         size="small"
         onClick={handleClear}
         aria-label={clearLabel}
         sx={{ mr: 0.5 }}
       >
-        <CloseIcon variant="xs" sx={{ width: 20, height: 20 }} />
+        <CloseIcon variant="xs" />
       </IconButton>
     </InputAdornment>
   ) : null;
@@ -119,12 +130,17 @@ export function BiampTableToolbarSearch({
         htmlInput: { maxLength, 'aria-label': placeholder },
         input: {
           startAdornment: (
-            <InputAdornment position="start" sx={{ ml: 1 }}>
-              <SearchIcon
-                variant="xs"
-                color="inherit"
-                sx={{ width: 16, height: 16 }}
-              />
+            <InputAdornment
+              position="start"
+              sx={{
+                ml: 1,
+                '&.MuiInputAdornment-root svg': {
+                  width: 16,
+                  height: 16,
+                },
+              }}
+            >
+              <SearchIcon variant="xs" color="inherit" />
             </InputAdornment>
           ),
           endAdornment: clearButton,
