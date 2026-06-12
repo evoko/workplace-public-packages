@@ -151,6 +151,7 @@ import {
   OtherIcon,
   ParkingAltIcon,
   ParkingIcon,
+  ParkingLotIcon,
   PauseIcon,
   PersonIcon,
   PhoneIcon,
@@ -749,11 +750,11 @@ export const IconGroups: Story = {
             <IconDisplay onlyIcon name="DesignFileIcon">
               <DesignFileIcon />
             </IconDisplay>
+            <IconDisplay onlyIcon name="DeskChairIcon">
+              <DeskChairIcon variant="xs" />
+            </IconDisplay>
             <IconDisplay onlyIcon name="DeskIcon">
               <DeskIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeskChairIcon">
-              <DeskChairIcon />
             </IconDisplay>
             <IconDisplay onlyIcon name="DeviceSpeakerIcon">
               <DeviceSpeakerIcon />
@@ -898,6 +899,9 @@ export const IconGroups: Story = {
             </IconDisplay>
             <IconDisplay onlyIcon name="ParkingIcon">
               <ParkingIcon variant="xs" />
+            </IconDisplay>
+            <IconDisplay onlyIcon name="ParkingLotIcon">
+              <ParkingLotIcon variant="xs" />
             </IconDisplay>
             <IconDisplay onlyIcon name="PauseIcon">
               <PauseIcon />
@@ -1199,6 +1203,9 @@ export const IconGroups: Story = {
             <IconDisplay onlyIcon name="DeleteIcon">
               <DeleteIcon variant="md" />
             </IconDisplay>
+            <IconDisplay onlyIcon name="DeskChairIcon">
+              <DeskChairIcon variant="md" />
+            </IconDisplay>
             <IconDisplay onlyIcon name="DeskIcon">
               <DeskIcon variant="md" />
             </IconDisplay>
@@ -1321,6 +1328,9 @@ export const IconGroups: Story = {
             </IconDisplay>
             <IconDisplay onlyIcon name="ParkingIcon">
               <ParkingIcon variant="md" />
+            </IconDisplay>
+            <IconDisplay onlyIcon name="ParkingLotIcon">
+              <ParkingLotIcon variant="md" />
             </IconDisplay>
             <IconDisplay onlyIcon name="PauseIcon">
               <PauseIcon variant="md" />
