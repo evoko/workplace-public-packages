@@ -1203,14 +1203,14 @@ export const IconGroups: Story = {
             <IconDisplay onlyIcon name="DeleteIcon">
               <DeleteIcon variant="md" />
             </IconDisplay>
+            <IconDisplay onlyIcon name="DeskChairIcon">
+              <DeskChairIcon variant="md" />
+            </IconDisplay>
             <IconDisplay onlyIcon name="DeskIcon">
               <DeskIcon variant="md" />
             </IconDisplay>
             <IconDisplay onlyIcon name="DeskSolidIcon">
               <DeskSolidIcon />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="DeskChairIcon">
-              <DeskChairIcon variant="md" />
             </IconDisplay>
             <IconDisplay onlyIcon name="DoorRoomIcon">
               <DoorRoomIcon variant="md" />
