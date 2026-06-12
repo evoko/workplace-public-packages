@@ -151,6 +151,7 @@ import {
   OtherIcon,
   ParkingAltIcon,
   ParkingIcon,
+  ParkingLotIcon,
   PauseIcon,
   PersonIcon,
   PhoneIcon,
@@ -753,7 +754,7 @@ export const IconGroups: Story = {
               <DeskIcon variant="xs" />
             </IconDisplay>
             <IconDisplay onlyIcon name="DeskChairIcon">
-              <DeskChairIcon />
+              <DeskChairIcon variant="xs" />
             </IconDisplay>
             <IconDisplay onlyIcon name="DeviceSpeakerIcon">
               <DeviceSpeakerIcon />
@@ -898,6 +899,9 @@ export const IconGroups: Story = {
             </IconDisplay>
             <IconDisplay onlyIcon name="ParkingIcon">
               <ParkingIcon variant="xs" />
+            </IconDisplay>
+            <IconDisplay onlyIcon name="ParkingLotIcon">
+              <ParkingLotIcon variant="xs" />
             </IconDisplay>
             <IconDisplay onlyIcon name="PauseIcon">
               <PauseIcon />
@@ -1205,6 +1209,9 @@ export const IconGroups: Story = {
             <IconDisplay onlyIcon name="DeskSolidIcon">
               <DeskSolidIcon />
             </IconDisplay>
+            <IconDisplay onlyIcon name="DeskChairIcon">
+              <DeskChairIcon variant="md" />
+            </IconDisplay>
             <IconDisplay onlyIcon name="DoorRoomIcon">
               <DoorRoomIcon variant="md" />
             </IconDisplay>
@@ -1321,6 +1328,9 @@ export const IconGroups: Story = {
             </IconDisplay>
             <IconDisplay onlyIcon name="ParkingIcon">
               <ParkingIcon variant="md" />
+            </IconDisplay>
+            <IconDisplay onlyIcon name="ParkingLotIcon">
+              <ParkingLotIcon variant="md" />
             </IconDisplay>
             <IconDisplay onlyIcon name="PauseIcon">
               <PauseIcon variant="md" />
