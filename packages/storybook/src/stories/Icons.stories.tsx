@@ -750,11 +750,11 @@ export const IconGroups: Story = {
             <IconDisplay onlyIcon name="DesignFileIcon">
               <DesignFileIcon />
             </IconDisplay>
-            <IconDisplay onlyIcon name="DeskIcon">
-              <DeskIcon variant="xs" />
-            </IconDisplay>
             <IconDisplay onlyIcon name="DeskChairIcon">
               <DeskChairIcon variant="xs" />
+            </IconDisplay>
+            <IconDisplay onlyIcon name="DeskIcon">
+              <DeskIcon variant="xs" />
             </IconDisplay>
             <IconDisplay onlyIcon name="DeviceSpeakerIcon">
               <DeviceSpeakerIcon />
