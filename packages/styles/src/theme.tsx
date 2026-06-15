@@ -654,7 +654,7 @@ export const biampTheme = (
                 height: '48px !important',
                 borderRadius: '0px !important',
                 width: '100%',
-                flex: 1,
+                flexShrink: 1,
               },
             },
             {
