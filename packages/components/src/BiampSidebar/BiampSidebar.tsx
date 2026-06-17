@@ -216,7 +216,12 @@ export function BiampSidebarIcon({
       }}
       {...props}
     >
-      <Tooltip title={expanded ? '' : (name ?? '')} placement="right" arrow disableInteractive>
+      <Tooltip
+        title={expanded ? '' : (name ?? '')}
+        placement="right"
+        arrow
+        disableInteractive
+      >
         <Box
           sx={{
             width: '48px',
