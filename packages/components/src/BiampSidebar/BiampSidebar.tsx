@@ -195,11 +195,7 @@ export function BiampSidebarIcon({
       disableRipple
       onClick={(e) => {
         onClick?.(e);
-        if (
-          closeDrawerOnClick &&
-          layoutDrawer?.isDrawer &&
-          layoutDrawer.open
-        ) {
+        if (closeDrawerOnClick && layoutDrawer?.isDrawer && layoutDrawer.open) {
           layoutDrawer.setOpen(false);
         }
       }}
