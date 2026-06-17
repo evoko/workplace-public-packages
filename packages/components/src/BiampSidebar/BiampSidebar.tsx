@@ -189,38 +189,38 @@ export function BiampSidebarIcon({
   const layoutDrawer = useBiampLayoutDrawer();
   const displayedSelectedIcon = selectedIcon ?? icon;
   return (
-    <Tooltip title={expanded ? '' : (name ?? '')} placement="right" arrow>
-      <ListItemButton
-        selected={selected}
-        disableGutters
-        disableRipple
-        onClick={(e) => {
-          onClick?.(e);
-          if (
-            closeDrawerOnClick &&
-            layoutDrawer?.isDrawer &&
-            layoutDrawer.open
-          ) {
-            layoutDrawer.setOpen(false);
-          }
-        }}
-        sx={{
-          minWidth: '48px',
-          minHeight: '48px',
-          maxHeight: '48px',
-          borderRadius: '8px',
-          justifyContent: 'flex-start',
-          alignItems: 'center',
-          padding: 0,
-          overflow: 'hidden',
-          color: 'text.secondary',
-          '&.Mui-selected': {
-            color: 'primary.main',
-          },
-          ...sx,
-        }}
-        {...props}
-      >
+    <ListItemButton
+      selected={selected}
+      disableGutters
+      disableRipple
+      onClick={(e) => {
+        onClick?.(e);
+        if (
+          closeDrawerOnClick &&
+          layoutDrawer?.isDrawer &&
+          layoutDrawer.open
+        ) {
+          layoutDrawer.setOpen(false);
+        }
+      }}
+      sx={{
+        minWidth: '48px',
+        minHeight: '48px',
+        maxHeight: '48px',
+        borderRadius: '8px',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        padding: 0,
+        overflow: 'hidden',
+        color: 'text.secondary',
+        '&.Mui-selected': {
+          color: 'primary.main',
+        },
+        ...sx,
+      }}
+      {...props}
+    >
+      <Tooltip title={expanded ? '' : (name ?? '')} placement="right" arrow>
         <Box
           sx={{
             width: '48px',
@@ -233,28 +233,28 @@ export function BiampSidebarIcon({
         >
           {selected ? displayedSelectedIcon : icon}
         </Box>
-        {name && (
-          <Typography
-            variant="body1"
-            fontWeight={600}
-            color="inherit"
-            noWrap
-            sx={{
-              pr: 2,
-              opacity: expanded ? 1 : 0,
-              transition: ({ transitions }) =>
-                transitions.create('opacity', {
-                  duration: expanded
-                    ? transitions.duration.enteringScreen
-                    : transitions.duration.leavingScreen,
-                }),
-            }}
-          >
-            {name}
-          </Typography>
-        )}
-      </ListItemButton>
-    </Tooltip>
+      </Tooltip>
+      {name && (
+        <Typography
+          variant="body1"
+          fontWeight={600}
+          color="inherit"
+          noWrap
+          sx={{
+            pr: 2,
+            opacity: expanded ? 1 : 0,
+            transition: ({ transitions }) =>
+              transitions.create('opacity', {
+                duration: expanded
+                  ? transitions.duration.enteringScreen
+                  : transitions.duration.leavingScreen,
+              }),
+          }}
+        >
+          {name}
+        </Typography>
+      )}
+    </ListItemButton>
   );
 }
 
