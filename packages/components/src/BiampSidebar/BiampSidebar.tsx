@@ -4,6 +4,7 @@ import {
   ListItemButtonProps,
   Stack,
   StackProps,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import { BiampLogoIcon, SquareRoundedArrowRightIcon } from '@bwp-web/assets';
@@ -91,7 +92,7 @@ export function BiampSidebar({
                 }}
               />
             }
-            name="Collapse menu"
+            name={expanded ? 'Collapse menu' : 'Expand menu'}
             onClick={toggleExpanded}
           />
         )}
@@ -188,66 +189,72 @@ export function BiampSidebarIcon({
   const layoutDrawer = useBiampLayoutDrawer();
   const displayedSelectedIcon = selectedIcon ?? icon;
   return (
-    <ListItemButton
-      selected={selected}
-      disableGutters
-      disableRipple
-      onClick={(e) => {
-        onClick?.(e);
-        if (closeDrawerOnClick && layoutDrawer?.isDrawer && layoutDrawer.open) {
-          layoutDrawer.setOpen(false);
-        }
-      }}
-      sx={{
-        minWidth: '48px',
-        minHeight: '48px',
-        maxHeight: '48px',
-        borderRadius: '8px',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        padding: 0,
-        overflow: 'hidden',
-        color: 'text.secondary',
-        '&.Mui-selected': {
-          color: 'primary.main',
-        },
-        ...sx,
-      }}
-      {...props}
-    >
-      <Box
-        sx={{
-          width: '48px',
-          height: '48px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
+    <Tooltip title={expanded ? '' : (name ?? '')} placement="right" arrow>
+      <ListItemButton
+        selected={selected}
+        disableGutters
+        disableRipple
+        onClick={(e) => {
+          onClick?.(e);
+          if (
+            closeDrawerOnClick &&
+            layoutDrawer?.isDrawer &&
+            layoutDrawer.open
+          ) {
+            layoutDrawer.setOpen(false);
+          }
         }}
+        sx={{
+          minWidth: '48px',
+          minHeight: '48px',
+          maxHeight: '48px',
+          borderRadius: '8px',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          padding: 0,
+          overflow: 'hidden',
+          color: 'text.secondary',
+          '&.Mui-selected': {
+            color: 'primary.main',
+          },
+          ...sx,
+        }}
+        {...props}
       >
-        {selected ? displayedSelectedIcon : icon}
-      </Box>
-      {name && (
-        <Typography
-          variant="body1"
-          fontWeight={600}
-          color="inherit"
-          noWrap
+        <Box
           sx={{
-            pr: 2,
-            opacity: expanded ? 1 : 0,
-            transition: ({ transitions }) =>
-              transitions.create('opacity', {
-                duration: expanded
-                  ? transitions.duration.enteringScreen
-                  : transitions.duration.leavingScreen,
-              }),
+            width: '48px',
+            height: '48px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
           }}
         >
-          {name}
-        </Typography>
-      )}
-    </ListItemButton>
+          {selected ? displayedSelectedIcon : icon}
+        </Box>
+        {name && (
+          <Typography
+            variant="body1"
+            fontWeight={600}
+            color="inherit"
+            noWrap
+            sx={{
+              pr: 2,
+              opacity: expanded ? 1 : 0,
+              transition: ({ transitions }) =>
+                transitions.create('opacity', {
+                  duration: expanded
+                    ? transitions.duration.enteringScreen
+                    : transitions.duration.leavingScreen,
+                }),
+            }}
+          >
+            {name}
+          </Typography>
+        )}
+      </ListItemButton>
+    </Tooltip>
   );
 }
 
