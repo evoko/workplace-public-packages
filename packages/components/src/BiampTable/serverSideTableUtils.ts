@@ -96,6 +96,22 @@ export function getDefaultColumnVisibilityFromDefs(
 }
 
 /**
+ * Returns the ids of columns flagged `meta.alwaysShow`. These columns are forced
+ * visible and never offered in the column-visibility menu.
+ */
+export function getAlwaysShowColumnIds(
+  columns: { id?: string; meta?: { alwaysShow?: boolean } }[],
+): string[] {
+  const ids: string[] = [];
+  for (const col of columns) {
+    if (col.id != null && col.meta?.alwaysShow) {
+      ids.push(col.id);
+    }
+  }
+  return ids;
+}
+
+/**
  * Returns only the entries in `visibility` that differ from `defaults`.
  * Columns not present in `defaults` are treated as visible (`true`) by default.
  * Use this to strip default-matching entries before persisting to URL params.

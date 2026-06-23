@@ -19,6 +19,7 @@ import {
   getOrderFieldMappings,
   getDefaultColumnVisibilityFromDefs,
   getDirtyColumnVisibility,
+  getAlwaysShowColumnIds,
   selectedIdsToRowSelection,
   rowSelectionToSelectedIds,
 } from './serverSideTableUtils';
@@ -105,9 +106,15 @@ export function useBiampServerSideTable<TData, F extends string = string>({
 }: UseBiampServerSideTableOptions<TData, F>): Table<TData> {
   // ── Derived state (memoized) ─────────────────────────────────────
 
-  const { defaultColumnVisibility, columnIdToField, fieldToColumnId } = useMemo(
+  const {
+    defaultColumnVisibility,
+    alwaysShowColumnIds,
+    columnIdToField,
+    fieldToColumnId,
+  } = useMemo(
     () => ({
       defaultColumnVisibility: getDefaultColumnVisibilityFromDefs(columns),
+      alwaysShowColumnIds: getAlwaysShowColumnIds(columns),
       ...getOrderFieldMappings<F>(columns),
     }),
     [columns],
@@ -132,14 +139,17 @@ export function useBiampServerSideTable<TData, F extends string = string>({
     [hasSelection, selectedRowIds],
   );
 
-  const mergedVisibility = useMemo(
-    () =>
-      toVisibilityState({
-        ...defaultColumnVisibility,
-        ...columnVisibility,
-      }),
-    [defaultColumnVisibility, columnVisibility],
-  );
+  const mergedVisibility = useMemo(() => {
+    const merged: ColumnVisibility = {
+      ...defaultColumnVisibility,
+      ...columnVisibility,
+    };
+    // Always-show columns can never be hidden, even by stale persisted state.
+    for (const id of alwaysShowColumnIds) {
+      merged[id] = true;
+    }
+    return toVisibilityState(merged);
+  }, [defaultColumnVisibility, columnVisibility, alwaysShowColumnIds]);
 
   // ── Table instance ───────────────────────────────────────────────
 
@@ -197,9 +207,12 @@ export function useBiampServerSideTable<TData, F extends string = string>({
       ? (updater) => {
           const next =
             typeof updater === 'function' ? updater(mergedVisibility) : updater;
-          onColumnVisibilityChange(
-            getDirtyColumnVisibility(next, defaultColumnVisibility),
-          );
+          const dirty = getDirtyColumnVisibility(next, defaultColumnVisibility);
+          // Never persist always-show columns — they are guaranteed visible.
+          for (const id of alwaysShowColumnIds) {
+            delete dirty[id];
+          }
+          onColumnVisibilityChange(dirty);
         }
       : undefined,
 

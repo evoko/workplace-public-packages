@@ -78,7 +78,9 @@ const columnHelper = createColumnHelper<Room>();
 const columns = [
   columnHelper.accessor('name', {
     header: 'Room Name',
-    meta: { minWidth: 200 },
+    // `alwaysShow` keeps this column out of the visibility menu and forces it
+    // visible, so the table can never hide every column.
+    meta: { minWidth: 200, alwaysShow: true },
   }),
   columnHelper.accessor('status', { header: 'Status' }),
   columnHelper.accessor('capacity', { header: 'Capacity' }),
@@ -238,7 +240,9 @@ const deviceColumnHelper = createColumnHelper<Device>();
 const deviceColumns = [
   deviceColumnHelper.accessor('name', {
     header: 'Device Name',
-    meta: { minWidth: 160 },
+    // `alwaysShow` keeps this column out of the visibility menu and forces it
+    // visible, so the table can never hide every column.
+    meta: { minWidth: 160, alwaysShow: true },
   }),
   deviceColumnHelper.accessor('type', {
     header: 'Type',
@@ -1269,7 +1273,9 @@ const serverSideColumnHelper = createColumnHelper<Room>();
 const serverSideColumns = [
   serverSideColumnHelper.accessor('name', {
     header: 'Room Name',
-    meta: { minWidth: 200, orderField: RoomOrderField.Name },
+    // `alwaysShow` keeps this column out of the visibility menu and forces it
+    // visible, so the table can never hide every column.
+    meta: { minWidth: 200, orderField: RoomOrderField.Name, alwaysShow: true },
   }),
   serverSideColumnHelper.accessor('status', {
     header: 'Status',
@@ -1373,7 +1379,10 @@ function ServerSideHookDemo() {
     <Stack spacing={2} height="100%">
       <Typography variant="body2">
         Uses <code>useBiampServerSideTable</code> — compare with the WithToolbar
-        story that uses raw <code>useReactTable</code>.
+        story that uses raw <code>useReactTable</code>. The{' '}
+        <code>Room Name</code> column is marked{' '}
+        <code>meta.alwaysShow</code>, so it is absent from the column-visibility
+        menu and can never be hidden.
       </Typography>
       <BiampTableToolbar>
         <BiampTableToolbarActions>
@@ -1413,7 +1422,9 @@ function ServerSideHookDemo() {
 /**
  * Demonstrates `useBiampServerSideTable` — the hook that replaces ~40 lines
  * of boilerplate per table. Compare with the `WithToolbar` story which uses
- * raw `useReactTable`.
+ * raw `useReactTable`. The `Room Name` column uses `meta.alwaysShow`, so it is
+ * excluded from the column-visibility menu and forced visible regardless of
+ * persisted state — the table can never hide every column.
  */
 export const ServerSideHook: Story = {
   render: () => <ServerSideHookDemo />,
@@ -1620,4 +1631,73 @@ function SetRowColorDemo() {
  */
 export const SetRowColor: Story = {
   render: () => <SetRowColorDemo />,
+};
+
+// ---------------------------------------------------------------------------
+// 14. NoAlwaysShow — column visibility with no `alwaysShow` column
+// ---------------------------------------------------------------------------
+
+// Dedicated column set with NO `alwaysShow` flag — the shared `columns` array
+// marks "Room Name" as always-show, so this story needs its own definitions to
+// demonstrate the unflagged behaviour.
+const noAlwaysShowColumns = [
+  columnHelper.accessor('name', {
+    header: 'Room Name',
+    meta: { minWidth: 200 },
+  }),
+  columnHelper.accessor('status', { header: 'Status' }),
+  columnHelper.accessor('capacity', { header: 'Capacity' }),
+  columnHelper.accessor('floor', { header: 'Floor' }),
+];
+
+function NoAlwaysShowDemo() {
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const table = useReactTable({
+    data: rows5,
+    columns: noAlwaysShowColumns,
+    getCoreRowModel: coreRowModel,
+    getRowId: (row) => String(row.id),
+    state: { columnVisibility },
+    onColumnVisibilityChange: setColumnVisibility,
+  });
+
+  return (
+    <Stack spacing={2} height="100%">
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <Typography variant="body2">
+          No column is marked <code>alwaysShow</code>, so there is no protection:
+          every column is listed in the menu and &ldquo;Show all&rdquo; can hide
+          them all, leaving an empty table. Compare with the other
+          column-visibility stories where one column is always kept.
+        </Typography>
+        <Box>
+          <BiampTableToolbarActionButton
+            label="Toggle column visibility"
+            icon={<ColumnsIcon variant="xs" />}
+            badgeContent={getColumnVisibilityDirtyCount(table)}
+            onClick={(e: MouseEvent<HTMLButtonElement>) =>
+              setAnchorEl(e.currentTarget)
+            }
+          />
+          <BiampTableColumnVisibility
+            table={table}
+            anchorEl={anchorEl}
+            onClose={() => setAnchorEl(null)}
+          />
+        </Box>
+      </Box>
+      <BiampTable table={table} />
+    </Stack>
+  );
+}
+
+/**
+ * Column visibility with **no** `alwaysShow` column. Demonstrates the opt-in
+ * nature of the feature: without a flagged column, every column is hideable and
+ * the table can be emptied entirely. Use this to verify the unflagged baseline.
+ */
+export const NoAlwaysShow: Story = {
+  render: () => <NoAlwaysShowDemo />,
 };
