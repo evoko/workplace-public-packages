@@ -1380,9 +1380,8 @@ function ServerSideHookDemo() {
       <Typography variant="body2">
         Uses <code>useBiampServerSideTable</code> — compare with the WithToolbar
         story that uses raw <code>useReactTable</code>. The{' '}
-        <code>Room Name</code> column is marked{' '}
-        <code>meta.alwaysShow</code>, so it is absent from the column-visibility
-        menu and can never be hidden.
+        <code>Room Name</code> column is marked <code>meta.alwaysShow</code>, so
+        it is absent from the column-visibility menu and can never be hidden.
       </Typography>
       <BiampTableToolbar>
         <BiampTableToolbarActions>
@@ -1667,10 +1666,10 @@ function NoAlwaysShowDemo() {
     <Stack spacing={2} height="100%">
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Typography variant="body2">
-          No column is marked <code>alwaysShow</code>, so there is no protection:
-          every column is listed in the menu and &ldquo;Show all&rdquo; can hide
-          them all, leaving an empty table. Compare with the other
-          column-visibility stories where one column is always kept.
+          No column is marked <code>alwaysShow</code>, so there is no
+          protection: every column is listed in the menu and &ldquo;Show
+          all&rdquo; can hide them all, leaving an empty table. Compare with the
+          other column-visibility stories where one column is always kept.
         </Typography>
         <Box>
           <BiampTableToolbarActionButton
