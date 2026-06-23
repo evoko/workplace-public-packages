@@ -99,9 +99,26 @@ export function BiampTableColumnVisibility<TData>({
   slotProps,
   ...popoverProps
 }: BiampTableColumnVisibilityProps<TData>) {
-  const allVisible = table
+  // Columns the user is allowed to toggle: hideable and not flagged `alwaysShow`.
+  const hideableColumns = table
     .getAllLeafColumns()
-    .every((col) => col.getIsVisible());
+    .filter((col) => col.getCanHide() && !col.columnDef.meta?.alwaysShow);
+
+  const allVisible = hideableColumns.every((col) => col.getIsVisible());
+
+  // "Show all" toggles only the hideable columns. We can't use TanStack's
+  // `toggleAllColumnsVisible`, which operates on every leaf column and would
+  // hide `alwaysShow` columns too (they aren't `enableHiding: false`).
+  const toggleAllHideable = () => {
+    const next = !allVisible;
+    table.setColumnVisibility((prev) => {
+      const updated = { ...prev };
+      for (const col of hideableColumns) {
+        updated[col.id] = next;
+      }
+      return updated;
+    });
+  };
 
   return (
     <Popover
@@ -125,11 +142,7 @@ export function BiampTableColumnVisibility<TData>({
       {...popoverProps}
     >
       <List dense disablePadding>
-        <ListItem
-          dense
-          sx={columnListItemSx}
-          onClick={() => table.toggleAllColumnsVisible(!allVisible)}
-        >
+        <ListItem dense sx={columnListItemSx} onClick={toggleAllHideable}>
           <Checkbox
             checked={allVisible}
             slotProps={{ input: { 'aria-label': `${showAllLabel} columns` } }}
@@ -142,7 +155,7 @@ export function BiampTableColumnVisibility<TData>({
         <Box
           sx={{ maxHeight: 340, overflow: 'auto', overscrollBehavior: 'none' }}
         >
-          {table.getAllLeafColumns().map((column) => {
+          {hideableColumns.map((column) => {
             const columnName =
               column.columnDef.meta?.columnLabel ??
               (typeof column.columnDef.header === 'string'

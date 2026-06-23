@@ -9,6 +9,12 @@ declare module '@tanstack/react-table' {
     sticky?: 'left' | 'right';
     /** Whether this column is visible by default. Defaults to `true` (visible). */
     defaultVisible?: boolean;
+    /**
+     * Always show this column: it is never offered in the column-visibility menu
+     * and is forced visible regardless of persisted visibility state. Use for the
+     * primary/identifier column so the table can never hide every column.
+     */
+    alwaysShow?: boolean;
     /** Human-readable label used in the column-visibility menu when `header` is not a string. */
     columnLabel?: string;
     /** Server-side order field name associated with this column (used by `useBiampServerSideTable`). */
