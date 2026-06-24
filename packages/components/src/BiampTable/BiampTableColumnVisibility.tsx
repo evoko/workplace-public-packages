@@ -144,11 +144,7 @@ export function BiampTableColumnVisibility<TData>({
       {...popoverProps}
     >
       <List dense disablePadding>
-        <ListItem
-          dense
-          sx={columnListItemSx}
-          onClick={toggleAllHideable}
-        >
+        <ListItem dense sx={columnListItemSx} onClick={toggleAllHideable}>
           <Checkbox
             checked={allVisible}
             slotProps={{ input: { 'aria-label': `${showAllLabel} columns` } }}
