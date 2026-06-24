@@ -19,7 +19,7 @@ import {
   getOrderFieldMappings,
   getDefaultColumnVisibilityFromDefs,
   getDirtyColumnVisibility,
-  getAlwaysShowColumnIds,
+  getNonHideableColumnIds,
   selectedIdsToRowSelection,
   rowSelectionToSelectedIds,
 } from './serverSideTableUtils';
@@ -108,13 +108,13 @@ export function useBiampServerSideTable<TData, F extends string = string>({
 
   const {
     defaultColumnVisibility,
-    alwaysShowColumnIds,
+    nonHideableColumnIds,
     columnIdToField,
     fieldToColumnId,
   } = useMemo(
     () => ({
       defaultColumnVisibility: getDefaultColumnVisibilityFromDefs(columns),
-      alwaysShowColumnIds: getAlwaysShowColumnIds(columns),
+      nonHideableColumnIds: getNonHideableColumnIds(columns),
       ...getOrderFieldMappings<F>(columns),
     }),
     [columns],
@@ -144,12 +144,13 @@ export function useBiampServerSideTable<TData, F extends string = string>({
       ...defaultColumnVisibility,
       ...columnVisibility,
     };
-    // Always-show columns can never be hidden, even by stale persisted state.
-    for (const id of alwaysShowColumnIds) {
+    // Non-hideable columns (`enableHiding: false`) can never be hidden, even by
+    // stale persisted state — force them visible.
+    for (const id of nonHideableColumnIds) {
       merged[id] = true;
     }
     return toVisibilityState(merged);
-  }, [defaultColumnVisibility, columnVisibility, alwaysShowColumnIds]);
+  }, [defaultColumnVisibility, columnVisibility, nonHideableColumnIds]);
 
   // ── Table instance ───────────────────────────────────────────────
 
@@ -208,8 +209,8 @@ export function useBiampServerSideTable<TData, F extends string = string>({
           const next =
             typeof updater === 'function' ? updater(mergedVisibility) : updater;
           const dirty = getDirtyColumnVisibility(next, defaultColumnVisibility);
-          // Never persist always-show columns — they are guaranteed visible.
-          for (const id of alwaysShowColumnIds) {
+          // Never persist non-hideable columns — they are always visible.
+          for (const id of nonHideableColumnIds) {
             delete dirty[id];
           }
           onColumnVisibilityChange(dirty);

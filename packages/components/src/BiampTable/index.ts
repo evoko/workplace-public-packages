@@ -78,7 +78,7 @@ export {
   getOrderFieldMappings,
   getDefaultColumnVisibilityFromDefs,
   getDirtyColumnVisibility,
-  getAlwaysShowColumnIds,
+  getNonHideableColumnIds,
   type ServerSideOrder,
 } from './serverSideTableUtils';
 export {

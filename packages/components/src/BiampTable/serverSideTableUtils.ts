@@ -96,15 +96,16 @@ export function getDefaultColumnVisibilityFromDefs(
 }
 
 /**
- * Returns the ids of columns flagged `meta.alwaysShow`. These columns are forced
- * visible and never offered in the column-visibility menu.
+ * Returns the ids of columns declared non-hideable via `enableHiding: false`.
+ * These columns are never offered in the visibility menu and are kept
+ * force-visible regardless of persisted visibility state.
  */
-export function getAlwaysShowColumnIds(
-  columns: { id?: string; meta?: { alwaysShow?: boolean } }[],
+export function getNonHideableColumnIds(
+  columns: { id?: string; enableHiding?: boolean }[],
 ): string[] {
   const ids: string[] = [];
   for (const col of columns) {
-    if (col.id != null && col.meta?.alwaysShow) {
+    if (col.id != null && col.enableHiding === false) {
       ids.push(col.id);
     }
   }

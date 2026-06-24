@@ -99,16 +99,18 @@ export function BiampTableColumnVisibility<TData>({
   slotProps,
   ...popoverProps
 }: BiampTableColumnVisibilityProps<TData>) {
-  // Columns the user is allowed to toggle: hideable and not flagged `alwaysShow`.
+  // Only columns the user is allowed to toggle. A column with
+  // `enableHiding: false` (`getCanHide() === false`) is never offered here —
+  // and `useBiampServerSideTable` also keeps such columns force-visible.
   const hideableColumns = table
     .getAllLeafColumns()
-    .filter((col) => col.getCanHide() && !col.columnDef.meta?.alwaysShow);
+    .filter((col) => col.getCanHide());
 
   const allVisible = hideableColumns.every((col) => col.getIsVisible());
 
-  // "Show all" toggles only the hideable columns. We can't use TanStack's
-  // `toggleAllColumnsVisible`, which operates on every leaf column and would
-  // hide `alwaysShow` columns too (they aren't `enableHiding: false`).
+  // "Show all" toggles only the hideable columns. TanStack's
+  // `toggleAllColumnsVisible` operates on every leaf column, so we manage the
+  // hideable subset directly to leave non-hideable columns untouched.
   const toggleAllHideable = () => {
     const next = !allVisible;
     table.setColumnVisibility((prev) => {
