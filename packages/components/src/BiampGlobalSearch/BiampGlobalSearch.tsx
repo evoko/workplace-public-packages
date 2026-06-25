@@ -19,6 +19,14 @@ import { KeyArrowDownIcon, KeyArrowUpIcon, SearchIcon } from '@bwp-web/assets';
 // ---------------------------------------------------------------------------
 
 export interface BiampGlobalSearchOption {
+  /**
+   * Stable, unique key for the row. Used as the React list key (via the
+   * Autocomplete's `getOptionKey`). Falls back to `title` when omitted, so
+   * supply this whenever titles aren't guaranteed unique (e.g. two licenses of
+   * the same type, two devices of the same model, or empty titles while data
+   * loads) to avoid duplicate-key warnings and reconciliation glitches.
+   */
+  id?: string;
   icon?: React.ReactNode;
   title: string;
   subtitle?: string;
@@ -431,6 +439,12 @@ export function BiampGlobalSearch({
         filterOptions={(x) => x}
         getOptionLabel={(option) =>
           typeof option === 'string' ? option : option.title
+        }
+        // Without this, MUI keys each row by `getOptionLabel` (the title), so
+        // any two options sharing a title collide. The `typeof === 'string'`
+        // guard mirrors `getOptionLabel` since the Autocomplete is `freeSolo`.
+        getOptionKey={(option) =>
+          typeof option === 'string' ? option : (option.id ?? option.title)
         }
         noOptionsText={noResultsText}
         slots={{ paper: BiampGlobalSearchPaper }}
