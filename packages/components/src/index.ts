@@ -2,6 +2,8 @@ export { BiampWrapper, type BiampWrapperProps } from './BiampWrapper';
 export * from './BiampSidebar';
 export * from './BiampHeader';
 export * from './BiampNotificationPopover';
+export * from './BiampListPopover';
+export * from './BiampCheckboxListPopover';
 export * from './BiampLayout';
 export * from './BiampTable';
 export * from './BiampBanner';
