@@ -2193,6 +2193,7 @@ export const biampTheme = (
                 },
               '&.MuiBadge-dot': {
                 padding: '0px',
+                boxShadow: `0 0 0 1.5px ${colors.white}`,
               },
               '.Mui-disabled &': {
                 backgroundColor:
