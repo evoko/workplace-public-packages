@@ -1,6 +1,10 @@
 import { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { BiampNotificationPopover } from '@bwp-web/components';
+import {
+  BiampNotificationPopover,
+  BiampNotificationPopoverBody,
+  BiampNotificationPopoverHeader,
+} from '@bwp-web/components';
 import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 
 const meta: Meta<typeof BiampNotificationPopover> = {
@@ -102,22 +106,19 @@ function PopoverDemo({ count, heading }: { count: number; heading: string }) {
         anchorEl={anchorRef.current}
         onClose={() => setOpen(false)}
       >
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-        >
+        <BiampNotificationPopoverHeader>
           <Typography variant="h4">Notifications</Typography>
           <Button variant="text" size="small" onClick={() => setOpen(false)}>
             Mark all as read
           </Button>
-        </Stack>
-        <Divider />
-        <Stack divider={<Divider />}>
-          {notifications.map((item, i) => (
-            <NotificationRow key={i} item={item} />
-          ))}
-        </Stack>
+        </BiampNotificationPopoverHeader>
+        <BiampNotificationPopoverBody>
+          <Stack divider={<Divider />}>
+            {notifications.map((item, i) => (
+              <NotificationRow key={i} item={item} />
+            ))}
+          </Stack>
+        </BiampNotificationPopoverBody>
       </BiampNotificationPopover>
     </Stack>
   );
