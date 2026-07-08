@@ -8,6 +8,7 @@ export {
   BiampHeaderMenuButton,
   BiampHeaderProfile,
   BiampAppPopover,
+  BiampNotificationPopover,
   BiampBuildAppContent,
   BiampBuildAppContentItem,
   BiampEndUserAppContent,
