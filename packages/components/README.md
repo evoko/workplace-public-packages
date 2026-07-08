@@ -39,6 +39,13 @@ For `BiampTable` only:
 | `BiampHeaderMenuButton`       | Self-hiding hamburger toggle for the `BiampLayout` responsive drawer — renders only when the layout is in drawer mode                                |
 | `BiampHeaderProfile`          | Profile button with image or custom children (e.g. `UserInitialsIcon`)                                                                               |
 | `BiampAppPopover`             | Styled popover for the app-launcher content                                                                                                          |
+| `BiampNotificationPopover`    | Popover shell (flex column, capped `maxHeight`, `overflow: hidden`) whose children decide what stays fixed and what scrolls                          |
+| `BiampNotificationPopoverHeader` | Fixed (non-scrolling) region at the top of a `BiampNotificationPopover`                                                                           |
+| `BiampNotificationPopoverBody`   | Scrollable region of a `BiampNotificationPopover`; fills remaining height and scrolls its overflow                                                |
+| `BiampListPopover`            | Popover styled as a compact, bordered list container; wraps children in a dense, unpadded `List`                                                     |
+| `BiampListPopoverItem`        | Clickable, hoverable dense row for use inside `BiampListPopover`                                                                                     |
+| `BiampListPopoverScrollArea`  | Overflow-scrolling region for a long list of `BiampListPopoverItem`s (default `maxHeight` 340)                                                       |
+| `BiampCheckboxListPopover`    | Checkbox-list popover with an optional "select all" row (the column-visibility menu styling, decoupled from any data source)                         |
 | `BiampBuildAppContent`        | 2-column grid container for "Configure & Build" app tiles                                                                                            |
 | `BiampBuildAppContentItem`    | App tile with image, name, description, and optional action button                                                                                   |
 | `BiampEndUserAppContent`      | Responsive container for end-user app items: stack for one child, 2-column grid for many                                                             |
@@ -456,6 +463,108 @@ Extends `PopoverProps`. Defaults: `anchorOrigin: { vertical: 'bottom', horizonta
 | ---------- | ----------------- | ------- | --------------------------------------------------------- |
 | `children` | `React.ReactNode` | —       | Items rendered inside the wrapped `OrganizationSelector`  |
 | `loading`  | `boolean`         | `false` | Forwarded to the inner `OrganizationSelector`'s `loading` |
+
+### BiampCheckboxListPopover
+
+A batteries-included checkbox-list popover with an optional "select all" row — the same styling used by the table column-visibility menu, but driven by a plain data model instead of a table. It is **controlled**: it renders from `items` and reports toggles via callbacks, so it works with `useState`, URL params, a form library, or a table.
+
+```tsx
+import { useRef, useState } from 'react';
+import { Button } from '@mui/material';
+import { BiampCheckboxListPopover } from '@bwp-web/components';
+
+function ColumnPicker() {
+  const anchorRef = useRef<HTMLButtonElement>(null);
+  const [open, setOpen] = useState(false);
+  const [checked, setChecked] = useState<Record<string, boolean>>({
+    Name: true,
+    Status: true,
+    Location: false,
+  });
+
+  return (
+    <>
+      <Button ref={anchorRef} onClick={() => setOpen(true)}>
+        Columns
+      </Button>
+      <BiampCheckboxListPopover
+        anchorEl={anchorRef.current}
+        open={open}
+        onClose={() => setOpen(false)}
+        items={Object.keys(checked).map((id) => ({
+          id,
+          label: id,
+          checked: checked[id],
+        }))}
+        onToggleItem={(id) => setChecked((p) => ({ ...p, [id]: !p[id] }))}
+        onToggleAll={(next) =>
+          setChecked(Object.fromEntries(Object.keys(checked).map((k) => [k, next])))
+        }
+      />
+    </>
+  );
+}
+```
+
+#### BiampCheckboxListPopover Props
+
+Extends `PopoverProps` (`open`, `anchorEl`, `onClose`, `anchorOrigin`, …), minus `children`.
+
+| Prop             | Type                          | Default      | Description                                                                    |
+| ---------------- | ----------------------------- | ------------ | ------------------------------------------------------------------------------ |
+| `items`          | `BiampCheckboxListItem[]`     | **required** | Checkbox rows: `{ id, label, checked, ariaLabel? }`                            |
+| `onToggleItem`   | `(id: string) => void`        | **required** | Called with the item's `id` when its row is toggled                            |
+| `showSelectAll`  | `boolean`                     | `true`       | Whether to render the fixed "select all" row above the list                    |
+| `selectAllLabel` | `string`                      | `'Show all'` | Label for the "select all" row                                                 |
+| `onToggleAll`    | `(checked: boolean) => void`  | —            | Called with the desired next state when "select all" is toggled                |
+| `maxHeight`      | `number \| string`            | `340`        | Height cap before the item list scrolls                                        |
+
+### BiampListPopover
+
+The lower-level primitives `BiampCheckboxListPopover` is built on, for custom (non-checkbox) list popovers. `BiampListPopover` is the bordered container (6px radius, subtle shadow, 150px min-width) that wraps its children in a dense `List`; compose it with `BiampListPopoverItem` (clickable hover rows) and `BiampListPopoverScrollArea` (a capped, overflow-scrolling section).
+
+```tsx
+import { Typography } from '@mui/material';
+import {
+  BiampListPopover,
+  BiampListPopoverItem,
+  BiampListPopoverScrollArea,
+} from '@bwp-web/components';
+
+<BiampListPopover anchorEl={anchorEl} open={open} onClose={onClose}>
+  <BiampListPopoverScrollArea>
+    {actions.map((action) => (
+      <BiampListPopoverItem key={action} sx={{ px: 1.5 }} onClick={() => run(action)}>
+        <Typography variant="caption">{action}</Typography>
+      </BiampListPopoverItem>
+    ))}
+  </BiampListPopoverScrollArea>
+</BiampListPopover>;
+```
+
+`BiampListPopoverScrollArea` accepts a `maxHeight` prop (default `340`); all three components forward standard MUI props (`PopoverProps`, `ListItemProps`, `BoxProps`) including `sx`.
+
+### BiampNotificationPopover
+
+A popover shell for a fixed header over a scrolling body. The Paper is a flex column capped at `maxHeight: 650px` with `overflow: hidden`, so its children decide what stays put and what scrolls: pair `BiampNotificationPopoverHeader` (fixed) with `BiampNotificationPopoverBody` (scrollable). The body suppresses overscroll bounce and hides its scrollbar while remaining scrollable.
+
+```tsx
+import { Typography } from '@mui/material';
+import {
+  BiampNotificationPopover,
+  BiampNotificationPopoverHeader,
+  BiampNotificationPopoverBody,
+} from '@bwp-web/components';
+
+<BiampNotificationPopover anchorEl={anchorEl} open={open} onClose={onClose}>
+  <BiampNotificationPopoverHeader>
+    <Typography variant="h4">Notifications</Typography>
+  </BiampNotificationPopoverHeader>
+  <BiampNotificationPopoverBody>{/* scrollable list */}</BiampNotificationPopoverBody>
+</BiampNotificationPopover>;
+```
+
+All three components extend their MUI base props (`PopoverProps`, `StackProps`, `BoxProps`).
 
 ### BiampTable
 
