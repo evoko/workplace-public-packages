@@ -972,7 +972,6 @@ export const biampTheme = (
         },
         MuiDrawer: {
           styleOverrides: {
-            root: { width: drawerWidth },
             paper: ({ theme }) => ({
               width: drawerWidth,
               backgroundImage: 'none',
