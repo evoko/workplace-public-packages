@@ -1,17 +1,9 @@
-import {
-  alpha,
-  Box,
-  Checkbox,
-  Divider,
-  List,
-  ListItem,
-  Popover,
-  type PopoverProps,
-  Typography,
-  type SxProps,
-  type Theme,
-} from '@mui/material';
+import { type PopoverProps } from '@mui/material';
 import type { Table, VisibilityState } from '@tanstack/react-table';
+import {
+  BiampCheckboxListPopover,
+  type BiampCheckboxListItem,
+} from '../BiampCheckboxListPopover';
 import './tanstack-meta';
 
 /**
@@ -78,18 +70,6 @@ export type BiampTableColumnVisibilityProps<TData> = Omit<
   showAllLabel?: string;
 };
 
-const columnListItemSx: SxProps<Theme> = {
-  py: 0,
-  pr: 1.5,
-  pl: 0,
-  alignItems: 'center',
-  cursor: 'pointer',
-  '&:hover': {
-    backgroundColor: ({ palette }) =>
-      palette.mode === 'dark' ? palette.grey[800] : palette.grey[100],
-  },
-};
-
 export function BiampTableColumnVisibility<TData>({
   table,
   showAllLabel = 'Show all',
@@ -106,13 +86,24 @@ export function BiampTableColumnVisibility<TData>({
     .getAllLeafColumns()
     .filter((col) => col.getCanHide());
 
-  const allVisible = hideableColumns.every((col) => col.getIsVisible());
+  const items: BiampCheckboxListItem[] = hideableColumns.map((column) => {
+    const columnName =
+      column.columnDef.meta?.columnLabel ??
+      (typeof column.columnDef.header === 'string'
+        ? column.columnDef.header
+        : column.id);
+    return {
+      id: column.id,
+      label: columnName,
+      checked: column.getIsVisible(),
+      ariaLabel: `Show ${columnName}`,
+    };
+  });
 
   // "Show all" toggles only the hideable columns. TanStack's
   // `toggleAllColumnsVisible` operates on every leaf column, so we manage the
   // hideable subset directly to leave non-hideable columns untouched.
-  const toggleAllHideable = () => {
-    const next = !allVisible;
+  const setAllHideable = (next: boolean) => {
     table.setColumnVisibility((prev) => {
       const updated = { ...prev };
       for (const col of hideableColumns) {
@@ -123,66 +114,17 @@ export function BiampTableColumnVisibility<TData>({
   };
 
   return (
-    <Popover
+    <BiampCheckboxListPopover
       anchorEl={anchorEl}
       open={Boolean(anchorEl)}
       anchorOrigin={anchorOrigin}
       transformOrigin={transformOrigin}
-      slotProps={{
-        ...slotProps,
-        paper: {
-          sx: ({ palette }) => ({
-            borderRadius: '6px',
-            backgroundImage: 'none',
-            border: `0.6px solid ${palette.dividers.secondary}`,
-            boxShadow: `0px 1px 1px 0px ${alpha(palette.common.black, 0.05)}`,
-            minWidth: '150px',
-          }),
-          ...((slotProps?.paper ?? {}) as Record<string, unknown>),
-        },
-      }}
+      slotProps={slotProps}
+      items={items}
+      onToggleItem={(id) => table.getColumn(id)?.toggleVisibility()}
+      selectAllLabel={showAllLabel}
+      onToggleAll={setAllHideable}
       {...popoverProps}
-    >
-      <List dense disablePadding>
-        <ListItem dense sx={columnListItemSx} onClick={toggleAllHideable}>
-          <Checkbox
-            checked={allVisible}
-            slotProps={{ input: { 'aria-label': `${showAllLabel} columns` } }}
-          />
-          <Typography variant="caption" fontWeight={600}>
-            {showAllLabel}
-          </Typography>
-        </ListItem>
-        <Divider />
-        <Box
-          sx={{ maxHeight: 340, overflow: 'auto', overscrollBehavior: 'none' }}
-        >
-          {hideableColumns.map((column) => {
-            const columnName =
-              column.columnDef.meta?.columnLabel ??
-              (typeof column.columnDef.header === 'string'
-                ? column.columnDef.header
-                : column.id);
-            return (
-              <ListItem
-                key={column.id}
-                dense
-                sx={columnListItemSx}
-                onClick={column.getToggleVisibilityHandler()}
-              >
-                <Checkbox
-                  checked={column.getIsVisible()}
-                  sx={{ py: 1 }}
-                  slotProps={{
-                    input: { 'aria-label': `Show ${columnName}` },
-                  }}
-                />
-                <Typography variant="caption">{columnName}</Typography>
-              </ListItem>
-            );
-          })}
-        </Box>
-      </List>
-    </Popover>
+    />
   );
 }

@@ -236,7 +236,7 @@ type BiampAppPopoverProps = PopoverProps & {
   children: React.ReactNode;
 };
 
-const POPOVER_MAX_WIDTH = 350;
+const APP_POPOVER_MAX_WIDTH = 350;
 
 export function BiampAppPopover({
   children,
@@ -248,7 +248,7 @@ export function BiampAppPopover({
     <Popover
       open={open}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-      transformOrigin={{ vertical: -8, horizontal: POPOVER_MAX_WIDTH - 4 }}
+      transformOrigin={{ vertical: -4, horizontal: APP_POPOVER_MAX_WIDTH }}
       sx={{ ...sx }}
       slotProps={{
         paper: {
@@ -260,7 +260,7 @@ export function BiampAppPopover({
             outlineColor: ({ palette }) => palette.divider,
             boxShadow: ({ palette }) =>
               `0px 4px 50px 0px ${alpha(palette.grey[900], 0.1)}`,
-            maxWidth: POPOVER_MAX_WIDTH,
+            maxWidth: APP_POPOVER_MAX_WIDTH,
             width: '100%',
             p: 2,
             display: 'flex',
