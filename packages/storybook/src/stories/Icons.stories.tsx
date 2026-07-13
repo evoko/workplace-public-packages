@@ -117,6 +117,7 @@ import {
   InfoCircleIcon,
   InfoStatusIcon,
   InvertIcon,
+  InvoiceIcon,
   LayoutSidebarCollapseIcon,
   LayoutSidebarRightCollapseIcon,
   LicencesIcon,
@@ -152,6 +153,7 @@ import {
   ParkingAltIcon,
   ParkingIcon,
   ParkingLotIcon,
+  PaymentCardIcon,
   PauseIcon,
   PersonIcon,
   PhoneIcon,
@@ -1269,6 +1271,9 @@ export const IconGroups: Story = {
             <IconDisplay onlyIcon name="InvertIcon">
               <InvertIcon />
             </IconDisplay>
+            <IconDisplay onlyIcon name="InvoiceIcon">
+              <InvoiceIcon />
+            </IconDisplay>
             <IconDisplay onlyIcon name="LayoutSidebarRightCollapseIcon">
               <LayoutSidebarRightCollapseIcon />
             </IconDisplay>
@@ -1331,6 +1336,9 @@ export const IconGroups: Story = {
             </IconDisplay>
             <IconDisplay onlyIcon name="ParkingLotIcon">
               <ParkingLotIcon variant="md" />
+            </IconDisplay>
+            <IconDisplay onlyIcon name="PaymentCardIcon">
+              <PaymentCardIcon />
             </IconDisplay>
             <IconDisplay onlyIcon name="PauseIcon">
               <PauseIcon variant="md" />
