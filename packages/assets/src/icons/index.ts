@@ -112,6 +112,7 @@ export { IndeterminateIcon } from './icons_xs/IndeterminateIcon';
 export { InfoCircleIcon } from './icons_multisize/InfoCircleIcon';
 export { InfoStatusIcon } from './InfoStatusIcon';
 export { InvertIcon } from './icons_md/InvertIcon';
+export { InvoiceIcon } from './icons_md/InvoiceIcon';
 export { KeyArrowDownIcon } from './KeyArrowDownIcon';
 export { KeyArrowUpIcon } from './KeyArrowUpIcon';
 export { LayoutSidebarCollapseIcon } from './icons_xs/LayoutSidebarCollapseIcon';

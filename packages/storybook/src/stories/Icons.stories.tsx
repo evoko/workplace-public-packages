@@ -117,6 +117,7 @@ import {
   InfoCircleIcon,
   InfoStatusIcon,
   InvertIcon,
+  InvoiceIcon,
   LayoutSidebarCollapseIcon,
   LayoutSidebarRightCollapseIcon,
   LicencesIcon,
@@ -1268,6 +1269,9 @@ export const IconGroups: Story = {
             </IconDisplay>
             <IconDisplay onlyIcon name="InvertIcon">
               <InvertIcon />
+            </IconDisplay>
+            <IconDisplay onlyIcon name="InvoiceIcon">
+              <InvoiceIcon />
             </IconDisplay>
             <IconDisplay onlyIcon name="LayoutSidebarRightCollapseIcon">
               <LayoutSidebarRightCollapseIcon />
