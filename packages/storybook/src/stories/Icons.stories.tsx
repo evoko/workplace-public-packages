@@ -153,6 +153,7 @@ import {
   ParkingAltIcon,
   ParkingIcon,
   ParkingLotIcon,
+  PaymentCardIcon,
   PauseIcon,
   PersonIcon,
   PhoneIcon,
@@ -1335,6 +1336,9 @@ export const IconGroups: Story = {
             </IconDisplay>
             <IconDisplay onlyIcon name="ParkingLotIcon">
               <ParkingLotIcon variant="md" />
+            </IconDisplay>
+            <IconDisplay onlyIcon name="PaymentCardIcon">
+              <PaymentCardIcon />
             </IconDisplay>
             <IconDisplay onlyIcon name="PauseIcon">
               <PauseIcon variant="md" />

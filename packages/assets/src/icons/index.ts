@@ -150,6 +150,7 @@ export { OtherIcon } from './icons_xxs/OtherIcon';
 export { ParkingAltIcon } from './icons_multisize/ParkingAltIcon';
 export { ParkingIcon } from './icons_multisize/ParkingIcon';
 export { ParkingLotIcon } from './icons_multisize/ParkingLotIcon';
+export { PaymentCardIcon } from './icons_md/PaymentCardIcon';
 export { PauseIcon } from './icons_multisize/PauseIcon';
 export { PersonIcon } from './icons_multisize/PersonIcon';
 export { PhoneIcon } from './icons_multisize/PhoneIcon';
