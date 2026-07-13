@@ -66,7 +66,6 @@ import {
   ContrastIcon,
   ControlPanelIcon,
   CopyIcon,
-  CreditCardIcon,
   CursorIcon,
   DefineIcon,
   DeleteIcon,
@@ -746,9 +745,6 @@ export const IconGroups: Story = {
             </IconDisplay>
             <IconDisplay onlyIcon name="CopyIcon">
               <CopyIcon variant="xs" />
-            </IconDisplay>
-            <IconDisplay onlyIcon name="CreditCardIcon">
-              <CreditCardIcon />
             </IconDisplay>
             <IconDisplay onlyIcon name="DeleteIcon">
               <DeleteIcon variant="xs" />
