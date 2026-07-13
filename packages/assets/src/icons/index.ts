@@ -61,6 +61,7 @@ export { ConditionerIcon } from './icons_lg/ConditionerIcon';
 export { ContrastIcon } from './icons_md/ContrastIcon';
 export { ControlPanelIcon } from './icons_xxs/ControlPanelIcon';
 export { CopyIcon } from './icons_multisize/CopyIcon';
+export { CreditCardIcon } from './icons_xs/CreditCardIcon';
 export { CursorIcon } from './icons_md/CursorIcon';
 export { DefineIcon } from './icons_md/DefineIcon';
 export { DeleteIcon } from './icons_multisize/DeleteIcon';
