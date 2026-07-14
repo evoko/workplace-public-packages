@@ -164,13 +164,15 @@ export function OrganizationItem({
   meta,
   logo,
   isCurrent = false,
+  disabled,
   sx,
   ...props
 }: OrganizationItemProps) {
+  const hideChevron = isCurrent || Boolean(disabled);
   return (
     <ListItem disablePadding>
       <ListItemButton
-        disabled={isCurrent}
+        disabled={disabled ?? isCurrent}
         disableRipple
         sx={{
           p: 1,
@@ -231,7 +233,7 @@ export function OrganizationItem({
             width: 16,
             height: 16,
             ml: 'auto',
-            visibility: isCurrent ? 'hidden' : 'visible',
+            visibility: hideChevron ? 'hidden' : 'visible',
           }}
         />
       </ListItemButton>
