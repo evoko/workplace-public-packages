@@ -10,5 +10,6 @@ export * from './BiampBanner';
 export * from './BiampSegmentedButton';
 export * from './BiampGlobalSearch';
 export * from './OrganizationSelector';
+export * from './LandingPage';
 export * from './UserInitialsIcon';
 export * from './DynamicSvgIcon';
