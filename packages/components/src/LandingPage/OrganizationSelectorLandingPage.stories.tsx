@@ -22,6 +22,7 @@ import {
   BiampHeaderTitle,
 } from '../BiampHeader';
 import { UserInitialsIcon } from '../UserInitialsIcon';
+import { OrganizationJoinPanel } from './OrganizationJoinPanel';
 import {
   OrganizationRow,
   OrganizationsEmptyState,
@@ -141,6 +142,9 @@ function SelectionHeader() {
 
 function OrganizationSelectorLandingPage() {
   const [search, setSearch] = useState('');
+  // Which flow the panel's action rows opened, and that flow's field value.
+  const [flow, setFlow] = useState<'join' | 'create' | null>(null);
+  const [flowValue, setFlowValue] = useState('');
 
   const matches = (name: string) =>
     name.toLowerCase().includes(search.toLowerCase());
@@ -152,6 +156,20 @@ function OrganizationSelectorLandingPage() {
   // `OrganizationsPanel`'s `empty` prop.
   const noMatches =
     search.trim().length > 0 && !visiblePersonal && visibleShared.length === 0;
+
+  const openFlow = (next: 'join' | 'create') => {
+    setFlowValue('');
+    setFlow(next);
+  };
+
+  // The page heading names the screen you are on; the card's own label names its
+  // field.
+  const heading =
+    flow === 'join'
+      ? 'Join organization'
+      : flow === 'create'
+        ? 'Create organization'
+        : 'Select organization';
 
   return (
     <Box
@@ -191,65 +209,89 @@ function OrganizationSelectorLandingPage() {
         sx={{ position: 'relative', zIndex: 1 }}
       >
         <Typography variant="h2" color="text.sidebar">
-          Select organization
+          {heading}
         </Typography>
-        <OrganizationsPanel
-          search={{
-            value: search,
-            onChange: (event) => setSearch(event.target.value),
-            placeholder: 'Search...',
-          }}
-          personalOrgItem={
-            visiblePersonal ? (
+        {/*
+          The join and create flows take the panel's place rather than
+          overlaying it — one card is on screen at a time, and the form's cancel
+          button comes back here.
+        */}
+        {flow !== null ? (
+          <OrganizationJoinPanel
+            title={
+              flow === 'create' ? 'Organization name' : 'Organization domain'
+            }
+            field={{
+              value: flowValue,
+              onChange: (event) => setFlowValue(event.target.value),
+              placeholder: flow === 'create' ? 'Acme Corporation' : 'acme.com',
+            }}
+            cancelLabel="Cancel"
+            submitLabel={flow === 'create' ? 'Create' : 'Ask to Join'}
+            onCancel={() => setFlow(null)}
+            onSubmit={() => setFlow(null)}
+          />
+        ) : (
+          <OrganizationsPanel
+            search={{
+              value: search,
+              onChange: (event) => setSearch(event.target.value),
+              placeholder: 'Search...',
+            }}
+            personalOrgItem={
+              visiblePersonal ? (
+                <OrganizationRow
+                  primaryText={personalOrg.name}
+                  secondaryText={personalOrg.lastOpened}
+                  logo={<BuildingIcon sx={{ width: 20, height: 20 }} />}
+                />
+              ) : undefined
+            }
+            organizationsLabel="My organizations"
+            organizationItems={
+              visibleShared.length > 0
+                ? visibleShared.map((org) => (
+                    <OrganizationRow
+                      key={org.id}
+                      primaryText={org.name}
+                      secondaryText={
+                        org.pending ? 'Awaiting approval' : org.lastOpened
+                      }
+                      disabled={org.pending}
+                      logo={org.logo}
+                    />
+                  ))
+                : undefined
+            }
+            orLabel="or"
+            // The custom-node form of `empty`, for app-specific copy. Pass
+            // `empty={noMatches}` instead to take the component's defaults.
+            empty={
+              noMatches && (
+                <OrganizationsEmptyState
+                  title="No organizations found"
+                  description="Join an existing one, or create your own below"
+                />
+              )
+            }
+            joinAction={
               <OrganizationRow
-                primaryText={personalOrg.name}
-                secondaryText={personalOrg.lastOpened}
-                logo={<BuildingIcon sx={{ width: 20, height: 20 }} />}
+                primaryText="Join organization"
+                logo={<LoginIcon sx={{ color: 'text.primary' }} />}
+                logoBackground={false}
+                onClick={() => openFlow('join')}
               />
-            ) : undefined
-          }
-          organizationsLabel="My organizations"
-          organizationItems={
-            visibleShared.length > 0
-              ? visibleShared.map((org) => (
-                  <OrganizationRow
-                    key={org.id}
-                    primaryText={org.name}
-                    secondaryText={
-                      org.pending ? 'Awaiting approval' : org.lastOpened
-                    }
-                    disabled={org.pending}
-                    logo={org.logo}
-                  />
-                ))
-              : undefined
-          }
-          orLabel="or"
-          // The custom-node form of `empty`, for app-specific copy. Pass
-          // `empty={noMatches}` instead to take the component's defaults.
-          empty={
-            noMatches && (
-              <OrganizationsEmptyState
-                title="No organizations found"
-                description="Join an existing one, or create your own below"
+            }
+            createAction={
+              <OrganizationRow
+                primaryText="Create organization"
+                logo={<AddIcon sx={{ color: 'text.primary' }} />}
+                logoBackground={false}
+                onClick={() => openFlow('create')}
               />
-            )
-          }
-          joinAction={
-            <OrganizationRow
-              primaryText="Join organization"
-              logo={<LoginIcon sx={{ color: 'text.primary' }} />}
-              logoBackground={false}
-            />
-          }
-          createAction={
-            <OrganizationRow
-              primaryText="Create organization"
-              logo={<AddIcon sx={{ color: 'text.primary' }} />}
-              logoBackground={false}
-            />
-          }
-        />
+            }
+          />
+        )}
       </Stack>
       <Stack
         alignItems="center"

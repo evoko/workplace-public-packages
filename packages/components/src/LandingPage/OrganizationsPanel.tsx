@@ -70,7 +70,10 @@ export function OrganizationRow({
       sx={{
         p: 1.5,
         gap: 2,
-        backgroundColor: 'background.paper',
+        // Same fill as the panel around it — the group's outline and the
+        // dividers do the separating, not a tonal step.
+        backgroundColor: ({ palette }) =>
+          palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
         '&.Mui-disabled': { opacity: 1 },
         ...(!disabled && {
           '&:hover': { backgroundColor: 'action.hover' },
@@ -182,7 +185,9 @@ export function OrganizationRowGroup({
       sx={{
         width: '100%',
         ...outlineSx,
-        backgroundColor: 'background.paper',
+        // Matches the panel and the rows inside it; the outline is the boundary.
+        backgroundColor: ({ palette }) =>
+          palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
         overflow: 'hidden',
         ...(maxHeight !== undefined && { overflowY: 'auto', maxHeight }),
       }}
@@ -338,11 +343,12 @@ export function OrganizationsPanel({
       width={width}
       maxWidth="100%"
       sx={{
-        // Deliberately the same surface as the cards inside it: with no tonal
-        // step between panel and card, the shared outline is the only thing
-        // separating them, so it reads as the boundary instead of competing
-        // with a background change.
-        backgroundColor: 'background.paper',
+        // Figma "Background/background_default" (#F5F5F5) is `grey[100]`, not
+        // `palette.background.default` — that token is #FFFFFF in light mode.
+        // The row groups share this fill and rely on their outline; only the
+        // search field is brighter than the card.
+        backgroundColor: ({ palette }: Theme) =>
+          palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
       }}
     >
       <TextField
@@ -356,6 +362,10 @@ export function OrganizationsPanel({
         // faint default, so it is pulled up to the same token the theme
         // already uses for this field's hover state.
         sx={{
+          // A step brighter than the card, like the row groups below it.
+          '& .MuiOutlinedInput-root': {
+            backgroundColor: 'background.paper',
+          },
           '& .MuiOutlinedInput-notchedOutline': {
             borderColor: ({ palette }: Theme) => palette.dividers.secondary,
           },
