@@ -22,10 +22,14 @@ import {
   BiampHeaderTitle,
 } from '../BiampHeader';
 import { UserInitialsIcon } from '../UserInitialsIcon';
-import { OrganizationRow, OrganizationsPanel } from './OrganizationsPanel';
+import {
+  OrganizationRow,
+  OrganizationsEmptyState,
+  OrganizationsPanel,
+} from './OrganizationsPanel';
 
 const meta: Meta = {
-  title: 'Pages/OrganizationSelection',
+  title: 'Pages/OrganizationSelectorLandingPage',
   parameters: {
     layout: 'fullscreen',
     // Opt out of the preview decorator's padding — this is a full-bleed page.
@@ -38,29 +42,39 @@ type Story = StoryObj;
 
 const user = { id: 'user-001', name: 'Jane Doe' };
 
-const personalOrg = { id: 'me-personal', name: 'Personal workspace' };
+const personalOrg = {
+  id: 'me-personal',
+  name: 'Personal workspace',
+  lastOpened: 'Last opened 20m ago',
+};
 
+// `lastOpened` stands in for whatever recency string the real app formats —
+// the package only renders the text it is handed.
 const sharedOrgs = [
   {
     id: 'acme-001',
     name: 'Acme Corporation',
     logo: 'https://picsum.photos/seed/acme/80',
+    lastOpened: 'Last opened 2h ago',
   },
   {
     id: 'globex-002',
     name: 'Globex Industries',
     logo: 'https://picsum.photos/seed/globex/80',
+    lastOpened: 'Last opened 6h ago',
+    pending: true,
   },
   {
     id: 'initech-003',
     name: 'Initech Systems',
     logo: 'https://picsum.photos/seed/initech/80',
+    lastOpened: 'Last opened 3 days ago',
   },
   {
     id: 'umbrella-004',
     name: 'Umbrella Co',
     logo: 'https://picsum.photos/seed/umbrella/80',
-    pending: true,
+    lastOpened: 'Last opened 2 weeks ago',
   },
 ];
 
@@ -125,13 +139,19 @@ function SelectionHeader() {
   );
 }
 
-function OrganizationSelectionPage() {
+function OrganizationSelectorLandingPage() {
   const [search, setSearch] = useState('');
 
   const matches = (name: string) =>
     name.toLowerCase().includes(search.toLowerCase());
 
   const visibleShared = sharedOrgs.filter((org) => matches(org.name));
+  const visiblePersonal = matches(personalOrg.name);
+
+  // Computed app-side from the query and the unfiltered lists — see
+  // `OrganizationsPanel`'s `empty` prop.
+  const noMatches =
+    search.trim().length > 0 && !visiblePersonal && visibleShared.length === 0;
 
   return (
     <Box
@@ -180,9 +200,10 @@ function OrganizationSelectionPage() {
             placeholder: 'Search...',
           }}
           personalOrgItem={
-            matches(personalOrg.name) ? (
+            visiblePersonal ? (
               <OrganizationRow
                 primaryText={personalOrg.name}
+                secondaryText={personalOrg.lastOpened}
                 logo={<BuildingIcon sx={{ width: 20, height: 20 }} />}
               />
             ) : undefined
@@ -195,7 +216,7 @@ function OrganizationSelectionPage() {
                     key={org.id}
                     primaryText={org.name}
                     secondaryText={
-                      org.pending ? 'Awaiting approval' : undefined
+                      org.pending ? 'Awaiting approval' : org.lastOpened
                     }
                     disabled={org.pending}
                     logo={org.logo}
@@ -204,6 +225,16 @@ function OrganizationSelectionPage() {
               : undefined
           }
           orLabel="or"
+          // The custom-node form of `empty`, for app-specific copy. Pass
+          // `empty={noMatches}` instead to take the component's defaults.
+          empty={
+            noMatches && (
+              <OrganizationsEmptyState
+                title="No organizations found"
+                description="Join an existing one, or create your own below"
+              />
+            )
+          }
           joinAction={
             <OrganizationRow
               primaryText="Join organization"
@@ -236,5 +267,5 @@ function OrganizationSelectionPage() {
 }
 
 export const Default: Story = {
-  render: () => <OrganizationSelectionPage />,
+  render: () => <OrganizationSelectorLandingPage />,
 };

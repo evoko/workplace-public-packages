@@ -18,14 +18,18 @@ import {
   ListItemButton,
   ListItemButtonProps,
   Stack,
+  StackProps,
   TextField,
+  Theme,
   Typography,
 } from '@mui/material';
 import {
   ChangeEvent,
   Children,
+  cloneElement,
   Fragment,
   isValidElement,
+  type JSX,
   ReactNode,
 } from 'react';
 import { ChevronRightIcon, SearchIcon } from '@bwp-web/assets';
@@ -40,6 +44,13 @@ type OrganizationRowProps = Omit<ListItemButtonProps, 'children'> & {
    * transparently (action icons such as join/create). Default: true.
    */
   logoBackground?: boolean;
+  /**
+   * Not selectable — e.g. a membership awaiting approval. Halves the logo's
+   * opacity, drops the name to secondary text, and hides the chevron on top of
+   * MUI's own disabled handling, so the row reads as provisional rather than
+   * uniformly greyed out.
+   */
+  disabled?: boolean;
 };
 
 /** A single row inside an `OrganizationRowGroup` — logo, text, chevron. */
@@ -48,7 +59,7 @@ export function OrganizationRow({
   secondaryText,
   logo,
   logoBackground = true,
-  disabled,
+  disabled = false,
   sx,
   ...props
 }: OrganizationRowProps) {
@@ -78,6 +89,10 @@ export function OrganizationRow({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          // Dim the logo here rather than on the row: the row overrides
+          // `Mui-disabled` back to `opacity: 1` so the whole thing does not
+          // grey out uniformly.
+          opacity: disabled ? 0.5 : 1,
           backgroundColor: ({ palette }) =>
             logoBackground
               ? palette.mode === 'dark'
@@ -101,7 +116,7 @@ export function OrganizationRow({
           noWrap
           variant="body2"
           fontWeight={600}
-          color="text.primary"
+          color={disabled ? 'text.secondary' : 'text.primary'}
         >
           {primaryText}
         </Typography>
@@ -112,7 +127,11 @@ export function OrganizationRow({
         )}
       </Stack>
       {!disabled && (
+        // `xs` (16px viewBox), not the default `md` (24px): at a 16px render
+        // size only the xs artwork keeps the stroke at Figma's weight — md
+        // scales the same stroke down to a hairline.
         <ChevronRightIcon
+          variant="xs"
           sx={{
             width: 16,
             height: 16,
@@ -124,6 +143,23 @@ export function OrganizationRow({
     </ListItemButton>
   );
 }
+
+/**
+ * The outline every top-level element in the panel shares — search field, the
+ * personal-org card, the organizations list, and each action group. Figma
+ * "Border/border_secondary" maps to `palette.dividers.secondary`:
+ * `rgba(17, 17, 17, 0.4)` in light mode, the white equivalent in dark.
+ *
+ * Note this belongs to the *group*, never to the rows inside it: the list keeps
+ * a single outline around all organizations, with plain dividers between them.
+ */
+const outlineSx = {
+  border: 0.6,
+  borderColor: ({ palette }: Theme) => palette.dividers.secondary,
+  borderRadius: '6px',
+  boxShadow: ({ palette }: Theme) =>
+    `0px 1px 1px 0px ${alpha(palette.common.black, 0.05)}`,
+};
 
 type OrganizationRowGroupProps = {
   children: ReactNode;
@@ -145,14 +181,8 @@ export function OrganizationRowGroup({
     <Box
       sx={{
         width: '100%',
-        border: 0.6,
-        borderColor: ({ palette }) =>
-          palette.mode === 'dark'
-            ? alpha(palette.common.white, 0.12)
-            : alpha(palette.grey[900], 0.15),
-        borderRadius: '6px',
+        ...outlineSx,
         backgroundColor: 'background.paper',
-        boxShadow: '0px 1px 1px 0px rgba(0, 0, 0, 0.05)',
         overflow: 'hidden',
         ...(maxHeight !== undefined && { overflowY: 'auto', maxHeight }),
       }}
@@ -183,6 +213,66 @@ function TextDivider({ children }: { children: ReactNode }) {
   );
 }
 
+export type OrganizationsEmptyStateProps = StackProps & {
+  /** Icon above the title. Default: a search glyph. */
+  icon?: JSX.Element;
+  /** Default: "No results found". */
+  title?: ReactNode;
+  /** Optional second line — e.g. a hint to try another search term. */
+  description?: ReactNode;
+};
+
+/**
+ * Status message shown in place of the panel's `orLabel` divider when a search
+ * matches nothing. Sits bare on the panel background so it reads as a status
+ * message rather than another actionable row.
+ *
+ * `OrganizationsPanel` renders this for `empty` — pass an instance of it with
+ * your own copy when the defaults do not fit.
+ */
+export function OrganizationsEmptyState({
+  icon = <SearchIcon />,
+  title = 'No results found',
+  description,
+  ...stackProps
+}: OrganizationsEmptyStateProps) {
+  return (
+    <Stack
+      role="status"
+      alignItems="center"
+      gap={0.5}
+      width="100%"
+      py={2}
+      px={2}
+      {...stackProps}
+    >
+      {cloneElement(icon, {
+        'aria-hidden': true,
+        sx: {
+          width: 24,
+          height: 24,
+          mb: 0.5,
+          color: 'text.secondary',
+          ...icon.props.sx,
+        },
+      })}
+      <Typography
+        variant="body2"
+        fontWeight={600}
+        color="text.primary"
+        textAlign="center"
+      >
+        {title}
+      </Typography>
+      {description && (
+        <Typography variant="caption" color="text.secondary" textAlign="center">
+          {description}
+        </Typography>
+      )}
+    </Stack>
+  );
+}
+
 /** Default cap on the organizations group — three 64px rows plus borders. */
 const DEFAULT_MAX_LIST_HEIGHT = 3 * 64 + 2;
 
@@ -199,6 +289,16 @@ type OrganizationsPanelProps = {
   organizationItems?: ReactNode;
   /** Label for the divider between the org list and the join/create actions. */
   orLabel: ReactNode;
+  /**
+   * When truthy, shown in place of the `orLabel` divider — for a search that
+   * matched nothing. The join/create actions stay visible either way. Pass
+   * `true` for the default `OrganizationsEmptyState`, or a custom ReactNode.
+   *
+   * Only the app can answer this (it holds the query and the unfiltered list),
+   * so the panel never infers it from the row slots:
+   * `empty={query !== '' && matches.length === 0}`.
+   */
+  empty?: boolean | ReactNode;
   /** Pre-built `OrganizationRow` for the "Join organization" row. */
   joinAction: ReactNode;
   /** Pre-built `OrganizationRow` for the "Create organization" row. */
@@ -222,6 +322,7 @@ export function OrganizationsPanel({
   organizationsLabel,
   organizationItems,
   orLabel,
+  empty = false,
   joinAction,
   createAction,
   width = 441,
@@ -237,8 +338,11 @@ export function OrganizationsPanel({
       width={width}
       maxWidth="100%"
       sx={{
-        backgroundColor: ({ palette }) =>
-          palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
+        // Deliberately the same surface as the cards inside it: with no tonal
+        // step between panel and card, the shared outline is the only thing
+        // separating them, so it reads as the boundary instead of competing
+        // with a background change.
+        backgroundColor: 'background.paper',
       }}
     >
       <TextField
@@ -247,6 +351,15 @@ export function OrganizationsPanel({
         value={search.value}
         onChange={search.onChange}
         fullWidth
+        // The theme already gives outlined inputs the 6px radius, 0.6px width
+        // and 1px shadow; only the *resting* outline color is left at MUI's
+        // faint default, so it is pulled up to the same token the theme
+        // already uses for this field's hover state.
+        sx={{
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: ({ palette }: Theme) => palette.dividers.secondary,
+          },
+        }}
         slotProps={{
           input: {
             startAdornment: (
@@ -268,7 +381,15 @@ export function OrganizationsPanel({
           </OrganizationRowGroup>
         </>
       )}
-      <TextDivider>{orLabel}</TextDivider>
+      {empty ? (
+        empty === true ? (
+          <OrganizationsEmptyState />
+        ) : (
+          empty
+        )
+      ) : (
+        <TextDivider>{orLabel}</TextDivider>
+      )}
       <Stack gap={1} width="100%">
         <OrganizationRowGroup>{joinAction}</OrganizationRowGroup>
         <OrganizationRowGroup>{createAction}</OrganizationRowGroup>
