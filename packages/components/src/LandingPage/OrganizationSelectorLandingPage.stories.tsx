@@ -22,6 +22,7 @@ import {
   BiampHeaderTitle,
 } from '../BiampHeader';
 import { UserInitialsIcon } from '../UserInitialsIcon';
+import { OrganizationCreatePanel } from './OrganizationCreatePanel';
 import { OrganizationJoinPanel } from './OrganizationJoinPanel';
 import {
   OrganizationRow,
@@ -48,6 +49,12 @@ const personalOrg = {
   name: 'Personal workspace',
   lastOpened: 'Last opened 20m ago',
 };
+
+const regions = [
+  { value: 'eu', label: 'Europe' },
+  { value: 'us', label: 'North America' },
+  { value: 'apac', label: 'Asia Pacific' },
+];
 
 // `lastOpened` stands in for whatever recency string the real app formats —
 // the package only renders the text it is handed.
@@ -142,9 +149,13 @@ function SelectionHeader() {
 
 function OrganizationSelectorLandingPage() {
   const [search, setSearch] = useState('');
-  // Which flow the panel's action rows opened, and that flow's field value.
+  // Which flow the panel's action rows opened, and each flow's field state.
   const [flow, setFlow] = useState<'join' | 'create' | null>(null);
-  const [flowValue, setFlowValue] = useState('');
+  const [joinDomain, setJoinDomain] = useState('');
+  const [createRegion, setCreateRegion] = useState('');
+  const [createName, setCreateName] = useState('');
+  const [createDomain, setCreateDomain] = useState('');
+  const [createDiscoverable, setCreateDiscoverable] = useState(false);
 
   const matches = (name: string) =>
     name.toLowerCase().includes(search.toLowerCase());
@@ -158,7 +169,11 @@ function OrganizationSelectorLandingPage() {
     search.trim().length > 0 && !visiblePersonal && visibleShared.length === 0;
 
   const openFlow = (next: 'join' | 'create') => {
-    setFlowValue('');
+    setJoinDomain('');
+    setCreateRegion('');
+    setCreateName('');
+    setCreateDomain('');
+    setCreateDiscoverable(false);
     setFlow(next);
   };
 
@@ -216,18 +231,48 @@ function OrganizationSelectorLandingPage() {
           overlaying it — one card is on screen at a time, and the form's cancel
           button comes back here.
         */}
-        {flow !== null ? (
+        {flow === 'join' ? (
           <OrganizationJoinPanel
-            title={
-              flow === 'create' ? 'Organization name' : 'Organization domain'
-            }
+            title="Organization domain"
             field={{
-              value: flowValue,
-              onChange: (event) => setFlowValue(event.target.value),
-              placeholder: flow === 'create' ? 'Acme Corporation' : 'acme.com',
+              value: joinDomain,
+              onChange: (event) => setJoinDomain(event.target.value),
+              placeholder: 'acme.com',
             }}
             cancelLabel="Cancel"
-            submitLabel={flow === 'create' ? 'Create' : 'Ask to Join'}
+            submitLabel="Ask to Join"
+            onCancel={() => setFlow(null)}
+            onSubmit={() => setFlow(null)}
+          />
+        ) : flow === 'create' ? (
+          <OrganizationCreatePanel
+            region={{
+              label: 'Data Region',
+              value: createRegion,
+              onChange: (event) => setCreateRegion(event.target.value),
+              placeholder: 'Select a region',
+              options: regions,
+            }}
+            name={{
+              label: 'Organization name',
+              value: createName,
+              onChange: (event) => setCreateName(event.target.value),
+              placeholder: 'Acme Corporation',
+            }}
+            domain={{
+              label: 'Organization domain',
+              value: createDomain,
+              onChange: (event) => setCreateDomain(event.target.value),
+              placeholder: 'acme.com',
+            }}
+            checkbox={{
+              checked: createDiscoverable,
+              onChange: (_event, checked) => setCreateDiscoverable(checked),
+              label:
+                'Let anyone with this domain find and join this organization',
+            }}
+            cancelLabel="Cancel"
+            submitLabel="Create"
             onCancel={() => setFlow(null)}
             onSubmit={() => setFlow(null)}
           />

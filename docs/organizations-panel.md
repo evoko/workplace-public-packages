@@ -81,7 +81,7 @@ The status message `OrganizationsPanel` renders for `empty={true}`. Export it di
 
 ### `OrganizationJoinPanel`
 
-The join flow behind the panel's action row: a labelled text field for the organization's domain, an outlined button on the left and a contained button on the right. All copy comes in as props, so the create action can reuse the same card with different labels.
+The join flow behind the panel's join action row: a labelled text field for the organization's domain, an outlined button on the left and a contained button on the right. See `OrganizationCreatePanel` for the create action's equivalent.
 
 **Not an overlay.** It is the same card as `OrganizationsPanel` — same radius, padding and width — and takes the panel's place while a flow is open, with cancel returning to it. The app decides which of the two is rendered; there is no `open` prop.
 
@@ -100,6 +100,27 @@ Its fill is `grey[100]` (`#F5F5F5`) — the same as `OrganizationsPanel` — wit
 | `onSubmit` | `() => void` | _(required)_ | Fired by the submit button or Enter in the field. Never fires while the field is empty |
 | `width` | `number \| string` | `441` | Card width, capped to the viewport — matches the panel |
 | _...rest_ | `StackProps` | — | Forwarded to the root `Stack`, which is the `<form>` element (minus `onSubmit`) |
+
+### `OrganizationCreatePanel`
+
+The create flow behind the panel's other action row: a region dropdown, the organization's name and domain, one checkbox, then cancel and confirm. Same card as `OrganizationsPanel` and `OrganizationJoinPanel` — same fill, radius, padding and width — and it takes the panel's place the same way, with no `open` prop.
+
+#### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `region` | `{ label; value: string; onChange; placeholder: string; options: { value: string; label: ReactNode }[]; error? }` | _(required)_ | The dropdown. Starts unselected, showing `placeholder` in `text.secondary` until an option is picked |
+| `name` | `{ label; value: string; onChange; placeholder: string; error? }` | _(required)_ | The organization's display name |
+| `domain` | `{ label; value: string; onChange; placeholder: string; error? }` | _(required)_ | The organization's domain |
+| `checkbox` | `{ checked: boolean; onChange: (e, checked) => void; label: ReactNode }` | _(required)_ | One checkbox with its label to the right. Does **not** gate submission |
+| `cancelLabel` | `React.ReactNode` | _(required)_ | Label for the outlined button on the left |
+| `submitLabel` | `React.ReactNode` | _(required)_ | Label for the contained button on the right |
+| `onCancel` | `() => void` | _(required)_ | Fired by the cancel button |
+| `onSubmit` | `() => void` | _(required)_ | Fired by the submit button or Enter in a field. Never fires until a region is chosen and both text fields have content |
+| `width` | `number \| string` | `441` | Card width, capped to the viewport |
+| _...rest_ | `StackProps` | — | Forwarded to the root `Stack`, which is the `<form>` element (minus `onSubmit`) |
+
+Each field's `label` is a 12px/600 `<label>` bound to its input, and each takes its own optional `error` so the app can mark just the field at fault.
 
 ## Usage
 
@@ -269,7 +290,7 @@ The submit button is disabled until the field has non-whitespace content — the
 - **One fill throughout, outlines do the work** — the panel, its row groups and the rows inside them are all `grey[100]` (`#F5F5F5`) in light and `grey[700]` in dark. Nothing is separated by a tonal step; the group outline and the dividers between rows are the only boundaries. The search field is the single exception, sitting a step brighter on `background.paper` (`#FFFFFF` / `grey[800]`) so it reads as an input rather than a surface. Note Figma's `--Background-background_default` (`#F5F5F5`) is `grey[100]` here — `palette.background.default` is `#FFFFFF` in light mode, so the token name and the value don't line up.
 - **Field resting outline** — the theme supplies outlined inputs with the 6px radius, 0.6px width and matching shadow, but leaves the resting border at MUI's fainter default. The panel's search field and the form's field each raise it to `dividers.secondary` — the token the theme already uses for their hover state — so fields match the cards at rest. The form's copy excludes `Mui-error`, so a field in its error state keeps the theme's error colour.
 - **The two cards swap without moving anything** — `OrganizationJoinPanel` repeats the panel's `borderRadius: 4`, `p: 1.5` and 441px width, so replacing one with the other doesn't shift or resize its surroundings. Its root `Stack` is the `<form>` element, which is what makes Enter submit.
-- **Both cards share one fill** — `OrganizationJoinPanel` uses the same `grey[100]` / `grey[700]` as `OrganizationsPanel`, with its field on `background.paper` exactly like the panel's search field and row groups. Swapping one card for the other changes nothing but the contents.
+- **All three cards share one fill** — `OrganizationJoinPanel` and `OrganizationCreatePanel` use the same `grey[100]` / `grey[700]` as `OrganizationsPanel`, with their inputs on `background.paper` like the panel's search field. Swapping one card for another changes nothing but the contents. The rule across the family: inputs are a step brighter, every surface is `#F5F5F5`.
 - **The form card has no heading of its own** — `title` is the field's label (12px / 600, the weight the panel uses for its dividers), grouped with the input at `gap: 0.5` so it reads as attached to it. Naming the screen is the page's job, above the card.
 - **Row height is logo-driven** — the 40px logo plus 12px padding sets 64px, with or without `secondaryText`. That's why `maxListHeight` defaults to `3 * 64 + 2`.
 - **Chevron artwork** — rows use `ChevronRightIcon` with `variant="xs"`. The default `md` variant is a 24px viewBox; rendered in a 16px box its stroke scales down to a hairline.
@@ -282,4 +303,5 @@ The submit button is disabled until the field has non-whitespace content — the
 - `OrganizationRow` — Single row built on `ListItemButton`; supports linking via `component`, `to`, `href`, `onClick`.
 - `OrganizationRowGroup` — Bordered grouping with the shared outline and auto-dividers.
 - `OrganizationsEmptyState` — Status message for `empty`, with overridable icon/title/description.
-- `OrganizationJoinPanel` — Single-field form for the join and create flows, shaped to replace the panel in place; submit disabled until the field is filled.
+- `OrganizationJoinPanel` — Single-field form for the join flow, shaped to replace the panel in place; submit disabled until the field is filled.
+- `OrganizationCreatePanel` — Region dropdown, name, domain and a checkbox for the create flow; submit disabled until all three fields are filled.
