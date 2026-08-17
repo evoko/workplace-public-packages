@@ -1,14 +1,6 @@
 /**
- * Organization switching **from inside an app**, designed to sit in the
- * package's `BiampHeader`: `OrganizationSelectorButton` goes in the header's
- * action list, opens `OrganizationSelectorPopover`, and the popover holds
- * `OrganizationItemList`s of `OrganizationItem`s. Sized, anchored, and styled
- * for that context — compact rows, a popover-scale shadow, and an
- * `isCurrent` state marking the organization the user is already in.
- *
- * For the full-page picker shown before entering an app, see the
- * `LandingPage` components (`OrganizationsPanel` and friends) instead. The
- * two families are complements, not versions of each other.
+ * Organization switching from inside an app, sized for `BiampHeader`. For the
+ * full-page picker shown before entering an app, see `OrganizationsPanel`.
  */
 import {
   alpha,

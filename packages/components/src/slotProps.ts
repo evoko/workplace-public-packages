@@ -1,10 +1,5 @@
-/**
- * Shared plumbing for components that expose a `slotProps` bag. Package-internal
- * — not re-exported from `src/index.ts`.
- *
- * Lives at the package root rather than inside a component folder because both
- * `BiampTable` and the `LandingPage` cards use it.
- */
+// Shared plumbing for components that expose a `slotProps` bag. Package-internal
+// — not re-exported from `src/index.ts`.
 import type { SxProps, Theme } from '@mui/material';
 
 export type SlotPropsOrFn<TProps, TCtx> = TProps | ((ctx: TCtx) => TProps);
@@ -26,15 +21,9 @@ export function mergeSx(
 }
 
 /**
- * Layers one entry of a MUI `slotProps` bag — `slotProps.input`,
- * `slotProps.select`, … — over the defaults a component set for that same slot,
- * so a consumer adding a key does not silently drop the component's own.
- *
- * MUI types each entry as `props | ((ownerState) => props)` and resolves the
- * callback form at render time (`useSlot` → `resolveComponentProps`), so a plain
- * `{ ...own, ...user }` would drop a consumer's callback entirely — spreading a
- * function yields no keys. Shallow by design: the consumer's individual keys
- * win, the rest survive.
+ * Layers one entry of a MUI `slotProps` bag over a component's own defaults for
+ * that slot, per key. MUI types each entry as `props | ((ownerState) => props)`,
+ * so a plain spread would silently drop the callback form.
  */
 export function mergeSlotProps<TSlot>(
   ownProps: Record<string, unknown>,

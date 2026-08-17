@@ -28,7 +28,7 @@ Content-sized card holding the search field, the organization groups, and the jo
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `search` | `{ value: string; onChange: (e) => void; placeholder: string }` | — | Controlled search field. The panel renders the input and nothing else — filtering is the consumer's job. Omit to render no search field |
+| `search` | `{ value: string; onChange: (e) => void; placeholder: string }` | — | Controlled search field. The panel renders the input and nothing else — filtering is the consumer's job. Omit to render no search field. The field has no visible label, so `placeholder` also becomes its accessible name (`aria-label` on the `<input>`), overridable via `slotProps.search.slotProps.htmlInput` |
 | `personalOrgItem` | `React.ReactNode` | — | The user's personal organization row (an `OrganizationRow`). Omit (or pass `undefined`) to hide the group entirely |
 | `organizationsLabel` | `React.ReactNode` | — | Label for the divider above the organizations list. Omit for an unlabelled list |
 | `organizationItems` | `React.ReactNode` | — | The user's other organizations, as `OrganizationRow`s. Omit (or pass `undefined`) to hide both the list and its label |
@@ -54,7 +54,7 @@ A single clickable row — logo, text, chevron — built on `ListItemButton`. Ex
 |------|------|---------|-------------|
 | `primaryText` | `React.ReactNode` | _(required)_ | Organization name. Rendered `body2` / `fontWeight: 600` |
 | `secondaryText` | `React.ReactNode` | — | Optional second line below the name, in `caption` / `text.secondary`. **No auto-prefix** — pass the full text (e.g. `"Last opened 2h ago"`) |
-| `logo` | `React.ReactNode \| string` | — | Logo element or an image URL. Strings render as `<img>` filling the 40×40 logo box with `objectFit: 'cover'` |
+| `logo` | `React.ReactNode \| string` | — | Logo element or an image URL. Strings render as `<img>` filling the 40×40 logo box with `objectFit: 'cover'`, marked `alt=""` since `primaryText` already names the organization. Pass a node (`<img alt="…" />`) when the artwork carries meaning of its own |
 | `logoBackground` | `boolean` | `true` | Whether the logo sits on a filled square (organization logos) or transparently (action icons such as join/create) |
 | `disabled` | `boolean` | `false` | Not selectable — e.g. a membership awaiting approval. Halves the logo's opacity, drops the name to `text.secondary`, and hides the chevron, on top of MUI's own disabled handling |
 | `sx` | `SxProps<Theme>` | — | MUI system styles passed to the underlying `ListItemButton` |
@@ -259,7 +259,7 @@ Three rules govern the merge:
 
 - **Each bag is spread after the component's own props**, so it wins on conflict. That includes the wiring — passing `disabled` to `submitButton` overrides the card's own enable/disable logic, and passing `value` to a field overrides the controlled value. That's deliberate, but it means a slot can break behaviour as well as restyle it.
 - **`sx` merges, it doesn't replace.** Slot styles layer over the component's own rather than wiping them, and all three `sx` forms are supported — object, theme callback, and array of either.
-- **A slot's own nested `slotProps` layers per key, it doesn't replace.** Two fields set MUI `slotProps` internally to produce a visible default: the panel's search field puts the search icon in `slotProps.input`, and the create panel's region field puts the placeholder in `slotProps.select`. Passing your own `slotProps` to either field keeps those defaults — your individual keys win, the rest survive:
+- **A slot's own nested `slotProps` layers per key, it doesn't replace.** Three defaults are produced this way: the panel's search field puts the search icon in `slotProps.input` and its accessible name in `slotProps.htmlInput`, and the create panel's region field puts the placeholder in `slotProps.select`. Passing your own `slotProps` to either field keeps those defaults — your individual keys win, the rest survive:
 
   ```tsx
   // The search icon stays; the clear button is added alongside it.

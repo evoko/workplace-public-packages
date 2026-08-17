@@ -52,11 +52,6 @@ function FormDemo({
 /**
  * The join flow. The submit button stays disabled until the field has content —
  * type into it to enable "Ask to Join".
- *
- * The card carries only the field's label; the screen it replaces is named by
- * the page heading above it. On the landing page this card takes
- * `OrganizationsPanel`'s place rather than overlaying it — see the
- * OrganizationSelectorLandingPage story.
  */
 export const Join: Story = {
   render: () => (
@@ -68,11 +63,7 @@ export const Join: Story = {
   ),
 };
 
-/**
- * Every label is a prop, so the panel's create action can reuse the same card —
- * only the copy differs. Kept as a story because the landing page drives both
- * flows through this component.
- */
+/** Every label is a prop, so the same card also serves the create action. */
 export const Create: Story = {
   render: () => (
     <FormDemo

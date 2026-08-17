@@ -56,8 +56,6 @@ const regions = [
   { value: 'apac', label: 'Asia Pacific' },
 ];
 
-// `lastOpened` stands in for whatever recency string the real app formats —
-// the package only renders the text it is handed.
 const sharedOrgs = [
   {
     id: 'acme-001',
@@ -86,15 +84,9 @@ const sharedOrgs = [
   },
 ];
 
-/**
- * Transparent toolbar sitting over the background photo: app title on the
- * left, app launcher / theme toggle / profile on the right.
- */
 function SelectionHeader() {
   const [appsAnchorEl, setAppsAnchorEl] = useState<HTMLElement | null>(null);
-  // The real screen drives this from the app's color scheme; the showcase
-  // only swaps the icon. Use Storybook's Color Mode toolbar to see the page
-  // itself in light and dark.
+  // The showcase only swaps the icon; use Storybook's Color Mode toolbar.
   const [lightMode, setLightMode] = useState(true);
 
   const handleAppsClick = (event: MouseEvent<HTMLElement>) => {
@@ -163,8 +155,7 @@ function OrganizationSelectorLandingPage() {
   const visibleShared = sharedOrgs.filter((org) => matches(org.name));
   const visiblePersonal = matches(personalOrg.name);
 
-  // Computed app-side from the query and the unfiltered lists — see
-  // `OrganizationsPanel`'s `empty` prop.
+  // Computed app-side — see `OrganizationsPanel`'s `empty` prop.
   const noMatches =
     search.trim().length > 0 && !visiblePersonal && visibleShared.length === 0;
 
@@ -177,8 +168,6 @@ function OrganizationSelectorLandingPage() {
     setFlow(next);
   };
 
-  // The page heading names the screen you are on; the card's own label names its
-  // field.
   const heading =
     flow === 'join'
       ? 'Join organization'
@@ -195,12 +184,8 @@ function OrganizationSelectorLandingPage() {
         flexDirection: 'column',
       }}
     >
-      {/*
-        The real page pins this with `position: fixed; z-index: -1`. Inside the
-        Storybook canvas a negative z-index would slide behind the preview
-        decorator's opaque background, so it is anchored to the page container
-        instead and the content is lifted above it.
-      */}
+      {/* The real page pins this with `position: fixed; z-index: -1`; a negative
+          z-index would hide behind Storybook's preview decorator. */}
       <Box
         sx={{
           position: 'absolute',
@@ -226,11 +211,7 @@ function OrganizationSelectorLandingPage() {
         <Typography variant="h2" color="text.sidebar">
           {heading}
         </Typography>
-        {/*
-          The join and create flows take the panel's place rather than
-          overlaying it — one card is on screen at a time, and the form's cancel
-          button comes back here.
-        */}
+        {/* The flows take the panel's place rather than overlaying it. */}
         {flow === 'join' ? (
           <OrganizationJoinPanel
             title="Organization domain"
@@ -309,8 +290,7 @@ function OrganizationSelectorLandingPage() {
                 : undefined
             }
             orLabel="or"
-            // The custom-node form of `empty`, for app-specific copy. Pass
-            // `empty={noMatches}` instead to take the component's defaults.
+            // Custom-node form of `empty`; pass `empty={noMatches}` for defaults.
             empty={
               noMatches && (
                 <OrganizationsEmptyState

@@ -1,12 +1,8 @@
 import type { SVGProps } from 'react';
 
 /**
- * Biamp wordmark as a plain SVG on a 96x32 viewBox. Every stroke uses
- * `currentColor` (except the red dot), so the mark follows the CSS `color` of
- * its container — set `color` or `style={{ color }}` to recolor it.
- *
- * Prefer `BiampLogoIcon` when you want an MUI `SvgIcon` that picks its own
- * fill from the active light/dark theme instead.
+ * Biamp wordmark as a plain SVG. Uses `currentColor` (except the red dot), so
+ * set `color` to recolor it. Prefer `BiampLogoIcon` for a theme-aware `SvgIcon`.
  */
 export const BiampLogo = (props: SVGProps<SVGSVGElement>) => (
   <svg

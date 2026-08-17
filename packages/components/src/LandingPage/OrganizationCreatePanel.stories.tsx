@@ -68,9 +68,6 @@ function CreateDemo({ filled = false, domainError }: DemoProps) {
 /**
  * Empty to start: "Create" stays disabled until a region is chosen and both text
  * fields have content. The checkbox is independent — it does not gate submission.
- *
- * On the landing page this card takes `OrganizationsPanel`'s place rather than
- * overlaying it — see the OrganizationSelectorLandingPage story.
  */
 export const Default: Story = {
   render: () => <CreateDemo />,

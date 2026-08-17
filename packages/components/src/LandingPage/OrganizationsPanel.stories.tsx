@@ -18,8 +18,6 @@ const personalOrg = {
   lastOpened: 'Last opened 20m ago',
 };
 
-// `lastOpened` stands in for whatever recency string the real app formats —
-// the package only renders the text it is handed.
 const sharedOrgs = [
   {
     id: 'acme-001',
@@ -57,8 +55,7 @@ function PanelDemo({ initialSearch = '' }: { initialSearch?: string }) {
   const visibleShared = sharedOrgs.filter((org) => matches(org.name));
   const visiblePersonal = matches(personalOrg.name);
 
-  // The app owns this: it holds the query and the unfiltered lists, so it can
-  // answer "the search matched nothing" precisely. The panel never guesses.
+  // The app owns this — the panel never guesses.
   const noMatches =
     search.trim().length > 0 && !visiblePersonal && visibleShared.length === 0;
 
