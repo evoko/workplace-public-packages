@@ -28,16 +28,21 @@ Content-sized card holding the search field, the organization groups, and the jo
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `search` | `{ value: string; onChange: (e) => void; placeholder: string }` | _(required)_ | Controlled search field. The panel renders the input and nothing else — filtering is the consumer's job |
+| `search` | `{ value: string; onChange: (e) => void; placeholder: string }` | — | Controlled search field. The panel renders the input and nothing else — filtering is the consumer's job. Omit to render no search field |
 | `personalOrgItem` | `React.ReactNode` | — | The user's personal organization row (an `OrganizationRow`). Omit (or pass `undefined`) to hide the group entirely |
-| `organizationsLabel` | `React.ReactNode` | _(required)_ | Label for the divider above the organizations list |
+| `organizationsLabel` | `React.ReactNode` | — | Label for the divider above the organizations list. Omit for an unlabelled list |
 | `organizationItems` | `React.ReactNode` | — | The user's other organizations, as `OrganizationRow`s. Omit (or pass `undefined`) to hide both the list and its label |
-| `orLabel` | `React.ReactNode` | _(required)_ | Label for the divider between the org list and the join/create actions |
+| `orLabel` | `React.ReactNode` | — | Label for the divider between the org list and the join/create actions. Omit to drop the divider |
 | `empty` | `boolean \| React.ReactNode` | `false` | When truthy, shown in place of the `orLabel` divider — for a search that matched nothing. `true` renders the default `OrganizationsEmptyState`; a node renders as-is. Join/create stay visible either way |
-| `joinAction` | `React.ReactNode` | _(required)_ | Pre-built `OrganizationRow` for the "Join organization" row |
-| `createAction` | `React.ReactNode` | _(required)_ | Pre-built `OrganizationRow` for the "Create organization" row |
+| `joinAction` | `React.ReactNode` | — | Pre-built `OrganizationRow` for the "Join organization" row. Omit to hide the group — e.g. a user with no right to join |
+| `createAction` | `React.ReactNode` | — | Pre-built `OrganizationRow` for the "Create organization" row. Omit to hide the group |
 | `width` | `number \| string` | `441` | Panel width, capped to the viewport |
 | `maxListHeight` | `number \| string` | `3 * 64 + 2` | Height cap on the scrollable organizations group — three 64px rows plus borders. Raise it when passing taller rows |
+| `slotProps` | `OrganizationsPanelSlotProps` | — | Props for the parts the panel builds itself — see [Slots](#slots) below |
+| `sx` | `SxProps<Theme>` | — | MUI system styles, merged over the panel's own (which set the fill, radius and padding). All three forms work — object, theme callback, and array of either |
+| _...rest_ | `StackProps` | — | Forwarded to the root `Stack`. `children` and `width` are excluded — the panel has no children slot, and `width` is typed above |
+
+Every slot is optional. A panel with nothing but `organizationItems` is valid, and so is one with only the two action rows — each group, divider and the search field render only when their prop is passed.
 
 ### `OrganizationRow`
 
@@ -65,6 +70,8 @@ Bordered grouping that carries the shared outline and auto-renders MUI `Divider`
 |------|------|---------|-------------|
 | `children` | `React.ReactNode` | _(required)_ | `OrganizationRow` children — auto-divided |
 | `maxHeight` | `number \| string` | — | Caps the group's height and enables vertical scrolling within it |
+| `sx` | `SxProps<Theme>` | — | Merged over the group's own styles (the outline, fill and overflow) |
+| _...rest_ | `BoxProps` | — | Forwarded to the root `Box`. `children` and `maxHeight` are typed above |
 
 ### `OrganizationsEmptyState`
 
@@ -98,6 +105,8 @@ Its fill is `grey[100]` (`#F5F5F5`) — the same as `OrganizationsPanel` — wit
 | `submitLabel` | `React.ReactNode` | _(required)_ | Label for the contained button on the right |
 | `onCancel` | `() => void` | _(required)_ | Fired by the cancel button |
 | `onSubmit` | `() => void` | _(required)_ | Fired by the submit button or Enter in the field. Never fires while the field is empty |
+| `submitting` | `boolean` | `false` | A submit is in flight: spinner in the submit button, both buttons disabled, so `onSubmit` can't fire twice for one request |
+| `slotProps` | `OrganizationJoinPanelSlotProps` | — | Props for `label`, `field`, `actions`, `cancelButton`, `submitButton` — see [Slots](#slots) |
 | `width` | `number \| string` | `441` | Card width, capped to the viewport — matches the panel |
 | _...rest_ | `StackProps` | — | Forwarded to the root `Stack`, which is the `<form>` element (minus `onSubmit`) |
 
@@ -117,6 +126,8 @@ The create flow behind the panel's other action row: a region dropdown, the orga
 | `submitLabel` | `React.ReactNode` | _(required)_ | Label for the contained button on the right |
 | `onCancel` | `() => void` | _(required)_ | Fired by the cancel button |
 | `onSubmit` | `() => void` | _(required)_ | Fired by the submit button or Enter in a field. Never fires until a region is chosen and both text fields have content |
+| `submitting` | `boolean` | `false` | A submit is in flight: spinner in the submit button, both buttons disabled, so `onSubmit` can't fire twice for one request |
+| `slotProps` | `OrganizationCreatePanelSlotProps` | — | Props for `label`, `regionField`, `nameField`, `domainField`, `checkbox`, `checkboxLabel`, `actions`, `cancelButton`, `submitButton` — see [Slots](#slots) |
 | `width` | `number \| string` | `441` | Card width, capped to the viewport |
 | _...rest_ | `StackProps` | — | Forwarded to the root `Stack`, which is the `<form>` element (minus `onSubmit`) |
 
@@ -220,6 +231,46 @@ empty={noMatches && <MyCustomEmptyState onClear={() => setQuery('')} />}
 
 When `empty` is truthy the `orLabel` divider is replaced, and the join/create rows stay put — a dead-end search still offers a way forward.
 
+### Slots
+
+The rows are yours — style those at the call site, since you construct them. Everything else on these cards is built internally, and `slotProps` is how you reach it without forking the component.
+
+```tsx
+<OrganizationsPanel
+  // The root Stack.
+  sx={{ maxWidth: 520 }}
+  slotProps={{
+    search: { autoFocus: true, size: 'small', inputRef },
+    organizationsGroup: { maxHeight: 400 },
+    orLabel: { sx: { fontSize: 12 } },
+    actions: { gap: 2 },
+  }}
+  /* …slots… */
+/>
+```
+
+| Component | Slots |
+|-----------|-------|
+| `OrganizationsPanel` | `search` (`TextFieldProps`), `organizationsLabel` / `orLabel` (`DividerProps`), `personalOrgGroup` / `organizationsGroup` / `joinGroup` / `createGroup` (`OrganizationRowGroupProps`), `actions` (`StackProps`) |
+| `OrganizationJoinPanel` | `label` (`TypographyProps`), `field` (`TextFieldProps`), `actions` (`StackProps`), `cancelButton` / `submitButton` (`ButtonProps`) |
+| `OrganizationCreatePanel` | `label` (`TypographyProps`, applied to all three), `regionField` / `nameField` / `domainField` (`TextFieldProps`), `checkbox` (`CheckboxProps`), `checkboxLabel` (`FormControlLabelProps`), `actions` (`StackProps`), `cancelButton` / `submitButton` (`ButtonProps`) |
+
+Three rules govern the merge:
+
+- **Each bag is spread after the component's own props**, so it wins on conflict. That includes the wiring — passing `disabled` to `submitButton` overrides the card's own enable/disable logic, and passing `value` to a field overrides the controlled value. That's deliberate, but it means a slot can break behaviour as well as restyle it.
+- **`sx` merges, it doesn't replace.** Slot styles layer over the component's own rather than wiping them, and all three `sx` forms are supported — object, theme callback, and array of either.
+- **A slot's own nested `slotProps` layers per key, it doesn't replace.** Two fields set MUI `slotProps` internally to produce a visible default: the panel's search field puts the search icon in `slotProps.input`, and the create panel's region field puts the placeholder in `slotProps.select`. Passing your own `slotProps` to either field keeps those defaults — your individual keys win, the rest survive:
+
+  ```tsx
+  // The search icon stays; the clear button is added alongside it.
+  slotProps={{ search: { slotProps: { input: { endAdornment: <ClearButton /> } } } }}
+
+  // The region placeholder stays; only autoWidth is added.
+  slotProps={{ regionField: { slotProps: { select: { autoWidth: true } } } }}
+  ```
+
+  Override `input.startAdornment` or `select.renderValue` explicitly and yours replaces the default, as you'd expect. The callback form (`select: (ownerState) => ({ … })`) composes the same way.
+
 ### Unselectable Rows
 
 `disabled` carries both the interaction and the visual treatment — one prop for a row that can't be opened yet, such as a membership awaiting approval:
@@ -243,6 +294,7 @@ The action rows don't open an overlay — they swap the panel out for `Organizat
 const [flow, setFlow] = useState<'join' | 'create' | null>(null);
 const [value, setValue] = useState('');
 const [error, setError] = useState<string>();
+const [submitting, setSubmitting] = useState(false);
 
 const openFlow = (next: 'join' | 'create') => {
   setValue('');
@@ -264,12 +316,16 @@ return flow !== null ? (
     cancelLabel="Cancel"
     submitLabel={flow === 'create' ? 'Create' : 'Ask to Join'}
     onCancel={() => setFlow(null)}
+    submitting={submitting}
     onSubmit={async () => {
+      setSubmitting(true);
       try {
         await submit(flow, value);
         setFlow(null);
       } catch {
         setError('No organization found with that ID');
+      } finally {
+        setSubmitting(false);
       }
     }}
   />
@@ -282,7 +338,7 @@ return flow !== null ? (
 );
 ```
 
-The submit button is disabled until the field has non-whitespace content — the component derives that from `field.value`, which is data it holds rather than something inferred about the caller. Everything else is the app's: which card is shown, what submitting does, whether it succeeded, and what the failure says.
+The submit button is disabled until the field has non-whitespace content — the component derives that from `field.value`, which is data it holds rather than something inferred about the caller. `submitting` covers the other half: while it is `true` the submit button shows a spinner and both buttons are disabled, so one request can't be fired twice. The component can't know when its own submit resolves, so the app owns the flag. Everything else is the app's too: which card is shown, whether it succeeded, and what the failure says.
 
 ## Design Details
 
@@ -294,7 +350,7 @@ The submit button is disabled until the field has non-whitespace content — the
 - **The form card has no heading of its own** — `title` is the field's label (12px / 600, the weight the panel uses for its dividers), grouped with the input at `gap: 0.5` so it reads as attached to it. Naming the screen is the page's job, above the card.
 - **Row height is logo-driven** — the 40px logo plus 12px padding sets 64px, with or without `secondaryText`. That's why `maxListHeight` defaults to `3 * 64 + 2`.
 - **Chevron artwork** — rows use `ChevronRightIcon` with `variant="xs"`. The default `md` variant is a 24px viewBox; rendered in a 16px box its stroke scales down to a hairline.
-- **Slots are rendered when provided** — `personalOrgItem` and `organizationItems` are plain conditional slots. Pass `undefined` (not `[]` or `null` wrappers) when a group has nothing to show; the panel does not introspect children to decide.
+- **Slots are rendered when provided** — every slot on `OrganizationsPanel` is a plain conditional: the search field, each row group, each divider and the actions column appear only when their prop is passed, and the actions column collapses entirely when neither action row is. Pass `undefined` (not `[]` or `null` wrappers) when a group has nothing to show; the panel does not introspect children to decide.
 - **`Children` is used only for dividers** — `OrganizationRowGroup` counts its children to place dividers, which is layout the group alone can know. No component in this family derives application state from its children.
 
 ## Exports

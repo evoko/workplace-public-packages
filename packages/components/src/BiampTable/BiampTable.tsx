@@ -32,7 +32,7 @@ import { BiampTableEmptyState } from './BiampTableEmptyState';
 import { BiampTableErrorState } from './BiampTableErrorState';
 import { BiampTableRow } from './BiampTableRow';
 import { useLoadingDelay } from '../hooks';
-import { mergeSx, resolveSlot, type SlotPropsOrFn } from './slotProps';
+import { mergeSx, resolveSlot, type SlotPropsOrFn } from '../slotProps';
 import { cellSx } from './cellSx';
 
 // ── Slot props ─────────────────────────────────────────────────────

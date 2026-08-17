@@ -11,16 +11,22 @@
 import {
   Box,
   Button,
+  ButtonProps,
   Checkbox,
+  CheckboxProps,
   FormControlLabel,
+  FormControlLabelProps,
   MenuItem,
   Stack,
   StackProps,
   TextField,
+  TextFieldProps,
   Theme,
   Typography,
+  TypographyProps,
 } from '@mui/material';
 import { ChangeEvent, FormEvent, ReactNode, useId } from 'react';
+import { mergeSlotProps, mergeSx } from '../slotProps';
 
 /**
  * Shared by all three inputs: a step brighter than the card (`#FFFFFF` in light,
@@ -41,10 +47,12 @@ const fieldSx = {
 function LabelledField({
   id,
   label,
+  labelProps,
   children,
 }: {
   id: string;
   label: ReactNode;
+  labelProps?: TypographyProps;
   children: ReactNode;
 }) {
   return (
@@ -56,6 +64,7 @@ function LabelledField({
         fontSize={12}
         fontWeight={600}
         color="text.primary"
+        {...labelProps}
       >
         {label}
       </Typography>
@@ -75,6 +84,33 @@ type TextFieldConfig = {
    * Message shown beneath the field, which also switches it to its error state.
    */
   error?: ReactNode;
+};
+
+/**
+ * Props for the parts this card builds itself. Each bag is spread onto its slot
+ * *after* the card's own props, so it wins on conflict; `sx` merges rather than
+ * replaces. Note this reaches the wiring too — spreading `disabled` onto
+ * `submitButton` overrides the card's own enable/disable logic.
+ */
+export type OrganizationCreatePanelSlotProps = {
+  /** The `<label>` above each field — applied to all three. */
+  label?: TypographyProps;
+  /** The region `TextField` (a `select`). */
+  regionField?: TextFieldProps;
+  /** The organization-name `TextField`. */
+  nameField?: TextFieldProps;
+  /** The domain `TextField`. */
+  domainField?: TextFieldProps;
+  /** The `Checkbox` control itself. */
+  checkbox?: CheckboxProps;
+  /** The `FormControlLabel` pairing the checkbox with its label. */
+  checkboxLabel?: Omit<FormControlLabelProps, 'control' | 'label'>;
+  /** The row holding both buttons. */
+  actions?: StackProps;
+  /** The outlined button on the left. */
+  cancelButton?: ButtonProps;
+  /** The contained button on the right. */
+  submitButton?: ButtonProps;
 };
 
 export type OrganizationCreatePanelProps = Omit<StackProps, 'onSubmit'> & {
@@ -104,8 +140,20 @@ export type OrganizationCreatePanelProps = Omit<StackProps, 'onSubmit'> & {
    * is chosen and both text fields have content — the checkbox does not gate it.
    */
   onSubmit: () => void;
+  /**
+   * A submit is in flight. Puts a spinner in the submit button and disables
+   * both buttons, so `onSubmit` cannot fire twice for one request. The app owns
+   * this — the component has no idea when its own submit has finished.
+   */
+  submitting?: boolean;
   /** Card width, capped to the viewport. Default: 441 — the panel's width. */
   width?: number | string;
+  /**
+   * Props for the parts the card renders itself — each label, each field, the
+   * checkbox, the button row and each button. Use this to reach past its styling
+   * and defaults without forking it.
+   */
+  slotProps?: OrganizationCreatePanelSlotProps;
 };
 
 export function OrganizationCreatePanel({
@@ -117,10 +165,26 @@ export function OrganizationCreatePanel({
   submitLabel,
   onCancel,
   onSubmit,
+  submitting = false,
   width = 441,
+  slotProps,
   sx,
   ...stackProps
 }: OrganizationCreatePanelProps) {
+  // Each field carries `fieldSx`, so a slot's `sx` is merged rather than spread
+  // over it. Slots with no own styling take a plain spread.
+  //
+  // The region field also sets its own `slotProps.select` to render the
+  // placeholder, so the consumer's `slotProps` is pulled out too: their other
+  // keys spread through, but `select` is layered rather than replaced. Without
+  // this, passing any `slotProps` to this field would drop the placeholder.
+  const {
+    sx: regionSx,
+    slotProps: regionFieldSlotProps,
+    ...regionSlotProps
+  } = slotProps?.regionField ?? {};
+  const { sx: nameSx, ...nameSlotProps } = slotProps?.nameField ?? {};
+  const { sx: domainSx, ...domainSlotProps } = slotProps?.domainField ?? {};
   const baseId = useId();
   const regionId = `${baseId}-region`;
   const nameId = `${baseId}-name`;
@@ -135,7 +199,8 @@ export function OrganizationCreatePanel({
   const canSubmit =
     region.value !== '' &&
     name.value.trim().length > 0 &&
-    domain.value.trim().length > 0;
+    domain.value.trim().length > 0 &&
+    !submitting;
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -154,16 +219,22 @@ export function OrganizationCreatePanel({
       borderRadius={4}
       width={width}
       maxWidth="100%"
-      sx={{
-        // Figma "Background/background_default" (#F5F5F5) is `grey[100]`, not
-        // `palette.background.default` — that token is #FFFFFF in light mode.
-        backgroundColor: ({ palette }: Theme) =>
-          palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          // Figma "Background/background_default" (#F5F5F5) is `grey[100]`, not
+          // `palette.background.default` — that token is #FFFFFF in light mode.
+          backgroundColor: ({ palette }: Theme) =>
+            palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
+        },
+        sx,
+      )}
       {...stackProps}
     >
-      <LabelledField id={regionId} label={region.label}>
+      <LabelledField
+        id={regionId}
+        label={region.label}
+        labelProps={slotProps?.label}
+      >
         <TextField
           select
           id={regionId}
@@ -173,21 +244,26 @@ export function OrganizationCreatePanel({
           onChange={region.onChange}
           error={Boolean(region.error)}
           helperText={region.error}
-          sx={fieldSx}
+          sx={mergeSx(fieldSx, regionSx)}
           slotProps={{
-            select: {
-              displayEmpty: true,
-              // Stands in for a placeholder, which a select has no room for.
-              renderValue: () =>
-                selectedRegion ? (
-                  selectedRegion.label
-                ) : (
-                  <Box component="span" sx={{ color: 'text.secondary' }}>
-                    {region.placeholder}
-                  </Box>
-                ),
-            },
+            ...regionFieldSlotProps,
+            select: mergeSlotProps(
+              {
+                displayEmpty: true,
+                // Stands in for a placeholder, which a select has no room for.
+                renderValue: () =>
+                  selectedRegion ? (
+                    selectedRegion.label
+                  ) : (
+                    <Box component="span" sx={{ color: 'text.secondary' }}>
+                      {region.placeholder}
+                    </Box>
+                  ),
+              },
+              regionFieldSlotProps?.select,
+            ),
           }}
+          {...regionSlotProps}
         >
           {region.options.map((option) => (
             <MenuItem key={option.value} value={option.value}>
@@ -196,7 +272,11 @@ export function OrganizationCreatePanel({
           ))}
         </TextField>
       </LabelledField>
-      <LabelledField id={nameId} label={name.label}>
+      <LabelledField
+        id={nameId}
+        label={name.label}
+        labelProps={slotProps?.label}
+      >
         <TextField
           id={nameId}
           fullWidth
@@ -206,10 +286,15 @@ export function OrganizationCreatePanel({
           placeholder={name.placeholder}
           error={Boolean(name.error)}
           helperText={name.error}
-          sx={fieldSx}
+          sx={mergeSx(fieldSx, nameSx)}
+          {...nameSlotProps}
         />
       </LabelledField>
-      <LabelledField id={domainId} label={domain.label}>
+      <LabelledField
+        id={domainId}
+        label={domain.label}
+        labelProps={slotProps?.label}
+      >
         <TextField
           id={domainId}
           fullWidth
@@ -219,7 +304,8 @@ export function OrganizationCreatePanel({
           placeholder={domain.placeholder}
           error={Boolean(domain.error)}
           helperText={domain.error}
-          sx={fieldSx}
+          sx={mergeSx(fieldSx, domainSx)}
+          {...domainSlotProps}
         />
       </LabelledField>
       <FormControlLabel
@@ -231,22 +317,35 @@ export function OrganizationCreatePanel({
             // padding would put the control 28px from its neighbours while
             // everything else in the card sits at 16px, so it is dropped and the
             // card's own gap does the spacing. The label stays clickable.
-            sx={{ p: 0 }}
+            {...slotProps?.checkbox}
+            sx={mergeSx({ p: 0 }, slotProps?.checkbox?.sx)}
           />
         }
         label={<Typography variant="body2">{checkbox.label}</Typography>}
+        {...slotProps?.checkboxLabel}
         // MUI's own -11px/16px margins would break the same rhythm.
-        sx={{ m: 0, gap: 1, alignItems: 'center' }}
+        sx={mergeSx(
+          { m: 0, gap: 1, alignItems: 'center' },
+          slotProps?.checkboxLabel?.sx,
+        )}
       />
-      <Stack direction="row" gap={1} width="100%">
-        <Button variant="outlined" fullWidth onClick={onCancel}>
+      <Stack direction="row" gap={1} width="100%" {...slotProps?.actions}>
+        <Button
+          variant="outlined"
+          fullWidth
+          onClick={onCancel}
+          disabled={submitting}
+          {...slotProps?.cancelButton}
+        >
           {cancelLabel}
         </Button>
         <Button
           type="submit"
           variant="contained"
           fullWidth
+          loading={submitting}
           disabled={!canSubmit}
+          {...slotProps?.submitButton}
         >
           {submitLabel}
         </Button>

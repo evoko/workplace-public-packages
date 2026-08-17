@@ -13,13 +13,16 @@
 import {
   alpha,
   Box,
+  BoxProps,
   Divider,
+  DividerProps,
   InputAdornment,
   ListItemButton,
   ListItemButtonProps,
   Stack,
   StackProps,
   TextField,
+  TextFieldProps,
   Theme,
   Typography,
 } from '@mui/material';
@@ -33,8 +36,9 @@ import {
   ReactNode,
 } from 'react';
 import { ChevronRightIcon, SearchIcon } from '@bwp-web/assets';
+import { mergeSlotProps, mergeSx } from '../slotProps';
 
-type OrganizationRowProps = Omit<ListItemButtonProps, 'children'> & {
+export type OrganizationRowProps = Omit<ListItemButtonProps, 'children'> & {
   primaryText: ReactNode;
   secondaryText?: ReactNode;
   /** Logo element or an image URL. */
@@ -67,19 +71,21 @@ export function OrganizationRow({
     <ListItemButton
       disabled={disabled}
       disableRipple
-      sx={{
-        p: 1.5,
-        gap: 2,
-        // Same fill as the panel around it — the group's outline and the
-        // dividers do the separating, not a tonal step.
-        backgroundColor: ({ palette }) =>
-          palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
-        '&.Mui-disabled': { opacity: 1 },
-        ...(!disabled && {
-          '&:hover': { backgroundColor: 'action.hover' },
-        }),
-        ...sx,
-      }}
+      sx={mergeSx(
+        {
+          p: 1.5,
+          gap: 2,
+          // Same fill as the panel around it — the group's outline and the
+          // dividers do the separating, not a tonal step.
+          backgroundColor: ({ palette }) =>
+            palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
+          '&.Mui-disabled': { opacity: 1 },
+          ...(!disabled && {
+            '&:hover': { backgroundColor: 'action.hover' },
+          }),
+        },
+        sx,
+      )}
       {...props}
     >
       <Box
@@ -164,7 +170,10 @@ const outlineSx = {
     `0px 1px 1px 0px ${alpha(palette.common.black, 0.05)}`,
 };
 
-type OrganizationRowGroupProps = {
+export type OrganizationRowGroupProps = Omit<
+  BoxProps,
+  'children' | 'maxHeight'
+> & {
   children: ReactNode;
   /** Caps the group height and enables vertical scrolling. */
   maxHeight?: number | string;
@@ -177,20 +186,27 @@ type OrganizationRowGroupProps = {
 export function OrganizationRowGroup({
   children,
   maxHeight,
+  sx,
+  ...boxProps
 }: OrganizationRowGroupProps) {
   const items = Children.toArray(children).filter(isValidElement);
 
   return (
     <Box
-      sx={{
-        width: '100%',
-        ...outlineSx,
-        // Matches the panel and the rows inside it; the outline is the boundary.
-        backgroundColor: ({ palette }) =>
-          palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
-        overflow: 'hidden',
-        ...(maxHeight !== undefined && { overflowY: 'auto', maxHeight }),
-      }}
+      sx={mergeSx(
+        {
+          width: '100%',
+          ...outlineSx,
+          // Matches the panel and the rows inside it; the outline is the
+          // boundary.
+          backgroundColor: ({ palette }: Theme) =>
+            palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
+          overflow: 'hidden',
+          ...(maxHeight !== undefined && { overflowY: 'auto', maxHeight }),
+        },
+        sx,
+      )}
+      {...boxProps}
     >
       {items.map((item, i) => (
         <Fragment key={item.key ?? i}>
@@ -202,16 +218,20 @@ export function OrganizationRowGroup({
   );
 }
 
-function TextDivider({ children }: { children: ReactNode }) {
+function TextDivider({ children, sx, ...props }: DividerProps) {
   return (
     <Divider
-      sx={{
-        width: '100%',
-        userSelect: 'none',
-        color: 'text.primary',
-        fontWeight: 600,
-        fontSize: 14,
-      }}
+      sx={mergeSx(
+        {
+          width: '100%',
+          userSelect: 'none',
+          color: 'text.primary',
+          fontWeight: 600,
+          fontSize: 14,
+        },
+        sx,
+      )}
+      {...props}
     >
       {children}
     </Divider>
@@ -281,19 +301,57 @@ export function OrganizationsEmptyState({
 /** Default cap on the organizations group — three 64px rows plus borders. */
 const DEFAULT_MAX_LIST_HEIGHT = 3 * 64 + 2;
 
-type OrganizationsPanelProps = {
-  search: {
+/** A row group's props minus the children it wraps, which the panel supplies. */
+type RowGroupSlotProps = Omit<OrganizationRowGroupProps, 'children'>;
+
+/**
+ * Props for the parts `OrganizationsPanel` builds itself. The rows are yours —
+ * style those at the call site — but the search field, the labelled dividers and
+ * each group outline are the panel's, so this is how you reach them.
+ *
+ * Each bag is spread onto its slot *after* the panel's own props, so it wins on
+ * conflict; `sx` merges rather than replaces.
+ */
+export type OrganizationsPanelSlotProps = {
+  /** The search `TextField`. Rendered only when `search` is passed. */
+  search?: TextFieldProps;
+  /** The labelled divider above the organizations list. */
+  organizationsLabel?: DividerProps;
+  /** The labelled divider between the list and the action rows. */
+  orLabel?: DividerProps;
+  /** The group wrapping `personalOrgItem`. */
+  personalOrgGroup?: RowGroupSlotProps;
+  /** The scrollable group wrapping `organizationItems`. */
+  organizationsGroup?: RowGroupSlotProps;
+  /** The column holding the join and create groups. */
+  actions?: StackProps;
+  /** The group wrapping `joinAction`. */
+  joinGroup?: RowGroupSlotProps;
+  /** The group wrapping `createAction`. */
+  createGroup?: RowGroupSlotProps;
+};
+
+export type OrganizationsPanelProps = Omit<StackProps, 'children' | 'width'> & {
+  /**
+   * Controlled search field. Omit to render the panel without one — a user with
+   * a handful of organizations has nothing to search.
+   */
+  search?: {
     value: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     placeholder: string;
   };
   /** The current user's personal organization row (an `OrganizationRow`). */
   personalOrgItem?: ReactNode;
-  organizationsLabel: ReactNode;
+  /** Label for the divider above the organizations list. Omit for no label. */
+  organizationsLabel?: ReactNode;
   /** The user's other organizations, as `OrganizationRow`s. */
   organizationItems?: ReactNode;
-  /** Label for the divider between the org list and the join/create actions. */
-  orLabel: ReactNode;
+  /**
+   * Label for the divider between the org list and the join/create actions.
+   * Omit to drop the divider — e.g. when neither action row is passed.
+   */
+  orLabel?: ReactNode;
   /**
    * When truthy, shown in place of the `orLabel` divider — for a search that
    * matched nothing. The join/create actions stay visible either way. Pass
@@ -304,10 +362,13 @@ type OrganizationsPanelProps = {
    * `empty={query !== '' && matches.length === 0}`.
    */
   empty?: boolean | ReactNode;
-  /** Pre-built `OrganizationRow` for the "Join organization" row. */
-  joinAction: ReactNode;
-  /** Pre-built `OrganizationRow` for the "Create organization" row. */
-  createAction: ReactNode;
+  /**
+   * Pre-built `OrganizationRow` for the "Join organization" row. Omit when the
+   * user has no right to join — the group is dropped, not disabled.
+   */
+  joinAction?: ReactNode;
+  /** Pre-built `OrganizationRow` for the "Create organization" row. Omit to hide. */
+  createAction?: ReactNode;
   /** Panel width, capped to the viewport. Default: 441. */
   width?: number | string;
   /**
@@ -315,6 +376,12 @@ type OrganizationsPanelProps = {
    * rows. Raise it when passing rows taller than the default.
    */
   maxListHeight?: number | string;
+  /**
+   * Props for the parts the panel renders itself — the search field, the
+   * labelled dividers, each row group, and the actions column. Use this to reach
+   * past the panel's own styling without forking it.
+   */
+  slotProps?: OrganizationsPanelSlotProps;
 };
 
 /**
@@ -332,7 +399,25 @@ export function OrganizationsPanel({
   createAction,
   width = 441,
   maxListHeight = DEFAULT_MAX_LIST_HEIGHT,
+  slotProps,
+  sx,
+  ...stackProps
 }: OrganizationsPanelProps) {
+  // The search field carries its own `sx`, so the slot's is pulled out and
+  // merged rather than spread over it. Slots without own styling (the actions
+  // column) and those that merge internally (the row groups, the dividers) take
+  // a plain spread.
+  //
+  // Its own `slotProps.input` carries the search icon, so the consumer's
+  // `slotProps` is pulled out too: their other keys spread through, but `input`
+  // is layered rather than replaced. Without this, adding an `endAdornment`
+  // would drop the icon.
+  const {
+    sx: searchSx,
+    slotProps: searchFieldSlotProps,
+    ...searchSlotProps
+  } = slotProps?.search ?? {};
+
   return (
     <Stack
       gap={2}
@@ -342,51 +427,74 @@ export function OrganizationsPanel({
       borderRadius={4}
       width={width}
       maxWidth="100%"
-      sx={{
-        // Figma "Background/background_default" (#F5F5F5) is `grey[100]`, not
-        // `palette.background.default` — that token is #FFFFFF in light mode.
-        // The row groups share this fill and rely on their outline; only the
-        // search field is brighter than the card.
-        backgroundColor: ({ palette }: Theme) =>
-          palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
-      }}
+      sx={mergeSx(
+        {
+          // Figma "Background/background_default" (#F5F5F5) is `grey[100]`, not
+          // `palette.background.default` — that token is #FFFFFF in light mode.
+          // The row groups share this fill and rely on their outline; only the
+          // search field is brighter than the card.
+          backgroundColor: ({ palette }: Theme) =>
+            palette.mode === 'dark' ? palette.grey[700] : palette.grey[100],
+        },
+        sx,
+      )}
+      {...stackProps}
     >
-      <TextField
-        variant="outlined"
-        placeholder={search.placeholder}
-        value={search.value}
-        onChange={search.onChange}
-        fullWidth
-        // The theme already gives outlined inputs the 6px radius, 0.6px width
-        // and 1px shadow; only the *resting* outline color is left at MUI's
-        // faint default, so it is pulled up to the same token the theme
-        // already uses for this field's hover state.
-        sx={{
-          // A step brighter than the card, like the row groups below it.
-          '& .MuiOutlinedInput-root': {
-            backgroundColor: 'background.paper',
-          },
-          '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: ({ palette }: Theme) => palette.dividers.secondary,
-          },
-        }}
-        slotProps={{
-          input: {
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon sx={{ ml: 1 }} />
-              </InputAdornment>
+      {search && (
+        <TextField
+          variant="outlined"
+          placeholder={search.placeholder}
+          value={search.value}
+          onChange={search.onChange}
+          fullWidth
+          // The theme already gives outlined inputs the 6px radius, 0.6px width
+          // and 1px shadow; only the *resting* outline color is left at MUI's
+          // faint default, so it is pulled up to the same token the theme
+          // already uses for this field's hover state.
+          sx={mergeSx(
+            {
+              // A step brighter than the card, like the row groups below it.
+              '& .MuiOutlinedInput-root': {
+                backgroundColor: 'background.paper',
+              },
+              '& .MuiOutlinedInput-notchedOutline': {
+                borderColor: ({ palette }: Theme) => palette.dividers.secondary,
+              },
+            },
+            searchSx,
+          )}
+          slotProps={{
+            ...searchFieldSlotProps,
+            input: mergeSlotProps(
+              {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ ml: 1 }} />
+                  </InputAdornment>
+                ),
+              },
+              searchFieldSlotProps?.input,
             ),
-          },
-        }}
-      />
+          }}
+          {...searchSlotProps}
+        />
+      )}
       {personalOrgItem && (
-        <OrganizationRowGroup>{personalOrgItem}</OrganizationRowGroup>
+        <OrganizationRowGroup {...slotProps?.personalOrgGroup}>
+          {personalOrgItem}
+        </OrganizationRowGroup>
       )}
       {organizationItems && (
         <>
-          <TextDivider>{organizationsLabel}</TextDivider>
-          <OrganizationRowGroup maxHeight={maxListHeight}>
+          {organizationsLabel && (
+            <TextDivider {...slotProps?.organizationsLabel}>
+              {organizationsLabel}
+            </TextDivider>
+          )}
+          <OrganizationRowGroup
+            maxHeight={maxListHeight}
+            {...slotProps?.organizationsGroup}
+          >
             {organizationItems}
           </OrganizationRowGroup>
         </>
@@ -398,12 +506,23 @@ export function OrganizationsPanel({
           empty
         )
       ) : (
-        <TextDivider>{orLabel}</TextDivider>
+        orLabel && <TextDivider {...slotProps?.orLabel}>{orLabel}</TextDivider>
       )}
-      <Stack gap={1} width="100%">
-        <OrganizationRowGroup>{joinAction}</OrganizationRowGroup>
-        <OrganizationRowGroup>{createAction}</OrganizationRowGroup>
-      </Stack>
+      {(joinAction || createAction) && (
+        // No own `sx` here, so the slot's spreads through untouched.
+        <Stack gap={1} width="100%" {...slotProps?.actions}>
+          {joinAction && (
+            <OrganizationRowGroup {...slotProps?.joinGroup}>
+              {joinAction}
+            </OrganizationRowGroup>
+          )}
+          {createAction && (
+            <OrganizationRowGroup {...slotProps?.createGroup}>
+              {createAction}
+            </OrganizationRowGroup>
+          )}
+        </Stack>
+      )}
     </Stack>
   );
 }
