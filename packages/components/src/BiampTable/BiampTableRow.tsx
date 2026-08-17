@@ -11,7 +11,7 @@ import { ChevronDownIcon, ChevronRightIcon } from '@bwp-web/assets';
 import { flexRender, type Cell, type Row } from '@tanstack/react-table';
 import React, { type ReactNode } from 'react';
 import { BiampTableTruncatedCell } from './BiampTableTruncatedCell';
-import { mergeSx, resolveSlot, type SlotPropsOrFn } from './slotProps';
+import { mergeSx, resolveSlot, type SlotPropsOrFn } from '../slotProps';
 import { cellSx, stickyHoverBg } from './cellSx';
 import { ExpandGuidelines } from './BiampTableExpandGuidelines';
 

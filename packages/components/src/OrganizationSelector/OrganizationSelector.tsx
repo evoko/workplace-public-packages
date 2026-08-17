@@ -1,3 +1,7 @@
+/**
+ * Organization switching from inside an app, sized for `BiampHeader`. For the
+ * full-page picker shown before entering an app, see `OrganizationsPanel`.
+ */
 import {
   alpha,
   Box,

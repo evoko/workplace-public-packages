@@ -10,6 +10,7 @@ export default defineConfig({
   jsx: 'automatic',
   loader: {
     '.png': 'dataurl',
+    '.jpg': 'dataurl',
     '.woff2': 'dataurl',
     '.ttf': 'dataurl',
   },

@@ -1,0 +1,1 @@
+export { BiampLogo } from './BiampLogo';
