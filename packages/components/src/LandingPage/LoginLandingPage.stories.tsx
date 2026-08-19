@@ -1,11 +1,8 @@
 import {
-  AppsIcon,
-  AppsIconFilled,
   BiampLogo,
   LandingPageBackground,
   SquareRoundedArrowRightFilledIcon,
 } from '@bwp-web/assets';
-import { DarkMode, LightMode } from '@mui/icons-material';
 import {
   Box,
   IconButton,
@@ -14,16 +11,10 @@ import {
   Typography,
 } from '@mui/material';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { MouseEvent, useState } from 'react';
-import { AppPopoverContent } from '../BiampHeader/BiampHeader.storyhelpers';
-import {
-  BiampAppPopover,
-  BiampHeader,
-  BiampHeaderActions,
-  BiampHeaderButton,
-  BiampHeaderButtonList,
-  BiampHeaderTitle,
-} from '../BiampHeader';
+import { useState } from 'react';
+// Reused for the lockup itself — the 24px Biamp mark, the 12px gap and the `h4`
+// wordmark — not for anything header-shaped. There is no `BiampHeader` here.
+import { BiampHeaderTitle } from '../BiampHeader';
 import { LandingFormField, LandingFormPanel } from './LandingFormPanel';
 
 const meta: Meta = {
@@ -37,56 +28,6 @@ const meta: Meta = {
 
 export default meta;
 type Story = StoryObj;
-
-/**
- * The same header as `OrganizationSelectorLandingPage`, minus the profile
- * button: nobody is signed in yet, so there are no initials to show.
- */
-function LoginHeader() {
-  const [appsAnchorEl, setAppsAnchorEl] = useState<HTMLElement | null>(null);
-  // The showcase only swaps the icon; use Storybook's Color Mode toolbar.
-  const [lightMode, setLightMode] = useState(true);
-
-  const handleAppsClick = (event: MouseEvent<HTMLElement>) => {
-    setAppsAnchorEl(event.currentTarget);
-  };
-
-  return (
-    <BiampHeader sx={{ bgcolor: 'transparent' }}>
-      <BiampHeaderTitle
-        title="Workplace"
-        sx={{ '& .MuiTypography-root': { color: '#ffffff' } }}
-      />
-      <BiampHeaderActions>
-        <BiampHeaderButtonList>
-          <BiampHeaderButton
-            icon={<AppsIcon sx={{ color: 'text.secondary' }} />}
-            selectedIcon={<AppsIconFilled sx={{ color: 'text.secondary' }} />}
-            selected={Boolean(appsAnchorEl)}
-            onClick={handleAppsClick}
-          />
-          <BiampHeaderButton
-            icon={
-              lightMode ? (
-                <LightMode sx={{ color: 'text.secondary' }} />
-              ) : (
-                <DarkMode sx={{ color: 'text.secondary' }} />
-              )
-            }
-            onClick={() => setLightMode((previous) => !previous)}
-          />
-        </BiampHeaderButtonList>
-      </BiampHeaderActions>
-      <BiampAppPopover
-        open={Boolean(appsAnchorEl)}
-        anchorEl={appsAnchorEl}
-        onClose={() => setAppsAnchorEl(null)}
-      >
-        <AppPopoverContent />
-      </BiampAppPopover>
-    </BiampHeader>
-  );
-}
 
 /**
  * The submit arrow, as the end adornment of whichever field is currently last.
@@ -198,66 +139,117 @@ function LoginLandingPage({
           backgroundPosition: 'center',
         }}
       />
-      <Box sx={{ position: 'relative', zIndex: 1 }}>
-        <LoginHeader />
-      </Box>
+      {/* The header's logo lockup, centred at the top of the page instead. The
+          24px padding keeps roughly the 64px band the header occupied, so the
+          vertically-centred hero below it does not shift. */}
+      <Stack
+        alignItems="center"
+        py={3}
+        sx={{ position: 'relative', zIndex: 1 }}
+      >
+        <BiampHeaderTitle
+          title="Workplace"
+          sx={{ '& .MuiTypography-root': { color: '#ffffff' } }}
+        />
+      </Stack>
       <Stack
         flex={1}
         alignItems="center"
         justifyContent="center"
-        gap={2.5}
+        // 54px between the hero copy and the card. The card and the help text
+        // under it keep the page's own 20px rhythm, in the nested Stack below.
+        gap="54px"
         py={4}
         sx={{ position: 'relative', zIndex: 1 }}
       >
-        {/* Naming the screen is the page's job — the card has no heading. */}
-        <Typography variant="h2" color="text.sidebar">
-          {askPassword ? 'Enter your password' : 'Sign in'}
-        </Typography>
-        <LandingFormPanel onSubmit={handleSubmit}>
-          <LandingFormField
-            label="Email"
-            type="email"
-            autoComplete="username"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-              setEmailError(undefined);
+        {/* The hero copy names the product; the card carries no heading. */}
+        <Stack alignItems="center" gap="21px" px={2} maxWidth={441}>
+          {/* `h1` for the Montserrat family and the page-title semantics; the
+              rest is overridden because no theme variant is 36px/600 — the
+              scale jumps from h1 (28px/500) to h0 (56px/500). Figma's
+              `leading-trim` / `text-edge` are dropped (no browser support), as
+              is `font-feature-settings` (Montserrat has no ligatures worth
+              disabling here). `#FFF` is `common.white`. */}
+          <Typography
+            variant="h1"
+            color="common.white"
+            textAlign="center"
+            sx={{
+              fontSize: 36,
+              fontWeight: 600,
+              lineHeight: 1,
+              letterSpacing: '-1.44px',
             }}
-            placeholder="you@acme.com"
-            error={Boolean(emailError)}
-            helperText={emailError}
-            slotProps={
-              askPassword
-                ? undefined
-                : {
-                    input: submitAdornment({
-                      label: 'Continue',
-                      disabled: !canContinue,
-                    }),
-                  }
-            }
-          />
-          {askPassword && (
+          >
+            Welcome to Workplace
+          </Typography>
+          <Typography variant="body1" color="text.sidebar" textAlign="center">
+            Manage every space effortlessly with intuitive tools for seamless
+            operations and extraordinary experiences.
+          </Typography>
+        </Stack>
+        <Stack alignItems="center" gap={2.5}>
+          <LandingFormPanel
+            onSubmit={handleSubmit}
+            // 8px on the email step, 16px once the password field joins it.
+            // `shape.borderRadius` is 4, so these are the ×4 scale values —
+            // `sx` wins over the component's own `borderRadius={4}` prop.
+            sx={{ borderRadius: askPassword ? 4 : 2 }}
+          >
             <LandingFormField
-              label="Password"
-              type="password"
-              autoComplete="current-password"
-              value={password}
+              label="Email"
+              type="email"
+              autoComplete="username"
+              value={email}
               onChange={(event) => {
-                setPassword(event.target.value);
-                setError(undefined);
+                setEmail(event.target.value);
+                setEmailError(undefined);
               }}
-              error={Boolean(error)}
-              helperText={error}
-              slotProps={{
-                input: submitAdornment({
-                  label: 'Sign in',
-                  disabled: !canSignIn,
-                }),
-              }}
+              placeholder="you@acme.com"
+              error={Boolean(emailError)}
+              helperText={emailError}
+              slotProps={
+                askPassword
+                  ? undefined
+                  : {
+                      input: submitAdornment({
+                        label: 'Continue',
+                        disabled: !canContinue,
+                      }),
+                    }
+              }
             />
-          )}
-        </LandingFormPanel>
+            {askPassword && (
+              <LandingFormField
+                label="Password"
+                type="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                  setError(undefined);
+                }}
+                error={Boolean(error)}
+                helperText={error}
+                slotProps={{
+                  input: submitAdornment({
+                    label: 'Sign in',
+                    disabled: !canSignIn,
+                  }),
+                }}
+              />
+            )}
+          </LandingFormPanel>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            textAlign="center"
+            px={2}
+            maxWidth={441}
+          >
+            Trouble signing in? Contact your organization&rsquo;s administrator.
+          </Typography>
+        </Stack>
       </Stack>
       <Stack
         alignItems="center"
