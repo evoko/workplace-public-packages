@@ -84,6 +84,7 @@ Additional documentation lives in the [`/docs`](./docs) folder:
 | [biamp-global-search.md](./docs/biamp-global-search.md)     | BiampGlobalSearch — global search component                     |
 | [dynamic-svg-icon.md](./docs/dynamic-svg-icon.md)           | DynamicSvgIcon — remote SVG icon with skeleton and fallback     |
 | [organizations-panel.md](./docs/organizations-panel.md)     | OrganizationsPanel — landing-page organization picker           |
+| [landing-form-panel.md](./docs/landing-form-panel.md)       | LandingFormPanel — landing-page form card primitives            |
 | [canvas/hooks.md](./docs/canvas/hooks.md)                   | `useEditCanvas`, `useViewCanvas`, providers, utility hooks      |
 | [canvas/shapes.md](./docs/canvas/shapes.md)                 | `createRectangle`, `createCircle`, `createPolygon` and variants |
 | [canvas/interactions.md](./docs/canvas/interactions.md)     | Click/drag/draw creation modes, vertex editing                  |

@@ -86,52 +86,11 @@ The status message `OrganizationsPanel` renders for `empty={true}`. Export it di
 | `description` | `React.ReactNode` | — | Optional second line, `caption` / `text.secondary` |
 | _...rest_ | `StackProps` | — | Forwarded to the root `Stack` (which carries `role="status"`) |
 
-### `OrganizationJoinPanel`
+### Form cards
 
-The join flow behind the panel's join action row: a labelled text field for the organization's domain, an outlined button on the left and a contained button on the right. See `OrganizationCreatePanel` for the create action's equivalent.
+The join and create flows are built from the `LandingFormPanel` primitives, documented separately in [landing-form-panel.md](./landing-form-panel.md). They are the same card as `OrganizationsPanel` — same fill, radius, padding and width — and take the panel's place while a flow is open, with cancel returning to it.
 
-**Not an overlay.** It is the same card as `OrganizationsPanel` — same radius, padding and width — and takes the panel's place while a flow is open, with cancel returning to it. The app decides which of the two is rendered; there is no `open` prop.
-
-Its fill is `grey[100]` (`#F5F5F5`) — the same as `OrganizationsPanel` — with the field a step brighter on `background.paper` (`#FFFFFF`), so the input reads as raised out of the card.
-
-#### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `title` | `React.ReactNode` | _(required)_ | The field's label — 12px / 600, rendered as a `<label>` bound to the input, so it names the field and focuses it when clicked |
-| `field` | `{ value: string; onChange: (e) => void; placeholder: string }` | _(required)_ | The single controlled text field. `placeholder` is an example value, since `title` already names the field |
-| `error` | `React.ReactNode` | — | Message shown beneath the field, which also switches the field to its error state |
-| `cancelLabel` | `React.ReactNode` | _(required)_ | Label for the outlined button on the left — typically returns to the panel |
-| `submitLabel` | `React.ReactNode` | _(required)_ | Label for the contained button on the right |
-| `onCancel` | `() => void` | _(required)_ | Fired by the cancel button |
-| `onSubmit` | `() => void` | _(required)_ | Fired by the submit button or Enter in the field. Never fires while the field is empty |
-| `submitting` | `boolean` | `false` | A submit is in flight: spinner in the submit button, both buttons disabled, so `onSubmit` can't fire twice for one request |
-| `slotProps` | `OrganizationJoinPanelSlotProps` | — | Props for `label`, `field`, `actions`, `cancelButton`, `submitButton` — see [Slots](#slots) |
-| `width` | `number \| string` | `441` | Card width, capped to the viewport — matches the panel |
-| _...rest_ | `StackProps` | — | Forwarded to the root `Stack`, which is the `<form>` element (minus `onSubmit`) |
-
-### `OrganizationCreatePanel`
-
-The create flow behind the panel's other action row: a region dropdown, the organization's name and domain, one checkbox, then cancel and confirm. Same card as `OrganizationsPanel` and `OrganizationJoinPanel` — same fill, radius, padding and width — and it takes the panel's place the same way, with no `open` prop.
-
-#### Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `region` | `{ label; value: string; onChange; placeholder: string; options: { value: string; label: ReactNode }[]; error? }` | _(required)_ | The dropdown. Starts unselected, showing `placeholder` in `text.secondary` until an option is picked |
-| `name` | `{ label; value: string; onChange; placeholder: string; error? }` | _(required)_ | The organization's display name |
-| `domain` | `{ label; value: string; onChange; placeholder: string; error? }` | _(required)_ | The organization's domain |
-| `checkbox` | `{ checked: boolean; onChange: (e, checked) => void; label: ReactNode }` | _(required)_ | One checkbox with its label to the right. Does **not** gate submission |
-| `cancelLabel` | `React.ReactNode` | _(required)_ | Label for the outlined button on the left |
-| `submitLabel` | `React.ReactNode` | _(required)_ | Label for the contained button on the right |
-| `onCancel` | `() => void` | _(required)_ | Fired by the cancel button |
-| `onSubmit` | `() => void` | _(required)_ | Fired by the submit button or Enter in a field. Never fires until a region is chosen and both text fields have content |
-| `submitting` | `boolean` | `false` | A submit is in flight: spinner in the submit button, both buttons disabled, so `onSubmit` can't fire twice for one request |
-| `slotProps` | `OrganizationCreatePanelSlotProps` | — | Props for `label`, `regionField`, `nameField`, `domainField`, `checkbox`, `checkboxLabel`, `actions`, `cancelButton`, `submitButton` — see [Slots](#slots) |
-| `width` | `number \| string` | `441` | Card width, capped to the viewport |
-| _...rest_ | `StackProps` | — | Forwarded to the root `Stack`, which is the `<form>` element (minus `onSubmit`) |
-
-Each field's `label` is a 12px/600 `<label>` bound to its input, and each takes its own optional `error` so the app can mark just the field at fault.
+The `OrganizationJoinPanel` and `OrganizationCreatePanel` components were removed in 2.0.0; see [Migrating from the panels](./landing-form-panel.md#migrating-from-the-panels).
 
 ## Usage
 
@@ -252,21 +211,16 @@ The rows are yours — style those at the call site, since you construct them. E
 | Component | Slots |
 |-----------|-------|
 | `OrganizationsPanel` | `search` (`TextFieldProps`), `organizationsLabel` / `orLabel` (`DividerProps`), `personalOrgGroup` / `organizationsGroup` / `joinGroup` / `createGroup` (`OrganizationRowGroupProps`), `actions` (`StackProps`) |
-| `OrganizationJoinPanel` | `label` (`TypographyProps`), `field` (`TextFieldProps`), `actions` (`StackProps`), `cancelButton` / `submitButton` (`ButtonProps`) |
-| `OrganizationCreatePanel` | `label` (`TypographyProps`, applied to all three), `regionField` / `nameField` / `domainField` (`TextFieldProps`), `checkbox` (`CheckboxProps`), `checkboxLabel` (`FormControlLabelProps`), `actions` (`StackProps`), `cancelButton` / `submitButton` (`ButtonProps`) |
 
 Three rules govern the merge:
 
 - **Each bag is spread after the component's own props**, so it wins on conflict. That includes the wiring — passing `disabled` to `submitButton` overrides the card's own enable/disable logic, and passing `value` to a field overrides the controlled value. That's deliberate, but it means a slot can break behaviour as well as restyle it.
 - **`sx` merges, it doesn't replace.** Slot styles layer over the component's own rather than wiping them, and all three `sx` forms are supported — object, theme callback, and array of either.
-- **A slot's own nested `slotProps` layers per key, it doesn't replace.** Three defaults are produced this way: the panel's search field puts the search icon in `slotProps.input` and its accessible name in `slotProps.htmlInput`, and the create panel's region field puts the placeholder in `slotProps.select`. Passing your own `slotProps` to either field keeps those defaults — your individual keys win, the rest survive:
+- **A slot's own nested `slotProps` layers per key, it doesn't replace.** Two defaults are produced this way: the search field puts the search icon in `slotProps.input` and its accessible name in `slotProps.htmlInput`. Passing your own `slotProps` keeps them — your individual keys win, the rest survive:
 
   ```tsx
   // The search icon stays; the clear button is added alongside it.
   slotProps={{ search: { slotProps: { input: { endAdornment: <ClearButton /> } } } }}
-
-  // The region placeholder stays; only autoWidth is added.
-  slotProps={{ regionField: { slotProps: { select: { autoWidth: true } } } }}
   ```
 
   Override `input.startAdornment` or `select.renderValue` explicitly and yours replaces the default, as you'd expect. The callback form (`select: (ownerState) => ({ … })`) composes the same way.
@@ -288,66 +242,32 @@ The row states *why* it isn't selectable through `secondaryText`; the component 
 
 ### The Join / Create Flows
 
-The action rows don't open an overlay — they swap the panel out for `OrganizationJoinPanel`, so one card is on screen at a time and cancel comes back. One form serves both rows; only the copy differs:
+The action rows don't open an overlay — they swap the panel out for a `LandingFormPanel`, so one card is on screen at a time and cancel comes back. The app decides which is rendered; neither card has an `open` prop.
 
 ```tsx
 const [flow, setFlow] = useState<'join' | 'create' | null>(null);
-const [value, setValue] = useState('');
-const [error, setError] = useState<string>();
-const [submitting, setSubmitting] = useState(false);
-
-const openFlow = (next: 'join' | 'create') => {
-  setValue('');
-  setError(undefined);
-  setFlow(next);
-};
 
 return flow !== null ? (
-  <OrganizationJoinPanel
-    // The field's label. The screen itself is named by the page heading above
-    // this card, which the app swaps alongside the card.
-    title={flow === 'create' ? 'Organization name' : 'Organization domain'}
-    field={{
-      value,
-      onChange: (event) => setValue(event.target.value),
-      placeholder: flow === 'create' ? 'Acme Corporation' : 'acme.com',
-    }}
-    error={error}
-    cancelLabel="Cancel"
-    submitLabel={flow === 'create' ? 'Create' : 'Ask to Join'}
-    onCancel={() => setFlow(null)}
-    submitting={submitting}
-    onSubmit={async () => {
-      setSubmitting(true);
-      try {
-        await submit(flow, value);
-        setFlow(null);
-      } catch {
-        setError('No organization found with that ID');
-      } finally {
-        setSubmitting(false);
-      }
-    }}
-  />
+  // One form serves both rows; only the copy and the fields differ. See
+  // landing-form-panel.md for the full join and create compositions.
+  <JoinForm onCancel={() => setFlow(null)} onJoin={submit} />
 ) : (
   <OrganizationsPanel
     /* ...as above... */
-    joinAction={<OrganizationRow primaryText="Join organization" onClick={() => openFlow('join')} /* ... */ />}
-    createAction={<OrganizationRow primaryText="Create organization" onClick={() => openFlow('create')} /* ... */ />}
+    joinAction={<OrganizationRow primaryText="Join organization" onClick={() => setFlow('join')} /* ... */ />}
+    createAction={<OrganizationRow primaryText="Create organization" onClick={() => setFlow('create')} /* ... */ />}
   />
 );
 ```
 
-The submit button is disabled until the field has non-whitespace content — the component derives that from `field.value`, which is data it holds rather than something inferred about the caller. `submitting` covers the other half: while it is `true` the submit button shows a spinner and both buttons are disabled, so one request can't be fired twice. The component can't know when its own submit resolves, so the app owns the flag. Everything else is the app's too: which card is shown, whether it succeeded, and what the failure says.
+Everything inside the form card is the app's: which card is shown, what gates the submit, whether it succeeded, and what the failure says. The package supplies the card and the field treatment — see [landing-form-panel.md](./landing-form-panel.md).
 
 ## Design Details
 
 - **One outline per group** — `border: 0.6px` in `palette.dividers.secondary` (`rgba(17, 17, 17, 0.4)` light / white at 0.4 dark), `6px` radius, and a `0 1px 1px` shadow at 5% black. Rows inside a group are separated by plain `Divider`s so the group edge stays the dominant line. This is the same recipe as `BiampListPopover`.
 - **One fill throughout, outlines do the work** — the panel, its row groups and the rows inside them are all `grey[100]` (`#F5F5F5`) in light and `grey[700]` in dark. Nothing is separated by a tonal step; the group outline and the dividers between rows are the only boundaries. The search field is the single exception, sitting a step brighter on `background.paper` (`#FFFFFF` / `grey[800]`) so it reads as an input rather than a surface. Note Figma's `--Background-background_default` (`#F5F5F5`) is `grey[100]` here — `palette.background.default` is `#FFFFFF` in light mode, so the token name and the value don't line up.
-- **Field resting outline** — the theme supplies outlined inputs with the 6px radius, 0.6px width and matching shadow, but leaves the resting border at MUI's fainter default. The panel's search field and the form's field each raise it to `dividers.secondary` — the token the theme already uses for their hover state — so fields match the cards at rest. The form's copy excludes `Mui-error`, so a field in its error state keeps the theme's error colour.
-- **The two cards swap without moving anything** — `OrganizationJoinPanel` repeats the panel's `borderRadius: 4`, `p: 1.5` and 441px width, so replacing one with the other doesn't shift or resize its surroundings. Its root `Stack` is the `<form>` element, which is what makes Enter submit.
-- **All three cards share one fill** — `OrganizationJoinPanel` and `OrganizationCreatePanel` use the same `grey[100]` / `grey[700]` as `OrganizationsPanel`, with their inputs on `background.paper` like the panel's search field. Swapping one card for another changes nothing but the contents. The rule across the family: inputs are a step brighter, every surface is `#F5F5F5`.
-- **The form card has no heading of its own** — `title` is the field's label (12px / 600, the weight the panel uses for its dividers), grouped with the input at `gap: 0.5` so it reads as attached to it. Naming the screen is the page's job, above the card.
+- **Field resting outline** — the theme supplies outlined inputs with the 6px radius, 0.6px width and matching shadow, but leaves the resting border at MUI's fainter default. The panel's search field and `LandingFormField` each raise it to `dividers.secondary` — the token the theme already uses for their hover state — so fields match the cards at rest.
+- **The cards swap without moving anything** — `LandingFormPanel` repeats the panel's `borderRadius: 4`, `p: 1.5` and 441px width, so replacing one with the other doesn't shift or resize its surroundings, and it shares the same `grey[100]` / `grey[700]` fill. Swapping one card for another changes nothing but the contents. The rule across the family: inputs are a step brighter, every surface is `#F5F5F5`.
 - **Row height is logo-driven** — the 40px logo plus 12px padding sets 64px, with or without `secondaryText`. That's why `maxListHeight` defaults to `3 * 64 + 2`.
 - **Chevron artwork** — rows use `ChevronRightIcon` with `variant="xs"`. The default `md` variant is a 24px viewBox; rendered in a 16px box its stroke scales down to a hairline.
 - **Slots are rendered when provided** — every slot on `OrganizationsPanel` is a plain conditional: the search field, each row group, each divider and the actions column appear only when their prop is passed, and the actions column collapses entirely when neither action row is. Pass `undefined` (not `[]` or `null` wrappers) when a group has nothing to show; the panel does not introspect children to decide.
@@ -359,5 +279,5 @@ The submit button is disabled until the field has non-whitespace content — the
 - `OrganizationRow` — Single row built on `ListItemButton`; supports linking via `component`, `to`, `href`, `onClick`.
 - `OrganizationRowGroup` — Bordered grouping with the shared outline and auto-dividers.
 - `OrganizationsEmptyState` — Status message for `empty`, with overridable icon/title/description.
-- `OrganizationJoinPanel` — Single-field form for the join flow, shaped to replace the panel in place; submit disabled until the field is filled.
-- `OrganizationCreatePanel` — Region dropdown, name, domain and a checkbox for the create flow; submit disabled until all three fields are filled.
+
+The join and create forms these rows swap to are the `LandingFormPanel` primitives — see [landing-form-panel.md](./landing-form-panel.md).

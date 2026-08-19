@@ -1,13 +1,15 @@
-export { OrganizationCreatePanel } from './OrganizationCreatePanel';
+export {
+  LandingFormActions,
+  LandingFormCheckbox,
+  LandingFormField,
+  LandingFormPanel,
+} from './LandingFormPanel';
 export type {
-  OrganizationCreatePanelProps,
-  OrganizationCreatePanelSlotProps,
-} from './OrganizationCreatePanel';
-export { OrganizationJoinPanel } from './OrganizationJoinPanel';
-export type {
-  OrganizationJoinPanelProps,
-  OrganizationJoinPanelSlotProps,
-} from './OrganizationJoinPanel';
+  LandingFormActionsProps,
+  LandingFormCheckboxProps,
+  LandingFormFieldProps,
+  LandingFormPanelProps,
+} from './LandingFormPanel';
 export {
   OrganizationsEmptyState,
   OrganizationsPanel,

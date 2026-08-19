@@ -8,7 +8,7 @@ import {
   LoginIcon,
 } from '@bwp-web/assets';
 import { DarkMode, LightMode } from '@mui/icons-material';
-import { Box, Stack, Typography } from '@mui/material';
+import { Box, Button, MenuItem, Stack, Typography } from '@mui/material';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MouseEvent, useState } from 'react';
 import { AppPopoverContent } from '../BiampHeader/BiampHeader.storyhelpers';
@@ -22,8 +22,12 @@ import {
   BiampHeaderTitle,
 } from '../BiampHeader';
 import { UserInitialsIcon } from '../UserInitialsIcon';
-import { OrganizationCreatePanel } from './OrganizationCreatePanel';
-import { OrganizationJoinPanel } from './OrganizationJoinPanel';
+import {
+  LandingFormActions,
+  LandingFormCheckbox,
+  LandingFormField,
+  LandingFormPanel,
+} from './LandingFormPanel';
 import {
   OrganizationRow,
   OrganizationsEmptyState,
@@ -213,50 +217,97 @@ function OrganizationSelectorLandingPage() {
         </Typography>
         {/* The flows take the panel's place rather than overlaying it. */}
         {flow === 'join' ? (
-          <OrganizationJoinPanel
-            title="Organization domain"
-            field={{
-              value: joinDomain,
-              onChange: (event) => setJoinDomain(event.target.value),
-              placeholder: 'acme.com',
-            }}
-            cancelLabel="Cancel"
-            submitLabel="Ask to Join"
-            onCancel={() => setFlow(null)}
-            onSubmit={() => setFlow(null)}
-          />
+          <LandingFormPanel onSubmit={() => setFlow(null)}>
+            <LandingFormField
+              label="Organization domain"
+              value={joinDomain}
+              onChange={(event) => setJoinDomain(event.target.value)}
+              placeholder="acme.com"
+            />
+            <LandingFormActions>
+              <Button
+                variant="outlined"
+                fullWidth
+                onClick={() => setFlow(null)}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                disabled={joinDomain.trim().length === 0}
+              >
+                Ask to Join
+              </Button>
+            </LandingFormActions>
+          </LandingFormPanel>
         ) : flow === 'create' ? (
-          <OrganizationCreatePanel
-            region={{
-              label: 'Data Region',
-              value: createRegion,
-              onChange: (event) => setCreateRegion(event.target.value),
-              placeholder: 'Select a region',
-              options: regions,
-            }}
-            name={{
-              label: 'Organization name',
-              value: createName,
-              onChange: (event) => setCreateName(event.target.value),
-              placeholder: 'Acme Corporation',
-            }}
-            domain={{
-              label: 'Organization domain',
-              value: createDomain,
-              onChange: (event) => setCreateDomain(event.target.value),
-              placeholder: 'acme.com',
-            }}
-            checkbox={{
-              checked: createDiscoverable,
-              onChange: (_event, checked) => setCreateDiscoverable(checked),
-              label:
-                'Let anyone with this domain find and join this organization',
-            }}
-            cancelLabel="Cancel"
-            submitLabel="Create"
-            onCancel={() => setFlow(null)}
-            onSubmit={() => setFlow(null)}
-          />
+          <LandingFormPanel onSubmit={() => setFlow(null)}>
+            <LandingFormField
+              select
+              label="Data Region"
+              value={createRegion}
+              onChange={(event) => setCreateRegion(event.target.value)}
+              slotProps={{
+                select: {
+                  displayEmpty: true,
+                  // Stands in for a placeholder, which a select has no room for.
+                  renderValue: () =>
+                    regions.find((option) => option.value === createRegion)
+                      ?.label ?? (
+                      <Box component="span" sx={{ color: 'text.secondary' }}>
+                        Select a region
+                      </Box>
+                    ),
+                },
+              }}
+            >
+              {regions.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </LandingFormField>
+            <LandingFormField
+              label="Organization name"
+              value={createName}
+              onChange={(event) => setCreateName(event.target.value)}
+              placeholder="Acme Corporation"
+            />
+            <LandingFormField
+              label="Organization domain"
+              value={createDomain}
+              onChange={(event) => setCreateDomain(event.target.value)}
+              placeholder="acme.com"
+            />
+            <LandingFormCheckbox
+              checked={createDiscoverable}
+              onChange={(_event, checked) => setCreateDiscoverable(checked)}
+              label="Let anyone with this domain find and join this organization"
+            />
+            <LandingFormActions>
+              <Button
+                variant="outlined"
+                fullWidth
+                onClick={() => setFlow(null)}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                disabled={
+                  createRegion === '' ||
+                  createName.trim().length === 0 ||
+                  createDomain.trim().length === 0
+                }
+              >
+                Create
+              </Button>
+            </LandingFormActions>
+          </LandingFormPanel>
         ) : (
           <OrganizationsPanel
             search={{
