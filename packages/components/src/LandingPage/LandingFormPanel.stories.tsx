@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button, IconButton, InputAdornment, MenuItem } from '@mui/material';
 import { useState } from 'react';
-import { ArrowRightIcon } from '@bwp-web/assets';
+import { SquareRoundedArrowRightFilledIcon } from '@bwp-web/assets';
 import {
   LandingFormActions,
   LandingFormCheckbox,
@@ -237,12 +237,18 @@ function submitAdornment({
       <InputAdornment position="end">
         <IconButton
           type="submit"
-          size="small"
-          edge="end"
+          variant="none"
+          size="medium"
           aria-label={label}
           disabled={disabled}
+          // Only the icon's square takes `currentColor` — the arrow inside it
+          // is a fixed white, so the square is what greys out when disabled.
+          sx={{
+            color: 'info.main',
+            '&.Mui-disabled': { color: 'action.disabled' },
+          }}
         >
-          <ArrowRightIcon sx={{ width: 20, height: 20 }} />
+          <SquareRoundedArrowRightFilledIcon />
         </IconButton>
       </InputAdornment>
     ),

@@ -1,9 +1,9 @@
 import {
   AppsIcon,
   AppsIconFilled,
-  ArrowRightIcon,
   BiampLogo,
   LandingPageBackground,
+  SquareRoundedArrowRightFilledIcon,
 } from '@bwp-web/assets';
 import { DarkMode, LightMode } from '@mui/icons-material';
 import {
@@ -104,12 +104,18 @@ function submitAdornment({
       <InputAdornment position="end">
         <IconButton
           type="submit"
-          size="small"
-          edge="end"
+          variant="none"
+          size="medium"
           aria-label={label}
           disabled={disabled}
+          // Only the icon's square takes `currentColor` — the arrow inside it
+          // is a fixed white, so the square is what greys out when disabled.
+          sx={{
+            color: 'info.main',
+            '&.Mui-disabled': { color: 'action.disabled' },
+          }}
         >
-          <ArrowRightIcon sx={{ width: 20, height: 20 }} />
+          <SquareRoundedArrowRightFilledIcon />
         </IconButton>
       </InputAdornment>
     ),

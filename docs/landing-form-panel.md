@@ -229,7 +229,7 @@ No actions row at all: the submit is a small arrow button in the end adornment o
 ```tsx
 import { useState } from 'react';
 import { IconButton, InputAdornment } from '@mui/material';
-import { ArrowRightIcon } from '@bwp-web/assets';
+import { SquareRoundedArrowRightFilledIcon } from '@bwp-web/assets';
 import { LandingFormField, LandingFormPanel } from '@bwp-web/components';
 
 const submitAdornment = (label: string, disabled: boolean) => ({
@@ -237,12 +237,16 @@ const submitAdornment = (label: string, disabled: boolean) => ({
     <InputAdornment position="end">
       <IconButton
         type="submit"
-        size="small"
-        edge="end"
+        variant="none"
+        size="medium"
         aria-label={label}
         disabled={disabled}
+        sx={{
+          color: 'info.main',
+          '&.Mui-disabled': { color: 'action.disabled' },
+        }}
       >
-        <ArrowRightIcon sx={{ width: 20, height: 20 }} />
+        <SquareRoundedArrowRightFilledIcon />
       </IconButton>
     </InputAdornment>
   ),
