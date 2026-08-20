@@ -255,6 +255,20 @@ function submitAdornment({
   };
 }
 
+/**
+ * The theme turns adornment icons `text.primary` while the field is focused —
+ * right for the search and password-reveal icons, but it also blacks out the
+ * blue submit arrow, and this field is focused for the whole flow. `inherit`
+ * hands the colour back to the `IconButton`, so its `info.main` and its
+ * disabled colour both come through. Same specificity as the theme's rule, and
+ * a field's `sx` is serialised after `styleOverrides`, so this wins.
+ */
+const keepAdornmentColor = {
+  '& .MuiOutlinedInput-root.Mui-focused .MuiInputAdornment-root svg': {
+    color: 'inherit',
+  },
+};
+
 function LoginDemo() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -282,6 +296,7 @@ function LoginDemo() {
         label="Email"
         type="email"
         autoComplete="username"
+        sx={keepAdornmentColor}
         value={email}
         onChange={(event) => setEmail(event.target.value)}
         placeholder="you@acme.com"
@@ -301,6 +316,7 @@ function LoginDemo() {
           label="Password"
           type="password"
           autoComplete="current-password"
+          sx={keepAdornmentColor}
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           placeholder="••••••••"
@@ -324,4 +340,34 @@ function LoginDemo() {
  */
 export const Login: Story = {
   render: () => <LoginDemo />,
+};
+
+/* -------------------------------------------------------------------------- */
+/* Native validation                                                          */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * The panel sets `noValidate` on its `<form>`, so `required` and
+ * `type="email"` never produce a browser bubble and never block a submit —
+ * errors are the app's to render through `error`/`helperText`, as the stories
+ * above do. `noValidate={false}` hands that gating back to the browser: submit
+ * this one empty, or with `jane.doe`, and the browser stops it with its own
+ * message.
+ */
+export const NativeValidation: Story = {
+  render: () => (
+    <LandingFormPanel noValidate={false} onSubmit={() => {}}>
+      <LandingFormField
+        label="Email"
+        type="email"
+        required
+        placeholder="you@acme.com"
+      />
+      <LandingFormActions>
+        <Button type="submit" variant="contained" fullWidth>
+          Continue
+        </Button>
+      </LandingFormActions>
+    </LandingFormPanel>
+  ),
 };

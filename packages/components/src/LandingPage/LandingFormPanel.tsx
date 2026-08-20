@@ -12,9 +12,14 @@ import {
   TypographyProps,
 } from '@mui/material';
 import { FormEvent, ReactNode, useId } from 'react';
-import { mergeSx } from '../slotProps';
+import { mergeSlotProps, mergeSx } from '../slotProps';
 
-export type LandingFormPanelProps = Omit<StackProps, 'onSubmit'> & {
+/**
+ * The root is a `<form>`, so every form attribute passes through —
+ * `noValidate`, `autoComplete`, `name`, `onReset` — alongside `Stack`'s own
+ * props.
+ */
+export type LandingFormPanelProps = Omit<StackProps<'form'>, 'onSubmit'> & {
   children: ReactNode;
   /**
    * Fires on submit — Enter in any field, or a `type="submit"` control. The
@@ -23,6 +28,16 @@ export type LandingFormPanelProps = Omit<StackProps, 'onSubmit'> & {
   onSubmit?: () => void;
   /** Card width, capped to the viewport. Default: 441 — the panel's width. */
   width?: number | string;
+  /**
+   * Native browser validation, off by default: `required` and `type="email"`
+   * on a field style the input without the browser blocking submit or showing
+   * its own bubble, so errors stay the consumer's to render via
+   * `error`/`helperText`. Pass `noValidate={false}` to hand the gating back to
+   * the browser.
+   *
+   * @default true
+   */
+  noValidate?: boolean;
 };
 
 /**
@@ -33,6 +48,7 @@ export function LandingFormPanel({
   children,
   onSubmit,
   width = 441,
+  noValidate = true,
   sx,
   ...stackProps
 }: LandingFormPanelProps) {
@@ -48,6 +64,7 @@ export function LandingFormPanel({
       // A `<form>` so Enter in a field submits.
       component="form"
       onSubmit={handleSubmit}
+      noValidate={noValidate}
       gap={2}
       p={1.5}
       borderRadius={4}
@@ -70,15 +87,24 @@ export function LandingFormPanel({
 }
 
 // The theme leaves the resting outline at MUI's faint default, so it is pulled
-// up to the token used for hover. `Mui-error` is excluded so an errored field
-// keeps the theme's error colour.
+// up to the token the theme uses for hover.
+//
+// Resting state only: `Mui-error` and `Mui-focused` are both excluded so the
+// theme's own rules for them still land. Without the `Mui-focused` exclusion
+// this rule would win on source order — the theme sets the focus ring on the
+// same `MuiTextField-root` class at the same specificity, and `sx` is
+// serialised after `styleOverrides` — leaving a focused field with a 2px ring
+// in the 40%-opacity divider colour instead of the solid `text.primary` one.
 const fieldSx = {
   '& .MuiOutlinedInput-root': {
     backgroundColor: 'background.paper',
   },
-  '& .MuiOutlinedInput-root:not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
-    borderColor: ({ palette }: Theme) => palette.dividers.secondary,
-  },
+  // `Mui-disabled` is deliberately not excluded: the theme has no disabled
+  // outline colour, so dropping it here would fall back to MUI's faint default.
+  '& .MuiOutlinedInput-root:not(.Mui-error):not(.Mui-focused) .MuiOutlinedInput-notchedOutline':
+    {
+      borderColor: ({ palette }: Theme) => palette.dividers.secondary,
+    },
 };
 
 /**
@@ -88,12 +114,21 @@ const fieldSx = {
  */
 export type LandingFormFieldProps = Omit<
   TextFieldProps,
-  'label' | 'variant'
+  'label' | 'variant' | 'slotProps'
 > & {
   /** Rendered as a 12px/600 `<label>` bound to the input — not MUI's floating label. */
   label: ReactNode;
-  /** Props for that `<label>`. */
-  labelProps?: TypographyProps;
+  /**
+   * `container` and `label` are this component's own slots — the two parts it
+   * builds around the field. The rest are `TextField`'s, so MUI's `root`
+   * (the field itself), `input`, `htmlInput` and `select` all still reach it.
+   */
+  slotProps?: TextFieldProps['slotProps'] & {
+    /** The `Stack` grouping the `<label>` and the field. */
+    container?: StackProps;
+    /** The 12px/600 `<label>` above the field. */
+    label?: TypographyProps;
+  };
 };
 
 /**
@@ -103,25 +138,38 @@ export type LandingFormFieldProps = Omit<
  */
 export function LandingFormField({
   label,
-  labelProps,
   id,
+  slotProps,
   sx,
   ...textFieldProps
 }: LandingFormFieldProps) {
+  // This component's own two slots; what is left is `TextField`'s own bag.
+  // Both targets carry no `sx` of their own, so they take a plain spread —
+  // only the field below needs its `sx` and `slotProps` merged.
+  const {
+    container: containerSlotProps,
+    label: labelSlotProps,
+    ...fieldSlotProps
+  } = slotProps ?? {};
+
   // Only used when the consumer does not supply an `id`, so the label binding
   // holds either way.
   const generatedId = useId();
   const fieldId = id ?? generatedId;
+  // Read off the label slot rather than always derived, so overriding the
+  // label's `id` keeps the select below pointing at it.
+  const labelId = labelSlotProps?.id ?? `${fieldId}-label`;
 
   return (
-    <Stack gap={0.5} width="100%">
+    <Stack gap={0.5} width="100%" {...containerSlotProps}>
       <Typography
         component="label"
+        id={labelId}
         htmlFor={fieldId}
         fontSize={12}
         fontWeight={600}
         color="text.primary"
-        {...labelProps}
+        {...labelSlotProps}
       >
         {label}
       </Typography>
@@ -129,6 +177,15 @@ export function LandingFormField({
         id={fieldId}
         fullWidth
         variant="outlined"
+        slotProps={{
+          ...fieldSlotProps,
+          // `select` renders a `div[role="combobox"]`, which `<label for>`
+          // cannot name — and MUI points its `aria-labelledby` at the div
+          // itself, so the name would come out as the selected value. Naming
+          // the label explicitly is what MUI's own floating label does.
+          // Inert on a text field: `slotProps.select` only reaches a `Select`.
+          select: mergeSlotProps({ labelId }, fieldSlotProps.select),
+        }}
         sx={mergeSx(fieldSx, sx)}
         {...textFieldProps}
       />
@@ -149,9 +206,13 @@ export function LandingFormActions(props: LandingFormActionsProps) {
 
 export type LandingFormCheckboxProps = Omit<
   FormControlLabelProps,
-  'control'
+  'control' | 'slotProps'
 > & {
-  slotProps?: {
+  /**
+   * `checkbox` is this component's own slot; the rest are
+   * `FormControlLabel`'s, so `typography` reaches the label's `Typography`.
+   */
+  slotProps?: FormControlLabelProps['slotProps'] & {
     /** The `Checkbox` control itself. */
     checkbox?: CheckboxProps;
   };
@@ -167,17 +228,31 @@ export function LandingFormCheckbox({
   sx,
   ...formControlLabelProps
 }: LandingFormCheckboxProps) {
+  const { checkbox, ...labelSlotProps } = slotProps ?? {};
+
   return (
     <FormControlLabel
       control={
         <Checkbox
           // The theme's 12px checkbox padding would break the card's 16px
           // rhythm, so the card's own gap does the spacing instead.
-          {...slotProps?.checkbox}
-          sx={mergeSx({ p: 0 }, slotProps?.checkbox?.sx)}
+          {...checkbox}
+          sx={mergeSx({ p: 0 }, checkbox?.sx)}
         />
       }
-      label={<Typography variant="body2">{label}</Typography>}
+      // Handed over as-is: wrapping it in a `Typography` here would trip
+      // `FormControlLabel`'s `label.type !== Typography` guard, and the label
+      // would lose the `MuiFormControlLabel-label` class the theme styles
+      // (`flex: 1`) and MUI greys out when `disabled`. The variant goes through
+      // the slot instead.
+      label={label}
+      slotProps={{
+        ...labelSlotProps,
+        typography: mergeSlotProps(
+          { variant: 'body2' },
+          labelSlotProps.typography,
+        ),
+      }}
       {...formControlLabelProps}
       // MUI's own -11px/16px margins would break the same rhythm.
       sx={mergeSx({ m: 0, gap: 1, alignItems: 'center' }, sx)}

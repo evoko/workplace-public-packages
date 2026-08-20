@@ -30,6 +30,20 @@ export default meta;
 type Story = StoryObj;
 
 /**
+ * The theme turns adornment icons `text.primary` while the field is focused —
+ * right for the search and password-reveal icons, but it also blacks out the
+ * blue submit arrow, and this field is focused for the whole flow. `inherit`
+ * hands the colour back to the `IconButton`, so its `info.main` and its
+ * disabled colour both come through. Same specificity as the theme's rule, and
+ * a field's `sx` is serialised after `styleOverrides`, so this wins.
+ */
+const keepAdornmentColor = {
+  '& .MuiOutlinedInput-root.Mui-focused .MuiInputAdornment-root svg': {
+    color: 'inherit',
+  },
+};
+
+/**
  * The submit arrow, as the end adornment of whichever field is currently last.
  * A `type="submit"` button, so it and Enter do the same thing.
  */
@@ -200,6 +214,7 @@ function LoginLandingPage({
               label="Email"
               type="email"
               autoComplete="username"
+              sx={keepAdornmentColor}
               value={email}
               onChange={(event) => {
                 setEmail(event.target.value);
@@ -224,6 +239,7 @@ function LoginLandingPage({
                 label="Password"
                 type="password"
                 autoComplete="current-password"
+                sx={keepAdornmentColor}
                 value={password}
                 onChange={(event) => {
                   setPassword(event.target.value);
