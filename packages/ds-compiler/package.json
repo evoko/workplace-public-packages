@@ -1,0 +1,57 @@
+{
+  "name": "@bwp-web/ds-compiler",
+  "version": "2.0.0-alpha.0",
+  "private": true,
+  "description": "Compiles a CSS design system into a validated intermediate representation and target theme layers",
+  "type": "module",
+  "bin": {
+    "bwp-ds": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "schemas"
+  ],
+  "scripts": {
+    "build": "tsup && tsc -p tsconfig.build.json",
+    "build:types": "tsc -p tsconfig.build.json",
+    "dev": "tsx src/cli.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "clean": "rm -rf dist node_modules .turbo",
+    "schema": "tsx scripts/emit-manifest-schema.ts"
+  },
+  "dependencies": {
+    "commander": "^14.0.0",
+    "culori": "^4.0.2",
+    "postcss": "^8.5.28",
+    "postcss-selector-parser": "^7.1.6",
+    "postcss-value-parser": "^4.2.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@bwp-web/eslint-config": "*",
+    "@types/culori": "^4.0.1",
+    "@types/node": "^20.19.0",
+    "eslint": "^9.39.2",
+    "prettier": "^3.8.3",
+    "tsup": "^8.5.0",
+    "tsx": "^4.23.0",
+    "typescript": "^5.9.2",
+    "vitest": "^4.1.4"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
