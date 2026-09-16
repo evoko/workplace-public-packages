@@ -1,0 +1,19 @@
+:root {
+  --fx-color-neutral-0: #ffffff;
+  --fx-color-neutral-900: #111111;
+  --fx-color-brand-default: #1863d3;
+  --fx-color-brand-hover: #1453b0;
+  --fx-color-text-default: var(--fx-color-neutral-900);
+  --fx-color-text-on-brand: var(--fx-color-neutral-0);
+  --fx-color-surface-default: var(--fx-color-neutral-0);
+  --fx-color-border-default: #c9c9c9;
+  --fx-color-focus-ring: #3f8cff;
+}
+
+:root[data-fx-theme='dark'] {
+  --fx-color-neutral-0: #111111;
+  --fx-color-neutral-900: #ffffff;
+  --fx-color-brand-default: #3f8cff;
+  --fx-color-brand-hover: #6aa6ff;
+  --fx-color-border-default: #484848;
+}

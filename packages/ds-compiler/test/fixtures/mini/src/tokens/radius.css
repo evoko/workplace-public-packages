@@ -1,0 +1,5 @@
+:root {
+  --fx-radius-sm: 4px;
+  --fx-radius-md: var(--fx-space-2);
+  --fx-radius-pill: 9999px;
+}

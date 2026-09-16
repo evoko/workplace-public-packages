@@ -114,6 +114,10 @@ export const ERROR_CATALOG = {
     title: 'Root rule missing baseline properties',
     hint: 'Declare the baseline properties on the base root rule so parity does not rest on user-agent defaults. Set "baseline": false in the manifest to opt out.',
   },
+  'DS-W002': {
+    title: 'Empty source root',
+    hint: 'No token files under src/tokens and no component directories under src/components were found. Check --root, or scaffold your first token file.',
+  },
 } as const;
 
 export type DiagnosticCode = keyof typeof ERROR_CATALOG;
@@ -169,4 +173,41 @@ export function formatDiagnostic(d: Diagnostic): string {
     ? `${d.location.file}:${d.location.line}:${d.location.column} `
     : '';
   return `${loc}${d.severity} ${d.code} ${d.title}: ${d.message}\n  hint: ${d.hint}`;
+}
+
+/**
+ * Orders diagnostics for display: by file (code-unit compare; diagnostics
+ * without a location sort first), then line, then column, then original
+ * index (stable) for ties. Does not mutate `items` or the collector.
+ */
+export function sortDiagnosticsForDisplay(
+  items: readonly Diagnostic[],
+): Diagnostic[] {
+  return items
+    .map((item, index) => ({ item, index }))
+    .sort((a, b) => {
+      const af = a.item.location?.file;
+      const bf = b.item.location?.file;
+      if (af === undefined && bf !== undefined) {
+        return -1;
+      }
+      if (af !== undefined && bf === undefined) {
+        return 1;
+      }
+      if (af !== undefined && bf !== undefined && af !== bf) {
+        return af < bf ? -1 : 1;
+      }
+      const al = a.item.location?.line ?? 0;
+      const bl = b.item.location?.line ?? 0;
+      if (al !== bl) {
+        return al - bl;
+      }
+      const ac = a.item.location?.column ?? 0;
+      const bc = b.item.location?.column ?? 0;
+      if (ac !== bc) {
+        return ac - bc;
+      }
+      return a.index - b.index;
+    })
+    .map(({ item }) => item);
 }

@@ -1,0 +1,14 @@
+.fx-badge {
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: var(--fx-space-1) var(--fx-space-2);
+  border-style: none;
+  border-radius: var(--fx-radius-pill);
+  background-color: var(--fx-color-brand-default);
+  color: var(--fx-color-text-on-brand);
+  font-family: var(--fx-font-family-body);
+  font-size: var(--fx-font-size-sm);
+  font-weight: var(--fx-font-weight-semibold);
+  line-height: var(--fx-line-height-tight);
+}

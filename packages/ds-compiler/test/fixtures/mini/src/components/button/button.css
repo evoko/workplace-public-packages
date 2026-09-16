@@ -1,0 +1,58 @@
+.fx-button {
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--fx-space-2);
+  padding: var(--fx-space-2) var(--fx-space-4);
+  border-style: solid;
+  border-width: var(--fx-border-width-1);
+  border-color: transparent;
+  border-radius: var(--fx-radius-md);
+  background-color: var(--fx-color-brand-default);
+  color: var(--fx-color-text-on-brand);
+  font-family: var(--fx-font-family-body);
+  font-size: var(--fx-font-size-md);
+  font-weight: var(--fx-font-weight-semibold);
+  line-height: var(--fx-line-height-tight);
+  cursor: pointer;
+  transition-property: background-color, border-color, color;
+  transition-duration: var(--fx-duration-fast);
+  transition-timing-function: var(--fx-easing-standard);
+}
+
+.fx-button:hover {
+  background-color: var(--fx-color-brand-hover);
+}
+
+.fx-button:focus-visible {
+  outline-style: none;
+  box-shadow: var(--fx-shadow-focus);
+}
+
+.fx-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.fx-button[data-variant='outline'] {
+  background-color: transparent;
+  border-color: var(--fx-color-border-default);
+  color: var(--fx-color-text-default);
+}
+
+.fx-button[data-variant='outline']:hover {
+  background-color: var(--fx-color-surface-default);
+}
+
+.fx-button[data-size='sm'] {
+  padding: var(--fx-space-1) var(--fx-space-3);
+  font-size: var(--fx-font-size-sm);
+}
+
+.fx-button .fx-button__icon {
+  display: inline-flex;
+  width: var(--fx-space-4);
+  height: var(--fx-space-4);
+}

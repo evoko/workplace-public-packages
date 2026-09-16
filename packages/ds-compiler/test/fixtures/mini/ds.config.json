@@ -1,0 +1,7 @@
+{
+  "name": "Fictional",
+  "prefix": "fx",
+  "modes": ["light", "dark"],
+  "defaultMode": "light",
+  "rootFontSize": 16
+}

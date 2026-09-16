@@ -1,0 +1,21 @@
+{
+  "name": "button",
+  "displayName": "Button",
+  "description": "Triggers an action.",
+  "axes": {
+    "variant": { "values": ["solid", "outline"], "default": "solid" },
+    "size": { "values": ["sm", "md"], "default": "md" }
+  },
+  "states": ["hover", "focus-visible", "disabled"],
+  "slots": {
+    "root": { "element": "button" },
+    "label": { "element": "span" },
+    "icon": { "element": "span", "optional": true }
+  },
+  "preview": { "label": "Button" },
+  "targets": {
+    "tailwind": {},
+    "mui": { "excluded": "fixture only" },
+    "flutter": { "excluded": "fixture only" }
+  }
+}

@@ -277,6 +277,20 @@ function parseEntries(
     const entries = new Map<Mode, Entry>();
     let ok = true;
     for (const [mode, raw] of group.byMode) {
+      // Literal parsers run first so shadows with an embedded var() color parse.
+      // Safe because no literal parser accepts a bare whole-value var(); if a
+      // future category adds one, aliases of that category would be shadowed.
+      const types = CATEGORY_TYPES[raw.category];
+      const literal = parseLiteralForTypes(raw.raw, types, config.prefix);
+      if (literal) {
+        entries.set(mode, {
+          kind: 'literal',
+          type: literal.type,
+          value: literal.value,
+          location: raw.location,
+        });
+        continue;
+      }
       const ref = parseVarRef(raw.raw, config.prefix);
       if (ref) {
         if (!ref.ok) {
@@ -291,23 +305,12 @@ function parseEntries(
         });
         continue;
       }
-      const types = CATEGORY_TYPES[raw.category];
-      const literal = parseLiteralForTypes(raw.raw, types, config.prefix);
-      if (!literal) {
-        diag.add(
-          'DS-E012',
-          `"${raw.cssName}": "${raw.raw}" is not a valid ${types.join(' or ')} value`,
-          raw.location,
-        );
-        ok = false;
-        continue;
-      }
-      entries.set(mode, {
-        kind: 'literal',
-        type: literal.type,
-        value: literal.value,
-        location: raw.location,
-      });
+      diag.add(
+        'DS-E012',
+        `"${raw.cssName}": "${raw.raw}" is not a valid ${types.join(' or ')} value`,
+        raw.location,
+      );
+      ok = false;
     }
     if (!ok) {
       dropped.add(id);

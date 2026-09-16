@@ -1,0 +1,7 @@
+{
+  "name": "badge",
+  "displayName": "Badge",
+  "slots": { "root": { "element": "span" } },
+  "preview": { "root": "New" },
+  "targets": { "tailwind": {} }
+}
