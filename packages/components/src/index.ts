@@ -1,15 +1,3 @@
-export { BiampWrapper, type BiampWrapperProps } from './BiampWrapper';
-export * from './BiampSidebar';
-export * from './BiampHeader';
-export * from './BiampNotificationPopover';
-export * from './BiampListPopover';
-export * from './BiampCheckboxListPopover';
-export * from './BiampLayout';
-export * from './BiampTable';
-export * from './BiampBanner';
-export * from './BiampSegmentedButton';
-export * from './BiampGlobalSearch';
-export * from './OrganizationSelector';
-export * from './LandingPage';
-export * from './UserInitialsIcon';
-export * from './DynamicSvgIcon';
+// Intentionally empty.
+// Cleared ahead of the new design system; see docs/superpowers/specs/2026-09-16-strip-monorepo-design.md
+export {};

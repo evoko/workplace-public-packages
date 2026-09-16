@@ -34,8 +34,6 @@
   "peerDependencies": {
     "@bwp-web/assets": ">=1.0.2",
     "@bwp-web/styles": ">=1.0.13",
-    "@mui/material": ">=7.0.0",
-    "@tanstack/react-table": ">=8.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
@@ -43,15 +41,10 @@
     "@bwp-web/assets": "*",
     "@bwp-web/eslint-config": "*",
     "@bwp-web/styles": "*",
-    "@mui/icons-material": "^7.3.10",
-    "@mui/material": "^7.3.10",
     "@storybook/react-vite": "^10.3.5",
-    "@tanstack/react-table": "^8.21.3",
-    "@types/randomcolor": "^0.5.9",
     "@types/react": "^19.1.0",
     "eslint": "^9.39.2",
     "prettier": "^3.8.3",
-    "randomcolor": "^0.6.2",
     "tsup": "^8.5.1",
     "typescript": "^5.9.2"
   },

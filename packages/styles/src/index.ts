@@ -1,5 +1,3 @@
-export { appBarHeight, biampTheme } from './theme';
-
-// Side-effect import to ensure MUI module augmentations are included
-// in the emitted declaration files so consumers get them automatically.
-import './augmentations';
+// Intentionally empty.
+// Cleared ahead of the new design system; see docs/superpowers/specs/2026-09-16-strip-monorepo-design.md
+export {};
