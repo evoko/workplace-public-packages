@@ -1,0 +1,144 @@
+{
+  "$id": "https://github.com/evoko/workplace-public-packages/packages/ds-compiler/schemas/manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "axes": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "default": {
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+            "type": "string"
+          },
+          "values": {
+            "items": {
+              "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "values",
+          "default"
+        ],
+        "type": "object"
+      },
+      "default": {},
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "baseline": {
+      "anyOf": [
+        {
+          "const": false,
+          "type": "boolean"
+        },
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "displayName": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "name": {
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+      "type": "string"
+    },
+    "preview": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "default": {},
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "slots": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "element": {
+            "default": "span",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "type": "string"
+          },
+          "optional": {
+            "default": false,
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "default": {},
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "type": "object"
+    },
+    "states": {
+      "default": [],
+      "items": {
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "targets": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "excluded": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "excluded"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": {},
+            "propertyNames": {
+              "type": "string"
+            },
+            "type": "object"
+          }
+        ]
+      },
+      "default": {},
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+        "type": "string"
+      },
+      "type": "object"
+    }
+  },
+  "required": [
+    "name",
+    "displayName"
+  ],
+  "title": "Design-system component manifest",
+  "type": "object"
+}
