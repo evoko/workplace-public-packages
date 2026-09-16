@@ -106,6 +106,10 @@ export const ERROR_CATALOG = {
     title: 'Component file set incomplete',
     hint: 'Each directory under src/components needs <name>.css and <name>.manifest.json.',
   },
+  'DS-E061': {
+    title: 'CSS syntax error',
+    hint: 'Fix the CSS at the reported position; the parser could not read the file.',
+  },
   'DS-W001': {
     title: 'Root rule missing baseline properties',
     hint: 'Declare the baseline properties on the base root rule so parity does not rest on user-agent defaults. Set "baseline": false in the manifest to opt out.',
