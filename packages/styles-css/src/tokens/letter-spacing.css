@@ -1,0 +1,6 @@
+/* Starter content for the letter-spacing category. Replace with the real design
+   system values; keep the naming rules from docs/design-system/authoring-guide.md. */
+:root {
+  --bwp-letter-spacing-tight: -0.02em;
+  --bwp-letter-spacing-normal: 0;
+}

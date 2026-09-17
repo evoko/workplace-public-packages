@@ -1,0 +1,10 @@
+/* Starter content for the space category. Replace with the real design
+   system values; keep the naming rules from docs/design-system/authoring-guide.md. */
+:root {
+  --bwp-space-1: 4px;
+  --bwp-space-2: 8px;
+  --bwp-space-3: 12px;
+  --bwp-space-4: 16px;
+  --bwp-space-6: 24px;
+  --bwp-space-8: 32px;
+}

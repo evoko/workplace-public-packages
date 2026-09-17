@@ -1,0 +1,49 @@
+{
+  "name": "@bwp-web/styles-css",
+  "version": "2.0.0-alpha.0",
+  "description": "Design-system CSS source of truth: tokens, component styles, and the compiled intermediate representation",
+  "type": "module",
+  "main": "./dist/styles.css",
+  "style": "./dist/styles.css",
+  "exports": {
+    ".": "./dist/styles.css",
+    "./styles.css": "./dist/styles.css",
+    "./dist/styles.css": "./dist/styles.css",
+    "./ir": "./design.ir.json",
+    "./ds.config.json": "./ds.config.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "design.ir.json",
+    "ds.config.json"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "alpha"
+  },
+  "scripts": {
+    "build": "bwp-ds build && postcss src/index.css -o dist/styles.css --no-map",
+    "lint": "bwp-ds lint",
+    "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore",
+    "clean": "rm -rf dist node_modules .turbo",
+    "prepublishOnly": "turbo run build --filter=@bwp-web/styles-css"
+  },
+  "devDependencies": {
+    "@bwp-web/ds-compiler": "*",
+    "postcss": "^8.5.28",
+    "postcss-cli": "^12.0.0",
+    "postcss-import": "^17.0.0",
+    "prettier": "^3.8.3"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evoko/workplace-public-packages.git",
+    "directory": "packages/styles-css"
+  }
+}

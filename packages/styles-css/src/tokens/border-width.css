@@ -1,0 +1,6 @@
+/* Starter content for the border-width category. Replace with the real design
+   system values; keep the naming rules from docs/design-system/authoring-guide.md. */
+:root {
+  --bwp-border-width-1: 1px;
+  --bwp-border-width-2: 2px;
+}

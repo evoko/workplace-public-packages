@@ -1,0 +1,6 @@
+/* Starter content for the z-index category. Replace with the real design
+   system values; keep the naming rules from docs/design-system/authoring-guide.md. */
+:root {
+  --bwp-z-index-dropdown: 1000;
+  --bwp-z-index-modal: 1300;
+}

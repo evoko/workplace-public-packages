@@ -4,12 +4,13 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 
 ## Packages
 
-| Package                                        | Description                            | README                                        |
-| ---------------------------------------------- | -------------------------------------- | --------------------------------------------- |
-| [`@bwp-web/styles`](./packages/styles)         | Shared MUI theme and styling utilities | [docs](./packages/styles/README.md)           |
-| [`@bwp-web/components`](./packages/components) | Shared React components                | [docs](./packages/components/README.md)       |
-| [`@bwp-web/assets`](./packages/assets)         | Shared icons, image, and font assets   | [docs](./packages/assets/README.md)           |
-| [`@bwp-web/canvas`](./packages/canvas)         | Interactive canvas editor and viewer   | [docs](./packages/canvas/README.md)           |
+| Package                                              | Description                                                       | README                                          |
+| ---------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------- |
+| [`@bwp-web/styles-css`](./packages/styles-css)       | Design-system source of truth: CSS tokens, components, and the IR | [docs](./packages/styles-css/README.md)         |
+| [`@bwp-web/ds-compiler`](./packages/ds-compiler)     | Private compiler: lint, build, scaffold (targets come later)      | [docs](./docs/design-system/authoring-guide.md) |
+| [`@bwp-web/components`](./packages/components)       | Shared React components (empty during the V2 rebuild)             | [docs](./packages/components/README.md)         |
+| [`@bwp-web/assets`](./packages/assets)               | Shared icons, image, and font assets (empty during the V2 rebuild) | [docs](./packages/assets/README.md)            |
+| [`@bwp-web/canvas`](./packages/canvas)               | Interactive canvas editor and viewer (empty during the V2 rebuild) | [docs](./packages/canvas/README.md)            |
 
 ## Getting Started
 
@@ -27,14 +28,14 @@ npm install
 ### Installing All Packages
 
 ```bash
-npm install @bwp-web/assets @bwp-web/styles @bwp-web/components @bwp-web/canvas
+npm install @bwp-web/assets @bwp-web/styles-css @bwp-web/components @bwp-web/canvas
 ```
 
 ### Updating Packages
 
 ```bash
-npm update @bwp-web/styles
-npm install @bwp-web/styles@latest
+npm update @bwp-web/styles-css
+npm install @bwp-web/styles-css@latest
 ```
 
 ### Build
@@ -44,28 +45,12 @@ npm install @bwp-web/styles@latest
 npx turbo run build
 
 # Build a specific package
-cd packages/styles && npm run build
+cd packages/styles-css && npm run build
 ```
 
 ## Storybook
 
-A Storybook is included in this repo to browse and interact with every themed component, color, and typography variant without writing any code.
-
-From the repo root:
-
-```bash
-npm run storybook
-```
-
-This starts Storybook at [http://localhost:6006](http://localhost:6006).
-
-| Section                 | What you'll find                                                                                                                                                                                             |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Styles / Colors**     | Full color palette — primary, secondary, status colors, brand colors, grey scale, text, backgrounds, dividers, and action states                                                                             |
-| **Styles / Typography** | Every typography variant with font family, size, and weight                                                                                                                                                  |
-| **Components**          | Interactive demos of BiampLayout, BiampSidebar, BiampSidebarIcon, BiampHeader, BiampHeaderButton, BiampWrapper, Button, IconButton, Checkbox, Switch, TextField, Autocomplete, Dialog, Tabs, Alert, and more |
-
-Use the **Color Mode** toggle in the Storybook toolbar to switch between light and dark themes.
+The Storybook is being rebuilt for the V2 design system. See `AGENTS.md` and `docs/design-system/` for the current state.
 
 ## Detailed Documentation
 
@@ -73,7 +58,7 @@ Additional documentation lives in the [`/docs`](./docs) folder:
 
 | Document                                                    | Contents                                                        |
 | ----------------------------------------------------------- | --------------------------------------------------------------- |
-| [packages/styles/README.md](./packages/styles/README.md)   | Full color palette, typography, spacing, component overrides    |
+| [packages/styles-css/README.md](./packages/styles-css/README.md) | Tokens, components, authoring rules, exports              |
 | [packages/assets/README.md](./packages/assets/README.md)   | Icons (220+), images, fonts                                     |
 | [biamp-layout.md](./docs/biamp-layout.md)                   | BiampLayout — full-page layout shell                            |
 | [biamp-wrapper.md](./docs/biamp-wrapper.md)                 | BiampWrapper — content wrapper                                  |

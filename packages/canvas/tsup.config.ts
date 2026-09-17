@@ -6,6 +6,6 @@ export default defineConfig({
   dts: false,
   sourcemap: true,
   clean: true,
-  external: ['react', 'react-dom', '@bwp-web/styles'],
+  external: ['react', 'react-dom'],
   jsx: 'automatic',
 });

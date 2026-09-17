@@ -1,0 +1,57 @@
+# @bwp-web/styles-css
+
+The design system's source of truth: hand-written CSS tokens and component
+styles, plus the compiled intermediate representation (`design.ir.json`) that
+every other target package (Tailwind, MUI, Flutter) is generated from.
+
+## Install
+
+```bash
+npm install @bwp-web/styles-css
+```
+
+## Use
+
+```css
+@import '@bwp-web/styles-css';
+```
+
+Set the color mode on the root element: `<html data-bwp-theme="dark">`. The
+default mode needs no attribute.
+
+Components are plain CSS classes on plain HTML:
+
+```html
+<button class="bwp-example" data-tone="accent" data-size="sm">
+  <span class="bwp-example__icon">…</span>
+  <span class="bwp-example__label">Save</span>
+</button>
+```
+
+## Author
+
+Read `docs/design-system/authoring-guide.md` before editing anything under
+`src/`. The short version:
+
+- Tokens live in `src/tokens/<category>.css`, one file per category, named
+  `--bwp-<category>-<path>`.
+- Components live in `src/components/<name>/` as `<name>.css` plus
+  `<name>.manifest.json`.
+- Run `npx bwp-ds lint` after every edit and `npx bwp-ds build` to regenerate
+  `design.ir.json`. Both run from this directory.
+- `npx bwp-ds scaffold component <name>` and `npx bwp-ds scaffold tokens
+<category>` create files that already follow the rules.
+
+## Exports
+
+| Export                 | Content                                |
+| ---------------------- | -------------------------------------- |
+| `.` and `./styles.css` | Bundled CSS: all tokens and components |
+| `./ir`                 | `design.ir.json`, the compiled IR      |
+| `./ds.config.json`     | Name, prefix, and modes                |
+
+Import the IR as JSON:
+
+```js
+import ir from '@bwp-web/styles-css/ir' with { type: 'json' };
+```

@@ -1,0 +1,1472 @@
+{
+  "components": {
+    "example": {
+      "axes": {
+        "size": {
+          "default": "md",
+          "values": [
+            "sm",
+            "md"
+          ]
+        },
+        "tone": {
+          "default": "neutral",
+          "values": [
+            "neutral",
+            "accent"
+          ]
+        }
+      },
+      "description": "Starter component that exercises axes, states, and a slot. Replace it with real components.",
+      "displayName": "Example",
+      "name": "example",
+      "preview": {
+        "icon": "plus",
+        "label": "Example"
+      },
+      "rules": [
+        {
+          "axes": {},
+          "declarations": {
+            "align-items": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "center"
+            },
+            "appearance": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "none"
+            },
+            "background-color": {
+              "kind": "token",
+              "ref": "color.surface.default"
+            },
+            "border-bottom-color": {
+              "kind": "token",
+              "ref": "color.border.default"
+            },
+            "border-bottom-left-radius": {
+              "kind": "token",
+              "ref": "radius.md"
+            },
+            "border-bottom-right-radius": {
+              "kind": "token",
+              "ref": "radius.md"
+            },
+            "border-bottom-style": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "solid"
+            },
+            "border-bottom-width": {
+              "kind": "token",
+              "ref": "border-width.1"
+            },
+            "border-left-color": {
+              "kind": "token",
+              "ref": "color.border.default"
+            },
+            "border-left-style": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "solid"
+            },
+            "border-left-width": {
+              "kind": "token",
+              "ref": "border-width.1"
+            },
+            "border-right-color": {
+              "kind": "token",
+              "ref": "color.border.default"
+            },
+            "border-right-style": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "solid"
+            },
+            "border-right-width": {
+              "kind": "token",
+              "ref": "border-width.1"
+            },
+            "border-top-color": {
+              "kind": "token",
+              "ref": "color.border.default"
+            },
+            "border-top-left-radius": {
+              "kind": "token",
+              "ref": "radius.md"
+            },
+            "border-top-right-radius": {
+              "kind": "token",
+              "ref": "radius.md"
+            },
+            "border-top-style": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "solid"
+            },
+            "border-top-width": {
+              "kind": "token",
+              "ref": "border-width.1"
+            },
+            "box-sizing": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "border-box"
+            },
+            "color": {
+              "kind": "token",
+              "ref": "color.text.default"
+            },
+            "column-gap": {
+              "kind": "token",
+              "ref": "space.2"
+            },
+            "cursor": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "pointer"
+            },
+            "display": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "inline-flex"
+            },
+            "font-family": {
+              "kind": "token",
+              "ref": "font-family.body"
+            },
+            "font-size": {
+              "kind": "token",
+              "ref": "font-size.md"
+            },
+            "font-weight": {
+              "kind": "token",
+              "ref": "font-weight.semibold"
+            },
+            "justify-content": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "center"
+            },
+            "letter-spacing": {
+              "kind": "token",
+              "ref": "letter-spacing.tight"
+            },
+            "line-height": {
+              "kind": "token",
+              "ref": "line-height.tight"
+            },
+            "min-height": {
+              "kind": "token",
+              "ref": "size.control.md"
+            },
+            "padding-bottom": {
+              "kind": "token",
+              "ref": "space.2"
+            },
+            "padding-left": {
+              "kind": "token",
+              "ref": "space.4"
+            },
+            "padding-right": {
+              "kind": "token",
+              "ref": "space.4"
+            },
+            "padding-top": {
+              "kind": "token",
+              "ref": "space.2"
+            },
+            "row-gap": {
+              "kind": "token",
+              "ref": "space.2"
+            },
+            "transition-duration": {
+              "kind": "token",
+              "ref": "duration.fast"
+            },
+            "transition-property": {
+              "kind": "literal",
+              "type": "string",
+              "value": "background-color, border-color, color"
+            },
+            "transition-timing-function": {
+              "kind": "token",
+              "ref": "easing.standard"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/example/example.css",
+            "line": 3
+          },
+          "states": []
+        },
+        {
+          "axes": {},
+          "declarations": {
+            "background-color": {
+              "kind": "token",
+              "ref": "color.surface.raised"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/example/example.css",
+            "line": 29
+          },
+          "states": [
+            "hover"
+          ]
+        },
+        {
+          "axes": {},
+          "declarations": {
+            "box-shadow": {
+              "kind": "token",
+              "ref": "shadow.focus"
+            },
+            "outline-style": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "none"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/example/example.css",
+            "line": 33
+          },
+          "states": [
+            "focus-visible"
+          ]
+        },
+        {
+          "axes": {},
+          "declarations": {
+            "cursor": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "not-allowed"
+            },
+            "opacity": {
+              "kind": "token",
+              "ref": "opacity.disabled"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/example/example.css",
+            "line": 38
+          },
+          "states": [
+            "disabled"
+          ]
+        },
+        {
+          "axes": {
+            "tone": "accent"
+          },
+          "declarations": {
+            "background-color": {
+              "kind": "token",
+              "ref": "color.accent.default"
+            },
+            "border-bottom-color": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "transparent"
+            },
+            "border-left-color": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "transparent"
+            },
+            "border-right-color": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "transparent"
+            },
+            "border-top-color": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "transparent"
+            },
+            "color": {
+              "kind": "token",
+              "ref": "color.text.on.accent"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/example/example.css",
+            "line": 43
+          },
+          "states": []
+        },
+        {
+          "axes": {
+            "tone": "accent"
+          },
+          "declarations": {
+            "background-color": {
+              "kind": "token",
+              "ref": "color.accent.hover"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/example/example.css",
+            "line": 49
+          },
+          "states": [
+            "hover"
+          ]
+        },
+        {
+          "axes": {
+            "size": "sm"
+          },
+          "declarations": {
+            "font-size": {
+              "kind": "token",
+              "ref": "font-size.sm"
+            },
+            "min-height": {
+              "kind": "token",
+              "ref": "size.control.sm"
+            },
+            "padding-bottom": {
+              "kind": "token",
+              "ref": "space.1"
+            },
+            "padding-left": {
+              "kind": "token",
+              "ref": "space.3"
+            },
+            "padding-right": {
+              "kind": "token",
+              "ref": "space.3"
+            },
+            "padding-top": {
+              "kind": "token",
+              "ref": "space.1"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/example/example.css",
+            "line": 53
+          },
+          "states": []
+        },
+        {
+          "axes": {},
+          "declarations": {
+            "display": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "inline-flex"
+            },
+            "height": {
+              "kind": "token",
+              "ref": "size.icon.md"
+            },
+            "width": {
+              "kind": "token",
+              "ref": "size.icon.md"
+            }
+          },
+          "slot": "icon",
+          "source": {
+            "column": 1,
+            "file": "src/components/example/example.css",
+            "line": 59
+          },
+          "states": []
+        }
+      ],
+      "slots": {
+        "icon": {
+          "element": "span",
+          "optional": true
+        },
+        "label": {
+          "element": "span",
+          "optional": false
+        },
+        "root": {
+          "element": "button",
+          "optional": false
+        }
+      },
+      "states": [
+        "hover",
+        "focus-visible",
+        "disabled"
+      ],
+      "targets": {
+        "flutter": {
+          "excluded": "starter component; the real design system replaces it"
+        },
+        "mui": {
+          "excluded": "starter component; the real design system replaces it"
+        },
+        "tailwind": {}
+      }
+    }
+  },
+  "irVersion": 1,
+  "meta": {
+    "defaultMode": "light",
+    "modes": [
+      "light",
+      "dark"
+    ],
+    "name": "SOLAR",
+    "prefix": "bwp",
+    "rootFontSize": 16,
+    "sourceHash": "22123c70671d0542f067d12c9cd9ff6ca6a9dc148e02e06cad0cfc42069e25d0"
+  },
+  "tokens": {
+    "border-width.1": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 1
+      },
+      "category": "border-width",
+      "cssName": "--bwp-border-width-1",
+      "modeInvariant": true,
+      "path": [
+        "1"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/border-width.css",
+        "line": 4
+      }
+    },
+    "border-width.2": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 2
+      },
+      "category": "border-width",
+      "cssName": "--bwp-border-width-2",
+      "modeInvariant": true,
+      "path": [
+        "2"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/border-width.css",
+        "line": 5
+      }
+    },
+    "color.accent.default": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#3f8cffff"
+        },
+        "light": {
+          "hex": "#1863d3ff"
+        }
+      },
+      "category": "color",
+      "cssName": "--bwp-color-accent-default",
+      "modeInvariant": false,
+      "path": [
+        "accent",
+        "default"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 9
+      }
+    },
+    "color.accent.hover": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#6aa6ffff"
+        },
+        "light": {
+          "hex": "#1453b0ff"
+        }
+      },
+      "category": "color",
+      "cssName": "--bwp-color-accent-hover",
+      "modeInvariant": false,
+      "path": [
+        "accent",
+        "hover"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 10
+      }
+    },
+    "color.border.default": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#484848ff"
+        },
+        "light": {
+          "hex": "#c9c9c9ff"
+        }
+      },
+      "alias": {
+        "light": "color.neutral.300"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-border-default",
+      "modeInvariant": false,
+      "path": [
+        "border",
+        "default"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 16
+      }
+    },
+    "color.focus.ring": {
+      "$type": "color",
+      "$value": {
+        "hex": "#3f8cffff"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-focus-ring",
+      "modeInvariant": true,
+      "path": [
+        "focus",
+        "ring"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 17
+      }
+    },
+    "color.neutral.0": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#111111ff"
+        },
+        "light": {
+          "hex": "#ffffffff"
+        }
+      },
+      "category": "color",
+      "cssName": "--bwp-color-neutral-0",
+      "modeInvariant": false,
+      "path": [
+        "neutral",
+        "0"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 4
+      }
+    },
+    "color.neutral.100": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#222222ff"
+        },
+        "light": {
+          "hex": "#f5f5f5ff"
+        }
+      },
+      "category": "color",
+      "cssName": "--bwp-color-neutral-100",
+      "modeInvariant": false,
+      "path": [
+        "neutral",
+        "100"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 5
+      }
+    },
+    "color.neutral.300": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#484848ff"
+        },
+        "light": {
+          "hex": "#c9c9c9ff"
+        }
+      },
+      "category": "color",
+      "cssName": "--bwp-color-neutral-300",
+      "modeInvariant": false,
+      "path": [
+        "neutral",
+        "300"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 6
+      }
+    },
+    "color.neutral.700": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#c9c9c9ff"
+        },
+        "light": {
+          "hex": "#333333ff"
+        }
+      },
+      "category": "color",
+      "cssName": "--bwp-color-neutral-700",
+      "modeInvariant": false,
+      "path": [
+        "neutral",
+        "700"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 7
+      }
+    },
+    "color.neutral.900": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#ffffffff"
+        },
+        "light": {
+          "hex": "#111111ff"
+        }
+      },
+      "category": "color",
+      "cssName": "--bwp-color-neutral-900",
+      "modeInvariant": false,
+      "path": [
+        "neutral",
+        "900"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 8
+      }
+    },
+    "color.surface.default": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#111111ff"
+        },
+        "light": {
+          "hex": "#ffffffff"
+        }
+      },
+      "alias": {
+        "light": "color.neutral.0"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-surface-default",
+      "modeInvariant": false,
+      "path": [
+        "surface",
+        "default"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 14
+      }
+    },
+    "color.surface.raised": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#222222ff"
+        },
+        "light": {
+          "hex": "#f5f5f5ff"
+        }
+      },
+      "alias": {
+        "light": "color.neutral.100"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-surface-raised",
+      "modeInvariant": false,
+      "path": [
+        "surface",
+        "raised"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 15
+      }
+    },
+    "color.text.default": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#ffffffff"
+        },
+        "light": {
+          "hex": "#111111ff"
+        }
+      },
+      "alias": {
+        "light": "color.neutral.900"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-text-default",
+      "modeInvariant": false,
+      "path": [
+        "text",
+        "default"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 11
+      }
+    },
+    "color.text.muted": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#c9c9c9ff"
+        },
+        "light": {
+          "hex": "#333333ff"
+        }
+      },
+      "alias": {
+        "light": "color.neutral.700"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-text-muted",
+      "modeInvariant": false,
+      "path": [
+        "text",
+        "muted"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 12
+      }
+    },
+    "color.text.on.accent": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#111111ff"
+        },
+        "light": {
+          "hex": "#ffffffff"
+        }
+      },
+      "alias": {
+        "light": "color.neutral.0"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-text-on-accent",
+      "modeInvariant": false,
+      "path": [
+        "text",
+        "on",
+        "accent"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 13
+      }
+    },
+    "duration.fast": {
+      "$type": "duration",
+      "$value": {
+        "ms": 150
+      },
+      "category": "duration",
+      "cssName": "--bwp-duration-fast",
+      "modeInvariant": true,
+      "path": [
+        "fast"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/duration.css",
+        "line": 4
+      }
+    },
+    "duration.normal": {
+      "$type": "duration",
+      "$value": {
+        "ms": 250
+      },
+      "category": "duration",
+      "cssName": "--bwp-duration-normal",
+      "modeInvariant": true,
+      "path": [
+        "normal"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/duration.css",
+        "line": 5
+      }
+    },
+    "easing.standard": {
+      "$type": "cubicBezier",
+      "$value": {
+        "points": [
+          0.4,
+          0,
+          0.2,
+          1
+        ]
+      },
+      "category": "easing",
+      "cssName": "--bwp-easing-standard",
+      "modeInvariant": true,
+      "path": [
+        "standard"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/easing.css",
+        "line": 4
+      }
+    },
+    "font-family.body": {
+      "$type": "fontFamily",
+      "$value": {
+        "families": [
+          "Open Sans",
+          "Arial",
+          "sans-serif"
+        ]
+      },
+      "category": "font-family",
+      "cssName": "--bwp-font-family-body",
+      "modeInvariant": true,
+      "path": [
+        "body"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/font-family.css",
+        "line": 4
+      }
+    },
+    "font-family.heading": {
+      "$type": "fontFamily",
+      "$value": {
+        "families": [
+          "Montserrat",
+          "Arial",
+          "sans-serif"
+        ]
+      },
+      "category": "font-family",
+      "cssName": "--bwp-font-family-heading",
+      "modeInvariant": true,
+      "path": [
+        "heading"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/font-family.css",
+        "line": 5
+      }
+    },
+    "font-size.lg": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "rem",
+        "value": 1.25
+      },
+      "category": "font-size",
+      "cssName": "--bwp-font-size-lg",
+      "modeInvariant": true,
+      "path": [
+        "lg"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/font-size.css",
+        "line": 7
+      }
+    },
+    "font-size.md": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "rem",
+        "value": 1
+      },
+      "category": "font-size",
+      "cssName": "--bwp-font-size-md",
+      "modeInvariant": true,
+      "path": [
+        "md"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/font-size.css",
+        "line": 6
+      }
+    },
+    "font-size.sm": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "rem",
+        "value": 0.875
+      },
+      "category": "font-size",
+      "cssName": "--bwp-font-size-sm",
+      "modeInvariant": true,
+      "path": [
+        "sm"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/font-size.css",
+        "line": 5
+      }
+    },
+    "font-size.xs": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "rem",
+        "value": 0.75
+      },
+      "category": "font-size",
+      "cssName": "--bwp-font-size-xs",
+      "modeInvariant": true,
+      "path": [
+        "xs"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/font-size.css",
+        "line": 4
+      }
+    },
+    "font-weight.bold": {
+      "$type": "fontWeight",
+      "$value": {
+        "weight": 700
+      },
+      "category": "font-weight",
+      "cssName": "--bwp-font-weight-bold",
+      "modeInvariant": true,
+      "path": [
+        "bold"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/font-weight.css",
+        "line": 6
+      }
+    },
+    "font-weight.regular": {
+      "$type": "fontWeight",
+      "$value": {
+        "weight": 400
+      },
+      "category": "font-weight",
+      "cssName": "--bwp-font-weight-regular",
+      "modeInvariant": true,
+      "path": [
+        "regular"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/font-weight.css",
+        "line": 4
+      }
+    },
+    "font-weight.semibold": {
+      "$type": "fontWeight",
+      "$value": {
+        "weight": 600
+      },
+      "category": "font-weight",
+      "cssName": "--bwp-font-weight-semibold",
+      "modeInvariant": true,
+      "path": [
+        "semibold"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/font-weight.css",
+        "line": 5
+      }
+    },
+    "letter-spacing.normal": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 0
+      },
+      "category": "letter-spacing",
+      "cssName": "--bwp-letter-spacing-normal",
+      "modeInvariant": true,
+      "path": [
+        "normal"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/letter-spacing.css",
+        "line": 5
+      }
+    },
+    "letter-spacing.tight": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "em",
+        "value": -0.02
+      },
+      "category": "letter-spacing",
+      "cssName": "--bwp-letter-spacing-tight",
+      "modeInvariant": true,
+      "path": [
+        "tight"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/letter-spacing.css",
+        "line": 4
+      }
+    },
+    "line-height.normal": {
+      "$type": "number",
+      "$value": {
+        "value": 1.5
+      },
+      "category": "line-height",
+      "cssName": "--bwp-line-height-normal",
+      "modeInvariant": true,
+      "path": [
+        "normal"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/line-height.css",
+        "line": 5
+      }
+    },
+    "line-height.tight": {
+      "$type": "number",
+      "$value": {
+        "value": 1.25
+      },
+      "category": "line-height",
+      "cssName": "--bwp-line-height-tight",
+      "modeInvariant": true,
+      "path": [
+        "tight"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/line-height.css",
+        "line": 4
+      }
+    },
+    "opacity.disabled": {
+      "$type": "number",
+      "$value": {
+        "value": 0.4
+      },
+      "category": "opacity",
+      "cssName": "--bwp-opacity-disabled",
+      "modeInvariant": true,
+      "path": [
+        "disabled"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/opacity.css",
+        "line": 4
+      }
+    },
+    "radius.lg": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 12
+      },
+      "category": "radius",
+      "cssName": "--bwp-radius-lg",
+      "modeInvariant": true,
+      "path": [
+        "lg"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/radius.css",
+        "line": 6
+      }
+    },
+    "radius.md": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 6
+      },
+      "category": "radius",
+      "cssName": "--bwp-radius-md",
+      "modeInvariant": true,
+      "path": [
+        "md"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/radius.css",
+        "line": 5
+      }
+    },
+    "radius.pill": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 9999
+      },
+      "category": "radius",
+      "cssName": "--bwp-radius-pill",
+      "modeInvariant": true,
+      "path": [
+        "pill"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/radius.css",
+        "line": 7
+      }
+    },
+    "radius.sm": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 4
+      },
+      "category": "radius",
+      "cssName": "--bwp-radius-sm",
+      "modeInvariant": true,
+      "path": [
+        "sm"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/radius.css",
+        "line": 4
+      }
+    },
+    "shadow.focus": {
+      "$type": "shadow",
+      "$value": {
+        "layers": [
+          {
+            "blur": {
+              "unit": "px",
+              "value": 0
+            },
+            "color": {
+              "ref": "color.focus.ring"
+            },
+            "inset": false,
+            "offsetX": {
+              "unit": "px",
+              "value": 0
+            },
+            "offsetY": {
+              "unit": "px",
+              "value": 0
+            },
+            "spread": {
+              "unit": "px",
+              "value": 2
+            }
+          }
+        ]
+      },
+      "category": "shadow",
+      "cssName": "--bwp-shadow-focus",
+      "modeInvariant": true,
+      "path": [
+        "focus"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/shadow.css",
+        "line": 5
+      }
+    },
+    "shadow.sm": {
+      "$type": "shadow",
+      "$value": {
+        "layers": [
+          {
+            "blur": {
+              "unit": "px",
+              "value": 2
+            },
+            "color": {
+              "hex": "#00000033"
+            },
+            "inset": false,
+            "offsetX": {
+              "unit": "px",
+              "value": 0
+            },
+            "offsetY": {
+              "unit": "px",
+              "value": 1
+            },
+            "spread": {
+              "unit": "px",
+              "value": 0
+            }
+          }
+        ]
+      },
+      "category": "shadow",
+      "cssName": "--bwp-shadow-sm",
+      "modeInvariant": true,
+      "path": [
+        "sm"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/shadow.css",
+        "line": 4
+      }
+    },
+    "size.control.md": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 44
+      },
+      "category": "size",
+      "cssName": "--bwp-size-control-md",
+      "modeInvariant": true,
+      "path": [
+        "control",
+        "md"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/size.css",
+        "line": 5
+      }
+    },
+    "size.control.sm": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 32
+      },
+      "category": "size",
+      "cssName": "--bwp-size-control-sm",
+      "modeInvariant": true,
+      "path": [
+        "control",
+        "sm"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/size.css",
+        "line": 4
+      }
+    },
+    "size.icon.md": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 20
+      },
+      "category": "size",
+      "cssName": "--bwp-size-icon-md",
+      "modeInvariant": true,
+      "path": [
+        "icon",
+        "md"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/size.css",
+        "line": 6
+      }
+    },
+    "space.1": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 4
+      },
+      "category": "space",
+      "cssName": "--bwp-space-1",
+      "modeInvariant": true,
+      "path": [
+        "1"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/space.css",
+        "line": 4
+      }
+    },
+    "space.2": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 8
+      },
+      "category": "space",
+      "cssName": "--bwp-space-2",
+      "modeInvariant": true,
+      "path": [
+        "2"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/space.css",
+        "line": 5
+      }
+    },
+    "space.3": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 12
+      },
+      "category": "space",
+      "cssName": "--bwp-space-3",
+      "modeInvariant": true,
+      "path": [
+        "3"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/space.css",
+        "line": 6
+      }
+    },
+    "space.4": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 16
+      },
+      "category": "space",
+      "cssName": "--bwp-space-4",
+      "modeInvariant": true,
+      "path": [
+        "4"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/space.css",
+        "line": 7
+      }
+    },
+    "space.6": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 24
+      },
+      "category": "space",
+      "cssName": "--bwp-space-6",
+      "modeInvariant": true,
+      "path": [
+        "6"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/space.css",
+        "line": 8
+      }
+    },
+    "space.8": {
+      "$type": "dimension",
+      "$value": {
+        "unit": "px",
+        "value": 32
+      },
+      "category": "space",
+      "cssName": "--bwp-space-8",
+      "modeInvariant": true,
+      "path": [
+        "8"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/space.css",
+        "line": 9
+      }
+    },
+    "z-index.dropdown": {
+      "$type": "number",
+      "$value": {
+        "value": 1000
+      },
+      "category": "z-index",
+      "cssName": "--bwp-z-index-dropdown",
+      "modeInvariant": true,
+      "path": [
+        "dropdown"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/z-index.css",
+        "line": 4
+      }
+    },
+    "z-index.modal": {
+      "$type": "number",
+      "$value": {
+        "value": 1300
+      },
+      "category": "z-index",
+      "cssName": "--bwp-z-index-modal",
+      "modeInvariant": true,
+      "path": [
+        "modal"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/z-index.css",
+        "line": 5
+      }
+    }
+  }
+}

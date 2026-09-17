@@ -5,6 +5,11 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "@bwp-web/styles-css#build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", "!design.ir.json"],
+      "outputs": ["dist/**", "design.ir.json"]
+    },
     "dev": {
       "dependsOn": ["^build"],
       "cache": false,
@@ -18,6 +23,12 @@
       "dependsOn": ["^build:types", "^typecheck"]
     },
     "lint": {},
+    "@bwp-web/styles-css#lint": {
+      "dependsOn": ["@bwp-web/ds-compiler#build"]
+    },
+    "test": {
+      "dependsOn": ["^build"]
+    },
     "format": {
       "inputs": ["$TURBO_DEFAULT$", "../../.prettierrc.json"]
     },

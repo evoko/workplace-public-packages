@@ -1,0 +1,6 @@
+/* Starter content for the font-family category. Replace with the real design
+   system values; keep the naming rules from docs/design-system/authoring-guide.md. */
+:root {
+  --bwp-font-family-body: 'Open Sans', Arial, sans-serif;
+  --bwp-font-family-heading: 'Montserrat', Arial, sans-serif;
+}

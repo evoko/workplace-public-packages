@@ -1,0 +1,5 @@
+/* Starter content for the easing category. Replace with the real design
+   system values; keep the naming rules from docs/design-system/authoring-guide.md. */
+:root {
+  --bwp-easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+}

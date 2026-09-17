@@ -1,0 +1,6 @@
+/* Starter content for the line-height category. Replace with the real design
+   system values; keep the naming rules from docs/design-system/authoring-guide.md. */
+:root {
+  --bwp-line-height-tight: 1.25;
+  --bwp-line-height-normal: 1.5;
+}

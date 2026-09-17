@@ -12,7 +12,9 @@
     "format": "turbo run format --continue",
     "format:fix": "turbo run format -- --write",
     "storybook": "turbo run dev --filter=@bwp-web/storybook",
-    "clean": "turbo run clean && rm -rf node_modules .turbo"
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "ds": "bwp-ds --root packages/styles-css",
+    "test": "turbo run test"
   },
   "devDependencies": {
     "@storybook/addon-vitest": "^10.3.5",
@@ -20,7 +22,7 @@
     "typescript": "^5.9.2"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "packageManager": "npm@10.9.0"
 }

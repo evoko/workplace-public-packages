@@ -1,0 +1,7 @@
+/* Starter content for the font-weight category. Replace with the real design
+   system values; keep the naming rules from docs/design-system/authoring-guide.md. */
+:root {
+  --bwp-font-weight-regular: 400;
+  --bwp-font-weight-semibold: 600;
+  --bwp-font-weight-bold: 700;
+}

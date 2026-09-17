@@ -32,7 +32,7 @@
     "schema": "tsx scripts/emit-manifest-schema.ts"
   },
   "dependencies": {
-    "commander": "^14.0.0",
+    "commander": "^15.0.0",
     "culori": "^4.0.2",
     "postcss": "^8.5.28",
     "postcss-selector-parser": "^7.1.6",
@@ -42,7 +42,7 @@
   "devDependencies": {
     "@bwp-web/eslint-config": "*",
     "@types/culori": "^4.0.1",
-    "@types/node": "^20.19.0",
+    "@types/node": "^22.0.0",
     "eslint": "^9.39.2",
     "prettier": "^3.8.3",
     "tsup": "^8.5.0",
@@ -51,7 +51,7 @@
     "vitest": "^4.1.4"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "license": "MIT"
 }

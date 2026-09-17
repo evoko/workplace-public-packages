@@ -21,6 +21,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Build
+        run: npm run build
+
+      - name: Check design.ir.json is up to date
+        run: git diff --exit-code -- packages/styles-css/design.ir.json
+
       - name: Run linting
         run: npm run lint
 
@@ -29,3 +35,6 @@ jobs:
 
       - name: Run format
         run: npm run format
+
+      - name: Run tests
+        run: npm run test

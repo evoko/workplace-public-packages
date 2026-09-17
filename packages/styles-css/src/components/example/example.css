@@ -1,0 +1,63 @@
+/* Starter component. Replace with real components; keep the selector grammar
+   from docs/design-system/authoring-guide.md#components. */
+.bwp-example {
+  appearance: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--bwp-space-2);
+  min-height: var(--bwp-size-control-md);
+  padding: var(--bwp-space-2) var(--bwp-space-4);
+  border-style: solid;
+  border-width: var(--bwp-border-width-1);
+  border-color: var(--bwp-color-border-default);
+  border-radius: var(--bwp-radius-md);
+  background-color: var(--bwp-color-surface-default);
+  color: var(--bwp-color-text-default);
+  font-family: var(--bwp-font-family-body);
+  font-size: var(--bwp-font-size-md);
+  font-weight: var(--bwp-font-weight-semibold);
+  line-height: var(--bwp-line-height-tight);
+  letter-spacing: var(--bwp-letter-spacing-tight);
+  cursor: pointer;
+  transition-property: background-color, border-color, color;
+  transition-duration: var(--bwp-duration-fast);
+  transition-timing-function: var(--bwp-easing-standard);
+}
+
+.bwp-example:hover {
+  background-color: var(--bwp-color-surface-raised);
+}
+
+.bwp-example:focus-visible {
+  outline-style: none;
+  box-shadow: var(--bwp-shadow-focus);
+}
+
+.bwp-example:disabled {
+  cursor: not-allowed;
+  opacity: var(--bwp-opacity-disabled);
+}
+
+.bwp-example[data-tone='accent'] {
+  border-color: transparent;
+  background-color: var(--bwp-color-accent-default);
+  color: var(--bwp-color-text-on-accent);
+}
+
+.bwp-example[data-tone='accent']:hover {
+  background-color: var(--bwp-color-accent-hover);
+}
+
+.bwp-example[data-size='sm'] {
+  min-height: var(--bwp-size-control-sm);
+  padding: var(--bwp-space-1) var(--bwp-space-3);
+  font-size: var(--bwp-font-size-sm);
+}
+
+.bwp-example .bwp-example__icon {
+  display: inline-flex;
+  width: var(--bwp-size-icon-md);
+  height: var(--bwp-size-icon-md);
+}

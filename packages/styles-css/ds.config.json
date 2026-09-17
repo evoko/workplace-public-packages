@@ -1,0 +1,7 @@
+{
+  "name": "SOLAR",
+  "prefix": "bwp",
+  "modes": ["light", "dark"],
+  "defaultMode": "light",
+  "rootFontSize": 16
+}

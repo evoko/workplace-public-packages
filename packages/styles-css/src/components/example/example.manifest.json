@@ -1,0 +1,26 @@
+{
+  "$schema": "../../../../ds-compiler/schemas/manifest.schema.json",
+  "name": "example",
+  "displayName": "Example",
+  "description": "Starter component that exercises axes, states, and a slot. Replace it with real components.",
+  "axes": {
+    "tone": { "values": ["neutral", "accent"], "default": "neutral" },
+    "size": { "values": ["sm", "md"], "default": "md" }
+  },
+  "states": ["hover", "focus-visible", "disabled"],
+  "slots": {
+    "root": { "element": "button" },
+    "label": { "element": "span" },
+    "icon": { "element": "span", "optional": true }
+  },
+  "preview": { "label": "Example", "icon": "plus" },
+  "targets": {
+    "tailwind": {},
+    "mui": {
+      "excluded": "starter component; the real design system replaces it"
+    },
+    "flutter": {
+      "excluded": "starter component; the real design system replaces it"
+    }
+  }
+}
