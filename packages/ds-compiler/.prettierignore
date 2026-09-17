@@ -1,0 +1,3 @@
+schemas/manifest.schema.json
+dist
+**/design.ir.json

@@ -12,7 +12,7 @@ export const identifier = z
   );
 
 /** Axis values and defaults may start with a digit (e.g. "2xl"), unlike other identifiers. */
-const axisValue = z
+export const axisValue = z
   .string()
   .regex(
     /^[a-z0-9]+(-[a-z0-9]+)*$/,

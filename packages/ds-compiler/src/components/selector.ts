@@ -139,7 +139,10 @@ export function parseSelector(
             `pseudo-element "${node.value}" is not allowed`,
           );
         }
-        const state = PSEUDO_STATES[node.value.slice(1)];
+        const pseudoName = node.value.slice(1);
+        const state = Object.hasOwn(PSEUDO_STATES, pseudoName)
+          ? PSEUDO_STATES[pseudoName]
+          : undefined;
         if (!state) {
           return fail(
             'DS-E030',

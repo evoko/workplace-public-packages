@@ -27,7 +27,7 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
-    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore",
     "clean": "rm -rf dist node_modules .turbo",
     "schema": "tsx scripts/emit-manifest-schema.ts"
   },

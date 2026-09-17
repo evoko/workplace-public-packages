@@ -6,7 +6,8 @@ export const PSEUDO_STATES: Record<string, string> = {
   disabled: 'disabled',
 };
 
-const ARIA_TRUE_STATES: Record<string, string> = {
+/** Attribute name to state name, for boolean-true aria attributes. */
+export const ARIA_TRUE_STATES: Record<string, string> = {
   'aria-pressed': 'pressed',
   'aria-selected': 'selected',
   'aria-expanded': 'expanded',
@@ -24,7 +25,7 @@ export function stateForAttribute(
   if (attribute === 'aria-disabled' && value === 'true') {
     return 'disabled';
   }
-  if (attribute in ARIA_TRUE_STATES && value === 'true') {
+  if (Object.hasOwn(ARIA_TRUE_STATES, attribute) && value === 'true') {
     return ARIA_TRUE_STATES[attribute];
   }
   if (attribute === 'data-state' && value !== undefined && value !== '') {
