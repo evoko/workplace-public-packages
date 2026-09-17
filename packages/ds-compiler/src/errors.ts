@@ -114,9 +114,21 @@ export const ERROR_CATALOG = {
     title: 'Entry file out of date',
     hint: 'src/index.css is generated. Run bwp-ds build (or any scaffold command) to regenerate it; never edit it by hand.',
   },
+  'DS-E080': {
+    title: 'Generated file out of date',
+    hint: 'Run bwp-ds build (for design.ir.json) or bwp-ds generate (for target output) and commit the result. Never edit generated files by hand.',
+  },
   'DS-E081': {
     title: 'Round-trip mismatch',
     hint: 'The generated output does not re-parse to the source IR. This is a generator or reparser bug: fix the target plugin under packages/ds-compiler/src/targets/<id>/, never the output.',
+  },
+  'DS-E082': {
+    title: 'Component unmapped for target',
+    hint: 'Add a "targets.<id>" entry to the component manifest: {} maps it, { "excluded": "<reason>" } leaves it out on purpose.',
+  },
+  'DS-E083': {
+    title: 'Unsupported property for target',
+    hint: 'The target has no handler for this property. Add a handler to the plugin under packages/ds-compiler/src/targets/<id>/, or list the property under targets.<id>.ignore in the manifest.',
   },
   'DS-W001': {
     title: 'Root rule missing baseline properties',

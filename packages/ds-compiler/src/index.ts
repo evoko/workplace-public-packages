@@ -112,3 +112,54 @@ export {
   KNOWN_TARGETS,
 } from './scaffold/component.js';
 export type { ComponentScaffoldOptions } from './scaffold/component.js';
+export { COMPILER_VERSION } from './version.js';
+export { generate, UnknownTargetError } from './generate.js';
+export type { GenerateResult } from './generate.js';
+export { verify } from './verify/index.js';
+export type { StepStatus, VerifyResult, VerifyStep } from './verify/index.js';
+export { checkDrift } from './verify/drift.js';
+export { diffIR, ruleDiffKey } from './verify/ir-diff.js';
+export type { DiffScope, IRDifference } from './verify/ir-diff.js';
+export { computeCoverage, renderCoverageMarkdown } from './verify/coverage.js';
+export type { CoverageReport } from './verify/coverage.js';
+export { outDirFor, pluginContext } from './targets/plugin.js';
+export type {
+  CoverageEntry,
+  CoverageStatus,
+  GeneratedFile,
+  PluginContext,
+  TargetPlugin,
+} from './targets/plugin.js';
+export {
+  TARGET_HINT_SCHEMAS,
+  TARGET_IDS,
+  tailwindHintsSchema,
+  targetsSchema,
+} from './targets/hints.js';
+export type { TargetId } from './targets/hints.js';
+export { TARGETS, getTarget, targetIds } from './targets/index.js';
+export { tailwindPlugin } from './targets/tailwind/index.js';
+export {
+  TAILWIND_NAMESPACES,
+  sourceNameFromTailwind,
+  tailwindVarName,
+} from './targets/tailwind/names.js';
+export {
+  generateTailwind,
+  renderComponents,
+  renderIRValue,
+  renderIndex,
+  renderTheme,
+  tailwindHeader,
+  varNameFor,
+} from './targets/tailwind/render.js';
+export {
+  manifestFromComponent,
+  reparseTailwind,
+} from './targets/tailwind/reparse.js';
+export {
+  FORM_CONTROL_ELEMENTS,
+  renderRuleSelector,
+  stateSelector,
+} from './components/render-selector.js';
+export type { SelectorTarget } from './components/render-selector.js';

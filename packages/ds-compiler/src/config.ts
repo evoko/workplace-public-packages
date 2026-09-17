@@ -1,8 +1,9 @@
 import { readFileSync } from 'node:fs';
-import { isAbsolute, join } from 'node:path';
+import { isAbsolute, join, relative, resolve } from 'node:path';
 import { z } from 'zod';
 import type { Diagnostics, SourceLocation } from './errors.js';
 import { IDENTIFIER_PATTERN } from './identifiers.js';
+import { SRC_DIR } from './paths.js';
 
 export const CONFIG_FILE = 'ds.config.json';
 
@@ -36,12 +37,21 @@ const rawConfigSchema = z.strictObject({
     .record(
       z.string().regex(IDENTIFIER_PATTERN, 'target ids are kebab-case'),
       z.strictObject({
-        /** Where this target's generated files go, relative to the source root. */
+        /**
+         * Where this target's generated files go, relative to the source
+         * root; must resolve outside src/ and must not be the root itself or
+         * an ancestor of it. The directory is owned by the generator: every
+         * file it did not produce there, at any depth and including
+         * dotfiles, is deleted.
+         */
         outDir: relativePosixPath.optional(),
       }),
     )
     .default({}),
-  /** Where `bwp-ds verify` writes the coverage report, relative to the source root. */
+  /**
+   * Where `bwp-ds verify` writes the coverage report, relative to the source
+   * root; must be a `.md` file and must not resolve to or inside src/.
+   */
   coverageFile: relativePosixPath.default('coverage.md'),
 });
 
@@ -112,6 +122,45 @@ export function loadConfig(
     diag.add(
       'DS-E001',
       `${CONFIG_FILE} is invalid: defaultMode "${raw.defaultMode}" is not one of modes [${raw.modes.join(', ')}]`,
+      at,
+    );
+    return null;
+  }
+  // Case-folded so the guard rejects the same configs on a case-insensitive
+  // filesystem (macOS, Windows) as it does on case-sensitive Linux CI.
+  const fold = (p: string) => p.toLowerCase();
+  const srcDir = resolve(rootDir, SRC_DIR);
+  for (const [id, targetConfig] of Object.entries(raw.targets)) {
+    const outDir = targetConfig.outDir;
+    if (outDir === undefined) {
+      continue;
+    }
+    const abs = resolve(rootDir, outDir);
+    // outDir must not be the root or an ancestor of it (relative(abs, rootDir)
+    // not starting with ".." means rootDir is at or below abs), and must not
+    // be src/ itself or anything inside it (the same test against srcDir).
+    const rootInsideOutDir = !relative(fold(abs), fold(rootDir)).startsWith(
+      '..',
+    );
+    const outDirInsideSrc = !relative(fold(srcDir), fold(abs)).startsWith('..');
+    if (rootInsideOutDir || outDirInsideSrc) {
+      diag.add(
+        'DS-E001',
+        `targets.${id}.outDir "${outDir}" must be a directory outside the source root's src/ and not the root itself or a parent of it; generate deletes files it did not produce there`,
+        at,
+      );
+      return null;
+    }
+  }
+  const absCoverage = resolve(rootDir, raw.coverageFile);
+  const coverageInsideSrc = !relative(
+    fold(srcDir),
+    fold(absCoverage),
+  ).startsWith('..');
+  if (coverageInsideSrc || !raw.coverageFile.toLowerCase().endsWith('.md')) {
+    diag.add(
+      'DS-E001',
+      `coverageFile "${raw.coverageFile}" must be a .md file outside the source root's src/`,
       at,
     );
     return null;

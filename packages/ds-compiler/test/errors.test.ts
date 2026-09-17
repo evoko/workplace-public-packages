@@ -71,6 +71,18 @@ describe('ERROR_CATALOG', () => {
       expect(meta.hint.length).toBeGreaterThan(0);
     }
   });
+
+  it('includes the target-plugin and verification codes', () => {
+    expect(Object.keys(ERROR_CATALOG)).toEqual(
+      expect.arrayContaining([
+        'DS-E080',
+        'DS-E081',
+        'DS-E082',
+        'DS-E083',
+        'DS-W003',
+      ]),
+    );
+  });
 });
 
 function makeDiagnostic(

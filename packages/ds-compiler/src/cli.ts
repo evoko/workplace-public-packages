@@ -4,6 +4,7 @@ import { Command, Option } from 'commander';
 import { build } from './build.js';
 import { loadConfig, type DsConfig } from './config.js';
 import { Diagnostics } from './errors.js';
+import { UnknownTargetError, generate } from './generate.js';
 import { lint } from './lint.js';
 import { printDiagnostics } from './report.js';
 import {
@@ -13,6 +14,7 @@ import {
 } from './scaffold/component.js';
 import { scaffoldTokens } from './scaffold/tokens.js';
 import { TOKEN_CATEGORIES, isTokenCategory } from './tokens/categories.js';
+import { verify } from './verify/index.js';
 import { COMPILER_VERSION } from './version.js';
 
 const program = new Command()
@@ -49,8 +51,8 @@ function requireConfig(root: string, json: boolean): DsConfig | null {
   return config;
 }
 
-/** Reports a scaffold-specific failure: `{"error": message}` in JSON mode, else plain text on stderr. */
-function scaffoldFailure(message: string, json: boolean): void {
+/** Reports a command-specific failure: `{"error": message}` in JSON mode, else plain text on stderr. */
+function commandFailure(message: string, json: boolean): void {
   if (json) {
     console.log(JSON.stringify({ error: message }));
   } else {
@@ -97,6 +99,57 @@ program
     process.exitCode = result.ir ? 0 : 1;
   });
 
+function collect(value: string, previous: string[]): string[] {
+  return [...previous, value];
+}
+
+function splitList(value: string): string[] {
+  return value
+    .split(',')
+    .map((s) => s.trim())
+    .filter((s) => s !== '');
+}
+
+program
+  .command('generate')
+  .description(
+    "Write each target's files from the IR into its outDir (default: every registered target)",
+  )
+  .option('--target <id>', 'target id (repeatable)', collect, [])
+  .action((opts: { target: string[] }) => {
+    const { root, json } = globals();
+    let result;
+    try {
+      result = generate(root, opts.target.length > 0 ? opts.target : undefined);
+    } catch (err) {
+      if (err instanceof UnknownTargetError) {
+        commandFailure(err.message, json);
+        return;
+      }
+      throw err;
+    }
+    printDiagnostics(result.diagnostics, json, {
+      wrote: result.written,
+      removed: result.removed,
+    });
+    process.exitCode = result.ir ? 0 : 1;
+  });
+
+program
+  .command('verify')
+  .description(
+    'Lint, then drift, round-trip, and coverage checks for every registered target; writes the coverage report',
+  )
+  .action(() => {
+    const { root, json } = globals();
+    const result = verify(root);
+    printDiagnostics(result.diagnostics, json, {
+      steps: result.steps,
+      coverageFile: result.coverageFile ?? '',
+    });
+    process.exitCode = result.diagnostics.hasErrors() ? 1 : 0;
+  });
+
 const scaffold = program
   .command('scaffold')
   .description(
@@ -115,7 +168,7 @@ scaffold
       return;
     }
     if (!isTokenCategory(category)) {
-      scaffoldFailure(
+      commandFailure(
         `"${category}" is not a token category. Allowed: ${TOKEN_CATEGORIES.join(', ')}`,
         json,
       );
@@ -125,23 +178,12 @@ scaffold
       const { path, entryPath } = scaffoldTokens(root, category, config);
       scaffoldSuccess(entryPath ? [path, entryPath] : [path], json);
     } catch (err) {
-      scaffoldFailure(
+      commandFailure(
         err instanceof ScaffoldError ? err.message : String(err),
         json,
       );
     }
   });
-
-function collect(value: string, previous: string[]): string[] {
-  return [...previous, value];
-}
-
-function splitList(value: string): string[] {
-  return value
-    .split(',')
-    .map((s) => s.trim())
-    .filter((s) => s !== '');
-}
 
 /** Parses repeated `--axis name=value1,value2` specs into an axes record, or null on the first problem. */
 function parseAxisSpecs(
@@ -155,14 +197,14 @@ function parseAxisSpecs(
     const valuesText = eq === -1 ? '' : spec.slice(eq + 1);
     const values = splitList(valuesText);
     if (axis === '' || values.length === 0) {
-      scaffoldFailure(
+      commandFailure(
         `--axis expects name=value1,value2 but got "${spec}"`,
         json,
       );
       return null;
     }
     if (Object.hasOwn(axes, axis)) {
-      scaffoldFailure(`--axis "${axis}" was given more than once`, json);
+      commandFailure(`--axis "${axis}" was given more than once`, json);
       return null;
     }
     axes[axis] = values;
@@ -216,7 +258,7 @@ scaffold
           : [out.manifestPath, out.cssPath];
         scaffoldSuccess(paths, json);
       } catch (err) {
-        scaffoldFailure(
+        commandFailure(
           err instanceof ScaffoldError ? err.message : String(err),
           json,
         );

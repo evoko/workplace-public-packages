@@ -36,6 +36,8 @@ export function printDiagnostics(
   }
   console.log(summarize(diag));
   for (const [key, value] of Object.entries(extra)) {
-    console.log(`${key}: ${String(value)}`);
+    console.log(
+      `${key}: ${typeof value === 'string' ? value : JSON.stringify(value)}`,
+    );
   }
 }

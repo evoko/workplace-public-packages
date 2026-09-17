@@ -1,0 +1,209 @@
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from 'node:fs';
+import { join } from 'node:path';
+import { describe, expect, it } from 'vitest';
+import { build } from '../src/build.js';
+import { UnknownTargetError, generate } from '../src/generate.js';
+import { verify } from '../src/verify/index.js';
+import { twRoot } from './tailwind-fixture.js';
+
+const BROKEN_SPACE = {
+  'src/tokens/space.css': ':root {\n  --fx-space-2: nope;\n}\n',
+};
+
+/** A root that has been built and generated: what a clean checkout looks like. */
+function ready(extra: Record<string, string> = {}): string {
+  const root = twRoot(extra);
+  build(root);
+  generate(root);
+  return root;
+}
+
+describe('generate', () => {
+  it('writes the tailwind files into the configured outDir and removes stale files', () => {
+    const root = twRoot();
+    build(root);
+    const out = join(root, 'out', 'tailwind');
+    mkdirSync(out, { recursive: true });
+    writeFileSync(join(out, 'stale.css'), 'x');
+    const result = generate(root);
+    expect(result.ir).not.toBeNull();
+    expect(result.written.map((p) => p.slice(out.length + 1))).toEqual([
+      'components.css',
+      'index.css',
+      'theme.css',
+    ]);
+    expect(result.removed).toEqual([join(out, 'stale.css')]);
+    expect(readFileSync(join(out, 'theme.css'), 'utf8')).toContain(
+      '@theme static {',
+    );
+  });
+
+  it('writes nothing when the IR has errors', () => {
+    const root = twRoot(BROKEN_SPACE);
+    const result = generate(root);
+    expect(result.ir).toBeNull();
+    expect(result.written).toEqual([]);
+    expect(existsSync(join(root, 'out'))).toBe(false);
+  });
+
+  it('rejects unknown targets before building', () => {
+    expect(() => generate(twRoot(), ['nope'])).toThrow(UnknownTargetError);
+  });
+
+  it('dedupes repeated target ids', () => {
+    const root = twRoot();
+    build(root);
+    const result = generate(root, ['tailwind', 'tailwind']);
+    expect(result.written).toHaveLength(3);
+  });
+
+  it('recursively removes stray files in subdirectories, including now-empty directories', () => {
+    const root = twRoot();
+    build(root);
+    const out = join(root, 'out', 'tailwind');
+    mkdirSync(join(out, 'sub'), { recursive: true });
+    writeFileSync(join(out, 'sub', 'deep.css'), 'x');
+    const result = generate(root);
+    expect(result.removed).toContain(join(out, 'sub', 'deep.css'));
+    expect(existsSync(join(out, 'sub'))).toBe(false);
+  });
+});
+
+describe('verify', () => {
+  it('passes on a built and generated root and writes the coverage file', () => {
+    const root = ready();
+    const result = verify(root);
+    expect(result.diagnostics.errors).toEqual([]);
+    expect(result.steps).toEqual({
+      lint: 'pass',
+      drift: 'pass',
+      roundtrip: 'pass',
+      coverage: 'pass',
+    });
+    expect(result.coverageFile).toBe(join(root, 'out', 'coverage.md'));
+    expect(readFileSync(result.coverageFile!, 'utf8')).toContain(
+      '| `chip` | supported |',
+    );
+  });
+
+  it('reports drift for a stale IR, a changed generated file, and a stray file', () => {
+    const root = ready();
+    const out = join(root, 'out', 'tailwind');
+    writeFileSync(join(root, 'design.ir.json'), '{}\n');
+    writeFileSync(
+      join(out, 'theme.css'),
+      `${readFileSync(join(out, 'theme.css'), 'utf8')}/* edit */\n`,
+    );
+    writeFileSync(join(out, 'extra.css'), '');
+    const result = verify(root);
+    expect(result.steps.drift).toBe('fail');
+    expect(result.steps.roundtrip).toBe('pass');
+    expect(
+      result.diagnostics.errors
+        .filter((d) => d.code === 'DS-E080')
+        .map((d) => d.message),
+    ).toEqual([
+      'design.ir.json differs from a fresh build; run bwp-ds build',
+      'out/tailwind/theme.css differs from a fresh generation; run bwp-ds generate --target tailwind',
+      'out/tailwind/extra.css is not produced by the tailwind generator; delete it',
+    ]);
+  });
+
+  it('reports missing generated files', () => {
+    const root = twRoot();
+    build(root);
+    const result = verify(root);
+    expect(result.steps.drift).toBe('fail');
+    expect(result.diagnostics.errors.map((d) => d.message)).toContain(
+      'out/tailwind/theme.css is missing; run bwp-ds generate --target tailwind',
+    );
+  });
+
+  it('reports stray files in subdirectories during drift', () => {
+    const root = ready();
+    const out = join(root, 'out', 'tailwind');
+    mkdirSync(join(out, 'sub'), { recursive: true });
+    writeFileSync(join(out, 'sub', 'deep.css'), 'x');
+    const result = verify(root);
+    expect(result.steps.drift).toBe('fail');
+    expect(result.diagnostics.errors.map((d) => d.message)).toContain(
+      'out/tailwind/sub/deep.css is not produced by the tailwind generator; delete it',
+    );
+  });
+
+  it('reports a target file that is a directory instead of a file', () => {
+    const root = ready();
+    const out = join(root, 'out', 'tailwind');
+    rmSync(join(out, 'theme.css'), { force: true });
+    mkdirSync(join(out, 'theme.css'));
+    const result = verify(root);
+    expect(result.diagnostics.errors.map((d) => d.message)).toContain(
+      'out/tailwind/theme.css is not a file; delete it and run bwp-ds generate --target tailwind',
+    );
+  });
+
+  it('fails coverage for an unmapped component and still writes the report', () => {
+    const root = ready({
+      'src/components/dot/dot.manifest.json': JSON.stringify({
+        name: 'dot',
+        displayName: 'Dot',
+        baseline: false,
+      }),
+      'src/components/dot/dot.css': '.fx-dot {\n  display: inline-block;\n}\n',
+    });
+    const result = verify(root);
+    expect(result.steps).toEqual({
+      lint: 'pass',
+      drift: 'pass',
+      roundtrip: 'pass',
+      coverage: 'fail',
+    });
+    const unmapped = result.diagnostics.errors.find(
+      (d) => d.code === 'DS-E082',
+    )!;
+    expect(unmapped.message).toBe(
+      'dot has no targets.tailwind entry in its manifest',
+    );
+    expect(unmapped.location).toEqual({
+      file: 'src/components/dot/dot.manifest.json',
+      line: 1,
+      column: 1,
+    });
+    expect(readFileSync(result.coverageFile!, 'utf8')).toContain(
+      '| `dot` | **unmapped** |',
+    );
+  });
+
+  it('stops after lint when the source has errors', () => {
+    const result = verify(twRoot(BROKEN_SPACE));
+    expect(result.steps).toEqual({
+      lint: 'fail',
+      drift: 'skipped',
+      roundtrip: 'skipped',
+      coverage: 'skipped',
+    });
+    expect(result.coverageFile).toBeNull();
+  });
+
+  it('stops after lint when the IR is present but src/index.css is stale', () => {
+    const root = ready();
+    writeFileSync(join(root, 'src/index.css'), '/* stale */\n');
+    const result = verify(root);
+    expect(result.steps).toEqual({
+      lint: 'fail',
+      drift: 'skipped',
+      roundtrip: 'skipped',
+      coverage: 'skipped',
+    });
+    expect(
+      result.diagnostics.errors.filter((d) => d.code === 'DS-E070'),
+    ).toHaveLength(1);
+    expect(result.coverageFile).toBeNull();
+  });
+});

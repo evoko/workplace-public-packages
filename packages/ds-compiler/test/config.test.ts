@@ -237,6 +237,102 @@ describe('loadConfig', () => {
     expect(diag2.items[0].code).toBe('DS-E001');
     expect(diag2.items[0].message).toContain('relative POSIX path');
   });
+
+  describe('outDir safety', () => {
+    const base = {
+      name: 'Fictional',
+      prefix: 'fx',
+      modes: ['light'],
+      defaultMode: 'light',
+    };
+
+    it.each(['.', '../..', 'src', 'src/generated'])(
+      'rejects an outDir of %s',
+      (outDir) => {
+        const root = makeRoot({
+          'ds.config.json': JSON.stringify({
+            ...base,
+            targets: { tailwind: { outDir } },
+          }),
+        });
+        const diag = new Diagnostics();
+        expect(loadConfig(root, diag)).toBeNull();
+        expect(diag.errors[0].code).toBe('DS-E001');
+        expect(diag.errors[0].message).toContain('outDir');
+        expect(diag.errors[0].message).toContain(
+          "outside the source root's src/",
+        );
+      },
+    );
+
+    it.each(['out/tailwind', '../styles-tailwind/src/generated'])(
+      'accepts an outDir of %s',
+      (outDir) => {
+        const root = makeRoot({
+          'ds.config.json': JSON.stringify({
+            ...base,
+            targets: { tailwind: { outDir } },
+          }),
+        });
+        const diag = new Diagnostics();
+        const config = loadConfig(root, diag);
+        expect(diag.items).toEqual([]);
+        expect(config?.targets.tailwind).toEqual({ outDir });
+      },
+    );
+
+    it.each(['SRC', 'SRC/generated', 'Src/../.'])(
+      'rejects an outDir of %s (case-insensitive filesystems alias it to src/)',
+      (outDir) => {
+        const root = makeRoot({
+          'ds.config.json': JSON.stringify({
+            ...base,
+            targets: { tailwind: { outDir } },
+          }),
+        });
+        const diag = new Diagnostics();
+        expect(loadConfig(root, diag)).toBeNull();
+        expect(diag.errors[0].code).toBe('DS-E001');
+        expect(diag.errors[0].message).toContain('outDir');
+      },
+    );
+  });
+
+  describe('coverageFile safety', () => {
+    const base = {
+      name: 'Fictional',
+      prefix: 'fx',
+      modes: ['light'],
+      defaultMode: 'light',
+    };
+
+    it.each(['src/index.css', 'design.ir.json', 'SRC/coverage.md'])(
+      'rejects a coverageFile of %s',
+      (coverageFile) => {
+        const root = makeRoot({
+          'ds.config.json': JSON.stringify({ ...base, coverageFile }),
+        });
+        const diag = new Diagnostics();
+        expect(loadConfig(root, diag)).toBeNull();
+        expect(diag.errors[0].code).toBe('DS-E001');
+        expect(diag.errors[0].message).toContain('coverageFile');
+        expect(diag.errors[0].message).toContain('.md file');
+      },
+    );
+
+    it.each(['out/coverage.md', '../../docs/design-system/coverage.md'])(
+      'accepts a coverageFile of %s',
+      (coverageFile) => {
+        const root = makeRoot({
+          'ds.config.json': JSON.stringify({ ...base, coverageFile }),
+        });
+        const diag = new Diagnostics();
+        const config = loadConfig(root, diag);
+        expect(diag.items).toEqual([]);
+        expect(config?.coverageFile).toBe(coverageFile);
+      },
+    );
+  });
 });
 
 describe('modeSelectorFor', () => {

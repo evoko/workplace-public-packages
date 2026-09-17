@@ -53,6 +53,7 @@ Compiler (`packages/ds-compiler/`):
 | `src/verify/drift.ts` | Regenerate and byte-compare against committed files. |
 | `src/verify/index.ts` | `verify(rootDir)` orchestration. |
 | `src/generate.ts` | `generate(rootDir, targetIds)` writes plugin output. |
+| `src/targets/output.ts` | Recursive listing of an outDir, shared by `generate` (stale removal) and drift (stray reporting). |
 | Modified: `src/config.ts`, `src/ir/types.ts`, `src/build.ts`, `src/errors.ts`, `src/cli.ts`, `src/index.ts`, `src/components/manifest.ts`, `src/components/parse-component.ts`, `src/scaffold/component.ts`, `scripts/emit-manifest-schema.ts` output. | |
 
 Package `packages/styles-tailwind/`: `package.json`, `README.md`, `.prettierignore`, `postcss.config.js`, `src/index.css` (hand-written, imports generated), `src/generated/{theme,components,index}.css` (generated, committed), `probe/index.css`, `scripts/assert-probe.mjs`.
@@ -2445,7 +2446,9 @@ Report: `src/verify/coverage.ts`, `test/coverage.test.ts` created.
 - Modify: `packages/ds-compiler/src/report.ts` (non-string extras)
 - Modify: `packages/ds-compiler/src/cli.ts`
 - Modify: `packages/ds-compiler/src/index.ts`
-- Test: `packages/ds-compiler/test/verify.test.ts`, `test/cli.test.ts`, `test/errors.test.ts`
+- Modify: `packages/ds-compiler/src/config.ts` (outDir guard, review amendment)
+- Create: `packages/ds-compiler/src/targets/output.ts` (review amendment)
+- Test: `packages/ds-compiler/test/verify.test.ts`, `test/cli.test.ts`, `test/errors.test.ts`, `test/config.test.ts`
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -3056,9 +3059,20 @@ node dist/cli.js --help
 
 Expected: all green; `--help` lists `lint`, `build`, `generate`, `verify`, `scaffold`.
 
-- [ ] **Step 11: Checkpoint**
+- [ ] **Step 11: Review amendments (applied during execution, 2026-09-17)**
 
-Report: `src/generate.ts`, `src/verify/{drift,index}.ts`, `test/verify.test.ts` created; `errors.ts`, `report.ts`, `cli.ts`, `index.ts`, `test/cli.test.ts`, `test/errors.test.ts` modified.
+The quality review probed `generate` and `verify` against a copy of the real design system; the code on disk is authoritative:
+
+- `verify` sets `steps.lint` from the diagnostics after the entry-file check, not from the presence of an IR, so a stale `src/index.css` (`DS-E070`) reports `lint: fail` and skips the later steps with `coverageFile: null`. `lint: fail` always means "fix the source first".
+- `loadConfig` rejects (`DS-E001`) a target `outDir` that resolves to the source root, to an ancestor of it, or to `src/` or anything inside it. Without the guard, `outDir: "."` made `generate` delete `ds.config.json`, `package.json`, and `design.ir.json` with exit code 0. The comparison is case-folded on every platform (so `"SRC"` is rejected on Linux too and a config validates identically on a macOS laptop and Linux CI); the second review round reproduced `outDir: "SRC"` deleting `src/components/` and `src/tokens/` on macOS. `coverageFile` gets the same check plus a `.md` extension requirement so it can never name `src/index.css`, `ds.config.json`, or `design.ir.json`. The outDir is owned by the generator: every file it did not produce, at any depth and including dotfiles, is deleted by `generate` and reported by drift.
+- `src/targets/output.ts` exports `listOutputFiles(dir)`: a recursive, ENOENT/ENOTDIR-tolerant walk returning POSIX-relative paths in code-unit order. `generate` (stale removal, then pruning of emptied subdirectories) and `checkDrift` (stray reporting) share it, so a stray `sub/deep.css` is neither kept nor invisible.
+- `generate` dedupes target ids, so `--target tailwind --target tailwind` runs the plugin once.
+- `checkDrift` reports a directory where a generated file should be as `DS-E080` (`is not a file`) instead of crashing on `EISDIR`.
+- A throwing generator (the `assertUniqueNames` collision) propagates to the CLI's `parseAsync().catch`, which prints the message and exits 1 without a stack trace; no coverage file or partial outDir is written. No `commandFailure` routing was needed.
+
+- [ ] **Step 12: Checkpoint**
+
+Report: `src/generate.ts`, `src/verify/{drift,index}.ts`, `src/targets/output.ts`, `test/verify.test.ts` created; `errors.ts`, `report.ts`, `cli.ts`, `config.ts`, `index.ts`, `test/cli.test.ts`, `test/config.test.ts`, `test/errors.test.ts` modified.
 
 ---
 
@@ -3542,6 +3556,8 @@ List every created, modified, and deleted path grouped by package, the test coun
 - **`assertUniqueNames` throws** a plain `Error` rather than a coded diagnostic. Task 7's `generate` CLI wiring should catch it and report it as a command failure; a `DS-E08x` code can follow if it ever fires in practice.
 - **`index.css` and the generated headers** are covered only by the drift byte-compare, not by the round-trip (meta is copied from the source IR).
 - **Config key message.** Zod reports a bad target-id key in `ds.config.json` as `Invalid key in record` with the key in the path; the custom message is not surfaced.
+- **`verify` rewrites the coverage file and never diffs it**, so a stale committed `coverage.md` is only caught because CI runs the generated-files `git diff --exit-code` after `npm run verify` (Task 8). Keep that ordering; a self-check inside `verify` can come later.
+- **Drift locations can leave the root** (`../styles-tailwind/src/generated/theme.css`), which some annotation consumers resolve oddly; `generate`'s `written`/`removed` are native absolute paths while drift messages are POSIX-relative. Display-only today.
 
 ---
 
@@ -3572,12 +3588,12 @@ and where it stands. Update the status table after every milestone.
 | --- | --- | --- |
 | 1 | 1-2 plugin contract, hints, config, IR meta, Tailwind names and values | done, reviewed, committed by user |
 | 2 | 3-4 selector rendering, DS-W003, `--root-element`, Tailwind generation | done, reviewed, committed by user |
-| 3 | 5-6 round-trip, `diffIR`, plugin registration, coverage | done, reviewed, awaiting user commit |
-| 4 | 7 `generate`, `verify`, CLI, error codes, exports | pending |
+| 3 | 5-6 round-trip, `diffIR`, plugin registration, coverage | done, reviewed, committed by user |
+| 4 | 7 `generate`, `verify`, CLI, error codes, exports | done, reviewed, awaiting user commit |
 | 5 | 8 `styles-tailwind` package, wiring, generated output, docs | pending |
 | 6 | 9 final verification | pending |
 
-Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After batch 1: 20 files, 219 tests. After batch 2: 22 files, 234 tests. After batch 3: 24 files, 260 tests.
+Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After batch 1: 20 files, 219 tests. After batch 2: 22 files, 234 tests. After batch 3: 24 files, 260 tests. After batch 4: 25 files, 289 tests.
 
 ### Decisions made during execution
 
@@ -3606,3 +3622,12 @@ Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After ba
   component whose declarations are all ignored is legitimately absent. The
   DS-E081 message is composed without the inner location so it never names a
   real source file; the remapped location carries the position.
+- Batch 4 review (see Task 7 Step 11): `steps.lint` follows the diagnostics,
+  not the presence of an IR, and a failing lint skips every later step. A
+  target `outDir` (and `coverageFile`) can never resolve to the root, a parent
+  of it, or `src/`, compared case-folded on every platform, because `generate`
+  owns its outDir and deletes anything it did not produce at any depth. The
+  outDir listing is recursive and shared by `generate` and drift
+  (`src/targets/output.ts`). `coverageFile` must end in `.md`. A follow-up
+  records that `verify` never diffs the coverage file it writes, so CI's
+  generated-files diff must run after `npm run verify`.

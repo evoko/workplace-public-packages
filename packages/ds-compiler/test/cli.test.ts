@@ -1,9 +1,10 @@
 import { execFileSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { FIXTURE_MINI, MINI_CONFIG, makeRoot, withEntry } from './helpers.js';
+import { twRoot } from './tailwind-fixture.js';
 
 const pkgDir = fileURLToPath(new URL('..', import.meta.url));
 
@@ -171,5 +172,50 @@ describe('bwp-ds CLI', () => {
     expect(r.code).toBe(0);
     const parsed = JSON.parse(r.stdout) as { wrote: string[] };
     expect(parsed.wrote).toHaveLength(3);
+  });
+
+  it('generate and verify work end to end and report steps in JSON', () => {
+    const root = twRoot();
+    expect(run(['build', '--root', root]).code).toBe(0);
+    const generated = run(['generate', '--root', root, '--json']);
+    expect(generated.code).toBe(0);
+    expect(
+      (JSON.parse(generated.stdout) as { wrote: string[] }).wrote,
+    ).toHaveLength(3);
+    const targeted = run([
+      'generate',
+      '--root',
+      root,
+      '--target',
+      'tailwind',
+      '--json',
+    ]);
+    expect(targeted.code).toBe(0);
+    expect(
+      (JSON.parse(targeted.stdout) as { wrote: string[] }).wrote,
+    ).toHaveLength(3);
+    const verified = run(['verify', '--root', root, '--json']);
+    expect(verified.code).toBe(0);
+    const parsed = JSON.parse(verified.stdout) as {
+      steps: Record<string, string>;
+      coverageFile: string;
+    };
+    expect(parsed.steps).toEqual({
+      lint: 'pass',
+      drift: 'pass',
+      roundtrip: 'pass',
+      coverage: 'pass',
+    });
+    expect(parsed.coverageFile.endsWith('coverage.md')).toBe(true);
+
+    const unknown = run(['generate', '--root', root, '--target', 'nope']);
+    expect(unknown.code).toBe(1);
+    expect(unknown.stderr).toContain('unknown target "nope"');
+
+    writeFileSync(join(root, 'design.ir.json'), '{}\n');
+    const stale = run(['verify', '--root', root]);
+    expect(stale.code).toBe(1);
+    expect(stale.stderr).toContain('DS-E080');
+    expect(stale.stdout).toContain('steps: {"lint":"pass","drift":"fail"');
   });
 });
