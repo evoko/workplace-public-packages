@@ -8,7 +8,7 @@ import {
 } from './components/manifest.js';
 import { parseComponentCss } from './components/parse-component.js';
 import { BASELINE_PROPERTIES } from './components/properties.js';
-import { CONFIG_FILE, loadConfig } from './config.js';
+import { CONFIG_FILE, loadConfig, type DsConfig } from './config.js';
 import { writeEntryCss } from './entry.js';
 import { configFailed, Diagnostics } from './errors.js';
 import { serializeIR, sourceHash, type SourceFile } from './ir/serialize.js';
@@ -24,6 +24,8 @@ import { resolveTokens } from './tokens/resolve-tokens.js';
 
 export interface BuildResult {
   ir: DesignIR | null;
+  /** The parsed config, or null when ds.config.json could not be loaded (DS-E001). */
+  config: DsConfig | null;
   diagnostics: Diagnostics;
   sources: SourceFile[];
 }
@@ -144,7 +146,7 @@ export function buildIR(rootDir: string): BuildResult {
   const sources: SourceFile[] = [];
   const config = loadConfig(rootDir, diag);
   if (!config) {
-    return { ir: null, diagnostics: diag, sources };
+    return { ir: null, config: null, diagnostics: diag, sources };
   }
   sources.push({
     path: CONFIG_FILE,
@@ -255,7 +257,7 @@ export function buildIR(rootDir: string): BuildResult {
   }
 
   if (diag.hasErrors()) {
-    return { ir: null, diagnostics: diag, sources };
+    return { ir: null, config, diagnostics: diag, sources };
   }
   const ir: DesignIR = {
     irVersion: IR_VERSION,
@@ -265,12 +267,13 @@ export function buildIR(rootDir: string): BuildResult {
       modes: config.modes,
       defaultMode: config.defaultMode,
       rootFontSize: config.rootFontSize,
+      modeSelector: config.modeSelector,
       sourceHash: sourceHash(sources),
     },
     tokens,
     components,
   };
-  return { ir, diagnostics: diag, sources };
+  return { ir, config, diagnostics: diag, sources };
 }
 
 export function writeIR(rootDir: string, ir: DesignIR): string {

@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import { Command, Option } from 'commander';
 import { build } from './build.js';
@@ -14,17 +13,14 @@ import {
 } from './scaffold/component.js';
 import { scaffoldTokens } from './scaffold/tokens.js';
 import { TOKEN_CATEGORIES, isTokenCategory } from './tokens/categories.js';
-
-const { version } = createRequire(import.meta.url)('../package.json') as {
-  version: string;
-};
+import { COMPILER_VERSION } from './version.js';
 
 const program = new Command()
   .name('bwp-ds')
   .description(
     'Design-system compiler: CSS source of truth to IR and target theme layers',
   )
-  .version(version)
+  .version(COMPILER_VERSION)
   .addOption(
     new Option('--root <dir>', 'source root containing ds.config.json').default(
       process.cwd(),

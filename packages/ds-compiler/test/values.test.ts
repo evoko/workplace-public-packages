@@ -52,6 +52,11 @@ describe('parseFontFamily', () => {
   it('rejects empty input', () => {
     expect(parseFontFamily('')).toBeNull();
   });
+  it('unescapes CSS string escapes inside a quoted family name', () => {
+    expect(parseFontFamily("'Bob\\'s Font', serif")).toEqual({
+      families: ["Bob's Font", 'serif'],
+    });
+  });
 });
 
 describe('parseFontWeight', () => {

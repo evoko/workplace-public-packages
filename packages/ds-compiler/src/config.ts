@@ -1,9 +1,18 @@
 import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { isAbsolute, join } from 'node:path';
 import { z } from 'zod';
 import type { Diagnostics, SourceLocation } from './errors.js';
+import { IDENTIFIER_PATTERN } from './identifiers.js';
 
 export const CONFIG_FILE = 'ds.config.json';
+
+const relativePosixPath = z
+  .string()
+  .min(1)
+  .refine(
+    (p) => !isAbsolute(p) && !p.includes('\\'),
+    'must be a relative POSIX path',
+  );
 
 const rawConfigSchema = z.strictObject({
   name: z.string().min(1),
@@ -23,6 +32,17 @@ const rawConfigSchema = z.strictObject({
     .string()
     .refine((s) => s.includes('{mode}'), 'modeSelector must contain {mode}')
     .optional(),
+  targets: z
+    .record(
+      z.string().regex(IDENTIFIER_PATTERN, 'target ids are kebab-case'),
+      z.strictObject({
+        /** Where this target's generated files go, relative to the source root. */
+        outDir: relativePosixPath.optional(),
+      }),
+    )
+    .default({}),
+  /** Where `bwp-ds verify` writes the coverage report, relative to the source root. */
+  coverageFile: relativePosixPath.default('coverage.md'),
 });
 
 export interface DsConfig {
@@ -32,6 +52,8 @@ export interface DsConfig {
   defaultMode: string;
   rootFontSize: number;
   modeSelector: string;
+  targets: Record<string, { outDir?: string }>;
+  coverageFile: string;
 }
 
 export function defaultModeSelector(prefix: string): string {
@@ -101,6 +123,8 @@ export function loadConfig(
     defaultMode: raw.defaultMode,
     rootFontSize: raw.rootFontSize,
     modeSelector: raw.modeSelector ?? defaultModeSelector(raw.prefix),
+    targets: raw.targets,
+    coverageFile: raw.coverageFile,
   };
 }
 

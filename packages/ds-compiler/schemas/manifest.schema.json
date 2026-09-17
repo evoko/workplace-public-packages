@@ -128,9 +128,88 @@
         ]
       },
       "default": {},
+      "properties": {
+        "flutter": {
+          "anyOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "excluded": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "excluded"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": {},
+              "propertyNames": {
+                "type": "string"
+              },
+              "type": "object"
+            }
+          ]
+        },
+        "mui": {
+          "anyOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "excluded": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "excluded"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": {},
+              "propertyNames": {
+                "type": "string"
+              },
+              "type": "object"
+            }
+          ]
+        },
+        "tailwind": {
+          "anyOf": [
+            {
+              "additionalProperties": false,
+              "properties": {
+                "excluded": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "excluded"
+              ],
+              "type": "object"
+            },
+            {
+              "additionalProperties": false,
+              "properties": {
+                "ignore": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          ]
+        }
+      },
       "propertyNames": {
-        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
-        "type": "string"
+        "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
       },
       "type": "object"
     }

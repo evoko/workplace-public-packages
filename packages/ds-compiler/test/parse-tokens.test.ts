@@ -11,6 +11,8 @@ const config: DsConfig = {
   defaultMode: 'light',
   rootFontSize: 16,
   modeSelector: ':root[data-fx-theme="{mode}"]',
+  targets: {},
+  coverageFile: 'coverage.md',
 };
 
 describe('parseTokenFile', () => {

@@ -98,6 +98,8 @@ export interface DesignIR {
     modes: Mode[];
     defaultMode: Mode;
     rootFontSize: number;
+    /** Selector for non-default modes, with `{mode}` as the placeholder. */
+    modeSelector: string;
     sourceHash: string;
   };
   tokens: Record<TokenId, Token>;

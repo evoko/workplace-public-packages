@@ -1,13 +1,15 @@
 import { readFileSync } from 'node:fs';
 import { z } from 'zod';
 import type { Diagnostics } from '../errors.js';
+import { IDENTIFIER_PATTERN } from '../identifiers.js';
 import type { ManifestTargets } from '../ir/types.js';
+import { targetsSchema } from '../targets/hints.js';
 import { PROPERTY_TABLE } from './properties.js';
 
 export const identifier = z
   .string()
   .regex(
-    /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/,
+    IDENTIFIER_PATTERN,
     'must be kebab-case: lowercase letters and digits separated by single hyphens',
   );
 
@@ -32,18 +34,6 @@ const slotSchema = z.strictObject({
   optional: z.boolean().default(false),
 });
 
-const excludedSchema = z.strictObject({ excluded: z.string().min(1) });
-
-const targetHintsSchema = z.union([
-  excludedSchema,
-  z
-    .record(z.string(), z.unknown())
-    .refine(
-      (o) => !Object.hasOwn(o, 'excluded'),
-      'excluded must be a non-empty string',
-    ),
-]);
-
 export const manifestSchema = z.strictObject({
   $schema: z.string().optional(),
   name: identifier,
@@ -54,7 +44,7 @@ export const manifestSchema = z.strictObject({
   slots: z.record(identifier, slotSchema).default({}),
   preview: z.record(z.string(), z.string()).default({}),
   baseline: z.union([z.literal(false), z.array(z.string())]).optional(),
-  targets: z.record(identifier, targetHintsSchema).default({}),
+  targets: targetsSchema.default({}),
 });
 
 export type Manifest = Omit<
@@ -196,8 +186,15 @@ export function loadManifest(
 }
 
 export function manifestJsonSchema(): Record<string, unknown> {
+  const schema = z.toJSONSchema(manifestSchema, {
+    target: 'draft-2020-12',
+    io: 'input',
+  }) as unknown as { properties: { targets: Record<string, unknown> } };
+  schema.properties.targets.propertyNames = {
+    pattern: IDENTIFIER_PATTERN.source,
+  };
   return {
-    ...z.toJSONSchema(manifestSchema, { target: 'draft-2020-12', io: 'input' }),
+    ...schema,
     $id: 'https://github.com/evoko/workplace-public-packages/packages/ds-compiler/schemas/manifest.schema.json',
     title: 'Design-system component manifest',
   };

@@ -25,6 +25,7 @@ describe('buildIR on the mini fixture', () => {
       rootFontSize: 16,
     });
     expect(ir!.meta.sourceHash).toMatch(/^[0-9a-f]{64}$/);
+    expect(ir?.meta.modeSelector).toBe(':root[data-fx-theme="{mode}"]');
     expect(Object.keys(ir!.components)).toEqual(['badge', 'button']);
     expect(Object.keys(ir!.tokens)).toContain('color.brand.default');
     expect(ir!.tokens['color.brand.default'].modeInvariant).toBe(false);

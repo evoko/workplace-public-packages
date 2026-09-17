@@ -102,7 +102,10 @@ export function parseFontFamily(raw: string): FontFamilyValue | null {
   for (const node of valueParser(raw).nodes) {
     if (node.type === 'div' && node.value === ',') {
       flush();
-    } else if (node.type === 'string' || node.type === 'word') {
+    } else if (node.type === 'string') {
+      // CSS string escapes: a backslash followed by any character becomes that character.
+      current.push(node.value.replace(/\\(.)/g, '$1'));
+    } else if (node.type === 'word') {
       current.push(node.value);
     }
   }

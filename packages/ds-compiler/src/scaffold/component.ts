@@ -14,11 +14,12 @@ import {
 import type { DsConfig } from '../config.js';
 import { writeEntryCss } from '../entry.js';
 import { COMPONENTS_DIR } from '../paths.js';
+import { TARGET_IDS } from '../targets/hints.js';
 import { ScaffoldError, writeNewFile } from './tokens.js';
 
 export { ScaffoldError } from './tokens.js';
 
-export const KNOWN_TARGETS = ['tailwind', 'mui', 'flutter'] as const;
+export const KNOWN_TARGETS = TARGET_IDS;
 
 export interface ComponentScaffoldOptions {
   /** axis name -> values; the first value becomes the default. */

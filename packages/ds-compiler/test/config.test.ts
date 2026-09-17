@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { loadConfig, modeSelectorFor, type DsConfig } from '../src/config.js';
 import { Diagnostics } from '../src/errors.js';
+import { MINI_CONFIG, makeRoot } from './helpers.js';
 
 function tmpRoot(): string {
   return mkdtempSync(join(tmpdir(), 'ds-config-'));
@@ -31,6 +32,8 @@ describe('loadConfig', () => {
       defaultMode: 'light',
       rootFontSize: 16,
       modeSelector: ':root[data-fx-theme="{mode}"]',
+      targets: {},
+      coverageFile: 'coverage.md',
     });
   });
 
@@ -57,6 +60,8 @@ describe('loadConfig', () => {
       defaultMode: 'light',
       rootFontSize: 18,
       modeSelector: '[data-theme="{mode}"]',
+      targets: {},
+      coverageFile: 'coverage.md',
     });
   });
 
@@ -162,6 +167,76 @@ describe('loadConfig', () => {
     expect(loadConfig(root, diag)).toBeNull();
     expect(diag.errors[0].code).toBe('DS-E001');
   });
+
+  it('accepts targets and coverageFile and defaults them', () => {
+    const root = makeRoot({
+      'ds.config.json': JSON.stringify({
+        name: 'Fictional',
+        prefix: 'fx',
+        modes: ['light'],
+        defaultMode: 'light',
+        targets: { tailwind: { outDir: '../tw/src/generated' } },
+        coverageFile: '../../docs/coverage.md',
+      }),
+    });
+    const diag = new Diagnostics();
+    const config = loadConfig(root, diag);
+    expect(diag.items).toEqual([]);
+    expect(config?.targets).toEqual({
+      tailwind: { outDir: '../tw/src/generated' },
+    });
+    expect(config?.coverageFile).toBe('../../docs/coverage.md');
+
+    const bare = makeRoot({ 'ds.config.json': MINI_CONFIG });
+    const c2 = loadConfig(bare, new Diagnostics());
+    expect(c2?.targets).toEqual({});
+    expect(c2?.coverageFile).toBe('coverage.md');
+  });
+
+  it('rejects unknown keys inside a target entry', () => {
+    const root = makeRoot({
+      'ds.config.json': JSON.stringify({
+        name: 'Fictional',
+        prefix: 'fx',
+        modes: ['light'],
+        defaultMode: 'light',
+        targets: { tailwind: { outdir: 'typo' } },
+      }),
+    });
+    const diag = new Diagnostics();
+    expect(loadConfig(root, diag)).toBeNull();
+    expect(diag.items[0].code).toBe('DS-E001');
+  });
+
+  it('rejects an absolute outDir and a coverageFile containing a backslash', () => {
+    const root = makeRoot({
+      'ds.config.json': JSON.stringify({
+        name: 'Fictional',
+        prefix: 'fx',
+        modes: ['light'],
+        defaultMode: 'light',
+        targets: { tailwind: { outDir: '/abs/out' } },
+      }),
+    });
+    const diag = new Diagnostics();
+    expect(loadConfig(root, diag)).toBeNull();
+    expect(diag.items[0].code).toBe('DS-E001');
+    expect(diag.items[0].message).toContain('relative POSIX path');
+
+    const root2 = makeRoot({
+      'ds.config.json': JSON.stringify({
+        name: 'Fictional',
+        prefix: 'fx',
+        modes: ['light'],
+        defaultMode: 'light',
+        coverageFile: 'out\\tw',
+      }),
+    });
+    const diag2 = new Diagnostics();
+    expect(loadConfig(root2, diag2)).toBeNull();
+    expect(diag2.items[0].code).toBe('DS-E001');
+    expect(diag2.items[0].message).toContain('relative POSIX path');
+  });
 });
 
 describe('modeSelectorFor', () => {
@@ -173,6 +248,8 @@ describe('modeSelectorFor', () => {
       defaultMode: 'light',
       rootFontSize: 16,
       modeSelector: ':root[data-{mode}] .{mode}-theme',
+      targets: {},
+      coverageFile: 'coverage.md',
     };
     expect(modeSelectorFor(config, 'dark')).toBe(
       ':root[data-dark] .dark-theme',

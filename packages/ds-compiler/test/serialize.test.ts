@@ -104,6 +104,7 @@ describe('serializeIR', () => {
         modes: ['light'],
         defaultMode: 'light',
         rootFontSize: 16,
+        modeSelector: ':root[data-fx-theme="{mode}"]',
         sourceHash: 'abc',
       },
       tokens: {},
