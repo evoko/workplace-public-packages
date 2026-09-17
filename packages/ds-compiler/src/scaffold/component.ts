@@ -6,11 +6,8 @@ import {
   MANIFEST_SUFFIX,
 } from '../components/manifest.js';
 import { BASELINE_PROPERTIES } from '../components/properties.js';
-import {
-  ARIA_TRUE_STATES,
-  PSEUDO_STATES,
-  sortStates,
-} from '../components/states.js';
+import { stateSelector } from '../components/render-selector.js';
+import { sortStates } from '../components/states.js';
 import type { DsConfig } from '../config.js';
 import { writeEntryCss } from '../entry.js';
 import { COMPONENTS_DIR } from '../paths.js';
@@ -27,25 +24,20 @@ export interface ComponentScaffoldOptions {
   states: string[];
   /** Slot names other than root. */
   slots: string[];
+  /** HTML element of the root slot. Default "div". */
+  rootElement?: string;
 }
 
-/** state name -> pseudo-class name (without the colon). */
-const PSEUDO_BY_STATE: Record<string, string> = Object.fromEntries(
-  Object.entries(PSEUDO_STATES).map(([pseudo, state]) => [state, pseudo]),
-);
-/** state name -> aria attribute name. */
-const ARIA_ATTR_BY_STATE: Record<string, string> = Object.fromEntries(
-  Object.entries(ARIA_TRUE_STATES).map(([attr, state]) => [state, attr]),
-);
+const ELEMENT_NAME = /^[a-z][a-z0-9-]*$/;
 
-function stateSelector(state: string): string {
-  if (Object.hasOwn(PSEUDO_BY_STATE, state)) {
-    return `:${PSEUDO_BY_STATE[state]}`;
+function rootElementOf(opts: ComponentScaffoldOptions): string {
+  const element = opts.rootElement ?? 'div';
+  if (!ELEMENT_NAME.test(element)) {
+    throw new ScaffoldError(
+      `root element "${element}" must be a lowercase HTML element name`,
+    );
   }
-  if (Object.hasOwn(ARIA_ATTR_BY_STATE, state)) {
-    return `[${ARIA_ATTR_BY_STATE[state]}="true"]`;
-  }
-  return `[data-state="${state}"]`;
+  return element;
 }
 
 function titleCase(name: string): string {
@@ -85,6 +77,7 @@ function assertNoDuplicates(values: readonly string[], what: string): void {
 
 function validate(name: string, opts: ComponentScaffoldOptions): void {
   assertIdentifier(name, 'component name');
+  rootElementOf(opts);
   for (const [axis, values] of Object.entries(opts.axes)) {
     assertIdentifier(axis, 'axis');
     if (values.length === 0) {
@@ -121,7 +114,7 @@ export function renderComponentManifest(
     ),
     states: sortStates(opts.states),
     slots: {
-      root: { element: 'div' },
+      root: { element: rootElementOf(opts) },
       ...Object.fromEntries(opts.slots.map((s) => [s, { element: 'span' }])),
     },
     preview: {},
@@ -141,6 +134,7 @@ export function renderComponentCss(
   config: DsConfig,
 ): string {
   validate(name, opts);
+  const rootElement = rootElementOf(opts);
   const root = `.${config.prefix}-${name}`;
   const blocks: string[] = [];
   blocks.push(
@@ -151,7 +145,9 @@ export function renderComponentCss(
     ].join('\n'),
   );
   for (const state of sortStates(opts.states)) {
-    blocks.push(`${root}${stateSelector(state)} {\n  /* TODO */\n}`);
+    blocks.push(
+      `${root}${stateSelector(state, rootElement)} {\n  /* TODO */\n}`,
+    );
   }
   for (const [axis, values] of Object.entries(opts.axes)) {
     for (const value of values.slice(1)) {

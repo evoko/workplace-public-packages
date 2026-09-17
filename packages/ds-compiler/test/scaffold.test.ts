@@ -59,6 +59,7 @@ describe('scaffold component', () => {
     axes: { variant: ['solid', 'outline'], size: ['sm', 'md'] },
     states: ['hover', 'focus-visible', 'disabled', 'open'],
     slots: ['icon'],
+    rootElement: 'button',
   };
 
   it('renders a manifest that validates, with every target excluded as TODO', () => {
@@ -80,7 +81,7 @@ describe('scaffold component', () => {
       },
       states: ['hover', 'focus-visible', 'disabled', 'open'],
       slots: {
-        root: { element: 'div', optional: false },
+        root: { element: 'button', optional: false },
         icon: { element: 'span', optional: false },
       },
     });
@@ -188,5 +189,29 @@ describe('scaffold component', () => {
     expect(new Set(result.errors.map((e) => e.code))).toEqual(
       new Set(['DS-E050']),
     );
+  });
+
+  it('renders disabled by root element and validates --root-element', () => {
+    const div = renderComponentCss(
+      'tag',
+      { axes: {}, states: ['disabled'], slots: [] },
+      config,
+    );
+    expect(div).toContain('.fx-tag[aria-disabled="true"] {');
+    const manifest = JSON.parse(
+      renderComponentManifest(
+        'tag',
+        { axes: {}, states: [], slots: [], rootElement: 'button' },
+        config,
+      ),
+    ) as { slots: { root: { element: string } } };
+    expect(manifest.slots.root.element).toBe('button');
+    expect(() =>
+      renderComponentManifest(
+        'tag',
+        { axes: {}, states: [], slots: [], rootElement: 'Div' },
+        config,
+      ),
+    ).toThrow(/root element/);
   });
 });

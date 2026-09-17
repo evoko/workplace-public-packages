@@ -12,6 +12,7 @@ import type {
 import { locationOf, parseCss } from '../tokens/parse-tokens.js';
 import { parseVarRef } from '../tokens/values.js';
 import type { Manifest } from './manifest.js';
+import { FORM_CONTROL_ELEMENTS } from './render-selector.js';
 import {
   FORBIDDEN_SHORTHANDS,
   PROPERTY_TABLE,
@@ -39,6 +40,7 @@ export function parseComponentCss(
   }
   const rules = new Map<string, Rule>();
   const axisOrder = Object.keys(manifest.axes);
+  const rootElement = manifest.slots.root?.element ?? 'div';
 
   root.each((node: ChildNode) => {
     if (node.type === 'comment') {
@@ -72,8 +74,9 @@ export function parseComponentCss(
       diag,
     );
     for (const selector of node.selectors) {
+      const trimmed = selector.trim();
       const parsed = parseSelector(
-        selector.trim(),
+        trimmed,
         manifest,
         config.prefix,
         location,
@@ -81,6 +84,16 @@ export function parseComponentCss(
       );
       if (!parsed) {
         continue;
+      }
+      if (
+        !FORM_CONTROL_ELEMENTS.has(rootElement) &&
+        /:disabled\b|\[\s*disabled\s*\]/.test(trimmed)
+      ) {
+        diag.add(
+          'DS-W003',
+          `"${trimmed}" uses :disabled or [disabled], but the root element is <${rootElement}>, which can never be disabled`,
+          locationOf(cssPath, node),
+        );
       }
       const key = ruleKey(parsed.slot, parsed.axes, parsed.states, axisOrder);
       let rule = rules.get(key);

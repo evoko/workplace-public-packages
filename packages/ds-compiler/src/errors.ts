@@ -122,6 +122,10 @@ export const ERROR_CATALOG = {
     title: 'Empty source root',
     hint: 'No token files under src/tokens and no component directories under src/components were found. Check --root, or scaffold your first token file.',
   },
+  'DS-W003': {
+    title: 'Disabled state on a non-form root',
+    hint: '`:disabled` and `[disabled]` only match a form control (button, input, select, textarea, fieldset, option, optgroup). Set slots.root.element to a form control in the manifest, or write the state as [aria-disabled="true"].',
+  },
 } as const;
 
 export type DiagnosticCode = keyof typeof ERROR_CATALOG;

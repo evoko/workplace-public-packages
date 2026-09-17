@@ -1,4 +1,6 @@
 import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { FIXTURE_MINI, MINI_CONFIG, makeRoot, withEntry } from './helpers.js';
@@ -84,12 +86,30 @@ describe('bwp-ds CLI', () => {
       'hover,disabled',
       '--slot',
       'icon',
+      '--root-element',
+      'button',
     ]);
     expect(r.code).toBe(0);
     expect(r.stdout).toContain('button.manifest.json');
+    const cssPath = join(root, 'src/components/button/button.css');
+    expect(readFileSync(cssPath, 'utf8')).toContain('.fx-button:disabled');
     expect(run(['scaffold', 'component', 'button', '--root', root]).code).toBe(
       1,
     );
+  });
+
+  it('rejects an invalid --root-element', () => {
+    const root = makeRoot({ 'ds.config.json': MINI_CONFIG });
+    const r = run([
+      'scaffold',
+      'component',
+      'button',
+      '--root',
+      root,
+      '--root-element',
+      'Bad Element',
+    ]);
+    expect(r.code).toBe(1);
   });
 
   it('rejects a repeated --axis with the same name', () => {

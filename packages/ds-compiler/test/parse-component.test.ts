@@ -53,6 +53,27 @@ function tokens() {
   return resolveTokens(raws, config, diag);
 }
 
+/** Builds a minimal manifest named "x" with the given states and slots (root always present). */
+function manifestFor(opts: {
+  states: string[];
+  slots: Record<string, { element: string }>;
+}): Manifest {
+  return {
+    name: 'x',
+    displayName: 'X',
+    axes: {},
+    states: opts.states,
+    slots: Object.fromEntries(
+      Object.entries(opts.slots).map(([slot, { element }]) => [
+        slot,
+        { element, optional: false },
+      ]),
+    ),
+    preview: {},
+    targets: {},
+  };
+}
+
 function parse(css: string) {
   const diag = new Diagnostics();
   const ir = parseComponentCss(
@@ -262,5 +283,69 @@ describe('parseComponentCss', () => {
     const { ir, codes } = parse('.fx-button { color: ');
     expect(ir).toBeNull();
     expect(codes).toEqual(['DS-E061']);
+  });
+
+  it('warns DS-W003 when :disabled or [disabled] is used on a non-form root', () => {
+    const divManifest = manifestFor({
+      states: ['disabled'],
+      slots: { root: { element: 'div' } },
+    });
+    const warn = new Diagnostics();
+    parseComponentCss(
+      'src/components/x/x.css',
+      `.fx-x:disabled { opacity: 0.4; }\n.fx-x[disabled] { opacity: 0.4; }`,
+      divManifest,
+      tokens(),
+      config,
+      warn,
+    );
+    expect(warn.warnings.map((d) => d.code)).toEqual(['DS-W003', 'DS-W003']);
+    expect(warn.errors).toEqual([]);
+
+    const aria = new Diagnostics();
+    parseComponentCss(
+      'src/components/x/x.css',
+      `.fx-x[aria-disabled="true"] { opacity: 0.4; }`,
+      divManifest,
+      tokens(),
+      config,
+      aria,
+    );
+    expect(aria.items).toEqual([]);
+
+    const buttonManifest = manifestFor({
+      states: ['disabled'],
+      slots: { root: { element: 'button' } },
+    });
+    const ok = new Diagnostics();
+    parseComponentCss(
+      'src/components/x/x.css',
+      `.fx-x:disabled { opacity: 0.4; }`,
+      buttonManifest,
+      tokens(),
+      config,
+      ok,
+    );
+    expect(ok.items).toEqual([]);
+  });
+
+  it('warns once with only the disabled selector when a rule lists multiple selectors', () => {
+    const divManifest = manifestFor({
+      states: ['hover', 'disabled'],
+      slots: { root: { element: 'div' } },
+    });
+    const diag = new Diagnostics();
+    parseComponentCss(
+      'src/components/x/x.css',
+      '.fx-x:hover, .fx-x:disabled { opacity: 0.4; }',
+      divManifest,
+      tokens(),
+      config,
+      diag,
+    );
+    expect(diag.warnings).toHaveLength(1);
+    expect(diag.warnings[0].code).toBe('DS-W003');
+    expect(diag.warnings[0].message).toContain('.fx-x:disabled');
+    expect(diag.warnings[0].message).not.toContain(':hover');
   });
 });

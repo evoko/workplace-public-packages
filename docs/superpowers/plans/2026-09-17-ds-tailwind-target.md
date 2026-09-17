@@ -853,7 +853,7 @@ Add to `test/parse-component.test.ts` (use that file's existing helpers for buil
 
 In `test/scaffold.test.ts`:
 
-- In the `opts` object used by the component tests, add `rootElement: 'button'` so the existing cascade-order expectation `.fx-button:disabled` still holds.
+- In the `opts` object used by the component tests, add `rootElement: 'button'` so the existing cascade-order expectation `.fx-button:disabled` still holds; the manifest expectation in the same file changes from `root: { element: 'div', optional: false }` to `element: 'button'`.
 - Add:
 
 ```ts
@@ -959,27 +959,26 @@ In `src/errors.ts`, after `DS-W002`:
 ```ts
   'DS-W003': {
     title: 'Disabled state on a non-form root',
-    hint: '`:disabled` and `[disabled]` only match form controls (button, input, select, textarea). Set slots.root.element to a form control in the manifest, or write the state as [aria-disabled="true"].',
+    hint: '`:disabled` and `[disabled]` only match a form control (button, input, select, textarea, fieldset, option, optgroup). Set slots.root.element to a form control in the manifest, or write the state as [aria-disabled="true"].',
   },
 ```
 
 In `src/components/parse-component.ts`, import `FORM_CONTROL_ELEMENTS` from `./render-selector.js`. Where a rule's selector has been parsed successfully (right after the `parseSelector(...)` call succeeds and before declarations are processed), add:
 
 ```ts
-      const rootElement = manifest.slots.root?.element ?? 'div';
       if (
         !FORM_CONTROL_ELEMENTS.has(rootElement) &&
-        /:disabled\b|\[\s*disabled\s*\]/.test(node.selector)
+        /:disabled\b|\[\s*disabled\s*\]/.test(selector)
       ) {
         diag.add(
           'DS-W003',
-          `"${node.selector}" uses :disabled or [disabled], but the root element is <${rootElement}>, which can never be disabled`,
+          `"${selector}" uses :disabled or [disabled], but the root element is <${rootElement}>, which can never be disabled`,
           locationOf(cssPath, node),
         );
       }
 ```
 
-(`locationOf` is the helper the file already uses for rule locations; keep whatever name it has.)
+`selector` is the loop variable of the file's `for (const selector of node.selectors)` loop (one warning per offending selector, never the whole comma list), and `const rootElement = manifest.slots.root?.element ?? 'div';` is hoisted above the `root.each` callback. (`locationOf` is the helper the file already uses for rule locations; keep whatever name it has.)
 
 - [ ] **Step 5: Scaffold uses the shared renderer and gains `rootElement`**
 
@@ -1062,14 +1061,19 @@ import type { DesignIR } from '../src/ir/types.js';
 import type { PluginContext } from '../src/targets/plugin.js';
 import { makeRoot, withEntry } from './helpers.js';
 
-export const TW_CONFIG = JSON.stringify({
-  name: 'Fictional',
-  prefix: 'fx',
-  modes: ['light', 'dark'],
-  defaultMode: 'light',
-  targets: { tailwind: { outDir: 'out/tailwind' } },
-  coverageFile: 'out/coverage.md',
-});
+/** Pretty-printed so tests can substitute `"prefix": "fx"` textually. */
+export const TW_CONFIG = JSON.stringify(
+  {
+    name: 'Fictional',
+    prefix: 'fx',
+    modes: ['light', 'dark'],
+    defaultMode: 'light',
+    targets: { tailwind: { outDir: 'out/tailwind' } },
+    coverageFile: 'out/coverage.md',
+  },
+  null,
+  2,
+);
 
 function manifest(extra: Record<string, unknown>): string {
   return JSON.stringify({ displayName: 'X', baseline: false, ...extra });
@@ -1354,7 +1358,12 @@ import type { DimensionValue, TokenValue } from '../../tokens/values.js';
 import type { GeneratedFile, PluginContext } from '../plugin.js';
 import { ignoredForTailwind, isMappedForTailwind } from './hints.js';
 import { tailwindVarName } from './names.js';
-import { renderColor, renderDimension, renderTokenValue } from './values.js';
+import {
+  formatNumber,
+  renderColor,
+  renderDimension,
+  renderTokenValue,
+} from './values.js';
 
 function codeUnitCompare(a: string, b: string): number {
   if (a < b) {
@@ -1403,8 +1412,10 @@ function assertUniqueNames(ir: DesignIR, ids: readonly string[]): void {
     const name = varNameFor(ir, id);
     const other = seen.get(name);
     if (other !== undefined) {
+      const a = ir.tokens[other];
+      const b = ir.tokens[id];
       throw new Error(
-        `tokens "${other}" and "${id}" both map to the Tailwind variable ${name}; rename one of them`,
+        `tokens ${a.cssName} (${a.source.file}:${a.source.line}) and ${b.cssName} (${b.source.file}:${b.source.line}) both map to the Tailwind variable ${name}; rename one of them`,
       );
     }
     seen.set(name, id);
@@ -1446,6 +1457,7 @@ export function renderIRValue(ir: DesignIR, value: IRValue): string {
     case 'color':
       return renderColor(value.value as string);
     case 'number':
+      return formatNumber(value.value as number);
     case 'keyword':
     case 'string':
       return String(value.value);
@@ -1480,11 +1492,16 @@ function renderComponent(ir: DesignIR, component: ComponentIR): string[] {
 }
 
 export function renderComponents(ir: DesignIR, ctx: PluginContext): string {
+  assertUniqueNames(ir, Object.keys(ir.tokens).sort(codeUnitCompare));
   const blocks = Object.keys(ir.components)
     .sort(codeUnitCompare)
     .filter((name) => isMappedForTailwind(ir.components[name]))
     .flatMap((name) => renderComponent(ir, ir.components[name]));
-  return `${[tailwindHeader(ir, ctx), '', '@layer components {', blocks.join('\n\n'), '}'].join('\n')}\n`;
+  const layer =
+    blocks.length === 0
+      ? ['@layer components {', '}']
+      : ['@layer components {', blocks.join('\n\n'), '}'];
+  return `${[tailwindHeader(ir, ctx), '', ...layer].join('\n')}\n`;
 }
 
 export function renderIndex(ir: DesignIR, ctx: PluginContext): string {
@@ -1501,7 +1518,7 @@ export function generateTailwind(ir: DesignIR, ctx: PluginContext): GeneratedFil
 }
 ```
 
-Note on `renderComponents` with no blocks: the output is `@layer components {\n\n}` (an empty line inside). Keep it; `reparse` accepts an empty layer.
+With no mapped rules the output is `@layer components {\n}`; `reparse` accepts an empty layer.
 
 - [ ] **Step 6: Run test to verify it passes**
 
@@ -3501,6 +3518,8 @@ List every created, modified, and deleted path grouped by package, the test coun
 - **`auto-tag.yml` and version lockstep** for `styles-tailwind` wait for Plan 6.
 - **Number formatting edge cases.** `formatNumber` still yields exponent notation at |n| >= 1e21 and flattens values below ~1e-11 to `0`; both need a 20-plus-digit source literal. The `duration` branch interpolates `ms` directly (safe: `parseDuration` rounds to 3 decimals). Tighten with `toPrecision` if a real token ever hits it.
 - **CSS numeric escapes** in font-family strings (`'\41 rial'`) are not decoded by `parseFontFamily`; they round-trip stably but keep the escaped spelling.
+- **Form-associated custom elements** (`--root-element my-widget`) legitimately match `:disabled` but trigger DS-W003, since only the seven HTML form controls are recognised. Rare; extend `FORM_CONTROL_ELEMENTS` or accept the warning.
+- **`assertUniqueNames` throws** a plain `Error` rather than a coded diagnostic. Task 7's `generate` CLI wiring should catch it and report it as a command failure; a `DS-E08x` code can follow if it ever fires in practice.
 - **Config key message.** Zod reports a bad target-id key in `ds.config.json` as `Invalid key in record` with the key in the path; the custom message is not surfaced.
 
 ---
@@ -3530,14 +3549,14 @@ and where it stands. Update the status table after every milestone.
 
 | Batch | Tasks | State |
 | --- | --- | --- |
-| 1 | 1-2 plugin contract, hints, config, IR meta, Tailwind names and values | done, reviewed, awaiting user commit |
-| 2 | 3-4 selector rendering, DS-W003, `--root-element`, Tailwind generation | pending |
+| 1 | 1-2 plugin contract, hints, config, IR meta, Tailwind names and values | done, reviewed, committed by user |
+| 2 | 3-4 selector rendering, DS-W003, `--root-element`, Tailwind generation | done, reviewed, awaiting user commit |
 | 3 | 5-6 round-trip, `diffIR`, plugin registration, coverage | pending |
 | 4 | 7 `generate`, `verify`, CLI, error codes, exports | pending |
 | 5 | 8 `styles-tailwind` package, wiring, generated output, docs | pending |
 | 6 | 9 final verification | pending |
 
-Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After batch 1: 20 files, 219 tests.
+Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After batch 1: 20 files, 219 tests. After batch 2: 22 files, 234 tests.
 
 ### Decisions made during execution
 
@@ -3552,3 +3571,11 @@ Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After ba
   POSIX paths. `formatNumber` avoids exponent notation for small magnitudes.
   Duplicate `ignore` entries are rejected. Task 4 gained an assertion that no
   two tokens map to one Tailwind variable (prefix `weight` collision).
+- Batch 2 review: DS-W003 is reported once per offending selector (the
+  parser's per-selector loop variable, not the comma list). A test locks the
+  invariant that generation from `JSON.parse(serializeIR(ir))` and from the
+  in-memory IR is byte-identical, with alphabetical axis order. Number literals
+  in components go through `formatNumber`. `assertUniqueNames` names both
+  source custom properties and is called from both renderers. An empty layer
+  renders `@layer components {\n}`. The fixture config is pretty-printed so
+  tests can substitute the prefix textually.

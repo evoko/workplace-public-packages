@@ -183,8 +183,17 @@ scaffold
   )
   .option('--state <list>', 'comma-separated states', '')
   .option('--slot <list>', 'comma-separated slot names (root is implicit)', '')
+  .option('--root-element <element>', 'HTML element of the root slot', 'div')
   .action(
-    (name: string, opts: { axis: string[]; state: string; slot: string }) => {
+    (
+      name: string,
+      opts: {
+        axis: string[];
+        state: string;
+        slot: string;
+        rootElement: string;
+      },
+    ) => {
       const { root, json } = globals();
       const config = requireConfig(root, json);
       if (!config) {
@@ -198,6 +207,7 @@ scaffold
         axes,
         states: splitList(opts.state),
         slots: splitList(opts.slot),
+        rootElement: opts.rootElement,
       };
       try {
         const out = scaffoldComponent(root, name, options, config);
