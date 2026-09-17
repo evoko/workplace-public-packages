@@ -5,7 +5,7 @@
   "description": "Compiles a CSS design system into a validated intermediate representation and target theme layers",
   "type": "module",
   "bin": {
-    "bwp-ds": "./dist/cli.js"
+    "bwp-ds": "./bin/bwp-ds.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,6 +16,7 @@
     }
   },
   "files": [
+    "bin",
     "dist",
     "schemas"
   ],

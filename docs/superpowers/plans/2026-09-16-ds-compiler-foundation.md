@@ -104,7 +104,7 @@
   "description": "Compiles a CSS design system into a validated intermediate representation and target theme layers",
   "type": "module",
   "bin": {
-    "bwp-ds": "./dist/cli.js"
+    "bwp-ds": "./bin/bwp-ds.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -7791,6 +7791,14 @@ Expected: every command exits 0. `npm run build` builds `ds-compiler` before
 `styles-css` (Turbo orders by dependency) and leaves `packages/styles-css/dist/styles.css`
 and a fresh `packages/styles-css/design.ir.json`.
 
+Discovered during execution (2026-09-17): on a fresh clone npm does not create
+`node_modules/.bin/bwp-ds` because the bin target `dist/cli.js` does not exist
+at install time, so `styles-css` build and lint failed with exit 127 even
+though Turbo built the compiler first. Fix: a committed shim
+`packages/ds-compiler/bin/bwp-ds.js` (`#!/usr/bin/env node` and
+`import '../dist/cli.js';`) is the `bin` target and is listed in `files`;
+`dist/cli.js` is still built by tsup. Re-run Step 1 after the fix.
+
 - [ ] **Step 2: Confirm the IR is reproducible**
 
 ```bash
@@ -7811,13 +7819,19 @@ npm run ds -- lint
 Expected: lint exits 1 with only `DS-E050` errors (and a `DS-W001` warning) pointing at the scaffolded files. Then delete the scaffolded component and confirm the tree is clean:
 
 ```bash
-rm -rf packages/styles-css/src/components/demo
+rm packages/styles-css/src/components/demo/demo.css packages/styles-css/src/components/demo/demo.manifest.json
+rmdir packages/styles-css/src/components/demo
+npm run ds -- lint
+npm run ds -- build
 npm run ds -- lint
 git status --short
 ```
 
-Expected: `0 errors, 0 warnings`, and `git status` shows only the intended
-changes from this plan.
+Expected: the first lint reports exactly one error, `DS-E070` (the scaffold
+added `demo` to `src/index.css` and the deletion made it stale); `build`
+regenerates the entry file; the second lint prints `0 errors, 0 warnings`; and
+`git status` shows a clean tree (the entry file and IR are back to their
+committed bytes).
 
 - [ ] **Step 4: Final report**
 
@@ -7888,8 +7902,8 @@ and where it stands. Update the status table after every milestone.
 | 6 | 14-15 scaffold commands, CLI, exports, build | done, reviewed, committed by user |
 | 7 | 16 styles-css package and monorepo wiring | done, reviewed, committed by user |
 | 7b | 16b generated `src/index.css` entry file | done, reviewed, committed by user |
-| 8 | 17 documentation | done, reviewed, awaiting user commit |
-| 9 | 18 final verification | next |
+| 8 | 17 documentation | done, reviewed, committed by user |
+| 9 | 18 final verification | done (bin shim fix), awaiting user commit; Plan 1 complete |
 
 Test suite at the end of batch 8: 18 files, 201 tests; root build, lint, typecheck, format, and test clean under Node 22.23.2. styles-css IR file SHA-256 after the color-token realignment: `16cde2888b1768cef74f832ad13aed725f5901784ea0c7db892dff7316011b78`.
 
@@ -7928,6 +7942,14 @@ Test suite at the end of batch 8: 18 files, 201 tests; root build, lint, typeche
   order in the IR file, `--axis` repeatable, `build` write behavior, scaffold
   wording, the `disabled`-on-`div` caveat). Prose in the plan's Task 17 blocks
   is therefore slightly behind the files; the files are authoritative.
+- Task 18 (final verification): a fresh `npm ci`/`npm install` did not link
+  `bwp-ds` because npm skips bin targets that do not exist at install time and
+  `dist/cli.js` is built later. Fixed with a committed shim
+  `packages/ds-compiler/bin/bwp-ds.js` as the `bin` target (in `files`);
+  `package-lock.json` records the new bin path and must be committed with it.
+  From-scratch pipeline, IR reproducibility, and the scaffold walk all pass.
+  Plan 1 is complete; Plan 2 (Tailwind target, drift and round-trip
+  verification, coverage) is the next document to write.
 - `SourceLocation.file` is relative to the source root. `Diagnostics.items` is a
   readonly getter. Catalog integrity test enforces the `DS-W` prefix convention.
 - `Token` is a discriminated union on `modeInvariant`; build both arms explicitly.
