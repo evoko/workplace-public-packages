@@ -8,14 +8,16 @@ see when you break it. See `errors.md` for the full list.
 
 `packages/styles-css/ds.config.json`:
 
-| Field          | Required | Meaning                                                                                                     |
-| -------------- | -------- | ----------------------------------------------------------------------------------------------------------- |
-| `name`         | yes      | Display name of the design system. Used in Storybook and docs only.                                         |
-| `prefix`       | yes      | Lowercase word that starts every custom property and class: `--<prefix>-…`, `.<prefix>-…`.                  |
-| `modes`        | yes      | Color-scheme modes, for example `["light", "dark"]`.                                                        |
-| `defaultMode`  | yes      | The mode whose values live on `:root`. Must be one of `modes`.                                              |
-| `rootFontSize` | no       | Pixels per `rem`, used when a target needs absolute units. Default 16.                                      |
-| `modeSelector` | no       | Selector for non-default modes with `{mode}` as placeholder. Default `:root[data-<prefix>-theme="{mode}"]`. |
+| Field          | Required | Meaning                                                                                                      |
+| -------------- | -------- | ------------------------------------------------------------------------------------------------------------ |
+| `name`         | yes      | Display name of the design system. Used in Storybook and docs only.                                          |
+| `prefix`       | yes      | Lowercase word that starts every custom property and class: `--<prefix>-…`, `.<prefix>-…`.                   |
+| `modes`        | yes      | Color-scheme modes, for example `["light", "dark"]`.                                                         |
+| `defaultMode`  | yes      | The mode whose values live on `:root`. Must be one of `modes`.                                               |
+| `rootFontSize` | no       | Pixels per `rem`, used when a target needs absolute units. Default 16.                                       |
+| `modeSelector` | no       | Selector for non-default modes with `{mode}` as placeholder. Default `:root[data-<prefix>-theme="{mode}"]`.  |
+| `targets`      | no       | Per target id, `{ "outDir": "<path>" }` relative to the source root; default `../styles-<id>/src/generated`. |
+| `coverageFile` | no       | Where `bwp-ds verify` writes the coverage report, relative to the source root; default `coverage.md`.        |
 
 An invalid or missing config is `DS-E001`.
 
@@ -237,17 +239,17 @@ is warning `DS-W001`. Set `"baseline": false` in the manifest to opt out, or
 }
 ```
 
-| Field         | Required | Meaning                                                                                                                                                                                                                       |
-| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`        | yes      | Kebab-case, equals the directory name.                                                                                                                                                                                        |
-| `displayName` | yes      | Human name.                                                                                                                                                                                                                   |
-| `description` | no       | One sentence.                                                                                                                                                                                                                 |
-| `axes`        | no       | Each axis: `values` (lowercase letters and digits, hyphen-separated, may start with a digit like `2xl`) and `default` (one of the values). The default is styled by the base rule.                                            |
-| `states`      | no       | The states the CSS may use.                                                                                                                                                                                                   |
-| `slots`       | no       | Named parts. `root` is implicit and always present; its element defaults to `div` and it cannot be optional. Other slots have `element` (default `span`) and `optional` (default false).                                      |
-| `preview`     | no       | Free-form `string: string` map for Storybook. Keys are conventionally slot names but are not validated against `slots`; values are plain text, or an icon name for an icon slot. Nothing here affects the CSS or the targets. |
-| `baseline`    | no       | `false` or a list of supported properties; see Baseline. An unknown property name is `DS-E020`.                                                                                                                               |
-| `targets`     | no       | Per target: `{}` or hints (later plans), or `{ "excluded": "<reason>" }`. A target that is absent is unmapped and fails coverage once verification exists.                                                                    |
+| Field         | Required | Meaning                                                                                                                                                                                                                                                                                                                           |
+| ------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`        | yes      | Kebab-case, equals the directory name.                                                                                                                                                                                                                                                                                            |
+| `displayName` | yes      | Human name.                                                                                                                                                                                                                                                                                                                       |
+| `description` | no       | One sentence.                                                                                                                                                                                                                                                                                                                     |
+| `axes`        | no       | Each axis: `values` (lowercase letters and digits, hyphen-separated, may start with a digit like `2xl`) and `default` (one of the values). The default is styled by the base rule.                                                                                                                                                |
+| `states`      | no       | The states the CSS may use.                                                                                                                                                                                                                                                                                                       |
+| `slots`       | no       | Named parts. `root` is implicit and always present; its element defaults to `div` and it cannot be optional. Other slots have `element` (default `span`) and `optional` (default false).                                                                                                                                          |
+| `preview`     | no       | Free-form `string: string` map for Storybook. Keys are conventionally slot names but are not validated against `slots`; values are plain text, or an icon name for an icon slot. Nothing here affects the CSS or the targets.                                                                                                     |
+| `baseline`    | no       | `false` or a list of supported properties; see Baseline. An unknown property name is `DS-E020`.                                                                                                                                                                                                                                   |
+| `targets`     | no       | Per target id: `{}` maps the component, `{ "excluded": "<reason>" }` leaves it out on purpose, and a registered target may accept hints (`tailwind`: `{ "ignore": [<property>…] }`, validated against the property table). A component with no entry for a registered target is `unmapped` and fails `bwp-ds verify` (`DS-E082`). |
 
 Unknown fields and invalid shapes are `DS-E020`. A `$schema` field is allowed
 and ignored. The JSON schema is `packages/ds-compiler/schemas/manifest.schema.json`.
@@ -263,7 +265,7 @@ Never edit it by hand. The PostCSS bundle `dist/styles.css` is built from it.
 ## Scaffolding and the lint loop
 
 `bwp-ds scaffold tokens <category>` and
-`bwp-ds scaffold component <name> --axis a=v1,v2 [--axis b=w1,w2 ...] --state s1,s2 --slot x`
+`bwp-ds scaffold component <name> --axis a=v1,v2 [--axis b=w1,w2 ...] --state s1,s2 --slot x --root-element button`
 write files that satisfy every rule above and leave `TODO` markers where you
 fill in values. Repeat `--axis` once per axis. `--state` and `--slot` each
 take one comma-separated list. A remaining `TODO` in any token file, component
@@ -271,11 +273,10 @@ CSS file, or manifest is `DS-E050`, so a half-filled scaffold cannot pass.
 Scaffold never overwrites an existing file (the entry file is the one
 exception, it is regenerated), rejects duplicate axis names, axis values, and
 slot names, and takes the first value of each axis as its default.
-`scaffold component` always writes `slots.root.element: "div"` and always
-writes the `disabled` state as `:disabled`. Lint does not check that the two
-agree. If the root is not a form control, change one by hand: set
-`slots.root.element` to the real element (`button`, `input`, `select`,
-`textarea`), or rewrite the selector as `[aria-disabled="true"]`.
+`--root-element <element>` sets `slots.root.element` (default `div`) and
+decides how the `disabled` state is written: `:disabled` for form controls,
+`[aria-disabled="true"]` otherwise. Lint warns `DS-W003` when hand-written CSS
+uses `:disabled` or `[disabled]` on a root that is not a form control.
 
 Loop: edit one file, run `bwp-ds lint`, fix every error, move on. Finish with
 `bwp-ds build`.

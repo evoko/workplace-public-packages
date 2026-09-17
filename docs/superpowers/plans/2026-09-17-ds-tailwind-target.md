@@ -3084,6 +3084,7 @@ Report: `src/generate.ts`, `src/verify/{drift,index}.ts`, `src/targets/output.ts
 - Generate: `packages/styles-tailwind/src/generated/{theme,components,index}.css`, `docs/design-system/coverage.md`, `packages/styles-css/design.ir.json` (config changed)
 - Modify: root `package.json`, `.github/workflows/main.yml`, `README.md`, `AGENTS.md`
 - Modify: `docs/design-system/targets/tailwind.md`, `verification.md`, `errors.md`, `ir.md`, `authoring-guide.md`
+- Create: root `.prettierignore` (review amendment: protects `docs/design-system/coverage.md` and `packages/styles-tailwind/src/generated/` from root-level Prettier runs)
 
 - [ ] **Step 1: Point the source root at the target package**
 
@@ -3279,17 +3280,17 @@ Root `package.json`, add to `scripts`:
 "verify": "bwp-ds verify --root packages/styles-css"
 ```
 
-`.github/workflows/main.yml`: replace the generated-files check and add the verify step so the block after "Build" reads:
+`.github/workflows/main.yml`: replace the generated-files check with a verify step followed by the extended diff, so the block after "Build" reads:
 
 ```yaml
-      - name: Check generated files are up to date
-        run: git diff --exit-code -- packages/styles-css/design.ir.json packages/styles-css/src/index.css packages/styles-tailwind/src/generated docs/design-system/coverage.md
-
       - name: Verify design system
         run: npm run verify
+
+      - name: Check generated files are up to date
+        run: git diff --exit-code -- packages/styles-css/design.ir.json packages/styles-css/src/index.css packages/styles-tailwind/src/generated docs/design-system/coverage.md
 ```
 
-(`npm run verify` also writes `docs/design-system/coverage.md`; the diff check runs before it so a stale committed report fails visibly.)
+(`npm run build` rewrites `design.ir.json` and `src/index.css`, and `npm run verify` rewrites `docs/design-system/coverage.md` without diffing it, so the diff must run after both: a stale committed report or IR then fails visibly. `verify` never rewrites the Tailwind output; a stale `src/generated/` is caught by its own drift check, `DS-E080`.)
 
 Root `README.md` package table: add after the `styles-css` row:
 
@@ -3423,7 +3424,7 @@ generation.
 | `bwp-ds verify` | Lint; drift (a fresh build and generation equal the committed `design.ir.json` and every generated file); round-trip (each target's output re-parses to the source IR); coverage (every component is supported, partial, or excluded for every target). Writes `docs/design-system/coverage.md`. | Node 22 |
 ```
 
-- Extend the CI generated-files row to name `packages/styles-tailwind/src/generated` and `docs/design-system/coverage.md`, and add a row `| CI "Verify design system" | \`npm run verify\` passes. | CI |`.
+- Extend the CI generated-files row to name `packages/styles-tailwind/src/generated` and `docs/design-system/coverage.md`, and add a row `| CI "Verify design system" | \`npm run verify\` passes. | CI |`. The verify row comes before the diff row, matching the workflow order, and the diff row's note says why it runs after `verify` (the coverage file is rewritten, not diffed, by `verify`).
 - In "Planned steps", delete the three Plan 2 rows (drift, roundtrip, coverage) and keep `--rendered` and Flutter.
 - In "From a symptom to the code", change the first bullet's path to `packages/ds-compiler/src/targets/<id>/` and drop "from Plan 2 on".
 
@@ -3466,15 +3467,30 @@ and in "## Warnings":
 - [ ] **Step 7: Format and final checks**
 
 ```bash
-npx prettier --write AGENTS.md README.md docs/design-system packages/styles-tailwind packages/styles-css/ds.config.json
+npx prettier --write AGENTS.md README.md docs/design-system packages/styles-css/ds.config.json
+npx prettier --write packages/styles-tailwind --ignore-path .gitignore --ignore-path packages/styles-tailwind/.prettierignore
 npx prettier --check AGENTS.md README.md docs/design-system
 npm run format
 npm run verify
+```
+
+Never run Prettier over `packages/styles-tailwind/src/generated` (or `docs/design-system/coverage.md`); a reformatted generated file is drift (`DS-E080`) and must be restored with `npm run ds -- generate`. The package `.prettierignore` covers it when Prettier is run from the package or through `npm run format`.
+
+```bash
 npm run build
 npm run test
 ```
 
 Expected: all green. If Prettier reflowed `ds.config.json`, the IR is unaffected only if the bytes are unchanged; re-run `npm run ds -- build` and `npm run ds -- verify` after formatting and confirm `verify` still passes (drift compares the committed IR against a fresh build, so a formatting change to the config shows up here).
+
+- [ ] **Step 7b: Review amendments (applied during execution, 2026-09-17)**
+
+The quality review ran the CI sequence on a fresh copy of the checkout and inspected the tarball; the code on disk is authoritative:
+
+- A root `.prettierignore` lists `docs/design-system/coverage.md` and `packages/styles-tailwind/src/generated/`, because `npx prettier --check docs/design-system` failed on the generated coverage table and `--write` would have corrupted it.
+- `verification.md` states precisely what each CI step guards: the diff catches stale `design.ir.json`, `src/index.css` (rewritten by `build`) and `coverage.md` (rewritten by `verify`); `packages/styles-tailwind/src/generated` is guarded by `verify`'s drift check (`DS-E080`), since CI never runs `generate`.
+- `AGENTS.md` and the package README say "only `src/generated/` is generated" rather than listing hand-written files, so nobody refuses to edit `package.json`. Stale "targets come later" rows were updated.
+- Verified: the package resolves through `exports` for a bare `@import '@bwp-web/styles-tailwind'`, compiles standalone without `@import "tailwindcss"`, and `npm pack --dry-run` ships exactly `package.json`, `README.md`, `src/index.css`, and the three generated files.
 
 - [ ] **Step 8: Checkpoint**
 
@@ -3557,6 +3573,9 @@ List every created, modified, and deleted path grouped by package, the test coun
 - **`index.css` and the generated headers** are covered only by the drift byte-compare, not by the round-trip (meta is copied from the source IR).
 - **Config key message.** Zod reports a bad target-id key in `ds.config.json` as `Invalid key in record` with the key in the path; the custom message is not surfaced.
 - **`verify` rewrites the coverage file and never diffs it**, so a stale committed `coverage.md` is only caught because CI runs the generated-files `git diff --exit-code` after `npm run verify` (Task 8). Keep that ordering; a self-check inside `verify` can come later.
+- **No LICENSE file** in the repo although every package declares `"license": "MIT"`; `npm pack` ships none. Add one in Plan 6 (packaging).
+- **`npm run build` never surfaces Tailwind drift**: `styles-tailwind#build` compiles the committed `src/generated` and has no Turbo edge to `styles-css#build`. Only `verify` catches it; CI runs both. Acceptable while `verify` is a required CI step.
+- **Cross-namespace utility clashes** (a `color` token and a `font-size` token with the same path both want `text-<prefix>-<path>`) are not detected by `assertUniqueNames`, which only checks variable names. Not triggered by the current token set; add a check when a second namespace-sharing category appears.
 - **Drift locations can leave the root** (`../styles-tailwind/src/generated/theme.css`), which some annotation consumers resolve oddly; `generate`'s `written`/`removed` are native absolute paths while drift messages are POSIX-relative. Display-only today.
 
 ---
@@ -3589,8 +3608,8 @@ and where it stands. Update the status table after every milestone.
 | 1 | 1-2 plugin contract, hints, config, IR meta, Tailwind names and values | done, reviewed, committed by user |
 | 2 | 3-4 selector rendering, DS-W003, `--root-element`, Tailwind generation | done, reviewed, committed by user |
 | 3 | 5-6 round-trip, `diffIR`, plugin registration, coverage | done, reviewed, committed by user |
-| 4 | 7 `generate`, `verify`, CLI, error codes, exports | done, reviewed, awaiting user commit |
-| 5 | 8 `styles-tailwind` package, wiring, generated output, docs | pending |
+| 4 | 7 `generate`, `verify`, CLI, error codes, exports | done, reviewed, committed by user |
+| 5 | 8 `styles-tailwind` package, wiring, generated output, docs | done, reviewed, awaiting user commit |
 | 6 | 9 final verification | pending |
 
 Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After batch 1: 20 files, 219 tests. After batch 2: 22 files, 234 tests. After batch 3: 24 files, 260 tests. After batch 4: 25 files, 289 tests.
@@ -3631,3 +3650,9 @@ Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After ba
   (`src/targets/output.ts`). `coverageFile` must end in `.md`. A follow-up
   records that `verify` never diffs the coverage file it writes, so CI's
   generated-files diff must run after `npm run verify`.
+- Batch 5 review (see Task 8 Step 7b): CI runs `verify` before the
+  generated-files diff (the plan had them reversed). A root `.prettierignore`
+  protects the two generated non-package artifacts. Docs say what each CI
+  step actually guards, and "generated" means only `src/generated/`. The
+  fresh-checkout CI sequence, a standalone consumer import, and the tarball
+  contents were verified by the reviewer.

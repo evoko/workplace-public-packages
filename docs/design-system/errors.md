@@ -61,9 +61,19 @@ build`; warnings do not. The source of truth is `ERROR_CATALOG` in
 | DS-E061 | A token or component CSS file has a syntax error                                                                  | Fix the CSS at the reported line and column.     |
 | DS-E070 | `src/index.css` is missing, unreadable, or does not match the token files and components on disk                  | Run `bwp-ds build`; never edit the file by hand. |
 
+## Generated output and verification
+
+| Code    | Cause                                                                                                                                                        | Fix                                                                                                               |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
+| DS-E080 | `design.ir.json`, or a file under a target's output directory, is missing, differs from a fresh build or generation, or is not produced by the generator     | Run `bwp-ds build` or `bwp-ds generate --target <id>` and commit; delete stray files; never edit generated files. |
+| DS-E081 | A target's generated output does not re-parse to the source IR (the message carries the underlying diagnostic, or the token, rule, and property that differ) | A generator or reparser bug: fix the plugin under `packages/ds-compiler/src/targets/<id>/`.                       |
+| DS-E082 | A component's manifest has no `targets.<id>` entry for a registered target                                                                                   | Add `"<id>": {}` to map it, or `"<id>": { "excluded": "<reason>" }`.                                              |
+| DS-E083 | A component uses a property the target has no handler for, and the manifest does not ignore it                                                               | Add a handler to the plugin, or list the property under `targets.<id>.ignore`.                                    |
+
 ## Warnings
 
-| Code    | Cause                                                               | Fix                                                                        |
-| ------- | ------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| DS-W001 | The base root rule omits baseline properties                        | Declare them, or set `"baseline": false` or a custom list in the manifest. |
-| DS-W002 | No token files and no component directories were found under `src/` | Check `--root`, or scaffold the first token file.                          |
+| Code    | Cause                                                                                                                       | Fix                                                                                                                     |
+| ------- | --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| DS-W001 | The base root rule omits baseline properties                                                                                | Declare them, or set `"baseline": false` or a custom list in the manifest.                                              |
+| DS-W002 | No token files and no component directories were found under `src/`                                                         | Check `--root`, or scaffold the first token file.                                                                       |
+| DS-W003 | A rule uses `:disabled` or `[disabled]` but the component's root element is not a form control, so the rule can never match | Set `slots.root.element` to `button`, `input`, `select`, or `textarea`, or write the state as `[aria-disabled="true"]`. |

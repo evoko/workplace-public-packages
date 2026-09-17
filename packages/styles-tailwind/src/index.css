@@ -1,0 +1,3 @@
+/* Entry point of @bwp-web/styles-tailwind. Everything under generated/ is
+   written by `bwp-ds generate --target tailwind`; do not edit it. */
+@import './generated/index.css';

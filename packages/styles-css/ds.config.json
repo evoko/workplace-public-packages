@@ -3,5 +3,9 @@
   "prefix": "bwp",
   "modes": ["light", "dark"],
   "defaultMode": "light",
-  "rootFontSize": 16
+  "rootFontSize": 16,
+  "targets": {
+    "tailwind": { "outDir": "../styles-tailwind/src/generated" }
+  },
+  "coverageFile": "../../docs/design-system/coverage.md"
 }

@@ -4,13 +4,14 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 
 ## Packages
 
-| Package                                          | Description                                                        | README                                          |
-| ------------------------------------------------ | ------------------------------------------------------------------ | ----------------------------------------------- |
-| [`@bwp-web/styles-css`](./packages/styles-css)   | Design-system source of truth: CSS tokens, components, and the IR  | [docs](./packages/styles-css/README.md)         |
-| [`@bwp-web/ds-compiler`](./packages/ds-compiler) | Private compiler: lint, build, scaffold (targets come later)       | [docs](./docs/design-system/authoring-guide.md) |
-| [`@bwp-web/components`](./packages/components)   | Shared React components (empty during the V2 rebuild)              | [docs](./packages/components/README.md)         |
-| [`@bwp-web/assets`](./packages/assets)           | Shared icons, image, and font assets (empty during the V2 rebuild) | [docs](./packages/assets/README.md)             |
-| [`@bwp-web/canvas`](./packages/canvas)           | Interactive canvas editor and viewer (empty during the V2 rebuild) | [docs](./packages/canvas/README.md)             |
+| Package                                                  | Description                                                                                                         | README                                          |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| [`@bwp-web/styles-css`](./packages/styles-css)           | Design-system source of truth: CSS tokens, components, and the IR                                                   | [docs](./packages/styles-css/README.md)         |
+| [`@bwp-web/styles-tailwind`](./packages/styles-tailwind) | Generated Tailwind CSS v4 theme and component layer                                                                 | [docs](./packages/styles-tailwind/README.md)    |
+| [`@bwp-web/ds-compiler`](./packages/ds-compiler)         | Private compiler: lint, build, scaffold, generate, verify (Tailwind target implemented; MUI and Flutter come later) | [docs](./docs/design-system/authoring-guide.md) |
+| [`@bwp-web/components`](./packages/components)           | Shared React components (empty during the V2 rebuild)                                                               | [docs](./packages/components/README.md)         |
+| [`@bwp-web/assets`](./packages/assets)                   | Shared icons, image, and font assets (empty during the V2 rebuild)                                                  | [docs](./packages/assets/README.md)             |
+| [`@bwp-web/canvas`](./packages/canvas)                   | Interactive canvas editor and viewer (empty during the V2 rebuild)                                                  | [docs](./packages/canvas/README.md)             |
 
 ## Getting Started
 
@@ -63,6 +64,7 @@ The Storybook is being rebuilt for the V2 design system. See `AGENTS.md` and `do
 | [design-system/errors.md](./docs/design-system/errors.md)                   | Every `DS-E` and `DS-W` code with cause and fix           |
 | [design-system/verification.md](./docs/design-system/verification.md)       | What each check proves and how to read diagnostics        |
 | [design-system/targets/](./docs/design-system/targets)                      | Tailwind, MUI, and Flutter target plans                   |
+| [design-system/coverage.md](./docs/design-system/coverage.md)               | Generated: which components each target covers            |
 | [packages/styles-css/README.md](./packages/styles-css/README.md)            | Installing and using the CSS package                      |
 | [packages/assets/README.md](./packages/assets/README.md)                    | Icons, images, fonts (empty during the V2 rebuild)        |
 

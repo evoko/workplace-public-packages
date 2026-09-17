@@ -1,0 +1,46 @@
+{
+  "name": "@bwp-web/styles-tailwind",
+  "version": "2.0.0-alpha.0",
+  "description": "Generated Tailwind CSS v4 theme and component layer for the design system",
+  "type": "module",
+  "main": "./src/index.css",
+  "style": "./src/index.css",
+  "exports": {
+    ".": "./src/index.css",
+    "./index.css": "./src/index.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "alpha"
+  },
+  "scripts": {
+    "generate": "bwp-ds generate --root ../styles-css --target tailwind",
+    "build": "postcss probe/index.css -o dist/probe.css --no-map && node scripts/assert-probe.mjs",
+    "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore",
+    "clean": "rm -rf dist node_modules .turbo"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "@bwp-web/ds-compiler": "*",
+    "@tailwindcss/postcss": "^4.3.3",
+    "postcss": "^8.5.28",
+    "postcss-cli": "^12.0.0",
+    "prettier": "^3.8.3",
+    "tailwindcss": "^4.3.3"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evoko/workplace-public-packages.git",
+    "directory": "packages/styles-tailwind"
+  }
+}

@@ -9,10 +9,13 @@ in `packages/ds-compiler/src/ir/types.ts`.
 ```
 DesignIR
   irVersion: 1
-  meta: { name, prefix, modes, defaultMode, rootFontSize, sourceHash }
+  meta: { name, prefix, modes, defaultMode, rootFontSize, modeSelector, sourceHash }
   tokens: { [tokenId]: Token }
   components: { [name]: ComponentIR }
 ```
+
+`modeSelector` is the configured selector for non-default modes with `{mode}`
+as the placeholder, so generators need only the IR.
 
 `sourceHash` is a SHA-256 over every source file (config, token files,
 component CSS and manifests) sorted by path. Two builds of identical sources
