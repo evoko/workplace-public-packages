@@ -6,6 +6,7 @@ import type {
   Token,
   TokenId,
 } from '../../ir/types.js';
+import { codeUnitCompare } from '../../sources.js';
 import type { DimensionValue, TokenValue } from '../../tokens/values.js';
 import type { GeneratedFile, PluginContext } from '../plugin.js';
 import { ignoredForTailwind, isMappedForTailwind } from './hints.js';
@@ -16,13 +17,6 @@ import {
   renderDimension,
   renderTokenValue,
 } from './values.js';
-
-function codeUnitCompare(a: string, b: string): number {
-  if (a < b) {
-    return -1;
-  }
-  return a > b ? 1 : 0;
-}
 
 /** One line; every generated file starts with it, followed by a blank line. */
 export function tailwindHeader(ir: DesignIR, ctx: PluginContext): string {

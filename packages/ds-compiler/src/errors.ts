@@ -114,6 +114,10 @@ export const ERROR_CATALOG = {
     title: 'Entry file out of date',
     hint: 'src/index.css is generated. Run bwp-ds build (or any scaffold command) to regenerate it; never edit it by hand.',
   },
+  'DS-E081': {
+    title: 'Round-trip mismatch',
+    hint: 'The generated output does not re-parse to the source IR. This is a generator or reparser bug: fix the target plugin under packages/ds-compiler/src/targets/<id>/, never the output.',
+  },
   'DS-W001': {
     title: 'Root rule missing baseline properties',
     hint: 'Declare the baseline properties on the base root rule so parity does not rest on user-agent defaults. Set "baseline": false in the manifest to opt out.',

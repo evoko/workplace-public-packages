@@ -119,9 +119,10 @@ describe('target hints', () => {
 });
 
 describe('target registry', () => {
-  it('has no implemented plugins until the tailwind plugin lands (Task 4 replaces this test)', () => {
-    expect(Object.keys(TARGETS)).toEqual([]);
-    expect(getTarget('tailwind')).toBeNull();
+  it('registers the tailwind plugin', () => {
+    expect(Object.keys(TARGETS)).toEqual(['tailwind']);
+    expect(getTarget('tailwind')?.id).toBe('tailwind');
+    expect(getTarget('mui')).toBeNull();
   });
 });
 

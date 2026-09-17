@@ -1560,7 +1560,7 @@ import { Diagnostics } from '../src/errors.js';
 import { TARGETS } from '../src/targets/index.js';
 import { tailwindPlugin } from '../src/targets/tailwind/index.js';
 import { manifestFromComponent } from '../src/targets/tailwind/reparse.js';
-import { diffIR } from '../src/verify/ir-diff.js';
+import { diffIR, ruleDiffKey } from '../src/verify/ir-diff.js';
 import { FIXTURE_MINI } from './helpers.js';
 import { twBuild, twContext, twRoot } from './tailwind-fixture.js';
 
@@ -1646,7 +1646,8 @@ describe('tailwind round-trip', () => {
       kind: 'declaration',
       id: 'chip root[data-tone="loud"] min-width',
     });
-    expect(diffs[0].location).toEqual(ir.components.chip.rules[3].source);
+    const loud = ir.components.chip.rules.find((r) => ruleDiffKey(r) === 'root[data-tone="loud"]')!;
+    expect(diffs[0].location).toEqual(loud.source);
 
     const unknownVar = files.map((f) =>
       f.path === 'theme.css'
@@ -1687,21 +1688,29 @@ describe('diffIR', () => {
       'rule chip root:hover:disabled present only in the generated output',
     ]);
 
+    // the generator drops ignored properties from every rule
     const trimmed = structuredClone(ir);
     delete trimmed.components.tag.rules[0].declarations.opacity;
+    delete trimmed.components.tag.rules[1].declarations.opacity;
     expect(
       diffIR(ir, trimmed, { components: ['tag'], ignored: () => new Set(['opacity']) }),
     ).toEqual([]);
     expect(
-      diffIR(ir, trimmed, { components: ['tag'], ignored: () => new Set() }),
+      diffIR(ir, trimmed, { components: ['tag'], ignored: () => new Set() }).map(
+        (d) => `${d.id}: ${d.message}`,
+      ),
     ).toEqual([
-      {
-        kind: 'declaration',
-        id: 'tag root opacity',
-        message: 'missing from the generated output',
-        location: ir.components.tag.rules[0].source,
-      },
+      'tag root opacity: missing from the generated output',
+      'tag root:disabled opacity: missing from the generated output',
     ]);
+    // an ignored property that the generator emitted anyway is reported
+    const leaky = structuredClone(ir);
+    delete leaky.components.tag.rules[0].declarations.opacity;
+    expect(
+      diffIR(ir, leaky, { components: ['tag'], ignored: () => new Set(['opacity']) }).map(
+        (d) => `${d.id}: ${d.message}`,
+      ),
+    ).toEqual(['tag root:disabled opacity: ignored property present in the generated output']);
   });
 
   it('compares tokens structurally, ignoring source locations', () => {
@@ -1863,6 +1872,7 @@ export function diffIR(source: DesignIR, reparsed: DesignIR, scope: DiffScope): 
         const va = x.declarations[p];
         const vb = y.declarations[p];
         if (ignored.has(p)) {
+          // The generator drops ignored properties; one that survives is a generator bug.
           if (vb) {
             out.push({ kind: 'declaration', id: pid, message: 'ignored property present in the generated output', location: x.source });
           }
@@ -2248,7 +2258,17 @@ npm run format
 
 Expected: all green. If the round-trip on the mini fixture reports a difference, the generator and the parser disagree; read the difference message (it names the token or the rule and property) and fix the renderer in Task 2 or 4, never the test.
 
-- [ ] **Step 8: Checkpoint**
+- [ ] **Step 8: Review amendments (applied during execution, 2026-09-17)**
+
+The quality review's tamper matrix tightened the round-trip oracle; the code on disk is authoritative:
+
+- `reparseComponents` rejects rules for a component that is excluded or unmapped for Tailwind (`DS-E030` inside, `DS-E081` outside), reports unknown root classes as `DS-E030` at the first rule's location, and verifies the selector form and order: the parsed rules re-rendered with `renderRuleSelector` must equal the generated selector sequence element for element (catches a wrong `disabled` form, duplicated blocks, and reordered equal-specificity rules); selector verification is skipped for a group whose CSS already failed to parse.
+- `reparseTheme` accepts only `@theme static`; mode selectors are matched with the token parser's quote normalization; a bare `:root` is still rejected.
+- Inner diagnostics point at `components.css` (passed as the path) or are remapped from `src/tokens/*.css` to `theme.css`, never at real source files.
+- `diffIR` does not report a component as missing when every one of its declarations is ignored; reports reparsed components that the source IR does not have as present only in the generated output (excluded or unmapped ones are already rejected by the reparser); reports an ignored property that survived generation; `show()` truncates at 200 characters and collapses only line breaks.
+- `renderCoverageMarkdown` escapes `|`, backticks, and whitespace in exclusion reasons. `codeUnitCompare` is shared from `src/sources.ts`.
+
+- [ ] **Step 9: Checkpoint**
 
 Report: `src/targets/tailwind/{reparse,index}.ts`, `src/verify/ir-diff.ts`, `test/tailwind-roundtrip.test.ts` created; `src/targets/index.ts`, `src/errors.ts`, `test/targets-hints.test.ts` modified.
 
@@ -3520,6 +3540,7 @@ List every created, modified, and deleted path grouped by package, the test coun
 - **CSS numeric escapes** in font-family strings (`'\41 rial'`) are not decoded by `parseFontFamily`; they round-trip stably but keep the escaped spelling.
 - **Form-associated custom elements** (`--root-element my-widget`) legitimately match `:disabled` but trigger DS-W003, since only the seven HTML form controls are recognised. Rare; extend `FORM_CONTROL_ELEMENTS` or accept the warning.
 - **`assertUniqueNames` throws** a plain `Error` rather than a coded diagnostic. Task 7's `generate` CLI wiring should catch it and report it as a command failure; a `DS-E08x` code can follow if it ever fires in practice.
+- **`index.css` and the generated headers** are covered only by the drift byte-compare, not by the round-trip (meta is copied from the source IR).
 - **Config key message.** Zod reports a bad target-id key in `ds.config.json` as `Invalid key in record` with the key in the path; the custom message is not surfaced.
 
 ---
@@ -3550,13 +3571,13 @@ and where it stands. Update the status table after every milestone.
 | Batch | Tasks | State |
 | --- | --- | --- |
 | 1 | 1-2 plugin contract, hints, config, IR meta, Tailwind names and values | done, reviewed, committed by user |
-| 2 | 3-4 selector rendering, DS-W003, `--root-element`, Tailwind generation | done, reviewed, awaiting user commit |
-| 3 | 5-6 round-trip, `diffIR`, plugin registration, coverage | pending |
+| 2 | 3-4 selector rendering, DS-W003, `--root-element`, Tailwind generation | done, reviewed, committed by user |
+| 3 | 5-6 round-trip, `diffIR`, plugin registration, coverage | done, reviewed, awaiting user commit |
 | 4 | 7 `generate`, `verify`, CLI, error codes, exports | pending |
 | 5 | 8 `styles-tailwind` package, wiring, generated output, docs | pending |
 | 6 | 9 final verification | pending |
 
-Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After batch 1: 20 files, 219 tests. After batch 2: 22 files, 234 tests.
+Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After batch 1: 20 files, 219 tests. After batch 2: 22 files, 234 tests. After batch 3: 24 files, 260 tests.
 
 ### Decisions made during execution
 
@@ -3579,3 +3600,9 @@ Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After ba
   source custom properties and is called from both renderers. An empty layer
   renders `@layer components {\n}`. The fixture config is pretty-printed so
   tests can substitute the prefix textually.
+- Batch 3 review: the round-trip oracle was tightened after a tamper matrix
+  (see Task 5 Step 8). `diffIR`'s ignored-property semantics are: never
+  compare an ignored property, but report one that survived generation; a
+  component whose declarations are all ignored is legitimately absent. The
+  DS-E081 message is composed without the inner location so it never names a
+  real source file; the remapped location carries the position.

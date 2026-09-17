@@ -63,7 +63,7 @@ export function categoryFromFile(filePath: string): TokenCategory | null {
 }
 
 /** Quote style is irrelevant: Prettier may rewrite [a="b"] as [a='b']. */
-function normalizeQuotes(selector: string): string {
+export function normalizeQuotes(selector: string): string {
   return selector.replace(/'/g, '"');
 }
 
