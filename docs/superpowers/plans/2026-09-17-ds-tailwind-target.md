@@ -3609,10 +3609,10 @@ and where it stands. Update the status table after every milestone.
 | 2 | 3-4 selector rendering, DS-W003, `--root-element`, Tailwind generation | done, reviewed, committed by user |
 | 3 | 5-6 round-trip, `diffIR`, plugin registration, coverage | done, reviewed, committed by user |
 | 4 | 7 `generate`, `verify`, CLI, error codes, exports | done, reviewed, committed by user |
-| 5 | 8 `styles-tailwind` package, wiring, generated output, docs | done, reviewed, awaiting user commit |
-| 6 | 9 final verification | pending |
+| 5 | 8 `styles-tailwind` package, wiring, generated output, docs | done, reviewed, committed by user |
+| 6 | 9 final verification | done (clean install, drift repair, unmapped component, pack shape all as expected), awaiting user commit of this log |
 
-Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After batch 1: 20 files, 219 tests. After batch 2: 22 files, 234 tests. After batch 3: 24 files, 260 tests. After batch 4: 25 files, 289 tests.
+Test suite at the start of Plan 2: 18 files, 201 tests (end of Plan 1). After batch 1: 20 files, 219 tests. After batch 2: 22 files, 234 tests. After batch 3: 24 files, 260 tests. After batch 4: 25 files, 289 tests. Plan 2 complete on 2026-09-17: 29 Turbo tasks, 289 tests, `verify` all four steps pass from `npm ci`.
 
 ### Decisions made during execution
 
