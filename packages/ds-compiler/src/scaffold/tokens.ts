@@ -1,7 +1,8 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { TOKENS_DIR } from '../build.js';
 import { modeSelectorFor, type DsConfig } from '../config.js';
+import { writeEntryCss } from '../entry.js';
+import { TOKENS_DIR } from '../paths.js';
 import type { TokenCategory } from '../tokens/categories.js';
 
 export class ScaffoldError extends Error {}
@@ -75,7 +76,7 @@ export function scaffoldTokens(
   rootDir: string,
   category: TokenCategory,
   config: DsConfig,
-): { path: string } {
+): { path: string; entryPath: string | null } {
   const path = join(rootDir, TOKENS_DIR, `${category}.css`);
   if (existsSync(path)) {
     throw new ScaffoldError(
@@ -84,5 +85,6 @@ export function scaffoldTokens(
   }
   mkdirSync(dirname(path), { recursive: true });
   writeNewFile(path, renderTokenScaffold(category, config));
-  return { path };
+  const entry = writeEntryCss(rootDir);
+  return { path, entryPath: entry.changed ? entry.path : null };
 }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { lint } from '../src/lint.js';
-import { BASELINE_CSS, MINI_CONFIG, makeRoot } from './helpers.js';
+import { BASELINE_CSS, MINI_CONFIG, makeRoot, withEntry } from './helpers.js';
 
 const tokens = {
   'src/tokens/color.css': ':root { --fx-color-text-default: #111; }',
@@ -12,16 +12,18 @@ const tokens = {
 
 describe('lint', () => {
   it('passes a complete component with no diagnostics', () => {
-    const root = makeRoot({
-      'ds.config.json': MINI_CONFIG,
-      ...tokens,
-      'src/components/card/card.manifest.json': JSON.stringify({
-        name: 'card',
-        displayName: 'Card',
-        targets: { tailwind: {} },
+    const root = withEntry(
+      makeRoot({
+        'ds.config.json': MINI_CONFIG,
+        ...tokens,
+        'src/components/card/card.manifest.json': JSON.stringify({
+          name: 'card',
+          displayName: 'Card',
+          targets: { tailwind: {} },
+        }),
+        'src/components/card/card.css': `.fx-card {${BASELINE_CSS}}`,
       }),
-      'src/components/card/card.css': `.fx-card {${BASELINE_CSS}}`,
-    });
+    );
     expect(lint(root).items).toEqual([]);
   });
 
@@ -57,23 +59,27 @@ describe('lint', () => {
   });
 
   it('reports DS-E060 for a component directory missing a file', () => {
-    const root = makeRoot({
-      'ds.config.json': MINI_CONFIG,
-      'src/components/card/card.css': '.fx-card { display: block; }',
-    });
+    const root = withEntry(
+      makeRoot({
+        'ds.config.json': MINI_CONFIG,
+        'src/components/card/card.css': '.fx-card { display: block; }',
+      }),
+    );
     expect(lint(root).errors.map((e) => e.code)).toEqual(['DS-E060']);
   });
 
   it('warns DS-W001 when the base root rule misses baseline properties', () => {
-    const root = makeRoot({
-      'ds.config.json': MINI_CONFIG,
-      ...tokens,
-      'src/components/card/card.manifest.json': JSON.stringify({
-        name: 'card',
-        displayName: 'Card',
+    const root = withEntry(
+      makeRoot({
+        'ds.config.json': MINI_CONFIG,
+        ...tokens,
+        'src/components/card/card.manifest.json': JSON.stringify({
+          name: 'card',
+          displayName: 'Card',
+        }),
+        'src/components/card/card.css': '.fx-card { display: block; }',
       }),
-      'src/components/card/card.css': '.fx-card { display: block; }',
-    });
+    );
     const result = lint(root);
     expect(result.hasErrors()).toBe(false);
     expect(result.warnings).toHaveLength(1);
@@ -82,27 +88,31 @@ describe('lint', () => {
   });
 
   it('respects baseline: false and a custom baseline list', () => {
-    const off = makeRoot({
-      'ds.config.json': MINI_CONFIG,
-      ...tokens,
-      'src/components/card/card.manifest.json': JSON.stringify({
-        name: 'card',
-        displayName: 'Card',
-        baseline: false,
+    const off = withEntry(
+      makeRoot({
+        'ds.config.json': MINI_CONFIG,
+        ...tokens,
+        'src/components/card/card.manifest.json': JSON.stringify({
+          name: 'card',
+          displayName: 'Card',
+          baseline: false,
+        }),
+        'src/components/card/card.css': '.fx-card { display: block; }',
       }),
-      'src/components/card/card.css': '.fx-card { display: block; }',
-    });
+    );
     expect(lint(off).items).toEqual([]);
-    const custom = makeRoot({
-      'ds.config.json': MINI_CONFIG,
-      ...tokens,
-      'src/components/card/card.manifest.json': JSON.stringify({
-        name: 'card',
-        displayName: 'Card',
-        baseline: ['display', 'color'],
+    const custom = withEntry(
+      makeRoot({
+        'ds.config.json': MINI_CONFIG,
+        ...tokens,
+        'src/components/card/card.manifest.json': JSON.stringify({
+          name: 'card',
+          displayName: 'Card',
+          baseline: ['display', 'color'],
+        }),
+        'src/components/card/card.css': '.fx-card { display: block; }',
       }),
-      'src/components/card/card.css': '.fx-card { display: block; }',
-    });
+    );
     const w = lint(custom).warnings;
     expect(w).toHaveLength(1);
     expect(w[0].message).toContain('color');

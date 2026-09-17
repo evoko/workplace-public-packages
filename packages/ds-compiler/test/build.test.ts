@@ -7,7 +7,8 @@ import {
 } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { build, buildIR, IR_FILE } from '../src/build.js';
+import { build, buildIR } from '../src/build.js';
+import { IR_FILE } from '../src/paths.js';
 import { FIXTURE_MINI, MINI_CONFIG, makeRoot } from './helpers.js';
 
 describe('buildIR on the mini fixture', () => {

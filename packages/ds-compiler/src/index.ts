@@ -1,16 +1,18 @@
 export const COMPILER_NAME = '@bwp-web/ds-compiler';
 
-export {
-  build,
-  buildIR,
-  writeIR,
-  scanTodo,
-  IR_FILE,
-  TOKENS_DIR,
-  COMPONENTS_DIR,
-} from './build.js';
+export { build, buildIR, writeIR, scanTodo } from './build.js';
 export type { BuildResult } from './build.js';
 export { lint } from './lint.js';
+export { IR_FILE, TOKENS_DIR, COMPONENTS_DIR, ENTRY_FILE } from './paths.js';
+export {
+  ENTRY_HEADER,
+  checkEntryCss,
+  discoverEntrySources,
+  expectedEntryCss,
+  renderEntryCss,
+  writeEntryCss,
+} from './entry.js';
+export type { EntrySources } from './entry.js';
 export {
   loadConfig,
   modeSelectorFor,

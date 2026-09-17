@@ -1,7 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { FIXTURE_MINI, MINI_CONFIG, makeRoot } from './helpers.js';
+import { FIXTURE_MINI, MINI_CONFIG, makeRoot, withEntry } from './helpers.js';
 
 const pkgDir = fileURLToPath(new URL('..', import.meta.url));
 
@@ -43,10 +43,12 @@ describe('bwp-ds CLI', () => {
   });
 
   it('lint --json prints a JSON array of diagnostics', () => {
-    const root = makeRoot({
-      'ds.config.json': MINI_CONFIG,
-      'src/tokens/color.css': ':root { --fx-color-a: nope; }',
-    });
+    const root = withEntry(
+      makeRoot({
+        'ds.config.json': MINI_CONFIG,
+        'src/tokens/color.css': ':root { --fx-color-a: nope; }',
+      }),
+    );
     const r = run(['lint', '--root', root, '--json']);
     const parsed = JSON.parse(r.stdout) as {
       diagnostics: Array<{ code: string }>;
@@ -148,6 +150,6 @@ describe('bwp-ds CLI', () => {
     ]);
     expect(r.code).toBe(0);
     const parsed = JSON.parse(r.stdout) as { wrote: string[] };
-    expect(parsed.wrote).toHaveLength(2);
+    expect(parsed.wrote).toHaveLength(3);
   });
 });

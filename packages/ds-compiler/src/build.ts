@@ -1,10 +1,4 @@
-import {
-  readdirSync,
-  readFileSync,
-  statSync,
-  writeFileSync,
-  type Dirent,
-} from 'node:fs';
+import { readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import {
   MANIFEST_SUFFIX,
@@ -15,15 +9,18 @@ import {
 import { parseComponentCss } from './components/parse-component.js';
 import { BASELINE_PROPERTIES } from './components/properties.js';
 import { CONFIG_FILE, loadConfig } from './config.js';
-import { Diagnostics } from './errors.js';
+import { writeEntryCss } from './entry.js';
+import { configFailed, Diagnostics } from './errors.js';
 import { serializeIR, sourceHash, type SourceFile } from './ir/serialize.js';
 import { IR_VERSION, type ComponentIR, type DesignIR } from './ir/types.js';
+import { COMPONENTS_DIR, IR_FILE, TOKENS_DIR } from './paths.js';
+import {
+  listComponentDirs as listComponentDirNames,
+  listDir,
+  listTokenFiles as listTokenFileNames,
+} from './sources.js';
 import { parseTokenFile } from './tokens/parse-tokens.js';
 import { resolveTokens } from './tokens/resolve-tokens.js';
-
-export const IR_FILE = 'design.ir.json';
-export const TOKENS_DIR = 'src/tokens';
-export const COMPONENTS_DIR = 'src/components';
 
 export interface BuildResult {
   ir: DesignIR | null;
@@ -33,19 +30,6 @@ export interface BuildResult {
 
 function toPosix(p: string): string {
   return p.split(sep).join('/');
-}
-
-/** Lists a directory's entries, or [] when it does not exist or is not a directory. */
-function listDir(dir: string): Dirent[] {
-  try {
-    return readdirSync(dir, { withFileTypes: true });
-  } catch (err) {
-    const code = (err as NodeJS.ErrnoException).code;
-    if (code === 'ENOENT' || code === 'ENOTDIR') {
-      return [];
-    }
-    throw err;
-  }
 }
 
 /** Flags every line containing the word TODO as DS-E050. */
@@ -88,69 +72,70 @@ function checkBaseline(
   }
 }
 
-/** Collects the token CSS filenames from src/tokens, flagging wrong-case extensions. */
+/**
+ * The token CSS filenames from src/tokens (via the shared listing in
+ * `./sources.js`, so this and the entry file agree on what a token source
+ * is), flagging wrong-case extensions.
+ */
 function listTokenFiles(
   rootDir: string,
   tokensDir: string,
   diag: Diagnostics,
 ): string[] {
   const files: string[] = [];
-  for (const entry of listDir(tokensDir)) {
-    if (!entry.isFile()) {
+  for (const name of listTokenFileNames(rootDir)) {
+    if (name.endsWith('.css')) {
+      files.push(name);
       continue;
     }
-    if (entry.name.endsWith('.css')) {
-      files.push(entry.name);
-      continue;
-    }
-    if (/\.css$/i.test(entry.name)) {
+    if (/\.css$/i.test(name)) {
       diag.add(
         'DS-E017',
-        `"${entry.name}" is not a token category file: the extension must be lowercase ".css"`,
+        `"${name}" is not a token category file: the extension must be lowercase ".css"`,
         {
-          file: toPosix(relative(rootDir, join(tokensDir, entry.name))),
+          file: toPosix(relative(rootDir, join(tokensDir, name))),
           line: 1,
           column: 1,
         },
       );
     }
   }
-  return files.sort();
+  return files;
 }
 
-/** Collects component directory names from src/components, reporting broken symlinks. */
+/**
+ * The component directory names from src/components (via the shared listing
+ * in `./sources.js`), reporting broken symlinks. The shared listing itself
+ * silently excludes broken symlinks (it has no diagnostics to report them
+ * with), so this walks the raw directory once more to flag them.
+ */
 function listComponentDirs(
   rootDir: string,
   componentsDir: string,
   diag: Diagnostics,
 ): string[] {
-  const names: string[] = [];
   for (const entry of listDir(componentsDir)) {
     if (entry.name.startsWith('.') || entry.name === 'node_modules') {
       continue;
     }
-    let isDir = entry.isDirectory();
-    if (!isDir && entry.isSymbolicLink()) {
-      try {
-        isDir = statSync(join(componentsDir, entry.name)).isDirectory();
-      } catch {
-        diag.add(
-          'DS-E060',
-          `${COMPONENTS_DIR}/${entry.name} is a broken symlink`,
-          {
-            file: toPosix(relative(rootDir, join(componentsDir, entry.name))),
-            line: 1,
-            column: 1,
-          },
-        );
-        continue;
-      }
+    if (!entry.isSymbolicLink()) {
+      continue;
     }
-    if (isDir) {
-      names.push(entry.name);
+    try {
+      statSync(join(componentsDir, entry.name));
+    } catch {
+      diag.add(
+        'DS-E060',
+        `${COMPONENTS_DIR}/${entry.name} is a broken symlink`,
+        {
+          file: toPosix(relative(rootDir, join(componentsDir, entry.name))),
+          line: 1,
+          column: 1,
+        },
+      );
     }
   }
-  return names.sort();
+  return listComponentDirNames(rootDir);
 }
 
 /** Parses everything under rootDir into an IR without writing anything. */
@@ -294,11 +279,26 @@ export function writeIR(rootDir: string, ir: DesignIR): string {
   return out;
 }
 
-/** buildIR plus writing design.ir.json when there are no errors. */
-export function build(rootDir: string): BuildResult & { outFile?: string } {
+/**
+ * buildIR, plus always regenerating src/index.css (derived from layout
+ * alone, so it is written even when the IR has errors) and writing
+ * design.ir.json when there are no errors. Neither file is written when
+ * ds.config.json itself could not be read (DS-E001).
+ */
+export function build(
+  rootDir: string,
+): BuildResult & { outFile?: string; entryFile?: string } {
   const result = buildIR(rootDir);
-  if (result.ir) {
-    return { ...result, outFile: writeIR(rootDir, result.ir) };
+  if (configFailed(result.diagnostics)) {
+    return result;
   }
-  return result;
+  const entry = writeEntryCss(rootDir);
+  if (!result.ir) {
+    return { ...result, entryFile: entry.path };
+  }
+  return {
+    ...result,
+    outFile: writeIR(rootDir, result.ir),
+    entryFile: entry.path,
+  };
 }

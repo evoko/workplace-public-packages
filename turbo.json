@@ -7,8 +7,8 @@
     },
     "@bwp-web/styles-css#build": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", "!design.ir.json"],
-      "outputs": ["dist/**", "design.ir.json"]
+      "inputs": ["$TURBO_DEFAULT$", "!design.ir.json", "!src/index.css"],
+      "outputs": ["dist/**", "design.ir.json", "src/index.css"]
     },
     "dev": {
       "dependsOn": ["^build"],

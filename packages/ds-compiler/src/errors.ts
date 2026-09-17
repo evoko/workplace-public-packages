@@ -110,6 +110,10 @@ export const ERROR_CATALOG = {
     title: 'CSS syntax error',
     hint: 'Fix the CSS at the reported position; the parser could not read the file.',
   },
+  'DS-E070': {
+    title: 'Entry file out of date',
+    hint: 'src/index.css is generated. Run bwp-ds build (or any scaffold command) to regenerate it; never edit it by hand.',
+  },
   'DS-W001': {
     title: 'Root rule missing baseline properties',
     hint: 'Declare the baseline properties on the base root rule so parity does not rest on user-agent defaults. Set "baseline": false in the manifest to opt out.',
@@ -166,6 +170,11 @@ export class Diagnostics {
   hasErrors(): boolean {
     return this.errors.length > 0;
   }
+}
+
+/** Whether `diag` contains a DS-E001 (ds.config.json could not be read). */
+export function configFailed(diag: Diagnostics): boolean {
+  return diag.items.some((d) => d.code === 'DS-E001');
 }
 
 export function formatDiagnostic(d: Diagnostic): string {

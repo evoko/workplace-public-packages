@@ -90,17 +90,22 @@ program
   .action(() => {
     const { root, json } = globals();
     const result = build(root);
-    printDiagnostics(
-      result.diagnostics,
-      json,
-      result.outFile ? { wrote: result.outFile } : {},
-    );
+    const extra: Record<string, unknown> = {};
+    if (result.outFile) {
+      extra.wrote = result.outFile;
+    }
+    if (result.entryFile) {
+      extra.entry = result.entryFile;
+    }
+    printDiagnostics(result.diagnostics, json, extra);
     process.exitCode = result.ir ? 0 : 1;
   });
 
 const scaffold = program
   .command('scaffold')
-  .description('Write files that already satisfy the authoring rules');
+  .description(
+    'Write files that already satisfy the authoring rules; also regenerates src/index.css',
+  );
 
 scaffold
   .command('tokens <category>')
@@ -121,8 +126,8 @@ scaffold
       return;
     }
     try {
-      const { path } = scaffoldTokens(root, category, config);
-      scaffoldSuccess([path], json);
+      const { path, entryPath } = scaffoldTokens(root, category, config);
+      scaffoldSuccess(entryPath ? [path, entryPath] : [path], json);
     } catch (err) {
       scaffoldFailure(
         err instanceof ScaffoldError ? err.message : String(err),
@@ -200,7 +205,10 @@ scaffold
       };
       try {
         const out = scaffoldComponent(root, name, options, config);
-        scaffoldSuccess([out.manifestPath, out.cssPath], json);
+        const paths = out.entryPath
+          ? [out.manifestPath, out.cssPath, out.entryPath]
+          : [out.manifestPath, out.cssPath];
+        scaffoldSuccess(paths, json);
       } catch (err) {
         scaffoldFailure(
           err instanceof ScaffoldError ? err.message : String(err),

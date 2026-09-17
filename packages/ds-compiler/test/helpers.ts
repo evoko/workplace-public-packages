@@ -2,6 +2,7 @@ import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { writeEntryCss } from '../src/entry.js';
 
 export const FIXTURE_MINI = fileURLToPath(
   new URL('./fixtures/mini/', import.meta.url),
@@ -15,6 +16,12 @@ export function makeRoot(files: Record<string, string>): string {
     mkdirSync(dirname(abs), { recursive: true });
     writeFileSync(abs, contents);
   }
+  return root;
+}
+
+/** Writes the generated src/index.css into a root so lint can be clean. */
+export function withEntry(root: string): string {
+  writeEntryCss(root);
   return root;
 }
 

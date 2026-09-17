@@ -1,6 +1,5 @@
 import { existsSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { COMPONENTS_DIR } from '../build.js';
 import {
   axisValue,
   identifier,
@@ -13,6 +12,8 @@ import {
   sortStates,
 } from '../components/states.js';
 import type { DsConfig } from '../config.js';
+import { writeEntryCss } from '../entry.js';
+import { COMPONENTS_DIR } from '../paths.js';
 import { ScaffoldError, writeNewFile } from './tokens.js';
 
 export { ScaffoldError } from './tokens.js';
@@ -173,7 +174,7 @@ export function scaffoldComponent(
   name: string,
   opts: ComponentScaffoldOptions,
   config: DsConfig,
-): { cssPath: string; manifestPath: string } {
+): { cssPath: string; manifestPath: string; entryPath: string | null } {
   validate(name, opts);
   const dir = join(rootDir, COMPONENTS_DIR, name);
   if (existsSync(dir)) {
@@ -196,5 +197,10 @@ export function scaffoldComponent(
   const manifestPath = join(dir, `${name}${MANIFEST_SUFFIX}`);
   writeNewFile(manifestPath, manifestText);
   writeNewFile(cssPath, cssText);
-  return { cssPath, manifestPath };
+  const entry = writeEntryCss(rootDir);
+  return {
+    cssPath,
+    manifestPath,
+    entryPath: entry.changed ? entry.path : null,
+  };
 }

@@ -24,8 +24,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check design.ir.json is up to date
-        run: git diff --exit-code -- packages/styles-css/design.ir.json
+      - name: Check generated files are up to date
+        run: git diff --exit-code -- packages/styles-css/design.ir.json packages/styles-css/src/index.css
 
       - name: Run linting
         run: npm run lint
