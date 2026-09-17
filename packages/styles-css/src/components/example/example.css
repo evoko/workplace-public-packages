@@ -43,7 +43,7 @@
 .bwp-example[data-tone='accent'] {
   border-color: transparent;
   background-color: var(--bwp-color-accent-default);
-  color: var(--bwp-color-text-on-accent);
+  color: var(--bwp-color-text-inverse);
 }
 
 .bwp-example[data-tone='accent']:hover {

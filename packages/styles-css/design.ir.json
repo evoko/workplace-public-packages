@@ -299,7 +299,7 @@
             },
             "color": {
               "kind": "token",
-              "ref": "color.text.on.accent"
+              "ref": "color.text.inverse"
             }
           },
           "slot": "root",
@@ -434,7 +434,7 @@
     "name": "SOLAR",
     "prefix": "bwp",
     "rootFontSize": 16,
-    "sourceHash": "22123c70671d0542f067d12c9cd9ff6ca6a9dc148e02e06cad0cfc42069e25d0"
+    "sourceHash": "684004b2fef3412e93106fe8de56da8fa1fb6536334d0a08d0924317d0ee883a"
   },
   "tokens": {
     "border-width.1": {
@@ -473,6 +473,78 @@
         "line": 5
       }
     },
+    "color.accent.200": {
+      "$type": "color",
+      "$value": {
+        "hex": "#6aa6ffff"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-accent-200",
+      "modeInvariant": true,
+      "path": [
+        "accent",
+        "200"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 13
+      }
+    },
+    "color.accent.300": {
+      "$type": "color",
+      "$value": {
+        "hex": "#3f8cffff"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-accent-300",
+      "modeInvariant": true,
+      "path": [
+        "accent",
+        "300"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 12
+      }
+    },
+    "color.accent.500": {
+      "$type": "color",
+      "$value": {
+        "hex": "#1863d3ff"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-accent-500",
+      "modeInvariant": true,
+      "path": [
+        "accent",
+        "500"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 10
+      }
+    },
+    "color.accent.600": {
+      "$type": "color",
+      "$value": {
+        "hex": "#1453b0ff"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-accent-600",
+      "modeInvariant": true,
+      "path": [
+        "accent",
+        "600"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 11
+      }
+    },
     "color.accent.default": {
       "$type": "color",
       "$value": {
@@ -482,6 +554,10 @@
         "light": {
           "hex": "#1863d3ff"
         }
+      },
+      "alias": {
+        "dark": "color.accent.300",
+        "light": "color.accent.500"
       },
       "category": "color",
       "cssName": "--bwp-color-accent-default",
@@ -493,7 +569,7 @@
       "source": {
         "column": 3,
         "file": "src/tokens/color.css",
-        "line": 9
+        "line": 14
       }
     },
     "color.accent.hover": {
@@ -506,6 +582,10 @@
           "hex": "#1453b0ff"
         }
       },
+      "alias": {
+        "dark": "color.accent.200",
+        "light": "color.accent.600"
+      },
       "category": "color",
       "cssName": "--bwp-color-accent-hover",
       "modeInvariant": false,
@@ -516,20 +596,21 @@
       "source": {
         "column": 3,
         "file": "src/tokens/color.css",
-        "line": 10
+        "line": 15
       }
     },
     "color.border.default": {
       "$type": "color",
       "$value": {
         "dark": {
-          "hex": "#484848ff"
+          "hex": "#333333ff"
         },
         "light": {
           "hex": "#c9c9c9ff"
         }
       },
       "alias": {
+        "dark": "color.neutral.700",
         "light": "color.neutral.300"
       },
       "category": "color",
@@ -542,7 +623,7 @@
       "source": {
         "column": 3,
         "file": "src/tokens/color.css",
-        "line": 16
+        "line": 21
       }
     },
     "color.focus.ring": {
@@ -550,6 +631,7 @@
       "$value": {
         "hex": "#3f8cffff"
       },
+      "alias": "color.accent.300",
       "category": "color",
       "cssName": "--bwp-color-focus-ring",
       "modeInvariant": true,
@@ -560,22 +642,17 @@
       "source": {
         "column": 3,
         "file": "src/tokens/color.css",
-        "line": 17
+        "line": 22
       }
     },
     "color.neutral.0": {
       "$type": "color",
       "$value": {
-        "dark": {
-          "hex": "#111111ff"
-        },
-        "light": {
-          "hex": "#ffffffff"
-        }
+        "hex": "#ffffffff"
       },
       "category": "color",
       "cssName": "--bwp-color-neutral-0",
-      "modeInvariant": false,
+      "modeInvariant": true,
       "path": [
         "neutral",
         "0"
@@ -589,16 +666,11 @@
     "color.neutral.100": {
       "$type": "color",
       "$value": {
-        "dark": {
-          "hex": "#222222ff"
-        },
-        "light": {
-          "hex": "#f5f5f5ff"
-        }
+        "hex": "#f5f5f5ff"
       },
       "category": "color",
       "cssName": "--bwp-color-neutral-100",
-      "modeInvariant": false,
+      "modeInvariant": true,
       "path": [
         "neutral",
         "100"
@@ -612,16 +684,11 @@
     "color.neutral.300": {
       "$type": "color",
       "$value": {
-        "dark": {
-          "hex": "#484848ff"
-        },
-        "light": {
-          "hex": "#c9c9c9ff"
-        }
+        "hex": "#c9c9c9ff"
       },
       "category": "color",
       "cssName": "--bwp-color-neutral-300",
-      "modeInvariant": false,
+      "modeInvariant": true,
       "path": [
         "neutral",
         "300"
@@ -635,16 +702,11 @@
     "color.neutral.700": {
       "$type": "color",
       "$value": {
-        "dark": {
-          "hex": "#c9c9c9ff"
-        },
-        "light": {
-          "hex": "#333333ff"
-        }
+        "hex": "#333333ff"
       },
       "category": "color",
       "cssName": "--bwp-color-neutral-700",
-      "modeInvariant": false,
+      "modeInvariant": true,
       "path": [
         "neutral",
         "700"
@@ -655,19 +717,32 @@
         "line": 7
       }
     },
+    "color.neutral.800": {
+      "$type": "color",
+      "$value": {
+        "hex": "#222222ff"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-neutral-800",
+      "modeInvariant": true,
+      "path": [
+        "neutral",
+        "800"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 8
+      }
+    },
     "color.neutral.900": {
       "$type": "color",
       "$value": {
-        "dark": {
-          "hex": "#ffffffff"
-        },
-        "light": {
-          "hex": "#111111ff"
-        }
+        "hex": "#111111ff"
       },
       "category": "color",
       "cssName": "--bwp-color-neutral-900",
-      "modeInvariant": false,
+      "modeInvariant": true,
       "path": [
         "neutral",
         "900"
@@ -675,7 +750,7 @@
       "source": {
         "column": 3,
         "file": "src/tokens/color.css",
-        "line": 8
+        "line": 9
       }
     },
     "color.surface.default": {
@@ -689,6 +764,7 @@
         }
       },
       "alias": {
+        "dark": "color.neutral.900",
         "light": "color.neutral.0"
       },
       "category": "color",
@@ -701,7 +777,7 @@
       "source": {
         "column": 3,
         "file": "src/tokens/color.css",
-        "line": 14
+        "line": 19
       }
     },
     "color.surface.raised": {
@@ -715,6 +791,7 @@
         }
       },
       "alias": {
+        "dark": "color.neutral.800",
         "light": "color.neutral.100"
       },
       "category": "color",
@@ -727,7 +804,7 @@
       "source": {
         "column": 3,
         "file": "src/tokens/color.css",
-        "line": 15
+        "line": 20
       }
     },
     "color.text.default": {
@@ -741,6 +818,7 @@
         }
       },
       "alias": {
+        "dark": "color.neutral.0",
         "light": "color.neutral.900"
       },
       "category": "color",
@@ -753,7 +831,34 @@
       "source": {
         "column": 3,
         "file": "src/tokens/color.css",
-        "line": 11
+        "line": 16
+      }
+    },
+    "color.text.inverse": {
+      "$type": "color",
+      "$value": {
+        "dark": {
+          "hex": "#111111ff"
+        },
+        "light": {
+          "hex": "#ffffffff"
+        }
+      },
+      "alias": {
+        "dark": "color.neutral.900",
+        "light": "color.neutral.0"
+      },
+      "category": "color",
+      "cssName": "--bwp-color-text-inverse",
+      "modeInvariant": false,
+      "path": [
+        "text",
+        "inverse"
+      ],
+      "source": {
+        "column": 3,
+        "file": "src/tokens/color.css",
+        "line": 18
       }
     },
     "color.text.muted": {
@@ -767,6 +872,7 @@
         }
       },
       "alias": {
+        "dark": "color.neutral.300",
         "light": "color.neutral.700"
       },
       "category": "color",
@@ -779,34 +885,7 @@
       "source": {
         "column": 3,
         "file": "src/tokens/color.css",
-        "line": 12
-      }
-    },
-    "color.text.on.accent": {
-      "$type": "color",
-      "$value": {
-        "dark": {
-          "hex": "#111111ff"
-        },
-        "light": {
-          "hex": "#ffffffff"
-        }
-      },
-      "alias": {
-        "light": "color.neutral.0"
-      },
-      "category": "color",
-      "cssName": "--bwp-color-text-on-accent",
-      "modeInvariant": false,
-      "path": [
-        "text",
-        "on",
-        "accent"
-      ],
-      "source": {
-        "column": 3,
-        "file": "src/tokens/color.css",
-        "line": 13
+        "line": 17
       }
     },
     "duration.fast": {

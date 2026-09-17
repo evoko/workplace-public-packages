@@ -1,0 +1,69 @@
+# Error codes
+
+Every diagnostic has a stable code. Errors fail `bwp-ds lint` and `bwp-ds
+build`; warnings do not. The source of truth is `ERROR_CATALOG` in
+`packages/ds-compiler/src/errors.ts`.
+
+## Configuration
+
+| Code    | Cause                                                                                                                      | Fix                                                                    |
+| ------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| DS-E001 | `ds.config.json` missing, not JSON, or invalid (bad prefix, `defaultMode` not in `modes`, `modeSelector` without `{mode}`) | Create or fix the file; see the authoring guide's Configuration table. |
+
+## Tokens
+
+| Code    | Cause                                                                                                                                                                      | Fix                                                                                                                                                       |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| DS-E010 | A token file contains something other than `:root` and mode blocks, or declares the default mode through its mode selector                                                 | Remove at-rules, other selectors, nested rules; put default-mode values in `:root`.                                                                       |
+| DS-E011 | A declaration is not `--<prefix>-<category>-<path>`, or its category differs from the file                                                                                 | Rename it, or move it to the right category file.                                                                                                         |
+| DS-E012 | The value is not a literal of the category type and not a clean `var()`; a declaration uses `!important`; or a token resolves to a different value type in different modes | Use a literal of the right type, or `var(--<prefix>-…)` with no fallback or arithmetic; remove `!important`; make the value type consistent across modes. |
+| DS-E013 | `var()` points to a token that does not exist, or aliases form a cycle                                                                                                     | Define the target first; break the cycle.                                                                                                                 |
+| DS-E014 | An alias resolves to a type the category does not accept                                                                                                                   | Point to a token of a compatible type.                                                                                                                    |
+| DS-E015 | A token is declared in some modes but not all, or only in a non-default mode                                                                                               | Declare it in every mode block, or only in `:root`.                                                                                                       |
+| DS-E016 | The same token is declared twice in one mode                                                                                                                               | Keep one.                                                                                                                                                 |
+| DS-E017 | A file under `src/tokens` is not named after a category                                                                                                                    | Rename to one of the fifteen categories.                                                                                                                  |
+
+## Manifests
+
+| Code    | Cause                                                                                                                       | Fix                                                          |
+| ------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| DS-E020 | The manifest is not JSON, has unknown fields, fails the schema, has an axis default outside its values, or duplicate states | Follow the manifest reference; the message lists each field. |
+| DS-E021 | `manifest.name` differs from the directory name                                                                             | Make them equal.                                             |
+
+## Selectors
+
+| Code    | Cause                                                                                                                                                                                 | Fix                                                                 |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| DS-E030 | The selector does not fit the grammar: wrong root class, extra class, unknown pseudo-class or attribute, malformed slot                                                               | Use `.<prefix>-<name>[data-axis="v"]:state .<prefix>-<name>__slot`. |
+| DS-E031 | An axis or axis value is not in the manifest                                                                                                                                          | Declare it under `axes`.                                            |
+| DS-E032 | A slot is not in the manifest, or `__root` is used                                                                                                                                    | Declare it under `slots`; style root with the root class alone.     |
+| DS-E033 | A state is not in the manifest                                                                                                                                                        | Declare it under `states`.                                          |
+| DS-E034 | Element or id selector, `*`, `&`, pseudo-element, a combinator other than one space, two descendant steps, `!important`, nesting, an at-rule, or a state or axis on the slot compound | Remove the feature; move states and axes to the root compound.      |
+
+## Declarations
+
+| Code    | Cause                                                                                                                                                     | Fix                                                                  |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| DS-E040 | The property is not in the compiler's table                                                                                                               | Use a supported property, or add it to `PROPERTY_TABLE` with a test. |
+| DS-E041 | A token-required property has a literal                                                                                                                   | Reference a token; add the token if none fits.                       |
+| DS-E042 | A literal is not allowed for this property, or a shorthand has the wrong number of values                                                                 | Use a listed keyword or allowed literal kind; fix the value count.   |
+| DS-E043 | `var()` references an unknown token, or is not a clean reference                                                                                          | Fix the name, add the token, remove fallbacks.                       |
+| DS-E044 | The token's category is not accepted by the property                                                                                                      | Reference a token from an accepted category.                         |
+| DS-E045 | A forbidden shorthand (`border`, `background`, `font`, `transition`, …)                                                                                   | Write the longhands.                                                 |
+| DS-E046 | The same property has two different values for one slot, axes, and states, whether in one rule, across rules, or via a shorthand followed by its longhand | Keep one.                                                            |
+
+## Scaffolding, layout, and generated files
+
+| Code    | Cause                                                                                                             | Fix                                              |
+| ------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| DS-E050 | A `TODO` left by `bwp-ds scaffold` (or written by hand) is still in a source file                                 | Fill it in or delete the line.                   |
+| DS-E060 | A component directory lacks `<name>.css` or `<name>.manifest.json`, or a symlink under `src/components` is broken | Add the missing file; fix or remove the link.    |
+| DS-E061 | A token or component CSS file has a syntax error                                                                  | Fix the CSS at the reported line and column.     |
+| DS-E070 | `src/index.css` is missing, unreadable, or does not match the token files and components on disk                  | Run `bwp-ds build`; never edit the file by hand. |
+
+## Warnings
+
+| Code    | Cause                                                               | Fix                                                                        |
+| ------- | ------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| DS-W001 | The base root rule omits baseline properties                        | Declare them, or set `"baseline": false` or a custom list in the manifest. |
+| DS-W002 | No token files and no component directories were found under `src/` | Check `--root`, or scaffold the first token file.                          |

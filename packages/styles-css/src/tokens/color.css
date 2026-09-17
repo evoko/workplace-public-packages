@@ -5,24 +5,30 @@
   --bwp-color-neutral-100: #f5f5f5;
   --bwp-color-neutral-300: #c9c9c9;
   --bwp-color-neutral-700: #333333;
+  --bwp-color-neutral-800: #222222;
   --bwp-color-neutral-900: #111111;
-  --bwp-color-accent-default: #1863d3;
-  --bwp-color-accent-hover: #1453b0;
+  --bwp-color-accent-500: #1863d3;
+  --bwp-color-accent-600: #1453b0;
+  --bwp-color-accent-300: #3f8cff;
+  --bwp-color-accent-200: #6aa6ff;
+  --bwp-color-accent-default: var(--bwp-color-accent-500);
+  --bwp-color-accent-hover: var(--bwp-color-accent-600);
   --bwp-color-text-default: var(--bwp-color-neutral-900);
   --bwp-color-text-muted: var(--bwp-color-neutral-700);
-  --bwp-color-text-on-accent: var(--bwp-color-neutral-0);
+  --bwp-color-text-inverse: var(--bwp-color-neutral-0);
   --bwp-color-surface-default: var(--bwp-color-neutral-0);
   --bwp-color-surface-raised: var(--bwp-color-neutral-100);
   --bwp-color-border-default: var(--bwp-color-neutral-300);
-  --bwp-color-focus-ring: #3f8cff;
+  --bwp-color-focus-ring: var(--bwp-color-accent-300);
 }
 
 :root[data-bwp-theme='dark'] {
-  --bwp-color-neutral-0: #111111;
-  --bwp-color-neutral-100: #222222;
-  --bwp-color-neutral-300: #484848;
-  --bwp-color-neutral-700: #c9c9c9;
-  --bwp-color-neutral-900: #ffffff;
-  --bwp-color-accent-default: #3f8cff;
-  --bwp-color-accent-hover: #6aa6ff;
+  --bwp-color-accent-default: var(--bwp-color-accent-300);
+  --bwp-color-accent-hover: var(--bwp-color-accent-200);
+  --bwp-color-text-default: var(--bwp-color-neutral-0);
+  --bwp-color-text-muted: var(--bwp-color-neutral-300);
+  --bwp-color-text-inverse: var(--bwp-color-neutral-900);
+  --bwp-color-surface-default: var(--bwp-color-neutral-900);
+  --bwp-color-surface-raised: var(--bwp-color-neutral-800);
+  --bwp-color-border-default: var(--bwp-color-neutral-700);
 }

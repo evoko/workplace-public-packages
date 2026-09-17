@@ -4,19 +4,19 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 
 ## Packages
 
-| Package                                              | Description                                                       | README                                          |
-| ---------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------- |
-| [`@bwp-web/styles-css`](./packages/styles-css)       | Design-system source of truth: CSS tokens, components, and the IR | [docs](./packages/styles-css/README.md)         |
-| [`@bwp-web/ds-compiler`](./packages/ds-compiler)     | Private compiler: lint, build, scaffold (targets come later)      | [docs](./docs/design-system/authoring-guide.md) |
-| [`@bwp-web/components`](./packages/components)       | Shared React components (empty during the V2 rebuild)             | [docs](./packages/components/README.md)         |
-| [`@bwp-web/assets`](./packages/assets)               | Shared icons, image, and font assets (empty during the V2 rebuild) | [docs](./packages/assets/README.md)            |
-| [`@bwp-web/canvas`](./packages/canvas)               | Interactive canvas editor and viewer (empty during the V2 rebuild) | [docs](./packages/canvas/README.md)            |
+| Package                                          | Description                                                        | README                                          |
+| ------------------------------------------------ | ------------------------------------------------------------------ | ----------------------------------------------- |
+| [`@bwp-web/styles-css`](./packages/styles-css)   | Design-system source of truth: CSS tokens, components, and the IR  | [docs](./packages/styles-css/README.md)         |
+| [`@bwp-web/ds-compiler`](./packages/ds-compiler) | Private compiler: lint, build, scaffold (targets come later)       | [docs](./docs/design-system/authoring-guide.md) |
+| [`@bwp-web/components`](./packages/components)   | Shared React components (empty during the V2 rebuild)              | [docs](./packages/components/README.md)         |
+| [`@bwp-web/assets`](./packages/assets)           | Shared icons, image, and font assets (empty during the V2 rebuild) | [docs](./packages/assets/README.md)             |
+| [`@bwp-web/canvas`](./packages/canvas)           | Interactive canvas editor and viewer (empty during the V2 rebuild) | [docs](./packages/canvas/README.md)             |
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js >= 20
+- Node.js >= 22 (`nvm use` reads `.nvmrc`)
 - npm 10.9.0
 
 ### Install
@@ -54,41 +54,29 @@ The Storybook is being rebuilt for the V2 design system. See `AGENTS.md` and `do
 
 ## Detailed Documentation
 
-Additional documentation lives in the [`/docs`](./docs) folder:
+| Document                                                                    | Contents                                                  |
+| --------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [AGENTS.md](./AGENTS.md)                                                    | Invariants, package map, commands, procedures for agents  |
+| [design-system/authoring-guide.md](./docs/design-system/authoring-guide.md) | Tokens, components, manifests, scaffolding, the lint loop |
+| [design-system/figma-mapping.md](./docs/design-system/figma-mapping.md)     | Deterministic rules from a design file to tokens and CSS  |
+| [design-system/ir.md](./docs/design-system/ir.md)                           | The compiled intermediate representation                  |
+| [design-system/errors.md](./docs/design-system/errors.md)                   | Every `DS-E` and `DS-W` code with cause and fix           |
+| [design-system/verification.md](./docs/design-system/verification.md)       | What each check proves and how to read diagnostics        |
+| [design-system/targets/](./docs/design-system/targets)                      | Tailwind, MUI, and Flutter target plans                   |
+| [packages/styles-css/README.md](./packages/styles-css/README.md)            | Installing and using the CSS package                      |
+| [packages/assets/README.md](./packages/assets/README.md)                    | Icons, images, fonts (empty during the V2 rebuild)        |
 
-| Document                                                    | Contents                                                        |
-| ----------------------------------------------------------- | --------------------------------------------------------------- |
-| [packages/styles-css/README.md](./packages/styles-css/README.md) | Tokens, components, authoring rules, exports              |
-| [packages/assets/README.md](./packages/assets/README.md)   | Icons (220+), images, fonts                                     |
-| [biamp-layout.md](./docs/biamp-layout.md)                   | BiampLayout — full-page layout shell                            |
-| [biamp-wrapper.md](./docs/biamp-wrapper.md)                 | BiampWrapper — content wrapper                                  |
-| [biamp-sidebar.md](./docs/biamp-sidebar.md)                 | BiampSidebar — vertical sidebar                                 |
-| [biamp-header.md](./docs/biamp-header.md)                   | BiampHeader — header with app launcher                          |
-| [biamp-banner.md](./docs/biamp-banner.md)                   | BiampBanner — notification banner                               |
-| [biamp-table.md](./docs/biamp-table.md)                     | BiampTable — TanStack-based data table                          |
-| [biamp-global-search.md](./docs/biamp-global-search.md)     | BiampGlobalSearch — global search component                     |
-| [dynamic-svg-icon.md](./docs/dynamic-svg-icon.md)           | DynamicSvgIcon — remote SVG icon with skeleton and fallback     |
-| [organizations-panel.md](./docs/organizations-panel.md)     | OrganizationsPanel — landing-page organization picker           |
-| [landing-form-panel.md](./docs/landing-form-panel.md)       | LandingFormPanel — landing-page form card primitives            |
-| [canvas/hooks.md](./docs/canvas/hooks.md)                   | `useEditCanvas`, `useViewCanvas`, providers, utility hooks      |
-| [canvas/shapes.md](./docs/canvas/shapes.md)                 | `createRectangle`, `createCircle`, `createPolygon` and variants |
-| [canvas/interactions.md](./docs/canvas/interactions.md)     | Click/drag/draw creation modes, vertex editing                  |
-| [canvas/viewport.md](./docs/canvas/viewport.md)             | Pan and zoom controls, `ViewportController`                     |
-| [canvas/alignment.md](./docs/canvas/alignment.md)           | Object alignment guides, cursor snapping, rotation snapping     |
-| [canvas/serialization.md](./docs/canvas/serialization.md)   | Save/load canvas, scaled strokes and border radius              |
-| [canvas/background.md](./docs/canvas/background.md)         | Background image management, contrast, invert, resize           |
-| [canvas/keyboard.md](./docs/canvas/keyboard.md)             | Keyboard shortcuts, object deletion                             |
-| [canvas/styles.md](./docs/canvas/styles.md)                 | Default style objects, constants, Fabric augmentation           |
-| [canvas/overlay.md](./docs/canvas/overlay.md)               | DOM overlays on canvas objects                                  |
+The full design is in
+[docs/superpowers/specs/2026-09-16-solar-multi-target-infrastructure-design.md](./docs/superpowers/specs/2026-09-16-solar-multi-target-infrastructure-design.md).
 
 ## Releasing
 
 ### Branch Strategy
 
-| Branch | Tracks                      | npm dist-tag |
-| ------ | --------------------------- | ------------ |
+| Branch | Tracks                     | npm dist-tag |
+| ------ | -------------------------- | ------------ |
 | `main` | Current major (e.g. 2.x.y) | `latest`     |
-| `1.x`  | Previous major (1.x.y)      | `v1-latest`  |
+| `1.x`  | Previous major (1.x.y)     | `v1-latest`  |
 
 Active development happens on `main`. When a new major version is released, create a maintenance branch for the previous major (e.g. `1.x`) before merging breaking changes into `main`. Cherry-pick or backport bug fixes and security patches to the maintenance branch as needed.
 
@@ -137,12 +125,12 @@ npm publish -w packages/canvas --access public --tag v1-latest
 
 #### Dist-tag conventions
 
-| Dist tag       | Points to                  | Who updates it            |
-| -------------- | -------------------------- | ------------------------- |
-| `latest`       | Highest stable version     | Only from `main`          |
-| `v1-latest`    | Highest stable 1.x.y       | From `v1` branch          |
-| `v2-latest`    | Highest stable 2.x.y       | From `main` or `v2` branch |
-| `v3-latest`    | Highest stable 3.x.y       | From `main` or `v3` branch |
+| Dist tag    | Points to              | Who updates it             |
+| ----------- | ---------------------- | -------------------------- |
+| `latest`    | Highest stable version | Only from `main`           |
+| `v1-latest` | Highest stable 1.x.y   | From `v1` branch           |
+| `v2-latest` | Highest stable 2.x.y   | From `main` or `v2` branch |
+| `v3-latest` | Highest stable 3.x.y   | From `main` or `v3` branch |
 
 #### Managing dist-tags
 
