@@ -8,7 +8,7 @@ import {
   renderColor,
   renderDimension,
   renderTokenValue,
-} from '../src/targets/tailwind/values.js';
+} from '../src/targets/css-values.js';
 import { parseDimension, parseLiteral } from '../src/tokens/values.js';
 
 describe('tailwind variable names', () => {

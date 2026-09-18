@@ -7,16 +7,11 @@ import type {
   TokenId,
 } from '../../ir/types.js';
 import { codeUnitCompare } from '../../sources.js';
-import type { DimensionValue, TokenValue } from '../../tokens/values.js';
+import type { TokenValue } from '../../tokens/values.js';
+import { renderLiteralValue, renderTokenValue } from '../css-values.js';
 import type { GeneratedFile, PluginContext } from '../plugin.js';
 import { ignoredForTailwind, isMappedForTailwind } from './hints.js';
 import { tailwindVarName } from './names.js';
-import {
-  formatNumber,
-  renderColor,
-  renderDimension,
-  renderTokenValue,
-} from './values.js';
 
 /** One line; every generated file starts with it, followed by a blank line. */
 export function tailwindHeader(ir: DesignIR, ctx: PluginContext): string {
@@ -99,22 +94,9 @@ export function renderTheme(ir: DesignIR, ctx: PluginContext): string {
 }
 
 export function renderIRValue(ir: DesignIR, value: IRValue): string {
-  if (value.kind === 'token') {
-    return `var(${varNameFor(ir, value.ref)})`;
-  }
-  switch (value.type) {
-    case 'dimension':
-      return renderDimension(value.value as DimensionValue);
-    // Unreachable today: parseLiteralForProperty never yields a color literal
-    // (token-required). If added, reconcile the shape with token colors ({ hex }).
-    case 'color':
-      return renderColor(value.value as string);
-    case 'number':
-      return formatNumber(value.value as number);
-    case 'keyword':
-    case 'string':
-      return String(value.value);
-  }
+  return value.kind === 'token'
+    ? `var(${varNameFor(ir, value.ref)})`
+    : renderLiteralValue(value);
 }
 
 function renderComponent(ir: DesignIR, component: ComponentIR): string[] {

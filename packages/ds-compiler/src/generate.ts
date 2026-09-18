@@ -7,11 +7,16 @@ import {
 } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { buildIR } from './build.js';
+import type { DsConfig } from './config.js';
 import type { Diagnostics } from './errors.js';
 import type { DesignIR } from './ir/types.js';
 import { getTarget, targetIds } from './targets/index.js';
 import { listOutputFiles } from './targets/output.js';
-import { pluginContext, type TargetPlugin } from './targets/plugin.js';
+import {
+  pluginContext,
+  type PluginOutput,
+  type TargetPlugin,
+} from './targets/plugin.js';
 import { COMPILER_VERSION } from './version.js';
 
 export interface GenerateResult {
@@ -62,12 +67,36 @@ function removeEmptySubdirs(dir: string): void {
 }
 
 /**
+ * Runs every plugin's `generate` once. A plugin that reports errors on `diag`
+ * is left out of the result, so callers never write or compare its output.
+ */
+export function generateOutputs(
+  rootDir: string,
+  ir: DesignIR,
+  config: DsConfig,
+  plugins: readonly TargetPlugin[],
+  compilerVersion: string,
+  diag: Diagnostics,
+): PluginOutput[] {
+  const outputs: PluginOutput[] = [];
+  for (const plugin of plugins) {
+    const ctx = pluginContext(rootDir, config, compilerVersion, plugin.id);
+    const before = diag.errors.length;
+    const files = plugin.generate(ir, null, ctx, diag);
+    if (diag.errors.length === before) {
+      outputs.push({ plugin, ctx, files });
+    }
+  }
+  return outputs;
+}
+
+/**
  * Builds the IR and writes every requested target's files into its outDir.
- * Nothing is written when the IR has errors. The outDir is owned by the
- * generator: every file it did not produce there, at any depth and including
- * dotfiles, is deleted, and any subdirectory left empty by that cleanup is
- * removed too (never the outDir itself), so the directory always equals a
- * fresh generation.
+ * Nothing is written when the IR has errors or when any plugin reports a
+ * generation error. The outDir is owned by the generator: every file it did
+ * not produce there, at any depth and including dotfiles, is deleted, and any
+ * subdirectory left empty by that cleanup is removed too (never the outDir
+ * itself), so the directory always equals a fresh generation.
  */
 export function generate(
   rootDir: string,
@@ -83,16 +112,23 @@ export function generate(
       removed: [],
     };
   }
+  const diag = result.diagnostics;
+  const outputs = generateOutputs(
+    rootDir,
+    result.ir,
+    result.config,
+    plugins,
+    COMPILER_VERSION,
+    diag,
+  );
+  if (diag.hasErrors()) {
+    // A plugin reported a generation error: write nothing for any target,
+    // so a failed run never leaves a half-updated set of packages.
+    return { ir: result.ir, diagnostics: diag, written: [], removed: [] };
+  }
   const written: string[] = [];
   const removed: string[] = [];
-  for (const plugin of plugins) {
-    const ctx = pluginContext(
-      rootDir,
-      result.config,
-      COMPILER_VERSION,
-      plugin.id,
-    );
-    const files = plugin.generate(result.ir, null, ctx);
+  for (const { ctx, files } of outputs) {
     mkdirSync(ctx.outDir, { recursive: true });
     const produced = new Set(files.map((f) => f.path));
     for (const file of files) {
@@ -110,5 +146,5 @@ export function generate(
     }
     removeEmptySubdirs(ctx.outDir);
   }
-  return { ir: result.ir, diagnostics: result.diagnostics, written, removed };
+  return { ir: result.ir, diagnostics: diag, written, removed };
 }

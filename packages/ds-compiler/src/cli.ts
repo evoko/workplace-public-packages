@@ -132,7 +132,7 @@ program
       wrote: result.written,
       removed: result.removed,
     });
-    process.exitCode = result.ir ? 0 : 1;
+    process.exitCode = result.diagnostics.hasErrors() ? 1 : 0;
   });
 
 program

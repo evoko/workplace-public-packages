@@ -1,11 +1,11 @@
-import type { TokenId } from '../../ir/types.js';
+import type { IRValueLiteral, TokenId } from '../ir/types.js';
 import type {
   DimensionValue,
   FontFamilyValue,
   ShadowValue,
   TokenType,
   TokenValue,
-} from '../../tokens/values.js';
+} from '../tokens/values.js';
 
 /** `#rrggbb` when fully opaque, otherwise `#rrggbbaa`. Input is always `#rrggbbaa`. */
 export function renderColor(hex: string): string {
@@ -106,5 +106,22 @@ export function renderTokenValue(
     }
     case 'shadow':
       return renderShadow(value as ShadowValue, refName);
+  }
+}
+
+/** CSS text for a component literal (keyword, dimension, number, string, or color). */
+export function renderLiteralValue(value: IRValueLiteral): string {
+  switch (value.type) {
+    case 'dimension':
+      return renderDimension(value.value as DimensionValue);
+    // Unreachable today: parseLiteralForProperty never yields a color literal
+    // (token-required). If added, reconcile the shape with token colors ({ hex }).
+    case 'color':
+      return renderColor(value.value as string);
+    case 'number':
+      return formatNumber(value.value as number);
+    case 'keyword':
+    case 'string':
+      return String(value.value);
   }
 }

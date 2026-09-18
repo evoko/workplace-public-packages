@@ -130,6 +130,14 @@ export const ERROR_CATALOG = {
     title: 'Unsupported property for target',
     hint: 'The target has no handler for this property. Add a handler to the plugin under packages/ds-compiler/src/targets/<id>/, or list the property under targets.<id>.ignore in the manifest.',
   },
+  'DS-E084': {
+    title: 'Configuration not expressible for target',
+    hint: 'The target cannot represent this. For MUI, modeSelector must be `:root[data-x="{mode}"]`, `[data-x="{mode}"]`, or `.x-{mode}`, and only color tokens may vary by mode. Change ds.config.json or the token.',
+  },
+  'DS-E085': {
+    title: 'Component not expressible for target',
+    hint: 'The MUI target renders each component as a React component: states must be hover, focus-visible, active, disabled, pressed, selected, expanded, or checked; slot elements must be plain HTML tags; slot names must not collide with children, className, style, ref, key, an axis, or a state. Change the manifest, or set targets.mui to { "excluded": "<reason>" }.',
+  },
   'DS-W001': {
     title: 'Root rule missing baseline properties',
     hint: 'Declare the baseline properties on the base root rule so parity does not rest on user-agent defaults. Set "baseline": false in the manifest to opt out.',

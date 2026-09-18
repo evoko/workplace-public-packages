@@ -163,3 +163,57 @@ export {
   stateSelector,
 } from './components/render-selector.js';
 export type { SelectorTarget } from './components/render-selector.js';
+export {
+  formatNumber,
+  renderColor,
+  renderDimension,
+  renderFontFamily,
+  renderLiteralValue,
+  renderShadow,
+  renderTokenValue,
+} from './targets/css-values.js';
+export { generateOutputs } from './generate.js';
+export type { PluginOutput } from './targets/plugin.js';
+export { muiHintsSchema } from './targets/hints.js';
+export {
+  MUI_ID,
+  ignoredForMui,
+  isMappedForMui,
+  muiExclusion,
+} from './targets/mui/hints.js';
+export {
+  camelCase,
+  camelCategory,
+  camelProperty,
+  colorSchemeSelectorFor,
+  kebabCategory,
+  kebabProperty,
+  muiVarName,
+  muiVarPath,
+  pascalCase,
+  propNameFor,
+  slotClassName,
+  sourceNameFromMui,
+  specificityKey,
+  themeKeyFor,
+} from './targets/mui/names.js';
+export { HTML_ELEMENTS } from './targets/mui/html-elements.js';
+export {
+  MUI_PACKAGE,
+  MUI_RANGE,
+  buildMuiModel,
+  muiHeaderText,
+  muiModelSchema,
+  muiValue,
+} from './targets/mui/model.js';
+export type {
+  MuiAxisModel,
+  MuiComponentModel,
+  MuiComponentTheme,
+  MuiDeclarations,
+  MuiModel,
+  MuiSlotModel,
+  MuiStateProp,
+  MuiThemeOptions,
+  MuiVariant,
+} from './targets/mui/model.js';

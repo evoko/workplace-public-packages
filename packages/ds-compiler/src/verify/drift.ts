@@ -1,12 +1,11 @@
 import { readFileSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
-import type { DsConfig } from '../config.js';
 import type { Diagnostics } from '../errors.js';
 import { serializeIR } from '../ir/serialize.js';
 import type { DesignIR } from '../ir/types.js';
 import { IR_FILE } from '../paths.js';
+import type { PluginOutput } from '../targets/plugin.js';
 import { listOutputFiles } from '../targets/output.js';
-import { pluginContext, type TargetPlugin } from '../targets/plugin.js';
 
 /** A path that exists but is a directory, not a regular file. */
 interface IsDirectory {
@@ -42,9 +41,7 @@ function posixRelative(from: string, to: string): string {
 export function checkDrift(
   rootDir: string,
   ir: DesignIR,
-  config: DsConfig,
-  plugins: readonly TargetPlugin[],
-  compilerVersion: string,
+  outputs: readonly PluginOutput[],
   diag: Diagnostics,
 ): void {
   const at = (file: string) => ({ file, line: 1, column: 1 });
@@ -64,9 +61,7 @@ export function checkDrift(
       at(IR_FILE),
     );
   }
-  for (const plugin of plugins) {
-    const ctx = pluginContext(rootDir, config, compilerVersion, plugin.id);
-    const files = plugin.generate(ir, null, ctx);
+  for (const { plugin, ctx, files } of outputs) {
     const rel = (p: string): string =>
       posixRelative(rootDir, join(ctx.outDir, p));
     const produced = new Set<string>();

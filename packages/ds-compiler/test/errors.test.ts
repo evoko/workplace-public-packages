@@ -79,6 +79,8 @@ describe('ERROR_CATALOG', () => {
         'DS-E081',
         'DS-E082',
         'DS-E083',
+        'DS-E084',
+        'DS-E085',
         'DS-W003',
       ]),
     );

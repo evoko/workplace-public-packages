@@ -30,7 +30,7 @@ describe('tailwind round-trip', () => {
     const ctx = twContext(root, config);
     const diag = new Diagnostics();
     const reparsed = tailwindPlugin.reparse(
-      tailwindPlugin.generate(ir, null, ctx),
+      tailwindPlugin.generate(ir, null, ctx, new Diagnostics()),
       ir,
       ctx,
       diag,
@@ -61,7 +61,7 @@ describe('tailwind round-trip', () => {
     };
     const diag = new Diagnostics();
     const reparsed = tailwindPlugin.reparse(
-      tailwindPlugin.generate(ir, null, ctx),
+      tailwindPlugin.generate(ir, null, ctx, new Diagnostics()),
       ir,
       ctx,
       diag,
@@ -84,7 +84,7 @@ describe('tailwind round-trip', () => {
     const ctx = twContext(root, config);
     const diag = new Diagnostics();
     const reparsed = tailwindPlugin.reparse(
-      tailwindPlugin.generate(ir, null, ctx),
+      tailwindPlugin.generate(ir, null, ctx, new Diagnostics()),
       ir,
       ctx,
       diag,
@@ -99,7 +99,7 @@ describe('tailwind round-trip', () => {
     const root = twRoot();
     const { ir, config } = twBuild(root);
     const ctx = twContext(root, config);
-    const files = tailwindPlugin.generate(ir, null, ctx);
+    const files = tailwindPlugin.generate(ir, null, ctx, new Diagnostics());
     const tampered = files.map((f) =>
       f.path === 'components.css'
         ? {
@@ -167,7 +167,7 @@ describe('tailwind round-trip', () => {
     const root = twRoot();
     const { ir, config } = twBuild(root);
     const ctx = twContext(root, config);
-    const files = tailwindPlugin.generate(ir, null, ctx);
+    const files = tailwindPlugin.generate(ir, null, ctx, new Diagnostics());
     const tampered = files.map((f) =>
       f.path === 'components.css'
         ? {
@@ -192,7 +192,7 @@ describe('tailwind round-trip', () => {
     const root = twRoot();
     const { ir, config } = twBuild(root);
     const ctx = twContext(root, config);
-    const files = tailwindPlugin.generate(ir, null, ctx);
+    const files = tailwindPlugin.generate(ir, null, ctx, new Diagnostics());
     const tampered = files.map((f) =>
       f.path === 'components.css'
         ? {
@@ -217,7 +217,7 @@ describe('tailwind round-trip', () => {
     const root = twRoot();
     const { ir, config } = twBuild(root);
     const ctx = twContext(root, config);
-    const files = tailwindPlugin.generate(ir, null, ctx);
+    const files = tailwindPlugin.generate(ir, null, ctx, new Diagnostics());
     const block = '  .fx-chip[data-tone="loud"] {\n    min-width: 44px;\n  }';
     const tampered = files.map((f) => {
       if (f.path !== 'components.css') {
@@ -241,7 +241,7 @@ describe('tailwind round-trip', () => {
     const root = twRoot();
     const { ir, config } = twBuild(root);
     const ctx = twContext(root, config);
-    const files = tailwindPlugin.generate(ir, null, ctx);
+    const files = tailwindPlugin.generate(ir, null, ctx, new Diagnostics());
     const tampered = files.map((f) =>
       f.path === 'theme.css'
         ? {
@@ -273,7 +273,7 @@ describe('tailwind round-trip', () => {
     });
     const { ir, config } = twBuild(root);
     const ctx = twContext(root, config);
-    const files = tailwindPlugin.generate(ir, null, ctx);
+    const files = tailwindPlugin.generate(ir, null, ctx, new Diagnostics());
     const hoverBlock = '  .fx-x:hover {\n    opacity: 0.6;\n  }';
     const pressedBlock =
       '  .fx-x[aria-pressed="true"] {\n    opacity: 0.7;\n  }';
@@ -301,7 +301,7 @@ describe('tailwind round-trip', () => {
     const root = twRoot();
     const { ir, config } = twBuild(root);
     const ctx = twContext(root, config);
-    const files = tailwindPlugin.generate(ir, null, ctx);
+    const files = tailwindPlugin.generate(ir, null, ctx, new Diagnostics());
     const tampered = files.map((f) =>
       f.path === 'components.css'
         ? {
@@ -330,7 +330,7 @@ describe('tailwind round-trip', () => {
     const root = twRoot();
     const { ir, config } = twBuild(root);
     const ctx = twContext(root, config);
-    const files = tailwindPlugin.generate(ir, null, ctx);
+    const files = tailwindPlugin.generate(ir, null, ctx, new Diagnostics());
     const tampered = files.map((f) =>
       f.path === 'components.css'
         ? {
@@ -351,7 +351,7 @@ describe('tailwind round-trip', () => {
     const root = twRoot();
     const { ir, config } = twBuild(root);
     const ctx = twContext(root, config);
-    const files = tailwindPlugin.generate(ir, null, ctx);
+    const files = tailwindPlugin.generate(ir, null, ctx, new Diagnostics());
     const tampered = files.map((f) =>
       f.path === 'theme.css'
         ? {
@@ -371,7 +371,7 @@ describe('tailwind round-trip', () => {
     const root = twRoot();
     const { ir, config } = twBuild(root);
     const ctx = twContext(root, config);
-    const files = tailwindPlugin.generate(ir, null, ctx);
+    const files = tailwindPlugin.generate(ir, null, ctx, new Diagnostics());
     const singleQuoted = files.map((f) =>
       f.path === 'theme.css'
         ? {
@@ -394,7 +394,7 @@ describe('tailwind round-trip', () => {
     const root = twRoot();
     const { ir, config } = twBuild(root);
     const ctx = twContext(root, config);
-    const files = tailwindPlugin.generate(ir, null, ctx);
+    const files = tailwindPlugin.generate(ir, null, ctx, new Diagnostics());
     const tampered = files.map((f) =>
       f.path === 'theme.css'
         ? { ...f, contents: `${f.contents}\n:root {\n}\n` }

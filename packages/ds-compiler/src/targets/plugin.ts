@@ -34,11 +34,16 @@ export interface CoverageEntry {
 
 export interface TargetPlugin<Catalog = unknown> {
   id: string;
-  /** Pure function of its inputs; byte-identical output across machines. */
+  /**
+   * Pure function of its inputs; byte-identical output across machines.
+   * Reports coded errors on `diag` (nothing is written when it does) rather
+   * than throwing.
+   */
   generate(
     ir: DesignIR,
     catalog: Catalog | null,
     ctx: PluginContext,
+    diag: Diagnostics,
   ): GeneratedFile[];
   /** Parses generated output back into an IR for round-trip comparison. Reports problems on `diag` and returns null when it cannot produce an IR. */
   reparse(
@@ -52,6 +57,13 @@ export interface TargetPlugin<Catalog = unknown> {
   isMapped(component: ComponentIR): boolean;
   /** Properties the manifest tells this target to ignore for the component. */
   ignoredProperties(component: ComponentIR): ReadonlySet<string>;
+}
+
+/** One plugin's generation result, produced by `generateOutputs`. */
+export interface PluginOutput {
+  plugin: TargetPlugin;
+  ctx: PluginContext;
+  files: GeneratedFile[];
 }
 
 /** Absolute output directory for a target: the config override or `../styles-<id>/src/generated`. */

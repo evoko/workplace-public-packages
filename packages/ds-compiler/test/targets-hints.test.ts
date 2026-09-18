@@ -54,6 +54,29 @@ describe('target hints', () => {
     );
   });
 
+  it('mui hints are strict: {} or { ignore } or excluded', () => {
+    expect(targetsSchema.safeParse({ mui: {} }).success).toBe(true);
+    expect(
+      targetsSchema.safeParse({ mui: { ignore: ['opacity'] } }).success,
+    ).toBe(true);
+    expect(
+      targetsSchema.safeParse({ mui: { excluded: 'later' } }).success,
+    ).toBe(true);
+    expect(
+      targetsSchema.safeParse({ mui: { component: 'Button' } }).success,
+    ).toBe(false);
+    expect(
+      targetsSchema.safeParse({ mui: { ignore: ['colour'] } }).success,
+    ).toBe(false);
+    expect(targetsSchema.safeParse({ mui: { ignore: [] } }).success).toBe(
+      false,
+    );
+    // flutter stays permissive until its plugin lands
+    expect(
+      targetsSchema.safeParse({ flutter: { variantWidgets: {} } }).success,
+    ).toBe(true);
+  });
+
   it('reports DS-E020 for a non-kebab-case target id, naming the offending key', () => {
     const badKey = new Diagnostics();
     parseManifest(
@@ -76,7 +99,7 @@ describe('target hints', () => {
     expect(badKey2.items[0].message).toContain('tail_wind');
   });
 
-  it('the manifest validates tailwind hints and keeps mui/flutter permissive', () => {
+  it('the manifest validates tailwind and mui hints and keeps flutter permissive', () => {
     const base = { name: 'chip', displayName: 'Chip' };
     const ok = new Diagnostics();
     parseManifest(
@@ -84,8 +107,8 @@ describe('target hints', () => {
         ...base,
         targets: {
           tailwind: { ignore: ['opacity'] },
-          mui: { component: 'Chip', anything: true },
-          flutter: { excluded: 'later' },
+          mui: { ignore: ['opacity'] },
+          flutter: { component: 'Chip', anything: true },
           other: { whatever: 1 },
         },
       },

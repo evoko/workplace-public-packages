@@ -13,20 +13,32 @@ const propertyName = z
     'must be a property from the compiler property table',
   );
 
+const ignoreList = z
+  .array(propertyName)
+  .min(1)
+  .refine(
+    (props) => new Set(props).size === props.length,
+    'must not repeat a property',
+  )
+  .optional();
+
 /** `targets.tailwind` hints. */
 export const tailwindHintsSchema = z.strictObject({
   /** Properties the Tailwind output omits for this component (coverage reports `partial`). */
-  ignore: z
-    .array(propertyName)
-    .min(1)
-    .refine(
-      (props) => new Set(props).size === props.length,
-      'must not repeat a property',
-    )
-    .optional(),
+  ignore: ignoreList,
 });
 
-/** Until their plugins land, mui and flutter accept any object, except a malformed `excluded`. */
+/**
+ * `targets.mui` hints. `{}` generates an own React component for the
+ * component; `ignore` lists properties left out of the MUI output. Mapping
+ * onto MUI's own components (`component`, `axisMap`, …) arrives with the
+ * defaults catalog in Plan 3b.
+ */
+export const muiHintsSchema = z.strictObject({
+  ignore: ignoreList,
+});
+
+/** Until its plugin lands, flutter accepts any object, except a malformed `excluded`. */
 const permissiveHints = z
   .record(z.string(), z.unknown())
   .refine(
@@ -36,7 +48,7 @@ const permissiveHints = z
 
 export const TARGET_HINT_SCHEMAS: Record<TargetId, z.ZodType> = {
   tailwind: tailwindHintsSchema,
-  mui: permissiveHints,
+  mui: muiHintsSchema,
   flutter: permissiveHints,
 };
 

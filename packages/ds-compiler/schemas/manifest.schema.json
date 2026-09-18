@@ -169,9 +169,15 @@
               "type": "object"
             },
             {
-              "additionalProperties": {},
-              "propertyNames": {
-                "type": "string"
+              "additionalProperties": false,
+              "properties": {
+                "ignore": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
               },
               "type": "object"
             }

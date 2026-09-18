@@ -3,8 +3,8 @@ import { dirname, resolve } from 'node:path';
 import { buildIR } from '../build.js';
 import { checkEntryCss } from '../entry.js';
 import { configFailed, type Diagnostics } from '../errors.js';
+import { generateOutputs } from '../generate.js';
 import { TARGETS, targetIds } from '../targets/index.js';
-import { pluginContext } from '../targets/plugin.js';
 import { COMPILER_VERSION } from '../version.js';
 import {
   computeCoverage,
@@ -31,7 +31,9 @@ export interface VerifyResult {
  * when an IR was produced (for example a stale src/index.css): the other
  * steps only make sense once the source is clean, so they are skipped and no
  * coverage file is written. Later steps run even when an earlier one (drift,
- * round-trip) fails, except that nothing runs without a passing lint.
+ * round-trip) fails, except that nothing runs without a passing lint. A
+ * plugin whose generation reports errors fails the drift step and is skipped
+ * by round-trip; coverage still runs for every plugin.
  */
 export function verify(rootDir: string): VerifyResult {
   const steps: Record<VerifyStep, StepStatus> = {
@@ -58,18 +60,20 @@ export function verify(rootDir: string): VerifyResult {
     diag.errors.length > count ? 'fail' : 'pass';
 
   const beforeDrift = diag.errors.length;
-  checkDrift(rootDir, ir, config, plugins, COMPILER_VERSION, diag);
+  const outputs = generateOutputs(
+    rootDir,
+    ir,
+    config,
+    plugins,
+    COMPILER_VERSION,
+    diag,
+  );
+  checkDrift(rootDir, ir, outputs, diag);
   steps.drift = failsSince(beforeDrift);
 
   const beforeRoundtrip = diag.errors.length;
-  for (const plugin of plugins) {
-    const ctx = pluginContext(rootDir, config, COMPILER_VERSION, plugin.id);
-    const reparsed = plugin.reparse(
-      plugin.generate(ir, null, ctx),
-      ir,
-      ctx,
-      diag,
-    );
+  for (const { plugin, ctx, files } of outputs) {
+    const reparsed = plugin.reparse(files, ir, ctx, diag);
     if (!reparsed) {
       continue;
     }

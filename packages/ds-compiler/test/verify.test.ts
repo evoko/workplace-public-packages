@@ -8,9 +8,15 @@ import {
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { build } from '../src/build.js';
-import { UnknownTargetError, generate } from '../src/generate.js';
+import { Diagnostics } from '../src/errors.js';
+import {
+  UnknownTargetError,
+  generate,
+  generateOutputs,
+} from '../src/generate.js';
+import type { TargetPlugin } from '../src/targets/plugin.js';
 import { verify } from '../src/verify/index.js';
-import { twRoot } from './tailwind-fixture.js';
+import { twBuild, twRoot } from './tailwind-fixture.js';
 
 const BROKEN_SPACE = {
   'src/tokens/space.css': ':root {\n  --fx-space-2: nope;\n}\n',
@@ -205,5 +211,43 @@ describe('verify', () => {
       result.diagnostics.errors.filter((d) => d.code === 'DS-E070'),
     ).toHaveLength(1);
     expect(result.coverageFile).toBeNull();
+  });
+});
+
+describe('generateOutputs', () => {
+  it('drops a plugin that reports a generation error and keeps the rest', () => {
+    const root = twRoot();
+    const { ir, config } = twBuild(root);
+    const failing: TargetPlugin<null> = {
+      id: 'failing',
+      generate: (_ir, _catalog, _ctx, diag) => {
+        diag.add('DS-E084', 'boom');
+        return [];
+      },
+      reparse: () => null,
+      coverage: () => [],
+      isMapped: () => true,
+      ignoredProperties: () => new Set(),
+    };
+    const ok: TargetPlugin<null> = {
+      id: 'ok',
+      generate: () => [{ path: 'a.txt', contents: 'hi' }],
+      reparse: () => null,
+      coverage: () => [],
+      isMapped: () => true,
+      ignoredProperties: () => new Set(),
+    };
+    const diag = new Diagnostics();
+    const outputs = generateOutputs(
+      root,
+      ir,
+      config,
+      [failing, ok],
+      '0.0.0-test',
+      diag,
+    );
+    expect(outputs.map((o) => o.plugin.id)).toEqual(['ok']);
+    expect(outputs[0].files).toEqual([{ path: 'a.txt', contents: 'hi' }]);
+    expect(diag.errors).toHaveLength(1);
   });
 });

@@ -13,7 +13,10 @@ export const TW_CONFIG = JSON.stringify(
     prefix: 'fx',
     modes: ['light', 'dark'],
     defaultMode: 'light',
-    targets: { tailwind: { outDir: 'out/tailwind' } },
+    targets: {
+      tailwind: { outDir: 'out/tailwind' },
+      mui: { outDir: 'out/mui' },
+    },
     coverageFile: 'out/coverage.md',
   },
   null,
@@ -46,8 +49,11 @@ export const TW_FILES: Record<string, string> = {
     displayName: 'Chip',
     axes: { tone: { values: ['quiet', 'loud'], default: 'quiet' } },
     states: ['hover', 'disabled'],
-    slots: { root: { element: 'button' }, icon: { element: 'span' } },
-    targets: { tailwind: {} },
+    slots: {
+      root: { element: 'button' },
+      icon: { element: 'span', optional: true },
+    },
+    targets: { tailwind: {}, mui: {} },
   }),
   'src/components/chip/chip.css': [
     '.fx-chip {',
@@ -74,13 +80,19 @@ export const TW_FILES: Record<string, string> = {
   'src/components/tag/tag.manifest.json': manifest({
     name: 'tag',
     states: ['disabled'],
-    targets: { tailwind: { ignore: ['opacity'] } },
+    targets: {
+      tailwind: { ignore: ['opacity'] },
+      mui: { ignore: ['opacity'] },
+    },
   }),
   'src/components/tag/tag.css':
     '.fx-tag {\n  display: inline-block;\n  opacity: 0.4;\n}\n.fx-tag[aria-disabled="true"] {\n  opacity: 0.4;\n}\n',
   'src/components/pill/pill.manifest.json': manifest({
     name: 'pill',
-    targets: { tailwind: { excluded: 'starter content' } },
+    targets: {
+      tailwind: { excluded: 'starter content' },
+      mui: { excluded: 'starter content' },
+    },
   }),
   'src/components/pill/pill.css': '.fx-pill {\n  display: inline-block;\n}\n',
 };
