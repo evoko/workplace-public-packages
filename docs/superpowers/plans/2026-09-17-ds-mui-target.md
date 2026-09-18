@@ -28,17 +28,18 @@
 | Own vs mapped | `targets.mui: {}` (optionally with `ignore`) means "generate an own component". `targets.mui.component` (Plan 3b) will mean "map onto that MUI component". `{ "excluded": "<reason>" }` opts out. The starter `example` component becomes `mui: {}`. |
 | Token exposure | Color tokens: `colorSchemes.<mode>.palette.tokens["<path-with-dashes>"]` per mode, every mode listing every color token (MUI needs the full set per scheme). Every other category: root `tokens.<camelCategory>["<path>"]` (`fontWeight`, `zIndex`, `borderWidth`, …). Keys are the token path joined with `-`, not nested objects, so `color.text` and `color.text.default` cannot collide. All values are **strings** (MUI appends `px` to bare numbers in custom theme keys). Aliases stay aliases: `var(--<prefix>-palette-tokens-neutral-900)`. A non-color token whose value varies by mode is `DS-E084` (MUI has no per-scheme home for it). |
 | Variable names | `cssVarPrefix` is the design-system prefix. MUI derives `--<prefix>-palette-tokens-<path>` and `--<prefix>-tokens-<camelCategory>-<path>`. `sourceNameFromMui` inverts both and validates through `parseTokenName`. |
-| Modes | `defaultColorScheme` is `defaultMode`; one `colorSchemes` entry per mode. `cssVariables.colorSchemeSelector` is derived from `meta.modeSelector`: `:root[data-x="{mode}"]` or `[data-x="{mode}"]` becomes `data-x`; `.x-{mode}` or `:root.x-{mode}` becomes `.x-%s`; any other form is `DS-E084`. Modes other than `light` and `dark` get a `ColorSchemeOverrides` augmentation. |
+| Modes | `defaultColorScheme` is `defaultMode`; one `colorSchemes` entry per mode. `cssVariables.colorSchemeSelector` is derived from `meta.modeSelector`: `:root[data-x="{mode}"]` or `[data-x="{mode}"]` becomes `data-x`; `.x-{mode}` or `:root.x-{mode}` becomes `.x-%s`; any other form is `DS-E084`. **Modes must be `light` and/or `dark`** (batch 2 review): MUI seeds only those two schemes and `createTheme` throws for any other name, so another mode is `DS-E084`. Seeding a custom scheme from an explicit base mode is a follow-up. |
 | Component styling | Theme-centric. The generated React component has no styles of its own: `styled(<rootElement>, { name: '<ThemeKey>', slot: 'Root', overridesResolver: (_p, s) => s.root })` with `ownerState` = the axis values, plus `useThemeProps`. All rules live in `theme.components.<ThemeKey>`. Consumers wrap their app in `ThemeProvider theme={create<Prefix>Theme()}`; without it the component renders unstyled markup. |
 | Cascade parity | The base root rule (no axes, no states) is `styleOverrides.root`. Every other rule, in the IR's canonical order, is one `variants` entry `{ props: <axis values or {}>, style: { <key>: <declarations> } }` where `<key>` is `'&'` repeated `1 + axesCount` times, then each state as the design system renders it (`:hover`, `:focus-visible`, `:active`, `:disabled` or `[aria-disabled="true"]`, `[aria-pressed="true"]`, …), then ` .<ThemeKey>-<slot>` for a non-root slot. `&&` doubles the Emotion class, so specificity equals the CSS target's (root class plus one per axis attribute plus one per state plus one for the slot class), and Emotion emits `styleOverrides` before `variants` and variants in array order, so equal-specificity ties resolve exactly as in the CSS target. Slot rules are never `styleOverrides.<slot>`; they are nested from the root so the slot element stays a plain element. `props: {}` matches every instance (MUI checks only the keys present). |
 | Declaration values | Property names are camelCased. Every value is a string: token references render as `var(<mui var name>)`, literals through the shared CSS value renderers. Emotion never appends `px` to strings. |
 | React shell | `export const <Pascal> = React.forwardRef<React.ComponentRef<'<rootElement>'>, <Pascal>Props>(…)`. Props: one optional prop per axis typed as the exact value union; `disabled?: boolean` when the component has a `disabled` state (rendered as the `disabled` attribute on form-control roots, `aria-disabled` otherwise); one `boolean` prop per ARIA-true state (`pressed`, `selected`, `expanded`, `checked`), rendered as `aria-<state>`; `children` fills the `label` slot if there is one, else the first required non-root slot, else the root; every other non-root slot is a `React.ReactNode` prop named after the slot, rendered in manifest order and omitted when `undefined`. DOM props of the root element are accepted and forwarded, minus the names the component owns. Classes: `<ThemeKey>-root` (merged with `className`) and `<ThemeKey>-<slot>`. Exported alongside: `<camel>Classes` and the `<Pascal>Props`, `<Pascal>OwnerState` types. |
 | Prop names | React prop names are the camelCase form of manifest names: axis `icon-position` is the prop `iconPosition`, slot `sub-title` is `subTitle`, and `classes.subTitle` holds `FxMenuItem-sub-title`. The model carries the prop name on each axis and slot (`prop`), `variants[].props` keys are prop names, and `reparse` maps them back to axes. Type names keep PascalCase of the axis (`MenuItemIconPosition`). |
-| Inexpressible components | A state outside `hover`, `focus-visible`, `active`, `disabled`, and the four ARIA-true states (i.e. a `data-state` state), an element name containing `-` (not an intrinsic JSX element), or a slot named like a reserved prop (`children`, `className`, `style`, `ref`, `key`, an axis name) is `DS-E085` at generation. The manifest fixes it or excludes the component. |
+| Inexpressible components | A state outside `hover`, `focus-visible`, `active`, `disabled`, and the four ARIA-true states (i.e. a `data-state` state); an element that is not an HTML or SVG tag; a void element (`img`, `input`, `hr`, …) anywhere, since every slot holds content; an SVG element other than `svg` when the root is not `svg` (flat slots are children of the root); a slot or axis named like a reserved prop (`children`, `className`, `style`, `ref`, `key`, `sx`, `component`, `as`, `ownerState`, `theme`, `classes`); or two names that camelCase to the same prop: each is `DS-E085` at generation. The manifest fixes it or excludes the component. |
 | Generated files | Under the target's outDir: `theme.model.json`, `theme.ts`, `augmentation.ts`, `components/<Pascal>.tsx` per component, `components/index.ts`, `index.ts`, and `typecheck.tsx` (a type-level probe with `@ts-expect-error` lines that the package's `tsc --noEmit` compiles and tsup never bundles). The augmentation is a `.ts` module (not `.d.ts`) so tsc emits it into the package's published types; the package entry imports it for its side effect. `theme.model.json` starts with a `"generated"` key holding the header text, since JSON has no comments. TS files start with a `//` header line of the same text. |
 | `theme.ts` | `export const <prefix>ThemeOptions = { … } satisfies ThemeOptions;` rendered as a TS object literal from the model's `themeOptions` (insertion order preserved), and `export function create<Prefix>Theme(options: ThemeOptions = {}): Theme` returning `createTheme(deepmerge(<prefix>ThemeOptions, options))`. The package test asserts the literal deep-equals the model, which is what makes the model a faithful proxy for round-trip. |
 | Round-trip | `reparse` reads `theme.model.json`: token vars are rewritten to source names and fed through `parseTokenFile` and `resolveTokens` per category; each component's `styleOverrides.root` and `variants` are reconstructed into (slot, axes, states) keys, re-rendered with the design system's `renderRuleSelector`, and fed through `parseComponentCss`; the variant key sequence must equal the canonical form element for element. Everything is reported as `DS-E081`, pointing at `theme.model.json`. |
 | Plugin contract | `generate(ir, catalog, ctx, diag)` gains a `Diagnostics` parameter so a plugin can report coded errors (`DS-E084`, `DS-E085`) instead of throwing. `bwp-ds generate` writes nothing when any plugin reported an error; drift and round-trip skip a plugin whose generation reported errors. Tailwind ignores the parameter. |
+| IR order fields | `ComponentIR` gains `axisOrder` and `slotOrder` (manifest key order, `root` first), because `serializeIR` sorts record keys and generators must produce identical output from the in-memory IR and from `design.ir.json`. The MUI shell renders slots in `slotOrder` and picks the children slot from it; `manifestFromComponent` rebuilds the records in that order. `irVersion` stays 1 (additive). |
 | Shared value renderers | `src/targets/tailwind/values.ts` moves to `src/targets/css-values.ts` (same exports) because MUI renders the same CSS value strings. |
 | Package | `@bwp-web/styles-mui` builds like `@bwp-web/components` (tsup ESM+CJS, tsc declarations), peer-depends on `@mui/material ^9.4.0`, `@emotion/react`, `@emotion/styled`, `react`, `react-dom`; typechecks and lints the generated TSX (a generation bug fails `npm run typecheck`); tests assert the model equality, the emitted stylesheet, and a static render of every generated component. Version scripts and `auto-tag.yml` wait for Plan 6. |
 | Coverage | Every property in the table is expressible in Emotion, so nothing is `unsupported`; `ignore` yields `partial`. `DS-E083` stays unused until Plan 3b or Flutter. |
@@ -1369,7 +1370,9 @@ The code above is the plan's first cut; the review amendments below are authorit
 - Elements are validated against `src/targets/mui/html-elements.ts` (`HTML_ELEMENTS`, the HTML living-standard tags plus `svg`), not a regex.
 - `RESERVED_PROPS` also holds `sx`, `component`, `as`, `ownerState`, `theme`, `classes`.
 - The axis/state collision check runs only for states that yield a prop (`disabled`, ARIA states).
-- Axes and slots are copied into fresh objects in manifest order.
+- Axes and slots are copied into fresh objects in manifest order, read from the IR's `axisOrder` and `slotOrder` (batch 2 review), never from record key order.
+- Modes must be `light` and/or `dark`; any other mode is DS-E084 (`mui: mode "<m>" cannot be expressed; MUI color schemes are "light" and "dark"`).
+- Void elements (`VOID_ELEMENTS`) are DS-E085 anywhere; SVG elements other than `svg` are DS-E085 unless the root element is `svg`.
 
 - [ ] **Step 4: Run the test to verify it passes**
 
@@ -1521,11 +1524,11 @@ describe('generateMui', () => {
     expect(aug).toContain("  interface ComponentNameToClassKey {\n    FxChip: 'root' | 'icon';\n    FxTag: 'root';\n  }");
     expect(aug).toContain('  interface Components<Theme = unknown> {');
     expect(aug).toContain("    FxChip?: {\n      defaultProps?: ComponentsProps['FxChip'];\n      styleOverrides?: ComponentsOverrides<Theme>['FxChip'];\n      variants?: ComponentsVariants<Theme>['FxChip'];\n    };");
-    expect(aug).not.toContain('ColorSchemeOverrides');
+    expect(aug).not.toContain('ColorSchemeOverrides'); // MUI modes are light/dark only
     expect(aug.trimEnd().endsWith('export {};')).toBe(true);
   });
 
-  it('declares custom color schemes when the modes are not light and dark', () => {
+  it('rejects modes other than light and dark (DS-E084) and emits nothing', () => {
     const config = {
       name: 'Fictional',
       prefix: 'fx',
@@ -1547,9 +1550,9 @@ describe('generateMui', () => {
         '',
       ].join('\n'),
     });
-    expect(diag.errors).toEqual([]);
-    expect(byPath['augmentation.ts']).toContain('  interface ColorSchemeOverrides {\n    day: true;\n    night: true;\n  }');
-    expect(byPath['theme.ts']).toContain("defaultColorScheme: 'day',");
+    expect(Object.keys(byPath)).toEqual([]);
+    expect(diag.errors.map((d) => d.code)).toEqual(['DS-E084', 'DS-E084']);
+    expect(diag.errors[0].message).toContain('"day"');
   });
 
   it('renders a button-rooted shell with exact prop unions, a disabled attribute, and an optional icon slot', () => {
@@ -1585,7 +1588,7 @@ describe('generateMui', () => {
     expect(tag).toContain('export type TagOwnerState = Record<never, never>;');
     expect(tag).toContain('aria-disabled={disabled ? true : undefined}');
     expect(tag).not.toContain('disabled={disabled}');
-    expect(tag).toContain("extends Omit<React.ComponentPropsWithoutRef<'div'>, 'children' | 'disabled'>");
+    expect(tag).toContain("extends Omit<React.ComponentPropsWithoutRef<'div'>, 'aria-disabled' | 'children' | 'disabled'>");
     expect(tag).not.toContain('opacity');
   });
 
@@ -1607,7 +1610,9 @@ describe('generateMui', () => {
       'src/components/card/card.css': '.fx-card {\n  display: block;\n}\n',
     });
     const card = byPath['components/Card.tsx'];
-    expect(card).toContain('aria-pressed={pressed ? true : undefined}');
+    expect(card).toContain("Omit<React.ComponentPropsWithoutRef<'article'>, 'aria-pressed' | 'body' | 'children' | 'media' | 'pressed'>");
+    // state attributes come after the DOM-prop spread so the component's props win
+    expect(card).toContain('        {...other}\n        aria-pressed={pressed ? true : undefined}\n      >');
     expect(card).toContain(
       [
         '        {media === undefined ? null : <div className={cardClasses.media}>{media}</div>}',
@@ -1637,7 +1642,7 @@ describe('generateMui', () => {
     expect(tsx).toContain("  subTitle: 'FxMenuItem-sub-title',");
     expect(tsx).toContain("const { iconPosition = 'start', children, subTitle, className, ...other } = props;");
     expect(tsx).toContain('{subTitle === undefined ? null : <span className={menuItemClasses.subTitle}>{subTitle}</span>}');
-    expect(byPath['theme.ts']).toContain("props: { iconPosition: 'end' }");
+    expect(byPath['theme.ts']).toContain("iconPosition: 'end',");
     expect(byPath['typecheck.tsx']).toContain('<MenuItem iconPosition="end" subTitle="sub-title">');
   });
 
@@ -1651,10 +1656,11 @@ describe('generateMui', () => {
     const { byPath } = generated();
     const probe = byPath['typecheck.tsx'];
     expect(probe).toContain("import { Chip, Tag } from './components/index.js';");
+    expect(probe).not.toContain("from 'react'");
     expect(probe).toContain('export const chipAccepted = (\n  <Chip tone="loud" disabled icon="icon">\n    content\n  </Chip>\n);');
     expect(probe).toContain('// @ts-expect-error tone accepts only the design system values\nexport const chipRejectedTone = <Chip tone="__not_a_value__" />;');
     expect(probe).toContain('// @ts-expect-error unknown props are rejected\nexport const chipRejectedProp = <Chip notAProp="x" />;');
-    expect(probe).toContain('export const tagAccepted = <Tag disabled>content</Tag>;');
+    expect(probe).toContain('export const tagAccepted = (\n  <Tag disabled>\n    content\n  </Tag>\n);');
     expect(probe).not.toContain('tagRejectedTone');
   });
 
@@ -1774,8 +1780,6 @@ function union(keys: readonly string[]): string {
   return keys.length === 0 ? 'never' : keys.map(quoteTs).join(' | ');
 }
 
-const DEFAULT_SCHEMES = new Set(['light', 'dark']);
-
 export function renderAugmentationTs(model: MuiModel): string {
   const { themeOptions } = model;
   const components = Object.values(model.components);
@@ -1783,9 +1787,6 @@ export function renderAugmentationTs(model: MuiModel): string {
     themeOptions.colorSchemes[themeOptions.defaultColorScheme]?.palette.tokens ?? {},
   ).sort(codeUnitCompare);
   const categories = Object.keys(themeOptions.tokens);
-  const customSchemes = Object.keys(themeOptions.colorSchemes).filter(
-    (m) => !DEFAULT_SCHEMES.has(m),
-  );
 
   const lines: string[] = [muiHeader(model), ''];
   if (components.length > 0) {
@@ -1832,13 +1833,6 @@ export function renderAugmentationTs(model: MuiModel): string {
     '    tokens: DsTokens;',
     '  }',
   );
-  if (customSchemes.length > 0) {
-    lines.push('  interface ColorSchemeOverrides {');
-    for (const mode of customSchemes) {
-      lines.push(`    ${mode}: true;`);
-    }
-    lines.push('  }');
-  }
   if (components.length > 0) {
     lines.push('  interface ComponentsPropsList {');
     for (const c of components) {
@@ -1865,7 +1859,7 @@ export function renderAugmentationTs(model: MuiModel): string {
 }
 ```
 
-If a mode name is not a valid TypeScript identifier (it can contain `-`), render it quoted in `ColorSchemeOverrides` (`'high-contrast': true;`) using `renderKey`.
+(Modes are `light`/`dark` only, so no `ColorSchemeOverrides` augmentation is emitted.)
 
 - [ ] **Step 4: Create `src/targets/mui/render-component.ts`**
 
@@ -1904,10 +1898,14 @@ export function renderComponentTsx(model: MuiModel, c: MuiComponentModel): strin
   const slotProps = slotNames.filter((s) => s !== c.childrenSlot);
   // React prop names are the camelCase form of the manifest names (`icon-position` -> `iconPosition`).
   const owned = [
-    'children',
-    ...axisProps,
-    ...c.stateProps.map((p) => p.prop),
-    ...slotProps.map((s) => c.slots[s].prop),
+    ...new Set([
+      'children',
+      ...axisProps,
+      ...c.stateProps.map((p) => p.prop),
+      // the attribute the state renders is owned too, so a caller cannot pass it directly
+      ...c.stateProps.map((p) => p.attribute),
+      ...slotProps.map((s) => c.slots[s].prop),
+    ]),
   ].sort(codeUnitCompare);
 
   const lines: string[] = [
@@ -1991,10 +1989,12 @@ export function renderComponentTsx(model: MuiModel, c: MuiComponentModel): strin
     '        ownerState={ownerState}',
     `        className={className ? \`\${${classes}.root} \${className}\` : ${classes}.root}`,
   );
+  // DOM props first, then the state attributes, so the component's props always win.
+  lines.push('        {...other}');
   for (const state of c.stateProps) {
     lines.push(`        ${attributeJsx(state.prop, state.attribute)}`);
   }
-  lines.push('        {...other}', '      >');
+  lines.push('      >');
   if (c.childrenSlot === null) {
     lines.push('        {children}');
   }
@@ -2058,7 +2058,6 @@ export function renderTypecheckTsx(model: MuiModel): string {
     return lines.join('\n');
   }
   lines.push(
-    "import * as React from 'react';",
     `import { ${components.map((c) => c.exportName).join(', ')} } from './components/index.js';`,
     '',
   );
@@ -3598,7 +3597,7 @@ key).
   `create<Prefix>Theme(options?)`, which deep-merges `options` on top.
 - `augmentation.ts`: module augmentation of `@mui/material/styles`: exact token
   keys on `Palette`, `Theme`, `ThemeOptions`, and `ThemeVars`; one
-  `Components` entry per design-system component; custom color-scheme names.
+  `Components` entry per design-system component.
 - `components/<Pascal>.tsx`: one React component per design-system component.
 - `typecheck.tsx`: a type-level probe compiled by the package's `tsc`, never
   bundled. It accepts each component with the design system's values and has
@@ -3692,6 +3691,8 @@ that makes the package's `tsc` or `eslint` fail is fixed in
 | DS-E084 | A configuration the target cannot express: for MUI, a `modeSelector` that is not an attribute or class form, or a non-color token whose value varies by mode | Change `ds.config.json` or the token. |
 | DS-E085 | A component the MUI target cannot render as a React component: a state outside the pseudo-class and ARIA sets, a slot element that is not a plain HTML tag, or a slot named like a reserved prop, axis, or state | Change the manifest, or set `targets.mui` to `{ "excluded": "<reason>" }`. |
 ```
+
+`docs/design-system/ir.md`: in the `ComponentIR` shape, add `axisOrder: string[]` and `slotOrder: string[]` with one sentence: "Manifest key order for axes and slots (`root` first). `design.ir.json` sorts object keys, so generators that need authored order (the MUI shells render slots in `slotOrder`) read these instead of the record keys."
 
 `docs/design-system/authoring-guide.md`: in the manifest table's `targets` row, extend the hints clause to "(`tailwind` and `mui`: `{ "ignore": [<property>…] }`, validated against the property table; `mui: {}` generates a React component for the component)".
 
@@ -3799,6 +3800,8 @@ List every created, modified, and deleted path grouped by package, the test coun
 - **`assertUniqueNames` (Tailwind) still throws** a plain `Error`; with the `diag` parameter on `generate` it can become a coded diagnostic. Not changed here to keep the Tailwind plugin untouched.
 - **Own components emit no `data-<axis>` attributes.** Styling goes through `ownerState`, so the DOM carries the axis only as computed styles. If Plan 4's harness wants to select by axis in the DOM, add `data-*` attributes in the shell (they would not change the styles).
 - **`sideEffects: false`** on the package relies on the augmentation being type-only. If a future generated file has runtime side effects, drop the flag.
+- **Modes other than `light`/`dark`** are `DS-E084` for MUI. MUI can host a custom scheme if it is seeded from a base palette (`{ ...createTheme({ palette: { mode: 'light' } }).palette, tokens }` works); doing so needs a config hint naming the base mode per custom mode.
+- **Void slot elements** (`img` for an avatar, `hr` for a divider) are `DS-E085`; supporting them means a slot whose prop maps to attributes rather than children.
 - **Custom (`data-state`) states** are `DS-E085` for MUI. Supporting them as a single `state?: '<a>' | '<b>'` prop is a small follow-up once a component needs it.
 - **Theme-key collisions** need no check: PascalCase of a kebab-case name is injective (`ex-ample` gives `BwpExAmple`, `example` gives `BwpExample`), so two components can never share a theme key or class stem.
 
@@ -3830,15 +3833,24 @@ and where it stands. Update the status table after every milestone.
 
 | Batch | Tasks | State |
 | --- | --- | --- |
-| 1 | 1-2 contract `diag`, shared value renderers, hints, names, error codes, model | done, reviewed, awaiting user commit |
-| 2 | 3 renderers (`theme.ts`, `augmentation.ts`, shells, `typecheck.tsx`, model JSON) | pending |
+| 1 | 1-2 contract `diag`, shared value renderers, hints, names, error codes, model | done, reviewed, committed by user |
+| 2 | 3 renderers (`theme.ts`, `augmentation.ts`, shells, `typecheck.tsx`, model JSON) | done, reviewed, awaiting user commit |
 | 3 | 4 `reparse`, plugin object, registration, coverage | pending |
 | 4 | 5 `styles-mui` package, wiring, generated output, docs | pending |
 | 5 | 6 final verification | pending |
 
-Test suite at the start of Plan 3: 25 files, 289 tests (end of Plan 2). After batch 1: 27 files, 317 tests.
+Test suite at the start of Plan 3: 25 files, 289 tests (end of Plan 2). After batch 1: 27 files, 317 tests. After batch 2: 28 files, 334 tests (`design.ir.json` regenerated for the new `axisOrder`/`slotOrder` fields).
 
 ### Decisions made during execution
+
+- Batch 2 review (generated output compiled against MUI 9.4 and React 19 with
+  tsc and eslint, rendered with Emotion; all clean): modes are limited to
+  `light`/`dark` (DS-E084 otherwise); `ComponentIR` gained `axisOrder` and
+  `slotOrder` so output no longer depends on IR key order; void elements and
+  misplaced SVG elements are DS-E085; state attributes are emitted after the
+  DOM-prop spread and omitted from the accepted DOM props; `typecheck.tsx`
+  drops the unused React import. Renderers stay plain multi-line, with no
+  column-width heuristics.
 
 - Batch 1 review: `bwp-ds generate` exits from `diagnostics.hasErrors()`, not
   from the presence of an IR (a plugin error with an IR present previously

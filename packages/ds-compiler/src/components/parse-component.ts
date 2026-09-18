@@ -117,13 +117,20 @@ export function parseComponentCss(
     (r) => Object.keys(r.declarations).length > 0,
   );
 
+  const slotKeys = Object.keys(manifest.slots);
+  const slotOrder = slotKeys.includes('root')
+    ? ['root', ...slotKeys.filter((s) => s !== 'root')]
+    : slotKeys;
+
   return {
     name: manifest.name,
     displayName: manifest.displayName,
     description: manifest.description,
     axes: manifest.axes,
+    axisOrder,
     states: manifest.states,
     slots: manifest.slots,
+    slotOrder,
     preview: manifest.preview,
     rules: sortRules(nonEmptyRules, manifest),
     targets: manifest.targets,

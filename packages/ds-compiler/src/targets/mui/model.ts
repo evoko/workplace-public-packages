@@ -12,7 +12,7 @@ import type {
 import { codeUnitCompare } from '../../sources.js';
 import { renderLiteralValue, renderTokenValue } from '../css-values.js';
 import type { PluginContext } from '../plugin.js';
-import { HTML_ELEMENTS, SVG_ELEMENTS } from './html-elements.js';
+import { HTML_ELEMENTS, SVG_ELEMENTS, VOID_ELEMENTS } from './html-elements.js';
 import { ignoredForMui, isMappedForMui } from './hints.js';
 import {
   camelCategory,
@@ -243,14 +243,30 @@ function componentModel(
   };
   const rootElement = component.slots.root?.element ?? 'div';
   const themeKey = themeKeyFor(prefix, component.name);
-  for (const [slot, def] of Object.entries(component.slots)) {
-    if (!HTML_ELEMENTS.has(def.element) && !SVG_ELEMENTS.has(def.element)) {
+  for (const slot of component.slotOrder) {
+    const def = component.slots[slot];
+    const el = def.element;
+    if (!HTML_ELEMENTS.has(el) && !SVG_ELEMENTS.has(el)) {
+      fail(`slot "${slot}" uses element "${el}", which is not an HTML element`);
+      continue;
+    }
+    if (VOID_ELEMENTS.has(el)) {
       fail(
-        `slot "${slot}" uses element "${def.element}", which is not an HTML element`,
+        `slot "${slot}" uses void element "${el}", which cannot hold content`,
+      );
+      continue;
+    }
+    if (
+      SVG_ELEMENTS.has(el) &&
+      !HTML_ELEMENTS.has(el) &&
+      rootElement !== 'svg'
+    ) {
+      fail(
+        `slot "${slot}" uses SVG element "${el}" but the root is "${rootElement}", not svg`,
       );
     }
   }
-  const axisNames = Object.keys(component.axes);
+  const axisNames = component.axisOrder;
   for (const axis of axisNames) {
     if (RESERVED_PROPS.has(propNameFor(axis))) {
       fail(`axis "${axis}" collides with a reserved React prop`);
@@ -280,7 +296,7 @@ function componentModel(
       );
     }
   }
-  const nonRoot = Object.keys(component.slots).filter((s) => s !== 'root');
+  const nonRoot = component.slotOrder.filter((s) => s !== 'root');
   const childrenSlot = nonRoot.includes('label')
     ? 'label'
     : (nonRoot.find((s) => !component.slots[s].optional) ?? null);
@@ -355,7 +371,7 @@ function componentTheme(
   model: MuiComponentModel,
 ): MuiComponentTheme {
   const ignored = ignoredForMui(component);
-  const axisOrder = Object.keys(component.axes);
+  const axisOrder = component.axisOrder;
   let root: MuiDeclarations = {};
   const variants: MuiVariant[] = [];
   for (const rule of component.rules) {
@@ -409,6 +425,19 @@ export function buildMuiModel(
       `mui: modeSelector "${ir.meta.modeSelector}" cannot be expressed as an MUI colorSchemeSelector`,
       { file: 'ds.config.json', line: 1, column: 1 },
     );
+  }
+  // MUI's `createTheme` seeds only the `light` and `dark` color schemes; any
+  // other scheme name throws at runtime (`Cannot use 'in' operator to search
+  // for 'defaultChannel'`), so a design system with a differently named mode
+  // cannot be expressed at all.
+  for (const mode of ir.meta.modes) {
+    if (mode !== 'light' && mode !== 'dark') {
+      diag.add(
+        'DS-E084',
+        `mui: mode "${mode}" cannot be expressed; MUI color schemes are "light" and "dark"`,
+        { file: 'ds.config.json', line: 1, column: 1 },
+      );
+    }
   }
   const themeOptions: MuiThemeOptions = {
     cssVariables: { cssVarPrefix: prefix, colorSchemeSelector: selector ?? '' },

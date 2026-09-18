@@ -217,3 +217,20 @@ export type {
   MuiThemeOptions,
   MuiVariant,
 } from './targets/mui/model.js';
+export { generateMui } from './targets/mui/generate.js';
+export {
+  muiHeader,
+  quoteTs,
+  renderAugmentationTs,
+  renderModelJson,
+  renderThemeTs,
+  renderTsLiteral,
+  themeFactoryName,
+  themeOptionsName,
+} from './targets/mui/render-ts.js';
+export {
+  renderComponentTsx,
+  renderComponentsIndex,
+  renderIndexTs,
+  renderTypecheckTsx,
+} from './targets/mui/render-component.js';

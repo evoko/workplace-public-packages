@@ -17,6 +17,10 @@
           ]
         }
       },
+      "axisOrder": [
+        "tone",
+        "size"
+      ],
       "description": "Starter component that exercises axes, states, and a slot. Replace it with real components.",
       "displayName": "Example",
       "name": "example",
@@ -393,6 +397,11 @@
           },
           "states": []
         }
+      ],
+      "slotOrder": [
+        "root",
+        "label",
+        "icon"
       ],
       "slots": {
         "icon": {

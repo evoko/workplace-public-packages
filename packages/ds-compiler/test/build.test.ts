@@ -38,6 +38,12 @@ describe('buildIR on the mini fixture', () => {
     });
   });
 
+  it('records the manifest axis and slot order on the IR, root first', () => {
+    const { ir } = buildIR(FIXTURE_MINI);
+    expect(ir!.components.button.axisOrder).toEqual(['variant', 'size']);
+    expect(ir!.components.button.slotOrder).toEqual(['root', 'label', 'icon']);
+  });
+
   it('orders button rules deterministically', () => {
     const { ir } = buildIR(FIXTURE_MINI);
     expect(

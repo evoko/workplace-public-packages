@@ -120,6 +120,27 @@ export const HTML_ELEMENTS: ReadonlySet<string> = new Set([
 ]);
 
 /**
+ * Void elements: they can never hold children, so they cannot render a
+ * slot's content (a `label`/optional-slot child, or `children`). A slot
+ * (including `root`) that uses one is DS-E085.
+ */
+export const VOID_ELEMENTS: ReadonlySet<string> = new Set([
+  'area',
+  'base',
+  'br',
+  'col',
+  'embed',
+  'hr',
+  'img',
+  'input',
+  'link',
+  'meta',
+  'source',
+  'track',
+  'wbr',
+]);
+
+/**
  * SVG element names accepted for a slot nested inside an `svg` root. `svg`
  * itself is in both sets: it is a valid root and a valid nested element.
  */

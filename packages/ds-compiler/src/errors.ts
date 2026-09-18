@@ -132,7 +132,7 @@ export const ERROR_CATALOG = {
   },
   'DS-E084': {
     title: 'Configuration not expressible for target',
-    hint: 'The target cannot represent this. For MUI, modeSelector must be `:root[data-x="{mode}"]`, `[data-x="{mode}"]`, or `.x-{mode}`, and only color tokens may vary by mode. Change ds.config.json or the token.',
+    hint: 'The target cannot represent this. For MUI, modeSelector must be `:root[data-x="{mode}"]`, `[data-x="{mode}"]`, or `.x-{mode}`; modes must be exactly "light" and "dark" (MUI seeds only those two color schemes); and only color tokens may vary by mode. Change ds.config.json or the token.',
   },
   'DS-E085': {
     title: 'Component not expressible for target',

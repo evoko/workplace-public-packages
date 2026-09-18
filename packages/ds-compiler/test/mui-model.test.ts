@@ -220,6 +220,42 @@ describe('mui model', () => {
     expect(diag.errors[0].message).toContain('html[data-fx-theme="{mode}"]');
   });
 
+  it('rejects modes other than light and dark, one DS-E084 per mode', () => {
+    const config = JSON.parse(
+      JSON.stringify({
+        name: 'Fictional',
+        prefix: 'fx',
+        modes: ['day', 'night'],
+        defaultMode: 'day',
+        targets: {
+          tailwind: { outDir: 'out/tailwind' },
+          mui: { outDir: 'out/mui' },
+        },
+        coverageFile: 'out/coverage.md',
+      }),
+    );
+    const { model, diag } = modelFor({
+      'ds.config.json': JSON.stringify(config, null, 2),
+      'src/tokens/color.css': [
+        ':root {',
+        '  --fx-color-neutral-900: #111111;',
+        '  --fx-color-text-default: var(--fx-color-neutral-900);',
+        '}',
+        ':root[data-fx-theme="night"] {',
+        '  --fx-color-text-default: #ffffff;',
+        '}',
+        '',
+      ].join('\n'),
+    });
+    expect(model).toBeNull();
+    expect(diag.errors.map((d) => [d.code, d.location?.file])).toEqual([
+      ['DS-E084', 'ds.config.json'],
+      ['DS-E084', 'ds.config.json'],
+    ]);
+    expect(diag.errors[0].message).toContain('mode "day"');
+    expect(diag.errors[1].message).toContain('mode "night"');
+  });
+
   it('rejects a non-color token that varies by mode (DS-E084 at the token)', () => {
     const { model, diag } = modelFor({
       'src/tokens/space.css':
@@ -327,6 +363,61 @@ describe('mui model', () => {
     expect(diag.errors).toEqual([]);
     expect(model!.components['icon-glyph'].rootElement).toBe('svg');
     expect(model!.components['icon-glyph'].slots.mark.element).toBe('path');
+  });
+
+  it('rejects a void element, which cannot hold a slot or children (DS-E085)', () => {
+    const { model, diag } = modelFor({
+      'src/components/pic/pic.manifest.json': JSON.stringify({
+        name: 'pic',
+        displayName: 'Pic',
+        baseline: false,
+        slots: { root: { element: 'img' } },
+        targets: { tailwind: {}, mui: {} },
+      }),
+      'src/components/pic/pic.css': '.fx-pic {\n  display: block;\n}\n',
+    });
+    expect(model).toBeNull();
+    expect(
+      diag.errors.some(
+        (d) =>
+          d.code === 'DS-E085' &&
+          d.message.includes('slot "root"') &&
+          d.message.includes('void element "img"'),
+      ),
+    ).toBe(true);
+  });
+
+  it('rejects an SVG-only element nested outside an svg root (DS-E085)', () => {
+    const { model, diag } = modelFor({
+      'src/components/icon-bad/icon-bad.manifest.json': JSON.stringify({
+        name: 'icon-bad',
+        displayName: 'Icon bad',
+        baseline: false,
+        slots: {
+          root: { element: 'span' },
+          glyph: { element: 'svg' },
+          mark: { element: 'path' },
+        },
+        targets: { tailwind: {}, mui: {} },
+      }),
+      'src/components/icon-bad/icon-bad.css':
+        '.fx-icon-bad {\n  display: block;\n}\n',
+    });
+    expect(model).toBeNull();
+    expect(
+      diag.errors.some(
+        (d) =>
+          d.code === 'DS-E085' &&
+          d.message.includes('slot "mark"') &&
+          d.message.includes('SVG element "path"') &&
+          d.message.includes('root is "span"'),
+      ),
+    ).toBe(true);
+    // "svg" itself is a plain HTML element wherever it is nested; only the
+    // svg-only "path" slot is rejected.
+    expect(diag.errors.some((d) => d.message.includes('slot "glyph"'))).toBe(
+      false,
+    );
   });
 
   it('rejects two axes that camelCase to the same React prop (DS-E085)', () => {

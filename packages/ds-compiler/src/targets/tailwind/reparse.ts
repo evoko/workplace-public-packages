@@ -23,15 +23,24 @@ import type { GeneratedFile, PluginContext } from '../plugin.js';
 import { isMappedForTailwind } from './hints.js';
 import { sourceNameFromTailwind } from './names.js';
 
-/** A manifest equivalent to a component IR, for re-parsing generated CSS. Baseline warnings are irrelevant here. */
+/**
+ * A manifest equivalent to a component IR, for re-parsing generated CSS.
+ * Baseline warnings are irrelevant here. `axes` and `slots` are rebuilt in
+ * `axisOrder`/`slotOrder` rather than passed through as-is, because a
+ * component IR read back from `design.ir.json` has those records
+ * alphabetized by `serializeIR`; without this, a generator that trusts key
+ * order (e.g. MUI's variant/prop order) would produce different output for
+ * the same design system depending on whether it started from the in-memory
+ * IR or the serialized one.
+ */
 export function manifestFromComponent(c: ComponentIR): Manifest {
   return {
     name: c.name,
     displayName: c.displayName,
     description: c.description,
-    axes: c.axes,
+    axes: Object.fromEntries(c.axisOrder.map((a) => [a, c.axes[a]])),
     states: c.states,
-    slots: c.slots,
+    slots: Object.fromEntries(c.slotOrder.map((s) => [s, c.slots[s]])),
     preview: c.preview,
     baseline: false,
     targets: c.targets,

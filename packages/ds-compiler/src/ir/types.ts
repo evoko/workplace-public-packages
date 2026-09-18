@@ -83,8 +83,17 @@ export interface ComponentIR {
   displayName: string;
   description?: string;
   axes: Record<string, AxisIR>;
+  /**
+   * The manifest's axis key order. `axes` (a plain object) survives a
+   * serialize/parse round trip with its keys alphabetized, so any consumer
+   * that needs the authored order (variant prop order, ownerState fields)
+   * must read this array instead of `Object.keys(axes)`.
+   */
+  axisOrder: string[];
   states: string[];
   slots: Record<string, SlotIR>;
+  /** The manifest's slot key order, `root` first when present. See `axisOrder`. */
+  slotOrder: string[];
   preview: Record<string, string>;
   rules: Rule[];
   targets: ManifestTargets;
