@@ -32,6 +32,7 @@ describe('tailwind round-trip', () => {
     const reparsed = tailwindPlugin.reparse(
       tailwindPlugin.generate(ir, null, ctx, new Diagnostics()),
       ir,
+      null,
       ctx,
       diag,
     );
@@ -58,11 +59,13 @@ describe('tailwind round-trip', () => {
       config: result.config!,
       compilerVersion: '0.0.0-test',
       outDir: `${FIXTURE_MINI}out`,
+      allowCatalogMismatch: false,
     };
     const diag = new Diagnostics();
     const reparsed = tailwindPlugin.reparse(
       tailwindPlugin.generate(ir, null, ctx, new Diagnostics()),
       ir,
+      null,
       ctx,
       diag,
     );
@@ -86,6 +89,7 @@ describe('tailwind round-trip', () => {
     const reparsed = tailwindPlugin.reparse(
       tailwindPlugin.generate(ir, null, ctx, new Diagnostics()),
       ir,
+      null,
       ctx,
       diag,
     );
@@ -117,7 +121,7 @@ describe('tailwind round-trip', () => {
           : f,
     );
     const diag = new Diagnostics();
-    const reparsed = tailwindPlugin.reparse(tampered, ir, ctx, diag);
+    const reparsed = tailwindPlugin.reparse(tampered, ir, null, ctx, diag);
     // removing the space token makes the chip's four padding longhands unresolvable
     expect(diag.errors.length).toBeGreaterThan(0);
     expect(new Set(diag.errors.map((d) => d.code))).toEqual(
@@ -138,7 +142,7 @@ describe('tailwind round-trip', () => {
         : f,
     );
     const d2 = new Diagnostics();
-    const r2 = tailwindPlugin.reparse(onlyCss, ir, ctx, d2)!;
+    const r2 = tailwindPlugin.reparse(onlyCss, ir, null, ctx, d2)!;
     const diffs = diffIR(ir, r2, scopeFor(ir));
     expect(diffs).toHaveLength(1);
     expect(diffs[0]).toMatchObject({
@@ -159,7 +163,7 @@ describe('tailwind round-trip', () => {
         : f,
     );
     const d3 = new Diagnostics();
-    expect(tailwindPlugin.reparse(unknownVar, ir, ctx, d3)).toBeNull();
+    expect(tailwindPlugin.reparse(unknownVar, ir, null, ctx, d3)).toBeNull();
     expect(d3.errors[0].message).toContain('--tw-mystery');
   });
 
@@ -180,7 +184,7 @@ describe('tailwind round-trip', () => {
         : f,
     );
     const diag = new Diagnostics();
-    expect(tailwindPlugin.reparse(tampered, ir, ctx, diag)).toBeNull();
+    expect(tailwindPlugin.reparse(tampered, ir, null, ctx, diag)).toBeNull();
     expect(new Set(diag.errors.map((d) => d.code))).toEqual(
       new Set(['DS-E081']),
     );
@@ -205,7 +209,7 @@ describe('tailwind round-trip', () => {
         : f,
     );
     const diag = new Diagnostics();
-    expect(tailwindPlugin.reparse(tampered, ir, ctx, diag)).toBeNull();
+    expect(tailwindPlugin.reparse(tampered, ir, null, ctx, diag)).toBeNull();
     expect(new Set(diag.errors.map((d) => d.code))).toEqual(
       new Set(['DS-E081']),
     );
@@ -230,7 +234,7 @@ describe('tailwind round-trip', () => {
       };
     });
     const diag = new Diagnostics();
-    expect(tailwindPlugin.reparse(tampered, ir, ctx, diag)).toBeNull();
+    expect(tailwindPlugin.reparse(tampered, ir, null, ctx, diag)).toBeNull();
     expect(new Set(diag.errors.map((d) => d.code))).toEqual(
       new Set(['DS-E081']),
     );
@@ -254,7 +258,7 @@ describe('tailwind round-trip', () => {
         : f,
     );
     const diag = new Diagnostics();
-    expect(tailwindPlugin.reparse(tampered, ir, ctx, diag)).toBeNull();
+    expect(tailwindPlugin.reparse(tampered, ir, null, ctx, diag)).toBeNull();
     expect(diag.errors[0].location?.file).toBe('theme.css');
     expect(diag.errors[0].message).not.toContain('src/tokens/');
   });
@@ -290,7 +294,7 @@ describe('tailwind round-trip', () => {
       return { ...f, contents: swapped };
     });
     const diag = new Diagnostics();
-    expect(tailwindPlugin.reparse(tampered, ir, ctx, diag)).toBeNull();
+    expect(tailwindPlugin.reparse(tampered, ir, null, ctx, diag)).toBeNull();
     expect(new Set(diag.errors.map((d) => d.code))).toEqual(
       new Set(['DS-E081']),
     );
@@ -314,7 +318,7 @@ describe('tailwind round-trip', () => {
         : f,
     );
     const diag = new Diagnostics();
-    expect(tailwindPlugin.reparse(tampered, ir, ctx, diag)).toBeNull();
+    expect(tailwindPlugin.reparse(tampered, ir, null, ctx, diag)).toBeNull();
     // Exactly the one real diagnostic from parseComponentCss: no extraneous
     // "canonical form" or rule-count noise from verifySelectors as well.
     expect(diag.errors).toHaveLength(1);
@@ -343,7 +347,7 @@ describe('tailwind round-trip', () => {
         : f,
     );
     const diag = new Diagnostics();
-    expect(tailwindPlugin.reparse(tampered, ir, ctx, diag)).toBeNull();
+    expect(tailwindPlugin.reparse(tampered, ir, null, ctx, diag)).toBeNull();
     expect(diag.errors[0].location?.file).toBe('components.css');
   });
 
@@ -361,7 +365,7 @@ describe('tailwind round-trip', () => {
         : f,
     );
     const diag = new Diagnostics();
-    expect(tailwindPlugin.reparse(tampered, ir, ctx, diag)).toBeNull();
+    expect(tailwindPlugin.reparse(tampered, ir, null, ctx, diag)).toBeNull();
     expect(diag.errors[0].message).toContain(
       'expected "@theme static", got "@theme inline"',
     );
@@ -384,7 +388,7 @@ describe('tailwind round-trip', () => {
         : f,
     );
     const diag = new Diagnostics();
-    const reparsed = tailwindPlugin.reparse(singleQuoted, ir, ctx, diag);
+    const reparsed = tailwindPlugin.reparse(singleQuoted, ir, null, ctx, diag);
     expect(diag.items).toEqual([]);
     expect(reparsed).not.toBeNull();
     expect(diffIR(ir, reparsed!, scopeFor(ir))).toEqual([]);
@@ -401,7 +405,7 @@ describe('tailwind round-trip', () => {
         : f,
     );
     const diag = new Diagnostics();
-    expect(tailwindPlugin.reparse(tampered, ir, ctx, diag)).toBeNull();
+    expect(tailwindPlugin.reparse(tampered, ir, null, ctx, diag)).toBeNull();
     expect(diag.errors[0].message).toContain(
       'unexpected rule at the top level of theme.css',
     );

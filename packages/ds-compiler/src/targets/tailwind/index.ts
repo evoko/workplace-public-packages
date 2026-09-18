@@ -13,7 +13,8 @@ import { reparseTailwind } from './reparse.js';
 export const tailwindPlugin: TargetPlugin<null> = {
   id: TAILWIND_ID,
   generate: (ir, _catalog, ctx) => generateTailwind(ir, ctx),
-  reparse: reparseTailwind,
+  reparse: (files, ir, _catalog, ctx, diag) =>
+    reparseTailwind(files, ir, ctx, diag),
   coverage: (ir) =>
     coverageEntries(TAILWIND_ID, ir, {
       exclusion: tailwindExclusion,

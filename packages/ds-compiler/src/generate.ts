@@ -66,9 +66,15 @@ function removeEmptySubdirs(dir: string): void {
   }
 }
 
+export interface GenerateOptions {
+  /** A catalog captured from another framework version is a warning, not an error. */
+  allowCatalogMismatch?: boolean;
+}
+
 /**
- * Runs every plugin's `generate` once. A plugin that reports errors on `diag`
- * is left out of the result, so callers never write or compare its output.
+ * Runs every plugin's `loadCatalog` (when it has one) and `generate` once.
+ * A plugin that reports errors while loading its catalog or generating is
+ * left out of the result, so callers never write or compare its output.
  */
 export function generateOutputs(
   rootDir: string,
@@ -77,14 +83,25 @@ export function generateOutputs(
   plugins: readonly TargetPlugin[],
   compilerVersion: string,
   diag: Diagnostics,
+  options: GenerateOptions = {},
 ): PluginOutput[] {
   const outputs: PluginOutput[] = [];
   for (const plugin of plugins) {
-    const ctx = pluginContext(rootDir, config, compilerVersion, plugin.id);
+    const ctx = pluginContext(
+      rootDir,
+      config,
+      compilerVersion,
+      plugin.id,
+      options,
+    );
     const before = diag.errors.length;
-    const files = plugin.generate(ir, null, ctx, diag);
+    const catalog = plugin.loadCatalog ? plugin.loadCatalog(ctx, diag) : null;
+    if (diag.errors.length > before) {
+      continue;
+    }
+    const files = plugin.generate(ir, catalog, ctx, diag);
     if (diag.errors.length === before) {
-      outputs.push({ plugin, ctx, files });
+      outputs.push({ plugin, ctx, catalog, files });
     }
   }
   return outputs;
@@ -92,15 +109,17 @@ export function generateOutputs(
 
 /**
  * Builds the IR and writes every requested target's files into its outDir.
- * Nothing is written when the IR has errors or when any plugin reports a
- * generation error. The outDir is owned by the generator: every file it did
- * not produce there, at any depth and including dotfiles, is deleted, and any
- * subdirectory left empty by that cleanup is removed too (never the outDir
- * itself), so the directory always equals a fresh generation.
+ * Nothing is written when the IR has errors, when a catalog fails to load,
+ * or when any plugin reports a generation error. The outDir is owned by the
+ * generator: every file it did not produce there, at any depth and including
+ * dotfiles, is deleted, and any subdirectory left empty by that cleanup is
+ * removed too (never the outDir itself), so the directory always equals a
+ * fresh generation.
  */
 export function generate(
   rootDir: string,
   ids: readonly string[] = targetIds(),
+  options: GenerateOptions = {},
 ): GenerateResult {
   const plugins = resolvePlugins([...new Set(ids)]);
   const result = buildIR(rootDir);
@@ -120,6 +139,7 @@ export function generate(
     plugins,
     COMPILER_VERSION,
     diag,
+    options,
   );
   if (diag.hasErrors()) {
     // A plugin reported a generation error: write nothing for any target,

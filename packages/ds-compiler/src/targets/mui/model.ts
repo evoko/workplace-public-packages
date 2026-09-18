@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { FORM_CONTROL_ELEMENTS } from '../../components/render-selector.js';
 import { ARIA_TRUE_STATES, PSEUDO_STATES } from '../../components/states.js';
-import type { Diagnostics, SourceLocation } from '../../errors.js';
+import type { Diagnostics } from '../../errors.js';
 import type {
   ComponentIR,
   DesignIR,
@@ -13,11 +13,14 @@ import { codeUnitCompare } from '../../sources.js';
 import { renderLiteralValue, renderTokenValue } from '../css-values.js';
 import type { PluginContext } from '../plugin.js';
 import { HTML_ELEMENTS, SVG_ELEMENTS, VOID_ELEMENTS } from './html-elements.js';
+export { MUI_PACKAGE, MUI_RANGE } from './framework.js';
+import { MUI_PACKAGE, MUI_RANGE } from './framework.js';
 import { ignoredForMui, isMappedForMui } from './hints.js';
+import { manifestLocation } from './mapping.js';
 import {
   camelCategory,
-  camelProperty,
   colorSchemeSelectorFor,
+  muiPropertyKey,
   muiVarName,
   pascalCase,
   propNameFor,
@@ -25,10 +28,6 @@ import {
   specificityKey,
   themeKeyFor,
 } from './names.js';
-
-export const MUI_PACKAGE = '@mui/material';
-/** The MUI range the generated package peer-depends on. Bump with the catalog in Plan 3b. */
-export const MUI_RANGE = '^9.4.0';
 
 /** camelCase property to CSS text. Every value is a string: Emotion appends `px` to bare numbers. */
 export type MuiDeclarations = Record<string, string>;
@@ -217,14 +216,6 @@ const RESERVED_PROPS: ReadonlySet<string> = new Set([
   'classes',
 ]);
 
-function manifestLocation(component: ComponentIR): SourceLocation {
-  return {
-    file: `src/components/${component.name}/${component.name}.manifest.json`,
-    line: 1,
-    column: 1,
-  };
-}
-
 function ariaAttributeFor(state: string): string | null {
   const entry = Object.entries(ARIA_TRUE_STATES).find(([, s]) => s === state);
   return entry ? entry[0] : null;
@@ -382,7 +373,7 @@ function componentTheme(
       continue;
     }
     const decls: MuiDeclarations = Object.fromEntries(
-      props.map((p) => [camelProperty(p), muiValue(ir, rule.declarations[p])]),
+      props.map((p) => [muiPropertyKey(p), muiValue(ir, rule.declarations[p])]),
     );
     const axesCount = Object.keys(rule.axes).length;
     if (rule.slot === 'root' && axesCount === 0 && rule.states.length === 0) {
@@ -398,8 +389,7 @@ function componentTheme(
       axesCount,
       rule.states,
       model.rootElement,
-      rule.slot,
-      model.themeKey,
+      rule.slot === 'root' ? null : model.slots[rule.slot].className,
     );
     variants.push({ props: variantProps, style: { [key]: decls } });
   }

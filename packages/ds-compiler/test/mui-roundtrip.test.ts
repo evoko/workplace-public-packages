@@ -47,7 +47,7 @@ function reparse(
   ctx: ReturnType<typeof twContext>,
 ) {
   const diag = new Diagnostics();
-  const reparsed = muiPlugin.reparse(files, ir, ctx, diag);
+  const reparsed = muiPlugin.reparse(files, ir, null, ctx, diag);
   return { diag, reparsed };
 }
 
@@ -88,6 +88,7 @@ describe('mui round-trip', () => {
       config: result.config!,
       compilerVersion: '0.0.0-test',
       outDir: `${FIXTURE_MINI}out`,
+      allowCatalogMismatch: false,
     };
     const { diag, reparsed } = reparse(
       muiPlugin.generate(ir, null, ctx, new Diagnostics()),

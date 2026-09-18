@@ -219,6 +219,43 @@ describe('bwp-ds CLI', () => {
     expect(stale.stdout).toContain('steps: {"lint":"pass","drift":"fail"');
   });
 
+  it('capture-defaults requires --target and rejects targets without a catalog', () => {
+    const root = twRoot();
+    expect(run(['capture-defaults', '--root', root]).code).toBe(1);
+    const tw = run([
+      'capture-defaults',
+      '--root',
+      root,
+      '--target',
+      'tailwind',
+    ]);
+    expect(tw.code).toBe(1);
+    expect(tw.stderr).toContain('has no defaults catalog');
+    const unknown = run([
+      'capture-defaults',
+      '--root',
+      root,
+      '--target',
+      'nope',
+      '--json',
+    ]);
+    expect(unknown.code).toBe(1);
+    expect(JSON.parse(unknown.stdout)).toEqual({
+      error: expect.stringContaining('unknown target "nope"'),
+    });
+  });
+
+  it('generate and verify accept --allow-catalog-mismatch', () => {
+    const root = twRoot();
+    expect(run(['build', '--root', root]).code).toBe(0);
+    expect(
+      run(['generate', '--root', root, '--allow-catalog-mismatch']).code,
+    ).toBe(0);
+    expect(
+      run(['verify', '--root', root, '--allow-catalog-mismatch']).code,
+    ).toBe(0);
+  });
+
   it('generate exits 1 and writes nothing when a plugin reports a generation error', () => {
     const root = twRoot({
       'src/tokens/space.css':

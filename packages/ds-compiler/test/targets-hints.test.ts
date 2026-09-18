@@ -4,6 +4,7 @@ import { Diagnostics } from '../src/errors.js';
 import {
   TARGET_HINT_SCHEMAS,
   TARGET_IDS,
+  muiHintsSchema,
   tailwindHintsSchema,
   targetsSchema,
 } from '../src/targets/hints.js';
@@ -64,7 +65,7 @@ describe('target hints', () => {
     ).toBe(true);
     expect(
       targetsSchema.safeParse({ mui: { component: 'Button' } }).success,
-    ).toBe(false);
+    ).toBe(true);
     expect(
       targetsSchema.safeParse({ mui: { ignore: ['colour'] } }).success,
     ).toBe(false);
@@ -75,6 +76,39 @@ describe('target hints', () => {
     expect(
       targetsSchema.safeParse({ flutter: { variantWidgets: {} } }).success,
     ).toBe(true);
+  });
+
+  it('mui hints accept a mapping onto an MUI component and require component for the map keys', () => {
+    expect(muiHintsSchema.safeParse({}).success).toBe(true);
+    expect(
+      muiHintsSchema.safeParse({
+        component: 'Button',
+        axisMap: { tone: 'variant' },
+        slotMap: { icon: 'startIcon' },
+        defaultProps: { fullWidth: false, href: '#', tabIndex: 0 },
+        ignore: ['opacity'],
+      }).success,
+    ).toBe(true);
+    const orphan = muiHintsSchema.safeParse({ axisMap: { tone: 'variant' } });
+    expect(orphan.success).toBe(false);
+    expect(
+      orphan.error?.issues.some((i) =>
+        i.message.includes('requires "component"'),
+      ),
+    ).toBe(true);
+    expect(muiHintsSchema.safeParse({ component: 'button' }).success).toBe(
+      false,
+    );
+    expect(
+      muiHintsSchema.safeParse({
+        component: 'Button',
+        axisMap: { Tone: 'variant' },
+      }).success,
+    ).toBe(false);
+    expect(
+      muiHintsSchema.safeParse({ component: 'Button', defaultProps: { x: {} } })
+        .success,
+    ).toBe(false);
   });
 
   it('reports DS-E020 for a non-kebab-case target id, naming the offending key', () => {
@@ -138,6 +172,36 @@ describe('target hints', () => {
       );
       expect(malformed.items.map((d) => d.code)).toEqual(['DS-E020']);
     }
+  });
+
+  it('the manifest validates a mui mapping and rejects an orphaned map key', () => {
+    const base = { name: 'chip', displayName: 'Chip' };
+    const ok = new Diagnostics();
+    parseManifest(
+      {
+        ...base,
+        targets: {
+          mui: {
+            component: 'Button',
+            axisMap: { tone: 'variant' },
+          },
+        },
+      },
+      'chip.manifest.json',
+      'chip',
+      ok,
+    );
+    expect(ok.items).toEqual([]);
+
+    const orphan = new Diagnostics();
+    parseManifest(
+      { ...base, targets: { mui: { axisMap: {} } } },
+      'chip.manifest.json',
+      'chip',
+      orphan,
+    );
+    expect(orphan.items.map((d) => d.code)).toEqual(['DS-E020']);
+    expect(orphan.items[0].message).toContain('requires "component"');
   });
 });
 

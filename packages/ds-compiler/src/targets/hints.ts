@@ -28,15 +28,47 @@ export const tailwindHintsSchema = z.strictObject({
   ignore: ignoreList,
 });
 
+const muiPropName = z
+  .string()
+  .regex(/^[a-zA-Z][A-Za-z0-9]*$/, 'must be an MUI prop or class key');
+const muiComponentName = z
+  .string()
+  .regex(
+    /^[A-Z][A-Za-z0-9]*$/,
+    'must be the PascalCase export name of an MUI component (e.g. Button)',
+  );
+const dsName = z.string().regex(IDENTIFIER_PATTERN, 'must be kebab-case');
+const jsonScalar = z.union([z.string(), z.number(), z.boolean()]);
+
 /**
- * `targets.mui` hints. `{}` generates an own React component for the
- * component; `ignore` lists properties left out of the MUI output. Mapping
- * onto MUI's own components (`component`, `axisMap`, …) arrives with the
- * defaults catalog in Plan 3b.
+ * `targets.mui` hints. `{}` generates an own React component. `component`
+ * maps the design-system component onto that MUI component: `axisMap`
+ * (axis → MUI prop, every axis), `slotMap` (slot → MUI class key such as
+ * `startIcon`, every non-root slot), `defaultProps` (extra MUI props). The
+ * catalog (`bwp-ds capture-defaults --target mui`) validates the names.
  */
-export const muiHintsSchema = z.strictObject({
-  ignore: ignoreList,
-});
+export const muiHintsSchema = z
+  .strictObject({
+    ignore: ignoreList,
+    component: muiComponentName.optional(),
+    axisMap: z.record(dsName, muiPropName).optional(),
+    slotMap: z.record(dsName, muiPropName).optional(),
+    defaultProps: z.record(muiPropName, jsonScalar).optional(),
+  })
+  .superRefine((hints, ctx) => {
+    if (hints.component !== undefined) {
+      return;
+    }
+    for (const key of ['axisMap', 'slotMap', 'defaultProps'] as const) {
+      if (hints[key] !== undefined) {
+        ctx.addIssue({
+          code: 'custom',
+          path: [key],
+          message: 'requires "component"',
+        });
+      }
+    }
+  });
 
 /** Until its plugin lands, flutter accepts any object, except a malformed `excluded`. */
 const permissiveHints = z

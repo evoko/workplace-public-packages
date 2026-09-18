@@ -16,6 +16,14 @@ export interface PluginContext {
   compilerVersion: string;
   /** Absolute path where this target's files are written. */
   outDir: string;
+  /** `--allow-catalog-mismatch`: a catalog captured from another framework version is DS-W004, not DS-E086. */
+  allowCatalogMismatch: boolean;
+}
+
+/** What `captureDefaults` returns: the catalog file to write, absolute path. */
+export interface CapturedCatalog {
+  path: string;
+  contents: string;
 }
 
 export type CoverageStatus = 'supported' | 'partial' | 'unmapped' | 'excluded';
@@ -35,6 +43,25 @@ export interface CoverageEntry {
 export interface TargetPlugin<Catalog = unknown> {
   id: string;
   /**
+   * Reads and validates this target's committed defaults catalog. Returns
+   * null (without diagnostics) when the target has no catalog or the file
+   * is absent; reports DS-E086 (and returns null) for an invalid or
+   * mismatched one, DS-W004 for an unverifiable version. Reports problems on
+   * `diag` rather than throwing.
+   */
+  loadCatalog?(ctx: PluginContext, diag: Diagnostics): Catalog | null;
+  /**
+   * Renders the framework's default styling for every mapped component and
+   * returns the catalog file to write; null after reporting on `diag`.
+   * Only opinionated targets implement it. Reports problems on `diag` rather
+   * than throwing.
+   */
+  captureDefaults?(
+    ir: DesignIR,
+    ctx: PluginContext,
+    diag: Diagnostics,
+  ): Promise<CapturedCatalog | null>;
+  /**
    * Pure function of its inputs; byte-identical output across machines.
    * Reports coded errors on `diag` (nothing is written when it does) rather
    * than throwing.
@@ -49,6 +76,7 @@ export interface TargetPlugin<Catalog = unknown> {
   reparse(
     files: GeneratedFile[],
     ir: DesignIR,
+    catalog: Catalog | null,
     ctx: PluginContext,
     diag: Diagnostics,
   ): DesignIR | null;
@@ -63,6 +91,8 @@ export interface TargetPlugin<Catalog = unknown> {
 export interface PluginOutput {
   plugin: TargetPlugin;
   ctx: PluginContext;
+  /** The catalog `generate` received, for `reparse`. */
+  catalog: unknown;
   files: GeneratedFile[];
 }
 
@@ -76,16 +106,22 @@ export function outDirFor(
   return resolve(rootDir, configured ?? `../styles-${id}/src/generated`);
 }
 
+export interface PluginContextOptions {
+  allowCatalogMismatch?: boolean;
+}
+
 export function pluginContext(
   rootDir: string,
   config: DsConfig,
   compilerVersion: string,
   id: string,
+  options: PluginContextOptions = {},
 ): PluginContext {
   return {
     rootDir,
     config,
     compilerVersion,
     outDir: outDirFor(rootDir, config, id),
+    allowCatalogMismatch: options.allowCatalogMismatch ?? false,
   };
 }

@@ -1,5 +1,6 @@
 import { coverageEntries } from '../coverage-entries.js';
 import type { TargetPlugin } from '../plugin.js';
+import { loadMuiCatalog, type MuiCatalog } from './catalog.js';
 import { generateMui } from './generate.js';
 import {
   MUI_ID,
@@ -10,10 +11,11 @@ import {
 import { reparseMui } from './reparse.js';
 
 /** Every property in the table is expressible in Emotion, so nothing is ever `unsupported`. */
-export const muiPlugin: TargetPlugin<null> = {
+export const muiPlugin: TargetPlugin<MuiCatalog> = {
   id: MUI_ID,
+  loadCatalog: loadMuiCatalog,
   generate: (ir, _catalog, ctx, diag) => generateMui(ir, ctx, diag),
-  reparse: reparseMui,
+  reparse: (files, ir, _catalog, ctx, diag) => reparseMui(files, ir, ctx, diag),
   coverage: (ir) =>
     coverageEntries(MUI_ID, ir, {
       exclusion: muiExclusion,

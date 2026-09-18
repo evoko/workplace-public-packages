@@ -118,6 +118,7 @@ export function twContext(root: string, config: DsConfig): PluginContext {
     config,
     compilerVersion: '0.0.0-test',
     outDir: join(root, 'out', 'tailwind'),
+    allowCatalogMismatch: false,
   };
 }
 

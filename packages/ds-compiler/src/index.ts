@@ -3,7 +3,13 @@ export const COMPILER_NAME = '@bwp-web/ds-compiler';
 export { build, buildIR, writeIR, scanTodo } from './build.js';
 export type { BuildResult } from './build.js';
 export { lint } from './lint.js';
-export { IR_FILE, TOKENS_DIR, COMPONENTS_DIR, ENTRY_FILE } from './paths.js';
+export {
+  IR_FILE,
+  TOKENS_DIR,
+  COMPONENTS_DIR,
+  ENTRY_FILE,
+  CATALOGS_DIR,
+} from './paths.js';
 export {
   ENTRY_HEADER,
   checkEntryCss,
@@ -114,7 +120,9 @@ export {
 export type { ComponentScaffoldOptions } from './scaffold/component.js';
 export { COMPILER_VERSION } from './version.js';
 export { generate, UnknownTargetError } from './generate.js';
-export type { GenerateResult } from './generate.js';
+export type { GenerateResult, GenerateOptions } from './generate.js';
+export { captureDefaults, NoCatalogTargetError } from './capture.js';
+export type { CaptureResult } from './capture.js';
 export { verify } from './verify/index.js';
 export type { StepStatus, VerifyResult, VerifyStep } from './verify/index.js';
 export { checkDrift } from './verify/drift.js';
@@ -124,10 +132,12 @@ export { computeCoverage, renderCoverageMarkdown } from './verify/coverage.js';
 export type { CoverageReport } from './verify/coverage.js';
 export { outDirFor, pluginContext } from './targets/plugin.js';
 export type {
+  CapturedCatalog,
   CoverageEntry,
   CoverageStatus,
   GeneratedFile,
   PluginContext,
+  PluginContextOptions,
   TargetPlugin,
 } from './targets/plugin.js';
 export {
@@ -180,7 +190,19 @@ export {
   ignoredForMui,
   isMappedForMui,
   muiExclusion,
+  muiMapping,
 } from './targets/mui/hints.js';
+export type { MuiMappingHints, MuiScalar } from './targets/mui/hints.js';
+export {
+  planMapping,
+  PARITY_DEFAULT_PROPS,
+  manifestLocation,
+} from './targets/mui/mapping.js';
+export type {
+  MappingPlan,
+  MappingUnion,
+  ChildrenMode,
+} from './targets/mui/mapping.js';
 export {
   camelCase,
   camelCategory,
@@ -188,8 +210,11 @@ export {
   colorSchemeSelectorFor,
   kebabCategory,
   kebabProperty,
+  muiPropertyKey,
+  muiThemeKeyFor,
   muiVarName,
   muiVarPath,
+  axisPermutations,
   pascalCase,
   propNameFor,
   slotClassName,
@@ -198,6 +223,24 @@ export {
   themeKeyFor,
 } from './targets/mui/names.js';
 export { HTML_ELEMENTS } from './targets/mui/html-elements.js';
+export {
+  loadMuiCatalog,
+  installedMuiVersion,
+  catalogPathFor,
+  findRender,
+  catalogHeaderText,
+  muiCatalogSchema,
+  CATALOG_FILE,
+} from './targets/mui/catalog.js';
+export type {
+  MuiCatalog,
+  MuiCatalogComponent,
+  MuiCatalogRender,
+  MuiCatalogRule,
+  MuiCatalogProp,
+  MuiFrameworkComponent,
+  MuiCatalogScalar,
+} from './targets/mui/catalog.js';
 export {
   MUI_PACKAGE,
   MUI_RANGE,

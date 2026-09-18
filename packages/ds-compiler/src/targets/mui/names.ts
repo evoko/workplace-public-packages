@@ -1,4 +1,5 @@
 import { stateSelector } from '../../components/render-selector.js';
+import type { ComponentIR } from '../../ir/types.js';
 import {
   TOKEN_CATEGORIES,
   parseTokenName,
@@ -31,6 +32,45 @@ export function slotClassName(themeKey: string, slot: string): string {
   return `${themeKey}-${slot}`;
 }
 
+/** MUI's theme key for one of its own components: `Button` → `MuiButton`. */
+export function muiThemeKeyFor(component: string): string {
+  return `Mui${component}`;
+}
+
+/**
+ * Every full assignment of axis values: axes in manifest order, values in
+ * manifest order, the last axis varying fastest. One empty assignment when
+ * the component has no axes.
+ */
+export function axisPermutations(
+  component: Pick<ComponentIR, 'axes' | 'axisOrder'>,
+): Record<string, string>[] {
+  let out: Record<string, string>[] = [{}];
+  for (const axis of component.axisOrder) {
+    const next: Record<string, string>[] = [];
+    for (const partial of out) {
+      for (const value of component.axes[axis].values) {
+        next.push({ ...partial, [axis]: value });
+      }
+    }
+    out = next;
+  }
+  return out;
+}
+
+/**
+ * The Emotion style key for a CSS property: custom properties stay as they
+ * are (`--variant-containedBg`), vendor-prefixed properties are PascalCase
+ * (`WebkitTapHighlightColor`, the form Emotion hyphenates back with the
+ * leading dash), everything else camelCase (`fontWeight`).
+ */
+export function muiPropertyKey(prop: string): string {
+  if (prop.startsWith('--')) {
+    return prop;
+  }
+  return prop.startsWith('-') ? pascalCase(prop) : camelCase(prop);
+}
+
 const CAMEL_TO_CATEGORY = new Map<string, TokenCategory>(
   TOKEN_CATEGORIES.map((c) => [camelCase(c), c]),
 );
@@ -43,6 +83,7 @@ export function kebabCategory(camel: string): TokenCategory | null {
   return CAMEL_TO_CATEGORY.get(camel) ?? null;
 }
 
+/** `muiPropertyKey` supersedes this for declaration keys; kept as `kebabProperty`'s encode pair. */
 export function camelProperty(kebab: string): string {
   return camelCase(kebab);
 }
@@ -134,17 +175,18 @@ export function colorSchemeSelectorFor(modeSelector: string): string | null {
  * class, so the Emotion class stacks to the same specificity the CSS target
  * gets from `.root[data-axis="v"]…`; states render exactly as the design
  * system does (so `disabled` follows the root element), and a non-root slot
- * becomes a descendant class.
+ * becomes a descendant with its class (`BwpExample-icon` for an own
+ * component, `MuiButton-startIcon` for a mapped one). `slotClass` is null
+ * for the root.
  */
 export function specificityKey(
   axesCount: number,
   states: readonly string[],
   rootElement: string,
-  slot: string,
-  themeKey: string,
+  slotClass: string | null,
 ): string {
   const root = '&'.repeat(1 + axesCount);
   const stateText = states.map((s) => stateSelector(s, rootElement)).join('');
-  const slotText = slot === 'root' ? '' : ` .${slotClassName(themeKey, slot)}`;
+  const slotText = slotClass === null ? '' : ` .${slotClass}`;
   return `${root}${stateText}${slotText}`;
 }

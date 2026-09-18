@@ -3,7 +3,7 @@ import { dirname, resolve } from 'node:path';
 import { buildIR } from '../build.js';
 import { checkEntryCss } from '../entry.js';
 import { configFailed, type Diagnostics } from '../errors.js';
-import { generateOutputs } from '../generate.js';
+import { generateOutputs, type GenerateOptions } from '../generate.js';
 import { TARGETS, targetIds } from '../targets/index.js';
 import { COMPILER_VERSION } from '../version.js';
 import {
@@ -35,7 +35,10 @@ export interface VerifyResult {
  * plugin whose generation reports errors fails the drift step and is skipped
  * by round-trip; coverage still runs for every plugin.
  */
-export function verify(rootDir: string): VerifyResult {
+export function verify(
+  rootDir: string,
+  options: GenerateOptions = {},
+): VerifyResult {
   const steps: Record<VerifyStep, StepStatus> = {
     lint: 'skipped',
     drift: 'skipped',
@@ -67,13 +70,14 @@ export function verify(rootDir: string): VerifyResult {
     plugins,
     COMPILER_VERSION,
     diag,
+    options,
   );
   checkDrift(rootDir, ir, outputs, diag);
   steps.drift = failsSince(beforeDrift);
 
   const beforeRoundtrip = diag.errors.length;
-  for (const { plugin, ctx, files } of outputs) {
-    const reparsed = plugin.reparse(files, ir, ctx, diag);
+  for (const { plugin, ctx, catalog, files } of outputs) {
+    const reparsed = plugin.reparse(files, ir, catalog, ctx, diag);
     if (!reparsed) {
       continue;
     }

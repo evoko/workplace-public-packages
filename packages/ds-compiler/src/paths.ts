@@ -5,3 +5,5 @@ export const SRC_DIR = 'src';
 export const TOKENS_DIR = 'src/tokens';
 export const COMPONENTS_DIR = 'src/components';
 export const ENTRY_FILE = 'src/index.css';
+/** Committed defaults catalogs, one `<target>.json` per opinionated target, written by `bwp-ds capture-defaults`. */
+export const CATALOGS_DIR = 'catalogs';

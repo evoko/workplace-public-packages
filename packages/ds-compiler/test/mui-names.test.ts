@@ -1,11 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import {
+  axisPermutations,
   camelCase,
   camelCategory,
   camelProperty,
   colorSchemeSelectorFor,
   kebabCategory,
   kebabProperty,
+  muiPropertyKey,
+  muiThemeKeyFor,
   muiVarName,
   pascalCase,
   slotClassName,
@@ -81,22 +84,47 @@ describe('mui names', () => {
   });
 
   it('builds the nested selector key that reproduces the CSS target specificity', () => {
-    expect(specificityKey(0, [], 'button', 'root', 'FxChip')).toBe('&');
-    expect(specificityKey(0, ['hover'], 'button', 'root', 'FxChip')).toBe(
-      '&:hover',
+    expect(specificityKey(0, [], 'button', null)).toBe('&');
+    expect(specificityKey(0, ['hover'], 'button', null)).toBe('&:hover');
+    expect(specificityKey(1, [], 'button', null)).toBe('&&');
+    expect(specificityKey(2, ['hover', 'disabled'], 'button', null)).toBe(
+      '&&&:hover:disabled',
     );
-    expect(specificityKey(1, [], 'button', 'root', 'FxChip')).toBe('&&');
-    expect(
-      specificityKey(2, ['hover', 'disabled'], 'button', 'root', 'FxChip'),
-    ).toBe('&&&:hover:disabled');
-    expect(specificityKey(0, ['disabled'], 'div', 'root', 'FxTag')).toBe(
+    expect(specificityKey(0, ['disabled'], 'div', null)).toBe(
       '&[aria-disabled="true"]',
     );
-    expect(specificityKey(1, ['hover'], 'button', 'icon', 'FxChip')).toBe(
+    expect(specificityKey(1, ['hover'], 'button', 'FxChip-icon')).toBe(
       '&&:hover .FxChip-icon',
     );
-    expect(specificityKey(0, [], 'button', 'icon', 'FxChip')).toBe(
+    expect(specificityKey(0, [], 'button', 'FxChip-icon')).toBe(
       '& .FxChip-icon',
+    );
+  });
+
+  it('names MUI theme keys, enumerates permutations, and keys properties for Emotion', () => {
+    expect(muiThemeKeyFor('Button')).toBe('MuiButton');
+    expect(
+      axisPermutations({
+        axisOrder: ['tone', 'size'],
+        axes: {
+          tone: { values: ['quiet', 'loud'], default: 'quiet' },
+          size: { values: ['sm', 'md'], default: 'md' },
+        },
+      }),
+    ).toEqual([
+      { tone: 'quiet', size: 'sm' },
+      { tone: 'quiet', size: 'md' },
+      { tone: 'loud', size: 'sm' },
+      { tone: 'loud', size: 'md' },
+    ]);
+    expect(axisPermutations({ axisOrder: [], axes: {} })).toEqual([{}]);
+    expect(muiPropertyKey('font-weight')).toBe('fontWeight');
+    expect(muiPropertyKey('-webkit-tap-highlight-color')).toBe(
+      'WebkitTapHighlightColor',
+    );
+    expect(muiPropertyKey('-moz-appearance')).toBe('MozAppearance');
+    expect(muiPropertyKey('--variant-containedBg')).toBe(
+      '--variant-containedBg',
     );
   });
 });

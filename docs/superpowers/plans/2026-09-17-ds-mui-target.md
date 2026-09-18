@@ -3849,13 +3849,24 @@ and where it stands. Update the status table after every milestone.
 | 1 | 1-2 contract `diag`, shared value renderers, hints, names, error codes, model | done, reviewed, committed by user |
 | 2 | 3 renderers (`theme.ts`, `augmentation.ts`, shells, `typecheck.tsx`, model JSON) | done, reviewed, committed by user |
 | 3 | 4 `reparse`, plugin object, registration, coverage | done, reviewed, committed by user (root `verify` fails with six DS-E080 until Task 5 wires the package) |
-| 4 | 5 `styles-mui` package, wiring, generated output, docs | done, reviewed, awaiting user commit |
-| 5 | 6 final verification | pending |
+| 4 | 5 `styles-mui` package, wiring, generated output, docs | done, reviewed, committed by user |
+| 5 | 6 final verification | done on 2026-09-18: all five steps pass from a clean `npm run clean && npm ci`; awaiting user commit of this log update |
 
 Test suite at the start of Plan 3: 25 files, 289 tests (end of Plan 2). After batch 1: 27 files, 317 tests. After batch 2: 28 files, 334 tests (`design.ir.json` regenerated for the new `axisOrder`/`slotOrder` fields). After batch 3: 29 files, 355 tests. After batch 4: compiler 29 files / 355 tests plus `styles-mui` 2 files / 10 tests; 34 Turbo tasks.
 
 ### Decisions made during execution
 
+- Batch 5 (Task 6, final verification, 2026-09-18): every step passed as
+  written. Two observations, neither a defect: in Step 3 the package's
+  `tsconfig.json` includes `test/`, so the probe copy only needed its relative
+  import re-pointed at `../src/generated/components/index.js`; in Step 4 the
+  `verify` run with the `demo` component present reported four `DS-E080`
+  lines (Tailwind output and `design.ir.json`) alongside the expected
+  `DS-E085`, because the scaffold had already appended to `src/index.css`
+  while the atomic `generate` wrote nothing. All of it cleared after removing
+  the component and regenerating; `git diff --stat` was empty. The tarball
+  holds `README.md`, `package.json`, and `dist/**` (18 files, no
+  `typecheck.d.ts`, no `LICENSE`; the LICENSE gap stays a Plan 6 follow-up).
 - Batch 4 review (tarball installed in a fresh consumer project: types travel
   through `dist`, ESM and CJS load, all 74 token variables and every rule
   render; fresh-checkout CI sequence green): `prepublishOnly` added; the global

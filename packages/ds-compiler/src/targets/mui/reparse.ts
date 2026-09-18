@@ -31,6 +31,7 @@ import {
   kebabCategory,
   kebabProperty,
   propNameFor,
+  slotClassName,
   sourceNameFromMui,
   specificityKey,
   themeKeyFor,
@@ -446,8 +447,7 @@ function reparseComponents(
         Object.keys(axes).length,
         parsed.states,
         rootElement,
-        parsed.slot,
-        themeKey,
+        parsed.slot === 'root' ? null : slotClassName(themeKey, parsed.slot),
       );
       if (canonical !== key) {
         diag.add(

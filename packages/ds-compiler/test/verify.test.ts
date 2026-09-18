@@ -108,6 +108,15 @@ describe('generate', () => {
     expect(result.removed).toContain(join(out, 'sub', 'deep.css'));
     expect(existsSync(join(out, 'sub'))).toBe(false);
   });
+
+  it('writes nothing and reports one DS-E086 when the mui catalog is broken', () => {
+    const root = twRoot({ 'catalogs/mui.json': '{ broken' });
+    build(root);
+    const result = generate(root);
+    expect(result.written).toEqual([]);
+    expect(result.diagnostics.errors.map((d) => d.code)).toEqual(['DS-E086']);
+    expect(existsSync(join(root, 'out'))).toBe(false);
+  });
 });
 
 describe('verify', () => {
@@ -167,6 +176,15 @@ describe('verify', () => {
       'out/tailwind/theme.css differs from a fresh generation; run bwp-ds generate --target tailwind',
       'out/tailwind/extra.css is not produced by the tailwind generator; delete it',
     ]);
+  });
+
+  it('fails drift and reports one DS-E086 when the mui catalog becomes broken after a clean generation', () => {
+    const root = ready();
+    mkdirSync(join(root, 'catalogs'), { recursive: true });
+    writeFileSync(join(root, 'catalogs', 'mui.json'), '{ broken');
+    const result = verify(root);
+    expect(result.steps.drift).toBe('fail');
+    expect(result.diagnostics.errors.map((d) => d.code)).toEqual(['DS-E086']);
   });
 
   it('reports missing generated files', () => {
@@ -298,5 +316,81 @@ describe('generateOutputs', () => {
     expect(outputs.map((o) => o.plugin.id)).toEqual(['ok']);
     expect(outputs[0].files).toEqual([{ path: 'a.txt', contents: 'hi' }]);
     expect(diag.errors).toHaveLength(1);
+  });
+
+  it('generateOutputs hands each plugin its loaded catalog and drops a plugin whose catalog fails to load', () => {
+    const root = twRoot();
+    const { ir, config } = twBuild(root);
+    const seen: unknown[] = [];
+    const loaded = { version: 'x' };
+    const fine: TargetPlugin = {
+      id: 'fine',
+      loadCatalog: () => loaded,
+      generate: (_ir, catalog) => {
+        seen.push(catalog);
+        return [{ path: 'a.txt', contents: 'a' }];
+      },
+      reparse: () => null,
+      coverage: () => [],
+      isMapped: () => false,
+      ignoredProperties: () => new Set(),
+    };
+    let generated = false;
+    const broken: TargetPlugin = {
+      ...fine,
+      id: 'broken',
+      loadCatalog: (_ctx, diag) => {
+        diag.add('DS-E086', 'broken: no');
+        return null;
+      },
+      generate: () => {
+        generated = true;
+        return [];
+      },
+    };
+    const diag = new Diagnostics();
+    const outputs = generateOutputs(
+      root,
+      ir,
+      config,
+      [fine, broken],
+      '0.0.0-test',
+      diag,
+    );
+    expect(seen).toEqual([loaded]);
+    expect(outputs.map((o) => o.plugin.id)).toEqual(['fine']);
+    expect(outputs[0].catalog).toBe(loaded);
+    expect(generated).toBe(false);
+    expect(diag.errors.map((e) => e.code)).toEqual(['DS-E086']);
+  });
+
+  it('threads allowCatalogMismatch into every plugin context', () => {
+    const root = twRoot();
+    const { ir, config } = twBuild(root);
+    const flags: boolean[] = [];
+    const probe: TargetPlugin = {
+      id: 'probe',
+      generate: (_ir, _catalog, ctx) => {
+        flags.push(ctx.allowCatalogMismatch);
+        return [];
+      },
+      reparse: () => null,
+      coverage: () => [],
+      isMapped: () => false,
+      ignoredProperties: () => new Set(),
+    };
+    generateOutputs(root, ir, config, [probe], '0.0.0-test', new Diagnostics());
+    generateOutputs(
+      root,
+      ir,
+      config,
+      [probe],
+      '0.0.0-test',
+      new Diagnostics(),
+      {
+        allowCatalogMismatch: true,
+      },
+    );
+    expect(flags).toEqual([false, true]);
   });
 });

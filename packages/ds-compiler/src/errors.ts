@@ -138,6 +138,10 @@ export const ERROR_CATALOG = {
     title: 'Component not expressible for target',
     hint: 'The MUI target renders each component as a React component: states must be hover, focus-visible, active, disabled, pressed, selected, expanded, or checked; slot elements must be plain HTML tags; slot names must not collide with children, className, style, ref, key, an axis, or a state. Change the manifest, or set targets.mui to { "excluded": "<reason>" }.',
   },
+  'DS-E086': {
+    title: 'Defaults catalog missing, stale, invalid, or mismatched',
+    hint: 'Run bwp-ds capture-defaults --target <id> with the framework installed in the target package, then commit catalogs/<id>.json. If the installed framework version differs on purpose, pass --allow-catalog-mismatch to generate and verify.',
+  },
   'DS-W001': {
     title: 'Root rule missing baseline properties',
     hint: 'Declare the baseline properties on the base root rule so parity does not rest on user-agent defaults. Set "baseline": false in the manifest to opt out.',
@@ -149,6 +153,10 @@ export const ERROR_CATALOG = {
   'DS-W003': {
     title: 'Disabled state on a non-form root',
     hint: '`:disabled` and `[disabled]` only match a form control (button, input, select, textarea, fieldset, option, optgroup). Set slots.root.element to a form control in the manifest, or write the state as [aria-disabled="true"].',
+  },
+  'DS-W004': {
+    title: 'Defaults catalog version unverified',
+    hint: 'The target framework could not be resolved from the target outDir, or a version mismatch was allowed with --allow-catalog-mismatch. Install the target package dependencies, or re-capture the catalog after a framework upgrade.',
   },
 } as const;
 

@@ -171,12 +171,52 @@
             {
               "additionalProperties": false,
               "properties": {
+                "axisMap": {
+                  "additionalProperties": {
+                    "pattern": "^[a-zA-Z][A-Za-z0-9]*$",
+                    "type": "string"
+                  },
+                  "propertyNames": {
+                    "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                    "type": "string"
+                  },
+                  "type": "object"
+                },
+                "component": {
+                  "pattern": "^[A-Z][A-Za-z0-9]*$",
+                  "type": "string"
+                },
+                "defaultProps": {
+                  "additionalProperties": {
+                    "type": [
+                      "string",
+                      "number",
+                      "boolean"
+                    ]
+                  },
+                  "propertyNames": {
+                    "pattern": "^[a-zA-Z][A-Za-z0-9]*$",
+                    "type": "string"
+                  },
+                  "type": "object"
+                },
                 "ignore": {
                   "items": {
                     "type": "string"
                   },
                   "minItems": 1,
                   "type": "array"
+                },
+                "slotMap": {
+                  "additionalProperties": {
+                    "pattern": "^[a-zA-Z][A-Za-z0-9]*$",
+                    "type": "string"
+                  },
+                  "propertyNames": {
+                    "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+                    "type": "string"
+                  },
+                  "type": "object"
                 }
               },
               "type": "object"

@@ -2,6 +2,7 @@
 import { resolve } from 'node:path';
 import { Command, Option } from 'commander';
 import { build } from './build.js';
+import { NoCatalogTargetError, captureDefaults } from './capture.js';
 import { loadConfig, type DsConfig } from './config.js';
 import { Diagnostics } from './errors.js';
 import { UnknownTargetError, generate } from './generate.js';
@@ -116,11 +117,20 @@ program
     "Write each target's files from the IR into its outDir (default: every registered target)",
   )
   .option('--target <id>', 'target id (repeatable)', collect, [])
-  .action((opts: { target: string[] }) => {
+  .option(
+    '--allow-catalog-mismatch',
+    'accept a defaults catalog captured from another framework version (DS-W004 instead of DS-E086)',
+    false,
+  )
+  .action((opts: { target: string[]; allowCatalogMismatch: boolean }) => {
     const { root, json } = globals();
     let result;
     try {
-      result = generate(root, opts.target.length > 0 ? opts.target : undefined);
+      result = generate(
+        root,
+        opts.target.length > 0 ? opts.target : undefined,
+        { allowCatalogMismatch: opts.allowCatalogMismatch },
+      );
     } catch (err) {
       if (err instanceof UnknownTargetError) {
         commandFailure(err.message, json);
@@ -140,12 +150,46 @@ program
   .description(
     'Lint, then drift, round-trip, and coverage checks for every registered target; writes the coverage report',
   )
-  .action(() => {
+  .option(
+    '--allow-catalog-mismatch',
+    'accept a defaults catalog captured from another framework version (DS-W004 instead of DS-E086)',
+    false,
+  )
+  .action((opts: { allowCatalogMismatch: boolean }) => {
     const { root, json } = globals();
-    const result = verify(root);
+    const result = verify(root, {
+      allowCatalogMismatch: opts.allowCatalogMismatch,
+    });
     printDiagnostics(result.diagnostics, json, {
       steps: result.steps,
       coverageFile: result.coverageFile ?? '',
+    });
+    process.exitCode = result.diagnostics.hasErrors() ? 1 : 0;
+  });
+
+program
+  .command('capture-defaults')
+  .description(
+    "Render the target framework's default styling for every mapped component and write catalogs/<id>.json",
+  )
+  .requiredOption('--target <id>', 'target id (mui)')
+  .action(async (opts: { target: string }) => {
+    const { root, json } = globals();
+    let result;
+    try {
+      result = await captureDefaults(root, opts.target);
+    } catch (err) {
+      if (
+        err instanceof UnknownTargetError ||
+        err instanceof NoCatalogTargetError
+      ) {
+        commandFailure(err.message, json);
+        return;
+      }
+      throw err;
+    }
+    printDiagnostics(result.diagnostics, json, {
+      wrote: result.written ?? '',
     });
     process.exitCode = result.diagnostics.hasErrors() ? 1 : 0;
   });

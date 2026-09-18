@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import {
   Diagnostics,
@@ -81,9 +83,28 @@ describe('ERROR_CATALOG', () => {
         'DS-E083',
         'DS-E084',
         'DS-E085',
+        'DS-E086',
         'DS-W003',
+        'DS-W004',
       ]),
     );
+  });
+
+  it('DS-W004 is a warning', () => {
+    const diag = new Diagnostics();
+    diag.add('DS-W004', 'x');
+    expect(diag.warnings).toHaveLength(1);
+    expect(diag.errors).toHaveLength(0);
+  });
+
+  it('every code is documented in docs/design-system/errors.md', () => {
+    const docPath = fileURLToPath(
+      new URL('../../../docs/design-system/errors.md', import.meta.url),
+    );
+    const doc = readFileSync(docPath, 'utf8');
+    for (const code of Object.keys(ERROR_CATALOG)) {
+      expect(doc).toContain(`| ${code} |`);
+    }
   });
 });
 
