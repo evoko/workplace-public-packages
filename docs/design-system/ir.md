@@ -61,8 +61,10 @@ only in `:root` that aliases a mode-varying token is itself mode-varying.
 ComponentIR
   name, displayName, description?
   axes: { [axis]: { values, default } }
+  axisOrder: string[]                         manifest key order for axes (see below)
   states: [...]                               manifest order
   slots: { [slot]: { element, optional } }    keys sorted alphabetically in the file; root is always present
+  slotOrder: string[]                         manifest key order for slots, root first (see below)
   preview: { [key]: string }                  manifest verbatim
   rules: Rule[]                               in cascade order
   targets: manifest targets, verbatim
@@ -76,6 +78,11 @@ Rule
   declarations: { [cssProperty]: IRValue }
   source: { file, line, column }
 ```
+
+`axisOrder` and `slotOrder` hold the manifest key order for axes and slots
+(`root` first). `design.ir.json` sorts object keys, so generators that need
+authored order (the MUI shells render slots in `slotOrder`) read these
+instead of the record keys.
 
 Declarations use canonical longhand CSS property names. Shorthands from the
 source are expanded. Values:

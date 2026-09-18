@@ -1516,6 +1516,7 @@ describe('generateMui', () => {
     expect(aug).toContain("  space: Record<'2', string>;");
     expect(aug).toContain("  fontFamily?: Partial<Record<'body', string>>;");
     expect(aug).toContain("declare module '@mui/material/styles' {");
+    expect(aug).toContain('  interface CssThemeVariables {\n    enabled: true;\n  }');
     expect(aug).toContain('  interface Palette {\n    tokens: Record<ColorTokenKey, string>;\n  }');
     expect(aug).toContain('  interface PaletteOptions {\n    tokens?: Partial<Record<ColorTokenKey, string>>;\n  }');
     expect(aug).toContain('  interface Theme {\n    tokens: DsTokens;\n  }');
@@ -1818,6 +1819,11 @@ export function renderAugmentationTs(model: MuiModel): string {
   lines.push(
     '',
     "declare module '@mui/material/styles' {",
+    // MUI types `theme.vars`, `generateStyleSheets`, and `getColorSchemeSelector`
+    // only when this flag is on; the generated theme always uses cssVariables.
+    '  interface CssThemeVariables {',
+    '    enabled: true;',
+    '  }',
     '  interface Palette {',
     '    tokens: Record<ColorTokenKey, string>;',
     '  }',
@@ -3129,6 +3135,7 @@ In `packages/styles-css/src/components/example/example.manifest.json`, replace t
   "scripts": {
     "generate": "bwp-ds generate --root ../styles-css --target mui",
     "build": "tsup && tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
     "build:types": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
@@ -3169,7 +3176,7 @@ In `packages/styles-css/src/components/example/example.manifest.json`, replace t
 }
 ```
 
-No `prepublishOnly`: the package publishes the committed generated source built by `npm run build`, and `bwp-ds verify` in CI guards that the source is current. The `@mui/material` range must equal `MUI_RANGE` in `src/targets/mui/model.ts`; the package test asserts it.
+`"prepublishOnly": "npm run build"` (batch 4 review): `dist/` is gitignored and `files` is `["dist"]`, so a publish from a clean checkout must build first, as `@bwp-web/components` does. `bwp-ds verify` in CI guards that the generated source is current. The `@mui/material` range must equal `MUI_RANGE` in `src/targets/mui/model.ts`; the package test asserts it.
 
 - [ ] **Step 3: Create the package's supporting files**
 
@@ -3803,6 +3810,9 @@ List every created, modified, and deleted path grouped by package, the test coun
 - **`assertUniqueNames` (Tailwind) still throws** a plain `Error`; with the `diag` parameter on `generate` it can become a coded diagnostic. Not changed here to keep the Tailwind plugin untouched.
 - **Own components emit no `data-<axis>` attributes.** Styling goes through `ownerState`, so the DOM carries the axis only as computed styles. If Plan 4's harness wants to select by axis in the DOM, add `data-*` attributes in the shell (they would not change the styles).
 - **`sideEffects: false`** on the package relies on the augmentation being type-only. If a future generated file has runtime side effects, drop the flag.
+- **Global type augmentation.** Importing `@bwp-web/styles-mui` enables MUI's `CssThemeVariables` flag and makes the token keys required on `Palette`/`Theme` for the whole app (documented). A consumer that also creates non-CSS-variable MUI themes gets types that lie about `theme.vars`. If that ever matters, split the flag and the token interfaces into an opt-in `@bwp-web/styles-mui/augmentation` entry and keep only the `Components` entries global.
+- **Published source maps are dangling** (`dist/**/*.map` ship without `src/`), the same as `@bwp-web/components`. Fix both in Plan 6.
+- **Every color scheme lists every color token**, so the dark block restates unchanged colors; the CSS package overrides only varying ones. Same computed values; noted as a divergence, not a defect.
 - **Modes other than `light`/`dark`** are `DS-E084` for MUI. MUI can host a custom scheme if it is seeded from a base palette (`{ ...createTheme({ palette: { mode: 'light' } }).palette, tokens }` works); doing so needs a config hint naming the base mode per custom mode.
 - **Void slot elements** (`img` for an avatar, `hr` for a divider) are `DS-E085`; supporting them means a slot whose prop maps to attributes rather than children.
 - **Custom (`data-state`) states** are `DS-E085` for MUI. Supporting them as a single `state?: '<a>' | '<b>'` prop is a small follow-up once a component needs it.
@@ -3838,14 +3848,26 @@ and where it stands. Update the status table after every milestone.
 | --- | --- | --- |
 | 1 | 1-2 contract `diag`, shared value renderers, hints, names, error codes, model | done, reviewed, committed by user |
 | 2 | 3 renderers (`theme.ts`, `augmentation.ts`, shells, `typecheck.tsx`, model JSON) | done, reviewed, committed by user |
-| 3 | 4 `reparse`, plugin object, registration, coverage | done, reviewed, awaiting user commit (root `verify` fails with six DS-E080 until Task 5 wires the package) |
-| 4 | 5 `styles-mui` package, wiring, generated output, docs | pending |
+| 3 | 4 `reparse`, plugin object, registration, coverage | done, reviewed, committed by user (root `verify` fails with six DS-E080 until Task 5 wires the package) |
+| 4 | 5 `styles-mui` package, wiring, generated output, docs | done, reviewed, awaiting user commit |
 | 5 | 6 final verification | pending |
 
-Test suite at the start of Plan 3: 25 files, 289 tests (end of Plan 2). After batch 1: 27 files, 317 tests. After batch 2: 28 files, 334 tests (`design.ir.json` regenerated for the new `axisOrder`/`slotOrder` fields). After batch 3: 29 files, 355 tests.
+Test suite at the start of Plan 3: 25 files, 289 tests (end of Plan 2). After batch 1: 27 files, 317 tests. After batch 2: 28 files, 334 tests (`design.ir.json` regenerated for the new `axisOrder`/`slotOrder` fields). After batch 3: 29 files, 355 tests. After batch 4: compiler 29 files / 355 tests plus `styles-mui` 2 files / 10 tests; 34 Turbo tasks.
 
 ### Decisions made during execution
 
+- Batch 4 review (tarball installed in a fresh consumer project: types travel
+  through `dist`, ESM and CJS load, all 74 token variables and every rule
+  render; fresh-checkout CI sequence green): `prepublishOnly` added; the global
+  augmentation is kept and documented (see follow-ups); stale "MUI comes
+  later" rows fixed; wording fixes in the README, `targets/mui.md`,
+  `errors.md`, and the generated `theme.ts` docstring.
+- Batch 4 implementation: the augmentation also sets MUI's
+  `CssThemeVariables { enabled: true }`, without which MUI 9.4's `Theme` type
+  lacks `vars`, `generateStyleSheets`, and `getColorSchemeSelector` and the
+  package's own `tsc` fails. `getColorSchemeSelector(mode)` returns the
+  selector with a trailing ` &` for nesting, so the package test strips it
+  before matching stylesheet keys.
 - Batch 3 review (tamper matrix against the MUI round-trip: 13 of 15
   corruptions caught, the two misses being equivalent notations): the alias
   mode-map is canonicalised in `resolveTokens` so a `:root`-only alias and a

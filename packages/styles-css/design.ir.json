@@ -426,9 +426,7 @@
         "flutter": {
           "excluded": "starter component; the real design system replaces it"
         },
-        "mui": {
-          "excluded": "starter component; the real design system replaces it"
-        },
+        "mui": {},
         "tailwind": {}
       }
     }
@@ -444,7 +442,7 @@
     "name": "SOLAR",
     "prefix": "bwp",
     "rootFontSize": 16,
-    "sourceHash": "5f48811bc5b4aed00c0da79db03f9e0a2f2b0b28a0a007cdff2e1cbc64872669"
+    "sourceHash": "487c2f658c2b213c53bdeeaacc514a79a8c43eb35a2b0c726dc956020a6e2a4f"
   },
   "tokens": {
     "border-width.1": {

@@ -5,7 +5,8 @@
   "defaultMode": "light",
   "rootFontSize": 16,
   "targets": {
-    "tailwind": { "outDir": "../styles-tailwind/src/generated" }
+    "tailwind": { "outDir": "../styles-tailwind/src/generated" },
+    "mui": { "outDir": "../styles-mui/src/generated" }
   },
   "coverageFile": "../../docs/design-system/coverage.md"
 }

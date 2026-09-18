@@ -106,6 +106,9 @@ describe('generateMui', () => {
     expect(aug).toContain("  fontFamily?: Partial<Record<'body', string>>;");
     expect(aug).toContain("declare module '@mui/material/styles' {");
     expect(aug).toContain(
+      '  interface CssThemeVariables {\n    enabled: true;\n  }',
+    );
+    expect(aug).toContain(
       '  interface Palette {\n    tokens: Record<ColorTokenKey, string>;\n  }',
     );
     expect(aug).toContain(

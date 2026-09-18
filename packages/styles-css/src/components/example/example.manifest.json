@@ -16,9 +16,7 @@
   "preview": { "label": "Example", "icon": "plus" },
   "targets": {
     "tailwind": {},
-    "mui": {
-      "excluded": "starter component; the real design system replaces it"
-    },
+    "mui": {},
     "flutter": {
       "excluded": "starter component; the real design system replaces it"
     }
