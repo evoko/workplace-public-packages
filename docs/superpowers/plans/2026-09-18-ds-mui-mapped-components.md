@@ -37,6 +37,7 @@
 | Root element | The manifest's root element must equal the element MUI renders (`button` for `Button`, `div` for `Chip`), recorded at capture; a mismatch is `DS-E085`. |
 | Children | If the design system has a `label` slot, it must map (via `slotMap`) to an MUI slot, and `children` fill that MUI prop. Otherwise `children` go to MUI's `children` when the component's props include `children` typed as `ReactNode`; otherwise the wrapper has no `children` prop. |
 | Catalog staleness and version | `generate` (and so `verify`) fails with the new `DS-E086` when a mapped component exists and the catalog is missing, lacks the component, lacks a permutation, or recorded a different `axisMap`/`slotMap`/`defaultProps`; and when the catalog's MUI version differs from the `@mui/material` resolved from the target's `outDir` unless `--allow-catalog-mismatch` is passed (then `DS-W004`). When `@mui/material` cannot be resolved from the `outDir` (test roots), `DS-W004` says the version is unverified. Patch versions can move defaults, so the match is exact. |
+| Probe facts | (batch 2 review) The rendered root element and whether the root is a ButtonBase depend on the mapping's `defaultProps` (a clickable Chip is a ButtonBase, a plain one is a `div`), so they are captured per design-system component and stored on `components.<name>` (`rootElement`, `buttonBase`), not on `frameworkComponents`; `planMapping(component, hints, framework, probe, diag)` reads them. The ripple parity props applied through `buttonBase` are exactly ButtonBase's own (`disableRipple`, `disableTouchRipple`, `focusRipple`); `disableFocusRipple` and `disableElevation` apply only when declared. A union whose members cannot be read from the types is `DS-E086` at capture; React `console.error` output during a capture render is `DS-E086` too. |
 | Capture validation | Every rendered element carrying an Emotion class must be the root or a mapped slot; an MUI element no slot maps (Chip's `label` span) is `DS-E086` at capture with the class name in the message. At-rules other than `@media` (a `@keyframes` from a loading indicator) and shorthands the expansion table does not know are `DS-E086` at generation, naming the offender, so nothing is dropped silently. |
 | Effective value lookup | The design system's effective value for `(slot, states, permutation, property)` is the last rule in IR order with that slot, axes contained in the permutation, states contained in the context's states, and the property declared (and not ignored). Context states come from the root compound only: `:hover`, `:active`, `:focus-visible`, `.Mui-focusVisible`, `:disabled`, `.Mui-disabled`, `.Mui-selected`, `.Mui-checked`, `.Mui-expanded`, `[aria-*="true"]`; other fragments (`.MuiButton-loading`, `::-moz-focus-inner`, `> *:nth-of-type(1)`, media) contribute no state. A selector whose subject is not the root or a mapped slot element itself (a pseudo-element, a child of a slot) has no design-system element, so every property in it is `revert`. |
 | Property keys | Emotion keys: custom properties (`--variant-containedBg`) verbatim, vendor-prefixed properties PascalCase (`WebkitTapHighlightColor`, `MozAppearance`), everything else camelCase. Resets are never converted back to CSS, so no inverse is needed for them. |
@@ -2651,7 +2652,7 @@ describe('parseContext', () => {
 function resetsFor(files = BTN_FILES, catalog = FX_CATALOG) {
   const { ir } = twBuild(twRoot(files));
   const component = ir.components.btn;
-  const plan = planMapping(component, muiMapping(component)!, catalog.frameworkComponents.Button, new Diagnostics())!;
+  const plan = planMapping(component, muiMapping(component)!, catalog.frameworkComponents.Button, catalog.components.btn, new Diagnostics())!;
   const diag = new Diagnostics();
   const resets = computeResets(ir, component, plan, catalog.components.btn, diag, manifestLocation(component));
   return { resets, diag, ir };
@@ -2787,6 +2788,22 @@ describe('computeResets', () => {
     });
   });
 
+  it('drops legacy flexbox spellings when the standard property is present', () => {
+    const catalog = structuredClone(FX_CATALOG);
+    const base = catalog.components.btn.renders[0].rules[0].declarations;
+    base['-ms-flex-align'] = 'center';
+    base['-webkit-box-align'] = 'center';
+    base['align-items'] = 'center';
+    base['-ms-flex-pack'] = 'center';
+    const { resets } = resetsFor(BTN_FILES, catalog);
+    const keys = Object.keys(resets![0].style['&']);
+    expect(keys).toContain('alignItems');
+    expect(keys).not.toContain('MsFlexAlign');
+    expect(keys).not.toContain('WebkitBoxAlign');
+    // no standard twin in the rule: kept and reverted under its PascalCase key
+    expect(keys).toContain('MsFlexPack');
+  });
+
   it('honours ignore: an ignored property is never restated', () => {
     const files = { ...BTN_FILES };
     const m = JSON.parse(files['src/components/btn/btn.manifest.json']) as { targets: { mui: Record<string, unknown> } };
@@ -2882,6 +2899,32 @@ export const SHORTHAND_LONGHANDS: Readonly<Record<string, readonly string[]>> = 
 };
 
 const VENDOR = /^-(?:webkit|moz|ms|o)-(.+)$/;
+/**
+ * Legacy flexbox spellings Emotion's prefixer emits next to the standard
+ * property; dropped when the standard property is in the same rule, like a
+ * same-name vendor twin. (Seen in the real Button capture: `-ms-flex-align`,
+ * `-webkit-box-align` beside `align-items`; `-ms-flex-pack`,
+ * `-webkit-box-pack` beside `justify-content`.)
+ */
+const LEGACY_TWINS: Readonly<Record<string, string>> = {
+  '-webkit-box-align': 'align-items',
+  '-ms-flex-align': 'align-items',
+  '-webkit-box-pack': 'justify-content',
+  '-ms-flex-pack': 'justify-content',
+  '-webkit-box-orient': 'flex-direction',
+  '-webkit-box-direction': 'flex-direction',
+  '-ms-flex-direction': 'flex-direction',
+  '-ms-flex-wrap': 'flex-wrap',
+  '-ms-flex-preferred-size': 'flex-basis',
+  '-ms-flex-positive': 'flex-grow',
+  '-ms-flex-negative': 'flex-shrink',
+  '-ms-flex-item-align': 'align-self',
+  '-ms-flex-line-pack': 'align-content',
+  '-webkit-box-flex': 'flex-grow',
+  '-ms-flex': 'flex',
+  '-webkit-box-ordinal-group': 'order',
+  '-ms-flex-order': 'order',
+};
 const COMBINATOR = /\s*[>+~]\s*|\s+/;
 const TOKEN = /::?[a-zA-Z-]+(?:\([^)]*\))?|\.[A-Za-z0-9_-]+|\[[^\]]*\]|&|\*/g;
 const ATTRIBUTE = /^\[([a-z-]+)(?:="([^"]*)")?\]$/;
@@ -3021,6 +3064,10 @@ function longhandsOf(
   for (const prop of Object.keys(rule.declarations)) {
     const vendor = VENDOR.exec(prop);
     if (vendor && present.has(vendor[1])) {
+      continue;
+    }
+    const legacy = LEGACY_TWINS[prop];
+    if (legacy !== undefined && present.has(legacy)) {
       continue;
     }
     if (Object.hasOwn(SHORTHAND_LONGHANDS, prop)) {
@@ -3277,17 +3324,27 @@ export function componentModel(
       );
       return null;
     }
-    plan = planMapping(component, hints, framework, diag);
-    if (!plan) {
-      return null;
-    }
     const entry = catalog.components[component.name];
-    const recorded = entry && { component: entry.component, axisMap: entry.axisMap, slotMap: entry.slotMap, defaultProps: entry.defaultProps };
-    const planned = { component: plan.component, axisMap: plan.axisMap, slotMap: plan.slotMap, defaultProps: plan.defaultProps };
-    if (!entry || stableStringify(recorded) !== stableStringify(planned)) {
+    if (!entry || entry.component !== hints.component) {
       diag.add(
         'DS-E086',
         `mui: ${component.name}: the catalog entry is ${entry ? 'stale (the mapping changed)' : 'missing'}; run bwp-ds capture-defaults --target mui`,
+        at,
+      );
+      return null;
+    }
+    // The probe facts (rendered root element, ButtonBase root) were captured
+    // for this mapping's defaultProps and live on the component's entry.
+    plan = planMapping(component, hints, framework, entry, diag);
+    if (!plan) {
+      return null;
+    }
+    const recorded = { axisMap: entry.axisMap, slotMap: entry.slotMap, defaultProps: entry.defaultProps };
+    const planned = { axisMap: plan.axisMap, slotMap: plan.slotMap, defaultProps: plan.defaultProps };
+    if (stableStringify(recorded) !== stableStringify(planned)) {
+      diag.add(
+        'DS-E086',
+        `mui: ${component.name}: the catalog entry is stale (the mapping changed); run bwp-ds capture-defaults --target mui`,
         at,
       );
       return null;
@@ -3872,7 +3929,7 @@ describe('verify with a mapped component', () => {
       const hints = muiMapping(component);
       const framework = catalog?.frameworkComponents[meta.mapped.component];
       const catalogEntry = catalog?.components[name];
-      const plan = hints && framework ? planMapping(component, hints, framework, new Diagnostics()) : null;
+      const plan = hints && framework && catalogEntry ? planMapping(component, hints, framework, catalogEntry, new Diagnostics()) : null;
       const expected = plan && catalogEntry ? computeResets(ir, component, plan, catalogEntry, new Diagnostics(), AT) : null;
       if (!expected) {
         diag.add('DS-E081', `mui: ${name}: the resets cannot be recomputed from the catalog`, AT);
@@ -4199,6 +4256,9 @@ List every created, modified, and deleted path grouped by package; test counts (
 - **The wrapper passes explicit axis defaults**, so a consumer's `theme.components.MuiButton.defaultProps.variant` override does not affect `Button` from this package (it does affect MUI's own `Button`). Documented in the target doc; revisit if a consumer needs theme-level defaults for the wrapper.
 - **`revert` inside cascade layers.** If a consumer wraps MUI's styles in `@layer`, `revert` rolls back to the user-agent origin regardless; behaviour is the same, but worth a Plan 4 assertion.
 - **Global augmentation opt-in split** (from Plan 3) now also covers the MUI component override interfaces.
+- **Capture renders axis permutations only, never state props.** Styles MUI applies through a prop matcher rather than a selector (`fullWidth`, `disabled` as a prop) are invisible to the catalog; Button and Chip emit identical root CSS with and without `disabled`, so it is harmless today. Render each attribute state as an extra permutation if a mapped component needs it.
+- **Components whose props are a type alias** (`TextFieldProps`) are not extractable by the AST reader; the capture says so. Compound components are unlikely mapping targets anyway.
+- **A slot's own-class rules and root-nested rules for the same slot collapse onto one catalog key** in source order rather than specificity order. Not triggered by Button or Chip in 9.4.0.
 
 ---
 
@@ -4230,17 +4290,42 @@ and where it stands. Update the status table after every milestone.
 
 | Batch | Tasks | State |
 | --- | --- | --- |
-| 1 | 1-2 contract, catalog module, error codes, CLI flags, hints, mapping plan, names | done, reviewed, awaiting user commit |
-| 2 | 3-4 `.d.ts` extraction, `capture-defaults` | pending |
+| 1 | 1-2 contract, catalog module, error codes, CLI flags, hints, mapping plan, names | done, reviewed, committed by user |
+| 2 | 3-4 `.d.ts` extraction, `capture-defaults` | done, reviewed, awaiting user commit |
 | 3 | 5-6 resets, mapped model, augmentation, wrapper, type probes | pending |
 | 4 | 7 round-trip for mapped components | pending |
 | 5 | 8 starter `button`, catalog, regenerated output, package tests, docs | pending |
 | 6 | 9 final verification | pending |
 
-Test suite at the start of Plan 3b: compiler 29 files / 355 tests; `styles-mui` 2 files / 10 tests; 34 Turbo tasks. After batch 1: compiler 31 files / 400 tests.
+Test suite at the start of Plan 3b: compiler 29 files / 355 tests; `styles-mui` 2 files / 10 tests; 34 Turbo tasks. After batch 1: compiler 31 files / 400 tests. After batch 2: compiler 34 files / 433 tests.
 
 ### Decisions made during execution
 
+- Batch 2 review (probed against the installed MUI 9.4.0 with Button, Chip,
+  Typography, Alert, MenuItem, TextField; two-process determinism; a sweep of
+  all 133 MUI `.d.ts` files): unions declared through an alias or a template
+  literal (`Typography.variant`, `Typography.color`) are resolved with a lazily
+  created TypeScript program and checker when the AST fast path finds a
+  non-literal member, and only when the `OverridableStringUnion` is the prop's
+  own top-level type (`variantMapping`, `iconMapping` are not unions). The
+  rendered root element and whether the root is a ButtonBase are probe facts
+  captured per design-system component (they depend on the mapping's
+  `defaultProps`) and stored on `components.<name>`; `planMapping` takes them
+  as its `probe` argument. The ripple parity props applied through
+  `buttonBase` are ButtonBase's own three; `disableFocusRipple` is Button's.
+  A component that throws during render, a union whose members cannot be read,
+  a React `console.error` during render, an at-rule nested in `@media`, and a
+  permutation that renders a different root element than the probe are all
+  `DS-E086`. Root-nested descendants naming an own-but-unmapped class
+  (`MuiChip-avatar`) are dropped as unreachable. The CSS parsing is the pure
+  `rulesFromMarkup`, unit-tested with synthetic markup. Diagnostics found in
+  every permutation are reported once per component. `@emotion/cache` is a
+  declared devDependency of `styles-mui`. `test/cli.test.ts` sets a 30 s
+  file-scoped timeout (its tests spawn `tsx` subprocesses; the end-to-end
+  test measured 5.6 s). Deferred: React de-duplicates its own warnings per
+  process, so the console guard is defence in depth; components whose props
+  are a type alias (`TextField`) cannot be extracted; only axis permutations
+  are rendered, never state props.
 - Batch 1 review (probed by running: real `@mui/material` resolution from the
   `styles-mui` outDir, corrupt and mismatched catalogs, CLI flags, planner
   edge cases): a `slotMap` target must be an element slot, meaning a key of

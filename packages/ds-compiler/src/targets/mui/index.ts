@@ -1,5 +1,6 @@
 import { coverageEntries } from '../coverage-entries.js';
 import type { TargetPlugin } from '../plugin.js';
+import { captureMuiDefaults } from './capture.js';
 import { loadMuiCatalog, type MuiCatalog } from './catalog.js';
 import { generateMui } from './generate.js';
 import {
@@ -14,6 +15,7 @@ import { reparseMui } from './reparse.js';
 export const muiPlugin: TargetPlugin<MuiCatalog> = {
   id: MUI_ID,
   loadCatalog: loadMuiCatalog,
+  captureDefaults: captureMuiDefaults,
   generate: (ir, _catalog, ctx, diag) => generateMui(ir, ctx, diag),
   reparse: (files, ir, _catalog, ctx, diag) => reparseMui(files, ir, ctx, diag),
   coverage: (ir) =>

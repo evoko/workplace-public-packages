@@ -226,12 +226,16 @@ export { HTML_ELEMENTS } from './targets/mui/html-elements.js';
 export {
   loadMuiCatalog,
   installedMuiVersion,
+  resolveMuiPackage,
   catalogPathFor,
   findRender,
   catalogHeaderText,
   muiCatalogSchema,
   CATALOG_FILE,
 } from './targets/mui/catalog.js';
+export { extractMuiProps } from './targets/mui/extract-props.js';
+export type { MuiPropsExtraction } from './targets/mui/extract-props.js';
+export { captureMuiDefaults } from './targets/mui/capture.js';
 export type {
   MuiCatalog,
   MuiCatalogComponent,
@@ -239,8 +243,15 @@ export type {
   MuiCatalogRule,
   MuiCatalogProp,
   MuiFrameworkComponent,
+  MuiProbeFacts,
   MuiCatalogScalar,
 } from './targets/mui/catalog.js';
+export type { DiagSink, ConsoleCaptureResult } from './targets/mui/capture.js';
+export {
+  rulesFromMarkup,
+  unresolvedUnionProps,
+  captureConsoleErrors,
+} from './targets/mui/capture.js';
 export {
   MUI_PACKAGE,
   MUI_RANGE,

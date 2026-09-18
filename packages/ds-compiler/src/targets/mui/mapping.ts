@@ -1,7 +1,7 @@
 import type { Diagnostics, SourceLocation } from '../../errors.js';
 import type { ComponentIR } from '../../ir/types.js';
 import { codeUnitCompare } from '../../sources.js';
-import type { MuiFrameworkComponent } from './catalog.js';
+import type { MuiFrameworkComponent, MuiProbeFacts } from './catalog.js';
 import type { MuiMappingHints, MuiScalar } from './hints.js';
 import { muiThemeKeyFor } from './names.js';
 
@@ -16,6 +16,23 @@ export const PARITY_DEFAULT_PROPS: Readonly<Record<string, boolean>> = {
   disableTouchRipple: true,
   focusRipple: false,
 };
+
+/**
+ * `ButtonBase`'s own ripple props apply whenever the component's own props
+ * declare them (Button, IconButton) OR the probe render's root turned out
+ * to be a `ButtonBase` (a clickable Chip: its own props don't declare
+ * `disableRipple`, but MUI still renders a ripple via ButtonBase when
+ * `clickable` is set). `disableFocusRipple` and `disableElevation` only
+ * apply when declared: `disableFocusRipple` is Button's own prop, not
+ * ButtonBase's (ButtonBase has no separate keyboard-focus ripple toggle),
+ * and `disableElevation` is Button-specific shadow styling, not a
+ * ButtonBase behaviour.
+ */
+const BUTTON_BASE_RIPPLE_PROPS: ReadonlySet<string> = new Set([
+  'disableRipple',
+  'disableTouchRipple',
+  'focusRipple',
+]);
 
 /** Props a `defaultProps` entry may never target, regardless of the component. */
 const RESERVED_DEFAULT_PROPS: ReadonlySet<string> = new Set([
@@ -76,11 +93,18 @@ export function manifestLocation(component: ComponentIR): SourceLocation {
   };
 }
 
-/** Validates the manifest's mapping against the catalog's facts about the MUI component. Null after reporting every problem. */
+/**
+ * Validates the manifest's mapping against the catalog's facts about the
+ * MUI component (`framework`, independent of this mapping) and this
+ * mapping's own probe facts (`probe`: the root element and whether it is a
+ * `ButtonBase`, which depend on this mapping's `defaultProps`, e.g. a
+ * clickable Chip). Null after reporting every problem.
+ */
 export function planMapping(
   component: ComponentIR,
   hints: MuiMappingHints,
   framework: MuiFrameworkComponent,
+  probe: MuiProbeFacts,
   diag: Diagnostics,
 ): MappingPlan | null {
   const before = diag.errors.length;
@@ -165,9 +189,9 @@ export function planMapping(
   }
 
   const rootElement = component.slots.root?.element ?? 'div';
-  if (rootElement !== framework.rootElement) {
+  if (rootElement !== probe.rootElement) {
     fail(
-      `root element is "${rootElement}" but ${hints.component} renders "${framework.rootElement}"`,
+      `root element is "${rootElement}" but ${hints.component} renders "${probe.rootElement}"`,
     );
   }
 
@@ -234,7 +258,10 @@ export function planMapping(
 
   const defaultProps: Record<string, MuiScalar> = {};
   for (const [key, value] of Object.entries(PARITY_DEFAULT_PROPS)) {
-    if (Object.hasOwn(framework.props, key)) {
+    const applies =
+      Object.hasOwn(framework.props, key) ||
+      (probe.buttonBase && BUTTON_BASE_RIPPLE_PROPS.has(key));
+    if (applies) {
       defaultProps[key] = value;
     }
   }

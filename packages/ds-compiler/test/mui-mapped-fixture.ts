@@ -1,4 +1,14 @@
-import type { MuiCatalog, MuiCatalogRule } from '../src/targets/mui/catalog.js';
+import type {
+  MuiCatalog,
+  MuiCatalogRule,
+  MuiProbeFacts,
+} from '../src/targets/mui/catalog.js';
+
+/** The probe facts `btn`'s mapping onto Button would learn: a plain button, always a ButtonBase. */
+export const BTN_PROBE: MuiProbeFacts = {
+  rootElement: 'button',
+  buttonBase: true,
+};
 
 /** MUI's Button as a fake `@mui/material` 9.4.0 would render it for the `btn` fixture: enough rules to exercise every reset case. */
 const BTN_RULES: MuiCatalogRule[] = [
@@ -57,7 +67,6 @@ export const FX_CATALOG: MuiCatalog = {
   framework: { name: '@mui/material', version: '9.4.0' },
   frameworkComponents: {
     Button: {
-      rootElement: 'button',
       themeKey: 'MuiButton',
       classes: {
         root: 'MuiButton-root',
@@ -121,6 +130,8 @@ export const FX_CATALOG: MuiCatalog = {
         focusRipple: false,
         variant: 'quiet',
       },
+      rootElement: 'button',
+      buttonBase: true,
       renders: [
         { axes: { tone: 'quiet' }, rules: BTN_RULES },
         { axes: { tone: 'loud' }, rules: BTN_RULES },

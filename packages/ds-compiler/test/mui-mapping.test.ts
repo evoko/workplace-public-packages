@@ -2,7 +2,12 @@ import { describe, expect, it } from 'vitest';
 import { Diagnostics } from '../src/errors.js';
 import { muiMapping } from '../src/targets/mui/hints.js';
 import { planMapping } from '../src/targets/mui/mapping.js';
-import { BTN_FILES, FX_CATALOG, btnWithMui } from './mui-mapped-fixture.js';
+import {
+  BTN_FILES,
+  BTN_PROBE,
+  FX_CATALOG,
+  btnWithMui,
+} from './mui-mapped-fixture.js';
 import { twBuild, twRoot } from './tailwind-fixture.js';
 
 function plan(files: Record<string, string> = BTN_FILES) {
@@ -14,6 +19,7 @@ function plan(files: Record<string, string> = BTN_FILES) {
     component,
     hints,
     FX_CATALOG.frameworkComponents.Button,
+    BTN_PROBE,
     diag,
   );
   return { result, diag, component };
@@ -337,6 +343,7 @@ describe('mui mapping plan', () => {
         ir.components.btn,
         muiMapping(ir.components.btn)!,
         framework,
+        BTN_PROBE,
         diag2,
       ),
     ).toBeNull();
@@ -363,6 +370,7 @@ describe('mui mapping plan', () => {
       component,
       muiMapping(component)!,
       FX_CATALOG.frameworkComponents.Button,
+      BTN_PROBE,
       diag,
     );
     expect(result).toBeNull();
@@ -390,6 +398,7 @@ describe('mui mapping plan', () => {
       component,
       muiMapping(component)!,
       FX_CATALOG.frameworkComponents.Button,
+      BTN_PROBE,
       diag,
     );
     expect(diag.errors).toEqual([]);
@@ -428,5 +437,41 @@ describe('mui mapping plan', () => {
       icon: 'MuiButton-startIcon',
       label: 'MuiButton-label',
     });
+  });
+
+  it("applies exactly ButtonBase's own ripple props via buttonBase, never disableFocusRipple or disableElevation", () => {
+    const { ir } = twBuild(twRoot(BTN_FILES));
+    const component = ir.components.btn;
+    const hints = muiMapping(component)!;
+    const rippleKeys = [
+      'disableElevation',
+      'disableFocusRipple',
+      'disableRipple',
+      'disableTouchRipple',
+      'focusRipple',
+    ];
+    const framework = {
+      ...FX_CATALOG.frameworkComponents.Button,
+      props: Object.fromEntries(
+        Object.entries(FX_CATALOG.frameworkComponents.Button.props).filter(
+          ([key]) => !rippleKeys.includes(key),
+        ),
+      ),
+    };
+    const probe = { rootElement: 'button', buttonBase: true };
+    const diag = new Diagnostics();
+    const result = planMapping(component, hints, framework, probe, diag);
+    expect(diag.errors).toEqual([]);
+    expect(result?.defaultProps).toMatchObject({
+      disableRipple: true,
+      disableTouchRipple: true,
+      focusRipple: false,
+    });
+    // disableFocusRipple is Button's own prop, not ButtonBase's, and
+    // disableElevation is Button-specific shadow styling: neither is
+    // declared on this stripped framework, and buttonBase does not widen
+    // either of them.
+    expect(result?.defaultProps).not.toHaveProperty('disableFocusRipple');
+    expect(result?.defaultProps).not.toHaveProperty('disableElevation');
   });
 });

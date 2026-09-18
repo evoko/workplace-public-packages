@@ -1,6 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { z } from 'zod';
 import type { Diagnostics, SourceLocation } from '../../errors.js';
 import { stableStringify } from '../../ir/serialize.js';
@@ -51,7 +51,6 @@ export interface MuiCatalogProp {
 
 /** Facts about one MUI component, independent of the design system. */
 export interface MuiFrameworkComponent {
-  rootElement: string;
   themeKey: string;
   /** `<camel>Classes` keys to class names: `startIcon` → `MuiButton-startIcon`. */
   classes: Record<string, string>;
@@ -59,8 +58,22 @@ export interface MuiFrameworkComponent {
   props: Record<string, MuiCatalogProp>;
 }
 
+/**
+ * Facts learned by rendering a component bare (no explicit props) under a
+ * theme carrying only this mapping's own `defaultProps`. They depend on the
+ * mapping, not on the MUI component in the abstract: a clickable Chip's
+ * root is a `ButtonBase`, a plain Chip's is not, even though both map onto
+ * the same MUI `Chip`.
+ */
+export interface MuiProbeFacts {
+  /** The actual DOM tag of the root (Typography's types default to `span`, but it renders `<p>` for `variant="body1"`). */
+  rootElement: string;
+  /** Whether the root carries `MuiButtonBase-root` (relevant for parity ripple props on a component that does not declare them itself). */
+  buttonBase: boolean;
+}
+
 /** What was rendered for one design-system component. */
-export interface MuiCatalogComponent {
+export interface MuiCatalogComponent extends MuiProbeFacts {
   component: string;
   axisMap: Record<string, string>;
   slotMap: Record<string, string>;
@@ -88,7 +101,6 @@ export const muiCatalogSchema = z.strictObject({
   frameworkComponents: z.record(
     z.string(),
     z.strictObject({
-      rootElement: z.string(),
       themeKey: z.string(),
       classes: stringRecord,
       props: z.record(
@@ -110,6 +122,8 @@ export const muiCatalogSchema = z.strictObject({
       axisMap: stringRecord,
       slotMap: stringRecord,
       defaultProps: z.record(z.string(), scalar),
+      rootElement: z.string(),
+      buttonBase: z.boolean(),
       renders: z.array(
         z.strictObject({
           axes: stringRecord,
@@ -133,17 +147,32 @@ export function catalogHeaderText(
   return `Captured by @bwp-web/ds-compiler ${compilerVersion} for target mui from ${MUI_PACKAGE} ${muiVersion}. Do not edit; run bwp-ds capture-defaults --target mui.`;
 }
 
-/** The `@mui/material` version resolvable from `outDir` (the target package), or null. */
-export function installedMuiVersion(outDir: string): string | null {
+/**
+ * Resolves and reads `@mui/material/package.json` with `req`. Shared by
+ * `installedMuiVersion` (a throwaway `require`, just for the version) and
+ * the capture runtime (which also needs `muiDir` to read `.d.ts` files and
+ * load components from the same resolved package).
+ */
+export function resolveMuiPackage(
+  req: NodeJS.Require,
+): { version: string; muiDir: string } | null {
   try {
-    const req = createRequire(join(outDir, 'resolve.cjs'));
-    const pkg = JSON.parse(
-      readFileSync(req.resolve(`${MUI_PACKAGE}/package.json`), 'utf8'),
-    ) as { version?: unknown };
-    return typeof pkg.version === 'string' ? pkg.version : null;
+    const pkgFile = req.resolve(`${MUI_PACKAGE}/package.json`);
+    const pkg = JSON.parse(readFileSync(pkgFile, 'utf8')) as {
+      version?: unknown;
+    };
+    return typeof pkg.version === 'string'
+      ? { version: pkg.version, muiDir: dirname(pkgFile) }
+      : null;
   } catch {
     return null;
   }
+}
+
+/** The `@mui/material` version resolvable from `outDir` (the target package), or null. */
+export function installedMuiVersion(outDir: string): string | null {
+  const req = createRequire(join(outDir, 'resolve.cjs'));
+  return resolveMuiPackage(req)?.version ?? null;
 }
 
 /**

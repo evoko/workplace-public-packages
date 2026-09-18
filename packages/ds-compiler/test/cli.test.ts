@@ -1,10 +1,20 @@
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { FIXTURE_MINI, MINI_CONFIG, makeRoot, withEntry } from './helpers.js';
 import { twRoot } from './tailwind-fixture.js';
+
+// Every test here spawns a real `npx tsx src/cli.ts` subprocess (sometimes
+// several in a row); under load, that reliably exceeds vitest's default
+// 5000ms per-test timeout even though each command itself finishes well
+// inside its own 30_000ms execFileSync timeout.
+vi.setConfig({ testTimeout: 30_000 });
+
+const REAL_MUI_OUT_DIR = fileURLToPath(
+  new URL('../../styles-mui/src/generated/', import.meta.url),
+);
 
 const pkgDir = fileURLToPath(new URL('..', import.meta.url));
 
@@ -243,6 +253,33 @@ describe('bwp-ds CLI', () => {
     expect(JSON.parse(unknown.stdout)).toEqual({
       error: expect.stringContaining('unknown target "nope"'),
     });
+  });
+
+  it('capture-defaults --target mui fails without node_modules, succeeds against the real outDir', () => {
+    const root = twRoot();
+    const mui = run(['capture-defaults', '--root', root, '--target', 'mui']);
+    expect(mui.code).toBe(1);
+    expect(mui.stderr).toContain('DS-E086');
+    expect(mui.stderr).toContain('cannot load');
+
+    if (process.platform === 'win32') {
+      // A relative path from the temp root to the real outDir could need a
+      // drive change; this repo's CI is Linux, so skip the positive run.
+      return;
+    }
+    const relOutDir = relative(root, REAL_MUI_OUT_DIR).split(sep).join('/');
+    const config = JSON.parse(
+      readFileSync(join(root, 'ds.config.json'), 'utf8'),
+    ) as { targets: Record<string, { outDir?: string }> };
+    config.targets.mui = { outDir: relOutDir };
+    writeFileSync(
+      join(root, 'ds.config.json'),
+      JSON.stringify(config, null, 2),
+    );
+    const real = run(['capture-defaults', '--root', root, '--target', 'mui']);
+    expect(real.code).toBe(0);
+    expect(real.stdout).toContain('wrote');
+    expect(existsSync(join(root, 'catalogs', 'mui.json'))).toBe(true);
   });
 
   it('generate and verify accept --allow-catalog-mismatch', () => {
