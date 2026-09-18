@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
@@ -181,7 +181,7 @@ describe('bwp-ds CLI', () => {
     expect(generated.code).toBe(0);
     expect(
       (JSON.parse(generated.stdout) as { wrote: string[] }).wrote,
-    ).toHaveLength(3);
+    ).toHaveLength(11);
     const targeted = run([
       'generate',
       '--root',
@@ -217,5 +217,17 @@ describe('bwp-ds CLI', () => {
     expect(stale.code).toBe(1);
     expect(stale.stderr).toContain('DS-E080');
     expect(stale.stdout).toContain('steps: {"lint":"pass","drift":"fail"');
+  });
+
+  it('generate exits 1 and writes nothing when a plugin reports a generation error', () => {
+    const root = twRoot({
+      'src/tokens/space.css':
+        ':root {\n  --fx-space-2: 8px;\n}\n:root[data-fx-theme="dark"] {\n  --fx-space-2: 10px;\n}\n',
+    });
+    expect(run(['build', '--root', root]).code).toBe(0);
+    const r = run(['generate', '--root', root]);
+    expect(r.code).toBe(1);
+    expect(r.stderr).toContain('DS-E084');
+    expect(existsSync(join(root, 'out'))).toBe(false);
   });
 });

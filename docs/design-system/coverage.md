@@ -7,6 +7,6 @@ Which components each target covers. `supported`: every rule is generated.
 `unmapped`: the manifest has no entry for this target, and `bwp-ds verify` fails.
 `excluded`: left out on purpose, with the reason from the manifest.
 
-| Component | tailwind |
-| --- | --- |
-| `example` | supported |
+| Component | mui | tailwind |
+| --- | --- | --- |
+| `example` | excluded: starter component; the real design system replaces it | supported |

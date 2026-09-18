@@ -189,9 +189,22 @@ function toToken(
     allLiteral || allSameAlias || pending.declaredInvariant;
   const invariant = allValuesEqual && aliasShapeAgrees;
 
+  // The entry "in effect" for a mode is its own declared entry, or, when the
+  // token is declared only in :root, the default mode's entry reused for
+  // every mode it does not declare (mirrors resolveEntry's fallback above).
+  // Without the fallback, a :root-only alias of a mode-varying token would
+  // carry the alias for the default mode only, even though it is in effect
+  // for every mode; two otherwise-equivalent sources (one declaring the
+  // alias only in :root, one restating it in every mode block) would then
+  // resolve to different `alias` shapes for the same effective token.
   const aliasByMode: Partial<Record<Mode, TokenId>> = {};
-  for (const [mode, entry] of pending.entries) {
-    if (entry.kind === 'alias') {
+  for (const mode of config.modes) {
+    const entry =
+      pending.entries.get(mode) ??
+      (pending.declaredInvariant
+        ? pending.entries.get(config.defaultMode)
+        : undefined);
+    if (entry?.kind === 'alias') {
       aliasByMode[mode] = entry.ref;
     }
   }

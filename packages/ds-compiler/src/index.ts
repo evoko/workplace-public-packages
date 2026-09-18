@@ -234,3 +234,9 @@ export {
   renderIndexTs,
   renderTypecheckTsx,
 } from './targets/mui/render-component.js';
+export { muiPlugin } from './targets/mui/index.js';
+export { reparseMui } from './targets/mui/reparse.js';
+export { coverageEntries } from './targets/coverage-entries.js';
+export type { CoverageHooks } from './targets/coverage-entries.js';
+export { verifySelectorOrder } from './targets/reparse-support.js';
+export type { OriginalSelector } from './targets/reparse-support.js';

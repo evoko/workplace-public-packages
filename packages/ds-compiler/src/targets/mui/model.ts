@@ -231,7 +231,7 @@ function ariaAttributeFor(state: string): string | null {
 }
 
 /** The React-shell description, or null after reporting every DS-E085 for the component. */
-function componentModel(
+export function componentModel(
   component: ComponentIR,
   prefix: string,
   diag: Diagnostics,

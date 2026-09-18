@@ -1,6 +1,5 @@
 import type { ChildNode, Declaration, Rule as CssRule } from 'postcss';
 import { renderRuleSelector } from '../../components/render-selector.js';
-import type { Manifest } from '../../components/manifest.js';
 import { parseComponentCss } from '../../components/parse-component.js';
 import { modeSelectorFor, type DsConfig } from '../../config.js';
 import {
@@ -20,32 +19,14 @@ import {
 } from '../../tokens/parse-tokens.js';
 import { resolveTokens } from '../../tokens/resolve-tokens.js';
 import type { GeneratedFile, PluginContext } from '../plugin.js';
+import {
+  manifestFromComponent,
+  verifySelectorOrder,
+} from '../reparse-support.js';
 import { isMappedForTailwind } from './hints.js';
 import { sourceNameFromTailwind } from './names.js';
 
-/**
- * A manifest equivalent to a component IR, for re-parsing generated CSS.
- * Baseline warnings are irrelevant here. `axes` and `slots` are rebuilt in
- * `axisOrder`/`slotOrder` rather than passed through as-is, because a
- * component IR read back from `design.ir.json` has those records
- * alphabetized by `serializeIR`; without this, a generator that trusts key
- * order (e.g. MUI's variant/prop order) would produce different output for
- * the same design system depending on whether it started from the in-memory
- * IR or the serialized one.
- */
-export function manifestFromComponent(c: ComponentIR): Manifest {
-  return {
-    name: c.name,
-    displayName: c.displayName,
-    description: c.description,
-    axes: Object.fromEntries(c.axisOrder.map((a) => [a, c.axes[a]])),
-    states: c.states,
-    slots: Object.fromEntries(c.slotOrder.map((s) => [s, c.slots[s]])),
-    preview: c.preview,
-    baseline: false,
-    targets: c.targets,
-  };
-}
+export { manifestFromComponent } from '../reparse-support.js';
 
 const VAR_REF = /var\(\s*(--[a-zA-Z0-9-]+)\s*\)/g;
 
@@ -217,55 +198,6 @@ interface Group {
   texts: string[];
 }
 
-/**
- * `originals` (the order rules appeared in the generated file) must equal
- * `rendered` (the canonical cascade order `parseComponentCss` recomputes)
- * element for element: `parsed.rules` is already in canonical cascade order
- * and the generator emits rules in that same order (minus fully ignored
- * ones), so a correct round-trip never reorders them. A literal duplicate
- * among `originals` is reported as `duplicate rule`; any other count
- * mismatch as `expected <n> rules, found <m>`; a per-index mismatch as a
- * non-canonical selector, naming the original and the canonical form at that
- * position.
- */
-function verifySelectors(
-  originals: readonly { selector: string; location: SourceLocation }[],
-  rendered: readonly string[],
-  diag: Diagnostics,
-): void {
-  const fallbackLocation = originals[0]?.location ?? {
-    file: 'components.css',
-    line: 1,
-    column: 1,
-  };
-  const seen = new Set<string>();
-  for (const o of originals) {
-    if (seen.has(o.selector)) {
-      diag.add('DS-E030', `duplicate rule "${o.selector}"`, o.location);
-      return;
-    }
-    seen.add(o.selector);
-  }
-  if (originals.length !== rendered.length) {
-    diag.add(
-      'DS-E030',
-      `expected ${rendered.length} rules, found ${originals.length}`,
-      fallbackLocation,
-    );
-    return;
-  }
-  for (let i = 0; i < originals.length; i += 1) {
-    if (originals[i].selector !== rendered[i]) {
-      diag.add(
-        'DS-E030',
-        `selector "${originals[i].selector}" is not the canonical form "${rendered[i]}"`,
-        originals[i].location,
-      );
-      return;
-    }
-  }
-}
-
 function reparseComponents(
   css: string,
   ir: DesignIR,
@@ -390,7 +322,12 @@ function reparseComponents(
     const rendered = parsed.rules.map((r) =>
       renderRuleSelector(config.prefix, target, r),
     );
-    verifySelectors(group.originals, rendered, diag);
+    verifySelectorOrder(
+      group.originals,
+      rendered,
+      { file: 'components.css', line: 1, column: 1 },
+      diag,
+    );
   }
   return diag.hasErrors() ? null : out;
 }

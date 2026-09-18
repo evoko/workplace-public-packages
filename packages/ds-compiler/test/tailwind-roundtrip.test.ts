@@ -20,7 +20,7 @@ function scopeFor(ir: ReturnType<typeof twBuild>['ir']) {
 
 describe('tailwind round-trip', () => {
   it('is registered', () => {
-    expect(Object.keys(TARGETS)).toEqual(['tailwind']);
+    expect(Object.keys(TARGETS).sort()).toEqual(['mui', 'tailwind']);
     expect(TARGETS.tailwind).toBe(tailwindPlugin);
   });
 

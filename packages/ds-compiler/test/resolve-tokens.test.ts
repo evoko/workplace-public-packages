@@ -77,8 +77,39 @@ describe('resolveTokens', () => {
     expect(tokens['color.surface.default']).toMatchObject({
       modeInvariant: false,
       $value: { light: { hex: '#ffffffff' }, dark: { hex: '#111111ff' } },
-      alias: { light: 'color.bg.default' },
+      // declared only in :root, but the aliased target varies by mode, so
+      // the alias itself is in effect for every mode, not just the default
+      alias: { light: 'color.bg.default', dark: 'color.bg.default' },
     });
+  });
+
+  it('resolves a :root-only alias of a mode-varying token the same as one restated in every mode block', () => {
+    const formA = resolve({
+      'color.css': `
+:root {
+  --fx-color-bg-default: #ffffff;
+  --fx-color-surface-default: var(--fx-color-bg-default);
+}
+:root[data-fx-theme="dark"] {
+  --fx-color-bg-default: #111111;
+}`,
+    }).tokens;
+    const formB = resolve({
+      'color.css': `
+:root {
+  --fx-color-bg-default: #ffffff;
+  --fx-color-surface-default: var(--fx-color-bg-default);
+}
+:root[data-fx-theme="dark"] {
+  --fx-color-bg-default: #111111;
+  --fx-color-surface-default: var(--fx-color-bg-default);
+}`,
+    }).tokens;
+    const strip = ({ source: _source, ...rest }: (typeof formA)[string]) =>
+      rest;
+    expect(strip(formA['color.surface.default'])).toEqual(
+      strip(formB['color.surface.default']),
+    );
   });
 
   it('accepts cross-category aliases when the value type matches', () => {

@@ -5,7 +5,7 @@ import {
   rmSync,
   writeFileSync,
 } from 'node:fs';
-import { join } from 'node:path';
+import { join, sep } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { build } from '../src/build.js';
 import { Diagnostics } from '../src/errors.js';
@@ -31,23 +31,52 @@ function ready(extra: Record<string, string> = {}): string {
 }
 
 describe('generate', () => {
-  it('writes the tailwind files into the configured outDir and removes stale files', () => {
+  it("writes every target's files into their configured outDirs and removes stale files", () => {
     const root = twRoot();
     build(root);
-    const out = join(root, 'out', 'tailwind');
-    mkdirSync(out, { recursive: true });
-    writeFileSync(join(out, 'stale.css'), 'x');
+    const out = join(root, 'out');
+    const twOut = join(out, 'tailwind');
+    mkdirSync(twOut, { recursive: true });
+    writeFileSync(join(twOut, 'stale.css'), 'x');
     const result = generate(root);
     expect(result.ir).not.toBeNull();
-    expect(result.written.map((p) => p.slice(out.length + 1))).toEqual([
-      'components.css',
-      'index.css',
-      'theme.css',
+    expect(
+      result.written.map((p) =>
+        p
+          .slice(out.length + 1)
+          .split(sep)
+          .join('/'),
+      ),
+    ).toEqual([
+      'mui/theme.model.json',
+      'mui/theme.ts',
+      'mui/augmentation.ts',
+      'mui/components/Chip.tsx',
+      'mui/components/Tag.tsx',
+      'mui/components/index.ts',
+      'mui/index.ts',
+      'mui/typecheck.tsx',
+      'tailwind/components.css',
+      'tailwind/index.css',
+      'tailwind/theme.css',
     ]);
-    expect(result.removed).toEqual([join(out, 'stale.css')]);
-    expect(readFileSync(join(out, 'theme.css'), 'utf8')).toContain(
+    expect(result.removed).toEqual([join(out, 'tailwind', 'stale.css')]);
+    expect(readFileSync(join(twOut, 'theme.css'), 'utf8')).toContain(
       '@theme static {',
     );
+  });
+
+  it('writes nothing for any target when one plugin reports a generation error', () => {
+    const root = twRoot({
+      'src/tokens/space.css':
+        ':root {\n  --fx-space-2: 8px;\n}\n:root[data-fx-theme="dark"] {\n  --fx-space-2: 10px;\n}\n',
+    });
+    build(root);
+    const result = generate(root);
+    expect(result.ir).not.toBeNull();
+    expect(result.diagnostics.errors.map((d) => d.code)).toEqual(['DS-E084']);
+    expect(result.written).toEqual([]);
+    expect(existsSync(join(root, 'out'))).toBe(false);
   });
 
   it('writes nothing when the IR has errors', () => {
@@ -94,8 +123,27 @@ describe('verify', () => {
     });
     expect(result.coverageFile).toBe(join(root, 'out', 'coverage.md'));
     expect(readFileSync(result.coverageFile!, 'utf8')).toContain(
-      '| `chip` | supported |',
+      '| `chip` | supported | supported |',
     );
+  });
+
+  it('fails drift when a plugin cannot generate, and still runs the other steps', () => {
+    const root = ready();
+    writeFileSync(
+      join(root, 'src/tokens/space.css'),
+      ':root {\n  --fx-space-2: 8px;\n}\n:root[data-fx-theme="dark"] {\n  --fx-space-2: 10px;\n}\n',
+    );
+    build(root);
+    // the Tailwind theme gains a mode override for the token, so bring it up to date
+    generate(root, ['tailwind']);
+    const result = verify(root);
+    expect(result.steps).toEqual({
+      lint: 'pass',
+      drift: 'fail',
+      roundtrip: 'pass',
+      coverage: 'pass',
+    });
+    expect(result.diagnostics.errors.map((d) => d.code)).toEqual(['DS-E084']);
   });
 
   it('reports drift for a stale IR, a changed generated file, and a stray file', () => {
@@ -170,19 +218,20 @@ describe('verify', () => {
       roundtrip: 'pass',
       coverage: 'fail',
     });
-    const unmapped = result.diagnostics.errors.find(
+    const unmapped = result.diagnostics.errors.filter(
       (d) => d.code === 'DS-E082',
-    )!;
-    expect(unmapped.message).toBe(
-      'dot has no targets.tailwind entry in its manifest',
     );
-    expect(unmapped.location).toEqual({
+    expect(unmapped.map((d) => d.message)).toEqual([
+      'dot has no targets.mui entry in its manifest',
+      'dot has no targets.tailwind entry in its manifest',
+    ]);
+    expect(unmapped[0].location).toEqual({
       file: 'src/components/dot/dot.manifest.json',
       line: 1,
       column: 1,
     });
     expect(readFileSync(result.coverageFile!, 'utf8')).toContain(
-      '| `dot` | **unmapped** |',
+      '| `dot` | **unmapped** | **unmapped** |',
     );
   });
 

@@ -37,9 +37,10 @@
 | Inexpressible components | A state outside `hover`, `focus-visible`, `active`, `disabled`, and the four ARIA-true states (i.e. a `data-state` state); an element that is not an HTML or SVG tag; a void element (`img`, `input`, `hr`, …) anywhere, since every slot holds content; an SVG element other than `svg` when the root is not `svg` (flat slots are children of the root); a slot or axis named like a reserved prop (`children`, `className`, `style`, `ref`, `key`, `sx`, `component`, `as`, `ownerState`, `theme`, `classes`); or two names that camelCase to the same prop: each is `DS-E085` at generation. The manifest fixes it or excludes the component. |
 | Generated files | Under the target's outDir: `theme.model.json`, `theme.ts`, `augmentation.ts`, `components/<Pascal>.tsx` per component, `components/index.ts`, `index.ts`, and `typecheck.tsx` (a type-level probe with `@ts-expect-error` lines that the package's `tsc --noEmit` compiles and tsup never bundles). The augmentation is a `.ts` module (not `.d.ts`) so tsc emits it into the package's published types; the package entry imports it for its side effect. `theme.model.json` starts with a `"generated"` key holding the header text, since JSON has no comments. TS files start with a `//` header line of the same text. |
 | `theme.ts` | `export const <prefix>ThemeOptions = { … } satisfies ThemeOptions;` rendered as a TS object literal from the model's `themeOptions` (insertion order preserved), and `export function create<Prefix>Theme(options: ThemeOptions = {}): Theme` returning `createTheme(deepmerge(<prefix>ThemeOptions, options))`. The package test asserts the literal deep-equals the model, which is what makes the model a faithful proxy for round-trip. |
-| Round-trip | `reparse` reads `theme.model.json`: token vars are rewritten to source names and fed through `parseTokenFile` and `resolveTokens` per category; each component's `styleOverrides.root` and `variants` are reconstructed into (slot, axes, states) keys, re-rendered with the design system's `renderRuleSelector`, and fed through `parseComponentCss`; the variant key sequence must equal the canonical form element for element. Everything is reported as `DS-E081`, pointing at `theme.model.json`. |
+| Round-trip | `reparse` reads `theme.model.json`: token vars are rewritten to source names and fed through `parseTokenFile` and `resolveTokens` per category; each component's `styleOverrides.root` and `variants` are reconstructed into (slot, axes, states) keys, re-rendered with the design system's `renderRuleSelector`, and fed through `parseComponentCss`; the variant key sequence must equal the canonical form element for element; and each `components` metadata entry (what the React shells are rendered from) must equal `componentModel` rebuilt from the IR (batch 3 review). Everything is reported as `DS-E081`, pointing at `theme.model.json`; the reparser's own checks carry a plain message, parser diagnostics keep their code and title. |
 | Plugin contract | `generate(ir, catalog, ctx, diag)` gains a `Diagnostics` parameter so a plugin can report coded errors (`DS-E084`, `DS-E085`) instead of throwing. `bwp-ds generate` writes nothing when any plugin reported an error; drift and round-trip skip a plugin whose generation reported errors. Tailwind ignores the parameter. |
 | IR order fields | `ComponentIR` gains `axisOrder` and `slotOrder` (manifest key order, `root` first), because `serializeIR` sorts record keys and generators must produce identical output from the in-memory IR and from `design.ir.json`. The MUI shell renders slots in `slotOrder` and picks the children slot from it; `manifestFromComponent` rebuilds the records in that order. `irVersion` stays 1 (additive). |
+| Alias canonical form | (batch 3 review) For a mode-varying token, `alias[mode]` is set whenever the entry in effect for that mode is an alias, including the `:root` entry reused by modes the token does not declare. So `--b: var(--a)` declared only in `:root` and the same alias restated in every mode block produce one IR, which is the only form the MUI output can encode. |
 | Shared value renderers | `src/targets/tailwind/values.ts` moves to `src/targets/css-values.ts` (same exports) because MUI renders the same CSS value strings. |
 | Package | `@bwp-web/styles-mui` builds like `@bwp-web/components` (tsup ESM+CJS, tsc declarations), peer-depends on `@mui/material ^9.4.0`, `@emotion/react`, `@emotion/styled`, `react`, `react-dom`; typechecks and lints the generated TSX (a generation bug fails `npm run typecheck`); tests assert the model equality, the emitted stylesheet, and a static render of every generated component. Version scripts and `auto-tag.yml` wait for Plan 6. |
 | Coverage | Every property in the table is expressible in Emotion, so nothing is `unsupported`; `ignore` yields `partial`. `DS-E083` stays unused until Plan 3b or Flutter. |
@@ -2264,8 +2265,9 @@ describe('mui round-trip', () => {
     });
     expect(reparsed!.tokens['shadow.focus'].$value).toEqual(ir.tokens['shadow.focus'].$value);
     expect(reparsed!.components.pill).toBeUndefined();
-    // the ignored property never appears in the generated output
-    expect(JSON.stringify(files)).not.toContain('opacity');
+    // tag ignores opacity, so its theme entry never mentions it (chip legitimately uses opacity on :disabled)
+    const model = JSON.parse(files[0].contents) as MuiModel;
+    expect(JSON.stringify(model.themeOptions.components.FxTag)).not.toContain('opacity');
   });
 
   it('reparses the mini fixture (no mapped components) without differences', () => {
@@ -2464,6 +2466,7 @@ describe('mui round-trip', () => {
 Update existing tests:
 
 - `test/tailwind-roundtrip.test.ts`: the registration assertion becomes `expect(Object.keys(TARGETS).sort()).toEqual(['mui', 'tailwind'])`.
+- `test/targets-hints.test.ts`: the pre-existing `registers the tailwind plugin` test (which asserted `getTarget('mui')` is null) becomes `registers the tailwind and mui plugins`, with `flutter` still unresolved.
 - `test/verify.test.ts`:
   - `writes the tailwind files …` becomes `writes every target's files …`: with `out = join(root, 'out')`, expect `result.written.map((p) => p.slice(out.length + 1).split(sep).join('/'))` (import `sep` from `node:path`) to equal
     ```ts
@@ -3834,15 +3837,21 @@ and where it stands. Update the status table after every milestone.
 | Batch | Tasks | State |
 | --- | --- | --- |
 | 1 | 1-2 contract `diag`, shared value renderers, hints, names, error codes, model | done, reviewed, committed by user |
-| 2 | 3 renderers (`theme.ts`, `augmentation.ts`, shells, `typecheck.tsx`, model JSON) | done, reviewed, awaiting user commit |
-| 3 | 4 `reparse`, plugin object, registration, coverage | pending |
+| 2 | 3 renderers (`theme.ts`, `augmentation.ts`, shells, `typecheck.tsx`, model JSON) | done, reviewed, committed by user |
+| 3 | 4 `reparse`, plugin object, registration, coverage | done, reviewed, awaiting user commit (root `verify` fails with six DS-E080 until Task 5 wires the package) |
 | 4 | 5 `styles-mui` package, wiring, generated output, docs | pending |
 | 5 | 6 final verification | pending |
 
-Test suite at the start of Plan 3: 25 files, 289 tests (end of Plan 2). After batch 1: 27 files, 317 tests. After batch 2: 28 files, 334 tests (`design.ir.json` regenerated for the new `axisOrder`/`slotOrder` fields).
+Test suite at the start of Plan 3: 25 files, 289 tests (end of Plan 2). After batch 1: 27 files, 317 tests. After batch 2: 28 files, 334 tests (`design.ir.json` regenerated for the new `axisOrder`/`slotOrder` fields). After batch 3: 29 files, 355 tests.
 
 ### Decisions made during execution
 
+- Batch 3 review (tamper matrix against the MUI round-trip: 13 of 15
+  corruptions caught, the two misses being equivalent notations): the alias
+  mode-map is canonicalised in `resolveTokens` so a `:root`-only alias and a
+  restated one yield one IR; `reparseMui` verifies `components` metadata by
+  rebuilding it from the IR; the reparser's own checks report plain DS-E081
+  messages without a borrowed inner code.
 - Batch 2 review (generated output compiled against MUI 9.4 and React 19 with
   tsc and eslint, rendered with Emotion; all clean): modes are limited to
   `light`/`dark` (DS-E084 otherwise); `ComponentIR` gained `axisOrder` and

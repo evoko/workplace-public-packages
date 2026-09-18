@@ -33,7 +33,11 @@ export type Token =
   | (TokenBase & {
       modeInvariant: false;
       $value: Record<Mode, TokenValue>;
-      /** Present when the source used var(): the referenced token id, per mode. */
+      /**
+       * Present when the source used var(): the referenced token id, per
+       * mode; a token declared only in :root that aliases a mode-varying
+       * token has the alias in every mode.
+       */
       alias?: Partial<Record<Mode, TokenId>>;
     });
 
