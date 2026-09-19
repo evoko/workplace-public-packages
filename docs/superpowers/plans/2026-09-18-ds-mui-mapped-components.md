@@ -4227,7 +4227,7 @@ Expected: every command exits 0, `verify` prints four `pass` and no `DS-W004`, t
 npm run ds -- capture-defaults --target mui && git status --short
 ```
 
-Expected: exit 0 and an empty status (byte-identical catalog). Then corrupt the catalog's version without git: copy the file to the scratchpad, `sed -i '' 's/"version": "9.4.0"/"version": "9.3.0"/' packages/styles-css/catalogs/mui.json` (use the real version string), run `npm run verify ; echo "exit $?"` → exit 1, `drift: fail`, one `DS-E086` at `catalogs/mui.json` saying `captured from @mui/material 9.3.0 but 9.4.0 is installed`. Then `npm run verify -- --allow-catalog-mismatch` (the root script is `bwp-ds verify --root packages/styles-css`, so npm forwards the flag) and expect exit 0 with one `DS-W004`. Restore the file from the scratchpad copy (`cp`), confirm `git status --short` is clean. (`sed -i ''` is the macOS form; on Linux use `sed -i`.)
+Expected: exit 0 and an empty status (byte-identical catalog). Then corrupt the catalog's version without git: copy the file to the scratchpad, `sed -i '' 's/"version": "9.4.0"/"version": "9.3.0"/' packages/styles-css/catalogs/mui.json` (use the real version string), run `npm run verify ; echo "exit $?"` → exit 1, `drift: fail`, one `DS-E086` at `catalogs/mui.json` saying `captured from @mui/material 9.3.0 but 9.4.0 is installed`. Then `npm run verify -- --allow-catalog-mismatch` (the root script is `bwp-ds verify --root packages/styles-css`, so npm forwards the flag) and expect one `DS-W004` and, because the model embeds the catalog's version, one `DS-E080` on `theme.model.json` (exit 1): the flag accepts the mismatch, and `generate --allow-catalog-mismatch` would then regenerate the model with the edited version. The flag's real use is the reverse case, an installed MUI newer than the committed catalog, where the committed model already matches the catalog and `verify -- --allow-catalog-mismatch` exits 0 with the single warning. Restore the file from the scratchpad copy (`cp`), confirm `git status --short` is clean. (`sed -i ''` is the macOS form; on Linux use `sed -i`.)
 
 - [ ] **Step 3: A stale catalog is caught**
 
@@ -4300,13 +4300,27 @@ and where it stands. Update the status table after every milestone.
 | 2 | 3-4 `.d.ts` extraction, `capture-defaults` | done, reviewed, committed by user |
 | 3 | 5-6 resets, mapped model, augmentation, wrapper, type probes | done, reviewed, committed by user |
 | 4 | 7 round-trip for mapped components | done, reviewed, committed by user |
-| 5 | 8 starter `button`, catalog, regenerated output, package tests, docs | done, reviewed, awaiting user commit |
-| 6 | 9 final verification | pending |
+| 5 | 8 starter `button`, catalog, regenerated output, package tests, docs | done, reviewed, committed by user |
+| 6 | 9 final verification | done on 2026-09-19: all six steps pass from a clean `npm run clean && npm ci`; awaiting user commit of this log update |
 
 Test suite at the start of Plan 3b: compiler 29 files / 355 tests; `styles-mui` 2 files / 10 tests; 34 Turbo tasks. After batch 1: compiler 31 files / 400 tests. After batch 2: compiler 34 files / 433 tests. After batch 3: compiler 36 files / 477 tests. After batch 4: compiler 36 files / 491 tests. After batch 5: compiler 36 files / 491 tests; `styles-mui` 3 files / 19 tests; 34 Turbo tasks.
 
 ### Decisions made during execution
 
+- Batch 6 (Task 9, final verification, 2026-09-19): every step passed from a
+  clean `npm run clean && npm ci` (34 Turbo tasks; compiler 36 files / 491
+  tests; `styles-mui` 3 files / 19 tests; `verify` four `pass`, no
+  `DS-W004`; catalog re-capture byte-identical; the CI catalog sequence
+  exits 0; a stale catalog fails `generate` with `DS-E086` naming
+  `size=lg, variant=filled` and writes nothing, and re-capturing repairs it;
+  the type probe yields exactly the two expected errors; a packed tarball
+  type-checks and renders in a fresh consumer through ESM and CJS with a
+  development Emotion build; the tarball ships `dist/**` only, and
+  `styles-css` ships the catalog). One expectation in Step 2 was wrong and
+  is corrected in the step text: with the catalog's version edited,
+  `verify -- --allow-catalog-mismatch` reports `DS-W004` plus a `DS-E080` on
+  `theme.model.json`, because the model embeds `framework.version`; the
+  flag is for an installed MUI newer than the committed catalog.
 - Batch 5 review (packed tarball installed in a fresh consumer, CJS and ESM;
   a property-by-property cascade audit of the real `MuiButton` theme across
   all four permutations plus `disabled`: 441 triples, no MUI default wins):
