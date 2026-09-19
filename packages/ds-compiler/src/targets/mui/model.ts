@@ -519,16 +519,6 @@ export function buildComponentModel(
   return { model, resets };
 }
 
-/** The React-shell or wrapper description, or null after reporting every DS-E085/DS-E086 for the component. */
-export function componentModel(
-  ir: DesignIR,
-  component: ComponentIR,
-  catalog: MuiCatalog | null,
-  diag: Diagnostics,
-): MuiComponentModel | null {
-  return buildComponentModel(ir, component, catalog, diag)?.model ?? null;
-}
-
 /**
  * The base root rule becomes `styleOverrides.root`; every other rule, in the
  * IR's canonical order, becomes one variant keyed by `specificityKey`, so

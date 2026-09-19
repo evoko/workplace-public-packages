@@ -1,5 +1,484 @@
 {
   "components": {
+    "button": {
+      "axes": {
+        "size": {
+          "default": "md",
+          "values": [
+            "sm",
+            "md"
+          ]
+        },
+        "variant": {
+          "default": "filled",
+          "values": [
+            "filled",
+            "ghost"
+          ]
+        }
+      },
+      "axisOrder": [
+        "variant",
+        "size"
+      ],
+      "description": "Starter component mapped onto MUI Button. Replace it with real components.",
+      "displayName": "Button",
+      "name": "button",
+      "preview": {
+        "icon": "plus",
+        "label": "Button"
+      },
+      "rules": [
+        {
+          "axes": {},
+          "declarations": {
+            "align-items": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "center"
+            },
+            "appearance": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "none"
+            },
+            "background-color": {
+              "kind": "token",
+              "ref": "color.accent.default"
+            },
+            "border-bottom-color": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "transparent"
+            },
+            "border-bottom-left-radius": {
+              "kind": "token",
+              "ref": "radius.md"
+            },
+            "border-bottom-right-radius": {
+              "kind": "token",
+              "ref": "radius.md"
+            },
+            "border-bottom-style": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "solid"
+            },
+            "border-bottom-width": {
+              "kind": "token",
+              "ref": "border-width.1"
+            },
+            "border-left-color": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "transparent"
+            },
+            "border-left-style": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "solid"
+            },
+            "border-left-width": {
+              "kind": "token",
+              "ref": "border-width.1"
+            },
+            "border-right-color": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "transparent"
+            },
+            "border-right-style": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "solid"
+            },
+            "border-right-width": {
+              "kind": "token",
+              "ref": "border-width.1"
+            },
+            "border-top-color": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "transparent"
+            },
+            "border-top-left-radius": {
+              "kind": "token",
+              "ref": "radius.md"
+            },
+            "border-top-right-radius": {
+              "kind": "token",
+              "ref": "radius.md"
+            },
+            "border-top-style": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "solid"
+            },
+            "border-top-width": {
+              "kind": "token",
+              "ref": "border-width.1"
+            },
+            "box-sizing": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "border-box"
+            },
+            "color": {
+              "kind": "token",
+              "ref": "color.text.inverse"
+            },
+            "column-gap": {
+              "kind": "token",
+              "ref": "space.2"
+            },
+            "cursor": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "pointer"
+            },
+            "display": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "inline-flex"
+            },
+            "font-family": {
+              "kind": "token",
+              "ref": "font-family.body"
+            },
+            "font-size": {
+              "kind": "token",
+              "ref": "font-size.md"
+            },
+            "font-weight": {
+              "kind": "token",
+              "ref": "font-weight.semibold"
+            },
+            "justify-content": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "center"
+            },
+            "letter-spacing": {
+              "kind": "token",
+              "ref": "letter-spacing.tight"
+            },
+            "line-height": {
+              "kind": "token",
+              "ref": "line-height.tight"
+            },
+            "min-height": {
+              "kind": "token",
+              "ref": "size.control.md"
+            },
+            "padding-bottom": {
+              "kind": "token",
+              "ref": "space.2"
+            },
+            "padding-left": {
+              "kind": "token",
+              "ref": "space.4"
+            },
+            "padding-right": {
+              "kind": "token",
+              "ref": "space.4"
+            },
+            "padding-top": {
+              "kind": "token",
+              "ref": "space.2"
+            },
+            "row-gap": {
+              "kind": "token",
+              "ref": "space.2"
+            },
+            "text-transform": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "none"
+            },
+            "transition-duration": {
+              "kind": "token",
+              "ref": "duration.fast"
+            },
+            "transition-property": {
+              "kind": "literal",
+              "type": "string",
+              "value": "background-color, border-color, box-shadow, color"
+            },
+            "transition-timing-function": {
+              "kind": "token",
+              "ref": "easing.standard"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/button/button.css",
+            "line": 3
+          },
+          "states": []
+        },
+        {
+          "axes": {},
+          "declarations": {
+            "background-color": {
+              "kind": "token",
+              "ref": "color.accent.hover"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/button/button.css",
+            "line": 30
+          },
+          "states": [
+            "hover"
+          ]
+        },
+        {
+          "axes": {},
+          "declarations": {
+            "box-shadow": {
+              "kind": "token",
+              "ref": "shadow.focus"
+            },
+            "outline-style": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "none"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/button/button.css",
+            "line": 34
+          },
+          "states": [
+            "focus-visible"
+          ]
+        },
+        {
+          "axes": {},
+          "declarations": {
+            "background-color": {
+              "kind": "token",
+              "ref": "color.accent.hover"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/button/button.css",
+            "line": 39
+          },
+          "states": [
+            "active"
+          ]
+        },
+        {
+          "axes": {},
+          "declarations": {
+            "cursor": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "not-allowed"
+            },
+            "opacity": {
+              "kind": "token",
+              "ref": "opacity.disabled"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/button/button.css",
+            "line": 43
+          },
+          "states": [
+            "disabled"
+          ]
+        },
+        {
+          "axes": {
+            "variant": "ghost"
+          },
+          "declarations": {
+            "background-color": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "transparent"
+            },
+            "border-bottom-color": {
+              "kind": "token",
+              "ref": "color.border.default"
+            },
+            "border-left-color": {
+              "kind": "token",
+              "ref": "color.border.default"
+            },
+            "border-right-color": {
+              "kind": "token",
+              "ref": "color.border.default"
+            },
+            "border-top-color": {
+              "kind": "token",
+              "ref": "color.border.default"
+            },
+            "color": {
+              "kind": "token",
+              "ref": "color.text.default"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/button/button.css",
+            "line": 48
+          },
+          "states": []
+        },
+        {
+          "axes": {
+            "variant": "ghost"
+          },
+          "declarations": {
+            "background-color": {
+              "kind": "token",
+              "ref": "color.surface.raised"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/button/button.css",
+            "line": 54
+          },
+          "states": [
+            "hover"
+          ]
+        },
+        {
+          "axes": {
+            "variant": "ghost"
+          },
+          "declarations": {
+            "background-color": {
+              "kind": "token",
+              "ref": "color.surface.raised"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/button/button.css",
+            "line": 58
+          },
+          "states": [
+            "active"
+          ]
+        },
+        {
+          "axes": {
+            "size": "sm"
+          },
+          "declarations": {
+            "font-size": {
+              "kind": "token",
+              "ref": "font-size.sm"
+            },
+            "min-height": {
+              "kind": "token",
+              "ref": "size.control.sm"
+            },
+            "padding-bottom": {
+              "kind": "token",
+              "ref": "space.1"
+            },
+            "padding-left": {
+              "kind": "token",
+              "ref": "space.3"
+            },
+            "padding-right": {
+              "kind": "token",
+              "ref": "space.3"
+            },
+            "padding-top": {
+              "kind": "token",
+              "ref": "space.1"
+            }
+          },
+          "slot": "root",
+          "source": {
+            "column": 1,
+            "file": "src/components/button/button.css",
+            "line": 62
+          },
+          "states": []
+        },
+        {
+          "axes": {},
+          "declarations": {
+            "display": {
+              "kind": "literal",
+              "type": "keyword",
+              "value": "inline-flex"
+            },
+            "height": {
+              "kind": "token",
+              "ref": "size.icon.md"
+            },
+            "width": {
+              "kind": "token",
+              "ref": "size.icon.md"
+            }
+          },
+          "slot": "icon",
+          "source": {
+            "column": 1,
+            "file": "src/components/button/button.css",
+            "line": 68
+          },
+          "states": []
+        }
+      ],
+      "slotOrder": [
+        "root",
+        "icon"
+      ],
+      "slots": {
+        "icon": {
+          "element": "span",
+          "optional": true
+        },
+        "root": {
+          "element": "button",
+          "optional": false
+        }
+      },
+      "states": [
+        "hover",
+        "focus-visible",
+        "active",
+        "disabled"
+      ],
+      "targets": {
+        "flutter": {
+          "excluded": "starter component; the real design system replaces it"
+        },
+        "mui": {
+          "axisMap": {
+            "size": "size",
+            "variant": "variant"
+          },
+          "component": "Button",
+          "slotMap": {
+            "icon": "startIcon"
+          }
+        },
+        "tailwind": {}
+      }
+    },
     "example": {
       "axes": {
         "size": {
@@ -442,7 +921,7 @@
     "name": "SOLAR",
     "prefix": "bwp",
     "rootFontSize": 16,
-    "sourceHash": "487c2f658c2b213c53bdeeaacc514a79a8c43eb35a2b0c726dc956020a6e2a4f"
+    "sourceHash": "baedecf4414f777b1484ecb8e4e7f5d0bcca4f64086fa0c001eff2200ba9561c"
   },
   "tokens": {
     "border-width.1": {

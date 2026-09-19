@@ -24,11 +24,14 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Capture MUI defaults catalog
+        run: npm run ds -- capture-defaults --target mui
+
       - name: Verify design system
         run: npm run verify
 
       - name: Check generated files are up to date
-        run: git diff --exit-code -- packages/styles-css/design.ir.json packages/styles-css/src/index.css packages/styles-tailwind/src/generated packages/styles-mui/src/generated docs/design-system/coverage.md
+        run: git diff --exit-code -- packages/styles-css/design.ir.json packages/styles-css/src/index.css packages/styles-css/catalogs packages/styles-tailwind/src/generated packages/styles-mui/src/generated docs/design-system/coverage.md
 
       - name: Run linting
         run: npm run lint

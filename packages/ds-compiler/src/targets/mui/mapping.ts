@@ -195,7 +195,7 @@ export function planMapping(
     );
   }
 
-  // Other states are checked once, for both kinds, in componentModel.
+  // Other states are checked once, for both kinds, in buildComponentModel.
   if (
     component.states.includes('disabled') &&
     !Object.hasOwn(framework.props, 'disabled')

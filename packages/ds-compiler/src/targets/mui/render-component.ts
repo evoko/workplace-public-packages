@@ -234,7 +234,14 @@ export function renderMappedComponentTsx(
     muiHeader(model),
     '',
     "import * as React from 'react';",
-    `import ${Mui} from '@mui/material/${m.component}';`,
+    // A named barrel import, not `import Mui${component} from
+    // '@mui/material/${component}'`: MUI's default export interacts badly
+    // with Node's ESM->CJS interop under `require()` (the CJS bundle would
+    // get the whole module object back as "the component" instead of the
+    // component itself, crashing at render time), while the barrel
+    // (`@mui/material`) is a plain named export in both module systems and
+    // MUI ships it with `sideEffects: false` so bundlers still tree-shake it.
+    `import { ${m.component} as ${Mui} } from '@mui/material';`,
     "import '../augmentation.js';",
     '',
   ];
@@ -391,7 +398,10 @@ export function renderTypecheckTsx(model: MuiModel): string {
     ),
   ].sort(codeUnitCompare);
   for (const mc of mappedComponents) {
-    lines.push(`import Mui${mc} from '@mui/material/${mc}';`);
+    // Named barrel import for the same reason as the wrapper component
+    // itself (see `renderMappedComponentTsx`): avoids the CJS interop trap
+    // of a default export from a deep MUI import.
+    lines.push(`import { ${mc} as Mui${mc} } from '@mui/material';`);
   }
   lines.push(
     // No `import * as React from 'react'`: the package uses the react-jsx

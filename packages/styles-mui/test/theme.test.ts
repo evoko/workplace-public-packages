@@ -18,9 +18,25 @@ interface Model {
       { palette: { tokens: Record<string, string> } }
     >;
     tokens: Record<string, Record<string, string>>;
-    components: Record<string, unknown>;
+    components: Record<
+      string,
+      {
+        defaultProps?: Record<string, unknown>;
+        variants: {
+          props: Record<string, string>;
+          style: Record<string, unknown>;
+        }[];
+      }
+    >;
   };
-  components: Record<string, { themeKey: string }>;
+  components: Record<
+    string,
+    {
+      themeKey: string;
+      kind: 'own' | 'mapped';
+      mapped: { resetCount: number } | null;
+    }
+  >;
 }
 
 const model = JSON.parse(
@@ -125,5 +141,32 @@ describe('@bwp-web/styles-mui theme', () => {
         theme.components?.[themeKey as keyof typeof theme.components],
       ).toBeDefined();
     }
+  });
+
+  it('themes MUI Button with parity defaults, resets first, then the design system', () => {
+    const entry = model.themeOptions.components.MuiButton;
+    expect(entry.defaultProps).toMatchObject({
+      disableElevation: true,
+      disableFocusRipple: true,
+      disableRipple: true,
+      disableTouchRipple: true,
+      focusRipple: false,
+      size: 'md',
+      variant: 'filled',
+    });
+    const resetCount = model.components.button.mapped!.resetCount;
+    expect(resetCount).toBeGreaterThan(0);
+    const resets = entry.variants.slice(0, resetCount);
+    expect(resets.every((v) => 'variant' in v.props && 'size' in v.props)).toBe(
+      true,
+    );
+    expect(JSON.stringify(resets)).toContain('"minWidth":"revert"');
+    expect(JSON.stringify(resets)).toContain(
+      '"WebkitTapHighlightColor":"revert"',
+    );
+    const theme = createDsTheme();
+    expect(theme.components?.MuiButton?.defaultProps).toEqual(
+      entry.defaultProps,
+    );
   });
 });

@@ -17,7 +17,8 @@
     "dist",
     "src",
     "design.ir.json",
-    "ds.config.json"
+    "ds.config.json",
+    "catalogs"
   ],
   "sideEffects": [
     "**/*.css"

@@ -425,7 +425,9 @@ describe('generateMui: mapped components', () => {
       paths.indexOf('components/Chip.tsx'),
     );
     const tsx = byPath['components/Btn.tsx'];
-    expect(tsx).toContain("import MuiButton from '@mui/material/Button';");
+    expect(tsx).toContain(
+      "import { Button as MuiButton } from '@mui/material';",
+    );
     expect(tsx).toContain("import '../augmentation.js';");
     expect(tsx).toContain("export type BtnTone = 'quiet' | 'loud';");
     expect(tsx).toMatch(
@@ -489,7 +491,9 @@ describe('generateMui: mapped components', () => {
   it('probes the mapped type contract', () => {
     const { byPath } = generatedMapped();
     const probe = byPath['typecheck.tsx'];
-    expect(probe).toContain("import MuiButton from '@mui/material/Button';");
+    expect(probe).toContain(
+      "import { Button as MuiButton } from '@mui/material';",
+    );
     expect(probe).toContain(
       'export const btnAccepted = (\n  <Btn tone="loud" disabled icon="icon">\n    content\n  </Btn>\n);',
     );

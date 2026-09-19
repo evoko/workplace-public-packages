@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../../ds-compiler/schemas/manifest.schema.json",
+  "name": "button",
+  "displayName": "Button",
+  "description": "Starter component mapped onto MUI Button. Replace it with real components.",
+  "axes": {
+    "variant": { "values": ["filled", "ghost"], "default": "filled" },
+    "size": { "values": ["sm", "md"], "default": "md" }
+  },
+  "states": ["hover", "focus-visible", "active", "disabled"],
+  "slots": {
+    "root": { "element": "button" },
+    "icon": { "element": "span", "optional": true }
+  },
+  "preview": { "label": "Button", "icon": "plus" },
+  "targets": {
+    "tailwind": {},
+    "mui": {
+      "component": "Button",
+      "axisMap": { "variant": "variant", "size": "size" },
+      "slotMap": { "icon": "startIcon" }
+    },
+    "flutter": {
+      "excluded": "starter component; the real design system replaces it"
+    }
+  }
+}

@@ -27,6 +27,8 @@
 | Capture method | (user decision 2026-09-18) The catalog is captured in Node: `react-dom/server` `renderToStaticMarkup` under an Emotion `CacheProvider` emits `<style data-emotion="…">` tags holding the complete flattened CSS of every element MUI rendered, including nested `:hover`, `.Mui-disabled`, `::before`, and `@media` contexts. No browser. Spec 9.1's headless-Chromium capture of computed styles is not needed for the reset generator, which needs the *property set per selector context*; computed-style comparison belongs to Plan 4's rendered-parity harness. |
 | Catalog home | (user decision) `packages/styles-css/catalogs/mui.json` (`<sourceRoot>/catalogs/<target>.json`). The content depends on the design system's manifests (which MUI components, which axis permutations, which slots), so it lives next to the source of truth, not in the compiler package as spec 9.1 wrote. The MUI version is recorded inside the file; one file per target. |
 | Reset exceptions | (batch 3 review) `content` is reset with `none`, not `revert`: Emotion's development build throws on any unquoted `content` value outside `normal\|none\|initial\|inherit\|unset`, and for a `::before` both compute to no box. The effective-value lookup picks the applicable rule with the highest specificity (IR order breaks ties), because `compareRules` orders by axes count before states count and a 0-axis/2-state rule (specificity 3) precedes a 1-axis rule (specificity 2). Longhands whose design-system parent is atomic (`overflow-x`/`overflow-y` → `overflow`) also consult the parent. Any CSS shorthand not in `SHORTHAND_LONGHANDS` is `DS-E086`, checked against a full `KNOWN_SHORTHANDS` list rather than only the design-system tables. One design-system component per MUI component: a second mapping onto the same `Mui<Component>` is `DS-E085`. The wrapper keeps `tabIndex` and `type` as DOM props even though MUI re-declares them; `href` stays omitted because it changes MUI's root element. |
+| MUI import form | (batch 5 review) The wrapper imports MUI's component as a named import from the barrel, `import { Button as MuiButton } from '@mui/material'`, not as a default import from the subpath. Under the package's CJS build, esbuild follows Node's ESM→CJS interop and binds a default import of `@mui/material/Button` to the module object, so every mapped component crashed with "Element type is invalid" for `require()` consumers. The barrel is ESM with `sideEffects: false`, so bundlers still tree-shake it. A `dist` smoke test in `styles-mui` requires the CJS bundle and imports the ESM bundle and renders `Button` through each. |
+| Catalog in CI | (batch 5 review) CI runs `bwp-ds capture-defaults --target mui` after the build and includes `packages/styles-css/catalogs` in the generated-files diff, so an edited or stale committed catalog fails CI. `verify` alone cannot see an edited catalog: its round-trip recomputes the resets from the same catalog. |
 | Reset keyword | `revert`, not the spec's `unset`. `unset` yields the *initial* value for non-inherited properties (`display: inline` for a button), not the user-agent default; `revert` rolls the cascaded value back to the user-agent origin, which is exactly what the plain CSS target computes on the same element when the design system sets nothing. Supported by every evergreen browser since 2020. |
 | Reset algorithm | For each mapped component, each full axis permutation `P`, and each catalog rule `(media, selector, declarations)` captured for `P`: expand shorthands to longhand *names*, drop a vendor-prefixed property whose unprefixed twin is in the same rule, then for every property decide: no design-system rule applies to that element in that selector context → `revert`; a design-system rule applies and its selector specificity is **lower** than the catalog selector's → restate the design system's effective value (the applicable rule with the highest specificity, IR order breaking ties; see "Reset exceptions" for why IR order alone is not the cascade); a design-system rule of equal or higher specificity applies → emit nothing (it is emitted after the resets and wins). Resets are emitted as the leading `variants` entries with `props` = the permutation (MUI prop names), each `style` keyed by the catalog selector verbatim (wrapped in its `@media` when present), so every reset has exactly MUI's specificity and precedes every design-system variant. |
 | Resets are derived, not authored | The model carries resets only inside `themeOptions.components.<MuiKey>.variants` plus a `resetCount` per component; round-trip recomputes them from IR and catalog with the same pure function and requires deep equality, then round-trips the remaining variants as Plan 3 does. A stale or edited catalog therefore fails `verify`. |
@@ -4257,6 +4259,9 @@ List every created, modified, and deleted path grouped by package; test counts (
 - **The wrapper passes explicit axis defaults**, so a consumer's `theme.components.MuiButton.defaultProps.variant` override does not affect `Button` from this package (it does affect MUI's own `Button`). Documented in the target doc; revisit if a consumer needs theme-level defaults for the wrapper.
 - **`revert` inside cascade layers.** If a consumer wraps MUI's styles in `@layer`, `revert` rolls back to the user-agent origin regardless; behaviour is the same, but worth a Plan 4 assertion.
 - **Global augmentation opt-in split** (from Plan 3) now also covers the MUI component override interfaces.
+- **Export name collisions with MUI.** `components/Button.tsx` exports `ButtonProps` and `buttonClasses`, names `@mui/material` also exports (with different meanings). A consumer re-exporting both barrels collides. By design (design-system names); document if it bites.
+- **Catalog values carry MUI's default `--mui-*` prefix** (`var(--mui-shape-borderRadius)`) because capture uses `createTheme({ cssVariables: true })` without the design-system prefix; only property names drive resets today. Plan 4's rendered-parity harness must not compare catalog values against emitted CSS.
+- **Starter `button` focus ring** is `box-shadow` with `outline-style: none`, invisible in forced-colors mode; a real design system should add an `outline` ring or a `@media (forced-colors: active)` fallback.
 - **Capture renders axis permutations only, never state props.** Styles MUI applies through a prop matcher rather than a selector (`fullWidth`, `disabled` as a prop) are invisible to the catalog; Button and Chip emit identical root CSS with and without `disabled`, so it is harmless today. Render each attribute state as an extra permutation if a mapped component needs it.
 - **Components whose props are a type alias** (`TextFieldProps`) are not extractable by the AST reader; the capture says so. Compound components are unlikely mapping targets anyway.
 - **A slot's own-class rules and root-nested rules for the same slot collapse onto one catalog key** in source order rather than specificity order. Not triggered by Button or Chip in 9.4.0.
@@ -4294,14 +4299,30 @@ and where it stands. Update the status table after every milestone.
 | 1 | 1-2 contract, catalog module, error codes, CLI flags, hints, mapping plan, names | done, reviewed, committed by user |
 | 2 | 3-4 `.d.ts` extraction, `capture-defaults` | done, reviewed, committed by user |
 | 3 | 5-6 resets, mapped model, augmentation, wrapper, type probes | done, reviewed, committed by user |
-| 4 | 7 round-trip for mapped components | done, reviewed, awaiting user commit |
-| 5 | 8 starter `button`, catalog, regenerated output, package tests, docs | pending |
+| 4 | 7 round-trip for mapped components | done, reviewed, committed by user |
+| 5 | 8 starter `button`, catalog, regenerated output, package tests, docs | done, reviewed, awaiting user commit |
 | 6 | 9 final verification | pending |
 
-Test suite at the start of Plan 3b: compiler 29 files / 355 tests; `styles-mui` 2 files / 10 tests; 34 Turbo tasks. After batch 1: compiler 31 files / 400 tests. After batch 2: compiler 34 files / 433 tests. After batch 3: compiler 36 files / 477 tests. After batch 4: compiler 36 files / 491 tests.
+Test suite at the start of Plan 3b: compiler 29 files / 355 tests; `styles-mui` 2 files / 10 tests; 34 Turbo tasks. After batch 1: compiler 31 files / 400 tests. After batch 2: compiler 34 files / 433 tests. After batch 3: compiler 36 files / 477 tests. After batch 4: compiler 36 files / 491 tests. After batch 5: compiler 36 files / 491 tests; `styles-mui` 3 files / 19 tests; 34 Turbo tasks.
 
 ### Decisions made during execution
 
+- Batch 5 review (packed tarball installed in a fresh consumer, CJS and ESM;
+  a property-by-property cascade audit of the real `MuiButton` theme across
+  all four permutations plus `disabled`: 441 triples, no MUI default wins):
+  the wrapper imports MUI's component as a named barrel import because the
+  CJS bundle's default import resolved to the module object (see "MUI import
+  form"); `test/dist.test.ts` renders `Button` through both bundles and the
+  package's Turbo `test` task depends on its own `build`; CI captures the
+  catalog and diffs it (see "Catalog in CI"); the vacuous static-render
+  ripple assertion was replaced by cascade assertions (`.Mui-disabled`
+  colour restatement, `:focus-visible` shadow); docs corrected (resets are
+  per permutation and selector context; `defaultProps` also rejects
+  overridable union props; `DS-E086` covers capture-time causes); the
+  starter's `transition-property` includes `box-shadow`. The compiler's
+  unused `componentModel` wrapper was removed (Task 8 tidy-up). Noted: the
+  barrel import makes a plain-Node CJS `require` load all of MUI (~839
+  modules, ~300 ms cold); bundlers tree-shake it.
 - Batch 4 review (a 23-row tamper matrix against the fixture and a freshly
   captured real catalog; every corruption rejected, every legitimate catalog
   variation accepted, including zero resets): `buildComponentModel` is

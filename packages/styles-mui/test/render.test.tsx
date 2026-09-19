@@ -107,9 +107,70 @@ describe('generated components', () => {
 
       it('forwards a className and DOM props to the root', () => {
         const html = render(c, { className: 'extra', 'data-testid': 'x' });
-        expect(html).toContain(`${c.themeKey}-root extra`);
+        // A mapped component's root also carries MUI's own utility classes
+        // (`MuiButton-filled`, `MuiButton-sizeMd`, …) between the theme root
+        // class and the caller's className, so check both are present as
+        // distinct class tokens rather than requiring them adjacent.
+        const dom = html.replace(/<style[\s\S]*?<\/style>/g, '');
+        const classAttr = /class="([^"]*)"/.exec(dom)?.[1] ?? '';
+        const classes = classAttr.split(/\s+/);
+        expect(classes).toContain(`${c.themeKey}-root`);
+        expect(classes).toContain('extra');
         expect(html).toContain('data-testid="x"');
       });
     });
   }
+
+  it('renders Button through MUI with the ripple removed and MUI defaults neutralised', () => {
+    const theme = createDsTheme();
+    const html = renderToStaticMarkup(
+      <ThemeProvider theme={theme}>
+        <generated.Button variant="ghost" size="sm" icon={<i>+</i>} disabled>
+          Go
+        </generated.Button>
+      </ThemeProvider>,
+    );
+    const dom = html.replace(/<style[\s\S]*?<\/style>/g, '');
+    expect(dom).toMatch(/<button[^>]*class="[^"]*MuiButton-root[^"]*"/);
+    expect(dom).toContain('MuiButton-startIcon');
+    expect(dom).toContain('disabled=""');
+    // Not asserting the ripple is absent from the DOM here: MuiTouchRipple
+    // mounts from an effect, so it never appears in a static (SSR) render
+    // regardless of `disableRipple` — that assertion would be vacuous. The
+    // parity default that actually disables it (`disableRipple: true`) is
+    // asserted directly on the theme in theme.test.ts.
+    const css = [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)]
+      .map((m) => m[1])
+      .join('\n');
+    expect(css).toContain('min-width:revert');
+    expect(css).toContain('text-transform:none'); // the design system's base value, restated over MUI's uppercase
+    expect(css).toContain('padding-top:var(--bwp-tokens-space-1)'); // size="sm"
+    expect(css).toContain('background-color:transparent'); // variant="ghost"
+    // Unconditioned states (no React prop toggles them; the browser matches
+    // the pseudo-class) are always present in the generated CSS class,
+    // regardless of the props passed to this instance.
+    expect(css).toContain('box-shadow:var(--bwp-tokens-shadow-focus)'); // :focus-visible
+    expect(generated.buttonClasses).toEqual({
+      root: 'MuiButton-root',
+      icon: 'MuiButton-startIcon',
+    });
+  });
+
+  it('restates the design system color under .Mui-disabled when no higher-specificity rule already provides it', () => {
+    // variant="filled" (the default) sets no color of its own, unlike
+    // "ghost", so the disabled reset must restate the base rule's color
+    // rather than leaving it to a variant that never runs for "filled".
+    const theme = createDsTheme();
+    const html = renderToStaticMarkup(
+      <ThemeProvider theme={theme}>
+        <generated.Button disabled>Go</generated.Button>
+      </ThemeProvider>,
+    );
+    const css = [...html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)]
+      .map((m) => m[1])
+      .join('\n');
+    expect(css).toMatch(
+      /\.Mui-disabled\{[^}]*color:var\(--bwp-palette-tokens-text-inverse\)[^}]*\}/,
+    );
+  });
 });
