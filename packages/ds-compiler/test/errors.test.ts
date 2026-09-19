@@ -84,8 +84,11 @@ describe('ERROR_CATALOG', () => {
         'DS-E084',
         'DS-E085',
         'DS-E086',
+        'DS-E087',
         'DS-W003',
         'DS-W004',
+        'DS-W005',
+        'DS-W006',
       ]),
     );
   });
@@ -93,6 +96,20 @@ describe('ERROR_CATALOG', () => {
   it('DS-W004 is a warning', () => {
     const diag = new Diagnostics();
     diag.add('DS-W004', 'x');
+    expect(diag.warnings).toHaveLength(1);
+    expect(diag.errors).toHaveLength(0);
+  });
+
+  it('DS-W005 is a warning', () => {
+    const diag = new Diagnostics();
+    diag.add('DS-W005', 'x');
+    expect(diag.warnings).toHaveLength(1);
+    expect(diag.errors).toHaveLength(0);
+  });
+
+  it('DS-W006 is a warning', () => {
+    const diag = new Diagnostics();
+    diag.add('DS-W006', 'x');
     expect(diag.warnings).toHaveLength(1);
     expect(diag.errors).toHaveLength(0);
   });

@@ -64,7 +64,7 @@ function reparse(
 
 describe('mui round-trip', () => {
   it('is registered next to tailwind', () => {
-    expect(targetIds()).toEqual(['mui', 'tailwind']);
+    expect(targetIds()).toEqual(['mui', 'stories', 'tailwind']);
     expect(TARGETS.mui).toBe(muiPlugin);
     expect(muiPlugin.id).toBe('mui');
   });

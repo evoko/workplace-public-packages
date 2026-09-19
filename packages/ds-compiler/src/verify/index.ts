@@ -13,9 +13,20 @@ import {
 } from './coverage.js';
 import { checkDrift } from './drift.js';
 import { diffIR } from './ir-diff.js';
+import { runRendered } from './rendered.js';
 
 export type StepStatus = 'pass' | 'fail' | 'skipped';
-export type VerifyStep = 'lint' | 'drift' | 'roundtrip' | 'coverage';
+export type VerifyStep =
+  | 'lint'
+  | 'drift'
+  | 'roundtrip'
+  | 'coverage'
+  | 'rendered';
+
+export interface VerifyOptions extends GenerateOptions {
+  /** Run the configured rendered-parity command after the Node steps pass. */
+  rendered?: boolean;
+}
 
 export interface VerifyResult {
   diagnostics: Diagnostics;
@@ -33,17 +44,21 @@ export interface VerifyResult {
  * coverage file is written. Later steps run even when an earlier one (drift,
  * round-trip) fails, except that nothing runs without a passing lint. A
  * plugin whose generation reports errors fails the drift step and is skipped
- * by round-trip; coverage still runs for every plugin.
+ * by round-trip; coverage still runs for every plugin. With `rendered`, the
+ * configured browser comparison runs last, only when drift, round-trip, and
+ * coverage passed; it is `skipped` otherwise, and `skipped` with `DS-W005`
+ * when `ds.config.json` has no `rendered` entry.
  */
 export function verify(
   rootDir: string,
-  options: GenerateOptions = {},
+  options: VerifyOptions = {},
 ): VerifyResult {
   const steps: Record<VerifyStep, StepStatus> = {
     lint: 'skipped',
     drift: 'skipped',
     roundtrip: 'skipped',
     coverage: 'skipped',
+    rendered: 'skipped',
   };
   const result = buildIR(rootDir);
   const diag = result.diagnostics;
@@ -77,6 +92,9 @@ export function verify(
 
   const beforeRoundtrip = diag.errors.length;
   for (const { plugin, ctx, catalog, files } of outputs) {
+    if (plugin.auxiliary) {
+      continue;
+    }
     const reparsed = plugin.reparse(files, ir, catalog, ctx, diag);
     if (!reparsed) {
       continue;
@@ -123,6 +141,16 @@ export function verify(
     coverageFile,
     renderCoverageMarkdown(coverage, ir, COMPILER_VERSION),
   );
+
+  if (options.rendered) {
+    const nodeStepsPassed =
+      steps.drift === 'pass' &&
+      steps.roundtrip === 'pass' &&
+      steps.coverage === 'pass';
+    steps.rendered = nodeStepsPassed
+      ? runRendered(rootDir, config, diag)
+      : 'skipped';
+  }
 
   return { diagnostics: diag, steps, coverage, coverageFile };
 }

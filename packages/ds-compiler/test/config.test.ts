@@ -335,6 +335,63 @@ describe('loadConfig', () => {
   });
 });
 
+describe('rendered and target options', () => {
+  it('accepts per-target options and a rendered command', () => {
+    const root = tmpRoot();
+    writeFileSync(
+      join(root, 'ds.config.json'),
+      JSON.stringify({
+        name: 'Fictional',
+        prefix: 'fx',
+        modes: ['light'],
+        defaultMode: 'light',
+        targets: {
+          stories: {
+            outDir: '../storybook/src/generated',
+            options: { muiPackage: '@acme/styles-mui' },
+          },
+        },
+        rendered: { cwd: '../storybook', command: 'npm run test:rendered' },
+      }),
+    );
+    const diag = new Diagnostics();
+    const config = loadConfig(root, diag)!;
+    expect(diag.items).toEqual([]);
+    expect(config.targets.stories).toEqual({
+      outDir: '../storybook/src/generated',
+      options: { muiPackage: '@acme/styles-mui' },
+    });
+    expect(config.rendered).toEqual({
+      cwd: '../storybook',
+      command: 'npm run test:rendered',
+    });
+  });
+
+  it('rejects non-string options, an empty rendered command, and an absolute rendered cwd', () => {
+    for (const bad of [
+      { targets: { stories: { options: { n: 1 } } } },
+      { rendered: { cwd: '../storybook', command: '' } },
+      { rendered: { cwd: '/abs', command: 'x' } },
+      { rendered: { command: 'x' } },
+    ]) {
+      const root = tmpRoot();
+      writeFileSync(
+        join(root, 'ds.config.json'),
+        JSON.stringify({
+          name: 'Fictional',
+          prefix: 'fx',
+          modes: ['light'],
+          defaultMode: 'light',
+          ...bad,
+        }),
+      );
+      const diag = new Diagnostics();
+      expect(loadConfig(root, diag)).toBeNull();
+      expect(diag.errors.map((e) => e.code)).toEqual(['DS-E001']);
+    }
+  });
+});
+
 describe('modeSelectorFor', () => {
   it('replaces every occurrence of {mode}', () => {
     const config: DsConfig = {

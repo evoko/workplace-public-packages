@@ -46,6 +46,7 @@ Every decision below was probed in this repository with a scratch story run unde
 | Tailwind in the browser | `src/harness/tailwind.css` is `@layer theme, base, components, utilities; @import '@bwp-web/styles-tailwind';` processed by `@tailwindcss/postcss` through a `postcss.config.js` in the storybook package; imported with `?inline`. Probed with the same input through the PostCSS CLI: 8.4 KB holding the `:root, :host` theme block, the dark block, and the `@layer components` rules; no preflight, no utilities (nothing imports `tailwindcss` itself). |
 | CI | `main.yml` installs Chromium (`npx playwright install --with-deps chromium`) and runs `npm run verify -- --rendered` after the existing `verify`; the generated-files diff includes `packages/storybook/src/generated`. The Turbo `test:rendered` task is uncached and depends on `^build`. |
 | Sections and title lint | Storybook titles must start with `Introduction`, `Foundations`, `Styles`, `Components`, `Canvas`, or `Assets`. `scripts/lint-story-titles.mjs` scans every `*.stories.*` and `*.mdx` in the storybook, components, and canvas packages and fails on any other prefix. |
+| Batch 1 review amendments | (2026-09-19) Generated JSX quotes every manifest string as a TypeScript literal inside an expression container (`icon={'plus'}`, `{'Button'}` as the child), so a quote, `<`, or `{` in `preview` cannot break the file; a test parses every generated file with the TypeScript compiler API and requires zero syntax diagnostics. A state that is neither pseudo-class nor ARIA (a `data-state` state on a CSS-only component) renders as the `data-state` attribute on the CSS root. The label goes into MUI's children slot when the MUI model has one (`labelSlot` = that slot, whatever its name), so a required non-`label` slot never yields an `undefined=` prop. Story titles derive from the component name (`Styles/Button`), never `displayName`. `rendered.timeoutMs` (default 600000) is configurable and a timeout is reported as such. `muiPackage` is omitted from `config.ts` when no component is mapped for MUI. An explicitly requested auxiliary target with no config entry reports `DS-W006 Auxiliary target not configured` and exits 0. |
 | Out of scope | Flutter cells (Plan 5: a `custom` target kind on the grid), pixel screenshots (never), hand-written component stories (`Components`, `Canvas`, `Assets` stay empty), `auto-tag`/versioning (Plan 6). |
 
 ---
@@ -1661,7 +1662,8 @@ export interface StoriesConfig {
   mode: ModeSwitch;
   tokenCategories: string[];
   parityProperties: string[];
-  muiPackage: string;
+  /** Absent when no component is mapped for MUI. */
+  muiPackage?: string;
   muiThemeFactory: string;
 }
 
@@ -3066,13 +3068,34 @@ and where it stands. Update the status table after every milestone.
 
 | Batch | Tasks | State |
 | --- | --- | --- |
-| 1 | 1-2 config, error codes, auxiliary plugins, `verify --rendered`, the `stories` plugin | pending |
+| 1 | 1-2 config, error codes, auxiliary plugins, `verify --rendered`, the `stories` plugin | done, reviewed, awaiting user commit |
 | 2 | 3-4 harness modules, cells, grids, plays, globals, Introduction, title lint, first generated stories | pending |
 | 3 | 5 config `rendered`, Turbo, CI, docs | pending |
 | 4 | 6 final verification | pending |
 
-Test suite at the start of Plan 4: compiler 36 files / 491 tests; `styles-mui` 3 files / 19 tests; 34 Turbo tasks.
+Test suite at the start of Plan 4: compiler 36 files / 491 tests; `styles-mui` 3 files / 19 tests; 34 Turbo tasks. After batch 1: compiler 40 files / 540 tests.
 
 ### Decisions made during execution
 
-(none yet)
+- Batch 1 review (the generated stories were type-checked against a stub of
+  the Batch 2 harness and, for the real design system, against the real
+  `styles-mui` types: zero errors; determinism across processes confirmed):
+  see the "Batch 1 review amendments" decision row for the changes it forced
+  (JSX quoting through expression containers plus a syntax-parse test over
+  every generated file, the `data-state` fallback, the label following MUI's
+  children slot, titles from the component name, `rendered.timeoutMs`,
+  optional `muiPackage`, `DS-W006` for an explicitly requested unconfigured
+  auxiliary target). Plan test literals corrected: `renderTsLiteral` breaks
+  arrays across lines; the non-light/dark DS-E084 fixture must rename its
+  dark token block too or lint fails first. Because the stories plugin
+  rebuilds the MUI model, a broken MUI catalog or mode now yields the MUI
+  diagnostics plus one stories summary (`DS-E084`/`DS-E086`); tests updated.
+  Watch item for Batch 2: a mapped component whose MUI children mode is
+  `none` renders no label text in the MUI cell while the CSS cell renders
+  the label into its slot; `parityPlay` must treat that row deliberately.
+- Gate flake fixed (2026-09-19): `@bwp-web/styles-mui#typecheck` now depends
+  on the package's own `build` in `turbo.json`. Its `test/dist.test.ts`
+  (Plan 3b) imports `../dist/index.js`, and under a forced parallel run tsup
+  could be wiping `dist` while `tsc` read it, failing one run in two. CI was
+  unaffected (it runs the steps sequentially); two consecutive forced runs
+  now pass 34/34.

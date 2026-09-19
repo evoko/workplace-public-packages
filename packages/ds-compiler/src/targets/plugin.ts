@@ -43,6 +43,14 @@ export interface CoverageEntry {
 export interface TargetPlugin<Catalog = unknown> {
   id: string;
   /**
+   * True for a plugin that derives artifacts from the IR and other targets
+   * (the story generator) but is not itself a styling target: it is
+   * generated and drift-checked like the others, but has nothing to
+   * round-trip and contributes no coverage entries. Runs only when
+   * `ds.config.json` has a `targets.<id>` entry.
+   */
+  auxiliary?: true;
+  /**
    * Reads and validates this target's committed defaults catalog. Returns
    * null (without diagnostics) when the target has no catalog or the file
    * is absent; reports DS-E086 (and returns null) for an invalid or

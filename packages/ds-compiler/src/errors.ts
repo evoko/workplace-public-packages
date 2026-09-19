@@ -142,6 +142,10 @@ export const ERROR_CATALOG = {
     title: 'Defaults catalog missing, stale, invalid, or mismatched',
     hint: 'Run bwp-ds capture-defaults --target <id> with the framework installed in the target package, then commit catalogs/<id>.json. If the installed framework version differs on purpose, pass --allow-catalog-mismatch to generate and verify.',
   },
+  'DS-E087': {
+    title: 'Rendered parity failed',
+    hint: 'The rendered-parity command (ds.config.json `rendered.command`) exited non-zero. Read its output above: each line names the component, axes, state, mode, target, element, and property that differ. Fix the target plugin under packages/ds-compiler/src/targets/<id>/ (or the harness under packages/storybook/src/harness/), never the generated output.',
+  },
   'DS-W001': {
     title: 'Root rule missing baseline properties',
     hint: 'Declare the baseline properties on the base root rule so parity does not rest on user-agent defaults. Set "baseline": false in the manifest to opt out.',
@@ -157,6 +161,14 @@ export const ERROR_CATALOG = {
   'DS-W004': {
     title: 'Defaults catalog version unverified',
     hint: 'The target framework could not be resolved from the target outDir, or a version mismatch was allowed with --allow-catalog-mismatch. Install the target package dependencies, or re-capture the catalog after a framework upgrade.',
+  },
+  'DS-W005': {
+    title: 'Rendered verification not configured',
+    hint: 'Add `rendered: { "cwd": "<dir>", "command": "<shell command>" }` to ds.config.json so `bwp-ds verify --rendered` can run the browser comparison.',
+  },
+  'DS-W006': {
+    title: 'Auxiliary target not configured',
+    hint: 'Add targets.<id> to ds.config.json (with outDir) to generate this target; it is skipped when absent.',
   },
 } as const;
 

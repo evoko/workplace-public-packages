@@ -16,12 +16,25 @@ export const TW_CONFIG = JSON.stringify(
     targets: {
       tailwind: { outDir: 'out/tailwind' },
       mui: { outDir: 'out/mui' },
+      stories: {
+        outDir: 'out/stories',
+        options: { muiPackage: '@fx/styles-mui' },
+      },
     },
     coverageFile: 'out/coverage.md',
   },
   null,
   2,
 );
+
+/** `TW_CONFIG` with `overrides` merged in at the top level, re-stringified. */
+export function twConfigWith(overrides: Record<string, unknown>): string {
+  return JSON.stringify(
+    { ...(JSON.parse(TW_CONFIG) as Record<string, unknown>), ...overrides },
+    null,
+    2,
+  );
+}
 
 function manifest(extra: Record<string, unknown>): string {
   return JSON.stringify({ displayName: 'X', baseline: false, ...extra });
@@ -95,6 +108,71 @@ export const TW_FILES: Record<string, string> = {
     },
   }),
   'src/components/pill/pill.css': '.fx-pill {\n  display: inline-block;\n}\n',
+};
+
+/**
+ * A CSS-only component with a state outside the pseudo-class and ARIA sets
+ * (`loading`), rendered as `[data-state="loading"]`. Not mapped for mui
+ * (such a state is DS-E085 for mui), so it exercises `stateSpec`'s fallback
+ * branch for the stories plugin (H1).
+ */
+export const BLOB_FILES: Record<string, string> = {
+  'src/components/blob/blob.manifest.json': manifest({
+    name: 'blob',
+    states: ['loading'],
+    targets: { tailwind: {} },
+  }),
+  'src/components/blob/blob.css': [
+    '.fx-blob {',
+    '  display: inline-block;',
+    '}',
+    '.fx-blob[data-state="loading"] {',
+    '  opacity: 0.5;',
+    '}',
+    '',
+  ].join('\n'),
+};
+
+/**
+ * `chip` with its optional `icon` slot made required, so MUI's own-component
+ * model picks `icon` (not "label") as the slot that receives `children`
+ * (H3).
+ */
+export const CHIP_REQUIRED_ICON: Record<string, string> = {
+  'src/components/chip/chip.manifest.json': manifest({
+    name: 'chip',
+    displayName: 'Chip',
+    axes: { tone: { values: ['quiet', 'loud'], default: 'quiet' } },
+    states: ['hover', 'disabled'],
+    slots: {
+      root: { element: 'button' },
+      icon: { element: 'span', optional: false },
+    },
+    targets: { tailwind: {}, mui: {} },
+  }),
+};
+
+/** TW_FILES with every component excluded from mui, so no component has a mui cell (L5). */
+export const NO_MUI_FILES: Record<string, string> = {
+  'src/components/chip/chip.manifest.json': manifest({
+    name: 'chip',
+    displayName: 'Chip',
+    axes: { tone: { values: ['quiet', 'loud'], default: 'quiet' } },
+    states: ['hover', 'disabled'],
+    slots: {
+      root: { element: 'button' },
+      icon: { element: 'span', optional: true },
+    },
+    targets: { tailwind: {}, mui: { excluded: 'no mui cell for this test' } },
+  }),
+  'src/components/tag/tag.manifest.json': manifest({
+    name: 'tag',
+    states: ['disabled'],
+    targets: {
+      tailwind: { ignore: ['opacity'] },
+      mui: { excluded: 'no mui cell for this test' },
+    },
+  }),
 };
 
 /** Same as TW_FILES but every component is mapped for tailwind (no unmapped ones). */

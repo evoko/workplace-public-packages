@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { tailwindPlugin } from '../src/targets/tailwind/index.js';
+import type { TargetPlugin } from '../src/targets/plugin.js';
 import {
   computeCoverage,
   renderCoverageMarkdown,
@@ -60,6 +61,24 @@ describe('coverage', () => {
     expect(md).toContain('| `pill` | excluded: starter content |');
     expect(md).toContain('| `tag` | partial (ignores `opacity`) |');
     expect(md.endsWith('\n')).toBe(true);
+  });
+
+  it('lists only targets that produced entries, so an auxiliary plugin adds no column', () => {
+    const { ir } = twBuild(twRoot());
+    const silent: TargetPlugin = {
+      id: 'aux',
+      auxiliary: true,
+      generate: () => [],
+      reparse: () => null,
+      coverage: () => [],
+      isMapped: () => false,
+      ignoredProperties: () => new Set(),
+    };
+    const report = computeCoverage(ir, [tailwindPlugin, silent]);
+    expect(report.targets).toEqual(['tailwind']);
+    expect(renderCoverageMarkdown(report, ir, '0.0.0-test')).not.toContain(
+      'aux',
+    );
   });
 
   it('escapes an exclusion reason for the Markdown table', () => {

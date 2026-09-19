@@ -22,7 +22,7 @@ export function computeCoverage(
         codeUnitCompare(a.target, b.target),
     );
   return {
-    targets: plugins.map((p) => p.id).sort(codeUnitCompare),
+    targets: [...new Set(entries.map((e) => e.target))].sort(codeUnitCompare),
     components: Object.keys(ir.components).sort(codeUnitCompare),
     entries,
     unmapped: entries.filter((e) => e.status === 'unmapped'),

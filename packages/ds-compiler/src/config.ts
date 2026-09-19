@@ -45,6 +45,8 @@ const rawConfigSchema = z.strictObject({
          * dotfiles, is deleted.
          */
         outDir: relativePosixPath.optional(),
+        /** Free-form string options a plugin reads (the stories plugin needs `muiPackage`). */
+        options: z.record(z.string(), z.string()).optional(),
       }),
     )
     .default({}),
@@ -53,6 +55,18 @@ const rawConfigSchema = z.strictObject({
    * root; must be a `.md` file and must not resolve to or inside src/.
    */
   coverageFile: relativePosixPath.default('coverage.md'),
+  /**
+   * How `bwp-ds verify --rendered` runs the rendered-parity check: a shell
+   * command and the directory (relative to the source root) to run it in.
+   */
+  rendered: z
+    .strictObject({
+      cwd: relativePosixPath,
+      command: z.string().min(1),
+      /** Milliseconds before the command is killed; default 600000 (10 minutes). */
+      timeoutMs: z.number().int().positive().optional(),
+    })
+    .optional(),
 });
 
 export interface DsConfig {
@@ -62,8 +76,12 @@ export interface DsConfig {
   defaultMode: string;
   rootFontSize: number;
   modeSelector: string;
-  targets: Record<string, { outDir?: string }>;
+  targets: Record<
+    string,
+    { outDir?: string; options?: Record<string, string> }
+  >;
   coverageFile: string;
+  rendered?: { cwd: string; command: string; timeoutMs?: number };
 }
 
 export function defaultModeSelector(prefix: string): string {
@@ -174,6 +192,7 @@ export function loadConfig(
     modeSelector: raw.modeSelector ?? defaultModeSelector(raw.prefix),
     targets: raw.targets,
     coverageFile: raw.coverageFile,
+    ...(raw.rendered ? { rendered: raw.rendered } : {}),
   };
 }
 

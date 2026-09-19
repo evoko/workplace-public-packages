@@ -148,17 +148,23 @@ program
 program
   .command('verify')
   .description(
-    'Lint, then drift, round-trip, and coverage checks for every registered target; writes the coverage report',
+    'Lint, then drift, round-trip, and coverage checks for every registered target; writes the coverage report; with --rendered, also the browser comparison',
   )
   .option(
     '--allow-catalog-mismatch',
     'accept a defaults catalog captured from another framework version (DS-W004 instead of DS-E086)',
     false,
   )
-  .action((opts: { allowCatalogMismatch: boolean }) => {
+  .option(
+    '--rendered',
+    'also run the configured rendered-parity command (browser comparison of the compare stories)',
+    false,
+  )
+  .action((opts: { allowCatalogMismatch: boolean; rendered: boolean }) => {
     const { root, json } = globals();
     const result = verify(root, {
       allowCatalogMismatch: opts.allowCatalogMismatch,
+      rendered: opts.rendered,
     });
     printDiagnostics(result.diagnostics, json, {
       steps: result.steps,

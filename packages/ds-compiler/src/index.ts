@@ -124,7 +124,13 @@ export type { GenerateResult, GenerateOptions } from './generate.js';
 export { captureDefaults, NoCatalogTargetError } from './capture.js';
 export type { CaptureResult } from './capture.js';
 export { verify } from './verify/index.js';
-export type { StepStatus, VerifyResult, VerifyStep } from './verify/index.js';
+export type {
+  StepStatus,
+  VerifyOptions,
+  VerifyResult,
+  VerifyStep,
+} from './verify/index.js';
+export { runRendered } from './verify/rendered.js';
 export { checkDrift } from './verify/drift.js';
 export { diffIR, ruleDiffKey } from './verify/ir-diff.js';
 export type { DiffScope, IRDifference } from './verify/ir-diff.js';
@@ -306,6 +312,31 @@ export {
 } from './targets/mui/render-component.js';
 export { muiPlugin } from './targets/mui/index.js';
 export { reparseMui } from './targets/mui/reparse.js';
+export { storiesPlugin, STORIES_ID } from './targets/stories/index.js';
+export { buildStoriesModel, modeSwitchFor } from './targets/stories/spec.js';
+export type {
+  ComponentSpec,
+  ModeSwitch,
+  MuiCell,
+  SpecAxis,
+  SpecSlot,
+  SpecState,
+  StoriesConfig,
+  StoriesModel,
+  TokenSpec,
+} from './targets/stories/spec.js';
+export {
+  categoryTitle,
+  renderAll,
+  renderComponentStory,
+  renderFoundationsStory,
+  renderStoriesConfig,
+  storiesHeader,
+} from './targets/stories/render.js';
+export {
+  generateStories,
+  storiesHeaderText,
+} from './targets/stories/generate.js';
 export { coverageEntries } from './targets/coverage-entries.js';
 export type { CoverageHooks } from './targets/coverage-entries.js';
 export { verifySelectorOrder } from './targets/reparse-support.js';

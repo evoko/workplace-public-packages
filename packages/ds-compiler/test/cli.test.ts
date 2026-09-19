@@ -4,7 +4,7 @@ import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it, vi } from 'vitest';
 import { FIXTURE_MINI, MINI_CONFIG, makeRoot, withEntry } from './helpers.js';
-import { twRoot } from './tailwind-fixture.js';
+import { twConfigWith, twRoot } from './tailwind-fixture.js';
 
 // Every test here spawns a real `npx tsx src/cli.ts` subprocess (sometimes
 // several in a row); under load, that reliably exceeds vitest's default
@@ -191,7 +191,7 @@ describe('bwp-ds CLI', () => {
     expect(generated.code).toBe(0);
     expect(
       (JSON.parse(generated.stdout) as { wrote: string[] }).wrote,
-    ).toHaveLength(11);
+    ).toHaveLength(19);
     const targeted = run([
       'generate',
       '--root',
@@ -215,6 +215,7 @@ describe('bwp-ds CLI', () => {
       drift: 'pass',
       roundtrip: 'pass',
       coverage: 'pass',
+      rendered: 'skipped',
     });
     expect(parsed.coverageFile.endsWith('coverage.md')).toBe(true);
 
@@ -227,6 +228,38 @@ describe('bwp-ds CLI', () => {
     expect(stale.code).toBe(1);
     expect(stale.stderr).toContain('DS-E080');
     expect(stale.stdout).toContain('steps: {"lint":"pass","drift":"fail"');
+  });
+
+  it('verify --rendered --json is skipped with DS-W005 when ds.config.json has no rendered entry', () => {
+    const root = twRoot();
+    expect(run(['build', '--root', root]).code).toBe(0);
+    expect(run(['generate', '--root', root]).code).toBe(0);
+    const r = run(['verify', '--root', root, '--rendered', '--json']);
+    expect(r.code).toBe(0);
+    const parsed = JSON.parse(r.stdout) as {
+      steps: Record<string, string>;
+      diagnostics: Array<{ code: string }>;
+    };
+    expect(parsed.steps.rendered).toBe('skipped');
+    expect(parsed.diagnostics.map((d) => d.code)).toEqual(['DS-W005']);
+  });
+
+  it('verify --rendered --json exits 1 with DS-E087 when the configured command fails (T4)', () => {
+    const root = twRoot({
+      'ds.config.json': twConfigWith({
+        rendered: { cwd: '.', command: 'exit 1' },
+      }),
+    });
+    expect(run(['build', '--root', root]).code).toBe(0);
+    expect(run(['generate', '--root', root]).code).toBe(0);
+    const r = run(['verify', '--root', root, '--rendered', '--json']);
+    expect(r.code).toBe(1);
+    const parsed = JSON.parse(r.stdout) as {
+      steps: Record<string, string>;
+      diagnostics: Array<{ code: string }>;
+    };
+    expect(parsed.steps.rendered).toBe('fail');
+    expect(parsed.diagnostics.map((d) => d.code)).toEqual(['DS-E087']);
   });
 
   it('capture-defaults requires --target and rejects targets without a catalog', () => {

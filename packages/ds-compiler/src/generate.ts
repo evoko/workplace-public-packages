@@ -87,6 +87,9 @@ export function generateOutputs(
 ): PluginOutput[] {
   const outputs: PluginOutput[] = [];
   for (const plugin of plugins) {
+    if (plugin.auxiliary && !config.targets[plugin.id]) {
+      continue;
+    }
     const ctx = pluginContext(
       rootDir,
       config,
@@ -115,13 +118,21 @@ export function generateOutputs(
  * dotfiles, is deleted, and any subdirectory left empty by that cleanup is
  * removed too (never the outDir itself), so the directory always equals a
  * fresh generation.
+ *
+ * When `ids` is omitted, every registered target runs and an auxiliary
+ * target with no `ds.config.json` entry is silently skipped (so a repo that
+ * has not configured it yet, such as `stories`, stays quiet). When `ids` is
+ * given explicitly (including by the CLI's `--target`) and it names such a
+ * target, that is almost certainly a mistake worth surfacing, so it is
+ * reported as `DS-W006` (a warning: the run still exits 0).
  */
 export function generate(
   rootDir: string,
-  ids: readonly string[] = targetIds(),
+  ids?: readonly string[],
   options: GenerateOptions = {},
 ): GenerateResult {
-  const plugins = resolvePlugins([...new Set(ids)]);
+  const explicit = ids !== undefined;
+  const plugins = resolvePlugins([...new Set(ids ?? targetIds())]);
   const result = buildIR(rootDir);
   if (!result.ir || !result.config) {
     return {
@@ -132,6 +143,17 @@ export function generate(
     };
   }
   const diag = result.diagnostics;
+  if (explicit) {
+    for (const plugin of plugins) {
+      if (plugin.auxiliary && !result.config.targets[plugin.id]) {
+        diag.add(
+          'DS-W006',
+          `targets.${plugin.id} is not configured in ds.config.json; the auxiliary target "${plugin.id}" was skipped`,
+          { file: 'ds.config.json', line: 1, column: 1 },
+        );
+      }
+    }
+  }
   const outputs = generateOutputs(
     rootDir,
     result.ir,

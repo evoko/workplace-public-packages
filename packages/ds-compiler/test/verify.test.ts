@@ -17,11 +17,25 @@ import {
 import type { TargetPlugin } from '../src/targets/plugin.js';
 import { verify } from '../src/verify/index.js';
 import { BTN_FILES, catalogFile, FX_CATALOG } from './mui-mapped-fixture.js';
-import { twBuild, twRoot } from './tailwind-fixture.js';
+import {
+  TW_CONFIG,
+  twBuild,
+  twConfigWith,
+  twRoot,
+} from './tailwind-fixture.js';
 
 const BROKEN_SPACE = {
   'src/tokens/space.css': ':root {\n  --fx-space-2: nope;\n}\n',
 };
+
+/** `TW_CONFIG` with the `targets.stories` entry removed. */
+const NO_STORIES_CONFIG = (() => {
+  const config = JSON.parse(TW_CONFIG) as {
+    targets: Record<string, unknown>;
+  };
+  delete config.targets.stories;
+  return JSON.stringify(config, null, 2);
+})();
 
 /** A root that has been built and generated: what a clean checkout looks like. */
 function ready(extra: Record<string, string> = {}): string {
@@ -57,6 +71,14 @@ describe('generate', () => {
       'mui/components/index.ts',
       'mui/index.ts',
       'mui/typecheck.tsx',
+      'stories/config.ts',
+      'stories/styles/chip.stories.tsx',
+      'stories/styles/pill.stories.tsx',
+      'stories/styles/tag.stories.tsx',
+      'stories/foundations/color.stories.tsx',
+      'stories/foundations/font-family.stories.tsx',
+      'stories/foundations/shadow.stories.tsx',
+      'stories/foundations/space.stories.tsx',
       'tailwind/components.css',
       'tailwind/index.css',
       'tailwind/theme.css',
@@ -75,7 +97,13 @@ describe('generate', () => {
     build(root);
     const result = generate(root);
     expect(result.ir).not.toBeNull();
-    expect(result.diagnostics.errors.map((d) => d.code)).toEqual(['DS-E084']);
+    // The mui target reports DS-E084 for the mode-varying non-color token,
+    // and the stories plugin independently rebuilds the same mui model and
+    // reports its own summary DS-E084 when that build fails.
+    expect(result.diagnostics.errors.map((d) => d.code)).toEqual([
+      'DS-E084',
+      'DS-E084',
+    ]);
     expect(result.written).toEqual([]);
     expect(existsSync(join(root, 'out'))).toBe(false);
   });
@@ -110,12 +138,50 @@ describe('generate', () => {
     expect(existsSync(join(out, 'sub'))).toBe(false);
   });
 
-  it('writes nothing and reports one DS-E086 when the mui catalog is broken', () => {
+  it('skips the auxiliary stories plugin entirely when ds.config.json has no targets.stories entry', () => {
+    const root = twRoot({ 'ds.config.json': NO_STORIES_CONFIG });
+    build(root);
+    const result = generate(root);
+    expect(result.diagnostics.errors).toEqual([]);
+    expect(result.written.some((p) => p.includes('stories'))).toBe(false);
+    expect(existsSync(join(root, 'out', 'stories'))).toBe(false);
+    expect(verify(root).steps).toEqual({
+      lint: 'pass',
+      drift: 'pass',
+      roundtrip: 'pass',
+      coverage: 'pass',
+      rendered: 'skipped',
+    });
+  });
+
+  it('reports DS-W006 (a warning, exit code stays 0) when an auxiliary target is explicitly requested but not configured (L4)', () => {
+    const root = twRoot({ 'ds.config.json': NO_STORIES_CONFIG });
+    build(root);
+    const result = generate(root, ['stories']);
+    expect(result.diagnostics.errors).toEqual([]);
+    expect(result.diagnostics.warnings.map((w) => w.code)).toEqual(['DS-W006']);
+    expect(result.written).toEqual([]);
+  });
+
+  it('does not report DS-W006 for the default (implicit) full run, only when explicitly requested', () => {
+    const root = twRoot({ 'ds.config.json': NO_STORIES_CONFIG });
+    build(root);
+    const result = generate(root);
+    expect(result.diagnostics.items).toEqual([]);
+  });
+
+  it('writes nothing and reports DS-E086 for both the mui and stories plugins when the mui catalog is broken', () => {
     const root = twRoot({ 'catalogs/mui.json': '{ broken' });
     build(root);
     const result = generate(root);
     expect(result.written).toEqual([]);
-    expect(result.diagnostics.errors.map((d) => d.code)).toEqual(['DS-E086']);
+    // Both plugins call `loadMuiCatalog` (the mui plugin directly, the
+    // stories plugin through its own `loadCatalog` with a scratch
+    // diagnostics object), so each reports its own DS-E086.
+    expect(result.diagnostics.errors.map((d) => d.code)).toEqual([
+      'DS-E086',
+      'DS-E086',
+    ]);
     expect(existsSync(join(root, 'out'))).toBe(false);
   });
 });
@@ -130,6 +196,7 @@ describe('verify', () => {
       drift: 'pass',
       roundtrip: 'pass',
       coverage: 'pass',
+      rendered: 'skipped',
     });
     expect(result.coverageFile).toBe(join(root, 'out', 'coverage.md'));
     expect(readFileSync(result.coverageFile!, 'utf8')).toContain(
@@ -152,8 +219,14 @@ describe('verify', () => {
       drift: 'fail',
       roundtrip: 'pass',
       coverage: 'pass',
+      rendered: 'skipped',
     });
-    expect(result.diagnostics.errors.map((d) => d.code)).toEqual(['DS-E084']);
+    // mui and stories each independently rebuild the mui model and each
+    // reports its own DS-E084 for the mode-varying non-color token.
+    expect(result.diagnostics.errors.map((d) => d.code)).toEqual([
+      'DS-E084',
+      'DS-E084',
+    ]);
   });
 
   it('reports drift for a stale IR, a changed generated file, and a stray file', () => {
@@ -179,13 +252,16 @@ describe('verify', () => {
     ]);
   });
 
-  it('fails drift and reports one DS-E086 when the mui catalog becomes broken after a clean generation', () => {
+  it('fails drift and reports DS-E086 for both the mui and stories plugins when the mui catalog becomes broken after a clean generation', () => {
     const root = ready();
     mkdirSync(join(root, 'catalogs'), { recursive: true });
     writeFileSync(join(root, 'catalogs', 'mui.json'), '{ broken');
     const result = verify(root);
     expect(result.steps.drift).toBe('fail');
-    expect(result.diagnostics.errors.map((d) => d.code)).toEqual(['DS-E086']);
+    expect(result.diagnostics.errors.map((d) => d.code)).toEqual([
+      'DS-E086',
+      'DS-E086',
+    ]);
   });
 
   it('reports missing generated files', () => {
@@ -236,6 +312,7 @@ describe('verify', () => {
       drift: 'pass',
       roundtrip: 'pass',
       coverage: 'fail',
+      rendered: 'skipped',
     });
     const unmapped = result.diagnostics.errors.filter(
       (d) => d.code === 'DS-E082',
@@ -254,6 +331,29 @@ describe('verify', () => {
     );
   });
 
+  it('runs the rendered step only on request and only after the Node steps pass', () => {
+    const root = ready();
+    const passing = verify(root, { rendered: true });
+    // the fixture config has no `rendered` entry, so the step is skipped with a warning
+    expect(passing.steps.rendered).toBe('skipped');
+    expect(passing.diagnostics.warnings.map((w) => w.code)).toContain(
+      'DS-W005',
+    );
+    expect(passing.diagnostics.errors).toEqual([]);
+
+    const noFlag = verify(root);
+    expect(noFlag.steps.rendered).toBe('skipped');
+    expect(noFlag.diagnostics.items).toEqual([]);
+
+    writeFileSync(join(root, 'out', 'tailwind', 'stray.css'), 'x');
+    const drifted = verify(root, { rendered: true });
+    expect(drifted.steps.drift).toBe('fail');
+    expect(drifted.steps.rendered).toBe('skipped');
+    expect(drifted.diagnostics.warnings.map((w) => w.code)).not.toContain(
+      'DS-W005',
+    );
+  });
+
   it('stops after lint when the source has errors', () => {
     const result = verify(twRoot(BROKEN_SPACE));
     expect(result.steps).toEqual({
@@ -261,6 +361,7 @@ describe('verify', () => {
       drift: 'skipped',
       roundtrip: 'skipped',
       coverage: 'skipped',
+      rendered: 'skipped',
     });
     expect(result.coverageFile).toBeNull();
   });
@@ -274,11 +375,23 @@ describe('verify', () => {
       drift: 'skipped',
       roundtrip: 'skipped',
       coverage: 'skipped',
+      rendered: 'skipped',
     });
     expect(
       result.diagnostics.errors.filter((d) => d.code === 'DS-E070'),
     ).toHaveLength(1);
     expect(result.coverageFile).toBeNull();
+  });
+
+  it('runs the configured rendered command and fails the rendered step end to end (T4)', () => {
+    const root = ready({
+      'ds.config.json': twConfigWith({
+        rendered: { cwd: '.', command: 'exit 1' },
+      }),
+    });
+    const result = verify(root, { rendered: true });
+    expect(result.steps.rendered).toBe('fail');
+    expect(result.diagnostics.errors.map((d) => d.code)).toEqual(['DS-E087']);
   });
 });
 
@@ -297,6 +410,7 @@ describe('verify with a mapped component', () => {
       drift: 'pass',
       roundtrip: 'pass',
       coverage: 'pass',
+      rendered: 'skipped',
     });
     expect(result.diagnostics.errors).toEqual([]);
     // the catalog's version cannot be checked from a temp outDir
@@ -313,7 +427,13 @@ describe('verify with a mapped component', () => {
     build(root);
     const gen = generate(root);
     expect(gen.written).toEqual([]);
-    expect(gen.diagnostics.errors.map((e) => e.code)).toEqual(['DS-E086']);
+    // mui reports the real DS-E086 (the stale render count) directly; the
+    // stories plugin independently rebuilds the same mui model and reports
+    // its own summary DS-E084 when that build fails.
+    expect(gen.diagnostics.errors.map((e) => e.code)).toEqual([
+      'DS-E086',
+      'DS-E084',
+    ]);
     const result = verify(root);
     // mui's generation fails, so `generateOutputs` drops it entirely: only
     // tailwind's output is left to round-trip, and it round-trips cleanly,
@@ -324,6 +444,7 @@ describe('verify with a mapped component', () => {
       drift: 'fail',
       roundtrip: 'pass',
       coverage: 'pass',
+      rendered: 'skipped',
     });
     expect(
       result.diagnostics.errors.some(

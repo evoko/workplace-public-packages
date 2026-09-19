@@ -206,10 +206,11 @@ describe('target hints', () => {
 });
 
 describe('target registry', () => {
-  it('registers the tailwind and mui plugins', () => {
-    expect(Object.keys(TARGETS).sort()).toEqual(['mui', 'tailwind']);
+  it('registers the tailwind, mui, and stories plugins', () => {
+    expect(Object.keys(TARGETS).sort()).toEqual(['mui', 'stories', 'tailwind']);
     expect(getTarget('tailwind')?.id).toBe('tailwind');
     expect(getTarget('mui')?.id).toBe('mui');
+    expect(getTarget('stories')?.id).toBe('stories');
     expect(getTarget('flutter')).toBeNull();
   });
 });
