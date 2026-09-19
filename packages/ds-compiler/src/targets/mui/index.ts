@@ -17,7 +17,8 @@ export const muiPlugin: TargetPlugin<MuiCatalog> = {
   loadCatalog: loadMuiCatalog,
   captureDefaults: captureMuiDefaults,
   generate: (ir, catalog, ctx, diag) => generateMui(ir, catalog, ctx, diag),
-  reparse: (files, ir, _catalog, ctx, diag) => reparseMui(files, ir, ctx, diag),
+  reparse: (files, ir, catalog, ctx, diag) =>
+    reparseMui(files, ir, catalog, ctx, diag),
   coverage: (ir) =>
     coverageEntries(MUI_ID, ir, {
       exclusion: muiExclusion,

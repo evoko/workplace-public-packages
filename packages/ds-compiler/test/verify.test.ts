@@ -16,6 +16,7 @@ import {
 } from '../src/generate.js';
 import type { TargetPlugin } from '../src/targets/plugin.js';
 import { verify } from '../src/verify/index.js';
+import { BTN_FILES, catalogFile, FX_CATALOG } from './mui-mapped-fixture.js';
 import { twBuild, twRoot } from './tailwind-fixture.js';
 
 const BROKEN_SPACE = {
@@ -278,6 +279,58 @@ describe('verify', () => {
       result.diagnostics.errors.filter((d) => d.code === 'DS-E070'),
     ).toHaveLength(1);
     expect(result.coverageFile).toBeNull();
+  });
+});
+
+describe('verify with a mapped component', () => {
+  it('passes end to end with the fixture catalog and writes the wrapper', () => {
+    const root = twRoot({ ...BTN_FILES, ...catalogFile() });
+    build(root);
+    const gen = generate(root);
+    expect(gen.diagnostics.errors).toEqual([]);
+    expect(gen.written.some((p) => p.endsWith('components/Btn.tsx'))).toBe(
+      true,
+    );
+    const result = verify(root);
+    expect(result.steps).toEqual({
+      lint: 'pass',
+      drift: 'pass',
+      roundtrip: 'pass',
+      coverage: 'pass',
+    });
+    expect(result.diagnostics.errors).toEqual([]);
+    // the catalog's version cannot be checked from a temp outDir
+    expect(result.diagnostics.warnings.map((w) => w.code)).toEqual(['DS-W004']);
+    expect(readFileSync(result.coverageFile!, 'utf8')).toContain(
+      '| `btn` | supported | supported |',
+    );
+  });
+
+  it('fails drift with DS-E086 and writes nothing when the catalog is stale', () => {
+    const stale = structuredClone(FX_CATALOG);
+    stale.components.btn.renders = stale.components.btn.renders.slice(0, 1);
+    const root = twRoot({ ...BTN_FILES, ...catalogFile(stale) });
+    build(root);
+    const gen = generate(root);
+    expect(gen.written).toEqual([]);
+    expect(gen.diagnostics.errors.map((e) => e.code)).toEqual(['DS-E086']);
+    const result = verify(root);
+    // mui's generation fails, so `generateOutputs` drops it entirely: only
+    // tailwind's output is left to round-trip, and it round-trips cleanly,
+    // so `roundtrip` is vacuously "pass" even though the mui target itself
+    // is broken (that failure is what `drift` reports).
+    expect(result.steps).toEqual({
+      lint: 'pass',
+      drift: 'fail',
+      roundtrip: 'pass',
+      coverage: 'pass',
+    });
+    expect(
+      result.diagnostics.errors.some(
+        (e) =>
+          e.code === 'DS-E086' && e.message.includes('no render for tone=loud'),
+      ),
+    ).toBe(true);
   });
 });
 

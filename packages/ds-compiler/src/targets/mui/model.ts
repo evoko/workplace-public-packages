@@ -294,18 +294,24 @@ function ariaAttributeFor(state: string): string | null {
   return entry ? entry[0] : null;
 }
 
+export interface ComponentModelResult {
+  model: MuiComponentModel;
+  resets: MuiVariant[];
+}
+
 /**
  * Builds the React-shell or wrapper model together with the resets computed
  * for a mapped component (so they are computed exactly once and shared with
- * `componentTheme`). Null after reporting every DS-E085/DS-E086 for the
- * component.
+ * `componentTheme`, and reused by the reparser instead of recomputing them a
+ * second time from the mapping). Null after reporting every DS-E085/DS-E086
+ * for the component.
  */
-function buildComponentModel(
+export function buildComponentModel(
   ir: DesignIR,
   component: ComponentIR,
   catalog: MuiCatalog | null,
   diag: Diagnostics,
-): { model: MuiComponentModel; resets: MuiVariant[] } | null {
+): ComponentModelResult | null {
   const before = diag.errors.length;
   const prefix = ir.meta.prefix;
   const at = manifestLocation(component);

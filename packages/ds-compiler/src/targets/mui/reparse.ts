@@ -18,13 +18,16 @@ import {
   manifestFromComponent,
   verifySelectorOrder,
 } from '../reparse-support.js';
+import type { MuiCatalog } from './catalog.js';
 import { isMappedForMui } from './hints.js';
 import {
-  componentModel,
+  buildComponentModel,
   MUI_PACKAGE,
+  MUI_RANGE,
   muiModelSchema,
   type MuiComponentModel,
   type MuiDeclarations,
+  type MuiMappedModel,
   type MuiModel,
 } from './model.js';
 import {
@@ -32,16 +35,14 @@ import {
   kebabCategory,
   kebabProperty,
   propNameFor,
-  slotClassName,
   sourceNameFromMui,
   specificityKey,
-  themeKeyFor,
 } from './names.js';
 
 const MODEL_FILE = 'theme.model.json';
 const AT: SourceLocation = { file: MODEL_FILE, line: 1, column: 1 };
 const VAR_REF = /var\(\s*(--[a-zA-Z0-9-]+)\s*\)/g;
-const KEY = /^(&+)((?::[a-z-]+|\[[^\]]+\])*)( \.([A-Za-z0-9]+)-([a-z0-9-]+))?$/;
+const KEY = /^(&+)((?::[a-z-]+|\[[^\]]+\])*)( \.([A-Za-z0-9_-]+))?$/;
 const STATE_TOKEN = /:[a-z-]+|\[[^\]]+\]/g;
 const ATTRIBUTE = /^\[([a-z-]+)(?:="([^"]*)")?\]$/;
 
@@ -75,6 +76,29 @@ function wrapParserErrors(diag: Diagnostics, parserDiag: Diagnostics): void {
   }
 }
 
+/**
+ * The first key at which two `mapped` values differ, as `.key: <expected>
+ * vs <actual>` (e.g. `.resetCount: 13 vs 12`), so a catalog change that only
+ * shifts the reset count is visible in the outer message instead of being
+ * flattened to the uninformative `(mapped)`. `''` when either side is null
+ * (the mismatch is "mapped vs not mapped", already clear from the field
+ * name alone).
+ */
+function firstDifferingMappedKey(
+  expected: MuiMappedModel | null,
+  actual: MuiMappedModel | null,
+): string {
+  if (!expected || !actual) {
+    return '';
+  }
+  for (const key of Object.keys(expected) as (keyof MuiMappedModel)[]) {
+    if (stableStringify(expected[key]) !== stableStringify(actual[key])) {
+      return `.${key}: ${JSON.stringify(expected[key])} vs ${JSON.stringify(actual[key])}`;
+    }
+  }
+  return '';
+}
+
 /** The first top-level key at which `expected` and `actual` differ, for a metadata-mismatch message. */
 function firstDifferingKey(
   expected: MuiComponentModel,
@@ -82,13 +106,20 @@ function firstDifferingKey(
 ): string {
   for (const key of Object.keys(expected) as (keyof MuiComponentModel)[]) {
     if (stableStringify(expected[key]) !== stableStringify(actual[key])) {
-      return key;
+      return key === 'mapped'
+        ? `mapped${firstDifferingMappedKey(expected.mapped, actual.mapped)}`
+        : key;
     }
   }
   return 'unknown';
 }
 
-function checkMeta(model: MuiModel, config: DsConfig, diag: Diagnostics): void {
+function checkMeta(
+  model: MuiModel,
+  catalog: MuiCatalog | null,
+  config: DsConfig,
+  diag: Diagnostics,
+): void {
   const { themeOptions } = model;
   const fail = (message: string): void => {
     diag.add('DS-E081', `mui: ${message}`, AT);
@@ -96,6 +127,17 @@ function checkMeta(model: MuiModel, config: DsConfig, diag: Diagnostics): void {
   if (model.framework.name !== MUI_PACKAGE) {
     fail(
       `framework.name is "${model.framework.name}", expected "${MUI_PACKAGE}"`,
+    );
+  }
+  if (model.framework.range !== MUI_RANGE) {
+    fail(
+      `framework.range is "${model.framework.range}", expected "${MUI_RANGE}"`,
+    );
+  }
+  const expectedVersion = catalog?.framework.version ?? null;
+  if (model.framework.version !== expectedVersion) {
+    fail(
+      `framework.version is ${JSON.stringify(model.framework.version)}, expected ${JSON.stringify(expectedVersion)}`,
     );
   }
   if (model.prefix !== config.prefix) {
@@ -268,11 +310,16 @@ interface ParsedKey {
   states: string[];
 }
 
-/** Splits a variant key into slot and states; null when it is not in the generated form. Specificity is checked by the caller. */
+/**
+ * Splits a variant key into slot and states; null when it is not in the
+ * generated form. `slotByClass` resolves the slot from the class the
+ * generator put on it (`FxMenu-badge` for an own component,
+ * `MuiButton-startIcon` for a mapped one). Specificity is checked by the
+ * caller.
+ */
 function parseKey(
   key: string,
-  themeKey: string,
-  slots: readonly string[],
+  slotByClass: Readonly<Record<string, string>>,
 ): ParsedKey | null {
   const m = KEY.exec(key);
   if (!m) {
@@ -280,10 +327,11 @@ function parseKey(
   }
   let slot = 'root';
   if (m[3] !== undefined) {
-    if (m[4] !== themeKey || m[5] === 'root' || !slots.includes(m[5])) {
+    const found = slotByClass[m[4]];
+    if (found === undefined) {
       return null;
     }
-    slot = m[5];
+    slot = found;
   }
   const states: string[] = [];
   for (const token of m[2].match(STATE_TOKEN) ?? []) {
@@ -308,14 +356,19 @@ function parseKey(
 function reparseComponents(
   model: MuiModel,
   ir: DesignIR,
+  catalog: MuiCatalog | null,
   tokens: Record<TokenId, Token>,
   config: DsConfig,
   diag: Diagnostics,
 ): Record<string, ComponentIR> | null {
   const before = diag.errors.length;
   const prefix = config.prefix;
-  const byThemeKey = new Map(
-    Object.keys(ir.components).map((n) => [themeKeyFor(prefix, n), n]),
+  // The model's own component metadata is untrusted output, but it is the
+  // only place a mapped component's theme key (`MuiButton`, not derived from
+  // the design-system name) is recorded, so the lookup goes through it
+  // rather than recomputing theme keys from the IR.
+  const metaByThemeKey = new Map(
+    Object.values(model.components).map((c) => [c.themeKey, c.name]),
   );
   const themeKeys = Object.keys(model.themeOptions.components);
   const metaKeys = Object.values(model.components).map((c) => c.themeKey);
@@ -328,8 +381,9 @@ function reparseComponents(
   }
   const out: Record<string, ComponentIR> = {};
   for (const themeKey of themeKeys) {
-    const name = byThemeKey.get(themeKey);
-    if (!name) {
+    const name = metaByThemeKey.get(themeKey);
+    const component = name ? ir.components[name] : undefined;
+    if (!name || !component) {
       diag.add(
         'DS-E081',
         `mui: generated theme entry "${themeKey}" matches no component`,
@@ -337,7 +391,6 @@ function reparseComponents(
       );
       continue;
     }
-    const component = ir.components[name];
     if (!isMappedForMui(component)) {
       diag.add(
         'DS-E081',
@@ -346,15 +399,21 @@ function reparseComponents(
       );
       continue;
     }
-    // The model's own component metadata (props, slots, axes, …) must be
-    // exactly what the IR would produce; a generator that drifted from the
-    // IR here would otherwise only be caught later, and less clearly, by a
-    // selector or declaration mismatch (or not at all, for a field the
-    // selector reconstruction never reads, like `exportName`).
-    // No catalog is threaded through reparse yet (Task 7 wires the mapped
-    // round-trip); every real component here is an own component, for which
-    // componentModel never reads the catalog.
-    const expectedMeta = componentModel(ir, component, null, new Diagnostics());
+    // The model's own component metadata (props, slots, axes, mapping, …)
+    // must be exactly what the IR (and, for a mapped component, the catalog)
+    // would produce; a generator that drifted from either here would
+    // otherwise only be caught later, and less clearly, by a selector or
+    // declaration mismatch (or not at all, for a field the selector
+    // reconstruction never reads, like `exportName`). The rebuild also
+    // yields the resets a mapped component needs below, computed exactly
+    // once rather than a second time from the mapping.
+    const built = buildComponentModel(
+      ir,
+      component,
+      catalog,
+      new Diagnostics(),
+    );
+    const expectedMeta = built?.model ?? null;
     const actualMeta = model.components[name];
     if (
       !expectedMeta ||
@@ -372,11 +431,62 @@ function reparseComponents(
       );
       continue;
     }
+    const meta = actualMeta;
     const componentBefore = diag.errors.length;
     const rootElement = component.slots.root?.element ?? 'div';
     const target = { name, rootElement };
-    const slots = Object.keys(component.slots);
     const entry = model.themeOptions.components[themeKey];
+    const slotByClass: Record<string, string> = Object.fromEntries(
+      Object.entries(meta.slots).map(([slot, s]) => [s.className, slot]),
+    );
+
+    // For a mapped component, the leading `expected.length` variants are the
+    // resets: recomputed here from the IR and the catalog (the same pure
+    // function `buildMuiModel` used to generate them) and required to be
+    // byte-identical, so a stale or hand-edited catalog or reset fails
+    // round-trip instead of silently drifting. The remaining variants are
+    // the design system's own rules, reparsed exactly as for an own
+    // component below, with messages indexed by their position in the full
+    // `variants` array.
+    let variants = entry.variants;
+    let variantOffset = 0;
+    if (meta.mapped) {
+      if (
+        stableStringify(entry.defaultProps ?? null) !==
+        stableStringify(meta.mapped.defaultProps)
+      ) {
+        diag.add(
+          'DS-E081',
+          `mui: ${name}: defaultProps differ from the mapping`,
+          AT,
+        );
+        continue;
+      }
+      // `built` is non-null here: `expectedMeta` (its `.model`) already
+      // compared equal to `actualMeta` above, and `MuiComponentModel` is
+      // always a truthy object, so `built?.model` being non-null means
+      // `built` itself is non-null.
+      const expected = built!.resets;
+      const resetPrefix = entry.variants.slice(0, expected.length);
+      if (stableStringify(resetPrefix) !== stableStringify(expected)) {
+        diag.add(
+          'DS-E081',
+          `mui: ${name}: the leading ${expected.length} variants are not the resets computed from the catalog`,
+          AT,
+        );
+        continue;
+      }
+      variants = entry.variants.slice(expected.length);
+      variantOffset = expected.length;
+    } else if (entry.defaultProps !== undefined) {
+      diag.add(
+        'DS-E081',
+        `mui: ${name}: an own component has no defaultProps`,
+        AT,
+      );
+      continue;
+    }
+
     const originals: { selector: string; location: SourceLocation }[] = [];
     const texts: string[] = [];
     const emit = (
@@ -409,8 +519,8 @@ function reparseComponents(
         `${themeKey}.styleOverrides.root`,
       );
     }
-    entry.variants.forEach((variant, i) => {
-      const where = `${themeKey}.variants[${i}]`;
+    variants.forEach((variant, i) => {
+      const where = `${themeKey}.variants[${i + variantOffset}]`;
       const keys = Object.keys(variant.style);
       if (keys.length !== 1) {
         diag.add(
@@ -420,11 +530,28 @@ function reparseComponents(
         );
         return;
       }
+      const key = keys[0];
+      const styleAtKey = variant.style[key];
+      // Every variant past the reset prefix is a design-system rule, which
+      // is never media-wrapped; `MuiVariant.style` is widened to allow a
+      // media wrapper only for the resets `computeResets` produces.
+      if (Object.values(styleAtKey).some((v) => typeof v === 'object')) {
+        diag.add(
+          'DS-E081',
+          `mui: ${where} has a nested (media) key outside the reset prefix`,
+          AT,
+        );
+        return;
+      }
       const axes: Record<string, string> = {};
       for (const [prop, value] of Object.entries(variant.props)) {
-        // variant props are the camelCase prop names; map them back to manifest axes
-        const axis = Object.keys(component.axes).find(
-          (a) => propNameFor(a) === prop,
+        // variant props are MUI prop names for a mapped component, the
+        // design-system's own camelCase prop names for an own one; map them
+        // back to manifest axes.
+        const axis = Object.keys(component.axes).find((a) =>
+          meta.mapped
+            ? meta.mapped.axisMap[a] === prop
+            : propNameFor(a) === prop,
         );
         const def = axis ? component.axes[axis] : undefined;
         if (!axis || !def || !def.values.includes(value)) {
@@ -437,8 +564,7 @@ function reparseComponents(
         }
         axes[axis] = value;
       }
-      const key = keys[0];
-      const parsed = parseKey(key, themeKey, slots);
+      const parsed = parseKey(key, slotByClass);
       if (!parsed) {
         diag.add(
           'DS-E081',
@@ -451,24 +577,12 @@ function reparseComponents(
         Object.keys(axes).length,
         parsed.states,
         rootElement,
-        parsed.slot === 'root' ? null : slotClassName(themeKey, parsed.slot),
+        parsed.slot === 'root' ? null : meta.slots[parsed.slot].className,
       );
       if (canonical !== key) {
         diag.add(
           'DS-E081',
           `mui: ${where} selector key "${key}" is not the canonical form "${canonical}"`,
-          AT,
-        );
-        return;
-      }
-      const styleAtKey = variant.style[key];
-      // Own-component variants (the only ones reparsed until Task 7) are
-      // never media-wrapped; `MuiVariant.style` widened for the reset
-      // generator, so guard the shape rather than assert it away.
-      if (Object.values(styleAtKey).some((v) => typeof v === 'object')) {
-        diag.add(
-          'DS-E081',
-          `mui: ${where} is media-wrapped, which own-component round-trip does not expect`,
           AT,
         );
         return;
@@ -522,6 +636,7 @@ function reparseComponents(
 export function reparseMui(
   files: GeneratedFile[],
   ir: DesignIR,
+  catalog: MuiCatalog | null,
   ctx: PluginContext,
   diag: Diagnostics,
 ): DesignIR | null {
@@ -555,11 +670,11 @@ export function reparseMui(
   }
   const model = checked.data as MuiModel;
   const before = diag.errors.length;
-  checkMeta(model, ctx.config, diag);
+  checkMeta(model, catalog, ctx.config, diag);
   const tokens =
     diag.errors.length > before ? null : reparseTokens(model, ctx.config, diag);
   const components = tokens
-    ? reparseComponents(model, ir, tokens, ctx.config, diag)
+    ? reparseComponents(model, ir, catalog, tokens, ctx.config, diag)
     : null;
   if (!tokens || !components) {
     return null;

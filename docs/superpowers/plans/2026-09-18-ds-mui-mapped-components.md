@@ -4293,15 +4293,26 @@ and where it stands. Update the status table after every milestone.
 | --- | --- | --- |
 | 1 | 1-2 contract, catalog module, error codes, CLI flags, hints, mapping plan, names | done, reviewed, committed by user |
 | 2 | 3-4 `.d.ts` extraction, `capture-defaults` | done, reviewed, committed by user |
-| 3 | 5-6 resets, mapped model, augmentation, wrapper, type probes | done, reviewed, awaiting user commit |
-| 4 | 7 round-trip for mapped components | pending |
+| 3 | 5-6 resets, mapped model, augmentation, wrapper, type probes | done, reviewed, committed by user |
+| 4 | 7 round-trip for mapped components | done, reviewed, awaiting user commit |
 | 5 | 8 starter `button`, catalog, regenerated output, package tests, docs | pending |
 | 6 | 9 final verification | pending |
 
-Test suite at the start of Plan 3b: compiler 29 files / 355 tests; `styles-mui` 2 files / 10 tests; 34 Turbo tasks. After batch 1: compiler 31 files / 400 tests. After batch 2: compiler 34 files / 433 tests. After batch 3: compiler 36 files / 477 tests.
+Test suite at the start of Plan 3b: compiler 29 files / 355 tests; `styles-mui` 2 files / 10 tests; 34 Turbo tasks. After batch 1: compiler 31 files / 400 tests. After batch 2: compiler 34 files / 433 tests. After batch 3: compiler 36 files / 477 tests. After batch 4: compiler 36 files / 491 tests.
 
 ### Decisions made during execution
 
+- Batch 4 review (a 23-row tamper matrix against the fixture and a freshly
+  captured real catalog; every corruption rejected, every legitimate catalog
+  variation accepted, including zero resets): `buildComponentModel` is
+  exported and the reparser calls it once for both the metadata compare and
+  the reset prefix, removing a duplicate reset computation and an unreachable
+  branch; the metadata-mismatch message names the differing `mapped` sub-key
+  (`mapped.resetCount: 14 vs 12`); `parseKey` looks the slot up by whole class
+  name (MUI slot classes are camelCase). Value-level corruptions of legal CSS
+  (`cursor: wait`, `44px` → `45px`) are caught by the IR diff in `verify`, not
+  by the reparser, by design. Deferred to Task 8's tidy-up: `componentModel`
+  is now an unused two-line wrapper; a comment in `mapping.ts` refers to it.
 - Batch 3 review (real capture of the fixture, generated output compiled with
   tsc against MUI 9.4.0 and rendered under a development Emotion build, the
   final cascade checked property by property): every MUI-set property in every
