@@ -3,7 +3,8 @@
   "prefix": "bwp",
   "framework": {
     "name": "@mui/material",
-    "range": "^9.4.0"
+    "range": "^9.4.0",
+    "version": null
   },
   "themeOptions": {
     "cssVariables": {
@@ -300,7 +301,9 @@
           "prop": "icon"
         }
       },
-      "childrenSlot": "label"
+      "childrenSlot": "label",
+      "kind": "own",
+      "mapped": null
     }
   }
 }

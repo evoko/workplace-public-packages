@@ -53,7 +53,7 @@ interface ReactModule {
     ...children: unknown[]
   ): Element;
 }
-interface Runtime {
+export interface Runtime {
   React: ReactModule;
   renderToStaticMarkup(element: Element): string;
   createCache(options: { key: string }): unknown;
@@ -65,7 +65,7 @@ interface Runtime {
   version: string;
 }
 
-function loadRuntime(outDir: string, diag: Diagnostics): Runtime | null {
+export function loadRuntime(outDir: string, diag: Diagnostics): Runtime | null {
   const require = createRequire(join(outDir, 'capture.cjs'));
   try {
     const React = require('react') as ReactModule;
@@ -110,12 +110,12 @@ function loadRuntime(outDir: string, diag: Diagnostics): Runtime | null {
   }
 }
 
-interface LoadedComponent {
+export interface LoadedComponent {
   Component: unknown;
   classes: Record<string, string>;
 }
 
-function loadComponent(
+export function loadComponent(
   runtime: Runtime,
   component: string,
   at: SourceLocation,

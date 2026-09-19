@@ -234,6 +234,14 @@ export {
   CATALOG_FILE,
 } from './targets/mui/catalog.js';
 export { extractMuiProps } from './targets/mui/extract-props.js';
+export {
+  computeResets,
+  effectiveValue,
+  KNOWN_SHORTHANDS,
+  parseContext,
+  SHORTHAND_LONGHANDS,
+} from './targets/mui/resets.js';
+export type { ResetContext } from './targets/mui/resets.js';
 export type { MuiPropsExtraction } from './targets/mui/extract-props.js';
 export { captureMuiDefaults } from './targets/mui/capture.js';
 export type {
@@ -246,7 +254,13 @@ export type {
   MuiProbeFacts,
   MuiCatalogScalar,
 } from './targets/mui/catalog.js';
-export type { DiagSink, ConsoleCaptureResult } from './targets/mui/capture.js';
+export type {
+  DiagSink,
+  ConsoleCaptureResult,
+  LoadedComponent,
+  Runtime,
+} from './targets/mui/capture.js';
+export { loadComponent, loadRuntime } from './targets/mui/capture.js';
 export {
   rulesFromMarkup,
   unresolvedUnionProps,
@@ -265,11 +279,13 @@ export type {
   MuiComponentModel,
   MuiComponentTheme,
   MuiDeclarations,
+  MuiMappedModel,
   MuiModel,
   MuiSlotModel,
   MuiStateProp,
   MuiThemeOptions,
   MuiVariant,
+  MuiVariantStyle,
 } from './targets/mui/model.js';
 export { generateMui } from './targets/mui/generate.js';
 export {

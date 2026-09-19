@@ -2,21 +2,28 @@ import { z } from 'zod';
 import { FORM_CONTROL_ELEMENTS } from '../../components/render-selector.js';
 import { ARIA_TRUE_STATES, PSEUDO_STATES } from '../../components/states.js';
 import type { Diagnostics } from '../../errors.js';
-import type {
-  ComponentIR,
-  DesignIR,
-  IRValue,
-  Token,
-  TokenId,
-} from '../../ir/types.js';
+import type { ComponentIR, DesignIR, Token, TokenId } from '../../ir/types.js';
+import { stableStringify } from '../../ir/serialize.js';
 import { codeUnitCompare } from '../../sources.js';
-import { renderLiteralValue, renderTokenValue } from '../css-values.js';
+import { renderTokenValue } from '../css-values.js';
 import type { PluginContext } from '../plugin.js';
+import {
+  CATALOG_AT,
+  type MuiCatalog,
+  type MuiCatalogComponent,
+} from './catalog.js';
 import { HTML_ELEMENTS, SVG_ELEMENTS, VOID_ELEMENTS } from './html-elements.js';
 export { MUI_PACKAGE, MUI_RANGE } from './framework.js';
 import { MUI_PACKAGE, MUI_RANGE } from './framework.js';
-import { ignoredForMui, isMappedForMui } from './hints.js';
-import { manifestLocation } from './mapping.js';
+import { ignoredForMui, isMappedForMui, muiMapping } from './hints.js';
+import type { MuiScalar } from './hints.js';
+import {
+  manifestLocation,
+  planMapping,
+  type ChildrenMode,
+  type MappingPlan,
+  type MappingUnion,
+} from './mapping.js';
 import {
   camelCategory,
   colorSchemeSelectorFor,
@@ -28,19 +35,31 @@ import {
   specificityKey,
   themeKeyFor,
 } from './names.js';
+import { computeResets } from './resets.js';
+import { muiValue } from './values.js';
+
+export { muiValue } from './values.js';
 
 /** camelCase property to CSS text. Every value is a string: Emotion appends `px` to bare numbers. */
 export type MuiDeclarations = Record<string, string>;
 
+/** One selector key to declarations, or one `@media …` key to exactly one selector key. */
+export type MuiVariantStyle = Record<
+  string,
+  MuiDeclarations | Record<string, MuiDeclarations>
+>;
+
 export interface MuiVariant {
-  /** Axis name to value; `{}` matches every instance. */
+  /** Prop name to value (`ownerState` matching); `{}` matches every instance. Design-system prop names for own components, MUI prop names for mapped ones. */
   props: Record<string, string>;
-  /** Exactly one nested selector key (see `specificityKey`) to its declarations. */
-  style: Record<string, MuiDeclarations>;
+  style: MuiVariantStyle;
 }
 
 export interface MuiComponentTheme {
+  /** Mapped components only: parity props, axis defaults, manifest defaultProps. */
+  defaultProps?: Record<string, MuiScalar>;
   styleOverrides: { root: MuiDeclarations };
+  /** Mapped components: `resetCount` reset entries first, then the design system's rules. */
   variants: MuiVariant[];
 }
 
@@ -76,30 +95,67 @@ export interface MuiStateProp {
   attribute: string;
 }
 
+export interface MuiMappedModel {
+  component: string;
+  axisMap: Record<string, string>;
+  slotMap: Record<string, string>;
+  defaultProps: Record<string, MuiScalar>;
+  children: ChildrenMode;
+  ownProps: string[];
+  unions: Record<string, MappingUnion>;
+  resetCount: number;
+}
+
 export interface MuiComponentModel {
   name: string;
   exportName: string;
+  /** `<Prefix><Name>` for an own component, `Mui<Component>` for a mapped one. */
   themeKey: string;
   rootElement: string;
   axes: Record<string, MuiAxisModel>;
   stateProps: MuiStateProp[];
-  /** Non-root slots in manifest order. */
+  /** Non-root slots in manifest order; `className` is the own-component class or MUI's slot class. */
   slots: Record<string, MuiSlotModel>;
-  /** The slot that renders `children`, or null when children go straight into the root. */
+  /** The slot that renders `children`, or null. For a mapped component, null also when children go to MUI's children (see `mapped.children`). */
   childrenSlot: string | null;
+  kind: 'own' | 'mapped';
+  mapped: MuiMappedModel | null;
 }
 
 export interface MuiModel {
   /** The header text; JSON has no comments, so it is the first key. */
   generated: string;
   prefix: string;
-  framework: { name: typeof MUI_PACKAGE; range: string };
+  framework: {
+    name: typeof MUI_PACKAGE;
+    range: string;
+    version: string | null;
+  };
   themeOptions: MuiThemeOptions;
   /** By design-system component name, sorted. */
   components: Record<string, MuiComponentModel>;
 }
 
 const declarations = z.record(z.string(), z.string());
+const scalar = z.union([z.string(), z.number(), z.boolean()]);
+
+const variantStyle = z
+  .record(
+    z.string(),
+    z.union([declarations, z.record(z.string(), declarations)]),
+  )
+  .refine((style) => {
+    const keys = Object.keys(style);
+    if (keys.length !== 1) {
+      return false;
+    }
+    const value = style[keys[0]] as Record<string, unknown>;
+    const nested = Object.values(value).some((v) => typeof v === 'object');
+    if (keys[0].startsWith('@media ')) {
+      return nested && Object.keys(value).length === 1;
+    }
+    return !nested;
+  }, 'exactly one selector key, or one @media key holding exactly one selector key');
 
 /** Shape check for `theme.model.json` before `reparse` trusts it. */
 export const muiModelSchema = z.strictObject({
@@ -108,6 +164,7 @@ export const muiModelSchema = z.strictObject({
   framework: z.strictObject({
     name: z.literal(MUI_PACKAGE),
     range: z.string(),
+    version: z.string().nullable(),
   }),
   themeOptions: z.strictObject({
     cssVariables: z.strictObject({
@@ -123,16 +180,12 @@ export const muiModelSchema = z.strictObject({
     components: z.record(
       z.string(),
       z.strictObject({
+        defaultProps: z.record(z.string(), scalar).optional(),
         styleOverrides: z.strictObject({ root: declarations }),
         variants: z.array(
           z.strictObject({
             props: z.record(z.string(), z.string()),
-            style: z
-              .record(z.string(), declarations)
-              .refine(
-                (s) => Object.keys(s).length === 1,
-                'exactly one selector key',
-              ),
+            style: variantStyle,
           }),
         ),
       }),
@@ -170,20 +223,40 @@ export const muiModelSchema = z.strictObject({
         }),
       ),
       childrenSlot: z.string().nullable(),
+      kind: z.enum(['own', 'mapped']),
+      mapped: z
+        .strictObject({
+          component: z.string(),
+          axisMap: z.record(z.string(), z.string()),
+          slotMap: z.record(z.string(), z.string()),
+          defaultProps: z.record(z.string(), scalar),
+          children: z.union([
+            z.strictObject({ kind: z.literal('children') }),
+            z.strictObject({
+              kind: z.literal('slot'),
+              slot: z.string(),
+              muiProp: z.string(),
+            }),
+            z.strictObject({ kind: z.literal('none') }),
+          ]),
+          ownProps: z.array(z.string()),
+          unions: z.record(
+            z.string(),
+            z.strictObject({
+              overrides: z.string(),
+              defaults: z.array(z.string()),
+              values: z.array(z.string()),
+            }),
+          ),
+          resetCount: z.number().int().nonnegative(),
+        })
+        .nullable(),
     }),
   ),
 });
 
 export function muiHeaderText(ir: DesignIR, ctx: PluginContext): string {
   return `Generated by @bwp-web/ds-compiler ${ctx.compilerVersion} for target mui from design.ir.json (source hash ${ir.meta.sourceHash}). Do not edit; run bwp-ds generate.`;
-}
-
-/** `var(<mui variable>)` for a token reference, CSS text for a literal. */
-export function muiValue(ir: DesignIR, value: IRValue): string {
-  if (value.kind === 'token') {
-    return `var(${muiVarName(ir.meta.prefix, ir.tokens[value.ref])})`;
-  }
-  return renderLiteralValue(value);
 }
 
 function tokenText(
@@ -221,19 +294,82 @@ function ariaAttributeFor(state: string): string | null {
   return entry ? entry[0] : null;
 }
 
-/** The React-shell description, or null after reporting every DS-E085 for the component. */
-export function componentModel(
+/**
+ * Builds the React-shell or wrapper model together with the resets computed
+ * for a mapped component (so they are computed exactly once and shared with
+ * `componentTheme`). Null after reporting every DS-E085/DS-E086 for the
+ * component.
+ */
+function buildComponentModel(
+  ir: DesignIR,
   component: ComponentIR,
-  prefix: string,
+  catalog: MuiCatalog | null,
   diag: Diagnostics,
-): MuiComponentModel | null {
+): { model: MuiComponentModel; resets: MuiVariant[] } | null {
   const before = diag.errors.length;
+  const prefix = ir.meta.prefix;
   const at = manifestLocation(component);
   const fail = (message: string): void => {
     diag.add('DS-E085', `mui: ${component.name}: ${message}`, at);
   };
+  const hints = muiMapping(component);
+  let plan: MappingPlan | null = null;
+  let catalogEntry: MuiCatalogComponent | null = null;
+  if (hints) {
+    if (!catalog) {
+      diag.add(
+        'DS-E086',
+        `mui: ${component.name} is mapped onto ${hints.component} but ${CATALOG_AT.file} is missing; run bwp-ds capture-defaults --target mui`,
+        at,
+      );
+      return null;
+    }
+    const framework = catalog.frameworkComponents[hints.component];
+    if (!framework) {
+      diag.add(
+        'DS-E086',
+        `mui: ${component.name}: the catalog has no entry for ${hints.component}; run bwp-ds capture-defaults --target mui`,
+        at,
+      );
+      return null;
+    }
+    const entry = catalog.components[component.name];
+    if (!entry || entry.component !== hints.component) {
+      diag.add(
+        'DS-E086',
+        `mui: ${component.name}: the catalog entry is ${entry ? 'stale (the mapping changed)' : 'missing'}; run bwp-ds capture-defaults --target mui`,
+        at,
+      );
+      return null;
+    }
+    // The probe facts (rendered root element, ButtonBase root) were captured
+    // for this mapping's defaultProps and live on the component's entry.
+    plan = planMapping(component, hints, framework, entry, diag);
+    if (!plan) {
+      return null;
+    }
+    const recorded = {
+      axisMap: entry.axisMap,
+      slotMap: entry.slotMap,
+      defaultProps: entry.defaultProps,
+    };
+    const planned = {
+      axisMap: plan.axisMap,
+      slotMap: plan.slotMap,
+      defaultProps: plan.defaultProps,
+    };
+    if (stableStringify(recorded) !== stableStringify(planned)) {
+      diag.add(
+        'DS-E086',
+        `mui: ${component.name}: the catalog entry is stale (the mapping changed); run bwp-ds capture-defaults --target mui`,
+        at,
+      );
+      return null;
+    }
+    catalogEntry = entry;
+  }
   const rootElement = component.slots.root?.element ?? 'div';
-  const themeKey = themeKeyFor(prefix, component.name);
+  const themeKey = plan ? plan.themeKey : themeKeyFor(prefix, component.name);
   for (const slot of component.slotOrder) {
     const def = component.slots[slot];
     const el = def.element;
@@ -269,9 +405,11 @@ export function componentModel(
       stateProps.push({
         state,
         prop: propNameFor(state),
-        attribute: FORM_CONTROL_ELEMENTS.has(rootElement)
-          ? 'disabled'
-          : 'aria-disabled',
+        // A mapped component hands `disabled` to MUI's prop; an own shell renders the attribute.
+        attribute:
+          plan || FORM_CONTROL_ELEMENTS.has(rootElement)
+            ? 'disabled'
+            : 'aria-disabled',
       });
     } else if (ariaAttributeFor(state)) {
       stateProps.push({
@@ -288,9 +426,13 @@ export function componentModel(
     }
   }
   const nonRoot = component.slotOrder.filter((s) => s !== 'root');
-  const childrenSlot = nonRoot.includes('label')
-    ? 'label'
-    : (nonRoot.find((s) => !component.slots[s].optional) ?? null);
+  const childrenSlot = plan
+    ? plan.children.kind === 'slot'
+      ? plan.children.slot
+      : null
+    : nonRoot.includes('label')
+      ? 'label'
+      : (nonRoot.find((s) => !component.slots[s].optional) ?? null);
   // Checked unconditionally, including the children slot: a reserved-word
   // slot name is inexpressible regardless of how it is rendered.
   for (const slot of nonRoot) {
@@ -319,7 +461,7 @@ export function componentModel(
   if (diag.errors.length > before) {
     return null;
   }
-  return {
+  const model: MuiComponentModel = {
     name: component.name,
     exportName: pascalCase(component.name),
     themeKey,
@@ -341,25 +483,59 @@ export function componentModel(
         {
           element: component.slots[s].element,
           optional: component.slots[s].optional,
-          className: slotClassName(themeKey, s),
+          className: plan ? plan.slotClasses[s] : slotClassName(themeKey, s),
           prop: propNameFor(s),
         },
       ]),
     ),
     childrenSlot,
+    kind: plan ? 'mapped' : 'own',
+    mapped: null,
   };
+  let resets: MuiVariant[] = [];
+  if (plan && catalogEntry) {
+    const computed = computeResets(ir, component, plan, catalogEntry, diag, at);
+    if (!computed) {
+      return null;
+    }
+    resets = computed;
+    model.mapped = {
+      component: plan.component,
+      axisMap: plan.axisMap,
+      slotMap: plan.slotMap,
+      defaultProps: plan.defaultProps,
+      children: plan.children,
+      ownProps: plan.ownProps,
+      unions: plan.unions,
+      resetCount: resets.length,
+    };
+  }
+  return { model, resets };
+}
+
+/** The React-shell or wrapper description, or null after reporting every DS-E085/DS-E086 for the component. */
+export function componentModel(
+  ir: DesignIR,
+  component: ComponentIR,
+  catalog: MuiCatalog | null,
+  diag: Diagnostics,
+): MuiComponentModel | null {
+  return buildComponentModel(ir, component, catalog, diag)?.model ?? null;
 }
 
 /**
  * The base root rule becomes `styleOverrides.root`; every other rule, in the
  * IR's canonical order, becomes one variant keyed by `specificityKey`, so
  * Emotion resolves the cascade exactly as the CSS target does. Ignored
- * properties are dropped, and a rule left empty by that is skipped.
+ * properties are dropped, and a rule left empty by that is skipped. For a
+ * mapped component, the resets (already computed by `buildComponentModel`)
+ * precede the design system's own variants and `defaultProps` is set.
  */
 function componentTheme(
   ir: DesignIR,
   component: ComponentIR,
   model: MuiComponentModel,
+  resets: MuiVariant[],
 ): MuiComponentTheme {
   const ignored = ignoredForMui(component);
   const axisOrder = component.axisOrder;
@@ -383,7 +559,10 @@ function componentTheme(
     const variantProps = Object.fromEntries(
       axisOrder
         .filter((a) => Object.hasOwn(rule.axes, a))
-        .map((a) => [propNameFor(a), rule.axes[a]]),
+        .map((a) => [
+          model.mapped ? model.mapped.axisMap[a] : propNameFor(a),
+          rule.axes[a],
+        ]),
     );
     const key = specificityKey(
       axesCount,
@@ -393,16 +572,24 @@ function componentTheme(
     );
     variants.push({ props: variantProps, style: { [key]: decls } });
   }
+  if (model.mapped) {
+    return {
+      defaultProps: model.mapped.defaultProps,
+      styleOverrides: { root },
+      variants: [...resets, ...variants],
+    };
+  }
   return { styleOverrides: { root }, variants };
 }
 
 /**
  * Builds the model, reporting DS-E084 (configuration MUI cannot express) and
- * DS-E085 (component a React shell cannot express) on `diag`. Returns null
- * when it reported anything.
+ * DS-E085/DS-E086 (a component or its mapping a React shell cannot express)
+ * on `diag`. Returns null when it reported anything.
  */
 export function buildMuiModel(
   ir: DesignIR,
+  catalog: MuiCatalog | null,
   ctx: PluginContext,
   diag: Diagnostics,
 ): MuiModel | null {
@@ -471,19 +658,38 @@ export function buildMuiModel(
     themeOptions.tokens[category] = byCategory.get(category)!;
   }
   const components: Record<string, MuiComponentModel> = {};
+  // Tracks which design-system component first claimed each theme key, so a
+  // second component mapped onto the same MUI component (two components
+  // both writing `theme.components.MuiButton`) is rejected instead of
+  // silently overwriting the first one's theme entry.
+  const themeKeyOwners = new Map<string, string>();
   for (const name of Object.keys(ir.components).sort(codeUnitCompare)) {
     const component = ir.components[name];
     if (!isMappedForMui(component)) {
       continue;
     }
-    const model = componentModel(component, prefix, diag);
-    if (!model) {
+    const built = buildComponentModel(ir, component, catalog, diag);
+    if (!built) {
       continue;
     }
+    const { model, resets } = built;
+    if (model.mapped) {
+      const owner = themeKeyOwners.get(model.themeKey);
+      if (owner !== undefined) {
+        diag.add(
+          'DS-E085',
+          `mui: ${name}: ${model.mapped.component} is already mapped by "${owner}"; one design-system component per MUI component`,
+          manifestLocation(component),
+        );
+        continue;
+      }
+    }
+    themeKeyOwners.set(model.themeKey, name);
     themeOptions.components[model.themeKey] = componentTheme(
       ir,
       component,
       model,
+      resets,
     );
     components[name] = model;
   }
@@ -493,7 +699,11 @@ export function buildMuiModel(
   return {
     generated: muiHeaderText(ir, ctx),
     prefix,
-    framework: { name: MUI_PACKAGE, range: MUI_RANGE },
+    framework: {
+      name: MUI_PACKAGE,
+      range: MUI_RANGE,
+      version: catalog?.framework.version ?? null,
+    },
     themeOptions,
     components,
   };

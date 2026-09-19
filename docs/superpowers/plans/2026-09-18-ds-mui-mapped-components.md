@@ -26,8 +26,9 @@
 | --- | --- |
 | Capture method | (user decision 2026-09-18) The catalog is captured in Node: `react-dom/server` `renderToStaticMarkup` under an Emotion `CacheProvider` emits `<style data-emotion="…">` tags holding the complete flattened CSS of every element MUI rendered, including nested `:hover`, `.Mui-disabled`, `::before`, and `@media` contexts. No browser. Spec 9.1's headless-Chromium capture of computed styles is not needed for the reset generator, which needs the *property set per selector context*; computed-style comparison belongs to Plan 4's rendered-parity harness. |
 | Catalog home | (user decision) `packages/styles-css/catalogs/mui.json` (`<sourceRoot>/catalogs/<target>.json`). The content depends on the design system's manifests (which MUI components, which axis permutations, which slots), so it lives next to the source of truth, not in the compiler package as spec 9.1 wrote. The MUI version is recorded inside the file; one file per target. |
+| Reset exceptions | (batch 3 review) `content` is reset with `none`, not `revert`: Emotion's development build throws on any unquoted `content` value outside `normal\|none\|initial\|inherit\|unset`, and for a `::before` both compute to no box. The effective-value lookup picks the applicable rule with the highest specificity (IR order breaks ties), because `compareRules` orders by axes count before states count and a 0-axis/2-state rule (specificity 3) precedes a 1-axis rule (specificity 2). Longhands whose design-system parent is atomic (`overflow-x`/`overflow-y` → `overflow`) also consult the parent. Any CSS shorthand not in `SHORTHAND_LONGHANDS` is `DS-E086`, checked against a full `KNOWN_SHORTHANDS` list rather than only the design-system tables. One design-system component per MUI component: a second mapping onto the same `Mui<Component>` is `DS-E085`. The wrapper keeps `tabIndex` and `type` as DOM props even though MUI re-declares them; `href` stays omitted because it changes MUI's root element. |
 | Reset keyword | `revert`, not the spec's `unset`. `unset` yields the *initial* value for non-inherited properties (`display: inline` for a button), not the user-agent default; `revert` rolls the cascaded value back to the user-agent origin, which is exactly what the plain CSS target computes on the same element when the design system sets nothing. Supported by every evergreen browser since 2020. |
-| Reset algorithm | For each mapped component, each full axis permutation `P`, and each catalog rule `(media, selector, declarations)` captured for `P`: expand shorthands to longhand *names*, drop a vendor-prefixed property whose unprefixed twin is in the same rule, then for every property decide: no design-system rule applies to that element in that selector context → `revert`; a design-system rule applies and its selector specificity is **lower** than the catalog selector's → restate the design system's effective value (the last applicable rule in canonical order, which is the cascade because rule order is monotone in specificity); a design-system rule of equal or higher specificity applies → emit nothing (it is emitted after the resets and wins). Resets are emitted as the leading `variants` entries with `props` = the permutation (MUI prop names), each `style` keyed by the catalog selector verbatim (wrapped in its `@media` when present), so every reset has exactly MUI's specificity and precedes every design-system variant. |
+| Reset algorithm | For each mapped component, each full axis permutation `P`, and each catalog rule `(media, selector, declarations)` captured for `P`: expand shorthands to longhand *names*, drop a vendor-prefixed property whose unprefixed twin is in the same rule, then for every property decide: no design-system rule applies to that element in that selector context → `revert`; a design-system rule applies and its selector specificity is **lower** than the catalog selector's → restate the design system's effective value (the applicable rule with the highest specificity, IR order breaking ties; see "Reset exceptions" for why IR order alone is not the cascade); a design-system rule of equal or higher specificity applies → emit nothing (it is emitted after the resets and wins). Resets are emitted as the leading `variants` entries with `props` = the permutation (MUI prop names), each `style` keyed by the catalog selector verbatim (wrapped in its `@media` when present), so every reset has exactly MUI's specificity and precedes every design-system variant. |
 | Resets are derived, not authored | The model carries resets only inside `themeOptions.components.<MuiKey>.variants` plus a `resetCount` per component; round-trip recomputes them from IR and catalog with the same pure function and requires deep equality, then round-trips the remaining variants as Plan 3 does. A stale or edited catalog therefore fails `verify`. |
 | Manifest hints | `targets.mui` gains `component` (MUI export name, PascalCase), `axisMap` (design-system axis → MUI prop; must cover every axis; every target must be an overridable union prop of that component), `slotMap` (design-system slot → MUI class key such as `startIcon`; must cover every non-root slot; the key must be rendered as an element), and `defaultProps` (extra MUI props with JSON scalar values; may not touch mapped props or the parity props). The spec's `disableDefaultVariants` is dropped: the catalog knows the default unions, so they are disabled automatically. `ignore` keeps working. `{}` still means "own component". |
 | Parity default props | The generator always sets, when the MUI component has the prop, `disableRipple: true`, `disableFocusRipple: true`, `disableTouchRipple: true`, `focusRipple: false`, `disableElevation: true` (ripples add DOM and animation the design system does not have; elevation adds shadows), plus every mapped axis's default value under its MUI prop name, then the manifest's `defaultProps`. A manifest that lists a parity prop is `DS-E085`. The same effective `defaultProps` are used at capture time, so the catalog records what a consumer really gets. |
@@ -4291,16 +4292,40 @@ and where it stands. Update the status table after every milestone.
 | Batch | Tasks | State |
 | --- | --- | --- |
 | 1 | 1-2 contract, catalog module, error codes, CLI flags, hints, mapping plan, names | done, reviewed, committed by user |
-| 2 | 3-4 `.d.ts` extraction, `capture-defaults` | done, reviewed, awaiting user commit |
-| 3 | 5-6 resets, mapped model, augmentation, wrapper, type probes | pending |
+| 2 | 3-4 `.d.ts` extraction, `capture-defaults` | done, reviewed, committed by user |
+| 3 | 5-6 resets, mapped model, augmentation, wrapper, type probes | done, reviewed, awaiting user commit |
 | 4 | 7 round-trip for mapped components | pending |
 | 5 | 8 starter `button`, catalog, regenerated output, package tests, docs | pending |
 | 6 | 9 final verification | pending |
 
-Test suite at the start of Plan 3b: compiler 29 files / 355 tests; `styles-mui` 2 files / 10 tests; 34 Turbo tasks. After batch 1: compiler 31 files / 400 tests. After batch 2: compiler 34 files / 433 tests.
+Test suite at the start of Plan 3b: compiler 29 files / 355 tests; `styles-mui` 2 files / 10 tests; 34 Turbo tasks. After batch 1: compiler 31 files / 400 tests. After batch 2: compiler 34 files / 433 tests. After batch 3: compiler 36 files / 477 tests.
 
 ### Decisions made during execution
 
+- Batch 3 review (real capture of the fixture, generated output compiled with
+  tsc against MUI 9.4.0 and rendered under a development Emotion build, the
+  final cascade checked property by property): every MUI-set property in every
+  captured context ends in the design system's value or `revert`. Fixes:
+  `content` resets emit `none` (Emotion's dev build throws on `content: revert`);
+  a render smoke test (`test/mui-generate-render.test.ts`) now exercises the
+  generated theme through real MUI so an Emotion-rejected value fails CI; a
+  second design-system component mapped onto the same MUI component is
+  `DS-E085`; `effectiveValue` picks the highest specificity (IR order is not
+  monotone: `compareRules` orders axes count before states count); a full
+  `KNOWN_SHORTHANDS` list guards unexpandable shorthands and `overflow`
+  expands with a `DS_PARENT` lookup back to the atomic design-system
+  property; `parseContext` tokenises before splitting compounds and handles
+  `:not/:is/:has/:where`; the wrapper keeps `tabIndex` and `type` as DOM
+  props; `disabled` is emitted after the spread. The typecheck probe for a
+  rejected MUI default uses the lexicographically last default outside the
+  design-system values (the model carries all defaults, not MUI's single
+  current one). `theme.model.json` of the committed `Example` gained the
+  additive `framework.version`, `kind`, `mapped` fields (regenerated). Two
+  separate processes produce byte-identical catalog and generated output.
+  Deferred: the four `loadRuntime`/`loadComponent` re-exports in
+  `src/index.ts` are unnecessary; unknown-shorthand `DS-E086` repeats per
+  permutation; the render smoke test covers the raw MUI component, the
+  wrapper itself is rendered by the package tests in Task 8.
 - Batch 2 review (probed against the installed MUI 9.4.0 with Button, Chip,
   Typography, Alert, MenuItem, TextField; two-process determinism; a sweep of
   all 133 MUI `.d.ts` files): unions declared through an alias or a template

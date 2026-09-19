@@ -5,13 +5,23 @@ import type { DesignIR } from '../src/ir/types.js';
 import { generateMui } from '../src/targets/mui/generate.js';
 import { buildMuiModel } from '../src/targets/mui/model.js';
 import { renderTsLiteral } from '../src/targets/mui/render-ts.js';
+import { BTN_FILES, FX_CATALOG } from './mui-mapped-fixture.js';
 import { twBuild, twContext, twRoot } from './tailwind-fixture.js';
 
 function generated(extra: Record<string, string> = {}) {
   const root = twRoot(extra);
   const { ir, config } = twBuild(root);
   const diag = new Diagnostics();
-  const files = generateMui(ir, twContext(root, config), diag);
+  const files = generateMui(ir, null, twContext(root, config), diag);
+  const byPath = Object.fromEntries(files.map((f) => [f.path, f.contents]));
+  return { files, byPath, diag, ir, ctx: twContext(root, config) };
+}
+
+function generatedMapped() {
+  const root = twRoot(BTN_FILES);
+  const { ir, config } = twBuild(root);
+  const diag = new Diagnostics();
+  const files = generateMui(ir, FX_CATALOG, twContext(root, config), diag);
   const byPath = Object.fromEntries(files.map((f) => [f.path, f.contents]));
   return { files, byPath, diag, ir, ctx: twContext(root, config) };
 }
@@ -382,13 +392,14 @@ describe('generateMui', () => {
     });
     const fromDisk = generateMui(
       JSON.parse(serializeIR(ir)) as DesignIR,
+      null,
       ctx,
       new Diagnostics(),
     );
     expect(fromDisk).toEqual(files);
     const roundTripped = JSON.parse(serializeIR(ir)) as DesignIR;
-    const model1 = buildMuiModel(ir, ctx, new Diagnostics());
-    const model2 = buildMuiModel(roundTripped, ctx, new Diagnostics());
+    const model1 = buildMuiModel(ir, null, ctx, new Diagnostics());
+    const model2 = buildMuiModel(roundTripped, null, ctx, new Diagnostics());
     expect(model1!.components.gizmo.childrenSlot).toBe('zeta');
     expect(model2!.components.gizmo.childrenSlot).toBe('zeta');
     expect(JSON.stringify(model1)).toBe(JSON.stringify(model2));
@@ -401,5 +412,126 @@ describe('generateMui', () => {
     });
     expect(files).toEqual([]);
     expect(diag.errors.map((d) => d.code)).toEqual(['DS-E084']);
+  });
+});
+
+describe('generateMui: mapped components', () => {
+  it('emits a wrapper around MUI Button with design-system props only', () => {
+    const { byPath, files, diag } = generatedMapped();
+    expect(diag.errors).toEqual([]);
+    // Btn (mapped) sorts alongside the other own components in the file list.
+    const paths = files.map((f) => f.path);
+    expect(paths.indexOf('components/Btn.tsx')).toBeLessThan(
+      paths.indexOf('components/Chip.tsx'),
+    );
+    const tsx = byPath['components/Btn.tsx'];
+    expect(tsx).toContain("import MuiButton from '@mui/material/Button';");
+    expect(tsx).toContain("import '../augmentation.js';");
+    expect(tsx).toContain("export type BtnTone = 'quiet' | 'loud';");
+    expect(tsx).toMatch(
+      /extends Omit<React\.ComponentPropsWithoutRef<'button'>, [^>]*'sx'[^>]*> \{/,
+    );
+    expect(tsx).toContain("'fullWidth'");
+    // `href` still changes MUI's root element, so it stays omitted; `type`
+    // and `tabIndex` are plain DOM attributes MUI merely redeclares, so the
+    // wrapper leaves them as ordinary DOM props instead of blocking them.
+    expect(tsx).toContain("'href'");
+    expect(tsx).not.toContain("'type'");
+    expect(tsx).not.toContain("'tabIndex'");
+    expect(tsx).toContain('  tone?: BtnTone;');
+    expect(tsx).toContain('  disabled?: boolean;');
+    expect(tsx).toContain('  children?: React.ReactNode;');
+    expect(tsx).toContain('  icon?: React.ReactNode;');
+    expect(tsx).toContain("  root: 'MuiButton-root',");
+    expect(tsx).toContain("  icon: 'MuiButton-startIcon',");
+    expect(tsx).toContain(
+      "const { tone = 'quiet', disabled = false, children, icon, ...other } = props;",
+    );
+    // The full JSX body in order: ref, the axis prop, the slot prop, the
+    // spread, then the state prop after the spread (so it always wins over
+    // whatever `other` forwards), then children and the closing tag.
+    expect(tsx).toContain(
+      [
+        '      <MuiButton',
+        '        ref={ref}',
+        '        variant={tone}',
+        '        startIcon={icon}',
+        '        {...other}',
+        '        disabled={disabled}',
+        '      >',
+        '        {children}',
+        '      </MuiButton>',
+      ].join('\n'),
+    );
+    expect(tsx).not.toContain('styled(');
+    expect(tsx).not.toContain('ownerState');
+  });
+
+  it('augments the MUI component: defaults disabled, design-system values enabled, unmapped unions emptied', () => {
+    const { byPath } = generatedMapped();
+    const aug = byPath['augmentation.ts'];
+    expect(aug).toContain("declare module '@mui/material/Button' {");
+    expect(aug).toContain(
+      '  interface ButtonPropsVariantOverrides {\n    contained: false;\n    loud: true;\n    outlined: false;\n    quiet: true;\n    text: false;\n  }',
+    );
+    expect(aug).toContain(
+      '  interface ButtonPropsSizeOverrides {\n    large: false;\n    medium: false;\n    small: false;\n  }',
+    );
+    expect(aug).toContain(
+      '  interface ButtonPropsColorOverrides {\n    inherit: false;\n    primary: false;\n  }',
+    );
+    // mapped components are not listed in the styles augmentation
+    expect(aug).not.toContain('MuiButton: BtnProps');
+    expect(aug).not.toContain('MuiButton?: {');
+    expect(aug).toContain('FxChip: ChipProps;');
+  });
+
+  it('probes the mapped type contract', () => {
+    const { byPath } = generatedMapped();
+    const probe = byPath['typecheck.tsx'];
+    expect(probe).toContain("import MuiButton from '@mui/material/Button';");
+    expect(probe).toContain(
+      'export const btnAccepted = (\n  <Btn tone="loud" disabled icon="icon">\n    content\n  </Btn>\n);',
+    );
+    expect(probe).toContain(
+      '// @ts-expect-error tone rejects MUI\'s default "text"\nexport const btnRejectedToneDefault = <Btn tone="text" />;',
+    );
+    expect(probe).toContain(
+      '// @ts-expect-error MUI-only props are rejected on the wrapper\nexport const btnRejectedMuiProp = <Btn classes={undefined} />;',
+    );
+    expect(probe).toContain(
+      'export const btnMuiRejectedVariant = <MuiButton variant="text" />;',
+    );
+    expect(probe).toContain(
+      'export const btnMuiAccepted = <MuiButton variant="loud" />;',
+    );
+    expect(probe).toContain(
+      'export const btnMuiRejectedColor = <MuiButton color="primary" />;',
+    );
+    // NOTE (deviation from the plan draft): the model carries every value MUI
+    // declares for an unmapped union prop (`union.defaults`), not MUI's
+    // single "current default" (that field isn't threaded through
+    // MappingUnion), so the probe picks a deterministic member instead of
+    // the fixture's literal `size` default ("medium") or the plan's "large".
+    // Sorting the candidates in reverse code-unit order picked "small" here.
+    expect(probe).toContain(
+      'export const btnMuiRejectedSize = <MuiButton size="small" />;',
+    );
+  });
+
+  it('renders theme.ts with the MuiButton entry and keeps the model deep-equal', () => {
+    const { byPath } = generatedMapped();
+    const theme = byPath['theme.ts'];
+    const model = JSON.parse(byPath['theme.model.json']) as {
+      themeOptions: unknown;
+    };
+    const literal = theme.slice(
+      theme.indexOf('= {') + 2,
+      theme.indexOf(' satisfies ThemeOptions;'),
+    );
+    expect(new Function(`return ${literal};`)()).toEqual(model.themeOptions);
+    expect(theme).toContain("'@media (hover: hover)': {");
+    expect(theme).toContain("'--variant-containedBg': 'revert',");
+    expect(theme).toContain("WebkitTapHighlightColor: 'revert',");
   });
 });

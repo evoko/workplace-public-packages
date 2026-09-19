@@ -24,6 +24,7 @@ import {
   MUI_PACKAGE,
   muiModelSchema,
   type MuiComponentModel,
+  type MuiDeclarations,
   type MuiModel,
 } from './model.js';
 import {
@@ -350,7 +351,10 @@ function reparseComponents(
     // IR here would otherwise only be caught later, and less clearly, by a
     // selector or declaration mismatch (or not at all, for a field the
     // selector reconstruction never reads, like `exportName`).
-    const expectedMeta = componentModel(component, prefix, new Diagnostics());
+    // No catalog is threaded through reparse yet (Task 7 wires the mapped
+    // round-trip); every real component here is an own component, for which
+    // componentModel never reads the catalog.
+    const expectedMeta = componentModel(ir, component, null, new Diagnostics());
     const actualMeta = model.components[name];
     if (
       !expectedMeta ||
@@ -457,7 +461,25 @@ function reparseComponents(
         );
         return;
       }
-      emit(parsed.slot, axes, parsed.states, variant.style[key], where);
+      const styleAtKey = variant.style[key];
+      // Own-component variants (the only ones reparsed until Task 7) are
+      // never media-wrapped; `MuiVariant.style` widened for the reset
+      // generator, so guard the shape rather than assert it away.
+      if (Object.values(styleAtKey).some((v) => typeof v === 'object')) {
+        diag.add(
+          'DS-E081',
+          `mui: ${where} is media-wrapped, which own-component round-trip does not expect`,
+          AT,
+        );
+        return;
+      }
+      emit(
+        parsed.slot,
+        axes,
+        parsed.states,
+        styleAtKey as MuiDeclarations,
+        where,
+      );
     });
     if (diag.errors.length > componentBefore) {
       continue;

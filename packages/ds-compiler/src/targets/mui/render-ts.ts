@@ -1,5 +1,5 @@
 import { codeUnitCompare } from '../../sources.js';
-import type { MuiModel } from './model.js';
+import type { MuiComponentModel, MuiModel } from './model.js';
 import { camelCase, pascalCase } from './names.js';
 
 const IDENTIFIER = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
@@ -94,6 +94,7 @@ function union(keys: readonly string[]): string {
 export function renderAugmentationTs(model: MuiModel): string {
   const { themeOptions } = model;
   const components = Object.values(model.components);
+  const ownComponents = components.filter((c) => !c.mapped);
   const colorKeys = Object.keys(
     themeOptions.colorSchemes[themeOptions.defaultColorScheme]?.palette
       .tokens ?? {},
@@ -101,11 +102,11 @@ export function renderAugmentationTs(model: MuiModel): string {
   const categories = Object.keys(themeOptions.tokens);
 
   const lines: string[] = [muiHeader(model), ''];
-  if (components.length > 0) {
+  if (ownComponents.length > 0) {
     lines.push(
       "import type { ComponentsOverrides, ComponentsProps, ComponentsVariants } from '@mui/material/styles';",
     );
-    for (const c of components) {
+    for (const c of ownComponents) {
       lines.push(
         `import type { ${c.exportName}Props } from './components/${c.exportName}.js';`,
       );
@@ -158,19 +159,19 @@ export function renderAugmentationTs(model: MuiModel): string {
     '    tokens: DsTokens;',
     '  }',
   );
-  if (components.length > 0) {
+  if (ownComponents.length > 0) {
     lines.push('  interface ComponentsPropsList {');
-    for (const c of components) {
+    for (const c of ownComponents) {
       lines.push(`    ${c.themeKey}: ${c.exportName}Props;`);
     }
     lines.push('  }', '  interface ComponentNameToClassKey {');
-    for (const c of components) {
+    for (const c of ownComponents) {
       lines.push(
         `    ${c.themeKey}: ${union(['root', ...Object.values(c.slots).map((s) => s.prop)])};`,
       );
     }
     lines.push('  }', '  interface Components<Theme = unknown> {');
-    for (const c of components) {
+    for (const c of ownComponents) {
       lines.push(
         `    ${c.themeKey}?: {`,
         `      defaultProps?: ComponentsProps['${c.themeKey}'];`,
@@ -181,6 +182,63 @@ export function renderAugmentationTs(model: MuiModel): string {
     }
     lines.push('  }');
   }
-  lines.push('}', '', 'export {};', '');
+  lines.push('}', '');
+  const mappedLines = renderMappedOverrides(components);
+  if (mappedLines.length > 0) {
+    lines.push(...mappedLines, '');
+  }
+  lines.push('export {};', '');
   return lines.join('\n');
+}
+
+/**
+ * One `declare module '@mui/material/<Component>' { ... }` block per distinct
+ * MUI component a design-system component maps onto: MUI's default union
+ * members are disabled, the design system's are enabled, and an overridable
+ * prop no axis maps to has every default disabled (its union becomes `never`).
+ */
+function renderMappedOverrides(
+  components: readonly MuiComponentModel[],
+): string[] {
+  const overrides = new Map<string, Map<string, Map<string, boolean>>>();
+  for (const c of components) {
+    if (!c.mapped) {
+      continue;
+    }
+    const byInterface = overrides.get(c.mapped.component) ?? new Map();
+    overrides.set(c.mapped.component, byInterface);
+    for (const union of Object.values(c.mapped.unions)) {
+      const members =
+        byInterface.get(union.overrides) ?? new Map<string, boolean>();
+      byInterface.set(union.overrides, members);
+      for (const d of union.defaults) {
+        if (!members.has(d)) {
+          members.set(d, false);
+        }
+      }
+      for (const v of union.values) {
+        members.set(v, true);
+      }
+    }
+  }
+  if (overrides.size === 0) {
+    return [];
+  }
+  const lines: string[] = [
+    "// Mapped components: MUI's default values are disabled, the design system's enabled; a prop no axis maps to accepts nothing.",
+  ];
+  for (const component of [...overrides.keys()].sort(codeUnitCompare)) {
+    const byInterface = overrides.get(component)!;
+    lines.push('', `declare module '@mui/material/${component}' {`);
+    for (const iface of [...byInterface.keys()].sort(codeUnitCompare)) {
+      const members = byInterface.get(iface)!;
+      lines.push(`  interface ${iface} {`);
+      for (const member of [...members.keys()].sort(codeUnitCompare)) {
+        lines.push(`    ${renderKey(member)}: ${members.get(member)};`);
+      }
+      lines.push('  }');
+    }
+    lines.push('}');
+  }
+  return lines;
 }

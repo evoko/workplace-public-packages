@@ -1,5 +1,5 @@
 import { codeUnitCompare } from '../../sources.js';
-import type { MuiComponentModel, MuiModel } from './model.js';
+import type { MuiComponentModel, MuiMappedModel, MuiModel } from './model.js';
 import { camelCase, pascalCase } from './names.js';
 import {
   muiHeader,
@@ -29,11 +29,33 @@ function attributeJsx(prop: string, attribute: string): string {
 }
 
 /**
+ * MUI own props that are also plain DOM attributes of the wrapped element
+ * with the same meaning, so the wrapper leaves them as ordinary DOM props
+ * (forwarded through `{...other}`) instead of blocking a native attribute
+ * merely because MUI redeclares it. `href` is not here: setting it changes
+ * MUI's rendered root element from `button` to `a`, which the wrapper's
+ * typed contract (fixed to `c.rootElement`) does not account for.
+ */
+const DOM_PASSTHROUGH_PROPS: ReadonlySet<string> = new Set([
+  'tabIndex',
+  'type',
+]);
+
+export function renderComponentTsx(
+  model: MuiModel,
+  c: MuiComponentModel,
+): string {
+  return c.mapped
+    ? renderMappedComponentTsx(model, c)
+    : renderOwnComponentTsx(model, c);
+}
+
+/**
  * One React component per design-system component. The shell carries no
  * styles: `styled` looks them up in `theme.components.<ThemeKey>` through
  * `overridesResolver` and matches `variants` against `ownerState`.
  */
-export function renderComponentTsx(
+export function renderOwnComponentTsx(
   model: MuiModel,
   c: MuiComponentModel,
 ): string {
@@ -176,6 +198,145 @@ export function renderComponentTsx(
   return lines.join('\n');
 }
 
+/**
+ * A mapped component is MUI's component with the design system's props:
+ * axis props (exact unions) under their design-system names, forwarded to
+ * the MUI props they map to; `disabled` to MUI's prop; ARIA states as
+ * attributes after the spread; slots under their design-system names,
+ * forwarded to MUI's slot props; children per the mapping's children mode.
+ * Every MUI own prop is removed from the accepted DOM props, so MUI-only
+ * props (`sx`, `fullWidth`, …) are type errors.
+ */
+export function renderMappedComponentTsx(
+  model: MuiModel,
+  c: MuiComponentModel,
+): string {
+  const m = c.mapped!;
+  const P = c.exportName;
+  const Mui = `Mui${m.component}`;
+  const classes = classesName(c);
+  const axisNames = Object.keys(c.axes);
+  const slotNames = Object.keys(c.slots);
+  const slotProps = slotNames.filter((s) => s !== c.childrenSlot);
+  const hasChildren = m.children.kind !== 'none';
+  const owned = [
+    ...new Set([
+      'children',
+      ...axisNames.map((a) => c.axes[a].prop),
+      ...c.stateProps.map((p) => p.prop),
+      ...c.stateProps.map((p) => p.attribute),
+      ...slotProps.map((s) => c.slots[s].prop),
+      ...m.ownProps.filter((p) => !DOM_PASSTHROUGH_PROPS.has(p)),
+    ]),
+  ].sort(codeUnitCompare);
+
+  const lines: string[] = [
+    muiHeader(model),
+    '',
+    "import * as React from 'react';",
+    `import ${Mui} from '@mui/material/${m.component}';`,
+    "import '../augmentation.js';",
+    '',
+  ];
+  for (const axis of axisNames) {
+    lines.push(
+      `export type ${P}${pascalCase(axis)} = ${union(c.axes[axis].values)};`,
+    );
+  }
+  if (axisNames.length > 0) {
+    lines.push('');
+  }
+  lines.push(
+    `export interface ${P}Props`,
+    `  extends Omit<React.ComponentPropsWithoutRef<'${c.rootElement}'>, ${union(owned)}> {`,
+  );
+  for (const axis of axisNames) {
+    lines.push(
+      `  /** Axis \`${axis}\`; default \`${c.axes[axis].default}\`. MUI prop \`${m.axisMap[axis]}\`. */`,
+      `  ${c.axes[axis].prop}?: ${P}${pascalCase(axis)};`,
+    );
+  }
+  for (const state of c.stateProps) {
+    lines.push(
+      state.state === 'disabled'
+        ? "  /** State `disabled`; MUI's `disabled` prop. */"
+        : `  /** State \`${state.state}\`; rendered as the \`${state.attribute}\` attribute. */`,
+      `  ${state.prop}?: boolean;`,
+    );
+  }
+  if (hasChildren) {
+    lines.push(
+      m.children.kind === 'slot'
+        ? `  /** Slot \`${m.children.slot}\`; MUI prop \`${m.children.muiProp}\`. */`
+        : '  /** Content of the root element. */',
+      '  children?: React.ReactNode;',
+    );
+  }
+  for (const slot of slotProps) {
+    lines.push(
+      `  /** Slot \`${slot}\`${c.slots[slot].optional ? ' (optional)' : ''}; MUI slot \`${m.slotMap[slot]}\`. */`,
+      `  ${c.slots[slot].prop}?: React.ReactNode;`,
+    );
+  }
+  lines.push(
+    '}',
+    '',
+    `export const ${classes} = {`,
+    `  root: '${m.component === '' ? '' : `Mui${m.component}-root`}',`,
+  );
+  for (const slot of slotNames) {
+    lines.push(`  ${c.slots[slot].prop}: '${c.slots[slot].className}',`);
+  }
+  lines.push(
+    '} as const;',
+    '',
+    `/** MUI's \`${m.component}\` with the design system's props; \`theme.components.${c.themeKey}\` carries the styles. */`,
+    `export const ${P} = React.forwardRef<React.ComponentRef<'${c.rootElement}'>, ${P}Props>(`,
+    `  function ${P}(props, ref) {`,
+  );
+  const destructured = [
+    ...axisNames.map(
+      (a) => `${c.axes[a].prop} = ${quoteTs(c.axes[a].default)}`,
+    ),
+    ...c.stateProps.map((p) => `${p.prop} = false`),
+    ...(hasChildren ? ['children'] : []),
+    ...slotProps.map((s) => c.slots[s].prop),
+    '...other',
+  ];
+  lines.push(
+    `    const { ${destructured.join(', ')} } = props;`,
+    '    return (',
+    `      <${Mui}`,
+    '        ref={ref}',
+  );
+  for (const axis of axisNames) {
+    lines.push(`        ${m.axisMap[axis]}={${c.axes[axis].prop}}`);
+  }
+  for (const slot of slotProps) {
+    lines.push(`        ${m.slotMap[slot]}={${c.slots[slot].prop}}`);
+  }
+  if (m.children.kind === 'slot') {
+    lines.push(`        ${m.children.muiProp}={children}`);
+  }
+  lines.push('        {...other}');
+  // Emitted after `{...other}`, like the own-component path, so the
+  // component's own state always wins over whatever the spread forwards.
+  for (const state of c.stateProps) {
+    lines.push(
+      state.state === 'disabled'
+        ? `        disabled={${state.prop}}`
+        : `        ${state.attribute}={${state.prop} ? true : undefined}`,
+    );
+  }
+  if (m.children.kind === 'children') {
+    lines.push('      >', '        {children}', `      </${Mui}>`);
+  } else {
+    lines.push('      />');
+  }
+  lines.push('    );', '  },', ');', '');
+  return lines.join('\n');
+}
+
 export function renderComponentsIndex(model: MuiModel): string {
   const names = Object.values(model.components)
     .map((c) => c.exportName)
@@ -224,6 +385,14 @@ export function renderTypecheckTsx(model: MuiModel): string {
     lines.push('', 'export {};', '');
     return lines.join('\n');
   }
+  const mappedComponents = [
+    ...new Set(
+      components.filter((c) => c.mapped).map((c) => c.mapped!.component),
+    ),
+  ].sort(codeUnitCompare);
+  for (const mc of mappedComponents) {
+    lines.push(`import Mui${mc} from '@mui/material/${mc}';`);
+  }
   lines.push(
     // No `import * as React from 'react'`: the package uses the react-jsx
     // transform, so plain JSX needs no React identifier in scope.
@@ -259,11 +428,100 @@ export function renderTypecheckTsx(model: MuiModel): string {
         `export const ${stem}Rejected${pascalCase(axis)} = <${c.exportName} ${c.axes[axis].prop}="__not_a_value__" />;`,
       );
     }
-    lines.push(
-      '// @ts-expect-error unknown props are rejected',
-      `export const ${stem}RejectedProp = <${c.exportName} notAProp="x" />;`,
-      '',
-    );
+    if (c.mapped) {
+      lines.push(...mappedTypecheckProbes(stem, c, c.mapped));
+    } else {
+      lines.push(
+        '// @ts-expect-error unknown props are rejected',
+        `export const ${stem}RejectedProp = <${c.exportName} notAProp="x" />;`,
+        '',
+      );
+    }
   }
   return lines.join('\n');
+}
+
+/**
+ * A member of a union's `defaults` (MUI's own members) that is not among the
+ * design system's values for it, picked deterministically since the model
+ * does not carry MUI's single current default (only the full member list).
+ */
+function sortedCandidate(candidates: readonly string[]): string {
+  return [...candidates].sort((a, b) => codeUnitCompare(b, a))[0];
+}
+
+interface QualifyingAxis {
+  axis: string;
+  muiProp: string;
+  value: string;
+}
+
+/**
+ * The extra probes for a mapped component: the wrapper rejects a plain MUI
+ * value outside its axis prop's union and a real MUI-only prop; the raw MUI
+ * component (augmented) rejects the same disabled value and every default of
+ * an overridable prop no axis maps to, and accepts one design-system value.
+ */
+function mappedTypecheckProbes(
+  stem: string,
+  c: MuiComponentModel,
+  m: MuiMappedModel,
+): string[] {
+  const out: string[] = [];
+  const Mui = `Mui${m.component}`;
+  const qualifying: QualifyingAxis[] = [];
+  for (const axis of Object.keys(c.axes)) {
+    const muiProp = m.axisMap[axis];
+    const union = m.unions[muiProp];
+    const candidates = union.defaults.filter((d) => !union.values.includes(d));
+    if (candidates.length > 0) {
+      qualifying.push({ axis, muiProp, value: sortedCandidate(candidates) });
+    }
+  }
+  for (const { axis, value } of qualifying) {
+    out.push(
+      `// @ts-expect-error ${axis} rejects MUI's default "${value}"`,
+      `export const ${stem}Rejected${pascalCase(axis)}Default = <${c.exportName} ${c.axes[axis].prop}="${value}" />;`,
+    );
+  }
+  const accepted = new Set([
+    ...Object.values(m.axisMap),
+    ...Object.values(m.slotMap),
+    'disabled',
+    'children',
+  ]);
+  const rejectedOwnProp = m.ownProps.find((p) => !accepted.has(p));
+  if (rejectedOwnProp !== undefined) {
+    out.push(
+      '// @ts-expect-error MUI-only props are rejected on the wrapper',
+      `export const ${stem}RejectedMuiProp = <${c.exportName} ${rejectedOwnProp}={undefined} />;`,
+    );
+  }
+  for (const { muiProp, value } of qualifying) {
+    out.push(
+      `// @ts-expect-error the augmentation narrows MUI's own ${m.component}: "${value}" is disabled`,
+      `export const ${stem}MuiRejected${pascalCase(muiProp)} = <${Mui} ${muiProp}="${value}" />;`,
+    );
+  }
+  if (qualifying.length > 0) {
+    const { axis, muiProp } = qualifying[0];
+    const def = c.axes[axis];
+    const dsValue = def.values.find((v) => v !== def.default) ?? def.default;
+    out.push(
+      `export const ${stem}MuiAccepted = <${Mui} ${muiProp}="${dsValue}" />;`,
+    );
+  }
+  for (const prop of Object.keys(m.unions).sort(codeUnitCompare)) {
+    const union = m.unions[prop];
+    if (union.values.length > 0 || union.defaults.length === 0) {
+      continue;
+    }
+    const value = sortedCandidate(union.defaults);
+    out.push(
+      `// @ts-expect-error ${prop} has no design-system values, so it accepts nothing`,
+      `export const ${stem}MuiRejected${pascalCase(prop)} = <${Mui} ${prop}="${value}" />;`,
+    );
+  }
+  out.push('');
+  return out;
 }
