@@ -1,27 +1,55 @@
+import { createBwpTheme } from '@bwp-web/styles-mui';
+import { ThemeProvider } from '@mui/material/styles';
 import type { Preview } from '@storybook/react-vite';
+import * as React from 'react';
 
-// Cleared ahead of the new design system.
-// The previous preview wrapped every story in a MUI ThemeProvider and
-// exposed a light/dark toolbar driven by the old theme. Both are gone.
-// Re-add a decorator here once the new design system ships a provider.
+import { storiesConfig } from '../src/generated/config';
+import { applyMode } from '../src/harness/mode';
+
+const theme = createBwpTheme();
+
 const preview: Preview = {
   tags: ['autodocs'],
-  parameters: {
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
+  globalTypes: {
+    dsMode: {
+      description: 'Design-system color mode',
+      toolbar: {
+        title: 'Mode',
+        icon: 'mirror',
+        items: storiesConfig.modes,
+        dynamicTitle: true,
       },
     },
-
-    layout: 'fullscreen',
-
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo',
+    dsTargets: {
+      description: 'Which target columns the compare grids show',
+      toolbar: {
+        title: 'Targets',
+        icon: 'component',
+        items: ['all', 'css', 'tailwind', 'mui'],
+        dynamicTitle: true,
+      },
     },
+  },
+  initialGlobals: { dsMode: storiesConfig.defaultMode, dsTargets: 'all' },
+  decorators: [
+    (Story, context) => {
+      const mode = context.globals.dsMode as string;
+      React.useEffect(() => {
+        applyMode(storiesConfig.mode, mode);
+      }, [mode]);
+      return (
+        <ThemeProvider theme={theme}>
+          <Story />
+        </ThemeProvider>
+      );
+    },
+  ],
+  parameters: {
+    controls: {
+      matchers: { color: /(background|color)$/i, date: /Date$/i },
+    },
+    layout: 'padded',
+    a11y: { test: 'todo' },
   },
 };
 

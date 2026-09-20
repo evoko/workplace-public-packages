@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { storiesConfig } from './generated/config';
+
+<Meta title="Introduction" />
+
+# {storiesConfig.name}
+
+One design system, written once as CSS in `packages/styles-css`, compiled into
+a Tailwind layer, an MUI theme with React components, and (later) a Flutter
+package. This Storybook shows every token and component rendered by each web
+target side by side.
+
+## Reading a compare grid
+
+Columns are targets; the **css** column is the reference. Rows are every axis
+combination times every state. Each cell is an isolated shadow root holding
+only that target's stylesheet, so nothing bleeds between columns. Use the
+**Mode** toolbar to switch color modes and **Targets** to show one column next
+to the reference.
+
+Every compare story has a play function. Under `npm run test:rendered` (and
+`bwp-ds verify --rendered` in CI) it drives real hover, focus, and press
+interactions and compares the computed styles of the root and every slot
+between the css cell and each other cell, in every mode. In this UI the
+interaction rows are skipped; the base and attribute states still compare.
+
+## Where things live
+
+- Authoring: `docs/design-system/authoring-guide.md`
+- Targets: `docs/design-system/targets/`
+- Verification: `docs/design-system/verification.md`
+- This Storybook: `docs/design-system/storybook.md`

@@ -187,6 +187,9 @@ export function renderFoundationsStory(
     '',
     'const meta: Meta = {',
     `  title: ${quoteTs(`Foundations/${categoryTitle(category)}`)},`,
+    // CSF treats every named export as a story, and this file also exports
+    // the token data, so the story list is stated explicitly.
+    "  includeStories: ['Compare'],",
     "  parameters: { layout: 'padded' },",
     '};',
     '',

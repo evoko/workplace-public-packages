@@ -6,31 +6,51 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "storybook build -o dist",
+    "generate": "bwp-ds generate --root ../styles-css --target stories",
+    "test": "vitest run --project unit",
+    "test:rendered": "vitest run --project storybook",
+    "typecheck": "tsc --noEmit",
+    "lint": "node scripts/lint-story-titles.mjs && eslint",
     "clean": "rm -rf dist node_modules .turbo",
-    "format": "prettier --check . --ignore-path ../../.gitignore"
+    "format": "prettier --check . --ignore-path ../../.gitignore --ignore-path .prettierignore"
   },
   "dependencies": {
     "@bwp-web/assets": "*",
     "@bwp-web/canvas": "*",
     "@bwp-web/components": "*",
+    "@bwp-web/styles-css": "*",
+    "@bwp-web/styles-mui": "*",
+    "@bwp-web/styles-tailwind": "*",
+    "@emotion/cache": "^11.14.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^9.4.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   },
   "devDependencies": {
+    "@bwp-web/ds-compiler": "*",
+    "@bwp-web/eslint-config": "*",
     "@storybook/addon-a11y": "^10.3.5",
     "@storybook/addon-docs": "^10.3.5",
     "@storybook/addon-vitest": "^10.3.5",
     "@storybook/react": "^10.3.5",
     "@storybook/react-vite": "^10.3.5",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.5.2",
-    "@vitest/browser-playwright": "^4.1.4",
-    "@vitest/coverage-v8": "^4.1.4",
+    "@vitest/browser-playwright": "^4.1.11",
+    "@vitest/coverage-v8": "^4.1.11",
+    "eslint": "^9.39.2",
+    "happy-dom": "^20.0.0",
     "playwright": "^1.58.2",
+    "postcss": "^8.5.28",
+    "prettier": "^3.8.3",
     "storybook": "^10.3.5",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.2",
     "vite": "^6.4.2",
-    "vitest": "^4.1.4"
+    "vitest": "^4.1.11"
   }
 }

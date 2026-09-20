@@ -6,7 +6,11 @@
   "rootFontSize": 16,
   "targets": {
     "tailwind": { "outDir": "../styles-tailwind/src/generated" },
-    "mui": { "outDir": "../styles-mui/src/generated" }
+    "mui": { "outDir": "../styles-mui/src/generated" },
+    "stories": {
+      "outDir": "../storybook/src/generated",
+      "options": { "muiPackage": "@bwp-web/styles-mui" }
+    }
   },
   "coverageFile": "../../docs/design-system/coverage.md"
 }

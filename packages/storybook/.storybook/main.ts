@@ -4,6 +4,7 @@ import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   stories: [
+    '../src/**/*.mdx',
     '../src/**/*.stories.@(ts|tsx)',
     '../../components/src/**/*.stories.@(ts|tsx)',
     '../../canvas/src/**/*.stories.@(ts|tsx)',
@@ -25,6 +26,6 @@ const config: StorybookConfig = {
 
 export default config;
 
-function getAbsolutePath(value: string): any {
+function getAbsolutePath(value: string): string {
   return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
 }

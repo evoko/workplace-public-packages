@@ -27,14 +27,14 @@ Every decision below was probed in this repository with a scratch story run unde
 | Topic | Decision |
 | --- | --- |
 | Cell isolation | Shadow DOM, not scoped containers. Each cell is a `<div>` host with an open shadow root holding `<style>` elements for that target and the rendered DOM. Component rules (`.bwp-button`, Tailwind's `@layer components`, Emotion's per-cell classes) cannot cross a shadow boundary; custom properties can. Probed: a CSS cell and an MUI cell rendered the starter `button` with identical computed values for 16 properties in the base, hover, focus-visible, and active states. |
-| Where token variables live | At document level. `:root { … }` never matches inside a shadow root, so each target's variables are injected once into the document: the CSS package stylesheet and the compiled Tailwind stylesheet as `<style>` elements appended to `document.head` by the harness (their component rules match nothing in the light DOM, whose markup carries no design-system classes), and MUI's variables by the `ThemeProvider` the grid renders around the table (MUI's `GlobalStyles` writes them through the default Emotion cache into `document.head`). The three variable namespaces are disjoint (`--bwp-color-*`, `--color-bwp-*`, `--bwp-palette-tokens-*`), so they coexist. The same stylesheets are injected again inside each cell's shadow root for the component rules; Tailwind's `:root, :host` theme block resolves both ways. |
+| Where token variables live | Inside each cell (Batch 2 review amendment; the plan first put them at document level). Each non-MUI target's stylesheet is injected into the cell's shadow root with every `:root` selector rewritten to `:host` and every `:root<compound>` to `:host(<compound>)` (`hostScoped` in `styles.ts`), so a cell reads only its own target's declarations. The document-level design was wrong for this design system: the CSS package and the compiled Tailwind sheet declare ten identically named `--bwp-*` properties (border-width, duration, opacity, size, z-index; Tailwind has no theme namespace for those categories), and the review showed a Tailwind break on one of them blamed on MUI while the tailwind cell read clean. Mode changes reach the hosts: `applyMode`/`clearMode` update `document.documentElement` and every `[data-parity-cell]` host (the shadow host carries `data-parity-cell`; `data-parity-root` marks the interaction target inside the shadow root), and `ShadowCell` copies the current mode from the document on mount. MUI's variables still come from the `ThemeProvider` around the grid into `document.head`; the MUI cell carries no css/tailwind sheet, so nothing can collide. Neither package stylesheet has `@font-face`, which is the one rule that would have needed the document. |
 | MUI styles inside a cell | An Emotion cache per cell with `container` set to the shadow root and `prepend: true`, provided through `CacheProvider` to a React portal rendered into the shadow root. Probed: 57 Emotion `<style>` elements landed inside the shadow root and none of the component's styles in the document head; the theme's variables landed in the head. |
-| Transitions | Every cell's shadow root starts with `*, *::before, *::after { transition: none !important; animation: none !important; }`. Probed: without it, every difference found was a value read mid-transition (a hover background at `rgba(245, 245, 245, 0.008)`, a focus ring at `0px`), because the design system animates `background-color`, `box-shadow`, and `color`. Foundations cells for the `duration` and `easing` categories opt out (`freeze: false`) because their sample compares `transition-duration` and `transition-timing-function`, which are static computed values. |
+| Transitions | Every cell's shadow root starts with `*, *::before, *::after { transition: none !important; animation: none !important; }`. Probed: without it, every difference found was a value read mid-transition (a hover background at `rgba(245, 245, 245, 0.008)`, a focus ring at `0px`), because the design system animates `background-color`, `box-shadow`, and `color`. The freeze makes the four `transition-*` longhands in the property list agree by construction, so (Batch 2 review amendment) the reader disables the cell's freeze `<style>` element while it reads exactly those longhands and re-enables it in the same synchronous call; nothing animatable changes in between, so no transition starts. This replaced the `freeze: false` opt-out the `duration` and `easing` foundations cells had. |
 | Real interactions | `storybook/test`'s `userEvent.hover` dispatches synthetic events and does not change `:hover`; Playwright does. The harness registers Vitest browser commands (`vitest.config.ts` `browser.commands`): `parityHover(selector)`, `parityMouseDown(selector)`, `parityMouseUp()`, `parityFocusFrom(sentinelSelector)` (focus the sentinel, then press Tab, which makes `:focus-visible` match in both the CSS root and MUI's root, and MUI adds `Mui-focusVisible`). Playwright's CSS engine pierces open shadow roots, so a `[data-parity-root="<cell>"]` attribute the cell sets on its root element is a sufficient selector. Probed: all four worked; `:active` background matched between cells while the mouse was down. |
 | Outside Vitest | In the Storybook UI the commands do not exist (`@vitest/browser/context` is unavailable). `parityPlay` detects that and compares only the base row and attribute-driven states (`disabled`, ARIA states), in both modes, and logs that interaction states were skipped. The Storybook UI stays useful; the proof runs in CI. |
 | Modes | `parityPlay` compares in the current mode, then applies the other configured modes by setting the mode attribute or class on `document.documentElement` (derived from `modeSelector` by the generator into `config.ts`), waits a frame, compares again, and restores. Every difference records its mode. The `dsMode` toolbar global drives the same attribute for people. |
 | Property list | Every property in the compiler's property table (`PROPERTY_TABLE`, about 100 longhands), emitted into the generated `config.ts` as `parityProperties`. Comparing unset properties is free (both sides compute the same user-agent default for the same element) and catches a target that leaks a value the design system never set, which is exactly the class of bug the MUI resets exist to prevent. Stories may pass `ignore: [...]` to `parityPlay` for a documented exception; none is needed today. |
-| Comparison rule | Computed values are compared token by token: numbers within 0.5 (px or unitless) after parsing, everything else exact. Colors are already normalized to `rgb()`/`rgba()` by `getComputedStyle`. Values that fail to tokenize identically are reported whole. |
+| Comparison rule | Computed values are compared token by token: numbers with a `px` unit within 0.5 (sub-pixel layout rounding is the only legitimate drift between cells in one browser), every other number exact (Batch 2 review amendment: a unit-blind 0.5 hid `0.15s` vs `0.25s` and `0.4` vs `0.85`, so the `transition-*` longhands and `opacity` were unproven), everything else exact. Colors are already normalized to `rgb()`/`rgba()` by `getComputedStyle`. Values that fail to tokenize identically are reported whole. |
 | Markup for CSS and Tailwind cells | Built by the harness from the spec: the root element with class `<prefix>-<name>` and one `data-<axis>` attribute per axis; slot elements in manifest order, class `<prefix>-<name>__<slot>`, text content from the manifest's `preview[slot]`; the label text (`preview.label`, else `displayName`) inside the `label` slot when there is one, else as a text node after the slots. Attribute states set the attribute on the root (`disabled` for form-control roots, `aria-disabled="true"` otherwise, `aria-<state>="true"` for ARIA states). |
 | Markup for MUI cells | A generated render function per component: `(row) => <Button variant={row.axes.variant} size={row.axes.size} disabled={row.state === 'disabled'} icon="plus">Button</Button>`. Slot content is passed as a plain string so the slot element's own computed styles are compared, not a wrapper's. Root and slot selectors come from the MUI model (`MuiButton-root`, `MuiButton-startIcon`, `BwpExample-icon`). |
 | Rows | Every axis permutation (`axisPermutations`, manifest order) times `[base, ...states]`. Cells: CSS always (the reference), Tailwind when the component is mapped for Tailwind, MUI when mapped for MUI. A component excluded from every other target still gets a CSS-only story (a gallery entry, nothing to compare). |
@@ -2933,7 +2933,7 @@ In `packages/storybook`: `npm run test` (unit), `npm run typecheck`, `npm run li
 `packages/styles-css/ds.config.json` gains, next to `coverageFile`:
 
 ```json
-  "rendered": { "cwd": "../storybook", "command": "npm run test:rendered" }
+  "rendered": { "cwd": "../..", "command": "npm run storybook:test" }
 ```
 
 `turbo.json` gains:
@@ -2952,7 +2952,7 @@ In `packages/storybook`: `npm run test` (unit), `npm run typecheck`, `npm run li
     }
 ```
 
-(`typecheck` needs the styles packages' `dist` types; `^build:types` alone does not build `styles-css`'s CSS, which `?inline` imports resolve at Vite time but `tsc` does not need. Keep `^build` for symmetry with `test:rendered`.) Root `package.json` scripts gain `"verify:rendered": "bwp-ds verify --root packages/styles-css --rendered"` and `"storybook:test": "turbo run test:rendered --filter=@bwp-web/storybook"`. Root `.prettierignore` gains `packages/storybook/src/generated/`.
+(`typecheck` needs the styles packages' `dist` types; `^build:types` alone does not build `styles-css`'s CSS, which `?inline` imports resolve at Vite time but `tsc` does not need. Keep `^build` for symmetry with `test:rendered`.) Root `package.json` scripts gain `"verify:rendered": "bwp-ds verify --root packages/styles-css --rendered"` and `"storybook:test": "turbo run test:rendered --filter=@bwp-web/storybook"`. The `rendered` command runs from the repo root through Turbo on purpose (Batch 2 review): the harness imports `@bwp-web/styles-css/dist/styles.css` and `@bwp-web/styles-mui` from `dist`, so a bare `npm run test:rendered` in `packages/storybook` proves whatever was built last, not the current sources. The reviewer saw an 18/18 pass against a stale `styles-mui` build; `^build` in the Turbo task closes that hole. Root `.prettierignore` gains `packages/storybook/src/generated/`.
 
 - [ ] **Step 2: CI**
 
@@ -2977,7 +2977,7 @@ placed before the install step (the install is a no-op when cached; `--with-deps
 
 - [ ] **Step 3: Docs**
 
-`docs/design-system/storybook.md` (new): sections. "What it is" (one Storybook, the six sections and which are generated). "Compare grids" (columns, rows, cells as shadow roots, why token variables are document-level, transitions frozen, the `Mode` and `Targets` toolbars). "Rendered parity" (what `parityPlay` compares: every property in the compiler's property table on the root and each slot, in every mode; interaction states through Playwright; tolerances: numbers within 0.5, everything else exact; how to read a failure line `component | row | mode | target | element | property: css X vs target Y`; how to add an `ignore` with a reason). "Foundations" (one property per category, table of category to sample property). "Running it" (`npx playwright install chromium` once; `npm run storybook` for the UI; `npm run storybook:test` or `npm run verify:rendered`; what CI runs; run time expectations). "Regenerating" (`npm run ds -- generate --target stories`; never edit `src/generated`). "Adding hand-written stories" (title prefixes, the lint, colocated stories in `components`/`canvas`). "Limits" (Storybook UI skips interaction rows; Flutter cells come with Plan 5; fonts fall back identically in all cells because they share one document).
+`docs/design-system/storybook.md` (new): sections. "What it is" (one Storybook, the six sections and which are generated). "Compare grids" (columns, rows, cells as shadow roots, why each cell carries its own target's token variables with `:root` rewritten to `:host` and why nothing design-system-related is injected into the document, transitions frozen except for the `transition-*` longhands which are read unfrozen, the `Mode` and `Targets` toolbars). "Rendered parity" (what `parityPlay` compares: every property in the compiler's property table on the root and each slot, in every mode; interaction states through Playwright; tolerances: `px` numbers within 0.5, everything else exact; how to read a failure line `component | row | mode | target | element | property: css X vs target Y`; how to add an `ignore` with a reason). "Foundations" (one property per category, table of category to sample property). "Running it" (`npx playwright install chromium` once; `npm run storybook` for the UI; `npm run storybook:test` or `npm run verify:rendered`; what CI runs; run time expectations). "Regenerating" (`npm run ds -- generate --target stories`; never edit `src/generated`). "Adding hand-written stories" (title prefixes, the lint, colocated stories in `components`/`canvas`). "Limits" (Storybook UI skips interaction rows; Flutter cells come with Plan 5; fonts fall back identically in all cells because they share one document; no design-system stylesheet is loaded into the document, so a hand-written story that renders design-system markup in the light DOM must import the stylesheet itself or render inside the harness).
 
 `docs/design-system/verification.md`: the table gains rows for `bwp-ds verify --rendered` (needs Node 22, Chromium, `packages/storybook/node_modules`) and `npm run storybook:test`; the CI rows mention Chromium and the `--rendered` run; the "Planned steps" table loses the `--rendered` row (keep the Flutter row). `docs/design-system/errors.md`: confirm the `DS-E087` and `DS-W005` rows from Task 1 read well next to their neighbours. `docs/design-system/authoring-guide.md`: the `preview` row of the manifest table now says the values are what the compare stories render (label text and slot text) and that `preview.label` is the button text. `AGENTS.md`: invariant 2 lists `packages/storybook/src/generated/`; the commands table gains `npm run ds -- generate --target stories`, `npm run verify:rendered`, `npm run storybook:test`; the package map row for `storybook` becomes "Generated compare stories, the compare harness, Introduction; `npm run storybook` to browse"; a short recipe "Check rendered parity locally" (install Chromium once, run `npm run verify:rendered`, read the failure lines, fix the plugin or harness, never the generated stories). Root `README.md` "Storybook" section: what is there now, how to run it, the `Mode`/`Targets` toolbars. `packages/storybook/README.md`: purpose, scripts, the harness's public exports for hand-written compare stories (`CompareGrid`, `parityPlay`, `CompareSpec`).
 
@@ -3037,7 +3037,9 @@ List every created, modified, and deleted path grouped by package; test counts; 
 - **Focus-visible depends on keyboard focus.** `Tab` from the sentinel is deterministic in Chromium; other browsers are out of scope (Chromium only in CI).
 - **The rendered step runs only Chromium.** Firefox and WebKit computed values differ in places (font fallback, shadow rendering); if cross-browser parity ever matters, add instances and a per-browser tolerance.
 - **Playwright's browser download in CI** (about 150 MB) is cached by lockfile hash; a Playwright bump re-downloads once.
-- **`ensureDocumentStyles` appends both stylesheets to `document.head` once per page.** Their `@layer components` and `.bwp-*` rules are inert in the light DOM only as long as harness markup never uses design-system classes; the title lint does not check that, a grep-based check could.
+- **No design-system stylesheet reaches the document.** Since the Batch 2 amendment every cell carries its own target's sheet with `:root` rewritten to `:host`; a hand-written story that renders design-system markup in the light DOM must import the stylesheet itself. Tailwind's un-namespaced `--bwp-*` variables (border-width, duration, opacity, size, z-index) share their names with the CSS package; that is harmless per cell, but a consumer loading both packages in one document would have the later one win.
+- **Units must match exactly in the comparison.** `0s` vs `0ms` or `0px` vs `0` report as differences. Chromium serialises computed times in `s` and lengths in `px`, so this cannot arise today; if a future target's serialisation differs, widen `sameToken` deliberately rather than loosen the epsilon.
+- **`vitest/browser` is imported dynamically by `driver.ts`.** Vitest 4.1 ships a static stub for it, so Storybook can bundle the lazy chunk; a Vitest major bump must re-check that the stub still exists.
 - **Emotion cache keys are derived from cell ids** (sanitised); two cells whose ids sanitise to the same string would share a cache. Ids include the target and the row key, so this cannot happen with kebab-case names, but a future `cellId` change must keep them distinct.
 
 ---
@@ -3068,12 +3070,12 @@ and where it stands. Update the status table after every milestone.
 
 | Batch | Tasks | State |
 | --- | --- | --- |
-| 1 | 1-2 config, error codes, auxiliary plugins, `verify --rendered`, the `stories` plugin | done, reviewed, awaiting user commit |
-| 2 | 3-4 harness modules, cells, grids, plays, globals, Introduction, title lint, first generated stories | pending |
+| 1 | 1-2 config, error codes, auxiliary plugins, `verify --rendered`, the `stories` plugin | done, committed |
+| 2 | 3-4 harness modules, cells, grids, plays, globals, Introduction, title lint, first generated stories | done, reviewed, awaiting user commit |
 | 3 | 5 config `rendered`, Turbo, CI, docs | pending |
 | 4 | 6 final verification | pending |
 
-Test suite at the start of Plan 4: compiler 36 files / 491 tests; `styles-mui` 3 files / 19 tests; 34 Turbo tasks. After batch 1: compiler 40 files / 540 tests.
+Test suite at the start of Plan 4: compiler 36 files / 491 tests; `styles-mui` 3 files / 19 tests; 34 Turbo tasks. After batch 1: compiler 40 files / 540 tests. After batch 2: compiler 40 / 540, `styles-mui` 3 / 19, storybook unit 7 files / 41 tests, rendered 18 stories in about 10 s, 37 Turbo tasks.
 
 ### Decisions made during execution
 
@@ -3099,3 +3101,33 @@ Test suite at the start of Plan 4: compiler 36 files / 491 tests; `styles-mui` 3
   could be wiping `dist` while `tsc` read it, failing one run in two. CI was
   unaffected (it runs the steps sequentially); two consecutive forced runs
   now pass 34/34.
+- Batch 2 review (2026-09-20). Implementer, spec review, quality review,
+  then three fix rounds, each re-reviewed by probing (breaking one target
+  and reading the failure lines). Changes forced by review, all recorded in
+  the decisions table: token variables moved from the document into each
+  cell through a `:root` to `:host` rewrite, with `applyMode`/`clearMode`
+  also updating every `[data-parity-cell]` host and `ShadowCell` copying the
+  document mode on mount (ten `--bwp-*` names collide between the CSS
+  package and the compiled Tailwind sheet, so document-level variables made
+  five token categories unproven and blamed a Tailwind break on MUI);
+  the `transition-*` longhands are read with the cell's freeze sheet
+  disabled, replacing the `freeze: false` opt-out; the tolerance is
+  unit-aware (`px` within 0.5, everything else exact; the unit-blind rule
+  hid `0.15s` vs `0.25s` and opacity `0.4` vs `0.85`); `assertInState`
+  verifies each pseudo-class state was really entered on every cell and
+  attribute states on the css cell, so no row can pass vacuously; the css
+  cell is read once per row (rendered run 12.9 s to about 9.5 s); failure
+  output capped at 200 lines plus a remainder; the pre-play mode is
+  restored exactly; `driver.ts` imports `vitest/browser` (deprecation
+  banner gone); barrel trimmed to the story-facing surface; `cacheKey`
+  moved to `cache-key.ts` with a test. Implementer deviations accepted:
+  `declare module 'vitest/internal/browser'` (where `BrowserCommands`
+  lives), Vitest deps deduped at `^4.1.11`, digits spelled as letters in
+  Emotion cache keys, `includeStories: ['Compare']` in generated
+  foundations stories (CSF treated the `tokens` export as a story; this is
+  the one compiler change in the batch). Task 5 amended: `rendered.command`
+  runs `npm run storybook:test` from the repo root so Turbo's `^build`
+  rebuilds the targets first; the reviewer saw a green 18/18 against a
+  stale `styles-mui` build when running `npm run test:rendered` directly.
+  Adding `targets.stories` to `ds.config.json` changed the IR source hash,
+  so every generated file's header line changed; nothing else did.

@@ -1,0 +1,5 @@
+/* Compiled by @tailwindcss/postcss (postcss.config.js) when Vite imports it.
+   Nothing imports `tailwindcss` itself: no preflight, no utilities, only the
+   generated theme variables and component layer. */
+@layer theme, base, components, utilities;
+@import '@bwp-web/styles-tailwind';

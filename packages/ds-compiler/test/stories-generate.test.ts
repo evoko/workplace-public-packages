@@ -192,6 +192,9 @@ describe('stories plugin', () => {
     );
     expect(text).toContain("  title: 'Foundations/Color',");
     expect(text).toContain('export const tokens: TokenSpec[] = [');
+    // The file exports its token data as well as the story, and CSF would
+    // otherwise treat that data as a second, unrenderable story.
+    expect(text).toContain("  includeStories: ['Compare'],");
     // `renderTsLiteral` (shared with the MUI target) always breaks a
     // non-empty array across lines, so `path` is multi-line here too; the
     // plan's inline `['text', 'default']` literal does not match what the
