@@ -99,7 +99,7 @@ describe('runRendered', () => {
     const script = join(root, 'sb', 'many.sh');
     writeFileSync(
       script,
-      '#!/bin/sh\nfor i in $(seq 1 80); do echo "line $i"; done\nexit 1\n',
+      '#!/bin/sh\nfor i in $(seq 1 250); do echo "line $i"; done\nexit 1\n',
     );
     chmodSync(script, 0o755);
     const diag = new Diagnostics();
@@ -109,9 +109,49 @@ describe('runRendered', () => {
       diag,
     );
     expect(status).toBe('fail');
-    // 80 lines, last 60 kept: lines 1-20 dropped, line 21 is the first kept.
-    expect(diag.errors[0].message).toContain('line 21');
-    expect(diag.errors[0].message).not.toContain('line 20\n');
+    // 250 lines, last 200 kept: lines 1-50 dropped, line 51 is the first kept.
+    expect(diag.errors[0].message).toContain('line 51');
+    expect(diag.errors[0].message).not.toContain('line 50\n');
+    // Long enough to reach back past a full 200-line difference report to
+    // the trailer the harness prints after it.
+    expect(diag.errors[0].message).toContain('line 250');
+  });
+
+  it('strips ANSI escapes from the captured output (T4)', () => {
+    const root = makeRoot({});
+    mkdirSync(join(root, 'sb'));
+    const script = join(root, 'sb', 'colour.sh');
+    writeFileSync(
+      script,
+      [
+        '#!/bin/sh',
+        // A private-parameter CSI sequence (hide cursor), with no newline.
+        'printf "\\033[?25l"',
+        'printf "\\033[31mbutton | base | light | mui | root | color: css a vs mui b\\033[0m\\n"',
+        // An OSC 8 hyperlink: URL between the introducer and the link text.
+        'printf "\\033]8;;file:///tmp/link-target\\007src/generated/styles/button.stories.tsx\\033]8;;\\007\\n"',
+        'printf "\\033[1m\\033[32m1 rendered difference in total\\033[39m\\033[22m\\n"',
+        'exit 1',
+      ].join('\n'),
+    );
+    chmodSync(script, 0o755);
+    const diag = new Diagnostics();
+    const status = runRendered(
+      root,
+      configWith({ cwd: 'sb', command: './colour.sh' }),
+      diag,
+    );
+    expect(status).toBe('fail');
+    const message = diag.errors[0].message;
+    // eslint-disable-next-line no-control-regex -- asserting no escapes survive
+    expect(message).not.toMatch(/\x1b/);
+    expect(message).not.toContain('file:///tmp/link-target');
+    expect(message).toContain(
+      'button | base | light | mui | root | color: css a vs mui b',
+    );
+    // The hyperlink's visible text survives; only the escape wrapper goes.
+    expect(message).toContain('src/generated/styles/button.stories.tsx');
+    expect(message).toContain('1 rendered difference in total');
   });
 
   it('reports "was killed by <signal>" when the command is killed by a signal (T3)', () => {
@@ -134,6 +174,8 @@ describe('runRendered', () => {
     );
     expect(status).toBe('fail');
     expect(diag.errors.map((e) => e.code)).toEqual(['DS-E087']);
-    expect(diag.errors[0].message).toContain('timed out');
+    // Seconds under a minute, not a fraction of a minute.
+    expect(diag.errors[0].message).toContain('timed out after 0.2 seconds');
+    expect(diag.errors[0].message).not.toContain('minutes');
   });
 });

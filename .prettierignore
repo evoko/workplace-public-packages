@@ -3,3 +3,4 @@ docs/design-system/coverage.md
 packages/styles-tailwind/src/generated/
 packages/styles-mui/src/generated/
 packages/styles-css/catalogs/
+packages/storybook/src/generated/

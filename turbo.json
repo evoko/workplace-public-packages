@@ -35,6 +35,13 @@
     "@bwp-web/styles-mui#typecheck": {
       "dependsOn": ["^build:types", "^typecheck", "build"]
     },
+    "@bwp-web/storybook#test:rendered": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
+    "@bwp-web/storybook#typecheck": {
+      "dependsOn": ["^build", "^build:types", "^typecheck"]
+    },
     "format": {
       "inputs": ["$TURBO_DEFAULT$", "../../.prettierrc.json"]
     },

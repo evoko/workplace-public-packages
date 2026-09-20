@@ -78,6 +78,7 @@ describe('compareValues', () => {
         '2 rendered differences against the css cell:',
         'chip | base | dark | tailwind | icon | width: css 20px vs tailwind 18px',
         'chip | tone=loud hover | light | mui | root | color: css rgb(1, 1, 1) vs mui rgb(2, 2, 2)',
+        '2 rendered differences in total',
       ].join('\n'),
     );
   });
@@ -100,7 +101,29 @@ describe('compareValues', () => {
     expect(lines[0]).toBe(
       `${MAX_LINES + 7} rendered differences against the css cell:`,
     );
-    expect(lines).toHaveLength(MAX_LINES + 2);
-    expect(lines.at(-1)).toBe('… and 7 more');
+    // Header, MAX_LINES differences, the remainder note, the trailer.
+    expect(lines).toHaveLength(MAX_LINES + 3);
+    expect(lines.at(-2)).toBe('… and 7 more');
+    // `verify --rendered` keeps only the tail, so the count is repeated last.
+    expect(lines.at(-1)).toBe(
+      `${MAX_LINES + 7} rendered differences in total (${MAX_LINES} shown)`,
+    );
+  });
+
+  it('uses the singular form for one difference', () => {
+    const line = formatDifferences([
+      {
+        component: 'chip',
+        row: 'base',
+        mode: 'light',
+        target: 'mui',
+        element: 'root',
+        property: 'color',
+        expected: 'rgb(1, 1, 1)',
+        actual: 'rgb(2, 2, 2)',
+      },
+    ]).split('\n');
+    expect(line[0]).toBe('1 rendered difference against the css cell:');
+    expect(line.at(-1)).toBe('1 rendered difference in total');
   });
 });

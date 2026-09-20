@@ -27,11 +27,21 @@ jobs:
       - name: Capture MUI defaults catalog
         run: npm run ds -- capture-defaults --target mui
 
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: playwright-${{ runner.os }}-
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
       - name: Verify design system
-        run: npm run verify
+        run: npm run verify:rendered
 
       - name: Check generated files are up to date
-        run: git diff --exit-code -- packages/styles-css/design.ir.json packages/styles-css/src/index.css packages/styles-css/catalogs packages/styles-tailwind/src/generated packages/styles-mui/src/generated docs/design-system/coverage.md
+        run: git diff --exit-code -- packages/styles-css/design.ir.json packages/styles-css/src/index.css packages/styles-css/catalogs packages/styles-tailwind/src/generated packages/styles-mui/src/generated packages/storybook/src/generated docs/design-system/coverage.md
 
       - name: Run linting
         run: npm run lint

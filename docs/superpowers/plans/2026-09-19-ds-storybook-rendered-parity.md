@@ -3039,6 +3039,7 @@ List every created, modified, and deleted path grouped by package; test counts; 
 - **Playwright's browser download in CI** (about 150 MB) is cached by lockfile hash; a Playwright bump re-downloads once.
 - **No design-system stylesheet reaches the document.** Since the Batch 2 amendment every cell carries its own target's sheet with `:root` rewritten to `:host`; a hand-written story that renders design-system markup in the light DOM must import the stylesheet itself. Tailwind's un-namespaced `--bwp-*` variables (border-width, duration, opacity, size, z-index) share their names with the CSS package; that is harmless per cell, but a consumer loading both packages in one document would have the later one win.
 - **Units must match exactly in the comparison.** `0s` vs `0ms` or `0px` vs `0` report as differences. Chromium serialises computed times in `s` and lengths in `px`, so this cannot arise today; if a future target's serialisation differs, widen `sameToken` deliberately rather than loosen the epsilon.
+- **CI still sets `TURBO_REMOTE_ONLY: true`**, which Turbo 2.9 deprecates in favour of `TURBO_CACHE=remote:rw` and warns about on every run; without a remote token the nested Turbo run inside `verify --rendered` rebuilds the whole `^build` chain uncached. Pre-existing; for Plan 6 (packaging/CI).
 - **`vitest/browser` is imported dynamically by `driver.ts`.** Vitest 4.1 ships a static stub for it, so Storybook can bundle the lazy chunk; a Vitest major bump must re-check that the stub still exists.
 - **Emotion cache keys are derived from cell ids** (sanitised); two cells whose ids sanitise to the same string would share a cache. Ids include the target and the row key, so this cannot happen with kebab-case names, but a future `cellId` change must keep them distinct.
 
@@ -3071,11 +3072,11 @@ and where it stands. Update the status table after every milestone.
 | Batch | Tasks | State |
 | --- | --- | --- |
 | 1 | 1-2 config, error codes, auxiliary plugins, `verify --rendered`, the `stories` plugin | done, committed |
-| 2 | 3-4 harness modules, cells, grids, plays, globals, Introduction, title lint, first generated stories | done, reviewed, awaiting user commit |
-| 3 | 5 config `rendered`, Turbo, CI, docs | pending |
+| 2 | 3-4 harness modules, cells, grids, plays, globals, Introduction, title lint, first generated stories | done, committed |
+| 3 | 5 config `rendered`, Turbo, CI, docs | done, reviewed, awaiting user commit |
 | 4 | 6 final verification | pending |
 
-Test suite at the start of Plan 4: compiler 36 files / 491 tests; `styles-mui` 3 files / 19 tests; 34 Turbo tasks. After batch 1: compiler 40 files / 540 tests. After batch 2: compiler 40 / 540, `styles-mui` 3 / 19, storybook unit 7 files / 41 tests, rendered 18 stories in about 10 s, 37 Turbo tasks.
+Test suite at the start of Plan 4: compiler 36 files / 491 tests; `styles-mui` 3 files / 19 tests; 34 Turbo tasks. After batch 1: compiler 40 files / 540 tests. After batch 2: compiler 40 / 540, `styles-mui` 3 / 19, storybook unit 7 files / 41 tests, rendered 18 stories in about 10 s, 37 Turbo tasks. After batch 3: compiler 40 / 544, storybook unit 7 / 42, `verify:rendered` five steps pass in about 12 s.
 
 ### Decisions made during execution
 
@@ -3131,3 +3132,18 @@ Test suite at the start of Plan 4: compiler 36 files / 491 tests; `styles-mui` 3
   stale `styles-mui` build when running `npm run test:rendered` directly.
   Adding `targets.stories` to `ds.config.json` changed the IR source hash,
   so every generated file's header line changed; nothing else did.
+- Batch 3 review (2026-09-20). Task 5 as amended; spec review clean; the
+  quality review approved with fixes, all applied and re-reviewed. The
+  `DS-E087` tail grew from 60 to 200 lines with `NO_COLOR=1` and ANSI
+  stripping (a real failure printed 400 lines and the count header sat 150
+  from the end), and `formatDifferences` ends with a trailer repeating the
+  total so it survives any tail; above 200 differences only the trailer is
+  guaranteed. The config enters the IR source hash canonicalised and without
+  `rendered` (`hashableConfig` in `build.ts`): a runner-only setting had
+  rewritten 29 generated headers, and a `verify` with only `rendered.command`
+  changed now keeps drift green. Redundant `@bwp-web/storybook#build` Turbo
+  entry dropped; `#typecheck` regains `^typecheck`. CI calls
+  `npm run verify:rendered` and the Playwright cache has `restore-keys`.
+  Timeout message prints seconds under a minute. Docs keep the stale-`dist`
+  rationale in `storybook.md` only. Generated files changed once more in
+  their header line (`9655bdf5…`).

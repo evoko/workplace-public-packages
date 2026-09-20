@@ -4,15 +4,15 @@ Monorepo for shared public packages used across Biamp Workplace applications.
 
 ## Packages
 
-| Package                                                  | Description                                                                                                                                  | README                                          |
-| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`@bwp-web/styles-css`](./packages/styles-css)           | Design-system source of truth: CSS tokens, components, and the IR                                                                            | [docs](./packages/styles-css/README.md)         |
-| [`@bwp-web/styles-tailwind`](./packages/styles-tailwind) | Generated Tailwind CSS v4 theme and component layer                                                                                          | [docs](./packages/styles-tailwind/README.md)    |
-| [`@bwp-web/styles-mui`](./packages/styles-mui)           | Generated MUI theme and React components, some (e.g. `Button`) mapped onto MUI's own components                                              | [docs](./packages/styles-mui/README.md)         |
-| [`@bwp-web/ds-compiler`](./packages/ds-compiler)         | Private compiler: lint, build, scaffold, generate, verify (Tailwind and MUI targets implemented; Flutter and the story generator come later) | [docs](./docs/design-system/authoring-guide.md) |
-| [`@bwp-web/components`](./packages/components)           | Shared React components (empty during the V2 rebuild)                                                                                        | [docs](./packages/components/README.md)         |
-| [`@bwp-web/assets`](./packages/assets)                   | Shared icons, image, and font assets (empty during the V2 rebuild)                                                                           | [docs](./packages/assets/README.md)             |
-| [`@bwp-web/canvas`](./packages/canvas)                   | Interactive canvas editor and viewer (empty during the V2 rebuild)                                                                           | [docs](./packages/canvas/README.md)             |
+| Package                                                  | Description                                                                                                                               | README                                          |
+| -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| [`@bwp-web/styles-css`](./packages/styles-css)           | Design-system source of truth: CSS tokens, components, and the IR                                                                         | [docs](./packages/styles-css/README.md)         |
+| [`@bwp-web/styles-tailwind`](./packages/styles-tailwind) | Generated Tailwind CSS v4 theme and component layer                                                                                       | [docs](./packages/styles-tailwind/README.md)    |
+| [`@bwp-web/styles-mui`](./packages/styles-mui)           | Generated MUI theme and React components, some (e.g. `Button`) mapped onto MUI's own components                                           | [docs](./packages/styles-mui/README.md)         |
+| [`@bwp-web/ds-compiler`](./packages/ds-compiler)         | Private compiler: lint, build, scaffold, generate, verify (Tailwind, MUI, and the compare-story targets implemented; Flutter comes later) | [docs](./docs/design-system/authoring-guide.md) |
+| [`@bwp-web/components`](./packages/components)           | Shared React components (empty during the V2 rebuild)                                                                                     | [docs](./packages/components/README.md)         |
+| [`@bwp-web/assets`](./packages/assets)                   | Shared icons, image, and font assets (empty during the V2 rebuild)                                                                        | [docs](./packages/assets/README.md)             |
+| [`@bwp-web/canvas`](./packages/canvas)                   | Interactive canvas editor and viewer (empty during the V2 rebuild)                                                                        | [docs](./packages/canvas/README.md)             |
 
 ## Getting Started
 
@@ -52,7 +52,25 @@ cd packages/styles-css && npm run build
 
 ## Storybook
 
-The Storybook is being rebuilt for the V2 design system. See `AGENTS.md` and `docs/design-system/` for the current state.
+`packages/storybook` is the one Storybook for the repository. It holds a
+generated compare story for every design-system component (`Styles`) and
+every token category (`Foundations`), each rendering the CSS, Tailwind, and
+MUI targets side by side in isolated shadow roots. `Components`, `Canvas`,
+and `Assets` are reserved for hand-written stories and are empty during the
+V2 rebuild.
+
+```bash
+npm run storybook        # the UI on http://localhost:6006
+npm run storybook:test   # the same stories compared in headless Chromium
+```
+
+Two toolbars drive the compare grids: **Mode** switches the design system's
+color mode (light, dark) for the document and every cell, and **Targets**
+shows all columns or one target next to the `css` reference.
+
+`npm run storybook:test` needs Chromium once: `npx playwright install chromium`.
+See [docs/design-system/storybook.md](./docs/design-system/storybook.md) for
+the grids, the parity comparison, and how to read a failure line.
 
 ## Detailed Documentation
 
@@ -64,6 +82,7 @@ The Storybook is being rebuilt for the V2 design system. See `AGENTS.md` and `do
 | [design-system/ir.md](./docs/design-system/ir.md)                           | The compiled intermediate representation                  |
 | [design-system/errors.md](./docs/design-system/errors.md)                   | Every `DS-E` and `DS-W` code with cause and fix           |
 | [design-system/verification.md](./docs/design-system/verification.md)       | What each check proves and how to read diagnostics        |
+| [design-system/storybook.md](./docs/design-system/storybook.md)             | The compare Storybook and the rendered-parity check       |
 | [design-system/targets/](./docs/design-system/targets)                      | Tailwind, MUI, and Flutter target plans                   |
 | [design-system/coverage.md](./docs/design-system/coverage.md)               | Generated: which components each target covers            |
 | [packages/styles-css/README.md](./packages/styles-css/README.md)            | Installing and using the CSS package                      |

@@ -12,5 +12,6 @@
       "options": { "muiPackage": "@bwp-web/styles-mui" }
     }
   },
-  "coverageFile": "../../docs/design-system/coverage.md"
+  "coverageFile": "../../docs/design-system/coverage.md",
+  "rendered": { "cwd": "../..", "command": "npm run storybook:test" }
 }

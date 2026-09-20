@@ -160,7 +160,13 @@ function sortKey(d: Difference): string {
 /** How many difference lines a report lists before it summarises the rest. */
 export const MAX_LINES = 200;
 
-/** One line per difference, sorted, headed by the total count and capped. */
+/**
+ * One line per difference, sorted, headed by the total count and capped.
+ *
+ * The count is repeated on a trailer line because the message reaches people
+ * through `bwp-ds verify --rendered`, which keeps only the tail of the run's
+ * output: a header thousands of lines up would be cut, the trailer never is.
+ */
 export function formatDifferences(diffs: readonly Difference[]): string {
   const lines = [...diffs]
     .sort((x, y) =>
@@ -172,9 +178,13 @@ export function formatDifferences(diffs: readonly Difference[]): string {
     );
   const n = diffs.length;
   const shown = lines.slice(0, MAX_LINES);
+  const noun = `rendered difference${n === 1 ? '' : 's'}`;
   return [
-    `${n} rendered difference${n === 1 ? '' : 's'} against the css cell:`,
+    `${n} ${noun} against the css cell:`,
     ...shown,
     ...(n > shown.length ? [`… and ${n - shown.length} more`] : []),
+    n > shown.length
+      ? `${n} ${noun} in total (${shown.length} shown)`
+      : `${n} ${noun} in total`,
   ].join('\n');
 }
