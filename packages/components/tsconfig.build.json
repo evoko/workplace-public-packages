@@ -8,10 +8,5 @@
     "declarationMap": true
   },
   "include": ["src"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "src/**/*.stories.tsx",
-    "src/**/*.storyhelpers.tsx"
-  ]
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,7 +1,7 @@
 {
   "name": "@bwp-web/assets",
-  "version": "1.0.10",
-  "description": "Shared Biamp Workplace icons and image assets",
+  "version": "2.0.0-alpha.0",
+  "description": "Shared Biamp Workplace icons and static assets (SOLAR)",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -32,18 +32,10 @@
     "clean": "rm -rf dist node_modules .turbo",
     "prepublishOnly": "npm run build"
   },
-  "peerDependencies": {
-    "@mui/material": ">=7.0.0",
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0"
-  },
   "devDependencies": {
     "@bwp-web/eslint-config": "*",
-    "@mui/material": "^7.3.10",
-    "@types/react": "^19.1.0",
     "eslint": "^9.39.2",
     "prettier": "^3.8.3",
-    "react": "^19.2.5",
     "tsup": "^8.5.0",
     "typescript": "^5.9.2"
   },
