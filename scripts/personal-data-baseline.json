@@ -1,0 +1,18 @@
+{
+  "_note": "Occurrences of personal data that have been reviewed and knowingly left in this public repository. The checker (scripts/check-personal-data.mjs) fails on anything NOT listed here, so a future `npm run solar:sync` that pulls new personal data out of Figma is caught before it is committed. Credentials are never accepted, listed or not. Each entry needs a reason. Prune stale entries with --accept.",
+  "reviewed": "2026-09-21",
+  "accepted": [
+    {
+      "file": "docs/solar-web/patterns/layout-shell/profile-dropdown.md",
+      "match": "daniel.salmonsson@biamp.com",
+      "rule": "email",
+      "reason": "Placeholder text inside the SOLAR Web Figma design itself (Profile Dropdown pattern): a real Biamp address used as sample content. Reviewed 2026-09-21 and accepted; already public in the repository history. The durable fix is for the SOLAR team to replace it with an example.com address in Figma, after which this entry becomes stale and should be pruned."
+    },
+    {
+      "file": "docs/solar-web/raw/patterns/layout-shell/profile-dropdown.json",
+      "match": "daniel.salmonsson@biamp.com",
+      "rule": "email",
+      "reason": "Placeholder text inside the SOLAR Web Figma design itself (Profile Dropdown pattern): a real Biamp address used as sample content. Reviewed 2026-09-21 and accepted; already public in the repository history. The durable fix is for the SOLAR team to replace it with an example.com address in Figma, after which this entry becomes stale and should be pruned."
+    }
+  ]
+}

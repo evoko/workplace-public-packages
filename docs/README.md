@@ -94,6 +94,39 @@ of them are deterministic: running them twice on unchanged inputs produces no di
 shared REST client, version-keyed cache and manifest helpers live in
 [\_shared/figma-rest.mjs](_shared/figma-rest.mjs).
 
+## Checks in CI
+
+[`.github/workflows/solar.yml`](../.github/workflows/solar.yml) runs on every pull request and
+on pushes to `main` and the `v*` branches. **Neither job needs a Figma token**, because both
+work from data that is committed here.
+
+| Job                                        | What it does                                                                                                                                                       | Fixing a failure                                                                 |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| Generated docs and tokens are up to date   | Reruns `solar:docs` and `solar:tokens` from the committed raw data and fails if any file changes, then checks Prettier formatting of the docs and scripts          | Run those two commands locally and commit the result                             |
+| No unreviewed personal data or credentials | [`scripts/check-personal-data.mjs`](../scripts/check-personal-data.mjs) scans every tracked and untracked file for credentials, e-mail addresses and phone numbers | Redact in the extractor, or accept the finding with a written reason (see below) |
+
+Generated files record the **source's** fetch date and Figma file version (`sourceFetchedOn`,
+`fileVersion`), never the build date, so rebuilding on a later day produces no diff. Keep it
+that way: a builder must be a pure function of `raw/` plus the token captures.
+
+### Personal data in a public repository
+
+Occurrences that have been reviewed and knowingly kept are listed with a reason in
+[`scripts/personal-data-baseline.json`](../scripts/personal-data-baseline.json); anything else
+fails the check. When a sync pulls new placeholder text out of Figma, prefer redacting it in the
+extractor: the Foundations fetcher already drops table columns named Contributors, Authors,
+Owners, Contacts or E-mail, and a whole page can be skipped with `"exclude": true` in its
+`_pages.json` entry. Otherwise run
+
+```bash
+node scripts/check-personal-data.mjs --list     # show accepted findings too
+node scripts/check-personal-data.mjs --accept   # add current findings, then write each reason
+```
+
+Credentials, including Figma personal access tokens, are never accepted and always fail.
+Personal **names** cannot be detected reliably and are not scanned, so review the diff by hand
+when Figma content changes.
+
 ## Where to start
 
 | You want to…                          | Read                                                                                                                                                     |

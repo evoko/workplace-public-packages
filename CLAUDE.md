@@ -10,6 +10,11 @@ The SOLAR Foundations reference is in [docs/solar/](docs/solar/README.md). SOLAR
 `CLAUDE.md` as the agent instruction layer, so treat the rules below as hard.
 [docs/README.md](docs/README.md) maps the whole pipeline: inputs, scripts, outputs, and
 what is not built yet (the design-to-code generator itself does not exist).
+CI ([.github/workflows/solar.yml](.github/workflows/solar.yml)) rebuilds every generated file
+and fails if the result differs from what is committed, and scans for credentials and
+unreviewed personal data. After editing a builder or syncing, run `npm run solar:docs` and
+`npm run solar:tokens` and commit the output. Builders must stay pure functions of `raw/`:
+never write a build timestamp into a generated file.
 
 - Start with [docs/solar/18-agent-reference.md](docs/solar/18-agent-reference.md): the
   ten foundational rules, verified token grammar, banned segments, spatial and type
