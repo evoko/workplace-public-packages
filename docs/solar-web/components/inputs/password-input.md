@@ -59,7 +59,7 @@ Default variant: `size=md, state=default` · 12 variants · default size 240×76
 | ---------------- | ------------------- | ---------------- |
 | Label            | visible             | `show label`     |
 | Label › Password | visible             | `show label`     |
-| Label › \*       | visible             | `show mandatory` |
+| Label › *        | visible             | `show mandatory` |
 | Helper text      | visible             | `show helper`    |
 
 ### Composes

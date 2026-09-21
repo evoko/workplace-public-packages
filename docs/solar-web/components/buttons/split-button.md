@@ -107,7 +107,7 @@ size=md (44px) Default for page-level actions.
 
 Left half: the dominant action. Click fires it directly, no menu.  
 Right half (chevron): opens a menu listing 2–5 alternative actions.  
-The alternatives must be _variants_ of the dominant action, not unrelated. If the menu actions diverge (Save + Delete + Archive), use a Dropdown or a Context Menu instead.
+The alternatives must be \*variants\* of the dominant action, not unrelated. If the menu actions diverge (Save + Delete + Archive), use a Dropdown or a Context Menu instead.
 
 **Accessibility**
 

@@ -74,7 +74,7 @@ Default variant: `size=md, state=default` · 12 variants · default size 236×84
 | Layer       | Controlled property | Prop        |
 | ----------- | ------------------- | ----------- |
 | Label       | visible             | `hasLabel`  |
-| Label › \*  | visible             | `mandatory` |
+| Label › *   | visible             | `mandatory` |
 | Helper text | visible             | `hasHelper` |
 
 ### Variant matrix

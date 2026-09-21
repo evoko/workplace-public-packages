@@ -16,23 +16,23 @@ Scope: this page documents elevational surfaces only. Non-elevational surface to
 
 **Dark mode**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 ## Elevation / Shadows
 
@@ -46,55 +46,55 @@ All shadow color is variable-bound and adapts to mode automatically.
 
 **Color reference**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **y:1 / blur:1**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **y:3 / blur:4**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **y:2 / blur:12**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **y:4 / blur:5**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **y:12 / blur:26 + spread:2**
 
 **shadow/subtle + shadow/strong**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **spread:2**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **spread:2**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **y:1 / blur:1 + spread:2**
 
 **shadow/subtle + shadow/feedback/danger**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **y:1 / blur:1 + spread:2**
 

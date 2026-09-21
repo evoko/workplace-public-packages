@@ -58,7 +58,7 @@ Default variant: `state=default` · 6 variants · default size 400×107px
 
 | Layer      | Controlled property | Prop         |
 | ---------- | ------------------- | ------------ |
-| Label › \* | visible             | `mandatory`  |
+| Label › *  | visible             | `mandatory`  |
 | HelperText | visible             | `showHelper` |
 | HelperText | characters          | `helperText` |
 

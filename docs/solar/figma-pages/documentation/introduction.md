@@ -174,11 +174,11 @@ _[image: Cover 2]_
 #### SOLAR layers follow a strict dependency hierarchy.
 
 SOLAR Foundations · SOLAR Icons\
- ↓\
+↓\
 SOLAR Web · SOLAR Native\
- ↓\
+↓\
 SOLAR Audio · SOLAR Spatial · SOLAR Flow\
- ↓\
+↓\
 Product Files
 
 ##### Rules

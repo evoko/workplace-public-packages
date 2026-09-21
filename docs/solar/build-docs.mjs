@@ -232,7 +232,13 @@ for (const c of chapters)
 if (existsSync(outDir)) rmSync(outDir, { recursive: true, force: true });
 mkdirSync(outDir, { recursive: true });
 
-const esc = (s) => String(s).replace(/</g, '&lt;').replace(/\|/g, '\\|');
+// Markdown reads * and _ as emphasis, and Prettier stopped adding these escapes in 3.9, so the
+// generator adds them itself. Code fences are emitted raw and never pass through here.
+const esc = (s) =>
+  String(s)
+    .replace(/</g, '&lt;')
+    .replace(/\|/g, '\\|')
+    .replace(/([*_])/g, '\\$1');
 const cell = (s) => esc(s).replace(/\s*\n\s*/g, ' ');
 // single newlines inside a Figma text box are hard line breaks, blank lines stay paragraphs
 const para = (s) =>

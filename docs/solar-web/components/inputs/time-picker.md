@@ -62,7 +62,7 @@ Default variant: `size=md, state=default` · 14 variants · default size 114×76
 | ------------- | ------------------- | -------------- |
 | Label         | visible             | `showLabel`    |
 | Label › Label | characters          | `label`        |
-| Label › \*    | visible             | `showRequired` |
+| Label › *     | visible             | `showRequired` |
 | Field › Value | characters          | `value`        |
 | Helper text   | visible             | `showHelper`   |
 | Helper text   | characters          | `helperText`   |
@@ -165,7 +165,7 @@ States: default, hover, focused (flagged rename → focus), filled, disabled, er
 
 **Content**
 
-Label: what time is being set ("Start time", "Meeting at"). Format: locale-driven; don't force 24h for a US audience or 12h for a European one. Helper text: timezone if relevant ("America/Los_Angeles"). Error: plain language with the valid range.
+Label: what time is being set ("Start time", "Meeting at"). Format: locale-driven; don't force 24h for a US audience or 12h for a European one. Helper text: timezone if relevant ("America/Los\_Angeles"). Error: plain language with the valid range.
 
 **Accessibility**
 

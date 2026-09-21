@@ -22,7 +22,7 @@ PADDING OVERRIDE
 Bound to inset/lg vs Card's nominal inset/md. Applied via --solar-card-padding in code, not a fork.
 
 COMPOSITION CONTRACT
-Widget Card may not override: surface/_, border/_, radius/\*, border/default weight, shadow/raised, focus ring. May override: padding (inset.lg), Header content (fixed WidgetHeader), state vocabulary (loading|error|empty).
+Widget Card may not override: surface/\*, border/\*, radius/\*, border/default weight, shadow/raised, focus ring. May override: padding (inset.lg), Header content (fixed WidgetHeader), state vocabulary (loading|error|empty).
 
 STATE DELEGATIONS
 • loading → Skeleton (rectangular, md)

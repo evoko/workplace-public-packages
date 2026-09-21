@@ -10,23 +10,23 @@ Viewport defines the key screen-width thresholds used across SOLAR to support re
 
 **Value**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **393**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **768**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **1024**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **1440**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **1920**
 

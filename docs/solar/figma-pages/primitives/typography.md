@@ -14,91 +14,91 @@ Border width values should be applied through semantic tokens such as component 
 
 **Value, px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **8**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **10**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **11**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **12**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **14**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **16**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **18**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **20**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **24**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **28**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **32**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **36**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **40**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **44**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **52**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **56**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **64**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **72**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **80**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **96**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **112**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **128**
 
@@ -114,91 +114,91 @@ Border width values should be applied through semantic tokens such as component 
 
 **Value, px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **8**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **10**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **11**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **12**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **14**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **16**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **18**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **20**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **24**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **28**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **32**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **36**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **40**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **44**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **52**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **56**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **64**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **72**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **80**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **96**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **112**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **128**
 
@@ -214,27 +214,27 @@ Border width values should be applied through semantic tokens such as component 
 
 **Value**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Gotham**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Montserrat**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Inter**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Open Sans**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **IBM Plex Mono**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Roboto Mono**
 
@@ -250,39 +250,39 @@ Border width values should be applied through semantic tokens such as component 
 
 **Value**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Thin**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Extra Light**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Light**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Regular**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Medium**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Semi Bold**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Bold**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Extra Bold**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **Black**
 

@@ -14,95 +14,95 @@ Using a shared size scale helps maintain visual balance and alignment across pro
 
 **Value, px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **0**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **4**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **8**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **12**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **16**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **20**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **24**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **28**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **32**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **36**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **40**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **44**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **48**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **52**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **56**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **64**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **72**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **80**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **96**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **112**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **128**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **144**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **160**
 
@@ -118,19 +118,19 @@ Border width values should be applied through semantic tokens such as component 
 
 **Width, px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **0**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **1**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **2**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **4**
 
@@ -144,27 +144,27 @@ Using a shared radius scale helps maintain a cohesive visual language and predic
 
 **Radius, px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **0**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **4**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **6**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **8**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **12**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **9999**
 
@@ -180,23 +180,23 @@ Using shared viewport tokens ensures responsive layouts remain aligned across pr
 
 **Width, px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **393**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **768**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **1024**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **1440**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **1920**
 
@@ -212,45 +212,45 @@ Using inset tokens helps maintain balanced layouts and predictable component siz
 
 **Value**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **0px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **4px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **8px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **12px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **16px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **24px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **32px**
 
@@ -266,45 +266,45 @@ Using stack tokens helps maintain predictable vertical alignment and visual hier
 
 **Value**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **0px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **4px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **8px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **12px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **16px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **24px**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **32px**
 

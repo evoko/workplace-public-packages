@@ -34,10 +34,10 @@
   },
   "devDependencies": {
     "@bwp-web/eslint-config": "*",
-    "eslint": "^9.39.2",
-    "prettier": "^3.8.3",
-    "tsup": "^8.5.0",
-    "typescript": "^5.9.2"
+    "eslint": "^9.39.5",
+    "prettier": "^3.9.8",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3"
   },
   "license": "MIT",
   "repository": {

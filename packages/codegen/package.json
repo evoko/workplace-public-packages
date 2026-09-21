@@ -1,0 +1,17 @@
+{
+  "name": "@bwp-web/codegen",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Generates SOLAR tokens, assets and component recipes from docs/ into the packages",
+  "scripts": {
+    "test": "vitest run",
+    "lint": "eslint",
+    "format": "prettier --check . --ignore-path ../../.gitignore"
+  },
+  "devDependencies": {
+    "@bwp-web/eslint-config": "*",
+    "eslint": "^9.39.5",
+    "prettier": "^3.9.8"
+  }
+}

@@ -13,9 +13,9 @@ selected — true/false — drives outline (false) ↔ solid (true) icon swap
 hover — true/false — hover background
 expanded — true/false — collapsed (icon-only) vs expanded (icon + label)
 
-Icon swap (two-property pattern, required by Figma constraint — see auto-memory feedback_figma_instance_swap_variant_override.md):
-iconOutline — INSTANCE_SWAP. Bound to selected=false variants.
-iconSolid — INSTANCE_SWAP. Bound to selected=true variants.
+Icon swap (two-property pattern, required by Figma constraint — see auto-memory feedback\_figma\_instance\_swap\_variant\_override.md):
+iconOutline — INSTANCE\_SWAP. Bound to selected=false variants.
+iconSolid — INSTANCE\_SWAP. Bound to selected=true variants.
 Designers set BOTH to matching outline+solid pair of one Icon/\* metaphor.
 
 Consumers: Sidebar (Layout & Shell), Top Bar (Layout & Shell). 540+ instances across views.

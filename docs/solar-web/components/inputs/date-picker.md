@@ -124,7 +124,7 @@ Default variant: `size=md, state=default` · 14 variants · default size 123×76
 | ------------- | ------------------- | -------------- |
 | Label         | visible             | `showLabel`    |
 | Label › Label | characters          | `label`        |
-| Label › \*    | visible             | `showRequired` |
+| Label › *     | visible             | `showRequired` |
 | Field › Value | characters          | `value`        |
 | Helper text   | visible             | `showHelper`   |
 | Helper text   | characters          | `helperText`   |

@@ -129,7 +129,7 @@ Output meets SOLAR compliance standards and is ready for review. Compliance is b
 Every visual property must trace to a token. Every interactive element must meet accessibility baselines. If a property isn't covered by a token, flag it as a gap — never use raw values.
 
 1.  Every color → semantic token (color.\*) — never hex, never primitive\
-2.  Every spacing → spatial token (inset._, stack._) — never raw px/rem\
+2.  Every spacing → spatial token (inset.\*, stack.\*) — never raw px/rem\
 3.  Every text → named text style (type.body.md.\*) — never raw font props\
 4.  Every shadow → effect token (shadow.\*) — never raw box-shadow\
 5.  Every duration → motion token (motion.duration.\*) — never raw ms

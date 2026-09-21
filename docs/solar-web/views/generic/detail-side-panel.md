@@ -14,7 +14,7 @@
       itemSpacing `inset.xs`
       - **Title** · text `body/lg/medium` "Entity Name 01" · FILL/HUG · 256×12  
         fill `color.text.primary` · lineHeight `type.line-height.body.lg` · fontFamily `type.font-family.inter` · fontSize `type.size.body.lg` · fontStyle `type.font-weight.500`
-      - **Title** · text `body/sm/regular` "Updated 2 hr ago · ent_3f9k2a" · FILL/HUG · 256×9  
+      - **Title** · text `body/sm/regular` "Updated 2 hr ago · ent\_3f9k2a" · FILL/HUG · 256×9  
         fill `color.text.secondary` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.400`
     - **Frame 2** · frame · row gap 12 pad 0/0/0/0 HUG/HUG · 52×20  
       itemSpacing `stack.sm`

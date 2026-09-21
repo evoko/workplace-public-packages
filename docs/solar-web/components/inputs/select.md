@@ -62,7 +62,7 @@ Default variant: `size=md, state=default` · 12 variants · default size 240×76
 | ------------------------ | ------------------- | -------------------- |
 | Label                    | visible             | `show label`         |
 | Label › Label            | characters          | `label`              |
-| Label › \*               | visible             | `show mandatory`     |
+| Label › *                | visible             | `show mandatory`     |
 | Field › Icon/ChevronDown | visible             | `show trailing icon` |
 | Helper text              | visible             | `show helper`        |
 | Helper text              | characters          | `helper`             |

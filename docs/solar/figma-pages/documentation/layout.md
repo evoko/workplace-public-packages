@@ -15,11 +15,11 @@
 A shared layout system ensures that screens are built on consistent spatial rules rather than one-off decisions. It helps teams design and build interfaces that scale gracefully, support different content types, and remain coherent as products evolve.
 
 SOLAR layout principles support:\
- • Clear hierarchy and readable content structure\
- • Predictable alignment and spacing across screens\
- • Responsive behavior across breakpoints and devices\
- • Consistent relationships between containers, regions, and components\
- • Faster design and implementation through reusable patterns
+• Clear hierarchy and readable content structure\
+• Predictable alignment and spacing across screens\
+• Responsive behavior across breakpoints and devices\
+• Consistent relationships between containers, regions, and components\
+• Faster design and implementation through reusable patterns
 
 This alignment reduces visual inconsistency, improves usability, and creates a stronger foundation for cross-product coherence.
 

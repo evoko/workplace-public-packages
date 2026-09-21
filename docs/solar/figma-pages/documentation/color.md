@@ -312,10 +312,10 @@ How to Apply Color
 1. Select layer\
 2. Choose Fill / Stroke / Text color\
 3. Apply a Semantic variable:\
-   color.surface._\
-   color.text._\
-   color.border._\
-   color.action._\
+   color.surface.\*\
+   color.text.\*\
+   color.border.\*\
+   color.action.\*\
    color.data.\*
 
 Correct vs Incorrect

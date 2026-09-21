@@ -133,7 +133,7 @@ Default variant: `size=md` · 2 variants · default size 368×40px
 | Layer         | Controlled property | Prop             |
 | ------------- | ------------------- | ---------------- |
 | Label › Label | characters          | `label`          |
-| Label › \*    | visible             | `show mandatory` |
+| Label › *     | visible             | `show mandatory` |
 | Track         | slotContentId       | `Track`          |
 | Helper text   | visible             | `show helper`    |
 | Helper text   | characters          | `helper`         |

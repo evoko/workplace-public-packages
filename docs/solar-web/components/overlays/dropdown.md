@@ -64,7 +64,7 @@ Default variant: `size=md, state=default` · 10 variants · default size 240×76
 | Layer             | Controlled property | Prop              |
 | ----------------- | ------------------- | ----------------- |
 | Label             | visible             | `hasLabel`        |
-| Label › \*        | visible             | `mandatory`       |
+| Label › *         | visible             | `mandatory`       |
 | Field › Icon/None | visible             | `hasLeadingIcon`  |
 | Field › Icon/None | visible             | `hasTrailingIcon` |
 | Helper text       | visible             | `hasHelper`       |

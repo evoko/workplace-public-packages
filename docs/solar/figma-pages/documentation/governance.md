@@ -17,7 +17,7 @@ Documented — a clear description of the exception and why it is needed\
 Time-limited — a resolution deadline must be set at the time of approval\
 Tracked — logged in the SOLAR backlog for future resolution or promotion to a system token\
 Accessible — must comply with SOLAR accessibility standards (WCAG 2.1 AA)\
-Namespaced — must use a product prefix (e.g., --biamp-producto-_) to avoid confusion with --solar-_ system tokens
+Namespaced — must use a product prefix (e.g., --biamp-producto-\*) to avoid confusion with --solar-\* system tokens
 
 Exceptions that are not resolved by their deadline are escalated to the SOLAR core team for review. If the exception proves broadly useful, it may be promoted to a system-level token through the standard proposal process.
 

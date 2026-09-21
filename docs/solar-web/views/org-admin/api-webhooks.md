@@ -72,7 +72,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1368×744px
             itemSpacing `stack.md` · padding `stack.sm`
             - **cell** · text `label/md` "Production" · FILL/HUG · 115×10  
               fill `color.text.primary` · lineHeight `type.line-height.label.md` · fontFamily `type.font-family.inter` · fontSize `type.size.label.md` · fontStyle `type.font-weight.500`
-            - **cell** · text `body/md/regular` "sk*live*••••3f9a" · FILL/HUG · 115×10  
+            - **cell** · text `body/md/regular` "sk\_live\_••••3f9a" · FILL/HUG · 115×10  
               fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400`
             - **cell** · text `body/md/regular` "04 Feb 2026" · FILL/HUG · 115×10  
               fill `color.text.secondary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400`
@@ -85,7 +85,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1368×744px
             itemSpacing `stack.md` · padding `stack.sm`
             - **cell** · text `label/md` "CI pipeline" · FILL/HUG · 115×10  
               fill `color.text.primary` · lineHeight `type.line-height.label.md` · fontFamily `type.font-family.inter` · fontSize `type.size.label.md` · fontStyle `type.font-weight.500`
-            - **cell** · text `body/md/regular` "sk*live*••••71c2" · FILL/HUG · 115×10  
+            - **cell** · text `body/md/regular` "sk\_live\_••••71c2" · FILL/HUG · 115×10  
               fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400`
             - **cell** · text `body/md/regular` "22 Nov 2025" · FILL/HUG · 115×10  
               fill `color.text.secondary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400`

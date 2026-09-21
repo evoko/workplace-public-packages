@@ -39,18 +39,12 @@ for any design-to-code generator. Regenerate them rather than editing them.
 {
   "page": "↳ 🟢 Button", // Figma page name
   "pageId": "2049:578",
-  "componentSets": [
-    /* every COMPONENT_SET on the page */
-  ],
-  "components": [
-    /* COMPONENTs that are not variants of a set */
-  ],
+  "componentSets": [/* every COMPONENT_SET on the page */],
+  "components": [/* COMPONENTs that are not variants of a set */],
   "frames": [
     /* other top-level frames/instances: examples, view compositions */
   ],
-  "docText": [
-    /* text of the page's documentation card(s), in reading order */
-  ],
+  "docText": [/* text of the page's documentation card(s), in reading order */],
   "pageContext": null, // an @SOLAR:PAGE_CONTEXT block if the page has one
 }
 ```

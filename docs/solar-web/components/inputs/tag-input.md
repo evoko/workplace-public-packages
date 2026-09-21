@@ -61,7 +61,7 @@ Default variant: `size=md, state=default` · 16 variants · default size 240×76
 | ------------- | ------------------- | ---------------- |
 | Label         | visible             | `show label`     |
 | Label › Label | characters          | `label`          |
-| Label › \*    | visible             | `show mandatory` |
+| Label › *     | visible             | `show mandatory` |
 | Helper text   | visible             | `show helper`    |
 | Helper text   | characters          | `helper`         |
 

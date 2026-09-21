@@ -61,7 +61,7 @@ Default variant: `size=md, state=default, stepper=inline` · 20 variants · defa
 | Layer       | Controlled property | Prop        |
 | ----------- | ------------------- | ----------- |
 | Label       | visible             | `hasLabel`  |
-| Label › \*  | visible             | `mandatory` |
+| Label › *   | visible             | `mandatory` |
 | Helper text | visible             | `hasHelper` |
 
 ### Composes

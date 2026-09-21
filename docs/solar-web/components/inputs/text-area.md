@@ -71,7 +71,7 @@ Default variant: `size=md, state=default` · 14 variants · default size 280×15
 | -------------------- | ------------------- | ----------------- |
 | Label                | visible             | `hasLabel`        |
 | Label › Label        | characters          | `label`           |
-| Label › \*           | visible             | `mandatory`       |
+| Label › *            | visible             | `mandatory`       |
 | Field › Icon Button  | visible             | `hasCTA`          |
 | Field › Icon Button  | visible             | `hasAttachment`   |
 | Footer               | visible             | `hasFooter`       |

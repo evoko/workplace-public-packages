@@ -32,8 +32,13 @@ const decode = (s) =>
     .replace(/&gt;/g, '>')
     .replace(/&amp;/g, '&');
 // Wrap HTML-looking tags in code spans so Markdown renderers do not swallow them.
-const safe = (s) => decode(s).replace(/(<[a-zA-Z][^>]*>)/g, '`$1`');
-const esc = (s) => decode(s).replace(/\|/g, '\\|').replace(/\n/g, ' ');
+// Figma layer names and text are data, but Markdown reads * and _ as emphasis. Prettier used
+// to add these escapes for us; since 3.9 it does not, so escape at the point of interpolation
+// and keep the output independent of the formatter's version.
+const md = (s) => String(s ?? '').replace(/([*_])/g, '\\$1');
+const safe = (s) =>
+  md(decode(s)).replace(/(&lt;[a-zA-Z][^&]*&gt;|<[a-zA-Z][^>]*>)/g, '`$1`');
+const esc = (s) => md(decode(s)).replace(/\|/g, '\\|').replace(/\n/g, ' ');
 const tok = (s) => {
   const m = /^\{([^:]+):(.+)\}$/.exec(s);
   return m ? { collection: m[1], path: m[2] } : null;
@@ -325,7 +330,7 @@ function treeMd(n, depth = 0, lines = []) {
   if (n.type === 'INSTANCE')
     bits.push(
       'instance of **' +
-        n.main +
+        md(n.main) +
         '**' +
         (n.variant
           ? ' (' +
@@ -339,7 +344,7 @@ function treeMd(n, depth = 0, lines = []) {
     bits.push(
       'text' +
         (n.textStyle ? ' `' + n.textStyle + '`' : '') +
-        (n.text ? ' "' + n.text.replace(/\n/g, ' ') + '"' : ''),
+        (n.text ? ' "' + md(n.text.replace(/\n/g, ' ')) + '"' : ''),
     );
   else bits.push(n.type.toLowerCase());
   if (n.layout)
@@ -381,7 +386,7 @@ function treeMd(n, depth = 0, lines = []) {
           .join(', '),
     );
   lines.push(
-    `${ind}- ${n.hidden ? '~~' : ''}**${n.name}**${n.hidden ? '~~ (hidden by default)' : ''} · ${bits.join(' · ')}${toks.length ? '  \n' + ind + '  ' + toks.join(' · ') : ''}`,
+    `${ind}- ${n.hidden ? '~~' : ''}**${md(n.name)}**${n.hidden ? '~~ (hidden by default)' : ''} · ${bits.join(' · ')}${toks.length ? '  \n' + ind + '  ' + toks.join(' · ') : ''}`,
   );
   for (const c of n.children || []) treeMd(c, depth + 1, lines);
   return lines;

@@ -78,7 +78,7 @@ Default variant: `size=md, state=default` · 12 variants · default size 240×76
 | ----------------- | ------------------- | -------------------- |
 | Label             | visible             | `show label`         |
 | Label › Label     | visible             | `show label`         |
-| Label › \*        | visible             | `show mandatory`     |
+| Label › *         | visible             | `show mandatory`     |
 | Field › Icon/None | visible             | `show leading icon`  |
 | Field › Icon/None | mainComponent       | `Leading Icon`       |
 | Field › Icon/None | visible             | `show trailing icon` |

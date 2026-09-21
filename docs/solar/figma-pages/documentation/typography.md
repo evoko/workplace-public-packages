@@ -117,9 +117,9 @@ Letter spacing (%)
 Tokens define the rules.
 
 Typography styles combine these tokens into structured patterns such as:\
-desktop.display.lg (_.md, _.sm, _x-sm)\
-mobile.title.lg (_.md, *.sm, *x-sm)\
-desktop.body.md.regular (_.medium, _.semibold, \*.bold)
+desktop.display.lg (\*.md, \*.sm, \*x-sm)\
+mobile.title.lg (\*.md, \*.sm, \*x-sm)\
+desktop.body.md.regular (\*.medium, \*.semibold, \*.bold)
 
 Each size (lg, md, sm) references different scale tokens while preserving consistent weight and spacing logic.
 

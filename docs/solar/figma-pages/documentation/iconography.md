@@ -219,7 +219,7 @@ This is the final review pass. An icon that fails any item goes back to the cont
 Sourced from Remix at every size — no Nova, no Phosphor, no custom SVGs.\
 Canvas matches the rendered size. Live area respected.\
 Strokes expanded to filled paths. Paths combined. Integer pixels only.\
-Stroke and fill colour bound to semantic tokens — color.icon._ or color.action._.icon.\* — never hardcoded hex.\
+Stroke and fill colour bound to semantic tokens — color.icon.\* or color.action.\*.icon.\* — never hardcoded hex.\
 Outline and Solid pair present. Same name, same canvas, same optical volume.\
 Name follows element–modifier grammar. Identical across sizes.\
 Does not override, rename, or detach any existing protected icon.\

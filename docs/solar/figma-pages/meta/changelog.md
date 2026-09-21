@@ -29,7 +29,7 @@ For more information about Semantic Versioning, visit semver.org.
 
 **Component name & link**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **YYYY-MM-DD**
 

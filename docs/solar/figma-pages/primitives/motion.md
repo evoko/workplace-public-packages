@@ -10,23 +10,23 @@ Duration tokens define the timing values used for transitions and animations acr
 
 **Value**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **0**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **100**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **300**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **600**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **900**
 
@@ -38,15 +38,15 @@ Easing tokens define the acceleration curves used for transitions and animations
 
 **Value**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **ease-in**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **ease-out**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **ease-both**
 
@@ -62,31 +62,31 @@ Until that layer lands, reference the primitives directly and follow the per-row
 
 **Use for…**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **0ms**
 
 **Reduced-motion fallback. Resolve to this when honoring prefers-reduced-motion.**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **100ms**
 
 **Micro-interactions: hover state, focus ring, button press, color change.**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **300ms**
 
 **Default. Dropdown open, tab switch, panel expand, toast in/out.**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **600ms**
 
 **Larger surface changes: dialog enter, drawer slide, page transition.**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **900ms**
 
@@ -104,19 +104,19 @@ A semantic layer for direction-specific easings (e.g., motion/ease/enter ↔ out
 
 **Use for…**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **ease-out**
 
 **Default. Element entering or settling — dropdown open, hover, button press.**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **ease-in**
 
 **Element leaving the screen — dismissing toasts, closing drawers.**
 
-\***\*MAJOR\*\***
+****MAJOR****
 
 **ease-both**
 
