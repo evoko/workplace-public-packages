@@ -1,0 +1,1001 @@
+{
+  "page": "↳ 🟢 Activity Feed",
+  "pageId": "7359:2",
+  "componentSets": [
+    {
+      "name": "Activity Feed",
+      "id": "8512:5284",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "mobile",
+            "desktop"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 116,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          640,
+          731
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:inset/xs"
+        },
+        "children": [
+          {
+            "name": "Date Group",
+            "type": "FRAME",
+            "size": [
+              640,
+              25
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                8,
+                8,
+                8,
+                8
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "radius": 6,
+            "vars": {
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/xs",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Date Text",
+                "type": "TEXT",
+                "text": "TODAY · 2026-05-12",
+                "textStyle": "title/2xs",
+                "size": [
+                  137,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/2xs",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/2xs",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Event Row",
+            "type": "INSTANCE",
+            "main": "Event Row",
+            "variant": {
+              "density": "default",
+              "state": "default"
+            },
+            "size": [
+              640,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Event Row",
+            "type": "INSTANCE",
+            "main": "Event Row",
+            "variant": {
+              "density": "default",
+              "state": "default"
+            },
+            "size": [
+              640,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Event Row",
+            "type": "INSTANCE",
+            "main": "Event Row",
+            "variant": {
+              "density": "default",
+              "state": "default"
+            },
+            "size": [
+              640,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Event Row",
+            "type": "INSTANCE",
+            "main": "Event Row",
+            "variant": {
+              "density": "default",
+              "state": "default"
+            },
+            "size": [
+              640,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Date Group",
+            "type": "FRAME",
+            "size": [
+              640,
+              25
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                8,
+                8,
+                8,
+                8
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "radius": 6,
+            "vars": {
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/xs",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Date Text",
+                "type": "TEXT",
+                "text": "YESTERDAY · 2026-05-11",
+                "textStyle": "title/2xs",
+                "size": [
+                  168,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/2xs",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/2xs",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Event Row",
+            "type": "INSTANCE",
+            "main": "Event Row",
+            "variant": {
+              "density": "default",
+              "state": "default"
+            },
+            "size": [
+              640,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Event Row",
+            "type": "INSTANCE",
+            "main": "Event Row",
+            "variant": {
+              "density": "default",
+              "state": "default"
+            },
+            "size": [
+              640,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Event Row",
+            "type": "INSTANCE",
+            "main": "Event Row",
+            "variant": {
+              "density": "default",
+              "state": "default"
+            },
+            "size": [
+              640,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Date Group",
+            "type": "FRAME",
+            "size": [
+              640,
+              25
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                8,
+                8,
+                8,
+                8
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "radius": 6,
+            "vars": {
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/xs",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Date Text",
+                "type": "TEXT",
+                "text": "2026-05-10",
+                "textStyle": "title/2xs",
+                "size": [
+                  79,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/2xs",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/2xs",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Event Row",
+            "type": "INSTANCE",
+            "main": "Event Row",
+            "variant": {
+              "density": "default",
+              "state": "default"
+            },
+            "size": [
+              640,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Event Row",
+            "type": "INSTANCE",
+            "main": "Event Row",
+            "variant": {
+              "density": "default",
+              "state": "default"
+            },
+            "size": [
+              640,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Event Row",
+            "type": "INSTANCE",
+            "main": "Event Row",
+            "variant": {
+              "density": "default",
+              "state": "default"
+            },
+            "size": [
+              640,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            640,
+            731
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Primitives:color/blue/700}",
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Primitives:color/purple/700}",
+            "{Primitives:color/red/700}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            377,
+            731
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Primitives:color/blue/700}",
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Primitives:color/purple/700}",
+            "{Primitives:color/red/700}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Activity Feed Filter Row",
+      "id": "8512:5759",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "mobile",
+            "desktop"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 34,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          640,
+          64
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            12,
+            0,
+            12,
+            0
+          ],
+          "align": "SPACE_BETWEEN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/sm"
+        },
+        "children": [
+          {
+            "name": "SearchField",
+            "type": "INSTANCE",
+            "main": "SearchField",
+            "variant": {
+              "state": "default",
+              "size": "md"
+            },
+            "size": [
+              228,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              404,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Select",
+                "type": "INSTANCE",
+                "main": "Select",
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  129,
+                  40
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              {
+                "name": "Select",
+                "type": "INSTANCE",
+                "main": "Select",
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  129,
+                  40
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              {
+                "name": "Select",
+                "type": "INSTANCE",
+                "main": "Select",
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  129,
+                  40
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            640,
+            64
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "*",
+            "Helper text",
+            "Label"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            377,
+            112
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Activity Feed",
+    "Description",
+    "A chronological stream of events (who did what, when) for an entity or workspace. For audit trails and recent-activity views — not a chat.",
+    "Anatomy",
+    "Feed container · activity items (actor avatar · action text · timestamp · optional detail/link) · date grouping · load-more / infinite scroll.",
+    "Behaviour",
+    "Newest first, grouped by day, loaded incrementally. Items may link to the referenced object. Optional filters by type or actor.",
+    "States",
+    "loaded, loading (skeleton items), empty ('No activity yet'), error, loading-more. Real-time items may prepend.",
+    "Accessibility",
+    "An ordered list; each item reads actor + action + time. New real-time items via aria-live=polite. Timestamps use <time>. Links keyboard-reachable.",
+    "Rules",
+    "Order newest first, grouped by day\nWrite plain 'actor did X' lines\nLink to the referenced object\nAnnounce new items politely",
+    "Use it as a chat\nRely on icons alone for action type\nAuto-scroll away from the user\nDump ungrouped walls of items"
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,345 @@
+{
+  "page": "↳ 🟢 Link",
+  "pageId": "2163:3675",
+  "componentSets": [
+    {
+      "name": "Link",
+      "id": "2715:626",
+      "description": "Inline text link for navigating within or across the product. Renders as <a> and binds to color/text/link/* tokens. 12 variants: size (xs 12px, sm 14px, md 16px) × state (default, hover, active, disabled). Optional leading and trailing icons via instance swap. Underlines on hover so the affordance never relies on color alone. 'active' here is the momentary pressed/visited color — for persistent selection use a Nav Item pattern. For actions that trigger a side effect (save, submit), use Button, not Link.",
+      "docLinks": [],
+      "variantCount": 15,
+      "props": {
+        "show leading icon#3442:10": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show trailing icon#3442:19": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "xs",
+            "sm",
+            "md"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "disabled",
+            "pressed",
+            "focus"
+          ]
+        }
+      },
+      "defaultVariant": "size=md, state=default",
+      "defaultVariantNodeCount": 5,
+      "defaultVariantTree": {
+        "name": "size=md, state=default",
+        "type": "COMPONENT",
+        "size": [
+          127,
+          24
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs"
+        },
+        "children": [
+          {
+            "name": "Icon/None",
+            "type": "INSTANCE",
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              24,
+              24
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "width": "Spatial:icon/lg"
+            },
+            "propRefs": {
+              "visible": "show leading icon#3442:10"
+            }
+          },
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "Link text",
+            "textStyle": "link/lg/default",
+            "size": [
+              63,
+              12
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/link/default}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/lg",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/lg",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          },
+          {
+            "name": "Icon/None",
+            "type": "INSTANCE",
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              24,
+              24
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "width": "Spatial:icon/lg"
+            },
+            "propRefs": {
+              "visible": "show trailing icon#3442:19"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=md, state=default",
+          "size": [
+            127,
+            24
+          ],
+          "textFills": [
+            "{Color:text/link/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/default}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "size=md, state=hover",
+          "size": [
+            127,
+            24
+          ],
+          "textFills": [
+            "{Color:text/link/hover}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, state=pressed",
+          "size": [
+            127,
+            24
+          ],
+          "textFills": [
+            "{Color:text/link/active}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/active}"
+          ]
+        },
+        {
+          "variant": "size=md, state=disabled",
+          "size": [
+            127,
+            24
+          ],
+          "opacity": 0.5,
+          "textFills": [
+            "{Color:text/link/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, state=focus",
+          "size": [
+            127,
+            24
+          ],
+          "textFills": [
+            "{Color:text/link/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=default",
+          "size": [
+            103,
+            16
+          ],
+          "textFills": [
+            "{Color:text/link/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=hover",
+          "size": [
+            103,
+            16
+          ],
+          "textFills": [
+            "{Color:text/link/hover}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=pressed",
+          "size": [
+            103,
+            16
+          ],
+          "textFills": [
+            "{Color:text/link/active}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/active}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=disabled",
+          "size": [
+            103,
+            16
+          ],
+          "opacity": 0.5,
+          "textFills": [
+            "{Color:text/link/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=focus",
+          "size": [
+            103,
+            16
+          ],
+          "textFills": [
+            "{Color:text/link/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/default}"
+          ]
+        },
+        {
+          "variant": "size=xs, state=default",
+          "size": [
+            88,
+            12
+          ],
+          "textFills": [
+            "{Color:text/link/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/default}"
+          ]
+        },
+        {
+          "variant": "size=xs, state=hover",
+          "size": [
+            88,
+            12
+          ],
+          "textFills": [
+            "{Color:text/link/hover}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/hover}"
+          ]
+        },
+        {
+          "variant": "size=xs, state=pressed",
+          "size": [
+            88,
+            12
+          ],
+          "textFills": [
+            "{Color:text/link/active}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/active}"
+          ]
+        },
+        {
+          "variant": "size=xs, state=disabled",
+          "size": [
+            88,
+            12
+          ],
+          "opacity": 0.5,
+          "textFills": [
+            "{Color:text/link/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/disabled}"
+          ]
+        },
+        {
+          "variant": "size=xs, state=focus",
+          "size": [
+            88,
+            12
+          ],
+          "textFills": [
+            "{Color:text/link/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/link/default}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Link",
+    "Sizes",
+    "xs (12px)     Inline with helper text or metadata captions.\nsm (14px)     Inline within body copy and dense lists.\nmd (16px)     Standalone links and larger reading contexts.",
+    "Icons",
+    "Leading icon signals internal navigation (chevron, arrow-left). Trailing icon signals outbound or new-tab (arrow-up-right, external-link). Icon size tracks text size via icon/size/* tokens. If both icons are on, the link is overloaded — keep one.",
+    "Rules",
+    "Do\n\n• Use for navigation — internal or outbound\n• Keep link text descriptive (\"Read the release notes\", not \"click here\")\n• Pair outbound links with a trailing external-link icon\n• Underline on hover to meet color-alone guidance",
+    "Don't\n\n• Don't use Link for actions that mutate state — use Button\n• Don't wrap full paragraphs — link the phrase, not the sentence\n• Don't rely on color alone to signal a link\n• Don't use Link for persistent selection — use a Nav Item"
+  ],
+  "pageContext": null
+}

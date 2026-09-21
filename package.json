@@ -11,11 +11,15 @@
     "lint:fix": "turbo run lint -- --fix",
     "format": "turbo run format --continue",
     "format:fix": "turbo run format -- --write",
-    "storybook": "turbo run dev --filter=@bwp-web/storybook",
-    "clean": "turbo run clean && rm -rf node_modules .turbo"
+    "clean": "turbo run clean && rm -rf node_modules .turbo",
+    "solar:sync": "npm run solar:foundations && npm run solar:web",
+    "solar:foundations": "node docs/solar/raw/fetch-rest.mjs && node docs/solar/build-docs.mjs",
+    "solar:web": "node docs/solar-web/raw/fetch-rest.mjs && node docs/solar-web/build-docs.mjs",
+    "solar:fetch": "node docs/solar/raw/fetch-rest.mjs && node docs/solar-web/raw/fetch-rest.mjs",
+    "solar:docs": "node docs/solar/build-docs.mjs && node docs/solar-web/build-docs.mjs",
+    "solar:tokens": "node docs/solar/tokens/build-derived.mjs"
   },
   "devDependencies": {
-    "@storybook/addon-vitest": "^10.3.5",
     "turbo": "^2.9.6",
     "typescript": "^5.9.2"
   },

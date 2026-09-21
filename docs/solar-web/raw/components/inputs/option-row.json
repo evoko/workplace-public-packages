@@ -1,0 +1,340 @@
+{
+  "page": "↳ 🟢 Option Row",
+  "pageId": "10090:2",
+  "componentSets": [
+    {
+      "name": "Option Row",
+      "id": "10102:10994",
+      "description": "A selection control paired with a label and optional supporting text. Variant picks the control: Checkbox for independent on/off within a set, Radio button for exactly one of a mutually exclusive set, Toggle for a setting that applies immediately. A row carries one control — never two at once. Only three variants, because interaction state and selection live on the nested control instance: set hover, focus, disabled, checked and mixed there rather than multiplying them across this set. hasSupportingText hides the second line. The whole row is the click target, and the control aligns to the label's first line so supporting text that wraps never pulls it out of line. Row width is fixed so long text wraps instead of stretching the row. Radio button rows must share a group. For the large tappable treatment with an icon use Option Card.",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "hasSupportingText#10102:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "Variant": {
+          "type": "VARIANT",
+          "default": "Checkbox",
+          "options": [
+            "Radio button",
+            "Checkbox",
+            "Toggle"
+          ]
+        }
+      },
+      "defaultVariant": "Variant=Checkbox",
+      "defaultVariantNodeCount": 4,
+      "defaultVariantTree": {
+        "name": "Variant=Checkbox",
+        "type": "COMPONENT",
+        "size": [
+          320,
+          51
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            12,
+            0,
+            12,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:inset/xs",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/sm"
+        },
+        "children": [
+          {
+            "name": "Control",
+            "type": "INSTANCE",
+            "main": "Checkbox",
+            "variant": {
+              "checked": "false",
+              "disabled": "false",
+              "hover": "false",
+              "mixed": "false",
+              "focus": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          },
+          {
+            "name": "Text",
+            "type": "FRAME",
+            "size": [
+              296,
+              27
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Option label",
+                "textStyle": "label/md",
+                "size": [
+                  296,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "Supporting description for this option",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  296,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                },
+                "propRefs": {
+                  "visible": "hasSupportingText#10102:0"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "Variant=Checkbox",
+          "size": [
+            320,
+            51
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "Variant=Radio button",
+          "size": [
+            320,
+            51
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "Variant=Toggle",
+          "size": [
+            320,
+            51
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Options List",
+      "id": "10291:22366",
+      "description": "",
+      "props": {
+        "Content#10291:26": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        }
+      },
+      "nodeCount": 11,
+      "tree": {
+        "name": "Options List",
+        "type": "COMPONENT",
+        "size": [
+          320,
+          102
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "children": [
+          {
+            "name": "Content",
+            "type": "SLOT",
+            "size": [
+              320,
+              102
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "Content#10291:26"
+            },
+            "children": [
+              {
+                "name": "Option Row",
+                "type": "INSTANCE",
+                "main": "Option Row",
+                "variant": {
+                  "Variant": "Checkbox"
+                },
+                "size": [
+                  320,
+                  51
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Option Row",
+                "type": "INSTANCE",
+                "main": "Option Row",
+                "variant": {
+                  "Variant": "Checkbox"
+                },
+                "size": [
+                  320,
+                  51
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Option Row",
+    "Description",
+    "A selection control paired with a label and optional supporting text. Variant picks the control — Checkbox for independent on/off within a set, Radio button for exactly one of a mutually exclusive set, Toggle for a setting that applies immediately. A row carries one control, never two at once. The control is a nested instance of the real Checkbox, Radio or Toggle component, so fixes to those primitives flow straight through.",
+    "Variants & states",
+    "Variant=Checkbox / Radio button / Toggle  ·  hasSupportingText=true / false\n\nThree variants only. Interaction state and selection live on the nested control instance, not on this set: select the Control layer and set hover, focus, disabled, checked or mixed there. That keeps this component at three variants instead of multiplying five states across three control types.\nhasSupportingText hides the second line of text.",
+    "Content",
+    "Label is required — an Option Row without a label is a bug. Supporting text is optional; switch it off with hasSupportingText.\nLabel uses label/md on text/primary; supporting text uses body/sm/regular on text/secondary.\nRow width is fixed at 320 so long supporting text wraps instead of stretching the row. The control aligns to the label's first line, so supporting text that runs to two lines never pulls it out of line.\nKeep label grammar parallel across a group.",
+    "Accessibility",
+    "Render the control as <input type=\"checkbox\">, <input type=\"radio\"> or a switch. The visible label is the <label>, so the whole row is the click target; wire supporting text with aria-describedby.\nRadio button rows share one name= and sit inside fieldset + legend. Checkbox rows need the fieldset too whenever they read as one question.\nmixed on a Checkbox control maps to aria-checked=\"mixed\" — a display state, never a third submitted value.",
+    "Behavior",
+    "Commit on click — there is no separate save step. Clicking anywhere in the row activates it, including the supporting text.\nCheckbox rows toggle independently of each other. Radio button rows are exclusive: selecting one clears the previous choice, and a selected radio cannot be cleared by clicking it again. Toggle applies immediately, with no confirm step.\nOne Variant value drives a whole group — a group never mixes control types.",
+    "Grouping",
+    "Stack rows vertically for scannability and keep one question per group. Wrap the set in fieldset + legend.\nUse Checkbox when any number of options may be on, Radio button when exactly one must be, and Toggle for independent settings that take effect at once.\nAbove 5 mutually-exclusive options use Select instead. For the large tappable treatment with an icon use Option Card.",
+    "Rules",
+    "Do\n\n• Give every row a label\n• Keep one Variant per group\n• Set state on the nested Control layer\n• Use supporting text for consequence, not decoration",
+    "Don't\n\n• Don't use a solo radio — it's meaningless\n• Don't add state variants to this set — they belong on the control\n• Don't set mixed on a Radio button or Toggle"
+  ],
+  "pageContext": null
+}

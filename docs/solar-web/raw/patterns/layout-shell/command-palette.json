@@ -1,0 +1,1105 @@
+{
+  "page": "↳ 🟢 Command Palette",
+  "pageId": "2202:1252",
+  "componentSets": [
+    {
+      "name": "Command Item",
+      "id": "5760:4612",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "hover",
+            "default"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 5,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          640,
+          56
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FILL/FIXED"
+        },
+        "radius": 6,
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/sm",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Icon/None",
+            "type": "INSTANCE",
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            }
+          },
+          {
+            "name": "Text",
+            "type": "FRAME",
+            "size": [
+              588,
+              27
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "Command label",
+                "textStyle": "body/md/medium",
+                "size": [
+                  101,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Meta",
+                "type": "TEXT",
+                "text": "Group · Category",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  95,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            640,
+            56
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover",
+          "size": [
+            640,
+            56
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Command Palette",
+      "id": "5607:3799",
+      "description": "",
+      "props": {},
+      "nodeCount": 76,
+      "tree": {
+        "name": "Command Palette",
+        "type": "COMPONENT",
+        "size": [
+          640,
+          606
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/dialog}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "Search",
+            "type": "FRAME",
+            "size": [
+              640,
+              49
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/dialog}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/md",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "Icon",
+                "type": "INSTANCE",
+                "main": "Icon/Search",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              {
+                "name": "Placeholder",
+                "type": "TEXT",
+                "text": "Search commands…",
+                "textStyle": "body/lg/regular",
+                "size": [
+                  540,
+                  12
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/lg",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/lg",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Kbd",
+                "type": "INSTANCE",
+                "main": "Kbd",
+                "variant": {
+                  "type": "default"
+                },
+                "size": [
+                  28,
+                  17
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    4,
+                    4,
+                    4,
+                    4
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingTop": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/2xs",
+                  "paddingBottom": "Spatial:inset/2xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Results",
+            "type": "FRAME",
+            "size": [
+              640,
+              516
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/dialog}"
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:stack/none",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none"
+            },
+            "children": [
+              {
+                "name": "Dropdown Group Label",
+                "type": "INSTANCE",
+                "main": "Dropdown Group Label",
+                "variant": {
+                  "Size": "md"
+                },
+                "size": [
+                  640,
+                  34
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Command Item",
+                "type": "INSTANCE",
+                "main": "Command Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  640,
+                  56
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Command Item",
+                "type": "INSTANCE",
+                "main": "Command Item",
+                "variant": {
+                  "state": "hover"
+                },
+                "size": [
+                  640,
+                  56
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              },
+              {
+                "name": "Command Item",
+                "type": "INSTANCE",
+                "main": "Command Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  640,
+                  56
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Command Item",
+                "type": "INSTANCE",
+                "main": "Command Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  640,
+                  56
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Command Item",
+                "type": "INSTANCE",
+                "main": "Command Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  640,
+                  56
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Dropdown Group Label",
+                "type": "INSTANCE",
+                "main": "Dropdown Group Label",
+                "variant": {
+                  "Size": "md"
+                },
+                "size": [
+                  640,
+                  34
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Command Item",
+                "type": "INSTANCE",
+                "main": "Command Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  640,
+                  56
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Command Item",
+                "type": "INSTANCE",
+                "main": "Command Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  640,
+                  56
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Command Item",
+                "type": "INSTANCE",
+                "main": "Command Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  640,
+                  56
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              640,
+              41
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 20,
+              "pad": [
+                12,
+                16,
+                12,
+                16
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:stack/lg",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "Hint",
+                "type": "FRAME",
+                "size": [
+                  106,
+                  17
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                },
+                "children": [
+                  {
+                    "name": "Kbd",
+                    "type": "INSTANCE",
+                    "main": "Kbd",
+                    "variant": {
+                      "type": "default"
+                    },
+                    "size": [
+                      20,
+                      17
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        4,
+                        4,
+                        4,
+                        4
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "HUG/HUG"
+                    },
+                    "fills": [
+                      "{Color:surface/feedback/neutral/strong}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/none",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingTop": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/2xs",
+                      "paddingBottom": "Spatial:inset/2xs",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Kbd",
+                    "type": "INSTANCE",
+                    "main": "Kbd",
+                    "variant": {
+                      "type": "default"
+                    },
+                    "size": [
+                      20,
+                      17
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        4,
+                        4,
+                        4,
+                        4
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "HUG/HUG"
+                    },
+                    "fills": [
+                      "{Color:surface/feedback/neutral/strong}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/none",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingTop": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/2xs",
+                      "paddingBottom": "Spatial:inset/2xs",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Description",
+                    "type": "TEXT",
+                    "text": "Navigate",
+                    "textStyle": "body/sm/medium",
+                    "size": [
+                      50,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Hint",
+                "type": "FRAME",
+                "size": [
+                  63,
+                  17
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                },
+                "children": [
+                  {
+                    "name": "Kbd",
+                    "type": "INSTANCE",
+                    "main": "Kbd",
+                    "variant": {
+                      "type": "default"
+                    },
+                    "size": [
+                      20,
+                      17
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        4,
+                        4,
+                        4,
+                        4
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "HUG/HUG"
+                    },
+                    "fills": [
+                      "{Color:surface/feedback/neutral/strong}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/none",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingTop": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/2xs",
+                      "paddingBottom": "Spatial:inset/2xs",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Description",
+                    "type": "TEXT",
+                    "text": "Select",
+                    "textStyle": "body/sm/medium",
+                    "size": [
+                      35,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Hint",
+                "type": "FRAME",
+                "size": [
+                  68,
+                  17
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                },
+                "children": [
+                  {
+                    "name": "Kbd",
+                    "type": "INSTANCE",
+                    "main": "Kbd",
+                    "variant": {
+                      "type": "default"
+                    },
+                    "size": [
+                      28,
+                      17
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        4,
+                        4,
+                        4,
+                        4
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "HUG/HUG"
+                    },
+                    "fills": [
+                      "{Color:surface/feedback/neutral/strong}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/none",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingTop": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/2xs",
+                      "paddingBottom": "Spatial:inset/2xs",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Description",
+                    "type": "TEXT",
+                    "text": "Close",
+                    "textStyle": "body/sm/medium",
+                    "size": [
+                      32,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Command Palette",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

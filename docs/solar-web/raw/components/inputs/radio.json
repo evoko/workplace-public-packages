@@ -1,0 +1,189 @@
+{
+  "page": "↳ 🟢 Radio",
+  "pageId": "2163:3702",
+  "componentSets": [
+    {
+      "name": "Radio",
+      "id": "2203:3333",
+      "description": "Single-select from a group of 2–5 options. 8 variants: state (default, hover, focus, disabled) × checked (true, false). Used only as part of a group — a solo radio is a bug, and one option is always selected. Commit on click; a selected radio cannot be cleared by clicking it again. focus combines the shared shadow/focus/default effect style with a border/feedback/focus/strong stroke. There is no pressed state. Pair with an adjacent label, or use Option Row, which composes this with a label and optional supporting text. For 6+ options use Select; for a yes/no setting use Toggle.",
+      "docLinks": [],
+      "variantCount": 8,
+      "props": {
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "disabled",
+            "default",
+            "hover",
+            "focus"
+          ]
+        },
+        "checked": {
+          "type": "VARIANT",
+          "default": "true",
+          "options": [
+            "true",
+            "false"
+          ]
+        }
+      },
+      "defaultVariant": "state=default, checked=true",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "state=default, checked=true",
+        "type": "COMPONENT",
+        "size": [
+          18,
+          18
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 9999,
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
+        },
+        "children": [
+          {
+            "name": "Icon",
+            "type": "VECTOR",
+            "size": [
+              10,
+              10
+            ],
+            "fills": [
+              "{Color:icon/primary}"
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default, checked=true",
+          "size": [
+            18,
+            18
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover, checked=true",
+          "size": [
+            18,
+            18
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "state=disabled, checked=true",
+          "size": [
+            18,
+            18
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "state=default, checked=false",
+          "size": [
+            18,
+            18
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "state=hover, checked=false",
+          "size": [
+            18,
+            18
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "state=disabled, checked=false",
+          "size": [
+            18,
+            18
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "state=focus, checked=true",
+          "size": [
+            18,
+            18
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default"
+        },
+        {
+          "variant": "state=focus, checked=false",
+          "size": [
+            18,
+            18
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default"
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Radio",
+    "Description",
+    "Exclusive single-select from a group of 2–5 options. Always used as part of a radio group — a lone radio is a bug. One option always selected. Use when all options benefit from being visible simultaneously. For 6+ options use Select; for yes/no use Toggle; for multi-select use Checkbox.",
+    "States",
+    "state=default / hover / focus / disabled × checked=true / false\n\nHover highlights the radio and label; it does not change selection.\nFocus combines the shared shadow/focus/default effect style with a border/feedback/focus/strong stroke on the control itself — not a ring around the whole row.\nDisabled locks the selection and greys the entire row.\nThere is no pressed state. 8 variants in total.",
+    "Content",
+    "Pair with a label to the right of every radio. The full label is the click target. Optional helper text per option sits below the label, at a lighter color weight. Keep label grammar parallel across the group (\"Standard / Express / Priority\", not \"Standard / Express shipping / Use priority\").",
+    "Accessibility",
+    "Render as <input type=\"radio\"> with shared name= across the group. Wrap in fieldset + legend to label the group. Keyboard: Tab enters the group; ↑/↓ or ←/→ moves between radios (selection follows focus); Space/Enter confirms. aria-checked reflects state.",
+    "Behavior",
+    "Clicking any unselected radio selects it and deselects the previous choice. Selection cannot be cleared — one option must always be active. Pre-select the most common or safest default.",
+    "Grouping",
+    "Wrap radio options in a fieldset with a legend. Stack vertically for scannability.\nHorizontal layout only for 2–3 very short options (\"Yes / No\", \"On / Off\").",
+    "Rules",
+    "Do\n\n• Use fieldset + legend to label the group\n• Always pre-select a sensible default\n• Keep group sizes small — 2–5 options\n• Pair each radio with a clickable label",
+    "Don't\n\n• Don't use a solo radio — it's meaningless\n• Don't skip a default — radios always have one selected\n• Don't use for > ~6 options — use Select instead\n• Don't mix radios and checkboxes in the same group"
+  ],
+  "pageContext": null
+}

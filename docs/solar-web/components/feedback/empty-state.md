@@ -1,0 +1,88 @@
+# Empty State
+
+> SOLAR Web · Figma page `↳ 🟢 Empty State` (id `2202:1224`) · section `components/feedback` · raw data: [`raw/components/feedback/empty-state.json`](../../raw/components/feedback/empty-state.json)
+
+## Component: EmptyState
+
+### Props
+
+| Prop        | Type    | Options / default |
+| ----------- | ------- | ----------------- |
+| `hasAction` | boolean | default `true`    |
+
+### Anatomy (default variant)
+
+- **EmptyState** · component · column gap 16 pad 12/12/12/12 HUG/HUG · 247×144  
+  itemSpacing `stack.md` · padding `inset.sm`
+  - **Icon/None** · instance of **Icon/None** (solid=false) · FIXED/FIXED · 24×24  
+    width `icon.lg`
+  - **TextContent** · frame · column gap 12 pad 0/0/0/0 FILL/HUG · 223×32  
+    itemSpacing `stack.sm`
+    - **Title** · text `body/md/medium` "No items found" · FIXED/HUG · 161×10  
+      fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.500`
+    - **Description** · text `body/md/regular` "Try adjusting your search or filters." · FIXED/HUG · 223×10  
+      fill `color.text.secondary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400`
+  - **Button** · instance of **Button** (size=sm, prio=secondary, state=default, danger=false) · row gap 8 pad 0/8/0/8 HUG/FIXED · 64×32  
+    stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasAction
+
+### Tokens used
+
+| Role            | Tokens                                                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Strokes         | `color.action.secondary.border.default`                                                                                   |
+| Text color      | `color.text.primary`, `color.text.secondary`                                                                              |
+| Spacing         | `inset.sm`, `inset.xs`, `stack.md`, `stack.sm`                                                                            |
+| Radius          | `radius.control`                                                                                                          |
+| Border width    | `border.default`                                                                                                          |
+| Sizes           | `icon.lg`                                                                                                                 |
+| Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `type.line-height.body.md`, `type.size.body.md` |
+| Effects         | `shadow/control`                                                                                                          |
+| Text styles     | `body/md/medium`, `body/md/regular`                                                                                       |
+
+### Slots and prop-controlled layers
+
+| Layer  | Controlled property | Prop        |
+| ------ | ------------------- | ----------- |
+| Button | visible             | `hasAction` |
+
+### Composes
+
+- Button
+- Icon/None
+
+### Issues detected
+
+- Component description is empty.
+
+## Issues detected (page)
+
+- Documentation card contains Breadcrumbs boilerplate text; it does not describe this component.
+
+## Documentation card
+
+**Description**
+
+Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).
+
+**Anatomy**
+
+Breadcrumbs compose from Breadcrumb Items joined by a separator.  
+Breadcrumb Item (4 variants) type: link | current — current is the final, non-interactive item.  
+Breadcrumbs (5 variants) items: 2 | 3 | 4 | 5 | multiple — use 'multiple' when the trail exceeds 5 levels.
+
+**States**
+
+default Interactive ancestor link. Subtle text color.  
+hover Full emphasis + underline. Touch targets pad to 44px per WCAG.  
+disabled Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.
+
+**Truncation**
+
+Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.
+
+**Accessibility**
+
+Wrap the trail in `<nav aria-label="Breadcrumb">` and render as an ordered list.  
+Mark the current item with aria-current="page" — never link it.  
+Separators are decorative: aria-hidden="true".  
+Keyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss.

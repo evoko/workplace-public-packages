@@ -1,0 +1,659 @@
+{
+  "page": "↳ 🟢 Text Area",
+  "pageId": "2163:3709",
+  "componentSets": [
+    {
+      "name": "Text Area",
+      "id": "3888:128",
+      "description": "Multi-line text field for long-form input. 14 variants: size (sm, md) × state (default, hover, focused, filled, disabled, error, error-focused). NOTE: state names `focused` / `error-focused` diverge from SOLAR's locked `focus` vocab — flagged for rename. Resize handle bottom-right. Use when expected input exceeds ~2 lines (descriptions, notes, feedback). For rich formatting switch to a rich-text editor component.",
+      "docLinks": [],
+      "variantCount": 14,
+      "props": {
+        "hasLabel#7033:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasHelper#7033:15": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "mandatory#7033:30": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasCharCount#7033:45": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "label#7033:60": {
+          "type": "TEXT",
+          "default": "Label"
+        },
+        "helper#7033:75": {
+          "type": "TEXT",
+          "default": "Helper text"
+        },
+        "character count#7033:105": {
+          "type": "TEXT",
+          "default": "0/500"
+        },
+        "hasCTA#8540:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasAttachment#8540:15": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasFooter#8552:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focused",
+            "filled",
+            "disabled",
+            "error",
+            "focus"
+          ]
+        }
+      },
+      "defaultVariant": "size=md, state=default",
+      "defaultVariantNodeCount": 14,
+      "defaultVariantTree": {
+        "name": "size=md, state=default",
+        "type": "COMPONENT",
+        "size": [
+          280,
+          156
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "FRAME",
+            "size": [
+              48,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
+            },
+            "propRefs": {
+              "visible": "hasLabel#7033:0"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "label/md",
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "label#7033:60"
+                }
+              },
+              {
+                "name": "*",
+                "type": "TEXT",
+                "text": "*",
+                "textStyle": "label/md",
+                "size": [
+                  8,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "mandatory#7033:30"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Field",
+            "type": "FRAME",
+            "size": [
+              280,
+              120
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FIXED"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Enter text...",
+                "type": "TEXT",
+                "text": "Enter text...",
+                "textStyle": "body/md/regular",
+                "size": [
+                  256,
+                  96
+                ],
+                "sizing": "FILL/FILL",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Icon Button",
+                "type": "INSTANCE",
+                "main": "Icon Button",
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "primary",
+                  "state": "disabled"
+                },
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/disabled}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "propRefs": {
+                  "visible": "hasCTA#8540:0"
+                }
+              },
+              {
+                "name": "Icon Button",
+                "type": "INSTANCE",
+                "main": "Icon Button",
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "secondary",
+                  "state": "default"
+                },
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "propRefs": {
+                  "visible": "hasAttachment#8540:15"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              280,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "SPACE_BETWEEN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "propRefs": {
+              "visible": "hasFooter#8552:0"
+            },
+            "children": [
+              {
+                "name": "Helper text",
+                "type": "TEXT",
+                "text": "Helper text",
+                "textStyle": "helper/md",
+                "size": [
+                  241,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/helper/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                },
+                "propRefs": {
+                  "visible": "hasHelper#7033:15",
+                  "characters": "helper#7033:75"
+                }
+              },
+              {
+                "name": "CharCount",
+                "type": "TEXT",
+                "text": "0/500",
+                "textStyle": "body/md/regular",
+                "size": [
+                  39,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                },
+                "propRefs": {
+                  "visible": "hasCharCount#7033:45",
+                  "characters": "character count#7033:105"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=md, state=default",
+          "size": [
+            280,
+            156
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "size=sm, state=default",
+          "size": [
+            200,
+            134
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, state=hover",
+          "size": [
+            280,
+            156
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=hover",
+          "size": [
+            200,
+            134
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, state=focused",
+          "size": [
+            280,
+            156
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=focused",
+          "size": [
+            200,
+            134
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, state=filled",
+          "size": [
+            280,
+            156
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=filled",
+          "size": [
+            200,
+            134
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, state=disabled",
+          "size": [
+            280,
+            156
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}",
+            "{Color:action/secondary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=disabled",
+          "size": [
+            200,
+            134
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}",
+            "{Color:action/secondary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, state=error",
+          "size": [
+            280,
+            156
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=error",
+          "size": [
+            200,
+            134
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, state=focus",
+          "size": [
+            280,
+            156
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=focus",
+          "size": [
+            200,
+            134
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Text Area",
+    "Description",
+    "A multi-line field for longer free-form text — comments, descriptions, notes. Grows or scrolls with content. Not for single-line entry (use Text Input).",
+    "Usage",
+    "Use when input may exceed one line. Show a character counter where limits apply. Allow resize where space permits.",
+    "States",
+    "Default · Hover · Focus · Filled\nDisabled — muted, non-editable.\nError — invalid value; message + aria-invalid.",
+    "Sizes",
+    "sm   Dense forms.\nmd   Default. Comfortable multi-line entry.",
+    "Accessibility",
+    "Programmatic label; error sets aria-invalid and links a message. Announce character-limit state politely. Visible focus ring.",
+    "Rules",
+    "DO   Show a visible label\nDO   Add a counter when limited\nDO   Surface errors inline\nDO   Allow resize where useful",
+    "DON'T   Use for single-line input\nDON'T   Hide the label\nDON'T   Rely on colour alone for errors\nDON'T   Fix a tiny height for long content"
+  ],
+  "pageContext": null
+}

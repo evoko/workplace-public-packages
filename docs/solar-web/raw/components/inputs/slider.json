@@ -1,0 +1,318 @@
+{
+  "page": "↳ 🟢 Slider",
+  "pageId": "2163:3706",
+  "componentSets": [
+    {
+      "name": "Slider",
+      "id": "5475:48",
+      "description": "Single-thumb slider for selecting one value in a continuous range. 4 variants: state (default, hover, pressed, disabled). Use for visual, approximate value selection (volume, zoom, opacity) where precision is secondary to responsiveness. For exact numeric entry pair with a Number Input. For ranges use Slider Range.",
+      "docLinks": [],
+      "variantCount": 7,
+      "props": {
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "pressed",
+            "disabled",
+            "focus",
+            "filled",
+            "error"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 3,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          320,
+          20
+        ],
+        "sizing": "FIXED/FIXED",
+        "children": [
+          {
+            "name": "Track",
+            "type": "RECTANGLE",
+            "size": [
+              320,
+              4
+            ],
+            "fills": [
+              "{Color:surface/muted}"
+            ],
+            "radius": 9999,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Fill",
+            "type": "RECTANGLE",
+            "size": [
+              160,
+              4
+            ],
+            "fills": [
+              "{Color:action/primary/bg/default}"
+            ],
+            "radius": 9999,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Handle",
+            "type": "ELLIPSE",
+            "size": [
+              16,
+              16
+            ],
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:action/primary/border/default}"
+            ],
+            "strokeWeight": 2,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "strokeWeight": "Spatial:border/strong",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            320,
+            20
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover",
+          "size": [
+            320,
+            20
+          ]
+        },
+        {
+          "variant": "state=pressed",
+          "size": [
+            320,
+            20
+          ]
+        },
+        {
+          "variant": "state=disabled",
+          "size": [
+            320,
+            20
+          ]
+        },
+        {
+          "variant": "state=focus",
+          "size": [
+            320,
+            20
+          ],
+          "effect": "shadow/focus/default"
+        },
+        {
+          "variant": "state=filled",
+          "size": [
+            320,
+            20
+          ]
+        },
+        {
+          "variant": "state=error",
+          "size": [
+            320,
+            20
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slider Range",
+      "id": "5475:74",
+      "description": "Dual-thumb slider for selecting a range between two values. 4 variants: state (default, hover, pressed, disabled). Use for min/max filtering (price range, date range, size range) where both endpoints matter. Always show the current range values as labels alongside. For single-value selection use Slider.",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "pressed",
+            "disabled"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 4,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          320,
+          20
+        ],
+        "sizing": "FIXED/FIXED",
+        "children": [
+          {
+            "name": "Track",
+            "type": "RECTANGLE",
+            "size": [
+              320,
+              4
+            ],
+            "fills": [
+              "{Color:surface/muted}"
+            ],
+            "radius": 9999,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Fill",
+            "type": "RECTANGLE",
+            "size": [
+              160,
+              4
+            ],
+            "fills": [
+              "{Color:action/primary/bg/default}"
+            ],
+            "radius": 9999,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Handle",
+            "type": "ELLIPSE",
+            "size": [
+              16,
+              16
+            ],
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:action/primary/border/default}"
+            ],
+            "strokeWeight": 2,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "strokeWeight": "Spatial:border/strong",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Handle",
+            "type": "ELLIPSE",
+            "size": [
+              16,
+              16
+            ],
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:action/primary/border/default}"
+            ],
+            "strokeWeight": 2,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "strokeWeight": "Spatial:border/strong",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            320,
+            20
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover",
+          "size": [
+            320,
+            20
+          ]
+        },
+        {
+          "variant": "state=pressed",
+          "size": [
+            320,
+            20
+          ]
+        },
+        {
+          "variant": "state=disabled",
+          "size": [
+            320,
+            20
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Slider",
+    "Description",
+    "Two primitives: Slider for single-value selection along a continuous range; Slider Range for picking two endpoints of a range. Use when the visual relationship to min/max matters more than precision — volume, opacity, zoom, filter ranges. For exact numeric entry, pair with a Number Input.",
+    "When to use which",
+    "Slider              Single value in a range. One thumb.\nSlider Range   Range between two values. Two thumbs. Use for min/max filters.",
+    "States",
+    "default       resting thumb + track.\nhover         thumb grows slightly; cursor changes.\npressed       momentary grab feedback on mouse-down / touch-start.\ndisabled    opacity/disabled + not-allowed cursor.",
+    "Accessibility",
+    "role=\"slider\" with aria-valuemin / aria-valuemax / aria-valuenow / aria-valuetext (e.g., \"12:30 PM\" instead of \"45000\"). Keyboard: ←/→ step by step; Home/End to min/max; Page Up/Down by 10× step. Each thumb has its own focus ring. Slider Range: two sliders grouped; thumbs cannot cross.",
+    "Rules",
+    "Do\n\n• Show the current value(s) as a label alongside the track\n• Use aria-valuetext for human-readable values\n• Provide keyboard stepping (←/→, Home/End, Page Up/Down)\n• Snap to step — no sub-step values",
+    "Don't\n\n• Don't use for exact numeric entry — pair with Number Input\n• Don't let range thumbs cross in Slider Range\n• Don't hide the current value — slider without a label is guessing\n• Don't use for very long ranges (0–1,000,000) without step"
+  ],
+  "pageContext": null
+}

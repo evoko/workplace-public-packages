@@ -1,0 +1,1947 @@
+{
+  "page": "↳ 🟢 Avatar",
+  "pageId": "2163:3676",
+  "componentSets": [
+    {
+      "name": "Avatar",
+      "id": "2578:1831",
+      "description": "User/entity avatar showing initials, photo, or company logo. Color axis provides 9 distinct seeds for initial-based avatars; seed from a stable hash of user ID — never random. Dark toggle inverts colors for dark surfaces and inverse cards. Photo and Logo are content-aware content modes. Use in activity feeds, comment threads, user lists, presence indicators, and permissioned resources. See also: Badge / Status for small inline status dots.",
+      "docLinks": [],
+      "variantCount": 114,
+      "props": {
+        "size": {
+          "type": "VARIANT",
+          "default": "lg",
+          "options": [
+            "lg",
+            "md",
+            "sm",
+            "xs"
+          ]
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "text",
+          "options": [
+            "text",
+            "photo",
+            "logo"
+          ]
+        },
+        "color": {
+          "type": "VARIANT",
+          "default": "neutral",
+          "options": [
+            "neutral",
+            "red",
+            "orange",
+            "yellow",
+            "green",
+            "turquoise",
+            "blue",
+            "purple",
+            "pink"
+          ]
+        },
+        "Shade": {
+          "type": "VARIANT",
+          "default": "Light",
+          "options": [
+            "Logo",
+            "Dark",
+            "Light",
+            "Medium",
+            "Image"
+          ]
+        }
+      },
+      "defaultVariant": "size=lg, type=text, color=neutral, Shade=Light",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "size=lg, type=text, color=neutral, Shade=Light",
+        "type": "COMPONENT",
+        "size": [
+          44,
+          44
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Primitives:color/neutral/50}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 9999,
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
+        },
+        "children": [
+          {
+            "name": "DS",
+            "type": "TEXT",
+            "text": "DS",
+            "textStyle": "body/lg/medium",
+            "size": [
+              22,
+              12
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Primitives:color/neutral/700}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/lg",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/lg",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=lg, type=text, color=neutral, Shade=Light",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/neutral/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/700}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "size=md, type=text, color=neutral, Shade=Light",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/neutral/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/700}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=neutral, Shade=Light",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/neutral/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/700}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=neutral, Shade=Light",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/neutral/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/700}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=neutral, Shade=Dark",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/neutral/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/100}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=neutral, Shade=Medium",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/neutral/400}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/50}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=neutral, Shade=Dark",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/neutral/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/100}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=neutral, Shade=Medium",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/neutral/400}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/50}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=neutral, Shade=Dark",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/neutral/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/100}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=neutral, Shade=Medium",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/neutral/400}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/50}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=neutral, Shade=Dark",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/neutral/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/100}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=neutral, Shade=Medium",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/neutral/400}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/50}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=photo, color=neutral, Shade=Image",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "IMAGE"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "size=md, type=photo, color=neutral, Shade=Image",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "IMAGE"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=photo, color=neutral, Shade=Image",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "IMAGE"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=photo, color=neutral, Shade=Image",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "IMAGE"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "size=md, type=logo, color=neutral, Shade=Logo",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "IMAGE"
+          ]
+        },
+        {
+          "variant": "size=sm, type=logo, color=neutral, Shade=Logo",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "IMAGE"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=red, Shade=Light",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/red/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/700}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=red, Shade=Light",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/red/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/700}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=red, Shade=Light",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/red/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/700}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=red, Shade=Light",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/red/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/700}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=red, Shade=Dark",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/red/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/100}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=red, Shade=Medium",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/red/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/50}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=red, Shade=Dark",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/red/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/100}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=red, Shade=Medium",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/red/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/50}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=red, Shade=Dark",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/red/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/100}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=red, Shade=Medium",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/red/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/50}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=red, Shade=Dark",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/red/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/100}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=red, Shade=Medium",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/red/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/red/50}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=orange, Shade=Light",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/orange/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/700}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=orange, Shade=Light",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/orange/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/700}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=orange, Shade=Light",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/orange/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/700}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=orange, Shade=Light",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/orange/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/700}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=orange, Shade=Dark",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/orange/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/100}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=orange, Shade=Medium",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/orange/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/50}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=orange, Shade=Dark",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/orange/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/100}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=orange, Shade=Medium",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/orange/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/50}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=orange, Shade=Dark",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/orange/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/100}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=orange, Shade=Medium",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/orange/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/50}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=orange, Shade=Dark",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/orange/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/100}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=orange, Shade=Medium",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/orange/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/orange/50}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=yellow, Shade=Light",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/yellow/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/700}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=yellow, Shade=Light",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/yellow/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/700}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=yellow, Shade=Light",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/yellow/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/700}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=yellow, Shade=Light",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/yellow/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/700}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=yellow, Shade=Dark",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/yellow/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/100}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=yellow, Shade=Medium",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/yellow/600}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/50}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=yellow, Shade=Dark",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/yellow/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/100}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=yellow, Shade=Medium",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/yellow/600}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/50}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=yellow, Shade=Dark",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/yellow/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/100}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=yellow, Shade=Medium",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/yellow/600}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/50}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=yellow, Shade=Dark",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/yellow/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/100}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=yellow, Shade=Medium",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/yellow/600}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/yellow/50}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=green, Shade=Light",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/green/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/700}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=green, Shade=Light",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/green/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/700}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=green, Shade=Light",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/green/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/700}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=green, Shade=Light",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/green/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/700}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=green, Shade=Dark",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/green/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/100}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=green, Shade=Medium",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/green/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/50}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=green, Shade=Dark",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/green/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/100}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=green, Shade=Medium",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/green/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/50}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=green, Shade=Dark",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/green/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/100}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=green, Shade=Medium",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/green/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/50}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=green, Shade=Dark",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/green/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/100}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=green, Shade=Medium",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/green/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/green/50}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=turquoise, Shade=Light",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/700}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=turquoise, Shade=Light",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/700}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=turquoise, Shade=Light",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/700}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=turquoise, Shade=Light",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/700}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=turquoise, Shade=Dark",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/100}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=turquoise, Shade=Medium",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/50}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=turquoise, Shade=Dark",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/100}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=turquoise, Shade=Medium",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/50}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=turquoise, Shade=Dark",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/100}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=turquoise, Shade=Medium",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/50}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=turquoise, Shade=Dark",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/100}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=turquoise, Shade=Medium",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/turquoise/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/turquoise/50}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=blue, Shade=Light",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/blue/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/700}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=blue, Shade=Light",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/blue/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/700}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=blue, Shade=Light",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/blue/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/700}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=blue, Shade=Light",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/blue/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/700}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=blue, Shade=Dark",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/blue/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/100}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=blue, Shade=Medium",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/blue/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/50}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=blue, Shade=Dark",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/blue/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/100}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=blue, Shade=Medium",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/blue/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/50}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=blue, Shade=Dark",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/blue/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/100}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=blue, Shade=Medium",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/blue/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/50}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=blue, Shade=Dark",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/blue/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/100}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=blue, Shade=Medium",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/blue/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/blue/50}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=purple, Shade=Light",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/purple/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/700}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=purple, Shade=Light",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/purple/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/700}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=purple, Shade=Light",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/purple/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/700}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=purple, Shade=Light",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/purple/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/700}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=purple, Shade=Dark",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/purple/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/100}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=purple, Shade=Medium",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/purple/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/50}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=purple, Shade=Dark",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/purple/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/100}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=purple, Shade=Medium",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/purple/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/50}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=purple, Shade=Dark",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/purple/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/100}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=purple, Shade=Medium",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/purple/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/50}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=purple, Shade=Dark",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/purple/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/100}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=purple, Shade=Medium",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/purple/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/purple/50}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=pink, Shade=Light",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/pink/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/700}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=pink, Shade=Light",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/pink/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/700}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=pink, Shade=Light",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/pink/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/700}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=pink, Shade=Light",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/pink/50}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/700}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=pink, Shade=Dark",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/pink/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/100}"
+          ]
+        },
+        {
+          "variant": "size=lg, type=text, color=pink, Shade=Medium",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/pink/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/50}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=pink, Shade=Dark",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/pink/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/100}"
+          ]
+        },
+        {
+          "variant": "size=md, type=text, color=pink, Shade=Medium",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Primitives:color/pink/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/50}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=pink, Shade=Dark",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/pink/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/100}"
+          ]
+        },
+        {
+          "variant": "size=sm, type=text, color=pink, Shade=Medium",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Primitives:color/pink/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/50}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=pink, Shade=Dark",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/pink/800}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/100}"
+          ]
+        },
+        {
+          "variant": "size=xs, type=text, color=pink, Shade=Medium",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Primitives:color/pink/500}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/pink/50}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Avatar",
+    "Description",
+    "User/entity avatar rendered as initials, photo, or logo. Color axis assigns a deterministic seed from the user's name.",
+    "Modes",
+    "Initials   Default. 1–2 uppercase characters. Color seeded from user ID.\nPhoto      Uploaded image. Cropped to circle.\nLogo       Company/team mark. Centered, not cropped.",
+    "Dark",
+    "Toggle Dark on when rendering on inverted surfaces (dark sidebars, photo headers). Swaps surface and text tokens for contrast.",
+    "Color",
+    "Neutral, Red, Orange, Yellow, Green, Turquoise, Blue, Purple, Pink.\nSeed from a stable hash of user ID — never random per render.",
+    "Labels & Content",
+    "Initials: 1–2 characters, uppercase (first letter of given name + family name).\nStrip diacritics; fall back to first two letters of display name.\nAlways pair with aria-label containing the full user/entity name.",
+    "Rules",
+    "DO   Seed color from a stable user ID hash\nDO   Use 1–2 uppercase initials\nDO   Provide aria-label with full name\nDO   Toggle Dark on inverted surfaces",
+    "DON'T   Randomize color on each render\nDON'T   Stretch non-square photos\nDON'T   Use initials longer than 2 characters\nDON'T   Rely on color alone to distinguish users"
+  ],
+  "pageContext": null
+}

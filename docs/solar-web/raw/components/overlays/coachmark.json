@@ -1,0 +1,410 @@
+{
+  "page": "↳ 🟠 Coachmark",
+  "pageId": "10785:28",
+  "componentSets": [
+    {
+      "name": "Node end",
+      "id": "10802:2282",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "State": {
+          "type": "VARIANT",
+          "default": "01",
+          "options": [
+            "01",
+            "02"
+          ]
+        }
+      },
+      "defaultVariant": "State=01",
+      "defaultVariantNodeCount": 2,
+      "defaultVariantTree": {
+        "name": "State=01",
+        "type": "COMPONENT",
+        "size": [
+          12,
+          12
+        ],
+        "sizing": "FIXED/FIXED",
+        "children": [
+          {
+            "name": "Ellipse 5",
+            "type": "ELLIPSE",
+            "size": [
+              6,
+              6
+            ],
+            "fills": [
+              "{Legacy Palette:Mid Blue}"
+            ],
+            "opacity": 0.20000000298023224
+          },
+          {
+            "name": "Ellipse 3",
+            "type": "ELLIPSE",
+            "size": [
+              6,
+              6
+            ],
+            "fills": [
+              "{Legacy Palette:Mid Blue}"
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "State=01",
+          "size": [
+            12,
+            12
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "State=02",
+          "size": [
+            12,
+            12
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Coachmark",
+      "id": "10802:2269",
+      "description": "",
+      "props": {},
+      "nodeCount": 29,
+      "tree": {
+        "name": "Coachmark",
+        "type": "COMPONENT",
+        "size": [
+          233,
+          194
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 16,
+          "pad": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Sematic:Background/background_sidebar}"
+        ],
+        "radius": 8,
+        "children": [
+          {
+            "name": "Frame 20069",
+            "type": "FRAME",
+            "size": [
+              201,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MAX/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "Icon 16",
+                "type": "INSTANCE",
+                "main": "Icon 16",
+                "variant": {
+                  "Type": "Close"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Label",
+                "size": [
+                  39,
+                  10
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Sematic:Text/text_primaryAction}"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Choose how you want to start your design. You can create a design from scratch, import an existing file, or start from a template.",
+            "type": "TEXT",
+            "text": "Choose how you want to start your design. You can create a design from scratch, ",
+            "size": [
+              201,
+              63
+            ],
+            "sizing": "FIXED/HUG",
+            "fills": [
+              "{Sematic:Text/text_primaryAction}"
+            ]
+          },
+          {
+            "name": "1 / 6 steps",
+            "type": "TEXT",
+            "text": "1 / 6 steps",
+            "size": [
+              201,
+              9
+            ],
+            "sizing": "FIXED/HUG",
+            "fills": [
+              "{Sematic:Text/text_secondary}"
+            ]
+          },
+          {
+            "name": "Frame 20068",
+            "type": "FRAME",
+            "size": [
+              201,
+              26
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "Buttons Desktop",
+                "type": "INSTANCE",
+                "main": "Buttons Desktop",
+                "variant": {
+                  "Type": "Small",
+                  "Priority": "Secondary",
+                  "State": "Default",
+                  "Critical": "False",
+                  "Disabled": "False"
+                },
+                "size": [
+                  97,
+                  26
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Sematic:Action/action_secondary}"
+                ],
+                "strokes": [
+                  "{Sematic:Divider/divider_secondary}"
+                ],
+                "strokeWeight": 1,
+                "radius": 4,
+                "effectStyle": "Shadow/Text Input",
+                "opacity": 0.30000001192092896,
+                "vars": {
+                  "itemSpacing": "Legacy Spatial:Spacing/1",
+                  "paddingLeft": "Legacy Spatial:Spacing/1,5",
+                  "paddingTop": "Legacy Spatial:Spacing/1,5",
+                  "paddingRight": "Legacy Spatial:Spacing/1,5",
+                  "paddingBottom": "Legacy Spatial:Spacing/1,5",
+                  "topLeftRadius": "Legacy Spatial:Corner radius/Button Small",
+                  "topRightRadius": "Legacy Spatial:Corner radius/Button Small",
+                  "bottomLeftRadius": "Legacy Spatial:Corner radius/Button Small",
+                  "bottomRightRadius": "Legacy Spatial:Corner radius/Button Small"
+                }
+              },
+              {
+                "name": "Buttons Desktop",
+                "type": "INSTANCE",
+                "main": "Buttons Desktop",
+                "variant": {
+                  "Type": "Small",
+                  "Priority": "Secondary",
+                  "State": "Default",
+                  "Critical": "False",
+                  "Disabled": "False"
+                },
+                "size": [
+                  97,
+                  26
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Sematic:Action/action_secondary}"
+                ],
+                "strokes": [
+                  "{Sematic:Divider/divider_secondary}"
+                ],
+                "strokeWeight": 1,
+                "radius": 4,
+                "effectStyle": "Shadow/Text Input",
+                "vars": {
+                  "itemSpacing": "Legacy Spatial:Spacing/1",
+                  "paddingLeft": "Legacy Spatial:Spacing/1,5",
+                  "paddingTop": "Legacy Spatial:Spacing/1,5",
+                  "paddingRight": "Legacy Spatial:Spacing/1,5",
+                  "paddingBottom": "Legacy Spatial:Spacing/1,5",
+                  "topLeftRadius": "Legacy Spatial:Corner radius/Button Small",
+                  "topRightRadius": "Legacy Spatial:Corner radius/Button Small",
+                  "bottomLeftRadius": "Legacy Spatial:Corner radius/Button Small",
+                  "bottomRightRadius": "Legacy Spatial:Corner radius/Button Small"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [
+    {
+      "name": "Tutorial node",
+      "type": "FRAME",
+      "id": "10802:2309",
+      "size": [
+        140,
+        6
+      ],
+      "census": {
+        "Node end": 1
+      },
+      "tree": {
+        "name": "Tutorial node",
+        "type": "FRAME",
+        "size": [
+          140,
+          6
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 122,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "children": [
+          {
+            "name": "Vector",
+            "type": "VECTOR",
+            "size": [
+              140,
+              0
+            ],
+            "sizing": "FILL/FIXED",
+            "strokes": [
+              "{Legacy Palette:Mid Blue}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8
+          },
+          {
+            "name": "Ellipse",
+            "type": "ELLIPSE",
+            "size": [
+              6,
+              6
+            ],
+            "sizing": "FIXED/FIXED",
+            "fills": [
+              "{Legacy Palette:Mid Blue}"
+            ]
+          },
+          {
+            "name": "Node end",
+            "type": "INSTANCE",
+            "main": "Node end",
+            "variant": {
+              "State": "02"
+            },
+            "size": [
+              12,
+              12
+            ],
+            "sizing": "FIXED/FIXED"
+          }
+        ]
+      }
+    }
+  ],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Coachmark",
+    "Description",
+    "Anchored step card that walks a user through a guided product tour. It points at a target element, explains it in a sentence or two, and moves the user forward. Use it for first-run tours, feature announcements tied to a specific control, and progressive disclosure of a multi-step workflow.",
+    "Anatomy",
+    "Header      Centred title + close Icon Button (tertiary, sm), balanced by a Spacer.\nBody         One idea per step, ~25 words maximum, centred.\nStep          Progress counter, helper/sm, text secondary.\nActions     Button Group (regular, 8px gap) — two equal-width secondary Buttons.\nTip            Directional pointer aimed at the target element.",
+    "Variants",
+    "placement = top (default) | bottom | left | right\n\nThe tip points from the named side. Coachmark has no interactive states of its own — Back and Next carry Button states, the close control carries Icon Button states.\n\nThe card pins the Color collection to Dark mode, so it reads as a dark island above the app with every value still a bound token. Known issue: the close control paints a box because action/tertiary/bg/default is opaque in both modes (Variable Audit §16 / BACKLOG TOK-1). Left bound on purpose so it self-heals — do not override the fill.",
+    "Usage",
+    "Do — keep tours to 3–6 steps, always leave an escape (close dismisses the whole tour), disable Back on step 1, and relabel Next to \"Done\" on the final step.\nDon't — use for hover hints (Tooltip), on-demand detail (Popover), or anything blocking (Dialog). Never make a coachmark the only route to the feature it describes.",
+    "Accessibility",
+    "Role      role=\"dialog\" aria-modal=\"false\", aria-labelledby on the title.\nFocus    Move focus to the card on every step change; keep Tab order inside it.\nSR         Announce step changes via aria-live=\"polite\"; counter reads \"Step 1 of 6\".\nKeys      Esc dismisses the tour. Back/Next are real buttons, not divs.\nContrast Surface, text and tip all inherit bound SOLAR tokens — no raw hex.",
+    "Rules",
+    "DO   Anchor to a visible element and point the tip at it\nDO   Keep the tour to 3–6 steps, one idea per step\nDO   Disable Back on step 1 and label the last action \"Done\"\nDO   Let Esc and the close control exit the whole tour",
+    "DON'T   Use a Coachmark for a hover hint — that's Tooltip\nDON'T   Block the UI behind a scrim — a tour is not a Dialog\nDON'T   Cover the element the step is describing\nDON'T   Make a coachmark the only route to a feature"
+  ],
+  "pageContext": null
+}

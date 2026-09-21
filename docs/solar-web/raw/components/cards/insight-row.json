@@ -1,0 +1,534 @@
+{
+  "page": "↳ 🟢 Insight Row",
+  "pageId": "6902:3",
+  "componentSets": [
+    {
+      "name": "Insight Row",
+      "id": "6905:61",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 10,
+      "props": {
+        "Title#6905:0": {
+          "type": "TEXT",
+          "default": "Title"
+        },
+        "Meta#6905:11": {
+          "type": "TEXT",
+          "default": "Detail · Detail · Detail"
+        },
+        "showAction#6905:22": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "action#6905:33": {
+          "type": "INSTANCE_SWAP",
+          "default": "2087:2569"
+        },
+        "severity": {
+          "type": "VARIANT",
+          "default": "success",
+          "options": [
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "ghost"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover"
+          ]
+        }
+      },
+      "defaultVariant": "severity=success, state=default",
+      "defaultVariantNodeCount": 17,
+      "defaultVariantTree": {
+        "name": "severity=success, state=default",
+        "type": "COMPONENT",
+        "size": [
+          480,
+          64
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/raised",
+        "vars": {
+          "paddingLeft": "Spatial:inset/2xs",
+          "paddingTop": "Spatial:inset/2xs",
+          "paddingRight": "Spatial:inset/2xs",
+          "paddingBottom": "Spatial:inset/2xs",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Severity Bar",
+            "type": "RECTANGLE",
+            "size": [
+              4,
+              56
+            ],
+            "sizing": "FIXED/FILL",
+            "fills": [
+              "{Color:surface/feedback/success/strong}"
+            ],
+            "radius": 9999,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Content",
+            "type": "FRAME",
+            "size": [
+              468,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 16,
+              "pad": [
+                12,
+                16,
+                12,
+                16
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FILL"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/md",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Body",
+                "type": "FRAME",
+                "size": [
+                  356,
+                  27
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Title",
+                    "textStyle": "body/md/medium",
+                    "size": [
+                      356,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    },
+                    "propRefs": {
+                      "characters": "Title#6905:0"
+                    }
+                  },
+                  {
+                    "name": "Meta",
+                    "type": "TEXT",
+                    "text": "Detail · Detail · Detail",
+                    "textStyle": "body/sm/regular",
+                    "size": [
+                      356,
+                      9
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    },
+                    "propRefs": {
+                      "characters": "Meta#6905:11"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Action",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "sm",
+                  "prio": "secondary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  64,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "propRefs": {
+                  "visible": "showAction#6905:22",
+                  "mainComponent": "action#6905:33"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "severity=success, state=default",
+          "size": [
+            480,
+            64
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "severity=danger, state=default",
+          "size": [
+            480,
+            64
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "severity=warning, state=default",
+          "size": [
+            480,
+            64
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "severity=info, state=default",
+          "size": [
+            480,
+            64
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "severity=ghost, state=default",
+          "size": [
+            480,
+            64
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Action",
+            "Counter",
+            "Icon/None",
+            "Meta",
+            "Spinner",
+            "Title"
+          ]
+        },
+        {
+          "variant": "severity=success, state=hover",
+          "size": [
+            480,
+            64
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "severity=danger, state=hover",
+          "size": [
+            480,
+            64
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "severity=warning, state=hover",
+          "size": [
+            480,
+            64
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "severity=info, state=hover",
+          "size": [
+            480,
+            64
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "severity=ghost, state=hover",
+          "size": [
+            480,
+            64
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Action",
+            "Counter",
+            "Icon/None",
+            "Meta",
+            "Spinner",
+            "Title"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Insight Row",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,272 @@
+{
+  "page": "↳ 🟢 Section Nav Item",
+  "pageId": "8108:2",
+  "componentSets": [
+    {
+      "name": "Section Nav Item",
+      "id": "8109:19",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 5,
+      "props": {
+        "label#8083:0": {
+          "type": "TEXT",
+          "default": "Label"
+        },
+        "icon#8119:0": {
+          "type": "INSTANCE_SWAP",
+          "default": "10148:444"
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus",
+            "selected",
+            "disabled"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 3,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          220,
+          32
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            0,
+            8,
+            0,
+            8
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "HUG/FIXED"
+        },
+        "radius": 6,
+        "vars": {
+          "itemSpacing": "Spatial:inset/xs",
+          "paddingLeft": "Spatial:inset/xs",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/xs",
+          "paddingBottom": "Spatial:inset/none",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Icon/None",
+            "type": "INSTANCE",
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            },
+            "propRefs": {
+              "mainComponent": "icon#8119:0"
+            }
+          },
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "Label",
+            "textStyle": "label/md",
+            "size": [
+              180,
+              10
+            ],
+            "sizing": "FIXED/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            },
+            "propRefs": {
+              "characters": "label#8083:0"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            220,
+            32
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover",
+          "size": [
+            220,
+            32
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=focus",
+          "size": [
+            220,
+            32
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "state=selected",
+          "size": [
+            220,
+            32
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=disabled",
+          "size": [
+            220,
+            32
+          ],
+          "opacity": 0.4000000059604645,
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Section Nav Group Header",
+      "id": "8044:7",
+      "description": "",
+      "props": {
+        "label#8044:0": {
+          "type": "TEXT",
+          "default": "Label"
+        }
+      },
+      "nodeCount": 1,
+      "tree": {
+        "name": "Section Nav Group Header",
+        "type": "COMPONENT",
+        "size": [
+          220,
+          32
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            8,
+            0,
+            8
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "vars": {
+          "paddingLeft": "Spatial:inset/xs",
+          "paddingRight": "Spatial:inset/xs"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "Label",
+            "textStyle": "title/2xs",
+            "size": [
+              204,
+              9
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/tertiary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/title/2xs",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/title/2xs",
+              "fontStyle": "Primitives:type/font-weight/500"
+            },
+            "propRefs": {
+              "characters": "label#8044:0"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Section Nav Item",
+    "Description",
+    "A single item in a vertical settings / section nav rail. Selectable, indicates the current section. Part of the Section Nav pattern — not a top-level app nav item.",
+    "Anatomy",
+    "Optional leading icon · label · optional trailing count / badge · active indicator (left bar or surface tint).",
+    "Variants",
+    "with / without icon; with / without trailing badge. Density comfortable or compact.",
+    "States",
+    "default, hover, focus, disabled, selected. selected maps to aria-current=page and uses tint + indicator, not colour alone.",
+    "Accessibility",
+    "Render as a link or button in a nav list. Mark the current item with aria-current=page. Focus ring visible; hit area ≥44 (comfortable). Label ≥4.5:1.",
+    "Rules",
+    "Mark current with aria-current\nKeep labels short\nUse tint + indicator for selected\nGroup under a heading",
+    "Use for primary app nav\nRely on colour alone for selected\nTruncate mid-word\nNest more than one level"
+  ],
+  "pageContext": null
+}

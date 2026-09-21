@@ -1,0 +1,3 @@
+# Generated raw extractions are written by scripts and not reflowed by Prettier.
+docs/solar-web/raw/**/*.json
+docs/solar/raw/**/*.json

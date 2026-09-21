@@ -1,0 +1,7305 @@
+{
+  "page": "Typography",
+  "pageId": "763:51711",
+  "section": "documentation",
+  "slug": "typography",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Visual Language\nTypography"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Typography Principles",
+      "subtitle": null,
+      "x": 2880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Typography in SOLAR is not decorative. It communicates hierarchy, meaning, and readability, and must be applied through tokens — not ad-hoc styles. If a typographic choice cannot be justified by purpose or structure, it does not belong."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Hierarchy before style"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Context-aware typography"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Legibility over aesthetics"
+        },
+        {
+          "t": "p",
+          "text": "Typography is primarily a tool for hierarchy. Headings, body text, labels, and metadata must be clearly distinguishable through size, weight, and spacing. Visual style should never compromise clarity of structure or scanning behavior.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Typography must adapt to context. Text styles are designed with their usage in mind—dense data views, long-form reading, controls, or glanceable UI. Tokens define these roles so typography remains appropriate across platforms, layouts, and environments.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Readability and legibility take precedence over visual expression. Font size, line height, weight, and contrast must support comfortable reading at typical viewing distances and lighting conditions. If a typographic choice reduces clarity, it does not belong in the system.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Brand Fonts",
+      "subtitle": null,
+      "x": 4880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "Misc/Caption"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Gotham and Montserrat are SOLAR’s brand fonts. They express Biamp’s personality and are primarily used in brand-led contexts where identity and tone matter more than density or long-form readability."
+        },
+        {
+          "t": "p",
+          "text": "Brand fonts are designed to create recognition and emotional consistency across marketing and brand-facing touchpoints, not to solve complex UI or data-heavy scenarios.\n\nUse brand fonts for:\nMarketing and brand websites\nCampaigns, presentations, and storytelling content\nHigh-level product surfaces where branding is the primary goal\nLarge headings and short-form copy\n\nAvoid using brand fonts for:\nDense UI, tables, or data-heavy views\nLong-form reading inside applications\nSmall text sizes or complex interaction-heavy layouts",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Gotham",
+          "style": "128/500"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "Misc/Caption"
+        },
+        {
+          "t": "p",
+          "text": "Montserrat",
+          "style": "128/600"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "App Fonts",
+      "subtitle": null,
+      "x": 6880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "Misc/Caption"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Inter and Open Sans are SOLAR’s application fonts. They are optimized for legibility, clarity, and consistency across platforms, devices, and resolutions. App fonts prioritize usability over expression and are designed to perform well in real product environments."
+        },
+        {
+          "t": "p",
+          "text": "These fonts are the default choice for interfaces where users read, scan, and interact for extended periods of time.\n\nUse app fonts for:\nProduct interfaces and applications\nForms, tables, settings, and dashboards\nLong-form reading and dense information\nResponsive and cross-platform UI\n\nWhy app fonts:\nHigh legibility at small sizes\nStrong hinting and screen optimization\nBroad language and symbol support\nReliable rendering across platforms",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Inter",
+          "style": "128/500"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "Misc/Caption"
+        },
+        {
+          "t": "p",
+          "text": "Open Sans",
+          "style": "128/600"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Code Fonts",
+      "subtitle": null,
+      "x": 8880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "Misc/Caption"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "IBM Plex Mono and Roboto Mono are SOLAR’s code fonts. They are optimized for precision, character distinction, and alignment when displaying structured and technical content. Code fonts prioritize clarity of values over visual expression and are designed to support implementation, documentation, and developer workflows."
+        },
+        {
+          "t": "p",
+          "text": "These fonts are the default choice for environments where tokens, variables, and code need to be displayed accurately and consistently.\n\nUse code fonts for:\nDesign tokens and variable names\nHex, OKLCH, and numeric values\nCSS, JSON, and code snippets\nTechnical documentation\nTabular system data\n\nWhy code fonts:\nMonospaced alignment for structured content\nClear differentiation between similar characters (1 / l / I / 0 / O)\nImproved readability of numeric and symbolic data\nConsistent rendering across technical environment",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "IBM Plex Mono",
+          "style": "104/500"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "Misc/Caption"
+        },
+        {
+          "t": "p",
+          "text": "Roboto Mono",
+          "style": "104/500"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Semantic Typography",
+      "subtitle": null,
+      "x": 10880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "Table Container"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Semantic typography styles are defined in SOLAR Web and SOLAR Native rather than in SOLAR Foundations. They translate typography tokens into meaningful interface roles such as titles, body text, labels, and helper text."
+        },
+        {
+          "t": "p",
+          "text": "SOLAR Foundations defines the primitive typography tokens — font families, scale, weights, spacing, and other atomic values. SOLAR Web, SOLAR Native, and domain libraries use these primitives to build semantic text styles that reflect how typography is used in real interfaces.\n\nEach library defines its own semantic styles to match its component patterns and interaction contexts. All styles reference the same foundational tokens, ensuring typographic consistency across the entire SOLAR ecosystem while allowing platform- and domain-specific implementation.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Text Styles and Tokens",
+      "subtitle": null,
+      "x": 12880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "In SOLAR, typography is structured in two layers: tokens define the system, and styles apply the system. This separation ensures scalability, responsive behavior (Desktop/Mobile), and alignment between design and engineering."
+        },
+        {
+          "t": "p",
+          "text": "Typography tokens are atomic variables:\nScale (rem-like sizes)\nFont family\nFont weight\nLetter spacing (%)\n\nTokens define the rules.\n\nTypography styles combine these tokens into structured patterns such as:\ndesktop.display.lg (*.md, *.sm, *x-sm)\nmobile.title.lg (*.md, *.sm, *x-sm)\ndesktop.body.md.regular (*.medium, *.semibold, *.bold)\n\nEach size (lg, md, sm) references different scale tokens while preserving consistent weight and spacing logic.\n\nTokens create consistency.\nStyles + sizes create hierarchy and flexibility.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-24 at 13.42.22 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Font Weight",
+      "subtitle": null,
+      "x": 14880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Font weight in SOLAR is defined using standardized numeric values that map to human-readable names. This ensures clarity in design, consistency in implementation, and alignment with web standards."
+        },
+        {
+          "t": "p",
+          "text": "SOLAR uses the standard CSS font-weight scale from 100 to 900.\nEach numeric value corresponds to a commonly recognized weight name:\n100 — Thin\n200 — Extra Light\n300 — Light\n400 — Regular\n500 — Medium\n600 — Semibold\n700 — Bold\n800 — Extra Bold\n900 — Black\n\nThe numbers are the technical reference used in code (CSS font-weight).\nThe names are the semantic reference used in design discussions and documentation.\n\nIn SOLAR:\nTokens reference the numeric value (for engineering accuracy)\nStyles reference the token (for design consistency)\n\nThis keeps typography aligned across Figma, tokens, and frontend implementation.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-23 at 10.39.00 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Text Color",
+      "subtitle": null,
+      "x": 16880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Text color in SOLAR is applied through semantic text tokens that map to different palette steps in Light and Dark mode. This keeps meaning consistent (primary, secondary, danger, etc.) while automatically adapting contrast per theme."
+        },
+        {
+          "t": "p",
+          "text": "Font color is never set as raw HEX. Text styles reference color.text.* tokens, which map like this:\ncolor.text.primary → Light: color/neutral/900 · Dark: color/neutral/50\ncolor.text.secondary → Light: color/neutral/500 · Dark: color/neutral/500\ncolor.text.tertiary → Light: color/neutral/300 · Dark: color/neutral/700\ncolor.text.disabled → Light: color/mono/black-alpha-40 · Dark: color/mono/white-alpha-40\ncolor.text.inverse → Light: color/neutral/50 · Dark: color/neutral/900\n\nFeedback text:\ncolor.text.success → Light: color/green/700 · Dark: color/green/300\ncolor.text.warning → Light: color/orange/700 · Dark: color/orange/300\ncolor.text.danger → Light: color/red/700 · Dark: color/red/300\ncolor.text.info → Light: color/blue/700 · Dark: color/blue/300\n\nRule: Apply semantic text tokens (primary/secondary/etc.) — theme mapping handles the rest.",
+          "style": "16/400"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-23 at 10.43.20 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Display",
+      "subtitle": null,
+      "x": 18880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Display styles are used for high-impact, large-scale text that establishes strong visual presence and brand expression."
+        },
+        {
+          "t": "p",
+          "text": "Display is used for:\nHero sections\nMajor product moments\nLarge marketing statements\n\nCharacteristics:\nLargest scale tokens\nStrong weight contrast (often Semibold or Bold)\nTight, controlled letter spacing\nOptimized separately for Desktop and Mobile\n\nDisplay creates emphasis and first impression.",
+          "style": "16/400"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 11.21.46 1"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 11.22.31 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Title",
+      "subtitle": null,
+      "x": 20880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Title styles structure content and define hierarchy within interfaces. They guide users through sections, panels, and grouped information."
+        },
+        {
+          "t": "p",
+          "text": "Title is used for:\nSection headers\nCard titles\nDialog headers\nStructured page hierarchy\n\nCharacteristics:\nMid-to-large scale tokens\nMedium or Semibold weight\nBalanced letter spacing for readability\nResponsive Desktop/Mobile variants\n\nTitles create structure and navigational clarity.",
+          "style": "16/400"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 12.03.27 1"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 14.03.27 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Body",
+      "subtitle": null,
+      "x": 22880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Body styles are designed for readability and sustained interaction. They form the foundation of most product interfaces."
+        },
+        {
+          "t": "p",
+          "text": "Body is used for:\nParagraphs and descriptions\nForm labels and helper text\nTable content\nSystem messages\n\nCharacteristics:\nModerate scale tokens\nRegular or Medium weight\nComfortable line-height\nOptimized for long-form readability\n\nBody prioritizes clarity, accessibility, and functional communication.",
+          "style": "16/400"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 14.04.58 1"
+        },
+        {
+          "t": "image",
+          "name": "Image"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Label",
+      "subtitle": null,
+      "x": 24880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Label styles are designed for concise, contextual identification. They support inputs, controls, and UI elements where clarity and hierarchy matter more than volume."
+        },
+        {
+          "t": "p",
+          "text": "Label is used for:\nForm field labels\nControl identifiers (toggles, checkboxes, radios)\nSection micro-headings inside components\nCompact UI descriptors\n\nCharacteristics:\nSlightly smaller than body scale\nMedium weight for clarity\nTighter line-height\nOptimized for quick scanning\n\nLabel prioritizes precision, hierarchy, and structural clarity.",
+          "style": "16/400"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 14.11.06 1"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 14.11.38 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Helper",
+      "subtitle": null,
+      "x": 26880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Helper styles are designed for supportive guidance. They provide contextual information that enhances understanding without competing for attention."
+        },
+        {
+          "t": "p",
+          "text": "Helper is used for:\nForm assistance text\nValidation hints (non-critical)\nSecondary explanatory copy\nSupplementary UI guidance\n\nCharacteristics:\nSmall scale tokens\nMedium weight\nComfortable but compact line-height\nLower visual emphasis than body\n\nHelper prioritizes subtlety, clarity, and supportive communication.",
+          "style": "16/400"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 14.15.30 1"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 14.16.19 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Code",
+      "subtitle": null,
+      "x": 28880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Code styles are designed for technical precision. They distinguish system values, identifiers, and machine-readable content from standard interface text."
+        },
+        {
+          "t": "p",
+          "text": "Code is used for:\nInline code references\nTechnical identifiers and tokens\nSystem values and variables\nDeveloper-facing UI contexts\n\nCharacteristics:\nMonospace typeface\nConsistent character width\nClear differentiation from body text\nOptimized for legibility of symbols and numbers\n\nCode prioritizes accuracy, distinction, and technical clarity.",
+          "style": "16/400"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 14.17.50 1"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 14.19.09 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Applying Text Styles",
+      "subtitle": null,
+      "x": 30880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 12.02.30 1"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Text styles in SOLAR must always be applied through predefined styles — never constructed manually. This ensures consistency, accessibility, and alignment between design and engineering."
+        },
+        {
+          "t": "p",
+          "text": "When applying typography:\nAlways use a SOLAR text style (Display, Title, Body, Label, Code)\nDo not override font size, weight, or letter spacing locally\nDo not apply raw color values — use semantic text color tokens\nUse Desktop or Mobile variants as defined\n\nText styles already combine:\nScale tokens\nFont family tokens\nWeight tokens\nLetter-spacing tokens\n\nIf a use case doesn’t fit an existing style, propose a system update — do not create a one-off.\n\nConsistency in application protects the integrity of the system.",
+          "style": "16/400"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Golden Rules",
+      "subtitle": null,
+      "x": 32880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Always use Text Styles — never raw values"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Respect hierarchy before adding emphasis"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Optimize for readability, not density"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Use Label and Helper intentionally"
+        },
+        {
+          "t": "p",
+          "text": "Text styles are connected to semantic variables and primitives. Avoid manual font sizes, weights, or line-heights in components.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Use scale and weight first. Avoid stacking multiple emphasis methods (bold + color + uppercase + tracking).",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Body and helper text must prioritize comfort over compression. Maintain healthy line-height ratios (≈1.25–1.4 depending on size).",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Label = input context. Helper = supportive or validation guidance. Do not use them as smaller body substitutes.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Avoid Display overuse"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Maintain accessible contrast"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Keep spacing proportional"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Code styles are functional, not decorative"
+        },
+        {
+          "t": "p",
+          "text": "Display styles are for anchoring hierarchy (hero moments, major headings). If Display appears repeatedly in UI layouts, it is being misused.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Text tokens must meet WCAG contrast requirements in both light and dark modes. Never override text color outside semantic tokens.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Vertical rhythm (stack tokens) must support text scale.\nSpacing should feel structurally aligned with typography scale.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Use monospace only for technical meaning (IDs, values, snippets). Never mix code typography into UI copy.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Typography / Desktop",
+      "title": null,
+      "subtitle": null,
+      "x": 2880,
+      "y": 1772,
+      "w": 1680,
+      "h": 5536,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Display"
+        },
+        {
+          "t": "p",
+          "text": "Use display typography only when you need to create strong emphasis or anchor attention at the top of a hierarchy. It is intended for hero headings and key moments, not for navigation, dense layouts, or repeated UI patterns. If display type appears more than occasionally, it is being overused.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "display.lg",
+          "style": "display/lg"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.display.lg",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Gotham / Montserrat",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "3.5rem / 56px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "4.5rem / 72px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Hero headlines",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "display.md",
+          "style": "display/md"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.display.md",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Gotham / Montserrat",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2.5rem / 40px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "3.25rem / 52px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Section headers",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "display.sm",
+          "style": "display/sm"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.display.sm",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Gotham / Montserrat",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2rem / 32px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2.5rem / 40px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Supporting display text",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "display.xs.medium",
+          "style": "display/xs/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.display.xs.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Gotham / Montserrat",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact display",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "display.xs.semibold",
+          "style": "display/xs/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.display.xs.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Gotham / Montserrat",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Semibold / 600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact display",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Title"
+        },
+        {
+          "t": "p",
+          "text": "Use title typography to establish clear structure within a page or section. It is intended for headings that introduce content blocks and guide scanning, not for decoration or emphasis. Titles should create hierarchy without competing with display typography.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "title.lg",
+          "style": "title/lg"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.title.lg",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2.5rem / 40px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "3rem / 48px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Page titles",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "title.md",
+          "style": "title/md"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.title.md",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2rem / 32px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2.5rem / 40px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Section titles",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "title.sm",
+          "style": "title/sm"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.title.sm",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.75rem / 28px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Card titles",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "title.xs",
+          "style": "title/xs"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.title.xs",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact section headers",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "title.2xs",
+          "style": "title/2xs"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.title.2xs",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.08em / 8%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Overline / eyebrow label",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Body"
+        },
+        {
+          "t": "p",
+          "text": "Use body typography for all long-form and functional content. It is optimized for readability, density, and sustained interaction across contexts such as forms, tables, and content-heavy views. If users need to read it, scan it, or rely on it, body text is the correct choice.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "body.lg.regular",
+          "style": "body/lg/regular"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.lg.regular",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Default paragraph",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.lg.medium",
+          "style": "body/lg/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.lg.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.lg.semibold",
+          "style": "body/lg/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.lg.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Strong emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.lg.bold",
+          "style": "body/lg/bold"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.lg.bold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "700",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "High emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.md.regular",
+          "style": "body/md/regular"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.md.regular",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Secondary paragraph",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.md.medium",
+          "style": "body/md/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.md.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.md.semibold",
+          "style": "body/md/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.md.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Strong emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.md.bold",
+          "style": "body/md/bold"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.md.bold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "700",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "High emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.sm.regular",
+          "style": "body/sm/regular"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.sm.regular",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Tertiary paragraph",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.sm.medium",
+          "style": "body/sm/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.sm.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.sm.semibold",
+          "style": "body/sm/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.sm.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Strong emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.sm.bold",
+          "style": "body/sm/bold"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.sm.bold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "700",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "High emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.xs.regular",
+          "style": "body/xs/regular"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.xs.regular",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Default paragraph",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.xs.medium",
+          "style": "body/xs/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.xs.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.xs.semibold",
+          "style": "body/xs/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.xs.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Strong emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.xs.bold",
+          "style": "body/xs/bold"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.xs.bold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "700",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "High emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.2xs.regular",
+          "style": "body/2xs/regular"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.2xs.regular",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.5rem / 8px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Default paragraph",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.2xs.medium",
+          "style": "body/2xs/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.2xs.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.5rem / 8px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.2xs.semibold",
+          "style": "body/2xs/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.2xs.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.5rem / 8px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Strong emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.2xs.bold",
+          "style": "body/2xs/bold"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.body.2xs.bold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "700",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.5rem / 8px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "High emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Label"
+        },
+        {
+          "t": "p",
+          "text": "Use label typography to define structure and clarify relationships between controls and content. Labels identify inputs, toggles, filters, and grouped UI elements — they are functional, not expressive. Labels should remain concise and scannable. They are not headings, promotional text, or descriptive copy. If a label requires a sentence, it is likely helper text instead.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "label.md",
+          "style": "label/md"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.label.md",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Default form labels",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "label.sm",
+          "style": "label/sm"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.label.sm",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact form labels",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Helper"
+        },
+        {
+          "t": "p",
+          "text": "Use helper typography to provide supporting context, guidance, or validation beneath primary UI elements. Helper text explains how something works, why input is required, or what an error means. It should support decision-making without competing for attention. Helper text is secondary by definition — if it becomes visually dominant, hierarchy is broken.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "helper.md",
+          "style": "helper/md"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.helper.md",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Regular / 400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Field descriptions, validation text",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "helper.sm",
+          "style": "helper/sm"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.helper.sm",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Regular / 400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact metadata, dense layouts",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Code"
+        },
+        {
+          "t": "p",
+          "text": "Use code typography exclusively for technical content such as tokens, variables, snippets, commands, and system references. Code type preserves alignment and character clarity in contexts where precision matters. It is not a stylistic alternative to body text and should never be used for emphasis or decoration. If the content is readable as normal prose, it should not use code typography.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "code.lg",
+          "style": "code/md"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.code.lg",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "IBM Plex Mono /\nRoboto Mono",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.01em / -1%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Code blocks, tokens",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "code.md",
+          "style": "code/sm"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.code.md",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "IBM Plex Mono /\nRoboto Mono",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.01em / -1%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Inline code",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Link"
+        },
+        {
+          "t": "p",
+          "text": "Use link typography for interactive text that navigates or triggers an action inline. Links inherit body sizing with a medium weight, and gain an underline affordance and color shift on hover. Reserve links for navigation and inline actions — not for buttons or emphasis.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "link.lg.default",
+          "style": "link/lg/default"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.link.lg.default",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Inline links in large body text",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "link.md.default",
+          "style": "link/md/default"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.link.md.default",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Default inline links",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "link.sm.default",
+          "style": "link/sm/default"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.link.sm.default",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact inline links",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "link.xs.default",
+          "style": "link/xs/default"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.link.xs.default",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Dense metadata links",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "link.2xs.default",
+          "style": "link/2xs/default"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.link.2xs.default",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.5rem / 8px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Smallest inline links",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Caption"
+        },
+        {
+          "t": "p",
+          "text": "Use caption typography for the smallest supporting text — image captions, footnotes, and dense annotations. It sits at the bottom of the type hierarchy, below helper text. Keep captions short; never use them for primary content.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "caption.xs",
+          "style": "caption/xs"
+        },
+        {
+          "t": "p",
+          "text": "font.desktop.caption.xs",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Regular / 400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Image captions, footnotes",
+          "style": "Body/Body S/Medium"
+        }
+      ]
+    },
+    {
+      "name": "Typography / Mobile",
+      "title": null,
+      "subtitle": null,
+      "x": 4640,
+      "y": 1772,
+      "w": 1680,
+      "h": 5536,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Display"
+        },
+        {
+          "t": "p",
+          "text": "Use display typography only when you need to create strong emphasis or anchor attention at the top of a hierarchy. It is intended for hero headings and key moments, not for navigation, dense layouts, or repeated UI patterns. If display type appears more than occasionally, it is being overused.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "display.lg",
+          "style": "display/lg"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.display.lg",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Gotham / Montserrat",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2.5rem / 40px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "3.25rem / 52px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Hero headlines",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "display.md",
+          "style": "display/md"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.display.md",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Gotham / Montserrat",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2rem / 32px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2.5rem / 40px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Section headers",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "display.sm",
+          "style": "display/sm"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.display.sm",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Gotham / Montserrat",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2rem / 32px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Supporting display text",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "display.xs.medium",
+          "style": "display/xs/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.display.xs.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Gotham / Montserrat",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact display",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "display.xs.semibold",
+          "style": "display/xs/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.display.xs.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Gotham / Montserrat",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Semibold / 600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact display",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Title"
+        },
+        {
+          "t": "p",
+          "text": "Use title typography to establish clear structure within a page or section. It is intended for headings that introduce content blocks and guide scanning, not for decoration or emphasis. Titles should create hierarchy without competing with display typography.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "title.lg",
+          "style": "title/lg"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.title.lg",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2rem / 32px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2.5rem / 40px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Page titles",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "title.md",
+          "style": "title/md"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.title.md",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "2rem / 32px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Section titles",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "title.sm",
+          "style": "title/sm"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.title.sm",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.125rem / 18px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Card titles",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "title.xs",
+          "style": "title/xs"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.title.xs",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.03em / -3%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact section headers",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "title.2xs",
+          "style": "title/2xs"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.title.2xs",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.08em / 8%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Overline / eyebrow label",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Body"
+        },
+        {
+          "t": "p",
+          "text": "Use body typography for all long-form and functional content. It is optimized for readability, density, and sustained interaction across contexts such as forms, tables, and content-heavy views. If users need to read it, scan it, or rely on it, body text is the correct choice.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "body.lg.regular",
+          "style": "body/lg/regular"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.lg.regular",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Default paragraph",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.lg.medium",
+          "style": "body/lg/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.lg.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.lg.semibold",
+          "style": "body/lg/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.lg.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Strong emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.lg.bold",
+          "style": "body/lg/bold"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.lg.bold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "700",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "High emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.md.regular",
+          "style": "body/md/regular"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.md.regular",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Secondary paragraph",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.md.medium",
+          "style": "body/md/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.md.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.md.semibold",
+          "style": "body/md/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.md.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Strong emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.md.bold",
+          "style": "body/md/bold"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.md.bold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "700",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "High emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.sm.regular",
+          "style": "body/sm/regular"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.sm.regular",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Tertiary paragraph",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.sm.medium",
+          "style": "body/sm/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.sm.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.sm.semibold",
+          "style": "body/sm/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.sm.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Strong emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.sm.bold",
+          "style": "body/sm/bold"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.sm.bold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "700",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "High emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.xs.regular",
+          "style": "body/xs/regular"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.xs.regular",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Default paragraph",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.xs.medium",
+          "style": "body/xs/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.xs.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.xs.semibold",
+          "style": "body/xs/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.xs.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Strong emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.xs.bold",
+          "style": "body/xs/bold"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.xs.bold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "700",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "High emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.2xs.regular",
+          "style": "body/2xs/regular"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.2xs.regular",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.5rem / 8px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Default paragraph",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.2xs.medium",
+          "style": "body/2xs/medium"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.2xs.medium",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.5rem / 8px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.2xs.semibold",
+          "style": "body/2xs/semibold"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.2xs.semibold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "600",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.5rem / 8px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Strong emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "body.2xs.bold",
+          "style": "body/2xs/bold"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.body.2xs.bold",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "700",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.5rem / 8px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "High emphasis",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Label"
+        },
+        {
+          "t": "p",
+          "text": "Use label typography to define structure and clarify relationships between controls and content. Labels identify inputs, toggles, filters, and grouped UI elements — they are functional, not expressive. Labels should remain concise and scannable. They are not headings, promotional text, or descriptive copy. If a label requires a sentence, it is likely helper text instead.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "label.md",
+          "style": "label/md"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.label.md",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Default form labels",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "label.sm",
+          "style": "label/sm"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.label.sm",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact form labels",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Helper"
+        },
+        {
+          "t": "p",
+          "text": "Use helper typography to provide supporting context, guidance, or validation beneath primary UI elements. Helper text explains how something works, why input is required, or what an error means. It should support decision-making without competing for attention. Helper text is secondary by definition — if it becomes visually dominant, hierarchy is broken.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "helper.md",
+          "style": "helper/md"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.helper.md",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Regular / 400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Field descriptions, validation text",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "helper.sm",
+          "style": "helper/sm"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.helper.sm",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Regular / 400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact metadata, dense layouts",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Code"
+        },
+        {
+          "t": "p",
+          "text": "Use code typography exclusively for technical content such as tokens, variables, snippets, commands, and system references. Code type preserves alignment and character clarity in contexts where precision matters. It is not a stylistic alternative to body text and should never be used for emphasis or decoration. If the content is readable as normal prose, it should not use code typography.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "code.lg",
+          "style": "code/md"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.code.lg",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "IBM Plex Mono /\nRoboto Mono",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.01em / -1%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Code blocks, tokens",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "code.md",
+          "style": "code/sm"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.code.md",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "IBM Plex Mono /\nRoboto Mono",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.01em / -1%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Inline code",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Link"
+        },
+        {
+          "t": "p",
+          "text": "Use link typography for interactive text that navigates or triggers an action inline. Links inherit body sizing with a medium weight, and gain an underline affordance and color shift on hover. Reserve links for navigation and inline actions — not for buttons or emphasis.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "link.lg.default",
+          "style": "link/lg/default"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.link.lg.default",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.5rem / 24px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Inline links in large body text",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "link.md.default",
+          "style": "link/md/default"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.link.md.default",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.25rem / 20px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Default inline links",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "link.sm.default",
+          "style": "link/sm/default"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.link.sm.default",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1rem / 16px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Compact inline links",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "link.xs.default",
+          "style": "link/xs/default"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.link.xs.default",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Dense metadata links",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "link.2xs.default",
+          "style": "link/2xs/default"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.link.2xs.default",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Medium / 500",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.5rem / 8px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.75rem / 12px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Smallest inline links",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Caption"
+        },
+        {
+          "t": "p",
+          "text": "Use caption typography for the smallest supporting text — image captions, footnotes, and dense annotations. It sits at the bottom of the type hierarchy, below helper text. Keep captions short; never use them for primary content.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "p",
+          "text": "Text Style",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Token",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Typeface",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Weight",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Size",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Line height",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Letter spacing",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "Use case",
+          "style": "Body/Body S/Semibold"
+        },
+        {
+          "t": "p",
+          "text": "caption.xs",
+          "style": "caption/xs"
+        },
+        {
+          "t": "p",
+          "text": "font.mobile.caption.xs",
+          "style": "14/500"
+        },
+        {
+          "t": "p",
+          "text": "Inter / Open Sans",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Regular / 400",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.625rem / 10px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "0.875rem / 14px",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "-0.02em / -2%",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Image captions, footnotes",
+          "style": "Body/Body S/Medium"
+        }
+      ]
+    }
+  ],
+  "pageContext": null,
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Typography Principles",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Typography in SOLAR is not decorative. It communicates hierarchy, meaning, and readability, and must be applied through tokens — not ad-hoc styles. If a typographic choice cannot be justified by purpose or structure, it does not belong.",
+        "Hierarchy before style",
+        "Context-aware typography",
+        "Legibility over aesthetics",
+        "Typography is primarily a tool for hierarchy. Headings, body text, labels, and metadata must be clearly distinguishable through size, weight, and spacing. Visual style should never compromise clarity of structure or scanning behavior.",
+        "Typography must adapt to context. Text styles are designed with their usage in mind—dense data views, long-form reading, controls, or glanceable UI. Tokens define these roles so typography remains appropriate across platforms, layouts, and environments.",
+        "Readability and legibility take precedence over visual expression. Font size, line height, weight, and contrast must support comfortable reading at typical viewing distances and lighting conditions. If a typographic choice reduces clarity, it does not belong in the system."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "Gotham",
+        "Montserrat",
+        "01",
+        "02",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Brand Fonts",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Gotham and Montserrat are SOLAR’s brand fonts. They express Biamp’s personality and are primarily used in brand-led contexts where identity and tone matter more than density or long-form readability.",
+        "Brand fonts are designed to create recognition and emotional consistency across marketing and brand-facing touchpoints, not to solve complex UI or data-heavy scenarios.\n\nUse brand fonts for:\nMarketing and brand websites\nCampaigns, presentations, and storytelling content\nHigh-level product surfaces where branding is the primary goal\nLarge headings and short-form copy\n\nAvoid using brand fonts for:\nDense UI, tables, or data-heavy views\nLong-form reading inside applications\nSmall text sizes or complex interaction-heavy layouts"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "Inter",
+        "Open Sans",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "App Fonts",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "01",
+        "02",
+        "Inter and Open Sans are SOLAR’s application fonts. They are optimized for legibility, clarity, and consistency across platforms, devices, and resolutions. App fonts prioritize usability over expression and are designed to perform well in real product environments.",
+        "These fonts are the default choice for interfaces where users read, scan, and interact for extended periods of time.\n\nUse app fonts for:\nProduct interfaces and applications\nForms, tables, settings, and dashboards\nLong-form reading and dense information\nResponsive and cross-platform UI\n\nWhy app fonts:\nHigh legibility at small sizes\nStrong hinting and screen optimization\nBroad language and symbol support\nReliable rendering across platforms"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "IBM Plex Mono",
+        "Roboto Mono",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Code Fonts",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "01",
+        "02",
+        "IBM Plex Mono and Roboto Mono are SOLAR’s code fonts. They are optimized for precision, character distinction, and alignment when displaying structured and technical content. Code fonts prioritize clarity of values over visual expression and are designed to support implementation, documentation, and developer workflows.",
+        "These fonts are the default choice for environments where tokens, variables, and code need to be displayed accurately and consistently.\n\nUse code fonts for:\nDesign tokens and variable names\nHex, OKLCH, and numeric values\nCSS, JSON, and code snippets\nTechnical documentation\nTabular system data\n\nWhy code fonts:\nMonospaced alignment for structured content\nClear differentiation between similar characters (1 / l / I / 0 / O)\nImproved readability of numeric and symbolic data\nConsistent rendering across technical environment"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Text Styles and Tokens",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "In SOLAR, typography is structured in two layers: tokens define the system, and styles apply the system. This separation ensures scalability, responsive behavior (Desktop/Mobile), and alignment between design and engineering.",
+        "Typography tokens are atomic variables:\nScale (rem-like sizes)\nFont family\nFont weight\nLetter spacing (%)\n\nTokens define the rules.\n\nTypography styles combine these tokens into structured patterns such as:\ndesktop.display.lg (*.md, *.sm, *x-sm)\nmobile.title.lg (*.md, *.sm, *x-sm)\ndesktop.body.md.regular (*.medium, *.semibold, *.bold)\n\nEach size (lg, md, sm) references different scale tokens while preserving consistent weight and spacing logic.\n\nTokens create consistency.\nStyles + sizes create hierarchy and flexibility."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Semantic Typography",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Semantic typography styles are defined in SOLAR Web and SOLAR Native rather than in SOLAR Foundations. They translate typography tokens into meaningful interface roles such as titles, body text, labels, and helper text.",
+        "SOLAR Foundations defines the primitive typography tokens — font families, scale, weights, spacing, and other atomic values. SOLAR Web, SOLAR Native, and domain libraries use these primitives to build semantic text styles that reflect how typography is used in real interfaces.\n\nEach library defines its own semantic styles to match its component patterns and interaction contexts. All styles reference the same foundational tokens, ensuring typographic consistency across the entire SOLAR ecosystem while allowing platform- and domain-specific implementation."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Font Weight",
+        "Font weight in SOLAR is defined using standardized numeric values that map to human-readable names. This ensures clarity in design, consistency in implementation, and alignment with web standards.",
+        "SOLAR uses the standard CSS font-weight scale from 100 to 900.\nEach numeric value corresponds to a commonly recognized weight name:\n100 — Thin\n200 — Extra Light\n300 — Light\n400 — Regular\n500 — Medium\n600 — Semibold\n700 — Bold\n800 — Extra Bold\n900 — Black\n\nThe numbers are the technical reference used in code (CSS font-weight).\nThe names are the semantic reference used in design discussions and documentation.\n\nIn SOLAR:\nTokens reference the numeric value (for engineering accuracy)\nStyles reference the token (for design consistency)\n\nThis keeps typography aligned across Figma, tokens, and frontend implementation."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Text Color",
+        "Text color in SOLAR is applied through semantic text tokens that map to different palette steps in Light and Dark mode. This keeps meaning consistent (primary, secondary, danger, etc.) while automatically adapting contrast per theme.",
+        "Font color is never set as raw HEX. Text styles reference color.text.* tokens, which map like this:\ncolor.text.primary → Light: color/neutral/900 · Dark: color/neutral/50\ncolor.text.secondary → Light: color/neutral/500 · Dark: color/neutral/500\ncolor.text.tertiary → Light: color/neutral/300 · Dark: color/neutral/700\ncolor.text.disabled → Light: color/mono/black-alpha-40 · Dark: color/mono/white-alpha-40\ncolor.text.inverse → Light: color/neutral/50 · Dark: color/neutral/900\n\nFeedback text:\ncolor.text.success → Light: color/green/700 · Dark: color/green/300\ncolor.text.warning → Light: color/orange/700 · Dark: color/orange/300\ncolor.text.danger → Light: color/red/700 · Dark: color/red/300\ncolor.text.info → Light: color/blue/700 · Dark: color/blue/300\n\nRule: Apply semantic text tokens (primary/secondary/etc.) — theme mapping handles the rest."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Display",
+        "Display styles are used for high-impact, large-scale text that establishes strong visual presence and brand expression.",
+        "Display is used for:\nHero sections\nMajor product moments\nLarge marketing statements\n\nCharacteristics:\nLargest scale tokens\nStrong weight contrast (often Semibold or Bold)\nTight, controlled letter spacing\nOptimized separately for Desktop and Mobile\n\nDisplay creates emphasis and first impression."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Title",
+        "Title styles structure content and define hierarchy within interfaces. They guide users through sections, panels, and grouped information.",
+        "Title is used for:\nSection headers\nCard titles\nDialog headers\nStructured page hierarchy\n\nCharacteristics:\nMid-to-large scale tokens\nMedium or Semibold weight\nBalanced letter spacing for readability\nResponsive Desktop/Mobile variants\n\nTitles create structure and navigational clarity."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Body",
+        "Body styles are designed for readability and sustained interaction. They form the foundation of most product interfaces.",
+        "Body is used for:\nParagraphs and descriptions\nForm labels and helper text\nTable content\nSystem messages\n\nCharacteristics:\nModerate scale tokens\nRegular or Medium weight\nComfortable line-height\nOptimized for long-form readability\n\nBody prioritizes clarity, accessibility, and functional communication."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Label",
+        "Label styles are designed for concise, contextual identification. They support inputs, controls, and UI elements where clarity and hierarchy matter more than volume.",
+        "Label is used for:\nForm field labels\nControl identifiers (toggles, checkboxes, radios)\nSection micro-headings inside components\nCompact UI descriptors\n\nCharacteristics:\nSlightly smaller than body scale\nMedium weight for clarity\nTighter line-height\nOptimized for quick scanning\n\nLabel prioritizes precision, hierarchy, and structural clarity."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Helper",
+        "Helper styles are designed for supportive guidance. They provide contextual information that enhances understanding without competing for attention.",
+        "Helper is used for:\nForm assistance text\nValidation hints (non-critical)\nSecondary explanatory copy\nSupplementary UI guidance\n\nCharacteristics:\nSmall scale tokens\nMedium weight\nComfortable but compact line-height\nLower visual emphasis than body\n\nHelper prioritizes subtlety, clarity, and supportive communication."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Code",
+        "Code styles are designed for technical precision. They distinguish system values, identifiers, and machine-readable content from standard interface text.",
+        "Code is used for:\nInline code references\nTechnical identifiers and tokens\nSystem values and variables\nDeveloper-facing UI contexts\n\nCharacteristics:\nMonospace typeface\nConsistent character width\nClear differentiation from body text\nOptimized for legibility of symbols and numbers\n\nCode prioritizes accuracy, distinction, and technical clarity."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Applying Text Styles",
+        "Text styles in SOLAR must always be applied through predefined styles — never constructed manually. This ensures consistency, accessibility, and alignment between design and engineering.",
+        "When applying typography:\nAlways use a SOLAR text style (Display, Title, Body, Label, Code)\nDo not override font size, weight, or letter spacing locally\nDo not apply raw color values — use semantic text color tokens\nUse Desktop or Mobile variants as defined\n\nText styles already combine:\nScale tokens\nFont family tokens\nWeight tokens\nLetter-spacing tokens\n\nIf a use case doesn’t fit an existing style, propose a system update — do not create a one-off.\n\nConsistency in application protects the integrity of the system."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Golden Rules",
+        "Avoid Display overuse",
+        "Always use Text Styles — never raw values",
+        "Maintain accessible contrast",
+        "Respect hierarchy before adding emphasis",
+        "Keep spacing proportional",
+        "Optimize for readability, not density",
+        "Code styles are functional, not decorative",
+        "Use Label and Helper intentionally",
+        "Display styles are for anchoring hierarchy (hero moments, major headings). If Display appears repeatedly in UI layouts, it is being misused.",
+        "Text styles are connected to semantic variables and primitives. Avoid manual font sizes, weights, or line-heights in components.",
+        "Text tokens must meet WCAG contrast requirements in both light and dark modes. Never override text color outside semantic tokens.",
+        "Use scale and weight first. Avoid stacking multiple emphasis methods (bold + color + uppercase + tracking).",
+        "Vertical rhythm (stack tokens) must support text scale.\nSpacing should feel structurally aligned with typography scale.",
+        "Body and helper text must prioritize comfort over compression. Maintain healthy line-height ratios (≈1.25–1.4 depending on size).",
+        "Use monospace only for technical meaning (IDs, values, snippets). Never mix code typography into UI copy.",
+        "Label = input context. Helper = supportive or validation guidance. Do not use them as smaller body substitutes."
+      ],
+      "variableId": "VariableID:27:740",
+      "hex": "#fffbd5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.display.lg"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.display.md"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.display.sm"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.display.xs.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.display.xs.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.title.lg"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.title.md"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.title.sm"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.title.xs"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.title.2xs"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.lg.regular"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.lg.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.lg.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.lg.bold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.md.regular"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.md.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.md.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.md.bold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.sm.regular"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.sm.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.sm.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.sm.bold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.xs.regular"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.xs.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.xs.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.xs.bold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.2xs.regular"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.2xs.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.2xs.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.body.2xs.bold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.label.md"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.label.sm"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.helper.md"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.helper.sm"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.code.lg"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.code.md"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.link.lg.default"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.link.md.default"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.link.sm.default"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.link.xs.default"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.link.2xs.default"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.desktop.caption.xs"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.display.lg"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.display.md"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.display.sm"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.display.xs.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.display.xs.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.title.lg"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.title.md"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.title.sm"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.title.xs"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.title.2xs"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.lg.regular"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.lg.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.lg.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.lg.bold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.md.regular"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.md.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.md.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.md.bold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.sm.regular"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.sm.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.sm.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.sm.bold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.xs.regular"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.xs.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.xs.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.xs.bold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.2xs.regular"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.2xs.medium"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.2xs.semibold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.body.2xs.bold"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.label.md"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.label.sm"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.helper.md"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.helper.sm"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.code.lg"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.code.md"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.link.lg.default"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.link.md.default"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.link.sm.default"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.link.xs.default"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.link.2xs.default"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Text Style"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Typeface"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Weight"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Size"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Line height"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Letter spacing"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use case"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Token",
+      "labels": [
+        "font.mobile.caption.xs"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 981
+}

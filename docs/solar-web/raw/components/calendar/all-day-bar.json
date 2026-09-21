@@ -1,0 +1,303 @@
+{
+  "page": "↳ 🟢 All-Day Bar",
+  "pageId": "6622:8",
+  "componentSets": [
+    {
+      "name": "All-Day Bar",
+      "id": "6644:50",
+      "description": "Spanning event bar used in the all-day row at the top of the Week / Day grid, and for multi-day events that span columns in the Month grid. Span variants control the corner radii so consecutive segments can fuse into a single bar across columns.",
+      "docLinks": [],
+      "variantCount": 8,
+      "props": {
+        "title#6644:0": {
+          "type": "TEXT",
+          "default": "Conference week"
+        },
+        "time#6644:9": {
+          "type": "TEXT",
+          "default": "All day"
+        },
+        "showTime#6644:18": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "style": {
+          "type": "VARIANT",
+          "default": "subtle",
+          "options": [
+            "subtle",
+            "solid"
+          ]
+        },
+        "span": {
+          "type": "VARIANT",
+          "default": "single",
+          "options": [
+            "single",
+            "start",
+            "middle",
+            "end"
+          ]
+        }
+      },
+      "defaultVariant": "style=subtle, span=single",
+      "defaultVariantNodeCount": 4,
+      "defaultVariantTree": {
+        "name": "style=subtle, span=single",
+        "type": "COMPONENT",
+        "size": [
+          160,
+          22
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "vars": {
+          "topLeftRadius": "Spatial:radius/none",
+          "topRightRadius": "Spatial:radius/none",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": [
+          {
+            "name": "Stripe",
+            "type": "RECTANGLE",
+            "size": [
+              3,
+              22
+            ],
+            "sizing": "FIXED/FILL",
+            "fills": [
+              "{Color:data/category/06/strong}"
+            ],
+            "radius": 9999,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Content",
+            "type": "FRAME",
+            "size": [
+              157,
+              22
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FILL"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/none"
+            },
+            "children": [
+              {
+                "name": "Time",
+                "type": "TEXT",
+                "text": "All day",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  38,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "showTime#6644:18",
+                  "characters": "time#6644:9"
+                }
+              },
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "Conference week",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  87,
+                  9
+                ],
+                "sizing": "FILL/FIXED",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "title#6644:0"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "style=subtle, span=single",
+          "size": [
+            160,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "style=subtle, span=start",
+          "size": [
+            200,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "style=subtle, span=middle",
+          "size": [
+            240,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "style=subtle, span=end",
+          "size": [
+            200,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "style=solid, span=single",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/06/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "hidden": [
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "style=solid, span=start",
+          "size": [
+            200,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/06/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "hidden": [
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "style=solid, span=middle",
+          "size": [
+            240,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/06/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "hidden": [
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "style=solid, span=end",
+          "size": [
+            200,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/06/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "hidden": [
+            "Stripe"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "All-Day Bar",
+    "Description",
+    "The horizontal lane above the time grid holding all-day and multi-day events in day / week views. Distinct from timed Event Chips.",
+    "Anatomy",
+    "Lane container · all-day event chips (may span days) · overflow '+n more' · optional collapse toggle.",
+    "Behaviour",
+    "Events span across day columns. When the lane overflows it collapses with a '+n more' affordance. Height grows with stacked events up to a cap.",
+    "States",
+    "default (loaded), empty (collapsed / hidden), overflow. Event chips inside carry their own hover / focus / selected states.",
+    "Accessibility",
+    "Expose as a region labelled 'All day'. Multi-day spans announce start–end. Chips are keyboard-focusable; overflow opens a list. Contrast per Event Chip.",
+    "Rules",
+    "Separate all-day from timed events\nShow multi-day spans clearly\nCollapse overflow with '+n more'\nCap the lane height",
+    "Mix all-day into the time grid\nHide events with no overflow cue\nRely on colour alone for category\nLet the lane grow unbounded"
+  ],
+  "pageContext": null
+}

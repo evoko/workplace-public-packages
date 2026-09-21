@@ -1,0 +1,700 @@
+{
+  "page": "↳ 🟢 Join or Create Organization",
+  "pageId": "9441:1818",
+  "componentSets": [
+    {
+      "name": "Auth - Join Organization ",
+      "id": "9441:2459",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "Breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "Breakpoint=desktop",
+      "defaultVariantNodeCount": 85,
+      "defaultVariantTree": {
+        "name": "Breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            24,
+            0
+          ],
+          "align": "SPACE_BETWEEN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/inverse}",
+          "IMAGE",
+          "IMAGE"
+        ],
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/xl",
+          "width": "Layout:breakpoint/lg"
+        },
+        "children": [
+          {
+            "name": "Top Bar",
+            "type": "INSTANCE",
+            "main": "Top Bar",
+            "variant": {
+              "breakpoint": "desktop",
+              "hasSidebar": "true",
+              "isLoggedIn": "True"
+            },
+            "size": [
+              1440,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                16,
+                0,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:stack/md",
+              "paddingRight": "Spatial:stack/md"
+            }
+          },
+          {
+            "name": "Center Stack",
+            "type": "FRAME",
+            "size": [
+              400,
+              227
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 20,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/lg"
+            },
+            "children": [
+              {
+                "name": "Join organization",
+                "type": "TEXT",
+                "text": "Join organization",
+                "textStyle": "title/sm",
+                "size": [
+                  155,
+                  15
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Ask to join an organization by entering the organization ID. Once sent, the organization will be able to accept your request.",
+                "type": "TEXT",
+                "text": "Ask to join an organization by entering the organization ID. Once sent, the orga",
+                "textStyle": "body/md/regular",
+                "size": [
+                  400,
+                  30
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Container",
+                "type": "INSTANCE",
+                "main": "Container",
+                "variant": {
+                  "type": "outlined"
+                },
+                "size": [
+                  400,
+                  142
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "fills": [
+                  "{Color:surface/raised}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 12,
+                "effectStyle": "shadow/overlay",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/dialog",
+                  "topRightRadius": "Spatial:radius/dialog",
+                  "bottomLeftRadius": "Spatial:radius/dialog",
+                  "bottomRightRadius": "Spatial:radius/dialog"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              216,
+              32
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm"
+            },
+            "children": [
+              {
+                "name": "Biamp Logo",
+                "type": "INSTANCE",
+                "main": "Biamp Logo",
+                "variant": {
+                  "style": "light",
+                  "size": "sm"
+                },
+                "size": [
+                  36,
+                  11
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "© 2025 Biamp Systems LLC. v.1.2-b-fd",
+                "type": "TEXT",
+                "text": "© 2025 Biamp Systems LLC.  v.1.2-b-fd",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  216,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "Breakpoint=desktop",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/tertiary}",
+            "{Color:text/primary}",
+            "{Primitives:color/purple/700}",
+            "{Color:text/feedback/info}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:icon/secondary}",
+            "{Color:icon/inverse}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Counter",
+            "Field",
+            "GlobalSearch",
+            "Helper text",
+            "Icon/None",
+            "Nav Item",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "Breakpoint=mobile",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Primitives:color/purple/700}",
+            "{Color:text/tertiary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/tertiary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/tertiary}",
+            "{Color:action/primary/icon/default}",
+            "{Color:action/tertiary/icon/default}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Button",
+            "Counter",
+            "Helper text",
+            "Icon Button",
+            "Icon/None",
+            "Spinner"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Auth - Create organization",
+      "id": "9441:2461",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "Breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "Breakpoint=desktop",
+      "defaultVariantNodeCount": 102,
+      "defaultVariantTree": {
+        "name": "Breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            24,
+            0
+          ],
+          "align": "SPACE_BETWEEN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/inverse}",
+          "IMAGE",
+          "IMAGE"
+        ],
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/xl",
+          "width": "Layout:breakpoint/lg"
+        },
+        "children": [
+          {
+            "name": "Top Bar",
+            "type": "INSTANCE",
+            "main": "Top Bar",
+            "variant": {
+              "breakpoint": "desktop",
+              "hasSidebar": "true",
+              "isLoggedIn": "True"
+            },
+            "size": [
+              1440,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                16,
+                0,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:stack/md",
+              "paddingRight": "Spatial:stack/md"
+            }
+          },
+          {
+            "name": "Center Stack",
+            "type": "FRAME",
+            "size": [
+              400,
+              325
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 20,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/lg"
+            },
+            "children": [
+              {
+                "name": "Create organization",
+                "type": "TEXT",
+                "text": "Create organization",
+                "textStyle": "title/sm",
+                "size": [
+                  178,
+                  15
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Set up your organization to start managing your spaces.  Your data region can't be changed later.",
+                "type": "TEXT",
+                "text": "Set up your organization to start managing your spaces.  Your data region can't ",
+                "textStyle": "body/md/regular",
+                "size": [
+                  392,
+                  30
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Container",
+                "type": "INSTANCE",
+                "main": "Container",
+                "variant": {
+                  "type": "outlined"
+                },
+                "size": [
+                  400,
+                  240
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "fills": [
+                  "{Color:surface/raised}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 12,
+                "effectStyle": "shadow/overlay",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/dialog",
+                  "topRightRadius": "Spatial:radius/dialog",
+                  "bottomLeftRadius": "Spatial:radius/dialog",
+                  "bottomRightRadius": "Spatial:radius/dialog"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              216,
+              32
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm"
+            },
+            "children": [
+              {
+                "name": "Biamp Logo",
+                "type": "INSTANCE",
+                "main": "Biamp Logo",
+                "variant": {
+                  "style": "light",
+                  "size": "sm"
+                },
+                "size": [
+                  36,
+                  11
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "© 2025 Biamp Systems LLC. v.1.2-b-fd",
+                "type": "TEXT",
+                "text": "© 2025 Biamp Systems LLC.  v.1.2-b-fd",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  216,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "Breakpoint=desktop",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/tertiary}",
+            "{Color:text/primary}",
+            "{Primitives:color/purple/700}",
+            "{Color:text/feedback/info}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:icon/secondary}",
+            "{Color:icon/inverse}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Counter",
+            "Field",
+            "GlobalSearch",
+            "Helper text",
+            "Icon/None",
+            "Nav Item",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "Breakpoint=mobile",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Primitives:color/purple/700}",
+            "{Color:text/tertiary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color(local):text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/tertiary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/primary}",
+            "{Color:icon/tertiary}",
+            "{Color:action/primary/icon/default}",
+            "{Color:action/tertiary/icon/default}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Button",
+            "Counter",
+            "Helper text",
+            "Icon Button",
+            "Icon/None",
+            "Spinner"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Join or Create Organization",
+    "Description",
+    "The post-signup step to join an existing organization (invite / code) or create a new one. Routes the user into a workspace.",
+    "Layout",
+    "Two Option Cards (Join / Create) or tabs: Join (invite list / code) · Create (org name + details). Primary 'Continue'.",
+    "Responsive",
+    "Desktop: option cards side by side. Mobile: stacked.",
+    "States",
+    "default, validating code, no-invites (create only), submitting, error, success → workspace.",
+    "Accessibility",
+    "Options as a radiogroup; the whole card selectable. Labelled fields; errors linked. Keyboard-navigable; visible focus.",
+    "Rules",
+    "Make Join vs Create obvious\nValidate invite codes inline\nHandle the no-invites case\nExplain what an org is",
+    "Force create when an invite exists\nHide either path\nRely on colour for the selected option\nOver-ask on create"
+  ],
+  "pageContext": null
+}

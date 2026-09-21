@@ -1,0 +1,837 @@
+{
+  "page": "↳ 🟢 Time Picker",
+  "pageId": "2163:3710",
+  "componentSets": [
+    {
+      "name": "TimePicker",
+      "id": "4414:79",
+      "description": "Time-of-day selector. 14 variants: size (sm 36px, md 44px) × state (default, hover, focused, filled, disabled, error, error-focused). NOTE: state `focused` / `error-focused` flagged for rename to match SOLAR's locked `focus`. Text input accepts typed times; paired TimePicker Dropdown presents hour/minute columns for click selection. 12h or 24h based on locale.",
+      "docLinks": [],
+      "variantCount": 14,
+      "props": {
+        "value#4414:0": {
+          "type": "TEXT",
+          "default": "12:00 AM"
+        },
+        "helperText#4414:15": {
+          "type": "TEXT",
+          "default": "Helper text"
+        },
+        "showHelper#4414:30": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "label#4414:45": {
+          "type": "TEXT",
+          "default": "Label"
+        },
+        "showLabel#4414:60": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showRequired#4414:75": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus",
+            "filled",
+            "disabled",
+            "error",
+            "error-focused"
+          ]
+        }
+      },
+      "defaultVariant": "size=md, state=default",
+      "defaultVariantNodeCount": 8,
+      "defaultVariantTree": {
+        "name": "size=md, state=default",
+        "type": "COMPONENT",
+        "size": [
+          114,
+          76
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "FRAME",
+            "size": [
+              36,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
+            },
+            "propRefs": {
+              "visible": "showLabel#4414:60"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "label/md",
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "label#4414:45"
+                }
+              },
+              {
+                "name": "*",
+                "type": "TEXT",
+                "hidden": true,
+                "text": "*",
+                "textStyle": "label/md",
+                "size": [
+                  8,
+                  10
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "showRequired#4414:75"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Field",
+            "type": "FRAME",
+            "size": [
+              114,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/FIXED"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Icon/Clock",
+                "type": "INSTANCE",
+                "main": "Icon/Clock",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              {
+                "name": "Value",
+                "type": "TEXT",
+                "text": "12:00 AM",
+                "textStyle": "body/md/regular",
+                "size": [
+                  66,
+                  10
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                },
+                "propRefs": {
+                  "characters": "value#4414:0"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helper text",
+            "type": "TEXT",
+            "text": "Helper text",
+            "textStyle": "helper/md",
+            "size": [
+              114,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/helper/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/helper/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "visible": "showHelper#4414:30",
+              "characters": "helperText#4414:15"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=md, state=default",
+          "size": [
+            114,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "*"
+          ]
+        },
+        {
+          "variant": "size=sm, state=default",
+          "size": [
+            88,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=hover",
+          "size": [
+            114,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=hover",
+          "size": [
+            88,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=focus",
+          "size": [
+            114,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=focus",
+          "size": [
+            88,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=filled",
+          "size": [
+            114,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=filled",
+          "size": [
+            88,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=disabled",
+          "size": [
+            114,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=disabled",
+          "size": [
+            88,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, state=error",
+          "size": [
+            114,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=error",
+          "size": [
+            88,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=error-focused",
+          "size": [
+            114,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=error-focused",
+          "size": [
+            88,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TimePicker Dropdown",
+      "id": "5408:3807",
+      "description": "Expanded panel for TimePicker. Hour column + minute column (optionally + AM/PM) presented as scrollable lists. 2 size variants (sm, md) matching the trigger field. Use Content slot for either scrollable columns or a clock face depending on product needs.",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "Content#5408:28": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "sm",
+            "md"
+          ]
+        }
+      },
+      "defaultVariant": "size=md",
+      "defaultVariantNodeCount": 44,
+      "defaultVariantTree": {
+        "name": "size=md",
+        "type": "COMPONENT",
+        "size": [
+          136,
+          204
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/overlay}"
+        ],
+        "strokes": [
+          "{Color:border/medium}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/control",
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/none",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Content",
+            "type": "SLOT",
+            "size": [
+              136,
+              204
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/none"
+            },
+            "propRefs": {
+              "slotContentId": "Content#5408:28"
+            },
+            "children": [
+              {
+                "name": "Dropdown Item",
+                "type": "INSTANCE",
+                "main": "Dropdown Item",
+                "variant": {
+                  "size": "md",
+                  "state": "selected"
+                },
+                "size": [
+                  136,
+                  34
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Dropdown Item",
+                "type": "INSTANCE",
+                "main": "Dropdown Item",
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  136,
+                  34
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Dropdown Item",
+                "type": "INSTANCE",
+                "main": "Dropdown Item",
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  136,
+                  34
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Dropdown Item",
+                "type": "INSTANCE",
+                "main": "Dropdown Item",
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  136,
+                  34
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Dropdown Item",
+                "type": "INSTANCE",
+                "main": "Dropdown Item",
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  136,
+                  34
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Dropdown Item",
+                "type": "INSTANCE",
+                "main": "Dropdown Item",
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  136,
+                  34
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=md",
+          "size": [
+            136,
+            204
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Checkbox",
+            "Description",
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=sm",
+          "size": [
+            136,
+            192
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}",
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Time Picker",
+    "Description",
+    "Time-of-day selector. Trigger is a text input that parses typed times (\"9:30 AM\" / \"21:30\"); the dropdown panel opens with hour/minute columns for click picking. 12-hour or 24-hour format follows the user's locale. For date + time together, compose Date Picker + Time Picker side by side.",
+    "Sizes & States",
+    "size=sm (36px) / size=md (44px)\n\nStates: default, hover, focused (flagged rename → focus), filled, disabled, error, error-focused (flagged rename → error+focus).",
+    "Content",
+    "Label: what time is being set (\"Start time\", \"Meeting at\"). Format: locale-driven; don't force 24h for a US audience or 12h for a European one. Helper text: timezone if relevant (\"America/Los_Angeles\"). Error: plain language with the valid range.",
+    "Accessibility",
+    "Trigger: <input type=\"text\"> (also supports type=\"time\"). Dropdown columns are role=\"listbox\" with role=\"option\" rows. Keyboard: type to filter; ↑/↓ changes values; Tab moves between columns; Enter confirms; Esc closes. Announce the full time on change via aria-live.",
+    "Rules",
+    "Do\n\n• Accept typed times as well as clicks\n• Follow locale for 12h vs 24h display\n• Show timezone in helper when it's not obvious\n• Keyboard-navigate hour/minute columns",
+    "Don't\n\n• Don't force one format globally — follow locale\n• Don't use seconds precision unless the domain needs it\n• Don't pair hours with a second entry for minutes — one field\n• Don't accept ambiguous formats without a visible parse"
+  ],
+  "pageContext": null
+}

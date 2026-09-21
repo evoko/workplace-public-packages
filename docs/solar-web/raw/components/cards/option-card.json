@@ -1,0 +1,218 @@
+{
+  "page": "↳ 🟢 Option Card",
+  "pageId": "9386:2",
+  "componentSets": [
+    {
+      "name": "Option Card",
+      "id": "9385:28717",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "selected"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 4,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          240,
+          228
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 20,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/medium}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "vars": {
+          "itemSpacing": "Spatial:stack/lg",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              64,
+              64
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "radius": 9999,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            },
+            "children": [
+              {
+                "name": "Icon/Plus",
+                "type": "INSTANCE",
+                "main": "Icon/Plus",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  24,
+                  24
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "width": "Spatial:icon/lg"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "New design",
+            "textStyle": "body/md/medium",
+            "size": [
+              77,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            240,
+            228
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover",
+          "size": [
+            240,
+            228
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=selected",
+          "size": [
+            240,
+            228
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Option Card",
+    "Description",
+    "A large, selectable card acting as a rich radio or checkbox — title, description and optional icon the user picks from a set. Use Radio/Checkbox for dense lists.",
+    "Anatomy",
+    "Container · optional icon / illustration · title · description · selection indicator (radio / check) · optional badge.",
+    "Variants",
+    "selection=single (radio) / multi (checkbox). With or without icon. Orientation vertical or horizontal.",
+    "States",
+    "default, hover, focus, selected, disabled; error (invalid group). Selected uses border.feedback.focus + surface tint, not colour alone.",
+    "Accessibility",
+    "Native radio/checkbox semantics; the whole card is the label and target. Group with role=radiogroup + a legend. aria-checked reflects selection. Hit area ≥44.",
+    "Rules",
+    "Use for a small set of rich choices\nShow selection with icon + border\nMake the whole card clickable\nGroup with a legend",
+    "Use for long lists (use Radio)\nRely on colour for the selected state\nMix single + multi in one group\nOmit the selection indicator"
+  ],
+  "pageContext": null
+}

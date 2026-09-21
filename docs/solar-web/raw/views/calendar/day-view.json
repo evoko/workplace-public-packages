@@ -1,0 +1,355 @@
+{
+  "page": "↳ 🟢 Day View",
+  "pageId": "6802:3",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Day View",
+      "id": "6822:119",
+      "description": "",
+      "props": {},
+      "nodeCount": 307,
+      "tree": {
+        "name": "Day View",
+        "type": "COMPONENT",
+        "size": [
+          1024,
+          724
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "children": [
+          {
+            "name": "Calendar Toolbar",
+            "type": "INSTANCE",
+            "main": "Calendar Toolbar",
+            "size": [
+              1024,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 16,
+              "pad": [
+                12,
+                16,
+                12,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "vars": {
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Calendar Body",
+            "type": "FRAME",
+            "size": [
+              1024,
+              668
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 16,
+              "pad": [
+                12,
+                20,
+                12,
+                20
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Side Rail",
+                "type": "FRAME",
+                "size": [
+                  300,
+                  561
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Date Picker Open",
+                    "type": "INSTANCE",
+                    "main": "Date Picker Open",
+                    "variant": {
+                      "inline": "false",
+                      "type": "single"
+                    },
+                    "size": [
+                      300,
+                      285
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 12,
+                      "pad": [
+                        12,
+                        12,
+                        12,
+                        12
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "HUG/HUG"
+                    },
+                    "fills": [
+                      "{Color:surface/raised}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/overlay",
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/sm",
+                      "paddingLeft": "Spatial:inset/sm",
+                      "paddingTop": "Spatial:inset/sm",
+                      "paddingRight": "Spatial:inset/sm",
+                      "paddingBottom": "Spatial:inset/sm",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "Up Next",
+                    "type": "FRAME",
+                    "size": [
+                      300,
+                      260
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 8,
+                      "pad": [
+                        16,
+                        16,
+                        16,
+                        16
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FIXED/HUG"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "vars": {
+                      "paddingLeft": "Spatial:inset/md",
+                      "paddingTop": "Spatial:inset/md",
+                      "paddingRight": "Spatial:inset/md",
+                      "paddingBottom": "Spatial:inset/md",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Calendar Surface",
+                "type": "FRAME",
+                "size": [
+                  668,
+                  644
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                },
+                "children": [
+                  {
+                    "name": "Header Row",
+                    "type": "FRAME",
+                    "size": [
+                      668,
+                      36
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "All-Day Strip",
+                    "type": "FRAME",
+                    "size": [
+                      668,
+                      32
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        4,
+                        0,
+                        4,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "Time Grid Row",
+                    "type": "FRAME",
+                    "size": [
+                      668,
+                      576
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "census": {
+        "Calendar Toolbar": 1,
+        "Icon Button": 2,
+        "Icon/None": 17,
+        "Button": 2,
+        "Spinner": 2,
+        "Counter": 2,
+        "Segmented Control": 1,
+        "Segmented Control Item": 6,
+        "Icon/Plus": 1,
+        "Date Picker Open": 1,
+        "Icon/ArrowLeft": 1,
+        "Icon/ArrowRight": 1,
+        "Day Cell": 35,
+        "Agenda Row": 3,
+        "Avatar": 3,
+        "Weekday Header": 1,
+        "All-Day Bar": 1,
+        "Time Axis Label": 12,
+        "Time Slot": 12,
+        "Event Chip": 6,
+        "Icon/Repeat": 6
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Day View",
+    "Description",
+    "A single-day timeline of timed events with an all-day lane — the most detailed calendar view. For focusing on one day's schedule.",
+    "Layout",
+    "Date header · All-Day Bar · time axis + a single day column of Time Slots · Event Chips · now indicator.",
+    "Responsive",
+    "Single column on desktop and mobile; spacing scales.",
+    "States",
+    "loaded, loading, empty, error; drag-to-create / move where supported.",
+    "Accessibility",
+    "Time cells + events labelled with times; events keyboard-focusable; now indicator announced. Colour paired with a label.",
+    "Rules",
+    "Mark the current time\nShow all-day separately\nHandle overlapping events\nPair colour with a label",
+    "Rely on colour alone\nHide overlaps\nLose keyboard access\nOmit the all-day lane"
+  ],
+  "pageContext": null
+}

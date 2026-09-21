@@ -1,0 +1,789 @@
+{
+  "page": "↳ 🟢 Tree Item",
+  "pageId": "2422:8434",
+  "componentSets": [
+    {
+      "name": "Tree Item",
+      "id": "2422:9953",
+      "description": "Single row in a hierarchical tree. 12 variants: state (default / hover / edit) × selected × expanded.\n\nDEPTH — set on the nested Tree indent instance (depth 00–10). Indent = depth × 16px. Never hardcode indentation or add Level variants back; depth is unbounded by design.\nLEAF ROWS — hasChevron=false hides only the glyph inside the fixed 16px chevron slot, so sibling labels stay aligned. Never delete or hide the Chevron frame itself.\nCTAs — appear on hover and while selected; hasCTAs=false opts out per instance. Resting rows have no CTA layer.\nRENAME — state=edit styles the row as an active inline input (border/feedback/focus/strong + shadow/focus/default) and doubles as the focus treatment.\n\n⚠️ Hovering a selected row renders identically to selected — pending a color.surface.selected token.\n⚠️ No separate focus/disabled variants; state=edit carries the focus ring. Flag before 🟢 if Class D coverage is required.",
+      "docLinks": [],
+      "variantCount": 12,
+      "props": {
+        "hasChevron#7028:26": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasCounter#7094:0": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "hasCheckbox#7693:0": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "hasTag#8775:0": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "hasLeadingIcon#8775:25": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "hasStatus#8777:0": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "hasButtons#10229:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasTrailingIcon#10268:9": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "selected": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "expanded": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "edit"
+          ]
+        }
+      },
+      "defaultVariant": "selected=false, expanded=false, state=default",
+      "defaultVariantNodeCount": 16,
+      "defaultVariantTree": {
+        "name": "selected=false, expanded=false, state=default",
+        "type": "COMPONENT",
+        "size": [
+          200,
+          32
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 4,
+          "pad": [
+            0,
+            8,
+            0,
+            4
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "radius": 6,
+        "vars": {
+          "itemSpacing": "Spatial:inset/2xs",
+          "paddingLeft": "Spatial:inset/2xs",
+          "paddingRight": "Spatial:inset/xs",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Tree Indent",
+            "type": "INSTANCE",
+            "main": ".Tree Indent",
+            "variant": {
+              "depth": "00"
+            },
+            "size": [
+              0,
+              32
+            ],
+            "sizing": "FIXED/FIXED"
+          },
+          {
+            "name": "Chevron",
+            "type": "FRAME",
+            "size": [
+              16,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "children": [
+              {
+                "name": "Icon/ChevronRight",
+                "type": "INSTANCE",
+                "main": "Icon/ChevronRight",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                },
+                "propRefs": {
+                  "visible": "hasChevron#7028:26"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Checkbox",
+            "type": "INSTANCE",
+            "hidden": true,
+            "main": "Checkbox",
+            "variant": {
+              "checked": "false",
+              "disabled": "false",
+              "hover": "false",
+              "mixed": "false",
+              "focus": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "propRefs": {
+              "visible": "hasCheckbox#7693:0"
+            }
+          },
+          {
+            "name": "Icon/None",
+            "type": "INSTANCE",
+            "hidden": true,
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            },
+            "propRefs": {
+              "visible": "hasLeadingIcon#8775:25"
+            }
+          },
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "Label",
+            "textStyle": "label/md",
+            "size": [
+              164,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          },
+          {
+            "name": "StatusIndicator",
+            "type": "INSTANCE",
+            "hidden": true,
+            "main": "StatusIndicator",
+            "variant": {
+              "type": "success",
+              "size": "xs"
+            },
+            "size": [
+              8,
+              8
+            ],
+            "sizing": "FIXED/FIXED",
+            "fills": [
+              "{Color:surface/feedback/success/strong}"
+            ],
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            },
+            "propRefs": {
+              "visible": "hasStatus#8777:0"
+            }
+          },
+          {
+            "name": "Tag",
+            "type": "INSTANCE",
+            "hidden": true,
+            "main": "Tag",
+            "variant": {
+              "status": "success",
+              "type": "status",
+              "invert": "false"
+            },
+            "size": [
+              67,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                12,
+                0,
+                8
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/FIXED"
+            },
+            "fills": [
+              "{Color:surface/feedback/success/subtle}"
+            ],
+            "strokes": [
+              "{Color:border/feedback/success/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            },
+            "propRefs": {
+              "visible": "hasTag#8775:0"
+            }
+          },
+          {
+            "name": "Counter",
+            "type": "INSTANCE",
+            "hidden": true,
+            "main": "Counter",
+            "variant": {
+              "type": "regular",
+              "state": "disabled"
+            },
+            "size": [
+              25,
+              20
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                8,
+                0,
+                8
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/FIXED"
+            },
+            "fills": [
+              "{Color:action/primary/bg/disabled}"
+            ],
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xs",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            },
+            "propRefs": {
+              "visible": "hasCounter#7094:0"
+            }
+          },
+          {
+            "name": "Icon/None",
+            "type": "INSTANCE",
+            "hidden": true,
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            },
+            "propRefs": {
+              "visible": "hasTrailingIcon#10268:9"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "selected=false, expanded=false, state=default",
+          "size": [
+            200,
+            32
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Checkbox",
+            "Counter",
+            "Icon/None",
+            "StatusIndicator",
+            "Tag"
+          ]
+        },
+        {
+          "variant": "selected=false, expanded=false, state=hover",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "selected=false, expanded=false, state=edit",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "StatusIndicator",
+            "Tag"
+          ]
+        },
+        {
+          "variant": "selected=false, expanded=true, state=default",
+          "size": [
+            200,
+            32
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "selected=false, expanded=true, state=edit",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "StatusIndicator",
+            "Tag"
+          ]
+        },
+        {
+          "variant": "selected=false, expanded=true, state=hover",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "selected=true, expanded=false, state=default",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=true, expanded=false, state=hover",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=true, expanded=false, state=edit",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "StatusIndicator",
+            "Tag"
+          ]
+        },
+        {
+          "variant": "selected=true, expanded=true, state=default",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=true, expanded=true, state=edit",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "StatusIndicator",
+            "Tag"
+          ]
+        },
+        {
+          "variant": "selected=true, expanded=true, state=hover",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": ".Tree Indent",
+      "id": "10229:19647",
+      "description": "Spacer that sets a Tree Item's nesting depth via the exposed depth property (00–10). Indent = depth × 16px, matching the 16px chevron slot.\n\nWidth is content-driven — each variant holds depth × 16px units and hugs them. This is deliberate: fixed-size variants do NOT resize when swapped inside a nested instance (Figma limitation). Add depth by adding units; never resize the variant frame or convert to fixed widths.",
+      "docLinks": [],
+      "variantCount": 11,
+      "props": {
+        "depth": {
+          "type": "VARIANT",
+          "default": "00",
+          "options": [
+            "00",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10"
+          ]
+        }
+      },
+      "defaultVariant": "depth=00",
+      "defaultVariantNodeCount": 0,
+      "defaultVariantTree": {
+        "name": "depth=00",
+        "type": "COMPONENT",
+        "size": [
+          0,
+          32
+        ],
+        "sizing": "FIXED/FIXED",
+        "children": []
+      },
+      "variants": [
+        {
+          "variant": "depth=00",
+          "size": [
+            0,
+            32
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "depth=01",
+          "size": [
+            16,
+            32
+          ]
+        },
+        {
+          "variant": "depth=02",
+          "size": [
+            32,
+            32
+          ]
+        },
+        {
+          "variant": "depth=03",
+          "size": [
+            48,
+            32
+          ]
+        },
+        {
+          "variant": "depth=04",
+          "size": [
+            64,
+            32
+          ]
+        },
+        {
+          "variant": "depth=05",
+          "size": [
+            80,
+            32
+          ]
+        },
+        {
+          "variant": "depth=06",
+          "size": [
+            96,
+            32
+          ]
+        },
+        {
+          "variant": "depth=07",
+          "size": [
+            112,
+            32
+          ]
+        },
+        {
+          "variant": "depth=08",
+          "size": [
+            128,
+            32
+          ]
+        },
+        {
+          "variant": "depth=09",
+          "size": [
+            144,
+            32
+          ]
+        },
+        {
+          "variant": "depth=10",
+          "size": [
+            160,
+            32
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Tree",
+    "Depth",
+    "Depth is a property, not a variant — select the nested Tree indent and pick depth 00–10.\nIndent = depth × 16px, matching the 16px chevron slot, so a child’s content aligns under its parent’s label at any depth.\nLeaf rows: set hasChevron=false. Only the glyph hides — the 16px slot remains, so siblings stay aligned.",
+    "Keyboard",
+    "↑ / ↓         move row focus.\n→               expand (if collapsed) or move to first child (if expanded).\n←               collapse (if expanded) or move to parent (if collapsed).\nEnter/Space    select / activate.\nHome/End       first / last visible row.\nF2             rename in place (state=edit).",
+    "Rules",
+    "Do\n\n• Set depth on the nested Tree indent — never hardcode indentation\n• Use hasChevron=false for leaf rows; the slot keeps siblings aligned\n• Rely on the built-in reveal: CTAs show on hover and while selected\n• Use state=edit for inline rename — it doubles as the focus treatment",
+    "Don’t\n\n• Don’t delete or hide the Chevron frame — toggle hasChevron instead\n• Don’t re-add Level variants — depth is unbounded by design\n• Don’t put destructive actions inline in the row without a confirm\n• Don’t resize Tree indent variants — depth is content-driven on purpose"
+  ],
+  "pageContext": null
+}

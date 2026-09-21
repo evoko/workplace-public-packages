@@ -1,0 +1,276 @@
+{
+  "_note": "Manifest of SOLAR Foundations Figma pages, synced by fetch-rest.mjs. section/slug is the output path under raw/ and figma-pages/. Pages with \"exclude\": true are skipped by the fetcher and the builder and their raw file is removed; use it for pages that carry personal data.",
+  "file": "Y21OGpk2z6ig9cRMc5cl9L",
+  "pages": [
+    {
+      "section": "meta",
+      "slug": "changelog",
+      "id": "120:395",
+      "title": "Changelog",
+      "status": "none",
+      "indent": 0
+    },
+    {
+      "section": "meta",
+      "slug": "table-of-contents",
+      "id": "905:63456",
+      "title": "Table of Contents",
+      "status": "none",
+      "indent": 0
+    },
+    {
+      "section": "meta",
+      "slug": "directory",
+      "id": "905:65416",
+      "title": "Directory",
+      "status": "none",
+      "indent": 0
+    },
+    {
+      "section": "meta",
+      "slug": "lint-plugin",
+      "id": "1086:16826",
+      "title": "Lint Plugin",
+      "status": "none",
+      "indent": 0
+    },
+    {
+      "section": "meta",
+      "slug": "contacts",
+      "id": "905:65372",
+      "title": "Contacts",
+      "status": "none",
+      "indent": 0,
+      "exclude": true,
+      "excludeReason": "personal data (names, e-mail addresses); never fetched or rendered"
+    },
+    {
+      "section": "documentation",
+      "slug": "introduction",
+      "id": "1000:5125",
+      "title": "Introduction",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "documentation",
+      "slug": "tokens",
+      "id": "763:47331",
+      "title": "Tokens",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "documentation",
+      "slug": "accessibility",
+      "id": "763:47332",
+      "title": "Accessibility",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "documentation",
+      "slug": "visual-language",
+      "id": "763:47333",
+      "title": "Visual Language",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "documentation",
+      "slug": "typography",
+      "id": "763:51711",
+      "title": "Typography",
+      "status": "done",
+      "indent": 1
+    },
+    {
+      "section": "documentation",
+      "slug": "color",
+      "id": "763:50347",
+      "title": "Color",
+      "status": "done",
+      "indent": 1
+    },
+    {
+      "section": "documentation",
+      "slug": "layering-elevation",
+      "id": "763:52851",
+      "title": "Layering & Elevation",
+      "status": "done",
+      "indent": 1
+    },
+    {
+      "section": "documentation",
+      "slug": "states-interaction",
+      "id": "1054:14458",
+      "title": "States & Interaction",
+      "status": "done",
+      "indent": 1
+    },
+    {
+      "section": "documentation",
+      "slug": "iconography",
+      "id": "763:53729",
+      "title": "Iconography",
+      "status": "done",
+      "indent": 1
+    },
+    {
+      "section": "documentation",
+      "slug": "data-visualization",
+      "id": "763:55486",
+      "title": "Data Visualization",
+      "status": "done",
+      "indent": 1
+    },
+    {
+      "section": "documentation",
+      "slug": "layout",
+      "id": "763:56364",
+      "title": "Layout",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "documentation",
+      "slug": "responsive",
+      "id": "763:57247",
+      "title": "Responsive",
+      "status": "done",
+      "indent": 1
+    },
+    {
+      "section": "documentation",
+      "slug": "grid",
+      "id": "763:58215",
+      "title": "Grid",
+      "status": "done",
+      "indent": 1
+    },
+    {
+      "section": "documentation",
+      "slug": "spatial",
+      "id": "763:59204",
+      "title": "Spatial",
+      "status": "done",
+      "indent": 1
+    },
+    {
+      "section": "documentation",
+      "slug": "borders-radius",
+      "id": "763:60191",
+      "title": "Borders & Radius",
+      "status": "done",
+      "indent": 1
+    },
+    {
+      "section": "documentation",
+      "slug": "motion",
+      "id": "763:61136",
+      "title": "Motion",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "documentation",
+      "slug": "theming",
+      "id": "1114:9360",
+      "title": "Theming",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "documentation",
+      "slug": "ux-copy",
+      "id": "1138:12741",
+      "title": "UX Copy",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "documentation",
+      "slug": "governance",
+      "id": "1114:10348",
+      "title": "Governance",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "documentation",
+      "slug": "execution-impact",
+      "id": "2023:1254",
+      "title": "Execution & Impact",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "documentation",
+      "slug": "implementation-guidelines",
+      "id": "2023:1253",
+      "title": "Implementation Guidelines",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "documentation",
+      "slug": "agentic-reference",
+      "id": "1251:578",
+      "title": "Agentic Reference",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "primitives",
+      "slug": "color",
+      "id": "15:366",
+      "title": "Color",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "primitives",
+      "slug": "typography",
+      "id": "27:296",
+      "title": "Typography",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "primitives",
+      "slug": "spatial",
+      "id": "27:298",
+      "title": "Spatial",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "primitives",
+      "slug": "motion",
+      "id": "1026:12195",
+      "title": "Motion",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "primitives",
+      "slug": "elevation",
+      "id": "1627:10994",
+      "title": "Elevation",
+      "status": "done",
+      "indent": 0
+    },
+    {
+      "section": "primitives",
+      "slug": "viewport",
+      "id": "1051:14406",
+      "title": "Viewport",
+      "status": "done",
+      "indent": 0
+    }
+  ],
+  "lastSync": {
+    "version": "2397931579128493119",
+    "on": "2026-09-21"
+  }
+}

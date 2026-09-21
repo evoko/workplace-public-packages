@@ -1,0 +1,221 @@
+{
+  "page": "↳ 🟢 Chart Tooltip",
+  "pageId": "5113:8",
+  "componentSets": [
+    {
+      "name": "Chart Tooltip",
+      "id": "7308:25",
+      "description": "Value-on-hover overlay for chart data points. Shows category title + one or more value rows.\n\nVariants:\n  series = single (one value, compact) | multi (3 labeled rows, distributed)\n\nContainer: surface/raised bg, border/subtle stroke, radius/control, shadow/overlay effect, padding 8×12.\n\nFor multi, override each row's swatch color (instance swap), label, and value per chart's data series.\n\nAccessibility: when implemented in code, the tooltip must satisfy WCAG 1.4.13 — dismissible (Esc), hoverable (without disappearing), persistent (stays until intent is clear).",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "series": {
+          "type": "VARIANT",
+          "default": "single",
+          "options": [
+            "single",
+            "multi"
+          ]
+        }
+      },
+      "defaultVariant": "series=single",
+      "defaultVariantNodeCount": 4,
+      "defaultVariantTree": {
+        "name": "series=single",
+        "type": "COMPONENT",
+        "size": [
+          77,
+          50
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 6,
+        "effectStyle": "shadow/overlay",
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/sm",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Date",
+            "type": "TEXT",
+            "text": "Jan 2026",
+            "textStyle": "body/sm/semibold",
+            "size": [
+              53,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/sm",
+              "fontStyle": "Primitives:type/font-weight/600"
+            }
+          },
+          {
+            "name": "Frame",
+            "type": "FRAME",
+            "size": [
+              47,
+              9
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 6,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "children": [
+              {
+                "name": "StatusIndicator",
+                "type": "INSTANCE",
+                "main": "StatusIndicator",
+                "variant": {
+                  "type": "success",
+                  "size": "xs"
+                },
+                "size": [
+                  8,
+                  8
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:surface/feedback/success/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "radius": 9999,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              {
+                "name": "Value",
+                "type": "TEXT",
+                "text": "60.4k",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  33,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "series=single",
+          "size": [
+            77,
+            50
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "series=multi",
+          "size": [
+            156,
+            84
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Chart Tooltip",
+    "Description",
+    "A floating readout of exact values for the hovered or focused data point. Appears on interaction with a chart; it is not a persistent label.",
+    "Anatomy",
+    "Overlay container (surface + shadow/overlay) · series swatch · point label · value(s) · optional delta.",
+    "Placement",
+    "Tracks the focused point and flips to stay in the viewport. Offset from the datum so it never hides the point it describes.",
+    "States",
+    "default (visible) and hidden. Fades with motion.duration.fast. Non-blocking — pointer-events: none over the plot.",
+    "Accessibility",
+    "Mirror hover with keyboard focus on data points and announce the value via aria-live. Text ≥4.5:1 on surface.overlay; swatch ≥3:1.",
+    "Rules",
+    "Show exact values\nInclude series name + swatch\nKeep it to the focused point\nDismiss on blur",
+    "Cover the data point\nRely on hover only (support keyboard)\nCram multiple series unreadably\nPersist after focus leaves"
+  ],
+  "pageContext": null
+}

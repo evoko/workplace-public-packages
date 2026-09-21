@@ -1,0 +1,337 @@
+{
+  "page": "↳ 🟢 Image Card",
+  "pageId": "10395:3",
+  "componentSets": [
+    {
+      "name": "Image Card",
+      "id": "10401:26",
+      "description": "Selectable thumbnail tile (image + title + metadata) with checkbox on hover/selected and a dashed create-new variant. Migrated from Chatter Config 2026-09-01.",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "filled": {
+          "type": "VARIANT",
+          "default": "true",
+          "options": [
+            "true",
+            "false"
+          ]
+        },
+        "selected": {
+          "type": "VARIANT",
+          "default": "true",
+          "options": [
+            "true",
+            "false"
+          ]
+        },
+        "hover": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "filled=true, selected=true, hover=false",
+      "defaultVariantNodeCount": 7,
+      "defaultVariantTree": {
+        "name": "filled=true, selected=true, hover=false",
+        "type": "COMPONENT",
+        "size": [
+          200,
+          190
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/raised",
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Image",
+            "type": "FRAME",
+            "size": [
+              200,
+              127
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                8,
+                8,
+                8,
+                8
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FILL"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/xs"
+            },
+            "children": [
+              {
+                "name": "Checkbox",
+                "type": "INSTANCE",
+                "main": "Checkbox",
+                "variant": {
+                  "checked": "true",
+                  "disabled": "false",
+                  "hover": "false",
+                  "mixed": "false",
+                  "focus": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Text",
+            "type": "FRAME",
+            "size": [
+              200,
+              63
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/md"
+            },
+            "children": [
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "Title",
+                "textStyle": "label/md",
+                "size": [
+                  29,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Icon",
+                "type": "VECTOR",
+                "size": [
+                  3,
+                  14
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:icon/secondary}"
+                ]
+              },
+              {
+                "name": "Subtitle",
+                "type": "TEXT",
+                "text": "Last modified: 2h ago",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  168,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "filled=true, selected=true, hover=false",
+          "size": [
+            200,
+            190
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "filled=true, selected=false, hover=true",
+          "size": [
+            200,
+            190
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "filled=true, selected=false, hover=false",
+          "size": [
+            200,
+            190
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "filled=false, selected=false, hover=false",
+          "size": [
+            200,
+            190
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Image Card",
+    "Description",
+    "Selectable thumbnail tile with a title and metadata line. Used for visual entities such as floor plans and maps; the empty variant is a dashed create-new tile.",
+    "Anatomy",
+    "200×190 card on surface/base with radius/container and shadow/raised. Image area (surface/background + image fill) hosting a Checkbox when selectable; text area with label/md title, body/sm metadata and a more-menu glyph in icon/secondary.",
+    "Variants & props",
+    "filled (2)    true · false — false is the dashed create-new tile\nselected (2)  checkbox checked on the image\nhover (2)     checkbox visible unchecked on the image",
+    "Usage",
+    "Show the checkbox only on hover or when selected.\nKeep titles to one line; metadata to one short line.\nUse the create-new tile as the last item of a grid.",
+    "Rules",
+    "DO   Keep one aspect ratio across a grid\nDO   Use real content thumbnails when available\nDO   Route actions through the more menu",
+    "DON’T   Mix filled and empty tiles mid-grid\nDON’T   Put buttons inside the image area\nDON’T   Use for list layouts (use Interactive Card)"
+  ],
+  "pageContext": null
+}

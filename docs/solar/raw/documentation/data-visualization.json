@@ -1,0 +1,739 @@
+{
+  "page": "Data Visualization",
+  "pageId": "763:55486",
+  "section": "documentation",
+  "slug": "data-visualization",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Visual Language\nData Visualization"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Data Visualization",
+      "subtitle": null,
+      "x": 2000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Data visualization in SOLAR translates complex information into clear, scannable visual formats. Charts, graphs, and indicators follow consistent rules to ensure readability and accuracy across all Biamp products."
+        },
+        {
+          "t": "p",
+          "text": "Biamp products surface system status, network health, audio levels, and device metrics. These data points must be presented in ways that support quick decision-making without overwhelming users. SOLAR's data visualization guidelines prioritize legibility, semantic color usage, and accessible encoding over visual richness.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Accuracy Over Aesthetics"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Semantic Color Only"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Readable At A Glance"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Accessible Encoding"
+        },
+        {
+          "t": "p",
+          "text": "Visualizations must represent data truthfully. Never truncate axes, distort proportions, or use effects that misrepresent scale.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Chart colors are drawn from SOLAR's token system. Data categories use the designated palette, and status indicators use feedback tokens (success, warning, danger).",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Every visualization should answer one clear question. If a chart requires extensive explanation to interpret, it needs to be simplified or split.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Color must never be the only way to distinguish data. Use pattern fills, labels, shapes, or position as secondary encoding for users with color vision deficiency.",
+          "style": "16/400"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Chart Types",
+      "subtitle": null,
+      "x": 4000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR supports a defined set of chart types. Each type is suited to a specific data relationship. Choosing the wrong chart type obscures the data it's meant to clarify."
+        },
+        {
+          "t": "p",
+          "text": "Select chart types based on the relationship you need to communicate: comparison, composition, distribution, or trend. If the data doesn't clearly fit one of these categories, consider whether a visualization is the right format at all — a well-structured table may be more effective.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Chart Types"
+        },
+        {
+          "t": "p",
+          "text": "Bar chart — Comparing discrete categories. Use horizontal bars when category labels are long. Always start the value axis at zero.\nLine chart — Showing trends over time. Use when the x-axis represents a continuous time scale. Limit to 4–5 lines before the chart becomes unreadable.\nArea chart — Showing volume or cumulative values over time. Use sparingly — stacked areas can be hard to read. Prefer line charts for precision.\nDonut chart — Showing part-to-whole relationships with a small number of segments (2–5). Never use for comparisons between categories. Avoid pie charts — donuts are preferred for their readability.\nSparkline — Showing inline trends within tables or cards. No axis labels, no grid — just the shape of the trend. Used for context, not precision.\nStatus indicator — Showing current state (good, warning, critical) through a single color-coded element. Always paired with a text label.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Data Visualization Color",
+      "subtitle": null,
+      "x": 6000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Chart colors follow a dedicated data palette derived from SOLAR's color primitives. The palette is designed for sufficient contrast between adjacent categories and against both light and dark backgrounds."
+        },
+        {
+          "t": "p",
+          "text": "The data palette is separate from the action and feedback token groups. It provides a sequential set of distinct hues for categorical data. For status-related data, use feedback tokens (success, warning, danger) directly. Never mix the data palette with feedback tokens in the same chart — use one system per visualization.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Color Rules"
+        },
+        {
+          "t": "p",
+          "text": "Categorical data — Use the data palette in order. Do not skip colors or rearrange the sequence, as the order is optimized for maximum contrast between adjacent values.\nStatus data — Use feedback tokens: green for healthy/success, orange for warning, red for danger/critical. Always reinforce with text or icon labels.\nSequential data — Use a single hue with varying lightness for data that progresses from low to high (e.g. intensity, volume, load).\nSingle metric — Reserve the full palette for multi-series charts.\nBackground and grid — Chart backgrounds use surface/base. Grid lines use a low-contrast neutral to avoid competing with data.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "image 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Axes, Labels & Grid",
+      "subtitle": null,
+      "x": 8000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Clear labeling is what makes a chart readable. Every axis, data point, and legend must follow SOLAR's typographic and spatial rules."
+        },
+        {
+          "t": "p",
+          "text": "Axes provide the reference frame for all data in a chart. Without clear, consistently formatted labels, even simple data becomes ambiguous. SOLAR defines strict rules for axis formatting, label placement, and grid usage to ensure charts are self-explanatory without relying on external descriptions.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Rules"
+        },
+        {
+          "t": "p",
+          "text": "Always label both axes. Include unit labels (ms, dB, %, count) directly on the axis. Never rely on the chart title alone to communicate units.\nStart value axes at zero unless there is a strong, documented reason not to. Truncated axes distort perception of differences between values.\nUse SOLAR's type scale. Axis labels use the smallest body text size. Data labels use the same size or one step larger. Chart titles use the H4 heading style.\nGrid lines are minimal. Use horizontal grid lines only, in a low-contrast neutral color. Vertical grid lines are rarely needed and add visual noise. Never use both.\nLegends are positioned consistently. Place legends below the chart for horizontal layouts, to the right for vertical layouts. Never place legends inside the chart area where they overlap data.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Responsive & Threshold Behavior",
+      "subtitle": null,
+      "x": 10000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Charts must adapt to different container sizes without losing readability. SOLAR defines how visualizations respond to space constraints and how threshold indicators communicate status."
+        },
+        {
+          "t": "p",
+          "text": "Not every chart renders well at every size. Rather than scaling charts uniformly, SOLAR defines breakpoints at which charts simplify — reducing label density, hiding grid lines, or switching to a more compact format. Threshold lines and status zones provide contextual meaning to raw data by indicating when values are within, approaching, or beyond acceptable ranges.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Rules"
+        },
+        {
+          "t": "p",
+          "text": "Simplify, don't shrink. When a chart container narrows, reduce the number of visible data labels and grid lines rather than scaling everything down. Legibility always wins.\nSwitch formats at breakpoints. A bar chart at full width may become a horizontal bar or a compact list below a defined container width. Define these transitions per chart type.\nThreshold lines are always labeled. A horizontal line indicating a warning or critical threshold must include a text label and use the corresponding feedback color token.\nStatus zones use feedback surface tokens. Shaded regions behind data (e.g. \"safe range\" in green, \"danger zone\" in red) use surface.feedback.{type} with reduced opacity so data remains readable on top.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Data Visualization Do's and Don'ts",
+      "subtitle": null,
+      "x": 12000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Trustworthy data presentation is essential for Biamp's professional audience. These guidelines prevent common mistakes that undermine clarity and confidence in SOLAR products."
+        },
+        {
+          "t": "p",
+          "text": "Biamp users make operational decisions based on the data they see. A misleading chart or an unclear indicator can have real consequences. Every visualization must prioritize honesty, clarity, and efficient reading over visual appeal.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Do: Use Semantic Color For Status"
+        },
+        {
+          "t": "p",
+          "text": "Status-related data always uses feedback tokens (success, warning, danger). Users already associate these colors with system states across the rest of the UI.",
+          "style": "16/400"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Do: Label Everything"
+        },
+        {
+          "t": "p",
+          "text": "Every axis, data series, and threshold line must be labeled. If a user has to guess what a line represents, the chart has failed.",
+          "style": "16/400"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Don't: Use 3D Effects Or Gradients"
+        },
+        {
+          "t": "p",
+          "text": "3D effects, gradients, and drop shadows on chart elements distort data perception. All chart elements must be flat and precisely rendered.",
+          "style": "16/400"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Don't: Exceed 5 Categories Without Grouping"
+        },
+        {
+          "t": "p",
+          "text": "Beyond 5 categories, a chart becomes unreadable. Group smaller values into an \"Other\" category or split into multiple charts. Donut charts should never exceed 5 segments.",
+          "style": "16/400"
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Data Visualization\ndomain: Visual Language > Charts & Data Display\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR data visualization specialist. Charts, graphs, and data displays must be accessible, consistent, truthful, and use the dedicated data viz token palette — never UI semantic colors.\n\n[SCOPE]\n- Chart type selection guidelines\n- Data visualization color palette (categorical, sequential, diverging)\n- Axis, label, and annotation conventions\n- Accessibility in data displays\n- Responsive behavior for charts\n- Interaction patterns (tooltips, drill-down)\n\n[CHART_TYPES]\nbar/column: comparing discrete categories — default choice for most comparisons\nline: showing trends over continuous time series\narea: line chart with filled region — emphasizing volume or cumulative totals\npie/donut: part-to-whole with ≤ 6 segments — use sparingly\nscatter: correlation between two variables\ntable: precise values, sortable/filterable — use when exact numbers matter more than shape\nsparkline: inline mini-chart for contextual trend indicators\nrule: choose the simplest chart type that accurately communicates the data\n\n[DATA_VIZ_PALETTE]\ncategorical: 6–8 distinct hues for nominal data — optimized for max distinguishability\nsequential: single-hue ramp (light → dark) for ordered/quantitative data\ndiverging: two-hue ramp with neutral midpoint for data with a meaningful center\ncolorblind_safe: all palettes tested for deuteranopia, protanopia, tritanopia\ntokens: dataviz.color.categorical.{1–8}, dataviz.color.sequential.{100–900}, dataviz.color.diverging.{neg|neutral|pos}\nrule: NEVER reuse UI semantic colors (action, feedback, surface) for data encoding\n\n[AXIS_AND_LABELS]\ny_axis: start at zero for bar charts — truncated axes are misleading\nx_axis: label every major tick or use smart label intervals for dense data\naxis_labels: use type token caption or body/sm — never smaller than 12px\ngrid_lines: subtle (color.border.subtle) — horizontal only for most charts\nunits: always display units (%, $, ms) on axis or in tooltip\nlegend: positioned above or to the right — never overlapping data\n\n[ANNOTATIONS]\nreference_lines: use for targets, thresholds, averages — labeled with value\ndata_labels: inline on bars/points when space permits — avoid clutter\ntooltips: show on hover/tap — include series name, value, and unit\nempty_state: clear message + action when no data is available\n\n[ACCESSIBILITY]\ntext_alternative: every chart must have a text summary or data table fallback\npattern_fills: use shape markers or pattern fills in addition to color for series differentiation\ncontrast: data elements must meet ≥ 3:1 contrast against background\nkeyboard: charts with interactive elements must be keyboard navigable\nscreen_reader: provide aria-label or aria-describedby summarizing the chart's key insight\nrule: never rely on color alone to distinguish data series\n\n[RESPONSIVE]\ndesktop: full chart with all labels, legend, and annotations\ntablet: may simplify legend placement or reduce label density\nmobile: consider switching horizontal bar → vertical stack, or simplify to summary + sparkline\nscrollable: allow horizontal scroll for wide time series on small screens\nrule: charts must remain readable and not truncate critical data at any breakpoint\n\n[INTERACTION]\ntooltip: appears on hover (desktop) or tap (mobile) — shows precise values\ndrill_down: optional click-to-expand for hierarchical data\nfilter: external controls (dropdowns, toggles) to refine visible data\nzoom: optional for dense time series — pinch/scroll zoom with reset\nanimation: data entrance animations respect prefers-reduced-motion\n\n[AGENT_BEHAVIOR]\n- When recommending a chart type, justify why it's the best fit for the data shape\n- Always specify data viz palette tokens — never UI colors\n- If a chart lacks a text alternative, flag it as a critical accessibility violation\n- Verify y-axis starts at zero for bar charts\n- Check that all data series are distinguishable without color (shape/pattern markers)\n- For responsive contexts, recommend simplified alternatives for mobile\n\n[CONSTRAINTS]\n- never use 3D charts or decorative embellishments (gradients, shadows on bars)\n- never truncate y-axis on bar charts (misleading proportions)\n- never use more than 6 segments in pie/donut charts\n- never rely on color alone to differentiate data series\n- never use UI semantic colors for data encoding\n- charts must have a text summary fallback for screen readers\n- animations must respect prefers-reduced-motion\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Data Visualization",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Data visualization in SOLAR translates complex information into clear, scannable visual formats. Charts, graphs, and indicators follow consistent rules to ensure readability and accuracy across all Biamp products.",
+        "Biamp products surface system status, network health, audio levels, and device metrics. These data points must be presented in ways that support quick decision-making without overwhelming users. SOLAR's data visualization guidelines prioritize legibility, semantic color usage, and accessible encoding over visual richness.",
+        "Accuracy Over Aesthetics",
+        "Semantic Color Only",
+        "Readable At A Glance",
+        "Accessible Encoding",
+        "Visualizations must represent data truthfully. Never truncate axes, distort proportions, or use effects that misrepresent scale.",
+        "Chart colors are drawn from SOLAR's token system. Data categories use the designated palette, and status indicators use feedback tokens (success, warning, danger).",
+        "Every visualization should answer one clear question. If a chart requires extensive explanation to interpret, it needs to be simplified or split.",
+        "Color must never be the only way to distinguish data. Use pattern fills, labels, shapes, or position as secondary encoding for users with color vision deficiency."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Chart Types",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR supports a defined set of chart types. Each type is suited to a specific data relationship. Choosing the wrong chart type obscures the data it's meant to clarify.",
+        "Select chart types based on the relationship you need to communicate: comparison, composition, distribution, or trend. If the data doesn't clearly fit one of these categories, consider whether a visualization is the right format at all — a well-structured table may be more effective.",
+        "Chart Types",
+        "Bar chart — Comparing discrete categories. Use horizontal bars when category labels are long. Always start the value axis at zero.\nLine chart — Showing trends over time. Use when the x-axis represents a continuous time scale. Limit to 4–5 lines before the chart becomes unreadable.\nArea chart — Showing volume or cumulative values over time. Use sparingly — stacked areas can be hard to read. Prefer line charts for precision.\nDonut chart — Showing part-to-whole relationships with a small number of segments (2–5). Never use for comparisons between categories. Avoid pie charts — donuts are preferred for their readability.\nSparkline — Showing inline trends within tables or cards. No axis labels, no grid — just the shape of the trend. Used for context, not precision.\nStatus indicator — Showing current state (good, warning, critical) through a single color-coded element. Always paired with a text label."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Data Visualization Color",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Chart colors follow a dedicated data palette derived from SOLAR's color primitives. The palette is designed for sufficient contrast between adjacent categories and against both light and dark backgrounds.",
+        "The data palette is separate from the action and feedback token groups. It provides a sequential set of distinct hues for categorical data. For status-related data, use feedback tokens (success, warning, danger) directly. Never mix the data palette with feedback tokens in the same chart — use one system per visualization.",
+        "Color Rules",
+        "Categorical data — Use the data palette in order. Do not skip colors or rearrange the sequence, as the order is optimized for maximum contrast between adjacent values.\nStatus data — Use feedback tokens: green for healthy/success, orange for warning, red for danger/critical. Always reinforce with text or icon labels.\nSequential data — Use a single hue with varying lightness for data that progresses from low to high (e.g. intensity, volume, load).\nSingle metric — Reserve the full palette for multi-series charts.\nBackground and grid — Chart backgrounds use surface/base. Grid lines use a low-contrast neutral to avoid competing with data."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Axes, Labels & Grid",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Clear labeling is what makes a chart readable. Every axis, data point, and legend must follow SOLAR's typographic and spatial rules.",
+        "Axes provide the reference frame for all data in a chart. Without clear, consistently formatted labels, even simple data becomes ambiguous. SOLAR defines strict rules for axis formatting, label placement, and grid usage to ensure charts are self-explanatory without relying on external descriptions.",
+        "Rules",
+        "Always label both axes. Include unit labels (ms, dB, %, count) directly on the axis. Never rely on the chart title alone to communicate units.\nStart value axes at zero unless there is a strong, documented reason not to. Truncated axes distort perception of differences between values.\nUse SOLAR's type scale. Axis labels use the smallest body text size. Data labels use the same size or one step larger. Chart titles use the H4 heading style.\nGrid lines are minimal. Use horizontal grid lines only, in a low-contrast neutral color. Vertical grid lines are rarely needed and add visual noise. Never use both.\nLegends are positioned consistently. Place legends below the chart for horizontal layouts, to the right for vertical layouts. Never place legends inside the chart area where they overlap data."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Responsive & Threshold Behavior",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Charts must adapt to different container sizes without losing readability. SOLAR defines how visualizations respond to space constraints and how threshold indicators communicate status.",
+        "Not every chart renders well at every size. Rather than scaling charts uniformly, SOLAR defines breakpoints at which charts simplify — reducing label density, hiding grid lines, or switching to a more compact format. Threshold lines and status zones provide contextual meaning to raw data by indicating when values are within, approaching, or beyond acceptable ranges.",
+        "Rules",
+        "Simplify, don't shrink. When a chart container narrows, reduce the number of visible data labels and grid lines rather than scaling everything down. Legibility always wins.\nSwitch formats at breakpoints. A bar chart at full width may become a horizontal bar or a compact list below a defined container width. Define these transitions per chart type.\nThreshold lines are always labeled. A horizontal line indicating a warning or critical threshold must include a text label and use the corresponding feedback color token.\nStatus zones use feedback surface tokens. Shaded regions behind data (e.g. \"safe range\" in green, \"danger zone\" in red) use surface.feedback.{type} with reduced opacity so data remains readable on top."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Data Visualization Do's and Don'ts",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Trustworthy data presentation is essential for Biamp's professional audience. These guidelines prevent common mistakes that undermine clarity and confidence in SOLAR products.",
+        "Biamp users make operational decisions based on the data they see. A misleading chart or an unclear indicator can have real consequences. Every visualization must prioritize honesty, clarity, and efficient reading over visual appeal.",
+        "Do: Use Semantic Color For Status",
+        "Status-related data always uses feedback tokens (success, warning, danger). Users already associate these colors with system states across the rest of the UI.",
+        "Do: Label Everything",
+        "Every axis, data series, and threshold line must be labeled. If a user has to guess what a line represents, the chart has failed.",
+        "Don't: Use 3D Effects Or Gradients",
+        "3D effects, gradients, and drop shadows on chart elements distort data perception. All chart elements must be flat and precisely rendered.",
+        "Don't: Exceed 5 Categories Without Grouping",
+        "Beyond 5 categories, a chart becomes unreadable. Group smaller values into an \"Other\" category or split into multiple charts. Donut charts should never exceed 5 segments."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 106
+}

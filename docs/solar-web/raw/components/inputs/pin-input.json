@@ -1,0 +1,777 @@
+{
+  "page": "↳ 🟢 PIN Input",
+  "pageId": "6164:6823",
+  "componentSets": [
+    {
+      "name": "PIN Input",
+      "id": "7795:222",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 12,
+      "props": {
+        "hasHelper#7810:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "mandatory#7810:13": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasLabel#7810:26": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus",
+            "filled",
+            "disabled",
+            "error"
+          ]
+        }
+      },
+      "defaultVariant": "size=md, state=default",
+      "defaultVariantNodeCount": 17,
+      "defaultVariantTree": {
+        "name": "size=md, state=default",
+        "type": "COMPONENT",
+        "size": [
+          236,
+          84
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FILL/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "FRAME",
+            "size": [
+              48,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
+            },
+            "propRefs": {
+              "visible": "hasLabel#7810:26"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "label/md",
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "*",
+                "type": "TEXT",
+                "text": "*",
+                "textStyle": "label/md",
+                "size": [
+                  8,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "mandatory#7810:13"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Cells",
+            "type": "FRAME",
+            "size": [
+              236,
+              48
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/FIXED"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/2xs"
+            },
+            "children": [
+              {
+                "name": "Field",
+                "type": "FRAME",
+                "size": [
+                  36,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "children": [
+                  {
+                    "name": "0",
+                    "type": "TEXT",
+                    "text": "0",
+                    "textStyle": "body/lg/medium",
+                    "size": [
+                      11,
+                      12
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/tertiary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/lg",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/lg",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Field",
+                "type": "FRAME",
+                "size": [
+                  36,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "children": [
+                  {
+                    "name": "0",
+                    "type": "TEXT",
+                    "text": "0",
+                    "textStyle": "body/lg/medium",
+                    "size": [
+                      11,
+                      12
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/tertiary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/lg",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/lg",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Field",
+                "type": "FRAME",
+                "size": [
+                  36,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "children": [
+                  {
+                    "name": "0",
+                    "type": "TEXT",
+                    "text": "0",
+                    "textStyle": "body/lg/medium",
+                    "size": [
+                      11,
+                      12
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/tertiary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/lg",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/lg",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Field",
+                "type": "FRAME",
+                "size": [
+                  36,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "children": [
+                  {
+                    "name": "0",
+                    "type": "TEXT",
+                    "text": "0",
+                    "textStyle": "body/lg/medium",
+                    "size": [
+                      11,
+                      12
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/tertiary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/lg",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/lg",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Field",
+                "type": "FRAME",
+                "size": [
+                  36,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "children": [
+                  {
+                    "name": "0",
+                    "type": "TEXT",
+                    "text": "0",
+                    "textStyle": "body/lg/medium",
+                    "size": [
+                      11,
+                      12
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/tertiary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/lg",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/lg",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Field",
+                "type": "FRAME",
+                "size": [
+                  36,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "children": [
+                  {
+                    "name": "0",
+                    "type": "TEXT",
+                    "text": "0",
+                    "textStyle": "body/lg/medium",
+                    "size": [
+                      11,
+                      12
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/tertiary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/lg",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/lg",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Helper text",
+            "type": "TEXT",
+            "text": "Helper text",
+            "textStyle": "helper/md",
+            "size": [
+              71,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/helper/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/helper/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "visible": "hasHelper#7810:0"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=md, state=default",
+          "size": [
+            236,
+            84
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "size=sm, state=default",
+          "size": [
+            188,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=hover",
+          "size": [
+            236,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=hover",
+          "size": [
+            188,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=focus",
+          "size": [
+            236,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=focus",
+          "size": [
+            188,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=filled",
+          "size": [
+            236,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=filled",
+          "size": [
+            188,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=disabled",
+          "size": [
+            236,
+            76
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=disabled",
+          "size": [
+            188,
+            66
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, state=error",
+          "size": [
+            236,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/danger}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=error",
+          "size": [
+            188,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/danger}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "PIN Input",
+    "Description",
+    "Short, fixed-length numeric entry (4–6 digits) for one-time codes, two-factor auth, and quick verification flows. Each digit lives in its own cell so the active position is always obvious. Auto-advance forward; backspace returns to the previous cell; pasting a full code distributes across all cells in one action.",
+    "Sizes",
+    "sm    Compact density — confirmation drawers, dense step views.\nmd    Default for standing verification screens and full-width challenge flows.",
+    "States",
+    "default      All cells empty.\nhover        Cell-1 hovered, others idle.\nfocus        Cell-1 focused, focus ring + caret.\nfilled         Every cell holds a digit; ready to submit.\ndisabled    Input not accepting any entry.\nerror          Wrong/expired code; helper uses text/feedback/danger.",
+    "Content",
+    "Label: name the action (\"Verification code\"). Helper text: state where the code came from (\"We sent a 6-digit code to ••@biamp.com\"). Error: state the fix (\"Code is incorrect or expired — request a new one\"), not the complaint. Always use the mandatory asterisk — a one-time code is, by definition, required.",
+    "Accessibility",
+    "Render the group with role=\"group\" and aria-label naming the field; each cell is an <input inputmode=\"numeric\" autocomplete=\"one-time-code\" aria-label=\"Digit n of 6\">. Tab moves into and out of the group; Left/Right arrows move between cells; Backspace deletes and moves back; pasting a code distributes across cells. Error helper sits in aria-live=\"polite\" and is referenced by aria-describedby on the group. Focus ring via shadow/focus/default — meets WCAG 3:1 non-text contrast.",
+    "Rules",
+    "Do\n\n• Use only for short, fixed-length numeric codes\n• Auto-advance forward; backspace returns to previous cell\n• Accept paste and distribute digits across all cells\n• Render with inputmode='numeric' and autocomplete='one-time-code'",
+    "Don't\n\n• Use for passwords, free-form text, or codes longer than ~8 digits\n• Omit the label — visible focus alone is not enough for screen readers\n• Validate per-keystroke; only on full entry or on submit\n• Place inside dense table rows — use Text Input instead",
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "PIN Input",
+    "Description",
+    "A set of single-character cells for short codes — OTP, MFA, or PINs. Auto-advances between cells and accepts a pasted full code.",
+    "Usage",
+    "Use for fixed-length numeric or alphanumeric codes. Auto-focus the first cell, auto-advance on entry, and accept a pasted code.",
+    "States",
+    "Default · Hover · Focus · Filled\nDisabled — muted.\nError — wrong/expired code; message + aria-invalid.",
+    "Sizes",
+    "sm (36px)   Compact dialogs.\nmd (44px)   Default. Meets the 44px touch target.",
+    "Accessibility",
+    "Grouped under one label describing the code and its length. Announce position and errors. Backspace moves to the previous cell; paste fills all.",
+    "Rules",
+    "DO   Auto-advance and accept paste\nDO   Label the group and its length\nDO   Support backspace navigation\nDO   Surface expiry / invalid errors",
+    "DON'T   Block pasting the code\nDON'T   Trap focus in one cell\nDON'T   Rely on colour alone for errors\nDON'T   Use for long free-form text"
+  ],
+  "pageContext": null
+}

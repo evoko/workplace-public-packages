@@ -1,0 +1,408 @@
+{
+  "page": "↳ 🟢 App Shell",
+  "pageId": "135:1529",
+  "componentSets": [
+    {
+      "name": "AppShell",
+      "id": "5888:18630",
+      "description": "App-level chrome scaffold: Top Bar + Sidebar + Page Content slot.\n\nVariants: breakpoint=desktop / mobile.\n\nSlot contract: the content area accepts any Page Layout pattern (e.g., Page Layout / Three Column, Page Layout / Single Column). Layouts compose INTO App Shell — do not absorb layout choices as App Shell variants. This keeps chrome and content layout as separate concerns.",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "Left#6239:44": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "Center#6239:47": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "Right#6239:50": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "hasLeft#6239:53": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasRight#6239:59": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 73,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/background}"
+        ],
+        "vars": {
+          "width": "Primitives:viewport/lg"
+        },
+        "children": [
+          {
+            "name": "Top Bar",
+            "type": "INSTANCE",
+            "main": "Top Bar",
+            "variant": {
+              "breakpoint": "desktop",
+              "hasSidebar": "true",
+              "isLoggedIn": "True"
+            },
+            "size": [
+              1440,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                16,
+                0,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "paddingLeft": "Spatial:stack/md",
+              "paddingRight": "Spatial:stack/md"
+            }
+          },
+          {
+            "name": "App Content",
+            "type": "FRAME",
+            "size": [
+              1440,
+              744
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                8,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FIXED"
+            },
+            "vars": {
+              "paddingRight": "Spatial:inset/xs"
+            },
+            "children": [
+              {
+                "name": "Sidebar",
+                "type": "INSTANCE",
+                "main": "Sidebar",
+                "variant": {
+                  "expanded": "False"
+                },
+                "size": [
+                  64,
+                  744
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    0,
+                    8,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FILL"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/2xs",
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              },
+              {
+                "name": "Page Content",
+                "type": "FRAME",
+                "size": [
+                  1368,
+                  744
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/MIN",
+                  "sizing": "FILL/FILL"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "layoutGrids": [
+                    "Space:grid/columns/lg",
+                    "Space:stack/x-sm"
+                  ]
+                },
+                "children": [
+                  {
+                    "name": "Left",
+                    "type": "SLOT",
+                    "size": [
+                      221,
+                      744
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FIXED/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/raised}"
+                    ],
+                    "radius": [
+                      8,
+                      8,
+                      0,
+                      0
+                    ],
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/none",
+                      "paddingLeft": "Spatial:inset/none",
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/none",
+                      "paddingBottom": "Spatial:inset/none",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/none",
+                      "bottomRightRadius": "Spatial:radius/none"
+                    },
+                    "propRefs": {
+                      "visible": "hasLeft#6239:53",
+                      "slotContentId": "Left#6239:44"
+                    },
+                    "children": []
+                  },
+                  {
+                    "name": "Center",
+                    "type": "SLOT",
+                    "size": [
+                      795,
+                      744
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/raised}"
+                    ],
+                    "radius": [
+                      8,
+                      8,
+                      0,
+                      0
+                    ],
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/none",
+                      "paddingLeft": "Spatial:stack/none",
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingRight": "Spatial:stack/none",
+                      "paddingBottom": "Spatial:inset/none",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/none",
+                      "bottomRightRadius": "Spatial:radius/none"
+                    },
+                    "propRefs": {
+                      "slotContentId": "Center#6239:47"
+                    },
+                    "children": []
+                  },
+                  {
+                    "name": "Right",
+                    "type": "SLOT",
+                    "size": [
+                      336,
+                      744
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FIXED/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/raised}"
+                    ],
+                    "radius": [
+                      8,
+                      8,
+                      0,
+                      0
+                    ],
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/none",
+                      "paddingLeft": "Spatial:inset/none",
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/none",
+                      "paddingBottom": "Spatial:inset/none",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/none",
+                      "bottomRightRadius": "Spatial:radius/none"
+                    },
+                    "propRefs": {
+                      "visible": "hasRight#6239:59",
+                      "slotContentId": "Right#6239:50"
+                    },
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Color:text/inverse}",
+            "{Primitives:color/purple/700}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Primitives:color/purple/700}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": []
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "App Shell",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

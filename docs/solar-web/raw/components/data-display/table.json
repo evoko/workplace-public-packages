@@ -1,0 +1,2240 @@
+{
+  "page": "↳ 🟢 Table",
+  "pageId": "2163:3683",
+  "componentSets": [
+    {
+      "name": "RowSelect",
+      "id": "3795:3341",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "title-row": {
+          "type": "VARIANT",
+          "default": "true",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "title-row=true",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "title-row=true",
+        "type": "COMPONENT",
+        "size": [
+          40,
+          40
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/background}"
+        ],
+        "vars": {
+          "itemSpacing": "Spatial:inset/sm",
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/none",
+          "topLeftRadius": "Spatial:radius/none",
+          "topRightRadius": "Spatial:radius/none",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": [
+          {
+            "name": "Checkbox",
+            "type": "INSTANCE",
+            "main": "Checkbox",
+            "variant": {
+              "checked": "false",
+              "disabled": "false",
+              "hover": "false",
+              "mixed": "false",
+              "focus": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "title-row=true",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "title-row=false",
+          "size": [
+            40,
+            40
+          ]
+        }
+      ]
+    },
+    {
+      "name": "RowExpand",
+      "id": "4417:3527",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "type": {
+          "type": "VARIANT",
+          "default": "title-row",
+          "options": [
+            "bottom-row",
+            "title-row",
+            "collapsed",
+            "expanded",
+            "middle-row",
+            "vertical-only"
+          ]
+        }
+      },
+      "defaultVariant": "type=title-row",
+      "defaultVariantNodeCount": 0,
+      "defaultVariantTree": {
+        "name": "type=title-row",
+        "type": "COMPONENT",
+        "size": [
+          16,
+          40
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/background}"
+        ],
+        "vars": {
+          "itemSpacing": "Spatial:inset/sm",
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/none",
+          "topLeftRadius": "Spatial:radius/none",
+          "topRightRadius": "Spatial:radius/none",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": []
+      },
+      "variants": [
+        {
+          "variant": "type=title-row",
+          "size": [
+            16,
+            40
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=collapsed",
+          "size": [
+            16,
+            40
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=expanded",
+          "size": [
+            16,
+            40
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=bottom-row",
+          "size": [
+            16,
+            40
+          ]
+        },
+        {
+          "variant": "type=middle-row",
+          "size": [
+            16,
+            40
+          ]
+        },
+        {
+          "variant": "type=vertical-only",
+          "size": [
+            16,
+            40
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Row",
+      "id": "4458:3569",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 10,
+      "props": {
+        "show expand#4458:16": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showCheckBox#6165:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "TitleRowContent#6499:37": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "Row Content#6499:43": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "title",
+          "options": [
+            "top",
+            "middle",
+            "title",
+            "bottom",
+            "non-expandable"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "selected"
+          ]
+        }
+      },
+      "defaultVariant": "type=title, state=default",
+      "defaultVariantNodeCount": 19,
+      "defaultVariantTree": {
+        "name": "type=title, state=default",
+        "type": "COMPONENT",
+        "size": [
+          1055,
+          40
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FILL/HUG"
+        },
+        "radius": 8,
+        "vars": {
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "RowSelect",
+            "type": "INSTANCE",
+            "main": "RowSelect",
+            "variant": {
+              "title-row": "true"
+            },
+            "size": [
+              40,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none",
+              "topLeftRadius": "Spatial:radius/none",
+              "topRightRadius": "Spatial:radius/none",
+              "bottomLeftRadius": "Spatial:radius/none",
+              "bottomRightRadius": "Spatial:radius/none"
+            },
+            "propRefs": {
+              "visible": "showCheckBox#6165:0"
+            }
+          },
+          {
+            "name": "RowExpand",
+            "type": "INSTANCE",
+            "main": "RowExpand",
+            "variant": {
+              "type": "title-row"
+            },
+            "size": [
+              16,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none",
+              "topLeftRadius": "Spatial:radius/none",
+              "topRightRadius": "Spatial:radius/none",
+              "bottomLeftRadius": "Spatial:radius/none",
+              "bottomRightRadius": "Spatial:radius/none"
+            },
+            "propRefs": {
+              "visible": "show expand#4458:16"
+            }
+          },
+          {
+            "name": "TitleRowContent",
+            "type": "SLOT",
+            "size": [
+              999,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "TitleRowContent#6499:37"
+            },
+            "children": [
+              {
+                "name": "Column Item",
+                "type": "INSTANCE",
+                "main": "Column Item",
+                "variant": {
+                  "title": "true",
+                  "type": "text"
+                },
+                "size": [
+                  200,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none"
+                }
+              },
+              {
+                "name": "Column Item",
+                "type": "INSTANCE",
+                "main": "Column Item",
+                "variant": {
+                  "title": "true",
+                  "type": "text"
+                },
+                "size": [
+                  200,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none"
+                }
+              },
+              {
+                "name": "Column Item",
+                "type": "INSTANCE",
+                "main": "Column Item",
+                "variant": {
+                  "title": "true",
+                  "type": "text"
+                },
+                "size": [
+                  200,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none"
+                }
+              },
+              {
+                "name": "Column Item",
+                "type": "INSTANCE",
+                "main": "Column Item",
+                "variant": {
+                  "title": "true",
+                  "type": "text"
+                },
+                "size": [
+                  200,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none"
+                }
+              },
+              {
+                "name": "Column Item",
+                "type": "INSTANCE",
+                "main": "Column Item",
+                "variant": {
+                  "title": "true",
+                  "type": "text"
+                },
+                "size": [
+                  200,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=title, state=default",
+          "size": [
+            1055,
+            40
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=non-expandable, state=default",
+          "size": [
+            1055,
+            44
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/ChevronRight"
+          ]
+        },
+        {
+          "variant": "type=top, state=default",
+          "size": [
+            1055,
+            44
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=middle, state=default",
+          "size": [
+            1055,
+            44
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "type=bottom, state=default",
+          "size": [
+            1055,
+            44
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "type=title, state=selected",
+          "size": [
+            1055,
+            40
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "type=non-expandable, state=selected",
+          "size": [
+            1055,
+            44
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/ChevronRight"
+          ]
+        },
+        {
+          "variant": "type=top, state=selected",
+          "size": [
+            1055,
+            44
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}",
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=middle, state=selected",
+          "size": [
+            1055,
+            44
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "type=bottom, state=selected",
+          "size": [
+            1055,
+            44
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Column Item",
+      "id": "4458:3831",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 9,
+      "props": {
+        "title": {
+          "type": "VARIANT",
+          "default": "true",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "text",
+          "options": [
+            "status",
+            "text",
+            "input",
+            "select",
+            "icon",
+            "button",
+            "toggle",
+            "user"
+          ]
+        }
+      },
+      "defaultVariant": "title=true, type=text",
+      "defaultVariantNodeCount": 2,
+      "defaultVariantTree": {
+        "name": "title=true, type=text",
+        "type": "COMPONENT",
+        "size": [
+          176,
+          40
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FILL/FIXED"
+        },
+        "fills": [
+          "{Color:surface/background}"
+        ],
+        "vars": {
+          "itemSpacing": "Spatial:inset/sm",
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/none"
+        },
+        "children": [
+          {
+            "name": "Separator",
+            "type": "RECTANGLE",
+            "size": [
+              1,
+              26
+            ],
+            "sizing": "FIXED/FIXED",
+            "fills": [
+              "{Color:surface/muted}"
+            ]
+          },
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "Label",
+            "textStyle": "label/md",
+            "size": [
+              163,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "title=true, type=text",
+          "size": [
+            176,
+            40
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "title=false, type=status",
+          "size": [
+            176,
+            40
+          ],
+          "textFills": [
+            "{Color:text/feedback/success}"
+          ]
+        },
+        {
+          "variant": "title=false, type=text",
+          "size": [
+            176,
+            40
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "title=false, type=user",
+          "size": [
+            176,
+            40
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/700}",
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "title=false, type=icon",
+          "size": [
+            176,
+            40
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "title=false, type=input",
+          "size": [
+            176,
+            40
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}"
+          ],
+          "hidden": [
+            "Helper text",
+            "Icon/None",
+            "Label"
+          ]
+        },
+        {
+          "variant": "title=false, type=select",
+          "size": [
+            176,
+            40
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "*",
+            "Helper text",
+            "Icon/None",
+            "Label"
+          ]
+        },
+        {
+          "variant": "title=false, type=button",
+          "size": [
+            176,
+            40
+          ],
+          "textFills": [
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "title=false, type=toggle",
+          "size": [
+            176,
+            40
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Table",
+      "id": "6165:13091",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "Rows#6165:12": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        },
+        "expandable": {
+          "type": "VARIANT",
+          "default": "true",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "selectable": {
+          "type": "VARIANT",
+          "default": "true",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop, expandable=true, selectable=true",
+      "defaultVariantNodeCount": 275,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop, expandable=true, selectable=true",
+        "type": "COMPONENT",
+        "size": [
+          1020,
+          640
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FILL/HUG"
+        },
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "paddingLeft": "Spatial:stack/none",
+          "paddingRight": "Spatial:stack/none",
+          "strokeBottomWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Row",
+            "type": "INSTANCE",
+            "main": "Row",
+            "variant": {
+              "type": "title",
+              "state": "default"
+            },
+            "size": [
+              1020,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "radius": 8,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Rows",
+            "type": "SLOT",
+            "size": [
+              1020,
+              600
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/none"
+            },
+            "propRefs": {
+              "slotContentId": "Rows#6165:12"
+            },
+            "children": [
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "top",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "middle",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "middle",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "middle",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "bottom",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "top",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "top",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "top",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "top",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "top",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "top",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "top",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "top",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "top",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Row",
+                "type": "INSTANCE",
+                "main": "Row",
+                "variant": {
+                  "type": "top",
+                  "state": "default"
+                },
+                "size": [
+                  1020,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop, expandable=true, selectable=true",
+          "size": [
+            1020,
+            640
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "breakpoint=mobile, expandable=true, selectable=true",
+          "size": [
+            361,
+            640
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "breakpoint=desktop, expandable=false, selectable=true",
+          "size": [
+            1020,
+            640
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "RowExpand"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile, expandable=false, selectable=true",
+          "size": [
+            361,
+            640
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "RowExpand"
+          ]
+        },
+        {
+          "variant": "breakpoint=desktop, expandable=false, selectable=false",
+          "size": [
+            1020,
+            640
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "RowExpand",
+            "RowSelect"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile, expandable=false, selectable=false",
+          "size": [
+            361,
+            640
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "RowExpand",
+            "RowSelect"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TableFooter",
+      "id": "6596:44918",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "showButton#6596:61": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 45,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1020,
+          56
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            8,
+            0,
+            8,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FILL/HUG"
+        },
+        "vars": {
+          "paddingLeft": "Spatial:stack/none",
+          "paddingTop": "Spatial:inset/xs",
+          "paddingRight": "Spatial:stack/none",
+          "paddingBottom": "Spatial:inset/xs"
+        },
+        "children": [
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1020,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 242,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  168,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm"
+                },
+                "children": [
+                  {
+                    "name": "Dropdown",
+                    "type": "INSTANCE",
+                    "main": "Dropdown",
+                    "variant": {
+                      "size": "md",
+                      "state": "default"
+                    },
+                    "size": [
+                      65,
+                      40
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "HUG/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/xs"
+                    }
+                  },
+                  {
+                    "name": "rows per page",
+                    "type": "TEXT",
+                    "text": "rows per page",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      91,
+                      10
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Pagination",
+                "type": "INSTANCE",
+                "main": "Pagination",
+                "size": [
+                  216,
+                  24
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              {
+                "name": "Button",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "md",
+                  "prio": "primary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  143,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "propRefs": {
+                  "visible": "showButton#6596:61"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            1020,
+            56
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "*",
+            "Counter",
+            "Helper text",
+            "Icon/None",
+            "Label",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            377,
+            56
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "*",
+            "Helper text",
+            "Icon/None",
+            "Label"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TableHeader",
+      "id": "6596:44919",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "Actions#7109:0": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 35,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1020,
+          56
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            8,
+            0,
+            8,
+            0
+          ],
+          "align": "SPACE_BETWEEN/CENTER",
+          "sizing": "FILL/HUG"
+        },
+        "vars": {
+          "paddingLeft": "Spatial:stack/none",
+          "paddingTop": "Spatial:inset/xs",
+          "paddingRight": "Spatial:stack/none",
+          "paddingBottom": "Spatial:inset/xs",
+          "strokeBottomWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1020,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 692,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "SearchField",
+                "type": "INSTANCE",
+                "main": "SearchField",
+                "variant": {
+                  "state": "default",
+                  "size": "md"
+                },
+                "size": [
+                  240,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Segmented Control",
+                "type": "INSTANCE",
+                "main": "Segmented Control",
+                "variant": {
+                  "size": "md"
+                },
+                "size": [
+                  128,
+                  40
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                }
+              },
+              {
+                "name": "Actions",
+                "type": "SLOT",
+                "size": [
+                  240,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MAX/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                },
+                "propRefs": {
+                  "slotContentId": "Actions#7109:0"
+                },
+                "children": [
+                  {
+                    "name": "Icon Button",
+                    "type": "INSTANCE",
+                    "main": "Icon Button",
+                    "variant": {
+                      "size": "md",
+                      "shape": "square",
+                      "prio": "secondary",
+                      "state": "default"
+                    },
+                    "size": [
+                      40,
+                      40
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/secondary/bg/default}"
+                    ],
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "effectStyle": "shadow/control",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Icon Button",
+                    "type": "INSTANCE",
+                    "main": "Icon Button",
+                    "variant": {
+                      "size": "md",
+                      "shape": "square",
+                      "prio": "secondary",
+                      "state": "default"
+                    },
+                    "size": [
+                      40,
+                      40
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/secondary/bg/default}"
+                    ],
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "effectStyle": "shadow/control",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Icon Button",
+                    "type": "INSTANCE",
+                    "main": "Icon Button",
+                    "variant": {
+                      "size": "md",
+                      "shape": "square",
+                      "prio": "secondary",
+                      "state": "default"
+                    },
+                    "size": [
+                      40,
+                      40
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/secondary/bg/default}"
+                    ],
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "effectStyle": "shadow/control",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            1020,
+            56
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Helper text",
+            "Icon/Filter",
+            "Icon/None",
+            "Label"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            377,
+            56
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}",
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Helper text",
+            "Icon/None",
+            "Label"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Table",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

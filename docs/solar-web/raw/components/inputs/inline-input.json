@@ -1,0 +1,203 @@
+{
+  "page": "↳ 🟢 Inline Input",
+  "pageId": "2966:627",
+  "componentSets": [
+    {
+      "name": "Inline Input",
+      "id": "9647:28979",
+      "description": "Inline Input — edit-in-place field that displays a value as text and reveals an editable field on interaction. 6 states: default (read), hover (shows edit affordance), focus (active edit, focus border), filled (edit mode with value), error (validation error), disabled. Edit states expose Confirm (check) and Cancel (close) icon buttons to commit or discard. Set the displayed text via the 'value' property.",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "value#9650:0": {
+          "type": "TEXT",
+          "default": "Current value"
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus",
+            "filled",
+            "error",
+            "disabled"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          240,
+          40
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            0,
+            12,
+            0,
+            12
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "vars": {
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm"
+        },
+        "children": [
+          {
+            "name": "Current value",
+            "type": "TEXT",
+            "text": "Current value",
+            "textStyle": "body/md/regular",
+            "size": [
+              216,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "characters": "value#9650:0"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            240,
+            40
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "state=focus",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "state=filled",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "state=error",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/danger/strong}"
+          ],
+          "effect": "shadow/danger",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "state=disabled",
+          "size": [
+            240,
+            40
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Inline Input",
+    "Description",
+    "An editable value that sits inline in text or a table cell — click to edit in place, commit on blur or Enter. Use for lightweight edits without a separate form field.",
+    "Usage",
+    "Use in tables, detail lists, and editable labels. Show an edit affordance on hover. Commit on Enter/blur, cancel on Esc.",
+    "States",
+    "Default · Hover · Focus · Filled\nDisabled — read-only.\nError — invalid value; inline message.",
+    "Behavior",
+    "Reads as static text until focused, then becomes an editable field. Confirms in place — no separate save button.",
+    "Accessibility",
+    "Editable region has a label; announce edit mode on focus. Enter commits, Esc cancels. Visible focus ring.",
+    "Rules",
+    "DO   Use for quick in-place edits\nDO   Show an edit affordance on hover\nDO   Commit on Enter / blur\nDO   Allow Esc to cancel",
+    "DON'T   Use for complex multi-field forms\nDON'T   Hide that a value is editable\nDON'T   Lose input on accidental blur\nDON'T   Rely on colour alone for errors"
+  ],
+  "pageContext": null
+}

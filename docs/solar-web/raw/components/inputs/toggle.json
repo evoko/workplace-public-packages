@@ -1,0 +1,183 @@
+{
+  "page": "↳ 🟢 Toggle",
+  "pageId": "2163:3711",
+  "componentSets": [
+    {
+      "name": "Toggle",
+      "id": "2209:3664",
+      "description": "Binary on/off switch. 6 variants: selected (false, true) × state (default, hover, disabled). Commits on click — no confirm. Represents persistent state, not a transient action (use Button for the latter). The on/off affordance reads via position AND color so the state is not carried by color alone (WCAG 1.4.1). For two labeled states, use Segmented Control.",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "selected": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "disabled"
+          ]
+        }
+      },
+      "defaultVariant": "selected=false, state=default",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "selected=false, state=default",
+        "type": "COMPONENT",
+        "size": [
+          32,
+          18
+        ],
+        "sizing": "FIXED/FIXED",
+        "fills": [
+          "{Color:surface/muted}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 9999,
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
+        },
+        "children": [
+          {
+            "name": "Thumb",
+            "type": "ELLIPSE",
+            "size": [
+              12,
+              12
+            ],
+            "fills": [
+              "{Color:action/primary/icon/default}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "strokeWeight": "Spatial:border/default"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "selected=false, state=default",
+          "size": [
+            32,
+            18
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "selected=false, state=hover",
+          "size": [
+            32,
+            18
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "selected=false, state=disabled",
+          "size": [
+            32,
+            18
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ]
+        },
+        {
+          "variant": "selected=true, state=default",
+          "size": [
+            32,
+            18
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ]
+        },
+        {
+          "variant": "selected=true, state=hover",
+          "size": [
+            32,
+            18
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "selected=true, state=disabled",
+          "size": [
+            32,
+            18
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Toggle",
+    "Description",
+    "Binary on/off switch for settings, feature flags, and persistent preferences. Commits immediately on click — no confirm step. Use for settings where on and off both make sense as end-states. For two visible labeled options (List/Grid) use Segmented Control; for actions that trigger a side effect use Button.",
+    "States",
+    "selected=false   off. Track in surface/muted, thumb at left.\nselected=true    on. Track in action/primary/bg/default, thumb at right.\n\nhover (either selected)   track bg shifts; thumb stays.\ndisabled (either)            opacity/disabled + not-allowed cursor.",
+    "Content",
+    "Always pair with an adjacent label describing what toggling enables (\"Email notifications\"). Label sits to the left of the track in a form row; state change should be the only delta on click. Don't use 'on'/'off' words next to the toggle — the thumb position carries that.",
+    "Accessibility",
+    "Render as role=\"switch\" with aria-checked (true/false). Labelled-by the text to its left. Keyboard: Space / Enter toggles. Focus ring via shadow/focus/default. State is conveyed by BOTH position and color so users with color-vision differences can parse it.",
+    "Rules",
+    "Do\n\n• Use for settings with clear on/off end-states\n• Commit on click — don't wait for a Save\n• Label the toggle with what it controls, not its state\n• Use role=\"switch\" with aria-checked",
+    "Don't\n\n• Don't use for actions — those are Buttons\n• Don't rely on color alone — position must also communicate state\n• Don't use for exclusive selection between two labeled options — use Segmented Control\n• Don't hide the label — every toggle needs one"
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,378 @@
+{
+  "page": "↳ 🟢 Shell Tier 2 · Canvas app",
+  "pageId": "6400:5",
+  "componentSets": [
+    {
+      "name": "Layout / Canvas",
+      "id": "6499:6448",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "left#6499:18": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "center#6499:19": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "Desktop",
+          "options": [
+            "Desktop",
+            "Mobile"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=Desktop",
+      "defaultVariantNodeCount": 86,
+      "defaultVariantTree": {
+        "name": "breakpoint=Desktop",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/background}"
+        ],
+        "vars": {
+          "width": "Primitives:viewport/lg"
+        },
+        "children": [
+          {
+            "name": "Top Bar",
+            "type": "INSTANCE",
+            "main": "Top Bar",
+            "variant": {
+              "breakpoint": "desktop",
+              "hasSidebar": "false",
+              "isLoggedIn": "True"
+            },
+            "size": [
+              1440,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                16,
+                0,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "paddingLeft": "Spatial:stack/md",
+              "paddingRight": "Spatial:stack/md"
+            }
+          },
+          {
+            "name": "App Content",
+            "type": "FRAME",
+            "size": [
+              1440,
+              744
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                8,
+                8,
+                8
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FIXED"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/xs"
+            },
+            "children": [
+              {
+                "name": "Page Content",
+                "type": "FRAME",
+                "size": [
+                  1424,
+                  736
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/MIN",
+                  "sizing": "FILL/FILL"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "layoutGrids": [
+                    "Space:grid/columns/lg",
+                    "Spatial(local):stack/xs"
+                  ]
+                },
+                "children": [
+                  {
+                    "name": "left",
+                    "type": "SLOT",
+                    "size": [
+                      324,
+                      736
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        8,
+                        8,
+                        8,
+                        8
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FIXED/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/raised}"
+                    ],
+                    "radius": 8,
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/none",
+                      "paddingLeft": "Spatial:inset/xs",
+                      "paddingTop": "Spatial:inset/xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "paddingBottom": "Spatial:inset/xs",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    },
+                    "propRefs": {
+                      "slotContentId": "left#6499:18"
+                    },
+                    "children": [
+                      {
+                        "name": "Segmented Control",
+                        "type": "INSTANCE",
+                        "main": "Segmented Control",
+                        "variant": {
+                          "size": "md"
+                        },
+                        "size": [
+                          308,
+                          40
+                        ],
+                        "layout": {
+                          "dir": "VERTICAL",
+                          "gap": 8,
+                          "pad": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "align": "MIN/MIN",
+                          "sizing": "FILL/FIXED"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "center",
+                    "type": "SLOT",
+                    "size": [
+                      1092,
+                      736
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/raised}"
+                    ],
+                    "radius": 8,
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/none",
+                      "paddingLeft": "Spatial:stack/none",
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingRight": "Spatial:stack/none",
+                      "paddingBottom": "Spatial:inset/none",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    },
+                    "propRefs": {
+                      "slotContentId": "center#6499:19"
+                    },
+                    "children": [
+                      {
+                        "name": "Breadcrumbs",
+                        "type": "INSTANCE",
+                        "main": "Breadcrumbs",
+                        "variant": {
+                          "items": "5"
+                        },
+                        "size": [
+                          1092,
+                          44
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 12,
+                          "pad": [
+                            16,
+                            20,
+                            16,
+                            20
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FILL/HUG"
+                        },
+                        "strokes": [
+                          "{Color:border/surface}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "vars": {
+                          "itemSpacing": "Spatial:stack/sm",
+                          "paddingLeft": "Spatial:inset/lg",
+                          "paddingTop": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/lg",
+                          "paddingBottom": "Spatial:inset/md",
+                          "strokeBottomWeight": "Spatial:border/default"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=Desktop",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Color:text/inverse}",
+            "{Primitives:color/purple/700}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/tertiary}",
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Helper text",
+            "Icon/None",
+            "Label",
+            "Nav Item"
+          ]
+        },
+        {
+          "variant": "breakpoint=Mobile",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Primitives:color/purple/700}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Helper text",
+            "Icon/None",
+            "Label"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Shell Tier 2 · Canvas app",
+    "Description",
+    "The app shell for a canvas / authoring product (e.g. Designer) — slim chrome around a large editing canvas, with tool rails and an inspector.",
+    "Anatomy",
+    "Top bar (file / actions) · left tool rail · canvas region · right inspector panel · optional bottom status bar.",
+    "Composition",
+    "Maximises canvas area; chrome is minimal and collapsible. Tool rail + inspector are domain surfaces (Spatial / Flow), composed here at the shell level.",
+    "States",
+    "Responsive: desktop (rails visible), compact (rails collapse to icons / drawers). Canvas: loaded, loading, empty.",
+    "Accessibility",
+    "Landmarks for chrome; the canvas exposes its own contract. Keyboard access to tools + inspector with visible focus. Never trap keyboard focus on the canvas.",
+    "Rules",
+    "Maximise the canvas\nKeep chrome collapsible\nGive tools keyboard access\nReuse domain surfaces",
+    "Crowd the canvas with chrome\nTrap keyboard focus on the canvas\nDuplicate inspector patterns\nHard-code a single product"
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,729 @@
+{
+  "page": ".[UTILITY]",
+  "pageId": "6239:26579",
+  "componentSets": [],
+  "components": [
+    {
+      "name": ".Component Description",
+      "id": "6239:26612",
+      "description": "",
+      "props": {
+        "Content#6239:62": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        }
+      },
+      "nodeCount": 31,
+      "tree": {
+        "name": ".Component Description",
+        "type": "COMPONENT",
+        "size": [
+          1280,
+          1074
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Primitives:color/mono/white}"
+        ],
+        "strokes": [
+          "{Primitives:color/neutral/100}"
+        ],
+        "strokeWeight": 1,
+        "radius": 16,
+        "children": [
+          {
+            "name": "Header",
+            "type": "FRAME",
+            "size": [
+              1280,
+              168
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Primitives:color/neutral/100}"
+            ],
+            "strokeWeight": "mixed",
+            "children": [
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  72
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    40,
+                    0,
+                    40
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "strokeWeight": "mixed",
+                "children": [
+                  {
+                    "name": "SOLAR®",
+                    "type": "TEXT",
+                    "text": "SOLAR®",
+                    "size": [
+                      311,
+                      10
+                    ],
+                    "sizing": "FIXED/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Scale:1,25rem",
+                      "fontFamily": "Base Typograhy:font-family/Inter",
+                      "fontSize": "Scale:0,875rem",
+                      "fontStyle": "Base Typograhy:font-weight/600"
+                    }
+                  },
+                  {
+                    "name": "Biamp Design System",
+                    "type": "TEXT",
+                    "text": "Biamp Design System",
+                    "size": [
+                      854,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Scale:1,25rem",
+                      "fontFamily": "Base Typograhy:font-family/Inter",
+                      "fontSize": "Scale:0,875rem",
+                      "fontStyle": "Base Typograhy:font-weight/600"
+                    }
+                  },
+                  {
+                    "name": "Version",
+                    "type": "FRAME",
+                    "size": [
+                      35,
+                      22
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        6,
+                        8,
+                        6,
+                        8
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "HUG/HUG"
+                    },
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "radius": 6,
+                    "children": [
+                      {
+                        "name": "1.0",
+                        "type": "TEXT",
+                        "text": "1.0",
+                        "size": [
+                          19,
+                          10
+                        ],
+                        "sizing": "HUG/HUG",
+                        "fills": [
+                          "{Primitives:color/neutral/100}"
+                        ],
+                        "vars": {
+                          "lineHeight": "Scale:1,25rem",
+                          "fontFamily": "Base Typograhy:font-family/Inter",
+                          "fontSize": "Scale:0,875rem",
+                          "fontStyle": "Base Typograhy:font-weight/600"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Description",
+                    "type": "TEXT",
+                    "hidden": true,
+                    "text": "Description",
+                    "size": [
+                      108,
+                      15
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "fills": [
+                      "{Primitives:color/neutral/700}"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": ".Subheader",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  96
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    32,
+                    40,
+                    32,
+                    40
+                  ],
+                  "align": "CENTER/MIN",
+                  "sizing": "FILL/FIXED"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/900}"
+                ],
+                "strokeWeight": "mixed",
+                "children": [
+                  {
+                    "name": "Component name",
+                    "type": "TEXT",
+                    "text": "Component name",
+                    "size": [
+                      330,
+                      29
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "vars": {
+                      "fontFamily": "Base Typograhy:font-family/Inter",
+                      "fontSize": "Base Typograhy:font-sizing/2,5rem",
+                      "fontStyle": "Base Typograhy:font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Subheadline",
+                    "type": "TEXT",
+                    "hidden": true,
+                    "text": "Subheadline",
+                    "size": [
+                      79,
+                      10
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "fills": [
+                      "{Primitives:color/neutral/400}"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Content",
+            "type": "SLOT",
+            "size": [
+              1280,
+              906
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "Content#6239:62"
+            },
+            "children": [
+              {
+                "name": "Text Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  127
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    28,
+                    28,
+                    28,
+                    28
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/lg",
+                  "paddingLeft": "Spatial:stack/2xl",
+                  "paddingTop": "Spatial:stack/2xl",
+                  "paddingRight": "Spatial:stack/2xl",
+                  "paddingBottom": "Spatial:stack/2xl"
+                },
+                "children": [
+                  {
+                    "name": "Description",
+                    "type": "TEXT",
+                    "text": "Description",
+                    "size": [
+                      109,
+                      15
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
+                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
+                      "fontFamily": "Base Typograhy:font-family/Inter",
+                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
+                      "fontStyle": "Base Typograhy:font-weight/600"
+                    }
+                  },
+                  {
+                    "name": "Details Text",
+                    "type": "TEXT",
+                    "text": "Shows the user's location within a navigational hierarchy — and lets them jump b",
+                    "size": [
+                      1224,
+                      36
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Text Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  151
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    28,
+                    28,
+                    28,
+                    28
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/lg",
+                  "paddingLeft": "Spatial:stack/2xl",
+                  "paddingTop": "Spatial:stack/2xl",
+                  "paddingRight": "Spatial:stack/2xl",
+                  "paddingBottom": "Spatial:stack/2xl"
+                },
+                "children": [
+                  {
+                    "name": "Anatomy",
+                    "type": "TEXT",
+                    "text": "Anatomy",
+                    "size": [
+                      85,
+                      15
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
+                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
+                      "fontFamily": "Base Typograhy:font-family/Inter",
+                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
+                      "fontStyle": "Base Typograhy:font-weight/600"
+                    }
+                  },
+                  {
+                    "name": "Details Text",
+                    "type": "TEXT",
+                    "text": "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item",
+                    "size": [
+                      1224,
+                      60
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "vars": {
+                      "textRangeFills": "Primitives:color/neutral/900"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Text Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  151
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    28,
+                    28,
+                    28,
+                    28
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/lg",
+                  "paddingLeft": "Spatial:stack/2xl",
+                  "paddingTop": "Spatial:stack/2xl",
+                  "paddingRight": "Spatial:stack/2xl",
+                  "paddingBottom": "Spatial:stack/2xl"
+                },
+                "children": [
+                  {
+                    "name": "States",
+                    "type": "TEXT",
+                    "text": "States",
+                    "size": [
+                      61,
+                      15
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
+                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
+                      "fontFamily": "Base Typograhy:font-family/Inter",
+                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
+                      "fontStyle": "Base Typograhy:font-weight/600"
+                    }
+                  },
+                  {
+                    "name": "Details Text",
+                    "type": "TEXT",
+                    "text": "default          Interactive ancestor link. Subtle text color.\nhover            ",
+                    "size": [
+                      1224,
+                      60
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Text Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  127
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    28,
+                    28,
+                    28,
+                    28
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/lg",
+                  "paddingLeft": "Spatial:stack/2xl",
+                  "paddingTop": "Spatial:stack/2xl",
+                  "paddingRight": "Spatial:stack/2xl",
+                  "paddingBottom": "Spatial:stack/2xl"
+                },
+                "children": [
+                  {
+                    "name": "Truncation",
+                    "type": "TEXT",
+                    "text": "Truncation",
+                    "size": [
+                      102,
+                      15
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
+                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
+                      "fontFamily": "Base Typograhy:font-family/Inter",
+                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
+                      "fontStyle": "Base Typograhy:font-weight/600"
+                    }
+                  },
+                  {
+                    "name": "Details Text",
+                    "type": "TEXT",
+                    "text": "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses t",
+                    "size": [
+                      1224,
+                      36
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "vars": {
+                      "textRangeFills": "Primitives:color/neutral/900"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Text Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  175
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    28,
+                    28,
+                    28,
+                    28
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/lg",
+                  "paddingLeft": "Spatial:stack/2xl",
+                  "paddingTop": "Spatial:stack/2xl",
+                  "paddingRight": "Spatial:stack/2xl",
+                  "paddingBottom": "Spatial:stack/2xl"
+                },
+                "children": [
+                  {
+                    "name": "Accessibility",
+                    "type": "TEXT",
+                    "text": "Accessibility",
+                    "size": [
+                      120,
+                      15
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
+                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
+                      "fontFamily": "Base Typograhy:font-family/Inter",
+                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
+                      "fontStyle": "Base Typograhy:font-weight/600"
+                    }
+                  },
+                  {
+                    "name": "Details Text",
+                    "type": "TEXT",
+                    "text": "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nM",
+                    "size": [
+                      1224,
+                      84
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Rules",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  175
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    28,
+                    28,
+                    28,
+                    28
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/lg",
+                  "paddingLeft": "Spatial:stack/2xl",
+                  "paddingTop": "Spatial:stack/2xl",
+                  "paddingRight": "Spatial:stack/2xl",
+                  "paddingBottom": "Spatial:stack/2xl"
+                },
+                "children": [
+                  {
+                    "name": "Rules",
+                    "type": "TEXT",
+                    "text": "Rules",
+                    "size": [
+                      52,
+                      15
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Primitives:color/neutral/900}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
+                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
+                      "fontFamily": "Base Typograhy:font-family/Inter",
+                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
+                      "fontStyle": "Base Typograhy:font-weight/600"
+                    }
+                  },
+                  {
+                    "name": "Frame 2",
+                    "type": "FRAME",
+                    "size": [
+                      1224,
+                      84
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 24,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "children": [
+                      {
+                        "name": "Details Text",
+                        "type": "TEXT",
+                        "text": "DO   Mirror your site's real hierarchy\nDO   Use 'multiple' for deep paths — keep",
+                        "size": [
+                          600,
+                          84
+                        ],
+                        "sizing": "FILL/HUG",
+                        "fills": [
+                          "{Primitives:color/neutral/900}"
+                        ],
+                        "vars": {
+                          "textRangeFills": "Primitives:color/green/500"
+                        }
+                      },
+                      {
+                        "name": "Details Text",
+                        "type": "TEXT",
+                        "text": "DON'T   Link the current page\nDON'T   Use Breadcrumbs as primary navigation\nDON'",
+                        "size": [
+                          600,
+                          84
+                        ],
+                        "sizing": "FILL/HUG",
+                        "fills": [
+                          "{Primitives:color/red/500}"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [],
+  "pageContext": null
+}

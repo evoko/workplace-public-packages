@@ -1,0 +1,936 @@
+{
+  "page": "Introduction",
+  "pageId": "1000:5125",
+  "section": "documentation",
+  "slug": "introduction",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 880,
+      "y": 1180,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Introduction\nAbout SOLAR"
+        }
+      ]
+    },
+    {
+      "name": "About",
+      "title": "About SOLAR®",
+      "subtitle": null,
+      "x": 2880,
+      "y": 1180,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "Rectangle 5"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR is Biamp’s unified design system and foundational framework for digital products. It defines the standards, tokens, and structural rules that guide how interfaces are designed and built across platforms."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "What SOLAR Provides"
+        },
+        {
+          "t": "p",
+          "text": "A shared token architecture for consistency across design and code\nA comprehensive icon library covering every interface need\nA scalable layout system (responsive, grid, spacing)\nA cohesive visual language (color, typography)\nProduction-ready libraries for web, native, and specialized product domains\nGovernance to ensure long-term maintainability",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "How SOLAR Operates"
+        },
+        {
+          "t": "p",
+          "text": "Defined once, implemented everywhere\nMaintained centrally, adopted across teams\nContinuously evolved, not periodically replaced",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "What SOLAR Is Not"
+        },
+        {
+          "t": "p",
+          "text": "A static style guide\nA collection of isolated components\nA theme layer applied at the end of a project\nA one-time deliverable\n\nSOLAR is a living system.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "SOLAR Principles",
+      "subtitle": null,
+      "x": 4880,
+      "y": 1180,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR’s design principles are inspired by Biamp’s brand attributes —quality, consistency, reliability, directness, professionalism, and a pursuit of the extraordinary—translating them into clear guidelines    for digital interfaces."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Consistency Builds Confidence"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Clarity Over Complexity"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Quality in Every Detail"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Purposeful Innovation"
+        },
+        {
+          "t": "p",
+          "text": "Interfaces should behave predictably across products and platforms. SOLAR establishes shared tokens, components, and patterns to ensure a unified experience that users can trust.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Interfaces should communicate their purpose immediately.\nSOLAR favors direct interactions, clear hierarchy, and purposeful use of visual language to reduce cognitive load.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Every element — from spacing to typography to interaction — should reflect craftsmanship and precision.\nSOLAR emphasizes refined visual rhythm, accessibility, and thoughtful system design.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR encourages thoughtful evolution of the interface while maintaining system integrity.\nNew patterns and capabilities should elevate the experience without compromising clarity or consistency.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Mission",
+      "title": "Mission",
+      "subtitle": null,
+      "x": 2880,
+      "y": 2360,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "SOLAR exists to unify how Biamp designs and builds products — enabling speed, consistency, accessibility, and long-term scalability.",
+          "style": "52/500"
+        },
+        {
+          "t": "p",
+          "text": "Designers move faster with a unified, approved system — reducing rework and ensuring consistent, production-ready outcomes.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Developers implement with confidence through shared tokens, styles, and components — reducing ambiguity and increasing reliability.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Product teams operate from a complete, trusted foundation — accelerating delivery without sacrificing quality or accessibility.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "As SOLAR matures, it enables scalable reuse, cross-team alignment, and sustainable product evolution across Biamp.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "SOLAR Architecture",
+      "subtitle": null,
+      "x": 2880,
+      "y": 3540,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR is structured as a layered design system that separates foundational design language, platform UI components, and product-specific modules. This layered approach ensures consistency, scalability, and flexibility across Biamp products."
+        },
+        {
+          "t": "image",
+          "name": "Cover 1"
+        },
+        {
+          "t": "image",
+          "name": "Cover 1"
+        },
+        {
+          "t": "image",
+          "name": "Cover 1"
+        },
+        {
+          "t": "image",
+          "name": "Cover 1"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Foundations"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Component Libraries"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Product Modules"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Asset Libraries"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR Foundations define the core visual language and fundamental rules of the system, including primitive tokens, design principles, and foundational guidelines used across all interfaces.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR Web and SOLAR Native translate the foundations into reusable interface components and semantic tokens, providing the core building blocks for product interfaces across web and native mobile platforms. Both libraries consume SOLAR Icons, a platform-agnostic sibling of SOLAR Foundations.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR Domain Libraries (Audio, Spatial, Flow) extend SOLAR Web with specialized components and interaction patterns for specific product domains. Product files compose these libraries into final app-specific interfaces.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR Asset Libraries provide shared visual resources such as icons, illustrations, and media assets that support the interface while remaining consistent with the SOLAR design language.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Foundations",
+      "subtitle": null,
+      "x": 4880,
+      "y": 3540,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "Rectangle 5"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "The Foundations layer defines the core design language of SOLAR. It establishes the primitive tokens, visual scales, and design rules that govern all interfaces."
+        },
+        {
+          "t": "p",
+          "text": "This layer does not define components or product patterns. Instead, it provides the raw design primitives used throughout the system.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Includes"
+        },
+        {
+          "t": "p",
+          "text": "Primitive tokens\nColor system\nTypography system\nMotion principles\nLayout and spacing\nAccessibility guidelines",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Foundations remain platform-agnostic and stable over time.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Component Libraries",
+      "subtitle": null,
+      "x": 6880,
+      "y": 3540,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "Rectangle 5"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR Web and SOLAR Native translate the foundational design language into reusable interface building blocks used across products. Both consume SOLAR Icons for every interface glyph."
+        },
+        {
+          "t": "p",
+          "text": "This layer defines how primitives are applied in real interface elements and provides semantic tokens that represent contextual meaning rather than raw values.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Includes"
+        },
+        {
+          "t": "p",
+          "text": "Semantic tokens\nCore UI components\nInteraction states and behaviors\nLayout primitives and patterns\n\nSOLAR Web serves browser-based products; SOLAR Native serves iOS/Android. Each handles platform-specific behavior.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Product Modules",
+      "subtitle": null,
+      "x": 8880,
+      "y": 3540,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Domain Libraries extend SOLAR Web with specialized interaction patterns and controls for specific product domains — audio mixing, spatial design, signal-flow authoring."
+        },
+        {
+          "t": "p",
+          "text": "These libraries compose SOLAR Web primitives into higher-level functional interfaces tailored to domain needs.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Examples"
+        },
+        {
+          "t": "p",
+          "text": "Audio controls and signal flow (SOLAR Audio)\nSpatial and floor-plan tools (SOLAR Spatial)\nNode and wire authoring (SOLAR Flow)\nProduct-specific interaction patterns\n\nDomain libraries must build on SOLAR Web primitives and tokens rather than redefining foundational styles. Product-specific composition lives in each product's file.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Cover 2"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Asset Libraries",
+      "subtitle": null,
+      "x": 10880,
+      "y": 3540,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Asset Libraries provide shared visual resources used across the system."
+        },
+        {
+          "t": "p",
+          "text": "Unlike UI components, assets are supporting interface elements rather than interactive building blocks.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Includes"
+        },
+        {
+          "t": "p",
+          "text": "Icon libraries\nIllustrations\nMedia assets\nBrand graphics\n\nAssets follow the SOLAR visual language and can be used across all system layers.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Cover 2"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "System Dependency Model",
+      "subtitle": null,
+      "x": 12880,
+      "y": 3540,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR layers follow a strict dependency hierarchy."
+        },
+        {
+          "t": "p",
+          "text": "SOLAR Foundations · SOLAR Icons\n   ↓\nSOLAR Web · SOLAR Native\n   ↓\nSOLAR Audio · SOLAR Spatial · SOLAR Flow\n   ↓\nProduct Files",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Rules"
+        },
+        {
+          "t": "p",
+          "text": "Upper layers may depend on lower layers\nLower layers must never depend on higher layers\nProduct modules must not redefine foundational tokens\n\nThis structure ensures consistency and prevents fragmentation of the system.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    }
+  ],
+  "pageContext": null,
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "SOLAR Principles",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Consistency Builds Confidence",
+        "Clarity Over Complexity",
+        "Quality in Every Detail",
+        "Purposeful Innovation",
+        "Interfaces should behave predictably across products and platforms. SOLAR establishes shared tokens, components, and patterns to ensure a unified experience that users can trust.",
+        "Interfaces should communicate their purpose immediately.\nSOLAR favors direct interactions, clear hierarchy, and purposeful use of visual language to reduce cognitive load.",
+        "Every element — from spacing to typography to interaction — should reflect craftsmanship and precision.\nSOLAR emphasizes refined visual rhythm, accessibility, and thoughtful system design.",
+        "SOLAR encourages thoughtful evolution of the interface while maintaining system integrity.\nNew patterns and capabilities should elevate the experience without compromising clarity or consistency.",
+        "SOLAR’s design principles are inspired by Biamp’s brand attributes —quality, consistency, reliability, directness, professionalism, and a pursuit of the extraordinary—translating them into clear guidelines    for digital interfaces."
+      ],
+      "variableId": "VariableID:27:746",
+      "hex": "#e9f2ff",
+      "opacity": 1
+    },
+    {
+      "layer": "About",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "About SOLAR®",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR is Biamp’s unified design system and foundational framework for digital products. It defines the standards, tokens, and structural rules that guide how interfaces are designed and built across platforms.",
+        "What SOLAR Provides",
+        "A shared token architecture for consistency across design and code\nA comprehensive icon library covering every interface need\nA scalable layout system (responsive, grid, spacing)\nA cohesive visual language (color, typography)\nProduction-ready libraries for web, native, and specialized product domains\nGovernance to ensure long-term maintainability",
+        "How SOLAR Operates",
+        "Defined once, implemented everywhere\nMaintained centrally, adopted across teams\nContinuously evolved, not periodically replaced",
+        "What SOLAR Is Not",
+        "A static style guide\nA collection of isolated components\nA theme layer applied at the end of a project\nA one-time deliverable\n\nSOLAR is a living system."
+      ],
+      "variableId": "VariableID:29:1096",
+      "hex": "#000000",
+      "opacity": 1
+    },
+    {
+      "layer": "Mission",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Mission",
+        "SOLAR exists to unify how Biamp designs and builds products — enabling speed, consistency, accessibility, and long-term scalability.",
+        "Designers move faster with a unified, approved system — reducing rework and ensuring consistent, production-ready outcomes.",
+        "Developers implement with confidence through shared tokens, styles, and components — reducing ambiguity and increasing reliability.",
+        "Product teams operate from a complete, trusted foundation — accelerating delivery without sacrificing quality or accessibility.",
+        "As SOLAR matures, it enables scalable reuse, cross-team alignment, and sustainable product evolution across Biamp.",
+        "© 2026 Biamp",
+        "[Confidential]"
+      ],
+      "variableId": "VariableID:29:1096",
+      "hex": "#000000",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "SOLAR Architecture",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR is structured as a layered design system that separates foundational design language, platform UI components, and product-specific modules. This layered approach ensures consistency, scalability, and flexibility across Biamp products.",
+        "Foundations",
+        "Component Libraries",
+        "Product Modules",
+        "Asset Libraries",
+        "SOLAR Foundations define the core visual language and fundamental rules of the system, including primitive tokens, design principles, and foundational guidelines used across all interfaces.",
+        "SOLAR Web and SOLAR Native translate the foundations into reusable interface components and semantic tokens, providing the core building blocks for product interfaces across web and native mobile platforms. Both libraries consume SOLAR Icons, a platform-agnostic sibling of SOLAR Foundations.",
+        "SOLAR Domain Libraries (Audio, Spatial, Flow) extend SOLAR Web with specialized components and interaction patterns for specific product domains. Product files compose these libraries into final app-specific interfaces.",
+        "SOLAR Asset Libraries provide shared visual resources such as icons, illustrations, and media assets that support the interface while remaining consistent with the SOLAR design language."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Foundations",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "The Foundations layer defines the core design language of SOLAR. It establishes the primitive tokens, visual scales, and design rules that govern all interfaces.",
+        "This layer does not define components or product patterns. Instead, it provides the raw design primitives used throughout the system.",
+        "Includes",
+        "Primitive tokens\nColor system\nTypography system\nMotion principles\nLayout and spacing\nAccessibility guidelines",
+        "Foundations remain platform-agnostic and stable over time."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Component Libraries",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR Web and SOLAR Native translate the foundational design language into reusable interface building blocks used across products. Both consume SOLAR Icons for every interface glyph.",
+        "This layer defines how primitives are applied in real interface elements and provides semantic tokens that represent contextual meaning rather than raw values.",
+        "Includes",
+        "Semantic tokens\nCore UI components\nInteraction states and behaviors\nLayout primitives and patterns\n\nSOLAR Web serves browser-based products; SOLAR Native serves iOS/Android. Each handles platform-specific behavior."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Product Modules",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Domain Libraries extend SOLAR Web with specialized interaction patterns and controls for specific product domains — audio mixing, spatial design, signal-flow authoring.",
+        "These libraries compose SOLAR Web primitives into higher-level functional interfaces tailored to domain needs.",
+        "Examples",
+        "Audio controls and signal flow (SOLAR Audio)\nSpatial and floor-plan tools (SOLAR Spatial)\nNode and wire authoring (SOLAR Flow)\nProduct-specific interaction patterns\n\nDomain libraries must build on SOLAR Web primitives and tokens rather than redefining foundational styles. Product-specific composition lives in each product's file."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Asset Libraries",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Asset Libraries provide shared visual resources used across the system.",
+        "Unlike UI components, assets are supporting interface elements rather than interactive building blocks.",
+        "Includes",
+        "Icon libraries\nIllustrations\nMedia assets\nBrand graphics\n\nAssets follow the SOLAR visual language and can be used across all system layers."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "System Dependency Model",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR layers follow a strict dependency hierarchy.",
+        "SOLAR Foundations · SOLAR Icons\n   ↓\nSOLAR Web · SOLAR Native\n   ↓\nSOLAR Audio · SOLAR Spatial · SOLAR Flow\n   ↓\nProduct Files",
+        "Rules",
+        "Upper layers may depend on lower layers\nLower layers must never depend on higher layers\nProduct modules must not redefine foundational tokens\n\nThis structure ensures consistency and prevents fragmentation of the system."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 129
+}

@@ -1,0 +1,831 @@
+{
+  "page": "Layering & Elevation",
+  "pageId": "763:52851",
+  "section": "documentation",
+  "slug": "layering-elevation",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Visual Language\nLayering & Elevation"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Layering & Elevation",
+      "subtitle": null,
+      "x": 2020,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Layering and elevation help users understand spatial relationships between interface elements. In SOLAR, elevation is used to communicate hierarchy, interaction states, and temporary surfaces such as overlays and menus."
+        },
+        {
+          "t": "p",
+          "text": "Clear layering helps users distinguish between persistent content and transient interaction elements. SOLAR uses a small set of predictable elevation levels combined with surface and shadow tokens. This approach keeps interfaces visually calm while providing enough depth cues for navigation, hierarchy, and interaction feedback.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Layer Hierarchy"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Subtle Depth Cues"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Consistent System Behavior"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Token-driven Implementation"
+        },
+        {
+          "t": "p",
+          "text": "Interfaces are organized into predictable layers such as background surfaces, content containers, overlays, and dialog elements.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Elevation relies on minimal shadows and surface contrast to communicate depth without adding visual noise.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Elevation levels correspond to specific UI patterns such as cards, dropdowns, popovers, and dialogs.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Elevation and layering are defined through tokens in SOLAR Foundations and applied consistently across all SOLAR component libraries.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Elevation Levels",
+      "subtitle": null,
+      "x": 4040,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR uses a set of elevation levels to represent different layers within the interface. Limiting the number of levels keeps depth predictable and prevents visual clutter."
+        },
+        {
+          "t": "p",
+          "text": "Each elevation level corresponds to a specific category of interface elements. These levels help define the spatial hierarchy of the UI and ensure consistent layering across components and products.\n\nBy mapping UI patterns to specific elevation levels, the system maintains clarity and consistency across the ecosystem.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Typical elevation levels"
+        },
+        {
+          "t": "p",
+          "text": "Background — The lowest-level surface that sits behind all other content and containers.\nBase — Primary page surfaces and structural layout containers.\nRaised — Content containers such as cards and panes that sit slightly above the base surface.\nOverlay — Temporary interface elements including dropdown menus, tooltips, and popovers.\nDialog — Blocking surfaces such as dialogs or system alerts that require user attention.\nScrim — Semi-transparent backdrop that obscures underlying content when a dialog surface is active.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR also defines utility surfaces that are not part of the elevation hierarchy:",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Muted — Recessed or subdued areas used to de-emphasize content regions.\nInverse — Flipped contrast surface for elements that stand apart from the primary color scheme.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Feedback surfaces"
+        },
+        {
+          "t": "p",
+          "text": "Success — Background for positive confirmations and success states.\nWarning — Background for caution messages and non-critical alerts.\nDanger — Background for error states and destructive action warnings.\nInfo — Background for informational messages and hints.\nNeutral — Background for general-purpose notices without specific sentiment.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "image 2"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Elevation Tokens",
+      "subtitle": null,
+      "x": 6060,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Elevation in SOLAR is expressed through two token groups working together: surface tokens define the background color of each layer, and shadow tokens define the visual depth cue."
+        },
+        {
+          "t": "p",
+          "text": "Elevated surfaces share a common color value by design — depth is communicated through shadows, not surface contrast. Not all shadow tokens communicate depth; shadow/control signals interactivity rather than elevation.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Surface / shadow pairings"
+        },
+        {
+          "t": "p",
+          "text": "surface/background — no shadow\nsurface/base — shadow/none\nsurface/raised — shadow/raised\nsurface/overlay — shadow/overlay\nsurface/dialog — shadow/dialog\nsurface/scrim — no shadow\nsurface/muted — no shadow\nsurface/inverse — no shadow",
+          "style": "16/500"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Shadow scale"
+        },
+        {
+          "t": "p",
+          "text": "shadow/none — No shadow. Base-level surfaces.\nshadow/control — Subtle shadow signaling interactivity for input elements.\nshadow/raised — Light lift for content containers.\nshadow/overlay — Pronounced shadow for floating elements.\nshadow/dialog — Strongest shadow in the system.",
+          "style": "16/500"
+        },
+        {
+          "t": "image",
+          "name": "image 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Elevation in Context",
+      "subtitle": null,
+      "x": 8080,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Each elevation level maps to specific components in the SOLAR ecosystem. This reference shows which SOLAR Web components occupy each layer."
+        },
+        {
+          "t": "p",
+          "text": "Consistent mapping between elevation levels and components reduces cognitive load. Users learn to associate visual depth with interaction expectations — flat surfaces are persistent, elevated surfaces indicate temporary or blocking interactions.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Base"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Raised"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Overlay"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Dialog"
+        },
+        {
+          "t": "p",
+          "text": "Page shell, navigation rail, sidebar, content area. These structural surfaces form the foundation of every screen and sit flat with no shadow.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Card, data table, content pane, tab panel. These containers group related content and use shadow/raised to separate from the base layer.",
+          "style": "16/400"
+        },
+        {
+          "t": "p",
+          "text": "DropdownMenu, Tooltip, Popover, ContextMenu. These components appear on interaction, float above content with shadow/overlay, and dismiss when focus leaves.",
+          "style": "16/400"
+        },
+        {
+          "t": "p",
+          "text": "Dialog, AlertDialog, system alert. These components block the underlying interface with shadow/dialog and require explicit dismissal. A scrim always accompanies the dialog surface.",
+          "style": "16/400"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Stacking & Layering Rules",
+      "subtitle": null,
+      "x": 10100,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Predictable stacking behavior is essential for accessible and consistent interfaces. SOLAR defines clear rules for how elevation levels interact when multiple layers are present simultaneously."
+        },
+        {
+          "t": "p",
+          "text": "When multiple elevated surfaces coexist, their stacking order must follow the elevation hierarchy. Higher elevation levels always render above lower ones. These rules apply globally across SOLAR products.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Stacking order follows elevation. Elements at a higher elevation level always appear above elements at a lower level. Never manually override z-index to break this hierarchy.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "One dialog at a time. Only a single dialog surface may be active at any time. Stacking dialogs on top of dialogs creates confusion and must be avoided. If additional user input is required, use inline content within the active dialog.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Overlays dismiss before dialogs. When an overlay (such as a dropdown) is open and a dialog is triggered, the overlay must dismiss before the dialog surface appears.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Scrim usage. Dialog surfaces must always be accompanied by a scrim that obscures the underlying content. The scrim signals that the background is not interactive and helps direct focus to the dialog content.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Elevation Do's and Don'ts",
+      "subtitle": null,
+      "x": 12120,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Consistent use of elevation keeps interfaces readable and predictable. These guidelines address common decisions teams face when applying depth and layering in SOLAR products."
+        },
+        {
+          "t": "p",
+          "text": "Elevation should clarify interface structure, not decorate it. Every shadow and surface change must serve a functional purpose — distinguishing layers, signaling interactivity, or communicating temporary states. When elevation is applied inconsistently or used for purely visual reasons, it undermines the spatial model and makes interfaces harder to parse. These rules help teams stay aligned on how depth should and should not",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-03-16 at 08.47.38 1"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Do: Pair surface & shadow from the same level"
+        },
+        {
+          "t": "p",
+          "text": "A raised card uses surface/raised and shadow/raised together. Never mix levels — applying shadow/dialog to a card to make it \"pop more\" breaks the hierarchy.",
+          "style": "16/400"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Do: Use scrim with every dialog"
+        },
+        {
+          "t": "p",
+          "text": "Dialog surfaces must always include a scrim behind them. Without it, there's no clear signal that underlying content is inactive.",
+          "style": "16/400"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Don't: Nest dialogs within dialogs"
+        },
+        {
+          "t": "p",
+          "text": "If a dialog needs additional user input, add it inline within the existing dialog. Stacking dialogs creates disorienting depth and breaks focus management.",
+          "style": "16/400"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Don't: Add shadows for emphasis"
+        },
+        {
+          "t": "p",
+          "text": "If an element doesn't occupy an elevated layer, it shouldn't carry a shadow. Use color, border, or spacing for emphasis instead. Shadows are reserved for spatial relationships.",
+          "style": "16/400"
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Layering & Elevation\ndomain: Visual Language > Depth & Surface Hierarchy\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR elevation and layering specialist. Elevation communicates visual hierarchy, interactive context, and spatial relationships between surfaces. All depth is expressed through shadow tokens and z-index bands — never arbitrary values.\n\n[SCOPE]\n- Z-index management and layer bands\n- Shadow tokens per elevation level\n- Surface layering model (base → raised → overlay → dialog → toast)\n- Overlay and scrim behavior\n- Dark mode elevation adjustments\n\n[ELEVATION_LEVELS]\nlevel/0-base: default page surface — no shadow, z-index 0\nlevel/1-raised: cards, tiles, wells — subtle shadow, z-index 1–9\nlevel/2-overlay: dropdowns, popovers, tooltips — medium shadow, z-index 100–199\nlevel/3-dialog: dialogs, drawers, sheets — strong shadow, z-index 200–299\nlevel/4-toast: notifications, snackbars — strongest shadow, z-index 300–399\nlevel/5-system: skip-links, dev tools — reserved, z-index 900+\n\n[SHADOW_TOKENS]\nshadow.none: 0px — base surfaces\nshadow.subtle: 0 1px 2px rgba — raised cards, containers\nshadow.medium: 0 4px 8px rgba — dropdowns, popovers\nshadow.strong: 0 8px 24px rgba — dialogs, drawers\nshadow.strongest: 0 12px 32px rgba — toasts, floating actions\nrule: never write raw box-shadow values — always use shadow tokens\n\n[Z_INDEX_BANDS]\nbase: 0–9 — page-level content\nsticky: 10–99 — sticky headers, fixed toolbars\noverlay: 100–199 — dropdowns, menus, popovers, tooltips\ndialog: 200–299 — dialogs, drawers, bottom sheets\ntoast: 300–399 — notifications, snackbars, banners\nsystem: 900+ — skip links, focus traps, dev overlays\nrule: components must sit in their prescribed band — never arbitrary z-index\n\n[SURFACE_COLORS]\ncolor.surface.default: base page background\ncolor.surface.subtle: slightly recessed areas, wells, sidebars\ncolor.surface.raised: cards, elevated containers\ncolor.surface.overlay: dropdown/popover backgrounds\ncolor.surface.inverse: high-contrast inverted surfaces\nrule: elevated surfaces may use progressively lighter backgrounds in dark mode\n\n[SCRIM_OVERLAY]\nscrim_token: color.overlay.scrim — semi-transparent backdrop\nopacity: typically 0.4–0.6 (token-defined)\nusage: behind dialogs, drawers, and bottom sheets\ninteraction: clicking scrim dismisses the overlay (unless blocking dialog)\naccessibility: scrim must trap focus within the dialog layer\n\n[DARK_MODE_BEHAVIOR]\nshadows: reduced intensity in dark mode — darker environment needs less shadow contrast\nsurfaces: elevation is communicated via lighter surface tints rather than shadow alone\nrule: test elevation hierarchy in both light and dark themes\n\n[AGENT_BEHAVIOR]\n- When recommending elevation, specify both the shadow token and z-index band\n- If a component doesn't fit an existing elevation level, flag it as a governance gap\n- Always check that overlapping layers use correct z-index ordering\n- Verify that overlays include a scrim when required (dialogs, drawers)\n- Test elevation recommendations in both light and dark mode\n\n[CONSTRAINTS]\n- never use raw box-shadow or z-index values — always tokens\n- never stack more than 2–3 elevation levels simultaneously\n- never place content above the toast layer except system-level elements\n- scrim is mandatory for dialog-level overlays\n- focus must be trapped within the highest active elevation layer\n- overlays must be dismissible via Escape key\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Layering & Elevation",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Layering and elevation help users understand spatial relationships between interface elements. In SOLAR, elevation is used to communicate hierarchy, interaction states, and temporary surfaces such as overlays and menus.",
+        "Clear layering helps users distinguish between persistent content and transient interaction elements. SOLAR uses a small set of predictable elevation levels combined with surface and shadow tokens. This approach keeps interfaces visually calm while providing enough depth cues for navigation, hierarchy, and interaction feedback.",
+        "Layer Hierarchy",
+        "Subtle Depth Cues",
+        "Consistent System Behavior",
+        "Token-driven Implementation",
+        "Interfaces are organized into predictable layers such as background surfaces, content containers, overlays, and dialog elements.",
+        "Elevation relies on minimal shadows and surface contrast to communicate depth without adding visual noise.",
+        "Elevation levels correspond to specific UI patterns such as cards, dropdowns, popovers, and dialogs.",
+        "Elevation and layering are defined through tokens in SOLAR Foundations and applied consistently across all SOLAR component libraries."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Elevation Levels",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR uses a set of elevation levels to represent different layers within the interface. Limiting the number of levels keeps depth predictable and prevents visual clutter.",
+        "Each elevation level corresponds to a specific category of interface elements. These levels help define the spatial hierarchy of the UI and ensure consistent layering across components and products.\n\nBy mapping UI patterns to specific elevation levels, the system maintains clarity and consistency across the ecosystem.",
+        "Typical elevation levels",
+        "Background — The lowest-level surface that sits behind all other content and containers.\nBase — Primary page surfaces and structural layout containers.\nRaised — Content containers such as cards and panes that sit slightly above the base surface.\nOverlay — Temporary interface elements including dropdown menus, tooltips, and popovers.\nDialog — Blocking surfaces such as dialogs or system alerts that require user attention.\nScrim — Semi-transparent backdrop that obscures underlying content when a dialog surface is active.",
+        "SOLAR also defines utility surfaces that are not part of the elevation hierarchy:",
+        "Muted — Recessed or subdued areas used to de-emphasize content regions.\nInverse — Flipped contrast surface for elements that stand apart from the primary color scheme.",
+        "Feedback surfaces",
+        "Success — Background for positive confirmations and success states.\nWarning — Background for caution messages and non-critical alerts.\nDanger — Background for error states and destructive action warnings.\nInfo — Background for informational messages and hints.\nNeutral — Background for general-purpose notices without specific sentiment."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Elevation Tokens",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Elevation in SOLAR is expressed through two token groups working together: surface tokens define the background color of each layer, and shadow tokens define the visual depth cue.",
+        "Elevated surfaces share a common color value by design — depth is communicated through shadows, not surface contrast. Not all shadow tokens communicate depth; shadow/control signals interactivity rather than elevation.",
+        "Surface / shadow pairings",
+        "surface/background — no shadow\nsurface/base — shadow/none\nsurface/raised — shadow/raised\nsurface/overlay — shadow/overlay\nsurface/dialog — shadow/dialog\nsurface/scrim — no shadow\nsurface/muted — no shadow\nsurface/inverse — no shadow",
+        "Shadow scale",
+        "shadow/none — No shadow. Base-level surfaces.\nshadow/control — Subtle shadow signaling interactivity for input elements.\nshadow/raised — Light lift for content containers.\nshadow/overlay — Pronounced shadow for floating elements.\nshadow/dialog — Strongest shadow in the system."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Stacking & Layering Rules",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Predictable stacking behavior is essential for accessible and consistent interfaces. SOLAR defines clear rules for how elevation levels interact when multiple layers are present simultaneously.",
+        "When multiple elevated surfaces coexist, their stacking order must follow the elevation hierarchy. Higher elevation levels always render above lower ones. These rules apply globally across SOLAR products.",
+        "Stacking order follows elevation. Elements at a higher elevation level always appear above elements at a lower level. Never manually override z-index to break this hierarchy.",
+        "One dialog at a time. Only a single dialog surface may be active at any time. Stacking dialogs on top of dialogs creates confusion and must be avoided. If additional user input is required, use inline content within the active dialog.",
+        "Overlays dismiss before dialogs. When an overlay (such as a dropdown) is open and a dialog is triggered, the overlay must dismiss before the dialog surface appears.",
+        "Scrim usage. Dialog surfaces must always be accompanied by a scrim that obscures the underlying content. The scrim signals that the background is not interactive and helps direct focus to the dialog content."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Elevation Do's and Don'ts",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Consistent use of elevation keeps interfaces readable and predictable. These guidelines address common decisions teams face when applying depth and layering in SOLAR products.",
+        "Elevation should clarify interface structure, not decorate it. Every shadow and surface change must serve a functional purpose — distinguishing layers, signaling interactivity, or communicating temporary states. When elevation is applied inconsistently or used for purely visual reasons, it undermines the spatial model and makes interfaces harder to parse. These rules help teams stay aligned on how depth should and should not",
+        "Do: Pair surface & shadow from the same level",
+        "A raised card uses surface/raised and shadow/raised together. Never mix levels — applying shadow/dialog to a card to make it \"pop more\" breaks the hierarchy.",
+        "Do: Use scrim with every dialog",
+        "Dialog surfaces must always include a scrim behind them. Without it, there's no clear signal that underlying content is inactive.",
+        "Don't: Nest dialogs within dialogs",
+        "If a dialog needs additional user input, add it inline within the existing dialog. Stacking dialogs creates disorienting depth and breaks focus management.",
+        "Don't: Add shadows for emphasis",
+        "If an element doesn't occupy an elevated layer, it shouldn't carry a shadow. Use color, border, or spacing for emphasis instead. Shadows are reserved for spatial relationships."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Elevation in Context",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Each elevation level maps to specific components in the SOLAR ecosystem. This reference shows which SOLAR Web components occupy each layer.",
+        "Consistent mapping between elevation levels and components reduces cognitive load. Users learn to associate visual depth with interaction expectations — flat surfaces are persistent, elevated surfaces indicate temporary or blocking interactions.",
+        "Base",
+        "Raised",
+        "Overlay",
+        "Dialog",
+        "Page shell, navigation rail, sidebar, content area. These structural surfaces form the foundation of every screen and sit flat with no shadow.",
+        "Card, data table, content pane, tab panel. These containers group related content and use shadow/raised to separate from the base layer.",
+        "DropdownMenu, Tooltip, Popover, ContextMenu. These components appear on interaction, float above content with shadow/overlay, and dismiss when focus leaves.",
+        "Dialog, AlertDialog, system alert. These components block the underlying interface with shadow/dialog and require explicit dismissal. A scrim always accompanies the dialog surface."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 122
+}

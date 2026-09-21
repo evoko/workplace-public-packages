@@ -1,0 +1,598 @@
+{
+  "page": "↳ 🟢 Layout Grid",
+  "pageId": "2162:2666",
+  "componentSets": [],
+  "components": [],
+  "frames": [
+    {
+      "name": "Grid / System Grid",
+      "type": "FRAME",
+      "id": "2163:996",
+      "size": [
+        1520,
+        4999
+      ],
+      "census": {},
+      "tree": {
+        "name": "Grid / System Grid",
+        "type": "FRAME",
+        "size": [
+          1520,
+          4999
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "fills": [
+          "{Primitives:color/mono/white}"
+        ],
+        "strokes": [
+          "{Primitives:color/neutral/100}"
+        ],
+        "strokeWeight": 1,
+        "radius": 16,
+        "children": [
+          {
+            "name": ".Header",
+            "type": "FRAME",
+            "size": [
+              1520,
+              168
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Primitives:color/neutral/100}"
+            ],
+            "strokeWeight": "mixed",
+            "children": [
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  1520,
+                  72
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    40,
+                    0,
+                    40
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "strokeWeight": "mixed"
+              },
+              {
+                "name": ".Subheader",
+                "type": "FRAME",
+                "size": [
+                  1520,
+                  96
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    32,
+                    40,
+                    32,
+                    40
+                  ],
+                  "align": "CENTER/MIN",
+                  "sizing": "FILL/FIXED"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/700}"
+                ],
+                "strokeWeight": "mixed"
+              }
+            ]
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1520,
+              284
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 40,
+              "pad": [
+                40,
+                40,
+                40,
+                40
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Primitives:color/neutral/100}"
+            ],
+            "strokeWeight": "mixed",
+            "children": [
+              {
+                "name": "System grid tokens define the default responsive layout structure used across the SOLAR Design System. They establish baseline columns, gutters, and margins that help align content and maintain visual balance across screen sizes. The system grid provides a consistent foundation for building layouts across products, ensuring predictable spacing, alignment, and responsive behavior. Most interfaces should start with the system grid unless specific product requirements call for a customized layout structure.",
+                "type": "TEXT",
+                "text": "System grid tokens define the default responsive layout structure used across th",
+                "size": [
+                  786,
+                  204
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Primitives:color/neutral/900}"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1520,
+              967
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 40,
+              "pad": [
+                40,
+                40,
+                40,
+                40
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Primitives:color/neutral/100}"
+            ],
+            "strokeWeight": "mixed",
+            "children": [
+              {
+                "name": "Frame 1",
+                "type": "FRAME",
+                "size": [
+                  393,
+                  887
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1520,
+              915
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 40,
+              "pad": [
+                40,
+                40,
+                40,
+                40
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Primitives:color/neutral/100}"
+            ],
+            "strokeWeight": "mixed",
+            "children": [
+              {
+                "name": "Frame 2",
+                "type": "FRAME",
+                "size": [
+                  768,
+                  835
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1520,
+              835
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 40,
+              "pad": [
+                40,
+                40,
+                40,
+                40
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Primitives:color/neutral/100}"
+            ],
+            "strokeWeight": "mixed",
+            "children": [
+              {
+                "name": "Frame 3",
+                "type": "FRAME",
+                "size": [
+                  1024,
+                  755
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1520,
+              915
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 40,
+              "pad": [
+                40,
+                40,
+                40,
+                40
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Primitives:color/neutral/100}"
+            ],
+            "strokeWeight": "mixed",
+            "children": [
+              {
+                "name": "Frame 4",
+                "type": "FRAME",
+                "size": [
+                  1440,
+                  835
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1520,
+              915
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 40,
+              "pad": [
+                40,
+                40,
+                40,
+                40
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Primitives:color/neutral/100}"
+            ],
+            "strokeWeight": "mixed",
+            "children": [
+              {
+                "name": "Frame 5",
+                "type": "FRAME",
+                "size": [
+                  1440,
+                  835
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "texts": [
+        "System grid tokens define the default responsive layout structure used across the SOLAR Design System. They establish baseline columns, gutters, and margins that help align content and maintain visual balance across screen sizes.\n\nThe system grid provides a consistent foundation for building layouts"
+      ]
+    },
+    {
+      "name": "Grid / Product Grid",
+      "type": "FRAME",
+      "id": "2163:2039",
+      "size": [
+        1520,
+        1295
+      ],
+      "census": {},
+      "tree": {
+        "name": "Grid / Product Grid",
+        "type": "FRAME",
+        "size": [
+          1520,
+          1295
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Primitives:color/mono/white}"
+        ],
+        "strokes": [
+          "{Primitives:color/neutral/100}"
+        ],
+        "strokeWeight": 1,
+        "radius": 16,
+        "children": [
+          {
+            "name": ".Header",
+            "type": "FRAME",
+            "size": [
+              1520,
+              168
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Primitives:color/neutral/100}"
+            ],
+            "strokeWeight": "mixed",
+            "children": [
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  1520,
+                  72
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    40,
+                    0,
+                    40
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "strokeWeight": "mixed"
+              },
+              {
+                "name": ".Subheader",
+                "type": "FRAME",
+                "size": [
+                  1520,
+                  96
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    32,
+                    40,
+                    32,
+                    40
+                  ],
+                  "align": "CENTER/MIN",
+                  "sizing": "FILL/FIXED"
+                },
+                "strokes": [
+                  "{Primitives:color/neutral/700}"
+                ],
+                "strokeWeight": "mixed"
+              }
+            ]
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1520,
+              212
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 40,
+              "pad": [
+                40,
+                40,
+                40,
+                40
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Primitives:color/neutral/100}"
+            ],
+            "strokeWeight": "mixed",
+            "children": [
+              {
+                "name": "Product grids define layout structures tailored to the needs of individual applications or product experiences. While based on the SOLAR system grid, these configurations may adjust column counts, margins, or gutters to support specific layouts, workflows, or content density. Product grids allow teams to adapt the layout framework while preserving the overall spatial rhythm and responsive principles established by the SOLAR Design System.",
+                "type": "TEXT",
+                "text": "Product grids define layout structures tailored to the needs of individual appli",
+                "size": [
+                  786,
+                  132
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Primitives:color/neutral/900}"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1520,
+              915
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 40,
+              "pad": [
+                40,
+                40,
+                40,
+                40
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Primitives:color/neutral/100}"
+            ],
+            "strokeWeight": "mixed",
+            "children": [
+              {
+                "name": "Frame 4",
+                "type": "FRAME",
+                "size": [
+                  1440,
+                  835
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "texts": [
+        "Product grids define layout structures tailored to the needs of individual applications or product experiences. While based on the SOLAR system grid, these configurations may adjust column counts, margins, or gutters to support specific layouts, workflows, or content density.\n\nProduct grids allow te"
+      ]
+    }
+  ],
+  "docText": [],
+  "pageContext": null
+}

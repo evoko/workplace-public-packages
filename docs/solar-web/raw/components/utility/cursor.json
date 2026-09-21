@@ -1,0 +1,251 @@
+{
+  "page": "↳ 🟢 Cursor",
+  "pageId": "8871:430",
+  "componentSets": [
+    {
+      "name": "Cursor",
+      "id": "8871:436",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 22,
+      "props": {
+        "Type": {
+          "type": "VARIANT",
+          "default": "Default",
+          "options": [
+            "Copy",
+            "Crosshair",
+            "Default",
+            "Default White",
+            "Grabbing",
+            "Hourglass",
+            "Move",
+            "Not Allowed",
+            "Pointer",
+            "Progress",
+            "Resize Col",
+            "Resize EW",
+            "Resize N",
+            "Resize NE SW",
+            "Resize NS",
+            "Resize NW SE",
+            "Resize Row",
+            "Text",
+            "Unavailable",
+            "Zoom In",
+            "Zoom Out",
+            "X"
+          ]
+        }
+      },
+      "defaultVariant": "Type=Default",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "Type=Default",
+        "type": "COMPONENT",
+        "size": [
+          12,
+          14
+        ],
+        "effectStyle": "shadow/raised",
+        "children": [
+          {
+            "name": "Rectangle 237",
+            "type": "VECTOR",
+            "size": [
+              12,
+              14
+            ],
+            "fills": [
+              "{Primitives:color/neutral/900}"
+            ],
+            "strokes": [
+              "{Primitives:color/mono/white}"
+            ],
+            "strokeWeight": 1
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "Type=Default",
+          "size": [
+            12,
+            14
+          ],
+          "effect": "shadow/raised",
+          "hidden": []
+        },
+        {
+          "variant": "Type=Grabbing",
+          "size": [
+            13,
+            14
+          ]
+        },
+        {
+          "variant": "Type=Default White",
+          "size": [
+            13,
+            14
+          ]
+        },
+        {
+          "variant": "Type=Progress",
+          "size": [
+            22,
+            24
+          ]
+        },
+        {
+          "variant": "Type=Not Allowed",
+          "size": [
+            21,
+            24
+          ]
+        },
+        {
+          "variant": "Type=Move",
+          "size": [
+            18,
+            18
+          ]
+        },
+        {
+          "variant": "Type=Resize Col",
+          "size": [
+            18,
+            16
+          ]
+        },
+        {
+          "variant": "Type=Resize Row",
+          "size": [
+            16,
+            18
+          ]
+        },
+        {
+          "variant": "Type=Resize NS",
+          "size": [
+            8,
+            19
+          ]
+        },
+        {
+          "variant": "Type=Resize N",
+          "size": [
+            8,
+            15
+          ]
+        },
+        {
+          "variant": "Type=Crosshair",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "Type=X",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "Type=Text",
+          "size": [
+            8,
+            16
+          ]
+        },
+        {
+          "variant": "Type=Unavailable",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "Type=Zoom In",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "Type=Zoom Out",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "Type=Resize EW",
+          "size": [
+            19,
+            8
+          ]
+        },
+        {
+          "variant": "Type=Resize NW SE",
+          "size": [
+            13,
+            13
+          ]
+        },
+        {
+          "variant": "Type=Resize NE SW",
+          "size": [
+            13,
+            13
+          ]
+        },
+        {
+          "variant": "Type=Copy",
+          "size": [
+            21,
+            24
+          ]
+        },
+        {
+          "variant": "Type=Pointer",
+          "size": [
+            14,
+            17
+          ]
+        },
+        {
+          "variant": "Type=Hourglass",
+          "size": [
+            11,
+            16
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Cursor",
+    "Description",
+    "Custom pointer treatments for canvas and authoring surfaces (grab, crosshair, resize, etc.). For domain canvases; standard UI uses native cursors.",
+    "Anatomy",
+    "Cursor glyph · hotspot point · optional label / badge (e.g. active tool name).",
+    "Variants",
+    "type: default · grab · grabbing · crosshair · resize · text · not-allowed. Provide hi-dpi assets.",
+    "States",
+    "Reflects the active tool / context. Non-interactive itself — it mirrors interaction state happening elsewhere.",
+    "Accessibility",
+    "Cursor is never the sole signal of state — pair with a visible tool indicator and keyboard equivalents. Ensure the glyph is visible on light and dark surfaces.",
+    "Rules",
+    "Mirror the active tool\nKeep a precise hotspot\nProvide keyboard equivalents\nTest on light + dark surfaces",
+    "Convey state by cursor alone\nUse custom cursors in standard UI\nObscure the target\nForget hi-dpi assets"
+  ],
+  "pageContext": null
+}

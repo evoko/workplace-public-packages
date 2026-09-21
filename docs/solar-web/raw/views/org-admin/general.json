@@ -1,0 +1,801 @@
+{
+  "page": "↳ 🟢 General",
+  "pageId": "5066:23",
+  "componentSets": [
+    {
+      "name": "General",
+      "id": "8407:1130",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 277,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1368,
+          700
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs",
+          "layoutGrids": [
+            "Space:grid/columns/lg",
+            "Space:stack/x-sm"
+          ]
+        },
+        "children": [
+          {
+            "name": "Left",
+            "type": "FRAME",
+            "size": [
+              221,
+              700
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FIXED/FILL"
+            },
+            "fills": [
+              "{Color:surface/raised}"
+            ],
+            "radius": [
+              8,
+              8,
+              0,
+              0
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:stack/none",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/none",
+              "bottomRightRadius": "Spatial:radius/none"
+            },
+            "children": [
+              {
+                "name": "Tree Group Header",
+                "type": "INSTANCE",
+                "main": "Tree Group Header",
+                "size": [
+                  197,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Group Header",
+                "type": "INSTANCE",
+                "main": "Tree Group Header",
+                "size": [
+                  197,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Group Header",
+                "type": "INSTANCE",
+                "main": "Tree Group Header",
+                "size": [
+                  197,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "selected"
+                },
+                "size": [
+                  197,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Center",
+            "type": "FRAME",
+            "size": [
+              1139,
+              700
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/raised}"
+            ],
+            "radius": [
+              8,
+              8,
+              0,
+              0
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:stack/none",
+              "paddingLeft": "Spatial:stack/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:stack/none",
+              "paddingBottom": "Spatial:inset/none",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/none",
+              "bottomRightRadius": "Spatial:radius/none"
+            },
+            "children": [
+              {
+                "name": "Page Header",
+                "type": "INSTANCE",
+                "main": "Page Header",
+                "variant": {
+                  "type": "centered",
+                  "breakpoint": "desktop"
+                },
+                "size": [
+                  1139,
+                  105
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 20,
+                  "pad": [
+                    8,
+                    20,
+                    0,
+                    20
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/lg",
+                  "paddingLeft": "Spatial:inset/lg",
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/lg",
+                  "paddingBottom": "Spatial:inset/none",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Form",
+                "type": "FRAME",
+                "size": [
+                  1139,
+                  595
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 24,
+                  "pad": [
+                    8,
+                    20,
+                    24,
+                    20
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "children": [
+                  {
+                    "name": "FormSection",
+                    "type": "INSTANCE",
+                    "main": "FormSection",
+                    "size": [
+                      640,
+                      378
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 20,
+                      "pad": [
+                        20,
+                        0,
+                        20,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/surface}"
+                    ],
+                    "strokeWeight": "mixed",
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/lg",
+                      "paddingLeft": "Spatial:stack/none",
+                      "paddingTop": "Spatial:stack/lg",
+                      "paddingRight": "Spatial:stack/none",
+                      "paddingBottom": "Spatial:stack/lg",
+                      "strokeBottomWeight": "Spatial:border/default"
+                    }
+                  },
+                  {
+                    "name": "FormSection",
+                    "type": "INSTANCE",
+                    "main": "FormSection",
+                    "size": [
+                      640,
+                      161
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 20,
+                      "pad": [
+                        20,
+                        0,
+                        20,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/surface}"
+                    ],
+                    "strokeWeight": "mixed",
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/lg",
+                      "paddingLeft": "Spatial:stack/none",
+                      "paddingTop": "Spatial:stack/lg",
+                      "paddingRight": "Spatial:stack/none",
+                      "paddingBottom": "Spatial:stack/lg",
+                      "strokeBottomWeight": "Spatial:border/default"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Right",
+            "type": "FRAME",
+            "hidden": true,
+            "size": [
+              336,
+              744
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/raised}"
+            ],
+            "radius": [
+              8,
+              8,
+              0,
+              0
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:stack/none",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/none",
+              "bottomRightRadius": "Spatial:radius/none"
+            },
+            "children": []
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            1368,
+            700
+          ],
+          "textFills": [
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/feedback/info}",
+            "{Color:action/secondary/text/danger/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "{Color:icon/tertiary}",
+            "{Color:action/secondary/icon/danger/default}"
+          ],
+          "hidden": [
+            "*",
+            "Breadcrumbs",
+            "Button",
+            "Contaner",
+            "Counter",
+            "Helper text",
+            "Icon/Building",
+            "Icon/Download",
+            "Icon/Invite",
+            "Icon/None",
+            "LeadingIcon",
+            "Right",
+            "Spinner",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            377,
+            692
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:text/feedback/info}",
+            "{Color:action/secondary/text/danger/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/tertiary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/tertiary}",
+            "{Color:action/secondary/icon/danger/default}"
+          ],
+          "hidden": [
+            "*",
+            "Breadcrumbs",
+            "Button",
+            "Contaner",
+            "Counter",
+            "Helper text",
+            "Icon/Building",
+            "Icon/More",
+            "Icon/None",
+            "LeadingIcon",
+            "Spinner",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "General",
+    "Description",
+    "The org's general settings — name, logo, locale and defaults. The first, most common admin settings page.",
+    "Layout",
+    "Section Nav (Settings) + content: Form Rows for org name, logo upload, timezone / locale and defaults, with Save.",
+    "Responsive",
+    "Desktop: nav + panel. Mobile: stacked form.",
+    "States",
+    "loaded, editing, saving, saved, error; inline validation.",
+    "Accessibility",
+    "Fields labelled; logo upload has a text alternative; announce the save result. Keyboard-complete; visible focus.",
+    "Rules",
+    "Group basic org identity\nValidate inline\nGive clear save feedback\nPreview the logo",
+    "Mix billing / security here\nAuto-save silently\nHide current values\nBlock save on optional fields"
+  ],
+  "pageContext": null
+}

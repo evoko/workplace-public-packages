@@ -1,0 +1,546 @@
+{
+  "page": "↳ 🟢 Action Card",
+  "pageId": "2966:609",
+  "componentSets": [
+    {
+      "name": "Action Card",
+      "id": "3044:45",
+      "description": "ROLE: composition of Card.\n\nThe single interactive composition of Card. Whole-surface click affordance for onboarding checklists, empty-state CTAs, and feature promos.\n\nANATOMY\nCard surface + fixed Body anatomy: leading Icon (instance swap, 24px) → Title → Description → CTA row (Button Group instance swap).\n\nVARIANT PROPERTIES\n• status — default, done (controls CTA-row vs done-indicator swap)\n• state — default, hover (pressed / focus queued)\n\nBOOLEANS\n• Show CTA • Show Primary CTA • Show Secondary CTA • Show Icon • Content (slot)\nQueued: show description, show status-message.\n\nCOMPOSITION CONTRACT\nAction Card is (taxonomy-intent) a Card instance with clickable=true pinned. Current build is a detached copy of Card, not a Card instance — graduation to a true Card instance requires owner call (see Open Items). Inherits Card's focus ring (shadow/focus/default) and hover/pressed overlay — does not redefine them. Downstream consumers instance Action Card, not Card + manual content.\n\nIS NOT\n• Not a generic clickable Card wrapper — if a consumer needs a bespoke clickable body (Device Card, Billing Card), use Card with clickable=true directly.\n• Action Card is specifically the icon-title-description-CTA pattern.\n• Not a Button-in-a-Card — the surface itself is the control.\n• Not a list-row — that's List.",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "showCTA#3034:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showPrimaryCTA#3034:3": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showSecondaryCTA#3034:6": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showIcon#3437:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "content#3437:5": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "icon#8520:0": {
+          "type": "INSTANCE_SWAP",
+          "default": "10148:444"
+        },
+        "status": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "done",
+            "danger"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "hover",
+            "default"
+          ]
+        },
+        "layout": {
+          "type": "VARIANT",
+          "default": "vertical",
+          "options": [
+            "vertical"
+          ]
+        }
+      },
+      "defaultVariant": "status=default, state=default, layout=vertical",
+      "defaultVariantNodeCount": 33,
+      "defaultVariantTree": {
+        "name": "status=default, state=default, layout=vertical",
+        "type": "COMPONENT",
+        "size": [
+          300,
+          166
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 16,
+          "pad": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/control",
+        "vars": {
+          "itemSpacing": "Spatial:stack/md",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/md",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Title",
+            "type": "FRAME",
+            "size": [
+              268,
+              20
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Icon/None",
+                "type": "INSTANCE",
+                "main": "Icon/None",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/md"
+                },
+                "propRefs": {
+                  "visible": "showIcon#3437:0",
+                  "mainComponent": "icon#8520:0"
+                }
+              },
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "body/lg/semibold",
+                "size": [
+                  212,
+                  12
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/lg",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/lg",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              },
+              {
+                "name": "Icon/More",
+                "type": "INSTANCE",
+                "main": "Icon/More",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/md"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "SLOT",
+            "size": [
+              268,
+              50
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 16,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/md"
+            },
+            "propRefs": {
+              "slotContentId": "content#3437:5"
+            },
+            "children": [
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "Description text that explains why this action matters and what the user will ac",
+                "textStyle": "body/md/regular",
+                "size": [
+                  268,
+                  50
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "CTA",
+            "type": "FRAME",
+            "size": [
+              268,
+              32
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "propRefs": {
+              "visible": "showCTA#3034:0"
+            },
+            "children": [
+              {
+                "name": "Button",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "sm",
+                  "prio": "primary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  64,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "propRefs": {
+                  "visible": "showPrimaryCTA#3034:3"
+                }
+              },
+              {
+                "name": "Button",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "sm",
+                  "prio": "secondary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  64,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "propRefs": {
+                  "visible": "showSecondaryCTA#3034:6"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "status=default, state=default, layout=vertical",
+          "size": [
+            300,
+            166
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "status=done, state=default, layout=vertical",
+          "size": [
+            300,
+            166
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "status=danger, state=default, layout=vertical",
+          "size": [
+            300,
+            166
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/secondary}",
+            "{Color:action/primary/text/danger/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}",
+            "{Color:icon/secondary}",
+            "{Color:action/primary/icon/danger/default}"
+          ]
+        },
+        {
+          "variant": "status=default, state=hover, layout=vertical",
+          "size": [
+            300,
+            166
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "status=done, state=hover, layout=vertical",
+          "size": [
+            300,
+            166
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "status=danger, state=hover, layout=vertical",
+          "size": [
+            300,
+            166
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/secondary}",
+            "{Color:action/primary/text/danger/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}",
+            "{Color:icon/secondary}",
+            "{Color:action/primary/icon/danger/default}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Action Card",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

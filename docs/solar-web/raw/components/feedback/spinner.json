@@ -1,0 +1,161 @@
+{
+  "page": "↳ 🟢 Spinner",
+  "pageId": "2163:3681",
+  "componentSets": [
+    {
+      "name": "Spinner",
+      "id": "4626:102",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "size": {
+          "type": "VARIANT",
+          "default": "sm",
+          "options": [
+            "sm",
+            "md",
+            "lg"
+          ]
+        },
+        "style": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "inverse"
+          ]
+        }
+      },
+      "defaultVariant": "size=sm, style=default",
+      "defaultVariantNodeCount": 3,
+      "defaultVariantTree": {
+        "name": "size=sm, style=default",
+        "type": "COMPONENT",
+        "size": [
+          16,
+          16
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "HUG/HUG"
+        },
+        "children": [
+          {
+            "name": "SpinnerRing",
+            "type": "FRAME",
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "children": [
+              {
+                "name": "Track",
+                "type": "ELLIPSE",
+                "size": [
+                  16,
+                  16
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 2,
+                "vars": {
+                  "strokeWeight": "Spatial:border/strong"
+                }
+              },
+              {
+                "name": "Indicator",
+                "type": "VECTOR",
+                "size": [
+                  7,
+                  5
+                ],
+                "strokes": [
+                  "{Spatial:border/strong}"
+                ],
+                "strokeWeight": 2,
+                "vars": {
+                  "strokeWeight": "Spatial:border/strong"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=sm, style=default",
+          "size": [
+            16,
+            16
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "size=md, style=default",
+          "size": [
+            24,
+            24
+          ]
+        },
+        {
+          "variant": "size=lg, style=default",
+          "size": [
+            32,
+            32
+          ]
+        },
+        {
+          "variant": "size=sm, style=inverse",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "size=md, style=inverse",
+          "size": [
+            24,
+            24
+          ]
+        },
+        {
+          "variant": "size=lg, style=inverse",
+          "size": [
+            32,
+            32
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Spinner",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

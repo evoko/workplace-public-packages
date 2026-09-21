@@ -1,0 +1,1262 @@
+{
+  "page": "↳ 🟢 File & Asset Browser ",
+  "pageId": "3772:3",
+  "componentSets": [
+    {
+      "name": "File & Asset Browser",
+      "id": "8243:2826",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        },
+        "view": {
+          "type": "VARIANT",
+          "default": "grid",
+          "options": [
+            "grid",
+            "list",
+            "templates"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop, view=grid",
+      "defaultVariantNodeCount": 267,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop, view=grid",
+        "type": "COMPONENT",
+        "size": [
+          1368,
+          744
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "children": [
+          {
+            "name": "Page Header",
+            "type": "INSTANCE",
+            "main": "Page Header",
+            "variant": {
+              "type": "left-aligned",
+              "breakpoint": "desktop"
+            },
+            "size": [
+              1368,
+              99
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                8,
+                24,
+                0,
+                24
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:stack/none",
+              "paddingLeft": "Spatial:inset/xl",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xl",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Content",
+            "type": "FRAME",
+            "size": [
+              1368,
+              645
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 16,
+              "pad": [
+                16,
+                40,
+                24,
+                40
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FILL"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/md"
+            },
+            "children": [
+              {
+                "name": "TableHeader",
+                "type": "INSTANCE",
+                "main": "TableHeader",
+                "variant": {
+                  "breakpoint": "desktop"
+                },
+                "size": [
+                  1280,
+                  56
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    8,
+                    0,
+                    8,
+                    0
+                  ],
+                  "align": "SPACE_BETWEEN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/xs",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Grid",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  698
+                ],
+                "layout": {
+                  "dir": "GRID",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "counterAxisSpacing": "Spatial:stack/md"
+                },
+                "children": [
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "New Asset Tile"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 12,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/sm",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "File Card"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "File Card"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "File Card"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "File Card"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "File Card"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "File Card"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "File Card"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "File Card"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "File Card"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "File Card"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  },
+                  {
+                    "name": "File Card",
+                    "type": "INSTANCE",
+                    "main": "File Card",
+                    "variant": {
+                      "type": "File Card"
+                    },
+                    "size": [
+                      308,
+                      222
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/base}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 8,
+                    "effectStyle": "shadow/raised",
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop, view=grid",
+          "size": [
+            1368,
+            744
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "{Color:icon/tertiary}",
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": [
+            "Button",
+            "Counter",
+            "Description",
+            "Helper text",
+            "Icon/Building",
+            "Icon/Filter",
+            "Icon/None",
+            "Image",
+            "Label",
+            "LeadingIcon",
+            "Spinner",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile, view=grid",
+          "size": [
+            377,
+            744
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/tertiary/icon/default}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/tertiary}"
+          ],
+          "hidden": [
+            "Counter",
+            "Description",
+            "Helper text",
+            "Icon/Building",
+            "Icon/None",
+            "Label",
+            "LeadingIcon",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        },
+        {
+          "variant": "breakpoint=desktop, view=list",
+          "size": [
+            1368,
+            744
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": [
+            "*",
+            "Button",
+            "Counter",
+            "Description",
+            "Helper text",
+            "Icon/Building",
+            "Icon/Filter",
+            "Icon/None",
+            "Image",
+            "Label",
+            "LeadingIcon",
+            "RowExpand",
+            "Spinner",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile, view=list",
+          "size": [
+            377,
+            744
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/tertiary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "*",
+            "Counter",
+            "Description",
+            "Helper text",
+            "Icon/Building",
+            "Icon/None",
+            "Label",
+            "LeadingIcon",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        },
+        {
+          "variant": "breakpoint=desktop, view=templates",
+          "size": [
+            1368,
+            744
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "{Color:icon/tertiary}",
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": [
+            "Button",
+            "Counter",
+            "Description",
+            "Icon/Building",
+            "Icon/None",
+            "Image",
+            "LeadingIcon",
+            "Spinner",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile, view=templates",
+          "size": [
+            377,
+            744
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:text/tertiary}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/inverse}",
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/tertiary/icon/default}",
+            "{Color:icon/tertiary}",
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": [
+            "Counter",
+            "Description",
+            "Icon/Building",
+            "LeadingIcon",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [
+    {
+      "name": "Modal · New design",
+      "type": "INSTANCE",
+      "id": "8228:2428",
+      "size": [
+        600,
+        244
+      ],
+      "main": "Dialog",
+      "variant": {
+        "type": "default"
+      },
+      "census": {
+        "Dialog": 1,
+        "Icon/Empty": 1,
+        "Icon Button": 1,
+        "Icon/Close": 1,
+        "Icon/Plus": 1,
+        "Icon/Image": 1,
+        "Icon/Folder": 1,
+        "Button Group": 1,
+        "Button": 2,
+        "Icon/None": 4,
+        "Spinner": 2,
+        "Counter": 2
+      },
+      "tree": {
+        "name": "Modal · New design",
+        "type": "INSTANCE",
+        "main": "Dialog",
+        "variant": {
+          "type": "default"
+        },
+        "size": [
+          600,
+          244
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/dialog}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        }
+      }
+    },
+    {
+      "name": "Modal · Select a template",
+      "type": "INSTANCE",
+      "id": "8233:2649",
+      "size": [
+        744,
+        602
+      ],
+      "main": "Dialog",
+      "variant": {
+        "type": "default"
+      },
+      "census": {
+        "Dialog": 1,
+        "Icon/Empty": 1,
+        "Icon Button": 1,
+        "Icon/Close": 1,
+        "Tag": 5,
+        "Icon/Image": 6,
+        "Button Group": 1,
+        "Button": 2,
+        "Icon/None": 4,
+        "Spinner": 2,
+        "Counter": 2
+      },
+      "tree": {
+        "name": "Modal · Select a template",
+        "type": "INSTANCE",
+        "main": "Dialog",
+        "variant": {
+          "type": "default"
+        },
+        "size": [
+          744,
+          602
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/dialog}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        }
+      }
+    },
+    {
+      "name": "Modal · Design details",
+      "type": "INSTANCE",
+      "id": "8230:2494",
+      "size": [
+        480,
+        350
+      ],
+      "main": "Dialog",
+      "variant": {
+        "type": "default"
+      },
+      "census": {
+        "Dialog": 1,
+        "Icon/Empty": 1,
+        "Icon Button": 1,
+        "Icon/Close": 1,
+        "Text Input": 1,
+        "Icon/None": 6,
+        "Select": 2,
+        "Icon/ChevronDown": 2,
+        "Button Group": 1,
+        "Button": 2,
+        "Spinner": 2,
+        "Counter": 2
+      },
+      "tree": {
+        "name": "Modal · Design details",
+        "type": "INSTANCE",
+        "main": "Dialog",
+        "variant": {
+          "type": "default"
+        },
+        "size": [
+          480,
+          350
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/dialog}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        }
+      }
+    },
+    {
+      "name": "Modal · Export design",
+      "type": "INSTANCE",
+      "id": "8231:2548",
+      "size": [
+        480,
+        360
+      ],
+      "main": "Dialog",
+      "variant": {
+        "type": "default"
+      },
+      "census": {
+        "Dialog": 1,
+        "Icon/Empty": 1,
+        "Icon Button": 1,
+        "Icon/Close": 1,
+        "Icon/Folder": 1,
+        "Icon/Image": 1,
+        "Button Group": 1,
+        "Button": 2,
+        "Icon/None": 4,
+        "Spinner": 2,
+        "Counter": 2
+      },
+      "tree": {
+        "name": "Modal · Export design",
+        "type": "INSTANCE",
+        "main": "Dialog",
+        "variant": {
+          "type": "default"
+        },
+        "size": [
+          480,
+          360
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/dialog}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        }
+      }
+    },
+    {
+      "name": "Modal · Request a quote",
+      "type": "INSTANCE",
+      "id": "8232:2582",
+      "size": [
+        480,
+        498
+      ],
+      "main": "Dialog",
+      "variant": {
+        "type": "default"
+      },
+      "census": {
+        "Dialog": 1,
+        "Icon/Empty": 1,
+        "Icon Button": 1,
+        "Icon/Close": 1,
+        "Text Input": 4,
+        "Icon/None": 12,
+        "Select": 1,
+        "Icon/ChevronDown": 1,
+        "Button Group": 1,
+        "Button": 2,
+        "Spinner": 2,
+        "Counter": 2
+      },
+      "tree": {
+        "name": "Modal · Request a quote",
+        "type": "INSTANCE",
+        "main": "Dialog",
+        "variant": {
+          "type": "default"
+        },
+        "size": [
+          480,
+          498
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/dialog}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        }
+      }
+    }
+  ],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "File & Asset Browser",
+    "Description",
+    "Browse, preview and manage files / assets in folders — a grid or list of File Cards with actions. For content and asset management.",
+    "Layout",
+    "Toolbar (view toggle · sort · upload · search) · breadcrumb path · File Card grid / list · optional preview (Detail Side Panel) · bulk-actions bar.",
+    "Responsive",
+    "Desktop grid + optional preview panel; mobile list, preview full-screen.",
+    "States",
+    "loaded, loading (skeletons), empty (upload prompt), no-results, error, uploading (progress).",
+    "Accessibility",
+    "Files are labelled focusable items; selection announced; upload progress via aria-live; breadcrumb is a nav landmark. Keyboard-complete.",
+    "Rules",
+    "Show the path (breadcrumb)\nOffer grid + list\nSupport multi-select + bulk\nShow upload progress",
+    "Rely on thumbnail alone\nHide file type\nLose selection on navigation\nBlock keyboard selection"
+  ],
+  "pageContext": null
+}

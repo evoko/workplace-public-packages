@@ -1,0 +1,282 @@
+{
+  "page": "↳ 🟢 Popover",
+  "pageId": "2202:1230",
+  "componentSets": [
+    {
+      "name": "Popover",
+      "id": "4572:120",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 8,
+      "props": {
+        "title#4572:0": {
+          "type": "TEXT",
+          "default": "Popover Title"
+        },
+        "body#4572:9": {
+          "type": "TEXT",
+          "default": "Popover content goes here. This is a short description."
+        },
+        "placement": {
+          "type": "VARIANT",
+          "default": "top",
+          "options": [
+            "top",
+            "bottom",
+            "left",
+            "right"
+          ]
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "sm",
+            "md"
+          ]
+        }
+      },
+      "defaultVariant": "placement=top, size=md",
+      "defaultVariantNodeCount": 4,
+      "defaultVariantTree": {
+        "name": "placement=top, size=md",
+        "type": "COMPONENT",
+        "size": [
+          320,
+          100
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "effectStyle": "shadow/dialog",
+        "children": [
+          {
+            "name": "Content",
+            "type": "FRAME",
+            "size": [
+              320,
+              90
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FIXED/HUG"
+            },
+            "fills": [
+              "{Color:surface/raised}"
+            ],
+            "radius": [
+              8,
+              8,
+              8,
+              0
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/md",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/none",
+              "bottomRightRadius": "Spatial:radius/container"
+            },
+            "children": [
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "Popover Title",
+                "textStyle": "body/md/medium",
+                "size": [
+                  288,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Body",
+                "type": "TEXT",
+                "text": "Popover content goes here. This is a short description.",
+                "textStyle": "body/lg/regular",
+                "size": [
+                  288,
+                  36
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/lg",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/lg",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Tip",
+            "type": "VECTOR",
+            "size": [
+              10,
+              10
+            ],
+            "sizing": "FIXED/FIXED",
+            "fills": [
+              "{Color:surface/raised}"
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "placement=top, size=md",
+          "size": [
+            320,
+            100
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "placement=top, size=sm",
+          "size": [
+            240,
+            76
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "placement=bottom, size=sm",
+          "size": [
+            240,
+            76
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "placement=bottom, size=md",
+          "size": [
+            320,
+            100
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "placement=left, size=md",
+          "size": [
+            330,
+            90
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "placement=left, size=sm",
+          "size": [
+            250,
+            66
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "placement=right, size=sm",
+          "size": [
+            250,
+            66
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "placement=right, size=md",
+          "size": [
+            330,
+            90
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Popover",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

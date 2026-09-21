@@ -1,0 +1,285 @@
+{
+  "page": "↳ 🟢 Device List",
+  "pageId": "6133:3",
+  "componentSets": [
+    {
+      "name": "Devices List",
+      "id": "6783:8331",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 516,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1368,
+          744
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "radius": [
+          8,
+          8,
+          0,
+          0
+        ],
+        "vars": {
+          "itemSpacing": "Spatial:stack/none",
+          "paddingLeft": "Spatial:stack/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:stack/none",
+          "paddingBottom": "Spatial:inset/none",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": [
+          {
+            "name": "Page Header",
+            "type": "INSTANCE",
+            "main": "Page Header",
+            "variant": {
+              "type": "left-aligned",
+              "breakpoint": "desktop"
+            },
+            "size": [
+              1368,
+              111
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                8,
+                24,
+                0,
+                24
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:stack/none",
+              "paddingLeft": "Spatial:inset/xl",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xl",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "DataTable",
+            "type": "INSTANCE",
+            "main": "DataTable",
+            "variant": {
+              "breakpoint": "desktop",
+              "state": "default"
+            },
+            "size": [
+              1280,
+              752
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FIXED/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "topLeftRadius": "Spatial:radius/none",
+              "topRightRadius": "Spatial:radius/none",
+              "bottomLeftRadius": "Spatial:radius/none",
+              "bottomRightRadius": "Spatial:radius/none"
+            }
+          }
+        ]
+      },
+      "census": {
+        "Page Header": 1,
+        "Breadcrumbs": 1,
+        "Breadcrumb Item": 3,
+        "Icon/ChevronRight": 3,
+        "Icon/Building": 1,
+        "Tag": 37,
+        "StatusIndicator": 4,
+        "Button": 3,
+        "Icon/None": 31,
+        "Spinner": 3,
+        "Counter": 11,
+        "Tabs": 1,
+        "Tab Item": 8,
+        "DataTable": 1,
+        "TableHeader": 1,
+        "SearchField": 1,
+        "Icon/Search": 1,
+        "Icon/Filter": 1,
+        "Segmented Control": 1,
+        "Segmented Control Item": 2,
+        "Icon Button": 3,
+        "Table": 1,
+        "Row": 13,
+        "RowSelect": 13,
+        "Checkbox": 13,
+        "RowExpand": 13,
+        "Column Item": 91,
+        "Icon/ChevronDown": 13,
+        "TableFooter": 1,
+        "Dropdown": 1,
+        "Pagination": 1,
+        "PaginationNav": 2,
+        "Icon/ChevronLeft": 1,
+        "PaginationItem": 4,
+        "PaginationEllipsis": 1
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            1368,
+            744
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/danger}",
+            "{Color:text/feedback/warning}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": [
+            "*",
+            "Breadcrumbs",
+            "CTA",
+            "Counter",
+            "Description",
+            "Helper text",
+            "Icon/Building",
+            "Icon/Filter",
+            "Icon/None",
+            "Image",
+            "Label",
+            "LeadingIcon",
+            "RowExpand",
+            "Spinner",
+            "Tag",
+            "TrailingIcon"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            377,
+            744
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/tertiary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "*",
+            "Breadcrumbs",
+            "Counter",
+            "Description",
+            "Helper text",
+            "Icon/Building",
+            "Icon/More",
+            "Icon/None",
+            "Label",
+            "LeadingIcon",
+            "RowExpand",
+            "Tag",
+            "TrailingIcon"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Device List",
+    "Description",
+    "The inventory of devices / endpoints with status, type and quick actions — the entry point to device management. Detail lives in Device Detail.",
+    "Layout",
+    "Page header + Add device · Filter Panel / search · Data Table (name · type · status · location · last seen) · row actions.",
+    "Responsive",
+    "Desktop table; mobile device cards.",
+    "States",
+    "loaded, loading, empty (onboard prompt), no-results, error; row status (online / offline / warning).",
+    "Accessibility",
+    "Table labelled; status as text + icon, not colour; bulk actions announced; row → detail keyboard-reachable.",
+    "Rules",
+    "Show status + last seen\nSupport filter / search\nLink rows to detail\nOffer bulk actions",
+    "Show status by colour only\nHide offline devices silently\nBulk-act without confirm\nOverload the row"
+  ],
+  "pageContext": null
+}

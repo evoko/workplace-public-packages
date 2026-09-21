@@ -1,0 +1,327 @@
+{
+  "page": "↳ 🟢 Data Table",
+  "pageId": "2202:1254",
+  "componentSets": [
+    {
+      "name": "DataTable",
+      "id": "6596:47707",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "empty"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop, state=default",
+      "defaultVariantNodeCount": 358,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop, state=default",
+        "type": "COMPONENT",
+        "size": [
+          1280,
+          752
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "topLeftRadius": "Spatial:radius/none",
+          "topRightRadius": "Spatial:radius/none",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": [
+          {
+            "name": "TableHeader",
+            "type": "INSTANCE",
+            "main": "TableHeader",
+            "variant": {
+              "breakpoint": "desktop"
+            },
+            "size": [
+              1280,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                8,
+                0,
+                8,
+                0
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:stack/none",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:stack/none",
+              "paddingBottom": "Spatial:inset/xs",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Table",
+            "type": "INSTANCE",
+            "main": "Table",
+            "variant": {
+              "breakpoint": "desktop",
+              "expandable": "true",
+              "selectable": "true"
+            },
+            "size": [
+              1280,
+              640
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "paddingLeft": "Spatial:stack/none",
+              "paddingRight": "Spatial:stack/none",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "TableFooter",
+            "type": "INSTANCE",
+            "main": "TableFooter",
+            "variant": {
+              "breakpoint": "desktop"
+            },
+            "size": [
+              1280,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                8,
+                0,
+                8,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:stack/none",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:stack/none",
+              "paddingBottom": "Spatial:inset/xs"
+            }
+          }
+        ]
+      },
+      "census": {
+        "TableHeader": 1,
+        "SearchField": 1,
+        "Icon/Search": 1,
+        "Icon/Filter": 2,
+        "Segmented Control": 1,
+        "Segmented Control Item": 2,
+        "Icon/None": 8,
+        "Icon Button": 3,
+        "Icon/Columns": 1,
+        "Icon/Download": 1,
+        "Table": 1,
+        "Row": 16,
+        "RowSelect": 16,
+        "Checkbox": 16,
+        "RowExpand": 16,
+        "Column Item": 80,
+        "Icon/ChevronDown": 2,
+        "Icon/ChevronRight": 11,
+        "TableFooter": 1,
+        "Dropdown": 1,
+        "Pagination": 1,
+        "PaginationNav": 2,
+        "Icon/ChevronLeft": 1,
+        "PaginationItem": 4,
+        "PaginationEllipsis": 1,
+        "Button": 1,
+        "Spinner": 1,
+        "Counter": 1
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop, state=default",
+          "size": [
+            1280,
+            752
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "*",
+            "Counter",
+            "Helper text",
+            "Icon/Filter",
+            "Icon/None",
+            "Label",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "breakpoint=desktop, state=empty",
+          "size": [
+            1280,
+            752
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/primary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "*",
+            "Counter",
+            "Helper text",
+            "Icon/Filter",
+            "Icon/None",
+            "Icon/Refresh",
+            "Label",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile, state=default",
+          "size": [
+            377,
+            752
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}",
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}",
+            "{Color:action/secondary/icon/default}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "*",
+            "Helper text",
+            "Icon/None",
+            "Label"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile, state=empty",
+          "size": [
+            377,
+            752
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}",
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}",
+            "{Color:action/secondary/icon/default}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "*",
+            "Counter",
+            "Helper text",
+            "Icon/None",
+            "Icon/Refresh",
+            "Label",
+            "Spinner"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Data Table",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

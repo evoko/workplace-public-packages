@@ -1,0 +1,1491 @@
+{
+  "page": "↳ 🟢 Filter Panel",
+  "pageId": "5674:2",
+  "componentSets": [
+    {
+      "name": "FilterSection",
+      "id": "5674:46",
+      "description": "FilterSection — Day-1: checkbox-list only. type × state = 3 variants. Composes into FilterPanel.Sections slot. Expanded is a component property, not a variant axis.",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "type": {
+          "type": "VARIANT",
+          "default": "checkbox-list",
+          "options": [
+            "checkbox-list"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "loading",
+            "empty"
+          ]
+        }
+      },
+      "defaultVariant": "type=checkbox-list, state=default",
+      "defaultVariantNodeCount": 22,
+      "defaultVariantTree": {
+        "name": "type=checkbox-list, state=default",
+        "type": "COMPONENT",
+        "size": [
+          288,
+          184
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "children": [
+          {
+            "name": "SectionHeader",
+            "type": "FRAME",
+            "size": [
+              288,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                12,
+                16,
+                12,
+                16
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "label/sm",
+                "size": [
+                  232,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Chevron",
+                "type": "INSTANCE",
+                "main": "Icon/ChevronUp",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Body",
+            "type": "FRAME",
+            "size": [
+              288,
+              144
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "FilterRow",
+                "type": "FRAME",
+                "size": [
+                  288,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    16,
+                    0,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/none"
+                },
+                "children": [
+                  {
+                    "name": "Checkbox",
+                    "type": "INSTANCE",
+                    "main": "Checkbox",
+                    "variant": {
+                      "checked": "true",
+                      "disabled": "false",
+                      "hover": "false",
+                      "mixed": "false",
+                      "focus": "false"
+                    },
+                    "size": [
+                      16,
+                      16
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 16,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/primary/bg/default}"
+                    ],
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/md",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Label",
+                    "type": "TEXT",
+                    "text": "Label",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      200,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  },
+                  {
+                    "name": "142",
+                    "type": "TEXT",
+                    "text": "142",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      24,
+                      10
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "FilterRow",
+                "type": "FRAME",
+                "size": [
+                  288,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    16,
+                    0,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/none"
+                },
+                "children": [
+                  {
+                    "name": "Checkbox",
+                    "type": "INSTANCE",
+                    "main": "Checkbox",
+                    "variant": {
+                      "checked": "false",
+                      "disabled": "false",
+                      "hover": "false",
+                      "mixed": "false",
+                      "focus": "false"
+                    },
+                    "size": [
+                      16,
+                      16
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Label",
+                    "type": "TEXT",
+                    "text": "Label",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      209,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  },
+                  {
+                    "name": "18",
+                    "type": "TEXT",
+                    "text": "18",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      15,
+                      10
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "FilterRow",
+                "type": "FRAME",
+                "size": [
+                  288,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    16,
+                    0,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/none"
+                },
+                "children": [
+                  {
+                    "name": "Checkbox",
+                    "type": "INSTANCE",
+                    "main": "Checkbox",
+                    "variant": {
+                      "checked": "false",
+                      "disabled": "false",
+                      "hover": "false",
+                      "mixed": "false",
+                      "focus": "false"
+                    },
+                    "size": [
+                      16,
+                      16
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Label",
+                    "type": "TEXT",
+                    "text": "Label",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      215,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  },
+                  {
+                    "name": "4",
+                    "type": "TEXT",
+                    "text": "4",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      9,
+                      10
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "FilterRow",
+                "type": "FRAME",
+                "size": [
+                  288,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    16,
+                    0,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/none"
+                },
+                "children": [
+                  {
+                    "name": "Checkbox",
+                    "type": "INSTANCE",
+                    "main": "Checkbox",
+                    "variant": {
+                      "checked": "false",
+                      "disabled": "false",
+                      "hover": "false",
+                      "mixed": "false",
+                      "focus": "false"
+                    },
+                    "size": [
+                      16,
+                      16
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Label",
+                    "type": "TEXT",
+                    "text": "Label",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      206,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  },
+                  {
+                    "name": "86",
+                    "type": "TEXT",
+                    "text": "86",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      18,
+                      10
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=checkbox-list, state=default",
+          "size": [
+            288,
+            184
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/inverse}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=checkbox-list, state=loading",
+          "size": [
+            288,
+            184
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "type=checkbox-list, state=empty",
+          "size": [
+            288,
+            82
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "FilterPanel",
+      "id": "5674:637",
+      "description": "FilterPanel chassis. Day-1: layout × footerBehavior × state = 12 variants. Staged-apply (apply-button) is the canonical default per hardening review §4.1. Section children take Expanded:Boolean as a component property. Slot-based composition — consumers drop FilterSection (or any) instances into the Sections region.",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "content#5889:69": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "loading",
+            "empty"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 114,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          320,
+          720
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/raised",
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Header",
+            "type": "FRAME",
+            "size": [
+              320,
+              52
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                8,
+                16,
+                8,
+                16
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/xs",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "TitleGroup",
+                "type": "FRAME",
+                "size": [
+                  260,
+                  20
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Filters",
+                    "textStyle": "body/lg/medium",
+                    "size": [
+                      46,
+                      12
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/lg",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/lg",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "SummaryCounter",
+                    "type": "INSTANCE",
+                    "main": "Counter",
+                    "variant": {
+                      "type": "regular",
+                      "state": "default"
+                    },
+                    "size": [
+                      24,
+                      20
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        8
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "HUG/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/primary/bg/default}"
+                    ],
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 9999,
+                    "vars": {
+                      "paddingLeft": "Spatial:inset/xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/pill",
+                      "topRightRadius": "Spatial:radius/pill",
+                      "bottomLeftRadius": "Spatial:radius/pill",
+                      "bottomRightRadius": "Spatial:radius/pill"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Icon/Close",
+                "type": "INSTANCE",
+                "main": "Icon/Close",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "SLOT",
+            "size": [
+              320,
+              620
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FILL"
+            },
+            "propRefs": {
+              "slotContentId": "content#5889:69"
+            },
+            "children": [
+              {
+                "name": "FilterSection",
+                "type": "INSTANCE",
+                "main": "FilterSection",
+                "variant": {
+                  "type": "checkbox-list",
+                  "state": "default"
+                },
+                "size": [
+                  320,
+                  184
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "FilterSection",
+                "type": "INSTANCE",
+                "main": "FilterSection",
+                "variant": {
+                  "type": "checkbox-list",
+                  "state": "default"
+                },
+                "size": [
+                  320,
+                  184
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "SectionDateRange",
+                "type": "FRAME",
+                "size": [
+                  320,
+                  81
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                },
+                "children": [
+                  {
+                    "name": "Dropdown",
+                    "type": "INSTANCE",
+                    "main": "Dropdown",
+                    "variant": {
+                      "size": "sm",
+                      "state": "default"
+                    },
+                    "size": [
+                      288,
+                      49
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/xs"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "SectionTags",
+                "type": "FRAME",
+                "size": [
+                  320,
+                  101
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "strokeBottomWeight": "Spatial:border/default"
+                },
+                "children": [
+                  {
+                    "name": "SectionHeading",
+                    "type": "TEXT",
+                    "text": "Tags",
+                    "textStyle": "body/sm/medium",
+                    "size": [
+                      27,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "TagCluster",
+                    "type": "FRAME",
+                    "size": [
+                      288,
+                      56
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/xs"
+                    },
+                    "children": [
+                      {
+                        "name": "Tag",
+                        "type": "INSTANCE",
+                        "main": "Tag",
+                        "variant": {
+                          "status": "neutral",
+                          "type": "status",
+                          "invert": "false"
+                        },
+                        "size": [
+                          76,
+                          24
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 8,
+                          "pad": [
+                            0,
+                            12,
+                            0,
+                            8
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "HUG/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/feedback/neutral/subtle}"
+                        ],
+                        "strokes": [
+                          "{Color:border/medium}"
+                        ],
+                        "strokeWeight": 1,
+                        "radius": 9999,
+                        "vars": {
+                          "itemSpacing": "Spatial:inset/xs",
+                          "paddingLeft": "Spatial:inset/xs",
+                          "paddingTop": "Spatial:inset/none",
+                          "paddingRight": "Spatial:inset/sm",
+                          "paddingBottom": "Spatial:inset/none",
+                          "strokeTopWeight": "Spatial:border/default",
+                          "strokeBottomWeight": "Spatial:border/default",
+                          "strokeLeftWeight": "Spatial:border/default",
+                          "strokeRightWeight": "Spatial:border/default",
+                          "topLeftRadius": "Spatial:radius/pill",
+                          "topRightRadius": "Spatial:radius/pill",
+                          "bottomLeftRadius": "Spatial:radius/pill",
+                          "bottomRightRadius": "Spatial:radius/pill"
+                        }
+                      },
+                      {
+                        "name": "Tag",
+                        "type": "INSTANCE",
+                        "main": "Tag",
+                        "variant": {
+                          "status": "neutral",
+                          "type": "status",
+                          "invert": "false"
+                        },
+                        "size": [
+                          62,
+                          24
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 8,
+                          "pad": [
+                            0,
+                            12,
+                            0,
+                            8
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "HUG/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/feedback/neutral/subtle}"
+                        ],
+                        "strokes": [
+                          "{Color:border/medium}"
+                        ],
+                        "strokeWeight": 1,
+                        "radius": 9999,
+                        "vars": {
+                          "itemSpacing": "Spatial:inset/xs",
+                          "paddingLeft": "Spatial:inset/xs",
+                          "paddingTop": "Spatial:inset/none",
+                          "paddingRight": "Spatial:inset/sm",
+                          "paddingBottom": "Spatial:inset/none",
+                          "strokeTopWeight": "Spatial:border/default",
+                          "strokeBottomWeight": "Spatial:border/default",
+                          "strokeLeftWeight": "Spatial:border/default",
+                          "strokeRightWeight": "Spatial:border/default",
+                          "topLeftRadius": "Spatial:radius/pill",
+                          "topRightRadius": "Spatial:radius/pill",
+                          "bottomLeftRadius": "Spatial:radius/pill",
+                          "bottomRightRadius": "Spatial:radius/pill"
+                        }
+                      },
+                      {
+                        "name": "Tag",
+                        "type": "INSTANCE",
+                        "main": "Tag",
+                        "variant": {
+                          "status": "neutral",
+                          "type": "status",
+                          "invert": "false"
+                        },
+                        "size": [
+                          78,
+                          24
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 8,
+                          "pad": [
+                            0,
+                            12,
+                            0,
+                            8
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "HUG/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/feedback/neutral/subtle}"
+                        ],
+                        "strokes": [
+                          "{Color:border/medium}"
+                        ],
+                        "strokeWeight": 1,
+                        "radius": 9999,
+                        "vars": {
+                          "itemSpacing": "Spatial:inset/xs",
+                          "paddingLeft": "Spatial:inset/xs",
+                          "paddingTop": "Spatial:inset/none",
+                          "paddingRight": "Spatial:inset/sm",
+                          "paddingBottom": "Spatial:inset/none",
+                          "strokeTopWeight": "Spatial:border/default",
+                          "strokeBottomWeight": "Spatial:border/default",
+                          "strokeLeftWeight": "Spatial:border/default",
+                          "strokeRightWeight": "Spatial:border/default",
+                          "topLeftRadius": "Spatial:radius/pill",
+                          "topRightRadius": "Spatial:radius/pill",
+                          "bottomLeftRadius": "Spatial:radius/pill",
+                          "bottomRightRadius": "Spatial:radius/pill"
+                        }
+                      },
+                      {
+                        "name": "Tag",
+                        "type": "INSTANCE",
+                        "main": "Tag",
+                        "variant": {
+                          "status": "neutral",
+                          "type": "status",
+                          "invert": "false"
+                        },
+                        "size": [
+                          61,
+                          24
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 8,
+                          "pad": [
+                            0,
+                            12,
+                            0,
+                            8
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "HUG/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/feedback/neutral/subtle}"
+                        ],
+                        "strokes": [
+                          "{Color:border/medium}"
+                        ],
+                        "strokeWeight": 1,
+                        "radius": 9999,
+                        "vars": {
+                          "itemSpacing": "Spatial:inset/xs",
+                          "paddingLeft": "Spatial:inset/xs",
+                          "paddingTop": "Spatial:inset/none",
+                          "paddingRight": "Spatial:inset/sm",
+                          "paddingBottom": "Spatial:inset/none",
+                          "strokeTopWeight": "Spatial:border/default",
+                          "strokeBottomWeight": "Spatial:border/default",
+                          "strokeLeftWeight": "Spatial:border/default",
+                          "strokeRightWeight": "Spatial:border/default",
+                          "topLeftRadius": "Spatial:radius/pill",
+                          "topRightRadius": "Spatial:radius/pill",
+                          "bottomLeftRadius": "Spatial:radius/pill",
+                          "bottomRightRadius": "Spatial:radius/pill"
+                        }
+                      },
+                      {
+                        "name": "Tag",
+                        "type": "INSTANCE",
+                        "main": "Tag",
+                        "variant": {
+                          "status": "neutral",
+                          "type": "status",
+                          "invert": "false"
+                        },
+                        "size": [
+                          89,
+                          24
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 8,
+                          "pad": [
+                            0,
+                            12,
+                            0,
+                            8
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "HUG/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/feedback/neutral/subtle}"
+                        ],
+                        "strokes": [
+                          "{Color:border/medium}"
+                        ],
+                        "strokeWeight": 1,
+                        "radius": 9999,
+                        "vars": {
+                          "itemSpacing": "Spatial:inset/xs",
+                          "paddingLeft": "Spatial:inset/xs",
+                          "paddingTop": "Spatial:inset/none",
+                          "paddingRight": "Spatial:inset/sm",
+                          "paddingBottom": "Spatial:inset/none",
+                          "strokeTopWeight": "Spatial:border/default",
+                          "strokeBottomWeight": "Spatial:border/default",
+                          "strokeLeftWeight": "Spatial:border/default",
+                          "strokeRightWeight": "Spatial:border/default",
+                          "topLeftRadius": "Spatial:radius/pill",
+                          "topRightRadius": "Spatial:radius/pill",
+                          "bottomLeftRadius": "Spatial:radius/pill",
+                          "bottomRightRadius": "Spatial:radius/pill"
+                        }
+                      },
+                      {
+                        "name": "Tag",
+                        "type": "INSTANCE",
+                        "main": "Tag",
+                        "variant": {
+                          "status": "neutral",
+                          "type": "status",
+                          "invert": "false"
+                        },
+                        "size": [
+                          51,
+                          24
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 8,
+                          "pad": [
+                            0,
+                            12,
+                            0,
+                            8
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "HUG/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/feedback/neutral/subtle}"
+                        ],
+                        "strokes": [
+                          "{Color:border/medium}"
+                        ],
+                        "strokeWeight": 1,
+                        "radius": 9999,
+                        "vars": {
+                          "itemSpacing": "Spatial:inset/xs",
+                          "paddingLeft": "Spatial:inset/xs",
+                          "paddingTop": "Spatial:inset/none",
+                          "paddingRight": "Spatial:inset/sm",
+                          "paddingBottom": "Spatial:inset/none",
+                          "strokeTopWeight": "Spatial:border/default",
+                          "strokeBottomWeight": "Spatial:border/default",
+                          "strokeLeftWeight": "Spatial:border/default",
+                          "strokeRightWeight": "Spatial:border/default",
+                          "topLeftRadius": "Spatial:radius/pill",
+                          "topRightRadius": "Spatial:radius/pill",
+                          "bottomLeftRadius": "Spatial:radius/pill",
+                          "bottomRightRadius": "Spatial:radius/pill"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Button Group",
+            "type": "INSTANCE",
+            "main": "Button Group",
+            "variant": {
+              "orientation": "horizontal",
+              "type": "full-width"
+            },
+            "size": [
+              320,
+              48
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            320,
+            720
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/neutral}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}",
+            "{Color:icon/secondary}",
+            "{Color:icon/inverse}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "*",
+            "Counter",
+            "Helper text",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "state=loading",
+          "size": [
+            320,
+            720
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}",
+            "{Color:icon/secondary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "SkeletonRow",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "state=empty",
+          "size": [
+            320,
+            720
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Filter Panel",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

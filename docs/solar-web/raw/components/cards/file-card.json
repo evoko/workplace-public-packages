@@ -1,0 +1,318 @@
+{
+  "page": "↳ 🟢 File Card",
+  "pageId": "9386:3",
+  "componentSets": [
+    {
+      "name": "File Card",
+      "id": "8273:15264",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "title#8273:109": {
+          "type": "TEXT",
+          "default": "File name"
+        },
+        "meta#8273:110": {
+          "type": "TEXT",
+          "default": "Edited just now"
+        },
+        "fileIcon#8273:111": {
+          "type": "INSTANCE_SWAP",
+          "default": "10148:157"
+        },
+        "label#8273:112": {
+          "type": "TEXT",
+          "default": "New design"
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "File Card",
+          "options": [
+            "File Card",
+            "New Asset Tile"
+          ]
+        }
+      },
+      "defaultVariant": "type=File Card",
+      "defaultVariantNodeCount": 9,
+      "defaultVariantTree": {
+        "name": "type=File Card",
+        "type": "COMPONENT",
+        "size": [
+          308,
+          222
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/raised",
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Thumbnail",
+            "type": "FRAME",
+            "size": [
+              308,
+              163
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/FILL"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "radius": [
+              8,
+              8,
+              0,
+              0
+            ],
+            "vars": {
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container"
+            },
+            "children": [
+              {
+                "name": "Icon/Image",
+                "type": "INSTANCE",
+                "main": "Icon/Image",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  24,
+                  24
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "width": "Spatial:icon/lg"
+                },
+                "propRefs": {
+                  "mainComponent": "fileIcon#8273:111"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              308,
+              59
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/md"
+            },
+            "children": [
+              {
+                "name": "Text",
+                "type": "FRAME",
+                "size": [
+                  248,
+                  27
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                },
+                "children": [
+                  {
+                    "name": "File name",
+                    "type": "TEXT",
+                    "text": "File name",
+                    "textStyle": "body/md/medium",
+                    "size": [
+                      248,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    },
+                    "propRefs": {
+                      "characters": "title#8273:109"
+                    }
+                  },
+                  {
+                    "name": "Edited just now",
+                    "type": "TEXT",
+                    "text": "Edited just now",
+                    "textStyle": "body/sm/regular",
+                    "size": [
+                      248,
+                      9
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    },
+                    "propRefs": {
+                      "characters": "meta#8273:110"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Icon/More",
+                "type": "INSTANCE",
+                "main": "Icon/More",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/md"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=File Card",
+          "size": [
+            308,
+            222
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=New Asset Tile",
+          "size": [
+            308,
+            222
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "File Card",
+    "Description",
+    "A card representing a single file or asset — thumbnail, name, meta and optional actions. For file-browser grids and lists; not a generic content card.",
+    "Anatomy",
+    "Thumbnail / type icon · file name · meta (size · date · type) · optional selection control · optional overflow action.",
+    "Variants",
+    "layout=grid (thumbnail-forward) / row (compact). Selectable variant adds a Checkbox. Type icon reflects the file category.",
+    "States",
+    "default, hover (surface.hover), selected, focus, disabled; plus loading (thumbnail skeleton) and error (broken / upload failed).",
+    "Accessibility",
+    "The whole card is one focusable control; the file name is its accessible label. Selection exposes aria-checked. Focus ring visible; hit area ≥44.",
+    "Rules",
+    "Show file type clearly\nTruncate long names with a tooltip\nKeep one primary action\nSupport keyboard select",
+    "Rely on the thumbnail alone for type\nHide the file name\nCram in many actions\nUse for non-file content"
+  ],
+  "pageContext": null
+}

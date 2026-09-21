@@ -1,0 +1,879 @@
+{
+  "page": "↳ 🟢 Property List",
+  "pageId": "5295:3",
+  "componentSets": [
+    {
+      "name": "PropertyRow",
+      "id": "7676:169",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 14,
+      "props": {
+        "label#7676:0": {
+          "type": "TEXT",
+          "default": "Label"
+        },
+        "description#7676:1": {
+          "type": "TEXT",
+          "default": "Description text"
+        },
+        "hasDescription#7676:2": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasLeading#7676:3": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasTrailing#7676:4": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "leading#7676:5": {
+          "type": "INSTANCE_SWAP",
+          "default": "10148:444"
+        },
+        "in-card": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "trailing": {
+          "type": "VARIANT",
+          "default": "action",
+          "options": [
+            "action",
+            "toggle",
+            "select",
+            "icon-button",
+            "segmented-control",
+            "none",
+            "tag"
+          ]
+        }
+      },
+      "defaultVariant": "in-card=false, trailing=action",
+      "defaultVariantNodeCount": 18,
+      "defaultVariantTree": {
+        "name": "in-card=false, trailing=action",
+        "type": "COMPONENT",
+        "size": [
+          505,
+          64
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 16,
+          "pad": [
+            12,
+            0,
+            12,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/md",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/sm"
+        },
+        "children": [
+          {
+            "name": "Leading",
+            "type": "INSTANCE",
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              24,
+              24
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "width": "Spatial:icon/lg"
+            },
+            "propRefs": {
+              "visible": "hasLeading#7676:3",
+              "mainComponent": "leading#7676:5"
+            }
+          },
+          {
+            "name": "Text",
+            "type": "FRAME",
+            "size": [
+              369,
+              32
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "body/md/medium",
+                "size": [
+                  369,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "label#7676:0"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "Description text",
+                "textStyle": "body/md/regular",
+                "size": [
+                  369,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                },
+                "propRefs": {
+                  "visible": "hasDescription#7676:2",
+                  "characters": "description#7676:1"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Trailing",
+            "type": "FRAME",
+            "size": [
+              80,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "propRefs": {
+              "visible": "hasTrailing#7676:4"
+            },
+            "children": [
+              {
+                "name": "Button",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "md",
+                  "prio": "secondary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  80,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "in-card=false, trailing=action",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "in-card=true, trailing=action",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "in-card=false, trailing=toggle",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "in-card=true, trailing=toggle",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "in-card=false, trailing=select",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Helper text",
+            "Label"
+          ]
+        },
+        {
+          "variant": "in-card=true, trailing=select",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Helper text",
+            "Label"
+          ]
+        },
+        {
+          "variant": "in-card=false, trailing=icon-button",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "in-card=true, trailing=icon-button",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "in-card=false, trailing=segmented-control",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Helper text",
+            "Icon/None",
+            "Label"
+          ]
+        },
+        {
+          "variant": "in-card=true, trailing=segmented-control",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Helper text",
+            "Icon/None",
+            "Label"
+          ]
+        },
+        {
+          "variant": "in-card=false, trailing=none",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "in-card=true, trailing=none",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "in-card=false, trailing=tag",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "in-card=true, trailing=tag",
+          "size": [
+            505,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": []
+        }
+      ]
+    },
+    {
+      "name": "PropertyList",
+      "id": "7739:29013",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "items#7739:17": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "in-card": {
+          "type": "VARIANT",
+          "default": "true",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "in-card=true",
+      "defaultVariantNodeCount": 61,
+      "defaultVariantTree": {
+        "name": "in-card=true",
+        "type": "COMPONENT",
+        "size": [
+          560,
+          259
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FILL/HUG"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/none",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "items",
+            "type": "SLOT",
+            "size": [
+              560,
+              259
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "items#7739:17"
+            },
+            "children": [
+              {
+                "name": "PropertyRow",
+                "type": "INSTANCE",
+                "main": "PropertyRow",
+                "variant": {
+                  "in-card": "true",
+                  "trailing": "action"
+                },
+                "size": [
+                  560,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 16,
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Divider",
+                "type": "INSTANCE",
+                "main": "Divider",
+                "variant": {
+                  "orientation": "horizontal",
+                  "type": "full"
+                },
+                "size": [
+                  560,
+                  1
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "PropertyRow",
+                "type": "INSTANCE",
+                "main": "PropertyRow",
+                "variant": {
+                  "in-card": "true",
+                  "trailing": "toggle"
+                },
+                "size": [
+                  560,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 16,
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Divider",
+                "type": "INSTANCE",
+                "main": "Divider",
+                "variant": {
+                  "orientation": "horizontal",
+                  "type": "full"
+                },
+                "size": [
+                  560,
+                  1
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "PropertyRow",
+                "type": "INSTANCE",
+                "main": "PropertyRow",
+                "variant": {
+                  "in-card": "true",
+                  "trailing": "select"
+                },
+                "size": [
+                  560,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 16,
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Divider",
+                "type": "INSTANCE",
+                "main": "Divider",
+                "variant": {
+                  "orientation": "horizontal",
+                  "type": "full"
+                },
+                "size": [
+                  560,
+                  1
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "PropertyRow",
+                "type": "INSTANCE",
+                "main": "PropertyRow",
+                "variant": {
+                  "in-card": "true",
+                  "trailing": "icon-button"
+                },
+                "size": [
+                  560,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 16,
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "in-card=true",
+          "size": [
+            560,
+            259
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Counter",
+            "Helper text",
+            "Icon/None",
+            "Label",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "in-card=false",
+          "size": [
+            560,
+            259
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Property List",
+    "Description",
+    "Displays key–value pairs for an entity — labels beside values. For read-only detail summaries; use a form when the fields are editable.",
+    "Anatomy",
+    "Rows of label + value · optional group headings · spacing or dividers between rows.",
+    "Layout",
+    "Two-column (label / value) on wide, stacked on narrow. Labels use text.secondary, values text.primary. Right-align numeric values.",
+    "States",
+    "default (loaded), loading (skeleton rows), empty. Values may truncate with a tooltip. Non-interactive unless a value is a link or action.",
+    "Accessibility",
+    "Render as a description list (<dl>/<dt>/<dd>) so label↔value stays programmatic. Text ≥4.5:1. Never convey status by value colour alone.",
+    "Rules",
+    "Use for read-only detail\nGroup related properties\nKeep labels terse\nRight-align numeric values",
+    "Use for editing (use a form)\nBury key facts\nColour-code without a label\nWrap values unpredictably"
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,168 @@
+{
+  "page": "↳ 🟢 Time Slot",
+  "pageId": "6622:6",
+  "componentSets": [
+    {
+      "name": "Time Slot",
+      "id": "6642:20",
+      "description": "Empty cell used to tile the Week and Day time grids. Top + left borders so cells visually compose into a grid. Half-hour rule indicates the 30-minute split. Selected state shows a focus-bound border for click-to-create-event.",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "selected"
+          ]
+        },
+        "density": {
+          "type": "VARIANT",
+          "default": "comfortable",
+          "options": [
+            "comfortable",
+            "compact"
+          ]
+        }
+      },
+      "defaultVariant": "state=default, density=comfortable",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "state=default, density=comfortable",
+        "type": "COMPONENT",
+        "size": [
+          160,
+          48
+        ],
+        "sizing": "FIXED/FIXED",
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Half-hour rule",
+            "type": "LINE",
+            "size": [
+              160,
+              0
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default, density=comfortable",
+          "size": [
+            160,
+            48
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover, density=comfortable",
+          "size": [
+            160,
+            48
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ]
+        },
+        {
+          "variant": "state=selected, density=comfortable",
+          "size": [
+            160,
+            48
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ]
+        },
+        {
+          "variant": "state=default, density=compact",
+          "size": [
+            160,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ]
+        },
+        {
+          "variant": "state=hover, density=compact",
+          "size": [
+            160,
+            32
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ]
+        },
+        {
+          "variant": "state=selected, density=compact",
+          "size": [
+            160,
+            32
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Time Slot",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

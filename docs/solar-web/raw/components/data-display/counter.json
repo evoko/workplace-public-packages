@@ -1,0 +1,378 @@
+{
+  "page": "↳ 🟢 Counter",
+  "pageId": "2966:592",
+  "componentSets": [
+    {
+      "name": "Counter",
+      "id": "2203:3266",
+      "description": "Numeric badge showing count or quantity. Use for notification counts, inbox unread counts, and cart items. Types: regular (neutral), danger (urgent or new), inverted (for dark surfaces and inside primary buttons). Pair with buttons, tabs, and nav items. Hide at count=0; cap long counts at 99+. Note: state=active is legacy — migrate to `pressed` per SOLAR state vocabulary.",
+      "docLinks": [],
+      "variantCount": 16,
+      "props": {
+        "type": {
+          "type": "VARIANT",
+          "default": "regular",
+          "options": [
+            "regular",
+            "danger",
+            "inverted",
+            "idle"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "disabled",
+            "pressed"
+          ]
+        }
+      },
+      "defaultVariant": "type=regular, state=default",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "type=regular, state=default",
+        "type": "COMPONENT",
+        "size": [
+          25,
+          20
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            8,
+            0,
+            8
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "HUG/FIXED"
+        },
+        "fills": [
+          "{Color:action/primary/bg/default}"
+        ],
+        "strokes": [
+          "{Color:border/medium}"
+        ],
+        "strokeWeight": 1,
+        "radius": 9999,
+        "vars": {
+          "paddingLeft": "Spatial:inset/xs",
+          "paddingRight": "Spatial:inset/xs",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
+        },
+        "children": [
+          {
+            "name": "0",
+            "type": "TEXT",
+            "text": "0",
+            "textStyle": "body/sm/semibold",
+            "size": [
+              9,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:action/primary/text/default}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/sm",
+              "fontStyle": "Primitives:type/font-weight/600"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=regular, state=default",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=regular, state=hover",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/hover}"
+          ]
+        },
+        {
+          "variant": "type=regular, state=pressed",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/active}"
+          ]
+        },
+        {
+          "variant": "type=regular, state=disabled",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/disabled}"
+          ]
+        },
+        {
+          "variant": "type=idle, state=default",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        },
+        {
+          "variant": "type=idle, state=hover",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "type=idle, state=pressed",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        },
+        {
+          "variant": "type=idle, state=disabled",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/disabled}"
+          ]
+        },
+        {
+          "variant": "type=danger, state=default",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/primary/bg/danger/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/danger/default}"
+          ]
+        },
+        {
+          "variant": "type=danger, state=hover",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/primary/bg/danger/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/danger/hover}"
+          ]
+        },
+        {
+          "variant": "type=danger, state=pressed",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/primary/bg/danger/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/danger/active}"
+          ]
+        },
+        {
+          "variant": "type=danger, state=disabled",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/primary/bg/danger/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/danger/disabled}"
+          ]
+        },
+        {
+          "variant": "type=inverted, state=default",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/secondary/text/default}"
+          ]
+        },
+        {
+          "variant": "type=inverted, state=hover",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/secondary/text/hover}"
+          ]
+        },
+        {
+          "variant": "type=inverted, state=pressed",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/secondary/text/active}"
+          ]
+        },
+        {
+          "variant": "type=inverted, state=disabled",
+          "size": [
+            25,
+            20
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/secondary/text/disabled}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Counter",
+    "Description",
+    "Numeric badge showing count or quantity. Pair with buttons, tabs, nav items, and inbox rows.",
+    "Types",
+    "regular    Neutral count. Default for most contexts.\ndanger     Urgent or unread. For counts demanding attention.\ninverted   On dark surfaces and inside primary buttons.",
+    "States",
+    "default, hover, disabled. Note: variant uses legacy `active` — will migrate to `pressed` per SOLAR state vocabulary on next revision.",
+    "Labels & Content",
+    "Whole numbers only. Cap at 99+ or 999+ for long counts.\nHide counter entirely when count is 0 — never show a literal '0'.\nUse danger only for counts that demand action — not for every unread count.",
+    "Rules",
+    "DO   Use danger only for true urgency (unread, overdue)\nDO   Hide at count = 0\nDO   Cap overflow as 99+\nDO   Place adjacent to anchor (button, tab)",
+    "DON'T   Show a literal '0'\nDON'T   Use danger type for every notification\nDON'T   Float counter away from its anchor\nDON'T   Use decimals or non-integer values"
+  ],
+  "pageContext": null
+}

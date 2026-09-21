@@ -1,0 +1,241 @@
+{
+  "page": "↳ 🟢 Week View",
+  "pageId": "6802:2",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Week View",
+      "id": "6811:17",
+      "description": "",
+      "props": {},
+      "nodeCount": 387,
+      "tree": {
+        "name": "Week View",
+        "type": "COMPONENT",
+        "size": [
+          1280,
+          641
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "children": [
+          {
+            "name": "Calendar Toolbar",
+            "type": "INSTANCE",
+            "main": "Calendar Toolbar",
+            "size": [
+              1280,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 16,
+              "pad": [
+                12,
+                16,
+                12,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "vars": {
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Calendar Body",
+            "type": "FRAME",
+            "size": [
+              1280,
+              585
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                12,
+                20,
+                12,
+                20
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Calendar Surface",
+                "type": "FRAME",
+                "size": [
+                  1240,
+                  561
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 12,
+                "effectStyle": "shadow/raised",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                },
+                "children": [
+                  {
+                    "name": "Header Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      49
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "All-Day Strip",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      28
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        4,
+                        0,
+                        4,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FIXED"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "Time Grid Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      484
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "census": {
+        "Calendar Toolbar": 1,
+        "Icon Button": 2,
+        "Icon/None": 17,
+        "Button": 2,
+        "Spinner": 2,
+        "Counter": 2,
+        "Segmented Control": 1,
+        "Segmented Control Item": 6,
+        "Icon/Plus": 1,
+        "Weekday Header": 7,
+        "All-Day Bar": 4,
+        "Time Axis Label": 10,
+        "Time Slot": 70,
+        "Event Chip": 12,
+        "Icon/Repeat": 12
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Week View",
+    "Description",
+    "A 7-day calendar grid with timed events across day columns plus an all-day lane. The default view for a week at a glance.",
+    "Layout",
+    "Day-of-week header · All-Day Bar · time axis (Time Axis Labels) + 7 day columns of Time Slots · Event Chips · now indicator.",
+    "Responsive",
+    "Desktop full week grid; mobile reduces days or switches to Day / Agenda.",
+    "States",
+    "loaded, loading, empty, error; drag-to-create / move where supported.",
+    "Accessibility",
+    "Grid exposes date + time per cell; events focusable with start–end announced; keyboard navigation across days / times. Colour paired with labels.",
+    "Rules",
+    "Show the all-day lane separately\nMark the current time\nPair category colour with a label\nOffer Day / Agenda on mobile",
+    "Cram 7 columns onto mobile\nRely on colour alone\nHide overflowing events\nLose keyboard access to events"
+  ],
+  "pageContext": null
+}

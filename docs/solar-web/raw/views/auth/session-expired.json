@@ -1,0 +1,410 @@
+{
+  "page": "↳ 🟢 Session Expired",
+  "pageId": "5066:7",
+  "componentSets": [
+    {
+      "name": "Auth — Session Expired",
+      "id": "7810:21910",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=default",
+      "defaultVariantNodeCount": 44,
+      "defaultVariantTree": {
+        "name": "breakpoint=default",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            24,
+            0,
+            24,
+            0
+          ],
+          "align": "SPACE_BETWEEN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/inverse}",
+          "IMAGE",
+          "IMAGE"
+        ],
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/xl",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/xl",
+          "width": "Layout:breakpoint/lg"
+        },
+        "children": [
+          {
+            "name": "App Name",
+            "type": "INSTANCE",
+            "main": "App Name",
+            "variant": {
+              "type": "horizontal"
+            },
+            "size": [
+              85,
+              59
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 16,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:inset/md",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          },
+          {
+            "name": "Center Stack",
+            "type": "FRAME",
+            "size": [
+              400,
+              271
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 20,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/lg"
+            },
+            "children": [
+              {
+                "name": "Your session has expired",
+                "type": "TEXT",
+                "text": "Your session has expired",
+                "textStyle": "title/sm",
+                "size": [
+                  224,
+                  15
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "For your security, you've been signed out due to inactivity. Sign in again to continue where you left off.",
+                "type": "TEXT",
+                "text": "For your security, you've been signed out due to\ninactivity. Sign in again to co",
+                "textStyle": "body/md/regular",
+                "size": [
+                  336,
+                  30
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Container",
+                "type": "INSTANCE",
+                "main": "Container",
+                "variant": {
+                  "type": "outlined"
+                },
+                "size": [
+                  400,
+                  150
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "fills": [
+                  "{Color:surface/raised}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 12,
+                "effectStyle": "shadow/overlay",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/dialog",
+                  "topRightRadius": "Spatial:radius/dialog",
+                  "bottomLeftRadius": "Spatial:radius/dialog",
+                  "bottomRightRadius": "Spatial:radius/dialog"
+                }
+              },
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  182,
+                  16
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                },
+                "children": [
+                  {
+                    "name": "Icon/HelpCircle",
+                    "type": "INSTANCE",
+                    "main": "Icon/HelpCircle",
+                    "variant": {
+                      "solid": "false"
+                    },
+                    "size": [
+                      16,
+                      16
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "vars": {
+                      "height": "Spatial:icon/sm"
+                    }
+                  },
+                  {
+                    "name": "Need help? Contact support.",
+                    "type": "TEXT",
+                    "text": "Need help? Contact support.",
+                    "textStyle": "body/sm/regular",
+                    "size": [
+                      158,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/tertiary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              216,
+              32
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm"
+            },
+            "children": [
+              {
+                "name": "Biamp Logo",
+                "type": "INSTANCE",
+                "main": "Biamp Logo",
+                "variant": {
+                  "style": "light",
+                  "size": "sm"
+                },
+                "size": [
+                  36,
+                  11
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "© 2025 Biamp Systems LLC. v.1.2-b-fd",
+                "type": "TEXT",
+                "text": "© 2025 Biamp Systems LLC.  v.1.2-b-fd",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  216,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=default",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/tertiary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:action/primary/icon/default}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Counter",
+            "Helper text",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/tertiary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:action/primary/icon/default}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Session Expired",
+    "Description",
+    "The interstitial shown when a session times out — informs the user and routes them to re-authenticate, preserving context where possible.",
+    "Layout",
+    "Centered card / dialog: icon · 'Session expired' title · plain explanation · primary 'Sign in again' · optional 'return to where you were' note.",
+    "Responsive",
+    "Desktop centered card / dialog; mobile full-width.",
+    "States",
+    "default (expired), re-auth in progress, error. May render as a modal over the last screen.",
+    "Accessibility",
+    "If modal, role=alertdialog with trapped, announced focus. One clear primary action. Keyboard-complete; visible focus.",
+    "Rules",
+    "Explain why plainly\nPreserve context\nGive one clear action\nAnnounce as an alert",
+    "Blame the user\nDump them to a blank login\nLose unsaved context silently\nAuto-redirect without notice"
+  ],
+  "pageContext": null
+}

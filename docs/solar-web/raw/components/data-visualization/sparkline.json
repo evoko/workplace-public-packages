@@ -1,0 +1,124 @@
+{
+  "page": "↳ 🟢 Sparkline",
+  "pageId": "5113:2",
+  "componentSets": [
+    {
+      "name": "Sparkline",
+      "id": "7312:14",
+      "description": "Tiny inline trend visualization — fits inside a Stat Card or table cell.\n\nVariants:\n  trend = up (positive, green) | down (negative, red) | flat (neutral, gray)\n  size = sm (80×24) | md (120×32)\n\nNo axis labels, no plot chrome — pure shape conveying direction. Stroke bound to data/delta/positive-500 / negative-500 / neutral. Override path data per instance to plot real values.",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "trend": {
+          "type": "VARIANT",
+          "default": "up",
+          "options": [
+            "up",
+            "down",
+            "flat"
+          ]
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "sm",
+          "options": [
+            "sm",
+            "md"
+          ]
+        }
+      },
+      "defaultVariant": "trend=up, size=sm",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "trend=up, size=sm",
+        "type": "COMPONENT",
+        "size": [
+          115,
+          32
+        ],
+        "sizing": "FIXED/FIXED",
+        "children": [
+          {
+            "name": "Line",
+            "type": "VECTOR",
+            "size": [
+              80,
+              24
+            ],
+            "strokes": [
+              "{Color:data/delta/positive-500}"
+            ],
+            "strokeWeight": 1.5
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "trend=up, size=sm",
+          "size": [
+            115,
+            32
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "trend=up, size=md",
+          "size": [
+            115,
+            32
+          ]
+        },
+        {
+          "variant": "trend=down, size=sm",
+          "size": [
+            115,
+            32
+          ]
+        },
+        {
+          "variant": "trend=down, size=md",
+          "size": [
+            115,
+            32
+          ]
+        },
+        {
+          "variant": "trend=flat, size=sm",
+          "size": [
+            115,
+            32
+          ]
+        },
+        {
+          "variant": "trend=flat, size=md",
+          "size": [
+            115,
+            32
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Sparkline",
+    "Description",
+    "A compact, axis-less trend line for inline contexts — table cells, stat cards, list rows. Conveys shape at a glance, not exact values.",
+    "Anatomy",
+    "Single series line · optional end-point marker · optional min/max dots · no axes or labels.",
+    "Data & Colour",
+    "One data-colour token — usually neutral, or the delta palette for positive/negative trends. Sized to its container; no gridlines.",
+    "States",
+    "Non-interactive by default (Class K). An optional tooltip may appear on hover or focus where space allows.",
+    "Accessibility",
+    "Never the sole source of a value — pair it with the actual number nearby. Provide an aria-label summarising trend + latest value. Line ≥3:1 vs surface.",
+    "Rules",
+    "Pair with the real value\nKeep to one series\nUse delta colours for +/- trends\nSize to the container",
+    "Add axes or gridlines\nRely on it for exact values\nCram multiple series\nUse in isolation without a label"
+  ],
+  "pageContext": null
+}

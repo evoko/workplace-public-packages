@@ -1,0 +1,412 @@
+{
+  "page": "Layout",
+  "pageId": "763:56364",
+  "section": "documentation",
+  "slug": "layout",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Layout"
+        }
+      ]
+    },
+    {
+      "name": "About",
+      "title": "Layout",
+      "subtitle": null,
+      "x": 2020,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Layout defines how content is arranged, aligned, and distributed across SOLAR interfaces. It provides the structural framework that supports clarity, hierarchy, and responsiveness, helping teams create interfaces that feel organized, balanced, and predictable across products and platforms."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Why layout matters"
+        },
+        {
+          "t": "p",
+          "text": "A shared layout system ensures that screens are built on consistent spatial rules rather than one-off decisions. It helps teams design and build interfaces that scale gracefully, support different content types, and remain coherent as products evolve.\n\nSOLAR layout principles support:\n\t•\tClear hierarchy and readable content structure\n\t•\tPredictable alignment and spacing across screens\n\t•\tResponsive behavior across breakpoints and devices\n\t•\tConsistent relationships between containers, regions, and components\n\t•\tFaster design and implementation through reusable patterns\n\nThis alignment reduces visual inconsistency, improves usability, and creates a stronger foundation for cross-product coherence.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Layout\ndomain: Layout System Overview\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR layout system interpreter. Layout governs how content is structured, spaced, and adapted across screen sizes. This is the parent context for four sub-systems: Responsive, Grid, Spatial, and Borders & Radius.\n\n[SCOPE]\n- Overarching layout philosophy\n- How responsive, grid, spatial, and border sub-systems interrelate\n- Page-level and section-level structure\n- Mobile-first design strategy\n- Content flow and reading order\n\n[SUB_SYSTEMS]\nresponsive: breakpoints, adaptive behavior, reflow and stacking patterns\ngrid: column structure, gutters, margins, content-width caps per breakpoint\nspatial: spacing scale, padding/margin tokens, visual rhythm and grouping\nborders_radius: border width/color tokens, corner radius scale, edge treatments\n\n[LAYOUT_PRINCIPLES]\nmobile_first: base styles target smallest screen — enhance progressively for larger breakpoints\ncontent_priority: most important content appears first in DOM and visual flow\nproximity: related items grouped with tight spacing; sections separated with larger spacing\nalignment: content aligns to grid columns — consistent left edges create visual order\nconstraint: maximum content width prevents ultra-wide line lengths (readability cap)\n\n[COMPOSITION_MODEL]\npage: grid + margins + max-width → defines the overall content frame\nsection: stack spacing between sections → creates vertical rhythm\ngroup: inline/stack spacing within groups → clusters related content\ncomponent: inset padding within component boundaries → internal spacing\n\n[CROSS_SYSTEM_INTERACTIONS]\nresponsive + grid: column count and gutter size change per breakpoint\nresponsive + spatial: spacing tokens may tighten on smaller breakpoints\nresponsive + typography: type scale modes (Desktop/Mobile) affect vertical rhythm\ngrid + spatial: gutters are spatial tokens; component widths span grid columns\nborders + spatial: border width affects perceived padding — account for it in spacing\n\n[AGENT_BEHAVIOR]\n- When making layout decisions, consider all four sub-systems together\n- Always specify spacing as tokens, grid spans as column counts, and borders as tokens\n- Design mobile-first: start with the smallest breakpoint and scale up\n- Verify content priority — most important content should be first in reading order\n- Check that layout works at every defined breakpoint, not just desktop\n- Flag any hardcoded pixel values for spacing, width, or borders as violations\n\n[CONSTRAINTS]\n- never use arbitrary pixel values for spacing — always spatial tokens\n- never hardcode column widths — use grid column spans\n- never design desktop-first and retrofit for mobile\n- content reading order must match visual order (no CSS order hacks that break accessibility)\n- maximum content width must be enforced on wide screens\n- layout must not cause horizontal scrolling at any breakpoint\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "About",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Layout",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Layout defines how content is arranged, aligned, and distributed across SOLAR interfaces. It provides the structural framework that supports clarity, hierarchy, and responsiveness, helping teams create interfaces that feel organized, balanced, and predictable across products and platforms.",
+        "Why layout matters",
+        "A shared layout system ensures that screens are built on consistent spatial rules rather than one-off decisions. It helps teams design and build interfaces that scale gracefully, support different content types, and remain coherent as products evolve.\n\nSOLAR layout principles support:\n\t•\tClear hierarchy and readable content structure\n\t•\tPredictable alignment and spacing across screens\n\t•\tResponsive behavior across breakpoints and devices\n\t•\tConsistent relationships between containers, regions, and components\n\t•\tFaster design and implementation through reusable patterns\n\nThis alignment reduces visual inconsistency, improves usability, and creates a stronger foundation for cross-product coherence."
+      ],
+      "variableId": "VariableID:29:1096",
+      "hex": "#000000",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 72
+}

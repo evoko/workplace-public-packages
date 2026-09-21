@@ -1,0 +1,664 @@
+{
+  "page": "↳ 🟢 Event Chip",
+  "pageId": "6622:5",
+  "componentSets": [
+    {
+      "name": "Event Chip",
+      "id": "6632:2",
+      "description": "Event chip used in Day Cell, Week/Day grid, and Agenda Row. Subtle = neutral surface with a colored category stripe; solid = full category fill with inverse text. Both densities (md, sm) support all 8 category colors.",
+      "docLinks": [],
+      "variantCount": 24,
+      "props": {
+        "title#6634:0": {
+          "type": "TEXT",
+          "default": "Event title"
+        },
+        "time#6634:33": {
+          "type": "TEXT",
+          "default": "9:00"
+        },
+        "showTime#6634:66": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showRepeating#9203:0": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "category": {
+          "type": "VARIANT",
+          "default": "red",
+          "options": [
+            "red",
+            "orange",
+            "yellow",
+            "green",
+            "turquoise",
+            "blue",
+            "purple",
+            "pink"
+          ]
+        },
+        "style": {
+          "type": "VARIANT",
+          "default": "subtle",
+          "options": [
+            "subtle",
+            "solid",
+            "tinted"
+          ]
+        }
+      },
+      "defaultVariant": "category=red, style=subtle",
+      "defaultVariantNodeCount": 6,
+      "defaultVariantTree": {
+        "name": "category=red, style=subtle",
+        "type": "COMPONENT",
+        "size": [
+          160,
+          22
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "vars": {
+          "topLeftRadius": "Spatial:radius/none",
+          "topRightRadius": "Spatial:radius/none",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": [
+          {
+            "name": "Stripe",
+            "type": "RECTANGLE",
+            "size": [
+              3,
+              22
+            ],
+            "sizing": "FIXED/FILL",
+            "fills": [
+              "{Color:data/category/01/strong}"
+            ],
+            "radius": 9999,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Content",
+            "type": "FRAME",
+            "size": [
+              157,
+              22
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                8,
+                0,
+                8
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FILL"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/2xs",
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/none"
+            },
+            "children": [
+              {
+                "name": "Time",
+                "type": "TEXT",
+                "text": "9:00",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  36,
+                  9
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "showTime#6634:66",
+                  "characters": "time#6634:33"
+                }
+              },
+              {
+                "name": "Icon/Repeat",
+                "type": "INSTANCE",
+                "hidden": true,
+                "main": "Icon/Repeat",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  12,
+                  12
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "height": "Spatial:icon/xs"
+                },
+                "propRefs": {
+                  "visible": "showRepeating#9203:0"
+                }
+              },
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "Event title",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  101,
+                  9
+                ],
+                "sizing": "FILL/FIXED",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "title#6634:0"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "category=red, style=subtle",
+          "size": [
+            160,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/Repeat"
+          ]
+        },
+        {
+          "variant": "category=red, style=tinted",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/01/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=red, style=solid",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/01/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=orange, style=subtle",
+          "size": [
+            160,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "category=orange, style=tinted",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/02/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=orange, style=solid",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/02/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=yellow, style=subtle",
+          "size": [
+            160,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "category=yellow, style=tinted",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/03/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=yellow, style=solid",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/03/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=green, style=subtle",
+          "size": [
+            160,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "category=green, style=tinted",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/04/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=green, style=solid",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/04/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=turquoise, style=subtle",
+          "size": [
+            160,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "category=turquoise, style=tinted",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/05/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=turquoise, style=solid",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/05/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=blue, style=subtle",
+          "size": [
+            160,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "category=blue, style=tinted",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/06/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=blue, style=solid",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/06/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=purple, style=subtle",
+          "size": [
+            160,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "category=purple, style=tinted",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/07/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=purple, style=solid",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/07/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=pink, style=subtle",
+          "size": [
+            160,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "category=pink, style=tinted",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/08/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        },
+        {
+          "variant": "category=pink, style=solid",
+          "size": [
+            160,
+            22
+          ],
+          "fills": [
+            "{Color:data/category/08/strong}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Stripe"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Event Chip",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

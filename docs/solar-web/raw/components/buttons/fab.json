@@ -1,0 +1,575 @@
+{
+  "page": "↳ 🟢 FAB",
+  "pageId": "2966:581",
+  "componentSets": [
+    {
+      "name": "FAB",
+      "id": "4557:130",
+      "description": "Floating Action Button — the single most important action on a screen, elevated above content. 20 variants: type (icon / extended) × size (sm 44px / md 56px) × state (default, hover, pressed, focus, disabled). Fixed position (usually bottom-right). Uses action/primary tokens + shadow/raised. extended type adds a label alongside the icon for discoverability. Strict rule: one FAB per screen.",
+      "docLinks": [],
+      "variantCount": 24,
+      "props": {
+        "label#4557:0": {
+          "type": "TEXT",
+          "default": "Label"
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "icon",
+          "options": [
+            "icon",
+            "extended"
+          ]
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "sm",
+          "options": [
+            "sm",
+            "md"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "pressed",
+            "focus",
+            "disabled",
+            "loading"
+          ]
+        }
+      },
+      "defaultVariant": "type=icon, size=sm, state=default",
+      "defaultVariantNodeCount": 2,
+      "defaultVariantTree": {
+        "name": "type=icon, size=sm, state=default",
+        "type": "COMPONENT",
+        "size": [
+          44,
+          44
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:action/primary/bg/default}"
+        ],
+        "strokes": [
+          "{Color:border/medium}"
+        ],
+        "strokeWeight": 1,
+        "radius": 9999,
+        "effectStyle": "shadow/overlay",
+        "vars": {
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/sm",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
+        },
+        "children": [
+          {
+            "name": "Icon/None",
+            "type": "INSTANCE",
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              20,
+              20
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/md"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=icon, size=sm, state=default",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=icon, size=sm, state=hover",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "type=icon, size=sm, state=pressed",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ]
+        },
+        {
+          "variant": "type=icon, size=sm, state=disabled",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "type=icon, size=sm, state=focus",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "type=icon, size=sm, state=loading",
+          "size": [
+            44,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "type=icon, size=md, state=default",
+          "size": [
+            56,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "type=icon, size=md, state=hover",
+          "size": [
+            56,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "type=icon, size=md, state=pressed",
+          "size": [
+            56,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ]
+        },
+        {
+          "variant": "type=icon, size=md, state=disabled",
+          "size": [
+            56,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "type=icon, size=md, state=focus",
+          "size": [
+            56,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "type=icon, size=md, state=loading",
+          "size": [
+            56,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay"
+        },
+        {
+          "variant": "type=extended, size=sm, state=default",
+          "size": [
+            91,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "type=extended, size=sm, state=hover",
+          "size": [
+            91,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "type=extended, size=sm, state=pressed",
+          "size": [
+            91,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ]
+        },
+        {
+          "variant": "type=extended, size=sm, state=disabled",
+          "size": [
+            91,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:action/primary/text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "type=extended, size=sm, state=focus",
+          "size": [
+            91,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "type=extended, size=sm, state=loading",
+          "size": [
+            84,
+            44
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None",
+            "Label"
+          ]
+        },
+        {
+          "variant": "type=extended, size=md, state=default",
+          "size": [
+            112,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "type=extended, size=md, state=hover",
+          "size": [
+            112,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "type=extended, size=md, state=pressed",
+          "size": [
+            112,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ]
+        },
+        {
+          "variant": "type=extended, size=md, state=disabled",
+          "size": [
+            112,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:action/primary/text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "type=extended, size=md, state=focus",
+          "size": [
+            112,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "type=extended, size=md, state=loading",
+          "size": [
+            104,
+            56
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/overlay",
+          "hidden": [
+            "Label"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "FAB",
+    "Description",
+    "Floating Action Button: the single most important action on a screen, elevated above content via shadow/raised. Fixed to the content area (usually bottom-right). Use sparingly — one FAB per screen, max. Most dense B2B screens do NOT need a FAB; a primary Button in the page header works fine. Use when the primary action must remain reachable while the user scrolls.",
+    "Type",
+    "icon          Circular, icon-only. Use when the action is universally recognizable (plus / add, compose, scan).\nextended   Pill, icon + label. Use when the icon would be ambiguous — label clarifies (\"New project\", \"Compose\").",
+    "Sizes",
+    "sm (44px)    Inside constrained content areas (inspector panes, narrow columns).\nmd (56px)    Default. Full-screen primary action on mobile + desktop.\n\nHit area ≥ 44×44 (WCAG 2.5.5) — sm meets this exactly; don't go smaller.",
+    "Accessibility",
+    "icon type needs aria-label matching the action verb; extended type gets its name from the visible label. shadow/raised provides visual separation. Keyboard: reachable via Tab, Enter/Space activates. Focus ring via shadow/focus/default. Don't obstruct scrolling content — move above toast / snackbar stacks.",
+    "Rules",
+    "Do\n\n• One FAB per screen — the single primary action\n• Use extended when the icon could be ambiguous\n• Provide aria-label on icon type\n• Move above toast stacks when they appear",
+    "Don't\n\n• Don't use FAB where a primary Button in the page header is fine\n• Don't stack multiple FABs — pick one\n• Don't use for secondary / tertiary actions\n• Don't hide content under the FAB — leave bottom padding"
+  ],
+  "pageContext": null
+}

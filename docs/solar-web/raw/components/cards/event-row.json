@@ -1,0 +1,400 @@
+{
+  "page": "↳ 🟢 Event Row",
+  "pageId": "7352:2",
+  "componentSets": [
+    {
+      "name": "Event Row",
+      "id": "7358:6",
+      "description": "Event Row — single row representing one audit event in an activity feed.\n\nUse inside Activity Feed (⊞ Patterns / Data) or composed directly into product pages. Anatomy: leading slot (Avatar for user-initiated, Icon for system/device) · title line · meta line (Product tag + context) · trailing timestamp. Expanded density adds a second meta line for device telemetry (dB, channels, gain, preset bank, latency).\n\nKeywords: activity, feed, event, audit, log, history, notification",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "Title#7372:0": {
+          "type": "TEXT",
+          "default": "Event name"
+        },
+        "ProductTag#7372:7": {
+          "type": "TEXT",
+          "default": "PRODUCT"
+        },
+        "MetaText#7372:14": {
+          "type": "TEXT",
+          "default": "Context · Context · Context"
+        },
+        "Timestamp#7372:28": {
+          "type": "TEXT",
+          "default": "Just now"
+        },
+        "Leading#7403:0": {
+          "type": "INSTANCE_SWAP",
+          "default": "2578:1837"
+        },
+        "hasMore#7470:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "density": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus"
+          ]
+        }
+      },
+      "defaultVariant": "density=default, state=default",
+      "defaultVariantNodeCount": 10,
+      "defaultVariantTree": {
+        "name": "density=default, state=default",
+        "type": "COMPONENT",
+        "size": [
+          520,
+          56
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FILL/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/sm",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Leading",
+            "type": "INSTANCE",
+            "main": "Avatar",
+            "variant": {
+              "size": "md",
+              "type": "text",
+              "color": "neutral",
+              "Shade": "Light"
+            },
+            "size": [
+              32,
+              32
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Primitives:color/neutral/50}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            },
+            "propRefs": {
+              "mainComponent": "Leading#7403:0"
+            }
+          },
+          {
+            "name": "Content",
+            "type": "FRAME",
+            "size": [
+              358,
+              27
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs"
+            },
+            "children": [
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "Event name",
+                "textStyle": "body/md/medium",
+                "size": [
+                  358,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "Title#7372:0"
+                }
+              },
+              {
+                "name": "Meta",
+                "type": "FRAME",
+                "size": [
+                  358,
+                  9
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                },
+                "children": [
+                  {
+                    "name": "ProductTag",
+                    "type": "TEXT",
+                    "text": "PRODUCT",
+                    "textStyle": "label/sm",
+                    "size": [
+                      58,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/label/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/label/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    },
+                    "propRefs": {
+                      "characters": "ProductTag#7372:7"
+                    }
+                  },
+                  {
+                    "name": "MetaText",
+                    "type": "TEXT",
+                    "text": "Context · Context · Context",
+                    "textStyle": "body/sm/regular",
+                    "size": [
+                      292,
+                      9
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    },
+                    "propRefs": {
+                      "characters": "MetaText#7372:14"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Timestamp",
+            "type": "TEXT",
+            "text": "Just now",
+            "textStyle": "body/sm/regular",
+            "size": [
+              50,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/tertiary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/sm",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "characters": "Timestamp#7372:28"
+            }
+          },
+          {
+            "name": "Icon/More",
+            "type": "INSTANCE",
+            "main": "Icon/More",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              20,
+              20
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/md"
+            },
+            "propRefs": {
+              "visible": "hasMore#7470:0"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "density=default, state=default",
+          "size": [
+            520,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/700}",
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "density=default, state=hover",
+          "size": [
+            520,
+            56
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/700}",
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "density=default, state=focus",
+          "size": [
+            520,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Primitives:color/neutral/700}",
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Event Row",
+    "Single row representing one audit event in an activity feed. Composes into Activity Feed (⊞ Patterns / Data) or any product page that needs an audit / event surface.",
+    "Description",
+    "Single row representing one audit event in an activity feed. Composes Avatar or Icon (leading) → Title → Meta line (ProductTag + free-form context) → Timestamp. Drop into Activity Feed (⊞ Patterns / Data) or any product surface that needs an event log.",
+    "Anatomy",
+    "Leading (32×32) — Avatar instance for user-initiated events (Anatoliy badge-tapped …); Icon-in-square for system / device events (Sensor SN-4B-02 …).\nContent (FILL) — Title line + Meta row. Meta row holds ProductTag (uppercase product label) + MetaText (free-form context).\nTimestamp — right-aligned, relative form (3 min ago, Yesterday · 14:08).\nExpanded density — adds a second meta line for device telemetry (channels, dB, preset bank, latency).",
+    "States",
+    "default      Base row, surface/base fill.\nhover        surface/hover fill. Render only when the host treats the row as clickable.\nfocus        Visible 2px ring via shadow/focus/default effect style. Keyboard order follows DOM.",
+    "Properties",
+    "Title          TEXT — primary event line (Actor verb target).\nProductTag     TEXT — uppercase product label (WORKPLACE, TESIRA, VOCIA).\nMetaText       TEXT — context after the tag (where · when · how).\nTelemetry      TEXT — second meta line, expanded density only (channels, dB, preset bank, latency).\nTimestamp      TEXT — relative time.\ndensity        VARIANT — default · expanded.\nstate          VARIANT — default · hover · focus.\n\nROW-LEVEL ACTIONS (host attaches; reveal on hover or in a kebab menu)\nView details          Open a detail panel/page for this event.\nFilter by             Add this actor / product / event type to the active filter.\nCopy permalink        Copy a deep link to this event for sharing in a ticket or chat.\nMute event type       Suppress future events of this kind from the feed.\nAcknowledge           For broadcast / page events (Vocia override) — record the ack.\nRoll back             For config events (Tesira preset recall, channel mute) — revert to prior state.\nRe-trigger            For sync / page events — re-run the action.",
+    "Accessibility",
+    "Role            When interactive, host applies role=button to the outer row. Non-interactive rows live inside <ol> with the date group as the labelled <section>.\nDifferentiation Shape alone (circle Avatar vs. square Icon) fails WCAG 1.4.1 — add visually-hidden actor-kind prefix (\"System event\" / \"User event by {actor}\").\nTimestamp       Render as <time datetime=ISO>. Show relative form visually; expose absolute datetime to AT.\nFocus           state=focus exposes shadow/focus/default ring. Touch target ≥ 44px on mobile if interactive."
+  ],
+  "pageContext": null
+}

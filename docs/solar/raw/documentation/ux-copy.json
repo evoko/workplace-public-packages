@@ -1,0 +1,890 @@
+{
+  "page": "UX Copy",
+  "pageId": "1138:12741",
+  "section": "documentation",
+  "slug": "ux-copy",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "UX Copy"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Writing Patterns",
+      "subtitle": null,
+      "x": 2000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "These patterns define how SOLAR communicates in the most common UI moments — errors, empty states, confirmations, loading, and success. Each pattern follows a consistent structure so users always know what happened, why, and what to do next."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Error Messages"
+        },
+        {
+          "t": "p",
+          "text": "Structure: What happened + Why + What to do next.\n\nNever show raw error codes or technical IDs.\nAlways include a recovery action when one exists.\nUse color.text.feedback.danger for error text and pair with an icon — never rely on color alone.\nKeep under 2 lines.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Empty States"
+        },
+        {
+          "t": "p",
+          "text": "Structure: What this space is for + How to get started.\n\nInclude a primary action when possible (e.g., “Add device” button).\nEmpty states should feel temporary, not permanent.\nDon’t use illustrations that look like errors.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Confirmation Dialogs"
+        },
+        {
+          "t": "p",
+          "text": "Structure: What will happen (specific) + What can’t be undone + Action button that names the action.\n\nNever use “Are you sure?” as the only content.\nConfirm button names the action: “Delete device” not “OK.”\nCancel is always “Cancel.”",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Context",
+              "Do",
+              "Don’t",
+              "Pattern",
+              "Component",
+              "Token"
+            ],
+            [
+              "Validation error",
+              "\"Enter an IP address in the format 192.168.x.x.\"",
+              "\"Invalid input.\"",
+              "What + How to fix",
+              "TextInput (error)",
+              "color.text.feedback.danger"
+            ],
+            [
+              "Empty list",
+              "\"No devices yet. Add your first device to get started.\"",
+              "\"No data.\"",
+              "What + Action",
+              "Card (empty state)",
+              "color.text.secondary"
+            ],
+            [
+              "Delete single",
+              "\"Delete 'Conference Room A'? This device will be permanently removed.\"",
+              "\"Are you sure?\"",
+              "Specific + Irreversible",
+              "Dialog (danger)",
+              "action.primary-danger"
+            ],
+            [
+              "Success toast",
+              "\"Device added.\"",
+              "\"Success! Your device has been successfully added.\"",
+              "Past tense, brief",
+              "Toast",
+              "color.text.primary"
+            ],
+            [
+              "Loading (>2s)",
+              "\"Loading devices...\"",
+              "No text (just spinner)",
+              "Present tense",
+              "Spinner + text",
+              "color.text.secondary"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Component Microcopy",
+      "subtitle": null,
+      "x": 4000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Every SOLAR component that displays text has specific copy rules. These rules ensure labels, messages, and feedback are consistent, scannable, and accessible across all Biamp products."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Button Labels"
+        },
+        {
+          "t": "p",
+          "text": "Use verb + noun: “Add device” not “Add” or “New device.” Exception: “Cancel” and “Close” stand alone.\nKeep labels under 3 words. Never use “Click here” or “Submit” as generic labels. Primary action goes right, Cancel goes left.\nIcon-only buttons must have aria-label with the full action text.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Form Copy"
+        },
+        {
+          "t": "p",
+          "text": "Label names the field (always visible).\nPlaceholder shows format example (disappears on input — never a substitute for label).\nHelper text provides guidance below the field.\nError text replaces helper on validation failure.\nUse color.text.tertiary for placeholders, color.text.feedback.danger for errors.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Element",
+              "Rule",
+              "Do",
+              "Don’t",
+              "Case",
+              "Punctuation"
+            ],
+            [
+              "Button",
+              "Verb + noun, under 3 words",
+              "\"Add Device\" / \"Save Changes\"",
+              "\"Submit\" / \"OK\" / \"Yes\"",
+              "Title Case",
+              "No period"
+            ],
+            [
+              "Form label",
+              "Name the field, not an instruction",
+              "\"Device name\"",
+              "\"Enter device name\"",
+              "Sentence case",
+              "No period"
+            ],
+            [
+              "Dialog title",
+              "Name the action or decision",
+              "\"Delete Device\" / \"Assign to Group\"",
+              "\"Warning\" / \"Alert\"",
+              "Title Case",
+              "No period"
+            ],
+            [
+              "Tooltip",
+              "Under 80 chars, no essential info",
+              "\"Assigns device to selected group\"",
+              "\"Click to assign device\"",
+              "Sentence case",
+              "No period (single phrase)"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Terminology & Capitalization",
+      "subtitle": null,
+      "x": 6000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Consistent terminology and capitalization make interfaces feel unified across all Biamp products. These standards apply to all user-facing text in SOLAR components."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Standard Terms"
+        },
+        {
+          "t": "p",
+          "text": "Use consistent terms across all products. When a SOLAR component implies a domain concept, use the standard term.\nDevice (not Unit/Endpoint/Node)\nAdd (not Create/New/Insert)\nDelete (not Remove/Destroy/Erase)\nSave (not Apply/Submit/Confirm)\nSettings (not Preferences/Configuration)\nSearch (not Find/Look up)",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Punctuation Rules"
+        },
+        {
+          "t": "p",
+          "text": "Use periods at the end of complete sentences in helper text, error messages, and body copy. No period for single-phrase elements: buttons, menu items, badges, toasts under 4 words.\nNo exclamation marks in product UI. Ever.\nUse Oxford comma in lists.\nEm dashes (—) for asides, no spaces.\nEllipsis (...) only for loading states and truncation.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "General Rules"
+        },
+        {
+          "t": "p",
+          "text": "Never blame the user — say “something went wrong” not “you made an error.”\nNever use humor in error messages or destructive confirmations.\nAvoid Latin abbreviations in UI: “for example” not “e.g.”\nDon’t use “successfully” — if it happened, it succeeded.\nMatch tone to stakes: low-risk settings need less gravity than deleting a deployment.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Element",
+              "Capitalization",
+              "Example",
+              "Period",
+              "Max Length",
+              "Notes"
+            ],
+            [
+              "Page title",
+              "Title Case",
+              "\"Device Settings\"",
+              "No",
+              "—",
+              "Top-level navigation labels"
+            ],
+            [
+              "Button label",
+              "Title Case",
+              "\"Add Device\"",
+              "No",
+              "3 words",
+              "Verb + noun pattern"
+            ],
+            [
+              "Form label",
+              "Sentence case",
+              "\"Device name\"",
+              "No",
+              "—",
+              "Names the field, not an instruction"
+            ],
+            [
+              "Error message",
+              "Sentence case",
+              "\"Enter a valid IP address.\"",
+              "Yes",
+              "2 lines",
+              "What happened + how to fix"
+            ],
+            [
+              "Toast message",
+              "Sentence case",
+              "\"Device added.\"",
+              "Yes (<4 words: no)",
+              "8 words",
+              "Auto-dismiss, include undo if reversible"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Voice Principles",
+      "subtitle": null,
+      "x": 8000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR interfaces speak with one voice across all Biamp products. That voice is defined by four principles. Voice stays constant regardless of context — what shifts is tone, which adapts to the stakes of the moment."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Clear"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Direct"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Helpful"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Calm"
+        },
+        {
+          "t": "p",
+          "text": "Say what happened and what to do next. Avoid jargon, hedging, and unnecessary words. Prefer short sentences. If a user has to re-read something, it’s too complex.\n\nDo: \"Enter a name for this device.\"\nDon’t: \"Please provide a value for the device name field in order to proceed.\"",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Address the user as “you.” Use active voice. Lead with the most important information. Don’t bury actions in long explanations.\n\nDo: \"You can’t delete this device while it’s online.\"\nDon’t: \"Deletion of devices that are currently in an online state is not permitted.\"",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Anticipate what the user needs to know. When something goes wrong, explain why and how to fix it. Don’t just state the problem.\n\nDo: \"This name is already in use. Try a different name.\"\nDon’t: \"Error: duplicate name.\"",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Don’t alarm the user unnecessarily. Avoid exclamation marks, all-caps, and dramatic language. Treat errors as normal events that have a path forward.\n\nDo: \"Something went wrong. Please try again.\"\nDon’t: \"CRITICAL FAILURE! An unexpected error has occurred!\"",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Governance\ndomain: Contribution Model & Change Management\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR governance advisor. The design system is a shared product with a structured change process. When the system has a gap, the correct response is a governance request — never a one-off workaround.\n\n[SCOPE]\n- Contribution and change request process\n- Change types and review requirements\n- Semantic versioning policy\n- Deprecation and migration procedures\n- Roles and responsibilities\n- Quality gates for system additions\n\n[CONTRIBUTION_FLOW]\n1_request: anyone can propose additions or changes — file a request with rationale and use case\n2_triage: DS team reviews for alignment, feasibility, and priority\n3_design: spec created — includes tokens, variants, states, accessibility, responsive behavior\n4_review: cross-functional review — design, engineering, accessibility, product\n5_approval: DS team grants final approval\n6_implementation: built in Figma + code with full parity\n7_release: published with documentation, changelog, and migration guide (if applicable)\nrule: no addition ships without completing all gates\n\n[CHANGE_TYPES]\nnew_token: adding a new primitive, semantic, or component token\nnew_component: adding a new component to the library\ncomponent_modification: adding variants, props, or states to an existing component\npattern_addition: documenting a new composition pattern\ndeprecation: marking a token/component for removal with a sunset timeline\nbreaking_change: removing or renaming tokens/components — requires migration guide\ndocumentation: updating guidelines, examples, or usage notes\n\n[REVIEW_REQUIREMENTS]\nnew_token: token naming review + theme coverage check\nnew_component: design spec + token mapping + accessibility audit + code implementation + documentation\ncomponent_modification: impact analysis on existing usage + backward compatibility check\ndeprecation: migration guide + sunset period (minimum 1 major version cycle)\nbreaking_change: requires major version bump + migration guide + advance notice\n\n[VERSIONING]\nmodel: semantic versioning (SemVer) — MAJOR.MINOR.PATCH\npatch: bug fix, token value tweak, typo correction — backward compatible\nminor: new addition (token, component, variant) — backward compatible\nmajor: breaking change (removal, rename, restructure) — may require migration\nrule: consumers should pin to minor version ranges for stability\n\n[DEPRECATION_PROCESS]\nannounce: mark deprecated in documentation and Figma (visual indicator)\nsunset_period: minimum one major version cycle before removal\nmigration_guide: provide step-by-step replacement instructions\ntooling: lint rules flag deprecated token/component usage in code\nremoval: only in a major version release after sunset period expires\n\n[ROLES]\nds_team: owns the system, triages requests, maintains quality, publishes releases\ndesigners: propose additions, create specs, review visual consistency\nengineers: implement components, validate token parity, maintain tooling\naccessibility: reviews all additions for WCAG compliance\nproduct: validates that additions serve real user/product needs\nagents: flag gaps, propose additions through governance, never bypass\n\n[QUALITY_GATES]\ndesign_spec: complete Figma spec with all variants, states, and responsive behavior\ntoken_mapping: all visual values traced to tokens — no hardcoded values\naccessibility_review: WCAG 2.1 AA compliance verified — keyboard, screen reader, contrast\ncode_implementation: component built with full token and theme support\ndocumentation: usage guidelines, do/don't examples, API reference\ntesting: visual regression tests, unit tests, cross-browser/theme verification\n\n[AGENT_BEHAVIOR]\n- When identifying a gap in the system (missing token, component, or pattern), document it as a governance request\n- Never invent one-off solutions — always propose through the governance process\n- Include in proposals: name, category, rationale, use case, suggested token/component spec\n- Flag deprecated tokens or components when encountered — recommend the replacement\n- When reviewing designs, check that all elements use system-approved tokens and components\n- If a request is urgent, flag it as high-priority but still route through governance\n\n[CONSTRAINTS]\n- never bypass governance for expediency — one-offs create tech and design debt\n- breaking changes require a major version bump and migration guide\n- deprecated items must have a sunset period — never remove without notice\n- all additions must include: design spec, token mapping, accessibility review, documentation\n- cross-functional review is mandatory for components — no single-function approval\n- the DS team owns final approval — escalation path exists for disputes\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Component Microcopy",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Every SOLAR component that displays text has specific copy rules. These rules ensure labels, messages, and feedback are consistent, scannable, and accessible across all Biamp products.",
+        "Button Labels",
+        "Use verb + noun: “Add device” not “Add” or “New device.” Exception: “Cancel” and “Close” stand alone.\nKeep labels under 3 words. Never use “Click here” or “Submit” as generic labels. Primary action goes right, Cancel goes left.\nIcon-only buttons must have aria-label with the full action text.",
+        "Form Copy",
+        "Label names the field (always visible).\nPlaceholder shows format example (disappears on input — never a substitute for label).\nHelper text provides guidance below the field.\nError text replaces helper on validation failure.\nUse color.text.tertiary for placeholders, color.text.feedback.danger for errors.",
+        "Element",
+        "Rule",
+        "Do",
+        "Don’t",
+        "Case",
+        "Punctuation",
+        "Button",
+        "Verb + noun, under 3 words",
+        "\"Add Device\" / \"Save Changes\"",
+        "\"Submit\" / \"OK\" / \"Yes\"",
+        "Title Case",
+        "No period",
+        "Form label",
+        "Name the field, not an instruction",
+        "\"Device name\"",
+        "\"Enter device name\"",
+        "Sentence case",
+        "No period",
+        "Dialog title",
+        "Name the action or decision",
+        "\"Delete Device\" / \"Assign to Group\"",
+        "\"Warning\" / \"Alert\"",
+        "Title Case",
+        "No period",
+        "Tooltip",
+        "Under 80 chars, no essential info",
+        "\"Assigns device to selected group\"",
+        "\"Click to assign device\"",
+        "Sentence case",
+        "No period (single phrase)"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Writing Patterns",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "These patterns define how SOLAR communicates in the most common UI moments — errors, empty states, confirmations, loading, and success. Each pattern follows a consistent structure so users always know what happened, why, and what to do next.",
+        "Error Messages",
+        "Structure: What happened + Why + What to do next.\n\nNever show raw error codes or technical IDs.\nAlways include a recovery action when one exists.\nUse color.text.feedback.danger for error text and pair with an icon — never rely on color alone.\nKeep under 2 lines.",
+        "Empty States",
+        "Structure: What this space is for + How to get started.\n\nInclude a primary action when possible (e.g., “Add device” button).\nEmpty states should feel temporary, not permanent.\nDon’t use illustrations that look like errors.",
+        "Confirmation Dialogs",
+        "Structure: What will happen (specific) + What can’t be undone + Action button that names the action.\n\nNever use “Are you sure?” as the only content.\nConfirm button names the action: “Delete device” not “OK.”\nCancel is always “Cancel.”",
+        "Context",
+        "Do",
+        "Don’t",
+        "Pattern",
+        "Component",
+        "Token",
+        "Validation error",
+        "\"Enter an IP address in the format 192.168.x.x.\"",
+        "\"Invalid input.\"",
+        "What + How to fix",
+        "TextInput (error)",
+        "color.text.feedback.danger",
+        "Empty list",
+        "\"No devices yet. Add your first device to get started.\"",
+        "\"No data.\"",
+        "What + Action",
+        "Card (empty state)",
+        "color.text.secondary",
+        "Delete single",
+        "\"Delete 'Conference Room A'? This device will be permanently removed.\"",
+        "\"Are you sure?\"",
+        "Specific + Irreversible",
+        "Dialog (danger)",
+        "action.primary-danger",
+        "Success toast",
+        "\"Device added.\"",
+        "\"Success! Your device has been successfully added.\"",
+        "Past tense, brief",
+        "Toast",
+        "color.text.primary",
+        "Loading (>2s)",
+        "\"Loading devices...\"",
+        "No text (just spinner)",
+        "Present tense",
+        "Spinner + text",
+        "color.text.secondary"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Terminology & Capitalization",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Consistent terminology and capitalization make interfaces feel unified across all Biamp products. These standards apply to all user-facing text in SOLAR components.",
+        "Standard Terms",
+        "Use consistent terms across all products. When a SOLAR component implies a domain concept, use the standard term.\nDevice (not Unit/Endpoint/Node)\nAdd (not Create/New/Insert)\nDelete (not Remove/Destroy/Erase)\nSave (not Apply/Submit/Confirm)\nSettings (not Preferences/Configuration)\nSearch (not Find/Look up)",
+        "Punctuation Rules",
+        "Use periods at the end of complete sentences in helper text, error messages, and body copy. No period for single-phrase elements: buttons, menu items, badges, toasts under 4 words.\nNo exclamation marks in product UI. Ever.\nUse Oxford comma in lists.\nEm dashes (—) for asides, no spaces.\nEllipsis (...) only for loading states and truncation.",
+        "General Rules",
+        "Never blame the user — say “something went wrong” not “you made an error.”\nNever use humor in error messages or destructive confirmations.\nAvoid Latin abbreviations in UI: “for example” not “e.g.”\nDon’t use “successfully” — if it happened, it succeeded.\nMatch tone to stakes: low-risk settings need less gravity than deleting a deployment.",
+        "Element",
+        "Capitalization",
+        "Example",
+        "Period",
+        "Max Length",
+        "Notes",
+        "Page title",
+        "Title Case",
+        "\"Device Settings\"",
+        "No",
+        "—",
+        "Top-level navigation labels",
+        "Button label",
+        "Title Case",
+        "\"Add Device\"",
+        "No",
+        "3 words",
+        "Verb + noun pattern",
+        "Form label",
+        "Sentence case",
+        "\"Device name\"",
+        "No",
+        "—",
+        "Names the field, not an instruction",
+        "Error message",
+        "Sentence case",
+        "\"Enter a valid IP address.\"",
+        "Yes",
+        "2 lines",
+        "What happened + how to fix",
+        "Toast message",
+        "Sentence case",
+        "\"Device added.\"",
+        "Yes (<4 words: no)",
+        "8 words",
+        "Auto-dismiss, include undo if reversible"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Voice Principles",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR interfaces speak with one voice across all Biamp products. That voice is defined by four principles. Voice stays constant regardless of context — what shifts is tone, which adapts to the stakes of the moment.",
+        "Clear",
+        "Direct",
+        "Helpful",
+        "Calm",
+        "Say what happened and what to do next. Avoid jargon, hedging, and unnecessary words. Prefer short sentences. If a user has to re-read something, it’s too complex.\n\nDo: \"Enter a name for this device.\"\nDon’t: \"Please provide a value for the device name field in order to proceed.\"",
+        "Address the user as “you.” Use active voice. Lead with the most important information. Don’t bury actions in long explanations.\n\nDo: \"You can’t delete this device while it’s online.\"\nDon’t: \"Deletion of devices that are currently in an online state is not permitted.\"",
+        "Anticipate what the user needs to know. When something goes wrong, explain why and how to fix it. Don’t just state the problem.\n\nDo: \"This name is already in use. Try a different name.\"\nDon’t: \"Error: duplicate name.\"",
+        "Don’t alarm the user unnecessarily. Avoid exclamation marks, all-caps, and dramatic language. Treat errors as normal events that have a path forward.\n\nDo: \"Something went wrong. Please try again.\"\nDon’t: \"CRITICAL FAILURE! An unexpected error has occurred!\""
+      ],
+      "variableId": "VariableID:27:740",
+      "hex": "#fffbd5",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 100
+}

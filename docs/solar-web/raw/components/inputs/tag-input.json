@@ -1,0 +1,544 @@
+{
+  "page": "↳ 🟢 Tag Input",
+  "pageId": "8815:2",
+  "componentSets": [
+    {
+      "name": "Token Input",
+      "id": "8817:174",
+      "description": "Multi-value (token) input. Collects discrete entries as removable Token chips with an optional overflow Counter. Class B form input. Variants: size (md, sm) × state (default, hover, focus, filled, disabled, error, readonly). Properties: label, helper, show label, show helper, show mandatory. Built from SOLAR Web primitives; chips = local .Token; counter = Counter.",
+      "docLinks": [],
+      "variantCount": 16,
+      "props": {
+        "label#8821:0": {
+          "type": "TEXT",
+          "default": "Label"
+        },
+        "helper#8821:15": {
+          "type": "TEXT",
+          "default": "Helper text"
+        },
+        "show label#8821:30": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show helper#8821:45": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show mandatory#8821:60": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "Tags#8850:0": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus",
+            "filled",
+            "disabled",
+            "error",
+            "readonly",
+            "active"
+          ]
+        }
+      },
+      "defaultVariant": "size=md, state=default",
+      "defaultVariantNodeCount": 7,
+      "defaultVariantTree": {
+        "name": "size=md, state=default",
+        "type": "COMPONENT",
+        "size": [
+          240,
+          76
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "FRAME",
+            "size": [
+              240,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
+            },
+            "propRefs": {
+              "visible": "show label#8821:30"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "label/md",
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "label#8821:0"
+                }
+              },
+              {
+                "name": "*",
+                "type": "TEXT",
+                "text": "*",
+                "textStyle": "label/md",
+                "size": [
+                  8,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "show mandatory#8821:60"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Field",
+            "type": "FRAME",
+            "size": [
+              240,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                8,
+                12,
+                8,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/xs",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Tags",
+                "type": "FRAME",
+                "size": [
+                  216,
+                  24
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "counterAxisSpacing": "Spatial:stack/2xs"
+                },
+                "children": [
+                  {
+                    "name": "Add items…",
+                    "type": "TEXT",
+                    "text": "Add items…",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      216,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/tertiary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Helper text",
+            "type": "TEXT",
+            "text": "Helper text",
+            "textStyle": "helper/md",
+            "size": [
+              240,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/helper/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/helper/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "visible": "show helper#8821:45",
+              "characters": "helper#8821:15"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=md, state=default",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "size=sm, state=default",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=hover",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=hover",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=active",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=active",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=focus",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=focus",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "size=md, state=filled",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=filled",
+          "size": [
+            160,
+            94
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "size=md, state=disabled",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/disabled}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=disabled",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/disabled}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "size=md, state=error",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=error",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "size=md, state=readonly",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=readonly",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Tag Input",
+    "Description",
+    "A field for entering multiple values as removable chips (tokens) — recipients, labels, keywords. Type and confirm to add; remove via the chip or backspace. For a single free value use Text Input.",
+    "Usage",
+    "Confirm a token on Enter or comma. Show chips inline; allow removal via the chip or backspace. Optionally suggest matches, like Autocomplete.",
+    "States",
+    "Default · Hover · Focus · Filled · Adding\nDisabled / Read-only — chips shown, not editable.\nError — invalid token; message + aria-invalid.",
+    "Sizes",
+    "sm (36px)   Dense forms.\nmd (44px)   Default. Meets the 44px touch target.",
+    "Accessibility",
+    "Labelled field; each chip’s remove is a labelled button. Announce added/removed tokens. Backspace removes the last chip; keyboard reaches every chip.",
+    "Rules",
+    "DO   Confirm tokens on Enter / comma\nDO   Make each chip removable\nDO   Announce add / remove\nDO   Validate tokens with a message",
+    "DON'T   Use for a single value (use Text Input)\nDON'T   Trap focus among chips\nDON'T   Rely on colour alone for errors\nDON'T   Lose typed text on blur"
+  ],
+  "pageContext": null
+}

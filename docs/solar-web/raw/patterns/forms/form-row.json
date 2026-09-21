@@ -1,0 +1,177 @@
+{
+  "page": "↳ 🟢 Form Row",
+  "pageId": "2202:1227",
+  "componentSets": [
+    {
+      "name": "FormRow",
+      "id": "4515:182",
+      "description": "FormRow arranges 2, 3, or 4 form controls (TextInput, Select, etc.) in a single horizontal row with equal-width columns and a consistent gap (stack/md). Slots default to TextInput; swap per column for any other control. Collapses to stacked controls under ~640px viewport. Draft — authored by Claude.",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "columns": {
+          "type": "VARIANT",
+          "default": "2",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ]
+        }
+      },
+      "defaultVariant": "columns=2",
+      "defaultVariantNodeCount": 22,
+      "defaultVariantTree": {
+        "name": "columns=2",
+        "type": "COMPONENT",
+        "size": [
+          640,
+          76
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 16,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FILL/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/md"
+        },
+        "children": [
+          {
+            "name": "Text Input",
+            "type": "INSTANCE",
+            "main": "Text Input",
+            "variant": {
+              "size": "md",
+              "state": "default"
+            },
+            "size": [
+              312,
+              76
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            }
+          },
+          {
+            "name": "Text Input",
+            "type": "INSTANCE",
+            "main": "Text Input",
+            "variant": {
+              "size": "md",
+              "state": "default"
+            },
+            "size": [
+              312,
+              76
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "columns=2",
+          "size": [
+            640,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "columns=3",
+          "size": [
+            640,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}"
+          ]
+        },
+        {
+          "variant": "columns=4",
+          "size": [
+            640,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Form Row",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

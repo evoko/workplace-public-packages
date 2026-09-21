@@ -1,0 +1,254 @@
+{
+  "page": "Viewport",
+  "pageId": "1051:14406",
+  "section": "primitives",
+  "slug": "viewport",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Viewport",
+      "title": "Viewport",
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 960,
+      "h": 752,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Viewport defines the key screen-width thresholds used across SOLAR to support responsive behavior. These values establish the core breakpoints for layout adaptation across mobile, tablet, laptop, desktop, and large-display contexts. They provide a shared reference for designing and building interfaces that scale consistently across products.",
+          "style": "16/400"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "393",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "768",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "1024",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "1440",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "1920",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": null,
+  "swatches": [
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 13
+}

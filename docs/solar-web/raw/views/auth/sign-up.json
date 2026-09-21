@@ -1,0 +1,296 @@
+{
+  "page": "↳ 🟢 Auth — Sign Up",
+  "pageId": "3768:2",
+  "componentSets": [
+    {
+      "name": "Auth — Sign Up",
+      "id": "9655:12885",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "mobile",
+            "desktop"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 78,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            24,
+            0,
+            24,
+            0
+          ],
+          "align": "SPACE_BETWEEN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/background}"
+        ],
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/xl",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/xl",
+          "width": "Layout:breakpoint/lg"
+        },
+        "children": [
+          {
+            "name": "App Name",
+            "type": "INSTANCE",
+            "main": "App Name",
+            "variant": {
+              "type": "horizontal"
+            },
+            "size": [
+              85,
+              59
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 16,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:inset/md",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          },
+          {
+            "name": "Center Stack",
+            "type": "FRAME",
+            "size": [
+              420,
+              285
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 40,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FIXED/HUG"
+            },
+            "children": [
+              {
+                "name": "FormSection",
+                "type": "INSTANCE",
+                "main": "FormSection",
+                "size": [
+                  420,
+                  285
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 28,
+                  "pad": [
+                    20,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/2xl",
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:stack/lg",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/none",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              216,
+              32
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm"
+            },
+            "children": [
+              {
+                "name": "Biamp Logo",
+                "type": "INSTANCE",
+                "main": "Biamp Logo",
+                "variant": {
+                  "style": "dark",
+                  "size": "sm"
+                },
+                "size": [
+                  36,
+                  11
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "© 2025 Biamp Systems LLC. v.1.2-b-fd",
+                "type": "TEXT",
+                "text": "© 2025 Biamp Systems LLC.  v.1.2-b-fd",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  216,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "#d92323",
+            "#4caf50",
+            "#ffc107",
+            "#03a9f4",
+            "#ff3d00",
+            "#1976d2",
+            "{Primitives:color/brand/black}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Button",
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "#d92323",
+            "#4caf50",
+            "#ffc107",
+            "#03a9f4",
+            "#ff3d00",
+            "#1976d2",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Auth — Sign Up",
+    "Description",
+    "The account-creation screen — collect credentials and start onboarding. For new users; existing users go to Sign In.",
+    "Layout",
+    "Centered auth card: logo · title · form (name · email · password) · primary 'Create account' · 'Sign in' link · legal/consent line. Optional split brand panel.",
+    "Responsive",
+    "Desktop: centered card, optional brand panel beside it. Mobile: full-width, single stacked column.",
+    "States",
+    "default, submitting, field errors (inline validation), server error (Banner), success → verify-email / redirect.",
+    "Accessibility",
+    "One <form> with labelled fields; errors linked via aria-describedby and announced. Logical tab order; visible focus; password show/hide.",
+    "Rules",
+    "Validate fields inline\nState password rules up front\nOffer a path to Sign In\nState consent clearly",
+    "Hide requirements until submit\nAuto-submit the form\nBury validation errors\nAsk for more than you need"
+  ],
+  "pageContext": null
+}

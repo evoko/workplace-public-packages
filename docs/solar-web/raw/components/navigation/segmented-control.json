@@ -1,0 +1,792 @@
+{
+  "page": "↳ 🟢 Segmented Control",
+  "pageId": "2163:3704",
+  "componentSets": [
+    {
+      "name": "Segmented Control Item",
+      "id": "2488:12014",
+      "description": "Single segment inside Segmented Control. 4 variants: selected (false/true) × state (default, hover). Selection is persistent — a click commits, not previews. Optional leading/trailing icons via boolean instance-swap. Only default and hover states are defined here; pressed/focus/disabled are handled by the parent assembly treating the segment as a radio.",
+      "docLinks": [],
+      "variantCount": 8,
+      "props": {
+        "show icon-leading#2573:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show icon-trailing#2573:3": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "selected": {
+          "type": "VARIANT",
+          "default": "true",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover"
+          ]
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        }
+      },
+      "defaultVariant": "selected=true, state=default, size=md",
+      "defaultVariantNodeCount": 5,
+      "defaultVariantTree": {
+        "name": "selected=true, state=default, size=md",
+        "type": "COMPONENT",
+        "size": [
+          108,
+          32
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            0,
+            12,
+            0,
+            12
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "HUG/FIXED"
+        },
+        "fills": [
+          "{Color:surface/overlay}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 6,
+        "effectStyle": "shadow/control",
+        "vars": {
+          "itemSpacing": "Spatial:inset/xs",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Icon/None",
+            "type": "INSTANCE",
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs",
+              "height": "Spatial:icon/sm"
+            },
+            "propRefs": {
+              "visible": "show icon-leading#2573:0"
+            }
+          },
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "Label",
+            "textStyle": "label/md",
+            "size": [
+              36,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          },
+          {
+            "name": "Icon/None",
+            "type": "INSTANCE",
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs",
+              "height": "Spatial:icon/sm"
+            },
+            "propRefs": {
+              "visible": "show icon-trailing#2573:3"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "selected=true, state=default, size=md",
+          "size": [
+            108,
+            32
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "selected=true, state=hover, size=md",
+          "size": [
+            108,
+            32
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=false, state=default, size=md",
+          "size": [
+            108,
+            32
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "selected=false, state=hover, size=md",
+          "size": [
+            108,
+            32
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=true, state=default, size=sm",
+          "size": [
+            87,
+            24
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=true, state=hover, size=sm",
+          "size": [
+            87,
+            24
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=false, state=default, size=sm",
+          "size": [
+            87,
+            24
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "selected=false, state=hover, size=sm",
+          "size": [
+            87,
+            24
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Segmented Control",
+      "id": "6170:20250",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "show helper#7324:3": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "show mandatory#7324:6": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "label#7324:9": {
+          "type": "TEXT",
+          "default": "Label"
+        },
+        "helper#7324:12": {
+          "type": "TEXT",
+          "default": "Helper text"
+        },
+        "Track#9210:9": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        }
+      },
+      "defaultVariant": "size=md",
+      "defaultVariantNodeCount": 41,
+      "defaultVariantTree": {
+        "name": "size=md",
+        "type": "COMPONENT",
+        "size": [
+          368,
+          40
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "FRAME",
+            "hidden": true,
+            "size": [
+              48,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "hidden": true,
+                "text": "Label",
+                "textStyle": "label/md",
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "label#7324:9"
+                }
+              },
+              {
+                "name": "*",
+                "type": "TEXT",
+                "text": "*",
+                "textStyle": "label/md",
+                "size": [
+                  8,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "show mandatory#7324:6"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Track",
+            "type": "SLOT",
+            "size": [
+              368,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                4,
+                4,
+                4,
+                4
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "radius": 8,
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "paddingLeft": "Spatial:inset/2xs",
+              "paddingTop": "Spatial:inset/2xs",
+              "paddingRight": "Spatial:inset/2xs",
+              "paddingBottom": "Spatial:inset/2xs",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            },
+            "propRefs": {
+              "slotContentId": "Track#9210:9"
+            },
+            "children": [
+              {
+                "name": "Segmented Control Item",
+                "type": "INSTANCE",
+                "main": "Segmented Control Item",
+                "variant": {
+                  "selected": "true",
+                  "state": "default",
+                  "size": "md"
+                },
+                "size": [
+                  60,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/overlay}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Segmented Control Item",
+                "type": "INSTANCE",
+                "main": "Segmented Control Item",
+                "variant": {
+                  "selected": "false",
+                  "state": "default",
+                  "size": "md"
+                },
+                "size": [
+                  60,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Segmented Control Item",
+                "type": "INSTANCE",
+                "main": "Segmented Control Item",
+                "variant": {
+                  "selected": "false",
+                  "state": "default",
+                  "size": "md"
+                },
+                "size": [
+                  60,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Segmented Control Item",
+                "type": "INSTANCE",
+                "main": "Segmented Control Item",
+                "variant": {
+                  "selected": "false",
+                  "state": "default",
+                  "size": "md"
+                },
+                "size": [
+                  60,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Segmented Control Item",
+                "type": "INSTANCE",
+                "main": "Segmented Control Item",
+                "variant": {
+                  "selected": "false",
+                  "state": "default",
+                  "size": "md"
+                },
+                "size": [
+                  60,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Segmented Control Item",
+                "type": "INSTANCE",
+                "main": "Segmented Control Item",
+                "variant": {
+                  "selected": "false",
+                  "state": "default",
+                  "size": "md"
+                },
+                "size": [
+                  60,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helper text",
+            "type": "TEXT",
+            "hidden": true,
+            "text": "Helper text",
+            "textStyle": "helper/md",
+            "size": [
+              71,
+              10
+            ],
+            "sizing": "FIXED/FIXED",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/helper/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/helper/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "visible": "show helper#7324:3",
+              "characters": "helper#7324:12"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=md",
+          "size": [
+            368,
+            40
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}",
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Helper text",
+            "Icon/None",
+            "Label"
+          ]
+        },
+        {
+          "variant": "size=sm",
+          "size": [
+            290,
+            32
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}",
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Segmented Control",
+    "When to use",
+    "Use Segmented Control for 2–5 mutually exclusive views that share real-estate and benefit from being visible at once.\n\nFor 6+ options or peer navigation that shares URL-space, use Tabs.\n\nFor pure on/off, use Toggle.\n\nFor multi-select filtering, use Chip group.",
+    "Labels & Icons",
+    "Labels: 1–2 words, title case. Parallel grammar across segments (\"List / Grid\", not \"List / Grid view\"). Icons optional, leading only for simple cases — leading + trailing on the same segment is overloaded. Keep segment widths equal by default.",
+    "Rules",
+    "Do\n\n• Keep options to 2–5 — more, use Tabs\n• Use parallel, scannable labels\n• Commit on click, don't require a confirm\n• Make the selected segment unambiguous at a glance",
+    "Don't\n\n• Don't use for multi-select — switch to Chip group\n• Don't stack vertically — Segmented Control is inline-only\n• Don't overload with leading + trailing icons\n• Don't use for on/off — that's Toggle"
+  ],
+  "pageContext": null
+}

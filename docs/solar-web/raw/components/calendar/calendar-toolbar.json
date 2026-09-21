@@ -1,0 +1,365 @@
+{
+  "page": "↳ 🟢 Calendar Toolbar",
+  "pageId": "6622:12",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Calendar Toolbar",
+      "id": "6653:861",
+      "description": "Top toolbar for Calendar views. Left: prev/next IconButtons (ghost) + Today button (secondary) + current date-range title. Right: Segmented Control for switching between Day / Week / Month / Agenda + primary Button for creating a new event.",
+      "props": {
+        "range#6654:0": {
+          "type": "TEXT",
+          "default": "October 5 – 11, 2026"
+        }
+      },
+      "nodeCount": 76,
+      "tree": {
+        "name": "Calendar Toolbar",
+        "type": "COMPONENT",
+        "size": [
+          1280,
+          56
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 16,
+          "pad": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "align": "SPACE_BETWEEN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "vars": {
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/sm",
+          "strokeBottomWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Left",
+            "type": "FRAME",
+            "size": [
+              320,
+              32
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/FIXED"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Nav",
+                "type": "FRAME",
+                "size": [
+                  84,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Prev",
+                    "type": "INSTANCE",
+                    "main": "Icon Button",
+                    "variant": {
+                      "size": "md",
+                      "shape": "square",
+                      "prio": "tertiary",
+                      "state": "default"
+                    },
+                    "size": [
+                      40,
+                      40
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/tertiary/bg/default}"
+                    ],
+                    "radius": 6,
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Next",
+                    "type": "INSTANCE",
+                    "main": "Icon Button",
+                    "variant": {
+                      "size": "md",
+                      "shape": "square",
+                      "prio": "tertiary",
+                      "state": "default"
+                    },
+                    "size": [
+                      40,
+                      40
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/tertiary/bg/default}"
+                    ],
+                    "radius": 6,
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Today Button",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "sm",
+                  "prio": "secondary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  64,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Range",
+                "type": "TEXT",
+                "text": "October 5 – 11, 2026",
+                "textStyle": "title/xs",
+                "size": [
+                  148,
+                  12
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/xs",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/xs",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "range#6654:0"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Right",
+            "type": "FRAME",
+            "size": [
+              407,
+              32
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "View Switcher",
+                "type": "INSTANCE",
+                "main": "Segmented Control",
+                "variant": {
+                  "size": "sm"
+                },
+                "size": [
+                  295,
+                  32
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                }
+              },
+              {
+                "name": "New Event",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "sm",
+                  "prio": "primary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  100,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Calendar Toolbar",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

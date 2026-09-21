@@ -1,0 +1,412 @@
+{
+  "page": "↳ 🟢 Device Card",
+  "pageId": "10395:4",
+  "componentSets": [
+    {
+      "name": "Device Card",
+      "id": "10402:922",
+      "description": "Device row card: icon tile, name/details, status Tag; batch type adds firmware Dropdown strip; loading swaps in skeleton. state/type variants + hasButton. Migrated from Chatter Config 2026-09-01.",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "hasButton#10402:0": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "loading"
+          ]
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "single",
+          "options": [
+            "single",
+            "batch"
+          ]
+        }
+      },
+      "defaultVariant": "state=default, type=single",
+      "defaultVariantNodeCount": 21,
+      "defaultVariantTree": {
+        "name": "state=default, type=single",
+        "type": "COMPONENT",
+        "size": [
+          560,
+          68
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 16,
+          "pad": [
+            8,
+            16,
+            8,
+            8
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "vars": {
+          "itemSpacing": "Spatial:stack/md",
+          "paddingLeft": "Spatial:inset/xs",
+          "paddingTop": "Spatial:inset/xs",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/xs",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Icon",
+            "type": "FRAME",
+            "size": [
+              52,
+              52
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "radius": 6,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Icon/Device",
+                "type": "INSTANCE",
+                "main": "Icon/Device",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "sizing": "FIXED/FIXED"
+              }
+            ]
+          },
+          {
+            "name": "Content",
+            "type": "FRAME",
+            "size": [
+              382,
+              28
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Name",
+                "type": "TEXT",
+                "text": "Cambridge Qt X",
+                "textStyle": "body/md/medium",
+                "size": [
+                  382,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "Sound masking · PL5432109 · Auditorium 100",
+                "textStyle": "body/md/regular",
+                "size": [
+                  382,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Tag",
+            "type": "INSTANCE",
+            "main": "Tag",
+            "variant": {
+              "status": "success",
+              "type": "status",
+              "invert": "false"
+            },
+            "size": [
+              70,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                12,
+                0,
+                8
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/FIXED"
+            },
+            "fills": [
+              "{Color:surface/feedback/success/subtle}"
+            ],
+            "strokes": [
+              "{Color:border/feedback/success/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Button",
+            "type": "INSTANCE",
+            "hidden": true,
+            "main": "Button",
+            "variant": {
+              "size": "sm",
+              "prio": "secondary",
+              "state": "default",
+              "danger": "false"
+            },
+            "size": [
+              92,
+              32
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                8,
+                0,
+                8
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/FIXED"
+            },
+            "strokes": [
+              "{Color:action/secondary/border/default}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xs",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "propRefs": {
+              "visible": "hasButton#10402:0"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default, type=single",
+          "size": [
+            560,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Button",
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "state=loading, type=single",
+          "size": [
+            560,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=default, type=batch",
+          "size": [
+            560,
+            120
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "*",
+            "Helper text",
+            "Icon/None",
+            "Label"
+          ]
+        },
+        {
+          "variant": "state=loading, type=batch",
+          "size": [
+            560,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": []
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Device Card",
+    "Description",
+    "Row card for a device or device batch: icon tile, name and details, status tag. The batch type adds a firmware dropdown strip; loading states swap details for a skeleton.",
+    "Anatomy",
+    "surface/base card with radius/container and border/subtle. Icon tile (surface/background, SOLAR Icons Device/Progress glyph), name body/md/medium + details body/md/regular, status Tag, hidden ‘Try again’ Button (hasButton), and for type=batch a surface/background strip with a md Dropdown.",
+    "Variants & props",
+    "state (2)  default · loading — loading shows the Progress glyph and a skeleton line\ntype (2)   single · batch — batch groups devices and adds the firmware strip\nhasButton (bool)  reveals the Try again action",
+    "Usage",
+    "Use the status Tag for device health, not free text.\nShow hasButton only on failure states.\nKeep detail lines to model · serial · location.",
+    "Rules",
+    "DO   Use Tag statuses for health states\nDO   Use loading while a device is being polled\nDO   Keep one device family per batch card",
+    "DON’T   Mix single and batch layouts in one card\nDON’T   Hardcode status colors on the card\nDON’T   Use for non-device entities"
+  ],
+  "pageContext": null
+}

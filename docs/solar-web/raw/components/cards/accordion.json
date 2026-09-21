@@ -1,0 +1,227 @@
+{
+  "page": "↳ 🟢 Accordion",
+  "pageId": "2163:3671",
+  "componentSets": [
+    {
+      "name": "Accordion",
+      "id": "2733:1322",
+      "description": "Accordion item — a single collapsible section used within an accordion group. Supports 3 sizes (lg/md/sm), 5 states (default/hover/focus/disabled/skeleton), 2 chevron alignments (start/end), flush mode, and expanded/collapsed states. Based on IBM Carbon v11 Accordion, adapted for SOLAR design system.",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "content#2777:12": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "disabled"
+          ]
+        },
+        "expanded": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "state=default, expanded=false",
+      "defaultVariantNodeCount": 3,
+      "defaultVariantTree": {
+        "name": "state=default, expanded=false",
+        "type": "COMPONENT",
+        "size": [
+          400,
+          48
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "itemSpacing": "Spatial:inset/xs",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/md",
+          "strokeTopWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "title",
+            "type": "TEXT",
+            "text": "Label",
+            "textStyle": "body/md/medium",
+            "size": [
+              344,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          },
+          {
+            "name": "Icon/ChevronDown",
+            "type": "INSTANCE",
+            "main": "Icon/ChevronDown",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default, expanded=false",
+          "size": [
+            400,
+            48
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover, expanded=false",
+          "size": [
+            400,
+            48
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=disabled, expanded=false",
+          "size": [
+            400,
+            48
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=default, expanded=true",
+          "size": [
+            400,
+            114
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=hover, expanded=true",
+          "size": [
+            400,
+            114
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=disabled, expanded=true",
+          "size": [
+            400,
+            114
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Accordion",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

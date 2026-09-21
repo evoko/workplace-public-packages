@@ -1,0 +1,1500 @@
+{
+  "page": "↳ 🟢 Bar Chart",
+  "pageId": "5113:4",
+  "componentSets": [
+    {
+      "name": "Bar",
+      "id": "7212:71",
+      "description": "Building block for charts (Bar Chart, future Column Chart). One rectangle bound to a SOLAR data viz token. Use the `color` variant to pick from category / scale / delta / feedback palettes.",
+      "docLinks": [],
+      "variantCount": 47,
+      "props": {
+        "color": {
+          "type": "VARIANT",
+          "default": "category-01-strong",
+          "options": [
+            "category-01-strong",
+            "category-01-subtle",
+            "category-02-strong",
+            "category-02-subtle",
+            "category-03-strong",
+            "category-03-subtle",
+            "category-04-strong",
+            "category-04-subtle",
+            "category-05-strong",
+            "category-05-subtle",
+            "category-06-strong",
+            "category-06-subtle",
+            "category-07-strong",
+            "category-07-subtle",
+            "category-08-strong",
+            "category-08-subtle",
+            "scale-100",
+            "scale-200",
+            "scale-300",
+            "scale-400",
+            "scale-500",
+            "scale-600",
+            "scale-700",
+            "scale-800",
+            "scale-900",
+            "delta-positive-100",
+            "delta-positive-300",
+            "delta-positive-500",
+            "delta-negative-100",
+            "delta-negative-300",
+            "delta-negative-500",
+            "delta-neutral",
+            "feedback-success-subtle",
+            "feedback-success-medium",
+            "feedback-success-strong",
+            "feedback-warning-subtle",
+            "feedback-warning-medium",
+            "feedback-warning-strong",
+            "feedback-danger-subtle",
+            "feedback-danger-medium",
+            "feedback-danger-strong",
+            "feedback-info-subtle",
+            "feedback-info-medium",
+            "feedback-info-strong",
+            "feedback-neutral-subtle",
+            "feedback-neutral-medium",
+            "feedback-neutral-strong"
+          ]
+        }
+      },
+      "defaultVariant": "color=category-01-strong",
+      "defaultVariantNodeCount": 0,
+      "defaultVariantTree": {
+        "name": "color=category-01-strong",
+        "type": "COMPONENT",
+        "size": [
+          32,
+          80
+        ],
+        "fills": [
+          "{Color:data/category/01/strong}"
+        ],
+        "vars": {
+          "topLeftRadius": "Spatial:radius/none",
+          "topRightRadius": "Spatial:radius/none",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": []
+      },
+      "variants": [
+        {
+          "variant": "color=category-01-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/01/strong}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "color=category-01-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/01/subtle}"
+          ]
+        },
+        {
+          "variant": "color=category-02-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/02/strong}"
+          ]
+        },
+        {
+          "variant": "color=category-02-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/02/subtle}"
+          ]
+        },
+        {
+          "variant": "color=category-03-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/03/strong}"
+          ]
+        },
+        {
+          "variant": "color=category-03-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/03/subtle}"
+          ]
+        },
+        {
+          "variant": "color=category-04-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/04/strong}"
+          ]
+        },
+        {
+          "variant": "color=category-04-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/04/subtle}"
+          ]
+        },
+        {
+          "variant": "color=category-05-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/05/strong}"
+          ]
+        },
+        {
+          "variant": "color=category-05-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/05/subtle}"
+          ]
+        },
+        {
+          "variant": "color=category-06-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/06/strong}"
+          ]
+        },
+        {
+          "variant": "color=category-06-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/06/subtle}"
+          ]
+        },
+        {
+          "variant": "color=category-07-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/07/strong}"
+          ]
+        },
+        {
+          "variant": "color=category-07-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/07/subtle}"
+          ]
+        },
+        {
+          "variant": "color=category-08-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/08/strong}"
+          ]
+        },
+        {
+          "variant": "color=category-08-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/category/08/subtle}"
+          ]
+        },
+        {
+          "variant": "color=scale-100",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/scale/100}"
+          ]
+        },
+        {
+          "variant": "color=scale-200",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/scale/200}"
+          ]
+        },
+        {
+          "variant": "color=scale-300",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/scale/300}"
+          ]
+        },
+        {
+          "variant": "color=scale-400",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/scale/400}"
+          ]
+        },
+        {
+          "variant": "color=scale-500",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/scale/500}"
+          ]
+        },
+        {
+          "variant": "color=scale-600",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/scale/600}"
+          ]
+        },
+        {
+          "variant": "color=scale-700",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/scale/700}"
+          ]
+        },
+        {
+          "variant": "color=scale-800",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/scale/800}"
+          ]
+        },
+        {
+          "variant": "color=scale-900",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/scale/900}"
+          ]
+        },
+        {
+          "variant": "color=delta-positive-100",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/delta/positive-100}"
+          ]
+        },
+        {
+          "variant": "color=delta-positive-300",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/delta/positive-300}"
+          ]
+        },
+        {
+          "variant": "color=delta-positive-500",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/delta/positive-500}"
+          ]
+        },
+        {
+          "variant": "color=delta-negative-100",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/delta/negative-100}"
+          ]
+        },
+        {
+          "variant": "color=delta-negative-300",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/delta/negative-300}"
+          ]
+        },
+        {
+          "variant": "color=delta-negative-500",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/delta/negative-500}"
+          ]
+        },
+        {
+          "variant": "color=delta-neutral",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:data/delta/neutral}"
+          ]
+        },
+        {
+          "variant": "color=feedback-success-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/subtle}"
+          ]
+        },
+        {
+          "variant": "color=feedback-success-medium",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/medium}"
+          ]
+        },
+        {
+          "variant": "color=feedback-success-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/strong}"
+          ]
+        },
+        {
+          "variant": "color=feedback-warning-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/subtle}"
+          ]
+        },
+        {
+          "variant": "color=feedback-warning-medium",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/medium}"
+          ]
+        },
+        {
+          "variant": "color=feedback-warning-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/strong}"
+          ]
+        },
+        {
+          "variant": "color=feedback-danger-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/subtle}"
+          ]
+        },
+        {
+          "variant": "color=feedback-danger-medium",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/medium}"
+          ]
+        },
+        {
+          "variant": "color=feedback-danger-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/strong}"
+          ]
+        },
+        {
+          "variant": "color=feedback-info-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/subtle}"
+          ]
+        },
+        {
+          "variant": "color=feedback-info-medium",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/medium}"
+          ]
+        },
+        {
+          "variant": "color=feedback-info-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/strong}"
+          ]
+        },
+        {
+          "variant": "color=feedback-neutral-subtle",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/subtle}"
+          ]
+        },
+        {
+          "variant": "color=feedback-neutral-medium",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/medium}"
+          ]
+        },
+        {
+          "variant": "color=feedback-neutral-strong",
+          "size": [
+            32,
+            80
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/strong}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bar Chart",
+      "id": "7219:254",
+      "description": "Compositional bar chart. Bars are instances of the Bar primitive bound to SOLAR data viz tokens.\n\nVariants:\n• type: simple (one series) | grouped (two series, side-by-side)\n• orientation: vertical | horizontal\n• breakpoint: desktop (600w) | mobile (343w)\n\nFor axis lines/gridlines, see Chart Axis (pending). For interactive tooltips, see Chart Tooltip (pending).\n\nState coverage for 1.0: loading / empty / error variants pending (Class I).",
+      "docLinks": [],
+      "variantCount": 12,
+      "props": {
+        "type": {
+          "type": "VARIANT",
+          "default": "simple",
+          "options": [
+            "simple",
+            "grouped",
+            "stacked"
+          ]
+        },
+        "orientation": {
+          "type": "VARIANT",
+          "default": "vertical",
+          "options": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "type=simple, orientation=vertical, breakpoint=desktop",
+      "defaultVariantNodeCount": 27,
+      "defaultVariantTree": {
+        "name": "type=simple, orientation=vertical, breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          600,
+          320
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 12,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "children": [
+          {
+            "name": "Plot",
+            "type": "FRAME",
+            "size": [
+              600,
+              320
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FILL"
+            },
+            "children": [
+              {
+                "name": "Bars",
+                "type": "FRAME",
+                "size": [
+                  600,
+                  303
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MAX",
+                  "sizing": "FILL/FILL"
+                },
+                "children": [
+                  {
+                    "name": "Col-0",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      303
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MAX/CENTER",
+                      "sizing": "FILL/FILL"
+                    },
+                    "children": [
+                      {
+                        "name": "color=category-06-strong",
+                        "type": "INSTANCE",
+                        "main": "Bar",
+                        "variant": {
+                          "color": "category-06-strong"
+                        },
+                        "size": [
+                          40,
+                          146
+                        ],
+                        "sizing": "FIXED/FIXED",
+                        "fills": [
+                          "{Color:data/category/06/strong}"
+                        ],
+                        "vars": {
+                          "topLeftRadius": "Spatial:radius/none",
+                          "topRightRadius": "Spatial:radius/none",
+                          "bottomLeftRadius": "Spatial:radius/none",
+                          "bottomRightRadius": "Spatial:radius/none"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Col-1",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      303
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MAX/CENTER",
+                      "sizing": "FILL/FILL"
+                    },
+                    "children": [
+                      {
+                        "name": "color=category-06-strong",
+                        "type": "INSTANCE",
+                        "main": "Bar",
+                        "variant": {
+                          "color": "category-06-strong"
+                        },
+                        "size": [
+                          40,
+                          190
+                        ],
+                        "sizing": "FIXED/FIXED",
+                        "fills": [
+                          "{Color:data/category/06/strong}"
+                        ],
+                        "vars": {
+                          "topLeftRadius": "Spatial:radius/none",
+                          "topRightRadius": "Spatial:radius/none",
+                          "bottomLeftRadius": "Spatial:radius/none",
+                          "bottomRightRadius": "Spatial:radius/none"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Col-2",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      303
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MAX/CENTER",
+                      "sizing": "FILL/FILL"
+                    },
+                    "children": [
+                      {
+                        "name": "color=category-06-strong",
+                        "type": "INSTANCE",
+                        "main": "Bar",
+                        "variant": {
+                          "color": "category-06-strong"
+                        },
+                        "size": [
+                          40,
+                          110
+                        ],
+                        "sizing": "FIXED/FIXED",
+                        "fills": [
+                          "{Color:data/category/06/strong}"
+                        ],
+                        "vars": {
+                          "topLeftRadius": "Spatial:radius/none",
+                          "topRightRadius": "Spatial:radius/none",
+                          "bottomLeftRadius": "Spatial:radius/none",
+                          "bottomRightRadius": "Spatial:radius/none"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Col-3",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      303
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MAX/CENTER",
+                      "sizing": "FILL/FILL"
+                    },
+                    "children": [
+                      {
+                        "name": "color=category-06-strong",
+                        "type": "INSTANCE",
+                        "main": "Bar",
+                        "variant": {
+                          "color": "category-06-strong"
+                        },
+                        "size": [
+                          40,
+                          220
+                        ],
+                        "sizing": "FIXED/FIXED",
+                        "fills": [
+                          "{Color:data/category/06/strong}"
+                        ],
+                        "vars": {
+                          "topLeftRadius": "Spatial:radius/none",
+                          "topRightRadius": "Spatial:radius/none",
+                          "bottomLeftRadius": "Spatial:radius/none",
+                          "bottomRightRadius": "Spatial:radius/none"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Col-4",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      303
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MAX/CENTER",
+                      "sizing": "FILL/FILL"
+                    },
+                    "children": [
+                      {
+                        "name": "color=category-06-strong",
+                        "type": "INSTANCE",
+                        "main": "Bar",
+                        "variant": {
+                          "color": "category-06-strong"
+                        },
+                        "size": [
+                          40,
+                          163
+                        ],
+                        "sizing": "FIXED/FIXED",
+                        "fills": [
+                          "{Color:data/category/06/strong}"
+                        ],
+                        "vars": {
+                          "topLeftRadius": "Spatial:radius/none",
+                          "topRightRadius": "Spatial:radius/none",
+                          "bottomLeftRadius": "Spatial:radius/none",
+                          "bottomRightRadius": "Spatial:radius/none"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Col-5",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      303
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MAX/CENTER",
+                      "sizing": "FILL/FILL"
+                    },
+                    "children": [
+                      {
+                        "name": "color=category-06-strong",
+                        "type": "INSTANCE",
+                        "main": "Bar",
+                        "variant": {
+                          "color": "category-06-strong"
+                        },
+                        "size": [
+                          40,
+                          134
+                        ],
+                        "sizing": "FIXED/FIXED",
+                        "fills": [
+                          "{Color:data/category/06/strong}"
+                        ],
+                        "vars": {
+                          "topLeftRadius": "Spatial:radius/none",
+                          "topRightRadius": "Spatial:radius/none",
+                          "bottomLeftRadius": "Spatial:radius/none",
+                          "bottomRightRadius": "Spatial:radius/none"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Labels",
+                "type": "FRAME",
+                "size": [
+                  600,
+                  9
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "children": [
+                  {
+                    "name": "LabelCell",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      9
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "children": [
+                      {
+                        "name": "Jan",
+                        "type": "TEXT",
+                        "text": "Jan",
+                        "textStyle": "helper/sm",
+                        "size": [
+                          20,
+                          9
+                        ],
+                        "sizing": "HUG/HUG",
+                        "fills": [
+                          "{Color:text/secondary}"
+                        ],
+                        "vars": {
+                          "lineHeight": "Type:line-height/helper/sm",
+                          "fontFamily": "Primitives:type/font-family/inter",
+                          "fontSize": "Type:size/helper/sm",
+                          "fontStyle": "Primitives:type/font-weight/400"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "LabelCell",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      9
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "children": [
+                      {
+                        "name": "Feb",
+                        "type": "TEXT",
+                        "text": "Feb",
+                        "textStyle": "helper/sm",
+                        "size": [
+                          21,
+                          9
+                        ],
+                        "sizing": "HUG/HUG",
+                        "fills": [
+                          "{Color:text/secondary}"
+                        ],
+                        "vars": {
+                          "lineHeight": "Type:line-height/helper/sm",
+                          "fontFamily": "Primitives:type/font-family/inter",
+                          "fontSize": "Type:size/helper/sm",
+                          "fontStyle": "Primitives:type/font-weight/400"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "LabelCell",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      9
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "children": [
+                      {
+                        "name": "Mar",
+                        "type": "TEXT",
+                        "text": "Mar",
+                        "textStyle": "helper/sm",
+                        "size": [
+                          22,
+                          9
+                        ],
+                        "sizing": "HUG/HUG",
+                        "fills": [
+                          "{Color:text/secondary}"
+                        ],
+                        "vars": {
+                          "lineHeight": "Type:line-height/helper/sm",
+                          "fontFamily": "Primitives:type/font-family/inter",
+                          "fontSize": "Type:size/helper/sm",
+                          "fontStyle": "Primitives:type/font-weight/400"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "LabelCell",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      9
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "children": [
+                      {
+                        "name": "Apr",
+                        "type": "TEXT",
+                        "text": "Apr",
+                        "textStyle": "helper/sm",
+                        "size": [
+                          20,
+                          9
+                        ],
+                        "sizing": "HUG/HUG",
+                        "fills": [
+                          "{Color:text/secondary}"
+                        ],
+                        "vars": {
+                          "lineHeight": "Type:line-height/helper/sm",
+                          "fontFamily": "Primitives:type/font-family/inter",
+                          "fontSize": "Type:size/helper/sm",
+                          "fontStyle": "Primitives:type/font-weight/400"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "LabelCell",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      9
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "children": [
+                      {
+                        "name": "May",
+                        "type": "TEXT",
+                        "text": "May",
+                        "textStyle": "helper/sm",
+                        "size": [
+                          24,
+                          9
+                        ],
+                        "sizing": "HUG/HUG",
+                        "fills": [
+                          "{Color:text/secondary}"
+                        ],
+                        "vars": {
+                          "lineHeight": "Type:line-height/helper/sm",
+                          "fontFamily": "Primitives:type/font-family/inter",
+                          "fontSize": "Type:size/helper/sm",
+                          "fontStyle": "Primitives:type/font-weight/400"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "LabelCell",
+                    "type": "FRAME",
+                    "size": [
+                      87,
+                      9
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "children": [
+                      {
+                        "name": "Jun",
+                        "type": "TEXT",
+                        "text": "Jun",
+                        "textStyle": "helper/sm",
+                        "size": [
+                          21,
+                          9
+                        ],
+                        "sizing": "HUG/HUG",
+                        "fills": [
+                          "{Color:text/secondary}"
+                        ],
+                        "vars": {
+                          "lineHeight": "Type:line-height/helper/sm",
+                          "fontFamily": "Primitives:type/font-family/inter",
+                          "fontSize": "Type:size/helper/sm",
+                          "fontStyle": "Primitives:type/font-weight/400"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=simple, orientation=vertical, breakpoint=desktop",
+          "size": [
+            600,
+            320
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=simple, orientation=vertical, breakpoint=mobile",
+          "size": [
+            343,
+            240
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "type=simple, orientation=horizontal, breakpoint=desktop",
+          "size": [
+            600,
+            320
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "type=simple, orientation=horizontal, breakpoint=mobile",
+          "size": [
+            343,
+            240
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "type=grouped, orientation=vertical, breakpoint=desktop",
+          "size": [
+            600,
+            320
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "type=grouped, orientation=vertical, breakpoint=mobile",
+          "size": [
+            343,
+            240
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "type=grouped, orientation=horizontal, breakpoint=desktop",
+          "size": [
+            600,
+            320
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "type=grouped, orientation=horizontal, breakpoint=mobile",
+          "size": [
+            343,
+            240
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "type=stacked, orientation=vertical, breakpoint=desktop",
+          "size": [
+            600,
+            320
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "type=stacked, orientation=vertical, breakpoint=mobile",
+          "size": [
+            343,
+            240
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "type=stacked, orientation=horizontal, breakpoint=desktop",
+          "size": [
+            600,
+            320
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "type=stacked, orientation=horizontal, breakpoint=mobile",
+          "size": [
+            343,
+            240
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bar Stack",
+      "id": "7235:26",
+      "description": "Composite bar of N stacked Bar primitive instances inside a clipping frame with radius/control rounded corners. Use when a single column/row represents a categorical breakdown (e.g., status mix: danger / warning / neutral).\n\nVariants:\n  segments = 2 | 3 | 4\n  orientation = vertical | horizontal\n\nUsage: instance the desired segments+orientation variant, then per-instance swap each segment's Bar variant to recolor (e.g., to data/category for qualitative breakdown, data/scale for sequential, data/delta for change). Override each segment's size on the primary axis per your data proportions.\n\nDefaults use feedback palette (danger/warning/neutral) matching the legacy Bar Chart pattern.",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "segments": {
+          "type": "VARIANT",
+          "default": "2",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ]
+        },
+        "orientation": {
+          "type": "VARIANT",
+          "default": "vertical",
+          "options": [
+            "vertical",
+            "horizontal"
+          ]
+        }
+      },
+      "defaultVariant": "segments=2, orientation=vertical",
+      "defaultVariantNodeCount": 2,
+      "defaultVariantTree": {
+        "name": "segments=2, orientation=vertical",
+        "type": "COMPONENT",
+        "size": [
+          32,
+          80
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 2,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MAX/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "radius": 6,
+        "vars": {
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "color=feedback-warning-medium",
+            "type": "INSTANCE",
+            "main": "Bar",
+            "variant": {
+              "color": "feedback-warning-medium"
+            },
+            "size": [
+              32,
+              32
+            ],
+            "sizing": "FILL/FIXED",
+            "fills": [
+              "{Color:surface/feedback/warning/medium}"
+            ],
+            "vars": {
+              "topLeftRadius": "Spatial:radius/none",
+              "topRightRadius": "Spatial:radius/none",
+              "bottomLeftRadius": "Spatial:radius/none",
+              "bottomRightRadius": "Spatial:radius/none"
+            }
+          },
+          {
+            "name": "color=feedback-neutral-subtle",
+            "type": "INSTANCE",
+            "main": "Bar",
+            "variant": {
+              "color": "feedback-neutral-subtle"
+            },
+            "size": [
+              32,
+              48
+            ],
+            "sizing": "FILL/FIXED",
+            "fills": [
+              "{Color:surface/feedback/neutral/subtle}"
+            ],
+            "vars": {
+              "topLeftRadius": "Spatial:radius/none",
+              "topRightRadius": "Spatial:radius/none",
+              "bottomLeftRadius": "Spatial:radius/none",
+              "bottomRightRadius": "Spatial:radius/none"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "segments=2, orientation=vertical",
+          "size": [
+            32,
+            80
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "segments=2, orientation=horizontal",
+          "size": [
+            80,
+            32
+          ]
+        },
+        {
+          "variant": "segments=3, orientation=vertical",
+          "size": [
+            32,
+            80
+          ]
+        },
+        {
+          "variant": "segments=3, orientation=horizontal",
+          "size": [
+            80,
+            32
+          ]
+        },
+        {
+          "variant": "segments=4, orientation=vertical",
+          "size": [
+            32,
+            80
+          ]
+        },
+        {
+          "variant": "segments=4, orientation=horizontal",
+          "size": [
+            80,
+            32
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Bar Chart",
+    "Description",
+    "A single data bar for bar & column charts, filled with a data-colour token. Composes into chart patterns — not a progress indicator (use Progress Bar).",
+    "Anatomy",
+    "Token-coloured bar fill · optional value label · shared baseline aligned to the chart axis.",
+    "Data & Colour",
+    "47 data colours: categorical 01–08 (subtle/strong), sequential scale 100–900, delta positive/negative/neutral, feedback tints. Choose by data meaning, not decoration.",
+    "States",
+    "Non-interactive (Class K): no hover / pressed / focus. Emphasis via colour strength — subtle / medium / strong.",
+    "Accessibility",
+    "Colour is never the sole encoding — pair with axis/value labels or a legend. Data-colour tokens meet ≥3:1 vs surface. Expose series + value via aria-label.",
+    "Rules",
+    "Align bars to a shared baseline\nOrder by value or logical sequence\nPair colour with labels or a legend\nUse the scale palette for ordered data",
+    "Rely on colour alone\nUse for progress (use Progress Bar)\nMix categorical + sequential in one series\nStart the value axis anywhere but zero"
+  ],
+  "pageContext": null
+}

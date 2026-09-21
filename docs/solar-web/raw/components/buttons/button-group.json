@@ -1,0 +1,314 @@
+{
+  "page": "↳ 🟢 Button Group",
+  "pageId": "2163:3661",
+  "componentSets": [
+    {
+      "name": "Button Group",
+      "id": "2618:3237",
+      "description": "Container that assembles 2–5 Buttons into a joined row. 2 variants: full (false / true). full=false sizes to content; full=true stretches buttons to fill the container width (equal widths). All children must share the same prio and size — mixing breaks the visual grouping. For multi-action toolbars with dividers use a Toolbar pattern; for segmented exclusive selection use Segmented Control.",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "SecondaryCTA#5888:57": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "Buttons#7532:0": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "TertiaryCTA#10285:22": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "orientation": {
+          "type": "VARIANT",
+          "default": "horizontal",
+          "options": [
+            "horizontal",
+            "vertical"
+          ]
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "regular",
+          "options": [
+            "regular",
+            "full-width"
+          ]
+        }
+      },
+      "defaultVariant": "orientation=horizontal, type=regular",
+      "defaultVariantNodeCount": 36,
+      "defaultVariantTree": {
+        "name": "orientation=horizontal, type=regular",
+        "type": "COMPONENT",
+        "size": [
+          455,
+          64
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FILL/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:inset/xs",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/sm"
+        },
+        "children": [
+          {
+            "name": "Button",
+            "type": "INSTANCE",
+            "hidden": true,
+            "main": "Button",
+            "variant": {
+              "size": "md",
+              "prio": "tertiary",
+              "state": "default",
+              "danger": "false"
+            },
+            "size": [
+              138,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "strokes": [
+              "{Color:action/tertiary/border/default}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "propRefs": {
+              "visible": "TertiaryCTA#10285:22"
+            }
+          },
+          {
+            "name": "Button",
+            "type": "INSTANCE",
+            "main": "Button",
+            "variant": {
+              "size": "md",
+              "prio": "secondary",
+              "state": "default",
+              "danger": "false"
+            },
+            "size": [
+              212,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "fills": [
+              "{Color:action/secondary/bg/default}"
+            ],
+            "strokes": [
+              "{Color:action/secondary/border/default}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "propRefs": {
+              "visible": "SecondaryCTA#5888:57"
+            }
+          },
+          {
+            "name": "Button",
+            "type": "INSTANCE",
+            "main": "Button",
+            "variant": {
+              "size": "md",
+              "prio": "primary",
+              "state": "default",
+              "danger": "false"
+            },
+            "size": [
+              212,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "fills": [
+              "{Color:action/primary/bg/default}"
+            ],
+            "strokes": [
+              "{Color:action/primary/border/default}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "orientation=horizontal, type=regular",
+          "size": [
+            455,
+            64
+          ],
+          "textFills": [
+            "{Color:action/tertiary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Button",
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "orientation=vertical, type=regular",
+          "size": [
+            455,
+            112
+          ],
+          "textFills": [
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/tertiary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "orientation=horizontal, type=full-width",
+          "size": [
+            455,
+            48
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Button Group",
+    "Description",
+    "Joined row of 2–5 related Buttons treated as a single unit. Shared prio and size; shared border treatment. Use for action clusters that belong together (Save / Save as / Discard). For exclusive selection, use Segmented Control. For unrelated actions on a page, keep Buttons standalone with page spacing.",
+    "Variants",
+    "full=false    Fit-to-content. Each button sizes to its own label.\nfull=true     Fill container. All buttons share equal width stretched across the container.",
+    "Composition",
+    "All children must be Buttons from the SOLAR Button set. All children must share the same prio and size — mixing breaks hierarchy and dividers. Max 5 buttons; beyond that switch to a Dropdown / Split Button / Menu pattern.",
+    "Accessibility",
+    "Render as role=\"group\" with an aria-label describing the cluster. Individual buttons keep their own button role. Tab order follows DOM order; do not skip disabled buttons. Divider between buttons is cosmetic — don't rely on it for semantics.",
+    "Rules",
+    "Do\n\n• Group 2–5 related actions only\n• Share the same prio across all buttons\n• Use full=true when the group spans a container edge\n• Wrap in role=\"group\" with aria-label",
+    "Don't\n\n• Don't mix prio (primary + secondary) inside a group\n• Don't use for exclusive selection — use Segmented Control\n• Don't exceed 5 buttons — collapse into a menu\n• Don't use for toolbars with dividers and overflow — use Toolbar"
+  ],
+  "pageContext": null
+}

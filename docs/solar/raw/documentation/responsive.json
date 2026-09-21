@@ -1,0 +1,603 @@
+{
+  "page": "Responsive",
+  "pageId": "763:57247",
+  "section": "documentation",
+  "slug": "responsive",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Layout\nResponsive"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Responsive principles",
+      "subtitle": null,
+      "x": 2020,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Responsive design in SOLAR defines how layout behavior changes across breakpoints. It governs when structure expands, when components reflow, and how density adapts to available space. Responsive is not about resizing — it is about controlled structural transitions driven by breakpoint tokens."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Adapt Structure, Not Just Size"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Content Drives Layout"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Maintain Usability Across Contexts"
+        },
+        {
+          "t": "p",
+          "text": "Responsive design should reorganize content to maintain hierarchy and usability. Stacking, collapsing, and prioritizing content is preferred over simply scaling everything down.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Breakpoints and layout decisions must be driven by content and usability—not device categories. If content becomes cramped or unclear, the layout must adapt.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Touch targets, readable text sizes, and spacing must remain accessible at all viewport sizes. If responsiveness compromises clarity or interaction, the system—not the screen size—must be reconsidered.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Viewport System",
+      "subtitle": null,
+      "x": 4040,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "The viewport system defines the reference screen widths used across SOLAR. These viewport tokens provide a consistent set of layout thresholds that help products adapt across different screen sizes."
+        },
+        {
+          "t": "p",
+          "text": "Viewports do not represent specific devices. Instead, they establish common ranges used to design responsive layouts across Biamp products.\n\nBy defining viewport sizes at the system level, SOLAR ensures that responsive behavior remains predictable and consistent across platforms.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Defined Viewports"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR defines five viewport sizes used across product interfaces:\nxs — 393px\nsm — 768px\nmd — 1024px\nlg — 1440px\nxl — 1920px\n\nEach viewport represents the minimum screen width where layout transitions may occur.",
+          "style": "16/400"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Role in the Design System"
+        },
+        {
+          "t": "p",
+          "text": "Viewport tokens act as structural reference points used by layout systems and component libraries.\n\nThey provide a shared foundation for:\n\nResponsive layout transitions\nGrid and container systems\nAdaptive component behavior\n\nViewport tokens are defined in SOLAR Foundations and consumed by SOLAR Web and domain libraries.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-03-13 at 16.25.51 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Responsive Behavior Rules",
+      "subtitle": null,
+      "x": 6060,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Responsive behavior in SOLAR defines how layout and components adapt across breakpoints. While the grid provides structure, responsive rules govern how navigation, panels, density, and content organization evolve. These behaviors ensure usability and hierarchy remain consistent across contexts."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Principle"
+        },
+        {
+          "t": "p",
+          "text": "Responsive behavior adapts structure and density without redefining visual language or component identity.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Navigation expands progressively with available space.\nSidebars do not change grid structure — they alter available content width.\nLayout evolves from sequential to distributed.\nFilters and toolbars may collapse at smaller sizes and expand at larger ones.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Breakpoint",
+              "Navigation",
+              "Sidebar & Panels",
+              "Content Layout",
+              "Data & Controls"
+            ],
+            [
+              "xs",
+              "Collapsed or overlay navigation",
+              "Overlay or hidden by default",
+              "Stacked (single-column dominant)",
+              "Tables convert to stacked/card formats"
+            ],
+            [
+              "sm → md",
+              "Expandable navigation",
+              "Optional persistent panel",
+              "Two-column layouts emerge",
+              "Condensed tables with wrapping"
+            ],
+            [
+              "lg → xl",
+              "Persistent navigation",
+              "Persistent sidebar / multi-panel layout",
+              "Multi-panel distribution",
+              "Full table layouts"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Responsive\ndomain: Layout > Breakpoints & Adaptive Behavior\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR responsive design specialist. All interfaces must adapt gracefully across defined breakpoints using a mobile-first strategy. Breakpoints are tokenized — never use arbitrary media query values.\n\n[SCOPE]\n- Named breakpoint definitions and tokens\n- Mobile-first progressive enhancement\n- Responsive behavior patterns (reflow, stack, collapse, hide)\n- Fluid vs. snapped behavior\n- Content adaptation strategies per breakpoint\n\n[BREAKPOINTS]\nmobile: 0–599px — single column, stacked layout, collapsed nav\ntablet: 600–1023px — 8-column grid, side-by-side possible, condensed nav\ndesktop: 1024–1439px — full 12-column grid, expanded nav, multi-panel layouts\nwide: 1440px+ — 12-column grid with max-width cap, centered content\n\ntokens:\n  viewport.breakpoint.sm: 600px\n  viewport.breakpoint.md: 1024px\n  viewport.breakpoint.lg: 1440px\nrule: use only named breakpoints — never custom media query values\n\n[MOBILE_FIRST]\nstrategy: base CSS = mobile layout → @media (min-width) adds tablet/desktop enhancements\nrationale: ensures core content and functionality works on the most constrained device first\nrule: every feature must be functional at the mobile breakpoint before adding desktop enhancements\n\n[RESPONSIVE_PATTERNS]\nreflow: multi-column → fewer columns (e.g., 3-col → 2-col → 1-col)\nstack: side-by-side elements → vertical stack on smaller screens\ncollapse: complex UI → simplified version (e.g., data table → card list)\nhide: secondary content hidden on mobile, revealed via expand/toggle\nreveal: progressive disclosure — more detail shown at larger breakpoints\nswitch: component variant swaps (e.g., horizontal tabs → bottom nav on mobile)\n\n[FLUID_BEHAVIOR]\nbetween_breakpoints: layout is fluid (percentage-based or flex) within each breakpoint range\ntypography: type scale modes (Desktop/Mobile) swap at the tablet breakpoint\nspacing: spatial tokens may tighten on mobile breakpoints\nimages: max-width: 100% — never overflow container\ncontent_width: capped at max-width on wide screens to maintain readability\n\n[CONTENT_ADAPTATION]\nnavigation: full horizontal nav (desktop) → hamburger or bottom nav (mobile)\ntables: full table (desktop) → card list or horizontal scroll (mobile)\nforms: multi-column forms (desktop) → single-column stacked (mobile)\ndialogs: centered dialog (desktop) → full-screen sheet (mobile)\nsidebars: persistent sidebar (desktop) → drawer overlay (mobile)\n\n[TESTING]\nbreakpoint_testing: verify layout at every named breakpoint boundary\nbetween_testing: check fluid behavior between breakpoints (not just at snap points)\norientation: test both portrait and landscape on tablet/mobile\ntouch: verify touch targets ≥ 44px on mobile/tablet breakpoints\ncontent: test with realistic content lengths — short and long text, missing images\n\n[AGENT_BEHAVIOR]\n- Always specify which breakpoints a layout recommendation applies to\n- Start recommendations from mobile and build up\n- When proposing a layout, describe its behavior at each breakpoint\n- Flag any component that only works at desktop as incomplete\n- Verify no horizontal scrolling occurs at any breakpoint\n- Check that content priority matches reading order at all sizes\n\n[CONSTRAINTS]\n- never use custom breakpoint values — only named/tokenized breakpoints\n- never design desktop-only — every feature must work at mobile\n- never cause horizontal overflow at any breakpoint\n- never rely on hover for functionality (mobile has no hover)\n- touch targets must meet 44×44px minimum at mobile/tablet breakpoints\n- images and media must be responsive — no fixed pixel widths\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Responsive principles",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Adapt Structure, Not Just Size",
+        "Content Drives Layout",
+        "Maintain Usability Across Contexts",
+        "Responsive design should reorganize content to maintain hierarchy and usability. Stacking, collapsing, and prioritizing content is preferred over simply scaling everything down.",
+        "Breakpoints and layout decisions must be driven by content and usability—not device categories. If content becomes cramped or unclear, the layout must adapt.",
+        "Touch targets, readable text sizes, and spacing must remain accessible at all viewport sizes. If responsiveness compromises clarity or interaction, the system—not the screen size—must be reconsidered.",
+        "Responsive design in SOLAR defines how layout behavior changes across breakpoints. It governs when structure expands, when components reflow, and how density adapts to available space. Responsive is not about resizing — it is about controlled structural transitions driven by breakpoint tokens."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Viewport System",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "The viewport system defines the reference screen widths used across SOLAR. These viewport tokens provide a consistent set of layout thresholds that help products adapt across different screen sizes.",
+        "Viewports do not represent specific devices. Instead, they establish common ranges used to design responsive layouts across Biamp products.\n\nBy defining viewport sizes at the system level, SOLAR ensures that responsive behavior remains predictable and consistent across platforms.",
+        "Defined Viewports",
+        "SOLAR defines five viewport sizes used across product interfaces:\nxs — 393px\nsm — 768px\nmd — 1024px\nlg — 1440px\nxl — 1920px\n\nEach viewport represents the minimum screen width where layout transitions may occur.",
+        "Role in the Design System",
+        "Viewport tokens act as structural reference points used by layout systems and component libraries.\n\nThey provide a shared foundation for:\n\nResponsive layout transitions\nGrid and container systems\nAdaptive component behavior\n\nViewport tokens are defined in SOLAR Foundations and consumed by SOLAR Web and domain libraries."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Responsive Behavior Rules",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Responsive behavior in SOLAR defines how layout and components adapt across breakpoints. While the grid provides structure, responsive rules govern how navigation, panels, density, and content organization evolve. These behaviors ensure usability and hierarchy remain consistent across contexts.",
+        "Principle",
+        "Responsive behavior adapts structure and density without redefining visual language or component identity.",
+        "Navigation expands progressively with available space.\nSidebars do not change grid structure — they alter available content width.\nLayout evolves from sequential to distributed.\nFilters and toolbars may collapse at smaller sizes and expand at larger ones.",
+        "Breakpoint",
+        "Navigation",
+        "Sidebar & Panels",
+        "Content Layout",
+        "Data & Controls",
+        "xs",
+        "Collapsed or overlay navigation",
+        "Overlay or hidden by default",
+        "Stacked (single-column dominant)",
+        "Tables convert to stacked/card formats",
+        "sm → md",
+        "Expandable navigation",
+        "Optional persistent panel",
+        "Two-column layouts emerge",
+        "Condensed tables with wrapping",
+        "lg → xl",
+        "Persistent navigation",
+        "Persistent sidebar / multi-panel layout",
+        "Multi-panel distribution",
+        "Full table layouts"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 88
+}

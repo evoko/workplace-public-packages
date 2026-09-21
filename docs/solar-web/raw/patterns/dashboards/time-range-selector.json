@@ -1,0 +1,880 @@
+{
+  "page": "↳ 🟢 Time Range Selector",
+  "pageId": "5113:14",
+  "componentSets": [
+    {
+      "name": "Time Range Selector",
+      "id": "7266:25548",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "hover",
+            "default"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 6,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          268,
+          40
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            0,
+            12,
+            0,
+            12
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FILL/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 6,
+        "effectStyle": "shadow/control",
+        "vars": {
+          "itemSpacing": "Spatial:inset/sm",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/none",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Icon/Clock",
+            "type": "INSTANCE",
+            "main": "Icon/Clock",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            }
+          },
+          {
+            "name": "Last 7 days",
+            "type": "TEXT",
+            "text": "Last 7 days",
+            "textStyle": "body/md/medium",
+            "size": [
+              73,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          },
+          {
+            "name": "May 11 – May 18",
+            "type": "TEXT",
+            "text": "May 11 – May 18",
+            "textStyle": "body/md/regular",
+            "size": [
+              103,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            }
+          },
+          {
+            "name": "Icon/ChevronDown",
+            "type": "INSTANCE",
+            "main": "Icon/ChevronDown",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            268,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover",
+          "size": [
+            268,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Time Range",
+      "id": "7266:25836",
+      "description": "Base Dialog overlay container. Responsive — adapts to content width. Uses real Button, IconButton, and Divider component instances.",
+      "props": {},
+      "nodeCount": 401,
+      "tree": {
+        "name": "Time Range",
+        "type": "COMPONENT",
+        "size": [
+          824,
+          571
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "fills": [
+          "{Color:surface/dialog}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "Header",
+            "type": "FRAME",
+            "size": [
+              824,
+              56
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                8,
+                8,
+                8,
+                8
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/xs",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "Text",
+                "type": "FRAME",
+                "size": [
+                  808,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "SPACE_BETWEEN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Icon",
+                    "type": "FRAME",
+                    "size": [
+                      36,
+                      36
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/xs"
+                    }
+                  },
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Time Range",
+                    "textStyle": "title/sm",
+                    "size": [
+                      732,
+                      15
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Icon Button",
+                    "type": "INSTANCE",
+                    "main": "Icon Button",
+                    "variant": {
+                      "size": "md",
+                      "shape": "round",
+                      "prio": "tertiary",
+                      "state": "default"
+                    },
+                    "size": [
+                      40,
+                      40
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/tertiary/bg/default}"
+                    ],
+                    "radius": 9999,
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/pill",
+                      "topRightRadius": "Spatial:radius/pill",
+                      "bottomLeftRadius": "Spatial:radius/pill",
+                      "bottomRightRadius": "Spatial:radius/pill"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              824,
+              515
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "children": [
+              {
+                "name": "Tree",
+                "type": "FRAME",
+                "size": [
+                  200,
+                  515
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    12,
+                    8,
+                    12,
+                    8
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/FILL"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none"
+                },
+                "children": [
+                  {
+                    "name": "Tree Item",
+                    "type": "INSTANCE",
+                    "main": "Tree Item",
+                    "variant": {
+                      "selected": "false",
+                      "expanded": "false",
+                      "state": "default"
+                    },
+                    "size": [
+                      184,
+                      32
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        4
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/FIXED"
+                    },
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Tree Item",
+                    "type": "INSTANCE",
+                    "main": "Tree Item",
+                    "variant": {
+                      "selected": "false",
+                      "expanded": "false",
+                      "state": "default"
+                    },
+                    "size": [
+                      184,
+                      32
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        4
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/FIXED"
+                    },
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Tree Item",
+                    "type": "INSTANCE",
+                    "main": "Tree Item",
+                    "variant": {
+                      "selected": "false",
+                      "expanded": "false",
+                      "state": "default"
+                    },
+                    "size": [
+                      184,
+                      32
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        4
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/FIXED"
+                    },
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Tree Item",
+                    "type": "INSTANCE",
+                    "main": "Tree Item",
+                    "variant": {
+                      "selected": "false",
+                      "expanded": "false",
+                      "state": "default"
+                    },
+                    "size": [
+                      184,
+                      32
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        4
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/FIXED"
+                    },
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Tree Item",
+                    "type": "INSTANCE",
+                    "main": "Tree Item",
+                    "variant": {
+                      "selected": "false",
+                      "expanded": "false",
+                      "state": "default"
+                    },
+                    "size": [
+                      184,
+                      32
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        4
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/FIXED"
+                    },
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Tree Item",
+                    "type": "INSTANCE",
+                    "main": "Tree Item",
+                    "variant": {
+                      "selected": "false",
+                      "expanded": "false",
+                      "state": "default"
+                    },
+                    "size": [
+                      184,
+                      32
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        4
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/FIXED"
+                    },
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Tree Item",
+                    "type": "INSTANCE",
+                    "main": "Tree Item",
+                    "variant": {
+                      "selected": "false",
+                      "expanded": "false",
+                      "state": "default"
+                    },
+                    "size": [
+                      184,
+                      32
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        4
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/FIXED"
+                    },
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  },
+                  {
+                    "name": "Tree Item",
+                    "type": "INSTANCE",
+                    "main": "Tree Item",
+                    "variant": {
+                      "selected": "true",
+                      "expanded": "false",
+                      "state": "default"
+                    },
+                    "size": [
+                      184,
+                      32
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        4
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/FIXED"
+                    },
+                    "fills": [
+                      "{Color:surface/active}"
+                    ],
+                    "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs",
+                      "paddingLeft": "Spatial:inset/2xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  624,
+                  515
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Container",
+                    "type": "FRAME",
+                    "size": [
+                      624,
+                      142
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 24,
+                      "pad": [
+                        24,
+                        24,
+                        24,
+                        24
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "Date Picker Open",
+                    "type": "INSTANCE",
+                    "main": "Date Picker Open",
+                    "variant": {
+                      "inline": "true",
+                      "type": "double"
+                    },
+                    "size": [
+                      624,
+                      309
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 24,
+                      "pad": [
+                        24,
+                        24,
+                        24,
+                        24
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "HUG/HUG"
+                    },
+                    "vars": {
+                      "paddingLeft": "Spatial:inset/xl",
+                      "paddingTop": "Spatial:inset/xl",
+                      "paddingRight": "Spatial:inset/xl",
+                      "paddingBottom": "Spatial:inset/xl",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/none",
+                      "topRightRadius": "Spatial:radius/none",
+                      "bottomLeftRadius": "Spatial:radius/none",
+                      "bottomRightRadius": "Spatial:radius/none"
+                    }
+                  },
+                  {
+                    "name": "Button Group",
+                    "type": "INSTANCE",
+                    "main": "Button Group",
+                    "variant": {
+                      "orientation": "horizontal",
+                      "type": "regular"
+                    },
+                    "size": [
+                      624,
+                      64
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        12,
+                        12,
+                        12,
+                        12
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed",
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs",
+                      "paddingLeft": "Spatial:inset/sm",
+                      "paddingTop": "Spatial:inset/sm",
+                      "paddingRight": "Spatial:inset/sm",
+                      "paddingBottom": "Spatial:inset/sm",
+                      "strokeTopWeight": "Spatial:border/default"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "census": {
+        "Icon/Empty": 1,
+        "Icon Button": 1,
+        "Icon/None": 23,
+        "Tree Item": 8,
+        ".Tree Indent": 8,
+        "Icon/ChevronRight": 8,
+        "Checkbox": 8,
+        "StatusIndicator": 16,
+        "Tag": 8,
+        "Counter": 11,
+        "Icon/More": 1,
+        "Icon/Plus": 1,
+        "DatePicker": 2,
+        "Icon/Calendar": 2,
+        "TimePicker": 2,
+        "Icon/Clock": 2,
+        "Date Picker Open": 1,
+        "Icon/ArrowLeft": 1,
+        "Day Cell": 70,
+        "Icon/ArrowRight": 1,
+        "Button Group": 1,
+        "Button": 3,
+        "Spinner": 3
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Time Range Selector",
+    "Description",
+    "A control for choosing the time window of a dashboard or report — presets plus a custom range. Drives the data shown; not a single date field.",
+    "Anatomy",
+    "Preset options (Today · 7d · 30d …) · custom-range trigger · Date Picker popover · optional comparison toggle · applied-range label.",
+    "Behaviour",
+    "Presets apply instantly; custom opens a range Date Picker. Selection updates all bound widgets. Optional 'compare to previous period'.",
+    "States",
+    "default, open (popover), custom-active; loading while data refreshes; disabled. The applied range is always visible on the trigger.",
+    "Accessibility",
+    "Presets form a radio group; the custom trigger opens a labelled popover. Announce the applied range. Keyboard: arrows across presets + full Date Picker a11y.",
+    "Rules",
+    "Offer sensible presets\nShow the applied range on the trigger\nApply to all bound widgets\nSupport keyboard + Date Picker a11y",
+    "Hide which range is active\nMake custom the only option\nReset on every interaction\nRely on colour for the active preset"
+  ],
+  "pageContext": null
+}

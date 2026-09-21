@@ -1,0 +1,2677 @@
+{
+  "page": "Spatial",
+  "pageId": "27:298",
+  "section": "primitives",
+  "slug": "spatial",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Size Scale",
+      "title": "Size Scale",
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 960,
+      "h": 2168,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Size scale tokens define the foundational measurement system used throughout the SOLAR Design System. They provide a consistent set of rem-based values that underpin spacing, layout, and component sizing across the interface.\n\nThese primitives are referenced by semantic tokens such as stack, inset, radius, borders, and grid spacing, ensuring consistent rhythm and predictable scaling across components, layouts, and responsive breakpoints.\n\nUsing a shared size scale helps maintain visual balance and alignment across products while simplifying implementation for design and engineering.",
+          "style": "16/400"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value, px",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "0",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "4",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "8",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "12",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "16",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "20",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "24",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "28",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "32",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "36",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "40",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "44",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "48",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "52",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "56",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "64",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "72",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "80",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "96",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "112",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "128",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "144",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "160",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Border Width",
+      "title": "Border Width",
+      "subtitle": null,
+      "x": 1040,
+      "y": 0,
+      "w": 960,
+      "h": 800,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Border width tokens define the available stroke thickness values used across interface components. They ensure consistent visual weight for outlines, dividers, and control boundaries throughout the system.\n\nThese tokens help maintain predictable emphasis and hierarchy between UI elements while ensuring borders scale consistently across components and layouts.\n\nBorder width values should be applied through semantic tokens such as component borders, separators, and focus indicators rather than directly using raw pixel values.",
+          "style": "16/400"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Width, px",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "0",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "1",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "2",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "4",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Border Radius",
+      "title": "Border Radius",
+      "subtitle": null,
+      "x": 2080,
+      "y": 0,
+      "w": 960,
+      "h": 896,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Border radius tokens define the curvature used across interface components. They ensure consistent corner rounding for elements such as buttons, inputs, cards, and containers.\n\nUsing a shared radius scale helps maintain a cohesive visual language and predictable component styling across products. Radius values range from sharp corners to fully rounded shapes and should be applied through semantic tokens rather than hard-coded values.",
+          "style": "16/400"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Radius, px",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "0",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "4",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "6",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "8",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "12",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "9999",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Viewport",
+      "title": "Viewport",
+      "subtitle": null,
+      "x": 3120,
+      "y": 0,
+      "w": 960,
+      "h": 848,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Viewport tokens define the responsive breakpoints used across the SOLAR Design System. These values establish the screen widths at which layouts adapt to different device sizes.\n\nBreakpoints provide a consistent framework for responsive behavior, allowing components and layouts to scale predictably across mobile, tablet, desktop, and large displays.\n\nUsing shared viewport tokens ensures responsive layouts remain aligned across products and implementations.",
+          "style": "16/400"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Width, px",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "393",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "768",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "1024",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "1440",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "1920",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spacing / Inset",
+      "title": "Spatial / Inset",
+      "subtitle": null,
+      "x": 4160,
+      "y": 0,
+      "w": 1440,
+      "h": 968,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Inset tokens define the internal spacing within components. They control the padding between a container’s boundary and its content, ensuring consistent spacing inside elements such as buttons, inputs, cards, and panels.\n\nUsing inset tokens helps maintain balanced layouts and predictable component sizing while preventing inconsistent padding values across the interface.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Base token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "0px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "4px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "8px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "12px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "16px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "24px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "32px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spacing / Stack",
+      "title": "Spatial / Stack",
+      "subtitle": null,
+      "x": 5680,
+      "y": 0,
+      "w": 1440,
+      "h": 968,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Stack tokens define the vertical spacing between elements arranged in a column. They provide a consistent rhythm for spacing between components such as text blocks, form fields, cards, and layout sections.\n\nUsing stack tokens helps maintain predictable vertical alignment and visual hierarchy across screens. Instead of manually setting margins, designers and engineers should apply stack tokens to ensure consistent spacing throughout the interface.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Base token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "0px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "4px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "8px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "12px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "16px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "24px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "32px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": null,
+  "swatches": [
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value, px"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Width, px"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Radius, px"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Width, px"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Base token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Base token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 138
+}

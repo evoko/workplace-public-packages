@@ -1,0 +1,325 @@
+{
+  "page": "↳ 🟢 Profile Dropdown",
+  "pageId": "2202:1262",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Profile Dropdown",
+      "id": "4644:6843",
+      "description": "Topbar dropdown for account and session actions: profile, preferences, organization switcher, sign out. Opens from the topbar avatar. Holds Dropdown Items and dividers. Draft — awaiting 2+ consumer alignment on exact item roster. Sign out should always appear at the bottom, below a divider.",
+      "props": {},
+      "nodeCount": 24,
+      "tree": {
+        "name": "Profile Dropdown",
+        "type": "COMPONENT",
+        "size": [
+          280,
+          154
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/overlay}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "Identity",
+            "type": "FRAME",
+            "size": [
+              280,
+              64
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/md"
+            },
+            "children": [
+              {
+                "name": "Avatar",
+                "type": "INSTANCE",
+                "main": "Avatar",
+                "variant": {
+                  "size": "md",
+                  "type": "text",
+                  "color": "purple",
+                  "Shade": "Light"
+                },
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Primitives:color/purple/50}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 9999,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              {
+                "name": "Content",
+                "type": "FRAME",
+                "size": [
+                  204,
+                  30
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                },
+                "children": [
+                  {
+                    "name": "Daniel Salmonssom",
+                    "type": "TEXT",
+                    "text": "Daniel Salmonssom",
+                    "textStyle": "body/lg/semibold",
+                    "size": [
+                      204,
+                      12
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/lg",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/lg",
+                      "fontStyle": "Primitives:type/font-weight/600"
+                    }
+                  },
+                  {
+                    "name": "daniel.salmonsson@biamp.com",
+                    "type": "TEXT",
+                    "text": "daniel.salmonsson@biamp.com",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      204,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Divider",
+            "type": "INSTANCE",
+            "main": "Divider",
+            "variant": {
+              "orientation": "horizontal",
+              "type": "full"
+            },
+            "size": [
+              280,
+              1
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FIXED"
+            }
+          },
+          {
+            "name": "Dropdown Item",
+            "type": "INSTANCE",
+            "main": "Dropdown Item",
+            "variant": {
+              "size": "md",
+              "state": "default"
+            },
+            "size": [
+              280,
+              44
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm"
+            }
+          },
+          {
+            "name": "Divider",
+            "type": "INSTANCE",
+            "main": "Divider",
+            "variant": {
+              "orientation": "horizontal",
+              "type": "full"
+            },
+            "size": [
+              280,
+              1
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FIXED"
+            }
+          },
+          {
+            "name": "Dropdown Item",
+            "type": "INSTANCE",
+            "main": "Dropdown Item",
+            "variant": {
+              "size": "md",
+              "state": "default"
+            },
+            "size": [
+              280,
+              44
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Profile Dropdown",
+    "Description",
+    "The account menu opened from the user avatar in the top bar — identity plus account and session actions. For personal account actions, not app navigation.",
+    "Anatomy",
+    "Trigger (Avatar) · Popover · identity header (avatar · name · email) · menu items · optional org switcher · sign-out.",
+    "Behaviour",
+    "Opens on click, anchored to the avatar, flipping to stay in the viewport. Groups: account, preferences, then a separated sign-out. Closes on select / outside / Esc.",
+    "States",
+    "trigger: default, hover, focus, open. Items follow nav-item states. Popover: open / closed.",
+    "Accessibility",
+    "Trigger is a button with aria-haspopup + aria-expanded. Menu uses role=menu / menuitem; arrow-key nav, Esc closes, focus returns to the trigger.",
+    "Rules",
+    "Show who's signed in\nSeparate sign-out\nAnchor to the avatar\nReturn focus on close",
+    "Put app navigation here\nHide the current account\nBury sign-out among items\nRely on hover to open"
+  ],
+  "pageContext": null
+}

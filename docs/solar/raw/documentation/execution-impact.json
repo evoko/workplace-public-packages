@@ -1,0 +1,985 @@
+{
+  "page": "Execution & Impact",
+  "pageId": "2023:1254",
+  "section": "documentation",
+  "slug": "execution-impact",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Execution & Impact"
+        }
+      ]
+    },
+    {
+      "name": "EIS-A Why & How We Measure",
+      "title": "Why & How We Measure",
+      "subtitle": null,
+      "x": 2120,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "A design system without measurement drifts. Tracking adoption, quality, velocity, and cross-vertical reuse tells us whether SOLAR is accelerating teams or adding friction — and keeps the roadmap grounded in evidence, not assumptions."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Why We Measure"
+        },
+        {
+          "t": "p",
+          "text": "Metrics prove SOLAR is delivering value, expose adoption friction, and surface gaps — missing tokens, underused components, slow contribution cycles. They turn 'is the system working?' into a question we answer with data, and give every product vertical a shared, comparable picture of health.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Review & Reporting Cadence"
+        },
+        {
+          "t": "p",
+          "text": "KPIs are reviewed monthly by the SOLAR core team and reported quarterly to design leadership, covering adoption, quality, and the contribution pipeline. Targets are revisited annually as SOLAR matures. Product teams get continuous feedback through lint reports and design reviews, not just the quarterly cycle.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Dimension",
+              "What it answers",
+              "Primary KPI",
+              "Target",
+              "Owner",
+              "Cadence"
+            ],
+            [
+              "Adoption",
+              "Are teams building on SOLAR?",
+              "Token & component coverage",
+              "≥ 90% / 80%",
+              "Product teams",
+              "Weekly"
+            ],
+            [
+              "Quality",
+              "Is output accessible & correct?",
+              "WCAG AA pass rate",
+              "≥ 95%",
+              "Design leadership",
+              "Monthly"
+            ],
+            [
+              "Velocity",
+              "Is SOLAR speeding delivery?",
+              "Contribution cycle time",
+              "Trending down",
+              "SOLAR core team",
+              "Monthly"
+            ],
+            [
+              "Reach",
+              "Is value shared across verticals?",
+              "Cross-vertical reuse",
+              "≥ 2 products",
+              "SOLAR core team",
+              "Quarterly"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "EIS-B KPIs & Cross-Vertical",
+      "title": "KPIs & Cross-Vertical Impact",
+      "subtitle": null,
+      "x": 4240,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "These KPIs measure SOLAR's impact and efficacy — and, critically, the interaction between verticals. Adoption and quality show whether each product is on-system; reuse and graduation metrics show whether the system is genuinely shared rather than duplicated across teams."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Adoption & Quality"
+        },
+        {
+          "t": "p",
+          "text": "Token coverage and component adoption track how much of each product is built on SOLAR versus custom. Accessibility pass rate holds every vertical to the same WCAG AA bar on first review, so quality doesn't depend on which team shipped the screen.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Interaction Between Verticals"
+        },
+        {
+          "t": "p",
+          "text": "Cross-vertical metrics measure the system working as one: component reuse across products, pattern graduation rate (local → shared library once ≥ 2 products need it), and contribution flow between teams. Together they show whether verticals compound each other's work — the clearest signal of SOLAR's return on investment.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Category",
+              "KPI",
+              "Description",
+              "Target",
+              "Stakeholder",
+              "Cadence"
+            ],
+            [
+              "Adoption",
+              "Token coverage",
+              "% of design files using semantic tokens vs. hard-coded values",
+              "≥ 90%",
+              "Product design teams",
+              "Weekly"
+            ],
+            [
+              "Adoption",
+              "Component adoption",
+              "% of UI surfaces built with SOLAR components vs. custom",
+              "≥ 80%",
+              "Product engineering",
+              "Per release"
+            ],
+            [
+              "Quality",
+              "Accessibility pass rate",
+              "% of components meeting WCAG AA on first review",
+              "≥ 95%",
+              "Design leadership",
+              "Monthly"
+            ],
+            [
+              "Velocity",
+              "Contribution cycle time",
+              "Time from proposal submission to release",
+              "Trending down",
+              "SOLAR core team",
+              "Monthly"
+            ],
+            [
+              "Reach",
+              "Cross-vertical reuse",
+              "Products sharing each graduated component or pattern",
+              "≥ 2 products",
+              "SOLAR core + verticals",
+              "Quarterly"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "EIS-C Stakeholders & Verticals",
+      "title": "Stakeholders & Verticals",
+      "subtitle": null,
+      "x": 6360,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR's impact is a two-way exchange. The core team publishes tokens, components, and rules; product verticals consume them and feed back needs, gaps, and graduated patterns. Measuring that interaction — not just one-directional adoption — is what shows the system is genuinely shared."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Stakeholder Roles"
+        },
+        {
+          "t": "p",
+          "text": "Design teams consume components and raise gaps; engineering consumes tokens and Code Connect and reports implementation friction; design leadership sets priorities and reviews impact; the SOLAR core team curates the system and runs governance. Each has a defined channel into the contribution process.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Libraries & Graduation"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR flows in dependency order: Foundations and Icons feed the platform libraries (Web and Native), and the domain libraries (Audio, Spatial, Flow) extend Web. When two or more products need the same pattern, it graduates from a local component into a shared library — the clearest evidence of cross-vertical reuse.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Stakeholders",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Product design teams",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Product engineering",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Design leadership",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "components, tokens  →",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "←  gaps, proposals",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR Core Team",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "tokens · components · rules · governance",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "tokens, components  →",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "←  graduated patterns",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR Libraries",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Web",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Native",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Audio",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Spatial",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Flow",
+          "style": "12/400"
+        }
+      ]
+    },
+    {
+      "name": "EIS-D Instrumentation & Reporting",
+      "title": "Instrumentation & Reporting",
+      "subtitle": null,
+      "x": 8480,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Every KPI has a defined data source and collection method, so numbers are reproducible rather than anecdotal. Most signals come straight from the lint agent's scheduled scans of Figma files, supplemented by Storybook coverage and contribution-pipeline timestamps."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "How We Collect"
+        },
+        {
+          "t": "p",
+          "text": "The CI lint agent scans published Figma files on a schedule via the REST API, computing token and component coverage and accessibility pass rates directly from the source of truth. Contribution cycle time is derived from proposal-to-release timestamps; cross-vertical reuse is counted from shared-library consumers.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "How We Report"
+        },
+        {
+          "t": "p",
+          "text": "Results surface where teams already work: Slack alerts for regressions, Figma comments on offending nodes, and an HTML dashboard for trends. The core team reviews monthly; a summary scorecard goes to design leadership each quarter. Targets are revisited annually as the system matures.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "KPI",
+              "Data source",
+              "How collected",
+              "Frequency",
+              "Reported via",
+              "Owner"
+            ],
+            [
+              "Token coverage",
+              "Figma files",
+              "Lint agent scan (REST API)",
+              "Weekly",
+              "Dashboard + Slack",
+              "SOLAR core team"
+            ],
+            [
+              "Component adoption",
+              "Figma + Storybook",
+              "Scan + story coverage",
+              "Per release",
+              "Dashboard",
+              "Engineering"
+            ],
+            [
+              "Accessibility pass rate",
+              "Figma files",
+              "Lint rule A11Y-001 / 003",
+              "Monthly",
+              "Scorecard",
+              "Design leadership"
+            ],
+            [
+              "Contribution cycle time",
+              "Contribution log",
+              "Proposal → release timestamps",
+              "Monthly",
+              "Scorecard",
+              "SOLAR core team"
+            ],
+            [
+              "Cross-vertical reuse",
+              "Shared libraries",
+              "Count of library consumers",
+              "Quarterly",
+              "Scorecard",
+              "SOLAR core team"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": null,
+  "swatches": [
+    {
+      "layer": "EIS-A Why & How We Measure",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Why & How We Measure",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "A design system without measurement drifts. Tracking adoption, quality, velocity, and cross-vertical reuse tells us whether SOLAR is accelerating teams or adding friction — and keeps the roadmap grounded in evidence, not assumptions.",
+        "Why We Measure",
+        "Metrics prove SOLAR is delivering value, expose adoption friction, and surface gaps — missing tokens, underused components, slow contribution cycles. They turn 'is the system working?' into a question we answer with data, and give every product vertical a shared, comparable picture of health.",
+        "Review & Reporting Cadence",
+        "KPIs are reviewed monthly by the SOLAR core team and reported quarterly to design leadership, covering adoption, quality, and the contribution pipeline. Targets are revisited annually as SOLAR matures. Product teams get continuous feedback through lint reports and design reviews, not just the quarterly cycle.",
+        "Dimension",
+        "What it answers",
+        "Primary KPI",
+        "Target",
+        "Owner",
+        "Cadence",
+        "Adoption",
+        "Are teams building on SOLAR?",
+        "Token & component coverage",
+        "≥ 90% / 80%",
+        "Product teams",
+        "Weekly",
+        "Quality",
+        "Is output accessible & correct?",
+        "WCAG AA pass rate",
+        "≥ 95%",
+        "Design leadership",
+        "Monthly",
+        "Velocity",
+        "Is SOLAR speeding delivery?",
+        "Contribution cycle time",
+        "Trending down",
+        "SOLAR core team",
+        "Monthly",
+        "Reach",
+        "Is value shared across verticals?",
+        "Cross-vertical reuse",
+        "≥ 2 products",
+        "SOLAR core team",
+        "Quarterly"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "EIS-B KPIs & Cross-Vertical",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "KPIs & Cross-Vertical Impact",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "These KPIs measure SOLAR's impact and efficacy — and, critically, the interaction between verticals. Adoption and quality show whether each product is on-system; reuse and graduation metrics show whether the system is genuinely shared rather than duplicated across teams.",
+        "Adoption & Quality",
+        "Token coverage and component adoption track how much of each product is built on SOLAR versus custom. Accessibility pass rate holds every vertical to the same WCAG AA bar on first review, so quality doesn't depend on which team shipped the screen.",
+        "Interaction Between Verticals",
+        "Cross-vertical metrics measure the system working as one: component reuse across products, pattern graduation rate (local → shared library once ≥ 2 products need it), and contribution flow between teams. Together they show whether verticals compound each other's work — the clearest signal of SOLAR's return on investment.",
+        "Category",
+        "KPI",
+        "Description",
+        "Target",
+        "Stakeholder",
+        "Cadence",
+        "Adoption",
+        "Token coverage",
+        "% of design files using semantic tokens vs. hard-coded values",
+        "≥ 90%",
+        "Product design teams",
+        "Weekly",
+        "Adoption",
+        "Component adoption",
+        "% of UI surfaces built with SOLAR components vs. custom",
+        "≥ 80%",
+        "Product engineering",
+        "Per release",
+        "Quality",
+        "Accessibility pass rate",
+        "% of components meeting WCAG AA on first review",
+        "≥ 95%",
+        "Design leadership",
+        "Monthly",
+        "Velocity",
+        "Contribution cycle time",
+        "Time from proposal submission to release",
+        "Trending down",
+        "SOLAR core team",
+        "Monthly",
+        "Reach",
+        "Cross-vertical reuse",
+        "Products sharing each graduated component or pattern",
+        "≥ 2 products",
+        "SOLAR core + verticals",
+        "Quarterly"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Chip",
+      "labels": [
+        "Product design teams"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "Chip",
+      "labels": [
+        "Product engineering"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "Chip",
+      "labels": [
+        "Design leadership"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "SOLAR Core Hub",
+      "labels": [
+        "SOLAR Core Team",
+        "tokens · components · rules · governance"
+      ],
+      "variableId": "VariableID:1618:580",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Chip",
+      "labels": [
+        "Web"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "Chip",
+      "labels": [
+        "Native"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "Chip",
+      "labels": [
+        "Audio"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "Chip",
+      "labels": [
+        "Spatial"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "Chip",
+      "labels": [
+        "Flow"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "EIS-D Instrumentation & Reporting",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Instrumentation & Reporting",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Every KPI has a defined data source and collection method, so numbers are reproducible rather than anecdotal. Most signals come straight from the lint agent's scheduled scans of Figma files, supplemented by Storybook coverage and contribution-pipeline timestamps.",
+        "How We Collect",
+        "The CI lint agent scans published Figma files on a schedule via the REST API, computing token and component coverage and accessibility pass rates directly from the source of truth. Contribution cycle time is derived from proposal-to-release timestamps; cross-vertical reuse is counted from shared-library consumers.",
+        "How We Report",
+        "Results surface where teams already work: Slack alerts for regressions, Figma comments on offending nodes, and an HTML dashboard for trends. The core team reviews monthly; a summary scorecard goes to design leadership each quarter. Targets are revisited annually as the system matures.",
+        "KPI",
+        "Data source",
+        "How collected",
+        "Frequency",
+        "Reported via",
+        "Owner",
+        "Token coverage",
+        "Figma files",
+        "Lint agent scan (REST API)",
+        "Weekly",
+        "Dashboard + Slack",
+        "SOLAR core team",
+        "Component adoption",
+        "Figma + Storybook",
+        "Scan + story coverage",
+        "Per release",
+        "Dashboard",
+        "Engineering",
+        "Accessibility pass rate",
+        "Figma files",
+        "Lint rule A11Y-001 / 003",
+        "Monthly",
+        "Scorecard",
+        "Design leadership",
+        "Contribution cycle time",
+        "Contribution log",
+        "Proposal → release timestamps",
+        "Monthly",
+        "Scorecard",
+        "SOLAR core team",
+        "Cross-vertical reuse",
+        "Shared libraries",
+        "Count of library consumers",
+        "Quarterly",
+        "Scorecard",
+        "SOLAR core team"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 108
+}

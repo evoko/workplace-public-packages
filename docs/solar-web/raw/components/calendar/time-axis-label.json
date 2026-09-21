@@ -1,0 +1,164 @@
+{
+  "page": "↳ 🟢 Time Axis Label",
+  "pageId": "6622:7",
+  "componentSets": [
+    {
+      "name": "Time Axis Label",
+      "id": "6643:14",
+      "description": "Hour marker on the left rail of the Week or Day time grid. Sits between rows so the label aligns to the top of each hour Time Slot. Now emphasis bolds and tints the marker with text/feedback/info to indicate the current hour.",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "label#6643:0": {
+          "type": "TEXT",
+          "default": "9 AM"
+        },
+        "emphasis": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "now"
+          ]
+        },
+        "density": {
+          "type": "VARIANT",
+          "default": "comfortable",
+          "options": [
+            "comfortable",
+            "compact"
+          ]
+        }
+      },
+      "defaultVariant": "emphasis=default, density=comfortable",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "emphasis=default, density=comfortable",
+        "type": "COMPONENT",
+        "size": [
+          56,
+          48
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            12,
+            0,
+            12
+          ],
+          "align": "CENTER/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "vars": {
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm"
+        },
+        "children": [
+          {
+            "name": "Hour",
+            "type": "TEXT",
+            "text": "9 AM",
+            "size": [
+              25,
+              7
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/tertiary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/caption/xs",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/caption/xs"
+            },
+            "propRefs": {
+              "characters": "label#6643:0"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "emphasis=default, density=comfortable",
+          "size": [
+            56,
+            48
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "emphasis=now, density=comfortable",
+          "size": [
+            56,
+            48
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}"
+          ]
+        },
+        {
+          "variant": "emphasis=default, density=compact",
+          "size": [
+            56,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        },
+        {
+          "variant": "emphasis=now, density=compact",
+          "size": [
+            56,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Time Axis Label",
+    "Description",
+    "The hour / time markers running down the time axis of a day or week calendar. Aligns rows to Time Slots. Non-interactive.",
+    "Anatomy",
+    "Time text (e.g. 09:00) · optional AM/PM · alignment to the slot gridline.",
+    "Format & Scale",
+    "12h or 24h per locale. One label per hour, or per configured interval. Uses text.secondary, right-aligned to the axis edge.",
+    "States",
+    "Non-interactive (Class K). The current hour may be emphasised (text.primary) alongside the Now indicator.",
+    "Accessibility",
+    "Labels are the accessible time reference for slots — expose via aria on the grid. Text ≥4.5:1. Respect the locale's time format and 24h setting.",
+    "Rules",
+    "Match the locale time format\nAlign to the slot gridline\nOne label per interval\nEmphasise the current hour subtly",
+    "Mix 12h and 24h\nCrowd sub-hour labels\nUse it as an interactive control\nHard-code AM/PM"
+  ],
+  "pageContext": null
+}

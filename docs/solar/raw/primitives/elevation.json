@@ -1,0 +1,1228 @@
+{
+  "page": "Elevation",
+  "pageId": "1627:10994",
+  "section": "primitives",
+  "slug": "elevation",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Elevation / Surfaces",
+      "title": "Elevation / Surfaces",
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 752,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Surface tokens define the substrate fill that sits beneath elevated content. They control the canvas color a card, dialog, popover, or panel rests on, ensuring consistent figure–ground separation in both light and dark modes.\n\nPair a surface token with a shadow/* effect style to lift the surface off the page.\n\nScope: this page documents elevational surfaces only. Non-elevational surface tokens — surface/base, surface/background, surface/inverse, surface/scrim, surface/hover, surface/active, surface/muted, and the surface/feedback/* family — are documented on the Color page.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Light mode",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Dark mode",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Elevation / Shadows",
+      "title": "Elevation / Shadows",
+      "subtitle": null,
+      "x": 1520,
+      "y": 0,
+      "w": 1440,
+      "h": 1088,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Shadow effect styles express the elevation ladder. Control surfaces sit just off the page; raised, overlay, and dialog progress upward as the surface gains autonomy. Focus and feedback shadows are non-elevational — they reinforce a state on top of an already-elevated surface.\n\nAll shadow color is variable-bound and adapts to mode automatically.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Effect",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Layers",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Color reference",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "y:1 / blur:1",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "y:3 / blur:4",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "y:2 / blur:12",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "y:4 / blur:5",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "y:12 / blur:26  +  spread:2",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "shadow/subtle  +  shadow/strong",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "spread:2",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "spread:2",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "y:1 / blur:1  +  spread:2",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "shadow/subtle  +  shadow/feedback/danger",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "y:1 / blur:1  +  spread:2",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "shadow/subtle  +  shadow/feedback/warning",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Elevation / Accessibility",
+      "title": "Elevation / Accessibility",
+      "subtitle": null,
+      "x": 3040,
+      "y": 0,
+      "w": 1440,
+      "h": 968,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Elevation visuals must remain perceivable across both modes and for users with reduced contrast sensitivity. Shadows are decorative — they convey hierarchy but never carry the only signal. Every elevated surface still meets WCAG AA contrast for its intended content, and every focus state ships a non-color cue (a 2px ring) on top of the color shift.\n\nWhen running an a11y review on a component that uses elevation, walk the table below.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Concern",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Rule",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Why",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Surface contrast",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Body text on surface/raised + surface/overlay + surface/dialog must meet AA (4.5:1) in both modes — verified against color/text/primary.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Elevated surfaces use mode-paired primitives; verify after every primitive rebind.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Focus ring",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Focus is signalled by shadow/focus/* + the 2px ring (non-color cue). Color alone is never the focus signal.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "WCAG 2.4.7 + 1.4.11. Users with color-vision deficiency rely on the geometric cue.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Danger emphasis",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "shadow/danger and shadow/focus/danger reinforce — they don't replace — the danger surface or border. Remove either and the state still reads.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "WCAG 1.4.1 (don't rely on color alone).",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Dialog backdrop",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "shadow/dialog must pair with surface/scrim. Bare shadow on a busy page collapses figure–ground separation.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Modal content needs a calm backdrop to be reliably readable.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Dark-mode shadow alpha",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "shadow/subtle and shadow/strong shift alpha in dark mode (5%→50%, 20%→70%). Verify shadows still read after a mode swap.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Dark surfaces eat low-alpha shadows; the alpha shift restores the lift cue.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Stacking",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Tooltip > Toast > Dialog > Overlay > Dropdown > Sticky > Base. Encoded in the z-index ladder (CLAUDE.md §6); never override. Drawer content sits at --solar-z-dialog; backdrop at --solar-z-overlay.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Mis-stacked elevation traps focus under an opaque scrim — keyboard users get stuck. Tooltip outranks Toast so a tooltip on a notification stays readable.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Reduced motion",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "If a component uses both shadow and motion to enter (e.g., toast slide + lift), prefers-reduced-motion replaces the slide; the shadow stays.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Elevation cue is information; the slide is decoration.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": null,
+  "swatches": [
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Light mode"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Dark mode"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Effect"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Layers"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Color reference"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Concern"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Rule"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Why"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 69
+}

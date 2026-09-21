@@ -1,0 +1,232 @@
+{
+  "page": "↳ 🟢 Timestamp",
+  "pageId": "2966:593",
+  "componentSets": [
+    {
+      "name": "Timestamp",
+      "id": "4512:104",
+      "description": "Renders a point in time as relative ('2 hours ago'), absolute ('Apr 18, 2026, 14:32'), or combined. Use relative for recent events in activity feeds; absolute for records, logs, and audit trails where exact time matters; combined when both are needed (absolute in tooltip, relative in label). Size sm for dense tables; md for card metadata. Emphasis subtle for secondary metadata. Respect user locale and timezone — never hardcode format.",
+      "docLinks": [],
+      "variantCount": 12,
+      "props": {
+        "format": {
+          "type": "VARIANT",
+          "default": "relative",
+          "options": [
+            "relative",
+            "absolute",
+            "combined"
+          ]
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "sm",
+          "options": [
+            "sm",
+            "md"
+          ]
+        },
+        "emphasis": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "subtle"
+          ]
+        }
+      },
+      "defaultVariant": "format=relative, size=sm, emphasis=default",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "format=relative, size=sm, emphasis=default",
+        "type": "COMPONENT",
+        "size": [
+          55,
+          9
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs"
+        },
+        "children": [
+          {
+            "name": "Value",
+            "type": "TEXT",
+            "text": "2 min ago",
+            "textStyle": "body/sm/medium",
+            "size": [
+              55,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/sm",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "format=relative, size=sm, emphasis=default",
+          "size": [
+            55,
+            9
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "format=absolute, size=sm, emphasis=default",
+          "size": [
+            32,
+            9
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "format=combined, size=sm, emphasis=default",
+          "size": [
+            71,
+            9
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "format=relative, size=sm, emphasis=subtle",
+          "size": [
+            55,
+            9
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        },
+        {
+          "variant": "format=absolute, size=sm, emphasis=subtle",
+          "size": [
+            32,
+            9
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        },
+        {
+          "variant": "format=combined, size=sm, emphasis=subtle",
+          "size": [
+            71,
+            9
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        },
+        {
+          "variant": "format=relative, size=md, emphasis=default",
+          "size": [
+            63,
+            10
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "format=absolute, size=md, emphasis=default",
+          "size": [
+            37,
+            10
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "format=combined, size=md, emphasis=default",
+          "size": [
+            82,
+            10
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "format=relative, size=md, emphasis=subtle",
+          "size": [
+            63,
+            10
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        },
+        {
+          "variant": "format=absolute, size=md, emphasis=subtle",
+          "size": [
+            37,
+            10
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        },
+        {
+          "variant": "format=combined, size=md, emphasis=subtle",
+          "size": [
+            82,
+            10
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Timestamp",
+    "Description",
+    "Point in time displayed as relative, absolute, or combined. Pair with activity feeds, records, logs, and audit trails.",
+    "Formats",
+    "relative   '2 hours ago'. For recent activity feeds and live data.\nabsolute   'Apr 18, 2026, 14:32'. For records, logs, audits.\ncombined   Shows both — absolute in tooltip, relative in label.",
+    "Sizes",
+    "sm   Dense tables, audit log rows.\nmd   Card metadata, thread headers, default for activity feeds.",
+    "Emphasis",
+    "default   Primary timestamp — top of a thread or row.\nsubtle    Secondary metadata — 'Last edited' under a title.",
+    "Labels & Content",
+    "Always expose full absolute timestamp in the title attribute or tooltip.\nUse ISO 8601 for machine-readable output.\nRespect user locale and timezone — never hardcode the format.",
+    "Rules",
+    "DO   Use relative for feeds, absolute for records\nDO   Expose full date/time in tooltip or title\nDO   Use the user's locale and timezone\nDO   Update relative timestamps in real time",
+    "DON'T   Use relative for legal, financial, or audit records\nDON'T   Hardcode 'MM/DD/YYYY' or any single locale format\nDON'T   Show 'N days ago' past 30 days — switch to absolute\nDON'T   Assume server timezone matches user timezone"
+  ],
+  "pageContext": null
+}

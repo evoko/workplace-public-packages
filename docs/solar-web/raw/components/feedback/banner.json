@@ -1,0 +1,454 @@
+{
+  "page": "↳ 🟢 Banner",
+  "pageId": "2797:1322",
+  "componentSets": [
+    {
+      "name": "Banner",
+      "id": "2764:627",
+      "description": "Banner — a bold, full-width notification for top-of-page messages. High-priority alternative to the subtle alert component. Single line with truncation, optional action link and close button. Inspired by Atlassian Design System.",
+      "docLinks": [],
+      "variantCount": 5,
+      "props": {
+        "Show Action#2764:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "Description#2781:57": {
+          "type": "TEXT",
+          "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        },
+        "Action#2781:63": {
+          "type": "TEXT",
+          "default": "Action"
+        },
+        "Show Buttons#10577:12": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "Show Icon/Close#10577:18": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "Variant": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "info",
+            "success",
+            "warning",
+            "danger"
+          ]
+        }
+      },
+      "defaultVariant": "Variant=default",
+      "defaultVariantNodeCount": 34,
+      "defaultVariantTree": {
+        "name": "Variant=default",
+        "type": "COMPONENT",
+        "size": [
+          458,
+          44
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/feedback/neutral/medium}"
+        ],
+        "vars": {
+          "itemSpacing": "Spatial:inset/sm",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/sm"
+        },
+        "children": [
+          {
+            "name": "icon",
+            "type": "FRAME",
+            "size": [
+              20,
+              20
+            ],
+            "sizing": "FIXED/FIXED",
+            "children": [
+              {
+                "name": "Union",
+                "type": "BOOLEAN_OPERATION",
+                "size": [
+                  5,
+                  10
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ],
+                "children": [
+                  {
+                    "name": "Icon",
+                    "type": "VECTOR",
+                    "size": [
+                      5,
+                      6
+                    ],
+                    "fills": [
+                      "{Color:icon/primary}"
+                    ]
+                  },
+                  {
+                    "name": "Icon",
+                    "type": "VECTOR",
+                    "size": [
+                      2,
+                      2
+                    ],
+                    "fills": [
+                      "{Color:icon/primary}"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Icon",
+                "type": "VECTOR",
+                "size": [
+                  18,
+                  18
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "message",
+            "type": "TEXT",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "textStyle": "body/md/regular",
+            "size": [
+              172,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "characters": "Description#2781:57"
+            }
+          },
+          {
+            "name": "action group",
+            "type": "FRAME",
+            "size": [
+              218,
+              32
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs"
+            },
+            "children": [
+              {
+                "name": "Button",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "sm",
+                  "prio": "primary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  64,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "propRefs": {
+                  "visible": "Show Buttons#10577:12"
+                }
+              },
+              {
+                "name": "Button",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "sm",
+                  "prio": "secondary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  64,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "propRefs": {
+                  "visible": "Show Buttons#10577:12"
+                }
+              },
+              {
+                "name": "action",
+                "type": "TEXT",
+                "text": "Action",
+                "textStyle": "body/md/medium",
+                "size": [
+                  42,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "Show Action#2764:0",
+                  "characters": "Action#2781:63"
+                }
+              },
+              {
+                "name": "Icon/Close",
+                "type": "INSTANCE",
+                "main": "Icon/Close",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  24,
+                  24
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "width": "Spatial:icon/lg"
+                },
+                "propRefs": {
+                  "visible": "Show Icon/Close#10577:18"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "Variant=default",
+          "size": [
+            458,
+            44
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/medium}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "Variant=info",
+          "size": [
+            458,
+            44
+          ],
+          "fills": [
+            "{Primitives:color/alpha/turquoise-50}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:surface/inverse}"
+          ]
+        },
+        {
+          "variant": "Variant=success",
+          "size": [
+            458,
+            44
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/medium}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "Variant=warning",
+          "size": [
+            458,
+            44
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/medium}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "Variant=danger",
+          "size": [
+            458,
+            44
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/strong}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Banner",
+    "Description",
+    "Bold full-width notification for top-of-page or top-of-app messages. High-priority alternative to Alert for announcements, outages, or global states.",
+    "Variants",
+    "default   Neutral announcement.\ninfo      Feature release, maintenance notice.\nsuccess   Global confirmation (rare — usually Toast fits better).\nwarning   Degraded service or approaching limit.\ndanger    Outage, billing issue, blocked state.",
+    "Labels & Content",
+    "Single line with truncation at narrow widths.\nOne optional action link (right-aligned).\nOne optional close button.\nWrite as a statement, not a question: 'Scheduled maintenance Friday 10pm PT'.",
+    "Rules",
+    "DO   Pin to the top of the page or app shell\nDO   Use for global or page-wide states\nDO   Keep to a single line\nDO   Offer exactly one action at most",
+    "DON'T   Stack multiple banners\nDON'T   Use for inline form validation\nDON'T   Hide critical banners behind a collapse\nDON'T   Use success banners for transient outcomes"
+  ],
+  "pageContext": null
+}

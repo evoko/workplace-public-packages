@@ -1,0 +1,1229 @@
+{
+  "fileKey": "OGvmMNnywH7JWDyEhOzjcc",
+  "fileName": "SOLAR Web [v1--2026]",
+  "note": "Manifest of SOLAR Web pages extracted into raw/<section>/<slug>.json. Divider pages ('------'), the Cover, and .[ARCHIVE] are intentionally excluded.",
+  "pages": [
+    {
+      "section": "tokens",
+      "slug": "layout-grid",
+      "id": "2162:2666",
+      "title": "Layout Grid",
+      "status": "done"
+    },
+    {
+      "section": "components/navigation",
+      "slug": "breadcrumbs",
+      "id": "2163:3712",
+      "title": "Breadcrumbs",
+      "status": "done"
+    },
+    {
+      "section": "components/navigation",
+      "slug": "link",
+      "id": "2163:3675",
+      "title": "Link",
+      "status": "done"
+    },
+    {
+      "section": "components/navigation",
+      "slug": "nav-item",
+      "id": "6481:69",
+      "title": "Nav Item",
+      "status": "done"
+    },
+    {
+      "section": "components/navigation",
+      "slug": "page-navigator",
+      "id": "4533:81",
+      "title": "Page Navigator",
+      "status": "done"
+    },
+    {
+      "section": "components/navigation",
+      "slug": "pagination",
+      "id": "2163:3713",
+      "title": "Pagination",
+      "status": "done"
+    },
+    {
+      "section": "components/navigation",
+      "slug": "section-nav-item",
+      "id": "8108:2",
+      "title": "Section Nav Item",
+      "status": "done"
+    },
+    {
+      "section": "components/navigation",
+      "slug": "segmented-control",
+      "id": "2163:3704",
+      "title": "Segmented Control",
+      "status": "done"
+    },
+    {
+      "section": "components/navigation",
+      "slug": "stepper",
+      "id": "2163:3707",
+      "title": "Stepper",
+      "status": "done"
+    },
+    {
+      "section": "components/navigation",
+      "slug": "tabs",
+      "id": "2163:3714",
+      "title": "Tabs",
+      "status": "done"
+    },
+    {
+      "section": "components/navigation",
+      "slug": "tree-item",
+      "id": "2422:8434",
+      "title": "Tree Item",
+      "status": "done"
+    },
+    {
+      "section": "components/buttons",
+      "slug": "back-button",
+      "id": "4533:80",
+      "title": "Back Button",
+      "status": "done"
+    },
+    {
+      "section": "components/buttons",
+      "slug": "button",
+      "id": "2049:578",
+      "title": "Button",
+      "status": "done"
+    },
+    {
+      "section": "components/buttons",
+      "slug": "button-group",
+      "id": "2163:3661",
+      "title": "Button Group",
+      "status": "done"
+    },
+    {
+      "section": "components/buttons",
+      "slug": "icon-button",
+      "id": "2163:3670",
+      "title": "Icon Button",
+      "status": "done"
+    },
+    {
+      "section": "components/buttons",
+      "slug": "fab",
+      "id": "2966:581",
+      "title": "FAB",
+      "status": "done"
+    },
+    {
+      "section": "components/buttons",
+      "slug": "split-button",
+      "id": "3611:5",
+      "title": "Split Button",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "autocomplete",
+      "id": "2163:3664",
+      "title": "Autocomplete",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "checkbox",
+      "id": "2163:3699",
+      "title": "Checkbox",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "date-picker",
+      "id": "2163:3665",
+      "title": "Date Picker",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "file-upload",
+      "id": "2202:1225",
+      "title": "File Upload",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "inline-input",
+      "id": "2966:627",
+      "title": "Inline Input",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "number-input",
+      "id": "2202:1229",
+      "title": "Number Input",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "option-row",
+      "id": "10090:2",
+      "title": "Option Row",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "password-input",
+      "id": "2163:3701",
+      "title": "Password Input",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "pin-input",
+      "id": "6164:6823",
+      "title": "PIN Input",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "radio",
+      "id": "2163:3702",
+      "title": "Radio",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "search",
+      "id": "2163:3703",
+      "title": "Search",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "select",
+      "id": "5295:2",
+      "title": "Select",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "slider",
+      "id": "2163:3706",
+      "title": "Slider",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "tag",
+      "id": "2966:583",
+      "title": "Tag",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "text-area",
+      "id": "2163:3709",
+      "title": "Text Area",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "text-input",
+      "id": "235:1009",
+      "title": "Text Input",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "time-picker",
+      "id": "2163:3710",
+      "title": "Time Picker",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "tag-input",
+      "id": "8815:2",
+      "title": "Tag Input",
+      "status": "done"
+    },
+    {
+      "section": "components/inputs",
+      "slug": "toggle",
+      "id": "2163:3711",
+      "title": "Toggle",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "avatar",
+      "id": "2163:3676",
+      "title": "Avatar",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "badge",
+      "id": "2163:3659",
+      "title": "Badge",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "counter",
+      "id": "2966:592",
+      "title": "Counter",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "drag-handle",
+      "id": "4533:82",
+      "title": "Drag Handle",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "kbd",
+      "id": "5128:2",
+      "title": "Kbd",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "list",
+      "id": "2163:3677",
+      "title": "List",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "progress-bar",
+      "id": "2163:3679",
+      "title": "Progress Bar",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "data-legend",
+      "id": "5113:6",
+      "title": "Data Legend",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "property-list",
+      "id": "5295:3",
+      "title": "Property List",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "status-indicator",
+      "id": "2163:3682",
+      "title": "Status Indicator",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "table",
+      "id": "2163:3683",
+      "title": "Table",
+      "status": "done"
+    },
+    {
+      "section": "components/data-display",
+      "slug": "timestamp",
+      "id": "2966:593",
+      "title": "Timestamp",
+      "status": "done"
+    },
+    {
+      "section": "components/data-visualization",
+      "slug": "bar-chart",
+      "id": "5113:4",
+      "title": "Bar Chart",
+      "status": "done"
+    },
+    {
+      "section": "components/data-visualization",
+      "slug": "chart-axis",
+      "id": "5113:7",
+      "title": "Chart Axis",
+      "status": "done"
+    },
+    {
+      "section": "components/data-visualization",
+      "slug": "chart-tooltip",
+      "id": "5113:8",
+      "title": "Chart Tooltip",
+      "status": "done"
+    },
+    {
+      "section": "components/data-visualization",
+      "slug": "line-chart",
+      "id": "5113:3",
+      "title": "Line Chart",
+      "status": "done"
+    },
+    {
+      "section": "components/data-visualization",
+      "slug": "donut-chart",
+      "id": "5113:5",
+      "title": "Donut Chart",
+      "status": "done"
+    },
+    {
+      "section": "components/data-visualization",
+      "slug": "sparkline",
+      "id": "5113:2",
+      "title": "Sparkline",
+      "status": "done"
+    },
+    {
+      "section": "components/feedback",
+      "slug": "alert",
+      "id": "2202:1217",
+      "title": "Alert",
+      "status": "done"
+    },
+    {
+      "section": "components/feedback",
+      "slug": "banner",
+      "id": "2797:1322",
+      "title": "Banner",
+      "status": "done"
+    },
+    {
+      "section": "components/feedback",
+      "slug": "empty-state",
+      "id": "2202:1224",
+      "title": "Empty State",
+      "status": "done"
+    },
+    {
+      "section": "components/feedback",
+      "slug": "skeleton",
+      "id": "2163:3680",
+      "title": "Skeleton",
+      "status": "done"
+    },
+    {
+      "section": "components/feedback",
+      "slug": "spinner",
+      "id": "2163:3681",
+      "title": "Spinner",
+      "status": "done"
+    },
+    {
+      "section": "components/feedback",
+      "slug": "toast",
+      "id": "2202:1247",
+      "title": "Toast",
+      "status": "done"
+    },
+    {
+      "section": "components/overlays",
+      "slug": "context-menu",
+      "id": "2202:1219",
+      "title": "Context Menu",
+      "status": "done"
+    },
+    {
+      "section": "components/overlays",
+      "slug": "dropdown",
+      "id": "2202:1223",
+      "title": "Dropdown",
+      "status": "done"
+    },
+    {
+      "section": "components/overlays",
+      "slug": "popover",
+      "id": "2202:1230",
+      "title": "Popover",
+      "status": "done"
+    },
+    {
+      "section": "components/overlays",
+      "slug": "tooltip",
+      "id": "2163:3685",
+      "title": "Tooltip",
+      "status": "done"
+    },
+    {
+      "section": "components/dialogs",
+      "slug": "dialog",
+      "id": "2229:5930",
+      "title": "Dialog",
+      "status": "done"
+    },
+    {
+      "section": "components/dialogs",
+      "slug": "split-dialog",
+      "id": "6774:9192",
+      "title": "Split Dialog",
+      "status": "done"
+    },
+    {
+      "section": "components/dialogs",
+      "slug": "confirmation-dialog",
+      "id": "4040:2",
+      "title": "Confirmation Dialog",
+      "status": "done"
+    },
+    {
+      "section": "components/dialogs",
+      "slug": "drawer",
+      "id": "2202:1222",
+      "title": "Drawer",
+      "status": "done"
+    },
+    {
+      "section": "components/dialogs",
+      "slug": "scrim",
+      "id": "2966:606",
+      "title": "Scrim",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "accordion",
+      "id": "2163:3671",
+      "title": "Accordion",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "action-card",
+      "id": "2966:609",
+      "title": "Action Card",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "card",
+      "id": "2163:3662",
+      "title": "Card",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "container",
+      "id": "2202:1218",
+      "title": "Container",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "divider",
+      "id": "2202:1220",
+      "title": "Divider",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "expandable-card",
+      "id": "5646:5",
+      "title": "Expandable Card",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "event-row",
+      "id": "7352:2",
+      "title": "Event Row",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "file-card",
+      "id": "9386:3",
+      "title": "File Card",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "insight-card",
+      "id": "5646:4",
+      "title": "Insight Card",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "insight-row",
+      "id": "6902:3",
+      "title": "Insight Row",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "option-card",
+      "id": "9386:2",
+      "title": "Option Card",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "status-card",
+      "id": "5646:3",
+      "title": "Status Card",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "interactive-card",
+      "id": "10395:2",
+      "title": "Interactive Card",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "image-card",
+      "id": "10395:3",
+      "title": "Image Card",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "device-card",
+      "id": "10395:4",
+      "title": "Device Card",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "split-dropdown",
+      "id": "10395:5",
+      "title": "Split Dropdown",
+      "status": "done"
+    },
+    {
+      "section": "components/cards",
+      "slug": "launch-card",
+      "id": "10395:6",
+      "title": "Launch Card",
+      "status": "done"
+    },
+    {
+      "section": "components/calendar",
+      "slug": "day-cell",
+      "id": "6622:3",
+      "title": "Day Cell",
+      "status": "done"
+    },
+    {
+      "section": "components/calendar",
+      "slug": "weekday-header",
+      "id": "6622:4",
+      "title": "Weekday Header",
+      "status": "done"
+    },
+    {
+      "section": "components/calendar",
+      "slug": "event-chip",
+      "id": "6622:5",
+      "title": "Event Chip",
+      "status": "done"
+    },
+    {
+      "section": "components/calendar",
+      "slug": "time-slot",
+      "id": "6622:6",
+      "title": "Time Slot",
+      "status": "done"
+    },
+    {
+      "section": "components/calendar",
+      "slug": "time-axis-label",
+      "id": "6622:7",
+      "title": "Time Axis Label",
+      "status": "done"
+    },
+    {
+      "section": "components/calendar",
+      "slug": "all-day-bar",
+      "id": "6622:8",
+      "title": "All-Day Bar",
+      "status": "done"
+    },
+    {
+      "section": "components/calendar",
+      "slug": "agenda-row",
+      "id": "6622:11",
+      "title": "Agenda Row",
+      "status": "done"
+    },
+    {
+      "section": "components/calendar",
+      "slug": "calendar-toolbar",
+      "id": "6622:12",
+      "title": "Calendar Toolbar",
+      "status": "done"
+    },
+    {
+      "section": "components/utility",
+      "slug": "cursor",
+      "id": "8871:430",
+      "title": "Cursor",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "app-shell",
+      "id": "135:1529",
+      "title": "App Shell",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "app-switcher",
+      "id": "2966:620",
+      "title": "App Switcher",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "command-palette",
+      "id": "2202:1252",
+      "title": "Command Palette",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "page-header",
+      "id": "4533:83",
+      "title": "Page Header",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "notifications-panel",
+      "id": "2202:1259",
+      "title": "Notifications Panel",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "profile-dropdown",
+      "id": "2202:1262",
+      "title": "Profile Dropdown",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "search-results-panel",
+      "id": "2966:624",
+      "title": "Search Results Panel",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "section-nav",
+      "id": "8041:127",
+      "title": "Section Nav",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "shell-tier-1-workplace",
+      "id": "6400:4",
+      "title": "Shell Tier 1 · Workplace",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "shell-tier-2-canvas-app",
+      "id": "6400:5",
+      "title": "Shell Tier 2 · Canvas app",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "shell-tier-3-config-app",
+      "id": "6400:6",
+      "title": "Shell Tier 3 · Config app (Chatter Config)",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "shell-tier-4-client-app",
+      "id": "6400:7",
+      "title": "Shell Tier 4 · Client app (Chatter)",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "sidebar",
+      "id": "2202:1233",
+      "title": "Sidebar",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "top-bar",
+      "id": "2163:3678",
+      "title": "Top Bar",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "tree-navigation-panel",
+      "id": "2966:623",
+      "title": "Tree Navigation Panel",
+      "status": "done"
+    },
+    {
+      "section": "patterns/layout-shell",
+      "slug": "sidebar-locations",
+      "id": "10395:7",
+      "title": "Sidebar Locations",
+      "status": "done"
+    },
+    {
+      "section": "patterns/data",
+      "slug": "activity-feed",
+      "id": "7359:2",
+      "title": "Activity Feed",
+      "status": "done"
+    },
+    {
+      "section": "patterns/data",
+      "slug": "bulk-actions-bar",
+      "id": "3614:2",
+      "title": "Bulk Actions Bar",
+      "status": "done"
+    },
+    {
+      "section": "patterns/data",
+      "slug": "column-chooser",
+      "id": "5113:10",
+      "title": "Column Chooser",
+      "status": "done"
+    },
+    {
+      "section": "patterns/data",
+      "slug": "data-table",
+      "id": "2202:1254",
+      "title": "Data Table",
+      "status": "done"
+    },
+    {
+      "section": "patterns/data",
+      "slug": "facet-group",
+      "id": "5113:9",
+      "title": "Facet Group",
+      "status": "done"
+    },
+    {
+      "section": "patterns/data",
+      "slug": "filter-panel",
+      "id": "5674:2",
+      "title": "Filter Panel",
+      "status": "done"
+    },
+    {
+      "section": "patterns/forms",
+      "slug": "form-row",
+      "id": "2202:1227",
+      "title": "Form Row",
+      "status": "done"
+    },
+    {
+      "section": "patterns/forms",
+      "slug": "form-section",
+      "id": "2202:1257",
+      "title": "Form Section",
+      "status": "done"
+    },
+    {
+      "section": "patterns/dashboards",
+      "slug": "schedule-strip",
+      "id": "6350:2",
+      "title": "Schedule Strip",
+      "status": "done"
+    },
+    {
+      "section": "patterns/dashboards",
+      "slug": "time-range-selector",
+      "id": "5113:14",
+      "title": "Time Range Selector",
+      "status": "done"
+    },
+    {
+      "section": "patterns/dashboards",
+      "slug": "widget-card",
+      "id": "5113:12",
+      "title": "Widget Card",
+      "status": "done"
+    },
+    {
+      "section": "patterns/dashboards",
+      "slug": "stat-card",
+      "id": "6544:2",
+      "title": "Stat Card",
+      "status": "done"
+    },
+    {
+      "section": "views/generic",
+      "slug": "dashboard",
+      "id": "3768:4",
+      "title": "Dashboard",
+      "status": "done"
+    },
+    {
+      "section": "views/generic",
+      "slug": "entity-list",
+      "id": "3768:5",
+      "title": "Entity List",
+      "status": "done"
+    },
+    {
+      "section": "views/generic",
+      "slug": "entity-detail",
+      "id": "3768:6",
+      "title": "Entity Detail",
+      "status": "done"
+    },
+    {
+      "section": "views/generic",
+      "slug": "detail-side-panel",
+      "id": "7709:24874",
+      "title": "Detail Side Panel",
+      "status": "done"
+    },
+    {
+      "section": "views/generic",
+      "slug": "settings",
+      "id": "3768:9",
+      "title": "Settings",
+      "status": "done"
+    },
+    {
+      "section": "views/generic",
+      "slug": "search-results",
+      "id": "3768:13",
+      "title": "Search Results",
+      "status": "done"
+    },
+    {
+      "section": "views/auth",
+      "slug": "sign-in",
+      "id": "2966:641",
+      "title": "Auth — Sign In",
+      "status": "done"
+    },
+    {
+      "section": "views/auth",
+      "slug": "sign-up",
+      "id": "3768:2",
+      "title": "Auth — Sign Up",
+      "status": "done"
+    },
+    {
+      "section": "views/auth",
+      "slug": "forgot-password",
+      "id": "5066:3",
+      "title": "Forgot Password",
+      "status": "done"
+    },
+    {
+      "section": "views/auth",
+      "slug": "reset-password",
+      "id": "5066:4",
+      "title": "Reset Password",
+      "status": "done"
+    },
+    {
+      "section": "views/auth",
+      "slug": "join-or-create-organization",
+      "id": "9441:1818",
+      "title": "Join or Create Organization",
+      "status": "done"
+    },
+    {
+      "section": "views/auth",
+      "slug": "mfa-challenge",
+      "id": "5066:5",
+      "title": "MFA Challenge",
+      "status": "done"
+    },
+    {
+      "section": "views/auth",
+      "slug": "session-expired",
+      "id": "5066:7",
+      "title": "Session Expired",
+      "status": "done"
+    },
+    {
+      "section": "views/auth",
+      "slug": "invite-acceptance",
+      "id": "5066:2",
+      "title": "Invite Acceptance",
+      "status": "done"
+    },
+    {
+      "section": "views/auth",
+      "slug": "organization-selector",
+      "id": "3768:3",
+      "title": "Organization Selector",
+      "status": "done"
+    },
+    {
+      "section": "views/account",
+      "slug": "user-profile",
+      "id": "3768:10",
+      "title": "User Profile",
+      "status": "done"
+    },
+    {
+      "section": "views/account",
+      "slug": "account-settings",
+      "id": "5066:10",
+      "title": "Account Settings",
+      "status": "done"
+    },
+    {
+      "section": "views/account",
+      "slug": "linked-accounts-api-tokens",
+      "id": "5066:12",
+      "title": "Linked Accounts & API Tokens",
+      "status": "done"
+    },
+    {
+      "section": "views/org-admin",
+      "slug": "members",
+      "id": "5066:9",
+      "title": "Members",
+      "status": "done"
+    },
+    {
+      "section": "views/org-admin",
+      "slug": "roles-permissions",
+      "id": "8001:29187",
+      "title": "Roles & Permissions",
+      "status": "done"
+    },
+    {
+      "section": "views/org-admin",
+      "slug": "licenses",
+      "id": "3768:11",
+      "title": "Licenses",
+      "status": "done"
+    },
+    {
+      "section": "views/org-admin",
+      "slug": "billing-history",
+      "id": "5066:22",
+      "title": "Billing History",
+      "status": "done"
+    },
+    {
+      "section": "views/org-admin",
+      "slug": "general",
+      "id": "5066:23",
+      "title": "General",
+      "status": "done"
+    },
+    {
+      "section": "views/org-admin",
+      "slug": "sso-saml",
+      "id": "5066:21",
+      "title": "SSO & SAML",
+      "status": "done"
+    },
+    {
+      "section": "views/org-admin",
+      "slug": "api-webhooks",
+      "id": "8366:10823",
+      "title": "API & Webhooks",
+      "status": "done"
+    },
+    {
+      "section": "views/org-admin",
+      "slug": "audit-log",
+      "id": "8366:10824",
+      "title": "Audit Log",
+      "status": "done"
+    },
+    {
+      "section": "views/communications",
+      "slug": "activity-log",
+      "id": "3768:12",
+      "title": "Activity Log",
+      "status": "done"
+    },
+    {
+      "section": "views/communications",
+      "slug": "notification-center",
+      "id": "3772:2",
+      "title": "Notification Center",
+      "status": "done"
+    },
+    {
+      "section": "views/communications",
+      "slug": "announcements",
+      "id": "5066:15",
+      "title": "Announcements / What's New",
+      "status": "done"
+    },
+    {
+      "section": "views/calendar",
+      "slug": "month-view",
+      "id": "6664:3",
+      "title": "Month View",
+      "status": "done"
+    },
+    {
+      "section": "views/calendar",
+      "slug": "week-view",
+      "id": "6802:2",
+      "title": "Week View",
+      "status": "done"
+    },
+    {
+      "section": "views/calendar",
+      "slug": "day-view",
+      "id": "6802:3",
+      "title": "Day View",
+      "status": "done"
+    },
+    {
+      "section": "views/calendar",
+      "slug": "agenda-view",
+      "id": "6802:4",
+      "title": "Agenda View",
+      "status": "done"
+    },
+    {
+      "section": "views/calendar",
+      "slug": "resource-view",
+      "id": "6802:5",
+      "title": "Resource View",
+      "status": "done"
+    },
+    {
+      "section": "views/calendar",
+      "slug": "year-view",
+      "id": "6802:6",
+      "title": "Year View",
+      "status": "done"
+    },
+    {
+      "section": "views/devices",
+      "slug": "device-list",
+      "id": "6133:3",
+      "title": "Device List",
+      "status": "done"
+    },
+    {
+      "section": "views/devices",
+      "slug": "device-detail",
+      "id": "5066:13",
+      "title": "Device Detail",
+      "status": "done"
+    },
+    {
+      "section": "views/devices",
+      "slug": "device-onboarding",
+      "id": "6133:4",
+      "title": "Device Onboarding",
+      "status": "done"
+    },
+    {
+      "section": "views/devices",
+      "slug": "file-asset-browser",
+      "id": "3772:3",
+      "title": "File & Asset Browser",
+      "status": "done"
+    },
+    {
+      "section": "views/devices",
+      "slug": "publish-deploy",
+      "id": "6312:2",
+      "title": "Publish / Deploy",
+      "status": "done"
+    },
+    {
+      "section": "views/help",
+      "slug": "ai-assistant",
+      "id": "6312:3",
+      "title": "AI Assistant",
+      "status": "done"
+    },
+    {
+      "section": "views/help",
+      "slug": "help-center",
+      "id": "6133:2",
+      "title": "Help Center",
+      "status": "done"
+    },
+    {
+      "section": "views/help",
+      "slug": "keyboard-shortcuts",
+      "id": "5066:24",
+      "title": "Keyboard Shortcuts",
+      "status": "done"
+    },
+    {
+      "section": "views/system",
+      "slug": "403-forbidden",
+      "id": "5066:17",
+      "title": "403 Forbidden",
+      "status": "done"
+    },
+    {
+      "section": "views/system",
+      "slug": "404-not-found",
+      "id": "5066:16",
+      "title": "404 Not Found",
+      "status": "done"
+    },
+    {
+      "section": "views/system",
+      "slug": "500-server-error",
+      "id": "5066:18",
+      "title": "500 Server Error",
+      "status": "done"
+    },
+    {
+      "section": "views/system",
+      "slug": "maintenance",
+      "id": "5066:20",
+      "title": "Maintenance",
+      "status": "done"
+    },
+    {
+      "section": "views/system",
+      "slug": "offline",
+      "id": "5066:19",
+      "title": "Offline",
+      "status": "done"
+    },
+    {
+      "section": "meta",
+      "slug": "utility",
+      "id": "6239:26579",
+      "title": ".[UTILITY]"
+    },
+    {
+      "section": "meta",
+      "slug": "section-covers",
+      "id": "135:899",
+      "title": "❖ COMPONENTS (section cover; other covers: 2159:569 TOKENS, 135:1528 PATTERNS, 2229:4791 VIEWS, 3620:2 Navigation, 3620:3 Buttons & Actions, 3620:4 Inputs & Forms, 3620:5 Data Display, 3620:6 Data Visualization, 3620:7 Feedback & Alerts, 4531:81 Overlays, 3620:8 Dialogs & Sheets, 3620:9 Cards & Containers, 6622:2 Calendar, 8871:552 Utility, 5814:2 Layout & Shell, 3620:11 Data, 3620:12 Forms, 3620:14 Dashboards, 7182:2 Generic Views, 5066:25 Auth & Onboarding, 5066:27 Account & Identity, 5066:26 Organization & Admin, 5066:29 Communications, 5066:28 Devices & Operations, 6007:6159 Help & Discovery, 5066:30 System States)"
+    },
+    {
+      "section": "components/overlays",
+      "slug": "coachmark",
+      "id": "10785:28",
+      "title": "Coachmark",
+      "status": "draft"
+    }
+  ],
+  "lastSync": {
+    "file": "OGvmMNnywH7JWDyEhOzjcc",
+    "version": "2401644549365555048",
+    "lastModified": "2026-09-21T11:29:27Z",
+    "date": "2026-09-21"
+  }
+}

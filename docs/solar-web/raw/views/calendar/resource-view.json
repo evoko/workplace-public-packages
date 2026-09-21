@@ -1,0 +1,352 @@
+{
+  "page": "↳ 🟢 Resource View",
+  "pageId": "6802:5",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Resource View",
+      "id": "6827:2",
+      "description": "",
+      "props": {},
+      "nodeCount": 305,
+      "tree": {
+        "name": "Resource View",
+        "type": "COMPONENT",
+        "size": [
+          1280,
+          744
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "children": [
+          {
+            "name": "Calendar Toolbar",
+            "type": "INSTANCE",
+            "main": "Calendar Toolbar",
+            "size": [
+              1280,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 16,
+              "pad": [
+                12,
+                16,
+                12,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "vars": {
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Calendar Body",
+            "type": "FRAME",
+            "size": [
+              1280,
+              401
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                20,
+                20,
+                20,
+                20
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/lg",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/lg"
+            },
+            "children": [
+              {
+                "name": "Calendar Surface",
+                "type": "FRAME",
+                "size": [
+                  1240,
+                  361
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                },
+                "children": [
+                  {
+                    "name": "Header Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      25
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "fills": [
+                      "{Color:surface/background}"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "Resource Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      56
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "Resource Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      56
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "Resource Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      56
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "Resource Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      56
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "Resource Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      56
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "Resource Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      56
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed"
+                  },
+                  {
+                    "name": "Now Indicator",
+                    "type": "RECTANGLE",
+                    "size": [
+                      2,
+                      336
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "fills": [
+                      "{Color:action/primary/bg/default}"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "census": {
+        "Calendar Toolbar": 1,
+        "Icon Button": 2,
+        "Icon/None": 17,
+        "Button": 2,
+        "Spinner": 2,
+        "Counter": 2,
+        "Segmented Control": 1,
+        "Segmented Control Item": 6,
+        "Icon/Plus": 1,
+        "Avatar": 6,
+        "Event Chip": 12,
+        "Icon/Repeat": 12
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Resource View",
+    "Description",
+    "A calendar laid out by resource (rooms, people, devices) with their bookings — for scheduling across many resources at once.",
+    "Layout",
+    "Resource headers (columns or rows) · time axis · booking blocks per resource · now indicator · filter by resource.",
+    "Responsive",
+    "Desktop multi-resource grid; mobile narrows to a single resource or switches view.",
+    "States",
+    "loaded, loading, empty (no resources / bookings), error; conflict highlighting.",
+    "Accessibility",
+    "Resource + time exposed per block; blocks focusable with resource + time announced; conflicts not colour-only. Keyboard navigation.",
+    "Rules",
+    "Label each resource clearly\nMark conflicts explicitly\nPair colour with a label\nFilter to relevant resources",
+    "Overflow many resources on mobile\nShow conflicts by colour only\nLose keyboard access\nLeave resource types unlabelled"
+  ],
+  "pageContext": null
+}

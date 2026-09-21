@@ -1,0 +1,553 @@
+{
+  "page": "Borders & Radius",
+  "pageId": "763:60191",
+  "section": "documentation",
+  "slug": "borders-radius",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Spatial\nBorders & Radius"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Borders & Radius",
+      "subtitle": null,
+      "x": 2020,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Borders and radius define edge treatment and visual containment in SOLAR. They reinforce structure, support hierarchy, and contribute to consistency across components and layouts. Borders and radius are system-defined — not stylistic variations."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Purpose"
+        },
+        {
+          "t": "p",
+          "text": "Borders and radius exist to:\nDefine boundaries and separation\nReinforce structural clarity\nMaintain visual consistency\nSupport accessibility and focus visibility\n\nEdge treatment should always be intentional and token-driven.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Border Width",
+      "subtitle": null,
+      "x": 4040,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Border width defines the thickness of visual boundaries and outlines. SOLAR standardizes border widths to ensure consistent emphasis and predictable visual weight across products."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Usage"
+        },
+        {
+          "t": "p",
+          "text": "Standard borders define containment\nThicker borders emphasize focus or active states\nBorder width should not vary arbitrarily between components\n\nBorder width supports clarity — not decoration.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-03-02 at 15.41.41 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Border Radius",
+      "subtitle": null,
+      "x": 6060,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Border radius defines curvature and softness of interface elements. It contributes to brand expression while maintaining structural consistency across components."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Usage"
+        },
+        {
+          "t": "p",
+          "text": "Small radius for compact structural elements\nMedium radius for standard components\nLarger radius for containers or elevated surfaces\n\nBorder width supports clarity — not decoration.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-03-02 at 15.42.03 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Applying Radius",
+      "subtitle": null,
+      "x": 8080,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "Table Container"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Border radius must be applied consistently across similar components and surfaces. Radius values are token-based and should not be manually adjusted per instance."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Guidelines"
+        },
+        {
+          "t": "p",
+          "text": "Components of the same type share the same radius\nNested elements should not exceed parent curvature\nStructural containers maintain consistent edge logic\n\nRadius hierarchy should feel intentional and cohesive.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Borders & Radius\ndomain: Layout > Edge Treatments\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR borders and radius specialist. Borders and corner radius are tokenized visual treatments that define component edges, separation, and shape language. Never use raw pixel values.\n\n[SCOPE]\n- Border width tokens\n- Border color tokens (semantic roles)\n- Border radius scale\n- When and how to apply borders and rounding\n- Concentric radius rule for nested elements\n\n[BORDER_WIDTH_TOKENS]\nborder.width.none: 0px — no border\nborder.width.sm: 1px — default borders, dividers, input outlines\nborder.width.md: 2px — focus rings, emphasized borders, active states\nborder.width.lg: 3px — heavy emphasis, selected indicators (rare)\nrule: never use arbitrary border widths — always a width token\n\n[BORDER_COLOR_TOKENS]\ncolor.border.default: standard borders, dividers, card outlines\ncolor.border.subtle: low-emphasis borders, secondary dividers\ncolor.border.strong: high-emphasis borders, hover states\ncolor.border.interactive: borders on interactive controls (inputs, selects)\ncolor.border.disabled: borders on disabled elements\ncolor.border.error: validation error borders\ncolor.border.success: success state borders\ncolor.border.focus: focus ring color (often paired with shadow.focus)\nrule: border colors are semantic — they swap per theme automatically\n\n[RADIUS_SCALE]\nradius.none: 0px — sharp corners, no rounding\nradius.xs: 2px — subtle rounding, badges, small tags\nradius.sm: 4px — inputs, buttons (sm), compact controls\nradius.md: 6px — buttons (md/lg), cards, containers\nradius.lg: 8px — dialogs, larger cards, panels\nradius.xl: 12px — hero cards, feature panels\nradius.2xl: 16px — large containers, popovers\nradius.full: 9999px — pills, avatars, circular elements\nrule: never use arbitrary radius values — always a radius token\n\n[COMPONENT_RADIUS_MAPPING]\nbuttons: radius.md (6px) — consistent across all button sizes\ninputs: radius.sm (4px) — text fields, selects, textareas\ncards: radius.md (6px) or radius.lg (8px) — depending on size\ndialogs: radius.lg (8px) — dialogs, drawers, bottom sheets\nbadges/tags: radius.xs (2px) or radius.full (pill)\navatars: radius.full — always circular\ntooltips: radius.sm (4px) — small, compact\nrule: component families use consistent radius — don't vary within a component set\n\n[CONCENTRIC_RADIUS]\nrule: inner radius = outer radius − padding\nexample: if card has radius.lg (8px) and space.md (16px) padding, inner elements should have radius.none or radius.xs\nrationale: maintains parallel curves — avoids awkward corner misalignment\nexception: when inner content is far from outer edges, concentric rule is less critical\n\n[DIVIDERS]\nhorizontal: 1px border-bottom using color.border.subtle — separates list items, sections\nvertical: 1px border-right using color.border.subtle — separates columns, nav sections\nrule: dividers use border.width.sm + color.border.subtle — never stronger unless intentional\nspacing: dividers sit within existing spacing — don't add extra margin for dividers\n\n[AGENT_BEHAVIOR]\n- When recommending borders, specify both the width token and color token\n- When recommending radius, reference the radius token (e.g., \"radius.md\") not a px value\n- Verify consistent radius within component families\n- Check concentric radius rule for nested containers\n- Ensure borders meet 3:1 contrast against adjacent surfaces\n- Flag any hardcoded border or radius values as violations\n\n[CONSTRAINTS]\n- never use arbitrary border widths or radius values — always tokens\n- never vary radius within a component family without justification\n- radius.full is reserved for pills, avatars, and FABs — don't apply to rectangular containers\n- borders must meet ≥ 3:1 contrast for visibility (when they convey meaning)\n- concentric radius: inner = outer − padding\n- decorative borders should be subtle — don't over-border\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Borders & Radius",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Borders and radius define edge treatment and visual containment in SOLAR. They reinforce structure, support hierarchy, and contribute to consistency across components and layouts. Borders and radius are system-defined — not stylistic variations.",
+        "Purpose",
+        "Borders and radius exist to:\nDefine boundaries and separation\nReinforce structural clarity\nMaintain visual consistency\nSupport accessibility and focus visibility\n\nEdge treatment should always be intentional and token-driven."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Border Width",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Border width defines the thickness of visual boundaries and outlines. SOLAR standardizes border widths to ensure consistent emphasis and predictable visual weight across products.",
+        "Usage",
+        "Standard borders define containment\nThicker borders emphasize focus or active states\nBorder width should not vary arbitrarily between components\n\nBorder width supports clarity — not decoration."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Border Radius",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Border radius defines curvature and softness of interface elements. It contributes to brand expression while maintaining structural consistency across components.",
+        "Usage",
+        "Small radius for compact structural elements\nMedium radius for standard components\nLarger radius for containers or elevated surfaces\n\nBorder width supports clarity — not decoration."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Applying Radius",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Border radius must be applied consistently across similar components and surfaces. Radius values are token-based and should not be manually adjusted per instance.",
+        "Guidelines",
+        "Components of the same type share the same radius\nNested elements should not exceed parent curvature\nStructural containers maintain consistent edge logic\n\nRadius hierarchy should feel intentional and cohesive."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 84
+}

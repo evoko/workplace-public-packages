@@ -1,0 +1,256 @@
+{
+  "page": "↳ 🟢 Shell Tier 3 · Config app (Chatter Config)",
+  "pageId": "6400:6",
+  "componentSets": [
+    {
+      "name": "Layout / Config ",
+      "id": "6499:6532",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "center#6499:23": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 42,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/background}"
+        ],
+        "vars": {
+          "width": "Primitives:viewport/lg"
+        },
+        "children": [
+          {
+            "name": "Top Bar",
+            "type": "INSTANCE",
+            "main": "Top Bar",
+            "variant": {
+              "breakpoint": "desktop",
+              "hasSidebar": "false",
+              "isLoggedIn": "True"
+            },
+            "size": [
+              1440,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                16,
+                0,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "paddingLeft": "Spatial:stack/md",
+              "paddingRight": "Spatial:stack/md"
+            }
+          },
+          {
+            "name": "App Content",
+            "type": "FRAME",
+            "size": [
+              1440,
+              744
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                8,
+                8,
+                8
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FIXED/FIXED"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/xs"
+            },
+            "children": [
+              {
+                "name": "Page Content",
+                "type": "FRAME",
+                "size": [
+                  1424,
+                  736
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/MIN",
+                  "sizing": "FILL/FILL"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "layoutGrids": [
+                    "Space:grid/columns/lg",
+                    "Spatial(local):stack/xs"
+                  ]
+                },
+                "children": [
+                  {
+                    "name": "center",
+                    "type": "SLOT",
+                    "size": [
+                      1424,
+                      736
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/raised}"
+                    ],
+                    "radius": 8,
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/none",
+                      "paddingLeft": "Spatial:stack/none",
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingRight": "Spatial:stack/none",
+                      "paddingBottom": "Spatial:inset/none",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    },
+                    "propRefs": {
+                      "slotContentId": "center#6499:23"
+                    },
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Color:text/inverse}",
+            "{Primitives:color/purple/700}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/tertiary}",
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Primitives:color/purple/700}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": []
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Shell Tier 3 · Config app",
+    "Description",
+    "The app shell for a configuration / admin product (e.g. Chatter Config) — dense form- and table-heavy layouts under a standard top bar + sidebar.",
+    "Anatomy",
+    "Top bar · sidebar (config sections) · content (forms, tables, Section Nav) · optional contextual side panel.",
+    "Composition",
+    "Prioritises information density and settings navigation. Uses Section Nav for sub-sections and Data Table / Form patterns in the content region.",
+    "States",
+    "Responsive: desktop (sidebar + content), mobile (drawer nav, stacked forms). Content: loaded, loading, empty, error.",
+    "Accessibility",
+    "Standard banner / navigation / main landmarks. Forms and tables carry their own a11y. Keyboard navigable with a logical tab order through dense content.",
+    "Rules",
+    "Use Section Nav for sub-sections\nKeep dense content scannable\nReuse Form + Table patterns\nSupport keyboard through dense UI",
+    "Overload one screen\nHard-code the product\nSkip landmarks\nRely on density over hierarchy"
+  ],
+  "pageContext": null
+}

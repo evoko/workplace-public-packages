@@ -1,0 +1,949 @@
+{
+  "page": "↳ 🟢 Tag",
+  "pageId": "2966:583",
+  "componentSets": [
+    {
+      "name": "Tag",
+      "id": "3502:2108",
+      "description": "Compact label for status, category, or user-entered content. 45 variants: type (status, icon-only, icon+text, closable, text-only) × status (success, neutral, warning, danger, info) × invert × show icon-leading. type=status for read-only state (Active, Pending); type=closable for user-entered tokens with ×; type=icon-only for pure glyph tags. Keep text to 1–3 words.",
+      "docLinks": [],
+      "variantCount": 45,
+      "props": {
+        "status": {
+          "type": "VARIANT",
+          "default": "success",
+          "options": [
+            "success",
+            "neutral",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "status",
+          "options": [
+            "status",
+            "icon-only",
+            "icon+text",
+            "closable",
+            "text-only"
+          ]
+        },
+        "invert": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "status=success, type=status, invert=false",
+      "defaultVariantNodeCount": 2,
+      "defaultVariantTree": {
+        "name": "status=success, type=status, invert=false",
+        "type": "COMPONENT",
+        "size": [
+          67,
+          24
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            0,
+            12,
+            0,
+            8
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "HUG/FIXED"
+        },
+        "fills": [
+          "{Color:surface/feedback/success/subtle}"
+        ],
+        "strokes": [
+          "{Color:border/feedback/success/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 9999,
+        "vars": {
+          "itemSpacing": "Spatial:inset/xs",
+          "paddingLeft": "Spatial:inset/xs",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/none",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
+        },
+        "children": [
+          {
+            "name": "StatusIndicator",
+            "type": "INSTANCE",
+            "main": "StatusIndicator",
+            "variant": {
+              "type": "success",
+              "size": "xs"
+            },
+            "size": [
+              8,
+              8
+            ],
+            "sizing": "FIXED/FIXED",
+            "fills": [
+              "{Color:surface/feedback/success/strong}"
+            ],
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "Label",
+            "textStyle": "label/sm",
+            "size": [
+              31,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/feedback/success}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/sm",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "status=success, type=status, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/success/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/success}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "status=success, type=icon-only, invert=false",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/success/subtle}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/success}"
+          ]
+        },
+        {
+          "variant": "status=success, type=icon+text, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/success/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/success}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/success}"
+          ]
+        },
+        {
+          "variant": "status=success, type=closable, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/success/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/success}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/success}"
+          ]
+        },
+        {
+          "variant": "status=success, type=text-only, invert=false",
+          "size": [
+            55,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/success/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/success}"
+          ]
+        },
+        {
+          "variant": "status=success, type=icon-only, invert=true",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=success, type=icon+text, invert=true",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=success, type=closable, invert=true",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=success, type=text-only, invert=true",
+          "size": [
+            55,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ]
+        },
+        {
+          "variant": "status=warning, type=status, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/warning/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/warning}"
+          ]
+        },
+        {
+          "variant": "status=warning, type=icon-only, invert=false",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/warning/subtle}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/warning}"
+          ]
+        },
+        {
+          "variant": "status=warning, type=icon+text, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/warning/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/warning}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/warning}"
+          ]
+        },
+        {
+          "variant": "status=warning, type=closable, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/warning/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/warning}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/warning}"
+          ]
+        },
+        {
+          "variant": "status=warning, type=text-only, invert=false",
+          "size": [
+            55,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/warning/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/warning}"
+          ]
+        },
+        {
+          "variant": "status=warning, type=icon-only, invert=true",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=warning, type=icon+text, invert=true",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=warning, type=closable, invert=true",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=warning, type=text-only, invert=true",
+          "size": [
+            55,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ]
+        },
+        {
+          "variant": "status=danger, type=status, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/danger/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}"
+          ]
+        },
+        {
+          "variant": "status=danger, type=icon-only, invert=false",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/danger/subtle}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}"
+          ]
+        },
+        {
+          "variant": "status=danger, type=icon+text, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/danger/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}"
+          ]
+        },
+        {
+          "variant": "status=danger, type=closable, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/danger/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}"
+          ]
+        },
+        {
+          "variant": "status=danger, type=text-only, invert=false",
+          "size": [
+            55,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/danger/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}"
+          ]
+        },
+        {
+          "variant": "status=danger, type=icon-only, invert=true",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=danger, type=icon+text, invert=true",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=danger, type=closable, invert=true",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=danger, type=text-only, invert=true",
+          "size": [
+            55,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ]
+        },
+        {
+          "variant": "status=info, type=status, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/info/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}"
+          ]
+        },
+        {
+          "variant": "status=info, type=icon-only, invert=false",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/info/subtle}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/info}"
+          ]
+        },
+        {
+          "variant": "status=info, type=icon+text, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/info/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/info}"
+          ]
+        },
+        {
+          "variant": "status=info, type=closable, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/info/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/info}"
+          ]
+        },
+        {
+          "variant": "status=info, type=text-only, invert=false",
+          "size": [
+            55,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/info/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}"
+          ]
+        },
+        {
+          "variant": "status=info, type=icon-only, invert=true",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=info, type=icon+text, invert=true",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=info, type=closable, invert=true",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=info, type=text-only, invert=true",
+          "size": [
+            55,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ]
+        },
+        {
+          "variant": "status=neutral, type=status, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "status=neutral, type=icon-only, invert=false",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "status=neutral, type=icon+text, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "status=neutral, type=closable, invert=false",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "status=neutral, type=text-only, invert=false",
+          "size": [
+            55,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "status=neutral, type=icon-only, invert=true",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=neutral, type=icon+text, invert=true",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=neutral, type=closable, invert=true",
+          "size": [
+            67,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "status=neutral, type=text-only, invert=true",
+          "size": [
+            55,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Tag",
+    "Description",
+    "A compact label for categorising, status, or metadata. Read-only by default; can be closable when it represents a removable selection. For user-entered tokens, use Tag Input.",
+    "Status",
+    "Neutral · Info · Success · Warning · Danger — colour-coded meaning, always paired with text (never colour alone).",
+    "Type",
+    "Status · Text-only · Icon+text · Icon-only · Closable. Invert for use on strong or coloured surfaces.",
+    "Usage",
+    "Use for categories, states, and metadata. Keep labels to 1–2 words. Make closable only when removal is meaningful.",
+    "Accessibility",
+    "Convey status with text or an icon, never colour alone. A closable tag’s remove control is a labelled, keyboard-reachable button.",
+    "Rules",
+    "DO   Pair colour with text\nDO   Keep labels short (1–2 words)\nDO   Use closable only for removable items\nDO   Match status colour to meaning",
+    "DON'T   Rely on colour alone for status\nDON'T   Use tags as buttons\nDON'T   Overload with long text\nDON'T   Make every tag closable"
+  ],
+  "pageContext": null
+}

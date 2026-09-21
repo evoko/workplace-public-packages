@@ -1,0 +1,649 @@
+{
+  "page": "Lint Plugin",
+  "pageId": "1086:16826",
+  "section": "meta",
+  "slug": "lint-plugin",
+  "status": "none",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "SOLAR Lint\nFigma Plugin"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "What Is SOLAR Lint",
+      "subtitle": null,
+      "x": 2003,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR Lint is a Figma plugin that automatically validates designs against the SOLAR design system. It scans any page, selection, or entire file and flags every deviation — hardcoded values, wrong libraries, detached components, and more."
+        },
+        {
+          "t": "p",
+          "text": "Think of it as ESLint for your Figma files. It catches issues at design time, not after handoff — so problems are fixed before they reach code review.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Key Features"
+        },
+        {
+          "t": "p",
+          "text": "22+ automated lint rules across 7 categories\nScan by page, selection, or entire file\nClick any finding to jump to the node in Figma\nComponent coverage tracking with visual breakdown\nScan history with diff — track new vs. resolved issues\nCSV export for sharing with your team",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Branded dark-theme UI customized for the SOLAR design system.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "What It Checks",
+      "subtitle": null,
+      "x": 3984,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "The plugin runs 22+ rules across 7 categories, catching everything from hardcoded colors to accessibility violations. Each finding links directly to the offending node."
+        },
+        {
+          "t": "p",
+          "text": "Rules are organized by category: Tokens, Components, Detached Instances, Library Sources, Icons, Typography, and Accessibility.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Rule Categories"
+        },
+        {
+          "t": "p",
+          "text": "Tokens — Hardcoded fills, strokes, spacing, padding, radius; primitive vs. semantic misuse; banned token names\nComponents — Broken links, outdated instances, hardcoded overrides, naming violations\nDetached — Frames matching DS component names that aren’t instances\nLibraries — Components and variables sourced from non-DS libraries\nIcons — Non-standard sizes, non-DS sources, hardcoded icon colors\nTypography — Missing text styles, non-DS fonts, off-scale font sizes\nAccessibility — WCAG AA contrast failures, touch targets below 44×44px",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Severity levels: Error (must fix), Warning (should fix), Info (recommendation).",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "image 2"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "How It Works",
+      "subtitle": null,
+      "x": 5965,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "You pick a scope (page, selection, or all pages), hit Scan, and the plugin walks every node — resolving component references, running all rules, and classifying every instance. Results appear as summary cards, a coverage bar, and a filterable findings table."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Error Messages"
+        },
+        {
+          "t": "p",
+          "text": "Structure: What happened + Why + What to do next.\n\nNever show raw error codes or technical IDs.\nAlways include a recovery action when one exists.\nUse color.text.feedback.danger for error text and pair with an icon — never rely on color alone.\nKeep under 2 lines.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Empty States"
+        },
+        {
+          "t": "p",
+          "text": "Structure: What this space is for + How to get started.\n\nInclude a primary action when possible (e.g., “Add device” button).\nEmpty states should feel temporary, not permanent.\nDon’t use illustrations that look like errors.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Confirmation Dialogs"
+        },
+        {
+          "t": "p",
+          "text": "Structure: What will happen (specific) + What can’t be undone + Action button that names the action.\n\nNever use “Are you sure?” as the only content.\nConfirm button names the action: “Delete device” not “OK.”\nCancel is always “Cancel.”",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Rule ID",
+              "What It Flags",
+              "Severity",
+              "Category",
+              "Example",
+              "Action"
+            ],
+            [
+              "CLR-001",
+              "Solid fill without a variable binding",
+              "Error",
+              "Token",
+              "Button with #FF0000",
+              "Bind to semantic token"
+            ],
+            [
+              "CMP-005",
+              "Instance uses older version of published component",
+              "Warning",
+              "Component",
+              "Old Button variant",
+              "Update to latest"
+            ],
+            [
+              "DET-001",
+              "Frame name matches DS component but is not an instance",
+              "Error",
+              "Detached",
+              "Frame named \"Button\"",
+              "Swap to DS instance"
+            ],
+            [
+              "A11Y-001",
+              "Text contrast below WCAG AA threshold",
+              "Error",
+              "Accessibility",
+              "Gray text on gray bg",
+              "Fix contrast ratio"
+            ],
+            [
+              "TYP-006",
+              "Text node with no bound text style",
+              "Warning",
+              "Typography",
+              "Ad-hoc 15px text",
+              "Apply DS text style"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "image 1",
+      "title": null,
+      "subtitle": null,
+      "x": 3189,
+      "y": 254,
+      "w": 520,
+      "h": 740,
+      "blocks": []
+    }
+  ],
+  "pageContext": null,
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "What Is SOLAR Lint",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR Lint is a Figma plugin that automatically validates designs against the SOLAR design system. It scans any page, selection, or entire file and flags every deviation — hardcoded values, wrong libraries, detached components, and more.",
+        "Think of it as ESLint for your Figma files. It catches issues at design time, not after handoff — so problems are fixed before they reach code review.",
+        "Key Features",
+        "22+ automated lint rules across 7 categories\nScan by page, selection, or entire file\nClick any finding to jump to the node in Figma\nComponent coverage tracking with visual breakdown\nScan history with diff — track new vs. resolved issues\nCSV export for sharing with your team",
+        "Branded dark-theme UI customized for the SOLAR design system."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "What It Checks",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "The plugin runs 22+ rules across 7 categories, catching everything from hardcoded colors to accessibility violations. Each finding links directly to the offending node.",
+        "Rules are organized by category: Tokens, Components, Detached Instances, Library Sources, Icons, Typography, and Accessibility.",
+        "Rule Categories",
+        "Tokens — Hardcoded fills, strokes, spacing, padding, radius; primitive vs. semantic misuse; banned token names\nComponents — Broken links, outdated instances, hardcoded overrides, naming violations\nDetached — Frames matching DS component names that aren’t instances\nLibraries — Components and variables sourced from non-DS libraries\nIcons — Non-standard sizes, non-DS sources, hardcoded icon colors\nTypography — Missing text styles, non-DS fonts, off-scale font sizes\nAccessibility — WCAG AA contrast failures, touch targets below 44×44px",
+        "Severity levels: Error (must fix), Warning (should fix), Info (recommendation)."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "How It Works",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "You pick a scope (page, selection, or all pages), hit Scan, and the plugin walks every node — resolving component references, running all rules, and classifying every instance. Results appear as summary cards, a coverage bar, and a filterable findings table.",
+        "Error Messages",
+        "Structure: What happened + Why + What to do next.\n\nNever show raw error codes or technical IDs.\nAlways include a recovery action when one exists.\nUse color.text.feedback.danger for error text and pair with an icon — never rely on color alone.\nKeep under 2 lines.",
+        "Empty States",
+        "Structure: What this space is for + How to get started.\n\nInclude a primary action when possible (e.g., “Add device” button).\nEmpty states should feel temporary, not permanent.\nDon’t use illustrations that look like errors.",
+        "Confirmation Dialogs",
+        "Structure: What will happen (specific) + What can’t be undone + Action button that names the action.\n\nNever use “Are you sure?” as the only content.\nConfirm button names the action: “Delete device” not “OK.”\nCancel is always “Cancel.”",
+        "Rule ID",
+        "What It Flags",
+        "Severity",
+        "Category",
+        "Example",
+        "Action",
+        "CLR-001",
+        "Solid fill without a variable binding",
+        "Error",
+        "Token",
+        "Button with #FF0000",
+        "Bind to semantic token",
+        "CMP-005",
+        "Instance uses older version of published component",
+        "Warning",
+        "Component",
+        "Old Button variant",
+        "Update to latest",
+        "DET-001",
+        "Frame name matches DS component but is not an instance",
+        "Error",
+        "Detached",
+        "Frame named \"Button\"",
+        "Swap to DS instance",
+        "A11Y-001",
+        "Text contrast below WCAG AA threshold",
+        "Error",
+        "Accessibility",
+        "Gray text on gray bg",
+        "Fix contrast ratio",
+        "TYP-006",
+        "Text node with no bound text style",
+        "Warning",
+        "Typography",
+        "Ad-hoc 15px text",
+        "Apply DS text style"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 88
+}

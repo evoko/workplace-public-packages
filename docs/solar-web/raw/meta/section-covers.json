@@ -1,0 +1,74 @@
+{
+  "page": "❖ COMPONENTS",
+  "pageId": "135:899",
+  "componentSets": [],
+  "components": [],
+  "frames": [
+    {
+      "name": "Section Description",
+      "type": "FRAME",
+      "id": "3760:2",
+      "size": [
+        800,
+        241
+      ],
+      "census": {},
+      "tree": {
+        "name": "Section Description",
+        "type": "FRAME",
+        "size": [
+          800,
+          241
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 16,
+          "pad": [
+            32,
+            32,
+            32,
+            32
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "#ffffff"
+        ],
+        "children": [
+          {
+            "name": "COMPONENTS",
+            "type": "TEXT",
+            "text": "COMPONENTS",
+            "size": [
+              175,
+              29
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "#000000"
+            ]
+          },
+          {
+            "name": "Atomic and molecular UI elements — buttons, inputs, badges, cards, overlays. Each component is self-contained with its own variants, tokens, and ARIA spec. These are the building blocks consumed by Modules and product teams. Naming: ComponentName / SubType variants share a page (e.g., Card / Stat, Badge / Trend). Distinct components get their own page.",
+            "type": "TEXT",
+            "text": "Atomic and molecular UI elements — buttons, inputs, badges, cards, overlays. Eac",
+            "size": [
+              736,
+              132
+            ],
+            "sizing": "FIXED/HUG",
+            "fills": [
+              "#333333"
+            ]
+          }
+        ]
+      },
+      "texts": [
+        "Atomic and molecular UI elements — buttons, inputs, badges, cards, overlays. Each component is self-contained with its own variants, tokens, and ARIA spec. These are the building blocks consumed by Modules and product teams.\n\nNaming: ComponentName / SubType variants share a page (e.g., Card / Stat, "
+      ]
+    }
+  ],
+  "docText": [],
+  "pageContext": null
+}

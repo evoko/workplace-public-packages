@@ -1,0 +1,687 @@
+{
+  "page": "↳ 🟢 Organization Selector",
+  "pageId": "3768:3",
+  "componentSets": [
+    {
+      "name": "Organization Selector",
+      "id": "6592:38886",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "mobile",
+            "desktop"
+          ]
+        },
+        "filled": {
+          "type": "VARIANT",
+          "default": "True",
+          "options": [
+            "False",
+            "True"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop, filled=True",
+      "defaultVariantNodeCount": 114,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop, filled=True",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            24,
+            0
+          ],
+          "align": "SPACE_BETWEEN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/inverse}",
+          "IMAGE",
+          "IMAGE"
+        ],
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/xl",
+          "width": "Layout:breakpoint/lg"
+        },
+        "children": [
+          {
+            "name": "Top Bar",
+            "type": "INSTANCE",
+            "main": "Top Bar",
+            "variant": {
+              "breakpoint": "desktop",
+              "hasSidebar": "true",
+              "isLoggedIn": "True"
+            },
+            "size": [
+              1440,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                16,
+                0,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:stack/md",
+              "paddingRight": "Spatial:stack/md"
+            }
+          },
+          {
+            "name": "Center Stack",
+            "type": "FRAME",
+            "size": [
+              400,
+              592
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 20,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/lg"
+            },
+            "children": [
+              {
+                "name": "Select organization",
+                "type": "TEXT",
+                "text": "Select organization",
+                "textStyle": "title/sm",
+                "size": [
+                  174,
+                  15
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Select your organization to access and manage your AV environments from a single, unified workspace.",
+                "type": "TEXT",
+                "text": "Select your organization to access and manage your AV environments from a single",
+                "textStyle": "body/md/regular",
+                "size": [
+                  400,
+                  30
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Container",
+                "type": "INSTANCE",
+                "main": "Container",
+                "variant": {
+                  "type": "outlined"
+                },
+                "size": [
+                  400,
+                  507
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "fills": [
+                  "{Color:surface/raised}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 12,
+                "effectStyle": "shadow/overlay",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/dialog",
+                  "topRightRadius": "Spatial:radius/dialog",
+                  "bottomLeftRadius": "Spatial:radius/dialog",
+                  "bottomRightRadius": "Spatial:radius/dialog"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              216,
+              32
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm"
+            },
+            "children": [
+              {
+                "name": "Biamp Logo",
+                "type": "INSTANCE",
+                "main": "Biamp Logo",
+                "variant": {
+                  "style": "light",
+                  "size": "sm"
+                },
+                "size": [
+                  36,
+                  11
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "© 2025 Biamp Systems LLC. v.1.2-b-fd",
+                "type": "TEXT",
+                "text": "© 2025 Biamp Systems LLC.  v.1.2-b-fd",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  216,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop, filled=True",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/tertiary}",
+            "{Color:text/primary}",
+            "{Primitives:color/purple/700}",
+            "{Primitives:color/pink/700}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:icon/secondary}",
+            "{Color:icon/inverse}",
+            "{Color:icon/primary}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Field",
+            "GlobalSearch",
+            "Icon/Filter",
+            "Icon/None",
+            "Nav Item",
+            "Supporting"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile, filled=True",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Primitives:color/purple/700}",
+            "{Color:text/tertiary}",
+            "{Primitives:color/pink/700}",
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Icon Button",
+            "Icon/Filter",
+            "Supporting"
+          ]
+        },
+        {
+          "variant": "breakpoint=desktop, filled=False",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/tertiary}",
+            "{Color:text/primary}",
+            "{Primitives:color/purple/700}",
+            "{Primitives:color/pink/700}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:icon/secondary}",
+            "{Color:icon/inverse}",
+            "{Color:icon/primary}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Field",
+            "GlobalSearch",
+            "Icon/None",
+            "Nav Item",
+            "Supporting"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile, filled=False",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Primitives:color/purple/700}",
+            "{Color:text/tertiary}",
+            "{Primitives:color/pink/700}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/primary}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Icon Button",
+            "Supporting"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Organization Selector Overlay",
+      "id": "9511:29064",
+      "description": "",
+      "props": {},
+      "nodeCount": 74,
+      "tree": {
+        "name": "Organization Selector Overlay",
+        "type": "COMPONENT",
+        "size": [
+          400,
+          548
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/overlay}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/md",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "content",
+            "type": "FRAME",
+            "size": [
+              368,
+              516
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "ListItem",
+                "type": "INSTANCE",
+                "main": "ListItem",
+                "variant": {
+                  "type": "avatar",
+                  "state": "default",
+                  "compact": "false"
+                },
+                "size": [
+                  368,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "effectStyle": "shadow/raised",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Divider",
+                "type": "INSTANCE",
+                "main": "Divider",
+                "variant": {
+                  "orientation": "horizontal",
+                  "type": "with-label"
+                },
+                "size": [
+                  368,
+                  20
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              {
+                "name": "List",
+                "type": "INSTANCE",
+                "main": "List",
+                "variant": {
+                  "in-card": "true"
+                },
+                "size": [
+                  368,
+                  324
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "effectStyle": "shadow/raised",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Divider",
+                "type": "INSTANCE",
+                "main": "Divider",
+                "variant": {
+                  "orientation": "horizontal",
+                  "type": "with-label"
+                },
+                "size": [
+                  368,
+                  20
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              {
+                "name": "Button",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "md",
+                  "prio": "secondary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  368,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Auth — Organization Selector",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

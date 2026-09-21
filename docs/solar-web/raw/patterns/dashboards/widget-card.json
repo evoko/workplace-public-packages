@@ -1,0 +1,719 @@
+{
+  "page": "↳ 🟢 Widget Card",
+  "pageId": "5113:12",
+  "componentSets": [
+    {
+      "name": "Widget Card",
+      "id": "5465:85",
+      "description": "ROLE: composition of Card.\n\nDashboard widget chrome. A Card composition with opinionated header (Title + optional overflow menu + optional control slot for Time Range Selector), body slot, and first-class loading / error / empty states.\n\nANATOMY\nOuter COMPONENT wraps an inner Surface FRAME that carries all card tokens (surface/base, border/subtle, radius/container, border/default weight, shadow/raised effect style, padding inset/lg). Inside Surface: WidgetHeader (Title + Trailing(Control + Overflow)) → Body → Footer.\n\nVARIANT PROPERTIES\n• state — default, loading, error, empty\n\nBOOLEANS\n• show overflow (default true) • show control (default false) • show footer (default false)\n• title (text prop)\n\nPADDING OVERRIDE\nBound to inset/lg vs Card's nominal inset/md. Applied via --solar-card-padding in code, not a fork.\n\nCOMPOSITION CONTRACT\nWidget Card may not override: surface/*, border/*, radius/*, border/default weight, shadow/raised, focus ring. May override: padding (inset.lg), Header content (fixed WidgetHeader), state vocabulary (loading|error|empty).\n\nSTATE DELEGATIONS\n• loading → Skeleton (rectangular, md)\n• empty   → EmptyState (size=sm)\n• error   → inline error block (message + Button instance)\n\nBUILD NOTE (2026-04-21)\nOuter COMPONENT uses an inner Surface FRAME because Figma's Plugin API silently drops scalar bindings (padding/radius/strokeWeight/itemSpacing) when applied directly to a COMPONENT root node. The Surface FRAME holds all card tokens; the COMPONENT wrapper provides the variant axis. Taxonomy intent (Widget Card as a Card INSTANCE) is blocked on Card exposing a content-accepting slot — flagged on the handoff.\n\nIS NOT\n• Not a Card variant.\n• Not a layout grid.\n• Not an entity card.\n• Does not own the Time Range Selector — accepts one as an instance swap into the Control slot.",
+      "docLinks": [],
+      "variantCount": 8,
+      "props": {
+        "show footer#5465:10": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "footer#6269:0": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "body#6269:5": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "hasStatus#7058:63": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "title#7058:72": {
+          "type": "TEXT",
+          "default": "Title"
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "loading",
+            "error",
+            "empty"
+          ]
+        },
+        "action": {
+          "type": "VARIANT",
+          "default": "more",
+          "options": [
+            "more",
+            "link"
+          ]
+        }
+      },
+      "defaultVariant": "state=default, action=more",
+      "defaultVariantNodeCount": 10,
+      "defaultVariantTree": {
+        "name": "state=default, action=more",
+        "type": "COMPONENT",
+        "size": [
+          360,
+          99
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 16,
+          "pad": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/raised",
+        "vars": {
+          "itemSpacing": "Spatial:stack/md",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/md",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Header",
+            "type": "FRAME",
+            "size": [
+              328,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  33,
+                  12
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                },
+                "children": [
+                  {
+                    "name": "Trend Badge",
+                    "type": "INSTANCE",
+                    "hidden": true,
+                    "main": "Trend Badge",
+                    "variant": {
+                      "type": "incline",
+                      "size": "xs"
+                    },
+                    "size": [
+                      8,
+                      8
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "fills": [
+                      "{Color:surface/feedback/success/strong}"
+                    ],
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 9999,
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/pill",
+                      "topRightRadius": "Spatial:radius/pill",
+                      "bottomLeftRadius": "Spatial:radius/pill",
+                      "bottomRightRadius": "Spatial:radius/pill"
+                    },
+                    "propRefs": {
+                      "visible": "hasStatus#7058:63"
+                    }
+                  },
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Title",
+                    "textStyle": "title/xs",
+                    "size": [
+                      33,
+                      12
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/xs",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/xs",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    },
+                    "propRefs": {
+                      "characters": "title#7058:72"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Icon/More",
+                "type": "INSTANCE",
+                "main": "Icon/More",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            ]
+          },
+          {
+            "name": "body",
+            "type": "SLOT",
+            "size": [
+              328,
+              10
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "propRefs": {
+              "slotContentId": "body#6269:5"
+            },
+            "children": [
+              {
+                "name": "Body slot",
+                "type": "TEXT",
+                "text": "Body slot",
+                "textStyle": "body/md/regular",
+                "size": [
+                  60,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "footer",
+            "type": "SLOT",
+            "size": [
+              328,
+              9
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "propRefs": {
+              "visible": "show footer#5465:10",
+              "slotContentId": "footer#6269:0"
+            },
+            "children": [
+              {
+                "name": "Footer slot",
+                "type": "TEXT",
+                "text": "Footer slot",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  59,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default, action=more",
+          "size": [
+            360,
+            99
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Trend Badge"
+          ]
+        },
+        {
+          "variant": "state=loading, action=more",
+          "size": [
+            360,
+            160
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "hidden": []
+        },
+        {
+          "variant": "state=error, action=more",
+          "size": [
+            360,
+            160
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner",
+            "Trend Badge"
+          ]
+        },
+        {
+          "variant": "state=empty, action=more",
+          "size": [
+            360,
+            160
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner",
+            "Trend Badge"
+          ]
+        },
+        {
+          "variant": "state=default, action=link",
+          "size": [
+            360,
+            103
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/tertiary/text/default}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=loading, action=link",
+          "size": [
+            360,
+            160
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "hidden": []
+        },
+        {
+          "variant": "state=error, action=link",
+          "size": [
+            360,
+            160
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/tertiary/text/default}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner",
+            "Trend Badge"
+          ]
+        },
+        {
+          "variant": "state=empty, action=link",
+          "size": [
+            360,
+            160
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/tertiary/text/default}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner",
+            "Trend Badge"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [
+    {
+      "name": "Icon/None",
+      "type": "INSTANCE",
+      "id": "7058:44184",
+      "size": [
+        16,
+        16
+      ],
+      "main": "Icon/None",
+      "variant": {
+        "solid": "false"
+      },
+      "census": {
+        "Icon/None": 1
+      },
+      "tree": {
+        "name": "Icon/None",
+        "type": "INSTANCE",
+        "hidden": true,
+        "main": "Icon/None",
+        "variant": {
+          "solid": "false"
+        },
+        "size": [
+          16,
+          16
+        ],
+        "vars": {
+          "height": "Spatial:icon/sm"
+        }
+      }
+    },
+    {
+      "name": "Spinner",
+      "type": "INSTANCE",
+      "id": "7058:44185",
+      "size": [
+        16,
+        16
+      ],
+      "main": "Spinner",
+      "variant": {
+        "size": "sm",
+        "style": "default"
+      },
+      "census": {
+        "Spinner": 1
+      },
+      "tree": {
+        "name": "Spinner",
+        "type": "INSTANCE",
+        "hidden": true,
+        "main": "Spinner",
+        "variant": {
+          "size": "sm",
+          "style": "default"
+        },
+        "size": [
+          16,
+          16
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "HUG/HUG"
+        }
+      }
+    },
+    {
+      "name": "Counter",
+      "type": "INSTANCE",
+      "id": "7058:44188",
+      "size": [
+        25,
+        20
+      ],
+      "main": "Counter",
+      "variant": {
+        "type": "regular",
+        "state": "default"
+      },
+      "census": {
+        "Counter": 1
+      },
+      "tree": {
+        "name": "Counter",
+        "type": "INSTANCE",
+        "hidden": true,
+        "main": "Counter",
+        "variant": {
+          "type": "regular",
+          "state": "default"
+        },
+        "size": [
+          25,
+          20
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            8,
+            0,
+            8
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "HUG/FIXED"
+        },
+        "fills": [
+          "{Color:action/primary/bg/default}"
+        ],
+        "strokes": [
+          "{Color:border/medium}"
+        ],
+        "strokeWeight": 1,
+        "radius": 9999,
+        "vars": {
+          "paddingLeft": "Spatial:inset/xs",
+          "paddingRight": "Spatial:inset/xs",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
+        }
+      }
+    },
+    {
+      "name": "Icon/More",
+      "type": "INSTANCE",
+      "id": "6269:14562",
+      "size": [
+        16,
+        16
+      ],
+      "main": "Icon/More",
+      "variant": {
+        "solid": "false"
+      },
+      "census": {
+        "Icon/More": 1
+      },
+      "tree": {
+        "name": "Icon/More",
+        "type": "INSTANCE",
+        "main": "Icon/More",
+        "variant": {
+          "solid": "false"
+        },
+        "size": [
+          16,
+          16
+        ],
+        "vars": {
+          "height": "Spatial:icon/sm"
+        }
+      }
+    }
+  ],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Widget Card",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

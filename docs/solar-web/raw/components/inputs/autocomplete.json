@@ -1,0 +1,602 @@
+{
+  "page": "↳ 🟢 Autocomplete",
+  "pageId": "2163:3664",
+  "componentSets": [
+    {
+      "name": "Autocomplete",
+      "id": "3889:128",
+      "description": "Text input that suggests matching options from a data set as the user types. Pair with Dropdown Menu + Dropdown Item for the open-state suggestion list.\n\nUse for: free-text search with hints, large picklists where Select is impractical, tag/entity pickers.\nDon't use for: ≤ ~8 static options (use Select), pure search without suggestions (use Search), authoring with rich cell types (use Combobox / tag input patterns).\n\nProps:\n• size — md (44px, default) · sm (36px, dense contexts)\n• state — default · hover · focus · filled · disabled · error\n• show label / show mandatory / show helper / show leading icon / show trailing icon — toggles for Label, *, Helper, and the Icon/None slots inside Field.\n\nBehavior:\n• Leading icon is typically Icon/Search (swap the Icon/None slot).\n• Trailing icon is typically Icon/X (clear) once the user has typed, or Icon/ChevronDown if paired with a fixed suggestion set.\n• The suggestion list is NOT part of this component. Compose with Dropdown Menu positioned directly below the Field, using Dropdown Item rows for suggestions.",
+      "docLinks": [],
+      "variantCount": 12,
+      "props": {
+        "show label#5393:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show mandatory#5393:13": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show helper#5393:26": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show leading icon#5393:39": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show trailing icon#5393:52": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "Leading Icon#7495:0": {
+          "type": "INSTANCE_SWAP",
+          "default": "10148:444"
+        },
+        "Trailing Icon#7495:13": {
+          "type": "INSTANCE_SWAP",
+          "default": "10148:444"
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus",
+            "filled",
+            "disabled",
+            "error"
+          ]
+        }
+      },
+      "defaultVariant": "size=md, state=default",
+      "defaultVariantNodeCount": 10,
+      "defaultVariantTree": {
+        "name": "size=md, state=default",
+        "type": "COMPONENT",
+        "size": [
+          240,
+          76
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "FRAME",
+            "size": [
+              48,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
+            },
+            "propRefs": {
+              "visible": "show label#5393:0"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "label/md",
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "show label#5393:0"
+                }
+              },
+              {
+                "name": "*",
+                "type": "TEXT",
+                "text": "*",
+                "textStyle": "label/md",
+                "size": [
+                  8,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "show mandatory#5393:13"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Field",
+            "type": "FRAME",
+            "size": [
+              240,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                16,
+                0,
+                16
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Icon/None",
+                "type": "INSTANCE",
+                "main": "Icon/None",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                },
+                "propRefs": {
+                  "visible": "show leading icon#5393:39",
+                  "mainComponent": "Leading Icon#7495:0"
+                }
+              },
+              {
+                "name": "Search...",
+                "type": "TEXT",
+                "text": "Search...",
+                "textStyle": "body/md/regular",
+                "size": [
+                  160,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Icon/None",
+                "type": "INSTANCE",
+                "main": "Icon/None",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                },
+                "propRefs": {
+                  "visible": "show trailing icon#5393:52",
+                  "mainComponent": "Trailing Icon#7495:13"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helper text",
+            "type": "TEXT",
+            "text": "Helper text",
+            "textStyle": "helper/md",
+            "size": [
+              240,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/helper/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/helper/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "visible": "show helper#5393:26"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=md, state=default",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "size=sm, state=default",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=hover",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=hover",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=focus",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=focus",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=filled",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=filled",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=disabled",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=disabled",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, state=error",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=error",
+          "size": [
+            160,
+            66
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Autocomplete Open",
+      "id": "5408:4232",
+      "description": "Expanded panel shown while Autocomplete is filtering. Lists matched options with the typed substring highlighted. Supports grouped sections, recent-search rows, and 'No matches' empty state. Positions under the input, flips above when it would clip. Max height triggers internal scroll.",
+      "props": {},
+      "nodeCount": 62,
+      "tree": {
+        "name": "Autocomplete Open",
+        "type": "COMPONENT",
+        "size": [
+          320,
+          214
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 4,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/2xs"
+        },
+        "children": [
+          {
+            "name": "Autocomplete",
+            "type": "INSTANCE",
+            "main": "Autocomplete",
+            "variant": {
+              "size": "md",
+              "state": "focus"
+            },
+            "size": [
+              320,
+              40
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            }
+          },
+          {
+            "name": "Dropdown Menu",
+            "type": "INSTANCE",
+            "main": "Dropdown Menu",
+            "variant": {
+              "size": "md"
+            },
+            "size": [
+              320,
+              170
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FIXED/HUG"
+            },
+            "fills": [
+              "{Color:surface/overlay}"
+            ],
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 8,
+            "effectStyle": "shadow/overlay",
+            "vars": {
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Autocomplete",
+    "Description",
+    "Text input that suggests matching options from a data set as the user types. Use when the option count exceeds what fits in a Select (~7), or when fuzzy matching on long strings (users, emails, cities) is the point. Pair with Autocomplete Open for the suggestion panel.",
+    "Sizes & States",
+    "size=sm (36px) / size=md (44px)\n\nStates: default, hover, focus, filled, disabled, error.\n\nWhen focused with input → the Autocomplete Open panel renders below (flips above when clipped).",
+    "Content",
+    "Label: what's being searched (\"Assign to\", \"Search cities\"). Placeholder: give an example, not instructions (\"e.g. alice@\", not \"Type to search\"). Highlight matched substring in the suggestion list. Empty state: \"No matches\" with a CTA if creation is allowed (\"Create \\\"Acme Corp\\\"\").",
+    "Accessibility",
+    "role=\"combobox\" with aria-autocomplete=\"list\", aria-expanded, aria-activedescendant pointing at the highlighted option. Listbox: role=\"listbox\" with role=\"option\" children. Keyboard: type to filter; ↑/↓ moves highlight; Enter commits; Esc closes. Screen reader announces result count via aria-live.",
+    "Rules",
+    "Do\n\n• Debounce requests (~150-250ms) to avoid flooding\n• Highlight the matched substring in results\n• Show an empty state with a creation CTA when applicable\n• Announce result count via aria-live",
+    "Don't\n\n• Don't fire a request on every keystroke — debounce\n• Don't clear the user's typed value when the panel closes\n• Don't use for < ~7 fixed options — use Select\n• Don't auto-select the first result — the user commits"
+  ],
+  "pageContext": null
+}

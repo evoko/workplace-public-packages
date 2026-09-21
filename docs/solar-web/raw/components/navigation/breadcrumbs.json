@@ -1,0 +1,390 @@
+{
+  "page": "↳ 🟢 Breadcrumbs",
+  "pageId": "2163:3712",
+  "componentSets": [
+    {
+      "name": "Breadcrumb Item",
+      "id": "2771:588",
+      "description": "One segment of a breadcrumb trail.\n\nVariants (4):\n• type — link | current  (current is the terminal, non-interactive item)\n• state — default | hover | disabled  (applies to type=link only)\n\nUse inside the Breadcrumbs wrapper — not standalone.",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "type": {
+          "type": "VARIANT",
+          "default": "link",
+          "options": [
+            "link",
+            "current"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "disabled"
+          ]
+        }
+      },
+      "defaultVariant": "type=link, state=default",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "type=link, state=default",
+        "type": "COMPONENT",
+        "size": [
+          36,
+          10
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:inset/none",
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/none"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "Label",
+            "textStyle": "label/md",
+            "size": [
+              36,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=link, state=default",
+          "size": [
+            36,
+            10
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=link, state=hover",
+          "size": [
+            36,
+            10
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "type=link, state=disabled",
+          "size": [
+            36,
+            10
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ]
+        },
+        {
+          "variant": "type=current, state=default",
+          "size": [
+            36,
+            10
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Breadcrumbs",
+      "id": "2772:620",
+      "description": "Shows the user's location in a navigational hierarchy and allows quick jumps to ancestors.\n\nVariants (5):\n• items — 2 | 3 | 4 | 5 | multiple  (use 'multiple' when the trail exceeds 5 levels — middle collapses to an ellipsis menu)\n\nAccessibility: wrap in <nav aria-label=\"Breadcrumb\">. The final item uses aria-current=\"page\" and is not a link. Separators are aria-hidden.\n\nUse for deep page trees, not for linear progress (see Stepper) or single-level flows (omit entirely).",
+      "docLinks": [],
+      "variantCount": 5,
+      "props": {
+        "items": {
+          "type": "VARIANT",
+          "default": "multiple",
+          "options": [
+            "2",
+            "3",
+            "4",
+            "5",
+            "multiple"
+          ]
+        }
+      },
+      "defaultVariant": "items=multiple",
+      "defaultVariantNodeCount": 10,
+      "defaultVariantTree": {
+        "name": "items=multiple",
+        "type": "COMPONENT",
+        "size": [
+          156,
+          12
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm"
+        },
+        "children": [
+          {
+            "name": "item-1",
+            "type": "INSTANCE",
+            "main": "Breadcrumb Item",
+            "variant": {
+              "type": "link",
+              "state": "default"
+            },
+            "size": [
+              36,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none"
+            }
+          },
+          {
+            "name": "Icon/ChevronRight",
+            "type": "INSTANCE",
+            "main": "Icon/ChevronRight",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              12,
+              12
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/xs"
+            }
+          },
+          {
+            "name": "item-2",
+            "type": "INSTANCE",
+            "main": "Breadcrumb Item",
+            "variant": {
+              "type": "link",
+              "state": "default"
+            },
+            "size": [
+              12,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none"
+            }
+          },
+          {
+            "name": "Icon/ChevronRight",
+            "type": "INSTANCE",
+            "main": "Icon/ChevronRight",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              12,
+              12
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/xs"
+            }
+          },
+          {
+            "name": "current",
+            "type": "INSTANCE",
+            "main": "Breadcrumb Item",
+            "variant": {
+              "type": "current",
+              "state": "default"
+            },
+            "size": [
+              36,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "items=multiple",
+          "size": [
+            156,
+            12
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "items=2",
+          "size": [
+            108,
+            12
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "items=3",
+          "size": [
+            180,
+            12
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "items=4",
+          "size": [
+            252,
+            12
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "items=5",
+          "size": [
+            324,
+            12
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Breadcrumbs",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss.",
+    "Rules",
+    "DO   Mirror your site's real hierarchy\nDO   Use 'multiple' for deep paths — keep first + last visible\nDO   Make every non-current item a real link\nDO   Keep labels short and match the destination page title",
+    "DON'T   Link the current page\nDON'T   Use Breadcrumbs as primary navigation\nDON'T   Mix Breadcrumbs in some views and omit in others\nDON'T   Insert the app name or a Home icon mid-trail"
+  ],
+  "pageContext": null
+}

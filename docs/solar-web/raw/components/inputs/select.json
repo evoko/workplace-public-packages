@@ -1,0 +1,486 @@
+{
+  "page": "↳ 🟢 Select",
+  "pageId": "5295:2",
+  "componentSets": [
+    {
+      "name": "Select",
+      "id": "5422:92",
+      "description": "Dropdown selector for picking one option from a predefined list. 10 variants: size (sm 36px, md 44px) × state (default, hover, open, disabled, error). Trailing chevron rotates when open. Use when options are < ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern. SelectOpen (sibling component) is the expanded panel.",
+      "docLinks": [],
+      "variantCount": 12,
+      "props": {
+        "show label#6301:10": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show helper#6301:23": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show mandatory#7054:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show trailing icon#7054:13": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "label#7054:26": {
+          "type": "TEXT",
+          "default": "Label"
+        },
+        "helper#7054:39": {
+          "type": "TEXT",
+          "default": "Helper text"
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "open",
+            "disabled",
+            "error",
+            "focus"
+          ]
+        }
+      },
+      "defaultVariant": "size=md, state=default",
+      "defaultVariantNodeCount": 8,
+      "defaultVariantTree": {
+        "name": "size=md, state=default",
+        "type": "COMPONENT",
+        "size": [
+          240,
+          76
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "FRAME",
+            "size": [
+              240,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/2xs",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none"
+            },
+            "propRefs": {
+              "visible": "show label#6301:10"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "label/md",
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "label#7054:26"
+                }
+              },
+              {
+                "name": "*",
+                "type": "TEXT",
+                "text": "*",
+                "textStyle": "label/md",
+                "size": [
+                  8,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "show mandatory#7054:0"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Field",
+            "type": "FRAME",
+            "size": [
+              240,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Placeholder",
+                "type": "TEXT",
+                "text": "Placeholder",
+                "textStyle": "body/md/regular",
+                "size": [
+                  188,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Icon/ChevronDown",
+                "type": "INSTANCE",
+                "main": "Icon/ChevronDown",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                },
+                "propRefs": {
+                  "visible": "show trailing icon#7054:13"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helper text",
+            "type": "TEXT",
+            "text": "Helper text",
+            "textStyle": "helper/md",
+            "size": [
+              71,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/helper/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/helper/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "visible": "show helper#6301:23",
+              "characters": "helper#7054:39"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=md, state=default",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "size=md, state=hover",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=open",
+          "size": [
+            240,
+            58
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/disabled}"
+          ],
+          "hidden": [
+            "Checkbox",
+            "Description",
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=md, state=disabled",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, state=error",
+          "size": [
+            240,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=default",
+          "size": [
+            200,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=hover",
+          "size": [
+            200,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=open",
+          "size": [
+            200,
+            49
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Checkbox",
+            "Description",
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=sm, state=disabled",
+          "size": [
+            200,
+            66
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=error",
+          "size": [
+            200,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=focus",
+          "size": [
+            240,
+            76
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=focus",
+          "size": [
+            200,
+            66
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Select",
+    "Description",
+    "A control for choosing one option from a predefined list. Use for known, mutually-exclusive choices. For free text use Text Input; for large or searchable sets use Autocomplete.",
+    "Usage",
+    "Use for 4+ known options. For 2–3 visible options prefer Radio or Segmented Control. Provide a sensible default or a placeholder.",
+    "States",
+    "Default · Hover · Open · Focus\nDisabled — muted.\nError — no/invalid selection; message + aria-invalid.",
+    "Sizes",
+    "sm (36px)   Dense forms.\nmd (44px)   Default. Meets the 44px touch target.",
+    "Accessibility",
+    "role=combobox/listbox with aria-expanded. Full keyboard support: arrows, type-ahead, Enter, Esc. Selected option is announced.",
+    "Rules",
+    "DO   Use for known, exclusive choices\nDO   Provide a default or placeholder\nDO   Support keyboard + type-ahead\nDO   Surface errors inline",
+    "DON'T   Use for free text\nDON'T   Use for 2–3 options (prefer Radio)\nDON'T   Rely on colour alone for errors\nDON'T   Nest complex content in options"
+  ],
+  "pageContext": null
+}

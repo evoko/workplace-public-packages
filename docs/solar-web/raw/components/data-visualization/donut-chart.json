@@ -1,0 +1,157 @@
+{
+  "page": "↳ 🟢 Donut Chart",
+  "pageId": "5113:5",
+  "componentSets": [
+    {
+      "name": "Donut Chart",
+      "id": "7310:43",
+      "description": "Part-to-whole comparison. N segments of an annular ring, optional center label for the total.\n\nVariants:\n  segments = 3 | 4 | 6\n  center-label = yes (shows total + label) | no\n\nEach segment: ELLIPSE with arcData (startingAngle, endingAngle, innerRadius=0.6) and fill bound to a data/category token. Override segment ratios by editing arcData per instance.\n\nUse 3 segments for binary-with-context (e.g. Good / Warning / Bad), 4 for quadrants, 6 for fine breakdown. Avoid > 8 segments — readability collapses.",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "segments": {
+          "type": "VARIANT",
+          "default": "3",
+          "options": [
+            "3",
+            "4",
+            "6"
+          ]
+        },
+        "center-label": {
+          "type": "VARIANT",
+          "default": "no",
+          "options": [
+            "no",
+            "yes"
+          ]
+        }
+      },
+      "defaultVariant": "segments=3, center-label=no",
+      "defaultVariantNodeCount": 3,
+      "defaultVariantTree": {
+        "name": "segments=3, center-label=no",
+        "type": "COMPONENT",
+        "size": [
+          200,
+          200
+        ],
+        "sizing": "FILL/FILL",
+        "children": [
+          {
+            "name": "Segment",
+            "type": "ELLIPSE",
+            "size": [
+              200,
+              200
+            ],
+            "fills": [
+              "{Color:data/category/01/strong}"
+            ]
+          },
+          {
+            "name": "Segment",
+            "type": "ELLIPSE",
+            "size": [
+              200,
+              200
+            ],
+            "fills": [
+              "{Color:data/category/02/strong}"
+            ]
+          },
+          {
+            "name": "Segment",
+            "type": "ELLIPSE",
+            "size": [
+              200,
+              200
+            ],
+            "fills": [
+              "{Color:data/category/03/strong}"
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "segments=3, center-label=no",
+          "size": [
+            200,
+            200
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "segments=4, center-label=no",
+          "size": [
+            200,
+            200
+          ]
+        },
+        {
+          "variant": "segments=4, center-label=yes",
+          "size": [
+            200,
+            200
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "segments=6, center-label=no",
+          "size": [
+            200,
+            200
+          ]
+        },
+        {
+          "variant": "segments=6, center-label=yes",
+          "size": [
+            200,
+            200
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "segments=3, center-label=yes",
+          "size": [
+            200,
+            200
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Donut Chart",
+    "Description",
+    "Shows part-to-whole composition as segments of a ring, with a central label for the total. For a few parts of a whole; use Bar Chart to compare many values.",
+    "Anatomy",
+    "Ring segments · centre total/label · optional legend · optional tooltip.",
+    "Data & Colour",
+    "One categorical token per segment (01–08). Keep to ~6 segments and group the tail as 'Other'. Order by size, largest first, clockwise from 12 o'clock.",
+    "States",
+    "default (loaded), loading, empty, error. Segments highlight on hover or keyboard focus.",
+    "Accessibility",
+    "Label segments with name + value, not colour alone; the centre total is the key figure. Segment-to-segment and segment-to-surface ≥3:1. Provide a table alternative.",
+    "Rules",
+    "Order segments by size\nCap at ~6 + 'Other'\nPut the key total in the centre\nLabel with value or %",
+    "Use for precise comparison\nExplode or 3D the ring\nShow dozens of thin slices\nRely on colour alone"
+  ],
+  "pageContext": null
+}

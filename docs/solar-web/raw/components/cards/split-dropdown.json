@@ -1,0 +1,206 @@
+{
+  "page": "↳ 🟢 Split Dropdown",
+  "pageId": "10395:5",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Split Dropdown",
+      "id": "10401:30493",
+      "description": "Two-zone slot container: plain top area + tinted lower strip. Pairs a primary control with supporting details. Migrated from Chatter Config 2026-09-01.",
+      "props": {
+        "Top Content#10409:0": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "Lower Content#10409:1": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        }
+      },
+      "nodeCount": 4,
+      "tree": {
+        "name": "Split Dropdown",
+        "type": "COMPONENT",
+        "size": [
+          680,
+          152
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "vars": {
+          "itemSpacing": "Spatial:stack/none",
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/none",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Top",
+            "type": "FRAME",
+            "size": [
+              680,
+              80
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                16,
+                12,
+                16,
+                12
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FIXED"
+            },
+            "fills": [
+              "{Color:surface/raised}"
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/md"
+            },
+            "children": [
+              {
+                "name": "Top Content",
+                "type": "SLOT",
+                "size": [
+                  656,
+                  48
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FILL/FILL"
+                },
+                "propRefs": {
+                  "slotContentId": "Top Content#10409:0"
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Lower",
+            "type": "FRAME",
+            "size": [
+              680,
+              72
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Lower Content",
+                "type": "SLOT",
+                "size": [
+                  656,
+                  48
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "propRefs": {
+                  "slotContentId": "Lower Content#10409:1"
+                },
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Split Dropdown",
+    "Description",
+    "Two-zone container: a plain top content area and a tinted lower strip, divided by the container border. Used to pair a primary control with supporting details (e.g. a device row above its firmware selector).",
+    "Anatomy",
+    "radius/container shell with border/subtle. Top area (inset/md · inset/sm padding) with a Top Content area; lower strip on surface/background (inset/sm padding) with a Lower Content area.",
+    "Content areas",
+    "Top Content and Lower Content are placeholder frames intended as slots — convert them to slots in Figma to accept per-instance content.",
+    "Usage",
+    "Put the primary object or control on top.\nUse the lower strip for secondary settings or metadata.\nKeep both zones single-purpose.",
+    "Rules",
+    "DO   Keep the lower strip on surface/background\nDO   Fill zones through the content slots\nDO   Let height hug the content",
+    "DON’T   Nest another split container inside\nDON’T   Recolor the zones per feature\nDON’T   Use as a dialog (use Dialog / Split Dialog)"
+  ],
+  "pageContext": null
+}

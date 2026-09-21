@@ -1,0 +1,287 @@
+{
+  "page": "↳ 🟢 Line Chart",
+  "pageId": "5113:3",
+  "componentSets": [
+    {
+      "name": "Line Chart",
+      "id": "7311:54",
+      "description": "Time series visualization with one or two series.\n\nVariants:\n  series = single | multi (two lines with legend)\n  breakpoint = desktop (600×240, 6 points) | mobile (343×200, 4 points)\n\nLines are VECTOR polylines bound to data/category-06 (Series A) and category-02 (Series B). Override path data per instance to plot real values.\n\nOptional area-fill and point markers deferred to v1.1.",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "series": {
+          "type": "VARIANT",
+          "default": "single",
+          "options": [
+            "single",
+            "multi"
+          ]
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "series=single, breakpoint=desktop",
+      "defaultVariantNodeCount": 9,
+      "defaultVariantTree": {
+        "name": "series=single, breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          600,
+          240
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 12,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "children": [
+          {
+            "name": "Plot",
+            "type": "FRAME",
+            "size": [
+              600,
+              204
+            ],
+            "sizing": "FILL/FIXED",
+            "children": [
+              {
+                "name": "Line A",
+                "type": "VECTOR",
+                "size": [
+                  600,
+                  204
+                ],
+                "strokes": [
+                  "{Color:data/category/06/strong}"
+                ],
+                "strokeWeight": 2
+              }
+            ]
+          },
+          {
+            "name": "Frame",
+            "type": "FRAME",
+            "size": [
+              600,
+              9
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "Jan",
+                "type": "TEXT",
+                "text": "Jan",
+                "textStyle": "helper/sm",
+                "size": [
+                  20,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/helper/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Feb",
+                "type": "TEXT",
+                "text": "Feb",
+                "textStyle": "helper/sm",
+                "size": [
+                  21,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/helper/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Mar",
+                "type": "TEXT",
+                "text": "Mar",
+                "textStyle": "helper/sm",
+                "size": [
+                  22,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/helper/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Apr",
+                "type": "TEXT",
+                "text": "Apr",
+                "textStyle": "helper/sm",
+                "size": [
+                  20,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/helper/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "May",
+                "type": "TEXT",
+                "text": "May",
+                "textStyle": "helper/sm",
+                "size": [
+                  24,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/helper/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Jun",
+                "type": "TEXT",
+                "text": "Jun",
+                "textStyle": "helper/sm",
+                "size": [
+                  21,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/helper/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "series=single, breakpoint=desktop",
+          "size": [
+            600,
+            240
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "series=single, breakpoint=mobile",
+          "size": [
+            343,
+            200
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "series=multi, breakpoint=desktop",
+          "size": [
+            600,
+            240
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "series=multi, breakpoint=mobile",
+          "size": [
+            343,
+            200
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Line Chart",
+    "Description",
+    "Plots one or more continuous series over an ordered axis to show trend and change over time. For continuous data; use Bar Chart for discrete categories.",
+    "Anatomy",
+    "Plot area · one or more series lines · axis (see Chart Axis) · optional points, area fill, legend and tooltip.",
+    "Data & Colour",
+    "One data-colour token per series (categorical 01–08). Keep to ~5 series; beyond that use small multiples. Area fill uses the subtle tint of the series token.",
+    "States",
+    "default (loaded), loading, empty, error, no-data. Points and tooltip appear on hover or keyboard focus.",
+    "Accessibility",
+    "Distinguish series by colour plus label or marker, never colour alone. Provide a data-table alternative. Line ≥3:1 vs surface; labels ≥4.5:1.",
+    "Rules",
+    "Start the value axis at zero\nLabel series directly where possible\nLimit to ~5 series\nOffer a table fallback",
+    "Rely on colour alone\nOverplot dozens of series\nBreak the time axis\nSmooth away real variation"
+  ],
+  "pageContext": null
+}

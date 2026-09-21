@@ -1,0 +1,476 @@
+{
+  "page": "↳ 🟢 Section Nav ",
+  "pageId": "8041:127",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Section Nav",
+      "id": "8045:7",
+      "description": "",
+      "props": {
+        "Items#8072:1": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        }
+      },
+      "nodeCount": 39,
+      "tree": {
+        "name": "Section Nav",
+        "type": "COMPONENT",
+        "size": [
+          221,
+          416
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 16,
+          "pad": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "itemSpacing": "Spatial:stack/md",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/sm",
+          "strokeRightWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Items",
+            "type": "SLOT",
+            "size": [
+              197,
+              392
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "#ffffff"
+            ],
+            "propRefs": {
+              "slotContentId": "Items#8072:1"
+            },
+            "children": [
+              {
+                "name": "Section Nav Group Header",
+                "type": "INSTANCE",
+                "main": "Section Nav Group Header",
+                "size": [
+                  197,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "selected"
+                },
+                "size": [
+                  197,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Group Header",
+                "type": "INSTANCE",
+                "main": "Section Nav Group Header",
+                "size": [
+                  197,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Group Header",
+                "type": "INSTANCE",
+                "main": "Section Nav Group Header",
+                "size": [
+                  197,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Section Nav Item",
+                "type": "INSTANCE",
+                "main": "Section Nav Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  220,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Section Nav",
+    "Description",
+    "A vertical rail of Section Nav Items for switching between sub-sections of a page (e.g. Settings). A composition; the item primitive is Section Nav Item.",
+    "Anatomy",
+    "Rail container · optional group headings · Section Nav Items · optional footer action.",
+    "Layout",
+    "Fixed-width rail beside content on desktop; full-width list or top segmented control on mobile. Groups separated by headings, not heavy dividers.",
+    "States",
+    "One item selected (aria-current). Pattern follows content: loaded, empty. Items carry their own states.",
+    "Accessibility",
+    "Wrap in <nav aria-label>. Mark the current section with aria-current=page. Fully keyboard navigable with visible focus. Flat and single-level — distinct from Tree.",
+    "Rules",
+    "Keep it flat / single-level\nGroup with headings\nMark current with aria-current\nCollapse to a full-width list on mobile",
+    "Use for hierarchical trees (use Tree)\nExceed ~7 items without grouping\nRely on colour for selected\nMix with primary app nav"
+  ],
+  "pageContext": null
+}

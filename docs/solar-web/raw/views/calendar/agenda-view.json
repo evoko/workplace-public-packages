@@ -1,0 +1,744 @@
+{
+  "page": "↳ 🟢 Agenda View",
+  "pageId": "6802:4",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Agenda View",
+      "id": "6825:2",
+      "description": "",
+      "props": {},
+      "nodeCount": 186,
+      "tree": {
+        "name": "Agenda View",
+        "type": "COMPONENT",
+        "size": [
+          1024,
+          828
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "children": [
+          {
+            "name": "Calendar Toolbar",
+            "type": "INSTANCE",
+            "main": "Calendar Toolbar",
+            "size": [
+              1024,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 16,
+              "pad": [
+                12,
+                16,
+                12,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "vars": {
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Calendar Body",
+            "type": "FRAME",
+            "size": [
+              1024,
+              772
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 16,
+              "pad": [
+                12,
+                20,
+                12,
+                20
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/md",
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Agenda List",
+                "type": "FRAME",
+                "size": [
+                  800,
+                  356
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                },
+                "children": [
+                  {
+                    "name": "Frame 1",
+                    "type": "FRAME",
+                    "size": [
+                      800,
+                      36
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        12,
+                        16,
+                        12,
+                        16
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed",
+                    "vars": {
+                      "paddingLeft": "Spatial:inset/md",
+                      "paddingTop": "Spatial:inset/sm",
+                      "paddingRight": "Spatial:inset/md",
+                      "paddingBottom": "Spatial:inset/sm",
+                      "strokeBottomWeight": "Spatial:border/default"
+                    },
+                    "children": [
+                      {
+                        "name": "Today · Friday, April 17",
+                        "type": "TEXT",
+                        "text": "Today · Friday, April 17",
+                        "textStyle": "title/xs",
+                        "size": [
+                          161,
+                          12
+                        ],
+                        "sizing": "HUG/HUG",
+                        "fills": [
+                          "{Color:text/primary}"
+                        ],
+                        "vars": {
+                          "lineHeight": "Type:line-height/title/xs",
+                          "fontFamily": "Primitives:type/font-family/inter",
+                          "fontSize": "Type:size/title/xs",
+                          "fontStyle": "Primitives:type/font-weight/500"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Rows",
+                    "type": "FRAME",
+                    "size": [
+                      800,
+                      320
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingBottom": "Spatial:inset/none"
+                    },
+                    "children": [
+                      {
+                        "name": "Agenda Row",
+                        "type": "INSTANCE",
+                        "main": "Agenda Row",
+                        "variant": {
+                          "state": "default",
+                          "density": "comfortable"
+                        },
+                        "size": [
+                          800,
+                          64
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 16,
+                          "pad": [
+                            16,
+                            16,
+                            16,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FILL/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/base}"
+                        ],
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "vars": {
+                          "itemSpacing": "Spatial:stack/md",
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingTop": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md",
+                          "paddingBottom": "Spatial:inset/md",
+                          "strokeBottomWeight": "Spatial:border/default"
+                        }
+                      },
+                      {
+                        "name": "Agenda Row",
+                        "type": "INSTANCE",
+                        "main": "Agenda Row",
+                        "variant": {
+                          "state": "default",
+                          "density": "comfortable"
+                        },
+                        "size": [
+                          800,
+                          64
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 16,
+                          "pad": [
+                            16,
+                            16,
+                            16,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FILL/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/base}"
+                        ],
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "vars": {
+                          "itemSpacing": "Spatial:stack/md",
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingTop": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md",
+                          "paddingBottom": "Spatial:inset/md",
+                          "strokeBottomWeight": "Spatial:border/default"
+                        }
+                      },
+                      {
+                        "name": "Agenda Row",
+                        "type": "INSTANCE",
+                        "main": "Agenda Row",
+                        "variant": {
+                          "state": "selected",
+                          "density": "comfortable"
+                        },
+                        "size": [
+                          800,
+                          64
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 16,
+                          "pad": [
+                            16,
+                            16,
+                            16,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FILL/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/active}"
+                        ],
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "vars": {
+                          "itemSpacing": "Spatial:stack/md",
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingTop": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md",
+                          "paddingBottom": "Spatial:inset/md",
+                          "strokeBottomWeight": "Spatial:border/default"
+                        }
+                      },
+                      {
+                        "name": "Agenda Row",
+                        "type": "INSTANCE",
+                        "main": "Agenda Row",
+                        "variant": {
+                          "state": "default",
+                          "density": "comfortable"
+                        },
+                        "size": [
+                          800,
+                          64
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 16,
+                          "pad": [
+                            16,
+                            16,
+                            16,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FILL/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/base}"
+                        ],
+                        "strokes": [
+                          "{Color:border/subtle}"
+                        ],
+                        "strokeWeight": "mixed",
+                        "vars": {
+                          "itemSpacing": "Spatial:stack/md",
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingTop": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md",
+                          "paddingBottom": "Spatial:inset/md",
+                          "strokeBottomWeight": "Spatial:border/default"
+                        }
+                      },
+                      {
+                        "name": "Agenda Row",
+                        "type": "INSTANCE",
+                        "main": "Agenda Row",
+                        "variant": {
+                          "state": "default",
+                          "density": "comfortable"
+                        },
+                        "size": [
+                          800,
+                          64
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 16,
+                          "pad": [
+                            16,
+                            16,
+                            16,
+                            16
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FILL/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/base}"
+                        ],
+                        "vars": {
+                          "itemSpacing": "Spatial:stack/md",
+                          "paddingLeft": "Spatial:inset/md",
+                          "paddingTop": "Spatial:inset/md",
+                          "paddingRight": "Spatial:inset/md",
+                          "paddingBottom": "Spatial:inset/md",
+                          "strokeBottomWeight": "Spatial:border/default"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Agenda List",
+                "type": "FRAME",
+                "size": [
+                  800,
+                  376
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    20,
+                    20,
+                    20,
+                    20
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "vars": {
+                  "paddingLeft": "Spatial:inset/lg",
+                  "paddingTop": "Spatial:inset/lg",
+                  "paddingRight": "Spatial:inset/lg",
+                  "paddingBottom": "Spatial:inset/lg",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                },
+                "children": [
+                  {
+                    "name": "Date Section",
+                    "type": "FRAME",
+                    "size": [
+                      760,
+                      336
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "children": [
+                      {
+                        "name": "Yesterday · Thursday, April 16",
+                        "type": "TEXT",
+                        "text": "Yesterday · Thursday, April 16",
+                        "textStyle": "title/xs",
+                        "size": [
+                          213,
+                          12
+                        ],
+                        "sizing": "HUG/HUG",
+                        "fills": [
+                          "{Color:text/primary}"
+                        ],
+                        "vars": {
+                          "lineHeight": "Type:line-height/title/xs",
+                          "fontFamily": "Primitives:type/font-family/inter",
+                          "fontSize": "Type:size/title/xs",
+                          "fontStyle": "Primitives:type/font-weight/500"
+                        }
+                      },
+                      {
+                        "name": "Rows",
+                        "type": "FRAME",
+                        "size": [
+                          760,
+                          320
+                        ],
+                        "layout": {
+                          "dir": "VERTICAL",
+                          "gap": 0,
+                          "pad": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "align": "MIN/MIN",
+                          "sizing": "FILL/HUG"
+                        },
+                        "vars": {
+                          "paddingTop": "Spatial:inset/none",
+                          "paddingBottom": "Spatial:inset/none"
+                        },
+                        "children": [
+                          {
+                            "name": "Agenda Row",
+                            "type": "INSTANCE",
+                            "main": "Agenda Row",
+                            "variant": {
+                              "state": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              760,
+                              64
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 16,
+                              "pad": [
+                                16,
+                                16,
+                                16,
+                                16
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "strokes": [
+                              "{Color:border/subtle}"
+                            ],
+                            "strokeWeight": "mixed",
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/md",
+                              "paddingLeft": "Spatial:inset/md",
+                              "paddingTop": "Spatial:inset/md",
+                              "paddingRight": "Spatial:inset/md",
+                              "paddingBottom": "Spatial:inset/md",
+                              "strokeBottomWeight": "Spatial:border/default"
+                            }
+                          },
+                          {
+                            "name": "Agenda Row",
+                            "type": "INSTANCE",
+                            "main": "Agenda Row",
+                            "variant": {
+                              "state": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              760,
+                              64
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 16,
+                              "pad": [
+                                16,
+                                16,
+                                16,
+                                16
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "strokes": [
+                              "{Color:border/subtle}"
+                            ],
+                            "strokeWeight": "mixed",
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/md",
+                              "paddingLeft": "Spatial:inset/md",
+                              "paddingTop": "Spatial:inset/md",
+                              "paddingRight": "Spatial:inset/md",
+                              "paddingBottom": "Spatial:inset/md",
+                              "strokeBottomWeight": "Spatial:border/default"
+                            }
+                          },
+                          {
+                            "name": "Agenda Row",
+                            "type": "INSTANCE",
+                            "main": "Agenda Row",
+                            "variant": {
+                              "state": "selected",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              760,
+                              64
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 16,
+                              "pad": [
+                                16,
+                                16,
+                                16,
+                                16
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/active}"
+                            ],
+                            "strokes": [
+                              "{Color:border/subtle}"
+                            ],
+                            "strokeWeight": "mixed",
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/md",
+                              "paddingLeft": "Spatial:inset/md",
+                              "paddingTop": "Spatial:inset/md",
+                              "paddingRight": "Spatial:inset/md",
+                              "paddingBottom": "Spatial:inset/md",
+                              "strokeBottomWeight": "Spatial:border/default"
+                            }
+                          },
+                          {
+                            "name": "Agenda Row",
+                            "type": "INSTANCE",
+                            "main": "Agenda Row",
+                            "variant": {
+                              "state": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              760,
+                              64
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 16,
+                              "pad": [
+                                16,
+                                16,
+                                16,
+                                16
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "strokes": [
+                              "{Color:border/subtle}"
+                            ],
+                            "strokeWeight": "mixed",
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/md",
+                              "paddingLeft": "Spatial:inset/md",
+                              "paddingTop": "Spatial:inset/md",
+                              "paddingRight": "Spatial:inset/md",
+                              "paddingBottom": "Spatial:inset/md",
+                              "strokeBottomWeight": "Spatial:border/default"
+                            }
+                          },
+                          {
+                            "name": "Agenda Row",
+                            "type": "INSTANCE",
+                            "main": "Agenda Row",
+                            "variant": {
+                              "state": "default",
+                              "density": "comfortable"
+                            },
+                            "size": [
+                              760,
+                              64
+                            ],
+                            "layout": {
+                              "dir": "HORIZONTAL",
+                              "gap": 16,
+                              "pad": [
+                                16,
+                                16,
+                                16,
+                                16
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FILL/FIXED"
+                            },
+                            "fills": [
+                              "{Color:surface/base}"
+                            ],
+                            "strokes": [
+                              "{Color:border/subtle}"
+                            ],
+                            "strokeWeight": "mixed",
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/md",
+                              "paddingLeft": "Spatial:inset/md",
+                              "paddingTop": "Spatial:inset/md",
+                              "paddingRight": "Spatial:inset/md",
+                              "paddingBottom": "Spatial:inset/md",
+                              "strokeBottomWeight": "Spatial:border/default"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Agenda View",
+    "Description",
+    "A chronological list of upcoming events (Agenda Rows) rather than a grid — best for scanning what's next. A good default on mobile.",
+    "Layout",
+    "Date-group headers · Agenda Rows (time · title · meta) · load-more / infinite scroll; per-range empty state.",
+    "Responsive",
+    "Desktop list; mobile full-width — the primary mobile calendar view.",
+    "States",
+    "loaded, loading, empty ('Nothing scheduled'), error, loading-more.",
+    "Accessibility",
+    "Ordered list grouped by day; each row reads time + title; keyboard-reachable. Colour paired with a label.",
+    "Rules",
+    "Group by day\nLead with the time\nShow empty ranges clearly\nPrefer on mobile",
+    "Use grid semantics for a list\nRely on colour alone\nHide the date grouping\nBury the title"
+  ],
+  "pageContext": null
+}

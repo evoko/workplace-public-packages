@@ -1,0 +1,965 @@
+{
+  "page": "↳ 🟢 Tree Navigation Panel",
+  "pageId": "2966:623",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Tree Navigation Panel",
+      "id": "3773:518",
+      "description": "",
+      "props": {
+        "Tree Items#3773:0": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        }
+      },
+      "nodeCount": 385,
+      "tree": {
+        "name": "Tree Navigation Panel",
+        "type": "COMPONENT",
+        "size": [
+          256,
+          756
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:inset/none",
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/none",
+          "topLeftRadius": "Spatial:radius/none",
+          "topRightRadius": "Spatial:radius/none",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": [
+          {
+            "name": "Tree Items",
+            "type": "SLOT",
+            "size": [
+              256,
+              756
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                8,
+                0,
+                8
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FIXED/FIXED"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/none",
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/none",
+              "topLeftRadius": "Spatial:radius/none",
+              "topRightRadius": "Spatial:radius/none",
+              "bottomLeftRadius": "Spatial:radius/none",
+              "bottomRightRadius": "Spatial:radius/none"
+            },
+            "propRefs": {
+              "slotContentId": "Tree Items#3773:0"
+            },
+            "children": [
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "true",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item/02/false/false/true",
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item/03/false/true/false",
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    20
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/lg",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item/02/false/false/false",
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item/02/false/false/false",
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item/02/false/false/false",
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item/02/false/false/false",
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Tree Item",
+                "type": "INSTANCE",
+                "main": "Tree Item",
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "size": [
+                  240,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    4
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "census": {
+        "Tree Item": 18,
+        ".Tree Indent": 18,
+        "Icon/ChevronDown": 2,
+        "Checkbox": 24,
+        "Icon/None": 42,
+        "StatusIndicator": 48,
+        "Tag": 24,
+        "Counter": 24,
+        "Tree Item/02/false/false/true": 1,
+        "Tree Item/03/false/true/false": 1,
+        "Icon/ChevronRight": 22,
+        "Tree Item/02/false/false/false": 4
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Tree Navigation Panel",
+    "Description",
+    "A hierarchical, expandable navigation panel for nested structures (folders, org trees, device groups). Use when items have parent–child depth; use Section Nav for flat lists.",
+    "Anatomy",
+    "Panel container · Tree Items (chevron · icon · label · optional count) · nesting indentation · optional search / filter.",
+    "Behaviour",
+    "Nodes expand and collapse; selection marks the active node. Deep trees support search and keyboard traversal. Indentation encodes depth.",
+    "States",
+    "Item: default, hover, focus, selected, disabled × collapsed / expanded. Panel: loaded, loading, empty.",
+    "Accessibility",
+    "role=tree with role=treeitem; aria-expanded, aria-selected, aria-level. Arrow-key traversal (↑↓←→), Enter/Space to activate. Visible focus.",
+    "Rules",
+    "Use for real hierarchy\nShow depth by indentation\nSupport keyboard tree traversal\nOffer search on deep trees",
+    "Use for flat lists (use Section Nav)\nNest beyond ~4 visible levels\nRely on colour for selection\nHide the expand affordance"
+  ],
+  "pageContext": null
+}

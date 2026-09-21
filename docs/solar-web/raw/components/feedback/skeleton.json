@@ -1,0 +1,179 @@
+{
+  "page": "↳ 🟢 Skeleton",
+  "pageId": "2163:3680",
+  "componentSets": [
+    {
+      "name": "Skeleton",
+      "id": "4629:89",
+      "description": "Loading placeholder that mirrors the shape of incoming content. Types: text (lines), circle (avatars), rectangular (cards, thumbnails, tables). Sizes sm/md/lg match the final content dimensions. Animate with a subtle shimmer or pulse. Show only when content will appear within ~1s; use Spinner or ProgressBar for longer waits. Pair with aria-busy=true on the wrapping region. See also: ProgressBar for determinate loading, Spinner for short waits.",
+      "docLinks": [],
+      "variantCount": 9,
+      "props": {
+        "type": {
+          "type": "VARIANT",
+          "default": "text",
+          "options": [
+            "text",
+            "circle",
+            "rectangular"
+          ]
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "sm",
+          "options": [
+            "sm",
+            "md",
+            "lg"
+          ]
+        }
+      },
+      "defaultVariant": "type=text, size=sm",
+      "defaultVariantNodeCount": 0,
+      "defaultVariantTree": {
+        "name": "type=text, size=sm",
+        "type": "COMPONENT",
+        "size": [
+          120,
+          12
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/muted}"
+        ],
+        "radius": 6,
+        "vars": {
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": []
+      },
+      "variants": [
+        {
+          "variant": "type=text, size=sm",
+          "size": [
+            120,
+            12
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=text, size=md",
+          "size": [
+            200,
+            16
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        },
+        {
+          "variant": "type=text, size=lg",
+          "size": [
+            280,
+            20
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        },
+        {
+          "variant": "type=circle, size=sm",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        },
+        {
+          "variant": "type=circle, size=md",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        },
+        {
+          "variant": "type=circle, size=lg",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        },
+        {
+          "variant": "type=rectangular, size=sm",
+          "size": [
+            120,
+            80
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        },
+        {
+          "variant": "type=rectangular, size=md",
+          "size": [
+            200,
+            120
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        },
+        {
+          "variant": "type=rectangular, size=lg",
+          "size": [
+            320,
+            180
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Skeleton",
+    "Description",
+    "Loading placeholder that mirrors the shape of incoming content. Show only when content will appear within ~1s.",
+    "Types",
+    "text          Horizontal line. Use for paragraphs, labels, table cells.\ncircle        For avatars and circular icons.\nrectangular   For cards, thumbnails, and image containers.",
+    "Sizes",
+    "sm   Small inline elements (chip, row metadata).\nmd   Body text, cards, standard thumbnails.\nlg   Hero images, large cards, dashboard tiles.",
+    "Motion & A11y",
+    "Animate with a subtle shimmer or pulse — never a hard flash.\nPair aria-busy=true on the wrapping region.\nRespect prefers-reduced-motion: fall back to a static placeholder.",
+    "Rules",
+    "DO   Match shape and size of final content\nDO   Use for loads expected within ~1s\nDO   Pair aria-busy on the wrapping region\nDO   Respect prefers-reduced-motion",
+    "DON'T   Use for indeterminate long loads (use ProgressBar)\nDON'T   Stack skeletons without layout hierarchy\nDON'T   Animate at high contrast — stay subtle\nDON'T   Replace error or empty states with Skeleton"
+  ],
+  "pageContext": null
+}

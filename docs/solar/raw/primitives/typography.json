@@ -1,0 +1,2420 @@
+{
+  "page": "Typography",
+  "pageId": "27:296",
+  "section": "primitives",
+  "slug": "typography",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Font Size",
+      "title": "Font Size",
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 960,
+      "h": 2096,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Border width tokens define the available stroke thickness values used across interface components. They ensure consistent visual weight for outlines, dividers, and control boundaries throughout the system.\n\nThese tokens help maintain predictable emphasis and hierarchy between UI elements while ensuring borders scale consistently across components and layouts.\n\nBorder width values should be applied through semantic tokens such as component borders, separators, and focus indicators rather than directly using raw pixel values.",
+          "style": "16/400"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value, px",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "8",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "10",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "11",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "12",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "14",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "16",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "18",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "20",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "24",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "28",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "32",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "36",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "40",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "44",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "52",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "56",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "64",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "72",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "80",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "96",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "112",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "128",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Line Height",
+      "title": "Line Height",
+      "subtitle": null,
+      "x": 1040,
+      "y": 0,
+      "w": 960,
+      "h": 2096,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Border width tokens define the available stroke thickness values used across interface components. They ensure consistent visual weight for outlines, dividers, and control boundaries throughout the system.\n\nThese tokens help maintain predictable emphasis and hierarchy between UI elements while ensuring borders scale consistently across components and layouts.\n\nBorder width values should be applied through semantic tokens such as component borders, separators, and focus indicators rather than directly using raw pixel values.",
+          "style": "16/400"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value, px",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "8",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "10",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "11",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "12",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "14",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "16",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "18",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "20",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "24",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "28",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "32",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "36",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "40",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "44",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "52",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "56",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "64",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "72",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "80",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "96",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "112",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "128",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Font Family",
+      "title": "Font Family",
+      "subtitle": null,
+      "x": 2080,
+      "y": 0,
+      "w": 960,
+      "h": 944,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Border width tokens define the available stroke thickness values used across interface components. They ensure consistent visual weight for outlines, dividers, and control boundaries throughout the system.\n\nThese tokens help maintain predictable emphasis and hierarchy between UI elements while ensuring borders scale consistently across components and layouts.\n\nBorder width values should be applied through semantic tokens such as component borders, separators, and focus indicators rather than directly using raw pixel values.",
+          "style": "16/400"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Gotham",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Montserrat",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Inter",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Open Sans",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "IBM Plex Mono",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Roboto Mono",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Font Weight",
+      "title": "Font Weight",
+      "subtitle": null,
+      "x": 3120,
+      "y": 0,
+      "w": 960,
+      "h": 1160,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Border width tokens define the available stroke thickness values used across interface components. They ensure consistent visual weight for outlines, dividers, and control boundaries throughout the system.\n\nThese tokens help maintain predictable emphasis and hierarchy between UI elements while ensuring borders scale consistently across components and layouts.\n\nBorder width values should be applied through semantic tokens such as component borders, separators, and focus indicators rather than directly using raw pixel values.",
+          "style": "16/400"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Thin",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Extra Light",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Light",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Regular",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Medium",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Semi Bold",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Bold",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Extra Bold",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Black",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": null,
+  "swatches": [
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value, px"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value, px"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 130
+}

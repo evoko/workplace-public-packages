@@ -1,0 +1,1301 @@
+{
+  "page": "Color",
+  "pageId": "763:50347",
+  "section": "documentation",
+  "slug": "color",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": -1151,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Visual Language\nColor"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Color Principles",
+      "subtitle": null,
+      "x": 880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Color in SOLAR is never decorative. It exists to communicate meaning, hierarchy, and state, and must always be applied through semantic tokens rather than base colors or hex values. If a color choice cannot be explained in terms of intent or hierarchy, it does not belong."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Color has purpose"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Semantic over base"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Accessibility is non-negotiable"
+        },
+        {
+          "t": "p",
+          "text": "Every color in SOLAR communicates something. Colors are used to indicate roles such as primary content, secondary content, success, warning, error, or interactive state. Color should never be used purely for decoration or branding flair—if it does not convey meaning, it should not exist as a token.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Design and engineering should always use semantic color tokens. Base colors exist only to support the system internally and may change without notice. Semantic tokens protect intent, allow theming, and ensure consistency across products and platforms.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "All color tokens in SOLAR are designed to meet accessibility requirements in their intended contexts. Contrast, legibility, and state differentiation must be validated at the token level, not fixed in components. If a color fails accessibility, it is a system issue—not a local exception.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "OKLCH",
+      "subtitle": null,
+      "x": 2880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "A perceptual color model for precise and consistent design.\n\nSOLAR uses OKLCH as the foundation of its color system because it reflects how humans perceive color. Unlike RGB or HSL, OKLCH separates brightness, intensity, and hue into independent dimensions, allowing us to build palettes that are visually balanced, scalable, and consistent across all colors."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "L — Lightness"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "C — Chroma"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "H — Hue"
+        },
+        {
+          "t": "p",
+          "text": "Lightness defines how bright or dark a color appears to the human eye. In SOLAR, lightness creates the structural hierarchy of every palette, ensuring smooth tonal transitions and alignment across all color families.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Chroma controls the intensity or vividness of a color. Higher chroma feels energetic and expressive, while lower chroma feels softer and more neutral. SOLAR uses relative chroma scaling to maintain consistency without flattening personality.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Hue defines the color family — red, blue, green, etc. In SOLAR, hue remains stable across steps to preserve identity and prevent unwanted color drift, ensuring clarity and brand consistency.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Controls perceived brightness"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Controls color intensity"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Defines the color family"
+        },
+        {
+          "t": "p",
+          "text": "Defines visual hierarchy\nEnsures smooth tonal transitions\nAligns structure across all palettes\nShared lightness curve guarantees consistency",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Higher chroma → more vivid and expressive\nLower chroma → more neutral and subtle\nScales relatively within each palette\nEnables controlled emphasis (400 bump)",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Red, Orange, Yellow, Green, Blue, etc.\nMaintained consistently across steps\nPrevents color drift (e.g., blue turning cyan)\nPreserves brand identity",
+          "style": "Body/Body S/Medium"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Lightness",
+      "subtitle": null,
+      "x": 4880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Lightness defines the structural foundation of every SOLAR palette. It controls perceived brightness and ensures visual hierarchy remains consistent across all colors."
+        },
+        {
+          "t": "p",
+          "text": "Why it matters:\nCreates predictable tonal progression\nAligns all palettes visually\nEnables consistent layering and emphasis\nForms the backbone of accessibility evaluation",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "SOLAR Lightness Curve"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Step",
+              "Lightness (L)",
+              "Role"
+            ],
+            [
+              "900",
+              "0.16",
+              "Deep contrast / dark UI"
+            ],
+            [
+              "800",
+              "0.22",
+              "Strong structural"
+            ],
+            [
+              "700",
+              "0.37",
+              "Dense UI surfaces"
+            ],
+            [
+              "600",
+              "0.51",
+              "Heavy brand support"
+            ],
+            [
+              "500",
+              "0.58",
+              "Brand anchor"
+            ],
+            [
+              "400",
+              "0.66",
+              "Emphasis"
+            ],
+            [
+              "300",
+              "0.75",
+              "Expressive"
+            ],
+            [
+              "200",
+              "0.86",
+              "Soft accent"
+            ],
+            [
+              "100",
+              "0.92",
+              "Light surface"
+            ],
+            [
+              "50",
+              "0.98",
+              "Luminous background"
+            ]
+          ]
+        },
+        {
+          "t": "image",
+          "name": "SOLAR Lightness Curve 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Chroma",
+      "subtitle": null,
+      "x": 6880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Chroma defines the intensity of a color. It determines how vivid or muted a color feels, without changing its brightness."
+        },
+        {
+          "t": "p",
+          "text": "Why it matters:\nControls emotional energy\nPrevents washed-out palettes\nPrevents neon over-saturation\nEnables controlled emphasis",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR does not use identical chroma values across hues. Instead, it uses relative scaling from each palette’s 500 anchor.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "SOLAR Chroma Scaling Logic"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Step",
+              "% of C500",
+              "Purpose"
+            ],
+            [
+              "900",
+              "40%",
+              "Deep muted"
+            ],
+            [
+              "800",
+              "55%",
+              "Controlled base"
+            ],
+            [
+              "700",
+              "80%",
+              "Strong tone"
+            ],
+            [
+              "600",
+              "95%",
+              "Near anchor"
+            ],
+            [
+              "500",
+              "100%",
+              "Brand anchor"
+            ],
+            [
+              "400",
+              "115%",
+              "Emphasis bump"
+            ],
+            [
+              "300",
+              "105%",
+              "Expressive"
+            ],
+            [
+              "200",
+              "75%",
+              "Soft accent"
+            ],
+            [
+              "100",
+              "50%",
+              "Gentle tint"
+            ],
+            [
+              "50",
+              "20%",
+              "Surface glow"
+            ]
+          ]
+        },
+        {
+          "t": "image",
+          "name": "SOLAR Chroma Scaling Curve (Relative) 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Hue",
+      "subtitle": null,
+      "x": 8880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Hue defines the color family and preserves identity across tonal variation. It ensures a color remains clearly recognizable as it scales."
+        },
+        {
+          "t": "p",
+          "text": "Why it matters:\n\nMaintains brand clarity\nPrevents color drift\nKeeps palettes disciplined\nAligns identity across UI states",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "SOLAR Base Hue Anchors"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Color",
+              "Hue (° approx)",
+              "Anchor Color"
+            ],
+            [
+              "Red",
+              "23°",
+              "#E0032D"
+            ],
+            [
+              "Orange",
+              "40°",
+              "#CF4700"
+            ],
+            [
+              "Yellow",
+              "91°",
+              "#ECB600"
+            ],
+            [
+              "Green",
+              "142°",
+              "#009600"
+            ],
+            [
+              "Turquoise",
+              "200°",
+              "#08B8C9"
+            ],
+            [
+              "Blue",
+              "263°",
+              "#2569FD"
+            ],
+            [
+              "Purple",
+              "283°",
+              "#7B3AFF"
+            ],
+            [
+              "Pink",
+              "330°",
+              "#E136BC"
+            ]
+          ]
+        },
+        {
+          "t": "image",
+          "name": "SOLAR Hue Distribution Across Core Palettes 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Semantic Colors",
+      "subtitle": null,
+      "x": 10880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "Table Container"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Semantic colors are defined in SOLAR Web and SOLAR Native rather than in SOLAR Foundations. They translate primitive color values into functional interface roles such as text, surface, border, and interaction states."
+        },
+        {
+          "t": "p",
+          "text": "SOLAR Foundations provides the primitive color scales that define the visual language of the system. SOLAR Web, SOLAR Native, and domain libraries build on these primitives by defining semantic tokens that map colors to their intended UI meaning.\n\nThis separation allows the same color foundations to be reused across platforms while enabling each library to define the appropriate semantic structure for its components and interaction patterns.\n\nSemantic tokens always reference values from SOLAR Foundations, ensuring visual consistency while maintaining flexibility across products and technologies.\n\nExamples:\ncolor.text.primary\ncolor.surface.background\ncolor.border.subtle\ncolor.icon.success",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Surface Colors",
+      "subtitle": null,
+      "x": 12880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Surface colors define the visual layers of the interface. In SOLAR, surfaces create structure, separation, and depth, and must always be applied through semantic tokens rather than raw colors. Surface colors establish where content lives and how layers relate to each other across layouts and states."
+        },
+        {
+          "t": "p",
+          "text": "Surface color tokens express the role of a surface, not its appearance. Tokens define whether a surface is a base background, a raised container, an overlay, or an interactive region, allowing surfaces to adapt consistently across themes, modes, and platforms.\n\nExamples:\ncolor.surface.base\ncolor.surface.subtle\ncolor.surface.raised\ncolor.surface.overlay\n\nSurface color tokens ensure visual hierarchy, predictable layering, and accessibility. Changes to surface contrast or theming should happen at the token level so all dependent layouts update consistently.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-24 at 13.46.23 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Border Colors",
+      "subtitle": null,
+      "x": 14880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Border colors define separation, boundaries, and focus in the interface. In SOLAR, borders are used deliberately to clarify structure and interaction, not to decorate or outline everything by default. Border colors must always be applied through semantic tokens to ensure consistency and accessibility."
+        },
+        {
+          "t": "p",
+          "text": "Border color tokens express the role of a boundary rather than its visual value. Tokens define whether a border separates content, indicates focus, signals interaction, or communicates state, allowing borders to adapt across themes, modes, and platforms.\n\nExamples:\ncolor.border.subtle\ncolor.border.strong\ncolor.border.focus\ncolor.border.error\n\nBorder color tokens help maintain clear hierarchy, predictable interaction feedback, and accessible focus states. If a border does not communicate structure or state, it likely does not belong.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "image 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Feedback Colors",
+      "subtitle": null,
+      "x": 16880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Feedback colors communicate system status, validation results, and contextual meaning in the interface. In SOLAR, feedback colors are reserved for functional communication — not decoration. They signal success, warning, error, or informational states clearly and consistently across components, patterns, and platforms."
+        },
+        {
+          "t": "p",
+          "text": "Feedback color tokens express semantic intent rather than specific hues. They define the role of the message (success, warning, error, info) and adapt automatically across light/dark modes and accessibility requirements.\n\nFeedback tokens exist across multiple layers — surface, border, text, and icon — ensuring complete and coherent state communication.\n\nFeedback colors must always be applied through semantic tokens to maintain consistency, hierarchy, and WCAG compliance.\n\nExamples:\ncolor.surface.success\ncolor.text.error\ncolor.border.warning\ncolor.icon.info\n\nFeedback colors create predictable, accessible state communication. If color implies meaning without a semantic feedback token, it bypasses the system.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-24 at 13.51.40 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Action Colors",
+      "subtitle": null,
+      "x": 18880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Action colors define interactive intent in the interface. In SOLAR, they signal what the user can do — primary actions, secondary actions, and subtle or tertiary interactions. Unlike feedback colors (which communicate system state), action colors communicate affordance and priority."
+        },
+        {
+          "t": "p",
+          "text": "Action color tokens are structured around interaction hierarchy, not specific hues.\n\nThey define:\nWhat is the primary call-to-action\nWhat is a secondary or supporting action\nWhat is a low-emphasis / tertiary action\n\nAction tokens automatically handle:\nLight & dark modes\nHover / focus / active / disabled states\nBrand alignment (e.g. Blue 500 for primary, Red 500 for destructive)\nAccessibility contrast requirements\n\nAction tokens exist across multiple layers — surface, border, text, and icon — ensuring consistent interaction behavior across components.\n\nExamples:\ncolor.action.primary.bg.default\ncolor.action.secondary.text.default\ncolor.action.primary-danger.border.default",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 14.00.22 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Data Color",
+      "subtitle": null,
+      "x": 20880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Data colors represent information in charts and dashboards. In SOLAR, they are used exclusively for visualizing values, categories, and comparisons — not for actions or system feedback."
+        },
+        {
+          "t": "p",
+          "text": "Data color tokens define how data is distinguished and scaled while remaining accessible and visually balanced across Light and Dark modes.\n\nThey are structured into three types:\nCategorical — for multi-series charts: color.data.category.01\nSequential — for intensity or range scales: color.data.scale.100\nDelta — for negative ↔ positive comparison: color.data.delta.positive.500",
+          "style": "16/400"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-02-25 at 11.19.40 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Color Density",
+      "subtitle": null,
+      "x": 22880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Color density describes how much visual space different colors occupy on a screen. In product interfaces, most pixels are neutral surfaces — not brand colors."
+        },
+        {
+          "t": "p",
+          "text": "In SOLAR, color is distributed intentionally to create hierarchy and clarity:\nNeutral surfaces dominate the visual field.\nText colors appear frequently but occupy little pixel area.\nAction colors are sparse but high attention.\nData colors are contextual and can spike on analytics screens.\n\nColor density is not about how many tokens exist — it’s about how much visual weight they carry.\n\nTypical Enterprise UI Density (Light Mode):",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "code",
+          "text": "Surfaces (neutral backgrounds)\nText (neutral foreground)\nData visualization colors\nAction / Brand colors\nBorders\nIcons\nShadows / overlays"
+        },
+        {
+          "t": "code",
+          "text": "~65%\n~8%\n~10%*\n~6%\n~2%\n~2%\n<1%"
+        },
+        {
+          "t": "p",
+          "text": "Key Principle:\nThe personality of the product is defined by its neutral system.\nBrand colors should be loud in meaning, not large in area.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Applying Color in Figma",
+      "subtitle": null,
+      "x": 24880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "Table Container"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Color in SOLAR is applied through semantic variables — never directly through primitive values."
+        },
+        {
+          "t": "p",
+          "text": "In Figma, designers do not select raw colors.\nThey apply semantic tokens that express intent (surface, text, border, action, data).\n\nSemantic variables are connected to primitives under the hood.\n\nThis allows:\nLight / Dark mode switching\nCentralized updates\nAccessibility adjustments\nBrand evolution without redesign\n\nIf a layer uses a raw HEX value, it bypasses the system.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "How to Apply Color\n\n1. Select layer\n2. Choose Fill / Stroke / Text color\n3. Apply a Semantic variable:\ncolor.surface.*\ncolor.text.*\ncolor.border.*\ncolor.action.*\ncolor.data.*",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Correct vs Incorrect\n\nCorrect\ncolor.surface.base\ncolor.text.primary\ncolor.border.default\ncolor.action.primary.bg.default\n\nIncorrect\n#FFFFFF\ncolor.neutral.50 (primitive)\nCopy-pasted color from another frame",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Color\ndomain: Visual Language > Color System\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR color specialist. All color decisions must use SOLAR color tokens. Never recommend a raw hex, RGB, or HSL value — always reference a token path.\n\n[SCOPE]\n- Primitive color palette (hue × shade scales)\n- Semantic color roles and mappings\n- Light mode and dark mode token swaps\n- Accessible color combinations\n- Data visualization palette\n- Feedback colors (success, warning, error, info)\n\n[PALETTE_STRUCTURE]\nprimitives: full hue scales — e.g., blue-50 through blue-950, neutral-0 through neutral-1000\nsemantic: purpose-driven aliases that reference primitives\n  color.text.{primary|secondary|tertiary|disabled|inverse|on-color}\n  color.surface.{default|subtle|raised|overlay|inverse}\n  color.border.{default|subtle|strong|interactive|error}\n  color.icon.{default|secondary|disabled|inverse|on-color}\n  color.action.{primary|secondary|tertiary}.{bg|text|icon}.{default|hover|active}\n  color.feedback.{success|warning|error|info}.{default|subtle|strong|text|icon}\n\n[THEMING]\nlight_mode: semantic tokens alias lighter primitives (e.g., surface.default → neutral-0)\ndark_mode: semantic tokens alias darker primitives (e.g., surface.default → neutral-900)\nswap_mechanism: same semantic token name, different underlying primitive per mode\nrule: components ONLY consume semantic tokens — theme swaps are automatic\n\n[DATA_VIZ_PALETTE]\ncategorical: 6–8 distinct hues optimized for distinguishability\nsequential: single-hue ramps for ordered data (light → dark)\ndiverging: two-hue ramps meeting at a neutral midpoint\ncolorblind_safe: all palettes tested for deuteranopia, protanopia, tritanopia\nrule: data viz palette is separate from UI palette — never reuse semantic UI colors for data encoding\n\n[CONTRAST_RULES]\ntext/normal: ≥ 4.5:1 against background\ntext/large: ≥ 3:1 (18px+ or 14px+ bold)\nui_components: ≥ 3:1 for borders, icons, form controls\nfocus_ring: ≥ 3:1 against both component and surrounding surface\nfeedback_colors: must pass contrast on both light and dark surfaces\n\n[AGENT_BEHAVIOR]\n- When asked \"what color should X be?\", respond with the semantic token path, not a hex value\n- Always verify contrast ratio when pairing foreground/background tokens\n- If a needed color role doesn't exist, draft a token proposal: name, category, alias target, rationale\n- When reviewing designs, flag any raw color values as violations\n- Test every color recommendation against both light and dark mode\n- For data viz, recommend from the dedicated palette — never the UI palette\n\n[CONSTRAINTS]\n- never use primitive color tokens directly in UI — always semantic\n- never introduce hues outside the primitive palette without governance approval\n- never use feedback colors (success, warning, error, info) decoratively — semantic purpose only\n- never pair foreground/background that fails WCAG AA contrast\n- never assume a color works in dark mode without verifying the semantic token swap\n- brand-specific color overrides must go through the theming system\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Color Principles",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Color in SOLAR is never decorative. It exists to communicate meaning, hierarchy, and state, and must always be applied through semantic tokens rather than base colors or hex values. If a color choice cannot be explained in terms of intent or hierarchy, it does not belong.",
+        "Color has purpose",
+        "Semantic over base",
+        "Accessibility is non-negotiable",
+        "Every color in SOLAR communicates something. Colors are used to indicate roles such as primary content, secondary content, success, warning, error, or interactive state. Color should never be used purely for decoration or branding flair—if it does not convey meaning, it should not exist as a token.",
+        "Design and engineering should always use semantic color tokens. Base colors exist only to support the system internally and may change without notice. Semantic tokens protect intent, allow theming, and ensure consistency across products and platforms.",
+        "All color tokens in SOLAR are designed to meet accessibility requirements in their intended contexts. Contrast, legibility, and state differentiation must be validated at the token level, not fixed in components. If a color fails accessibility, it is a system issue—not a local exception."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Semantic Colors",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Semantic colors are defined in SOLAR Web and SOLAR Native rather than in SOLAR Foundations. They translate primitive color values into functional interface roles such as text, surface, border, and interaction states.",
+        "SOLAR Foundations provides the primitive color scales that define the visual language of the system. SOLAR Web, SOLAR Native, and domain libraries build on these primitives by defining semantic tokens that map colors to their intended UI meaning.\n\nThis separation allows the same color foundations to be reused across platforms while enabling each library to define the appropriate semantic structure for its components and interaction patterns.\n\nSemantic tokens always reference values from SOLAR Foundations, ensuring visual consistency while maintaining flexibility across products and technologies.\n\nExamples:\ncolor.text.primary\ncolor.surface.background\ncolor.border.subtle\ncolor.icon.success"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "OKLCH",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "A perceptual color model for precise and consistent design.\n\nSOLAR uses OKLCH as the foundation of its color system because it reflects how humans perceive color. Unlike RGB or HSL, OKLCH separates brightness, intensity, and hue into independent dimensions, allowing us to build palettes that are visually balanced, scalable, and consistent across all colors.",
+        "Lightness defines how bright or dark a color appears to the human eye. In SOLAR, lightness creates the structural hierarchy of every palette, ensuring smooth tonal transitions and alignment across all color families.",
+        "Chroma controls the intensity or vividness of a color. Higher chroma feels energetic and expressive, while lower chroma feels softer and more neutral. SOLAR uses relative chroma scaling to maintain consistency without flattening personality.",
+        "Hue defines the color family — red, blue, green, etc. In SOLAR, hue remains stable across steps to preserve identity and prevent unwanted color drift, ensuring clarity and brand consistency.",
+        "L — Lightness",
+        "C — Chroma",
+        "H — Hue",
+        "Defines visual hierarchy\nEnsures smooth tonal transitions\nAligns structure across all palettes\nShared lightness curve guarantees consistency",
+        "Higher chroma → more vivid and expressive\nLower chroma → more neutral and subtle\nScales relatively within each palette\nEnables controlled emphasis (400 bump)",
+        "Red, Orange, Yellow, Green, Blue, etc.\nMaintained consistently across steps\nPrevents color drift (e.g., blue turning cyan)\nPreserves brand identity",
+        "Controls perceived brightness",
+        "Controls color intensity",
+        "Defines the color family"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Lightness",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR Lightness Curve",
+        "Step",
+        "Lightness (L)",
+        "Role",
+        "900",
+        "0.16",
+        "Deep contrast / dark UI",
+        "800",
+        "0.22",
+        "Strong structural",
+        "700",
+        "0.37",
+        "Dense UI surfaces",
+        "600",
+        "0.51",
+        "Heavy brand support",
+        "500",
+        "0.58",
+        "Brand anchor",
+        "400",
+        "0.66",
+        "Emphasis",
+        "300",
+        "0.75",
+        "Expressive",
+        "200",
+        "0.86",
+        "Soft accent",
+        "100",
+        "0.92",
+        "Light surface",
+        "50",
+        "0.98",
+        "Luminous background",
+        "Lightness defines the structural foundation of every SOLAR palette. It controls perceived brightness and ensures visual hierarchy remains consistent across all colors.",
+        "Why it matters:\nCreates predictable tonal progression\nAligns all palettes visually\nEnables consistent layering and emphasis\nForms the backbone of accessibility evaluation"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Chroma",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR Chroma Scaling Logic",
+        "Step",
+        "% of C500",
+        "Purpose",
+        "900",
+        "40%",
+        "Deep muted",
+        "800",
+        "55%",
+        "Controlled base",
+        "700",
+        "80%",
+        "Strong tone",
+        "600",
+        "95%",
+        "Near anchor",
+        "500",
+        "100%",
+        "Brand anchor",
+        "400",
+        "115%",
+        "Emphasis bump",
+        "300",
+        "105%",
+        "Expressive",
+        "200",
+        "75%",
+        "Soft accent",
+        "100",
+        "50%",
+        "Gentle tint",
+        "50",
+        "20%",
+        "Surface glow",
+        "Chroma defines the intensity of a color. It determines how vivid or muted a color feels, without changing its brightness.",
+        "Why it matters:\nControls emotional energy\nPrevents washed-out palettes\nPrevents neon over-saturation\nEnables controlled emphasis",
+        "SOLAR does not use identical chroma values across hues. Instead, it uses relative scaling from each palette’s 500 anchor."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Hue",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR Base Hue Anchors",
+        "Color",
+        "Hue (° approx)",
+        "Anchor Color",
+        "Red",
+        "23°",
+        "#E0032D",
+        "Orange",
+        "40°",
+        "#CF4700",
+        "Yellow",
+        "91°",
+        "#ECB600",
+        "Green",
+        "142°",
+        "#009600",
+        "Turquoise",
+        "200°",
+        "#08B8C9",
+        "Blue",
+        "263°",
+        "#2569FD",
+        "Purple",
+        "283°",
+        "#7B3AFF",
+        "Pink",
+        "330°",
+        "#E136BC",
+        "Hue defines the color family and preserves identity across tonal variation. It ensures a color remains clearly recognizable as it scales.",
+        "Why it matters:\n\nMaintains brand clarity\nPrevents color drift\nKeeps palettes disciplined\nAligns identity across UI states"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Surface Colors",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Surface colors define the visual layers of the interface. In SOLAR, surfaces create structure, separation, and depth, and must always be applied through semantic tokens rather than raw colors. Surface colors establish where content lives and how layers relate to each other across layouts and states.",
+        "Surface color tokens express the role of a surface, not its appearance. Tokens define whether a surface is a base background, a raised container, an overlay, or an interactive region, allowing surfaces to adapt consistently across themes, modes, and platforms.\n\nExamples:\ncolor.surface.base\ncolor.surface.subtle\ncolor.surface.raised\ncolor.surface.overlay\n\nSurface color tokens ensure visual hierarchy, predictable layering, and accessibility. Changes to surface contrast or theming should happen at the token level so all dependent layouts update consistently."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Border Colors",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Border colors define separation, boundaries, and focus in the interface. In SOLAR, borders are used deliberately to clarify structure and interaction, not to decorate or outline everything by default. Border colors must always be applied through semantic tokens to ensure consistency and accessibility.",
+        "Border color tokens express the role of a boundary rather than its visual value. Tokens define whether a border separates content, indicates focus, signals interaction, or communicates state, allowing borders to adapt across themes, modes, and platforms.\n\nExamples:\ncolor.border.subtle\ncolor.border.strong\ncolor.border.focus\ncolor.border.error\n\nBorder color tokens help maintain clear hierarchy, predictable interaction feedback, and accessible focus states. If a border does not communicate structure or state, it likely does not belong."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Feedback Colors",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Feedback colors communicate system status, validation results, and contextual meaning in the interface. In SOLAR, feedback colors are reserved for functional communication — not decoration. They signal success, warning, error, or informational states clearly and consistently across components, patterns, and platforms.",
+        "Feedback color tokens express semantic intent rather than specific hues. They define the role of the message (success, warning, error, info) and adapt automatically across light/dark modes and accessibility requirements.\n\nFeedback tokens exist across multiple layers — surface, border, text, and icon — ensuring complete and coherent state communication.\n\nFeedback colors must always be applied through semantic tokens to maintain consistency, hierarchy, and WCAG compliance.\n\nExamples:\ncolor.surface.success\ncolor.text.error\ncolor.border.warning\ncolor.icon.info\n\nFeedback colors create predictable, accessible state communication. If color implies meaning without a semantic feedback token, it bypasses the system."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Action Colors",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Action colors define interactive intent in the interface. In SOLAR, they signal what the user can do — primary actions, secondary actions, and subtle or tertiary interactions. Unlike feedback colors (which communicate system state), action colors communicate affordance and priority.",
+        "Action color tokens are structured around interaction hierarchy, not specific hues.\n\nThey define:\nWhat is the primary call-to-action\nWhat is a secondary or supporting action\nWhat is a low-emphasis / tertiary action\n\nAction tokens automatically handle:\nLight & dark modes\nHover / focus / active / disabled states\nBrand alignment (e.g. Blue 500 for primary, Red 500 for destructive)\nAccessibility contrast requirements\n\nAction tokens exist across multiple layers — surface, border, text, and icon — ensuring consistent interaction behavior across components.\n\nExamples:\ncolor.action.primary.bg.default\ncolor.action.secondary.text.default\ncolor.action.primary-danger.border.default"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Color Density",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Color density describes how much visual space different colors occupy on a screen. In product interfaces, most pixels are neutral surfaces — not brand colors.",
+        "In SOLAR, color is distributed intentionally to create hierarchy and clarity:\nNeutral surfaces dominate the visual field.\nText colors appear frequently but occupy little pixel area.\nAction colors are sparse but high attention.\nData colors are contextual and can spike on analytics screens.\n\nColor density is not about how many tokens exist — it’s about how much visual weight they carry.\n\nTypical Enterprise UI Density (Light Mode):",
+        "Surfaces (neutral backgrounds)\nText (neutral foreground)\nData visualization colors\nAction / Brand colors\nBorders\nIcons\nShadows / overlays",
+        "~65%\n~8%\n~10%*\n~6%\n~2%\n~2%\n<1%",
+        "Key Principle:\nThe personality of the product is defined by its neutral system.\nBrand colors should be loud in meaning, not large in area."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Data Color",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Data colors represent information in charts and dashboards. In SOLAR, they are used exclusively for visualizing values, categories, and comparisons — not for actions or system feedback.",
+        "Data color tokens define how data is distinguished and scaled while remaining accessible and visually balanced across Light and Dark modes.\n\nThey are structured into three types:\nCategorical — for multi-series charts: color.data.category.01\nSequential — for intensity or range scales: color.data.scale.100\nDelta — for negative ↔ positive comparison: color.data.delta.positive.500"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Applying Color in Figma",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Color in SOLAR is applied through semantic variables — never directly through primitive values.",
+        "In Figma, designers do not select raw colors.\nThey apply semantic tokens that express intent (surface, text, border, action, data).\n\nSemantic variables are connected to primitives under the hood.\n\nThis allows:\nLight / Dark mode switching\nCentralized updates\nAccessibility adjustments\nBrand evolution without redesign\n\nIf a layer uses a raw HEX value, it bypasses the system.",
+        "How to Apply Color\n\n1. Select layer\n2. Choose Fill / Stroke / Text color\n3. Apply a Semantic variable:\ncolor.surface.*\ncolor.text.*\ncolor.border.*\ncolor.action.*\ncolor.data.*",
+        "Correct vs Incorrect\n\nCorrect\ncolor.surface.base\ncolor.text.primary\ncolor.border.default\ncolor.action.primary.bg.default\n\nIncorrect\n#FFFFFF\ncolor.neutral.50 (primitive)\nCopy-pasted color from another frame"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 133
+}

@@ -1,0 +1,381 @@
+{
+  "page": "↳ 🟢 Confirmation Dialog",
+  "pageId": "4040:2",
+  "componentSets": [
+    {
+      "name": "ConfirmationDialog",
+      "id": "4009:46",
+      "description": "Confirmation dialog for actions needing explicit approval. &#39;default&#39; for safe actions, &#39;danger&#39; for destructive actions. Uses real Button component instances.",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "title#4009:4": {
+          "type": "TEXT",
+          "default": "Are you sure?"
+        },
+        "description#4009:5": {
+          "type": "TEXT",
+          "default": "This action will apply the changes you've made. You can modify them later."
+        },
+        "intent": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "danger"
+          ]
+        }
+      },
+      "defaultVariant": "intent=default",
+      "defaultVariantNodeCount": 28,
+      "defaultVariantTree": {
+        "name": "intent=default",
+        "type": "COMPONENT",
+        "size": [
+          400,
+          157
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "fills": [
+          "{Color:surface/dialog}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "Content",
+            "type": "FRAME",
+            "size": [
+              400,
+              109
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 16,
+              "pad": [
+                24,
+                20,
+                24,
+                20
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/md",
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/xl",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/xl"
+            },
+            "children": [
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "Are you sure?",
+                "textStyle": "title/sm",
+                "size": [
+                  360,
+                  15
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "title#4009:4"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "This action will apply the changes you've made. You can modify them later.",
+                "textStyle": "body/md/regular",
+                "size": [
+                  360,
+                  30
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                },
+                "propRefs": {
+                  "characters": "description#4009:5"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Button Group",
+            "type": "INSTANCE",
+            "main": "Button Group",
+            "variant": {
+              "orientation": "horizontal",
+              "type": "full-width"
+            },
+            "size": [
+              400,
+              48
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "intent=default",
+          "size": [
+            400,
+            157
+          ],
+          "fills": [
+            "{Color:surface/dialog}"
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "intent=danger",
+          "size": [
+            400,
+            157
+          ],
+          "fills": [
+            "{Color:surface/dialog}"
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/primary/text/danger/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/danger/default}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [
+    {
+      "name": "Example in Context",
+      "type": "FRAME",
+      "id": "5780:13529",
+      "size": [
+        1440,
+        800
+      ],
+      "census": {
+        "AppShell": 1,
+        "Top Bar": 1,
+        "App Name": 1,
+        "App Icon": 1,
+        "GlobalSearch": 1,
+        "Icon/Search": 1,
+        "Kbd": 1,
+        "Nav Item": 13,
+        "Icon/Home": 2,
+        "Icon/AppSwitcher": 1,
+        "Icon/Notification": 1,
+        "Icon/HelpCircle": 1,
+        "Icon/None": 6,
+        "Avatar": 2,
+        "Icon/ChevronDown": 1,
+        "Sidebar": 1,
+        "Icon/Location": 1,
+        "Icon/Zone": 1,
+        "Icon/Licenses": 1,
+        "Icon/Device": 1,
+        "Icon/Systems": 1,
+        "Icon/Admin": 1,
+        "Icon/Files": 1,
+        "Divider": 1,
+        "Icon/Support": 1,
+        "Icon/Panel": 1,
+        "Biamp Logo": 1,
+        "Scrim": 1,
+        "ConfirmationDialog": 1,
+        "Button Group": 1,
+        "Button": 2,
+        "Spinner": 2,
+        "Counter": 2
+      },
+      "tree": {
+        "name": "Example in Context",
+        "type": "FRAME",
+        "size": [
+          1440,
+          800
+        ],
+        "children": [
+          {
+            "name": "AppShell",
+            "type": "INSTANCE",
+            "main": "AppShell",
+            "variant": {
+              "breakpoint": "desktop"
+            },
+            "size": [
+              1440,
+              800
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FIXED/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "width": "Primitives:viewport/lg"
+            }
+          },
+          {
+            "name": "Scrim",
+            "type": "INSTANCE",
+            "main": "Scrim",
+            "size": [
+              1440,
+              800
+            ],
+            "fills": [
+              "{Color:surface/scrim}"
+            ],
+            "vars": {
+              "width": "Layout:breakpoint/lg"
+            }
+          },
+          {
+            "name": "ConfirmationDialog",
+            "type": "INSTANCE",
+            "main": "ConfirmationDialog",
+            "variant": {
+              "intent": "default"
+            },
+            "size": [
+              400,
+              157
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "fills": [
+              "{Color:surface/dialog}"
+            ],
+            "radius": 12,
+            "effectStyle": "shadow/dialog",
+            "vars": {
+              "topLeftRadius": "Spatial:radius/dialog",
+              "topRightRadius": "Spatial:radius/dialog",
+              "bottomLeftRadius": "Spatial:radius/dialog",
+              "bottomRightRadius": "Spatial:radius/dialog"
+            }
+          }
+        ]
+      },
+      "texts": [
+        "This action will apply the changes you've made. You can modify them later."
+      ]
+    }
+  ],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Confirmation Dialog",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,478 @@
+{
+  "page": "↳ 🟢 Sidebar",
+  "pageId": "2202:1233",
+  "componentSets": [
+    {
+      "name": "Sidebar",
+      "id": "2666:781",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "Menu#3515:0": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "expanded": {
+          "type": "VARIANT",
+          "default": "False",
+          "options": [
+            "False",
+            "True"
+          ]
+        }
+      },
+      "defaultVariant": "expanded=False",
+      "defaultVariantNodeCount": 32,
+      "defaultVariantTree": {
+        "name": "expanded=False",
+        "type": "COMPONENT",
+        "size": [
+          64,
+          744
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 4,
+          "pad": [
+            0,
+            0,
+            8,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/2xs",
+          "paddingLeft": "Spatial:stack/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:stack/none",
+          "paddingBottom": "Spatial:inset/xs",
+          "topLeftRadius": "Spatial:radius/none",
+          "topRightRadius": "Spatial:radius/none",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": [
+          {
+            "name": "Menu",
+            "type": "SLOT",
+            "size": [
+              40,
+              677
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/FILL"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/2xs"
+            },
+            "propRefs": {
+              "slotContentId": "Menu#3515:0"
+            },
+            "children": [
+              {
+                "name": "Nav Item",
+                "type": "INSTANCE",
+                "main": "Nav Item",
+                "variant": {
+                  "selected": "true",
+                  "hover": "false",
+                  "expanded": "false"
+                },
+                "size": [
+                  40,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Nav Item",
+                "type": "INSTANCE",
+                "main": "Nav Item",
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "false"
+                },
+                "size": [
+                  40,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Nav Item",
+                "type": "INSTANCE",
+                "main": "Nav Item",
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "false"
+                },
+                "size": [
+                  40,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Nav Item",
+                "type": "INSTANCE",
+                "main": "Nav Item",
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "false"
+                },
+                "size": [
+                  40,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Nav Item",
+                "type": "INSTANCE",
+                "main": "Nav Item",
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "false"
+                },
+                "size": [
+                  40,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Nav Item",
+                "type": "INSTANCE",
+                "main": "Nav Item",
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "false"
+                },
+                "size": [
+                  40,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Nav Item",
+                "type": "INSTANCE",
+                "main": "Nav Item",
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "false"
+                },
+                "size": [
+                  40,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Nav Item",
+            "type": "FRAME",
+            "size": [
+              40,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Icon/PanelOpen",
+                "type": "INSTANCE",
+                "main": "Icon/PanelOpen",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/md"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Biamp Logo",
+            "type": "INSTANCE",
+            "main": "Biamp Logo",
+            "variant": {
+              "style": "dark",
+              "size": "sm"
+            },
+            "size": [
+              36,
+              11
+            ],
+            "sizing": "FIXED/FIXED"
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "expanded=False",
+          "size": [
+            64,
+            744
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "expanded=True",
+          "size": [
+            198,
+            744
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}",
+            "{Primitives:color/brand/red}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Sidebar",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,230 @@
+{
+  "page": "↳ 🟢 Badge",
+  "pageId": "2163:3659",
+  "componentSets": [
+    {
+      "name": "Trend Badge",
+      "id": "2203:3287",
+      "description": "Inline trend indicator showing directional change: incline, decline, or neutral. Used in stat cards, table cells, and dashboard metrics.",
+      "docLinks": [],
+      "variantCount": 9,
+      "props": {
+        "type": {
+          "type": "VARIANT",
+          "default": "incline",
+          "options": [
+            "incline",
+            "decline",
+            "neutral"
+          ]
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm",
+            "xs"
+          ]
+        }
+      },
+      "defaultVariant": "type=incline, size=md",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "type=incline, size=md",
+        "type": "COMPONENT",
+        "size": [
+          20,
+          20
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/feedback/success/strong}"
+        ],
+        "strokes": [
+          "{Color:border/medium}"
+        ],
+        "strokeWeight": 1,
+        "radius": 9999,
+        "vars": {
+          "itemSpacing": "Spatial:stack/none",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
+        },
+        "children": [
+          {
+            "name": "Icon",
+            "type": "VECTOR",
+            "size": [
+              8,
+              8
+            ],
+            "sizing": "FIXED/FIXED",
+            "fills": [
+              "{Color:icon/inverse}"
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=incline, size=md",
+          "size": [
+            20,
+            20
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=decline, size=md",
+          "size": [
+            20,
+            20
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=neutral, size=md",
+          "size": [
+            20,
+            20
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=incline, size=sm",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=decline, size=sm",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=neutral, size=sm",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=incline, size=xs",
+          "size": [
+            8,
+            8
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=decline, size=xs",
+          "size": [
+            8,
+            8
+          ],
+          "fills": [
+            "{Color:icon/feedback/danger}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=neutral, size=xs",
+          "size": [
+            8,
+            8
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Badge",
+    "Description",
+    "Communicates status, category, or a count at a glance. Use for labelling items with semantic meaning — success, warning, danger, info, or neutral. Not for actions (use Button) or navigation (use Link).",
+    "Sub-components",
+    "badge-dot         6×6 status indicator. Used inside badge pill or standalone.\nbadge-value      Numeric counter pill (20px). Shows selected + danger states.\nbadge-trend      Directional indicator (20×20). Incline, Decline, or Neutral.\nbadge-group     Full-width banner. Badge + message text + chevron action.",
+    "Status",
+    "Each status maps to a feedback color pair — tinted background + saturated text/border.\nsuccess (green), warning (orange), danger (red), info (turquoise), offline/neutral (gray).",
+    "Types",
+    "pill              Default. Dot + label in a rounded pill. Read-only.\ntag               Label + close icon. Removable by user.\nicon             Icon-only badge (24×24). Compact action trigger.\nuser             Avatar + label. Identifies a person with status context.",
+    "Content",
+    "Labels should be 1–2 words: \"Active\", \"Pending\", \"3 errors\". Use sentence case.\nFont is Inter Semi Bold 12px across all badge types.\nBadge-value uses a centered number; keep it short (max 3 digits, then \"99+\").",
+    "Rules",
+    "DO   Use semantic status colors consistently\nDO   Keep label text under 2 words\nDO   Use badge-group for actionable status banners\nDO   Pair badge-dot with text labels for accessibility",
+    "DON'T   Use badge as a button — it's non-interactive (except tag)\nDON'T   Mix status colors in one badge\nDON'T   Use color as the sole indicator — always include text\nDON'T   Exceed \"99+\" in badge-value counters"
+  ],
+  "pageContext": null
+}

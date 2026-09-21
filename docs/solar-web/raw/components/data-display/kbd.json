@@ -1,0 +1,143 @@
+{
+  "page": "↳ 🟢 Kbd",
+  "pageId": "5128:2",
+  "componentSets": [
+    {
+      "name": "Kbd",
+      "id": "5117:6323",
+      "description": "Keyboard key label for documenting shortcuts in menus, tooltips, and help content. Variants: default for inline use in text and menus; top-search for keyboard hints inside the global search bar. Pair with a separator (+ or →) for chords: Ctrl + K. Use system-correct modifier symbols per platform (⌘ on macOS, Ctrl on Windows/Linux). One key per Kbd — do not stack multiple keys inside one instance.",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "type": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "top-search",
+            "default"
+          ]
+        }
+      },
+      "defaultVariant": "type=default",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "type=default",
+        "type": "COMPONENT",
+        "size": [
+          28,
+          17
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "HUG/HUG"
+        },
+        "fills": [
+          "{Color:surface/feedback/neutral/strong}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 6,
+        "vars": {
+          "itemSpacing": "Spatial:inset/none",
+          "paddingLeft": "Spatial:inset/2xs",
+          "paddingTop": "Spatial:inset/2xs",
+          "paddingRight": "Spatial:inset/2xs",
+          "paddingBottom": "Spatial:inset/2xs",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "⌘K",
+            "type": "TEXT",
+            "text": "⌘K",
+            "textStyle": "body/sm/medium",
+            "size": [
+              20,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/inverse}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/sm",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=default",
+          "size": [
+            28,
+            17
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/strong}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=top-search",
+          "size": [
+            28,
+            17
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/medium}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Kbd",
+    "Description",
+    "Keyboard key label for documenting shortcuts. Pair in chords with a separator.",
+    "Variants",
+    "default      Inline use in menus, tooltips, and help content.\ntop-search   Muted style for keyboard hints inside the global search bar.",
+    "Labels & Content",
+    "One key per Kbd. Combine with + for chords: Ctrl + K.\nUse platform-correct modifier symbols: ⌘ Cmd on macOS, Ctrl elsewhere.\nUppercase letter keys; use symbols for arrows, Enter, Escape.",
+    "Rules",
+    "DO   One key per Kbd\nDO   Use + or → as the chord separator\nDO   Match platform modifier conventions\nDO   Uppercase letter keys",
+    "DON'T   Stack multiple keys inside one Kbd\nDON'T   Use emoji for keys\nDON'T   Hardcode platform modifiers when both are shown\nDON'T   Use Kbd for mouse or gesture input"
+  ],
+  "pageContext": null
+}

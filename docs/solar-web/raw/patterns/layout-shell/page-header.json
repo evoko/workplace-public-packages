@@ -1,0 +1,632 @@
+{
+  "page": "↳ 🟢 Page Header",
+  "pageId": "4533:83",
+  "componentSets": [
+    {
+      "name": "Page Header",
+      "id": "6186:21246",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "page-title#6186:27": {
+          "type": "TEXT",
+          "default": "Page Title"
+        },
+        "hasDescription#6186:28": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasBreadcrumbs#6186:29": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasIcon#6186:30": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasImage#6186:31": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasTabs#6592:49": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasCTA#6940:0": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "hasSecondaryCTA#6940:4": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasPrimaryCTA#6940:8": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasTag#7709:0": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "left-aligned",
+          "options": [
+            "centered",
+            "left-aligned"
+          ]
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "type=left-aligned, breakpoint=desktop",
+      "defaultVariantNodeCount": 113,
+      "defaultVariantTree": {
+        "name": "type=left-aligned, breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1368,
+          166
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            8,
+            24,
+            0,
+            24
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "itemSpacing": "Spatial:stack/none",
+          "paddingLeft": "Spatial:inset/xl",
+          "paddingTop": "Spatial:inset/xs",
+          "paddingRight": "Spatial:inset/xl",
+          "paddingBottom": "Spatial:inset/none",
+          "strokeBottomWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1320,
+              118
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 16,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "TextStack",
+                "type": "FRAME",
+                "size": [
+                  1181,
+                  118
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    20,
+                    0,
+                    20,
+                    0
+                  ],
+                  "align": "CENTER/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingTop": "Spatial:stack/lg",
+                  "paddingBottom": "Spatial:stack/lg"
+                },
+                "children": [
+                  {
+                    "name": "Breadcrumbs",
+                    "type": "INSTANCE",
+                    "main": "Breadcrumbs",
+                    "variant": {
+                      "items": "multiple"
+                    },
+                    "size": [
+                      156,
+                      12
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 12,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "HUG/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/sm"
+                    },
+                    "propRefs": {
+                      "visible": "hasBreadcrumbs#6186:29"
+                    }
+                  },
+                  {
+                    "name": "Container",
+                    "type": "FRAME",
+                    "size": [
+                      1181,
+                      24
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 12,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/sm"
+                    },
+                    "children": [
+                      {
+                        "name": "Icon/Building",
+                        "type": "INSTANCE",
+                        "main": "Icon/Building",
+                        "variant": {
+                          "solid": "false"
+                        },
+                        "size": [
+                          24,
+                          24
+                        ],
+                        "sizing": "FIXED/FIXED",
+                        "vars": {
+                          "width": "Spatial:icon/lg"
+                        },
+                        "propRefs": {
+                          "visible": "hasIcon#6186:30"
+                        }
+                      },
+                      {
+                        "name": "Title",
+                        "type": "TEXT",
+                        "text": "Page Title",
+                        "textStyle": "title/md",
+                        "size": [
+                          145,
+                          23
+                        ],
+                        "sizing": "HUG/HUG",
+                        "fills": [
+                          "{Color:text/primary}"
+                        ],
+                        "vars": {
+                          "lineHeight": "Type:line-height/title/md",
+                          "fontFamily": "Primitives:type/font-family/inter",
+                          "fontSize": "Type:size/title/md",
+                          "fontStyle": "Primitives:type/font-weight/500"
+                        },
+                        "propRefs": {
+                          "characters": "page-title#6186:27"
+                        }
+                      },
+                      {
+                        "name": "Tag",
+                        "type": "INSTANCE",
+                        "hidden": true,
+                        "main": "Tag",
+                        "variant": {
+                          "status": "success",
+                          "type": "status",
+                          "invert": "false"
+                        },
+                        "size": [
+                          67,
+                          24
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 8,
+                          "pad": [
+                            0,
+                            12,
+                            0,
+                            8
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "HUG/FIXED"
+                        },
+                        "fills": [
+                          "{Color:surface/feedback/success/subtle}"
+                        ],
+                        "strokes": [
+                          "{Color:border/feedback/success/subtle}"
+                        ],
+                        "strokeWeight": 1,
+                        "radius": 9999,
+                        "vars": {
+                          "itemSpacing": "Spatial:inset/xs",
+                          "paddingLeft": "Spatial:inset/xs",
+                          "paddingTop": "Spatial:inset/none",
+                          "paddingRight": "Spatial:inset/sm",
+                          "paddingBottom": "Spatial:inset/none",
+                          "strokeTopWeight": "Spatial:border/default",
+                          "strokeBottomWeight": "Spatial:border/default",
+                          "strokeLeftWeight": "Spatial:border/default",
+                          "strokeRightWeight": "Spatial:border/default",
+                          "topLeftRadius": "Spatial:radius/pill",
+                          "topRightRadius": "Spatial:radius/pill",
+                          "bottomLeftRadius": "Spatial:radius/pill",
+                          "bottomRightRadius": "Spatial:radius/pill"
+                        },
+                        "propRefs": {
+                          "visible": "hasTag#7709:0"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Description",
+                    "type": "TEXT",
+                    "text": "Supporting description text that explains the page context.",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      1181,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    },
+                    "propRefs": {
+                      "visible": "hasDescription#6186:28"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Image",
+                "type": "RECTANGLE",
+                "size": [
+                  139,
+                  78
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "IMAGE"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "propRefs": {
+                  "visible": "hasImage#6186:31"
+                }
+              },
+              {
+                "name": "CTA",
+                "type": "FRAME",
+                "hidden": true,
+                "size": [
+                  182,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                },
+                "propRefs": {
+                  "visible": "hasCTA#6940:0"
+                },
+                "children": [
+                  {
+                    "name": "Button",
+                    "type": "INSTANCE",
+                    "main": "Button",
+                    "variant": {
+                      "size": "md",
+                      "prio": "secondary",
+                      "state": "default",
+                      "danger": "false"
+                    },
+                    "size": [
+                      80,
+                      40
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        12,
+                        0,
+                        12
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "HUG/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/secondary/bg/default}"
+                    ],
+                    "strokes": [
+                      "{Color:action/secondary/border/default}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "effectStyle": "shadow/control",
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs",
+                      "paddingLeft": "Spatial:inset/sm",
+                      "paddingRight": "Spatial:inset/sm",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    },
+                    "propRefs": {
+                      "visible": "hasSecondaryCTA#6940:4"
+                    }
+                  },
+                  {
+                    "name": "Button",
+                    "type": "INSTANCE",
+                    "main": "Button",
+                    "variant": {
+                      "size": "md",
+                      "prio": "primary",
+                      "state": "default",
+                      "danger": "false"
+                    },
+                    "size": [
+                      80,
+                      40
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        12,
+                        0,
+                        12
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "HUG/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/primary/bg/default}"
+                    ],
+                    "strokes": [
+                      "{Color:action/primary/border/default}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "effectStyle": "shadow/control",
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs",
+                      "paddingLeft": "Spatial:inset/sm",
+                      "paddingRight": "Spatial:inset/sm",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    },
+                    "propRefs": {
+                      "visible": "hasPrimaryCTA#6940:8"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Tabs",
+            "type": "INSTANCE",
+            "main": "Tabs",
+            "variant": {
+              "size": "md"
+            },
+            "size": [
+              1320,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "propRefs": {
+              "visible": "hasTabs#6592:49"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=left-aligned, breakpoint=desktop",
+          "size": [
+            1368,
+            166
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "CTA",
+            "Counter",
+            "Icon/None",
+            "LeadingIcon",
+            "Spinner",
+            "Tag",
+            "TrailingIcon"
+          ]
+        },
+        {
+          "variant": "type=left-aligned, breakpoint=mobile",
+          "size": [
+            377,
+            150
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/tertiary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/More",
+            "LeadingIcon",
+            "Tag",
+            "TrailingIcon"
+          ]
+        },
+        {
+          "variant": "type=centered, breakpoint=desktop",
+          "size": [
+            1368,
+            174
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Page Header",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

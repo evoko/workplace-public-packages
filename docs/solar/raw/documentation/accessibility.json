@@ -1,0 +1,1667 @@
+{
+  "page": "Accessibility",
+  "pageId": "763:47332",
+  "section": "documentation",
+  "slug": "accessibility",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "Accessibility",
+          "style": "112/500"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Accessibility at Biamp",
+      "subtitle": null,
+      "x": 2020,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Accessibility improves the experience for everyone. When products are accessible, they are easier to understand, easier to use, and more resilient across devices, environments, and user abilities. In SOLAR, accessibility is not an add-on — it is embedded in tokens, components, patterns, and implementation standards as a core quality of product design and engineering."
+        },
+        {
+          "t": "p",
+          "text": "An accessible product enables people of all abilities to:\nInteract with content and controls\nUnderstand information and feedback\nNavigate confidently and independently\n\nSOLAR components are designed to meet WCAG 2.1 Level AA by default. Keyboard support, semantic structure, focus management, contrast-safe color tokens, and motion standards are built into the system foundation.\n\nHowever, accessibility is only achieved when these foundations are applied correctly. Components, content, flows, and implementation must work together end-to-end to remove barriers rather than introduce them.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Accessibility principles",
+      "subtitle": null,
+      "x": 4040,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "These principles guide how we design and build accessible experiences across all Biamp products. They help turn accessibility from a requirement into everyday practice."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Access without barriers"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Multiple ways to perceive"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Predictable and navigable"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Respect user preferences and needs"
+        },
+        {
+          "t": "p",
+          "text": "All functionality and information must be reachable by people using assistive technologies or alternative input methods. No interaction, content, or state should be locked behind vision, sound, color, motion, or precise motor control.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Information must never rely on a single sensory channel. Visual, auditory, and motion-based cues must always be reinforced with text, structure, or other perceivable alternatives so meaning is preserved across assistive technologies.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Accessible experiences rely on clear, semantic structure that allows users to navigate efficiently. Headings, landmarks, focus order, and interaction patterns must be logical, consistent, and machine-readable.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Users must remain in control of how they experience Biamp products. Interfaces must respect system-level preferences such as reduced motion, text scaling, and contrast, and adapt gracefully across devices and environments.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "WCAG & ARIA",
+      "subtitle": null,
+      "x": 6060,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR accessibility is built on two complementary standards. WCAG defines what accessible experiences must achieve — contrast, keyboard access, focus order, semantic structure. ARIA defines how custom components communicate their role, state, and behavior to assistive technologies when native HTML semantics are not sufficient."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Level AA (Required)"
+        },
+        {
+          "t": "p",
+          "text": "Covers the most common and impactful accessibility barriers\nRequired for all Biamp products and experiences\nEnforced through design system components, patterns, and acceptance criteria",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Level AAA (Aspirational)"
+        },
+        {
+          "t": "p",
+          "text": "Addresses additional, more specialized accessibility needs\nApplied selectively where context, audience, or product goals justify it\nConsidered a quality enhancement, not a default requirement",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "ARIA in SOLAR"
+        },
+        {
+          "t": "p",
+          "text": "Use native HTML semantics first — ARIA supplements, never replaces\nEvery interactive component exposes its role (button, dialog, listbox, etc.)\nState changes are announced via attributes (aria-expanded, aria-checked, aria-selected)\nDynamic content uses live regions (aria-live) so screen readers announce updates\nFocus is managed explicitly for overlays, dialogs, and disclosure patterns\nFull component-to-ARIA mappings are documented in the Component ARIA Reference",
+          "style": "16/400"
+        },
+        {
+          "t": "image",
+          "name": "image 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Acceptance Criteria",
+      "subtitle": null,
+      "x": 8080,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "WCAG success criteria define the measurable requirements that ensure our products meet accessibility standards. They turn principles into concrete, testable outcomes that guide design and engineering. In SOLAR, they act as non-negotiable quality benchmarks for inclusive and compliant experiences."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Access without barriers"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Multiple ways to perceive"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Predictable and navigable"
+        },
+        {
+          "t": "p",
+          "text": "Respect user preferences and needs",
+          "style": "20/600"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "WCAG success criteria"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "WCAG success criteria"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "WCAG success criteria"
+        },
+        {
+          "t": "p",
+          "text": "WCAG success criteria",
+          "style": "16/600"
+        },
+        {
+          "t": "p",
+          "text": "2.1.1 Keyboard — All functionality is operable through a keyboard\n2.1.2 No Keyboard Trap — Users can move focus freely\n2.5.1 Pointer Gestures — No complex gestures required\n2.5.5 Target Size (AAA) — Adequate hit areas for controls\n1.1.1 Text Alternatives — Non-text content has text alternatives",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.3.1 Info and Relationships — Meaning conveyed through structure, not visuals alone\n1.4.1 Use of Color — Color is not the only way to communicate meaning\n1.4.3 Contrast (Minimum) — Text meets contrast requirements\n1.4.5 Images of Text — Text is real text, not images\n1.2.1–1.2.5 Time-based Media — Captions, transcripts, and audio descriptions",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.3.2 Meaningful Sequence — Logical reading and navigation order\n2.4.1 Bypass Blocks — Skip navigation and landmarks\n2.4.2 Page Titled — Pages have clear, descriptive titles\n2.4.3 Focus Order — Focus moves in a predictable order\n2.4.6 Headings and Labels — Clear and descriptive structure",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "1.4.4 Resize Text — Content remains usable when text is scaled\n1.4.10 Reflow — Layout adapts without loss of content or function\n2.2.2 Pause, Stop, Hide — Users control moving content\n2.3.3 Animation from Interactions — Motion can be reduced (AAA)\n3.2.1 On Focus / 3.2.2 On Input — No unexpected context changes",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "What this prevents"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "What this prevents"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "What this prevents"
+        },
+        {
+          "t": "p",
+          "text": "What this prevents",
+          "style": "16/600"
+        },
+        {
+          "t": "p",
+          "text": "Mouse-only or touch-only interactions\nVision-dependent controls\nPrecision-based or time-sensitive actions",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Color-only status indicators\nAudio-only instructions\nMotion-only feedback",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Screen-reader confusion\nLost focus or trapped navigation\nFlat or purely visual hierarchies",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Motion-induced discomfort\nBroken layouts at high zoom\nSurprising or disorienting behavior",
+          "style": "Body/Body S/Medium"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Responsibilities",
+      "subtitle": null,
+      "x": 10100,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Accessibility at Biamp is a shared responsibility. The Design System provides accessible foundations, but accessibility is achieved only when product and engineering teams apply, implement, and validate it throughout the entire experience."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Design System teams"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Product Teams"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Engineering Teams"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "QA / Validation teams"
+        },
+        {
+          "t": "p",
+          "text": "Designs and maintains accessible components, tokens, and patterns that meet WCAG 2.1 AA by default. Documents expected behavior and prevents accessibility regressions at the component level.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Design complete flows that use system components correctly and ensure accessibility is maintained across real user journeys, content, and edge cases.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Implement components using proper semantics, preserve keyboard and assistive-technology support, and treat accessibility requirements as part of the definition of done.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Test experiences across input methods and assistive technologies, verify compliance with accessibility standards, and prevent regressions before release.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Provides accessible components and tokens\nDocuments accessibility behavior and constraints\nPrevents regressions at component level",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Use components correctly\nEnsure full flows are accessible\nValidate content, patterns, and integrations",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Preserves semantics and focus behavior\nIncludes accessibility in acceptance criteria\nPrevents regressions during refactoring",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Verifies accessibility through manual and automated testing\nConfirms keyboard navigation, focus work as intended\nPrevents accessibility regressions before release",
+          "style": "Body/Body S/Medium"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Tooling & Validation",
+      "subtitle": null,
+      "x": 12120,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Accessibility at Biamp is supported by both automated tooling and manual validation. While tools help identify issues early and prevent regressions, real testing ensures experiences work reliably across input methods and assistive technologies."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Automated Testing"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Manual Testing"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Design Validation"
+        },
+        {
+          "t": "p",
+          "text": "Automated tools help identify common accessibility issues early in development and prevent regressions over time. They provide scalable, repeatable validation across components and flows, but should always be complemented by manual testing.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Manual testing validates real interaction behavior across input methods and assistive technologies. It ensures focus order, keyboard support, screen reader output, and responsive behavior work reliably in real-world conditions.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Accessibility begins in design decisions. Validating contrast, motion, typography, and token usage early reduces rework and ensures accessibility is built into the system rather than corrected later.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "axe-core / axe DevTools\nAccessibility Insights\nLighthouse\nCI accessibility checks",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Keyboard-only navigation\nScreen reader testing (NVDA, VoiceOver)\nZoom to 200%\nReduced motion enabled",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "Contrast plugins in Figma\nToken-level contrast enforcement\nMotion review",
+          "style": "Body/Body S/Medium"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Definition of Done",
+      "subtitle": null,
+      "x": 14140,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "A feature is not complete until it meets the accessibility bar. Every item below must be verified before a component, flow, or page is considered shippable. Accessibility issues are treated as quality defects — not enhancements, not backlog items."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Automated"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Keyboard & Focus"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Screen Reader"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Visual"
+        },
+        {
+          "t": "p",
+          "text": "Passes axe-core / Accessibility Insights with zero violations\nLighthouse accessibility score ≥ 95\nNo SOLAR validation rule errors (see Ch.09 Compliance Validation Rules)",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "All functionality is operable via keyboard alone\nFocus order follows a logical reading sequence\nFocus ring is visible on every interactive element and not clipped by overflow\nDialogs trap focus; focus returns to trigger on close",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Component roles and states are announced correctly (per Component ARIA Reference)\nDynamic content updates are announced via live regions\nForm inputs have associated labels and error descriptions",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Text contrast meets WCAG 2.1 AA (≥ 4.5:1 normal, ≥ 3:1 large)\nNon-text contrast meets WCAG 2.1 AA (≥ 3:1)\nColor is never the sole means of conveying information\nLayout remains usable at 200% zoom without horizontal scrolling",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Design System Guarantees",
+      "subtitle": null,
+      "x": 16160,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "Rectangle 5"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR Design System provides accessible foundations by default. These guarantees apply when components and tokens are used as documented."
+        },
+        {
+          "t": "p",
+          "text": "The Design System guarantees:\nCore components meet WCAG 2.1 Level AA at baseline\nKeyboard support is built into interactive components\nFocus states are standardized and visible\nColor tokens meet minimum contrast requirements\nMotion tokens respect reduced-motion preferences\nSemantic structure is preserved in component implementation\n\nCustom components must meet the same standards.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Accessibility Checklist (AA Baseline)",
+      "subtitle": null,
+      "x": 18180,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "This checklist supports validation across design and engineering. All Biamp products are expected to meet WCAG 2.1 Level AA unless otherwise specified."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Perceivable"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Operable"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Understandable"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Robust"
+        },
+        {
+          "t": "p",
+          "text": "Non-text content has meaningful text alternatives\nColor is not the only way to convey meaning\nText and UI elements meet contrast requirements (4.5:1 / 3:1)\nContent reflows correctly at 200% zoom\nCaptions or transcripts are provided for media",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "All functionality is keyboard accessible\nFocus order is logical and visible\nNo keyboard traps exist\nInteractive targets are sufficiently large\nUsers can pause or control moving content",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Language is clear and consistent\nNavigation behaves predictably\nInputs have clear labels and error messaging\nUsers can recover from errors",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Semantic HTML and correct roles are used\nARIA is applied correctly and only when necessary\nContent works with screen readers and assistive technologies",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Component ARIA Reference",
+      "subtitle": null,
+      "x": 20200,
+      "y": 0,
+      "w": 1920,
+      "h": 3227,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "This table defines the required HTML semantics and ARIA attributes for each SOLAR component. Implementations must follow these mappings to ensure assistive technology compatibility."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Inputs"
+        },
+        {
+          "t": "p",
+          "text": "Input components are the primary way users enter data. Each input type has specific HTML semantics and ARIA requirements to ensure screen readers announce the element's role, current value, and validation state correctly.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Component",
+              "HTML Element",
+              "ARIA Role",
+              "Required Attributes",
+              "Notes"
+            ],
+            [
+              "Button",
+              "<button>",
+              "implicit button",
+              "—",
+              "Use type=\"button\" unless submitting a form"
+            ],
+            [
+              "Button (link)",
+              "<a>",
+              "implicit link",
+              "href",
+              "Use when action navigates"
+            ],
+            [
+              "IconButton",
+              "<button>",
+              "implicit button",
+              "aria-label",
+              "Label mandatory for icon-only"
+            ],
+            [
+              "TextInput",
+              "<input>",
+              "implicit textbox",
+              "aria-describedby, aria-invalid",
+              "Always pair with visible <label>"
+            ],
+            [
+              "TextArea",
+              "<textarea>",
+              "implicit textbox",
+              "aria-describedby, aria-invalid",
+              "Same as TextInput"
+            ],
+            [
+              "NumberInput",
+              "<input type=\"number\">",
+              "implicit spinbutton",
+              "aria-valuemin/max/now",
+              "—"
+            ],
+            [
+              "SearchField",
+              "<input type=\"search\">",
+              "searchbox",
+              "aria-label or visible label",
+              "Wrap in role=\"search\""
+            ],
+            [
+              "PasswordInput",
+              "<input type=\"password\">",
+              "implicit textbox",
+              "aria-describedby",
+              "Add show/hide toggle"
+            ]
+          ]
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Selection"
+        },
+        {
+          "t": "p",
+          "text": "Selection components let users choose from a set of options. Proper ARIA implementation is critical here because custom select dropdowns and comboboxes replace native browser controls and must replicate their accessibility behavior.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Component",
+              "HTML Element",
+              "ARIA Role",
+              "Required Attributes",
+              "Notes"
+            ],
+            [
+              "SelectDropdown",
+              "<div>",
+              "listbox",
+              "aria-expanded, aria-activedescendant, aria-labelledby",
+              "Options use role=\"option\""
+            ],
+            [
+              "Combobox",
+              "<input>",
+              "combobox",
+              "aria-expanded, aria-autocomplete, aria-activedescendant, aria-controls",
+              "Listbox popup"
+            ],
+            [
+              "Checkbox",
+              "<input type=\"checkbox\">",
+              "implicit checkbox",
+              "aria-checked, aria-describedby",
+              "Native preferred"
+            ],
+            [
+              "Radio",
+              "<input type=\"radio\">",
+              "implicit radio",
+              "aria-checked",
+              "Group with radiogroup"
+            ],
+            [
+              "Switch",
+              "<button>",
+              "switch",
+              "aria-checked",
+              "Use role=\"switch\""
+            ],
+            [
+              "Slider",
+              "<input type=\"range\">",
+              "implicit slider",
+              "aria-valuemin/max/now, aria-label",
+              "—"
+            ]
+          ]
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Navigation & Disclosure"
+        },
+        {
+          "t": "p",
+          "text": "Navigation and disclosure components organize content spatially and reveal it progressively. These rely on landmark roles and expansion state attributes so assistive technology can convey page structure and content visibility.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Component",
+              "HTML Element",
+              "ARIA Role",
+              "Required Attributes",
+              "Notes"
+            ],
+            [
+              "Tabs",
+              "<div>",
+              "tablist",
+              "role=\"tab\", aria-selected, aria-controls",
+              "Arrow key navigation"
+            ],
+            [
+              "Accordion",
+              "<div>",
+              "—",
+              "aria-expanded, aria-controls",
+              "Use <button> for triggers"
+            ],
+            [
+              "Breadcrumbs",
+              "<nav>",
+              "navigation",
+              "aria-label=\"Breadcrumb\"",
+              "Current: aria-current=\"page\""
+            ],
+            [
+              "Navbar",
+              "<nav>",
+              "navigation",
+              "aria-label",
+              "—"
+            ],
+            [
+              "Sidebar",
+              "<aside> or <nav>",
+              "complementary or navigation",
+              "aria-label",
+              "Use navigation if nav links"
+            ],
+            [
+              "Pagination",
+              "<nav>",
+              "navigation",
+              "aria-label=\"Pagination\"",
+              "aria-current=\"page\""
+            ],
+            [
+              "Stepper",
+              "<ol>",
+              "—",
+              "aria-current=\"step\"",
+              "Use <li> per step"
+            ]
+          ]
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Overlays & Feedback"
+        },
+        {
+          "t": "p",
+          "text": "Overlays interrupt the current workflow to demand attention, while feedback components communicate status non-destructively. Focus management and live-region announcements are the key accessibility concerns for this group.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Component",
+              "HTML Element",
+              "ARIA Role",
+              "Required Attributes",
+              "Notes"
+            ],
+            [
+              "Dialog",
+              "<dialog>",
+              "dialog",
+              "aria-labelledby, aria-describedby, aria-modal=\"true\"",
+              "Trap focus; return on close"
+            ],
+            [
+              "Drawer",
+              "<dialog>",
+              "dialog",
+              "aria-labelledby, aria-modal=\"true\"",
+              "Same as Dialog"
+            ],
+            [
+              "Popover",
+              "<div>",
+              "—",
+              "aria-describedby on trigger",
+              "Dismiss on Escape"
+            ],
+            [
+              "Tooltip",
+              "<div>",
+              "tooltip",
+              "aria-describedby on trigger",
+              "Hover AND focus; no interactive content"
+            ],
+            [
+              "Menu",
+              "<div>",
+              "menu",
+              "role=\"menuitem\", aria-expanded on trigger",
+              "Arrow + Escape navigation"
+            ],
+            [
+              "Alert / Banner",
+              "<div>",
+              "alert or status",
+              "role=\"alert\" for urgent",
+              "Alert fires on render"
+            ],
+            [
+              "Toast",
+              "<div>",
+              "status",
+              "role=\"status\", aria-live=\"polite\"",
+              "Sufficient reading time"
+            ]
+          ]
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Data & Status"
+        },
+        {
+          "t": "p",
+          "text": "Data and status components display information rather than collect it. Accessibility for these centers on proper labeling, semantic structure (like <th scope> for tables), and ensuring decorative elements are hidden from the accessibility tree.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Component",
+              "HTML Element",
+              "ARIA Role",
+              "Required Attributes",
+              "Notes"
+            ],
+            [
+              "Table",
+              "<table>",
+              "implicit table",
+              "aria-label or aria-labelledby",
+              "Use <th scope> for headers"
+            ],
+            [
+              "Card",
+              "<article> or <div>",
+              "—",
+              "aria-labelledby if heading",
+              "Interactive: wrap in <a>"
+            ],
+            [
+              "Badge",
+              "<span>",
+              "status",
+              "aria-label if icon-only",
+              "Decorative: aria-hidden"
+            ],
+            [
+              "ProgressBar",
+              "<div>",
+              "progressbar",
+              "aria-valuenow/min/max, aria-label",
+              "—"
+            ],
+            [
+              "Spinner",
+              "<div>",
+              "status",
+              "aria-label=\"Loading\", aria-live=\"polite\"",
+              "Hidden when done"
+            ],
+            [
+              "Skeleton",
+              "<div>",
+              "—",
+              "aria-hidden=\"true\"",
+              "Announce loaded content"
+            ],
+            [
+              "Divider",
+              "<hr>",
+              "separator",
+              "aria-orientation if vertical",
+              "Decorative: role=\"presentation\""
+            ],
+            [
+              "FileInput",
+              "<input type=\"file\">",
+              "implicit",
+              "aria-describedby",
+              "Style the label, not input"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Accessibility\ndomain: Inclusive Design & WCAG Compliance\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR accessibility guardian. Every design and implementation decision must meet WCAG 2.1 AA as a minimum baseline. Aim for AAA where practical. Accessibility is never an afterthought — it is a core design requirement.\n\n[SCOPE]\n- WCAG 2.1 AA/AAA compliance targets\n- Color contrast requirements\n- Focus management and keyboard navigation\n- Screen reader and assistive technology support\n- Touch target sizing\n- Motion and vestibular considerations\n- Inclusive design principles\n\n[CONTRAST_REQUIREMENTS]\ntext/normal: ≥ 4.5:1 foreground-to-background ratio\ntext/large: ≥ 3:1 (18px+ regular or 14px+ bold)\nui_components: ≥ 3:1 for borders, icons, controls against adjacent colors\ngraphical_objects: ≥ 3:1 for meaningful non-text visuals\nfocus_indicator: ≥ 3:1 against both the component and surrounding background\ndisabled: exempt from contrast requirements but must remain perceivable\n\n[KEYBOARD]\ntab_order: follows logical reading/DOM flow — no jumps or traps\nfocus_visible: all interactive elements show a high-contrast focus ring\nenter: activates buttons, links, and primary actions\nspace: activates buttons, toggles, checkboxes\nescape: closes overlays, dialogs, dropdowns\narrow_keys: navigates within composite widgets (tabs, menus, listboxes)\nskip_links: provide \"skip to main content\" for page-level navigation\n\n[SCREEN_READERS]\nimages: alt text for meaningful images; aria-hidden for decorative\nicon_buttons: aria-label or visually-hidden text — never icon-only without a name\nlive_regions: aria-live=\"polite\" for dynamic updates; \"assertive\" for errors\nform_inputs: every input has an associated <label> or aria-label\nheadings: semantic heading hierarchy (h1 → h2 → h3) — no skipped levels\nlandmarks: use <main>, <nav>, <aside>, <header>, <footer> for page structure\ntables: use <th> with scope; provide <caption> for data tables\n\n[TOUCH_TARGETS]\nminimum: 44×44px for all interactive elements on touch interfaces\nspacing: ≥ 8px between adjacent touch targets to prevent mis-taps\nicon_buttons: visual icon may be smaller but tap area must meet minimum\n\n[MOTION]\nprefers-reduced-motion: all animations must have a reduced/disabled variant\nauto-play: never auto-play video or audio without user consent\nparallax: avoid or provide alternative — triggers vestibular discomfort\nflashing: no content flashes more than 3 times per second (seizure risk)\nduration_cap: decorative animations ≤ 5 seconds unless user-initiated\n\n[AGENT_BEHAVIOR]\n- When reviewing any design or code, check accessibility criteria FIRST\n- Flag violations with severity: critical (blocks access) | major (degrades experience) | minor (improvement opportunity)\n- Always provide a concrete fix alongside each violation\n- If a component lacks accessible markup, provide the complete ARIA pattern\n- Test recommendations against multiple assistive technologies conceptually\n- Never approve a design that fails contrast or keyboard requirements\n\n[CONSTRAINTS]\n- never remove focus outlines without providing an equivalent indicator\n- never use color alone to convey meaning — pair with text, icon, or pattern\n- never auto-play media or trigger motion without user control\n- never block keyboard access to any interactive element\n- never skip heading levels in semantic hierarchy\n- disabled elements must remain perceivable (opacity ≥ 0.38)\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Accessibility at Biamp",
+        "Accessibility improves the experience for everyone. When products are accessible, they are easier to understand, easier to use, and more resilient across devices, environments, and user abilities. In SOLAR, accessibility is not an add-on — it is embedded in tokens, components, patterns, and implementation standards as a core quality of product design and engineering.",
+        "An accessible product enables people of all abilities to:\nInteract with content and controls\nUnderstand information and feedback\nNavigate confidently and independently\n\nSOLAR components are designed to meet WCAG 2.1 Level AA by default. Keyboard support, semantic structure, focus management, contrast-safe color tokens, and motion standards are built into the system foundation.\n\nHowever, accessibility is only achieved when these foundations are applied correctly. Components, content, flows, and implementation must work together end-to-end to remove barriers rather than introduce them.",
+        "© 2026 Biamp",
+        "[Confidential]"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Accessibility principles",
+        "These principles guide how we design and build accessible experiences across all Biamp products. They help turn accessibility from a requirement into everyday practice.",
+        "Access without barriers",
+        "Multiple ways to perceive",
+        "Predictable and navigable",
+        "Respect user preferences and needs",
+        "All functionality and information must be reachable by people using assistive technologies or alternative input methods. No interaction, content, or state should be locked behind vision, sound, color, motion, or precise motor control.",
+        "Information must never rely on a single sensory channel. Visual, auditory, and motion-based cues must always be reinforced with text, structure, or other perceivable alternatives so meaning is preserved across assistive technologies.",
+        "Accessible experiences rely on clear, semantic structure that allows users to navigate efficiently. Headings, landmarks, focus order, and interaction patterns must be logical, consistent, and machine-readable.",
+        "Users must remain in control of how they experience Biamp products. Interfaces must respect system-level preferences such as reduced motion, text scaling, and contrast, and adapt gracefully across devices and environments.",
+        "© 2026 Biamp",
+        "[Confidential]"
+      ],
+      "variableId": "VariableID:27:746",
+      "hex": "#e9f2ff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "WCAG & ARIA",
+        "SOLAR accessibility is built on two complementary standards. WCAG defines what accessible experiences must achieve — contrast, keyboard access, focus order, semantic structure. ARIA defines how custom components communicate their role, state, and behavior to assistive technologies when native HTML semantics are not sufficient.",
+        "Level AA (Required)",
+        "Covers the most common and impactful accessibility barriers\nRequired for all Biamp products and experiences\nEnforced through design system components, patterns, and acceptance criteria",
+        "Level AAA (Aspirational)",
+        "Addresses additional, more specialized accessibility needs\nApplied selectively where context, audience, or product goals justify it\nConsidered a quality enhancement, not a default requirement",
+        "ARIA in SOLAR",
+        "Use native HTML semantics first — ARIA supplements, never replaces\nEvery interactive component exposes its role (button, dialog, listbox, etc.)\nState changes are announced via attributes (aria-expanded, aria-checked, aria-selected)\nDynamic content uses live regions (aria-live) so screen readers announce updates\nFocus is managed explicitly for overlays, dialogs, and disclosure patterns\nFull component-to-ARIA mappings are documented in the Component ARIA Reference",
+        "© 2026 Biamp",
+        "[Confidential]"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Responsibilities",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Accessibility at Biamp is a shared responsibility. The Design System provides accessible foundations, but accessibility is achieved only when product and engineering teams apply, implement, and validate it throughout the entire experience.",
+        "Designs and maintains accessible components, tokens, and patterns that meet WCAG 2.1 AA by default. Documents expected behavior and prevents accessibility regressions at the component level.",
+        "Provides accessible components and tokens\nDocuments accessibility behavior and constraints\nPrevents regressions at component level",
+        "Use components correctly\nEnsure full flows are accessible\nValidate content, patterns, and integrations",
+        "Preserves semantics and focus behavior\nIncludes accessibility in acceptance criteria\nPrevents regressions during refactoring",
+        "Verifies accessibility through manual and automated testing\nConfirms keyboard navigation, focus work as intended\nPrevents accessibility regressions before release",
+        "Design complete flows that use system components correctly and ensure accessibility is maintained across real user journeys, content, and edge cases.",
+        "Implement components using proper semantics, preserve keyboard and assistive-technology support, and treat accessibility requirements as part of the definition of done.",
+        "Test experiences across input methods and assistive technologies, verify compliance with accessibility standards, and prevent regressions before release.",
+        "Design System teams",
+        "Product Teams",
+        "Engineering Teams",
+        "QA / Validation teams"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Accessibility Checklist (AA Baseline)",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "This checklist supports validation across design and engineering. All Biamp products are expected to meet WCAG 2.1 Level AA unless otherwise specified.",
+        "Perceivable",
+        "Operable",
+        "Understandable",
+        "Robust",
+        "Non-text content has meaningful text alternatives\nColor is not the only way to convey meaning\nText and UI elements meet contrast requirements (4.5:1 / 3:1)\nContent reflows correctly at 200% zoom\nCaptions or transcripts are provided for media",
+        "All functionality is keyboard accessible\nFocus order is logical and visible\nNo keyboard traps exist\nInteractive targets are sufficiently large\nUsers can pause or control moving content",
+        "Language is clear and consistent\nNavigation behaves predictably\nInputs have clear labels and error messaging\nUsers can recover from errors",
+        "Semantic HTML and correct roles are used\nARIA is applied correctly and only when necessary\nContent works with screen readers and assistive technologies"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Tooling & Validation",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Accessibility at Biamp is supported by both automated tooling and manual validation. While tools help identify issues early and prevent regressions, real testing ensures experiences work reliably across input methods and assistive technologies.",
+        "Automated tools help identify common accessibility issues early in development and prevent regressions over time. They provide scalable, repeatable validation across components and flows, but should always be complemented by manual testing.",
+        "axe-core / axe DevTools\nAccessibility Insights\nLighthouse\nCI accessibility checks",
+        "Keyboard-only navigation\nScreen reader testing (NVDA, VoiceOver)\nZoom to 200%\nReduced motion enabled",
+        "Contrast plugins in Figma\nToken-level contrast enforcement\nMotion review",
+        "Manual testing validates real interaction behavior across input methods and assistive technologies. It ensures focus order, keyboard support, screen reader output, and responsive behavior work reliably in real-world conditions.",
+        "Accessibility begins in design decisions. Validating contrast, motion, typography, and token usage early reduces rework and ensures accessibility is built into the system rather than corrected later.",
+        "Automated Testing",
+        "Manual Testing",
+        "Design Validation"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Definition of Done",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Automated",
+        "Keyboard & Focus",
+        "Screen Reader",
+        "Visual",
+        "Passes axe-core / Accessibility Insights with zero violations\nLighthouse accessibility score ≥ 95\nNo SOLAR validation rule errors (see Ch.09 Compliance Validation Rules)",
+        "All functionality is operable via keyboard alone\nFocus order follows a logical reading sequence\nFocus ring is visible on every interactive element and not clipped by overflow\nDialogs trap focus; focus returns to trigger on close",
+        "Component roles and states are announced correctly (per Component ARIA Reference)\nDynamic content updates are announced via live regions\nForm inputs have associated labels and error descriptions",
+        "Text contrast meets WCAG 2.1 AA (≥ 4.5:1 normal, ≥ 3:1 large)\nNon-text contrast meets WCAG 2.1 AA (≥ 3:1)\nColor is never the sole means of conveying information\nLayout remains usable at 200% zoom without horizontal scrolling",
+        "A feature is not complete until it meets the accessibility bar. Every item below must be verified before a component, flow, or page is considered shippable. Accessibility issues are treated as quality defects — not enhancements, not backlog items."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Component ARIA Reference",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "This table defines the required HTML semantics and ARIA attributes for each SOLAR component. Implementations must follow these mappings to ensure assistive technology compatibility.",
+        "Inputs",
+        "Input components are the primary way users enter data. Each input type has specific HTML semantics and ARIA requirements to ensure screen readers announce the element's role, current value, and validation state correctly.",
+        "Component",
+        "HTML Element",
+        "ARIA Role",
+        "Required Attributes",
+        "Notes",
+        "Button",
+        "<button>",
+        "implicit button",
+        "—",
+        "Use type=\"button\" unless submitting a form",
+        "Button (link)",
+        "<a>",
+        "implicit link",
+        "href",
+        "Use when action navigates",
+        "IconButton",
+        "<button>",
+        "implicit button",
+        "aria-label",
+        "Label mandatory for icon-only",
+        "TextInput",
+        "<input>",
+        "implicit textbox",
+        "aria-describedby, aria-invalid",
+        "Always pair with visible <label>",
+        "TextArea",
+        "<textarea>",
+        "implicit textbox",
+        "aria-describedby, aria-invalid",
+        "Same as TextInput",
+        "NumberInput",
+        "<input type=\"number\">",
+        "implicit spinbutton",
+        "aria-valuemin/max/now",
+        "—",
+        "SearchField",
+        "<input type=\"search\">",
+        "searchbox",
+        "aria-label or visible label",
+        "Wrap in role=\"search\"",
+        "PasswordInput",
+        "<input type=\"password\">",
+        "implicit textbox",
+        "aria-describedby",
+        "Add show/hide toggle",
+        "Selection",
+        "Selection components let users choose from a set of options. Proper ARIA implementation is critical here because custom select dropdowns and comboboxes replace native browser controls and must replicate their accessibility behavior.",
+        "Component",
+        "HTML Element",
+        "ARIA Role",
+        "Required Attributes",
+        "Notes",
+        "SelectDropdown",
+        "<div>",
+        "listbox",
+        "aria-expanded, aria-activedescendant, aria-labelledby",
+        "Options use role=\"option\"",
+        "Combobox",
+        "<input>",
+        "combobox",
+        "aria-expanded, aria-autocomplete, aria-activedescendant, aria-controls",
+        "Listbox popup",
+        "Checkbox",
+        "<input type=\"checkbox\">",
+        "implicit checkbox",
+        "aria-checked, aria-describedby",
+        "Native preferred",
+        "Radio",
+        "<input type=\"radio\">",
+        "implicit radio",
+        "aria-checked",
+        "Group with radiogroup",
+        "Switch",
+        "<button>",
+        "switch",
+        "aria-checked",
+        "Use role=\"switch\"",
+        "Slider",
+        "<input type=\"range\">",
+        "implicit slider",
+        "aria-valuemin/max/now, aria-label",
+        "—",
+        "Navigation & Disclosure",
+        "Navigation and disclosure components organize content spatially and reveal it progressively. These rely on landmark roles and expansion state attributes so assistive technology can convey page structure and content visibility.",
+        "Component",
+        "HTML Element",
+        "ARIA Role",
+        "Required Attributes",
+        "Notes",
+        "Tabs",
+        "<div>",
+        "tablist",
+        "role=\"tab\", aria-selected, aria-controls",
+        "Arrow key navigation",
+        "Accordion",
+        "<div>",
+        "—",
+        "aria-expanded, aria-controls",
+        "Use <button> for triggers",
+        "Breadcrumbs",
+        "<nav>",
+        "navigation",
+        "aria-label=\"Breadcrumb\"",
+        "Current: aria-current=\"page\"",
+        "Navbar",
+        "<nav>",
+        "navigation",
+        "aria-label",
+        "—",
+        "Sidebar",
+        "<aside> or <nav>",
+        "complementary or navigation",
+        "aria-label",
+        "Use navigation if nav links",
+        "Pagination",
+        "<nav>",
+        "navigation",
+        "aria-label=\"Pagination\"",
+        "aria-current=\"page\"",
+        "Stepper",
+        "<ol>",
+        "—",
+        "aria-current=\"step\"",
+        "Use <li> per step",
+        "Overlays & Feedback",
+        "Overlays interrupt the current workflow to demand attention, while feedback components communicate status non-destructively. Focus management and live-region announcements are the key accessibility concerns for this group.",
+        "Component",
+        "HTML Element",
+        "ARIA Role",
+        "Required Attributes",
+        "Notes",
+        "Dialog",
+        "<dialog>",
+        "dialog",
+        "aria-labelledby, aria-describedby, aria-modal=\"true\"",
+        "Trap focus; return on close",
+        "Drawer",
+        "<dialog>",
+        "dialog",
+        "aria-labelledby, aria-modal=\"true\"",
+        "Same as Dialog",
+        "Popover",
+        "<div>",
+        "—",
+        "aria-describedby on trigger",
+        "Dismiss on Escape",
+        "Tooltip",
+        "<div>",
+        "tooltip",
+        "aria-describedby on trigger",
+        "Hover AND focus; no interactive content",
+        "Menu",
+        "<div>",
+        "menu",
+        "role=\"menuitem\", aria-expanded on trigger",
+        "Arrow + Escape navigation",
+        "Alert / Banner",
+        "<div>",
+        "alert or status",
+        "role=\"alert\" for urgent",
+        "Alert fires on render",
+        "Toast",
+        "<div>",
+        "status",
+        "role=\"status\", aria-live=\"polite\"",
+        "Sufficient reading time",
+        "Data & Status",
+        "Data and status components display information rather than collect it. Accessibility for these centers on proper labeling, semantic structure (like <th scope> for tables), and ensuring decorative elements are hidden from the accessibility tree.",
+        "Component",
+        "HTML Element",
+        "ARIA Role",
+        "Required Attributes",
+        "Notes",
+        "Table",
+        "<table>",
+        "implicit table",
+        "aria-label or aria-labelledby",
+        "Use <th scope> for headers",
+        "Card",
+        "<article> or <div>",
+        "—",
+        "aria-labelledby if heading",
+        "Interactive: wrap in <a>",
+        "Badge",
+        "<span>",
+        "status",
+        "aria-label if icon-only",
+        "Decorative: aria-hidden",
+        "ProgressBar",
+        "<div>",
+        "progressbar",
+        "aria-valuenow/min/max, aria-label",
+        "—",
+        "Spinner",
+        "<div>",
+        "status",
+        "aria-label=\"Loading\", aria-live=\"polite\"",
+        "Hidden when done",
+        "Skeleton",
+        "<div>",
+        "—",
+        "aria-hidden=\"true\"",
+        "Announce loaded content",
+        "Divider",
+        "<hr>",
+        "separator",
+        "aria-orientation if vertical",
+        "Decorative: role=\"presentation\"",
+        "FileInput",
+        "<input type=\"file\">",
+        "implicit",
+        "aria-describedby",
+        "Style the label, not input"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Design System Guarantees",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR Design System provides accessible foundations by default. These guarantees apply when components and tokens are used as documented.",
+        "The Design System guarantees:\nCore components meet WCAG 2.1 Level AA at baseline\nKeyboard support is built into interactive components\nFocus states are standardized and visible\nColor tokens meet minimum contrast requirements\nMotion tokens respect reduced-motion preferences\nSemantic structure is preserved in component implementation\n\nCustom components must meet the same standards."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 169
+}

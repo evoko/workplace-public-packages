@@ -1,0 +1,212 @@
+{
+  "page": "↳ 🟢 Year View",
+  "pageId": "6802:6",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Year View",
+      "id": "6829:2",
+      "description": "",
+      "props": {},
+      "nodeCount": 1378,
+      "tree": {
+        "name": "Year View",
+        "type": "COMPONENT",
+        "size": [
+          1280,
+          679
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "children": [
+          {
+            "name": "Calendar Toolbar",
+            "type": "INSTANCE",
+            "main": "Calendar Toolbar",
+            "size": [
+              1280,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 16,
+              "pad": [
+                12,
+                16,
+                12,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "vars": {
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Calendar Body",
+            "type": "FRAME",
+            "size": [
+              1280,
+              623
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                12,
+                20,
+                12,
+                20
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Year Grid",
+                "type": "FRAME",
+                "size": [
+                  1240,
+                  599
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Mini Month Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      189
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 16,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    }
+                  },
+                  {
+                    "name": "Mini Month Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      189
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 16,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    }
+                  },
+                  {
+                    "name": "Mini Month Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      189
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 16,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "census": {
+        "Calendar Toolbar": 1,
+        "Icon Button": 2,
+        "Icon/None": 17,
+        "Button": 2,
+        "Spinner": 2,
+        "Counter": 2,
+        "Segmented Control": 1,
+        "Segmented Control Item": 6,
+        "Icon/Plus": 1
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Year View",
+    "Description",
+    "A 12-month overview grid — a mini-calendar per month with event-density indicators. For long-range navigation, not event detail.",
+    "Layout",
+    "12 month mini-grids · day cells with density dots / heat · header (year · nav) · click a day or month to drill in.",
+    "Responsive",
+    "Desktop 3–4 month columns; mobile fewer columns with vertical scroll.",
+    "States",
+    "loaded, loading, empty, error; today highlighted.",
+    "Accessibility",
+    "Each day is a labelled button with date + event count; density conveyed by number + shade, not colour alone; keyboard grid navigation.",
+    "Rules",
+    "Use for long-range navigation\nDrill into month / day\nShow today\nConvey density by number + shade",
+    "Show event detail here\nRely on heat colour alone\nLose keyboard navigation\nCram 12 months on mobile"
+  ],
+  "pageContext": null
+}

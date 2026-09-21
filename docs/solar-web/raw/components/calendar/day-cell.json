@@ -1,0 +1,403 @@
+{
+  "page": "↳ 🟢 Day Cell",
+  "pageId": "6622:3",
+  "componentSets": [
+    {
+      "name": "Day Cell",
+      "id": "6638:82",
+      "description": "Month-grid day cell. Holds the date number and a stack of Event Chip instances. Comfortable density shows up to 3 chips at md size; compact uses 2 chips at sm size. Today emphasis shows a filled pill around the date.",
+      "docLinks": [],
+      "variantCount": 5,
+      "props": {
+        "hasEvent01#6713:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasEvent02#6713:6": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasMoreEvents#6713:12": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "other-month",
+            "selected",
+            "today",
+            "today-column"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 25,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          160,
+          120
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/surface}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs",
+          "paddingLeft": "Spatial:inset/xs",
+          "paddingTop": "Spatial:inset/xs",
+          "paddingRight": "Spatial:inset/xs",
+          "paddingBottom": "Spatial:inset/xs",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Day Num Row",
+            "type": "FRAME",
+            "size": [
+              144,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                2,
+                0,
+                2
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "Day Num Pill",
+                "type": "FRAME",
+                "size": [
+                  24,
+                  24
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    6,
+                    0,
+                    6
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 9999,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                },
+                "children": [
+                  {
+                    "name": "Day Num",
+                    "type": "TEXT",
+                    "text": "15",
+                    "textStyle": "body/sm/medium",
+                    "size": [
+                      13,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Events",
+            "type": "FRAME",
+            "size": [
+              144,
+              74
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
+            },
+            "children": [
+              {
+                "name": "Event Chip",
+                "type": "INSTANCE",
+                "main": "Event Chip",
+                "variant": {
+                  "category": "blue",
+                  "style": "subtle"
+                },
+                "size": [
+                  144,
+                  22
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                },
+                "propRefs": {
+                  "visible": "hasEvent01#6713:0"
+                }
+              },
+              {
+                "name": "Event Chip",
+                "type": "INSTANCE",
+                "main": "Event Chip",
+                "variant": {
+                  "category": "green",
+                  "style": "subtle"
+                },
+                "size": [
+                  144,
+                  22
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                },
+                "propRefs": {
+                  "visible": "hasEvent02#6713:6"
+                }
+              },
+              {
+                "name": "Event",
+                "type": "INSTANCE",
+                "main": "Event Chip",
+                "variant": {
+                  "category": "yellow",
+                  "style": "subtle"
+                },
+                "size": [
+                  144,
+                  22
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                },
+                "propRefs": {
+                  "visible": "hasMoreEvents#6713:12"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            160,
+            120
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/surface}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Icon/Repeat",
+            "Time"
+          ]
+        },
+        {
+          "variant": "state=today",
+          "size": [
+            160,
+            120
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/surface}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=today-column",
+          "size": [
+            160,
+            120
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/surface}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=selected",
+          "size": [
+            160,
+            120
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "strokes": [
+            "{Color:border/surface}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=other-month",
+          "size": [
+            160,
+            120
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "strokes": [
+            "{Color:border/surface}"
+          ],
+          "textFills": [
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Day Cell",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

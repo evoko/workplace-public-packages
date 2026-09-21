@@ -1,0 +1,1143 @@
+{
+  "page": "↳ 🟢 App Switcher",
+  "pageId": "2966:620",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "AppSwitcherItem",
+      "id": "6431:1625",
+      "description": "",
+      "props": {
+        "hasButton#10422:20": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "nodeCount": 10,
+      "tree": {
+        "name": "AppSwitcherItem",
+        "type": "COMPONENT",
+        "size": [
+          380,
+          64
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/md",
+          "strokeBottomWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/none",
+          "topRightRadius": "Spatial:radius/none",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": [
+          {
+            "name": "App Icon",
+            "type": "INSTANCE",
+            "main": "App Icon",
+            "variant": {
+              "App": "Workplace"
+            },
+            "size": [
+              32,
+              32
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "IMAGE"
+            ],
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Primitives:spatial/scale/0",
+              "paddingLeft": "Primitives:spatial/scale/0",
+              "paddingTop": "Primitives:spatial/scale/0",
+              "paddingRight": "Primitives:spatial/scale/0",
+              "paddingBottom": "Primitives:spatial/scale/0",
+              "topLeftRadius": "Primitives:spatial/border-radius/md",
+              "topRightRadius": "Primitives:spatial/border-radius/md",
+              "bottomLeftRadius": "Primitives:spatial/border-radius/md",
+              "bottomRightRadius": "Primitives:spatial/border-radius/md"
+            }
+          },
+          {
+            "name": "Frame 6",
+            "type": "FRAME",
+            "size": [
+              204,
+              10
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "App Name",
+                "textStyle": "label/md",
+                "size": [
+                  204,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          },
+          {
+            "name": "SplitButton",
+            "type": "INSTANCE",
+            "main": "SplitButton",
+            "variant": {
+              "prio": "secondary",
+              "size": "sm",
+              "state": "default"
+            },
+            "size": [
+              88,
+              32
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/FIXED"
+            },
+            "fills": [
+              "{Color:action/secondary/bg/default}"
+            ],
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "propRefs": {
+              "visible": "hasButton#10422:20"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "App switcher",
+      "id": "9558:29882",
+      "description": "Panel listing the Biamp product suite, grouped into Web, Config and Desktop app slot groups with a ‘View all apps’ footer. Opens from the topbar grid icon. Items are AppSwitcherItem entries (App Icon, product name, SplitButton launch action). Scope to apps the user has access to; mark the current app as selected.",
+      "props": {
+        "Desktop apps#9558:0": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "Config Apps#9558:1": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "Web Apps#9558:2": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        }
+      },
+      "nodeCount": 88,
+      "tree": {
+        "name": "App switcher",
+        "type": "COMPONENT",
+        "size": [
+          380,
+          530
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/overlay}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "Dropdown Group Label",
+            "type": "INSTANCE",
+            "main": "Dropdown Group Label",
+            "variant": {
+              "Size": "md"
+            },
+            "size": [
+              380,
+              34
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm"
+            }
+          },
+          {
+            "name": "Web Apps",
+            "type": "SLOT",
+            "size": [
+              380,
+              128
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "Web Apps#9558:2"
+            },
+            "children": [
+              {
+                "name": "AppSwitcherItem",
+                "type": "INSTANCE",
+                "main": "AppSwitcherItem",
+                "size": [
+                  380,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              },
+              {
+                "name": "AppSwitcherItem",
+                "type": "INSTANCE",
+                "main": "AppSwitcherItem",
+                "size": [
+                  380,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dropdown Group Label",
+            "type": "INSTANCE",
+            "main": "Dropdown Group Label",
+            "variant": {
+              "Size": "md"
+            },
+            "size": [
+              380,
+              34
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm"
+            }
+          },
+          {
+            "name": "Config Apps",
+            "type": "SLOT",
+            "size": [
+              380,
+              128
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "Config Apps#9558:1"
+            },
+            "children": [
+              {
+                "name": "AppSwitcherItem",
+                "type": "INSTANCE",
+                "main": "AppSwitcherItem",
+                "size": [
+                  380,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              },
+              {
+                "name": "AppSwitcherItem",
+                "type": "INSTANCE",
+                "main": "AppSwitcherItem",
+                "size": [
+                  380,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dropdown Group Label",
+            "type": "INSTANCE",
+            "main": "Dropdown Group Label",
+            "variant": {
+              "Size": "md"
+            },
+            "size": [
+              380,
+              34
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm"
+            }
+          },
+          {
+            "name": "Desktop apps",
+            "type": "SLOT",
+            "size": [
+              380,
+              128
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "propRefs": {
+              "slotContentId": "Desktop apps#9558:0"
+            },
+            "children": [
+              {
+                "name": "List",
+                "type": "FRAME",
+                "size": [
+                  380,
+                  128
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "children": [
+                  {
+                    "name": "AppSwitcherItem",
+                    "type": "INSTANCE",
+                    "main": "AppSwitcherItem",
+                    "size": [
+                      380,
+                      64
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 12,
+                      "pad": [
+                        16,
+                        16,
+                        16,
+                        16
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed",
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/sm",
+                      "paddingLeft": "Spatial:inset/md",
+                      "paddingTop": "Spatial:inset/md",
+                      "paddingRight": "Spatial:inset/md",
+                      "paddingBottom": "Spatial:inset/md",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/none",
+                      "topRightRadius": "Spatial:radius/none",
+                      "bottomLeftRadius": "Spatial:radius/none",
+                      "bottomRightRadius": "Spatial:radius/none"
+                    }
+                  },
+                  {
+                    "name": "AppSwitcherItem",
+                    "type": "INSTANCE",
+                    "main": "AppSwitcherItem",
+                    "size": [
+                      380,
+                      64
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 12,
+                      "pad": [
+                        16,
+                        16,
+                        16,
+                        16
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/HUG"
+                    },
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": "mixed",
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/sm",
+                      "paddingLeft": "Spatial:inset/md",
+                      "paddingTop": "Spatial:inset/md",
+                      "paddingRight": "Spatial:inset/md",
+                      "paddingBottom": "Spatial:inset/md",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/none",
+                      "topRightRadius": "Spatial:radius/none",
+                      "bottomLeftRadius": "Spatial:radius/none",
+                      "bottomRightRadius": "Spatial:radius/none"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              380,
+              44
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                16,
+                20,
+                16,
+                20
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/md"
+            },
+            "children": [
+              {
+                "name": "View all apps",
+                "type": "TEXT",
+                "text": "View all apps",
+                "textStyle": "body/lg/medium",
+                "size": [
+                  97,
+                  12
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/link/default}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/lg",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/lg",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [
+    {
+      "name": "AppSwitcher",
+      "type": "FRAME",
+      "id": "9558:29778",
+      "size": [
+        564,
+        568
+      ],
+      "census": {
+        "App Icon": 8,
+        "Button": 1,
+        "Icon/None": 2,
+        "Spinner": 1,
+        "Counter": 1,
+        "AppSwitcherItem": 7,
+        "SplitButton": 7,
+        "Icon/ExternalLink": 7
+      },
+      "tree": {
+        "name": "AppSwitcher",
+        "type": "FRAME",
+        "hidden": true,
+        "size": [
+          564,
+          568
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/dialog}"
+        ],
+        "strokes": [
+          "{Color:border/medium}"
+        ],
+        "strokeWeight": 1,
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "itemSpacing": "Spatial:stack/none",
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/none",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "Frame 11",
+            "type": "FRAME",
+            "size": [
+              564,
+              124
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "paddingLeft": "Primitives:spatial/scale/4",
+              "paddingTop": "Primitives:spatial/scale/4",
+              "paddingRight": "Primitives:spatial/scale/4",
+              "paddingBottom": "Primitives:spatial/scale/4"
+            },
+            "children": [
+              {
+                "name": "Divider",
+                "type": "FRAME",
+                "size": [
+                  532,
+                  20
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              {
+                "name": "AppSwitcherItem",
+                "type": "FRAME",
+                "size": [
+                  532,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "GRADIENT_LINEAR"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Frame 12",
+            "type": "FRAME",
+            "size": [
+              564,
+              196
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "paddingLeft": "Primitives:spatial/scale/4",
+              "paddingTop": "Primitives:spatial/scale/4",
+              "paddingRight": "Primitives:spatial/scale/4",
+              "paddingBottom": "Primitives:spatial/scale/4"
+            },
+            "children": [
+              {
+                "name": "Divider",
+                "type": "FRAME",
+                "size": [
+                  532,
+                  20
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              {
+                "name": "App Grid",
+                "type": "FRAME",
+                "size": [
+                  532,
+                  136
+                ],
+                "layout": {
+                  "dir": "GRID",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Frame 13",
+            "type": "FRAME",
+            "size": [
+              564,
+              124
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "paddingLeft": "Primitives:spatial/scale/4",
+              "paddingTop": "Primitives:spatial/scale/4",
+              "paddingRight": "Primitives:spatial/scale/4",
+              "paddingBottom": "Primitives:spatial/scale/4"
+            },
+            "children": [
+              {
+                "name": "Divider",
+                "type": "FRAME",
+                "size": [
+                  532,
+                  20
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              {
+                "name": "App Grid",
+                "type": "FRAME",
+                "size": [
+                  532,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Frame 14",
+            "type": "FRAME",
+            "size": [
+              564,
+              124
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Primitives:spatial/scale/4",
+              "paddingTop": "Primitives:spatial/scale/4",
+              "paddingRight": "Primitives:spatial/scale/4",
+              "paddingBottom": "Primitives:spatial/scale/4"
+            },
+            "children": [
+              {
+                "name": "Divider",
+                "type": "FRAME",
+                "size": [
+                  532,
+                  20
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              {
+                "name": "App Grid",
+                "type": "FRAME",
+                "size": [
+                  532,
+                  64
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "texts": [
+        "Monitor and manage your entire AV infrastructure."
+      ]
+    }
+  ],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "App Switcher",
+    "Description",
+    "Panel surfacing the Biamp product suite, grouped into Web, Config and Desktop apps. Opens from the topbar grid icon. Scoped to products the user has access to.",
+    "Sub-components",
+    "App Switcher              Panel container with three slot groups (Web / Config / Desktop apps), each under a Dropdown Group Label, plus a ‘View all apps’ footer.\nAppSwitcherItem     Per-product entry: App Icon, product name, SplitButton launch action.",
+    "Launch behavior",
+    "Each item launches via its SplitButton: the primary action opens the app in the current context; the chevron menu offers alternate targets (e.g. open in a new tab). Prefer a new tab for apps that don’t share session state with the shell.",
+    "Labels & Content",
+    "Product name: official casing (‘Crowd Mics’ not ‘crowd mics’).\nGroup labels: ‘Web apps’, ‘Config apps’, ‘Desktop apps’.\nMark the current app as selected — do not hide it.",
+    "Rules",
+    "DO   Scope to apps the user has access to\nDO   Mark the current app as selected\nDO   Use official product casing\nDO   Group apps under the Web / Config / Desktop labels",
+    "DON’T   Show apps the user cannot access\nDON’T   Hide the current app from the panel\nDON’T   Mix product names with feature names\nDON’T   Put settings or sign-out here (use Profile Dropdown)"
+  ],
+  "pageContext": null
+}

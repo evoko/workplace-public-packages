@@ -1,0 +1,255 @@
+{
+  "page": "↳ 🟢 Activity Log",
+  "pageId": "3768:12",
+  "componentSets": [
+    {
+      "name": "Activity Log",
+      "id": "7470:25944",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "mobile",
+            "desktop"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 266,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1400,
+          929
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "radius": [
+          8,
+          8,
+          0,
+          0
+        ],
+        "vars": {
+          "itemSpacing": "Spatial:stack/none",
+          "paddingLeft": "Spatial:stack/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:stack/none",
+          "paddingBottom": "Spatial:inset/none",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": [
+          {
+            "name": "Page Header",
+            "type": "INSTANCE",
+            "main": "Page Header",
+            "variant": {
+              "type": "centered",
+              "breakpoint": "desktop"
+            },
+            "size": [
+              1400,
+              134
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 20,
+              "pad": [
+                8,
+                20,
+                0,
+                20
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:stack/lg",
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Activity Feed Filter Row",
+            "type": "INSTANCE",
+            "main": "Activity Feed Filter Row",
+            "variant": {
+              "breakpoint": "desktop"
+            },
+            "size": [
+              640,
+              64
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                12,
+                0,
+                12,
+                0
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/sm"
+            }
+          },
+          {
+            "name": "Activity Feed",
+            "type": "INSTANCE",
+            "main": "Activity Feed",
+            "variant": {
+              "breakpoint": "desktop"
+            },
+            "size": [
+              640,
+              731
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FIXED/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            1400,
+            929
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Primitives:color/blue/700}",
+            "{Primitives:color/purple/700}",
+            "{Primitives:color/red/700}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "*",
+            "CTA",
+            "Counter",
+            "Helper text",
+            "Icon/None",
+            "Label",
+            "LeadingIcon",
+            "Spinner",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            377,
+            922
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Primitives:color/blue/700}",
+            "{Primitives:color/purple/700}",
+            "{Primitives:color/red/700}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/tertiary/icon/default}"
+          ],
+          "hidden": [
+            "*",
+            "Breadcrumbs",
+            "Counter",
+            "Helper text",
+            "Icon/Building",
+            "Icon/More",
+            "Label",
+            "LeadingIcon",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Activity Log",
+    "Description",
+    "A product-activity stream for an entity or workspace (updates, changes, comments). User-facing recent activity; security events live in Audit Log.",
+    "Layout",
+    "Activity Feed pattern: items grouped by day (actor · action · time · link) · filters · load-more.",
+    "Responsive",
+    "Desktop feed column; mobile full-width.",
+    "States",
+    "loaded, loading (skeleton), empty, error, loading-more.",
+    "Accessibility",
+    "Ordered list; new items via aria-live=polite; timestamps <time>; links keyboard-reachable.",
+    "Rules",
+    "Order newest first, grouped by day\nLink to referenced objects\nWrite plain 'actor did X' lines\nFilter by type",
+    "Use it as a chat\nUse icons alone for action type\nMix in security events\nDump ungrouped items"
+  ],
+  "pageContext": null
+}

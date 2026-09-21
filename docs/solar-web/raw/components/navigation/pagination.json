@@ -1,0 +1,738 @@
+{
+  "page": "↳ 🟢 Pagination",
+  "pageId": "2163:3713",
+  "componentSets": [
+    {
+      "name": "PaginationItem",
+      "id": "3652:22",
+      "description": "Numeric page selector used inside Pagination. 10 variants: selected (false/true) × state (default, hover, pressed, focus, disabled). Selected renders in action/tertiary/bg/active treatment; unselected is plain text in action/tertiary chrome. Hit area is 44×44 minimum (WCAG 2.5.5). Use inside the Pagination assembly — not standalone.",
+      "docLinks": [],
+      "variantCount": 10,
+      "props": {
+        "page#3652:1": {
+          "type": "TEXT",
+          "default": "1"
+        },
+        "selected": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "pressed",
+            "focus",
+            "disabled"
+          ]
+        }
+      },
+      "defaultVariant": "selected=false, state=default",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "selected=false, state=default",
+        "type": "COMPONENT",
+        "size": [
+          24,
+          24
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "radius": 8,
+        "vars": {
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "1",
+            "textStyle": "label/md",
+            "size": [
+              24,
+              24
+            ],
+            "sizing": "FILL/FILL",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            },
+            "propRefs": {
+              "characters": "page#3652:1"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "selected=false, state=default",
+          "size": [
+            24,
+            24
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "selected=false, state=hover",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "selected=false, state=pressed",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "selected=false, state=focus",
+          "size": [
+            24,
+            24
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "selected=false, state=disabled",
+          "size": [
+            24,
+            24
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ]
+        },
+        {
+          "variant": "selected=true, state=default",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ]
+        },
+        {
+          "variant": "selected=true, state=hover",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ]
+        },
+        {
+          "variant": "selected=true, state=pressed",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ]
+        },
+        {
+          "variant": "selected=true, state=focus",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ]
+        },
+        {
+          "variant": "selected=true, state=disabled",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/disabled}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PaginationNav",
+      "id": "3653:22",
+      "description": "Previous/next arrow used inside Pagination. 10 variants: direction (previous/next) × state (default, hover, pressed, focus, disabled). Chevron icon flips by direction. Disabled when the pager is at the first (previous) or last (next) page. In RTL contexts, mirror via layout direction — do not swap the direction variant.",
+      "docLinks": [],
+      "variantCount": 10,
+      "props": {
+        "direction": {
+          "type": "VARIANT",
+          "default": "previous",
+          "options": [
+            "previous",
+            "next"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "pressed",
+            "focus",
+            "disabled"
+          ]
+        }
+      },
+      "defaultVariant": "direction=previous, state=default",
+      "defaultVariantNodeCount": 2,
+      "defaultVariantTree": {
+        "name": "direction=previous, state=default",
+        "type": "COMPONENT",
+        "size": [
+          24,
+          24
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "radius": 8,
+        "vars": {
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Icon",
+            "type": "INSTANCE",
+            "main": "Icon/ChevronLeft",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "direction=previous, state=default",
+          "size": [
+            24,
+            24
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "direction=previous, state=hover",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "direction=previous, state=pressed",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "direction=previous, state=focus",
+          "size": [
+            24,
+            24
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "direction=previous, state=disabled",
+          "size": [
+            24,
+            24
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "direction=next, state=default",
+          "size": [
+            24,
+            24
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "direction=next, state=hover",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "direction=next, state=pressed",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "direction=next, state=focus",
+          "size": [
+            24,
+            24
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "direction=next, state=disabled",
+          "size": [
+            24,
+            24
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "PaginationEllipsis",
+      "id": "3653:23",
+      "description": "Static placeholder for omitted page numbers inside Pagination. Non-interactive, no hit area, no focus. Use between the first-page cluster and last-page cluster when the total page count exceeds what the assembly can show without crowding.",
+      "props": {},
+      "nodeCount": 1,
+      "tree": {
+        "name": "PaginationEllipsis",
+        "type": "COMPONENT",
+        "size": [
+          24,
+          24
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "radius": 6,
+        "vars": {
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "...",
+            "textStyle": "label/md",
+            "size": [
+              24,
+              24
+            ],
+            "sizing": "FILL/FILL",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pagination",
+      "id": "3655:2",
+      "description": "Composed page selector — prev nav + page items (+ ellipsis gaps) + next nav. Use on paginated lists, tables, and search results where the total page count is known and random access matters. For linear step-through (wizards, detail pages) use Page Navigator. Collapse to a bare prev/next pair only when the collection size is unknown.",
+      "props": {},
+      "nodeCount": 16,
+      "tree": {
+        "name": "Pagination",
+        "type": "COMPONENT",
+        "size": [
+          216,
+          24
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs"
+        },
+        "children": [
+          {
+            "name": "Previous",
+            "type": "INSTANCE",
+            "main": "PaginationNav",
+            "variant": {
+              "direction": "previous",
+              "state": "default"
+            },
+            "size": [
+              24,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "radius": 8,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Page1",
+            "type": "INSTANCE",
+            "main": "PaginationItem",
+            "variant": {
+              "selected": "true",
+              "state": "default"
+            },
+            "size": [
+              24,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:action/primary/bg/default}"
+            ],
+            "radius": 8,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Page2",
+            "type": "INSTANCE",
+            "main": "PaginationItem",
+            "variant": {
+              "selected": "false",
+              "state": "default"
+            },
+            "size": [
+              24,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "radius": 8,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Page3",
+            "type": "INSTANCE",
+            "main": "PaginationItem",
+            "variant": {
+              "selected": "false",
+              "state": "default"
+            },
+            "size": [
+              24,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "radius": 8,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "PaginationEllipsis",
+            "type": "INSTANCE",
+            "main": "PaginationEllipsis",
+            "size": [
+              24,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "radius": 6,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          },
+          {
+            "name": "Page12",
+            "type": "INSTANCE",
+            "main": "PaginationItem",
+            "variant": {
+              "selected": "false",
+              "state": "default"
+            },
+            "size": [
+              24,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "radius": 8,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          },
+          {
+            "name": "Next",
+            "type": "INSTANCE",
+            "main": "PaginationNav",
+            "variant": {
+              "direction": "next",
+              "state": "default"
+            },
+            "size": [
+              24,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "radius": 8,
+            "vars": {
+              "topLeftRadius": "Spatial:radius/container",
+              "topRightRadius": "Spatial:radius/container",
+              "bottomLeftRadius": "Spatial:radius/container",
+              "bottomRightRadius": "Spatial:radius/container"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Pagination",
+    "Truncation",
+    "Show first 2–3 pages, current ± 1, and last 1–2 pages; fill the two gaps with Ellipsis. Never truncate below 7 total slots — below that, render every page and skip ellipsis. Ellipsis is static text, never a 'jump' trigger.",
+    "Accessibility",
+    "Render as <nav aria-label=\"Pagination\"> wrapping a <ul>. Current page: aria-current=\"page\". Disabled Nav: aria-disabled=\"true\". Keyboard: Tab through items, Enter/Space activates. Hit area 44×44 (WCAG 2.5.5).",
+    "Rules",
+    "Do\n\n• Always wrap in <nav aria-label=\"Pagination\">\n• Mark the current page with aria-current=\"page\"\n• Disable prev/next at the boundaries rather than hiding them\n• Keep hit area 44×44 even when the visible button is smaller",
+    "Don't\n\n• Don't use for wizards or linear flows — use Page Navigator\n• Don't render 1 / 1 pagination — hide when there's a single page\n• Don't put ellipsis as the only gap filler on <7 pages\n• Don't make Ellipsis clickable"
+  ],
+  "pageContext": null
+}

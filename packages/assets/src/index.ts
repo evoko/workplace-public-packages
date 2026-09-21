@@ -1,11 +1,1 @@
-export * from './icons';
-export * from './fonts';
-export * from './logos';
-export { default as BiampRedLogo } from './images/BiampRedLogo.png';
-export { default as LandingPageBackground } from './images/LandingPageBackground.jpg';
-export { default as BookingApp } from './images/BookingApp.png';
-export { default as WorkplaceApp } from './images/WorkplaceApp.png';
-export { default as CommandApp } from './images/CommandApp.png';
-export { default as DesignerApp } from './images/DesignerApp.png';
-export { default as ConnectApp } from './images/ConnectApp.png';
-export { default as ControlApp } from './images/ControlApp.png';
+export {};

@@ -1,0 +1,298 @@
+{
+  "page": "↳ 🟢 Data Legend",
+  "pageId": "5113:6",
+  "componentSets": [
+    {
+      "name": "Data Legend",
+      "id": "7309:62",
+      "description": "Series identifier — swatch + label pairs naming each data series in a chart.\n\nVariants:\n  direction = horizontal (row, gap 16) | vertical (column, gap 8)\n  items = 2 | 3 | 4 (number of series)\n\nEach item: 10×10 swatch (radius/control, bound to data/category token) + label (label/sm bound to text/primary).\n\nDefaults use category-06 / 02 / 04 / 07 (blue/orange/green/purple — colorblind-friendly mix). Override per instance via swatch fill swap.",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "direction": {
+          "type": "VARIANT",
+          "default": "horizontal",
+          "options": [
+            "horizontal",
+            "vertical"
+          ]
+        },
+        "items": {
+          "type": "VARIANT",
+          "default": "2",
+          "options": [
+            "2",
+            "3",
+            "4"
+          ]
+        }
+      },
+      "defaultVariant": "direction=horizontal, items=2",
+      "defaultVariantNodeCount": 6,
+      "defaultVariantTree": {
+        "name": "direction=horizontal, items=2",
+        "type": "COMPONENT",
+        "size": [
+          330,
+          9
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 16,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FILL/FILL"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/md"
+        },
+        "children": [
+          {
+            "name": "Item",
+            "type": "FRAME",
+            "size": [
+              81,
+              9
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/2xs"
+            },
+            "children": [
+              {
+                "name": "StatusIndicator",
+                "type": "INSTANCE",
+                "main": "StatusIndicator",
+                "variant": {
+                  "type": "success",
+                  "size": "xs"
+                },
+                "size": [
+                  8,
+                  8
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:surface/feedback/success/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "radius": 9999,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              {
+                "name": "Active users",
+                "type": "TEXT",
+                "text": "Active users",
+                "textStyle": "label/sm",
+                "size": [
+                  69,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Item",
+            "type": "FRAME",
+            "size": [
+              89,
+              9
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/2xs"
+            },
+            "children": [
+              {
+                "name": "StatusIndicator",
+                "type": "INSTANCE",
+                "main": "StatusIndicator",
+                "variant": {
+                  "type": "warning",
+                  "size": "xs"
+                },
+                "size": [
+                  8,
+                  8
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:surface/feedback/warning/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "radius": 9999,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              },
+              {
+                "name": "New sign-ups",
+                "type": "TEXT",
+                "text": "New sign-ups",
+                "textStyle": "label/sm",
+                "size": [
+                  77,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "direction=horizontal, items=2",
+          "size": [
+            330,
+            9
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "direction=horizontal, items=3",
+          "size": [
+            330,
+            9
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "direction=horizontal, items=4",
+          "size": [
+            330,
+            9
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "direction=vertical, items=2",
+          "size": [
+            330,
+            60
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "direction=vertical, items=3",
+          "size": [
+            330,
+            60
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "direction=vertical, items=4",
+          "size": [
+            330,
+            60
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Data Legend",
+    "Description",
+    "Maps series / category colours to their labels for a chart. Pairs with Bar, Line and Donut charts; not a standalone key for non-chart colour.",
+    "Anatomy",
+    "Rows or inline items of colour swatch + label · optional value / percentage · optional interactive toggle.",
+    "Layout & Variants",
+    "orientation horizontal / vertical. Inline (below or beside the chart) or as a side panel. Swatch shape matches the series mark (dot, line, square).",
+    "States",
+    "default; the interactive variant adds hover / focus / selected + toggled-off (series hidden). Non-interactive by default (Class K).",
+    "Accessibility",
+    "The label is each series' accessible name — colour is never alone. If toggling series, expose items as buttons with aria-pressed. Swatch ≥3:1; text ≥4.5:1.",
+    "Rules",
+    "Match swatch shape to the series mark\nKeep labels short\nPlace near the chart\nPair colour with a label",
+    "Rely on colour alone\nDetach the legend from its chart\nReorder items on toggle\nUse for non-chart colour keys"
+  ],
+  "pageContext": null
+}

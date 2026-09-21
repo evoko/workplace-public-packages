@@ -1,0 +1,483 @@
+{
+  "page": "↳ 🟢 Page Navigator",
+  "pageId": "4533:81",
+  "componentSets": [
+    {
+      "name": "PageNavButton",
+      "id": "4581:110",
+      "description": "Prev/next button used inside PageNavigator. 10 variants: direction (prev/next) × state (default, hover, pressed, focus, disabled). Larger visual weight than PaginationNav — built for step-by-step flows (wizards, multi-page detail, onboarding) rather than dense pagination. Disabled at the sequence boundaries. Label + chevron, mirrored by direction.",
+      "docLinks": [],
+      "variantCount": 10,
+      "props": {
+        "direction": {
+          "type": "VARIANT",
+          "default": "prev",
+          "options": [
+            "prev",
+            "next"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "pressed",
+            "focus",
+            "disabled"
+          ]
+        }
+      },
+      "defaultVariant": "direction=prev, state=default",
+      "defaultVariantNodeCount": 3,
+      "defaultVariantTree": {
+        "name": "direction=prev, state=default",
+        "type": "COMPONENT",
+        "size": [
+          112,
+          36
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            0,
+            12,
+            0,
+            12
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:action/secondary/bg/default}"
+        ],
+        "strokes": [
+          "{Color:border/medium}"
+        ],
+        "strokeWeight": 1,
+        "radius": 6,
+        "effectStyle": "shadow/control",
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Icon/ArrowLeft",
+            "type": "INSTANCE",
+            "main": "Icon/ArrowLeft",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              20,
+              20
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "width": "Spatial:icon/md"
+            }
+          },
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "Previous",
+            "textStyle": "label/md",
+            "size": [
+              56,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:action/secondary/text/default}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "direction=prev, state=default",
+          "size": [
+            112,
+            36
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "direction=prev, state=hover",
+          "size": [
+            112,
+            36
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "direction=prev, state=pressed",
+          "size": [
+            112,
+            36
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ]
+        },
+        {
+          "variant": "direction=prev, state=focus",
+          "size": [
+            112,
+            36
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "direction=prev, state=disabled",
+          "size": [
+            112,
+            36
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "textFills": [
+            "{Color:action/secondary/text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "direction=next, state=default",
+          "size": [
+            112,
+            36
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "direction=next, state=hover",
+          "size": [
+            112,
+            36
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "direction=next, state=pressed",
+          "size": [
+            112,
+            36
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ]
+        },
+        {
+          "variant": "direction=next, state=focus",
+          "size": [
+            112,
+            36
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "direction=next, state=disabled",
+          "size": [
+            112,
+            36
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "textFills": [
+            "{Color:action/secondary/text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/disabled}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "PageNavigator",
+      "id": "4581:111",
+      "description": "Linear prev/next pager for sequential content (wizards, docs, multi-step detail views, onboarding). No page numbers — use Pagination when random access matters. Composes PageNavButton × 2 with an optional step counter between them (e.g., 'Step 2 of 5'). Disabled at the ends of the sequence.",
+      "props": {
+        "pageIndicator#4581:11": {
+          "type": "TEXT",
+          "default": "1 of 10"
+        }
+      },
+      "nodeCount": 9,
+      "tree": {
+        "name": "PageNavigator",
+        "type": "COMPONENT",
+        "size": [
+          298,
+          36
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 16,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/md"
+        },
+        "children": [
+          {
+            "name": "PrevButton",
+            "type": "INSTANCE",
+            "main": "PageNavButton",
+            "variant": {
+              "direction": "prev",
+              "state": "default"
+            },
+            "size": [
+              112,
+              36
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:action/secondary/bg/default}"
+            ],
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          },
+          {
+            "name": "PageIndicator",
+            "type": "TEXT",
+            "text": "1 of 10",
+            "textStyle": "body/md/medium",
+            "size": [
+              42,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            },
+            "propRefs": {
+              "characters": "pageIndicator#4581:11"
+            }
+          },
+          {
+            "name": "NextButton",
+            "type": "INSTANCE",
+            "main": "PageNavButton",
+            "variant": {
+              "direction": "next",
+              "state": "default"
+            },
+            "size": [
+              112,
+              36
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:action/secondary/bg/default}"
+            ],
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Page Navigator",
+    "When to use",
+    "Use Page Navigator when the user is walking a sequence start → end (wizard steps, reading flows, onboarding).\n\nUse Pagination when the user is scanning or jumping (search results, tables, large lists).\n\nUse Tabs when views are peer-level and not ordered.",
+    "Rules",
+    "Do\n\n• Use for ordered, step-by-step flows\n• Disable prev/next at the sequence boundaries\n• Show position (Step 2 of 5) alongside the controls\n• Keep label text consistent (\"Previous\" / \"Next\")",
+    "Don't\n\n• Don't use for random-access lists — use Pagination\n• Don't hide the buttons at the boundaries — disable them\n• Don't reword to \"Back\" unless the flow is truly reversible state\n• Don't use a lone Next with no Previous — reversibility matters"
+  ],
+  "pageContext": null
+}

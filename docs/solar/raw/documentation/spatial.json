@@ -1,0 +1,661 @@
+{
+  "page": "Spatial",
+  "pageId": "763:59204",
+  "section": "documentation",
+  "slug": "spatial",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Spatial"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Spacing Principles",
+      "subtitle": null,
+      "x": 2020,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Spacing in SOLAR defines rhythm, separation, and containment. It ensures clarity and hierarchy by systemizing how elements relate to one another. Spacing is controlled through standardized tokens — not manual margin adjustments."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Spacing Creates Relationships"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Consistent Rhythm Over Precision"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Interaction-Aware Spacing"
+        },
+        {
+          "t": "p",
+          "text": "Spacing communicates what belongs together and what does not. Smaller spacing signals grouping and related content, while larger spacing creates separation and hierarchy. Spacing should make structure obvious without relying on borders or color.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Spacing follows a defined scale to create predictable visual rhythm. Values are chosen from tokens, not tuned per layout. Consistent rhythm improves scanability, reduces cognitive load, and keeps layouts cohesive across screens and platforms.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Spacing must account for interaction, not just layout. Touch targets, focus outlines, and interactive states require sufficient space to remain usable and accessible. If spacing breaks interaction or focus behavior, it is a system issue—not a layout exception.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Spacing Hierarchy",
+      "subtitle": null,
+      "x": 4040,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Spacing in SOLAR is structured in layers. Each layer defines a different role — from page-level boundaries to element-level rhythm. Clear separation of these roles ensures consistency and prevents misuse of tokens."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Spatial Layers"
+        },
+        {
+          "t": "code",
+          "text": "Viewport\n   ↓\nGrid Margin\n   ↓\nInset (inside containers)\n   ↓\nStack (between siblings)"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Sizing Scale",
+      "subtitle": null,
+      "x": 6060,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "The sizing scale defines the foundational measurement system for spacing and sizing in SOLAR. It is based on a 4px modular scale, creating a consistent spatial rhythm across layouts, components, and typography."
+        },
+        {
+          "t": "p",
+          "text": "The scale is platform-agnostic, allowing products to implement the values in the units appropriate for their platform (px, rem, dp, pt, etc.). This ensures consistent proportions across web, mobile, and other environments.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Why SOLAR Uses a Modular Scale"
+        },
+        {
+          "t": "p",
+          "text": "Using a modular scale creates a consistent spatial rhythm across the interface.\n\nEnsures proportional spacing across layouts\nKeeps typography, spacing, and layout aligned\nImproves visual consistency across products\nEnables predictable behavior across platforms",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Primitive Source"
+        },
+        {
+          "t": "p",
+          "text": "Defined in: Primitives → spatial → scale. All semantic spacing tokens reference this scale.\n\nExamples from the scale:\nscale-1 (4px)\nscale-2 (8px)\nscale-3 (12px)\nscale-4 (16px)",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-03-13 at 15.35.42 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Stack",
+      "subtitle": null,
+      "x": 8080,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Stack defines vertical separation between sibling elements. It governs layout rhythm and grouping across pages and components."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Token Structure"
+        },
+        {
+          "t": "p",
+          "text": "Located in: Semantic — Size → stack.*\n\nExamples:\nstack.sm\nstack.md\nstack.lg\n\nEach stack token maps to a rem value from size / scale.\n\nExample:\nstack.md → 1rem\nstack.lg → 1.5rem",
+          "style": "16/400"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "When to Use Stack"
+        },
+        {
+          "t": "p",
+          "text": "Use stack to separate:\nSections\nContent groups\nForm fields\nLayout blocks\n\nIf two elements share the same parent and require spacing between them, use a stack token.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "image 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Inset",
+      "subtitle": null,
+      "x": 10100,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Inset defines internal padding within containers. It creates breathing room between content and structural boundaries."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Token Structure"
+        },
+        {
+          "t": "p",
+          "text": "Located in: Semantic — Size → inset.*\n\nExamples:\ninset.sm\ninset.md\ninset.lg\n\nEach inset token references a rem value from the sizing scale.\n\nExample:\ninset.md → 1rem\ninset.lg → 1.5rem",
+          "style": "16/400"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "When to Use Stack"
+        },
+        {
+          "t": "p",
+          "text": "Use inset inside:\nCards\nPanels\nSections\nDialogs\nPage containers\n\nInset defines containment — not separation between siblings.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "image 1"
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Spatial\ndomain: Layout > Spacing System\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR spatial system specialist. Consistent spacing creates visual rhythm, hierarchy, and grouping. All spacing values must use spatial tokens — never arbitrary pixel values.\n\n[SCOPE]\n- Base unit and spacing scale\n- Spatial token naming and usage types\n- Padding, margin, and gap conventions\n- Proximity principle and visual grouping\n- Responsive spacing adjustments\n\n[BASE_UNIT]\nunit: 4px — all spacing values are multiples of 4\nrationale: 4px base aligns with pixel grids, sub-pixel rendering, and standard display densities\n\n[SPACING_SCALE]\nspace.0: 0px — no space\nspace.2xs: 2px — hairline gaps, divider offsets\nspace.xs: 4px — tightest grouping, inline icon gaps\nspace.sm: 8px — compact grouping, small component padding\nspace.md: 16px — default spacing, standard padding and gaps\nspace.lg: 24px — section separation, generous padding\nspace.xl: 32px — major section breaks\nspace.2xl: 48px — page-level section spacing\nspace.3xl: 64px — hero spacing, large section breaks\nspace.4xl: 96px — maximum spacing, page margins on wide screens\n\n[USAGE_TYPES]\ninline: horizontal spacing between sibling elements (e.g., icon + label gap)\nstack: vertical spacing between stacked elements (e.g., heading → paragraph → button)\ninset: padding inside a container (e.g., card padding, button padding)\nsquish_inset: asymmetric padding — tighter top/bottom, wider left/right (e.g., tags, chips)\nstretch_inset: asymmetric padding — taller top/bottom, narrower left/right (e.g., list items)\n\n[TOKEN_NAMING]\npattern: space.{scale} for general use\ncomponent_specific: {component}.space.{property} for component-level overrides\nexamples:\n  space.md → 16px general purpose\n  button.space.inline → gap between icon and label in a button\n  card.space.inset → internal padding of a card\n\n[PROXIMITY_PRINCIPLE]\ntight: related items grouped with smaller spacing (space.xs to space.sm)\nmedium: sub-sections within a group (space.md)\nloose: distinct sections separated with larger spacing (space.lg to space.2xl)\nrule: spacing communicates relationship — closer = more related\n\n[COMPONENT_SPACING]\ninternal_padding: inset tokens (e.g., card uses space.md inset)\nbetween_components: stack/inline tokens (e.g., space.md between form fields)\nsection_spacing: larger tokens (e.g., space.xl between page sections)\nrule: component internal spacing uses inset; between-component spacing uses stack/inline\n\n[RESPONSIVE_SPACING]\nmobile: spacing may tighten by one scale step (e.g., space.lg → space.md)\ndesktop: full spacing scale applies\nmechanism: spatial tokens may have breakpoint-specific values, or layout rules specify tighter tokens on mobile\nrule: maintain proportional rhythm — don't tighten some spacing while leaving others loose\n\n[AGENT_BEHAVIOR]\n- When recommending spacing, always provide the token name (e.g., \"space.md\") not a pixel value\n- Use proximity principle: suggest tighter spacing for related items, looser for separate sections\n- If a spacing value isn't in the scale, recommend the nearest token — never invent values\n- Check that component internal padding uses inset tokens\n- Verify responsive spacing maintains proportional rhythm\n- Flag any hardcoded pixel spacing as a violation\n\n[CONSTRAINTS]\n- never use arbitrary pixel values for spacing — always a spatial token\n- never use values outside the spacing scale without governance approval\n- never mix spacing scales (e.g., 10px, 15px, 22px are not on the 4px grid)\n- component internal spacing is separate from between-component spacing\n- spacing tokens may differ per breakpoint — always specify context\n- optical adjustments (±1–2px) are allowed in Figma but must be documented\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Spacing Principles",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Spacing in SOLAR defines rhythm, separation, and containment. It ensures clarity and hierarchy by systemizing how elements relate to one another. Spacing is controlled through standardized tokens — not manual margin adjustments.",
+        "Spacing Creates Relationships",
+        "Consistent Rhythm Over Precision",
+        "Interaction-Aware Spacing",
+        "Spacing communicates what belongs together and what does not. Smaller spacing signals grouping and related content, while larger spacing creates separation and hierarchy. Spacing should make structure obvious without relying on borders or color.",
+        "Spacing follows a defined scale to create predictable visual rhythm. Values are chosen from tokens, not tuned per layout. Consistent rhythm improves scanability, reduces cognitive load, and keeps layouts cohesive across screens and platforms.",
+        "Spacing must account for interaction, not just layout. Touch targets, focus outlines, and interactive states require sufficient space to remain usable and accessible. If spacing breaks interaction or focus behavior, it is a system issue—not a layout exception."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Sizing Scale",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "The sizing scale defines the foundational measurement system for spacing and sizing in SOLAR. It is based on a 4px modular scale, creating a consistent spatial rhythm across layouts, components, and typography.",
+        "The scale is platform-agnostic, allowing products to implement the values in the units appropriate for their platform (px, rem, dp, pt, etc.). This ensures consistent proportions across web, mobile, and other environments.",
+        "Why SOLAR Uses a Modular Scale",
+        "Using a modular scale creates a consistent spatial rhythm across the interface.\n\nEnsures proportional spacing across layouts\nKeeps typography, spacing, and layout aligned\nImproves visual consistency across products\nEnables predictable behavior across platforms",
+        "Primitive Source",
+        "Defined in: Primitives → spatial → scale. All semantic spacing tokens reference this scale.\n\nExamples from the scale:\nscale-1 (4px)\nscale-2 (8px)\nscale-3 (12px)\nscale-4 (16px)"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Spacing Hierarchy",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Spacing in SOLAR is structured in layers. Each layer defines a different role — from page-level boundaries to element-level rhythm. Clear separation of these roles ensures consistency and prevents misuse of tokens.",
+        "Spatial Layers",
+        "Viewport\n   ↓\nGrid Margin\n   ↓\nInset (inside containers)\n   ↓\nStack (between siblings)"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Stack",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Stack defines vertical separation between sibling elements. It governs layout rhythm and grouping across pages and components.",
+        "Token Structure",
+        "Located in: Semantic — Size → stack.*\n\nExamples:\nstack.sm\nstack.md\nstack.lg\n\nEach stack token maps to a rem value from size / scale.\n\nExample:\nstack.md → 1rem\nstack.lg → 1.5rem",
+        "When to Use Stack",
+        "Use stack to separate:\nSections\nContent groups\nForm fields\nLayout blocks\n\nIf two elements share the same parent and require spacing between them, use a stack token."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Inset",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Inset defines internal padding within containers. It creates breathing room between content and structural boundaries.",
+        "Token Structure",
+        "Located in: Semantic — Size → inset.*\n\nExamples:\ninset.sm\ninset.md\ninset.lg\n\nEach inset token references a rem value from the sizing scale.\n\nExample:\ninset.md → 1rem\ninset.lg → 1.5rem",
+        "When to Use Stack",
+        "Use inset inside:\nCards\nPanels\nSections\nDialogs\nPage containers\n\nInset defines containment — not separation between siblings."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 98
+}

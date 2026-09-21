@@ -1,0 +1,129 @@
+{
+  "page": "↳ 🟢 Progress Bar",
+  "pageId": "2163:3679",
+  "componentSets": [
+    {
+      "name": "ProgressBar",
+      "id": "4507:112",
+      "description": "Determinate linear progress / usage meter. Track = surface/muted; set completion by resizing the Indicator layer (width = % of track). Variants by feedback: neutral (default, action/primary), info, success, warning, danger — bound to surface/feedback/*/strong. Pair with an external numeric label; announce completion via aria-live=polite. See also Skeleton, Spinner.",
+      "docLinks": [],
+      "variantCount": 5,
+      "props": {
+        "feedback": {
+          "type": "VARIANT",
+          "default": "neutral",
+          "options": [
+            "neutral",
+            "info",
+            "success",
+            "warning",
+            "danger"
+          ]
+        }
+      },
+      "defaultVariant": "feedback=neutral",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "feedback=neutral",
+        "type": "COMPONENT",
+        "size": [
+          200,
+          6
+        ],
+        "sizing": "FIXED/FIXED",
+        "fills": [
+          "{Color:surface/muted}"
+        ],
+        "radius": 9999,
+        "vars": {
+          "itemSpacing": "Spatial:inset/xs"
+        },
+        "children": [
+          {
+            "name": "Indicator",
+            "type": "RECTANGLE",
+            "size": [
+              80,
+              6
+            ],
+            "fills": [
+              "{Color:action/primary/bg/default}"
+            ],
+            "radius": 9999
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "feedback=neutral",
+          "size": [
+            200,
+            6
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "feedback=info",
+          "size": [
+            200,
+            6
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        },
+        {
+          "variant": "feedback=success",
+          "size": [
+            200,
+            6
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        },
+        {
+          "variant": "feedback=warning",
+          "size": [
+            200,
+            6
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        },
+        {
+          "variant": "feedback=danger",
+          "size": [
+            200,
+            6
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Progress Bar",
+    "Description",
+    "Linear progress indicator for long-running tasks. Use for file uploads, batch operations, multi-step workflows, and completion meters.",
+    "Types (planned)",
+    "determinate     Known progress (0–100%). Shows exact fraction complete.\nindeterminate   Unknown duration. Animated bar — do not show percent.\n\nVariant axes currently placeholder (Variant2–Variant5). Rename before publishing.",
+    "Labels & Content",
+    "Always pair with a descriptive label above the bar ('Uploading presentation.pdf').\nShow percentage only for determinate bars.\nAnnounce start and completion with aria-live=polite.",
+    "Rules",
+    "DO   Pair with a descriptive label\nDO   Use indeterminate when total duration is unknown\nDO   Announce completion via aria-live=polite\nDO   Show percentage for determinate bars",
+    "DON'T   Use for operations under 1 second (use Spinner)\nDON'T   Show percent on indeterminate bars\nDON'T   Stack multiple bars without clear labels\nDON'T   Publish before variant axes are named"
+  ],
+  "pageContext": null
+}

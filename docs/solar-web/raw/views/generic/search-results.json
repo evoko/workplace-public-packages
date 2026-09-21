@@ -1,0 +1,683 @@
+{
+  "page": "↳ 🟢 Search Results",
+  "pageId": "3768:13",
+  "componentSets": [
+    {
+      "name": "Search Results",
+      "id": "7470:23845",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "breakdpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "mobile",
+            "desktop"
+          ]
+        }
+      },
+      "defaultVariant": "breakdpoint=desktop",
+      "defaultVariantNodeCount": 177,
+      "defaultVariantTree": {
+        "name": "breakdpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1368,
+          745
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "radius": [
+          8,
+          8,
+          0,
+          0
+        ],
+        "vars": {
+          "itemSpacing": "Spatial:stack/none",
+          "paddingLeft": "Spatial:stack/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:stack/none",
+          "paddingBottom": "Spatial:inset/none",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": [
+          {
+            "name": "Page Header",
+            "type": "INSTANCE",
+            "main": "Page Header",
+            "variant": {
+              "type": "centered",
+              "breakpoint": "desktop"
+            },
+            "size": [
+              1368,
+              105
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 20,
+              "pad": [
+                8,
+                20,
+                0,
+                20
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:stack/lg",
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              640,
+              584
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/FILL"
+            },
+            "children": [
+              {
+                "name": "Search Results Item",
+                "type": "INSTANCE",
+                "main": "Search Results Item",
+                "size": [
+                  640,
+                  127
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    16,
+                    0,
+                    16,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:stack/md",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Search Results Item",
+                "type": "INSTANCE",
+                "main": "Search Results Item",
+                "size": [
+                  640,
+                  107
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    16,
+                    0,
+                    16,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:stack/md",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Search Results Item",
+                "type": "INSTANCE",
+                "main": "Search Results Item",
+                "size": [
+                  640,
+                  107
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    16,
+                    0,
+                    16,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:stack/md",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Search Results Item",
+                "type": "INSTANCE",
+                "main": "Search Results Item",
+                "size": [
+                  640,
+                  107
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    16,
+                    0,
+                    16,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:stack/md",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Search Results Item",
+                "type": "INSTANCE",
+                "main": "Search Results Item",
+                "size": [
+                  640,
+                  127
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    16,
+                    0,
+                    16,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:stack/md",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Search Results Item",
+                "type": "INSTANCE",
+                "main": "Search Results Item",
+                "size": [
+                  640,
+                  107
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    16,
+                    0,
+                    16,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:stack/md",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              1368,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                8,
+                0,
+                8,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:stack/none",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:stack/none",
+              "paddingBottom": "Spatial:inset/xs"
+            },
+            "children": [
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 242,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "children": [
+                  {
+                    "name": "Showing 1–10 of 128",
+                    "type": "TEXT",
+                    "text": "Showing 1–10 of 128",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      129,
+                      10
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  },
+                  {
+                    "name": "Pagination",
+                    "type": "INSTANCE",
+                    "main": "Pagination",
+                    "size": [
+                      216,
+                      24
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "HUG/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/xs"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakdpoint=desktop",
+          "size": [
+            1368,
+            745
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/neutral}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "Breadcrumbs",
+            "CTA",
+            "Counter",
+            "Icon/Building",
+            "Icon/None",
+            "LeadingIcon",
+            "Spinner",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        },
+        {
+          "variant": "breakdpoint=mobile",
+          "size": [
+            377,
+            745
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/neutral}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Color:action/tertiary/icon/default}",
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": [
+            "Breadcrumbs",
+            "Counter",
+            "Icon/Building",
+            "Icon/More",
+            "LeadingIcon",
+            "Tabs",
+            "Tag",
+            "TrailingIcon"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Search Results Item",
+      "id": "7266:12882",
+      "description": "",
+      "props": {},
+      "nodeCount": 6,
+      "tree": {
+        "name": "Search Results Item",
+        "type": "COMPONENT",
+        "size": [
+          640,
+          127
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 16,
+          "pad": [
+            16,
+            0,
+            16,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "strokes": [
+          "{Color:border/surface}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "itemSpacing": "Spatial:stack/md",
+          "paddingLeft": "Spatial:stack/none",
+          "paddingTop": "Spatial:stack/md",
+          "paddingRight": "Spatial:stack/none",
+          "paddingBottom": "Spatial:stack/md",
+          "strokeBottomWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              283,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm"
+            },
+            "children": [
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "Title with label highlighted",
+                "textStyle": "title/xs",
+                "size": [
+                  189,
+                  12
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/xs",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/xs",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Tag",
+                "type": "INSTANCE",
+                "main": "Tag",
+                "variant": {
+                  "status": "info",
+                  "type": "text-only",
+                  "invert": "false"
+                },
+                "size": [
+                  82,
+                  24
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 9999,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Excerpt placeholder text with the label match highlighted inline. Two-line clamp keeps the row compact and scannable.",
+            "type": "TEXT",
+            "text": "Excerpt placeholder text with the label match highlighted inline. Two-line clamp",
+            "textStyle": "body/md/regular",
+            "size": [
+              640,
+              30
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            }
+          },
+          {
+            "name": "Path / Location · Updated 2d ago · Author Name",
+            "type": "TEXT",
+            "text": "Path / Location    ·    Updated 2d ago    ·    Author Name",
+            "textStyle": "body/sm/medium",
+            "size": [
+              299,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/tertiary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/sm",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Search Results",
+    "Description",
+    "The results view for a global / scoped search — query summary, facets / filters and a ranked result list. In-context filtering uses Filter Panel.",
+    "Layout",
+    "Search bar (query) · Facet Groups / filters · result count + sort · result list (typed items) · pagination; empty / no-results states.",
+    "Responsive",
+    "Desktop facets + results two-column; mobile filters in a drawer, results full-width.",
+    "States",
+    "loaded, loading (skeletons), empty (no query), no-results (query), error, loading-more.",
+    "Accessibility",
+    "Result count in an aria-live region; results are a labelled list; facets grouped; sort labelled. Keyboard-complete; visible focus.",
+    "Rules",
+    "Echo the query\nShow result count + sort\nOffer facets / filters\nHandle no-results helpfully",
+    "Hide the query\nDead-end on no-results\nMix result types unlabelled\nRely on colour for relevance"
+  ],
+  "pageContext": null
+}

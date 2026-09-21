@@ -1,0 +1,924 @@
+{
+  "page": "↳ 🟢 List",
+  "pageId": "2163:3677",
+  "componentSets": [
+    {
+      "name": "ListItem",
+      "id": "4520:260",
+      "description": "Single row inside a List container. Currently ships at size=sm (36px) only — md and lg sizes to follow when 2+ consumers need them. States: default, hover, focus, selected, disabled. Use in navigation menus, settings sidebars, dropdown option lists, and selectable entity pickers. Pair with a leading icon (20px), trailing metadata, counter, or chevron — never two trailing elements at once. Provide aria-selected on the selected row. See also: List for the container, Menu for floating variant, Table for column-structured data.",
+      "docLinks": [],
+      "variantCount": 20,
+      "props": {
+        "hasHelper#6191:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasIcon#7739:19": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasAvatar#7739:40": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasTrailing#7739:61": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "icon",
+          "options": [
+            "icon",
+            "avatar"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus",
+            "selected",
+            "disabled"
+          ]
+        },
+        "compact": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "type=icon, state=default, compact=false",
+      "defaultVariantNodeCount": 7,
+      "defaultVariantTree": {
+        "name": "type=icon, state=default, compact=false",
+        "type": "COMPONENT",
+        "size": [
+          387,
+          59
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            16,
+            12,
+            16,
+            16
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FILL/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:inset/sm",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/md",
+          "strokeBottomWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Icon/None",
+            "type": "INSTANCE",
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              20,
+              20
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/md"
+            },
+            "propRefs": {
+              "visible": "hasIcon#7739:19"
+            }
+          },
+          {
+            "name": "Body",
+            "type": "FRAME",
+            "size": [
+              299,
+              27
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "List item label",
+                "textStyle": "label/md",
+                "size": [
+                  89,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Supporting",
+                "type": "TEXT",
+                "text": "Helper Text",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  63,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                },
+                "propRefs": {
+                  "visible": "hasHelper#6191:0"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Icon",
+            "type": "INSTANCE",
+            "main": "Icon/ChevronRight",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            },
+            "propRefs": {
+              "visible": "hasTrailing#7739:61"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=icon, state=default, compact=false",
+          "size": [
+            387,
+            59
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=icon, state=default, compact=true",
+          "size": [
+            387,
+            51
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=icon, state=hover, compact=false",
+          "size": [
+            387,
+            59
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=icon, state=hover, compact=true",
+          "size": [
+            387,
+            51
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=icon, state=focus, compact=false",
+          "size": [
+            387,
+            59
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=icon, state=focus, compact=true",
+          "size": [
+            387,
+            51
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=icon, state=selected, compact=false",
+          "size": [
+            387,
+            59
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=icon, state=selected, compact=true",
+          "size": [
+            387,
+            51
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=icon, state=disabled, compact=false",
+          "size": [
+            387,
+            59
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}",
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=icon, state=disabled, compact=true",
+          "size": [
+            387,
+            51
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}",
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=avatar, state=default, compact=false",
+          "size": [
+            387,
+            64
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=avatar, state=default, compact=true",
+          "size": [
+            387,
+            56
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=avatar, state=hover, compact=false",
+          "size": [
+            387,
+            64
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=avatar, state=hover, compact=true",
+          "size": [
+            387,
+            56
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=avatar, state=focus, compact=false",
+          "size": [
+            387,
+            64
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=avatar, state=focus, compact=true",
+          "size": [
+            387,
+            56
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=avatar, state=selected, compact=false",
+          "size": [
+            387,
+            64
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=avatar, state=selected, compact=true",
+          "size": [
+            387,
+            56
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=avatar, state=disabled, compact=false",
+          "size": [
+            387,
+            64
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "type=avatar, state=disabled, compact=true",
+          "size": [
+            387,
+            56
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "List",
+      "id": "7739:28903",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "Items#7739:15": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "in-card": {
+          "type": "VARIANT",
+          "default": "true",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "in-card=true",
+      "defaultVariantNodeCount": 49,
+      "defaultVariantTree": {
+        "name": "in-card=true",
+        "type": "COMPONENT",
+        "size": [
+          387,
+          299
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/raised",
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Items",
+            "type": "SLOT",
+            "size": [
+              387,
+              299
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "Items#7739:15"
+            },
+            "children": [
+              {
+                "name": "ListItem",
+                "type": "INSTANCE",
+                "main": "ListItem",
+                "variant": {
+                  "type": "icon",
+                  "state": "default",
+                  "compact": "false"
+                },
+                "size": [
+                  387,
+                  59
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    12,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Divider",
+                "type": "INSTANCE",
+                "main": "Divider",
+                "variant": {
+                  "orientation": "horizontal",
+                  "type": "full"
+                },
+                "size": [
+                  387,
+                  1
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "ListItem",
+                "type": "INSTANCE",
+                "main": "ListItem",
+                "variant": {
+                  "type": "icon",
+                  "state": "default",
+                  "compact": "false"
+                },
+                "size": [
+                  387,
+                  59
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    12,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Divider",
+                "type": "INSTANCE",
+                "main": "Divider",
+                "variant": {
+                  "orientation": "horizontal",
+                  "type": "full"
+                },
+                "size": [
+                  387,
+                  1
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "ListItem",
+                "type": "INSTANCE",
+                "main": "ListItem",
+                "variant": {
+                  "type": "icon",
+                  "state": "default",
+                  "compact": "false"
+                },
+                "size": [
+                  387,
+                  59
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    12,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Divider",
+                "type": "INSTANCE",
+                "main": "Divider",
+                "variant": {
+                  "orientation": "horizontal",
+                  "type": "full"
+                },
+                "size": [
+                  387,
+                  1
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "ListItem",
+                "type": "INSTANCE",
+                "main": "ListItem",
+                "variant": {
+                  "type": "icon",
+                  "state": "default",
+                  "compact": "false"
+                },
+                "size": [
+                  387,
+                  59
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    12,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Divider",
+                "type": "INSTANCE",
+                "main": "Divider",
+                "variant": {
+                  "orientation": "horizontal",
+                  "type": "full"
+                },
+                "size": [
+                  387,
+                  1
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "ListItem",
+                "type": "INSTANCE",
+                "main": "ListItem",
+                "variant": {
+                  "type": "icon",
+                  "state": "default",
+                  "compact": "false"
+                },
+                "size": [
+                  387,
+                  59
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    12,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "in-card=true",
+          "size": [
+            387,
+            299
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "in-card=false",
+          "size": [
+            368,
+            259
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "List",
+    "Description",
+    "Container (List) that stacks rows (ListItem) with optional dividers. Use for navigation, settings, dropdown option lists, and entity pickers.",
+    "Dividers",
+    "true     Long scannable lists — settings, device rows, audit logs.\nfalse    Dense menus and dropdown option lists where selection-state backgrounds already separate rows.",
+    "ListItem States",
+    "default    Unselected, resting.\nhover      Pointer over.\nfocus      Keyboard focus — 2px focus ring.\nselected   Current selection. Persistent highlight.\ndisabled   Not interactive. 60% opacity, no hover.",
+    "Sizes",
+    "ListItem currently ships at size=sm (36px) only.\nmd (44px) and lg (52px) planned — waiting on 2+ consumer demand.",
+    "Labels & Content",
+    "Primary label: 1 line, truncates with ellipsis.\nLeading icon: 20px, optional.\nTrailing: counter, timestamp, chevron, or kebab menu — never two at once.",
+    "Rules",
+    "DO   Use dividers=true for lists over ~8 items\nDO   Provide aria-selected on the selected row\nDO   Show focus state for keyboard navigation\nDO   Pair leading icons at 20px",
+    "DON'T   Mix divider styles inside one list\nDON'T   Stack two trailing elements (counter + chevron)\nDON'T   Use List for column-structured data (use Table)\nDON'T   Omit the selected state from interactive lists"
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,1001 @@
+{
+  "page": "↳ 🟢 Insight Card",
+  "pageId": "5646:4",
+  "componentSets": [
+    {
+      "name": "Insight Card",
+      "id": "3151:2",
+      "description": "Displays alerts, faults, or status information with a severity icon, count, and description. Used on dashboards for monitoring.",
+      "docLinks": [],
+      "variantCount": 15,
+      "props": {
+        "severity": {
+          "type": "VARIANT",
+          "default": "success",
+          "options": [
+            "danger",
+            "warning",
+            "info",
+            "success",
+            "ghost"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "selected"
+          ]
+        }
+      },
+      "defaultVariant": "severity=success, state=default",
+      "defaultVariantNodeCount": 8,
+      "defaultVariantTree": {
+        "name": "severity=success, state=default",
+        "type": "COMPONENT",
+        "size": [
+          320,
+          68
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 16,
+          "pad": [
+            8,
+            16,
+            8,
+            8
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/raised",
+        "vars": {
+          "itemSpacing": "Spatial:stack/md",
+          "paddingLeft": "Spatial:inset/xs",
+          "paddingTop": "Spatial:inset/xs",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/xs",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Icon",
+            "type": "FRAME",
+            "size": [
+              52,
+              52
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/feedback/success/subtle}"
+            ],
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "StatusIndicator",
+                "type": "INSTANCE",
+                "main": "StatusIndicator",
+                "variant": {
+                  "type": "success",
+                  "size": "md"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/success/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "radius": 9999,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Content",
+            "type": "FRAME",
+            "size": [
+              192,
+              28
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Count",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "body/md/medium",
+                "size": [
+                  192,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "Description goes here",
+                "textStyle": "body/md/regular",
+                "size": [
+                  192,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Icon/More",
+            "type": "INSTANCE",
+            "main": "Icon/More",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              20,
+              20
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/md"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "severity=success, state=default",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "severity=danger, state=default",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:surface/feedback/danger/strong}",
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "severity=warning, state=default",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:surface/feedback/warning/strong}",
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "severity=info, state=default",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "severity=ghost, state=default",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised"
+        },
+        {
+          "variant": "severity=success, state=hover",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "severity=danger, state=hover",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:surface/feedback/danger/strong}",
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "severity=warning, state=hover",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:surface/feedback/warning/strong}",
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "severity=info, state=hover",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "severity=ghost, state=hover",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised"
+        },
+        {
+          "variant": "severity=success, state=selected",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}",
+            "{Color:surface/background}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "severity=danger, state=selected",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}",
+            "{Color:surface/background}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:surface/feedback/danger/strong}",
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "severity=warning, state=selected",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}",
+            "{Color:surface/background}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:surface/feedback/warning/strong}",
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "severity=info, state=selected",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}",
+            "{Color:surface/background}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "severity=ghost, state=selected",
+          "size": [
+            320,
+            68
+          ],
+          "fills": [
+            "{Color:surface/base}",
+            "{Color:surface/background}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised"
+        }
+      ]
+    },
+    {
+      "name": "Insight Card Small",
+      "id": "9240:30553",
+      "description": "Displays alerts, faults, or status information with a severity icon, count, and description. Used on dashboards for monitoring.",
+      "docLinks": [],
+      "variantCount": 10,
+      "props": {
+        "severity": {
+          "type": "VARIANT",
+          "default": "success",
+          "options": [
+            "danger",
+            "warning",
+            "info",
+            "success",
+            "ghost"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover"
+          ]
+        }
+      },
+      "defaultVariant": "severity=success, state=default",
+      "defaultVariantNodeCount": 6,
+      "defaultVariantTree": {
+        "name": "severity=success, state=default",
+        "type": "COMPONENT",
+        "size": [
+          320,
+          56
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            8,
+            16,
+            8,
+            8
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/raised",
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm",
+          "paddingLeft": "Spatial:inset/xs",
+          "paddingTop": "Spatial:inset/xs",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/xs",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Icon",
+            "type": "FRAME",
+            "size": [
+              40,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/feedback/success/subtle}"
+            ],
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "StatusIndicator",
+                "type": "INSTANCE",
+                "main": "StatusIndicator",
+                "variant": {
+                  "type": "success",
+                  "size": "md"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/success/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "radius": 9999,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Content",
+            "type": "FRAME",
+            "size": [
+              244,
+              28
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Count",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "body/md/medium",
+                "size": [
+                  244,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "Description goes here",
+                "textStyle": "body/md/regular",
+                "size": [
+                  244,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "severity=success, state=default",
+          "size": [
+            320,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "severity=danger, state=default",
+          "size": [
+            320,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:surface/feedback/danger/strong}",
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "severity=warning, state=default",
+          "size": [
+            320,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:surface/feedback/warning/strong}",
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "severity=info, state=default",
+          "size": [
+            320,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "severity=ghost, state=default",
+          "size": [
+            320,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised"
+        },
+        {
+          "variant": "severity=success, state=hover",
+          "size": [
+            320,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "severity=danger, state=hover",
+          "size": [
+            320,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:surface/feedback/danger/strong}",
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "severity=warning, state=hover",
+          "size": [
+            320,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:surface/feedback/warning/strong}",
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "severity=info, state=hover",
+          "size": [
+            320,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "severity=ghost, state=hover",
+          "size": [
+            320,
+            56
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/raised"
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Insight Card",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

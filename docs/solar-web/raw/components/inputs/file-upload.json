@@ -1,0 +1,424 @@
+{
+  "page": "↳ 🟢 File Upload",
+  "pageId": "2202:1225",
+  "componentSets": [
+    {
+      "name": "FileUpload",
+      "id": "4475:5361",
+      "description": "File upload control with drag-and-drop + click-to-select. 5 variants by state: idle, hover, error, disabled, filled. idle shows drop affordance + CTA; hover highlights the drop zone; filled shows the selected file(s) with a remove control; error surfaces size/format rejection; disabled locks the control. Helper text communicates limits (\"Max 10MB, .jpg .png\"). Pair with a real <input type=\"file\"> for accessibility; the drop zone is visual sugar on top.",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "helperText#4475:25": {
+          "type": "TEXT",
+          "default": "Max 10MB, .jpg .png"
+        },
+        "showHelper#4475:26": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "mandatory#5900:74": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "hover",
+            "error",
+            "disabled",
+            "filled",
+            "default",
+            "focus"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 20,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          400,
+          107
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 12,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FILL/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "FRAME",
+            "size": [
+              92,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
+            },
+            "children": [
+              {
+                "name": "Upload a file",
+                "type": "TEXT",
+                "text": "Upload a file",
+                "textStyle": "body/md/medium",
+                "size": [
+                  80,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "*",
+                "type": "TEXT",
+                "text": "*",
+                "textStyle": "label/md",
+                "size": [
+                  8,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "mandatory#5900:74"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Field",
+            "type": "FRAME",
+            "size": [
+              400,
+              64
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                16
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Icon/File",
+                "type": "INSTANCE",
+                "main": "Icon/File",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/md"
+                }
+              },
+              {
+                "name": "FileName",
+                "type": "TEXT",
+                "text": "Select a file…",
+                "textStyle": "body/md/regular",
+                "size": [
+                  248,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Button",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "md",
+                  "prio": "secondary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  80,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "HelperText",
+            "type": "TEXT",
+            "text": "Max 10MB, .jpg .png",
+            "textStyle": "helper/sm",
+            "size": [
+              111,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/tertiary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/helper/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/helper/sm",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "visible": "showHelper#4475:26",
+              "characters": "helperText#4475:25"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            400,
+            107
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "state=hover",
+          "size": [
+            400,
+            107
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "state=error",
+          "size": [
+            400,
+            107
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/danger}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "state=disabled",
+          "size": [
+            400,
+            107
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/disabled}",
+            "{Color:action/secondary/text/disabled}",
+            "{Color:action/primary/text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}",
+            "{Color:action/secondary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "state=filled",
+          "size": [
+            400,
+            111
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/secondary/icon/danger/default}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=focus",
+          "size": [
+            400,
+            107
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "File Upload",
+    "Description",
+    "File upload control combining a visible drop zone, a click-to-select CTA, and a real <input type=\"file\"> for accessibility. 5 states cover the full lifecycle: idle, hover, filled, error, disabled. The drop zone is visual sugar — every interaction must also be reachable via the underlying file input and keyboard.",
+    "States",
+    "idle           resting. Shows drop affordance, CTA, and helper text (limits).\nhover         drop zone highlighted while dragging a file over.\nfilled          one or more files selected — show names, sizes, remove ×.\nerror          rejection (size, format, count) — surface plain-language reason.\ndisabled   locked, not-allowed cursor.",
+    "Content",
+    "Label: what's being uploaded (\"Project files\", \"Profile photo\"). Helper text states limits up front (\"Max 10MB, JPG or PNG\"). CTA: active verb (\"Choose a file\", \"Drop files here or browse\"). Filled state shows file name + size + a remove × per file. Error: specific (\"File too large — 10MB max\"), not generic.",
+    "Accessibility",
+    "Render a real <input type=\"file\"> — the drop zone wraps it. Keyboard: Tab focuses the input; Enter/Space opens the native file picker. aria-describedby points at the helper text. Error announced via aria-live=\"polite\". Multiple files: exposed via <input multiple>. Every uploaded file's remove × gets aria-label (\"Remove {filename}\").",
+    "Rules",
+    "Do\n\n• Always expose a real <input type=\"file\">\n• State size and format limits before the user uploads\n• Announce errors and acceptance via aria-live\n• Show filename + size in the filled state with a remove ×",
+    "Don't\n\n• Don't rely on drag-and-drop alone — keyboard users can't\n• Don't wait until upload to validate size/format — validate on select\n• Don't lose user selections when an error fires — keep valid files\n• Don't use for paste-from-clipboard images — that's a different control"
+  ],
+  "pageContext": null
+}

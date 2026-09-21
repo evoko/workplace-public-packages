@@ -1,0 +1,1231 @@
+{
+  "page": "Motion",
+  "pageId": "1026:12195",
+  "section": "primitives",
+  "slug": "motion",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Duration",
+      "title": "Duration",
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 960,
+      "h": 776,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Duration tokens define the timing values used for transitions and animations across interface components. They ensure consistent motion pacing for state changes, entrances, and exits throughout the system. Duration values should be applied through semantic motion tokens such as fade, slide, and expand transitions rather than directly using raw millisecond values.",
+          "style": "16/400"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "0",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "100",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "300",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "600",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "900",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Duration",
+      "title": "Easing",
+      "subtitle": null,
+      "x": 1040,
+      "y": 0,
+      "w": 960,
+      "h": 632,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Easing tokens define the acceleration curves used for transitions and animations across interface components. They control how motion feels — whether elements accelerate, decelerate, or both — ensuring interactions feel natural and consistent throughout the system. Easing values should be applied through semantic motion tokens rather than directly using raw cubic-bezier values.",
+          "style": "16/400"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "ease-in",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "ease-out",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "ease-both",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Motion / Duration",
+      "title": "Motion / Duration",
+      "subtitle": null,
+      "x": 2080,
+      "y": 0,
+      "w": 1440,
+      "h": 800,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Duration tokens control how long an interface change takes. They ship from the SOLAR Foundations library — a Web-specific semantic layer (e.g., motion/duration/hover, motion/duration/expand) is a planned next workstream and not yet defined.\n\nUntil that layer lands, reference the primitives directly and follow the per-row guidance below.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Use for…",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "0ms",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Reduced-motion fallback. Resolve to this when honoring prefers-reduced-motion.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "100ms",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Micro-interactions: hover state, focus ring, button press, color change.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "300ms",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Default. Dropdown open, tab switch, panel expand, toast in/out.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "600ms",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Larger surface changes: dialog enter, drawer slide, page transition.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "900ms",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Choreographed, multi-step sequences and onboarding moments. Use sparingly.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Motion / Easing",
+      "title": "Motion / Easing",
+      "subtitle": null,
+      "x": 3600,
+      "y": 0,
+      "w": 1440,
+      "h": 656,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Easing tokens control the rate of change across the duration. SOLAR Web defaults to ease-out for most UI transitions: motion accelerates quickly and settles naturally.\n\nA semantic layer for direction-specific easings (e.g., motion/ease/enter ↔ out, motion/ease/exit ↔ in) is a planned next workstream.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "CSS",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Use for…",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "ease-out",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Default. Element entering or settling — dropdown open, hover, button press.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "ease-in",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Element leaving the screen — dismissing toasts, closing drawers.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "ease-both",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Element staying on screen but transforming — size change, layout reflow.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Motion / Reduced motion",
+      "title": "Motion / Reduced motion",
+      "subtitle": null,
+      "x": 5120,
+      "y": 0,
+      "w": 1440,
+      "h": 896,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "All motion must honor prefers-reduced-motion: reduce. When the user requests reduced motion, every duration resolves to motion/duration/instant (0ms) and decorative motion is removed entirely. State changes still happen — they just happen instantly.\n\nThis page documents the contract every component is expected to meet. Verify it during a11y review before any motion-using component graduates to 🟢.",
+          "style": "Body/Body M"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Class of motion",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Behavior under prefers-reduced-motion",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Examples",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Functional state change",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Keep — but collapse to 0ms via motion/duration/instant. The user must still see the state has changed.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Hover ring appears, dropdown opens, tab switches, checkbox checks, focus ring shows.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Decorative motion",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Remove. Don't ship as instant; ship as absent.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Loading spinner pulses, hero parallax, count-up animations, ambient floats.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Position change (slide / pan)",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Replace with opacity-only fade at instant duration. Don't translate.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Toast slide-in, drawer slide, page transition, sheet enter.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Size or layout change",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Snap to final size. No tween.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Accordion expand, expandable card, panel resize.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Implementation",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "@media (prefers-reduced-motion: reduce) { * { transition-duration: 0ms !important; transition-delay: 0ms !important; scroll-behavior: auto !important; } }. Decorative loops: set animation: none on the component (don't ship as instant — ship as absent). Transforms still need explicit transition: none per component.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Universal media-query baseline + per-component opt-outs for transforms and decorative animations.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Verification",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "QA tests every motion-using component twice — once normal, once with prefers-reduced-motion: reduce. Screenshot diff both.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Toast, Drawer, Dropdown, Tooltip, Spinner, all dialogs.",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": null,
+  "swatches": [
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use for…"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "CSS"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Use for…"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Class of motion"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Behavior under prefers-reduced-motion"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Examples"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 76
+}

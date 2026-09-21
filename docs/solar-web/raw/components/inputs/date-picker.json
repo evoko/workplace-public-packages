@@ -1,0 +1,2292 @@
+{
+  "page": "↳ 🟢 Date Picker",
+  "pageId": "2163:3665",
+  "componentSets": [
+    {
+      "name": "Day Cell",
+      "id": "3454:18",
+      "description": "Single day cell used inside the Date Picker calendar grid. 6 variants by state: default, hover, focus, selected, today, disabled. selected is persistent (the chosen date); today is a visual marker on the current day even when not selected. today × selected compose at runtime — today wins for the marker, selected wins for the fill.",
+      "docLinks": [],
+      "variantCount": 13,
+      "props": {
+        "day#3454:0": {
+          "type": "TEXT",
+          "default": "15"
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus",
+            "selected",
+            "today",
+            "disabled",
+            "filled",
+            "error"
+          ]
+        },
+        "range-role": {
+          "type": "VARIANT",
+          "default": "none",
+          "options": [
+            "none",
+            "start",
+            "middle",
+            "end",
+            "preview-middle",
+            "preview-end"
+          ]
+        }
+      },
+      "defaultVariant": "state=default, range-role=none",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "state=default, range-role=none",
+        "type": "COMPONENT",
+        "size": [
+          36,
+          36
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "radius": 8,
+        "vars": {
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Day",
+            "type": "TEXT",
+            "text": "15",
+            "textStyle": "body/md/medium",
+            "size": [
+              15,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            },
+            "propRefs": {
+              "characters": "day#3454:0"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default, range-role=none",
+          "size": [
+            36,
+            36
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover, range-role=none",
+          "size": [
+            36,
+            36
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "state=focus, range-role=none",
+          "size": [
+            36,
+            36
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "state=selected, range-role=none",
+          "size": [
+            36,
+            36
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ]
+        },
+        {
+          "variant": "state=today, range-role=none",
+          "size": [
+            36,
+            36
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:action/primary/bg/default}"
+          ]
+        },
+        {
+          "variant": "state=disabled, range-role=none",
+          "size": [
+            36,
+            36
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        },
+        {
+          "variant": "state=filled, range-role=none",
+          "size": [
+            36,
+            36
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "state=error, range-role=none",
+          "size": [
+            36,
+            36
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "state=default, range-role=start",
+          "size": [
+            36,
+            36
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ]
+        },
+        {
+          "variant": "state=default, range-role=middle",
+          "size": [
+            36,
+            36
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "state=default, range-role=end",
+          "size": [
+            36,
+            36
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:action/primary/border/default}"
+          ],
+          "textFills": [
+            "{Color:action/primary/text/default}"
+          ]
+        },
+        {
+          "variant": "state=default, range-role=preview-middle",
+          "size": [
+            36,
+            36
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "state=default, range-role=preview-end",
+          "size": [
+            36,
+            36
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DatePicker",
+      "id": "7266:25837",
+      "description": "Time-of-day selector. 14 variants: size (sm 36px, md 44px) × state (default, hover, focused, filled, disabled, error, error-focused). NOTE: state `focused` / `error-focused` flagged for rename to match SOLAR's locked `focus`. Text input accepts typed times; paired TimePicker Dropdown presents hour/minute columns for click selection. 12h or 24h based on locale.",
+      "docLinks": [],
+      "variantCount": 14,
+      "props": {
+        "value#4414:0": {
+          "type": "TEXT",
+          "default": "2026-05-11"
+        },
+        "helperText#4414:15": {
+          "type": "TEXT",
+          "default": "Helper text"
+        },
+        "showHelper#4414:30": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "label#4414:45": {
+          "type": "TEXT",
+          "default": "Select Date"
+        },
+        "showLabel#4414:60": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showRequired#4414:75": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus",
+            "filled",
+            "disabled",
+            "error",
+            "error-focused"
+          ]
+        }
+      },
+      "defaultVariant": "size=md, state=default",
+      "defaultVariantNodeCount": 8,
+      "defaultVariantTree": {
+        "name": "size=md, state=default",
+        "type": "COMPONENT",
+        "size": [
+          123,
+          76
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "FRAME",
+            "size": [
+              75,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
+            },
+            "propRefs": {
+              "visible": "showLabel#4414:60"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Select Date",
+                "textStyle": "label/md",
+                "size": [
+                  75,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "label#4414:45"
+                }
+              },
+              {
+                "name": "*",
+                "type": "TEXT",
+                "hidden": true,
+                "text": "*",
+                "textStyle": "label/md",
+                "size": [
+                  8,
+                  10
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "showRequired#4414:75"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Field",
+            "type": "FRAME",
+            "size": [
+              123,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/FIXED"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Icon/Calendar",
+                "type": "INSTANCE",
+                "main": "Icon/Calendar",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              {
+                "name": "Value",
+                "type": "TEXT",
+                "text": "2026-05-11",
+                "textStyle": "body/md/regular",
+                "size": [
+                  75,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                },
+                "propRefs": {
+                  "characters": "value#4414:0"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helper text",
+            "type": "TEXT",
+            "text": "Helper text",
+            "textStyle": "helper/md",
+            "size": [
+              123,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/helper/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/helper/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "visible": "showHelper#4414:30",
+              "characters": "helperText#4414:15"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=md, state=default",
+          "size": [
+            123,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "*"
+          ]
+        },
+        {
+          "variant": "size=sm, state=default",
+          "size": [
+            97,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=hover",
+          "size": [
+            123,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=hover",
+          "size": [
+            97,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=focus",
+          "size": [
+            123,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=focus",
+          "size": [
+            97,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=filled",
+          "size": [
+            123,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=filled",
+          "size": [
+            97,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=disabled",
+          "size": [
+            123,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=disabled",
+          "size": [
+            97,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, state=error",
+          "size": [
+            123,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=error",
+          "size": [
+            97,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=error-focused",
+          "size": [
+            123,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=error-focused",
+          "size": [
+            97,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Date Picker Open",
+      "id": "7280:669",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "month#7280:0": {
+          "type": "TEXT",
+          "default": "April 2026"
+        },
+        "inline": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "true",
+            "false"
+          ]
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "single",
+          "options": [
+            "single",
+            "double"
+          ]
+        }
+      },
+      "defaultVariant": "inline=false, type=single",
+      "defaultVariantNodeCount": 85,
+      "defaultVariantTree": {
+        "name": "inline=false, type=single",
+        "type": "COMPONENT",
+        "size": [
+          300,
+          285
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 12,
+          "pad": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/overlay",
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/sm",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "MonthHeader",
+            "type": "FRAME",
+            "size": [
+              276,
+              32
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "children": [
+              {
+                "name": "Icon/ArrowLeft",
+                "type": "INSTANCE",
+                "main": "Icon/ArrowLeft",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/md"
+                }
+              },
+              {
+                "name": "MonthLabel",
+                "type": "TEXT",
+                "text": "April 2026",
+                "textStyle": "body/md/medium",
+                "size": [
+                  236,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "month#7280:0"
+                }
+              },
+              {
+                "name": "Icon/ArrowRight",
+                "type": "INSTANCE",
+                "main": "Icon/ArrowRight",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/md"
+                }
+              }
+            ]
+          },
+          {
+            "name": "WeekdayRow",
+            "type": "FRAME",
+            "size": [
+              276,
+              9
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
+            },
+            "children": [
+              {
+                "name": "Weekday",
+                "type": "TEXT",
+                "text": "Mo",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  36,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Weekday",
+                "type": "TEXT",
+                "text": "Tu",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  36,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Weekday",
+                "type": "TEXT",
+                "text": "We",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  36,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Weekday",
+                "type": "TEXT",
+                "text": "Th",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  36,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Weekday",
+                "type": "TEXT",
+                "text": "Fr",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  36,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Weekday",
+                "type": "TEXT",
+                "text": "Sa",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  36,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Weekday",
+                "type": "TEXT",
+                "text": "Su",
+                "textStyle": "body/sm/medium",
+                "size": [
+                  36,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          },
+          {
+            "name": "DayGrid",
+            "type": "FRAME",
+            "size": [
+              276,
+              196
+            ],
+            "layout": {
+              "dir": "GRID",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "gridRowGap": "Spatial:inset/2xs",
+              "gridColumnGap": "Spatial:inset/2xs"
+            },
+            "children": [
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "disabled",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "disabled",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "today",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "selected",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "default",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "disabled",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "disabled",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Day Cell",
+                "type": "INSTANCE",
+                "main": "Day Cell",
+                "variant": {
+                  "state": "disabled",
+                  "range-role": "none"
+                },
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "inline=false, type=single",
+          "size": [
+            300,
+            285
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/overlay",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Color:action/primary/bg/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "inline=true, type=single",
+          "size": [
+            300,
+            285
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Color:action/primary/bg/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "inline=true, type=double",
+          "size": [
+            588,
+            285
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Color:action/primary/bg/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Date Picker",
+    "Description",
+    "Calendar-driven date entry. The trigger is a text input that parses typed dates (\"2026-04-21\" or locale format); the calendar panel opens on focus for mouse pick. Type or click — both paths must work. For date ranges, compose two pickers with a connecting range highlight.",
+    "Anatomy",
+    "Date Picker Open\n  ┌ Month header (prev ◀ / Apr 2026 / ▶ next)\n  ┌ Weekday row (Mo Tu We Th Fr Sa Su)\n  └ 6 × 7 Day Cell grid\n\nDay Cell states: default, hover, focus, selected, today, disabled.",
+    "States (Day Cell)",
+    "default        resting day in the month.\nhover           transient highlight.\nfocus             keyboard focus via shadow/focus/default.\nselected       the chosen date, persistent.\ntoday           today's date — marker, not selection.\ndisabled     outside min/max range or otherwise unselectable.",
+    "Accessibility",
+    "Trigger: <input type=\"text\"> (accepts typing) with a companion button opening the calendar — never rely on click-only. Calendar: role=\"dialog\" with aria-label. Grid: role=\"grid\" with rows/cells. Keyboard: ←/→/↑/↓ move day; Page Up/Down month; Shift+Page Up/Down year; Enter selects; Esc closes.",
+    "Rules",
+    "Do\n\n• Accept typed dates as well as calendar picks\n• Announce today's date and the current selection\n• Disable dates outside min/max — don't hide them\n• Flip panel position if it would clip the viewport",
+    "Don't\n\n• Don't force calendar-only — typing is faster for known dates\n• Don't confuse today with selected — today is a marker\n• Don't use relative dates in labels — show the absolute date\n• Don't require a specific format the input can't parse"
+  ],
+  "pageContext": null
+}

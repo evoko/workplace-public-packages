@@ -1,0 +1,770 @@
+{
+  "page": "↳ 🟢 Search",
+  "pageId": "2163:3703",
+  "componentSets": [
+    {
+      "name": "SearchField",
+      "id": "3773:278",
+      "description": "Local search field for filtering an in-page list or table. 4 variants: state (default, hover, focus, error). Trailing clear affordance (×) when filled. Live-filter on input (debounced); result count announced via aria-live. For global product-wide search use GlobalSearch.",
+      "docLinks": [],
+      "variantCount": 12,
+      "props": {
+        "hasFilter#8830:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "error",
+            "default",
+            "hover",
+            "focus",
+            "filled",
+            "disabled"
+          ]
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        }
+      },
+      "defaultVariant": "state=default, size=md",
+      "defaultVariantNodeCount": 5,
+      "defaultVariantTree": {
+        "name": "state=default, size=md",
+        "type": "COMPONENT",
+        "size": [
+          240,
+          40
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            0,
+            12,
+            0,
+            12
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 6,
+        "effectStyle": "shadow/control",
+        "vars": {
+          "itemSpacing": "Spatial:inset/sm",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/none",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Icon/Search",
+            "type": "INSTANCE",
+            "main": "Icon/Search",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            }
+          },
+          {
+            "name": "Search",
+            "type": "TEXT",
+            "text": "Search",
+            "textStyle": "body/md/regular",
+            "size": [
+              160,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            }
+          },
+          {
+            "name": "Icon/Filter",
+            "type": "INSTANCE",
+            "main": "Icon/Filter",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            },
+            "propRefs": {
+              "visible": "hasFilter#8830:0"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default, size=md",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=default, size=sm",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "state=hover, size=md",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "state=hover, size=sm",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=filled, size=md",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=filled, size=sm",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=focus, size=md",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=focus, size=sm",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "state=error, size=md",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/danger/strong}"
+          ],
+          "effect": "shadow/danger",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=error, size=sm",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/danger/strong}"
+          ],
+          "effect": "shadow/danger",
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Primitives:color/neutral/900}"
+          ]
+        },
+        {
+          "variant": "state=disabled, size=md",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/control",
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "state=disabled, size=sm",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GlobalSearch",
+      "id": "3781:1596",
+      "description": "Global product-wide search entry, usually in the app header. 4 variants: state (default, hover, focus, error). Opens a command-palette / global-search overlay when activated; the field itself is a trigger. Keyboard shortcut: ⌘K or / (product decides; document in-place via Kbd). For scoped local filter use SearchField.",
+      "docLinks": [],
+      "variantCount": 10,
+      "props": {
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "error",
+            "default",
+            "hover",
+            "focus",
+            "filled"
+          ]
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        }
+      },
+      "defaultVariant": "state=default, size=md",
+      "defaultVariantNodeCount": 5,
+      "defaultVariantTree": {
+        "name": "state=default, size=md",
+        "type": "COMPONENT",
+        "size": [
+          240,
+          40
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            0,
+            12,
+            0,
+            12
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/background}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 6,
+        "vars": {
+          "itemSpacing": "Spatial:inset/sm",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/none",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Icon/Search",
+            "type": "INSTANCE",
+            "main": "Icon/Search",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            }
+          },
+          {
+            "name": "Search Workplace",
+            "type": "TEXT",
+            "text": "Search Workplace",
+            "textStyle": "body/md/regular",
+            "size": [
+              148,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/tertiary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            }
+          },
+          {
+            "name": "Kbd",
+            "type": "INSTANCE",
+            "main": "Kbd",
+            "variant": {
+              "type": "default"
+            },
+            "size": [
+              28,
+              17
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                4,
+                4,
+                4,
+                4
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "fills": [
+              "{Color:surface/feedback/neutral/strong}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "paddingLeft": "Spatial:inset/2xs",
+              "paddingTop": "Spatial:inset/2xs",
+              "paddingRight": "Spatial:inset/2xs",
+              "paddingBottom": "Spatial:inset/2xs",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default, size=md",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/tertiary}",
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=default, size=sm",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/tertiary}",
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}"
+          ]
+        },
+        {
+          "variant": "state=hover, size=md",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "state=hover, size=sm",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "state=filled, size=md",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=filled, size=sm",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=focus, size=md",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=focus, size=sm",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=error, size=md",
+          "size": [
+            240,
+            40
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/danger/strong}"
+          ],
+          "effect": "shadow/danger",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=error, size=sm",
+          "size": [
+            200,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/danger/strong}"
+          ],
+          "effect": "shadow/danger",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Search",
+    "Description",
+    "Two search primitives. SearchField is a local filter for an in-page list or table — live-filters on input. GlobalSearch is the header-level entry for product-wide search; activating it opens a command-palette overlay. Use the pair so the scope is obvious from placement.",
+    "When to use which",
+    "SearchField        Use above a list, table, or scoped result set. Filters that list only. Debounce ~150-250ms.\n\nGlobalSearch     Use in the app header for product-wide search. Opens a command palette / search overlay; the field is the trigger, not where results render.",
+    "States",
+    "Both: default, hover, focus, error.\n\nError applies when the search input itself is invalid (unterminated quote, invalid operator) — not when there are zero results. Zero results is an empty state on the result list, not an error on the field.",
+    "Accessibility",
+    "Render as <input type=\"search\"> with a real <label> or aria-label. Result count announced via aria-live=\"polite\". Trailing clear × has aria-label=\"Clear search\". GlobalSearch: the shortcut hint is visible (Kbd) and exposed via aria-keyshortcuts. Esc clears the field or closes the palette.",
+    "Rules",
+    "Do\n\n• Debounce live filtering (~150-250ms)\n• Show clear × when filled\n• Announce result count via aria-live\n• Show the keyboard shortcut for GlobalSearch",
+    "Don't\n\n• Don't require Enter to search — live filter is better\n• Don't show error for zero results — that's an empty state\n• Don't nest SearchField inside a scope it can't actually filter\n• Don't duplicate SearchField + GlobalSearch adjacently"
+  ],
+  "pageContext": null
+}

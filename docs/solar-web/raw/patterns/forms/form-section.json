@@ -1,0 +1,335 @@
+{
+  "page": "↳ 🟢 Form Section",
+  "pageId": "2202:1257",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "FormSection",
+      "id": "5612:6418",
+      "description": "",
+      "props": {
+        "SectionFields#5612:11": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "hasSectionHeader#6239:63": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasCTA#7229:0": {
+          "type": "BOOLEAN",
+          "default": false
+        }
+      },
+      "nodeCount": 86,
+      "tree": {
+        "name": "FormSection",
+        "type": "COMPONENT",
+        "size": [
+          640,
+          377
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 20,
+          "pad": [
+            20,
+            0,
+            20,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "strokes": [
+          "{Color:border/surface}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "itemSpacing": "Spatial:stack/lg",
+          "paddingLeft": "Spatial:stack/none",
+          "paddingTop": "Spatial:stack/lg",
+          "paddingRight": "Spatial:stack/none",
+          "paddingBottom": "Spatial:stack/lg",
+          "strokeBottomWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Contaner",
+            "type": "FRAME",
+            "size": [
+              640,
+              41
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 24,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "SectionHeader",
+                "type": "FRAME",
+                "size": [
+                  640,
+                  41
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingTop": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/none"
+                },
+                "propRefs": {
+                  "visible": "hasSectionHeader#6239:63"
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Section title",
+                    "textStyle": "title/sm",
+                    "size": [
+                      640,
+                      15
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Description",
+                    "type": "TEXT",
+                    "text": "Short description goes here.",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      640,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Button",
+                "type": "INSTANCE",
+                "hidden": true,
+                "main": "Button",
+                "variant": {
+                  "size": "md",
+                  "prio": "secondary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  80,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                },
+                "propRefs": {
+                  "visible": "hasCTA#7229:0"
+                }
+              }
+            ]
+          },
+          {
+            "name": "SectionFields",
+            "type": "SLOT",
+            "size": [
+              640,
+              276
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 24,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "SectionFields#5612:11"
+            },
+            "children": [
+              {
+                "name": "FormRow",
+                "type": "INSTANCE",
+                "main": "FormRow",
+                "variant": {
+                  "columns": "2"
+                },
+                "size": [
+                  640,
+                  76
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md"
+                }
+              },
+              {
+                "name": "FormRow",
+                "type": "INSTANCE",
+                "main": "FormRow",
+                "variant": {
+                  "columns": "2"
+                },
+                "size": [
+                  640,
+                  76
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md"
+                }
+              },
+              {
+                "name": "FormRow",
+                "type": "INSTANCE",
+                "main": "FormRow",
+                "variant": {
+                  "columns": "2"
+                },
+                "size": [
+                  640,
+                  76
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Form Section",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

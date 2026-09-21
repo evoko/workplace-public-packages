@@ -1,0 +1,553 @@
+{
+  "page": "↳ 🟢 Split Dialog",
+  "pageId": "6774:9192",
+  "componentSets": [
+    {
+      "name": "Split Dialog",
+      "id": "6774:9620",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "left#6774:3": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "right#6774:4": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "cta": {
+          "type": "VARIANT",
+          "default": "full-width",
+          "options": [
+            "regular",
+            "full-width"
+          ]
+        }
+      },
+      "defaultVariant": "cta=full-width",
+      "defaultVariantNodeCount": 51,
+      "defaultVariantTree": {
+        "name": "cta=full-width",
+        "type": "COMPONENT",
+        "size": [
+          640,
+          480
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/dialog}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "Header",
+            "type": "FRAME",
+            "size": [
+              640,
+              56
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                8,
+                8,
+                8,
+                8
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/xs",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "Text",
+                "type": "FRAME",
+                "size": [
+                  624,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "SPACE_BETWEEN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Icon",
+                    "type": "FRAME",
+                    "size": [
+                      36,
+                      36
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/xs"
+                    },
+                    "children": [
+                      {
+                        "name": "Icon/Empty",
+                        "type": "INSTANCE",
+                        "main": "Icon/Empty",
+                        "variant": {
+                          "solid": "false"
+                        },
+                        "size": [
+                          12,
+                          12
+                        ],
+                        "sizing": "FIXED/FIXED",
+                        "vars": {
+                          "height": "Spatial:icon/xs"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Dialog Title",
+                    "textStyle": "title/sm",
+                    "size": [
+                      548,
+                      15
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Icon Button",
+                    "type": "INSTANCE",
+                    "main": "Icon Button",
+                    "variant": {
+                      "size": "md",
+                      "shape": "round",
+                      "prio": "tertiary",
+                      "state": "default"
+                    },
+                    "size": [
+                      40,
+                      40
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/tertiary/bg/default}"
+                    ],
+                    "radius": 9999,
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/pill",
+                      "topRightRadius": "Spatial:radius/pill",
+                      "bottomLeftRadius": "Spatial:radius/pill",
+                      "bottomRightRadius": "Spatial:radius/pill"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Body",
+            "type": "FRAME",
+            "size": [
+              640,
+              376
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FILL"
+            },
+            "fills": [
+              "#ffffff"
+            ],
+            "children": [
+              {
+                "name": "left",
+                "type": "SLOT",
+                "size": [
+                  320,
+                  376
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    20,
+                    20,
+                    20,
+                    20
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/FILL"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:inset/lg",
+                  "paddingTop": "Spatial:inset/lg",
+                  "paddingRight": "Spatial:inset/lg",
+                  "paddingBottom": "Spatial:inset/lg"
+                },
+                "propRefs": {
+                  "slotContentId": "left#6774:3"
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Section title",
+                    "textStyle": "title/xs",
+                    "size": [
+                      280,
+                      12
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/xs",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/xs",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Description",
+                    "type": "TEXT",
+                    "text": "Short description goes here.",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      280,
+                      10
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  },
+                  {
+                    "name": "Text Input",
+                    "type": "INSTANCE",
+                    "main": "Text Input",
+                    "variant": {
+                      "size": "md",
+                      "state": "default"
+                    },
+                    "size": [
+                      280,
+                      58
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/xs"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "right",
+                "type": "SLOT",
+                "size": [
+                  320,
+                  376
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    20,
+                    20,
+                    20,
+                    20
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/FILL"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:inset/lg",
+                  "paddingTop": "Spatial:inset/lg",
+                  "paddingRight": "Spatial:inset/lg",
+                  "paddingBottom": "Spatial:inset/lg",
+                  "strokeLeftWeight": "Spatial:border/default"
+                },
+                "propRefs": {
+                  "slotContentId": "right#6774:4"
+                },
+                "children": [
+                  {
+                    "name": "Supporting panel",
+                    "type": "TEXT",
+                    "text": "Supporting panel ",
+                    "textStyle": "title/xs",
+                    "size": [
+                      280,
+                      12
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/xs",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/xs",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Supporting panel — picker results, summary, contextual help, or example.",
+                    "type": "TEXT",
+                    "text": "Supporting panel — picker results, summary, contextual help, or example.",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      280,
+                      30
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Button Group",
+            "type": "INSTANCE",
+            "main": "Button Group",
+            "variant": {
+              "orientation": "horizontal",
+              "type": "full-width"
+            },
+            "size": [
+              640,
+              48
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "cta=full-width",
+          "size": [
+            640,
+            480
+          ],
+          "fills": [
+            "{Color:surface/dialog}"
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/tertiary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}",
+            "{Color:icon/tertiary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Helper text",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "cta=regular",
+          "size": [
+            640,
+            480
+          ],
+          "fills": [
+            "{Color:surface/dialog}"
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/tertiary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Button",
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Split Dialog",
+    "Description",
+    "A modal dialog with two panes — typically a nav/list rail beside a detail area. For focused multi-section tasks; use Dialog for single-pane.",
+    "Anatomy",
+    "Scrim · dialog surface (shadow.dialog) · left pane (nav/list) · right pane (content) · header · footer actions (Button Group).",
+    "Sizes & Layout",
+    "size=md / lg. Left pane fixed width, right pane fills. Collapses to a single stacked pane on narrow viewports.",
+    "States",
+    "open, closing. Content panes: loaded, loading, empty. Confirm/cancel use a Button Group — never two loose Buttons.",
+    "Accessibility",
+    "role=dialog, aria-modal=true, labelled by the header. Trap focus; Esc closes; return focus to the trigger. Scrim click closes only when non-destructive.",
+    "Rules",
+    "Use a Button Group for actions\nTrap + restore focus\nCollapse to one pane on mobile\nLabel the dialog",
+    "Nest confusing scroll regions\nUse for a single-pane task\nPut destructive actions without confirm\nBlock the Esc key"
+  ],
+  "pageContext": null
+}

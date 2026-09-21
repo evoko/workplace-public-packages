@@ -1,0 +1,317 @@
+{
+  "page": "↳ 🟢 Status Indicator",
+  "pageId": "2163:3682",
+  "componentSets": [
+    {
+      "name": "StatusIndicator",
+      "id": "3738:305",
+      "description": "Feedback icon (20px) used as a leading element in Alert, Toast, Banner, and form validation messages. Each status maps to a distinct shape: success (checkmark circle), warning (triangle), danger (X circle), info (i circle), neutral (dash circle). See also: Badge / Status for small inline dots in tables and lists.",
+      "docLinks": [],
+      "variantCount": 21,
+      "props": {
+        "type": {
+          "type": "VARIANT",
+          "default": "success",
+          "options": [
+            "success",
+            "info",
+            "warning",
+            "danger",
+            "neutral",
+            "help",
+            "private"
+          ]
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm",
+            "xs"
+          ]
+        }
+      },
+      "defaultVariant": "type=success, size=md",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "type=success, size=md",
+        "type": "COMPONENT",
+        "size": [
+          20,
+          20
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/feedback/success/strong}"
+        ],
+        "strokes": [
+          "{Color:border/medium}"
+        ],
+        "strokeWeight": 1,
+        "radius": 9999,
+        "vars": {
+          "itemSpacing": "Spatial:stack/none",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
+        },
+        "children": [
+          {
+            "name": "inner-path",
+            "type": "VECTOR",
+            "size": [
+              10,
+              7
+            ],
+            "sizing": "FIXED/FIXED",
+            "fills": [
+              "{Color:icon/inverse}"
+            ],
+            "effectStyle": "shadow/raised"
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=success, size=md",
+          "size": [
+            20,
+            20
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=success, size=sm",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=warning, size=md",
+          "size": [
+            20,
+            20
+          ]
+        },
+        {
+          "variant": "type=warning, size=sm",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "type=danger, size=md",
+          "size": [
+            20,
+            20
+          ]
+        },
+        {
+          "variant": "type=danger, size=sm",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "type=info, size=md",
+          "size": [
+            20,
+            20
+          ]
+        },
+        {
+          "variant": "type=info, size=sm",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "type=neutral, size=md",
+          "size": [
+            20,
+            20
+          ]
+        },
+        {
+          "variant": "type=help, size=md",
+          "size": [
+            20,
+            20
+          ]
+        },
+        {
+          "variant": "type=private, size=md",
+          "size": [
+            20,
+            20
+          ]
+        },
+        {
+          "variant": "type=neutral, size=sm",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "type=help, size=sm",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "type=private, size=sm",
+          "size": [
+            16,
+            16
+          ]
+        },
+        {
+          "variant": "type=success, size=xs",
+          "size": [
+            8,
+            8
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=warning, size=xs",
+          "size": [
+            8,
+            8
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=danger, size=xs",
+          "size": [
+            8,
+            8
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=info, size=xs",
+          "size": [
+            8,
+            8
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=neutral, size=xs",
+          "size": [
+            8,
+            8
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "type=help, size=xs",
+          "size": [
+            8,
+            8
+          ],
+          "fills": [
+            "{Primitives:color/neutral/50}"
+          ],
+          "strokes": [
+            "{Primitives:color/neutral/100}"
+          ]
+        },
+        {
+          "variant": "type=private, size=xs",
+          "size": [
+            8,
+            8
+          ],
+          "fills": [
+            "{Color:surface/muted}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Status Indicator",
+    "Description",
+    "Feedback icon (20px) used as leading element in Alert, Toast, Banner, and form validation messages. Shape conveys status independent of color.",
+    "Types",
+    "success    Task complete, validation passed. Checkmark in circle.\ndanger     Error, destructive, or blocked. X in circle.\nwarning    Caution — reversible issue. Triangle with exclamation.\ninfo       Informational or neutral callout. i in circle.\nneutral    Idle or unconfigured. Dash in circle.",
+    "Sizes",
+    "md (20px)    Single size. Pairs with body text and standard feedback components.",
+    "Labels & Icons",
+    "Shape carries meaning — never communicate status with color alone.\nPair with a visible label for screen reader users.\nUse feedback tokens: color.icon.feedback.{type}.",
+    "Rules",
+    "DO   Use as leading element in Alert, Toast, Banner\nDO   Pair shape with a text label\nDO   Use feedback color tokens (color.icon.feedback.{type})\nDO   Keep at 20px for feedback contexts",
+    "DON'T   Replace Badge / Status in dense tables\nDON'T   Convey status with color alone\nDON'T   Scale below 20px — breaks the shape\nDON'T   Substitute emoji or custom icons"
+  ],
+  "pageContext": null
+}

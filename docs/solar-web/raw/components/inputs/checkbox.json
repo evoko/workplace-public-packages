@@ -1,0 +1,251 @@
+{
+  "page": "↳ 🟢 Checkbox",
+  "pageId": "2163:3699",
+  "componentSets": [
+    {
+      "name": "Checkbox",
+      "id": "2202:1291",
+      "description": "Multi-select box. 12 variants: checked × disabled × hover × mixed × focus. mixed renders an indeterminate dash — use it on a parent box when some, but not all, of its children are checked. Commit on click. focus combines the shared shadow/focus/default effect style with a border/feedback/focus/strong stroke, so the ring stays legible at 16px. There is no pressed state. Pair with an adjacent label — clicking the label toggles — or use Option Row, which composes this with a label and optional supporting text. For a single persistent on/off setting use Toggle.",
+      "docLinks": [],
+      "variantCount": 12,
+      "props": {
+        "checked": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "disabled": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "hover": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "mixed": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "focus": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "checked=false, disabled=false, hover=false, mixed=false, focus=false",
+      "defaultVariantNodeCount": 0,
+      "defaultVariantTree": {
+        "name": "checked=false, disabled=false, hover=false, mixed=false, focus=false",
+        "type": "COMPONENT",
+        "size": [
+          16,
+          16
+        ],
+        "strokes": [
+          "{Color:border/medium}"
+        ],
+        "strokeWeight": 1,
+        "radius": 6,
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": []
+      },
+      "variants": [
+        {
+          "variant": "checked=false, disabled=false, hover=false, mixed=false, focus=false",
+          "size": [
+            16,
+            16
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "checked=false, disabled=false, hover=true, mixed=false, focus=false",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "checked=false, disabled=true, hover=false, mixed=false, focus=false",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/disabled}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ]
+        },
+        {
+          "variant": "checked=true, disabled=false, hover=false, mixed=false, focus=false",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "checked=true, disabled=false, hover=true, mixed=false, focus=false",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "checked=true, disabled=true, hover=false, mixed=false, focus=false",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ]
+        },
+        {
+          "variant": "checked=true, disabled=false, hover=false, mixed=true, focus=false",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ]
+        },
+        {
+          "variant": "checked=true, disabled=false, hover=true, mixed=true, focus=false",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ]
+        },
+        {
+          "variant": "checked=true, disabled=true, hover=true, mixed=true, focus=false",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ]
+        },
+        {
+          "variant": "checked=false, disabled=false, hover=false, mixed=false, focus=true",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default"
+        },
+        {
+          "variant": "checked=true, disabled=false, hover=false, mixed=false, focus=true",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default"
+        },
+        {
+          "variant": "checked=true, disabled=false, hover=false, mixed=true, focus=true",
+          "size": [
+            16,
+            16
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default"
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Checkbox",
+    "Description",
+    "Multi-select box for independent choices. Use when the user can pick zero, one, or many from a set (terms, filter facets, select-all-rows). For a single on/off setting, use Toggle. For exclusive one-of-many, use Radio. Commit on click.",
+    "States",
+    "checked=false / checked=true — the two base states.\nmixed=true — indeterminate dash, used on a parent when some children are checked.\nhover=true — transient background on the hit area.\nfocus=true — the shared shadow/focus/default effect style plus a border/feedback/focus/strong stroke, so the ring reads at 16px.\ndisabled=true — locked value, not-allowed cursor.\nThere is no pressed state. 12 variants in total.",
+    "Content",
+    "Pair with a visible label to the right (\"I agree to the terms\"). The full label is the click target — users should not have to hit the 16px box. Max label width stays within a comfortable reading measure (<75ch). Group related checkboxes with a fieldset + legend pattern.",
+    "Accessibility",
+    "Render as <input type=\"checkbox\">. Label via <label for=\"\"> — clicking the label toggles. aria-checked reflects true/false/mixed. Keyboard: Space toggles; Tab moves focus. Focus ring wraps the full label + box so it's visible even when the box is tiny.",
+    "Rules",
+    "Do\n\n• Make the full label clickable — not just the box\n• Use mixed on parents when some children are checked\n• Group related checkboxes in a fieldset\n• Commit on click, no confirm step",
+    "Don't\n\n• Don't use for single on/off — that's Toggle\n• Don't use for exclusive choice — that's Radio\n• Don't make the 16px box the only click target\n• Don't rely on color alone for checked state — show the tick"
+  ],
+  "pageContext": null
+}

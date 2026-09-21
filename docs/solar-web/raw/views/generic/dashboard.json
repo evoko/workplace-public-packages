@@ -1,0 +1,653 @@
+{
+  "page": "↳ 🟢 Dashboard",
+  "pageId": "3768:4",
+  "componentSets": [
+    {
+      "name": "Dashboard",
+      "id": "7229:9275",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "Property 1": {
+          "type": "VARIANT",
+          "default": "Desktop",
+          "options": [
+            "Desktop",
+            "Mobile"
+          ]
+        }
+      },
+      "defaultVariant": "Property 1=Desktop",
+      "defaultVariantNodeCount": 778,
+      "defaultVariantTree": {
+        "name": "Property 1=Desktop",
+        "type": "COMPONENT",
+        "size": [
+          1368,
+          1607
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "vars": {
+          "itemSpacing": "Spatial:stack/none",
+          "paddingLeft": "Spatial:stack/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:stack/none",
+          "paddingBottom": "Spatial:inset/none",
+          "topLeftRadius": "Spatial:radius/none",
+          "topRightRadius": "Spatial:radius/none",
+          "bottomLeftRadius": "Spatial:radius/none",
+          "bottomRightRadius": "Spatial:radius/none"
+        },
+        "children": [
+          {
+            "name": "Page Header",
+            "type": "FRAME",
+            "size": [
+              1368,
+              80
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                20,
+                0,
+                20
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/surface}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:stack/none",
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  80
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "SPACE_BETWEEN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "children": [
+                  {
+                    "name": "TextStack",
+                    "type": "FRAME",
+                    "size": [
+                      1280,
+                      80
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 16,
+                      "pad": [
+                        20,
+                        0,
+                        20,
+                        0
+                      ],
+                      "align": "CENTER/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/md",
+                      "paddingTop": "Spatial:stack/lg",
+                      "paddingBottom": "Spatial:stack/lg"
+                    }
+                  },
+                  {
+                    "name": "Image",
+                    "type": "RECTANGLE",
+                    "hidden": true,
+                    "size": [
+                      139,
+                      78
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "fills": [
+                      "IMAGE"
+                    ],
+                    "strokes": [
+                      "{Color:border/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Tabs",
+                "type": "INSTANCE",
+                "hidden": true,
+                "main": "Tabs",
+                "variant": {
+                  "size": "md"
+                },
+                "size": [
+                  1280,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              1280,
+              1527
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 28,
+              "pad": [
+                24,
+                0,
+                24,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xl",
+              "paddingLeft": "Spatial:stack/none",
+              "paddingTop": "Spatial:inset/xl",
+              "paddingRight": "Spatial:stack/none",
+              "paddingBottom": "Spatial:inset/xl"
+            },
+            "children": [
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  158
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Status",
+                    "textStyle": "title/sm",
+                    "size": [
+                      59,
+                      15
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Container",
+                    "type": "FRAME",
+                    "size": [
+                      1280,
+                      127
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 16,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/md",
+                      "paddingLeft": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/none"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  445
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Needs Attention",
+                    "textStyle": "title/sm",
+                    "size": [
+                      147,
+                      15
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Container",
+                    "type": "FRAME",
+                    "size": [
+                      1280,
+                      414
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 16,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/md",
+                      "paddingLeft": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/none"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  404
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Predict & Contextualize",
+                    "textStyle": "title/sm",
+                    "size": [
+                      211,
+                      15
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Container",
+                    "type": "FRAME",
+                    "size": [
+                      1280,
+                      373
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 16,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/md",
+                      "paddingLeft": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/none"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  1280,
+                  388
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Live Pulse",
+                    "textStyle": "title/sm",
+                    "size": [
+                      91,
+                      15
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Container",
+                    "type": "FRAME",
+                    "size": [
+                      1280,
+                      357
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 16,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/md",
+                      "paddingLeft": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/none"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "census": {
+        "Breadcrumbs": 1,
+        "Breadcrumb Item": 3,
+        "Icon/ChevronRight": 6,
+        "Icon/Building": 1,
+        "Dropdown": 4,
+        "Icon/None": 63,
+        "Icon/ChevronDown": 11,
+        "Button": 12,
+        "Spinner": 12,
+        "Counter": 20,
+        "Tabs": 1,
+        "Tab Item": 8,
+        "Stat Card": 4,
+        "Icon/More": 9,
+        "Trend Badge": 17,
+        "Widget Card": 6,
+        "Segmented Control": 1,
+        "Segmented Control Item": 6,
+        "Table": 1,
+        "Row": 8,
+        "RowSelect": 8,
+        "Checkbox": 8,
+        "RowExpand": 8,
+        "Column Item": 33,
+        "Insight Row": 4,
+        "Bar Chart": 1,
+        "Bar": 21,
+        "Card": 3,
+        "Tag": 3
+      },
+      "variants": [
+        {
+          "variant": "Property 1=Desktop",
+          "size": [
+            1368,
+            1607
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/success}",
+            "{Color:text/feedback/danger}",
+            "{Color:text/feedback/info}",
+            "{Color:action/tertiary/text/default}",
+            "{Color:text/feedback/warning}",
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}",
+            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/inverse}"
+          ],
+          "hidden": [
+            "*",
+            "Breadcrumbs",
+            "Counter",
+            "Description",
+            "Helper",
+            "Helper text",
+            "Icon/Building",
+            "Icon/More",
+            "Icon/None",
+            "Image",
+            "Label",
+            "LeadingIcon",
+            "Row Content",
+            "RowExpand",
+            "RowSelect",
+            "Separator",
+            "Spinner",
+            "Tabs",
+            "Tag",
+            "TrailingIcon",
+            "Trend Badge"
+          ]
+        },
+        {
+          "variant": "Property 1=Mobile",
+          "size": [
+            377,
+            2698
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}",
+            "{Color:text/tertiary}",
+            "{Color:text/feedback/danger}",
+            "{Color:text/feedback/info}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/tertiary/text/default}",
+            "{Color:text/feedback/warning}",
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}",
+            "{Color:icon/secondary}",
+            "{Color:icon/inverse}",
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "*",
+            "Counter",
+            "Helper",
+            "Helper text",
+            "Icon/More",
+            "Icon/None",
+            "Label",
+            "Row Content",
+            "RowExpand",
+            "RowSelect",
+            "Separator",
+            "Spinner",
+            "Tag",
+            "Trend Badge"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Dashboard",
+    "Description",
+    "A composed overview page of widgets (stat cards, charts, tables) summarising a domain at a glance. A layout pattern; the pieces are Widget/Stat Card, charts, etc.",
+    "Anatomy",
+    "Page header + Time Range Selector · responsive widget grid · Widget / Stat Cards · charts · optional filters.",
+    "Layout",
+    "Responsive grid (e.g. 12-col) reflowing to fewer columns on smaller screens. Widgets share spacing / elevation tokens. Key metrics sit top-left.",
+    "States",
+    "loaded, loading (widget skeletons), empty (no data / not configured), error, partial (some widgets failed).",
+    "Accessibility",
+    "main landmark; each widget is a labelled region with a heading. Charts pair colour with labels + a table fallback. Logical heading order; keyboard-reachable controls.",
+    "Rules",
+    "Lead with the most important metric\nUse a responsive grid\nGive each widget a heading\nHandle per-widget loading / error",
+    "Cram in too many widgets\nRely on colour alone in charts\nLet one failed widget break the page\nFix a desktop-only layout"
+  ],
+  "pageContext": null
+}

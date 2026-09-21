@@ -1,0 +1,1072 @@
+{
+  "page": "Theming",
+  "pageId": "1114:9360",
+  "section": "documentation",
+  "slug": "theming",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Theming"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Designing for Themes",
+      "subtitle": null,
+      "x": 2020,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Both designers and engineers must follow theming rules to ensure SOLAR interfaces work correctly in all display modes. The core principle is the same: consume semantic tokens only. Never reference primitives or hard-coded values."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Rules for Designers"
+        },
+        {
+          "t": "p",
+          "text": "Always design using semantic tokens — never primitive colors or hex values.\nValidate designs in both Light and Dark modes before handoff.\nDo not use surface or background assumptions (e.g., \"this is white\") — use the semantic role (color.surface.base).\nCheck contrast in both modes: a combination passing AA in light mode may fail in dark mode if tokens are incorrectly applied.\nUse Figma's variable modes to preview both themes during design.\nNever override a semantic token with a primitive — this breaks theming.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Rules for Engineers"
+        },
+        {
+          "t": "p",
+          "text": "Consume semantic tokens only — never reference primitive values or hard-coded colors.\nTheme switching must be handled at the system or app shell level, not per component.\nRespect prefers-color-scheme media query for automatic system-level mode detection.\nProvide a manual toggle for users to override system preference.\nTest all components in both modes as part of acceptance criteria.\nUse CSS custom properties with the --solar- prefix for all token references.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "image 1"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "What Changes Between Modes",
+      "subtitle": null,
+      "x": 4040,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Understanding what changes and what stays constant between Light and Dark modes is critical. Token names, spacing, typography, and component structure remain identical — only color mappings shift."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "What Changes"
+        },
+        {
+          "t": "p",
+          "text": "Surface and background colors invert\nText and icon colors invert\nBorder colors shift to maintain separation\nAction colors invert (neutral/900 → neutral/50)\nShadow intensity may increase in dark mode",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "What Does NOT Change"
+        },
+        {
+          "t": "p",
+          "text": "Token names remain identical\nTypography (size, weight, line height) stays the same\nSpacing and layout tokens stay the same\nComponent structure and behavior stay the same\nMotion durations and easing stay the same",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Feedback Tokens"
+        },
+        {
+          "t": "p",
+          "text": "Feedback colors (success, warning, danger, info) use shifted steps between modes. For example, success uses green/500 in both modes for text, but green/50 in light and green/800 in dark for surfaces. The semantic meaning is always preserved.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Feedback Surface",
+              "Light Primitive",
+              "Dark Primitive",
+              "Light Hex",
+              "Dark Hex",
+              "Shift"
+            ],
+            [
+              "surface.feedback.success",
+              "green/50",
+              "green/800",
+              "#ECFFE9",
+              "#002400",
+              "50 → 800"
+            ],
+            [
+              "surface.feedback.warning",
+              "yellow/50",
+              "yellow/900",
+              "#FFFBD5",
+              "#271E00",
+              "50 → 900"
+            ],
+            [
+              "surface.feedback.danger",
+              "red/50",
+              "red/900",
+              "#FFE4DF",
+              "#280000",
+              "50 → 900"
+            ],
+            [
+              "surface.feedback.info",
+              "blue/50",
+              "blue/900",
+              "#E9F2FF",
+              "#01082D",
+              "50 → 900"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Accessibility and Theming",
+      "subtitle": null,
+      "x": 6060,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "All color token pairs (text on surface, border on surface) must meet WCAG AA contrast in both modes. Dark mode is not a decorative preference — it is an accessibility feature for users sensitive to brightness."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Contrast Requirements"
+        },
+        {
+          "t": "p",
+          "text": "Normal text: 4.5:1 minimum contrast ratio\nLarge text (18px+ or bold 14px+): 3:1 minimum\nUI components and graphical objects: 3:1 minimum\nFocus indicators must remain clearly visible in both modes\nReduced motion preferences apply equally in both themes",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Validation Rules"
+        },
+        {
+          "t": "p",
+          "text": "THM-001 — No mode-specific color values in components\nTHM-002 — All semantic tokens resolve in both modes\nTHM-003 — Custom surfaces use semantic surface tokens\nCLR-003 — Text contrast meets WCAG AA\nCLR-004 — Non-text contrast meets WCAG AA",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Check",
+              "Light Mode",
+              "Dark Mode",
+              "Rule ID",
+              "Severity",
+              "Status"
+            ],
+            [
+              "Text contrast ≥ 4.5:1",
+              "Pass",
+              "Verify",
+              "CLR-003",
+              "Error",
+              "Required"
+            ],
+            [
+              "Non-text contrast ≥ 3:1",
+              "Pass",
+              "Pass",
+              "CLR-004",
+              "Error",
+              "Required"
+            ],
+            [
+              "Focus ring visible",
+              "Pass",
+              "Verify",
+              "A11Y-003",
+              "Error",
+              "Required"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "How Theming Works",
+      "subtitle": null,
+      "x": 8080,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Theming operates at the semantic token layer. Primitive tokens remain constant — they define the raw palette. Semantic tokens change their mapping based on the active theme. Components never change; only the values behind their tokens change."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Token Resolution Flow"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR supports Light and Dark modes as system-level themes, controlled through semantic token mappings rather than component overrides.\n\nComponent → Semantic Token → [Theme Mode] → Primitive Token → Raw Value\n\nThis architecture means a single component definition works in all themes. Mode switching is handled at the system or app shell level, not per component.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Purpose"
+        },
+        {
+          "t": "p",
+          "text": "Enable consistent Light and Dark mode support across all products.\nEnsure accessibility requirements are met in every theme.\nAllow mode switching without component-level changes.\nProvide a foundation for future theme extensions (e.g., high contrast).",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Semantic Token",
+              "Light Mode",
+              "Dark Mode",
+              "Light Hex",
+              "Dark Hex",
+              "Category"
+            ],
+            [
+              "color.text.primary",
+              "neutral/900",
+              "neutral/50",
+              "#111111",
+              "#F5F5F5",
+              "Text"
+            ],
+            [
+              "color.surface.base",
+              "mono/white",
+              "neutral/800",
+              "#FFFFFF",
+              "#222222",
+              "Surface"
+            ],
+            [
+              "color.border.default",
+              "alpha/black-20",
+              "alpha/white-20",
+              "rgba(0,0,0,0.2)",
+              "rgba(255,255,255,0.2)",
+              "Border"
+            ],
+            [
+              "color.action.primary.bg.default",
+              "neutral/900",
+              "neutral/50",
+              "#111111",
+              "#F5F5F5",
+              "Action"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Non-Color Tokens and Theming",
+      "subtitle": null,
+      "x": 10100,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Spatial tokens — border width, border radius, inset (padding), and stack (vertical spacing) — do not change between themes. They exist in a single mode and remain constant regardless of Light or Dark mode."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Border Radius Tokens"
+        },
+        {
+          "t": "p",
+          "text": "radius.none → 0px\nradius.control → 6px (border-radius/md)\nradius.container → 8px (border-radius/lg)\nradius.dialog → 12px (border-radius/xl)\nradius.pill → 9999px (border-radius/full)",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Border Width Tokens"
+        },
+        {
+          "t": "p",
+          "text": "border.none → 0px\nborder.default → 1px (border-width/sm)\nborder.strong → 2px (border-width/md)",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Shadow Color Variables"
+        },
+        {
+          "t": "p",
+          "text": "shadow.subtle → alpha/black-05 (light) | alpha/black-90 (dark)\nshadow.strong → alpha/black-20 (light) | mono/black (dark)\nshadow.feedback.focus → alpha/blue-20 (both modes)\nshadow.feedback.danger → alpha/red-20 (both modes)",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Inset Token",
+              "Value",
+              "Stack Token",
+              "Value",
+              "Themed?",
+              "Notes"
+            ],
+            [
+              "inset.md",
+              "16px",
+              "stack.md",
+              "16px",
+              "No",
+              "Single mode only"
+            ],
+            [
+              "inset.sm",
+              "12px",
+              "stack.sm",
+              "12px",
+              "No",
+              "Single mode only"
+            ],
+            [
+              "inset.lg",
+              "24px",
+              "stack.lg",
+              "24px",
+              "No",
+              "Single mode only"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Theming Do's and Don'ts",
+      "subtitle": null,
+      "x": 12120,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Correct theming depends on consistently using semantic tokens and validating in both modes. These rules prevent the most common theming mistakes that cause contrast failures and visual inconsistencies."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Do"
+        },
+        {
+          "t": "p",
+          "text": "Use color.text.primary for body text — it resolves to dark text on light backgrounds and light text on dark backgrounds automatically.\nTest feedback colors (success, warning, danger) in both modes — the shifted step ensures consistent meaning.\nUse Figma variable modes to preview both themes during design.\nAdd conditional light/dark logic in components — tokens handle this automatically.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Don't"
+        },
+        {
+          "t": "p",
+          "text": "Use color/neutral/900 directly for text — this produces dark-on-dark in dark mode.\nAssume brand red (#D22730) is the error color in all contexts — use color.text.feedback.danger which adapts per mode.\nAdd conditional light/dark logic in components — tokens handle this automatically.\nHard-code hex values like #FFFFFF for surfaces — use color.surface.base instead.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Common Mistakes"
+        },
+        {
+          "t": "p",
+          "text": "Hardcoding hex values instead of using semantic tokens\nUsing surface assumptions like \"this is white\"\nNot validating contrast in dark mode before handoff\nMixing primitive references with semantic tokens in the same component",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Scenario",
+              "Do",
+              "Don't",
+              "Why",
+              "Rule",
+              "Severity"
+            ],
+            [
+              "Body text color",
+              "color.text.primary",
+              "color/neutral/900",
+              "Breaks in dark mode",
+              "THM-001",
+              "Error"
+            ],
+            [
+              "Error feedback color",
+              "color.text.feedback.danger",
+              "brand red (#D22730)",
+              "Not mode-aware",
+              "THM-001",
+              "Error"
+            ],
+            [
+              "Surface background",
+              "color.surface.base",
+              "#FFFFFF hard-coded",
+              "White in dark mode",
+              "THM-003",
+              "Error"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Theming\ndomain: Theme Architecture & Multi-Brand Support\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR theming specialist. Theming enables the system to support multiple visual expressions — light/dark modes and brand variants — through token swapping. Components never contain theme-specific logic; they consume semantic tokens that the theme resolves.\n\n[SCOPE]\n- Theme architecture and token swapping model\n- Light/dark mode implementation\n- Brand theming and white-labeling\n- How themes interact with Figma variable modes\n- Theme creation and governance\n\n[THEME_ARCHITECTURE]\ndefinition: a theme is a complete set of semantic token values that map to primitives\nmechanism: switching themes swaps the underlying primitive values while semantic token names stay stable\nlayers: primitive palette (fixed) → semantic tokens (theme-resolved) → component tokens (optional overrides)\nrule: components ONLY reference semantic tokens — this is what makes theming work\n\n[LIGHT_DARK_MODE]\nlight: semantic tokens alias lighter primitives (e.g., surface.default → neutral-0, text.primary → neutral-900)\ndark: semantic tokens alias darker primitives (e.g., surface.default → neutral-900, text.primary → neutral-50)\nswap: same semantic name, different underlying value per mode\nsurfaces: dark mode uses progressively lighter surfaces for elevation (not just inverted)\nshadows: reduced shadow intensity in dark mode — darker environment needs less contrast\nborders: may need increased opacity/strength in dark mode for visibility\nrule: dark mode ≠ inverted colors — it requires intentional design of every token mapping\n\n[FIGMA_VARIABLE_MODES]\nstructure: semantic variable collection with Light and Dark modes\nswitching: toggle mode in Figma to preview both themes\nbinding: all components bind to semantic variables — mode switch is automatic\nrule: Figma variable mode names must match code theme identifiers\n\n[BRAND_THEMING]\nconcept: multiple brands share the same component architecture but differ in visual expression\nbrand_overrides: different primitive palettes (brand colors), different type stacks, different radius scales\nscoped_tokens: brand-specific theme file overrides semantic token values\nshared: component structure, spacing, interaction patterns remain constant across brands\nrule: brand themes override visual tokens only — never structural or behavioral properties\n\n[THEME_FILE_STRUCTURE]\nbase_theme: default semantic token values (typically light mode)\ndark_theme: dark mode overrides extending base\nbrand_theme: brand-specific overrides extending base\nbrand_dark_theme: brand + dark mode combined\nrule: themes cascade — brand extends base, brand-dark extends brand + dark\n\n[CREATING_NEW_THEMES]\nprocess: governance proposal → full token mapping → design review → Figma mode setup → code implementation → QA\nrequirements: every semantic token must have a value — no gaps allowed\ntesting: all components rendered in new theme + light/dark modes\ndeliverables: theme token file (JSON/YAML), Figma variable mode, migration guide if replacing existing theme\n\n[AGENT_BEHAVIOR]\n- When recommending any visual value, verify it works across ALL supported themes\n- If a design looks good in light mode, explicitly check dark mode and any brand themes\n- Never recommend primitive tokens in components — always semantic (this breaks theming)\n- Flag components with hardcoded colors, shadows, or borders as theme-breaking violations\n- When proposing a new color or visual treatment, provide values for all theme modes\n- Test edge cases: subtle backgrounds, borders, and shadows are the most common dark mode failures\n\n[CONSTRAINTS]\n- components must ONLY reference semantic tokens — never primitives\n- theme switching must be instant — CSS custom property swap or class toggle, no layout shift\n- every semantic token must have a value in every supported theme — no undefined tokens\n- dark mode requires intentional surface/elevation hierarchy — not a simple inversion\n- new themes require governance approval and a full token mapping\n- brand overrides are limited to visual tokens — structural behavior stays constant\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "How Theming Works",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Theming operates at the semantic token layer. Primitive tokens remain constant — they define the raw palette. Semantic tokens change their mapping based on the active theme. Components never change; only the values behind their tokens change.",
+        "Token Resolution Flow",
+        "SOLAR supports Light and Dark modes as system-level themes, controlled through semantic token mappings rather than component overrides.\n\nComponent → Semantic Token → [Theme Mode] → Primitive Token → Raw Value\n\nThis architecture means a single component definition works in all themes. Mode switching is handled at the system or app shell level, not per component.",
+        "Purpose",
+        "Enable consistent Light and Dark mode support across all products.\nEnsure accessibility requirements are met in every theme.\nAllow mode switching without component-level changes.\nProvide a foundation for future theme extensions (e.g., high contrast).",
+        "Semantic Token",
+        "Light Mode",
+        "Dark Mode",
+        "Light Hex",
+        "Dark Hex",
+        "Category",
+        "color.text.primary",
+        "neutral/900",
+        "neutral/50",
+        "#111111",
+        "#F5F5F5",
+        "Text",
+        "color.surface.base",
+        "mono/white",
+        "neutral/800",
+        "#FFFFFF",
+        "#222222",
+        "Surface",
+        "color.border.default",
+        "alpha/black-20",
+        "alpha/white-20",
+        "rgba(0,0,0,0.2)",
+        "rgba(255,255,255,0.2)",
+        "Border",
+        "color.action.primary.bg.default",
+        "neutral/900",
+        "neutral/50",
+        "#111111",
+        "#F5F5F5",
+        "Action"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "What Changes Between Modes",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Understanding what changes and what stays constant between Light and Dark modes is critical. Token names, spacing, typography, and component structure remain identical — only color mappings shift.",
+        "What Changes",
+        "Surface and background colors invert\nText and icon colors invert\nBorder colors shift to maintain separation\nAction colors invert (neutral/900 → neutral/50)\nShadow intensity may increase in dark mode",
+        "What Does NOT Change",
+        "Token names remain identical\nTypography (size, weight, line height) stays the same\nSpacing and layout tokens stay the same\nComponent structure and behavior stay the same\nMotion durations and easing stay the same",
+        "Feedback Tokens",
+        "Feedback colors (success, warning, danger, info) use shifted steps between modes. For example, success uses green/500 in both modes for text, but green/50 in light and green/800 in dark for surfaces. The semantic meaning is always preserved.",
+        "Feedback Surface",
+        "Light Primitive",
+        "Dark Primitive",
+        "Light Hex",
+        "Dark Hex",
+        "Shift",
+        "surface.feedback.success",
+        "green/50",
+        "green/800",
+        "#ECFFE9",
+        "#002400",
+        "50 → 800",
+        "surface.feedback.warning",
+        "yellow/50",
+        "yellow/900",
+        "#FFFBD5",
+        "#271E00",
+        "50 → 900",
+        "surface.feedback.danger",
+        "red/50",
+        "red/900",
+        "#FFE4DF",
+        "#280000",
+        "50 → 900",
+        "surface.feedback.info",
+        "blue/50",
+        "blue/900",
+        "#E9F2FF",
+        "#01082D",
+        "50 → 900"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Designing for Themes",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Both designers and engineers must follow theming rules to ensure SOLAR interfaces work correctly in all display modes. The core principle is the same: consume semantic tokens only. Never reference primitives or hard-coded values.",
+        "Rules for Designers",
+        "Always design using semantic tokens — never primitive colors or hex values.\nValidate designs in both Light and Dark modes before handoff.\nDo not use surface or background assumptions (e.g., \"this is white\") — use the semantic role (color.surface.base).\nCheck contrast in both modes: a combination passing AA in light mode may fail in dark mode if tokens are incorrectly applied.\nUse Figma's variable modes to preview both themes during design.\nNever override a semantic token with a primitive — this breaks theming.",
+        "Rules for Engineers",
+        "Consume semantic tokens only — never reference primitive values or hard-coded colors.\nTheme switching must be handled at the system or app shell level, not per component.\nRespect prefers-color-scheme media query for automatic system-level mode detection.\nProvide a manual toggle for users to override system preference.\nTest all components in both modes as part of acceptance criteria.\nUse CSS custom properties with the --solar- prefix for all token references."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Accessibility and Theming",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "All color token pairs (text on surface, border on surface) must meet WCAG AA contrast in both modes. Dark mode is not a decorative preference — it is an accessibility feature for users sensitive to brightness.",
+        "Contrast Requirements",
+        "Normal text: 4.5:1 minimum contrast ratio\nLarge text (18px+ or bold 14px+): 3:1 minimum\nUI components and graphical objects: 3:1 minimum\nFocus indicators must remain clearly visible in both modes\nReduced motion preferences apply equally in both themes",
+        "Validation Rules",
+        "THM-001 — No mode-specific color values in components\nTHM-002 — All semantic tokens resolve in both modes\nTHM-003 — Custom surfaces use semantic surface tokens\nCLR-003 — Text contrast meets WCAG AA\nCLR-004 — Non-text contrast meets WCAG AA",
+        "Check",
+        "Light Mode",
+        "Dark Mode",
+        "Rule ID",
+        "Severity",
+        "Status",
+        "Text contrast ≥ 4.5:1",
+        "Pass",
+        "Verify",
+        "CLR-003",
+        "Error",
+        "Required",
+        "Non-text contrast ≥ 3:1",
+        "Pass",
+        "Pass",
+        "CLR-004",
+        "Error",
+        "Required",
+        "Focus ring visible",
+        "Pass",
+        "Verify",
+        "A11Y-003",
+        "Error",
+        "Required"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Non-Color Tokens and Theming",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Spatial tokens — border width, border radius, inset (padding), and stack (vertical spacing) — do not change between themes. They exist in a single mode and remain constant regardless of Light or Dark mode.",
+        "Border Radius Tokens",
+        "radius.none → 0px\nradius.control → 6px (border-radius/md)\nradius.container → 8px (border-radius/lg)\nradius.dialog → 12px (border-radius/xl)\nradius.pill → 9999px (border-radius/full)",
+        "Border Width Tokens",
+        "border.none → 0px\nborder.default → 1px (border-width/sm)\nborder.strong → 2px (border-width/md)",
+        "Shadow Color Variables",
+        "shadow.subtle → alpha/black-05 (light) | alpha/black-90 (dark)\nshadow.strong → alpha/black-20 (light) | mono/black (dark)\nshadow.feedback.focus → alpha/blue-20 (both modes)\nshadow.feedback.danger → alpha/red-20 (both modes)",
+        "Inset Token",
+        "Value",
+        "Stack Token",
+        "Value",
+        "Themed?",
+        "Notes",
+        "inset.md",
+        "16px",
+        "stack.md",
+        "16px",
+        "No",
+        "Single mode only",
+        "inset.sm",
+        "12px",
+        "stack.sm",
+        "12px",
+        "No",
+        "Single mode only",
+        "inset.lg",
+        "24px",
+        "stack.lg",
+        "24px",
+        "No",
+        "Single mode only"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Theming Do's and Don'ts",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Correct theming depends on consistently using semantic tokens and validating in both modes. These rules prevent the most common theming mistakes that cause contrast failures and visual inconsistencies.",
+        "Do",
+        "Use color.text.primary for body text — it resolves to dark text on light backgrounds and light text on dark backgrounds automatically.\nTest feedback colors (success, warning, danger) in both modes — the shifted step ensures consistent meaning.\nUse Figma variable modes to preview both themes during design.\nAdd conditional light/dark logic in components — tokens handle this automatically.",
+        "Don't",
+        "Use color/neutral/900 directly for text — this produces dark-on-dark in dark mode.\nAssume brand red (#D22730) is the error color in all contexts — use color.text.feedback.danger which adapts per mode.\nAdd conditional light/dark logic in components — tokens handle this automatically.\nHard-code hex values like #FFFFFF for surfaces — use color.surface.base instead.",
+        "Common Mistakes",
+        "Hardcoding hex values instead of using semantic tokens\nUsing surface assumptions like \"this is white\"\nNot validating contrast in dark mode before handoff\nMixing primitive references with semantic tokens in the same component",
+        "Scenario",
+        "Do",
+        "Don't",
+        "Why",
+        "Rule",
+        "Severity",
+        "Body text color",
+        "color.text.primary",
+        "color/neutral/900",
+        "Breaks in dark mode",
+        "THM-001",
+        "Error",
+        "Error feedback color",
+        "color.text.feedback.danger",
+        "brand red (#D22730)",
+        "Not mode-aware",
+        "THM-001",
+        "Error",
+        "Surface background",
+        "color.surface.base",
+        "#FFFFFF hard-coded",
+        "White in dark mode",
+        "THM-003",
+        "Error"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 111
+}

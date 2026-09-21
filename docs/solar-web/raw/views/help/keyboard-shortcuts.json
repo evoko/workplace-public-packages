@@ -1,0 +1,92 @@
+{
+  "page": "↳ 🟢 Keyboard Shortcuts",
+  "pageId": "5066:24",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Keyboard Shortcuts",
+      "id": "8504:198",
+      "description": "",
+      "props": {},
+      "nodeCount": 135,
+      "tree": {
+        "name": "Keyboard Shortcuts",
+        "type": "COMPONENT",
+        "size": [
+          1200,
+          760
+        ],
+        "children": [
+          {
+            "name": "Scrim",
+            "type": "INSTANCE",
+            "main": "Scrim",
+            "size": [
+              1200,
+              760
+            ],
+            "fills": [
+              "{Color:surface/scrim}"
+            ]
+          },
+          {
+            "name": "Dialog",
+            "type": "INSTANCE",
+            "main": "Dialog",
+            "variant": {
+              "type": "default"
+            },
+            "size": [
+              480,
+              464
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/dialog}"
+            ],
+            "radius": 12,
+            "effectStyle": "shadow/dialog",
+            "vars": {
+              "topLeftRadius": "Spatial:radius/dialog",
+              "topRightRadius": "Spatial:radius/dialog",
+              "bottomLeftRadius": "Spatial:radius/dialog",
+              "bottomRightRadius": "Spatial:radius/dialog"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Keyboard Shortcuts",
+    "Description",
+    "A reference overlay listing available keyboard shortcuts, grouped by area — usually opened with '?'. For discoverability of power-user keys.",
+    "Layout",
+    "Dialog / overlay: grouped sections · rows of action + Kbd keys · search / filter · close.",
+    "Responsive",
+    "Desktop dialog; mobile full-screen (or hidden where there's no keyboard).",
+    "States",
+    "open, closed, search / no-results; scrollable groups.",
+    "Accessibility",
+    "role=dialog, labelled, focus-trapped, Esc closes; shortcuts as a description list; keys shown via Kbd as text. Keyboard-complete.",
+    "Rules",
+    "Open with '?'\nGroup by area\nUse Kbd for keys\nMake it searchable",
+    "Hide it from discovery\nList unavailable shortcuts\nRely on icons for keys\nTrap without Esc"
+  ],
+  "pageContext": null
+}

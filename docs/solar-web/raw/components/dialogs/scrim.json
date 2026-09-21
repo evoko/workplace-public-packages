@@ -1,0 +1,48 @@
+{
+  "page": "↳ 🟢 Scrim",
+  "pageId": "2966:606",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Scrim",
+      "id": "3986:2155",
+      "description": "Full-viewport translucent overlay rendered behind Dialog, Drawer, and blocking modal surfaces. Uses color.surface.scrim token. Click dismisses the overlaid modal unless the modal is declared non-dismissible. Never use as a decorative background — scrim is a semantic focus-trap indicator that user attention is bound to the layer above it.",
+      "props": {},
+      "nodeCount": 0,
+      "tree": {
+        "name": "Scrim",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "fills": [
+          "{Color:surface/scrim}"
+        ],
+        "vars": {
+          "width": "Layout:breakpoint/lg"
+        },
+        "children": []
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Scrim",
+    "Description",
+    "Full-viewport translucent overlay rendered behind Dialog, Drawer, and blocking modal surfaces. Signals that user attention is bound to the layer above.",
+    "Purpose",
+    "Focus trap indicator — everything below is non-interactive.\nClick dismisses the modal above unless the modal is non-dismissible.\nUses color.surface.scrim token.",
+    "Layering",
+    "Z-index: dialog level (400) — always paired with the modal above.\nNever render Scrim alone.\nNever stack multiple Scrims — use a single shared surface per modal stack.",
+    "Motion",
+    "Fade in with the modal opening; typical duration fast (100ms).\nFade out on modal close.\nRespect prefers-reduced-motion — snap without fade when set.",
+    "Rules",
+    "DO   Pair with Dialog, Drawer, or blocking modal\nDO   Dismiss modal on Scrim click (unless non-dismissible)\nDO   Use color.surface.scrim token\nDO   Animate in/out with modal",
+    "DON'T   Use as decorative background\nDON'T   Stack multiple Scrims\nDON'T   Leave Scrim visible without a modal above\nDON'T   Block interaction without a focus trap above"
+  ],
+  "pageContext": null
+}

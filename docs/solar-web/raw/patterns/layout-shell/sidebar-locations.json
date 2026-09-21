@@ -1,0 +1,1230 @@
+{
+  "page": "↳ 🟢 Sidebar Locations",
+  "pageId": "10395:7",
+  "componentSets": [
+    {
+      "name": "Sidebar Locations",
+      "id": "10406:1217",
+      "description": "Location tree sidebar composing SearchField, Counter and Tree Navigation Panel; states: empty, filled, search, no-results, rename. Migrated from Chatter Config 2026-09-01.",
+      "docLinks": [],
+      "variantCount": 5,
+      "props": {
+        "hasHelp#10417:8": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasAdd#10417:14": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "empty",
+          "options": [
+            "empty",
+            "filled",
+            "search",
+            "no-results",
+            "rename"
+          ]
+        }
+      },
+      "defaultVariant": "state=empty",
+      "defaultVariantNodeCount": 32,
+      "defaultVariantTree": {
+        "name": "state=empty",
+        "type": "COMPONENT",
+        "size": [
+          324,
+          744
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 12,
+          "pad": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "radius": 8,
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/md",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Org Title",
+            "type": "FRAME",
+            "size": [
+              292,
+              20
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Title",
+                "type": "FRAME",
+                "size": [
+                  240,
+                  15
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                },
+                "children": [
+                  {
+                    "name": "Org Name",
+                    "type": "TEXT",
+                    "text": "Acme University",
+                    "textStyle": "title/sm",
+                    "size": [
+                      149,
+                      15
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Actions",
+                "type": "FRAME",
+                "size": [
+                  40,
+                  16
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                },
+                "children": [
+                  {
+                    "name": "Icon/HelpCircle",
+                    "type": "INSTANCE",
+                    "main": "Icon/HelpCircle",
+                    "variant": {
+                      "solid": "false"
+                    },
+                    "size": [
+                      16,
+                      16
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "propRefs": {
+                      "visible": "hasHelp#10417:8"
+                    }
+                  },
+                  {
+                    "name": "Icon/Plus",
+                    "type": "INSTANCE",
+                    "main": "Icon/Plus",
+                    "variant": {
+                      "solid": "false"
+                    },
+                    "size": [
+                      16,
+                      16
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "propRefs": {
+                      "visible": "hasAdd#10417:14"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "SearchField",
+            "type": "INSTANCE",
+            "main": "SearchField",
+            "variant": {
+              "state": "default",
+              "size": "md"
+            },
+            "size": [
+              292,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          },
+          {
+            "name": "EmptyState",
+            "type": "INSTANCE",
+            "main": "EmptyState",
+            "size": [
+              292,
+              628
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 16,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/FILL"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/md",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=empty",
+          "size": [
+            324,
+            744
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Button",
+            "Counter",
+            "Icon/None",
+            "Icon/Refresh",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "state=filled",
+          "size": [
+            324,
+            744
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Checkbox",
+            "Counter",
+            "Icon/ChevronRight",
+            "Icon/None",
+            "StatusIndicator",
+            "Tag"
+          ]
+        },
+        {
+          "variant": "state=search",
+          "size": [
+            324,
+            744
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Checkbox",
+            "Counter",
+            "Icon/ChevronRight",
+            "Icon/None",
+            "StatusIndicator",
+            "Tag"
+          ]
+        },
+        {
+          "variant": "state=no-results",
+          "size": [
+            324,
+            744
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "state=rename",
+          "size": [
+            324,
+            744
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}",
+            "{Color:action/primary/text/disabled}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/secondary}"
+          ],
+          "hidden": [
+            "Checkbox",
+            "Counter",
+            "Icon/ChevronRight",
+            "Icon/None",
+            "StatusIndicator",
+            "Tag"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [
+    {
+      "name": "Legend — Location Type Icons",
+      "type": "FRAME",
+      "id": "10452:1158",
+      "size": [
+        560,
+        294
+      ],
+      "census": {
+        "Icon/Map": 1,
+        "Icon/Building": 1,
+        "Icon/Section": 1,
+        "Icon/Floor": 1,
+        "Icon/Area": 1,
+        "Icon/Room": 1,
+        "Icon/Desk": 1,
+        "Icon/Parking": 1,
+        "Icon/Car": 1
+      },
+      "tree": {
+        "name": "Legend — Location Type Icons",
+        "type": "FRAME",
+        "size": [
+          560,
+          294
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 12,
+          "pad": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/md",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Title",
+            "type": "TEXT",
+            "text": "Location type icons",
+            "textStyle": "label/md",
+            "size": [
+              126,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          },
+          {
+            "name": "Row",
+            "type": "FRAME",
+            "size": [
+              528,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Icon/Map",
+                "type": "INSTANCE",
+                "main": "Icon/Map",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "Type",
+                "type": "TEXT",
+                "text": "Campus",
+                "textStyle": "body/md/regular",
+                "size": [
+                  130,
+                  10
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "Top-level site — e.g. Cambridge Campus",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  358,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Row",
+            "type": "FRAME",
+            "size": [
+              528,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Icon/Building",
+                "type": "INSTANCE",
+                "main": "Icon/Building",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "Type",
+                "type": "TEXT",
+                "text": "Building",
+                "textStyle": "body/md/regular",
+                "size": [
+                  130,
+                  10
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "A building on a campus — e.g. Vesta Science Center",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  358,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Row",
+            "type": "FRAME",
+            "size": [
+              528,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Icon/Section",
+                "type": "INSTANCE",
+                "main": "Icon/Section",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "Type",
+                "type": "TEXT",
+                "text": "Section",
+                "textStyle": "body/md/regular",
+                "size": [
+                  130,
+                  10
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "A section within a building — e.g. West Research Wing",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  358,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Row",
+            "type": "FRAME",
+            "size": [
+              528,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Icon/Floor",
+                "type": "INSTANCE",
+                "main": "Icon/Floor",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "Type",
+                "type": "TEXT",
+                "text": "Floor / level",
+                "textStyle": "body/md/regular",
+                "size": [
+                  130,
+                  10
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "A storey of a building — e.g. Level 1",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  358,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Row",
+            "type": "FRAME",
+            "size": [
+              528,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Icon/Area",
+                "type": "INSTANCE",
+                "main": "Icon/Area",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "Type",
+                "type": "TEXT",
+                "text": "Area",
+                "textStyle": "body/md/regular",
+                "size": [
+                  130,
+                  10
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "An open, unenclosed area — e.g. Collaboration Zone",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  358,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Row",
+            "type": "FRAME",
+            "size": [
+              528,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Icon/Room",
+                "type": "INSTANCE",
+                "main": "Icon/Room",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "Type",
+                "type": "TEXT",
+                "text": "Room",
+                "textStyle": "body/md/regular",
+                "size": [
+                  130,
+                  10
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "An enclosed room — e.g. Auditorium 100",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  358,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Row",
+            "type": "FRAME",
+            "size": [
+              528,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Icon/Desk",
+                "type": "INSTANCE",
+                "main": "Icon/Desk",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "Type",
+                "type": "TEXT",
+                "text": "Desk / workstation",
+                "textStyle": "body/md/regular",
+                "size": [
+                  130,
+                  10
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "An individual work point — e.g. Bench Station 1",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  358,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Row",
+            "type": "FRAME",
+            "size": [
+              528,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Icon/Parking",
+                "type": "INSTANCE",
+                "main": "Icon/Parking",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "Type",
+                "type": "TEXT",
+                "text": "Parking",
+                "textStyle": "body/md/regular",
+                "size": [
+                  130,
+                  10
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "A garage or lot— e.g. Vesta Underground Garage",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  358,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Row",
+            "type": "FRAME",
+            "size": [
+              528,
+              16
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "Icon/Car",
+                "type": "INSTANCE",
+                "main": "Icon/Car",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "Type",
+                "type": "TEXT",
+                "text": "Parking spot",
+                "textStyle": "body/md/regular",
+                "size": [
+                  130,
+                  10
+                ],
+                "sizing": "FIXED/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "Parking space or spot — e.g. G-01",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  358,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "texts": [
+        "A building on a campus — e.g. Vesta Science Center",
+        "A section within a building — e.g. West Research Wing",
+        "An open, unenclosed area — e.g. Collaboration Zone",
+        "An individual work point — e.g. Bench Station 1",
+        "A garage or lot— e.g. Vesta Underground Garage"
+      ]
+    }
+  ],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Sidebar Locations",
+    "Description",
+    "Location tree sidebar: organization header with count and quick actions, search, and a Tree Navigation Panel of campuses, buildings, floors and spaces. Covers empty, filled, searching, no-results and inline-rename states.",
+    "Anatomy",
+    "324×744 panel on surface/raised with radius/container and inset/md padding. Org Title row (title/sm name, Counter, HelpCircle + Plus icons), SearchField (md, hasFilter), then Tree Navigation Panel or Empty State depending on state.",
+    "States",
+    "empty       No locations yet; Empty State with create guidance\nfilled      Full location tree with item count\nsearch      SearchField focused with a query, tree filtered\nno-results  Focused query with no matches; Empty State\nrename      One tree item in inline edit (caret shown)",
+    "Usage",
+    "Keep the org name to one line; the Counter reflects total locations.\nPlus creates a location; HelpCircle opens location help.\nUse the no-results state for unmatched queries, never a blank panel.",
+    "Rules",
+    "DO   Scope the tree to the active organization\nDO   Keep hierarchy: campus → building → floor → space\nDO   Preserve selection when search clears",
+    "DON’T   Mix devices into the location tree\nDON’T   Hide the search below the fold\nDON’T   Use for app navigation (use Sidebar)"
+  ],
+  "pageContext": null
+}

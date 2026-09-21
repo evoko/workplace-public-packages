@@ -1,0 +1,238 @@
+{
+  "page": "↳ 🟢 Nav Item",
+  "pageId": "6481:69",
+  "componentSets": [
+    {
+      "name": "Nav Item",
+      "id": "2663:774",
+      "description": "Nav Item — generic interactive nav primitive used in both Sidebar and Top Bar (and any other nav surface).\n\nAnatomy: 40×40 collapsed (icon-only) / full-width × 40 expanded (icon + label). 20×20 icon slot.\n\nVariant axes (lowercase):\n  selected — true/false — drives outline (false) ↔ solid (true) icon swap\n  hover    — true/false — hover background\n  expanded — true/false — collapsed (icon-only) vs expanded (icon + label)\n\nIcon swap (two-property pattern, required by Figma constraint — see auto-memory feedback_figma_instance_swap_variant_override.md):\n  iconOutline — INSTANCE_SWAP. Bound to selected=false variants.\n  iconSolid   — INSTANCE_SWAP. Bound to selected=true variants.\n  Designers set BOTH to matching outline+solid pair of one Icon/* metaphor.\n\nConsumers: Sidebar (Layout & Shell), Top Bar (Layout & Shell). 540+ instances across views.\n\n— KNOWN GAPS (1.0 promotion gate) —\nClass D states incomplete. Per CLAUDE.md §7 Class D requires {default, hover, focus, disabled, selected} as MUTUALLY EXCLUSIVE states (single `state` axis with 5 values), but current structure has selected/hover as INDEPENDENT booleans. Adding focus+disabled as booleans would be conceptually wrong (32-variant matrix of misleading state combinations). Correct fix is a structural restructure to a single `state` axis — breaking change requiring instance-override migration script. Designer-led.\n\nOptical fineness pass at 12/16/20px on icon ramps. Strokes scale mathematically (1.5px × scale = 0.75 at size=12) which is too thin for crisp small-size rendering. Each size needs hand-tuned per-size stroke weight. Designer-led.\n\nRenamed from Sidebar Item 2026-05-04. Component key b7d724b6… preserved.",
+      "docLinks": [],
+      "variantCount": 8,
+      "props": {
+        "label#2663:4": {
+          "type": "TEXT",
+          "default": "Label"
+        },
+        "iconOutline#6467:0": {
+          "type": "INSTANCE_SWAP",
+          "default": "10148:6975"
+        },
+        "iconSolid#6467:9": {
+          "type": "INSTANCE_SWAP",
+          "default": "10148:6976"
+        },
+        "selected": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "hover": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "expanded": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "selected=false, hover=false, expanded=false",
+      "defaultVariantNodeCount": 2,
+      "defaultVariantTree": {
+        "name": "selected=false, hover=false, expanded=false",
+        "type": "COMPONENT",
+        "size": [
+          40,
+          40
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "radius": 6,
+        "vars": {
+          "itemSpacing": "Spatial:inset/none",
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/none",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Icon/Home",
+            "type": "INSTANCE",
+            "main": "Icon/Home",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              20,
+              20
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "width": "Spatial:icon/md"
+            },
+            "propRefs": {
+              "mainComponent": "iconOutline#6467:0"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "selected=false, hover=false, expanded=false",
+          "size": [
+            40,
+            40
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "selected=false, hover=false, expanded=true",
+          "size": [
+            182,
+            40
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/secondary}"
+          ]
+        },
+        {
+          "variant": "selected=false, hover=true, expanded=false",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=false, hover=true, expanded=true",
+          "size": [
+            182,
+            40
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=true, hover=false, expanded=false",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=true, hover=false, expanded=true",
+          "size": [
+            182,
+            40
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=true, hover=true, expanded=false",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "selected=true, hover=true, expanded=true",
+          "size": [
+            182,
+            40
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Nav Item",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,355 @@
+{
+  "page": "↳ 🟢 500 Server Error",
+  "pageId": "5066:18",
+  "componentSets": [
+    {
+      "name": "500 Server Error",
+      "id": "6593:38892",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 29,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            24,
+            0,
+            24,
+            0
+          ],
+          "align": "SPACE_BETWEEN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/inverse}",
+          "IMAGE"
+        ],
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/xl",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/xl",
+          "width": "Layout:breakpoint/lg"
+        },
+        "children": [
+          {
+            "name": "App Name",
+            "type": "INSTANCE",
+            "main": "App Name",
+            "variant": {
+              "type": "horizontal"
+            },
+            "size": [
+              85,
+              59
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 16,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:inset/md",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          },
+          {
+            "name": "Center Stack",
+            "type": "FRAME",
+            "size": [
+              223,
+              245
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 20,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/lg"
+            },
+            "children": [
+              {
+                "name": "icons8-broken-robot 1",
+                "type": "FRAME",
+                "size": [
+                  96,
+                  96
+                ],
+                "sizing": "FIXED/FIXED",
+                "children": [
+                  {
+                    "name": "Vector",
+                    "type": "VECTOR",
+                    "size": [
+                      83,
+                      79
+                    ],
+                    "fills": [
+                      "{Color:icon/inverse}"
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Error 500",
+                "type": "TEXT",
+                "text": "Error 500",
+                "textStyle": "title/sm",
+                "size": [
+                  86,
+                  15
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Something went wrong on our end. Please try again in a moment.",
+                "type": "TEXT",
+                "text": "Something went wrong on our end.\nPlease try again in a moment.",
+                "textStyle": "body/md/regular",
+                "size": [
+                  223,
+                  30
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Button",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "md",
+                  "prio": "tertiary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  84,
+                  44
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              216,
+              32
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm"
+            },
+            "children": [
+              {
+                "name": "Biamp Logo",
+                "type": "INSTANCE",
+                "main": "Biamp Logo",
+                "variant": {
+                  "style": "light",
+                  "size": "sm"
+                },
+                "size": [
+                  36,
+                  11
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "© 2025 Biamp Systems LLC. v.1.2-b-fd",
+                "type": "TEXT",
+                "text": "© 2025 Biamp Systems LLC.  v.1.2-b-fd",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  216,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/tertiary}",
+            "{Color:action/tertiary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/tertiary}",
+            "{Color:action/tertiary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "500 Server Error",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

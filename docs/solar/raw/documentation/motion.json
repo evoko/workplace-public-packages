@@ -1,0 +1,719 @@
+{
+  "page": "Motion",
+  "pageId": "763:61136",
+  "section": "documentation",
+  "slug": "motion",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Motion"
+        }
+      ]
+    },
+    {
+      "name": "About",
+      "title": "Motion",
+      "subtitle": null,
+      "x": 2020,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Motion in SOLAR communicates change and reinforces hierarchy across interactions. It clarifies state transitions, preserves spatial context, and improves usability. Motion is never decorative — it is intentional, restrained, and system-driven."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Purpose"
+        },
+        {
+          "t": "p",
+          "text": "Motion exists to:\nCommunicate state changes clearly\nPreserve spatial context during transitions\nReinforce hierarchy and causality\nMaintain consistency across products",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Scope"
+        },
+        {
+          "t": "p",
+          "text": "Motion includes:\nDuration tokens (instant, fast, normal, slow, slower)\nEasing curves (ease-out, ease-in, ease-both)\nState transitions\nStructural transitions\nMicro-interactions\n\nMotion defines temporal behavior.\nVisual language defines expression.\nComponents operate within both.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Motion Principles",
+      "subtitle": null,
+      "x": 4040,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Motion in SOLAR communicates change and reinforces hierarchy across interactions. It clarifies state transitions, preserves spatial context, and improves usability. Motion is never decorative — it is intentional, restrained, and system-driven."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Motion has purpose"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Preserve context and continuity"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Subtle, consistent, and accessible"
+        },
+        {
+          "t": "p",
+          "text": "Animation must communicate state, causality, or hierarchy. Movement should make interactions clearer, not more expressive. If motion does not improve understanding, it should not be implemented.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Transitions maintain spatial and structural relationships. Users should understand what changed and why, without losing orientation or focus.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Motion is predictable and restrained across products. It never blocks task completion and always respects reduced-motion preferences.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Duration & Easing",
+      "subtitle": null,
+      "x": 6060,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Consistent duration and easing create a cohesive interaction experience. SOLAR defines standardized motion timing to ensure predictable and harmonious behavior across products."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Duration"
+        },
+        {
+          "t": "p",
+          "text": "Motion durations scale by complexity:\nShort (micro feedback)\nMedium (component transitions)\nLong (structural transitions)\n\nDuration reflects distance and complexity — not preference.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Easing"
+        },
+        {
+          "t": "p",
+          "text": "Ease-out for entrances\nEase-in for exits\nEase-both for state transitions\n\nEasing reinforces natural movement and reduces abrupt changes.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "Screenshot 2026-03-20 at 13.46.32 1"
+        },
+        {
+          "t": "image",
+          "name": "image 3"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Transitions",
+      "subtitle": null,
+      "x": 8080,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Transitions connect interface states and maintain continuity across interactions. They ensure that structural or visual changes feel intentional rather than abrupt."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Types of Transitions"
+        },
+        {
+          "t": "p",
+          "text": "Opacity (fade)\nTransform (scale, slide)\nLayout expansion / collapse\nElevation shifts\n\nTransitions should reflect the nature of the change.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Structural Transitions"
+        },
+        {
+          "t": "p",
+          "text": "Navigation expansion\nSidebar collapse\nDialog entry and exit\nPage-level transitions\n\nLarge structural transitions require proportionally longer duration.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "image",
+          "name": "image 4"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "State Changes",
+      "subtitle": null,
+      "x": 10100,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "image 1"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "State changes provide immediate feedback in response to user interaction or system updates. Motion clarifies cause and effect."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Interaction States"
+        },
+        {
+          "t": "p",
+          "text": "Hover\nFocus\nActive\nDisabled\nLoading\n\nState transitions must be subtle and consistent.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Feedback States"
+        },
+        {
+          "t": "p",
+          "text": "Success\nWarning\nDanger\nInfo\n\nFeedback motion should reinforce meaning without overwhelming the user.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Micro-interactions",
+      "subtitle": null,
+      "x": 12120,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "image 2"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Micro-interactions are small, purposeful animations that enhance clarity and responsiveness. They guide attention without distracting from primary tasks."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Examples"
+        },
+        {
+          "t": "p",
+          "text": "Button press feedback\nToggle switch movement\nInput validation animation\nIcon state change\nProgress indication\n\nMicro-interactions should be:\nFast\nSubtle\nContextual",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Motion\ndomain: Animation & Transition System\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR motion specialist. Motion should be purposeful, subtle, and accessible. All animation values are token-driven — never hardcode durations, easings, or keyframes.\n\n[SCOPE]\n- Duration tokens and when to use each\n- Easing curve tokens and their applications\n- Transition patterns (enter, exit, expand, fade, slide)\n- Performance considerations\n- Reduced motion accessibility\n- Staggered and sequenced animations\n\n[DURATION_TOKENS]\nmotion.duration.instant: 0ms — immediate state swaps, disabled transitions\nmotion.duration.fast: 100–150ms — hover states, tooltips, micro-interactions\nmotion.duration.normal: 200–300ms — standard transitions, expand/collapse, tab switches\nmotion.duration.slow: 400–500ms — dialogs entering, page transitions, complex reveals\nmotion.duration.slower: 600–800ms — hero animations, onboarding sequences (rare)\nrule: use the shortest duration that feels natural — never slow for the sake of slow\n\n[EASING_TOKENS]\nmotion.easing.standard: ease-in-out — default for most transitions (symmetric movement)\nmotion.easing.enter: ease-out / decelerate — elements arriving on screen (fast start, slow end)\nmotion.easing.exit: ease-in / accelerate — elements leaving screen (slow start, fast end)\nmotion.easing.linear: linear — progress bars, continuous rotation, opacity fades\nrule: match easing to the motion's intent — enter uses decelerate, exit uses accelerate\n\n[TRANSITION_PATTERNS]\nfade_in: opacity 0→1 | duration.normal | easing.enter\nfade_out: opacity 1→0 | duration.fast | easing.exit\nslide_in: translateY(8px→0) + fade | duration.normal | easing.enter\nslide_out: translateY(0→8px) + fade | duration.fast | easing.exit\nexpand: height 0→auto + fade | duration.normal | easing.standard\ncollapse: height auto→0 + fade | duration.fast | easing.standard\nscale_in: scale(0.95→1) + fade | duration.normal | easing.enter\nscale_out: scale(1→0.95) + fade | duration.fast | easing.exit\n\n[COMPONENT_MOTION]\ntooltips: fade_in fast | fade_out fast\ndropdowns: slide_in normal | slide_out fast\ndialogs: scale_in slow + scrim fade | scale_out normal + scrim fade\ndrawers: slide_in slow (from edge) | slide_out normal\ntoasts: slide_in normal (from top/bottom) | fade_out normal (after timeout)\naccordions: expand normal | collapse fast\ntabs: fade crossfade normal\n\n[STAGGER]\nlist_items: 30–50ms delay between items\nmax_stagger: cap at 5–8 items — remaining items appear together\ndirection: top-to-bottom or left-to-right following reading order\nrule: stagger adds polish but must not delay content access significantly\n\n[PERFORMANCE]\nprefer: transform (translate, scale, rotate) and opacity — GPU-composited, no layout thrash\navoid: animating width, height, top, left, margin, padding — triggers layout recalculation\nwill-change: apply sparingly and only during animation — remove after completion\nrule: 60fps target — if an animation causes jank, simplify or remove it\n\n[REDUCED_MOTION]\nmedia_query: @media (prefers-reduced-motion: reduce)\nbehavior: replace all motion with instant state swaps (duration: 0ms, no transform)\nexceptions: essential motion (e.g., progress indicators) may use subtle opacity fades\nrule: NEVER ignore prefers-reduced-motion — it is a critical accessibility requirement\n\n[AGENT_BEHAVIOR]\n- When recommending motion, specify the duration token + easing token + property being animated\n- Always pair enter/exit patterns (if something slides in, define how it slides out)\n- Check that every animation has a reduced-motion fallback\n- Prefer transform + opacity over layout-triggering properties\n- Flag any hardcoded duration or easing values as violations\n- If an animation feels slow or decorative without purpose, recommend removing it\n\n[CONSTRAINTS]\n- never hardcode duration or easing values — always tokens\n- never animate layout properties (width, height, top, left) — use transform\n- never block user interaction during animation — transitions must be non-blocking\n- never ignore prefers-reduced-motion\n- never stagger more than 8 items — cap and batch the rest\n- never use motion purely for decoration — every animation must have a purpose\n- loading animations may loop but must be subtle (opacity pulse, rotation)\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Motion Principles",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Motion has purpose",
+        "Preserve context and continuity",
+        "Subtle, consistent, and accessible",
+        "Animation must communicate state, causality, or hierarchy. Movement should make interactions clearer, not more expressive. If motion does not improve understanding, it should not be implemented.",
+        "Transitions maintain spatial and structural relationships. Users should understand what changed and why, without losing orientation or focus.",
+        "Motion is predictable and restrained across products. It never blocks task completion and always respects reduced-motion preferences.",
+        "Motion in SOLAR communicates change and reinforces hierarchy across interactions. It clarifies state transitions, preserves spatial context, and improves usability. Motion is never decorative — it is intentional, restrained, and system-driven."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Duration & Easing",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Consistent duration and easing create a cohesive interaction experience. SOLAR defines standardized motion timing to ensure predictable and harmonious behavior across products.",
+        "Duration",
+        "Motion durations scale by complexity:\nShort (micro feedback)\nMedium (component transitions)\nLong (structural transitions)\n\nDuration reflects distance and complexity — not preference.",
+        "Easing",
+        "Ease-out for entrances\nEase-in for exits\nEase-both for state transitions\n\nEasing reinforces natural movement and reduces abrupt changes."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Transitions",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Transitions connect interface states and maintain continuity across interactions. They ensure that structural or visual changes feel intentional rather than abrupt.",
+        "Types of Transitions",
+        "Opacity (fade)\nTransform (scale, slide)\nLayout expansion / collapse\nElevation shifts\n\nTransitions should reflect the nature of the change.",
+        "Structural Transitions",
+        "Navigation expansion\nSidebar collapse\nDialog entry and exit\nPage-level transitions\n\nLarge structural transitions require proportionally longer duration."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "State Changes",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "State changes provide immediate feedback in response to user interaction or system updates. Motion clarifies cause and effect.",
+        "Interaction States",
+        "Hover\nFocus\nActive\nDisabled\nLoading\n\nState transitions must be subtle and consistent.",
+        "Feedback States",
+        "Success\nWarning\nDanger\nInfo\n\nFeedback motion should reinforce meaning without overwhelming the user."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Micro-interactions",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Micro-interactions are small, purposeful animations that enhance clarity and responsiveness. They guide attention without distracting from primary tasks.",
+        "Examples",
+        "Button press feedback\nToggle switch movement\nInput validation animation\nIcon state change\nProgress indication\n\nMicro-interactions should be:\nFast\nSubtle\nContextual"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "About",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Motion",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Motion in SOLAR communicates change and reinforces hierarchy across interactions. It clarifies state transitions, preserves spatial context, and improves usability. Motion is never decorative — it is intentional, restrained, and system-driven.",
+        "Purpose",
+        "Motion exists to:\nCommunicate state changes clearly\nPreserve spatial context during transitions\nReinforce hierarchy and causality\nMaintain consistency across products",
+        "Scope",
+        "Motion includes:\nDuration tokens (instant, fast, normal, slow, slower)\nEasing curves (ease-out, ease-in, ease-both)\nState transitions\nStructural transitions\nMicro-interactions\n\nMotion defines temporal behavior.\nVisual language defines expression.\nComponents operate within both."
+      ],
+      "variableId": "VariableID:29:1096",
+      "hex": "#000000",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 104
+}

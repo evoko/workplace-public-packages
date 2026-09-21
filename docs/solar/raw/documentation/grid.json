@@ -1,0 +1,662 @@
+{
+  "page": "Grid",
+  "pageId": "763:58215",
+  "section": "documentation",
+  "slug": "grid",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Layout\nGrid"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Grid System",
+      "subtitle": null,
+      "x": 2020,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "The SOLAR grid system defines the horizontal structure of layout. It organizes content into columns, establishes alignment, and creates consistent rhythm across pages and products. The grid provides order and predictability, independent of visual styling or responsive behavior."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Purpose"
+        },
+        {
+          "t": "p",
+          "text": "The grid system:\nStructures horizontal layout\nAligns content across screens\nDefines consistent composition rules\nScales across breakpoints\nSupports complex layouts such as dashboards and admin tools\n\nThe grid is the structural foundation of interface layout.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Core Elements"
+        },
+        {
+          "t": "p",
+          "text": "The grid consists of three components:\nColumns — structural divisions of layout\nGutter — space between columns\nMargin — outer boundary between grid and viewport\n\nThese elements work together to create consistent horizontal balance.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Grid on Mobile (xs — 393px)",
+      "subtitle": null,
+      "x": 4040,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "Table Container"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "At the mobile breakpoint (xs), the grid simplifies to support clarity, readability, and vertical flow. The structure prioritizes stacking and full-width content while maintaining alignment and horizontal rhythm."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Column Structure"
+        },
+        {
+          "t": "p",
+          "text": "4-column grid\nColumns primarily function as alignment guides\nMost content spans full width (4/4)\nMulti-column compositions are minimal\n\nMobile grid supports simplicity and hierarchy.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Gutter"
+        },
+        {
+          "t": "p",
+          "text": "Reduced gutter width\nPrevents visual crowding\nMaintains rhythm between structural divisions\nGutter ensures horizontal breathing room without fragmenting layout.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Margin"
+        },
+        {
+          "t": "p",
+          "text": "Grid margin defines outer boundary from viewport edge\nPrevents edge-to-edge content\nMaintains safe touch area and visual balance\nMargin is horizontal only and applies to the entire grid container.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Breakpoint",
+              "Min Width",
+              "Columns",
+              "Gutter",
+              "Margin",
+              "Intent"
+            ],
+            [
+              "xs",
+              "393px",
+              "4",
+              "1rem / 16px",
+              "1rem / 16px",
+              "Mobile baseline"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Grid on Desktop (sm → xl)",
+      "subtitle": null,
+      "x": 6060,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "image",
+          "name": "Table Container"
+        },
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Desktop breakpoints expand layout structure rather than simply increasing width. From sm (768px) through xl (1920px), SOLAR progressively unlocks grid complexity, panel distribution, and content density while maintaining consistent hierarchy and accessibility."
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Structural Expansion"
+        },
+        {
+          "t": "p",
+          "text": "Desktop layouts introduce hierarchy and simultaneous visibility.\n\nMulti-column compositions appear\nSide navigation expands or persists\nPanels align horizontally\nData density increases\nSecondary content becomes visible",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 5,
+          "text": "Wide Screens (lg / xl)"
+        },
+        {
+          "t": "p",
+          "text": "Wide layouts enhance productivity without breaking rhythm.\n\nContent may be constrained with container max-width\nDashboards can expand horizontally\nLayout improves scannability rather than stretching content\nSpacing scales proportionally through stack and inset tokens",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Breakpoint",
+              "Min Width",
+              "Columns",
+              "Gutter",
+              "Margin",
+              "Intent"
+            ],
+            [
+              "sm",
+              "768px",
+              "4",
+              "1rem / 16px",
+              "1rem / 16px",
+              "Tablet portrait"
+            ],
+            [
+              "md",
+              "1024px",
+              "8",
+              "1.25rem / 20px",
+              "1.25rem / 20px",
+              "Tablet landscape"
+            ],
+            [
+              "lg",
+              "1440px",
+              "12",
+              "1.5rem / 24px",
+              "1.5rem / 24px",
+              "Standard desktop"
+            ],
+            [
+              "xl",
+              "1920px",
+              "12",
+              "1.5rem / 24px",
+              "1.5rem / 24px",
+              "Large display"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Grid\ndomain: Layout > Column Grid System\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR grid system specialist. The grid provides the structural backbone for page layouts. All page-level and section-level content aligns to the column grid — never arbitrary widths.\n\n[SCOPE]\n- Column grid specifications per breakpoint\n- Gutter and margin tokens\n- Content width caps\n- Grid usage patterns and column spanning\n- Nested grids and exceptions\n\n[GRID_PER_BREAKPOINT]\nmobile: 4 columns | gutter: space.md (16px) | margin: space.md (16px)\ntablet: 8 columns | gutter: space.lg (24px) | margin: space.lg (24px)\ndesktop: 12 columns | gutter: space.lg (24px) | margin: space.xl (40px)\nwide: 12 columns | gutter: space.lg (24px) | margin: auto (centered, max-width capped)\n\n[GRID_TOKENS]\ngrid.columns.{breakpoint}: column count per breakpoint\ngrid.gutter: spatial token for gap between columns\ngrid.margin: spatial token for page-edge margins\ngrid.max-width: maximum content width (e.g., 1280px or 1440px)\nrule: gutters and margins are spatial tokens — never hardcoded px values\n\n[COLUMN_SPANNING]\nfull_width: 12/12 (desktop) — hero sections, full-bleed content\ntwo_thirds: 8/12 (desktop) — primary content area\nhalf: 6/12 (desktop) — side-by-side equal panels\none_third: 4/12 (desktop) — sidebar, secondary content\none_quarter: 3/12 (desktop) — cards in a 4-up grid\nrule: always express widths as column spans, not percentages or pixels\n\n[COMMON_LAYOUTS]\nsingle_column: 8/12 centered — articles, forms, focused content\nsidebar_content: 3/12 + 9/12 or 4/12 + 8/12 — navigation + main content\nequal_split: 6/12 + 6/12 — comparison layouts\ncard_grid: 3/12 × 4 or 4/12 × 3 — product listings, dashboards\nasymmetric: 5/12 + 7/12 — text + media layouts\n\n[NESTED_GRIDS]\nrule: nested grids are allowed but must align to parent grid rhythm\ninner_columns: subdivide the parent span (e.g., a 6-col container can have its own 6-col inner grid)\ninner_gutters: use the same gutter token as the parent grid\nalignment: inner grid edges should align with parent grid lines where possible\n\n[FULL_BLEED]\ndefinition: content that extends beyond the grid margins to the viewport edge\nusage: hero images, color bands, section backgrounds\nrule: full-bleed is a documented exception — content within full-bleed areas still aligns to the inner grid\n\n[AGENT_BEHAVIOR]\n- When recommending layout, specify column spans (e.g., \"8/12 on desktop, 12/12 on mobile\")\n- Always describe grid behavior at each breakpoint\n- Verify content aligns to grid columns — flag misaligned elements\n- Check that gutters use the system gutter token\n- For nested layouts, verify inner grid aligns to parent grid\n- Flag any hardcoded width values as violations\n\n[CONSTRAINTS]\n- never hardcode pixel widths for layout — use column spans\n- never modify gutter width per component — use the system gutter token\n- never exceed max-width on wide screens\n- content within full-bleed sections still aligns to the inner grid\n- small elements (icons, badges) don't need to snap to columns — grid is for structure\n- grid columns are guides for alignment, not rigid constraints for every element\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Grid on Desktop (sm → xl)",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Desktop breakpoints expand layout structure rather than simply increasing width. From sm (768px) through xl (1920px), SOLAR progressively unlocks grid complexity, panel distribution, and content density while maintaining consistent hierarchy and accessibility.",
+        "Structural Expansion",
+        "Desktop layouts introduce hierarchy and simultaneous visibility.\n\nMulti-column compositions appear\nSide navigation expands or persists\nPanels align horizontally\nData density increases\nSecondary content becomes visible",
+        "Wide Screens (lg / xl)",
+        "Wide layouts enhance productivity without breaking rhythm.\n\nContent may be constrained with container max-width\nDashboards can expand horizontally\nLayout improves scannability rather than stretching content\nSpacing scales proportionally through stack and inset tokens",
+        "Breakpoint",
+        "Min Width",
+        "Columns",
+        "Gutter",
+        "Margin",
+        "Intent",
+        "sm",
+        "768px",
+        "4",
+        "1rem / 16px",
+        "1rem / 16px",
+        "Tablet portrait",
+        "md",
+        "1024px",
+        "8",
+        "1.25rem / 20px",
+        "1.25rem / 20px",
+        "Tablet landscape",
+        "lg",
+        "1440px",
+        "12",
+        "1.5rem / 24px",
+        "1.5rem / 24px",
+        "Standard desktop",
+        "xl",
+        "1920px",
+        "12",
+        "1.5rem / 24px",
+        "1.5rem / 24px",
+        "Large display"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Grid on Mobile (xs — 393px)",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "At the mobile breakpoint (xs), the grid simplifies to support clarity, readability, and vertical flow. The structure prioritizes stacking and full-width content while maintaining alignment and horizontal rhythm.",
+        "Column Structure",
+        "4-column grid\nColumns primarily function as alignment guides\nMost content spans full width (4/4)\nMulti-column compositions are minimal\n\nMobile grid supports simplicity and hierarchy.",
+        "Gutter",
+        "Reduced gutter width\nPrevents visual crowding\nMaintains rhythm between structural divisions\nGutter ensures horizontal breathing room without fragmenting layout.",
+        "Margin",
+        "Grid margin defines outer boundary from viewport edge\nPrevents edge-to-edge content\nMaintains safe touch area and visual balance\nMargin is horizontal only and applies to the entire grid container.",
+        "Breakpoint",
+        "Min Width",
+        "Columns",
+        "Gutter",
+        "Margin",
+        "Intent",
+        "xs",
+        "393px",
+        "4",
+        "1rem / 16px",
+        "1rem / 16px",
+        "Mobile baseline"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Grid System",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "The SOLAR grid system defines the horizontal structure of layout. It organizes content into columns, establishes alignment, and creates consistent rhythm across pages and products. The grid provides order and predictability, independent of visual styling or responsive behavior.",
+        "Purpose",
+        "The grid system:\nStructures horizontal layout\nAligns content across screens\nDefines consistent composition rules\nScales across breakpoints\nSupports complex layouts such as dashboards and admin tools\n\nThe grid is the structural foundation of interface layout.",
+        "Core Elements",
+        "The grid consists of three components:\nColumns — structural divisions of layout\nGutter — space between columns\nMargin — outer boundary between grid and viewport\n\nThese elements work together to create consistent horizontal balance."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 90
+}

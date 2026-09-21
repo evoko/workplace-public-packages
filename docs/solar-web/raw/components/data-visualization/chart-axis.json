@@ -1,0 +1,575 @@
+{
+  "page": "↳ 🟢 Chart Axis",
+  "pageId": "5113:7",
+  "componentSets": [
+    {
+      "name": "Chart Axis",
+      "id": "7269:68",
+      "description": "Axis line + tick marks + value labels for use along a chart's plot area.\n\nVariants:\n  orientation = horizontal (X-axis, sits below plot) | vertical (Y-axis, sits to left of plot)\n  breakpoint = desktop (5 ticks, longer length) | mobile (4 ticks, shorter length)\n\nLabels are illustrative (0-100). Override per instance with category names (Jan, Feb…) for horizontal or scale values for vertical.\n\nTo change tick count, add or remove Tick children inside the Ticks frame.",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "orientation": {
+          "type": "VARIANT",
+          "default": "horizontal",
+          "options": [
+            "horizontal",
+            "vertical"
+          ]
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "orientation=horizontal, breakpoint=desktop",
+      "defaultVariantNodeCount": 17,
+      "defaultVariantTree": {
+        "name": "orientation=horizontal, breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          600,
+          22
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 4,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "children": [
+          {
+            "name": "Axis Line",
+            "type": "FRAME",
+            "size": [
+              600,
+              1
+            ],
+            "sizing": "FILL/FIXED",
+            "fills": [
+              "{Color:border/medium}"
+            ],
+            "children": []
+          },
+          {
+            "name": "Ticks",
+            "type": "FRAME",
+            "size": [
+              600,
+              17
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "SPACE_BETWEEN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "Tick",
+                "type": "FRAME",
+                "size": [
+                  8,
+                  17
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Tick Mark",
+                    "type": "FRAME",
+                    "size": [
+                      1,
+                      4
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "fills": [
+                      "{Color:border/medium}"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "name": "0",
+                    "type": "TEXT",
+                    "text": "0",
+                    "textStyle": "helper/sm",
+                    "size": [
+                      8,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/helper/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/helper/sm",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Tick",
+                "type": "FRAME",
+                "size": [
+                  15,
+                  17
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Tick Mark",
+                    "type": "FRAME",
+                    "size": [
+                      1,
+                      4
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "fills": [
+                      "{Color:border/medium}"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "name": "25",
+                    "type": "TEXT",
+                    "text": "25",
+                    "textStyle": "helper/sm",
+                    "size": [
+                      15,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/helper/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/helper/sm",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Tick",
+                "type": "FRAME",
+                "size": [
+                  15,
+                  17
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Tick Mark",
+                    "type": "FRAME",
+                    "size": [
+                      1,
+                      4
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "fills": [
+                      "{Color:border/medium}"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "name": "50",
+                    "type": "TEXT",
+                    "text": "50",
+                    "textStyle": "helper/sm",
+                    "size": [
+                      15,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/helper/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/helper/sm",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Tick",
+                "type": "FRAME",
+                "size": [
+                  14,
+                  17
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Tick Mark",
+                    "type": "FRAME",
+                    "size": [
+                      1,
+                      4
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "fills": [
+                      "{Color:border/medium}"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "name": "75",
+                    "type": "TEXT",
+                    "text": "75",
+                    "textStyle": "helper/sm",
+                    "size": [
+                      14,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/helper/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/helper/sm",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Tick",
+                "type": "FRAME",
+                "size": [
+                  21,
+                  17
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "children": [
+                  {
+                    "name": "Tick Mark",
+                    "type": "FRAME",
+                    "size": [
+                      1,
+                      4
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "fills": [
+                      "{Color:border/medium}"
+                    ],
+                    "children": []
+                  },
+                  {
+                    "name": "100",
+                    "type": "TEXT",
+                    "text": "100",
+                    "textStyle": "helper/sm",
+                    "size": [
+                      21,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/helper/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/helper/sm",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "orientation=horizontal, breakpoint=desktop",
+          "size": [
+            600,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "orientation=horizontal, breakpoint=mobile",
+          "size": [
+            343,
+            22
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "orientation=vertical, breakpoint=desktop",
+          "size": [
+            100,
+            280
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "orientation=vertical, breakpoint=mobile",
+          "size": [
+            100,
+            220
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chart Gridlines",
+      "id": "7272:24",
+      "description": "Faint reference lines that span a chart's plot area. Overlay on chart bars/lines to aid value reading.\n\nVariants:\n  orientation = horizontal (horizontal lines, typical Y-axis gridlines) | vertical (vertical lines, typical X-axis gridlines)\n  breakpoint = desktop (5 lines) | mobile (4 lines)\n\nLines bind to border/subtle for low visual weight. Position behind chart bars/lines.",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "orientation": {
+          "type": "VARIANT",
+          "default": "horizontal",
+          "options": [
+            "horizontal",
+            "vertical"
+          ]
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "desktop",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "orientation=horizontal, breakpoint=desktop",
+      "defaultVariantNodeCount": 5,
+      "defaultVariantTree": {
+        "name": "orientation=horizontal, breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          600,
+          280
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "SPACE_BETWEEN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "children": [
+          {
+            "name": "Gridline",
+            "type": "FRAME",
+            "size": [
+              600,
+              1
+            ],
+            "sizing": "FILL/FIXED",
+            "fills": [
+              "{Color:border/subtle}"
+            ],
+            "children": []
+          },
+          {
+            "name": "Gridline",
+            "type": "FRAME",
+            "size": [
+              600,
+              1
+            ],
+            "sizing": "FILL/FIXED",
+            "fills": [
+              "{Color:border/subtle}"
+            ],
+            "children": []
+          },
+          {
+            "name": "Gridline",
+            "type": "FRAME",
+            "size": [
+              600,
+              1
+            ],
+            "sizing": "FILL/FIXED",
+            "fills": [
+              "{Color:border/subtle}"
+            ],
+            "children": []
+          },
+          {
+            "name": "Gridline",
+            "type": "FRAME",
+            "size": [
+              600,
+              1
+            ],
+            "sizing": "FILL/FIXED",
+            "fills": [
+              "{Color:border/subtle}"
+            ],
+            "children": []
+          },
+          {
+            "name": "Gridline",
+            "type": "FRAME",
+            "size": [
+              600,
+              1
+            ],
+            "sizing": "FILL/FIXED",
+            "fills": [
+              "{Color:border/subtle}"
+            ],
+            "children": []
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "orientation=horizontal, breakpoint=desktop",
+          "size": [
+            600,
+            280
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "orientation=horizontal, breakpoint=mobile",
+          "size": [
+            343,
+            220
+          ]
+        },
+        {
+          "variant": "orientation=vertical, breakpoint=desktop",
+          "size": [
+            600,
+            280
+          ]
+        },
+        {
+          "variant": "orientation=vertical, breakpoint=mobile",
+          "size": [
+            343,
+            220
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Chart Axis",
+    "Description",
+    "The reference frame for a chart — ticks, gridlines and value/category labels along one edge. Pairs with Bar, Line and Donut charts; not a standalone graphic.",
+    "Anatomy",
+    "Axis line · tick marks · tick labels · optional gridlines · optional axis title.",
+    "Orientation & Scale",
+    "Horizontal (category/time) or vertical (value). Linear, log or categorical scale. Gridlines are optional and always sit behind the data.",
+    "States",
+    "Non-interactive (Class K): no hover / pressed / focus. Emphasis via label weight and gridline opacity only.",
+    "Accessibility",
+    "Axis labels carry the data meaning — never rely on position alone. Label text ≥4.5:1; gridlines ≥3:1. Expose scale and units to assistive tech.",
+    "Rules",
+    "Start value axes at zero\nLabel units once, on the axis\nKeep gridlines subtle, behind data\nReduce tick density on small charts",
+    "Truncate the value axis\nRotate labels past 45°\nMake gridlines heavier than data\nRepeat units on every tick"
+  ],
+  "pageContext": null
+}

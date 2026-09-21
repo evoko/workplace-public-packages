@@ -1,0 +1,591 @@
+{
+  "page": "Agentic Reference",
+  "pageId": "1251:578",
+  "section": "documentation",
+  "slug": "agentic-reference",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Agentic Reference"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Agentic Implementation",
+      "subtitle": null,
+      "x": 2000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR is designed to be consumed by AI agents with the same precision as human designers and engineers — structured documentation, machine-readable specifications, and validation tooling form an integrated agentic layer."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Not a Bolt-On"
+        },
+        {
+          "t": "p",
+          "text": "The agentic layer is not an afterthought. Token naming grammars, component specifications, and validation rules are authored with both human and agent consumption in mind from the start.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Deterministic Output"
+        },
+        {
+          "t": "p",
+          "text": "Structured references, explicit constraints, and enumerated options reduce ambiguity. An agent consuming SOLAR produces consistent results regardless of prompt variation — the system's rules are the spec, not the conversation.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Governed Equally"
+        },
+        {
+          "t": "p",
+          "text": "Agents are subject to the same compliance rules as human implementers. Token naming, accessibility requirements, and theming constraints apply uniformly — no separate standard for generated output.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "What Agentic Implementation Is Not"
+        },
+        {
+          "t": "p",
+          "text": "Not autonomous design decision-making. Not a replacement for design review. Not permission to invent tokens or bypass governance. Agents execute within the system's boundaries — they do not extend them.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "The Instruction Layer",
+      "subtitle": null,
+      "x": 4000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "CLAUDE.md is the single instruction file that governs how AI agents operate within SOLAR — it defines token naming rules, banned patterns, separator conventions, and validation requirements in one deterministic reference."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Token Naming Grammar"
+        },
+        {
+          "t": "p",
+          "text": "Every token follows a strict grammar with defined segments and allowed values. The grammar is explicit enough that an agent can construct valid token names from rules alone — category, role, modifier, state — without relying on examples or pattern-matching.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Separator Conventions"
+        },
+        {
+          "t": "p",
+          "text": "Dot in documentation and code. Slash in Figma. Hyphen with --solar- prefix in CSS custom properties. Context determines the separator — agents must never mix conventions within a single output.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Banned Segments"
+        },
+        {
+          "t": "p",
+          "text": "Explicit lists of forbidden token fragments — foreground, background, error, default (for icons) — prevent the most common agent naming errors. Agents check the banned list before emitting any token reference.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Phantom Token Protocol"
+        },
+        {
+          "t": "p",
+          "text": "When a referenced token does not exist in the Figma inventory, agents flag it with ⚠️ and log it in the Variable Audit Report rather than silently using it. Gaps are governance issues, not agent decisions.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Machine-Readable Specifications",
+      "subtitle": null,
+      "x": 6000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR maintains parallel documentation layers — human-readable guidelines for context and decision-making, machine-readable specifications for deterministic agent consumption."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "component-specs.json"
+        },
+        {
+          "t": "p",
+          "text": "Every component's tokens, ARIA roles, states, and constraints are encoded as structured JSON. Agents parse this directly rather than extracting intent from prose — eliminating interpretation error and enabling deterministic component generation.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Token Inventories"
+        },
+        {
+          "t": "p",
+          "text": "Complete Figma variable exports — primitives, light mode, dark mode — are stored as JSON in the repository. Agents cross-reference these to validate that token names resolve to real Figma variables with real values, not stale documentation.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Figma Variable Alignment"
+        },
+        {
+          "t": "p",
+          "text": "Live snapshots of Figma variables are tracked alongside the documentation. Discrepancies between documented tokens and actual Figma variables are logged in the Variable Audit Report — agents use this to avoid referencing phantom tokens.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Skills & Progressive Disclosure",
+      "subtitle": null,
+      "x": 8000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR packages agent capabilities as skills — self-contained instruction sets that teach agents to perform specific tasks such as slide design, component documentation, or design validation."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Skill Structure"
+        },
+        {
+          "t": "p",
+          "text": "Each skill has a SKILL.md entry point under 500 lines and a references/ directory for detailed specifications. The entry point defines the workflow and common patterns; reference files provide the granular data an agent needs for execution.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Progressive Disclosure"
+        },
+        {
+          "t": "p",
+          "text": "Complex knowledge is layered rather than flattened. An agent creating a slide loads the slide-types reference. An agent documenting a component loads the component-doc reference. No skill forces an agent to consume the entire system upfront.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Versioned with the System"
+        },
+        {
+          "t": "p",
+          "text": "Skills live in the repository's skills/ directory, versioned alongside tokens, components, and guidelines. As SOLAR evolves, skills are updated to match — ensuring agent behavior stays aligned with the current system state rather than a stale snapshot.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Validation & Compliance",
+      "subtitle": null,
+      "x": 10000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Agents validate their output against the same compliance rules that govern human implementation — validation rule IDs, automated lint checks, and structured checklists ensure every output meets SOLAR standards."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Validation Rule IDs"
+        },
+        {
+          "t": "p",
+          "text": "Every rule has a standard ID — CLR-001 through CLR-006 for color, SPC-001 through SPC-004 for spacing, A11Y-001 through A11Y-008 for accessibility, and so on across ten categories. Agents reference these IDs in code comments, lint configurations, and compliance reports.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Automated Lint"
+        },
+        {
+          "t": "p",
+          "text": "The solar-lint-plugin validates Figma designs against SOLAR rules in real time. The solar-lint-agent runs the same checks headlessly in CI pipelines — agent-generated output is validated by the same tooling that validates human work.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Pre-Submission Checklist"
+        },
+        {
+          "t": "p",
+          "text": "Twenty-two items covering tokens, accessibility, responsive behavior, theming, and naming conventions. Agents treat this checklist as a mandatory gate before any output is submitted — items that fail are resolved, not skipped.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "The Agent Consumption Path",
+      "subtitle": null,
+      "x": 12000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "An agent working within SOLAR follows a defined consumption path — read the instruction layer, load relevant specifications, apply tokens and patterns, then validate output against compliance rules."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "01  Read CLAUDE.md"
+        },
+        {
+          "t": "p",
+          "text": "Learn token naming rules, banned segments, separator conventions, and validation requirements. This is the agent's operating manual — every rule is hard, not advisory.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "04  Generate Output"
+        },
+        {
+          "t": "p",
+          "text": "Apply semantic tokens, named text styles, spatial values, and accessibility requirements. Every visual property must trace to a named token — no raw values.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "02  Load Component Specs"
+        },
+        {
+          "t": "p",
+          "text": "Get structured token mappings, ARIA requirements, and interaction states for the target component. Parse JSON directly — never extract intent from prose.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "05  Validate"
+        },
+        {
+          "t": "p",
+          "text": "Run the 22-item checklist, cross-reference the token inventory, flag any phantom or unresolved tokens. Validation is not optional — it is the final step before submission.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "03  Load Skill"
+        },
+        {
+          "t": "p",
+          "text": "If the task has a packaged skill, read SKILL.md and relevant reference files for task-specific workflow and data. Skills scope what the agent needs to know.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "06  Submit"
+        },
+        {
+          "t": "p",
+          "text": "Output meets SOLAR compliance standards and is ready for review. Compliance is binary — partial compliance is non-compliance.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Quick-Start Rules",
+      "subtitle": null,
+      "x": 14000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Ten rules for valid SOLAR output. Follow these before anything else."
+        },
+        {
+          "t": "p",
+          "text": "Every visual property must trace to a token. Every interactive element must meet accessibility baselines. If a property isn't covered by a token, flag it as a gap — never use raw values.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "1.  Every color → semantic token (color.*) — never hex, never primitive\n2.  Every spacing → spatial token (inset.*, stack.*) — never raw px/rem\n3.  Every text → named text style (type.body.md.*) — never raw font props\n4.  Every shadow → effect token (shadow.*) — never raw box-shadow\n5.  Every duration → motion token (motion.duration.*) — never raw ms",
+          "style": "Body/Body S/Medium"
+        },
+        {
+          "t": "p",
+          "text": "6.   Every easing → motion token (motion.easing.*) — never raw cubic-bezier\n7.   Every border-radius → spatial.border-radius.* — never raw px\n8.   Every z-index → defined level (0/100/200/300/400/500/600) — never arbitrary\n9.   Every interactive element → minimum 44×44px touch target\n10.  Every interactive element → visible focus ring on :focus-visible",
+          "style": "Body/Body S/Medium"
+        }
+      ]
+    },
+    {
+      "name": "Slide",
+      "title": "Do / Don't / Agent Tips",
+      "subtitle": null,
+      "x": 16000,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Quick-reference Do's, Don'ts, and tips for AI agents."
+        },
+        {
+          "t": "p",
+          "text": "Follow the Do column as default behavior. The Don't column lists the most common agent mistakes. Tips provide practical shortcuts for correct output.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Do"
+        },
+        {
+          "t": "p",
+          "text": "Use semantic tokens for every visual property — color, spacing, type, shadow, radius, elevation.\n\nInclude the feedback segment for all status colors: color.text.feedback.danger, color.icon.feedback.success.\n\nUse action token properties (bg, text, icon, border) — never foreground or background.\n\nReference named text styles — never set raw font-size, font-weight, or line-height.\n\nRun the validation checklist before every handoff.\n\nEnsure 44×44px minimum touch targets on all interactive elements.\n\nProvide visible focus rings on every focusable element.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Don’t"
+        },
+        {
+          "t": "p",
+          "text": "Use hex values, primitives, or hardcoded px/rem — always use semantic tokens.\n\nSkip the feedback segment: color.text.danger is banned — use color.text.feedback.danger.\n\nUse foreground or background — use text/icon and bg/surface respectively.\n\nMix separator styles: Figma uses slash, docs use dot, CSS uses hyphen.\n\nUse arbitrary z-index values — only the seven defined levels (0–600).\n\nSilently use phantom tokens like color.surface.secondary — flag them with ⚠️.\n\nInvent tokens that don't exist in the inventory — flag gaps for governance.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Agent Tips"
+        },
+        {
+          "t": "p",
+          "text": "Use this page as first-pass lookup. Cross-reference the full Guidelines spec for edge cases.\n\nCheck the Banned Segments list first when in doubt — it catches 90% of naming errors.\n\nTypography scale shows Desktop values — Mobile values differ. Check both modes.\n\nShadow tokens in CSS are composites; Figma stores shadow color variables separately.\n\nRun the validation checklist as a pre-submission gate before every output.\n\nIf a token doesn't exist and you need it, flag it as a governance gap — never fabricate a name.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Agentic Reference\ndomain: AI Agent Toolkit > Quick-Reference Specification\nversion: 1.0\nupdated: 2026-03-27\n\n[ROLE]\nYou are the SOLAR agentic implementation specialist. This page is the minimum viable knowledge an AI agent needs to generate a valid SOLAR interface. Every token name, spacing value, and component rule on this page is the canonical quick-reference — use it as the first lookup before consulting the full Guidelines spec.\n\n[SCOPE]\n- Ten foundational rules for valid SOLAR output\n- Complete semantic color token grammar and patterns\n- Spatial token system: inset, stack, gap, border-radius\n- Shadow and elevation token inventory\n- Z-index level system\n- Component-to-HTML mapping with key tokens and touch targets\n- Responsive breakpoint grid definitions\n- Typography scale with font families and weights\n- CSS custom property naming convention\n- Pre-review validation checklist\n\n[TOKEN_RULES]\nrule_01: every color → semantic token (color.*) — never hex, never primitive\nrule_02: every spacing → spatial token (inset.*, stack.*, gap.*) — never raw px/rem\nrule_03: every text → named text style (Display/L, Body/M/Regular, etc.) — never raw font props\nrule_04: every shadow → effect token (shadow.*) — never raw box-shadow\nrule_05: every duration → motion token (motion.duration.*) — never raw ms\nrule_06: every easing → motion token (motion.easing.*) — never raw cubic-bezier\nrule_07: every border-radius → spatial.border-radius.* — never raw px\nrule_08: every z-index → defined level (0/100/200/300/400/500/600) — never arbitrary\nrule_09: every interactive element → minimum 44x44px touch target\nrule_10: every interactive element → visible focus ring on :focus-visible\n\n[COLOR_TOKEN_GRAMMAR]\nsurface: color.surface.{variant} → base, raised, overlay, modal, background, muted, scrim, hover, active, inverse, feedback.*\ntext: color.text.{variant} → primary, secondary, tertiary, disabled, inverse, feedback.{type}, link.{state}\nborder: color.border.{variant} → default, subtle, strong, disabled, inverse, feedback.{type}.{subtle|strong}\nicon: color.icon.{variant} → primary, secondary, tertiary, disabled, inverse, feedback.{type}\naction: color.action.{intent}.{property}.{state}\ndata: color.data.{type}.{id} → category.01-08, scale.01-08, delta.positive|negative|neutral\n\n[BANNED_SEGMENTS]\nforeground → use text or icon\nbackground → use bg (action) or surface\ncolor.icon.default → color.icon.primary\ncolor.text.danger → color.text.feedback.danger\ncolor.border.error → color.border.feedback.danger.strong\ncolor.border.focus → color.border.feedback.focus.strong\ncolor.icon.success → color.icon.feedback.success\ncolor.surface.danger → color.surface.feedback.danger\nshadow.subtle → shadow.raised\nshadow.elevated → shadow.overlay\n\n[SPATIAL_SYSTEM]\ninset: none=0 | 2xs=2 | xs=4 | sm=8 | md=16 | lg=24 | xl=32\nstack: none=0 | 2xs=2 | xs=4 | sm=8 | md=16 | lg=24 | xl=32 | 2xl=48\nicon.size: xs=16 | sm=20 | md=24 | lg=32 | xl=40\nborder-radius: none=0 | sm=4 | md=6 | lg=8 | xl=12 | full=9999\n\n[SHADOW_TOKENS]\nshadow.control: inputs, small controls\nshadow.raised: cards, raised surfaces\nshadow.overlay: dropdowns, menus, popovers\nshadow.modal: dialogs, modals, drawers\nshadow.focus.default: focus ring (blue)\nshadow.focus.danger: focus ring (red/error)\n\n[Z_INDEX_SYSTEM]\nbase=0 | sticky=100 | dropdown=200 | overlay=300 | modal=400 | toast=500 | tooltip=600\n\n[COMPONENT_MAP]\nButton: <button> → color.action.{hierarchy}.*, border-radius.md → 44x36(sm), 44x44(md/lg)\nTextInput: <input>+<label> → color.surface.base, color.border.* → 44x40px\nSelectDropdown: <div>(custom) → color.surface.raised, shadow.overlay → 44x40px\nCheckbox: <input type=\"checkbox\"> → color.action.primary.bg.default → 44x20px\nRadio: <input type=\"radio\"> → color.action.primary.bg.default → 44x20px\nSwitch: <button role=\"switch\"> → color.action.primary.bg.default → 44x24px\nDialog: <div role=\"dialog\"> → shadow.modal, z-index:400\nDrawer: <aside>|<div> → shadow.modal, z-index:300\nCard: <div> → color.surface.raised, shadow.raised\nTable: <table> → color.surface.secondary (phantom) → 44x36px(row)\nTabs: <div role=\"tablist\"> → color.action.primary.bg.default → 44x40px\nAccordion: heading+<button> → color.surface.base, color.border.subtle → 44x48px\nTooltip: <div role=\"tooltip\"> → color.surface.inverse, z-index:600\nMenu: <div role=\"menu\"> → shadow.overlay, z-index:200 → 44x36px\n\n[BREAKPOINTS]\nXS: 393px, 4col, 16px margin/gutter\nSM: 768px, 4col, 16px margin/gutter\nMD: 1024px, 8col, 20px margin/gutter\nLG: 1440px, 12col, 24px margin/gutter\nXL: 1920px, 12col, 24px margin/gutter\n\n[TYPOGRAPHY_SCALE]\nDisplay: Gotham Medium 500 → L:56/72, M:40/52, S:32/40\nTitle: Inter Medium 500 → L:44/56, M:32/40, S:20/28, XS:16/24\nBody: Inter Regular 400 → M:16/24, S:14/20, XS:12/16\nLabel: Inter Medium 500 → M:14/20, S:12/16\nHelper: Inter Regular 400 → M:14/16, S:12/16\nCode: IBM Plex Mono Medium 500 → M:16/24, S:14/20\nrule: 32 variables x 2 modes (Desktop/Mobile) — size + line-height only\n\n[CSS_CONVENTION]\nprefix: --solar-\nseparator: hyphen\ncasing: lowercase\npattern: --solar-{category}-{path-joined-by-hyphens}\ncontexts: Figma=slash, docs=dot, CSS=hyphen — never mix\n\n[AGENT_BEHAVIOR]\n- Use this page as first-pass lookup for token names, spatial values, and component rules\n- Cross-reference full Guidelines spec (v1.0) for detailed rationale and edge cases\n- Validate every visual property against the ten foundational rules before output\n- Flag any token name not matching the grammar as a potential error\n- If a needed token does not exist, flag as gap — never invent tokens\n- Use the validation checklist as pre-submission gate for all generated interfaces\n\n[CONSTRAINTS]\n- this page is a quick-reference — does not replace the full spec\n- all token names use dot (.) separators per documentation convention\n- never mix separator styles within a single context\n- color.surface.secondary is a known phantom token — flag it, do not silently use\n- typography scale shows Desktop values — Mobile values differ (see full spec)\n- shadow tokens listed here are CSS composites, not Figma color variables\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Agentic Implementation",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR is designed to be consumed by AI agents with the same precision as human designers and engineers — structured documentation, machine-readable specifications, and validation tooling form an integrated agentic layer.",
+        "Not a Bolt-On",
+        "The agentic layer is not an afterthought. Token naming grammars, component specifications, and validation rules are authored with both human and agent consumption in mind from the start.",
+        "Deterministic Output",
+        "Structured references, explicit constraints, and enumerated options reduce ambiguity. An agent consuming SOLAR produces consistent results regardless of prompt variation — the system's rules are the spec, not the conversation.",
+        "Governed Equally",
+        "Agents are subject to the same compliance rules as human implementers. Token naming, accessibility requirements, and theming constraints apply uniformly — no separate standard for generated output.",
+        "What Agentic Implementation Is Not",
+        "Not autonomous design decision-making. Not a replacement for design review. Not permission to invent tokens or bypass governance. Agents execute within the system's boundaries — they do not extend them."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "The Instruction Layer",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "CLAUDE.md is the single instruction file that governs how AI agents operate within SOLAR — it defines token naming rules, banned patterns, separator conventions, and validation requirements in one deterministic reference.",
+        "Token Naming Grammar",
+        "Every token follows a strict grammar with defined segments and allowed values. The grammar is explicit enough that an agent can construct valid token names from rules alone — category, role, modifier, state — without relying on examples or pattern-matching.",
+        "Separator Conventions",
+        "Dot in documentation and code. Slash in Figma. Hyphen with --solar- prefix in CSS custom properties. Context determines the separator — agents must never mix conventions within a single output.",
+        "Banned Segments",
+        "Explicit lists of forbidden token fragments — foreground, background, error, default (for icons) — prevent the most common agent naming errors. Agents check the banned list before emitting any token reference.",
+        "Phantom Token Protocol",
+        "When a referenced token does not exist in the Figma inventory, agents flag it with ⚠️ and log it in the Variable Audit Report rather than silently using it. Gaps are governance issues, not agent decisions."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Machine-Readable Specifications",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR maintains parallel documentation layers — human-readable guidelines for context and decision-making, machine-readable specifications for deterministic agent consumption.",
+        "component-specs.json",
+        "Every component's tokens, ARIA roles, states, and constraints are encoded as structured JSON. Agents parse this directly rather than extracting intent from prose — eliminating interpretation error and enabling deterministic component generation.",
+        "Token Inventories",
+        "Complete Figma variable exports — primitives, light mode, dark mode — are stored as JSON in the repository. Agents cross-reference these to validate that token names resolve to real Figma variables with real values, not stale documentation.",
+        "Figma Variable Alignment",
+        "Live snapshots of Figma variables are tracked alongside the documentation. Discrepancies between documented tokens and actual Figma variables are logged in the Variable Audit Report — agents use this to avoid referencing phantom tokens."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Skills & Progressive Disclosure",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "SOLAR packages agent capabilities as skills — self-contained instruction sets that teach agents to perform specific tasks such as slide design, component documentation, or design validation.",
+        "Skill Structure",
+        "Each skill has a SKILL.md entry point under 500 lines and a references/ directory for detailed specifications. The entry point defines the workflow and common patterns; reference files provide the granular data an agent needs for execution.",
+        "Progressive Disclosure",
+        "Complex knowledge is layered rather than flattened. An agent creating a slide loads the slide-types reference. An agent documenting a component loads the component-doc reference. No skill forces an agent to consume the entire system upfront.",
+        "Versioned with the System",
+        "Skills live in the repository's skills/ directory, versioned alongside tokens, components, and guidelines. As SOLAR evolves, skills are updated to match — ensuring agent behavior stays aligned with the current system state rather than a stale snapshot."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Validation & Compliance",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Agents validate their output against the same compliance rules that govern human implementation — validation rule IDs, automated lint checks, and structured checklists ensure every output meets SOLAR standards.",
+        "Validation Rule IDs",
+        "Every rule has a standard ID — CLR-001 through CLR-006 for color, SPC-001 through SPC-004 for spacing, A11Y-001 through A11Y-008 for accessibility, and so on across ten categories. Agents reference these IDs in code comments, lint configurations, and compliance reports.",
+        "Automated Lint",
+        "The solar-lint-plugin validates Figma designs against SOLAR rules in real time. The solar-lint-agent runs the same checks headlessly in CI pipelines — agent-generated output is validated by the same tooling that validates human work.",
+        "Pre-Submission Checklist",
+        "Twenty-two items covering tokens, accessibility, responsive behavior, theming, and naming conventions. Agents treat this checklist as a mandatory gate before any output is submitted — items that fail are resolved, not skipped."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "The Agent Consumption Path",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "An agent working within SOLAR follows a defined consumption path — read the instruction layer, load relevant specifications, apply tokens and patterns, then validate output against compliance rules.",
+        "01  Read CLAUDE.md",
+        "Learn token naming rules, banned segments, separator conventions, and validation requirements. This is the agent's operating manual — every rule is hard, not advisory.",
+        "04  Generate Output",
+        "Apply semantic tokens, named text styles, spatial values, and accessibility requirements. Every visual property must trace to a named token — no raw values.",
+        "02  Load Component Specs",
+        "Get structured token mappings, ARIA requirements, and interaction states for the target component. Parse JSON directly — never extract intent from prose.",
+        "05  Validate",
+        "Run the 22-item checklist, cross-reference the token inventory, flag any phantom or unresolved tokens. Validation is not optional — it is the final step before submission.",
+        "03  Load Skill",
+        "If the task has a packaged skill, read SKILL.md and relevant reference files for task-specific workflow and data. Skills scope what the agent needs to know.",
+        "06  Submit",
+        "Output meets SOLAR compliance standards and is ready for review. Compliance is binary — partial compliance is non-compliance."
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "Slide",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Quick-Start Rules",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Ten rules for valid SOLAR output. Follow these before anything else.",
+        "Every visual property must trace to a token. Every interactive element must meet accessibility baselines. If a property isn't covered by a token, flag it as a gap — never use raw values.",
+        "1.  Every color → semantic token (color.*) — never hex, never primitive\n2.  Every spacing → spatial token (inset.*, stack.*) — never raw px/rem\n3.  Every text → named text style (type.body.md.*) — never raw font props\n4.  Every shadow → effect token (shadow.*) — never raw box-shadow\n5.  Every duration → motion token (motion.duration.*) — never raw ms",
+        "6.   Every easing → motion token (motion.easing.*) — never raw cubic-bezier\n7.   Every border-radius → spatial.border-radius.* — never raw px\n8.   Every z-index → defined level (0/100/200/300/400/500/600) — never arbitrary\n9.   Every interactive element → minimum 44×44px touch target\n10.  Every interactive element → visible focus ring on :focus-visible"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 65
+}

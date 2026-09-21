@@ -1,0 +1,513 @@
+{
+  "page": "↳ 🟢 Shell Tier 4 · Client app (Chatter)",
+  "pageId": "6400:7",
+  "componentSets": [
+    {
+      "name": "Layout",
+      "id": "6499:6699",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "left#6499:27": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "center#6499:28": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "right#6499:31": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "hasLeft#7058:92": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasRight#7058:95": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "desktop",
+          "options": [
+            "mobile",
+            "desktop"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=desktop",
+      "defaultVariantNodeCount": 70,
+      "defaultVariantTree": {
+        "name": "breakpoint=desktop",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/background}"
+        ],
+        "vars": {
+          "width": "Primitives:viewport/lg"
+        },
+        "children": [
+          {
+            "name": "Top Bar",
+            "type": "INSTANCE",
+            "main": "Top Bar",
+            "variant": {
+              "breakpoint": "desktop",
+              "hasSidebar": "true",
+              "isLoggedIn": "True"
+            },
+            "size": [
+              1440,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                16,
+                0,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "paddingLeft": "Spatial:stack/md",
+              "paddingRight": "Spatial:stack/md"
+            }
+          },
+          {
+            "name": "App Content",
+            "type": "FRAME",
+            "size": [
+              1440,
+              744
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                8,
+                8,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FIXED"
+            },
+            "vars": {
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/xs"
+            },
+            "children": [
+              {
+                "name": "Sidebar",
+                "type": "INSTANCE",
+                "main": "Sidebar",
+                "variant": {
+                  "expanded": "False"
+                },
+                "size": [
+                  64,
+                  736
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    0,
+                    8,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FILL"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/2xs",
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              },
+              {
+                "name": "Page Shell",
+                "type": "FRAME",
+                "size": [
+                  1368,
+                  736
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/FILL"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:stack/none",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/none"
+                },
+                "children": [
+                  {
+                    "name": "left",
+                    "type": "SLOT",
+                    "size": [
+                      221,
+                      736
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FIXED/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/raised}"
+                    ],
+                    "radius": 8,
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/none",
+                      "paddingLeft": "Spatial:inset/none",
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/none",
+                      "paddingBottom": "Spatial:inset/none",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    },
+                    "propRefs": {
+                      "visible": "hasLeft#7058:92",
+                      "slotContentId": "left#6499:27"
+                    },
+                    "children": []
+                  },
+                  {
+                    "name": "center",
+                    "type": "SLOT",
+                    "size": [
+                      795,
+                      736
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "CENTER/MIN",
+                      "sizing": "FILL/FILL"
+                    },
+                    "propRefs": {
+                      "slotContentId": "center#6499:28"
+                    },
+                    "children": [
+                      {
+                        "name": "Container",
+                        "type": "FRAME",
+                        "size": [
+                          795,
+                          364
+                        ],
+                        "layout": {
+                          "dir": "VERTICAL",
+                          "gap": 0,
+                          "pad": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "align": "MIN/CENTER",
+                          "sizing": "FILL/FILL"
+                        },
+                        "fills": [
+                          "{Color:surface/raised}"
+                        ],
+                        "radius": 8,
+                        "vars": {
+                          "itemSpacing": "Spatial:stack/none",
+                          "paddingLeft": "Spatial:stack/none",
+                          "paddingTop": "Spatial:inset/none",
+                          "paddingRight": "Spatial:stack/none",
+                          "paddingBottom": "Spatial:inset/none",
+                          "topLeftRadius": "Spatial:radius/container",
+                          "topRightRadius": "Spatial:radius/container",
+                          "bottomLeftRadius": "Spatial:radius/container",
+                          "bottomRightRadius": "Spatial:radius/container"
+                        },
+                        "children": []
+                      },
+                      {
+                        "name": "Container",
+                        "type": "FRAME",
+                        "size": [
+                          795,
+                          364
+                        ],
+                        "layout": {
+                          "dir": "HORIZONTAL",
+                          "gap": 8,
+                          "pad": [
+                            0,
+                            0,
+                            0,
+                            0
+                          ],
+                          "align": "MIN/MIN",
+                          "sizing": "FILL/FILL"
+                        },
+                        "children": [
+                          {
+                            "name": "Container",
+                            "type": "FRAME",
+                            "size": [
+                              394,
+                              364
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FILL/FILL"
+                            },
+                            "fills": [
+                              "{Color:surface/raised}"
+                            ],
+                            "radius": 8,
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/none",
+                              "paddingLeft": "Spatial:stack/none",
+                              "paddingTop": "Spatial:inset/none",
+                              "paddingRight": "Spatial:stack/none",
+                              "paddingBottom": "Spatial:inset/none",
+                              "topLeftRadius": "Spatial:radius/container",
+                              "topRightRadius": "Spatial:radius/container",
+                              "bottomLeftRadius": "Spatial:radius/container",
+                              "bottomRightRadius": "Spatial:radius/container"
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Container",
+                            "type": "FRAME",
+                            "size": [
+                              394,
+                              364
+                            ],
+                            "layout": {
+                              "dir": "VERTICAL",
+                              "gap": 0,
+                              "pad": [
+                                0,
+                                0,
+                                0,
+                                0
+                              ],
+                              "align": "MIN/CENTER",
+                              "sizing": "FILL/FILL"
+                            },
+                            "fills": [
+                              "{Color:surface/raised}"
+                            ],
+                            "radius": 8,
+                            "vars": {
+                              "itemSpacing": "Spatial:stack/none",
+                              "paddingLeft": "Spatial:stack/none",
+                              "paddingTop": "Spatial:inset/none",
+                              "paddingRight": "Spatial:stack/none",
+                              "paddingBottom": "Spatial:inset/none",
+                              "topLeftRadius": "Spatial:radius/container",
+                              "topRightRadius": "Spatial:radius/container",
+                              "bottomLeftRadius": "Spatial:radius/container",
+                              "bottomRightRadius": "Spatial:radius/container"
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "right",
+                    "type": "SLOT",
+                    "size": [
+                      336,
+                      736
+                    ],
+                    "layout": {
+                      "dir": "VERTICAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "HUG/FILL"
+                    },
+                    "fills": [
+                      "{Color:surface/raised}"
+                    ],
+                    "radius": 8,
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/none",
+                      "paddingLeft": "Spatial:inset/none",
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/none",
+                      "paddingBottom": "Spatial:inset/none",
+                      "topLeftRadius": "Spatial:radius/container",
+                      "topRightRadius": "Spatial:radius/container",
+                      "bottomLeftRadius": "Spatial:radius/container",
+                      "bottomRightRadius": "Spatial:radius/container"
+                    },
+                    "propRefs": {
+                      "visible": "hasRight#7058:95",
+                      "slotContentId": "right#6499:31"
+                    },
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=desktop",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Color:text/inverse}",
+            "{Primitives:color/purple/700}"
+          ],
+          "iconFills": [
+            "{Color:icon/tertiary}",
+            "{Color:icon/secondary}",
+            "{Color:icon/primary}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Primitives:color/purple/700}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": []
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Shell Tier 4 · Client app",
+    "Description",
+    "The app shell for a focused client / end-user product (e.g. Chatter) — the lightest tier: a simple top bar and a single content region.",
+    "Anatomy",
+    "Top bar (brand · minimal actions) · content region · optional bottom nav on mobile.",
+    "Composition",
+    "Minimal chrome for a task-focused experience. No heavy sidebar; navigation is shallow. Composes Top Bar + Page Shell primitives.",
+    "States",
+    "Responsive: desktop (top bar + content), mobile (top bar + optional bottom nav). Content: loaded, loading, empty.",
+    "Accessibility",
+    "banner + main landmarks; bottom nav is a navigation landmark. Skip-to-content link. Keyboard operable with visible focus.",
+    "Rules",
+    "Keep chrome minimal\nUse shallow navigation\nCompose from Top Bar + Page Shell\nProvide skip-to-content",
+    "Add a heavy sidebar\nDeep-nest navigation\nHard-code branding\nOmit landmarks"
+  ],
+  "pageContext": null
+}

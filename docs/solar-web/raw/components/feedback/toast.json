@@ -1,0 +1,320 @@
+{
+  "page": "↳ 🟢 Toast",
+  "pageId": "2202:1247",
+  "componentSets": [
+    {
+      "name": "Toast",
+      "id": "2578:450",
+      "description": "Transient notification for background operation results. Appears top-right or bottom-right, auto-dismisses after 4–7s (danger status longer). Variants: neutral, success, warning, danger, info. Use for async operation outcomes ('File saved', 'Connection lost'). Pair with a StatusIndicator icon and optional action ('Undo'). Never use for critical errors requiring confirmation — use Dialog. See also: Alert for inline callouts, Banner for persistent page-level messages.",
+      "docLinks": [],
+      "variantCount": 5,
+      "props": {
+        "show Action#3394:51": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show Chevron#3394:57": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "status": {
+          "type": "VARIANT",
+          "default": "success",
+          "options": [
+            "neutral",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        }
+      },
+      "defaultVariant": "status=success",
+      "defaultVariantNodeCount": 7,
+      "defaultVariantTree": {
+        "name": "status=success",
+        "type": "COMPONENT",
+        "size": [
+          264,
+          32
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            4,
+            12,
+            4,
+            4
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "HUG/HUG"
+        },
+        "fills": [
+          "{Color:surface/feedback/success/subtle}"
+        ],
+        "strokes": [
+          "{Color:border/feedback/success/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 9999,
+        "effectStyle": "shadow/raised",
+        "vars": {
+          "itemSpacing": "Spatial:inset/xs",
+          "paddingLeft": "Spatial:inset/2xs",
+          "paddingTop": "Spatial:inset/2xs",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/2xs",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
+        },
+        "children": [
+          {
+            "name": "Tag",
+            "type": "INSTANCE",
+            "main": "Tag",
+            "variant": {
+              "status": "neutral",
+              "type": "pill"
+            },
+            "size": [
+              67,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                12,
+                0,
+                8
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/FIXED"
+            },
+            "fills": [
+              "{Color:surface/overlay}"
+            ],
+            "strokes": [
+              "{Color:border/feedback/success/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Message goes here",
+            "type": "TEXT",
+            "text": "Message goes here",
+            "textStyle": "body/sm/medium",
+            "size": [
+              109,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/sm",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          },
+          {
+            "name": "Action",
+            "type": "TEXT",
+            "text": "Action",
+            "textStyle": "body/sm/medium",
+            "size": [
+              36,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/feedback/success}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/sm",
+              "fontStyle": "Primitives:type/font-weight/500"
+            },
+            "propRefs": {
+              "visible": "show Action#3394:51"
+            }
+          },
+          {
+            "name": "Icon/ChevronRight",
+            "type": "INSTANCE",
+            "main": "Icon/ChevronRight",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              12,
+              12
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/xs"
+            },
+            "propRefs": {
+              "visible": "show Chevron#3394:57"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "status=success",
+          "size": [
+            264,
+            32
+          ],
+          "fills": [
+            "{Color:surface/feedback/success/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/success/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/feedback/success}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/success}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "status=warning",
+          "size": [
+            264,
+            32
+          ],
+          "fills": [
+            "{Color:surface/feedback/warning/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/warning/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/feedback/warning}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/warning}"
+          ]
+        },
+        {
+          "variant": "status=danger",
+          "size": [
+            264,
+            32
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/danger/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}"
+          ]
+        },
+        {
+          "variant": "status=info",
+          "size": [
+            264,
+            32
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/info/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/feedback/info}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/info}"
+          ]
+        },
+        {
+          "variant": "status=neutral",
+          "size": [
+            264,
+            32
+          ],
+          "fills": [
+            "{Color:surface/feedback/neutral/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/feedback/neutral}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Toast",
+    "Description",
+    "Transient notification for background operation results. Auto-dismisses after 4–7 seconds. Use for async outcomes — never for critical errors requiring confirmation.",
+    "Statuses",
+    "neutral   Informational, low urgency.\ninfo      Tip, update, or non-blocking hint.\nsuccess   Operation completed ('File saved').\nwarning   Caution or partial success.\ndanger    Operation failed. Stays longer (7s+) or until dismissed.",
+    "Timing",
+    "Default dismiss at 4s for neutral/success/info.\nWarning 6s. Danger 7s+ or manual dismiss.\nPause on hover/focus — resume on leave.",
+    "Labels & Content",
+    "Lead with the outcome: 'Presentation saved' not 'Success'.\nOne sentence. Add one optional action ('Undo', 'View').\nNever stack multiple actions.",
+    "Rules",
+    "DO   Use for async background results\nDO   Pair with StatusIndicator icon\nDO   Pause dismiss timer on hover\nDO   Stack newer toasts on top",
+    "DON'T   Use for confirmations (use Dialog)\nDON'T   Pack multiple actions\nDON'T   Show more than 3 toasts at once\nDON'T   Keep success toasts on screen > 5s"
+  ],
+  "pageContext": null
+}

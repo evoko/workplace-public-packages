@@ -1,0 +1,276 @@
+{
+  "page": "↳ 🟢 Drawer",
+  "pageId": "2202:1222",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Drawer",
+      "id": "4586:80",
+      "description": "",
+      "props": {
+        "title#4586:1": {
+          "type": "TEXT",
+          "default": "Drawer Title"
+        },
+        "content#5612:3": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "hasCTA#6593:53": {
+          "type": "BOOLEAN",
+          "default": true
+        }
+      },
+      "nodeCount": 32,
+      "tree": {
+        "name": "Drawer",
+        "type": "COMPONENT",
+        "size": [
+          348,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "strokes": [
+          "{Color:border/surface}"
+        ],
+        "strokeWeight": "mixed",
+        "radius": [
+          12,
+          0,
+          0,
+          12
+        ],
+        "effectStyle": "shadow/overlay",
+        "vars": {
+          "strokeLeftWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "Header",
+            "type": "FRAME",
+            "size": [
+              348,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                8,
+                20,
+                8,
+                20
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "strokes": [
+              "{Color:border/surface}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/xs",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "Drawer Title",
+                "textStyle": "body/lg/medium",
+                "size": [
+                  268,
+                  12
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/lg",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/lg",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "characters": "title#4586:1"
+                }
+              },
+              {
+                "name": "Icon Button",
+                "type": "INSTANCE",
+                "main": "Icon Button",
+                "variant": {
+                  "size": "md",
+                  "shape": "square",
+                  "prio": "tertiary",
+                  "state": "default"
+                },
+                "size": [
+                  40,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:action/tertiary/bg/default}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "SLOT",
+            "size": [
+              348,
+              696
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                16,
+                20,
+                16,
+                20
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FILL"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/md"
+            },
+            "propRefs": {
+              "slotContentId": "content#5612:3"
+            },
+            "children": [
+              {
+                "name": "Body",
+                "type": "TEXT",
+                "text": "Drawer content goes here. Add forms, lists, or any content.",
+                "textStyle": "body/md/regular",
+                "size": [
+                  308,
+                  30
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Button Group",
+            "type": "INSTANCE",
+            "main": "Button Group",
+            "variant": {
+              "orientation": "horizontal",
+              "type": "full-width"
+            },
+            "size": [
+              348,
+              48
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default"
+            },
+            "propRefs": {
+              "visible": "hasCTA#6593:53"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Drawer",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

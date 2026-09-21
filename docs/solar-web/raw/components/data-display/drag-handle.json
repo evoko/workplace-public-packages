@@ -1,0 +1,289 @@
+{
+  "page": "↳ 🟢 Drag Handle",
+  "pageId": "4533:82",
+  "componentSets": [
+    {
+      "name": "DragHandle",
+      "id": "4583:170",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 10,
+      "props": {
+        "size": {
+          "type": "VARIANT",
+          "default": "sm",
+          "options": [
+            "sm",
+            "md"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus",
+            "disabled",
+            "pressed"
+          ]
+        }
+      },
+      "defaultVariant": "size=sm, state=default",
+      "defaultVariantNodeCount": 8,
+      "defaultVariantTree": {
+        "name": "size=sm, state=default",
+        "type": "COMPONENT",
+        "size": [
+          26,
+          33
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 4,
+          "pad": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "HUG/HUG"
+        },
+        "radius": 6,
+        "vars": {
+          "itemSpacing": "Spatial:stack/2xs",
+          "paddingLeft": "Spatial:inset/xs",
+          "paddingTop": "Spatial:inset/xs",
+          "paddingRight": "Spatial:inset/xs",
+          "paddingBottom": "Spatial:inset/xs",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Col1",
+            "type": "FRAME",
+            "size": [
+              3,
+              17
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/2xs"
+            },
+            "children": [
+              {
+                "name": "Dot",
+                "type": "ELLIPSE",
+                "size": [
+                  3,
+                  3
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:icon/secondary}"
+                ]
+              },
+              {
+                "name": "Dot",
+                "type": "ELLIPSE",
+                "size": [
+                  3,
+                  3
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:icon/secondary}"
+                ]
+              },
+              {
+                "name": "Dot",
+                "type": "ELLIPSE",
+                "size": [
+                  3,
+                  3
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:icon/secondary}"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Col2",
+            "type": "FRAME",
+            "size": [
+              3,
+              17
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/2xs"
+            },
+            "children": [
+              {
+                "name": "Dot",
+                "type": "ELLIPSE",
+                "size": [
+                  3,
+                  3
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:icon/secondary}"
+                ]
+              },
+              {
+                "name": "Dot",
+                "type": "ELLIPSE",
+                "size": [
+                  3,
+                  3
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:icon/secondary}"
+                ]
+              },
+              {
+                "name": "Dot",
+                "type": "ELLIPSE",
+                "size": [
+                  3,
+                  3
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:icon/secondary}"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=sm, state=default",
+          "size": [
+            26,
+            33
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "size=sm, state=hover",
+          "size": [
+            26,
+            33
+          ]
+        },
+        {
+          "variant": "size=sm, state=pressed",
+          "size": [
+            26,
+            33
+          ]
+        },
+        {
+          "variant": "size=sm, state=focus",
+          "size": [
+            26,
+            33
+          ],
+          "effect": "shadow/focus/default"
+        },
+        {
+          "variant": "size=sm, state=disabled",
+          "size": [
+            26,
+            33
+          ]
+        },
+        {
+          "variant": "size=md, state=default",
+          "size": [
+            28,
+            36
+          ]
+        },
+        {
+          "variant": "size=md, state=hover",
+          "size": [
+            28,
+            36
+          ]
+        },
+        {
+          "variant": "size=md, state=pressed",
+          "size": [
+            28,
+            36
+          ]
+        },
+        {
+          "variant": "size=md, state=focus",
+          "size": [
+            28,
+            36
+          ],
+          "effect": "shadow/focus/default"
+        },
+        {
+          "variant": "size=md, state=disabled",
+          "size": [
+            28,
+            36
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Drag Handle",
+    "Description",
+    "A grab affordance marking an element as draggable for reordering. Pairs with sortable list rows, table rows and cards — it is not a button.",
+    "Anatomy",
+    "Grip glyph (dots) · hit area ≥ the visible glyph · optional hover surface.",
+    "Placement & Size",
+    "Sits at the leading or trailing edge of the draggable row. Hit area ≥24px, padded to 44×44 on touch. Glyph uses icon.secondary.",
+    "States",
+    "default, hover (surface.hover), grabbing (cursor: grabbing). Does not toggle or hold a selected state.",
+    "Accessibility",
+    "Expose reordering by keyboard (Space to lift, arrows to move, Space to drop) — the handle alone is not enough. aria-label \"Reorder\"; glyph ≥3:1 vs surface.",
+    "Rules",
+    "Pair with keyboard reordering\nKeep a large hit area\nUse icon.secondary for the glyph\nShow grab / grabbing cursors",
+    "Make it the only way to reorder\nShrink below 24px\nUse on non-draggable rows\nRely on hover to reveal on touch"
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,134 @@
+{
+  "page": "↳ 🟢 Container",
+  "pageId": "2202:1218",
+  "componentSets": [
+    {
+      "name": "Container",
+      "id": "3447:22",
+      "description": "ROLE: sibling primitive (non-card).\n\nA non-card layout region. Groups related content inside a larger surface (typically a Card Body, a Dialog body, or a page region) with an optional header (Title + Description) and a content slot.\n\nANATOMY\nVertical auto-layout with TextGroup (Title + Description) + Content slot.\n\nVARIANT PROPERTIES\n• type — default (no paint, no border; pure semantic grouping), outlined (surface/raised + border/subtle + radius/container).\n\nCOMPOSITION CONTRACT\nSibling to Card, not a child. Container deliberately does not render a shadow and does not participate in interaction. Lives in the same Figma section because consumers search for \"container-ish\" things together, not because Container extends Card.\n\nTAXONOMY NOTE (2026-04-21)\nTaxonomy specifies \"outlined has no shadow.\" Current outlined variant has shadow/control attached via effect style — re-point blocked pending owner call.\n\nOPEN DECISION (Anatoliy)\nOpen Decision #1: collapse outlined into Card as elevation=none; Container keeps default-only. Engineering concurs. Pending owner sign-off.\n\nIS NOT\n• Not a Card without shadow (taxonomy intent — see Open Decision #1).\n• Not interactive.\n• Not nestable as Card's body replacement (use Card's slots).",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "content#5408:24": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "outlined"
+          ]
+        }
+      },
+      "defaultVariant": "type=default",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "type=default",
+        "type": "COMPONENT",
+        "size": [
+          440,
+          112
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 16,
+          "pad": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "radius": 12,
+        "vars": {
+          "itemSpacing": "Spatial:stack/md",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/md",
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "content",
+            "type": "SLOT",
+            "size": [
+              408,
+              80
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "content#5408:24"
+            },
+            "children": []
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=default",
+          "size": [
+            440,
+            112
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=outlined",
+          "size": [
+            440,
+            112
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/overlay"
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Container",
+    "Description",
+    "A layout wrapper that groups related content with an optional header (title + description) and action slot. Use for form sections, settings groups, and content regions across all products.",
+    "Variants",
+    "default          Transparent background, no border. Groups content semantically with a header.\noutlined        Raised surface with subtle border and shadow. Use when the section needs visual separation from its surroundings.",
+    "Anatomy",
+    "Header row with title, optional description, and optional trailing action.\nContent slot below for any child content.\nBoth header and content use auto-layout for flexible sizing.",
+    "Rules",
+    "DO   Use for grouping related form fields\nDO   Use outlined variant when visual separation is needed\nDO   Keep title concise — one line\nDO   Use the action slot for section-level controls",
+    "DON'T   Nest containers more than one level deep\nDON'T   Use outlined variant inside a Card (double border)\nDON'T   Hide both title and description — use a plain frame instead\nDON'T   Use as a clickable element — it's a layout wrapper"
+  ],
+  "pageContext": null
+}

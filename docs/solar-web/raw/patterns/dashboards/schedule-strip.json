@@ -1,0 +1,812 @@
+{
+  "page": "↳ 🟢 Schedule Strip",
+  "pageId": "6350:2",
+  "componentSets": [
+    {
+      "name": "Schedule Entry",
+      "id": "6593:41012",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 8,
+      "props": {
+        "type": {
+          "type": "VARIANT",
+          "default": "playing",
+          "options": [
+            "paused",
+            "playing",
+            "complete",
+            "scheduled"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover"
+          ]
+        }
+      },
+      "defaultVariant": "type=playing, state=default",
+      "defaultVariantNodeCount": 8,
+      "defaultVariantTree": {
+        "name": "type=playing, state=default",
+        "type": "COMPONENT",
+        "size": [
+          348,
+          59
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "strokes": [
+          "{Color:border/surface}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/md",
+          "strokeBottomWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "StatusIndicator",
+            "type": "INSTANCE",
+            "main": "StatusIndicator",
+            "variant": {
+              "type": "success",
+              "size": "xs"
+            },
+            "size": [
+              8,
+              8
+            ],
+            "sizing": "FIXED/FIXED",
+            "fills": [
+              "{Color:surface/feedback/success/strong}"
+            ],
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              207,
+              27
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs"
+            },
+            "children": [
+              {
+                "name": "Morning Music",
+                "type": "TEXT",
+                "text": "Morning Music",
+                "textStyle": "body/md/medium",
+                "size": [
+                  95,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Mon-Fri · 06:00",
+                "type": "TEXT",
+                "text": "Mon-Fri · 06:00",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  85,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Tag",
+            "type": "INSTANCE",
+            "main": "Tag",
+            "variant": {
+              "status": "success",
+              "type": "icon+text",
+              "invert": "false"
+            },
+            "size": [
+              77,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                12,
+                0,
+                8
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/FIXED"
+            },
+            "fills": [
+              "{Color:surface/feedback/success/subtle}"
+            ],
+            "strokes": [
+              "{Color:border/feedback/success/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs",
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=playing, state=default",
+          "size": [
+            348,
+            59
+          ],
+          "strokes": [
+            "{Color:border/surface}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/success}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=playing, state=hover",
+          "size": [
+            348,
+            59
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/success}"
+          ]
+        },
+        {
+          "variant": "type=complete, state=default",
+          "size": [
+            348,
+            59
+          ],
+          "strokes": [
+            "{Color:border/surface}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "type=complete, state=hover",
+          "size": [
+            348,
+            59
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/neutral}"
+          ]
+        },
+        {
+          "variant": "type=scheduled, state=default",
+          "size": [
+            348,
+            59
+          ],
+          "strokes": [
+            "{Color:border/surface}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/info}"
+          ]
+        },
+        {
+          "variant": "type=scheduled, state=hover",
+          "size": [
+            348,
+            59
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/info}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/info}"
+          ]
+        },
+        {
+          "variant": "type=paused, state=default",
+          "size": [
+            348,
+            59
+          ],
+          "strokes": [
+            "{Color:border/surface}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/warning}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/warning}"
+          ]
+        },
+        {
+          "variant": "type=paused, state=hover",
+          "size": [
+            348,
+            59
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/warning}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/warning}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Schedule Strip",
+      "id": "6593:41547",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "content#6593:58": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "empty",
+            "default",
+            "ghost"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 50,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          380,
+          343
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/raised",
+        "vars": {
+          "itemSpacing": "Spatial:stack/none",
+          "paddingLeft": "Spatial:stack/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:stack/none",
+          "paddingBottom": "Spatial:inset/none",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Container",
+            "type": "FRAME",
+            "size": [
+              380,
+              48
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/surface}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/md",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "Audio Schedule",
+                "type": "TEXT",
+                "text": "Audio Schedule",
+                "textStyle": "label/md",
+                "size": [
+                  332,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Icon/More",
+                "type": "INSTANCE",
+                "main": "Icon/More",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  16,
+                  16
+                ],
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "SLOT",
+            "size": [
+              380,
+              295
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "content#6593:58"
+            },
+            "children": [
+              {
+                "name": "Schedule Entry",
+                "type": "INSTANCE",
+                "main": "Schedule Entry",
+                "variant": {
+                  "type": "playing",
+                  "state": "default"
+                },
+                "size": [
+                  380,
+                  59
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Schedule Entry",
+                "type": "INSTANCE",
+                "main": "Schedule Entry",
+                "variant": {
+                  "type": "scheduled",
+                  "state": "default"
+                },
+                "size": [
+                  380,
+                  59
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Schedule Entry",
+                "type": "INSTANCE",
+                "main": "Schedule Entry",
+                "variant": {
+                  "type": "complete",
+                  "state": "default"
+                },
+                "size": [
+                  380,
+                  59
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Schedule Entry",
+                "type": "INSTANCE",
+                "main": "Schedule Entry",
+                "variant": {
+                  "type": "complete",
+                  "state": "default"
+                },
+                "size": [
+                  380,
+                  59
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Schedule Entry",
+                "type": "INSTANCE",
+                "main": "Schedule Entry",
+                "variant": {
+                  "type": "complete",
+                  "state": "default"
+                },
+                "size": [
+                  380,
+                  59
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/surface}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            380,
+            343
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:text/feedback/success}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/feedback/success}",
+            "{Color:icon/feedback/info}",
+            "{Color:icon/feedback/neutral}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=ghost",
+          "size": [
+            380,
+            343
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised"
+        },
+        {
+          "variant": "state=empty",
+          "size": [
+            380,
+            343
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Icon/Refresh",
+            "Spinner"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Schedule Strip",
+    "Description",
+    "A compact horizontal timeline of upcoming events / bookings for a resource or day — a dashboard widget. For an at-a-glance schedule; use Calendar views for full scheduling.",
+    "Anatomy",
+    "Time axis · event blocks (proportional to duration) · now indicator · optional free/gap slots · overflow affordance.",
+    "Behaviour",
+    "Events are laid out proportionally along the strip; the current time is marked. Overflow scrolls or collapses. Selecting a block opens its detail.",
+    "States",
+    "loaded, loading (skeleton), empty ('Nothing scheduled'), error. Blocks: default, hover, focus, selected.",
+    "Accessibility",
+    "Expose as a list of events with start–end times, not just visual blocks. Announce the now indicator. Blocks keyboard-focusable; colour paired with a label. Text ≥4.5:1.",
+    "Rules",
+    "Scale blocks to duration\nMark the current time\nPair colour with a label\nLink blocks to detail",
+    "Use for full scheduling (use Calendar)\nRely on colour alone\nHide overflow with no cue\nCram unreadable labels"
+  ],
+  "pageContext": null
+}

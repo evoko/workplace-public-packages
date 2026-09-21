@@ -1,0 +1,576 @@
+{
+  "page": "↳ 🟢 Context Menu",
+  "pageId": "2202:1219",
+  "componentSets": [
+    {
+      "name": "Context Menu Item",
+      "id": "3451:31",
+      "description": "Single row inside a Context Menu. States: default, hover, focus (keyboard), disabled, destructive (for irreversible actions like Delete). Pair with optional leading icon and a trailing keyboard shortcut (Kbd). Destructive styling uses color.text.feedback.danger — reserve for true destructive actions, not every secondary action. Submenus are not supported — keep to a single nesting level.",
+      "docLinks": [],
+      "variantCount": 5,
+      "props": {
+        "label#3451:0": {
+          "type": "TEXT",
+          "default": "Action"
+        },
+        "shortcut#3451:6": {
+          "type": "TEXT",
+          "default": "⌘K"
+        },
+        "showLeadingIcon#3451:12": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "show shortcut#3451:18": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showTrailingIcon#7702:0": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "focus",
+            "disabled",
+            "destructive"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 6,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          200,
+          36
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            0,
+            12,
+            0,
+            12
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm",
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm"
+        },
+        "children": [
+          {
+            "name": "LeadingIcon",
+            "type": "INSTANCE",
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs",
+              "height": "Spatial:icon/sm"
+            },
+            "propRefs": {
+              "visible": "showLeadingIcon#3451:12"
+            }
+          },
+          {
+            "name": "Label",
+            "type": "TEXT",
+            "text": "Action",
+            "textStyle": "label/md",
+            "size": [
+              113,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            },
+            "propRefs": {
+              "characters": "label#3451:0"
+            }
+          },
+          {
+            "name": "Shortcut",
+            "type": "TEXT",
+            "text": "⌘K",
+            "textStyle": "body/md/medium",
+            "size": [
+              23,
+              10
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/tertiary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/md",
+              "fontStyle": "Primitives:type/font-weight/500"
+            },
+            "propRefs": {
+              "visible": "show shortcut#3451:18",
+              "characters": "shortcut#3451:6"
+            }
+          },
+          {
+            "name": "LeadingIcon",
+            "type": "INSTANCE",
+            "hidden": true,
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs",
+              "height": "Spatial:icon/sm"
+            },
+            "propRefs": {
+              "visible": "showTrailingIcon#7702:0"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            200,
+            36
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "LeadingIcon"
+          ]
+        },
+        {
+          "variant": "state=hover",
+          "size": [
+            200,
+            36
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=focus",
+          "size": [
+            200,
+            36
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "state=disabled",
+          "size": [
+            200,
+            36
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "state=destructive",
+          "size": [
+            200,
+            36
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/danger}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Context Menu",
+      "id": "3452:13",
+      "description": "Floating menu triggered by right-click or long-press. Anchored to the pointer position; clamps to viewport edges. Holds Context Menu Items and dividers. Dismisses on outside click, Escape, or item selection. Focus-trapped while open. Use for object-specific actions; for toolbar-triggered actions, use Dropdown Menu.",
+      "props": {
+        "Content#3442:28": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        }
+      },
+      "nodeCount": 52,
+      "tree": {
+        "name": "Context Menu",
+        "type": "COMPONENT",
+        "size": [
+          200,
+          253
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "fills": [
+          "{Color:surface/dialog}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/none",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/none",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
+        },
+        "children": [
+          {
+            "name": "Content",
+            "type": "SLOT",
+            "size": [
+              200,
+              253
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "Content#3442:28"
+            },
+            "children": [
+              {
+                "name": "Context Menu Item",
+                "type": "INSTANCE",
+                "main": "Context Menu Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  200,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Context Menu Item",
+                "type": "INSTANCE",
+                "main": "Context Menu Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  200,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Context Menu Item",
+                "type": "INSTANCE",
+                "main": "Context Menu Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  200,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Context Menu Item",
+                "type": "INSTANCE",
+                "main": "Context Menu Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  200,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Context Menu Item",
+                "type": "INSTANCE",
+                "main": "Context Menu Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  200,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Context Menu Item",
+                "type": "INSTANCE",
+                "main": "Context Menu Item",
+                "variant": {
+                  "state": "default"
+                },
+                "size": [
+                  200,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              {
+                "name": "Divider",
+                "type": "INSTANCE",
+                "main": "Divider",
+                "variant": {
+                  "orientation": "horizontal",
+                  "type": "full"
+                },
+                "size": [
+                  200,
+                  1
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              {
+                "name": "Context Menu Item",
+                "type": "INSTANCE",
+                "main": "Context Menu Item",
+                "variant": {
+                  "state": "destructive"
+                },
+                "size": [
+                  200,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Context Menu",
+    "Description",
+    "A right-click triggered floating menu of actions. Shares the same item anatomy as Dropdown Menu but is activated via contextual interaction rather than a button trigger. Use for canvas object actions, file management, and contextual operations.",
+    "Sub-Components",
+    "Menu Item       An individual action row with optional leading icon and keyboard shortcut.\nMenu Divider   A thin horizontal line separating groups of related actions.\nMenu Panel      The container holding items, with elevation and border.",
+    "States",
+    "default            Item is idle and interactive.\nhover              Pointer is over the item.\nfocus               Item has keyboard focus.\ndisabled          Item is visible but not actionable.\ndestructive     Irreversible action — label and icon use danger tokens.",
+    "Rules",
+    "DO   Group related actions with dividers\nDO   Place destructive actions at the bottom\nDO   Include keyboard shortcuts for power users\nDO   Keep to one level of nesting (no sub-menus)",
+    "DON'T   Use for primary navigation — use Sidebar or Tab Bar\nDON'T   Show more than 10 items without grouping\nDON'T   Mix destructive and safe actions in the same group\nDON'T   Disable items without explanation via tooltip"
+  ],
+  "pageContext": null
+}

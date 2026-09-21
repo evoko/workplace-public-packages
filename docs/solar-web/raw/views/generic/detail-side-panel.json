@@ -1,0 +1,694 @@
+{
+  "page": "↳ 🟢 Detail Side Panel",
+  "pageId": "7709:24874",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Detail Side Panel",
+      "id": "8366:14304",
+      "description": "",
+      "props": {},
+      "nodeCount": 428,
+      "tree": {
+        "name": "Detail Side Panel",
+        "type": "COMPONENT",
+        "size": [
+          348,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "strokes": [
+          "{Color:border/surface}"
+        ],
+        "strokeWeight": "mixed",
+        "radius": [
+          12,
+          0,
+          0,
+          12
+        ],
+        "effectStyle": "shadow/overlay",
+        "vars": {
+          "strokeLeftWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "Header",
+            "type": "FRAME",
+            "size": [
+              348,
+              69
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                20,
+                20,
+                20,
+                20
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/lg",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/lg",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "Frame 1",
+                "type": "FRAME",
+                "size": [
+                  256,
+                  29
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Entity Name 01",
+                    "textStyle": "body/lg/medium",
+                    "size": [
+                      256,
+                      12
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/lg",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/lg",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Updated 2 hr ago · ent_3f9k2a",
+                    "textStyle": "body/sm/regular",
+                    "size": [
+                      256,
+                      9
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Frame 2",
+                "type": "FRAME",
+                "size": [
+                  52,
+                  20
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                },
+                "children": [
+                  {
+                    "name": "Icon/More",
+                    "type": "INSTANCE",
+                    "main": "Icon/More",
+                    "variant": {
+                      "solid": "false"
+                    },
+                    "size": [
+                      20,
+                      20
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "vars": {
+                      "height": "Spatial:icon/md"
+                    }
+                  },
+                  {
+                    "name": "Icon/Close",
+                    "type": "INSTANCE",
+                    "main": "Icon/Close",
+                    "variant": {
+                      "solid": "false"
+                    },
+                    "size": [
+                      20,
+                      20
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "vars": {
+                      "height": "Spatial:icon/md"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Tabs",
+            "type": "INSTANCE",
+            "main": "Tabs",
+            "variant": {
+              "size": "md"
+            },
+            "size": [
+              348,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/surface}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "paddingLeft": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Body",
+            "type": "FRAME",
+            "size": [
+              348,
+              643
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 16,
+              "pad": [
+                16,
+                16,
+                16,
+                16
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FILL"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/md",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:stack/md",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:stack/md"
+            },
+            "children": [
+              {
+                "name": "Card / Details",
+                "type": "INSTANCE",
+                "main": "Card",
+                "variant": {
+                  "state": "default",
+                  "status": "none",
+                  "loading": "false"
+                },
+                "size": [
+                  316,
+                  254
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "effectStyle": "shadow/raised",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Card / Description",
+                "type": "INSTANCE",
+                "main": "Card",
+                "variant": {
+                  "state": "default",
+                  "status": "none",
+                  "loading": "false"
+                },
+                "size": [
+                  316,
+                  130
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "effectStyle": "shadow/raised",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Card / Recent activity",
+                "type": "INSTANCE",
+                "main": "Card",
+                "variant": {
+                  "state": "default",
+                  "status": "none",
+                  "loading": "false"
+                },
+                "size": [
+                  316,
+                  316
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "effectStyle": "shadow/raised",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Card / Owner",
+                "type": "INSTANCE",
+                "main": "Card",
+                "variant": {
+                  "state": "default",
+                  "status": "none",
+                  "loading": "false"
+                },
+                "size": [
+                  316,
+                  86
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "effectStyle": "shadow/raised",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Card / Metadata",
+                "type": "INSTANCE",
+                "main": "Card",
+                "variant": {
+                  "state": "default",
+                  "status": "none",
+                  "loading": "false"
+                },
+                "size": [
+                  316,
+                  158
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "effectStyle": "shadow/raised",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Card / Quick actions",
+                "type": "INSTANCE",
+                "main": "Card",
+                "variant": {
+                  "state": "default",
+                  "status": "none",
+                  "loading": "false"
+                },
+                "size": [
+                  316,
+                  86
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "effectStyle": "shadow/raised",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              {
+                "name": "Card / Related",
+                "type": "INSTANCE",
+                "main": "Card",
+                "variant": {
+                  "state": "default",
+                  "status": "none",
+                  "loading": "false"
+                },
+                "size": [
+                  316,
+                  158
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 8,
+                "effectStyle": "shadow/raised",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Button Group",
+            "type": "INSTANCE",
+            "main": "Button Group",
+            "variant": {
+              "orientation": "horizontal",
+              "type": "full-width"
+            },
+            "size": [
+              348,
+              48
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default"
+            }
+          }
+        ]
+      },
+      "census": {
+        "Icon/More": 18,
+        "Icon/Close": 1,
+        "Tabs": 1,
+        "Tab Item": 8,
+        "Icon/None": 42,
+        "Counter": 13,
+        "Card": 7,
+        "PropertyList": 2,
+        "PropertyRow": 3,
+        "Divider": 6,
+        "Tag": 7,
+        "Activity Feed": 1,
+        "Event Row": 10,
+        "Avatar": 11,
+        "List": 2,
+        "ListItem": 6,
+        "Icon/ChevronRight": 6,
+        "Button": 5,
+        "Spinner": 5,
+        "Button Group": 1
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Detail Side Panel",
+    "Description",
+    "A contextual side panel showing detail for a selected list / table row without leaving the list. For master–detail; full pages use Entity Detail.",
+    "Layout",
+    "Slide-in panel (right): header (title · close · actions) · content sections (Property List · tabs) · footer actions. Overlays or pushes content.",
+    "Responsive",
+    "Desktop side panel beside the list; mobile full-screen sheet.",
+    "States",
+    "closed, open, loading, empty (no selection), error; per-section content states.",
+    "Accessibility",
+    "role=complementary / dialog, labelled; focus moves in on open and returns on close; Esc closes; underlying list not needlessly trapped. Keyboard-complete.",
+    "Rules",
+    "Keep the list + context visible\nMove focus in on open\nReturn focus on close\nSupport Esc",
+    "Use for full-page detail\nLose the selection\nTrap focus away from the list on desktop\nRely on colour for state"
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,205 @@
+{
+  "page": "↳ 🟢 Month View",
+  "pageId": "6664:3",
+  "componentSets": [],
+  "components": [
+    {
+      "name": "Month View",
+      "id": "6673:466",
+      "description": "Composed Month View pattern. Wires up Calendar Toolbar (top), Weekday Header row (7 cells with today emphasis on the current weekday), and a 5-week × 7-day grid of Day Cell instances. Demonstrates: default emphasis, today (filled inverse pill), today-column (light info bg running down the today column), other-month (dimmed), plus all three Event Chip styles (subtle/tinted/solid) across the data/category palette. Use as a copy-detach starting point for any Calendar / Scheduling view — instance the component into a VIEWS page, then detach to populate with real events.",
+      "props": {},
+      "nodeCount": 1010,
+      "tree": {
+        "name": "Month View",
+        "type": "COMPONENT",
+        "size": [
+          1280,
+          700
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "children": [
+          {
+            "name": "Calendar Toolbar",
+            "type": "INSTANCE",
+            "main": "Calendar Toolbar",
+            "size": [
+              1280,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 16,
+              "pad": [
+                12,
+                16,
+                12,
+                16
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "vars": {
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeBottomWeight": "Spatial:border/default"
+            }
+          },
+          {
+            "name": "Calendar Body",
+            "type": "FRAME",
+            "size": [
+              1280,
+              644
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                4,
+                20,
+                4,
+                20
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/2xs",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/2xs"
+            },
+            "children": [
+              {
+                "name": "Calendar Surface",
+                "type": "FRAME",
+                "size": [
+                  1240,
+                  636
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 12,
+                "effectStyle": "shadow/raised",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                },
+                "children": [
+                  {
+                    "name": "Weekday Header Row",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      36
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/FIXED"
+                    }
+                  },
+                  {
+                    "name": "Day Grid",
+                    "type": "FRAME",
+                    "size": [
+                      1240,
+                      600
+                    ],
+                    "layout": {
+                      "dir": "GRID",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/MIN",
+                      "sizing": "FILL/HUG"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "census": {
+        "Calendar Toolbar": 1,
+        "Icon Button": 2,
+        "Icon/None": 17,
+        "Button": 2,
+        "Spinner": 2,
+        "Counter": 2,
+        "Segmented Control": 1,
+        "Segmented Control Item": 6,
+        "Icon/Plus": 1,
+        "Weekday Header": 7,
+        "Day Cell": 35,
+        "Event Chip": 105,
+        "Icon/Repeat": 105
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Month View",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,204 @@
+{
+  "page": "Changelog",
+  "pageId": "120:395",
+  "section": "meta",
+  "slug": "changelog",
+  "status": "none",
+  "slides": [
+    {
+      "name": "Changelog",
+      "title": "Changelog",
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 766,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Versioning and change tracking"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR maintains a clear record of what changes in each release, including what was updated, who contributed the change, and when it was introduced. This ensures transparency, traceability, and predictable evolution of the design system.\n\nSOLAR follows Semantic Versioning (MAJOR.MINOR.PATCH) to communicate the impact of each release:\nMAJOR — Introduced when changes are breaking or incompatible and require product teams to update implementations.\nMINOR — Introduced when new functionality or tokens are added in a backward-compatible way.\nPATCH — Introduced for backward-compatible fixes, refinements, or small improvements that do not affect existing usage.\n\nUsing Semantic Versioning ensures that updates to SOLAR are consistent, intentional, and safe to adopt across Biamp products.\n\nFor more information about Semantic Versioning, visit semver.org.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Component",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Change",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Date",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Description",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Contributors",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Component name & link",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "MAJOR",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "YYYY-MM-DD",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Short description of change",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Anatoliy Gromov",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": null,
+  "swatches": [
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Component"
+      ],
+      "variableId": "VariableID:27:711",
+      "hex": "#111111",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Change"
+      ],
+      "variableId": "VariableID:27:711",
+      "hex": "#111111",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Date"
+      ],
+      "variableId": "VariableID:27:711",
+      "hex": "#111111",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Description"
+      ],
+      "variableId": "VariableID:27:711",
+      "hex": "#111111",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Contributors"
+      ],
+      "variableId": "VariableID:27:711",
+      "hex": "#111111",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "MAJOR"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 12
+}

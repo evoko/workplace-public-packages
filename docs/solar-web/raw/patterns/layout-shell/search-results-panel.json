@@ -1,0 +1,945 @@
+{
+  "page": "↳ 🟢 Search Results Panel",
+  "pageId": "2966:624",
+  "componentSets": [
+    {
+      "name": "SearchResultsPanel",
+      "id": "7258:3327",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "no results",
+            "empty",
+            "ghost",
+            "default"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 73,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          400,
+          470
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/overlay}"
+        ],
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "SearchHeader",
+            "type": "FRAME",
+            "size": [
+              400,
+              100
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "GlobalSearch",
+                "type": "INSTANCE",
+                "main": "GlobalSearch",
+                "variant": {
+                  "state": "focus",
+                  "size": "md"
+                },
+                "size": [
+                  376,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "FilterChips",
+                "type": "FRAME",
+                "size": [
+                  306,
+                  24
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/2xs"
+                },
+                "children": [
+                  {
+                    "name": "Tag",
+                    "type": "INSTANCE",
+                    "main": "Tag",
+                    "variant": {
+                      "status": "info",
+                      "type": "closable",
+                      "invert": "false"
+                    },
+                    "size": [
+                      50,
+                      24
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        12
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "HUG/FIXED"
+                    },
+                    "fills": [
+                      "{Color:surface/feedback/info/subtle}"
+                    ],
+                    "strokes": [
+                      "{Color:border/feedback/info/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 9999,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs",
+                      "paddingLeft": "Spatial:inset/sm",
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/xs",
+                      "paddingBottom": "Spatial:inset/none",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/pill",
+                      "topRightRadius": "Spatial:radius/pill",
+                      "bottomLeftRadius": "Spatial:radius/pill",
+                      "bottomRightRadius": "Spatial:radius/pill"
+                    }
+                  },
+                  {
+                    "name": "Tag",
+                    "type": "INSTANCE",
+                    "main": "Tag",
+                    "variant": {
+                      "status": "neutral",
+                      "type": "closable",
+                      "invert": "false"
+                    },
+                    "size": [
+                      124,
+                      24
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        12
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "HUG/FIXED"
+                    },
+                    "fills": [
+                      "{Color:surface/feedback/neutral/subtle}"
+                    ],
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 9999,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs",
+                      "paddingLeft": "Spatial:inset/sm",
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/xs",
+                      "paddingBottom": "Spatial:inset/none",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/pill",
+                      "topRightRadius": "Spatial:radius/pill",
+                      "bottomLeftRadius": "Spatial:radius/pill",
+                      "bottomRightRadius": "Spatial:radius/pill"
+                    }
+                  },
+                  {
+                    "name": "Tag",
+                    "type": "INSTANCE",
+                    "main": "Tag",
+                    "variant": {
+                      "status": "neutral",
+                      "type": "closable",
+                      "invert": "false"
+                    },
+                    "size": [
+                      124,
+                      24
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 4,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        12
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "HUG/FIXED"
+                    },
+                    "fills": [
+                      "{Color:surface/feedback/neutral/subtle}"
+                    ],
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 9999,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs",
+                      "paddingLeft": "Spatial:inset/sm",
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/xs",
+                      "paddingBottom": "Spatial:inset/none",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/pill",
+                      "topRightRadius": "Spatial:radius/pill",
+                      "bottomLeftRadius": "Spatial:radius/pill",
+                      "bottomRightRadius": "Spatial:radius/pill"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "ResultsBody",
+            "type": "FRAME",
+            "size": [
+              400,
+              370
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingTop": "Spatial:stack/none",
+              "paddingBottom": "Spatial:stack/none"
+            },
+            "children": [
+              {
+                "name": "Dropdown Group Label",
+                "type": "FRAME",
+                "size": [
+                  400,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "SPACE_BETWEEN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none"
+                },
+                "children": [
+                  {
+                    "name": "Category Name",
+                    "type": "TEXT",
+                    "text": "Category Name",
+                    "textStyle": "body/sm/medium",
+                    "size": [
+                      88,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Link",
+                    "type": "INSTANCE",
+                    "main": "Link",
+                    "variant": {
+                      "size": "sm",
+                      "state": "default"
+                    },
+                    "size": [
+                      37,
+                      9
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "HUG/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/xs"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "ResultRow",
+                "type": "INSTANCE",
+                "main": "ResultRow",
+                "size": [
+                  400,
+                  51
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "ResultRow",
+                "type": "INSTANCE",
+                "main": "ResultRow",
+                "size": [
+                  400,
+                  51
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "ResultRow",
+                "type": "INSTANCE",
+                "main": "ResultRow",
+                "size": [
+                  400,
+                  51
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Dropdown Group Label",
+                "type": "FRAME",
+                "size": [
+                  400,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "SPACE_BETWEEN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none"
+                },
+                "children": [
+                  {
+                    "name": "Category Name",
+                    "type": "TEXT",
+                    "text": "Category Name",
+                    "textStyle": "body/sm/medium",
+                    "size": [
+                      88,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Link",
+                    "type": "INSTANCE",
+                    "main": "Link",
+                    "variant": {
+                      "size": "sm",
+                      "state": "default"
+                    },
+                    "size": [
+                      37,
+                      9
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "HUG/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/xs"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "ResultRow",
+                "type": "INSTANCE",
+                "main": "ResultRow",
+                "size": [
+                  400,
+                  51
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "ResultRow",
+                "type": "INSTANCE",
+                "main": "ResultRow",
+                "size": [
+                  400,
+                  51
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "ResultRow",
+                "type": "INSTANCE",
+                "main": "ResultRow",
+                "size": [
+                  400,
+                  51
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            400,
+            470
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/inverse}",
+            "{Color:text/feedback/info}",
+            "{Color:text/feedback/neutral}",
+            "{Color:text/secondary}",
+            "{Color:text/link/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/feedback/info}",
+            "{Color:icon/feedback/neutral}",
+            "{Color:icon/link/default}",
+            "{Color:icon/tertiary}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "state=no results",
+          "size": [
+            400,
+            300
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/inverse}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Icon/Refresh",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "state=ghost",
+          "size": [
+            400,
+            396
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "effect": "shadow/dialog",
+          "hidden": []
+        },
+        {
+          "variant": "state=empty",
+          "size": [
+            400,
+            308
+          ],
+          "fills": [
+            "{Color:surface/overlay}"
+          ],
+          "effect": "shadow/dialog",
+          "textFills": [
+            "{Color:text/tertiary}",
+            "{Color:text/primary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "ResultRow",
+      "id": "5808:14608",
+      "description": "",
+      "props": {},
+      "nodeCount": 5,
+      "tree": {
+        "name": "ResultRow",
+        "type": "COMPONENT",
+        "size": [
+          400,
+          51
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/sm",
+          "strokeBottomWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Icon/File",
+            "type": "INSTANCE",
+            "main": "Icon/File",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              20,
+              20
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/md"
+            }
+          },
+          {
+            "name": "Text",
+            "type": "FRAME",
+            "size": [
+              336,
+              27
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Result title",
+                "type": "TEXT",
+                "text": "Result title",
+                "textStyle": "body/md/medium",
+                "size": [
+                  336,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Helper text",
+                "type": "TEXT",
+                "text": "Helper text",
+                "textStyle": "helper/sm",
+                "size": [
+                  336,
+                  9
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/helper/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Search Results Panel",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

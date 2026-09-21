@@ -1,0 +1,410 @@
+{
+  "page": "↳ 🟢 Invite Acceptance",
+  "pageId": "5066:2",
+  "componentSets": [
+    {
+      "name": "Auth — Invite Acceptance",
+      "id": "7810:22325",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "breakpoint": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "mobile"
+          ]
+        }
+      },
+      "defaultVariant": "breakpoint=default",
+      "defaultVariantNodeCount": 44,
+      "defaultVariantTree": {
+        "name": "breakpoint=default",
+        "type": "COMPONENT",
+        "size": [
+          1440,
+          800
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            24,
+            0,
+            24,
+            0
+          ],
+          "align": "SPACE_BETWEEN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/inverse}",
+          "IMAGE",
+          "IMAGE"
+        ],
+        "vars": {
+          "paddingLeft": "Spatial:inset/none",
+          "paddingTop": "Spatial:inset/xl",
+          "paddingRight": "Spatial:inset/none",
+          "paddingBottom": "Spatial:inset/xl",
+          "width": "Layout:breakpoint/lg"
+        },
+        "children": [
+          {
+            "name": "App Name",
+            "type": "INSTANCE",
+            "main": "App Name",
+            "variant": {
+              "type": "horizontal"
+            },
+            "size": [
+              85,
+              59
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 16,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:inset/md",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          },
+          {
+            "name": "Center Stack",
+            "type": "FRAME",
+            "size": [
+              400,
+              271
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 20,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/lg"
+            },
+            "children": [
+              {
+                "name": "You're invited to App Name",
+                "type": "TEXT",
+                "text": "You're invited to App Name",
+                "textStyle": "title/sm",
+                "size": [
+                  244,
+                  15
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/title/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/title/sm",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Acme Industries invited you as Editor. Confirm your email to accept and create your account.",
+                "type": "TEXT",
+                "text": "Acme Industries invited you as Editor.\nConfirm your email to accept and create y",
+                "textStyle": "body/md/regular",
+                "size": [
+                  344,
+                  30
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              },
+              {
+                "name": "Container",
+                "type": "INSTANCE",
+                "main": "Container",
+                "variant": {
+                  "type": "outlined"
+                },
+                "size": [
+                  400,
+                  150
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "fills": [
+                  "{Color:surface/raised}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 12,
+                "effectStyle": "shadow/overlay",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/dialog",
+                  "topRightRadius": "Spatial:radius/dialog",
+                  "bottomLeftRadius": "Spatial:radius/dialog",
+                  "bottomRightRadius": "Spatial:radius/dialog"
+                }
+              },
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  216,
+                  16
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                },
+                "children": [
+                  {
+                    "name": "Icon/HelpCircle",
+                    "type": "INSTANCE",
+                    "main": "Icon/HelpCircle",
+                    "variant": {
+                      "solid": "false"
+                    },
+                    "size": [
+                      16,
+                      16
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "vars": {
+                      "height": "Spatial:icon/sm"
+                    }
+                  },
+                  {
+                    "name": "Already a member? Sign in instead.",
+                    "type": "TEXT",
+                    "text": "Already a member? Sign in instead.",
+                    "size": [
+                      192,
+                      9
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/tertiary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type(local):line-height/body/xs",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type(local):size/body/xs",
+                      "fontStyle": [
+                        "Primitives:type/font-weight/400",
+                        "Primitives:type/font-weight/500"
+                      ],
+                      "textRangeFills": "Color:text/tertiary"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              216,
+              32
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm"
+            },
+            "children": [
+              {
+                "name": "Biamp Logo",
+                "type": "INSTANCE",
+                "main": "Biamp Logo",
+                "variant": {
+                  "style": "light",
+                  "size": "sm"
+                },
+                "size": [
+                  36,
+                  11
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              {
+                "name": "© 2025 Biamp Systems LLC. v.1.2-b-fd",
+                "type": "TEXT",
+                "text": "© 2025 Biamp Systems LLC.  v.1.2-b-fd",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  216,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "breakpoint=default",
+          "size": [
+            1440,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/tertiary}",
+            "{Color:text/disabled}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}",
+            "{Color:action/primary/icon/default}",
+            "{Color:icon/tertiary}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ],
+          "hidden": [
+            "Counter",
+            "Helper text",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "breakpoint=mobile",
+          "size": [
+            393,
+            800
+          ],
+          "fills": [
+            "{Color:surface/inverse}",
+            "IMAGE",
+            "IMAGE"
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/tertiary}",
+            "{Color:text/disabled}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}",
+            "{Color:action/primary/icon/default}",
+            "{Color:icon/tertiary}",
+            "{Primitives:color/brand/white}",
+            "{Primitives:color/brand/red}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Invite Acceptance",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

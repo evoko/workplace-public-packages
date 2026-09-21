@@ -1,0 +1,1093 @@
+{
+  "page": "↳ 🟢 Notifications Panel",
+  "pageId": "2202:1259",
+  "componentSets": [
+    {
+      "name": "Notification Item",
+      "id": "4644:6802",
+      "description": "Single row inside the Notifications Panel. read=false shows a leading unread dot; read=true renders the row with reduced emphasis. Pair with leading avatar (actor), primary text (what happened), Timestamp, and optional action button. Marked as read on click or on panel close (configurable per product).",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "hasSecondaryCTA#9259:24": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "hasPrimaryCTA#9259:27": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "hasActions#9259:30": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "read": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "true",
+            "false"
+          ]
+        }
+      },
+      "defaultVariant": "read=false",
+      "defaultVariantNodeCount": 36,
+      "defaultVariantTree": {
+        "name": "read=false",
+        "type": "COMPONENT",
+        "size": [
+          400,
+          98
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 12,
+          "pad": [
+            16,
+            16,
+            20,
+            16
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "itemSpacing": "Spatial:stack/sm",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/lg",
+          "strokeBottomWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Tag",
+            "type": "INSTANCE",
+            "main": "Tag",
+            "variant": {
+              "status": "success",
+              "type": "icon-only",
+              "invert": "false"
+            },
+            "size": [
+              24,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/feedback/success/subtle}"
+            ],
+            "strokes": [
+              "{Color:border/feedback/success/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "itemSpacing": "Spatial:inset/none",
+              "paddingLeft": "Spatial:inset/none",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/none",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Content",
+            "type": "FRAME",
+            "size": [
+              332,
+              62
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  332,
+                  24
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none"
+                },
+                "children": [
+                  {
+                    "name": "Label",
+                    "type": "TEXT",
+                    "text": "Label",
+                    "textStyle": "title/xs",
+                    "size": [
+                      40,
+                      12
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/title/xs",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/xs",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Timestamp",
+                    "type": "INSTANCE",
+                    "main": "Timestamp",
+                    "variant": {
+                      "format": "relative",
+                      "size": "sm",
+                      "emphasis": "subtle"
+                    },
+                    "size": [
+                      268,
+                      9
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:stack/xs"
+                    }
+                  },
+                  {
+                    "name": "StatusIndicator",
+                    "type": "INSTANCE",
+                    "main": "StatusIndicator",
+                    "variant": {
+                      "type": "success",
+                      "size": "xs"
+                    },
+                    "size": [
+                      8,
+                      8
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "fills": [
+                      "{Color:surface/feedback/success/strong}"
+                    ],
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 9999,
+                    "vars": {
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/pill",
+                      "topRightRadius": "Spatial:radius/pill",
+                      "bottomLeftRadius": "Spatial:radius/pill",
+                      "bottomRightRadius": "Spatial:radius/pill"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Container",
+                "type": "FRAME",
+                "size": [
+                  332,
+                  30
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm"
+                },
+                "children": [
+                  {
+                    "name": "Notification description goes here, can be in multiple lines.",
+                    "type": "TEXT",
+                    "text": "Notification description goes here, can be in multiple lines.",
+                    "textStyle": "body/md/regular",
+                    "size": [
+                      332,
+                      30
+                    ],
+                    "sizing": "FILL/HUG",
+                    "fills": [
+                      "{Color:text/secondary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/400"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Button Group",
+                "type": "FRAME",
+                "hidden": true,
+                "size": [
+                  332,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    4,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/2xs",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none"
+                },
+                "propRefs": {
+                  "visible": "hasActions#9259:30"
+                },
+                "children": [
+                  {
+                    "name": "Button",
+                    "type": "INSTANCE",
+                    "hidden": true,
+                    "main": "Button",
+                    "variant": {
+                      "size": "sm",
+                      "prio": "secondary",
+                      "state": "default",
+                      "danger": "false"
+                    },
+                    "size": [
+                      332,
+                      32
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        8
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "strokes": [
+                      "{Color:action/secondary/border/default}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "effectStyle": "shadow/control",
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs",
+                      "paddingLeft": "Spatial:inset/xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    },
+                    "propRefs": {
+                      "visible": "hasSecondaryCTA#9259:24"
+                    }
+                  },
+                  {
+                    "name": "Button",
+                    "type": "INSTANCE",
+                    "hidden": true,
+                    "main": "Button",
+                    "variant": {
+                      "size": "sm",
+                      "prio": "primary",
+                      "state": "default",
+                      "danger": "false"
+                    },
+                    "size": [
+                      162,
+                      32
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        8
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/primary/bg/default}"
+                    ],
+                    "strokes": [
+                      "{Color:action/primary/border/default}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 6,
+                    "effectStyle": "shadow/control",
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs",
+                      "paddingLeft": "Spatial:inset/xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    },
+                    "propRefs": {
+                      "visible": "hasPrimaryCTA#9259:27"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "read=false",
+          "size": [
+            400,
+            98
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/success}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Button",
+            "Button Group",
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "read=true",
+          "size": [
+            400,
+            98
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/tertiary}",
+            "{Color:action/secondary/text/default}",
+            "{Color:action/primary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:icon/feedback/success}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/primary/icon/default}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [
+    {
+      "name": "Notifications Panel",
+      "id": "4644:6776",
+      "description": "Panel that lists user notifications — system alerts, @mentions, assignment changes. Opens from the topbar bell icon. Groups by date ('Today', 'Earlier this week'). Shows badge count on bell when unread > 0. Draft — not yet consumed by 2+ products. See also: Toast for in-session notifications, Notification Item for per-row structure.",
+      "props": {
+        "Today#9305:0": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "Earlier this week#9305:1": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        }
+      },
+      "nodeCount": 196,
+      "tree": {
+        "name": "Notifications Panel",
+        "type": "COMPONENT",
+        "size": [
+          380,
+          658
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/overlay}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 12,
+        "effectStyle": "shadow/dialog",
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "Header",
+            "type": "FRAME",
+            "size": [
+              380,
+              56
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                16,
+                20,
+                16,
+                20
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/md",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "Title Group",
+                "type": "FRAME",
+                "size": [
+                  177,
+                  24
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                },
+                "children": [
+                  {
+                    "name": "Notifications",
+                    "type": "TEXT",
+                    "text": "Notifications",
+                    "textStyle": "body/lg/medium",
+                    "size": [
+                      94,
+                      12
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/lg",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/lg",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "Tag",
+                    "type": "INSTANCE",
+                    "main": "Tag",
+                    "variant": {
+                      "status": "success",
+                      "type": "status",
+                      "invert": "false"
+                    },
+                    "size": [
+                      71,
+                      24
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        12,
+                        0,
+                        8
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "HUG/FIXED"
+                    },
+                    "fills": [
+                      "{Color:surface/feedback/success/subtle}"
+                    ],
+                    "strokes": [
+                      "{Color:border/feedback/success/subtle}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 9999,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs",
+                      "paddingLeft": "Spatial:inset/xs",
+                      "paddingTop": "Spatial:inset/none",
+                      "paddingRight": "Spatial:inset/sm",
+                      "paddingBottom": "Spatial:inset/none",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/pill",
+                      "topRightRadius": "Spatial:radius/pill",
+                      "bottomLeftRadius": "Spatial:radius/pill",
+                      "bottomRightRadius": "Spatial:radius/pill"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Mark all as read",
+                "type": "TEXT",
+                "text": "Mark all as read",
+                "textStyle": "body/md/medium",
+                "size": [
+                  101,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/link/default}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dropdown Group Label",
+            "type": "INSTANCE",
+            "main": "Dropdown Group Label",
+            "variant": {
+              "Size": "md"
+            },
+            "size": [
+              380,
+              34
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm"
+            }
+          },
+          {
+            "name": "Today",
+            "type": "SLOT",
+            "size": [
+              380,
+              196
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "Today#9305:0"
+            },
+            "children": [
+              {
+                "name": "Notification Item",
+                "type": "INSTANCE",
+                "main": "Notification Item",
+                "variant": {
+                  "read": "false"
+                },
+                "size": [
+                  380,
+                  98
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    20,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/raised}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/lg",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Notification Item",
+                "type": "INSTANCE",
+                "main": "Notification Item",
+                "variant": {
+                  "read": "true"
+                },
+                "size": [
+                  380,
+                  98
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    20,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/raised}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/lg",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dropdown Group Label",
+            "type": "INSTANCE",
+            "main": "Dropdown Group Label",
+            "variant": {
+              "Size": "md"
+            },
+            "size": [
+              380,
+              34
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                12,
+                12,
+                12,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "fills": [
+              "{Color:surface/background}"
+            ],
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/sm"
+            }
+          },
+          {
+            "name": "Earlier this week",
+            "type": "SLOT",
+            "size": [
+              380,
+              294
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "propRefs": {
+              "slotContentId": "Earlier this week#9305:1"
+            },
+            "children": [
+              {
+                "name": "Notification Item",
+                "type": "INSTANCE",
+                "main": "Notification Item",
+                "variant": {
+                  "read": "true"
+                },
+                "size": [
+                  380,
+                  98
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    20,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/raised}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/lg",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Notification Item",
+                "type": "INSTANCE",
+                "main": "Notification Item",
+                "variant": {
+                  "read": "true"
+                },
+                "size": [
+                  380,
+                  98
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    20,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/raised}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/lg",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              },
+              {
+                "name": "Notification Item",
+                "type": "INSTANCE",
+                "main": "Notification Item",
+                "variant": {
+                  "read": "true"
+                },
+                "size": [
+                  380,
+                  98
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    20,
+                    16
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "fills": [
+                  "{Color:surface/raised}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/lg",
+                  "strokeBottomWeight": "Spatial:border/default"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Footer",
+            "type": "FRAME",
+            "size": [
+              380,
+              44
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                16,
+                20,
+                16,
+                20
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "Spatial:inset/lg",
+              "paddingBottom": "Spatial:inset/md"
+            },
+            "children": [
+              {
+                "name": "View all notifications",
+                "type": "TEXT",
+                "text": "View all notifications",
+                "textStyle": "body/lg/medium",
+                "size": [
+                  152,
+                  12
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/link/default}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/lg",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/lg",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Notifications Panel",
+    "Description",
+    "Panel listing user notifications — system alerts, @mentions, assignment changes. Opens from the topbar bell icon. Draft — awaiting 2+ consumer alignment.",
+    "Sub-components",
+    "Notifications Panel   Panel container with header, filters, list, empty state.\nNotification Item     Per-row entry — read / unread state.",
+    "Grouping",
+    "Group by date: Today, Earlier this week, Earlier.\nWithin groups, order newest first.\nShow unread count badge on the topbar bell when > 0.",
+    "Item read state",
+    "read=false   Leading unread dot. Full-emphasis text.\nread=true    No dot. Secondary-emphasis text, slightly reduced.\nMark read on click or on panel close (per product).",
+    "Labels & Content",
+    "Actor avatar + primary text + Timestamp.\nPrimary text: what happened, in user-readable voice ('Alex assigned you a task').\nOptional action button for 1-click resolution ('View', 'Reply').",
+    "Rules",
+    "DO   Group by date\nDO   Show unread badge on topbar bell\nDO   Mark read on click or panel close\nDO   Offer 1-click action where possible",
+    "DON'T   Use for transient outcomes (use Toast)\nDON'T   Show > 1 action per item\nDON'T   Auto-clear read items before user dismiss\nDON'T   Mix product-level and system alerts without labels"
+  ],
+  "pageContext": null
+}

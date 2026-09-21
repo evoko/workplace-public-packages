@@ -1,0 +1,967 @@
+{
+  "page": "↳ 🟢 Column Chooser",
+  "pageId": "5113:10",
+  "componentSets": [
+    {
+      "name": "Column Chooser",
+      "id": "6952:1068",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "List#9318:4": {
+          "type": "SLOT",
+          "default": {
+            "guid": {
+              "sessionID": -1,
+              "localID": -1
+            }
+          }
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "loading",
+            "empty"
+          ]
+        }
+      },
+      "defaultVariant": "state=default",
+      "defaultVariantNodeCount": 92,
+      "defaultVariantTree": {
+        "name": "state=default",
+        "type": "COMPONENT",
+        "size": [
+          320,
+          720
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/raised}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 8,
+        "effectStyle": "shadow/raised",
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Header",
+            "type": "FRAME",
+            "size": [
+              320,
+              52
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                8,
+                16,
+                8,
+                16
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": "mixed",
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm",
+              "paddingLeft": "Spatial:inset/md",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/md",
+              "paddingBottom": "Spatial:inset/xs",
+              "strokeBottomWeight": "Spatial:border/default"
+            },
+            "children": [
+              {
+                "name": "TitleGroup",
+                "type": "FRAME",
+                "size": [
+                  212,
+                  20
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                },
+                "children": [
+                  {
+                    "name": "Title",
+                    "type": "TEXT",
+                    "text": "Columns",
+                    "textStyle": "body/lg/medium",
+                    "size": [
+                      66,
+                      12
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/lg",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/lg",
+                      "fontStyle": "Primitives:type/font-weight/500"
+                    }
+                  },
+                  {
+                    "name": "SummaryCounter",
+                    "type": "INSTANCE",
+                    "main": "Counter",
+                    "variant": {
+                      "type": "regular",
+                      "state": "default"
+                    },
+                    "size": [
+                      24,
+                      20
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 0,
+                      "pad": [
+                        0,
+                        8,
+                        0,
+                        8
+                      ],
+                      "align": "CENTER/CENTER",
+                      "sizing": "HUG/FIXED"
+                    },
+                    "fills": [
+                      "{Color:action/primary/bg/default}"
+                    ],
+                    "strokes": [
+                      "{Color:border/medium}"
+                    ],
+                    "strokeWeight": 1,
+                    "radius": 9999,
+                    "vars": {
+                      "paddingLeft": "Spatial:inset/xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "strokeTopWeight": "Spatial:border/default",
+                      "strokeBottomWeight": "Spatial:border/default",
+                      "strokeLeftWeight": "Spatial:border/default",
+                      "strokeRightWeight": "Spatial:border/default",
+                      "topLeftRadius": "Spatial:radius/pill",
+                      "topRightRadius": "Spatial:radius/pill",
+                      "bottomLeftRadius": "Spatial:radius/pill",
+                      "bottomRightRadius": "Spatial:radius/pill"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "ClearAll",
+                "type": "INSTANCE",
+                "main": "Button",
+                "variant": {
+                  "size": "sm",
+                  "prio": "tertiary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  64,
+                  36
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "type": "FRAME",
+            "size": [
+              320,
+              620
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                12,
+                12,
+                0,
+                12
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/FILL"
+            },
+            "vars": {
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/sm",
+              "paddingRight": "Spatial:inset/sm"
+            },
+            "children": [
+              {
+                "name": "SearchField",
+                "type": "INSTANCE",
+                "main": "SearchField",
+                "variant": {
+                  "state": "default",
+                  "size": "md"
+                },
+                "size": [
+                  296,
+                  40
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "List",
+                "type": "SLOT",
+                "size": [
+                  296,
+                  440
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                },
+                "propRefs": {
+                  "slotContentId": "List#9318:4"
+                },
+                "children": [
+                  {
+                    "name": "ColumnRow",
+                    "type": "INSTANCE",
+                    "main": "ColumnRow",
+                    "variant": {
+                      "selected": "true",
+                      "hover": "false"
+                    },
+                    "size": [
+                      296,
+                      44
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    }
+                  },
+                  {
+                    "name": "ColumnRow",
+                    "type": "INSTANCE",
+                    "main": "ColumnRow",
+                    "variant": {
+                      "selected": "true",
+                      "hover": "false"
+                    },
+                    "size": [
+                      296,
+                      44
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    }
+                  },
+                  {
+                    "name": "ColumnRow",
+                    "type": "INSTANCE",
+                    "main": "ColumnRow",
+                    "variant": {
+                      "selected": "true",
+                      "hover": "false"
+                    },
+                    "size": [
+                      296,
+                      44
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    }
+                  },
+                  {
+                    "name": "ColumnRow",
+                    "type": "INSTANCE",
+                    "main": "ColumnRow",
+                    "variant": {
+                      "selected": "true",
+                      "hover": "false"
+                    },
+                    "size": [
+                      296,
+                      44
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    }
+                  },
+                  {
+                    "name": "ColumnRow",
+                    "type": "INSTANCE",
+                    "main": "ColumnRow",
+                    "variant": {
+                      "selected": "true",
+                      "hover": "false"
+                    },
+                    "size": [
+                      296,
+                      44
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    }
+                  },
+                  {
+                    "name": "ColumnRow",
+                    "type": "INSTANCE",
+                    "main": "ColumnRow",
+                    "variant": {
+                      "selected": "false",
+                      "hover": "false"
+                    },
+                    "size": [
+                      296,
+                      44
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    }
+                  },
+                  {
+                    "name": "ColumnRow",
+                    "type": "INSTANCE",
+                    "main": "ColumnRow",
+                    "variant": {
+                      "selected": "false",
+                      "hover": "false"
+                    },
+                    "size": [
+                      296,
+                      44
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    }
+                  },
+                  {
+                    "name": "ColumnRow",
+                    "type": "INSTANCE",
+                    "main": "ColumnRow",
+                    "variant": {
+                      "selected": "false",
+                      "hover": "false"
+                    },
+                    "size": [
+                      296,
+                      44
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    }
+                  },
+                  {
+                    "name": "ColumnRow",
+                    "type": "INSTANCE",
+                    "main": "ColumnRow",
+                    "variant": {
+                      "selected": "false",
+                      "hover": "false"
+                    },
+                    "size": [
+                      296,
+                      44
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    }
+                  },
+                  {
+                    "name": "ColumnRow",
+                    "type": "INSTANCE",
+                    "main": "ColumnRow",
+                    "variant": {
+                      "selected": "false",
+                      "hover": "false"
+                    },
+                    "size": [
+                      296,
+                      44
+                    ],
+                    "layout": {
+                      "dir": "HORIZONTAL",
+                      "gap": 8,
+                      "pad": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "align": "MIN/CENTER",
+                      "sizing": "FIXED/FIXED"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Button",
+            "type": "INSTANCE",
+            "main": "Button",
+            "variant": {
+              "size": "xl",
+              "prio": "primary",
+              "state": "default",
+              "danger": "false"
+            },
+            "size": [
+              320,
+              48
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                20,
+                0,
+                20
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/FIXED"
+            },
+            "fills": [
+              "{Color:action/primary/bg/default}"
+            ],
+            "strokes": [
+              "{Color:action/primary/border/default}"
+            ],
+            "strokeWeight": 0,
+            "vars": {
+              "paddingLeft": "Spatial:inset/lg",
+              "paddingRight": "Spatial:inset/lg",
+              "strokeTopWeight": "Spatial:border/none",
+              "strokeBottomWeight": "Spatial:border/none",
+              "strokeLeftWeight": "Spatial:border/none",
+              "strokeRightWeight": "Spatial:border/none",
+              "topLeftRadius": "Spatial:radius/none",
+              "topRightRadius": "Spatial:radius/none",
+              "bottomLeftRadius": "Spatial:radius/none",
+              "bottomRightRadius": "Spatial:radius/none"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default",
+          "size": [
+            320,
+            720
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/tertiary/text/default}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}",
+            "{Color:icon/secondary}",
+            "{Color:icon/tertiary}",
+            "{Color:icon/inverse}",
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Counter",
+            "Icon/None",
+            "Spinner"
+          ]
+        },
+        {
+          "variant": "state=loading",
+          "size": [
+            320,
+            720
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:action/primary/text/default}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "state=empty",
+          "size": [
+            320,
+            720
+          ],
+          "fills": [
+            "{Color:surface/raised}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "effect": "shadow/raised",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:action/primary/text/default}",
+            "{Color:action/tertiary/text/default}",
+            "{Color:text/secondary}",
+            "{Color:action/secondary/text/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}",
+            "{Color:icon/secondary}",
+            "{Color:action/primary/icon/default}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ColumnRow",
+      "id": "6951:14726",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "selected": {
+          "type": "VARIANT",
+          "default": "true",
+          "options": [
+            "true",
+            "false"
+          ]
+        },
+        "hover": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "selected=true, hover=false",
+      "defaultVariantNodeCount": 5,
+      "defaultVariantTree": {
+        "name": "selected=true, hover=false",
+        "type": "COMPONENT",
+        "size": [
+          296,
+          44
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "vars": {
+          "itemSpacing": "Spatial(local):inset/xs"
+        },
+        "children": [
+          {
+            "name": "Icon/DragHandle",
+            "type": "INSTANCE",
+            "main": "Icon/DragHandle",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              20,
+              20
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/md"
+            }
+          },
+          {
+            "name": "Checkbox",
+            "type": "INSTANCE",
+            "main": "Checkbox",
+            "variant": {
+              "checked": "true",
+              "disabled": "false",
+              "hover": "false",
+              "mixed": "false",
+              "focus": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 16,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:action/primary/bg/default}"
+            ],
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:stack/md",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            }
+          },
+          {
+            "name": "Column Label",
+            "type": "TEXT",
+            "text": "Column Label",
+            "size": [
+              244,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color(local):text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type(local):line-height/body/sm",
+              "letterSpacing": ".Primitives:typography/letter-spacing/body (-0,2em)",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type(local):size/body/sm",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "selected=true, hover=false",
+          "size": [
+            296,
+            44
+          ],
+          "textFills": [
+            "{Color(local):text/primary}"
+          ],
+          "iconFills": [
+            "{Color(local):icon/tertiary}",
+            "{Color:icon/inverse}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "selected=true, hover=true",
+          "size": [
+            296,
+            44
+          ],
+          "fills": [
+            "{Color(local):surface/hover}"
+          ],
+          "textFills": [
+            "{Color(local):text/primary}"
+          ],
+          "iconFills": [
+            "{Color(local):icon/tertiary}",
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "selected=false, hover=false",
+          "size": [
+            296,
+            44
+          ],
+          "textFills": [
+            "{Color(local):text/secondary}"
+          ],
+          "iconFills": [
+            "{Color(local):icon/tertiary}"
+          ]
+        },
+        {
+          "variant": "selected=false, hover=true",
+          "size": [
+            296,
+            44
+          ],
+          "fills": [
+            "{Color(local):surface/hover}"
+          ],
+          "textFills": [
+            "{Color(local):text/secondary}"
+          ],
+          "iconFills": [
+            "{Color(local):icon/tertiary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Column Chooser",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

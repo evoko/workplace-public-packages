@@ -1,0 +1,619 @@
+{
+  "page": "↳ 🟢 Number Input",
+  "pageId": "2202:1229",
+  "componentSets": [
+    {
+      "name": "Number Input",
+      "id": "3886:170",
+      "description": "Numeric input with stepper controls. 16 variants: size (sm, md) × state (default, hover, disabled, error) × stepper (inline, side). inline places steppers inside the field trailing; side places them outside (larger hit area, preferred for touch). inputmode=\"numeric\" for mobile keyboards. Validate on blur. Constrain via min / max / step; do not accept characters the field does not allow.",
+      "docLinks": [],
+      "variantCount": 20,
+      "props": {
+        "mandatory#8704:30": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasHelper#8704:51": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "hasLabel#8704:72": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "size": {
+          "type": "VARIANT",
+          "default": "md",
+          "options": [
+            "md",
+            "sm"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "disabled",
+            "error",
+            "focus"
+          ]
+        },
+        "stepper": {
+          "type": "VARIANT",
+          "default": "inline",
+          "options": [
+            "inline",
+            "side"
+          ]
+        }
+      },
+      "defaultVariant": "size=md, state=default, stepper=inline",
+      "defaultVariantNodeCount": 10,
+      "defaultVariantTree": {
+        "name": "size=md, state=default, stepper=inline",
+        "type": "COMPONENT",
+        "size": [
+          98,
+          76
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:stack/xs"
+        },
+        "children": [
+          {
+            "name": "Label",
+            "type": "FRAME",
+            "size": [
+              48,
+              10
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
+            },
+            "propRefs": {
+              "visible": "hasLabel#8704:72"
+            },
+            "children": [
+              {
+                "name": "Label",
+                "type": "TEXT",
+                "text": "Label",
+                "textStyle": "label/md",
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "*",
+                "type": "TEXT",
+                "text": "*",
+                "textStyle": "label/md",
+                "size": [
+                  8,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/label/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                },
+                "propRefs": {
+                  "visible": "mandatory#8704:30"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Field",
+            "type": "FRAME",
+            "size": [
+              98,
+              40
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 12,
+              "pad": [
+                0,
+                12,
+                0,
+                12
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/FIXED"
+            },
+            "fills": [
+              "{Color:surface/base}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "effectStyle": "shadow/control",
+            "vars": {
+              "itemSpacing": "Spatial:inset/sm",
+              "paddingLeft": "Spatial:inset/sm",
+              "paddingTop": "Spatial:inset/none",
+              "paddingRight": "Spatial:inset/sm",
+              "paddingBottom": "Spatial:inset/none",
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Decrement",
+                "type": "INSTANCE",
+                "main": "Icon/Minus",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "sizing": "FIXED/FIXED",
+                "radius": 6,
+                "vars": {
+                  "height": "Spatial:icon/md",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "0",
+                "type": "TEXT",
+                "text": "0",
+                "textStyle": "body/md/medium",
+                "size": [
+                  10,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              },
+              {
+                "name": "Increment",
+                "type": "INSTANCE",
+                "main": "Icon/Plus",
+                "variant": {
+                  "solid": "false"
+                },
+                "size": [
+                  20,
+                  20
+                ],
+                "sizing": "FIXED/FIXED",
+                "radius": 6,
+                "vars": {
+                  "height": "Spatial:icon/md",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Helper text",
+            "type": "TEXT",
+            "text": "Helper text",
+            "textStyle": "helper/md",
+            "size": [
+              98,
+              10
+            ],
+            "sizing": "FILL/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/helper/md",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/helper/md",
+              "fontStyle": "Primitives:type/font-weight/400"
+            },
+            "propRefs": {
+              "visible": "hasHelper#8704:51"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=md, state=default, stepper=inline",
+          "size": [
+            98,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "size=sm, state=default, stepper=inline",
+          "size": [
+            72,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "LeadingIcon"
+          ]
+        },
+        {
+          "variant": "size=md, state=default, stepper=side",
+          "size": [
+            88,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=default, stepper=side",
+          "size": [
+            68,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=focus, stepper=inline",
+          "size": [
+            98,
+            76
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=focus, stepper=inline",
+          "size": [
+            72,
+            66
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "LeadingIcon"
+          ]
+        },
+        {
+          "variant": "size=md, state=focus, stepper=side",
+          "size": [
+            88,
+            76
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=focus, stepper=side",
+          "size": [
+            68,
+            66
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=hover, stepper=inline",
+          "size": [
+            98,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=hover, stepper=inline",
+          "size": [
+            72,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "LeadingIcon"
+          ]
+        },
+        {
+          "variant": "size=md, state=hover, stepper=side",
+          "size": [
+            88,
+            76
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=hover, stepper=side",
+          "size": [
+            68,
+            66
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/feedback/info}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=md, state=disabled, stepper=inline",
+          "size": [
+            98,
+            76
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ],
+          "hidden": [
+            "LeadingIcon"
+          ]
+        },
+        {
+          "variant": "size=sm, state=disabled, stepper=inline",
+          "size": [
+            72,
+            66
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ],
+          "hidden": [
+            "LeadingIcon"
+          ]
+        },
+        {
+          "variant": "size=md, state=disabled, stepper=side",
+          "size": [
+            88,
+            76
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=disabled, stepper=side",
+          "size": [
+            68,
+            66
+          ],
+          "textFills": [
+            "{Color:text/disabled}"
+          ],
+          "iconFills": [
+            "{Color:icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, state=error, stepper=inline",
+          "size": [
+            98,
+            76
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "LeadingIcon"
+          ]
+        },
+        {
+          "variant": "size=sm, state=error, stepper=inline",
+          "size": [
+            72,
+            66
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ],
+          "hidden": [
+            "LeadingIcon"
+          ]
+        },
+        {
+          "variant": "size=md, state=error, stepper=side",
+          "size": [
+            88,
+            76
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        },
+        {
+          "variant": "size=sm, state=error, stepper=side",
+          "size": [
+            68,
+            66
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}",
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Number Input",
+    "Description",
+    "Numeric-only input with stepper controls for increment/decrement. Use for quantities, ages, counts, technical parameters. For monetary values with currency formatting, pair with a currency prefix. For ranges, use Slider or paired min/max Number Inputs.",
+    "Variants",
+    "size=sm (36px) / size=md (44px)\n\nstepper=inline    Steppers inside the field trailing edge.\nstepper=side       Steppers outside the field (+ and − buttons). Larger hit area; preferred for touch contexts.\n\nstate: default, hover, disabled, error.",
+    "Content",
+    "Label: units matter (\"Quantity\", \"Temperature (°F)\"). Helper text: show min / max / step (\"1 – 100\") so the constraint is visible. Error: include the allowed range (\"Enter a number between 1 and 100\"), not a bare \"Invalid\".",
+    "Accessibility",
+    "Render as <input type=\"number\"> with inputmode=\"numeric\". aria-valuemin / aria-valuemax / aria-valuenow when constrained. Steppers are <button> with aria-label (\"Increment\" / \"Decrement\"). Keyboard: ↑ / ↓ step by step; Page Up / Page Down by 10× step; Home / End jump to min / max.",
+    "Rules",
+    "Do\n\n• Match inputmode to the expected keyboard\n• Show min/max/step in helper text\n• Provide keyboard ↑/↓ stepping\n• Prefer stepper=side for touch",
+    "Don't\n\n• Don't accept characters that will be rejected — block them\n• Don't silently clamp — show an error when out of range\n• Don't remove type=\"number\" for currency — prefix the currency\n• Don't put negative numbers where positive makes no sense"
+  ],
+  "pageContext": null
+}

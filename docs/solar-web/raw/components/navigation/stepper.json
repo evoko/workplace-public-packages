@@ -1,0 +1,623 @@
+{
+  "page": "↳ 🟢 Stepper",
+  "pageId": "2163:3707",
+  "componentSets": [
+    {
+      "name": "Stepper Indicator",
+      "id": "2574:3254",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "status": {
+          "type": "VARIANT",
+          "default": "completed",
+          "options": [
+            "completed",
+            "active",
+            "upcoming",
+            "error"
+          ]
+        }
+      },
+      "defaultVariant": "status=completed",
+      "defaultVariantNodeCount": 2,
+      "defaultVariantTree": {
+        "name": "status=completed",
+        "type": "COMPONENT",
+        "size": [
+          24,
+          24
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/inverse}"
+        ],
+        "radius": 9999,
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/pill",
+          "topRightRadius": "Spatial:radius/pill",
+          "bottomLeftRadius": "Spatial:radius/pill",
+          "bottomRightRadius": "Spatial:radius/pill"
+        },
+        "children": [
+          {
+            "name": "Icon/Check",
+            "type": "INSTANCE",
+            "main": "Icon/Check",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/sm"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "status=completed",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/inverse}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "status=active",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/inverse}"
+          ],
+          "textFills": [
+            "{Color:text/inverse}"
+          ]
+        },
+        {
+          "variant": "status=upcoming",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ]
+        },
+        {
+          "variant": "status=error",
+          "size": [
+            24,
+            24
+          ],
+          "fills": [
+            "{Color:surface/feedback/danger/strong}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "textFills": [
+            "{Color:icon/inverse}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Step",
+      "id": "5760:5192",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 8,
+      "props": {
+        "status": {
+          "type": "VARIANT",
+          "default": "complete",
+          "options": [
+            "error",
+            "complete",
+            "active",
+            "upcoming"
+          ]
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "round",
+          "options": [
+            "round",
+            "horizontal"
+          ]
+        }
+      },
+      "defaultVariant": "status=complete, type=round",
+      "defaultVariantNodeCount": 4,
+      "defaultVariantTree": {
+        "name": "status=complete, type=round",
+        "type": "COMPONENT",
+        "size": [
+          26,
+          41
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 8,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "HUG/HUG"
+        },
+        "vars": {
+          "itemSpacing": "Spatial:inset/xs"
+        },
+        "children": [
+          {
+            "name": "Stepper Indicator",
+            "type": "INSTANCE",
+            "main": "Stepper Indicator",
+            "variant": {
+              "status": "completed"
+            },
+            "size": [
+              24,
+              24
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/inverse}"
+            ],
+            "radius": 9999,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          },
+          {
+            "name": "Step",
+            "type": "TEXT",
+            "text": "Step",
+            "textStyle": "body/sm/medium",
+            "size": [
+              26,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/primary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/body/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/body/sm",
+              "fontStyle": "Primitives:type/font-weight/500"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "status=complete, type=round",
+          "size": [
+            26,
+            41
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "status=complete, type=horizontal",
+          "size": [
+            39,
+            20
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "status=active, type=round",
+          "size": [
+            26,
+            41
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "status=active, type=horizontal",
+          "size": [
+            39,
+            20
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "status=upcoming, type=round",
+          "size": [
+            26,
+            41
+          ],
+          "textFills": [
+            "{Color:text/secondary}",
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "status=upcoming, type=horizontal",
+          "size": [
+            39,
+            20
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        },
+        {
+          "variant": "status=error, type=round",
+          "size": [
+            26,
+            41
+          ],
+          "textFills": [
+            "{Color:icon/inverse}",
+            "{Color:text/feedback/danger}"
+          ]
+        },
+        {
+          "variant": "status=error, type=horizontal",
+          "size": [
+            39,
+            20
+          ],
+          "textFills": [
+            "{Color:text/feedback/danger}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stepper",
+      "id": "5762:5846",
+      "description": "",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "showStep5#5888:16": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showStep4#5888:21": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showStep3#5888:26": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "with label",
+          "options": [
+            "line",
+            "with label",
+            "no label",
+            "line+text"
+          ]
+        }
+      },
+      "defaultVariant": "type=with label",
+      "defaultVariantNodeCount": 16,
+      "defaultVariantTree": {
+        "name": "type=with label",
+        "type": "COMPONENT",
+        "size": [
+          350,
+          41
+        ],
+        "layout": {
+          "dir": "VERTICAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/MIN",
+          "sizing": "FILL/HUG"
+        },
+        "children": [
+          {
+            "name": "Progress",
+            "type": "FRAME",
+            "size": [
+              313,
+              4
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                225,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Color:surface/muted}"
+            ],
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "children": [
+              {
+                "name": "Rectangle 2",
+                "type": "RECTANGLE",
+                "size": [
+                  153,
+                  4
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:surface/inverse}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Steps",
+            "type": "FRAME",
+            "size": [
+              350,
+              41
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 197,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "SPACE_BETWEEN/CENTER",
+              "sizing": "FILL/HUG"
+            },
+            "children": [
+              {
+                "name": "Step",
+                "type": "INSTANCE",
+                "main": "Step",
+                "variant": {
+                  "status": "complete",
+                  "type": "round"
+                },
+                "size": [
+                  26,
+                  41
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              {
+                "name": "Step",
+                "type": "INSTANCE",
+                "main": "Step",
+                "variant": {
+                  "status": "active",
+                  "type": "round"
+                },
+                "size": [
+                  26,
+                  41
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              {
+                "name": "Step",
+                "type": "INSTANCE",
+                "main": "Step",
+                "variant": {
+                  "status": "upcoming",
+                  "type": "round"
+                },
+                "size": [
+                  26,
+                  41
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "type=with label",
+          "size": [
+            350,
+            41
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/inverse}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "type=no label",
+          "size": [
+            350,
+            24
+          ],
+          "textFills": [
+            "{Color:text/inverse}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Color:icon/inverse}"
+          ]
+        },
+        {
+          "variant": "type=line",
+          "size": [
+            350,
+            4
+          ]
+        },
+        {
+          "variant": "type=line+text",
+          "size": [
+            350,
+            20
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Stepper",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

@@ -1,0 +1,121 @@
+{
+  "page": "↳ 🟢 Divider",
+  "pageId": "2202:1220",
+  "componentSets": [
+    {
+      "name": "Divider",
+      "id": "2714:588",
+      "description": "Visual separator between content sections. Horizontal (full-width, inset, or with centered label) and vertical orientations. Mirrors Tailwind UI divider patterns.",
+      "docLinks": [],
+      "variantCount": 4,
+      "props": {
+        "orientation": {
+          "type": "VARIANT",
+          "default": "horizontal",
+          "options": [
+            "horizontal",
+            "vertical"
+          ]
+        },
+        "type": {
+          "type": "VARIANT",
+          "default": "full",
+          "options": [
+            "full",
+            "inset",
+            "with-label"
+          ]
+        }
+      },
+      "defaultVariant": "orientation=horizontal, type=full",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "orientation=horizontal, type=full",
+        "type": "COMPONENT",
+        "size": [
+          320,
+          1
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "children": [
+          {
+            "name": "Rule",
+            "type": "RECTANGLE",
+            "size": [
+              320,
+              1
+            ],
+            "sizing": "FILL/FIXED",
+            "fills": [
+              "{Color:border/subtle}"
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "orientation=horizontal, type=full",
+          "size": [
+            320,
+            1
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "orientation=horizontal, type=inset",
+          "size": [
+            320,
+            1
+          ]
+        },
+        {
+          "variant": "orientation=horizontal, type=with-label",
+          "size": [
+            320,
+            20
+          ],
+          "textFills": [
+            "{Color:text/tertiary}"
+          ]
+        },
+        {
+          "variant": "orientation=vertical, type=full",
+          "size": [
+            1,
+            32
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Divider",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

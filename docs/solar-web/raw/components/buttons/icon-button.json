@@ -1,0 +1,1962 @@
+{
+  "page": "↳ 🟢 Icon Button",
+  "pageId": "2163:3670",
+  "componentSets": [
+    {
+      "name": "Icon Button",
+      "id": "2995:443",
+      "description": "Icon-only action button. 72 variants: size (sm 28px, md 36px, lg 44px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, pressed, disabled). Mirrors the Button priority/size/state system using SOLAR action tokens. Always expand hit area to 44×44 via invisible padding when the visible size is smaller (WCAG 2.5.5). An icon-only control must carry an aria-label — the icon alone is not a name.",
+      "docLinks": [],
+      "variantCount": 126,
+      "props": {
+        "size": {
+          "type": "VARIANT",
+          "default": "sm",
+          "options": [
+            "lg",
+            "md",
+            "sm"
+          ]
+        },
+        "shape": {
+          "type": "VARIANT",
+          "default": "square",
+          "options": [
+            "square",
+            "round"
+          ]
+        },
+        "prio": {
+          "type": "VARIANT",
+          "default": "primary",
+          "options": [
+            "primary",
+            "secondary",
+            "tertiary"
+          ]
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "active",
+            "pressed",
+            "disabled",
+            "focus",
+            "loading"
+          ]
+        }
+      },
+      "defaultVariant": "size=sm, shape=square, prio=primary, state=default",
+      "defaultVariantNodeCount": 2,
+      "defaultVariantTree": {
+        "name": "size=sm, shape=square, prio=primary, state=default",
+        "type": "COMPONENT",
+        "size": [
+          32,
+          32
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:action/primary/bg/default}"
+        ],
+        "strokes": [
+          "{Color:border/medium}"
+        ],
+        "strokeWeight": 1,
+        "radius": 6,
+        "effectStyle": "shadow/control",
+        "vars": {
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/control",
+          "topRightRadius": "Spatial:radius/control",
+          "bottomLeftRadius": "Spatial:radius/control",
+          "bottomRightRadius": "Spatial:radius/control"
+        },
+        "children": [
+          {
+            "name": "Icon/None",
+            "type": "INSTANCE",
+            "main": "Icon/None",
+            "variant": {
+              "solid": "false"
+            },
+            "size": [
+              12,
+              12
+            ],
+            "sizing": "FIXED/FIXED",
+            "vars": {
+              "height": "Spatial:icon/xs"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "size=sm, shape=square, prio=primary, state=default",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "size=sm, shape=square, prio=primary, state=hover",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=primary, state=active",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=primary, state=pressed",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=primary, state=disabled",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=primary, state=focus",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=primary, state=loading",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=primary, state=default",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=primary, state=hover",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=primary, state=active",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=primary, state=pressed",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=primary, state=disabled",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=primary, state=focus",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=primary, state=loading",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=primary, state=default",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=primary, state=hover",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=primary, state=active",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=primary, state=pressed",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=primary, state=disabled",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=primary, state=focus",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=primary, state=loading",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=primary, state=default",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=primary, state=hover",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=primary, state=active",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=primary, state=pressed",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=primary, state=disabled",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=primary, state=focus",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=primary, state=loading",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=primary, state=default",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=primary, state=hover",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=primary, state=active",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=primary, state=pressed",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=primary, state=disabled",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=primary, state=focus",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=primary, state=loading",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=primary, state=default",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=primary, state=hover",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=primary, state=active",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=primary, state=pressed",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=primary, state=disabled",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=primary, state=focus",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=primary, state=loading",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/primary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/primary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=secondary, state=default",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=secondary, state=hover",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=secondary, state=active",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=secondary, state=pressed",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=secondary, state=disabled",
+          "size": [
+            32,
+            32
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=secondary, state=focus",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=secondary, state=loading",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=secondary, state=default",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=secondary, state=hover",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=secondary, state=active",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=secondary, state=pressed",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=secondary, state=disabled",
+          "size": [
+            32,
+            32
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=secondary, state=focus",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=secondary, state=loading",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=secondary, state=default",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=secondary, state=hover",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=secondary, state=active",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=secondary, state=pressed",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=secondary, state=disabled",
+          "size": [
+            40,
+            40
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=secondary, state=focus",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=secondary, state=loading",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=secondary, state=default",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=secondary, state=hover",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/hover}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=secondary, state=active",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=secondary, state=pressed",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=secondary, state=disabled",
+          "size": [
+            40,
+            40
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=secondary, state=focus",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=secondary, state=loading",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "strokes": [
+            "{Color:border/medium}"
+          ],
+          "effect": "shadow/control",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=secondary, state=default",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=secondary, state=hover",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=secondary, state=active",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=secondary, state=pressed",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=secondary, state=disabled",
+          "size": [
+            48,
+            48
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=secondary, state=focus",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=secondary, state=loading",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=secondary, state=default",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=secondary, state=hover",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=secondary, state=active",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=secondary, state=pressed",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=secondary, state=disabled",
+          "size": [
+            48,
+            48
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=secondary, state=focus",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=secondary, state=loading",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/secondary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/secondary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=tertiary, state=default",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=tertiary, state=hover",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=tertiary, state=active",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=tertiary, state=pressed",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=tertiary, state=disabled",
+          "size": [
+            32,
+            32
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=tertiary, state=focus",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=square, prio=tertiary, state=loading",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=tertiary, state=default",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=tertiary, state=hover",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=tertiary, state=active",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=tertiary, state=pressed",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=tertiary, state=disabled",
+          "size": [
+            32,
+            32
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=tertiary, state=focus",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=sm, shape=round, prio=tertiary, state=loading",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=tertiary, state=default",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=tertiary, state=hover",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=tertiary, state=active",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=tertiary, state=pressed",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=tertiary, state=disabled",
+          "size": [
+            40,
+            40
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=tertiary, state=focus",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=square, prio=tertiary, state=loading",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=tertiary, state=default",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=tertiary, state=hover",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=tertiary, state=active",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=tertiary, state=pressed",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=tertiary, state=disabled",
+          "size": [
+            40,
+            40
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=tertiary, state=focus",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=md, shape=round, prio=tertiary, state=loading",
+          "size": [
+            40,
+            40
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=tertiary, state=default",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=tertiary, state=hover",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=tertiary, state=active",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=tertiary, state=pressed",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=tertiary, state=disabled",
+          "size": [
+            48,
+            48
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=tertiary, state=focus",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=square, prio=tertiary, state=loading",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=tertiary, state=default",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=tertiary, state=hover",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/hover}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=tertiary, state=active",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/hover}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=tertiary, state=pressed",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/active}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/active}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=tertiary, state=disabled",
+          "size": [
+            48,
+            48
+          ],
+          "strokes": [
+            "{Color:border/disabled}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/disabled}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=tertiary, state=focus",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "effect": "shadow/focus/default",
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ]
+        },
+        {
+          "variant": "size=lg, shape=round, prio=tertiary, state=loading",
+          "size": [
+            48,
+            48
+          ],
+          "fills": [
+            "{Color:action/tertiary/bg/default}"
+          ],
+          "iconFills": [
+            "{Color:action/tertiary/icon/default}"
+          ],
+          "hidden": [
+            "Icon/None"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Icon Button",
+    "Description",
+    "Square or round icon-only button for toolbar-density actions (close, more, edit, bookmark). Mirrors Button's priority/size/state system. Use when the space won't fit a labeled Button and the icon is unambiguous. If the icon is ambiguous, add a tooltip AND an aria-label — the tooltip is not an accessible name.",
+    "Priority",
+    "primary         Filled, high-emphasis. One per toolbar at most.\nsecondary     Outlined default for toolbar clusters and row actions.\ntertiary        Chromeless, used inside dense contexts (table rows, inspector headers).",
+    "Sizes & Shape",
+    "sm (28px)     Ultra-dense: row actions, inline chips.\nmd (36px)     Toolbars, inspector headers. Pad to 44×44 for touch.\nlg (44px)     Default for prominent surfaces.\n\nshape=square for toolbars and row actions; shape=round for floating affordances (avatar menu, overflow on card).",
+    "Accessibility",
+    "Every Icon Button needs an aria-label matching the action verb (\"Close dialog\", \"Edit row\"). Icon alone is not a name. Hit area ≥ 44×44 (WCAG 2.5.5) — use invisible padding on sm/md. Focus ring via shadow/focus/default effect style. Pair with Tooltip for discoverability, never as the only label.",
+    "Labels & Icons",
+    "Use SOLAR Icons library; icon size tracks button size (icon/size/sm for 28px, icon/size/md for 36px, icon/size/lg for 44px). Prefer recognizable glyphs — ambiguous icons need a tooltip AND a visible label nearby. Don't invent glyphs for domain-specific actions — use a labeled Button instead.",
+    "Rules",
+    "Do\n\n• Provide aria-label for every Icon Button\n• Pad hit area to 44×44 on sm / md visuals\n• Use tooltip + aria-label, not tooltip alone\n• Match icon weight to the neighboring text size",
+    "Don't\n\n• Don't use for ambiguous actions — use a labeled Button\n• Don't mix shape variants in the same toolbar\n• Don't use primary prio for destructive actions — add danger state\n• Don't rely on color alone for state differences"
+  ],
+  "pageContext": null
+}

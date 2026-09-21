@@ -1,0 +1,942 @@
+{
+  "page": "Implementation Guidelines",
+  "pageId": "2023:1253",
+  "section": "documentation",
+  "slug": "implementation-guidelines",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Implementation Guidelines"
+        }
+      ]
+    },
+    {
+      "name": "IG-A Design-to-Code Pipeline",
+      "title": "Design-to-Code Pipeline",
+      "subtitle": null,
+      "x": 2120,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "SOLAR runs on a token-first pipeline. Every visual decision is authored once as a semantic token in Figma, exported to JSON, and consumed directly by code — so design and production share the same source of truth at every stage."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Single Source of Truth"
+        },
+        {
+          "t": "p",
+          "text": "Figma Variables are the origin of all visual values — color, type, spacing, radius, elevation, and motion. The SOLAR core team authors semantic tokens in Figma; a build step exports them to JSON and generates CSS custom properties (--solar-*). Product code consumes these variables and never hard-codes hex, px, or rem.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Automated & Continuous"
+        },
+        {
+          "t": "p",
+          "text": "The pipeline is scripted end-to-end. Token export, CSS generation, and component builds run through npm scripts and CI. The SOLAR Lint plugin validates files inside Figma in real time; the CI lint agent scans published files on a schedule and reports drift as Slack alerts, Figma comments, and a dashboard.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Token authoring",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "SOLAR core team · Figma Variables",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "→",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Token export",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Core team · JSON export",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "→",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "CSS generation",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Engineering · build-tokens",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "→",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Implementation",
+          "style": "12/400"
+        },
+        {
+          "t": "p",
+          "text": "Product eng · Lint + CI",
+          "style": "12/400"
+        }
+      ]
+    },
+    {
+      "name": "IG-B Ways of Working",
+      "title": "Ways of Working & Handoff",
+      "subtitle": null,
+      "x": 4240,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Seamless handoff depends on shared expectations. Design, engineering, and the SOLAR core team each own a clear slice of the pipeline, and no work crosses a boundary until it meets the definition of done for that stage."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Handoff Readiness"
+        },
+        {
+          "t": "p",
+          "text": "Before handoff, a design file binds every visual property to a SOLAR token — no raw values. Redlines reference token names, not pixels; spacing uses spatial tokens (inset.md, stack.lg). Any value not backed by a token needs a contribution proposal before implementation. Engineers never implement an un-tokenised value.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Definition of Done"
+        },
+        {
+          "t": "p",
+          "text": "A surface is done when it is built from SOLAR components and CSS variables, passes SOLAR Lint with zero errors, meets WCAG AA, is documented in Storybook, and is mapped to its Figma component via Code Connect. Exceptions follow the governed exception path and are logged for review.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Activity",
+              "Design",
+              "Engineering",
+              "SOLAR Core",
+              "Output",
+              "Gate"
+            ],
+            [
+              "Token authoring",
+              "C",
+              "I",
+              "R · A",
+              "Semantic tokens",
+              "Core team review"
+            ],
+            [
+              "Component spec",
+              "R · A",
+              "C",
+              "C",
+              "Figma component + doc",
+              "Design QA"
+            ],
+            [
+              "Handoff",
+              "R · A",
+              "C",
+              "I",
+              "Tokenised file + redlines",
+              "Lint pass, no raw values"
+            ],
+            [
+              "Implementation",
+              "C",
+              "R · A",
+              "I",
+              "Production UI",
+              "Lint + CI + WCAG AA"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IG-C Consumption by Platform",
+      "title": "Consumption by Platform",
+      "subtitle": null,
+      "x": 6360,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "The same tokens and component contracts flow to every platform. Web consumes CSS custom properties and React components; Native maps the same semantic tokens to Flutter or React Native; domain libraries (Audio, Spatial, Flow) extend Web. Code Connect links each Figma component to its coded counterpart."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Shared Contract, Native Output"
+        },
+        {
+          "t": "p",
+          "text": "Foundations tokens are platform-agnostic. Web generates --solar-* CSS variables; Native resolves the same semantic names into Flutter or React Native theme objects. Because token names are identical across platforms, a colour or spacing decision made once in Figma lands consistently everywhere.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Design-to-Code Links"
+        },
+        {
+          "t": "p",
+          "text": "Code Connect maps every published Figma component to its code snippet, so engineers open a component in Dev Mode and see the exact import and props. Storybook hosts the reference implementation for Web. Domain patterns graduate into shared libraries once two or more products need them.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Library",
+              "Platform",
+              "Token format",
+              "Component source",
+              "Reference",
+              "Status"
+            ],
+            [
+              "Foundations",
+              "All",
+              "Figma vars → JSON",
+              "—",
+              "Foundations docs",
+              "Published"
+            ],
+            [
+              "Web",
+              "React / CSS",
+              "--solar-* CSS vars",
+              "SOLAR Web",
+              "Storybook + Code Connect",
+              "Published"
+            ],
+            [
+              "Native",
+              "Flutter / RN",
+              "Theme objects",
+              "SOLAR Native",
+              "Code Connect",
+              "WIP"
+            ],
+            [
+              "Audio · Spatial",
+              "Web (extends)",
+              "--solar-* CSS vars",
+              "Domain libraries",
+              "Storybook",
+              "WIP"
+            ],
+            [
+              "Flow",
+              "Web (extends)",
+              "--solar-* CSS vars",
+              "SOLAR Flow",
+              "Storybook",
+              "In progress"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IG-D Validation & Tooling",
+      "title": "Validation & Tooling",
+      "subtitle": null,
+      "x": 8480,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Compliance is enforced by tooling, not memory. A Figma plugin lints files as designers work; a CI agent scans published files on a schedule; build scripts generate tokens; and Code Connect plus Storybook keep the coded implementation honest against the design."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Real-Time & Continuous Checks"
+        },
+        {
+          "t": "p",
+          "text": "The SOLAR Lint plugin runs 22 machine-checkable rules inside Figma across colour, spacing, components, icons, typography, and accessibility — classified as error (must fix) or warning (should fix). The CI lint agent re-runs the same rules headlessly and reports drift as Slack alerts, Figma comments, and an HTML dashboard.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Deterministic for Humans & Agents"
+        },
+        {
+          "t": "p",
+          "text": "The same rule IDs power manual review checklists and AI-agent self-validation. CLAUDE.md is the single instruction layer defining token grammar, banned patterns, and separators, so any agent produces on-system output. build-tokens converts JSON to CSS; Storybook is the living reference.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "table",
+          "rows": [
+            [
+              "Tool",
+              "Purpose",
+              "When it runs",
+              "Output",
+              "Owner",
+              "Blocking"
+            ],
+            [
+              "SOLAR Lint plugin",
+              "Validate files in Figma",
+              "As you design",
+              "Inline issues",
+              "SOLAR core team",
+              "No"
+            ],
+            [
+              "CI lint agent",
+              "Headless file scan",
+              "Scheduled (9am wkdays)",
+              "Slack + Figma + dashboard",
+              "SOLAR core team",
+              "No"
+            ],
+            [
+              "build-tokens",
+              "JSON → CSS variables",
+              "On token change / CI",
+              "--solar-* CSS",
+              "Engineering",
+              "Yes"
+            ],
+            [
+              "Code Connect",
+              "Map Figma → code",
+              "On component change",
+              "Dev Mode snippet",
+              "Engineering",
+              "No"
+            ],
+            [
+              "Storybook",
+              "Reference implementation",
+              "On build",
+              "Component stories",
+              "Engineering",
+              "No"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "pageContext": null,
+  "swatches": [
+    {
+      "layer": "Step 01",
+      "labels": [
+        "01",
+        "Token authoring",
+        "SOLAR core team · Figma Variables"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "Step 02",
+      "labels": [
+        "02",
+        "Token export",
+        "Core team · JSON export"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "Step 03",
+      "labels": [
+        "03",
+        "CSS generation",
+        "Engineering · build-tokens"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "Step 04",
+      "labels": [
+        "04",
+        "Implementation",
+        "Product eng · Lint + CI"
+      ],
+      "variableId": "VariableID:1618:584",
+      "hex": "#e0e0e0",
+      "opacity": 1
+    },
+    {
+      "layer": "IG-B Ways of Working",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Ways of Working & Handoff",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Seamless handoff depends on shared expectations. Design, engineering, and the SOLAR core team each own a clear slice of the pipeline, and no work crosses a boundary until it meets the definition of done for that stage.",
+        "Handoff Readiness",
+        "Before handoff, a design file binds every visual property to a SOLAR token — no raw values. Redlines reference token names, not pixels; spacing uses spatial tokens (inset.md, stack.lg). Any value not backed by a token needs a contribution proposal before implementation. Engineers never implement an un-tokenised value.",
+        "Definition of Done",
+        "A surface is done when it is built from SOLAR components and CSS variables, passes SOLAR Lint with zero errors, meets WCAG AA, is documented in Storybook, and is mapped to its Figma component via Code Connect. Exceptions follow the governed exception path and are logged for review.",
+        "Activity",
+        "Design",
+        "Engineering",
+        "SOLAR Core",
+        "Output",
+        "Gate",
+        "Token authoring",
+        "C",
+        "I",
+        "R · A",
+        "Semantic tokens",
+        "Core team review",
+        "Component spec",
+        "R · A",
+        "C",
+        "C",
+        "Figma component + doc",
+        "Design QA",
+        "Handoff",
+        "R · A",
+        "C",
+        "I",
+        "Tokenised file + redlines",
+        "Lint pass, no raw values",
+        "Implementation",
+        "C",
+        "R · A",
+        "I",
+        "Production UI",
+        "Lint + CI + WCAG AA"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "IG-C Consumption by Platform",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Consumption by Platform",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "The same tokens and component contracts flow to every platform. Web consumes CSS custom properties and React components; Native maps the same semantic tokens to Flutter or React Native; domain libraries (Audio, Spatial, Flow) extend Web. Code Connect links each Figma component to its coded counterpart.",
+        "Shared Contract, Native Output",
+        "Foundations tokens are platform-agnostic. Web generates --solar-* CSS variables; Native resolves the same semantic names into Flutter or React Native theme objects. Because token names are identical across platforms, a colour or spacing decision made once in Figma lands consistently everywhere.",
+        "Design-to-Code Links",
+        "Code Connect maps every published Figma component to its code snippet, so engineers open a component in Dev Mode and see the exact import and props. Storybook hosts the reference implementation for Web. Domain patterns graduate into shared libraries once two or more products need them.",
+        "Library",
+        "Platform",
+        "Token format",
+        "Component source",
+        "Reference",
+        "Status",
+        "Foundations",
+        "All",
+        "Figma vars → JSON",
+        "—",
+        "Foundations docs",
+        "Published",
+        "Web",
+        "React / CSS",
+        "--solar-* CSS vars",
+        "SOLAR Web",
+        "Storybook + Code Connect",
+        "Published",
+        "Native",
+        "Flutter / RN",
+        "Theme objects",
+        "SOLAR Native",
+        "Code Connect",
+        "WIP",
+        "Audio · Spatial",
+        "Web (extends)",
+        "--solar-* CSS vars",
+        "Domain libraries",
+        "Storybook",
+        "WIP",
+        "Flow",
+        "Web (extends)",
+        "--solar-* CSS vars",
+        "SOLAR Flow",
+        "Storybook",
+        "In progress"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    },
+    {
+      "layer": "IG-D Validation & Tooling",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Validation & Tooling",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Compliance is enforced by tooling, not memory. A Figma plugin lints files as designers work; a CI agent scans published files on a schedule; build scripts generate tokens; and Code Connect plus Storybook keep the coded implementation honest against the design.",
+        "Real-Time & Continuous Checks",
+        "The SOLAR Lint plugin runs 22 machine-checkable rules inside Figma across colour, spacing, components, icons, typography, and accessibility — classified as error (must fix) or warning (should fix). The CI lint agent re-runs the same rules headlessly and reports drift as Slack alerts, Figma comments, and an HTML dashboard.",
+        "Deterministic for Humans & Agents",
+        "The same rule IDs power manual review checklists and AI-agent self-validation. CLAUDE.md is the single instruction layer defining token grammar, banned patterns, and separators, so any agent produces on-system output. build-tokens converts JSON to CSS; Storybook is the living reference.",
+        "Tool",
+        "Purpose",
+        "When it runs",
+        "Output",
+        "Owner",
+        "Blocking",
+        "SOLAR Lint plugin",
+        "Validate files in Figma",
+        "As you design",
+        "Inline issues",
+        "SOLAR core team",
+        "No",
+        "CI lint agent",
+        "Headless file scan",
+        "Scheduled (9am wkdays)",
+        "Slack + Figma + dashboard",
+        "SOLAR core team",
+        "No",
+        "build-tokens",
+        "JSON → CSS variables",
+        "On token change / CI",
+        "--solar-* CSS",
+        "Engineering",
+        "Yes",
+        "Code Connect",
+        "Map Figma → code",
+        "On component change",
+        "Dev Mode snippet",
+        "Engineering",
+        "No",
+        "Storybook",
+        "Reference implementation",
+        "On build",
+        "Component stories",
+        "Engineering",
+        "No"
+      ],
+      "variableId": "VariableID:27:725",
+      "hex": "#ffffff",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 107
+}

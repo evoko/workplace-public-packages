@@ -1,0 +1,395 @@
+{
+  "page": "↳ 🟢 Agenda Row",
+  "pageId": "6622:11",
+  "componentSets": [
+    {
+      "name": "Agenda Row",
+      "id": "6651:138",
+      "description": "List-style row used in the Agenda view and as a denser alternative to Day Cell. Comfortable density shows start time, end time, title, and a metadata line; compact collapses to a single time range and title only. Category dot color is bound to data/category and should match the source event.",
+      "docLinks": [],
+      "variantCount": 6,
+      "props": {
+        "title#6651:0": {
+          "type": "TEXT",
+          "default": "Team standup"
+        },
+        "state": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "hover",
+            "selected"
+          ]
+        },
+        "density": {
+          "type": "VARIANT",
+          "default": "comfortable",
+          "options": [
+            "comfortable",
+            "compact"
+          ]
+        }
+      },
+      "defaultVariant": "state=default, density=comfortable",
+      "defaultVariantNodeCount": 9,
+      "defaultVariantTree": {
+        "name": "state=default, density=comfortable",
+        "type": "COMPONENT",
+        "size": [
+          560,
+          64
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 16,
+          "pad": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "itemSpacing": "Spatial:stack/md",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/md",
+          "paddingBottom": "Spatial:inset/md",
+          "strokeBottomWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Time",
+            "type": "FRAME",
+            "size": [
+              36,
+              27
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/MIN",
+              "sizing": "FIXED/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Start",
+                "type": "TEXT",
+                "text": "9:00",
+                "textStyle": "body/md/semibold",
+                "size": [
+                  31,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              },
+              {
+                "name": "End",
+                "type": "TEXT",
+                "text": "10:00",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  31,
+                  9
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Dot",
+            "type": "ELLIPSE",
+            "size": [
+              8,
+              8
+            ],
+            "sizing": "FIXED/FIXED",
+            "fills": [
+              "{Color:data/category/06/strong}"
+            ]
+          },
+          {
+            "name": "Body",
+            "type": "FRAME",
+            "size": [
+              404,
+              27
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/xs"
+            },
+            "children": [
+              {
+                "name": "Title",
+                "type": "TEXT",
+                "text": "Team standup",
+                "textStyle": "body/md/semibold",
+                "size": [
+                  404,
+                  10
+                ],
+                "sizing": "FILL/FIXED",
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                },
+                "propRefs": {
+                  "characters": "title#6651:0"
+                }
+              },
+              {
+                "name": "Meta",
+                "type": "TEXT",
+                "text": "Conference room A · 6 attendees",
+                "textStyle": "body/sm/regular",
+                "size": [
+                  404,
+                  9
+                ],
+                "sizing": "FILL/FIXED",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Attendee",
+            "type": "INSTANCE",
+            "main": "Avatar",
+            "variant": {
+              "size": "md",
+              "type": "text",
+              "color": "purple",
+              "Shade": "Light"
+            },
+            "size": [
+              32,
+              32
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 0,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "FIXED/FIXED"
+            },
+            "fills": [
+              "{Primitives:color/purple/50}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "state=default, density=comfortable",
+          "size": [
+            560,
+            64
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}",
+            "{Primitives:color/purple/700}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "state=hover, density=comfortable",
+          "size": [
+            560,
+            64
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}",
+            "{Primitives:color/purple/700}"
+          ]
+        },
+        {
+          "variant": "state=selected, density=comfortable",
+          "size": [
+            560,
+            64
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/tertiary}",
+            "{Color:text/secondary}",
+            "{Primitives:color/purple/700}"
+          ]
+        },
+        {
+          "variant": "state=default, density=compact",
+          "size": [
+            560,
+            32
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "state=hover, density=compact",
+          "size": [
+            560,
+            32
+          ],
+          "fills": [
+            "{Color:surface/hover}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        },
+        {
+          "variant": "state=selected, density=compact",
+          "size": [
+            560,
+            32
+          ],
+          "fills": [
+            "{Color:surface/active}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Agenda Row",
+    "Description",
+    "A single event row in the list-style Agenda view — time, title and meta on one line. For linear day / upcoming lists; use Event Chip in grid views.",
+    "Anatomy",
+    "Time / range · category colour dot · title · optional location / attendees meta · optional trailing action.",
+    "Variants",
+    "timed / all-day; with / without meta; density comfortable or compact.",
+    "States",
+    "default, hover, focus, selected, disabled; plus past (de-emphasised) and now (emphasised).",
+    "Accessibility",
+    "The row is one focusable item; the title is its label, time + meta are supporting. Category = dot + text, not colour alone. Hit area ≥44; text ≥4.5:1.",
+    "Rules",
+    "Lead with the time\nPair category colour with a label\nKeep one row per event\nDe-emphasise past events",
+    "Rely on colour alone for category\nWrap to many lines\nBury the title\nUse in grid views (use Event Chip)"
+  ],
+  "pageContext": null
+}

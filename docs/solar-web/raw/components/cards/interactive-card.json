@@ -1,0 +1,619 @@
+{
+  "page": "↳ 🟢 Interactive Card",
+  "pageId": "10395:2",
+  "componentSets": [
+    {
+      "name": "Interactive Card",
+      "id": "10400:504",
+      "description": "Selectable, draggable list-row card with drag handle, selection control and hover actions. selected/drag variants + visibility booleans. Migrated from Chatter Config 2026-09-01.",
+      "docLinks": [],
+      "variantCount": 3,
+      "props": {
+        "showDragHandle#10400:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showToggle#10400:4": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showRadioButton#10400:8": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showCheckbox#10400:12": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "showIcon#10400:16": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "showActions#10400:20": {
+          "type": "BOOLEAN",
+          "default": false
+        },
+        "hasDescription#10656:0": {
+          "type": "BOOLEAN",
+          "default": true
+        },
+        "selected": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        },
+        "drag": {
+          "type": "VARIANT",
+          "default": "false",
+          "options": [
+            "false",
+            "true"
+          ]
+        }
+      },
+      "defaultVariant": "selected=false, drag=false",
+      "defaultVariantNodeCount": 29,
+      "defaultVariantTree": {
+        "name": "selected=false, drag=false",
+        "type": "COMPONENT",
+        "size": [
+          423,
+          65
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 16,
+          "pad": [
+            16,
+            20,
+            16,
+            16
+          ],
+          "align": "MIN/CENTER",
+          "sizing": "FIXED/HUG"
+        },
+        "fills": [
+          "{Color:surface/background}"
+        ],
+        "strokes": [
+          "{Color:border/subtle}"
+        ],
+        "strokeWeight": 1,
+        "radius": 12,
+        "vars": {
+          "itemSpacing": "Spatial:stack/md",
+          "paddingLeft": "Spatial:inset/md",
+          "paddingTop": "Spatial:inset/md",
+          "paddingRight": "Spatial:inset/lg",
+          "paddingBottom": "Spatial:inset/md",
+          "strokeTopWeight": "Spatial:border/default",
+          "strokeBottomWeight": "Spatial:border/default",
+          "strokeLeftWeight": "Spatial:border/default",
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/dialog",
+          "topRightRadius": "Spatial:radius/dialog",
+          "bottomLeftRadius": "Spatial:radius/dialog",
+          "bottomRightRadius": "Spatial:radius/dialog"
+        },
+        "children": [
+          {
+            "name": "DragHandle",
+            "type": "INSTANCE",
+            "main": "DragHandle",
+            "variant": {
+              "size": "sm",
+              "state": "default"
+            },
+            "size": [
+              26,
+              33
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 4,
+              "pad": [
+                8,
+                8,
+                8,
+                8
+              ],
+              "align": "CENTER/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "radius": 6,
+            "vars": {
+              "itemSpacing": "Spatial:stack/2xs",
+              "paddingLeft": "Spatial:inset/xs",
+              "paddingTop": "Spatial:inset/xs",
+              "paddingRight": "Spatial:inset/xs",
+              "paddingBottom": "Spatial:inset/xs",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "propRefs": {
+              "visible": "showDragHandle#10400:0"
+            }
+          },
+          {
+            "name": "Toggle",
+            "type": "INSTANCE",
+            "main": "Toggle",
+            "variant": {
+              "selected": "false",
+              "state": "default"
+            },
+            "size": [
+              32,
+              18
+            ],
+            "sizing": "FIXED/FIXED",
+            "fills": [
+              "{Color:surface/muted}"
+            ],
+            "strokes": [
+              "{Color:border/subtle}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            },
+            "propRefs": {
+              "visible": "showToggle#10400:4"
+            }
+          },
+          {
+            "name": "Radio",
+            "type": "INSTANCE",
+            "main": "Radio",
+            "variant": {
+              "state": "default",
+              "checked": "false"
+            },
+            "size": [
+              18,
+              18
+            ],
+            "sizing": "FIXED/FIXED",
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 9999,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/pill",
+              "topRightRadius": "Spatial:radius/pill",
+              "bottomLeftRadius": "Spatial:radius/pill",
+              "bottomRightRadius": "Spatial:radius/pill"
+            },
+            "propRefs": {
+              "visible": "showRadioButton#10400:8"
+            }
+          },
+          {
+            "name": "Checkbox",
+            "type": "INSTANCE",
+            "main": "Checkbox",
+            "variant": {
+              "checked": "false",
+              "disabled": "false",
+              "hover": "false",
+              "mixed": "false",
+              "focus": "false"
+            },
+            "size": [
+              16,
+              16
+            ],
+            "sizing": "FIXED/FIXED",
+            "strokes": [
+              "{Color:border/medium}"
+            ],
+            "strokeWeight": 1,
+            "radius": 6,
+            "vars": {
+              "strokeTopWeight": "Spatial:border/default",
+              "strokeBottomWeight": "Spatial:border/default",
+              "strokeLeftWeight": "Spatial:border/default",
+              "strokeRightWeight": "Spatial:border/default",
+              "topLeftRadius": "Spatial:radius/control",
+              "topRightRadius": "Spatial:radius/control",
+              "bottomLeftRadius": "Spatial:radius/control",
+              "bottomRightRadius": "Spatial:radius/control"
+            },
+            "propRefs": {
+              "visible": "showCheckbox#10400:12"
+            }
+          },
+          {
+            "name": "Text",
+            "type": "FRAME",
+            "size": [
+              231,
+              32
+            ],
+            "layout": {
+              "dir": "VERTICAL",
+              "gap": 12,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/MIN",
+              "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:stack/sm"
+            },
+            "children": [
+              {
+                "name": "Text+icon",
+                "type": "FRAME",
+                "size": [
+                  231,
+                  10
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                },
+                "children": [
+                  {
+                    "name": "Icon/None",
+                    "type": "INSTANCE",
+                    "hidden": true,
+                    "main": "Icon/None",
+                    "variant": {
+                      "solid": "false"
+                    },
+                    "size": [
+                      16,
+                      16
+                    ],
+                    "sizing": "FIXED/FIXED",
+                    "propRefs": {
+                      "visible": "showIcon#10400:16"
+                    }
+                  },
+                  {
+                    "name": "Headline",
+                    "type": "TEXT",
+                    "text": "Headline",
+                    "textStyle": "body/md/semibold",
+                    "size": [
+                      58,
+                      10
+                    ],
+                    "sizing": "HUG/HUG",
+                    "fills": [
+                      "{Color:text/primary}"
+                    ],
+                    "vars": {
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/600"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Description",
+                "type": "TEXT",
+                "text": "Descriptive text.",
+                "textStyle": "body/md/regular",
+                "size": [
+                  231,
+                  10
+                ],
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontFamily": "Primitives:type/font-family/inter",
+                  "fontSize": "Type:size/body/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                },
+                "propRefs": {
+                  "visible": "hasDescription#10656:0"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Actions",
+            "type": "FRAME",
+            "hidden": true,
+            "size": [
+              112,
+              32
+            ],
+            "layout": {
+              "dir": "HORIZONTAL",
+              "gap": 8,
+              "pad": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "align": "MIN/CENTER",
+              "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs"
+            },
+            "propRefs": {
+              "visible": "showActions#10400:20"
+            },
+            "children": [
+              {
+                "name": "Icon Button",
+                "type": "INSTANCE",
+                "main": "Icon Button",
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "secondary",
+                  "state": "default"
+                },
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Icon Button",
+                "type": "INSTANCE",
+                "main": "Icon Button",
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "secondary",
+                  "state": "default"
+                },
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              {
+                "name": "Icon Button",
+                "type": "INSTANCE",
+                "main": "Icon Button",
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "secondary",
+                  "state": "default"
+                },
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "selected=false, drag=false",
+          "size": [
+            423,
+            65
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/secondary/icon/danger/default}"
+          ],
+          "hidden": [
+            "Actions",
+            "Icon/None"
+          ]
+        },
+        {
+          "variant": "selected=true, drag=false",
+          "size": [
+            423,
+            65
+          ],
+          "fills": [
+            "{Color:surface/feedback/info/subtle}"
+          ],
+          "strokes": [
+            "{Color:border/subtle}"
+          ],
+          "textFills": [
+            "{Color:text/primary}"
+          ],
+          "iconFills": [
+            "{Color:icon/primary}",
+            "{Color:icon/inverse}",
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/secondary/icon/danger/default}"
+          ]
+        },
+        {
+          "variant": "selected=false, drag=true",
+          "size": [
+            423,
+            65
+          ],
+          "fills": [
+            "{Color:surface/background}"
+          ],
+          "strokes": [
+            "{Color:border/feedback/focus/strong}"
+          ],
+          "effect": "shadow/focus/default",
+          "textFills": [
+            "{Color:text/primary}",
+            "{Color:text/secondary}"
+          ],
+          "iconFills": [
+            "{Primitives:color/neutral/900}",
+            "{Color:action/secondary/icon/default}",
+            "{Color:action/secondary/icon/danger/default}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Interactive Card",
+    "Description",
+    "Selectable, draggable list-row card. Combines a drag handle, a selection control (toggle, radio or checkbox) and headline/description text, with optional hover actions. Use in orderable or multi-select lists.",
+    "Anatomy",
+    "DragHandle, Toggle, Radio and Checkbox instances (show one per use case via the boolean props), Text block (Headline body/md/semibold + Description body/md/regular), hidden Actions row of three sm Icon Buttons (play, edit, delete — delete carries danger styling).",
+    "Variants & props",
+    "selected (2)  false · true — info-subtle surface, controls in checked state\ndrag (2)      false · true — focus-subtle border, border/strong, shadow/overlay\nBooleans: showDragHandle · showToggle · showRadioButton · showCheckbox · showIcon · showActions",
+    "Usage",
+    "Show exactly one selection control per list — hide the others with the booleans.\nUse drag=true only for the row being dragged.\nReveal Actions on hover or selection, not by default.",
+    "Rules",
+    "DO   Use one selection control per row\nDO   Pair drag=true with showDragHandle\nDO   Keep headline to a single line",
+    "DON’T   Show toggle, radio and checkbox together\nDON’T   Use as a static display card (use Card)\nDON’T   Put more than three hover actions in a row"
+  ],
+  "pageContext": null
+}

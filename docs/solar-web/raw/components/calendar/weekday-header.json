@@ -1,0 +1,143 @@
+{
+  "page": "↳ 🟢 Weekday Header",
+  "pageId": "6622:4",
+  "componentSets": [
+    {
+      "name": "Weekday Header",
+      "id": "6641:14",
+      "description": "Column header used at the top of the Month grid and the Week / Day grid. Today emphasis bolds the weekday and tints it with text/feedback/info.",
+      "docLinks": [],
+      "variantCount": 2,
+      "props": {
+        "label#6641:0": {
+          "type": "TEXT",
+          "default": "Mon"
+        },
+        "emphasis": {
+          "type": "VARIANT",
+          "default": "default",
+          "options": [
+            "default",
+            "today"
+          ]
+        }
+      },
+      "defaultVariant": "emphasis=default",
+      "defaultVariantNodeCount": 1,
+      "defaultVariantTree": {
+        "name": "emphasis=default",
+        "type": "COMPONENT",
+        "size": [
+          160,
+          36
+        ],
+        "layout": {
+          "dir": "HORIZONTAL",
+          "gap": 0,
+          "pad": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "align": "CENTER/CENTER",
+          "sizing": "FIXED/FIXED"
+        },
+        "fills": [
+          "{Color:surface/base}"
+        ],
+        "strokes": [
+          "{Color:border/surface}"
+        ],
+        "strokeWeight": "mixed",
+        "vars": {
+          "paddingLeft": "Spatial:inset/sm",
+          "paddingTop": "Spatial:inset/sm",
+          "paddingRight": "Spatial:inset/sm",
+          "paddingBottom": "Spatial:inset/sm",
+          "strokeBottomWeight": "Spatial:border/none",
+          "strokeLeftWeight": "Spatial:border/default"
+        },
+        "children": [
+          {
+            "name": "Weekday",
+            "type": "TEXT",
+            "text": "Mon",
+            "textStyle": "label/sm",
+            "size": [
+              25,
+              9
+            ],
+            "sizing": "HUG/HUG",
+            "fills": [
+              "{Color:text/secondary}"
+            ],
+            "vars": {
+              "lineHeight": "Type:line-height/label/sm",
+              "fontFamily": "Primitives:type/font-family/inter",
+              "fontSize": "Type:size/label/sm",
+              "fontStyle": "Primitives:type/font-weight/500"
+            },
+            "propRefs": {
+              "characters": "label#6641:0"
+            }
+          }
+        ]
+      },
+      "variants": [
+        {
+          "variant": "emphasis=default",
+          "size": [
+            160,
+            36
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/surface}"
+          ],
+          "textFills": [
+            "{Color:text/secondary}"
+          ],
+          "hidden": []
+        },
+        {
+          "variant": "emphasis=today",
+          "size": [
+            160,
+            36
+          ],
+          "fills": [
+            "{Color:surface/base}"
+          ],
+          "strokes": [
+            "{Color:border/surface}"
+          ],
+          "textFills": [
+            "{Color:text/feedback/info}"
+          ]
+        }
+      ]
+    }
+  ],
+  "components": [],
+  "frames": [],
+  "docText": [
+    "SOLAR®",
+    "Biamp Design System",
+    "1.0",
+    "Weekday Header",
+    "Description",
+    "Shows the user's location within a navigational hierarchy — and lets them jump back up the tree. Use for deep page structures where ancestors are meaningful destinations. Not for single-level flows (omit entirely), not for linear progress (use Stepper).",
+    "Anatomy",
+    "Breadcrumbs compose from Breadcrumb Items joined by a separator.\nBreadcrumb Item (4 variants)   type: link | current   — current is the final, non-interactive item.\nBreadcrumbs (5 variants)       items: 2 | 3 | 4 | 5 | multiple   — use 'multiple' when the trail exceeds 5 levels.",
+    "States",
+    "default          Interactive ancestor link. Subtle text color.\nhover            Full emphasis + underline. Touch targets pad to 44px per WCAG.\ndisabled         Non-interactive ancestor. Use sparingly — prefer omitting the item entirely.",
+    "Truncation",
+    "Switch to items=multiple once the trail exceeds 5 levels. The middle collapses to an ellipsis (…) while the first and last segments stay visible. Clicking the ellipsis opens a menu listing the hidden ancestors so users can jump to any of them without losing the endpoints.",
+    "Accessibility",
+    "Wrap the trail in <nav aria-label=\"Breadcrumb\"> and render as an ordered list.\nMark the current item with aria-current=\"page\" — never link it.\nSeparators are decorative: aria-hidden=\"true\".\nKeyboard: Tab moves between links, Enter activates. Ellipsis menu: Arrow keys to navigate, Esc to dismiss."
+  ],
+  "pageContext": null
+}

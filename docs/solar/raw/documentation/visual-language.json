@@ -1,0 +1,521 @@
+{
+  "page": "Visual Language",
+  "pageId": "763:47333",
+  "section": "documentation",
+  "slug": "visual-language",
+  "status": "done",
+  "slides": [
+    {
+      "name": "Slide",
+      "title": null,
+      "subtitle": null,
+      "x": 880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "01",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "02",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "03",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "04",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "05",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "06",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "07",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "08",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "09",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "10",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "11",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "12",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "13",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "14",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "15",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "16",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "17",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "18",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "19",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "20",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "21",
+          "style": "10/600"
+        },
+        {
+          "t": "p",
+          "text": "22",
+          "style": "10/600"
+        },
+        {
+          "t": "h",
+          "level": 1,
+          "text": "Visual Language"
+        }
+      ]
+    },
+    {
+      "name": "About",
+      "title": "Visual Language",
+      "subtitle": null,
+      "x": 2880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "The SOLAR Visual Language defines how interfaces express structure, hierarchy, and brand across products. It establishes the visual rules that guide how information is presented, how elements relate to each other, and how users perceive interaction."
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Why Visual Language Matters"
+        },
+        {
+          "t": "p",
+          "text": "A shared visual language enables teams to design and build products that feel like part of the same ecosystem. A shared visual language ensures that interfaces feel consistent and recognizable, even as products evolve and new capabilities are introduced.\n\nSOLAR provides the visual foundations that support:\n\nClear hierarchy and information structure\nConsistent product identity across teams\nAccessible and readable interfaces by default\nPredictable patterns across products and platforms\n\nThis alignment reduces ambiguity in design decisions and improves collaboration between design and engineering.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    },
+    {
+      "name": "About",
+      "title": "Visual Language Foundations",
+      "subtitle": null,
+      "x": 4880,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "blocks": [
+        {
+          "t": "h",
+          "level": 3,
+          "text": "Visual Language Foundations define the core visual elements that shape how SOLAR interfaces look, communicate, and behave. These foundations create a consistent visual framework that supports clarity, hierarchy, and usability across products."
+        },
+        {
+          "t": "p",
+          "text": "By aligning color, typography, spacing, and visual structure, SOLAR ensures that interfaces remain coherent, accessible, and recognizable while allowing teams to build complex applications at scale.\n\nInterfaces rely on a shared visual system to communicate meaning and guide user attention. SOLAR Foundations provide the building blocks that support layout structure, readable content, meaningful color usage, and consistent representation of data and interaction states.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Color System"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Typography"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Spacing & Layout"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Layering & Elevation"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Iconography"
+        },
+        {
+          "t": "h",
+          "level": 4,
+          "text": "Data Visualization"
+        },
+        {
+          "t": "p",
+          "text": "Color defines hierarchy, meaning, and interaction states across the interface. In SOLAR, color is applied through semantic tokens that ensure consistent behavior across components, themes, and platforms.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Typography establishes hierarchy, readability, and tone. A structured type scale ensures consistent rhythm between headings, body text, labels, and supporting content across products.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Spacing provides visual rhythm and structural clarity. SOLAR uses a shared modular scale to align layouts, components, and content containers while maintaining predictable spatial relationships.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Layering communicates spatial relationships between surfaces and interactive elements. Elevation levels help distinguish persistent content from temporary UI such as overlays, menus, and dialogs.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Icons provide quick visual recognition for actions, navigation, and system states. SOLAR icons follow a consistent visual style to ensure clarity and scalability across interfaces.",
+          "style": "Body/Body M/Regular"
+        },
+        {
+          "t": "p",
+          "text": "Data visualization enables consistent representation of metrics, trends, and system information. SOLAR provides structured color usage and visual patterns to ensure charts and graphs remain readable and meaningful.",
+          "style": "Body/Body M/Regular"
+        }
+      ]
+    }
+  ],
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Visual Language\ndomain: Visual Identity & Aesthetic Coherence\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR visual language interpreter. The visual language defines the unified aesthetic personality across all sub-domains — color, typography, elevation, states, iconography, and data visualization. This is the parent context that governs how those sub-systems work together.\n\n[SCOPE]\n- Overarching visual identity principles\n- How sub-domains (color, type, elevation, icons, states, data viz) interrelate\n- Visual hierarchy and information architecture\n- Brand expression within systematic constraints\n- Consistency vs. flexibility boundaries\n\n[SUB_DOMAINS]\ncolor: palette, semantic roles, dark/light mode, data viz palette, contrast\ntypography: type scale, font families, weights, responsive behavior, text styles\nlayering_elevation: z-index, shadows, surface hierarchy, overlay behavior\nstates_interaction: default, hover, active, focus, disabled, selected, error, loading\niconography: icon grid, sizing, stroke/fill, naming, accessible usage\ndata_visualization: chart types, dedicated palette, axis/label conventions, accessibility\n\n[VISUAL_HIERARCHY]\nprimary: size + weight + color — largest, boldest, most saturated draws attention first\nsecondary: medium emphasis — supports primary, provides structure\ntertiary: subdued — metadata, captions, supplementary info\nhierarchy_tools: font size | font weight | color contrast | spacing | elevation | position\n\n[COHERENCE_RULES]\n- Every visual property traces back to a token — no magic numbers\n- Sub-domains must reinforce each other: color choices affect accessibility, elevation affects states, typography affects layout\n- When combining multiple visual treatments, less is more — don't stack bold + large + bright + elevated simultaneously\n- Visual consistency across components > individual creativity\n- If it's not in the system, propose it as an addition rather than a one-off\n\n[CROSS_DOMAIN_INTERACTIONS]\ncolor + accessibility: all foreground/background pairs must meet contrast ratios\ncolor + theming: semantic tokens swap per theme — visuals must work in all themes\ntypography + responsive: type scale has desktop/mobile modes — test both\nelevation + states: hover may add elevation; focus overlays on top of current elevation\nicons + states: icon color inherits state color changes (hover, disabled, error)\nmotion + states: state transitions use motion tokens for timing and easing\n\n[AGENT_BEHAVIOR]\n- When making any visual decision, check that it aligns with ALL relevant sub-domains, not just one\n- If a decision in one sub-domain creates a conflict in another, flag it (e.g., a color that passes contrast but clashes with the data viz palette)\n- Default to the simplest visual treatment that communicates the intent\n- Reference specific token names when recommending visual values\n- Consider multi-theme and multi-breakpoint impact for every recommendation\n\n[CONSTRAINTS]\n- never introduce visual properties outside the token system\n- never combine more than 2–3 emphasis techniques simultaneously (bold + color is fine; bold + color + size + shadow is excessive)\n- never make visual decisions in isolation from accessibility\n- visual language must work across light mode, dark mode, and any brand themes\n- decorative elements must not interfere with functional clarity\n@END:PAGE_CONTEXT",
+  "swatches": [
+    {
+      "layer": "About",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Visual Language",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "The SOLAR Visual Language defines how interfaces express structure, hierarchy, and brand across products. It establishes the visual rules that guide how information is presented, how elements relate to each other, and how users perceive interaction.",
+        "Why Visual Language Matters",
+        "A shared visual language enables teams to design and build products that feel like part of the same ecosystem. A shared visual language ensures that interfaces feel consistent and recognizable, even as products evolve and new capabilities are introduced.\n\nSOLAR provides the visual foundations that support:\n\nClear hierarchy and information structure\nConsistent product identity across teams\nAccessible and readable interfaces by default\nPredictable patterns across products and platforms\n\nThis alignment reduces ambiguity in design decisions and improves collaboration between design and engineering."
+      ],
+      "variableId": "VariableID:29:1096",
+      "hex": "#000000",
+      "opacity": 1
+    },
+    {
+      "layer": "About",
+      "labels": [
+        "SOLAR®",
+        "Biamp Design System",
+        "1.0",
+        "Visual Language Foundations",
+        "© 2026 Biamp",
+        "[Confidential]",
+        "Visual Language Foundations define the core visual elements that shape how SOLAR interfaces look, communicate, and behave. These foundations create a consistent visual framework that supports clarity, hierarchy, and usability across products.",
+        "By aligning color, typography, spacing, and visual structure, SOLAR ensures that interfaces remain coherent, accessible, and recognizable while allowing teams to build complex applications at scale.\n\nInterfaces rely on a shared visual system to communicate meaning and guide user attention. SOLAR Foundations provide the building blocks that support layout structure, readable content, meaningful color usage, and consistent representation of data and interaction states.",
+        "Color System",
+        "Typography",
+        "Spacing & Layout",
+        "Layering & Elevation",
+        "Iconography",
+        "Data Visualization",
+        "Color defines hierarchy, meaning, and interaction states across the interface. In SOLAR, color is applied through semantic tokens that ensure consistent behavior across components, themes, and platforms.",
+        "Typography establishes hierarchy, readability, and tone. A structured type scale ensures consistent rhythm between headings, body text, labels, and supporting content across products.",
+        "Spacing provides visual rhythm and structural clarity. SOLAR uses a shared modular scale to align layouts, components, and content containers while maintaining predictable spatial relationships.",
+        "Layering communicates spatial relationships between surfaces and interactive elements. Elevation levels help distinguish persistent content from temporary UI such as overlays, menus, and dialogs.",
+        "Icons provide quick visual recognition for actions, navigation, and system states. SOLAR icons follow a consistent visual style to ensure clarity and scalability across interfaces.",
+        "Data visualization enables consistent representation of metrics, trends, and system information. SOLAR provides structured color usage and visual patterns to ensure charts and graphs remain readable and meaningful."
+      ],
+      "variableId": "VariableID:29:1096",
+      "hex": "#000000",
+      "opacity": 1
+    }
+  ],
+  "blockCount": 86
+}
