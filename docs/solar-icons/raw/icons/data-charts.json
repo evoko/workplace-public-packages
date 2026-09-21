@@ -1,0 +1,282 @@
+{
+  "page": "Data & Charts",
+  "pageId": "5224:587",
+  "kind": "icons",
+  "slug": "data-charts",
+  "icons": [
+    {
+      "name": "ChartBar",
+      "figmaName": "Icon/ChartBar",
+      "kebab": "chart-bar",
+      "setId": "5310:2362",
+      "description": "Bar chart. Related: graph, analytics, statistics, histogram, report, metrics",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2358",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/chart-bar.svg"
+        },
+        "solid": {
+          "id": "5310:2360",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/chart-bar.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "chart-bar"
+    },
+    {
+      "name": "ChartLine",
+      "figmaName": "Icon/ChartLine",
+      "kebab": "chart-line",
+      "setId": "5310:2379",
+      "description": "Line chart. Related: graph, trend, analytics, time series, plot",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2375",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/chart-line.svg"
+        },
+        "solid": {
+          "id": "5310:2377",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/chart-line.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "chart-line"
+    },
+    {
+      "name": "ChartPie",
+      "figmaName": "Icon/ChartPie",
+      "kebab": "chart-pie",
+      "setId": "5310:2396",
+      "description": "Pie chart. Related: graph, percentage, proportion, distribution, segment",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2392",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/chart-pie.svg"
+        },
+        "solid": {
+          "id": "5310:2394",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/chart-pie.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "chart-pie"
+    },
+    {
+      "name": "Columns",
+      "figmaName": "Icon/Columns",
+      "kebab": "columns",
+      "setId": "5310:2413",
+      "description": "Columns. Related: table, grid, fields, layout, spreadsheet",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2409",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/columns.svg"
+        },
+        "solid": {
+          "id": "5310:2411",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/columns.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "columns"
+    },
+    {
+      "name": "TrendDown",
+      "figmaName": "Icon/TrendDown",
+      "kebab": "trend-down",
+      "setId": "5310:2464",
+      "description": "Trend down. Related: decline, decrease, falling, arrow, drop, negative",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2460",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/trend-down.svg"
+        },
+        "solid": {
+          "id": "5310:2462",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/trend-down.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "trend-down"
+    },
+    {
+      "name": "TrendUp",
+      "figmaName": "Icon/TrendUp",
+      "kebab": "trend-up",
+      "setId": "5310:2481",
+      "description": "Trend up. Related: growth, increase, rising, arrow, improvement, positive",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2477",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/trend-up.svg"
+        },
+        "solid": {
+          "id": "5310:2479",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/trend-up.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "trend-up"
+    },
+    {
+      "name": "Calculator",
+      "figmaName": "Icon/Calculator",
+      "kebab": "calculator",
+      "setId": "6380:626",
+      "description": "Calculator. Related: math, arithmetic, add, compute, operations",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6380:622",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/calculator.svg"
+        },
+        "solid": {
+          "id": "6380:625",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/calculator.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "calculator"
+    }
+  ],
+  "looseComponents": []
+}

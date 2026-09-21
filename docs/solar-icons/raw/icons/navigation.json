@@ -1,0 +1,1296 @@
+{
+  "page": "Navigation",
+  "pageId": "5224:578",
+  "kind": "icons",
+  "slug": "navigation",
+  "icons": [
+    {
+      "name": "ChevronRight",
+      "figmaName": "Icon/ChevronRight",
+      "kebab": "chevron-right",
+      "setId": "4805:643",
+      "description": "Chevron right. Related: next, forward, caret, drill in, expand",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "4710:710",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/chevron-right.svg"
+        },
+        "solid": {
+          "id": "4710:715",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/chevron-right.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "chevron-right"
+    },
+    {
+      "name": "ChevronDown",
+      "figmaName": "Icon/ChevronDown",
+      "kebab": "chevron-down",
+      "setId": "4805:631",
+      "description": "Chevron down. Related: expand, dropdown, caret, open, more",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "4710:688",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/chevron-down.svg"
+        },
+        "solid": {
+          "id": "4710:693",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/chevron-down.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "chevron-down"
+    },
+    {
+      "name": "ChevronUp",
+      "figmaName": "Icon/ChevronUp",
+      "kebab": "chevron-up",
+      "setId": "4805:649",
+      "description": "Chevron up. Related: collapse, expand less, caret, up arrow",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "4710:721",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/chevron-up.svg"
+        },
+        "solid": {
+          "id": "4710:726",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/chevron-up.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "chevron-up"
+    },
+    {
+      "name": "ChevronLeft",
+      "figmaName": "Icon/ChevronLeft",
+      "kebab": "chevron-left",
+      "setId": "4805:637",
+      "description": "Chevron left. Related: previous, back, caret, collapse",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "4710:699",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/chevron-left.svg"
+        },
+        "solid": {
+          "id": "4710:704",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/chevron-left.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "chevron-left"
+    },
+    {
+      "name": "ChevronUpDown",
+      "figmaName": "Icon/ChevronUpDown",
+      "kebab": "chevron-up-down",
+      "setId": "5260:586",
+      "description": "Chevron up down. Related: sort, select, combobox, expand collapse",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5260:584",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/chevron-up-down.svg"
+        },
+        "solid": {
+          "id": "5260:585",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/chevron-up-down.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "chevron-up-down"
+    },
+    {
+      "name": "ArrowUp",
+      "figmaName": "Icon/ArrowUp",
+      "kebab": "arrow-up",
+      "setId": "5262:586",
+      "description": "Arrow up. Related: up, upward, north, direction, top",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:584",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/arrow-up.svg"
+        },
+        "solid": {
+          "id": "5262:585",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/arrow-up.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "arrow-up"
+    },
+    {
+      "name": "ArrowDown",
+      "figmaName": "Icon/ArrowDown",
+      "kebab": "arrow-down",
+      "setId": "5262:611",
+      "description": "Arrow down. Related: down, downward, south, direction, bottom",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:609",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/arrow-down.svg"
+        },
+        "solid": {
+          "id": "5262:610",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/arrow-down.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "arrow-down"
+    },
+    {
+      "name": "ArrowLeft",
+      "figmaName": "Icon/ArrowLeft",
+      "kebab": "arrow-left",
+      "setId": "5262:636",
+      "description": "Arrow left. Related: left, back, west, previous, direction",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:634",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/arrow-left.svg"
+        },
+        "solid": {
+          "id": "5262:635",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/arrow-left.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "arrow-left"
+    },
+    {
+      "name": "ArrowRight",
+      "figmaName": "Icon/ArrowRight",
+      "kebab": "arrow-right",
+      "setId": "5262:661",
+      "description": "Arrow right. Related: right, forward, east, next, direction",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:659",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/arrow-right.svg"
+        },
+        "solid": {
+          "id": "5262:660",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/arrow-right.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "arrow-right"
+    },
+    {
+      "name": "ArrowUpLeft",
+      "figmaName": "Icon/ArrowUpLeft",
+      "kebab": "arrow-up-left",
+      "setId": "5262:686",
+      "description": "Arrow up left. Related: diagonal, northwest, direction, corner",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:684",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/arrow-up-left.svg"
+        },
+        "solid": {
+          "id": "5262:685",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/arrow-up-left.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "arrow-up-left"
+    },
+    {
+      "name": "ArrowUpRight",
+      "figmaName": "Icon/ArrowUpRight",
+      "kebab": "arrow-up-right",
+      "setId": "5262:711",
+      "description": "Arrow up right. Related: diagonal, northeast, direction, external",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:709",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/arrow-up-right.svg"
+        },
+        "solid": {
+          "id": "5262:710",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/arrow-up-right.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "arrow-up-right"
+    },
+    {
+      "name": "ArrowDownLeft",
+      "figmaName": "Icon/ArrowDownLeft",
+      "kebab": "arrow-down-left",
+      "setId": "5262:736",
+      "description": "Arrow down left. Related: diagonal, southwest, direction, corner",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:734",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/arrow-down-left.svg"
+        },
+        "solid": {
+          "id": "5262:735",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/arrow-down-left.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "arrow-down-left"
+    },
+    {
+      "name": "ArrowDownRight",
+      "figmaName": "Icon/ArrowDownRight",
+      "kebab": "arrow-down-right",
+      "setId": "5262:761",
+      "description": "Arrow down right. Related: diagonal, southeast, direction, corner",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:759",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/arrow-down-right.svg"
+        },
+        "solid": {
+          "id": "5262:760",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/arrow-down-right.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "arrow-down-right"
+    },
+    {
+      "name": "DoubleChevronUp",
+      "figmaName": "Icon/DoubleChevronUp",
+      "kebab": "double-chevron-up",
+      "setId": "5262:786",
+      "description": "Double chevron up. Related: collapse all, scroll to top, page up",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:784",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/double-chevron-up.svg"
+        },
+        "solid": {
+          "id": "5262:785",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/double-chevron-up.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "double-chevron-up"
+    },
+    {
+      "name": "DoubleChevronDown",
+      "figmaName": "Icon/DoubleChevronDown",
+      "kebab": "double-chevron-down",
+      "setId": "5262:811",
+      "description": "Double chevron down. Related: expand all, scroll to bottom, page down",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:809",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/double-chevron-down.svg"
+        },
+        "solid": {
+          "id": "5262:810",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/double-chevron-down.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "double-chevron-down"
+    },
+    {
+      "name": "DoubleChevronLeft",
+      "figmaName": "Icon/DoubleChevronLeft",
+      "kebab": "double-chevron-left",
+      "setId": "5262:836",
+      "description": "Double chevron left. Related: first page, collapse panel, skip back",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:834",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/double-chevron-left.svg"
+        },
+        "solid": {
+          "id": "5262:835",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/double-chevron-left.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "double-chevron-left"
+    },
+    {
+      "name": "DoubleChevronRight",
+      "figmaName": "Icon/DoubleChevronRight",
+      "kebab": "double-chevron-right",
+      "setId": "5262:861",
+      "description": "Double chevron right. Related: last page, expand panel, skip forward",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:859",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/double-chevron-right.svg"
+        },
+        "solid": {
+          "id": "5262:860",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/double-chevron-right.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "double-chevron-right"
+    },
+    {
+      "name": "Back",
+      "figmaName": "Icon/Back",
+      "kebab": "back",
+      "setId": "5262:886",
+      "description": "Back. Related: return, previous, go back, navigate back",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5262:884",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/back.svg"
+        },
+        "solid": {
+          "id": "5262:885",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/back.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "back"
+    },
+    {
+      "name": "More",
+      "figmaName": "Icon/More",
+      "kebab": "more",
+      "setId": "5273:686",
+      "description": "More. Related: ellipsis, options, three dots, additional, horizontal",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5273:684",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/more.svg"
+        },
+        "solid": {
+          "id": "5273:685",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/more.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "more"
+    },
+    {
+      "name": "Breadcrumb",
+      "figmaName": "Icon/Breadcrumb",
+      "kebab": "breadcrumb",
+      "setId": "5308:594",
+      "description": "Breadcrumb. Related: path, trail, hierarchy, navigation, location",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5308:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/breadcrumb.svg"
+        },
+        "solid": {
+          "id": "5308:592",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/breadcrumb.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "breadcrumb"
+    },
+    {
+      "name": "ExternalLink",
+      "figmaName": "Icon/ExternalLink",
+      "kebab": "external-link",
+      "setId": "5308:611",
+      "description": "External link. Related: open in new tab, outbound, arrow out, new window",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5308:607",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/external-link.svg"
+        },
+        "solid": {
+          "id": "5308:609",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/external-link.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "external-link"
+    },
+    {
+      "name": "Home",
+      "figmaName": "Icon/Home",
+      "kebab": "home",
+      "setId": "5308:628",
+      "description": "Home. Related: house, start, dashboard, main, landing",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5308:624",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/home.svg"
+        },
+        "solid": {
+          "id": "5308:626",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/home.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "home"
+    },
+    {
+      "name": "Menu",
+      "figmaName": "Icon/Menu",
+      "kebab": "menu",
+      "setId": "5308:645",
+      "description": "Menu. Related: hamburger, navigation, list, drawer, lines",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5308:641",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/menu.svg"
+        },
+        "solid": {
+          "id": "5308:643",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/menu.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "menu"
+    },
+    {
+      "name": "Overflow",
+      "figmaName": "Icon/Overflow",
+      "kebab": "overflow",
+      "setId": "5308:662",
+      "description": "Overflow. Related: more options, kebab, three dots vertical, menu",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5308:658",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/overflow.svg"
+        },
+        "solid": {
+          "id": "5308:660",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/overflow.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "overflow"
+    },
+    {
+      "name": "SortAscending",
+      "figmaName": "Icon/SortAscending",
+      "kebab": "sort-ascending",
+      "setId": "5308:679",
+      "description": "Sort ascending. Related: sort A-Z, ascending, order, smallest first",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5308:675",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/sort-ascending.svg"
+        },
+        "solid": {
+          "id": "5308:677",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/sort-ascending.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "sort-ascending"
+    },
+    {
+      "name": "SortDescending",
+      "figmaName": "Icon/SortDescending",
+      "kebab": "sort-descending",
+      "setId": "5308:696",
+      "description": "Sort descending. Related: sort Z-A, descending, order, largest first",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5308:692",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/sort-descending.svg"
+        },
+        "solid": {
+          "id": "5308:694",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/sort-descending.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "sort-descending"
+    },
+    {
+      "name": "CornerDownLeft",
+      "figmaName": "Icon/CornerDownLeft",
+      "kebab": "corner-down-left",
+      "setId": "5308:713",
+      "description": "Corner down left. Related: turn, redirect, enter, bend, route",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5308:709",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/corner-down-left.svg"
+        },
+        "solid": {
+          "id": "5308:711",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/corner-down-left.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "corner-down-left"
+    },
+    {
+      "name": "CornerDownRight",
+      "figmaName": "Icon/CornerDownRight",
+      "kebab": "corner-down-right",
+      "setId": "5308:730",
+      "description": "Corner down right. Related: turn, redirect, reply, bend, route",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5308:726",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/corner-down-right.svg"
+        },
+        "solid": {
+          "id": "5308:728",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/corner-down-right.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "corner-down-right"
+    },
+    {
+      "name": "CornerUpLeft",
+      "figmaName": "Icon/CornerUpLeft",
+      "kebab": "corner-up-left",
+      "setId": "5308:747",
+      "description": "Corner up left. Related: turn, redirect, return, bend, route",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5308:743",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/corner-up-left.svg"
+        },
+        "solid": {
+          "id": "5308:745",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/corner-up-left.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "corner-up-left"
+    },
+    {
+      "name": "CornerUpRight",
+      "figmaName": "Icon/CornerUpRight",
+      "kebab": "corner-up-right",
+      "setId": "5308:764",
+      "description": "Corner up right. Related: turn, redirect, forward, bend, route",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5308:760",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/corner-up-right.svg"
+        },
+        "solid": {
+          "id": "5308:762",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/corner-up-right.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "corner-up-right"
+    },
+    {
+      "name": "AppSwitcher",
+      "figmaName": "Icon/AppSwitcher",
+      "kebab": "app-switcher",
+      "setId": "5482:623",
+      "description": "App switcher. Related: apps, grid, launcher, waffle, switch",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5482:619",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/app-switcher.svg"
+        },
+        "solid": {
+          "id": "5482:621",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/app-switcher.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "app-switcher"
+    },
+    {
+      "name": "BackSpace",
+      "figmaName": "Icon/BackSpace",
+      "kebab": "back-space",
+      "setId": "5958:779",
+      "description": "Backspace. Related: delete, erase, remove character, keyboard, clear",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5958:780",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/back-space.svg"
+        },
+        "solid": {
+          "id": "5958:782",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/back-space.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "back-space"
+    },
+    {
+      "name": "PageNav",
+      "figmaName": "Icon/PageNav",
+      "kebab": "page-nav",
+      "setId": "5316:968",
+      "description": "Page nav. Related: pagination, page navigation, pages, browse",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:964",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/page-nav.svg"
+        },
+        "solid": {
+          "id": "5316:966",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/page-nav.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "page-nav"
+    }
+  ],
+  "looseComponents": []
+}

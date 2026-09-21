@@ -1,0 +1,594 @@
+{
+  "page": "Layout & Panels",
+  "pageId": "5266:578",
+  "kind": "icons",
+  "slug": "layout-panels",
+  "icons": [
+    {
+      "name": "Expand",
+      "figmaName": "Icon/Expand",
+      "kebab": "expand",
+      "setId": "5314:628",
+      "description": "Expand. Related: enlarge, grow, open, arrows out, fullscreen",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:624",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/expand.svg"
+        },
+        "solid": {
+          "id": "5314:626",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/expand.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "expand"
+    },
+    {
+      "name": "Maximize",
+      "figmaName": "Icon/Maximize",
+      "kebab": "maximize",
+      "setId": "5314:662",
+      "description": "Maximize. Related: fullscreen, enlarge, window, expand, zoom",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:658",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/maximize.svg"
+        },
+        "solid": {
+          "id": "5314:660",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/maximize.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "maximize"
+    },
+    {
+      "name": "LayerStack",
+      "figmaName": "Icon/LayerStack",
+      "kebab": "layer-stack",
+      "setId": "5314:696",
+      "description": "Layer stack. Related: layers, stack, order, z-index, arrange",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:692",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/layer-stack.svg"
+        },
+        "solid": {
+          "id": "5314:694",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/layer-stack.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "layer-stack"
+    },
+    {
+      "name": "Minimize",
+      "figmaName": "Icon/Minimize",
+      "kebab": "minimize",
+      "setId": "5314:730",
+      "description": "Minimize. Related: collapse, shrink, window, reduce, dock",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:726",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/minimize.svg"
+        },
+        "solid": {
+          "id": "5314:728",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/minimize.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "minimize"
+    },
+    {
+      "name": "Panel",
+      "figmaName": "Icon/Panel",
+      "kebab": "panel",
+      "setId": "5314:747",
+      "description": "Panel. Related: sidebar, drawer, pane, section, dock",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:743",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/panel.svg"
+        },
+        "solid": {
+          "id": "5314:745",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/panel.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "panel"
+    },
+    {
+      "name": "SplitView",
+      "figmaName": "Icon/SplitView",
+      "kebab": "split-view",
+      "setId": "5314:764",
+      "description": "Split view. Related: divide, columns, layout, side by side, panes",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:760",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/split-view.svg"
+        },
+        "solid": {
+          "id": "5314:762",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/split-view.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "split-view"
+    },
+    {
+      "name": "Systems",
+      "figmaName": "Icon/Systems",
+      "kebab": "systems",
+      "setId": "5481:623",
+      "description": "Systems. Related: modules, components, architecture, overview, blocks",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5481:619",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/systems.svg"
+        },
+        "solid": {
+          "id": "5481:621",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/systems.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "systems"
+    },
+    {
+      "name": "PanelClose",
+      "figmaName": "Icon/PanelClose",
+      "kebab": "panel-close",
+      "setId": "6377:612",
+      "description": "Panel close. Related: collapse panel, sidebar fold, drawer, hide panel",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:608",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/panel-close.svg"
+        },
+        "solid": {
+          "id": "6377:611",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/panel-close.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "panel-close"
+    },
+    {
+      "name": "PanelOpen",
+      "figmaName": "Icon/PanelOpen",
+      "kebab": "panel-open",
+      "setId": "6377:619",
+      "description": "Panel open. Related: expand panel, sidebar unfold, drawer, show panel",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:615",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/panel-open.svg"
+        },
+        "solid": {
+          "id": "6377:618",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/panel-open.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "panel-open"
+    },
+    {
+      "name": "ShapeSquare",
+      "figmaName": "Icon/ShapeSquare",
+      "kebab": "shape-square",
+      "setId": "6377:628",
+      "description": "Shape square. Related: aspect ratio, 1:1, square control, size preset",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:623",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/shape-square.svg"
+        },
+        "solid": {
+          "id": "6377:627",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/shape-square.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "shape-square"
+    },
+    {
+      "name": "ShapeTall",
+      "figmaName": "Icon/ShapeTall",
+      "kebab": "shape-tall",
+      "setId": "6377:637",
+      "description": "Shape tall. Related: portrait, vertical, aspect ratio, size preset",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:632",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/shape-tall.svg"
+        },
+        "solid": {
+          "id": "6377:636",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/shape-tall.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "shape-tall"
+    },
+    {
+      "name": "ShapeWide",
+      "figmaName": "Icon/ShapeWide",
+      "kebab": "shape-wide",
+      "setId": "6379:620",
+      "description": "Shape wide. Related: landscape, horizontal, aspect ratio, size preset",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6379:615",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/shape-wide.svg"
+        },
+        "solid": {
+          "id": "6379:619",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/shape-wide.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "shape-wide"
+    },
+    {
+      "name": "SizeSmall",
+      "figmaName": "Icon/SizeSmall",
+      "kebab": "size-small",
+      "setId": "6379:627",
+      "description": "Size small. Related: S, small size, preset, scale",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6379:623",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/size-small.svg"
+        },
+        "solid": {
+          "id": "6379:626",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/size-small.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "size-small"
+    },
+    {
+      "name": "SizeMedium",
+      "figmaName": "Icon/SizeMedium",
+      "kebab": "size-medium",
+      "setId": "6379:634",
+      "description": "Size medium. Related: M, medium size, preset, scale",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6379:630",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/size-medium.svg"
+        },
+        "solid": {
+          "id": "6379:633",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/size-medium.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "size-medium"
+    },
+    {
+      "name": "SizeLarge",
+      "figmaName": "Icon/SizeLarge",
+      "kebab": "size-large",
+      "setId": "6379:641",
+      "description": "Size large. Related: L, large size, preset, scale",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6379:637",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/size-large.svg"
+        },
+        "solid": {
+          "id": "6379:640",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/size-large.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "size-large"
+    }
+  ],
+  "looseComponents": []
+}

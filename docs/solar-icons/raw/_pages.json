@@ -1,0 +1,124 @@
+{
+  "_note": "Manifest of SOLAR Icons Figma pages, synced by fetch-rest.mjs. kind: \"icons\" pages hold Icon/* component sets, \"logos\" holds the logo sets, \"meta\" pages are text only.",
+  "file": "f0slPVSjDnXgdyPmWOSVOw",
+  "pages": [
+    {
+      "kind": "meta",
+      "slug": "changelog",
+      "id": "120:395",
+      "title": "Changelog"
+    },
+    {
+      "kind": "meta",
+      "slug": "staging",
+      "id": "5701:626",
+      "title": "Staging"
+    },
+    {
+      "kind": "icons",
+      "slug": "navigation",
+      "id": "5224:578",
+      "title": "Navigation"
+    },
+    {
+      "kind": "icons",
+      "slug": "actions",
+      "id": "5224:579",
+      "title": "Actions"
+    },
+    {
+      "kind": "icons",
+      "slug": "status-feedback",
+      "id": "5224:580",
+      "title": "Status & Feedback"
+    },
+    {
+      "kind": "icons",
+      "slug": "content-media",
+      "id": "5224:581",
+      "title": "Content & Media"
+    },
+    {
+      "kind": "icons",
+      "slug": "communication",
+      "id": "5224:582",
+      "title": "Communication"
+    },
+    {
+      "kind": "icons",
+      "slug": "user-identity",
+      "id": "5224:583",
+      "title": "User & Identity"
+    },
+    {
+      "kind": "icons",
+      "slug": "device-connectivity",
+      "id": "5224:584",
+      "title": "Device & Connectivity"
+    },
+    {
+      "kind": "icons",
+      "slug": "dev-code",
+      "id": "5224:586",
+      "title": "Dev & Code"
+    },
+    {
+      "kind": "icons",
+      "slug": "data-charts",
+      "id": "5224:587",
+      "title": "Data & Charts"
+    },
+    {
+      "kind": "icons",
+      "slug": "layout-panels",
+      "id": "5266:578",
+      "title": "Layout & Panels"
+    },
+    {
+      "kind": "icons",
+      "slug": "location",
+      "id": "5224:588",
+      "title": "Location"
+    },
+    {
+      "kind": "icons",
+      "slug": "media",
+      "id": "5224:589",
+      "title": "Media"
+    },
+    {
+      "kind": "icons",
+      "slug": "audio-dsp",
+      "id": "5585:578",
+      "title": "Audio & DSP"
+    },
+    {
+      "kind": "icons",
+      "slug": "signal-flow",
+      "id": "5586:578",
+      "title": "Signal Flow"
+    },
+    {
+      "kind": "icons",
+      "slug": "spatial-rooms",
+      "id": "5587:578",
+      "title": "Spatial & Rooms"
+    },
+    {
+      "kind": "logos",
+      "slug": "logos",
+      "id": "4154:25",
+      "title": "Logos"
+    },
+    {
+      "kind": "icons",
+      "slug": "new-icons-candidates",
+      "id": "5852:578",
+      "title": "New Icons Candidates"
+    }
+  ],
+  "lastSync": {
+    "version": "2400491293726842862",
+    "on": "2026-09-21"
+  }
+}

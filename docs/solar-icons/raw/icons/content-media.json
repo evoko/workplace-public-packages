@@ -1,0 +1,1179 @@
+{
+  "page": "Content & Media",
+  "pageId": "5224:581",
+  "kind": "icons",
+  "slug": "content-media",
+  "icons": [
+    {
+      "name": "Attachment",
+      "figmaName": "Icon/Attachment",
+      "kebab": "attachment",
+      "setId": "5310:764",
+      "description": "Attachment. Related: paperclip, attach, file, upload, enclosure",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:760",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/attachment.svg"
+        },
+        "solid": {
+          "id": "5310:762",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/attachment.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "attachment"
+    },
+    {
+      "name": "Calendar",
+      "figmaName": "Icon/Calendar",
+      "kebab": "calendar",
+      "setId": "5310:781",
+      "description": "Calendar. Related: date, schedule, booking, event, month",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:777",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/calendar.svg"
+        },
+        "solid": {
+          "id": "5310:779",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/calendar.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "calendar"
+    },
+    {
+      "name": "Clock",
+      "figmaName": "Icon/Clock",
+      "kebab": "clock",
+      "setId": "5310:798",
+      "description": "Clock. Related: time, hour, schedule, watch, deadline",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:794",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/clock.svg"
+        },
+        "solid": {
+          "id": "5310:796",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/clock.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "clock"
+    },
+    {
+      "name": "File",
+      "figmaName": "Icon/File",
+      "kebab": "file",
+      "setId": "5310:815",
+      "description": "File. Related: document, page, paper, attachment, item",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:811",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/file.svg"
+        },
+        "solid": {
+          "id": "5310:813",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/file.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "file"
+    },
+    {
+      "name": "Folder",
+      "figmaName": "Icon/Folder",
+      "kebab": "folder",
+      "setId": "5310:832",
+      "description": "Folder. Related: directory, organize, storage, group, collection",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:828",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/folder.svg"
+        },
+        "solid": {
+          "id": "5310:830",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/folder.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "folder"
+    },
+    {
+      "name": "Image",
+      "figmaName": "Icon/Image",
+      "kebab": "image",
+      "setId": "5310:849",
+      "description": "Image. Related: picture, photo, graphic, media, thumbnail",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:845",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/image.svg"
+        },
+        "solid": {
+          "id": "5310:847",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/image.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "image"
+    },
+    {
+      "name": "Link",
+      "figmaName": "Icon/Link",
+      "kebab": "link",
+      "setId": "5310:866",
+      "description": "Link. Related: URL, hyperlink, chain, connect, reference",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:862",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/link.svg"
+        },
+        "solid": {
+          "id": "5310:864",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/link.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "link"
+    },
+    {
+      "name": "Star",
+      "figmaName": "Icon/Star",
+      "kebab": "star",
+      "setId": "5310:883",
+      "description": "Star. Related: favorite, rating, bookmark, featured, important",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:879",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/star.svg"
+        },
+        "solid": {
+          "id": "5310:881",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/star.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "star"
+    },
+    {
+      "name": "Tag",
+      "figmaName": "Icon/Tag",
+      "kebab": "tag",
+      "setId": "5310:900",
+      "description": "Tag. Related: label, category, keyword, price, badge",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:896",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/tag.svg"
+        },
+        "solid": {
+          "id": "5310:898",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/tag.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "tag"
+    },
+    {
+      "name": "Archive",
+      "figmaName": "Icon/Archive",
+      "kebab": "archive",
+      "setId": "5310:917",
+      "description": "Archive. Related: box, store, backup, old, zip, compress",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:913",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/archive.svg"
+        },
+        "solid": {
+          "id": "5310:915",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/archive.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "archive"
+    },
+    {
+      "name": "Book",
+      "figmaName": "Icon/Book",
+      "kebab": "book",
+      "setId": "5310:934",
+      "description": "Book. Related: manual, documentation, guide, reading, library",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:930",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/book.svg"
+        },
+        "solid": {
+          "id": "5310:932",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/book.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "book"
+    },
+    {
+      "name": "BookOpen",
+      "figmaName": "Icon/BookOpen",
+      "kebab": "book-open",
+      "setId": "5310:951",
+      "description": "Book open. Related: read, documentation, manual, guide, learning",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:947",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/book-open.svg"
+        },
+        "solid": {
+          "id": "5310:949",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/book-open.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "book-open"
+    },
+    {
+      "name": "Bookmark",
+      "figmaName": "Icon/Bookmark",
+      "kebab": "bookmark",
+      "setId": "5310:968",
+      "description": "Bookmark. Related: save, favorite, marker, remember, ribbon",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:964",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/bookmark.svg"
+        },
+        "solid": {
+          "id": "5310:966",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/bookmark.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "bookmark"
+    },
+    {
+      "name": "Clipboard",
+      "figmaName": "Icon/Clipboard",
+      "kebab": "clipboard",
+      "setId": "5310:985",
+      "description": "Clipboard. Related: paste, copy, notes, checklist, board",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:981",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/clipboard.svg"
+        },
+        "solid": {
+          "id": "5310:983",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/clipboard.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "clipboard"
+    },
+    {
+      "name": "Database",
+      "figmaName": "Icon/Database",
+      "kebab": "database",
+      "setId": "5310:1002",
+      "description": "Database. Related: data, storage, server, records, SQL",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:998",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/database.svg"
+        },
+        "solid": {
+          "id": "5310:1000",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/database.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "database"
+    },
+    {
+      "name": "FileAudio",
+      "figmaName": "Icon/FileAudio",
+      "kebab": "file-audio",
+      "setId": "5310:1019",
+      "description": "File audio. Related: sound file, music, WAV, MP3, recording",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1015",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/file-audio.svg"
+        },
+        "solid": {
+          "id": "5310:1017",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/file-audio.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "file-audio"
+    },
+    {
+      "name": "FilePdf",
+      "figmaName": "Icon/FilePdf",
+      "kebab": "file-pdf",
+      "setId": "5310:1036",
+      "description": "File PDF. Related: document, portable, export, print, report",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1032",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/file-pdf.svg"
+        },
+        "solid": {
+          "id": "5310:1034",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/file-pdf.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "file-pdf"
+    },
+    {
+      "name": "FileImage",
+      "figmaName": "Icon/FileImage",
+      "kebab": "file-image",
+      "setId": "5310:1053",
+      "description": "File image. Related: picture file, photo, JPG, PNG, graphic",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1049",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/file-image.svg"
+        },
+        "solid": {
+          "id": "5310:1051",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/file-image.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "file-image"
+    },
+    {
+      "name": "FileVideo",
+      "figmaName": "Icon/FileVideo",
+      "kebab": "file-video",
+      "setId": "5310:1087",
+      "description": "File video. Related: movie file, clip, MP4, footage, media",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1083",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/file-video.svg"
+        },
+        "solid": {
+          "id": "5310:1085",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/file-video.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "file-video"
+    },
+    {
+      "name": "FolderOpen",
+      "figmaName": "Icon/FolderOpen",
+      "kebab": "folder-open",
+      "setId": "5310:1104",
+      "description": "Folder open. Related: directory, browse, expanded, contents, open",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1100",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/folder-open.svg"
+        },
+        "solid": {
+          "id": "5310:1102",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/folder-open.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "folder-open"
+    },
+    {
+      "name": "Globe",
+      "figmaName": "Icon/Globe",
+      "kebab": "globe",
+      "setId": "5310:1121",
+      "description": "Globe. Related: world, web, internet, international, language",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1117",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/globe.svg"
+        },
+        "solid": {
+          "id": "5310:1119",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/globe.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "globe"
+    },
+    {
+      "name": "Hash",
+      "figmaName": "Icon/Hash",
+      "kebab": "hash",
+      "setId": "5310:1138",
+      "description": "Hash. Related: hashtag, number, pound, channel, ID",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1134",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/hash.svg"
+        },
+        "solid": {
+          "id": "5310:1136",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/hash.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "hash"
+    },
+    {
+      "name": "History",
+      "figmaName": "Icon/History",
+      "kebab": "history",
+      "setId": "5310:1155",
+      "description": "History. Related: recent, past, timeline, undo, activity log",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1151",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/history.svg"
+        },
+        "solid": {
+          "id": "5310:1153",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/history.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "history"
+    },
+    {
+      "name": "Timer",
+      "figmaName": "Icon/Timer",
+      "kebab": "timer",
+      "setId": "5310:1172",
+      "description": "Timer. Related: countdown, stopwatch, duration, time limit, alarm",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1168",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/timer.svg"
+        },
+        "solid": {
+          "id": "5310:1170",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/timer.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "timer"
+    },
+    {
+      "name": "Unlink",
+      "figmaName": "Icon/Unlink",
+      "kebab": "unlink",
+      "setId": "5310:1189",
+      "description": "Unlink. Related: disconnect, break link, detach, remove, separate",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1185",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/unlink.svg"
+        },
+        "solid": {
+          "id": "5310:1187",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/unlink.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "unlink"
+    },
+    {
+      "name": "Waveform",
+      "figmaName": "Icon/Waveform",
+      "kebab": "waveform",
+      "setId": "5310:1206",
+      "description": "Waveform. Related: audio, sound wave, signal, music, levels",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1202",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/waveform.svg"
+        },
+        "solid": {
+          "id": "5310:1204",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/waveform.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "waveform"
+    },
+    {
+      "name": "Files",
+      "figmaName": "Icon/Files",
+      "kebab": "files",
+      "setId": "5482:613",
+      "description": "Files. Related: documents, multiple, stack, papers, collection",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5482:609",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/files.svg"
+        },
+        "solid": {
+          "id": "5482:611",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/files.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "files"
+    },
+    {
+      "name": "Logs",
+      "figmaName": "Icon/Logs",
+      "kebab": "logs",
+      "setId": "5317:883",
+      "description": "Logs. Related: history, records, events, audit, console output",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:879",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/logs.svg"
+        },
+        "solid": {
+          "id": "5317:881",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/logs.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "logs"
+    },
+    {
+      "name": "Text",
+      "figmaName": "Icon/Text",
+      "kebab": "text",
+      "setId": "6377:644",
+      "description": "Text. Related: typography, type, font, label, characters",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:640",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/text.svg"
+        },
+        "solid": {
+          "id": "6377:643",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/text.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "text"
+    },
+    {
+      "name": "Heart",
+      "figmaName": "Icon/Heart",
+      "kebab": "heart",
+      "setId": "6377:651",
+      "description": "Heart. Related: favorite, like, love, add to favorites, saved",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:647",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/heart.svg"
+        },
+        "solid": {
+          "id": "6377:650",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/heart.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "heart"
+    }
+  ],
+  "looseComponents": []
+}

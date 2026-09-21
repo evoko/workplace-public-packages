@@ -1,0 +1,360 @@
+{
+  "page": "Spatial & Rooms",
+  "pageId": "5587:578",
+  "kind": "icons",
+  "slug": "spatial-rooms",
+  "icons": [
+    {
+      "name": "Furniture",
+      "figmaName": "Icon/Furniture",
+      "kebab": "furniture",
+      "setId": "5315:798",
+      "description": "Furniture. Related: couch, sofa, chair, armchair, seating, furnishing, lounge",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:794",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/furniture.svg"
+        },
+        "solid": {
+          "id": "5315:796",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/furniture.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "furniture"
+    },
+    {
+      "name": "Door",
+      "figmaName": "Icon/Door",
+      "kebab": "door",
+      "setId": "5315:764",
+      "description": "Door. Related: entrance, exit, entry, doorway, gate, access, open, close",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:760",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/door.svg"
+        },
+        "solid": {
+          "id": "5315:762",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/door.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "door"
+    },
+    {
+      "name": "Window",
+      "figmaName": "Icon/Window",
+      "kebab": "window",
+      "setId": "5315:1053",
+      "description": "Window. Related: glass, pane, view, opening, daylight, facade",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:1049",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/window.svg"
+        },
+        "solid": {
+          "id": "5315:1051",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/window.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "window"
+    },
+    {
+      "name": "MarkCeiling",
+      "figmaName": "Icon/MarkCeiling",
+      "kebab": "mark-ceiling",
+      "setId": "5315:832",
+      "description": "Mark ceiling. Related: ceiling, overhead, mount, height, roof, mark",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:828",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/mark-ceiling.svg"
+        },
+        "solid": {
+          "id": "5315:830",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/mark-ceiling.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "mark-ceiling"
+    },
+    {
+      "name": "Box",
+      "figmaName": "Icon/Box",
+      "kebab": "box",
+      "setId": "5601:618",
+      "description": "Box. Related: cube, package, container, 3D, object, parcel, storage",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5601:608",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/box.svg"
+        },
+        "solid": {
+          "id": "5601:613",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/box.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "box"
+    },
+    {
+      "name": "Puzzle",
+      "figmaName": "Icon/Puzzle",
+      "kebab": "puzzle",
+      "setId": "5603:618",
+      "description": "Puzzle. Related: piece, plugin, extension, integration, module, add-on, connect",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5603:608",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/puzzle.svg"
+        },
+        "solid": {
+          "id": "5603:613",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/puzzle.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "puzzle"
+    },
+    {
+      "name": "Blinds",
+      "figmaName": "Icon/Blinds",
+      "kebab": "blinds",
+      "setId": "5862:620",
+      "description": "Blinds. Related: window covering, shades, shutter, privacy, light control",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5862:614",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/blinds.svg"
+        },
+        "solid": {
+          "id": "5862:617",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/blinds.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "blinds"
+    },
+    {
+      "name": "Lightbulb",
+      "figmaName": "Icon/Lightbulb",
+      "kebab": "lightbulb",
+      "setId": "5854:610",
+      "description": "Lightbulb. Related: light, lamp, lighting, bulb, idea, illumination",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5854:604",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/lightbulb.svg"
+        },
+        "solid": {
+          "id": "5854:607",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/lightbulb.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "lightbulb"
+    },
+    {
+      "name": "Sun",
+      "figmaName": "Icon/Sun",
+      "kebab": "sun",
+      "setId": "5858:610",
+      "description": "Sun. Related: daylight, brightness, light mode, sunny, day",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5858:604",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/sun.svg"
+        },
+        "solid": {
+          "id": "5858:607",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/sun.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "sun"
+    }
+  ],
+  "looseComponents": []
+}

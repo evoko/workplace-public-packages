@@ -32,6 +32,10 @@ what is not built yet (the design-to-code generator itself does not exist).
   block in `page-context.json`). It is raw material for checking the curated chapters, not
   the reference. `npm run solar:sync` refreshes both Figma files (needs a Figma token; never
   automated); the curated chapters and the token JSON are never rewritten by it.
+- SOLAR Icons are in [docs/solar-icons/](docs/solar-icons/README.md): `svg/outline/` and
+  `svg/solid/` hold the verbatim Figma exports, `catalog.json` maps Figma names to file stems
+  and component names. Icons take their colour from `color.icon.*` tokens via `currentColor`;
+  logos keep their own colours.
 - Each curated chapter carries front matter naming its Figma source pages and their content
   hashes. [docs/solar/review-status.md](docs/solar/review-status.md) (generated) says which
   chapters are behind Figma. To bring one up to date: read the changed page under

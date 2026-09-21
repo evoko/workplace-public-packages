@@ -1,0 +1,1803 @@
+{
+  "page": "Device & Connectivity",
+  "pageId": "5224:584",
+  "kind": "icons",
+  "slug": "device-connectivity",
+  "icons": [
+    {
+      "name": "Battery",
+      "figmaName": "Icon/Battery",
+      "kebab": "battery",
+      "setId": "5310:1835",
+      "description": "Battery. Related: power, charge, energy, level, status",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1831",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/battery.svg"
+        },
+        "solid": {
+          "id": "5310:1833",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/battery.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "battery"
+    },
+    {
+      "name": "Bluetooth",
+      "figmaName": "Icon/Bluetooth",
+      "kebab": "bluetooth",
+      "setId": "5310:1852",
+      "description": "Bluetooth. Related: wireless, pairing, connection, BT, device",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1848",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/bluetooth.svg"
+        },
+        "solid": {
+          "id": "5310:1850",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/bluetooth.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "bluetooth"
+    },
+    {
+      "name": "Cloud",
+      "figmaName": "Icon/Cloud",
+      "kebab": "cloud",
+      "setId": "5310:1869",
+      "description": "Cloud. Related: storage, online, hosted, SaaS, sync",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1865",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/cloud.svg"
+        },
+        "solid": {
+          "id": "5310:1867",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/cloud.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "cloud"
+    },
+    {
+      "name": "CloudDownload",
+      "figmaName": "Icon/CloudDownload",
+      "kebab": "cloud-download",
+      "setId": "5310:1886",
+      "description": "Cloud download. Related: sync down, fetch, retrieve, pull",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1882",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/cloud-download.svg"
+        },
+        "solid": {
+          "id": "5310:1884",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/cloud-download.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "cloud-download"
+    },
+    {
+      "name": "CloudOff",
+      "figmaName": "Icon/CloudOff",
+      "kebab": "cloud-off",
+      "setId": "5310:1903",
+      "description": "Cloud off. Related: offline, disconnected, local only, no sync",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1899",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/cloud-off.svg"
+        },
+        "solid": {
+          "id": "5310:1901",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/cloud-off.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "cloud-off"
+    },
+    {
+      "name": "CloudUpload",
+      "figmaName": "Icon/CloudUpload",
+      "kebab": "cloud-upload",
+      "setId": "5310:1920",
+      "description": "Cloud upload. Related: sync up, backup, save to cloud, push",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1916",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/cloud-upload.svg"
+        },
+        "solid": {
+          "id": "5310:1918",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/cloud-upload.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "cloud-upload"
+    },
+    {
+      "name": "Device",
+      "figmaName": "Icon/Device",
+      "kebab": "device",
+      "setId": "5310:1937",
+      "description": "Device. Related: hardware, equipment, unit, appliance, generic",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1933",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/device.svg"
+        },
+        "solid": {
+          "id": "5310:1935",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/device.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "device"
+    },
+    {
+      "name": "Ethernet",
+      "figmaName": "Icon/Ethernet",
+      "kebab": "ethernet",
+      "setId": "5310:1954",
+      "description": "Ethernet. Related: LAN, wired, network, cable, RJ45, port",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1950",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/ethernet.svg"
+        },
+        "solid": {
+          "id": "5310:1952",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/ethernet.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "ethernet"
+    },
+    {
+      "name": "Firmware",
+      "figmaName": "Icon/Firmware",
+      "kebab": "firmware",
+      "setId": "5310:1971",
+      "description": "Firmware. Related: update, chip, embedded software, version, flash",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1967",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/firmware.svg"
+        },
+        "solid": {
+          "id": "5310:1969",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/firmware.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "firmware"
+    },
+    {
+      "name": "Laptop",
+      "figmaName": "Icon/Laptop",
+      "kebab": "laptop",
+      "setId": "5310:1988",
+      "description": "Laptop. Related: computer, notebook, PC, device, workstation",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1984",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/laptop.svg"
+        },
+        "solid": {
+          "id": "5310:1986",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/laptop.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "laptop"
+    },
+    {
+      "name": "Mobile",
+      "figmaName": "Icon/Mobile",
+      "kebab": "mobile",
+      "setId": "5310:2005",
+      "description": "Mobile. Related: phone, smartphone, cell, device, handheld",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2001",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/mobile.svg"
+        },
+        "solid": {
+          "id": "5310:2003",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/mobile.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "mobile"
+    },
+    {
+      "name": "Monitor",
+      "figmaName": "Icon/Monitor",
+      "kebab": "monitor",
+      "setId": "5310:2022",
+      "description": "Monitor. Related: screen, display, desktop, computer, output",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2018",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/monitor.svg"
+        },
+        "solid": {
+          "id": "5310:2020",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/monitor.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "monitor"
+    },
+    {
+      "name": "Online",
+      "figmaName": "Icon/Online",
+      "kebab": "online",
+      "setId": "5310:2073",
+      "description": "Online. Related: connected, status, available, active, live",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2069",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/online.svg"
+        },
+        "solid": {
+          "id": "5310:2071",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/online.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "online"
+    },
+    {
+      "name": "Power",
+      "figmaName": "Icon/Power",
+      "kebab": "power",
+      "setId": "5310:2090",
+      "description": "Power. Related: on off, energy, switch, standby, button",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2086",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/power.svg"
+        },
+        "solid": {
+          "id": "5310:2088",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/power.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "power"
+    },
+    {
+      "name": "Router",
+      "figmaName": "Icon/Router",
+      "kebab": "router",
+      "setId": "5310:2107",
+      "description": "Router. Related: gateway, network, access point, switch, modem",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2103",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/router.svg"
+        },
+        "solid": {
+          "id": "5310:2105",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/router.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "router"
+    },
+    {
+      "name": "Server",
+      "figmaName": "Icon/Server",
+      "kebab": "server",
+      "setId": "5310:2124",
+      "description": "Server. Related: host, rack, data center, backend, machine",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2120",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/server.svg"
+        },
+        "solid": {
+          "id": "5310:2122",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/server.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "server"
+    },
+    {
+      "name": "Tablet",
+      "figmaName": "Icon/Tablet",
+      "kebab": "tablet",
+      "setId": "5310:2158",
+      "description": "Tablet. Related: iPad, touchscreen, device, mobile, slate",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2154",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/tablet.svg"
+        },
+        "solid": {
+          "id": "5310:2156",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/tablet.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "tablet"
+    },
+    {
+      "name": "USB",
+      "figmaName": "Icon/USB",
+      "kebab": "usb",
+      "setId": "5310:2175",
+      "description": "USB. Related: port, connector, drive, peripheral, universal serial bus",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2171",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/usb.svg"
+        },
+        "solid": {
+          "id": "5310:2173",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/usb.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "usb"
+    },
+    {
+      "name": "Wifi",
+      "figmaName": "Icon/Wifi",
+      "kebab": "wifi",
+      "setId": "5310:2192",
+      "description": "Wifi. Related: wireless, network, internet, signal, connection",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2188",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/wifi.svg"
+        },
+        "solid": {
+          "id": "5310:2190",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/wifi.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "wifi"
+    },
+    {
+      "name": "WifiOff",
+      "figmaName": "Icon/WifiOff",
+      "kebab": "wifi-off",
+      "setId": "5310:2209",
+      "description": "Wifi off. Related: offline, no connection, disconnected, wireless disabled",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2205",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/wifi-off.svg"
+        },
+        "solid": {
+          "id": "5310:2207",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/wifi-off.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "wifi-off"
+    },
+    {
+      "name": "Camera",
+      "figmaName": "Icon/Camera",
+      "kebab": "camera",
+      "setId": "5315:628",
+      "description": "Camera. Related: photo, webcam, capture, lens, image",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:624",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/camera.svg"
+        },
+        "solid": {
+          "id": "5315:626",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/camera.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "camera"
+    },
+    {
+      "name": "Display",
+      "figmaName": "Icon/Display",
+      "kebab": "display",
+      "setId": "5315:747",
+      "description": "Display. Related: screen, monitor, TV, panel, output",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:743",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/display.svg"
+        },
+        "solid": {
+          "id": "5315:745",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/display.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "display"
+    },
+    {
+      "name": "Conferencing",
+      "figmaName": "Icon/Conferencing",
+      "kebab": "conferencing",
+      "setId": "5315:679",
+      "description": "Conferencing. Related: video call, meeting, collaboration, VC, huddle",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:675",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/conferencing.svg"
+        },
+        "solid": {
+          "id": "5315:677",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/conferencing.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "conferencing"
+    },
+    {
+      "name": "Presentation",
+      "figmaName": "Icon/Presentation",
+      "kebab": "presentation",
+      "setId": "5315:917",
+      "description": "Presentation. Related: present, slides, projector, screen, display",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:913",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/presentation.svg"
+        },
+        "solid": {
+          "id": "5315:915",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/presentation.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "presentation"
+    },
+    {
+      "name": "Amplifier",
+      "figmaName": "Icon/Amplifier",
+      "kebab": "amplifier",
+      "setId": "5317:594",
+      "description": "Amplifier. Related: amp, audio, gain, power amp, sound",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/amplifier.svg"
+        },
+        "solid": {
+          "id": "5317:592",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/amplifier.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "amplifier"
+    },
+    {
+      "name": "Controller",
+      "figmaName": "Icon/Controller",
+      "kebab": "controller",
+      "setId": "5317:611",
+      "description": "Controller. Related: control device, remote, panel, command, interface",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:607",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/controller.svg"
+        },
+        "solid": {
+          "id": "5317:609",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/controller.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "controller"
+    },
+    {
+      "name": "IODevice",
+      "figmaName": "Icon/IODevice",
+      "kebab": "io-device",
+      "setId": "5317:645",
+      "description": "IO device. Related: input output, expander, interface, breakout, I/O",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:641",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/io-device.svg"
+        },
+        "solid": {
+          "id": "5317:643",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/io-device.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "io-device"
+    },
+    {
+      "name": "DeviceKleeo",
+      "figmaName": "Icon/DeviceKleeo",
+      "kebab": "device-kleeo",
+      "setId": "5317:781",
+      "description": "Device Kleeo. Related: Kleeo, desk scheduler, booking device, product",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:777",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/device-kleeo.svg"
+        },
+        "solid": {
+          "id": "5317:779",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/device-kleeo.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "device-kleeo"
+    },
+    {
+      "name": "DeviceMohazeic",
+      "figmaName": "Icon/DeviceMohazeic",
+      "kebab": "device-mohazeic",
+      "setId": "5317:798",
+      "description": "Device Mohazeic. Related: Mohazeic, product, device, hardware",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:794",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/device-mohazeic.svg"
+        },
+        "solid": {
+          "id": "5317:796",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/device-mohazeic.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "device-mohazeic"
+    },
+    {
+      "name": "DeviceNaso",
+      "figmaName": "Icon/DeviceNaso",
+      "kebab": "device-naso",
+      "setId": "5317:815",
+      "description": "Device Naso. Related: Naso, room booker, scheduling device, product",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:811",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/device-naso.svg"
+        },
+        "solid": {
+          "id": "5317:813",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/device-naso.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "device-naso"
+    },
+    {
+      "name": "DeviceTesira",
+      "figmaName": "Icon/DeviceTesira",
+      "kebab": "device-tesira",
+      "setId": "5317:832",
+      "description": "Device Tesira. Related: Tesira, DSP, audio processor, product",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:828",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/device-tesira.svg"
+        },
+        "solid": {
+          "id": "5317:830",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/device-tesira.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "device-tesira"
+    },
+    {
+      "name": "Connector",
+      "figmaName": "Icon/Connector",
+      "kebab": "connector",
+      "setId": "5985:599",
+      "description": "Connector. Related: plug, port, jack, coupling, interface",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5985:595",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/connector.svg"
+        },
+        "solid": {
+          "id": "5985:597",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/connector.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "connector"
+    },
+    {
+      "name": "Paging",
+      "figmaName": "Icon/Paging",
+      "kebab": "paging",
+      "setId": "5986:599",
+      "description": "Paging. Related: announcement, PA, public address, intercom, broadcast",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:595",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/paging.svg"
+        },
+        "solid": {
+          "id": "5986:597",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/paging.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "paging"
+    },
+    {
+      "name": "Processor",
+      "figmaName": "Icon/Processor",
+      "kebab": "processor",
+      "setId": "5986:625",
+      "description": "Processor. Related: CPU, chip, DSP, compute, silicon",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:621",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/processor.svg"
+        },
+        "solid": {
+          "id": "5986:623",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/processor.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "processor"
+    },
+    {
+      "name": "Booker",
+      "figmaName": "Icon/Booker",
+      "kebab": "booker",
+      "setId": "5986:647",
+      "description": "Booker. Related: room booking, scheduler, reservation, panel, display",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:643",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/booker.svg"
+        },
+        "solid": {
+          "id": "5986:645",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/booker.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "booker"
+    },
+    {
+      "name": "Speaker",
+      "figmaName": "Icon/Speaker",
+      "kebab": "speaker",
+      "setId": "5986:789",
+      "description": "Speaker. Related: loudspeaker, audio output, sound, volume, driver",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:785",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/speaker.svg"
+        },
+        "solid": {
+          "id": "5986:787",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/speaker.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "speaker"
+    },
+    {
+      "name": "ControllerKeypad",
+      "figmaName": "Icon/ControllerKeypad",
+      "kebab": "controller-keypad",
+      "setId": "5986:817",
+      "description": "Controller keypad. Related: keypad, buttons, wall control, input, panel",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:813",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/controller-keypad.svg"
+        },
+        "solid": {
+          "id": "5986:815",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/controller-keypad.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "controller-keypad"
+    },
+    {
+      "name": "ConfBar",
+      "figmaName": "Icon/ConfBar",
+      "kebab": "conf-bar",
+      "setId": "5986:838",
+      "description": "Conference bar. Related: video bar, all-in-one, meeting room device, soundbar",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:834",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/conf-bar.svg"
+        },
+        "solid": {
+          "id": "5986:836",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/conf-bar.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "conf-bar"
+    },
+    {
+      "name": "VideoProcessor",
+      "figmaName": "Icon/VideoProcessor",
+      "kebab": "video-processor",
+      "setId": "5986:859",
+      "description": "Video processor. Related: video switching, AV processing, matrix, converter",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:855",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/video-processor.svg"
+        },
+        "solid": {
+          "id": "5986:857",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/video-processor.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "video-processor"
+    },
+    {
+      "name": "AmplifierRack",
+      "figmaName": "Icon/AmplifierRack",
+      "kebab": "amplifier-rack",
+      "setId": "5986:901",
+      "description": "Amplifier rack. Related: rack amp, audio equipment, rack mount, power",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:897",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/amplifier-rack.svg"
+        },
+        "solid": {
+          "id": "5986:899",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/amplifier-rack.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "amplifier-rack"
+    },
+    {
+      "name": "SoundMasking",
+      "figmaName": "Icon/SoundMasking",
+      "kebab": "sound-masking",
+      "setId": "5986:928",
+      "description": "Sound masking. Related: white noise, privacy, ambient, acoustic, background",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:924",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/sound-masking.svg"
+        },
+        "solid": {
+          "id": "5986:926",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/sound-masking.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "sound-masking"
+    },
+    {
+      "name": "WallController",
+      "figmaName": "Icon/WallController",
+      "kebab": "wall-controller",
+      "setId": "5986:949",
+      "description": "Wall controller. Related: wall panel, control, mounted, switch, interface",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:945",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/wall-controller.svg"
+        },
+        "solid": {
+          "id": "5986:947",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/wall-controller.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "wall-controller"
+    },
+    {
+      "name": "WallControllerTouch",
+      "figmaName": "Icon/WallControllerTouch",
+      "kebab": "wall-controller-touch",
+      "setId": "5986:970",
+      "description": "Wall controller touch. Related: touchscreen wall panel, control, mounted, display",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:966",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/wall-controller-touch.svg"
+        },
+        "solid": {
+          "id": "5986:968",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/wall-controller-touch.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "wall-controller-touch"
+    },
+    {
+      "name": "PagingGooseNeck",
+      "figmaName": "Icon/PagingGooseNeck",
+      "kebab": "paging-goose-neck",
+      "setId": "5986:992",
+      "description": "Paging gooseneck. Related: gooseneck mic, desk mic, PA station, announcement",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:988",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/paging-goose-neck.svg"
+        },
+        "solid": {
+          "id": "5986:990",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/paging-goose-neck.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "paging-goose-neck"
+    },
+    {
+      "name": "PagingHandHeld",
+      "figmaName": "Icon/PagingHandHeld",
+      "kebab": "paging-hand-held",
+      "setId": "5986:1013",
+      "description": "Paging handheld. Related: handheld mic, portable, PA, announcement",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5986:1009",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/paging-hand-held.svg"
+        },
+        "solid": {
+          "id": "5986:1011",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/paging-hand-held.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "paging-hand-held"
+    },
+    {
+      "name": "DoubleMonitor",
+      "figmaName": "Icon/DoubleMonitor",
+      "kebab": "double-monitor",
+      "setId": "5862:714",
+      "description": "Double monitor. Related: dual monitors, two screens, workstation, setup, displays",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5862:708",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/double-monitor.svg"
+        },
+        "solid": {
+          "id": "5862:711",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/double-monitor.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "double-monitor"
+    }
+  ],
+  "looseComponents": []
+}

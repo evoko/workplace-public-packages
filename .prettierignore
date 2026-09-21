@@ -1,3 +1,7 @@
 # Generated raw extractions are written by scripts and not reflowed by Prettier.
 docs/solar-web/raw/**/*.json
 docs/solar/raw/**/*.json
+docs/solar-icons/raw/**/*.json
+# Exported Figma assets are byte-exact copies.
+docs/solar-icons/svg/**
+docs/solar-icons/logos/**

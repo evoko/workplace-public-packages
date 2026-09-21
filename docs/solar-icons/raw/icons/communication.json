@@ -1,0 +1,516 @@
+{
+  "page": "Communication",
+  "pageId": "5224:582",
+  "kind": "icons",
+  "slug": "communication",
+  "icons": [
+    {
+      "name": "Bell",
+      "figmaName": "Icon/Bell",
+      "kebab": "bell",
+      "setId": "5310:1223",
+      "description": "Bell. Related: notification, alert, reminder, ring, alarm",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1219",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/bell.svg"
+        },
+        "solid": {
+          "id": "5310:1221",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/bell.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "bell"
+    },
+    {
+      "name": "Email",
+      "figmaName": "Icon/Email",
+      "kebab": "email",
+      "setId": "5310:1240",
+      "description": "Email. Related: mail, envelope, message, inbox, send",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1236",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/email.svg"
+        },
+        "solid": {
+          "id": "5310:1238",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/email.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "email"
+    },
+    {
+      "name": "Notification",
+      "figmaName": "Icon/Notification",
+      "kebab": "notification",
+      "setId": "5310:1308",
+      "description": "Notification. Related: alert, badge, update, bell, message",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1304",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/notification.svg"
+        },
+        "solid": {
+          "id": "5310:1306",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/notification.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "notification"
+    },
+    {
+      "name": "Phone",
+      "figmaName": "Icon/Phone",
+      "kebab": "phone",
+      "setId": "5310:1325",
+      "description": "Phone. Related: call, telephone, dial, contact, voice",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1321",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/phone.svg"
+        },
+        "solid": {
+          "id": "5310:1323",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/phone.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "phone"
+    },
+    {
+      "name": "Announcement",
+      "figmaName": "Icon/Announcement",
+      "kebab": "announcement",
+      "setId": "5310:1376",
+      "description": "Announcement. Related: megaphone, broadcast, news, alert, campaign",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1372",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/announcement.svg"
+        },
+        "solid": {
+          "id": "5310:1374",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/announcement.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "announcement"
+    },
+    {
+      "name": "Broadcast",
+      "figmaName": "Icon/Broadcast",
+      "kebab": "broadcast",
+      "setId": "5310:1393",
+      "description": "Broadcast. Related: transmit, signal, live, radio, publish",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1389",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/broadcast.svg"
+        },
+        "solid": {
+          "id": "5310:1391",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/broadcast.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "broadcast"
+    },
+    {
+      "name": "Chat",
+      "figmaName": "Icon/Chat",
+      "kebab": "chat",
+      "setId": "5310:1410",
+      "description": "Chat. Related: message, conversation, bubble, talk, comment",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1406",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/chat.svg"
+        },
+        "solid": {
+          "id": "5310:1408",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/chat.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "chat"
+    },
+    {
+      "name": "NotificationOff",
+      "figmaName": "Icon/NotificationOff",
+      "kebab": "notification-off",
+      "setId": "5310:1461",
+      "description": "Notification off. Related: mute, silence, do not disturb, DND, quiet",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1457",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/notification-off.svg"
+        },
+        "solid": {
+          "id": "5310:1459",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/notification-off.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "notification-off"
+    },
+    {
+      "name": "ScreenShare",
+      "figmaName": "Icon/ScreenShare",
+      "kebab": "screen-share",
+      "setId": "5310:1495",
+      "description": "Screen share. Related: present, share screen, cast, display, meeting",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1491",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/screen-share.svg"
+        },
+        "solid": {
+          "id": "5310:1493",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/screen-share.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "screen-share"
+    },
+    {
+      "name": "Video",
+      "figmaName": "Icon/Video",
+      "kebab": "video",
+      "setId": "5310:1529",
+      "description": "Video. Related: film, movie, clip, media, camera",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1525",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/video.svg"
+        },
+        "solid": {
+          "id": "5310:1527",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/video.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "video"
+    },
+    {
+      "name": "VideoCameraOff",
+      "figmaName": "Icon/VideoCameraOff",
+      "kebab": "video-camera-off",
+      "setId": "5310:1546",
+      "description": "Video camera off. Related: camera off, mute video, disabled, privacy",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1542",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/video-camera-off.svg"
+        },
+        "solid": {
+          "id": "5310:1544",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/video-camera-off.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "video-camera-off"
+    },
+    {
+      "name": "VideoCamera",
+      "figmaName": "Icon/VideoCamera",
+      "kebab": "video-camera",
+      "setId": "6055:2",
+      "description": "Video camera. Related: webcam, camera, video call, meeting, record",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6055:15",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/video-camera.svg"
+        },
+        "solid": {
+          "id": "6055:17",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/video-camera.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "video-camera"
+    },
+    {
+      "name": "Dialpad",
+      "figmaName": "Icon/Dialpad",
+      "kebab": "dialpad",
+      "setId": "6380:612",
+      "description": "Dialpad. Related: keypad, dial, phone, numbers, DTMF",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6380:608",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/dialpad.svg"
+        },
+        "solid": {
+          "id": "6380:611",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/dialpad.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "dialpad"
+    }
+  ],
+  "looseComponents": []
+}

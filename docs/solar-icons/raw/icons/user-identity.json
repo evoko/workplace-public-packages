@@ -1,0 +1,516 @@
+{
+  "page": "User & Identity",
+  "pageId": "5224:583",
+  "kind": "icons",
+  "slug": "user-identity",
+  "icons": [
+    {
+      "name": "Eye",
+      "figmaName": "Icon/Eye",
+      "kebab": "eye",
+      "setId": "5310:1597",
+      "description": "Eye. Related: view, show, visible, watch, reveal, preview",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1593",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/eye.svg"
+        },
+        "solid": {
+          "id": "5310:1595",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/eye.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "eye"
+    },
+    {
+      "name": "EyeOff",
+      "figmaName": "Icon/EyeOff",
+      "kebab": "eye-off",
+      "setId": "5310:1614",
+      "description": "Eye off. Related: hide, hidden, invisible, conceal, privacy",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1610",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/eye-off.svg"
+        },
+        "solid": {
+          "id": "5310:1612",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/eye-off.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "eye-off"
+    },
+    {
+      "name": "Key",
+      "figmaName": "Icon/Key",
+      "kebab": "key",
+      "setId": "5310:1631",
+      "description": "Key. Related: password, access, credential, API key, unlock",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1627",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/key.svg"
+        },
+        "solid": {
+          "id": "5310:1629",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/key.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "key"
+    },
+    {
+      "name": "Lock",
+      "figmaName": "Icon/Lock",
+      "kebab": "lock",
+      "setId": "5310:1648",
+      "description": "Lock. Related: secure, private, protected, locked, permission",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1644",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/lock.svg"
+        },
+        "solid": {
+          "id": "5310:1646",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/lock.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "lock"
+    },
+    {
+      "name": "Unlock",
+      "figmaName": "Icon/Unlock",
+      "kebab": "unlock",
+      "setId": "5310:1665",
+      "description": "Unlock. Related: open, unlocked, access, available, insecure",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1661",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/unlock.svg"
+        },
+        "solid": {
+          "id": "5310:1663",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/unlock.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "unlock"
+    },
+    {
+      "name": "User",
+      "figmaName": "Icon/User",
+      "kebab": "user",
+      "setId": "5310:1682",
+      "description": "User. Related: person, profile, account, avatar, member",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1678",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/user.svg"
+        },
+        "solid": {
+          "id": "5310:1680",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/user.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "user"
+    },
+    {
+      "name": "Admin",
+      "figmaName": "Icon/Admin",
+      "kebab": "admin",
+      "setId": "5310:1716",
+      "description": "Admin. Related: administrator, superuser, manage, role, permissions",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1712",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/admin.svg"
+        },
+        "solid": {
+          "id": "5310:1714",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/admin.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "admin"
+    },
+    {
+      "name": "Fingerprint",
+      "figmaName": "Icon/Fingerprint",
+      "kebab": "fingerprint",
+      "setId": "5310:1750",
+      "description": "Fingerprint. Related: biometric, identity, touch ID, authentication, unique",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1746",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/fingerprint.svg"
+        },
+        "solid": {
+          "id": "5310:1748",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/fingerprint.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "fingerprint"
+    },
+    {
+      "name": "HandRaised",
+      "figmaName": "Icon/HandRaised",
+      "kebab": "hand-raised",
+      "setId": "5310:1767",
+      "description": "Hand raised. Related: raise hand, question, volunteer, participation, request",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1763",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/hand-raised.svg"
+        },
+        "solid": {
+          "id": "5310:1765",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/hand-raised.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "hand-raised"
+    },
+    {
+      "name": "Invite",
+      "figmaName": "Icon/Invite",
+      "kebab": "invite",
+      "setId": "5310:1784",
+      "description": "Invite. Related: add user, invitation, join, onboard, welcome",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1780",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/invite.svg"
+        },
+        "solid": {
+          "id": "5310:1782",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/invite.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "invite"
+    },
+    {
+      "name": "Shield",
+      "figmaName": "Icon/Shield",
+      "kebab": "shield",
+      "setId": "5310:1801",
+      "description": "Shield. Related: security, protection, safety, guard, defense",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1797",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/shield.svg"
+        },
+        "solid": {
+          "id": "5310:1799",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/shield.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "shield"
+    },
+    {
+      "name": "Licenses",
+      "figmaName": "Icon/Licenses",
+      "kebab": "licenses",
+      "setId": "5481:628",
+      "description": "Licenses. Related: license, certificate, permit, entitlement",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5481:624",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/licenses.svg"
+        },
+        "solid": {
+          "id": "5481:626",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/licenses.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "licenses"
+    },
+    {
+      "name": "Subscription",
+      "figmaName": "Icon/Subscription",
+      "kebab": "subscription",
+      "setId": "6340:584",
+      "description": "Subscription. Related: plan, billing, payment, bank card, recurring, renewal",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6340:580",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/subscription.svg"
+        },
+        "solid": {
+          "id": "6340:583",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/subscription.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "subscription"
+    }
+  ],
+  "looseComponents": []
+}

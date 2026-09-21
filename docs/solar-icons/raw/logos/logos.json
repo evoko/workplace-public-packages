@@ -1,0 +1,192 @@
+{
+  "page": "Logos",
+  "pageId": "4154:25",
+  "kind": "logos",
+  "slug": "logos",
+  "sets": [
+    {
+      "name": "OS Logo",
+      "kebab": "os-logo",
+      "setId": "4154:26",
+      "description": "",
+      "variants": [
+        {
+          "name": "logo=microsoft",
+          "props": {
+            "logo": "microsoft"
+          },
+          "id": "4154:27",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "#ff5722",
+            "#4caf50",
+            "#ffc107",
+            "#03a9f4"
+          ],
+          "file": "logos/os-logo/microsoft.svg"
+        },
+        {
+          "name": "logo=google",
+          "props": {
+            "logo": "google"
+          },
+          "id": "4154:32",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "#ffc107",
+            "#ff3d00",
+            "#4caf50",
+            "#1976d2"
+          ],
+          "file": "logos/os-logo/google.svg"
+        },
+        {
+          "name": "logo=teams",
+          "props": {
+            "logo": "teams"
+          },
+          "id": "6196:626",
+          "size": [
+            32,
+            32
+          ],
+          "fills": [
+            "#ffffff"
+          ],
+          "file": "logos/os-logo/teams.svg"
+        }
+      ]
+    },
+    {
+      "name": "Biamp Logo",
+      "kebab": "biamp-logo",
+      "setId": "5419:2572",
+      "description": "",
+      "variants": [
+        {
+          "name": "style=dark, size=sm",
+          "props": {
+            "style": "dark",
+            "size": "sm"
+          },
+          "id": "4744:603",
+          "size": [
+            36,
+            11
+          ],
+          "fills": [
+            "Primitives:color/brand/black",
+            "Primitives:color/brand/red"
+          ],
+          "file": "logos/biamp-logo/dark-sm.svg"
+        },
+        {
+          "name": "style=light, size=sm",
+          "props": {
+            "style": "light",
+            "size": "sm"
+          },
+          "id": "4746:735",
+          "size": [
+            36,
+            11
+          ],
+          "fills": [
+            "Primitives:color/brand/white",
+            "Primitives:color/brand/red"
+          ],
+          "file": "logos/biamp-logo/light-sm.svg"
+        }
+      ]
+    },
+    {
+      "name": "App Icon",
+      "kebab": "app-icon",
+      "setId": "5508:736",
+      "description": "",
+      "variants": [
+        {
+          "name": "App=Workplace",
+          "props": {
+            "App": "Workplace"
+          },
+          "id": "4724:594",
+          "size": [
+            32,
+            32
+          ],
+          "images": [
+            "988e8eb6ab040f07ffd8e0e7e32527bcc5234df9"
+          ],
+          "file": "logos/app-icon/workplace@2x.png"
+        },
+        {
+          "name": "App=Designer",
+          "props": {
+            "App": "Designer"
+          },
+          "id": "5508:727",
+          "size": [
+            32,
+            32
+          ],
+          "images": [
+            "ddf96e8563d7d6d0865e1b7ecb5a87385eb94a01"
+          ],
+          "file": "logos/app-icon/designer@2x.png"
+        },
+        {
+          "name": "App=Tools",
+          "props": {
+            "App": "Tools"
+          },
+          "id": "5508:732",
+          "size": [
+            32,
+            32
+          ],
+          "images": [
+            "a7b3b6c4767fa4126addf9753aba8825351e231f"
+          ],
+          "file": "logos/app-icon/tools@2x.png"
+        },
+        {
+          "name": "App=Booking",
+          "props": {
+            "App": "Booking"
+          },
+          "id": "5508:735",
+          "size": [
+            32,
+            32
+          ],
+          "images": [
+            "0b75614f380af80cf6770f7984224afefdf18e52"
+          ],
+          "file": "logos/app-icon/booking@2x.png"
+        },
+        {
+          "name": "App=Command",
+          "props": {
+            "App": "Command"
+          },
+          "id": "5509:744",
+          "size": [
+            32,
+            32
+          ],
+          "images": [
+            "0fc20695382f56102d04dcbea4041dc203455d63"
+          ],
+          "file": "logos/app-icon/command@2x.png"
+        }
+      ]
+    }
+  ]
+}

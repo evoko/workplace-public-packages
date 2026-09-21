@@ -1,0 +1,399 @@
+{
+  "page": "Media",
+  "pageId": "5224:589",
+  "kind": "icons",
+  "slug": "media",
+  "icons": [
+    {
+      "name": "Pause",
+      "figmaName": "Icon/Pause",
+      "kebab": "pause",
+      "setId": "5314:832",
+      "description": "Pause. Related: hold, break, media, playback, suspend",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:828",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/pause.svg"
+        },
+        "solid": {
+          "id": "5314:830",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/pause.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "pause"
+    },
+    {
+      "name": "Play",
+      "figmaName": "Icon/Play",
+      "kebab": "play",
+      "setId": "5314:849",
+      "description": "Play. Related: start, resume, media, playback, video, audio",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:845",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/play.svg"
+        },
+        "solid": {
+          "id": "5314:847",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/play.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "play"
+    },
+    {
+      "name": "Stop",
+      "figmaName": "Icon/Stop",
+      "kebab": "stop",
+      "setId": "5314:866",
+      "description": "Stop. Related: end, halt, media, playback, terminate",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:862",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/stop.svg"
+        },
+        "solid": {
+          "id": "5314:864",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/stop.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "stop"
+    },
+    {
+      "name": "FastForward",
+      "figmaName": "Icon/FastForward",
+      "kebab": "fast-forward",
+      "setId": "5314:883",
+      "description": "Fast forward. Related: skip ahead, media, seek, speed, forward",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:879",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/fast-forward.svg"
+        },
+        "solid": {
+          "id": "5314:881",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/fast-forward.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "fast-forward"
+    },
+    {
+      "name": "Record",
+      "figmaName": "Icon/Record",
+      "kebab": "record",
+      "setId": "5314:900",
+      "description": "Record. Related: recording, capture, REC, media, audio, video",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:896",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/record.svg"
+        },
+        "solid": {
+          "id": "5314:898",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/record.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "record"
+    },
+    {
+      "name": "Repeat",
+      "figmaName": "Icon/Repeat",
+      "kebab": "repeat",
+      "setId": "5314:917",
+      "description": "Repeat. Related: loop, replay, cycle, media, again",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:913",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/repeat.svg"
+        },
+        "solid": {
+          "id": "5314:915",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/repeat.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "repeat"
+    },
+    {
+      "name": "Rewind",
+      "figmaName": "Icon/Rewind",
+      "kebab": "rewind",
+      "setId": "5314:934",
+      "description": "Rewind. Related: back, reverse, media, seek, backward",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:930",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/rewind.svg"
+        },
+        "solid": {
+          "id": "5314:932",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/rewind.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "rewind"
+    },
+    {
+      "name": "Shuffle",
+      "figmaName": "Icon/Shuffle",
+      "kebab": "shuffle",
+      "setId": "5314:951",
+      "description": "Shuffle. Related: random, mix, media, randomize, crossing arrows",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:947",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/shuffle.svg"
+        },
+        "solid": {
+          "id": "5314:949",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/shuffle.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "shuffle"
+    },
+    {
+      "name": "SkipBack",
+      "figmaName": "Icon/SkipBack",
+      "kebab": "skip-back",
+      "setId": "5314:968",
+      "description": "Skip back. Related: previous, track, media, restart, backward",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:964",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/skip-back.svg"
+        },
+        "solid": {
+          "id": "5314:966",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/skip-back.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "skip-back"
+    },
+    {
+      "name": "SkipForward",
+      "figmaName": "Icon/SkipForward",
+      "kebab": "skip-forward",
+      "setId": "5314:985",
+      "description": "Skip forward. Related: next, track, media, advance, forward",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:981",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/skip-forward.svg"
+        },
+        "solid": {
+          "id": "5314:983",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/skip-forward.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "skip-forward"
+    }
+  ],
+  "looseComponents": []
+}

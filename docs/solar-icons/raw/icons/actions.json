@@ -1,0 +1,2741 @@
+{
+  "page": "Actions",
+  "pageId": "5224:579",
+  "kind": "icons",
+  "slug": "actions",
+  "icons": [
+    {
+      "name": "Check",
+      "figmaName": "Icon/Check",
+      "kebab": "check",
+      "setId": "5273:586",
+      "description": "Check. Related: done, confirm, success, tick, complete, approve",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5273:584",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/check.svg"
+        },
+        "solid": {
+          "id": "5273:585",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/check.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "check"
+    },
+    {
+      "name": "Close",
+      "figmaName": "Icon/Close",
+      "kebab": "close",
+      "setId": "5273:611",
+      "description": "Close. Related: dismiss, cancel, x, exit, remove",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5273:609",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/close.svg"
+        },
+        "solid": {
+          "id": "5273:610",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/close.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "close"
+    },
+    {
+      "name": "Plus",
+      "figmaName": "Icon/Plus",
+      "kebab": "plus",
+      "setId": "5273:636",
+      "description": "Plus. Related: add, new, create, increase, insert",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5273:634",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/plus.svg"
+        },
+        "solid": {
+          "id": "5273:635",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/plus.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "plus"
+    },
+    {
+      "name": "Minus",
+      "figmaName": "Icon/Minus",
+      "kebab": "minus",
+      "setId": "5273:661",
+      "description": "Minus. Related: remove, subtract, decrease, collapse, less",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5273:659",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/minus.svg"
+        },
+        "solid": {
+          "id": "5273:660",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/minus.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "minus"
+    },
+    {
+      "name": "Copy",
+      "figmaName": "Icon/Copy",
+      "kebab": "copy",
+      "setId": "5309:594",
+      "description": "Copy. Related: duplicate, clipboard, clone, replicate",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/copy.svg"
+        },
+        "solid": {
+          "id": "5309:592",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/copy.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "copy"
+    },
+    {
+      "name": "Delete",
+      "figmaName": "Icon/Delete",
+      "kebab": "delete",
+      "setId": "5309:611",
+      "description": "Delete. Related: trash, remove, bin, erase, discard",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:607",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/delete.svg"
+        },
+        "solid": {
+          "id": "5309:609",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/delete.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "delete"
+    },
+    {
+      "name": "Download",
+      "figmaName": "Icon/Download",
+      "kebab": "download",
+      "setId": "5309:628",
+      "description": "Download. Related: save, arrow down, get, fetch, export",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:624",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/download.svg"
+        },
+        "solid": {
+          "id": "5309:626",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/download.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "download"
+    },
+    {
+      "name": "DragHandle",
+      "figmaName": "Icon/DragHandle",
+      "kebab": "drag-handle",
+      "setId": "5309:645",
+      "description": "Drag handle. Related: reorder, move, grip, dots, sort",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:641",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/drag-handle.svg"
+        },
+        "solid": {
+          "id": "5309:643",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/drag-handle.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "drag-handle"
+    },
+    {
+      "name": "Duplicate",
+      "figmaName": "Icon/Duplicate",
+      "kebab": "duplicate",
+      "setId": "5309:662",
+      "description": "Duplicate. Related: copy, clone, replicate, double",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:658",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/duplicate.svg"
+        },
+        "solid": {
+          "id": "5309:660",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/duplicate.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "duplicate"
+    },
+    {
+      "name": "Edit",
+      "figmaName": "Icon/Edit",
+      "kebab": "edit",
+      "setId": "5309:679",
+      "description": "Edit. Related: pencil, modify, change, write, update",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:675",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/edit.svg"
+        },
+        "solid": {
+          "id": "5309:677",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/edit.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "edit"
+    },
+    {
+      "name": "Filter",
+      "figmaName": "Icon/Filter",
+      "kebab": "filter",
+      "setId": "5309:696",
+      "description": "Filter. Related: funnel, refine, sort, narrow, criteria",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:692",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/filter.svg"
+        },
+        "solid": {
+          "id": "5309:694",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/filter.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "filter"
+    },
+    {
+      "name": "Pin",
+      "figmaName": "Icon/Pin",
+      "kebab": "pin",
+      "setId": "5309:713",
+      "description": "Pin. Related: stick, fasten, keep, favorite, attach",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:709",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/pin.svg"
+        },
+        "solid": {
+          "id": "5309:711",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/pin.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "pin"
+    },
+    {
+      "name": "Redo",
+      "figmaName": "Icon/Redo",
+      "kebab": "redo",
+      "setId": "5309:730",
+      "description": "Redo. Related: repeat, forward, again, restore",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:726",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/redo.svg"
+        },
+        "solid": {
+          "id": "5309:728",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/redo.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "redo"
+    },
+    {
+      "name": "Refresh",
+      "figmaName": "Icon/Refresh",
+      "kebab": "refresh",
+      "setId": "5309:747",
+      "description": "Refresh. Related: reload, sync, update, retry, renew",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:743",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/refresh.svg"
+        },
+        "solid": {
+          "id": "5309:745",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/refresh.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "refresh"
+    },
+    {
+      "name": "Save",
+      "figmaName": "Icon/Save",
+      "kebab": "save",
+      "setId": "5309:764",
+      "description": "Save. Related: store, keep, disk, persist, apply",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:760",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/save.svg"
+        },
+        "solid": {
+          "id": "5309:762",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/save.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "save"
+    },
+    {
+      "name": "Search",
+      "figmaName": "Icon/Search",
+      "kebab": "search",
+      "setId": "5309:781",
+      "description": "Search. Related: find, magnifier, lookup, query, filter",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:777",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/search.svg"
+        },
+        "solid": {
+          "id": "5309:779",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/search.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "search"
+    },
+    {
+      "name": "Settings",
+      "figmaName": "Icon/Settings",
+      "kebab": "settings",
+      "setId": "5309:798",
+      "description": "Settings. Related: gear, preferences, configuration, options, cog",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:794",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/settings.svg"
+        },
+        "solid": {
+          "id": "5309:796",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/settings.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "settings"
+    },
+    {
+      "name": "Share",
+      "figmaName": "Icon/Share",
+      "kebab": "share",
+      "setId": "5309:815",
+      "description": "Share. Related: send, distribute, forward, social",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:811",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/share.svg"
+        },
+        "solid": {
+          "id": "5309:813",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/share.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "share"
+    },
+    {
+      "name": "Undo",
+      "figmaName": "Icon/Undo",
+      "kebab": "undo",
+      "setId": "5309:832",
+      "description": "Undo. Related: revert, back, restore, previous, cancel",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:828",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/undo.svg"
+        },
+        "solid": {
+          "id": "5309:830",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/undo.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "undo"
+    },
+    {
+      "name": "Unpin",
+      "figmaName": "Icon/Unpin",
+      "kebab": "unpin",
+      "setId": "5309:849",
+      "description": "Unpin. Related: unstick, release, detach, remove pin",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:845",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/unpin.svg"
+        },
+        "solid": {
+          "id": "5309:847",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/unpin.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "unpin"
+    },
+    {
+      "name": "Upload",
+      "figmaName": "Icon/Upload",
+      "kebab": "upload",
+      "setId": "5309:866",
+      "description": "Upload. Related: send, arrow up, put, push, import",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:862",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/upload.svg"
+        },
+        "solid": {
+          "id": "5309:864",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/upload.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "upload"
+    },
+    {
+      "name": "ZoomIn",
+      "figmaName": "Icon/ZoomIn",
+      "kebab": "zoom-in",
+      "setId": "5309:883",
+      "description": "Zoom in. Related: magnify, enlarge, closer, plus, scale up",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:879",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/zoom-in.svg"
+        },
+        "solid": {
+          "id": "5309:881",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/zoom-in.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "zoom-in"
+    },
+    {
+      "name": "ZoomOut",
+      "figmaName": "Icon/ZoomOut",
+      "kebab": "zoom-out",
+      "setId": "5309:900",
+      "description": "Zoom out. Related: shrink, further, minus, scale down, overview",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:896",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/zoom-out.svg"
+        },
+        "solid": {
+          "id": "5309:898",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/zoom-out.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "zoom-out"
+    },
+    {
+      "name": "ColorPicker",
+      "figmaName": "Icon/ColorPicker",
+      "kebab": "color-picker",
+      "setId": "5309:917",
+      "description": "Color picker. Related: eyedropper, sample, pick color, swatch",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:913",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/color-picker.svg"
+        },
+        "solid": {
+          "id": "5309:915",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/color-picker.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "color-picker"
+    },
+    {
+      "name": "Cut",
+      "figmaName": "Icon/Cut",
+      "kebab": "cut",
+      "setId": "5309:934",
+      "description": "Cut. Related: scissors, remove, clipboard, trim",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:930",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/cut.svg"
+        },
+        "solid": {
+          "id": "5309:932",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/cut.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "cut"
+    },
+    {
+      "name": "Deploy",
+      "figmaName": "Icon/Deploy",
+      "kebab": "deploy",
+      "setId": "5309:951",
+      "description": "Deploy. Related: publish, release, launch, push, rollout",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:947",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/deploy.svg"
+        },
+        "solid": {
+          "id": "5309:949",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/deploy.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "deploy"
+    },
+    {
+      "name": "Export",
+      "figmaName": "Icon/Export",
+      "kebab": "export",
+      "setId": "5309:968",
+      "description": "Export. Related: send out, save as, extract, download",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:964",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/export.svg"
+        },
+        "solid": {
+          "id": "5309:966",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/export.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "export"
+    },
+    {
+      "name": "Import",
+      "figmaName": "Icon/Import",
+      "kebab": "import",
+      "setId": "5309:985",
+      "description": "Import. Related: bring in, load, upload, migrate",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:981",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/import.svg"
+        },
+        "solid": {
+          "id": "5309:983",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/import.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "import"
+    },
+    {
+      "name": "Locate",
+      "figmaName": "Icon/Locate",
+      "kebab": "locate",
+      "setId": "5309:1002",
+      "description": "Locate. Related: find, target, crosshair, position, center",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:998",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/locate.svg"
+        },
+        "solid": {
+          "id": "5309:1000",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/locate.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "locate"
+    },
+    {
+      "name": "Paste",
+      "figmaName": "Icon/Paste",
+      "kebab": "paste",
+      "setId": "5309:1019",
+      "description": "Paste. Related: clipboard, insert, place, apply",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1015",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/paste.svg"
+        },
+        "solid": {
+          "id": "5309:1017",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/paste.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "paste"
+    },
+    {
+      "name": "Print",
+      "figmaName": "Icon/Print",
+      "kebab": "print",
+      "setId": "5309:1036",
+      "description": "Print. Related: printer, paper, hard copy, output",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1032",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/print.svg"
+        },
+        "solid": {
+          "id": "5309:1034",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/print.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "print"
+    },
+    {
+      "name": "Reboot",
+      "figmaName": "Icon/Reboot",
+      "kebab": "reboot",
+      "setId": "5309:1053",
+      "description": "Reboot. Related: restart, power cycle, reset, reload",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1049",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/reboot.svg"
+        },
+        "solid": {
+          "id": "5309:1051",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/reboot.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "reboot"
+    },
+    {
+      "name": "ScanBarcode",
+      "figmaName": "Icon/ScanBarcode",
+      "kebab": "scan-barcode",
+      "setId": "5309:1070",
+      "description": "Scan barcode. Related: QR, scanner, code, camera, read",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1066",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/scan-barcode.svg"
+        },
+        "solid": {
+          "id": "5309:1068",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/scan-barcode.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "scan-barcode"
+    },
+    {
+      "name": "Send",
+      "figmaName": "Icon/Send",
+      "kebab": "send",
+      "setId": "5309:1087",
+      "description": "Send. Related: submit, paper plane, deliver, message",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1083",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/send.svg"
+        },
+        "solid": {
+          "id": "5309:1085",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/send.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "send"
+    },
+    {
+      "name": "AlignCenter",
+      "figmaName": "Icon/AlignCenter",
+      "kebab": "align-center",
+      "setId": "5309:1104",
+      "description": "Align center. Related: text alignment, middle, formatting, centered",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1100",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/align-center.svg"
+        },
+        "solid": {
+          "id": "5309:1102",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/align-center.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "align-center"
+    },
+    {
+      "name": "AlignLeft",
+      "figmaName": "Icon/AlignLeft",
+      "kebab": "align-left",
+      "setId": "5309:1121",
+      "description": "Align left. Related: text alignment, left, formatting, justify",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1117",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/align-left.svg"
+        },
+        "solid": {
+          "id": "5309:1119",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/align-left.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "align-left"
+    },
+    {
+      "name": "AlignRight",
+      "figmaName": "Icon/AlignRight",
+      "kebab": "align-right",
+      "setId": "5309:1138",
+      "description": "Align right. Related: text alignment, right, formatting",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1134",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/align-right.svg"
+        },
+        "solid": {
+          "id": "5309:1136",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/align-right.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "align-right"
+    },
+    {
+      "name": "AlignJustify",
+      "figmaName": "Icon/AlignJustify",
+      "kebab": "align-justify",
+      "setId": "5309:1155",
+      "description": "Align justify. Related: text alignment, justified, full width, formatting",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1151",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/align-justify.svg"
+        },
+        "solid": {
+          "id": "5309:1153",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/align-justify.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "align-justify"
+    },
+    {
+      "name": "Bold",
+      "figmaName": "Icon/Bold",
+      "kebab": "bold",
+      "setId": "5309:1172",
+      "description": "Bold. Related: text, strong, weight, emphasis, formatting",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1168",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/bold.svg"
+        },
+        "solid": {
+          "id": "5309:1170",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/bold.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "bold"
+    },
+    {
+      "name": "Italic",
+      "figmaName": "Icon/Italic",
+      "kebab": "italic",
+      "setId": "5309:1189",
+      "description": "Italic. Related: text, slanted, emphasis, formatting, oblique",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1185",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/italic.svg"
+        },
+        "solid": {
+          "id": "5309:1187",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/italic.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "italic"
+    },
+    {
+      "name": "Underline",
+      "figmaName": "Icon/Underline",
+      "kebab": "underline",
+      "setId": "5309:1206",
+      "description": "Underline. Related: text, formatting, emphasis, line under",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1202",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/underline.svg"
+        },
+        "solid": {
+          "id": "5309:1204",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/underline.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "underline"
+    },
+    {
+      "name": "Strikethrough",
+      "figmaName": "Icon/Strikethrough",
+      "kebab": "strikethrough",
+      "setId": "5309:1223",
+      "description": "Strikethrough. Related: text, cross out, formatting, delete, line through",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1219",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/strikethrough.svg"
+        },
+        "solid": {
+          "id": "5309:1221",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/strikethrough.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "strikethrough"
+    },
+    {
+      "name": "ListBullet",
+      "figmaName": "Icon/ListBullet",
+      "kebab": "list-bullet",
+      "setId": "5309:1240",
+      "description": "List bullet. Related: unordered list, bullets, items, formatting",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1236",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/list-bullet.svg"
+        },
+        "solid": {
+          "id": "5309:1238",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/list-bullet.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "list-bullet"
+    },
+    {
+      "name": "ListNumbered",
+      "figmaName": "Icon/ListNumbered",
+      "kebab": "list-numbered",
+      "setId": "5309:1257",
+      "description": "List numbered. Related: ordered list, numbers, steps, formatting",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5309:1253",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/list-numbered.svg"
+        },
+        "solid": {
+          "id": "5309:1255",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/list-numbered.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "list-numbered"
+    },
+    {
+      "name": "Sparkling",
+      "figmaName": "Icon/Sparkling",
+      "kebab": "sparkling",
+      "setId": "5425:594",
+      "description": "Sparkling. Related: AI, magic, stars, generate, smart, assistant",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5425:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/sparkling.svg"
+        },
+        "solid": {
+          "id": "5425:592",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/sparkling.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "sparkling"
+    },
+    {
+      "name": "Increment",
+      "figmaName": "Icon/Increment",
+      "kebab": "increment",
+      "setId": "5316:917",
+      "description": "Increment. Related: increase, step up, plus, stepper, more",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:913",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/increment.svg"
+        },
+        "solid": {
+          "id": "5316:915",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/increment.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "increment"
+    },
+    {
+      "name": "Decrement",
+      "figmaName": "Icon/Decrement",
+      "kebab": "decrement",
+      "setId": "5316:900",
+      "description": "Decrement. Related: decrease, step down, minus, stepper, less",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:896",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/decrement.svg"
+        },
+        "solid": {
+          "id": "5316:898",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/decrement.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "decrement"
+    },
+    {
+      "name": "Preset",
+      "figmaName": "Icon/Preset",
+      "kebab": "preset",
+      "setId": "5317:696",
+      "description": "Preset. Related: template, saved settings, configuration, recall",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:692",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/preset.svg"
+        },
+        "solid": {
+          "id": "5317:694",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/preset.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "preset"
+    },
+    {
+      "name": "Cursor",
+      "figmaName": "Icon/Cursor",
+      "kebab": "cursor",
+      "setId": "5315:713",
+      "description": "Cursor. Related: pointer, select, arrow, mouse, click",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:709",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/cursor.svg"
+        },
+        "solid": {
+          "id": "5315:711",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/cursor.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "cursor"
+    },
+    {
+      "name": "Move",
+      "figmaName": "Icon/Move",
+      "kebab": "move",
+      "setId": "5315:866",
+      "description": "Move. Related: drag, reposition, arrows, translate, relocate",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:862",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/move.svg"
+        },
+        "solid": {
+          "id": "5315:864",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/move.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "move"
+    },
+    {
+      "name": "Pan",
+      "figmaName": "Icon/Pan",
+      "kebab": "pan",
+      "setId": "5315:900",
+      "description": "Pan. Related: hand, drag view, navigate, scroll, grab",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:896",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/pan.svg"
+        },
+        "solid": {
+          "id": "5315:898",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/pan.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "pan"
+    },
+    {
+      "name": "Rotate",
+      "figmaName": "Icon/Rotate",
+      "kebab": "rotate",
+      "setId": "5315:951",
+      "description": "Rotate. Related: turn, spin, angle, orientation, transform",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:947",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/rotate.svg"
+        },
+        "solid": {
+          "id": "5315:949",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/rotate.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "rotate"
+    },
+    {
+      "name": "Snap",
+      "figmaName": "Icon/Snap",
+      "kebab": "snap",
+      "setId": "5315:985",
+      "description": "Snap. Related: magnet, align, grid snap, attach, guides",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:981",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/snap.svg"
+        },
+        "solid": {
+          "id": "5315:983",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/snap.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "snap"
+    },
+    {
+      "name": "Measure",
+      "figmaName": "Icon/Measure",
+      "kebab": "measure",
+      "setId": "5315:849",
+      "description": "Measure. Related: ruler, dimensions, distance, size, units",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:845",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/measure.svg"
+        },
+        "solid": {
+          "id": "5315:847",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/measure.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "measure"
+    },
+    {
+      "name": "GridToggle",
+      "figmaName": "Icon/GridToggle",
+      "kebab": "grid-toggle",
+      "setId": "5315:815",
+      "description": "Grid toggle. Related: grid, show grid, layout, guides, canvas",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:811",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/grid-toggle.svg"
+        },
+        "solid": {
+          "id": "5315:813",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/grid-toggle.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "grid-toggle"
+    },
+    {
+      "name": "PowerButton",
+      "figmaName": "Icon/PowerButton",
+      "kebab": "power-button",
+      "setId": "6293:584",
+      "description": "Power button. Related: power, on off, standby, shut down, switch, boot, IEC 5009",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6293:578",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/power-button.svg"
+        },
+        "solid": {
+          "id": "6293:581",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/power-button.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "power-button"
+    },
+    {
+      "name": "Transform",
+      "figmaName": "Icon/Transform",
+      "kebab": "transform",
+      "setId": "6380:584",
+      "description": "Transform. Related: resize, scale, adjust, move points, modify",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6380:580",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/transform.svg"
+        },
+        "solid": {
+          "id": "6380:583",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/transform.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "transform"
+    },
+    {
+      "name": "Ungroup",
+      "figmaName": "Icon/Ungroup",
+      "kebab": "ungroup",
+      "setId": "6380:591",
+      "description": "Ungroup. Related: group, separate, break apart, split, release",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6380:587",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/ungroup.svg"
+        },
+        "solid": {
+          "id": "6380:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/ungroup.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "ungroup"
+    },
+    {
+      "name": "Tune",
+      "figmaName": "Icon/Tune",
+      "kebab": "tune",
+      "setId": "6380:598",
+      "description": "Tune. Related: adjust, sliders, equalizer, fine-tune, tweak, settings",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6380:594",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/tune.svg"
+        },
+        "solid": {
+          "id": "6380:597",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/tune.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "tune"
+    },
+    {
+      "name": "Design",
+      "figmaName": "Icon/Design",
+      "kebab": "design",
+      "setId": "6380:605",
+      "description": "Design. Related: design mode, tools, pencil, ruler, edit, build",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6380:601",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/design.svg"
+        },
+        "solid": {
+          "id": "6380:604",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "#111111"
+          ],
+          "file": "svg/solid/design.svg"
+        }
+      },
+      "issues": [
+        "solid fill is hard-coded #111111"
+      ],
+      "fileStem": "design"
+    },
+    {
+      "name": "Palette",
+      "figmaName": "Icon/Palette",
+      "kebab": "palette",
+      "setId": "6382:584",
+      "description": "Palette. Related: color palette, theme, paint, swatches, appearance",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6382:580",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/palette.svg"
+        },
+        "solid": {
+          "id": "6382:583",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/palette.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "palette"
+    },
+    {
+      "name": "Fill",
+      "figmaName": "Icon/Fill",
+      "kebab": "fill",
+      "setId": "6382:591",
+      "description": "Fill. Related: paint bucket, fill color, background, flood fill",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6382:587",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/fill.svg"
+        },
+        "solid": {
+          "id": "6382:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/fill.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "fill"
+    },
+    {
+      "name": "Gradient",
+      "figmaName": "Icon/Gradient",
+      "kebab": "gradient",
+      "setId": "6382:598",
+      "description": "Gradient. Related: fade, transparency, checkerboard, color blend",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6382:594",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/gradient.svg"
+        },
+        "solid": {
+          "id": "6382:597",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/gradient.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "gradient"
+    },
+    {
+      "name": "SelectAll",
+      "figmaName": "Icon/SelectAll",
+      "kebab": "select-all",
+      "setId": "6382:605",
+      "description": "Select all. Related: selection, marquee, dashed, multiple, everything",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6382:601",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/select-all.svg"
+        },
+        "solid": {
+          "id": "6382:604",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/select-all.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "select-all"
+    },
+    {
+      "name": "AlignObjectLeft",
+      "figmaName": "Icon/AlignObjectLeft",
+      "kebab": "align-object-left",
+      "setId": "6385:590",
+      "description": "Align object left. Related: alignment, canvas, distribute, layout, left edge",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6385:583",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/align-object-left.svg"
+        },
+        "solid": {
+          "id": "6385:589",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/align-object-left.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "align-object-left"
+    },
+    {
+      "name": "AlignObjectCenter",
+      "figmaName": "Icon/AlignObjectCenter",
+      "kebab": "align-object-center",
+      "setId": "6385:605",
+      "description": "Align object center. Related: alignment, horizontal center, canvas, layout",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6385:597",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/align-object-center.svg"
+        },
+        "solid": {
+          "id": "6385:604",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/align-object-center.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "align-object-center"
+    },
+    {
+      "name": "AlignObjectRight",
+      "figmaName": "Icon/AlignObjectRight",
+      "kebab": "align-object-right",
+      "setId": "6385:618",
+      "description": "Align object right. Related: alignment, canvas, layout, right edge",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6385:611",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/align-object-right.svg"
+        },
+        "solid": {
+          "id": "6385:617",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/align-object-right.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "align-object-right"
+    },
+    {
+      "name": "AlignObjectTop",
+      "figmaName": "Icon/AlignObjectTop",
+      "kebab": "align-object-top",
+      "setId": "6385:631",
+      "description": "Align object top. Related: alignment, canvas, layout, top edge",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6385:624",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/align-object-top.svg"
+        },
+        "solid": {
+          "id": "6385:630",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/align-object-top.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "align-object-top"
+    },
+    {
+      "name": "AlignObjectMiddle",
+      "figmaName": "Icon/AlignObjectMiddle",
+      "kebab": "align-object-middle",
+      "setId": "6385:646",
+      "description": "Align object middle. Related: alignment, vertical center, canvas, layout",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6385:638",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/align-object-middle.svg"
+        },
+        "solid": {
+          "id": "6385:645",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/align-object-middle.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "align-object-middle"
+    },
+    {
+      "name": "AlignObjectBottom",
+      "figmaName": "Icon/AlignObjectBottom",
+      "kebab": "align-object-bottom",
+      "setId": "6385:659",
+      "description": "Align object bottom. Related: alignment, canvas, layout, bottom edge",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6385:652",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/align-object-bottom.svg"
+        },
+        "solid": {
+          "id": "6385:658",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/align-object-bottom.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "align-object-bottom"
+    }
+  ],
+  "looseComponents": []
+}

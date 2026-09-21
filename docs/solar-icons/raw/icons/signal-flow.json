@@ -1,0 +1,986 @@
+{
+  "page": "Signal Flow",
+  "pageId": "5586:578",
+  "kind": "icons",
+  "slug": "signal-flow",
+  "icons": [
+    {
+      "name": "InputOutputBlock",
+      "figmaName": "Icon/InputOutputBlock",
+      "kebab": "input-output-block",
+      "setId": "5316:662",
+      "description": "Input output block. Related: I/O, signal, DSP block, node, source, sink",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:658",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/input-output-block.svg"
+        },
+        "solid": {
+          "id": "5316:660",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/input-output-block.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "input-output-block"
+    },
+    {
+      "name": "MixerBlock",
+      "figmaName": "Icon/MixerBlock",
+      "kebab": "mixer-block",
+      "setId": "5316:730",
+      "description": "Mixer block. Related: mixing, DSP, levels, node, combine",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:726",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/mixer-block.svg"
+        },
+        "solid": {
+          "id": "5316:728",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/mixer-block.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "mixer-block"
+    },
+    {
+      "name": "ProcessBlock",
+      "figmaName": "Icon/ProcessBlock",
+      "kebab": "process-block",
+      "setId": "5316:815",
+      "description": "Process block. Related: processing, DSP, effect, node, transform",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:811",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/process-block.svg"
+        },
+        "solid": {
+          "id": "5316:813",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/process-block.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "process-block"
+    },
+    {
+      "name": "RouteBlock",
+      "figmaName": "Icon/RouteBlock",
+      "kebab": "route-block",
+      "setId": "5316:832",
+      "description": "Route block. Related: routing, path, DSP, node, switch, matrix",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:828",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/route-block.svg"
+        },
+        "solid": {
+          "id": "5316:830",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/route-block.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "route-block"
+    },
+    {
+      "name": "LogicBlock",
+      "figmaName": "Icon/LogicBlock",
+      "kebab": "logic-block",
+      "setId": "5316:679",
+      "description": "Logic block. Related: logic, condition, DSP, node, gate, control",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:675",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/logic-block.svg"
+        },
+        "solid": {
+          "id": "5316:677",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/logic-block.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "logic-block"
+    },
+    {
+      "name": "NodeDesigner",
+      "figmaName": "Icon/NodeDesigner",
+      "kebab": "node-designer",
+      "setId": "5316:934",
+      "description": "Node designer. Related: node editor, graph, canvas, signal flow, patch",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:930",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/node-designer.svg"
+        },
+        "solid": {
+          "id": "5316:932",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/node-designer.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "node-designer"
+    },
+    {
+      "name": "PortInput",
+      "figmaName": "Icon/PortInput",
+      "kebab": "port-input",
+      "setId": "5316:985",
+      "description": "Port input. Related: input, connector, socket, signal in, terminal",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:981",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/port-input.svg"
+        },
+        "solid": {
+          "id": "5316:983",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/port-input.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "port-input"
+    },
+    {
+      "name": "PortOutput",
+      "figmaName": "Icon/PortOutput",
+      "kebab": "port-output",
+      "setId": "5316:1002",
+      "description": "Port output. Related: output, connector, socket, signal out, terminal",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:998",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/port-output.svg"
+        },
+        "solid": {
+          "id": "5316:1000",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/port-output.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "port-output"
+    },
+    {
+      "name": "Wire",
+      "figmaName": "Icon/Wire",
+      "kebab": "wire",
+      "setId": "5316:1087",
+      "description": "Wire. Related: cable, connection, link, signal path, patch cord",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:1083",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/wire.svg"
+        },
+        "solid": {
+          "id": "5316:1085",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/wire.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "wire"
+    },
+    {
+      "name": "Binding",
+      "figmaName": "Icon/Binding",
+      "kebab": "binding",
+      "setId": "5316:883",
+      "description": "Binding. Related: bind, link, connect, mapping, association",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:879",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/binding.svg"
+        },
+        "solid": {
+          "id": "5316:881",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/binding.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "binding"
+    },
+    {
+      "name": "UIBuilder",
+      "figmaName": "Icon/UIBuilder",
+      "kebab": "ui-builder",
+      "setId": "5316:1053",
+      "description": "UI builder. Related: interface builder, layout editor, design, canvas",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:1049",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/ui-builder.svg"
+        },
+        "solid": {
+          "id": "5316:1051",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/ui-builder.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "ui-builder"
+    },
+    {
+      "name": "UIOnly",
+      "figmaName": "Icon/UIOnly",
+      "kebab": "ui-only",
+      "setId": "5316:1070",
+      "description": "UI only. Related: interface, view mode, display, presentation",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:1066",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/ui-only.svg"
+        },
+        "solid": {
+          "id": "5316:1068",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/ui-only.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "ui-only"
+    },
+    {
+      "name": "Preview",
+      "figmaName": "Icon/Preview",
+      "kebab": "preview",
+      "setId": "5316:1019",
+      "description": "Preview. Related: view, run, test, simulate, playback",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:1015",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/preview.svg"
+        },
+        "solid": {
+          "id": "5316:1017",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/preview.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "preview"
+    },
+    {
+      "name": "TouchPanel",
+      "figmaName": "Icon/TouchPanel",
+      "kebab": "touch-panel",
+      "setId": "5316:1036",
+      "description": "Touch panel. Related: touchscreen, control panel, wall panel, display",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:1032",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/touch-panel.svg"
+        },
+        "solid": {
+          "id": "5316:1034",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/touch-panel.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "touch-panel"
+    },
+    {
+      "name": "IfThen",
+      "figmaName": "Icon/IfThen",
+      "kebab": "if-then",
+      "setId": "6377:584",
+      "description": "If then. Related: condition, logic, branch, rule, control flow",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:580",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/if-then.svg"
+        },
+        "solid": {
+          "id": "6377:583",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/if-then.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "if-then"
+    },
+    {
+      "name": "Event",
+      "figmaName": "Icon/Event",
+      "kebab": "event",
+      "setId": "6377:591",
+      "description": "Event. Related: trigger, calendar, add event, occurrence, control logic, when",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:587",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/event.svg"
+        },
+        "solid": {
+          "id": "6377:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/event.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "event"
+    },
+    {
+      "name": "Sequence",
+      "figmaName": "Icon/Sequence",
+      "kebab": "sequence",
+      "setId": "6377:598",
+      "description": "Sequence. Related: steps, order, chain, series, control logic",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:594",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/sequence.svg"
+        },
+        "solid": {
+          "id": "6377:597",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/sequence.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "sequence"
+    },
+    {
+      "name": "ExclusiveSelect",
+      "figmaName": "Icon/ExclusiveSelect",
+      "kebab": "exclusive-select",
+      "setId": "6377:605",
+      "description": "Exclusive select. Related: radio, single choice, signal, active source, one of many, selected",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:601",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/exclusive-select.svg"
+        },
+        "solid": {
+          "id": "6377:604",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/exclusive-select.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "exclusive-select"
+    },
+    {
+      "name": "Threshold",
+      "figmaName": "Icon/Threshold",
+      "kebab": "threshold",
+      "setId": "6379:584",
+      "description": "Threshold. Related: limit, trigger level, cutoff, control logic",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6379:580",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/threshold.svg"
+        },
+        "solid": {
+          "id": "6379:583",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/threshold.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "threshold"
+    },
+    {
+      "name": "PassIn",
+      "figmaName": "Icon/PassIn",
+      "kebab": "pass-in",
+      "setId": "6379:591",
+      "description": "Pass in. Related: input, signal in, pass-through, enter",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6379:587",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/pass-in.svg"
+        },
+        "solid": {
+          "id": "6379:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/pass-in.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "pass-in"
+    },
+    {
+      "name": "PassOut",
+      "figmaName": "Icon/PassOut",
+      "kebab": "pass-out",
+      "setId": "6379:604",
+      "description": "Pass out. Related: output, signal out, pass-through, exit",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6379:597",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/pass-out.svg"
+        },
+        "solid": {
+          "id": "6379:603",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/pass-out.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "pass-out"
+    },
+    {
+      "name": "RouterSplit",
+      "figmaName": "Icon/RouterSplit",
+      "kebab": "router-split",
+      "setId": "6379:611",
+      "description": "Router split. Related: split, branch, route, distribute, fork",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6379:607",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/router-split.svg"
+        },
+        "solid": {
+          "id": "6379:610",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/router-split.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "router-split"
+    },
+    {
+      "name": "Momentary",
+      "figmaName": "Icon/Momentary",
+      "kebab": "momentary",
+      "setId": "6383:584",
+      "description": "Momentary. Related: press and hold, burst, temporary, button behavior",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6383:580",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/momentary.svg"
+        },
+        "solid": {
+          "id": "6383:583",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/momentary.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "momentary"
+    },
+    {
+      "name": "ButtonControl",
+      "figmaName": "Icon/ButtonControl",
+      "kebab": "button-control",
+      "setId": "6383:591",
+      "description": "Button control. Related: toggle, UI control, press, interactive element, button",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6383:587",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/button-control.svg"
+        },
+        "solid": {
+          "id": "6383:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "#111111"
+          ],
+          "file": "svg/solid/button-control.svg"
+        }
+      },
+      "issues": [
+        "solid fill is hard-coded #111111"
+      ],
+      "fileStem": "button-control"
+    },
+    {
+      "name": "SourceSelector",
+      "figmaName": "Icon/SourceSelector",
+      "kebab": "source-selector",
+      "setId": "6383:598",
+      "description": "Source selector. Related: input select, sources, switch, chooser",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6383:594",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/source-selector.svg"
+        },
+        "solid": {
+          "id": "6383:597",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/source-selector.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "source-selector"
+    }
+  ],
+  "looseComponents": []
+}

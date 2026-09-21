@@ -1,0 +1,360 @@
+{
+  "page": "Dev & Code",
+  "pageId": "5224:586",
+  "kind": "icons",
+  "slug": "dev-code",
+  "icons": [
+    {
+      "name": "Code",
+      "figmaName": "Icon/Code",
+      "kebab": "code",
+      "setId": "5310:2226",
+      "description": "Code. Related: development, programming, brackets, source, markup",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2222",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/code.svg"
+        },
+        "solid": {
+          "id": "5310:2224",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/code.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "code"
+    },
+    {
+      "name": "FileCode",
+      "figmaName": "Icon/FileCode",
+      "kebab": "file-code",
+      "setId": "5310:2260",
+      "description": "File code. Related: source file, script, document, programming",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2256",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/file-code.svg"
+        },
+        "solid": {
+          "id": "5310:2258",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/file-code.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "file-code"
+    },
+    {
+      "name": "GitBranch",
+      "figmaName": "Icon/GitBranch",
+      "kebab": "git-branch",
+      "setId": "5310:2277",
+      "description": "Git branch. Related: version control, fork, branching, repository",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2273",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/git-branch.svg"
+        },
+        "solid": {
+          "id": "5310:2275",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/git-branch.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "git-branch"
+    },
+    {
+      "name": "GitCommit",
+      "figmaName": "Icon/GitCommit",
+      "kebab": "git-commit",
+      "setId": "5310:2294",
+      "description": "Git commit. Related: version control, save, checkpoint, repository",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2290",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/git-commit.svg"
+        },
+        "solid": {
+          "id": "5310:2292",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/git-commit.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "git-commit"
+    },
+    {
+      "name": "GitMerge",
+      "figmaName": "Icon/GitMerge",
+      "kebab": "git-merge",
+      "setId": "5310:2311",
+      "description": "Git merge. Related: version control, combine, join, repository",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2307",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/git-merge.svg"
+        },
+        "solid": {
+          "id": "5310:2309",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/git-merge.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "git-merge"
+    },
+    {
+      "name": "GitPullRequest",
+      "figmaName": "Icon/GitPullRequest",
+      "kebab": "git-pull-request",
+      "setId": "5310:2328",
+      "description": "Git pull request. Related: version control, PR, review, merge request",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2324",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/git-pull-request.svg"
+        },
+        "solid": {
+          "id": "5310:2326",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/git-pull-request.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "git-pull-request"
+    },
+    {
+      "name": "Terminal",
+      "figmaName": "Icon/Terminal",
+      "kebab": "terminal",
+      "setId": "5310:2345",
+      "description": "Terminal. Related: console, command line, CLI, shell, prompt",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:2341",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/terminal.svg"
+        },
+        "solid": {
+          "id": "5310:2343",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/terminal.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "terminal"
+    },
+    {
+      "name": "Javascript",
+      "figmaName": "Icon/Javascript",
+      "kebab": "javascript",
+      "setId": "6377:658",
+      "description": "JavaScript. Related: JS, script, code, programming, custom logic",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:654",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/javascript.svg"
+        },
+        "solid": {
+          "id": "6377:657",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/javascript.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "javascript"
+    },
+    {
+      "name": "Variable",
+      "figmaName": "Icon/Variable",
+      "kebab": "variable",
+      "setId": "6377:665",
+      "description": "Variable. Related: function, fx, formula, value, expression",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6377:661",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/variable.svg"
+        },
+        "solid": {
+          "id": "6377:664",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/variable.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "variable"
+    }
+  ],
+  "looseComponents": []
+}

@@ -23,7 +23,7 @@ npm run build
 ```
 
 Other root scripts: `npm run lint`, `npm run typecheck`, `npm run format`,
-`npm run solar:sync` to refresh the SOLAR Foundations and SOLAR Web references from Figma,
+`npm run solar:sync` to refresh the SOLAR Foundations, Web and Icons references from Figma,
 and `npm run solar:tokens` to rebuild the derived Foundations token files. The whole SOLAR
 documentation and data pipeline is described in [docs/README.md](./docs/README.md).
 

@@ -1,0 +1,867 @@
+{
+  "page": "Location",
+  "pageId": "5224:588",
+  "kind": "icons",
+  "slug": "location",
+  "icons": [
+    {
+      "name": "Building",
+      "figmaName": "Icon/Building",
+      "kebab": "building",
+      "setId": "5314:781",
+      "description": "Building. Related: office, structure, property, facility, premises",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:777",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/building.svg"
+        },
+        "solid": {
+          "id": "5314:779",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/building.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "building"
+    },
+    {
+      "name": "Location",
+      "figmaName": "Icon/Location",
+      "kebab": "location",
+      "setId": "5314:798",
+      "description": "Location. Related: pin, marker, place, position, GPS, point",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:794",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/location.svg"
+        },
+        "solid": {
+          "id": "5314:796",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/location.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "location"
+    },
+    {
+      "name": "Map",
+      "figmaName": "Icon/Map",
+      "kebab": "map",
+      "setId": "5314:815",
+      "description": "Map. Related: site, plan, navigation, geography, wayfinding",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5314:811",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/map.svg"
+        },
+        "solid": {
+          "id": "5314:813",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/map.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "map"
+    },
+    {
+      "name": "Region",
+      "figmaName": "Icon/Region",
+      "kebab": "region",
+      "setId": "5396:586",
+      "description": "Region. Related: area, territory, district, geography, zone",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5396:584",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/region.svg"
+        },
+        "solid": {
+          "id": "5396:585",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/region.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "region"
+    },
+    {
+      "name": "Campus",
+      "figmaName": "Icon/Campus",
+      "kebab": "campus",
+      "setId": "5396:604",
+      "description": "Campus. Related: site, grounds, buildings, complex, headquarters",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5396:602",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/campus.svg"
+        },
+        "solid": {
+          "id": "5396:603",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/campus.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "campus"
+    },
+    {
+      "name": "Floor",
+      "figmaName": "Icon/Floor",
+      "kebab": "floor",
+      "setId": "5396:613",
+      "description": "Floor. Related: level, storey, story, ground, elevation",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5396:611",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/floor.svg"
+        },
+        "solid": {
+          "id": "5396:612",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/floor.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "floor"
+    },
+    {
+      "name": "Zone",
+      "figmaName": "Icon/Zone",
+      "kebab": "zone",
+      "setId": "5396:622",
+      "description": "Zone. Related: sector, region, boundary",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5396:620",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/zone.svg"
+        },
+        "solid": {
+          "id": "5396:621",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/zone.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "zone"
+    },
+    {
+      "name": "Room",
+      "figmaName": "Icon/Room",
+      "kebab": "room",
+      "setId": "5396:631",
+      "description": "Room. Related: space, area, enclosure, meeting, office",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5396:629",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/room.svg"
+        },
+        "solid": {
+          "id": "5396:630",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/room.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "room"
+    },
+    {
+      "name": "Desk",
+      "figmaName": "Icon/Desk",
+      "kebab": "desk",
+      "setId": "5396:640",
+      "description": "Desk. Related: workstation, workspace, table, hot desk, office",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5396:638",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/desk.svg"
+        },
+        "solid": {
+          "id": "5396:639",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/desk.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "desk"
+    },
+    {
+      "name": "MeetingRoom",
+      "figmaName": "Icon/MeetingRoom",
+      "kebab": "meeting-room",
+      "setId": "5396:649",
+      "description": "Meeting room. Related: conference room, boardroom, huddle, space, booking",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5396:647",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/meeting-room.svg"
+        },
+        "solid": {
+          "id": "5396:648",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/meeting-room.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "meeting-room"
+    },
+    {
+      "name": "HuddleRoom",
+      "figmaName": "Icon/HuddleRoom",
+      "kebab": "huddle-room",
+      "setId": "5396:658",
+      "description": "Huddle room. Related: small meeting room, focus room, space, booking",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5396:656",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/huddle-room.svg"
+        },
+        "solid": {
+          "id": "5396:657",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/huddle-room.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "huddle-room"
+    },
+    {
+      "name": "PhoneBooth",
+      "figmaName": "Icon/PhoneBooth",
+      "kebab": "phone-booth",
+      "setId": "5396:667",
+      "description": "Phone booth. Related: call booth, focus pod, quiet room, privacy",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5396:665",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/phone-booth.svg"
+        },
+        "solid": {
+          "id": "5396:666",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/phone-booth.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "phone-booth"
+    },
+    {
+      "name": "Parking",
+      "figmaName": "Icon/Parking",
+      "kebab": "parking",
+      "setId": "5396:676",
+      "description": "Parking. Related: car, garage, lot, vehicle, space",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5396:674",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/parking.svg"
+        },
+        "solid": {
+          "id": "5396:675",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/parking.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "parking"
+    },
+    {
+      "name": "Locker",
+      "figmaName": "Icon/Locker",
+      "kebab": "locker",
+      "setId": "5396:685",
+      "description": "Locker. Related: storage, cabinet, secure, personal, belongings",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5396:683",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/locker.svg"
+        },
+        "solid": {
+          "id": "5396:684",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/locker.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "locker"
+    },
+    {
+      "name": "Mug",
+      "figmaName": "Icon/Mug",
+      "kebab": "mug",
+      "setId": "5857:610",
+      "description": "Mug. Related: coffee, cup, kitchen, break room, beverage, tea",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5857:604",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/mug.svg"
+        },
+        "solid": {
+          "id": "5857:607",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/mug.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "mug"
+    },
+    {
+      "name": "Water",
+      "figmaName": "Icon/Water",
+      "kebab": "water",
+      "setId": "5857:643",
+      "description": "Water. Related: drink, hydration, tap, refill, drop, fountain",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5857:637",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/water.svg"
+        },
+        "solid": {
+          "id": "5857:640",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/water.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "water"
+    },
+    {
+      "name": "Accessibility",
+      "figmaName": "Icon/Accessibility",
+      "kebab": "accessibility",
+      "setId": "5857:676",
+      "description": "Accessibility. Related: wheelchair, accessible, a11y, disability, inclusive",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5857:670",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/accessibility.svg"
+        },
+        "solid": {
+          "id": "5857:673",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/accessibility.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "accessibility"
+    },
+    {
+      "name": "Bike",
+      "figmaName": "Icon/Bike",
+      "kebab": "bike",
+      "setId": "5858:643",
+      "description": "Bike. Related: bicycle, cycling, bike parking, commute, ride",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5858:637",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/bike.svg"
+        },
+        "solid": {
+          "id": "5858:640",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/bike.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "bike"
+    },
+    {
+      "name": "Motorbike",
+      "figmaName": "Icon/Motorbike",
+      "kebab": "motorbike",
+      "setId": "5858:676",
+      "description": "Motorbike. Related: motorcycle, scooter, moped, parking, commute",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5858:670",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/motorbike.svg"
+        },
+        "solid": {
+          "id": "5858:673",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/motorbike.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "motorbike"
+    },
+    {
+      "name": "Area",
+      "figmaName": "Icon/Area",
+      "kebab": "area",
+      "setId": "6303:639",
+      "description": "Area. Related: area, constrain, points, edit points",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6303:640",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/area.svg"
+        },
+        "solid": {
+          "id": "6303:642",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/area.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "area"
+    },
+    {
+      "name": "Section",
+      "figmaName": "Icon/Section",
+      "kebab": "section",
+      "setId": "6303:665",
+      "description": "Section. Related: grid, mixer, square, four",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6303:666",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/section.svg"
+        },
+        "solid": {
+          "id": "6303:668",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/section.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "section"
+    },
+    {
+      "name": "Car",
+      "figmaName": "Icon/Car",
+      "kebab": "car",
+      "setId": "6327:591",
+      "description": "Car. Related: vehicle, automobile, parking, driving, commute, transport",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6327:587",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/car.svg"
+        },
+        "solid": {
+          "id": "6327:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/car.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "car"
+    }
+  ],
+  "looseComponents": []
+}

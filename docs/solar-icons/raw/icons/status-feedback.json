@@ -1,0 +1,663 @@
+{
+  "page": "Status & Feedback",
+  "pageId": "5224:580",
+  "kind": "icons",
+  "slug": "status-feedback",
+  "icons": [
+    {
+      "name": "Danger",
+      "figmaName": "Icon/Danger",
+      "kebab": "danger",
+      "setId": "5310:594",
+      "description": "Danger. Related: error, critical, alert, failure, destructive",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/danger.svg"
+        },
+        "solid": {
+          "id": "5310:592",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/danger.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "danger"
+    },
+    {
+      "name": "Empty",
+      "figmaName": "Icon/Empty",
+      "kebab": "empty",
+      "setId": "5310:611",
+      "description": "Empty. Related: empty state, no data, placeholder, blank, zero, inbox",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:607",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/empty.svg"
+        },
+        "solid": {
+          "id": "5310:609",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/empty.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "empty"
+    },
+    {
+      "name": "HelpCircle",
+      "figmaName": "Icon/HelpCircle",
+      "kebab": "help-circle",
+      "setId": "5310:628",
+      "description": "Help circle. Related: help, question, support, FAQ, assist",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:624",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/help-circle.svg"
+        },
+        "solid": {
+          "id": "5310:626",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/help-circle.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "help-circle"
+    },
+    {
+      "name": "Info",
+      "figmaName": "Icon/Info",
+      "kebab": "info",
+      "setId": "5310:645",
+      "description": "Info. Related: information, details, about, notice, tooltip",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:641",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/info.svg"
+        },
+        "solid": {
+          "id": "5310:643",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/info.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "info"
+    },
+    {
+      "name": "Loader",
+      "figmaName": "Icon/Loader",
+      "kebab": "loader",
+      "setId": "5310:662",
+      "description": "Loader. Related: loading, spinner, wait, busy, in progress",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:658",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/loader.svg"
+        },
+        "solid": {
+          "id": "5310:660",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/loader.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "loader"
+    },
+    {
+      "name": "None",
+      "figmaName": "Icon/None",
+      "kebab": "none",
+      "setId": "5310:679",
+      "description": "None. Related: nothing, null, dash, unavailable, not set",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:675",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/none.svg"
+        },
+        "solid": {
+          "id": "5310:677",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/none.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "none"
+    },
+    {
+      "name": "Success",
+      "figmaName": "Icon/Success",
+      "kebab": "success",
+      "setId": "5310:696",
+      "description": "Success. Related: check circle, done, complete, positive, confirmation",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:692",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/success.svg"
+        },
+        "solid": {
+          "id": "5310:694",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/success.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "success"
+    },
+    {
+      "name": "Warning",
+      "figmaName": "Icon/Warning",
+      "kebab": "warning",
+      "setId": "5310:713",
+      "description": "Warning. Related: caution, alert, attention, triangle, risk",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:709",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/warning.svg"
+        },
+        "solid": {
+          "id": "5310:711",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/warning.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "warning"
+    },
+    {
+      "name": "Priority",
+      "figmaName": "Icon/Priority",
+      "kebab": "priority",
+      "setId": "5310:730",
+      "description": "Priority. Related: importance, urgent, flag, rank, level",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:726",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/priority.svg"
+        },
+        "solid": {
+          "id": "5310:728",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/priority.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "priority"
+    },
+    {
+      "name": "Progress",
+      "figmaName": "Icon/Progress",
+      "kebab": "progress",
+      "setId": "5310:747",
+      "description": "Progress. Related: status, ongoing, percent, advancement, partial",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:743",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/progress.svg"
+        },
+        "solid": {
+          "id": "5310:745",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/progress.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "progress"
+    },
+    {
+      "name": "Support",
+      "figmaName": "Icon/Support",
+      "kebab": "support",
+      "setId": "5482:618",
+      "description": "Support. Related: help, assistance, headset, customer service, contact",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "solid": {
+          "id": "5482:616",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/support.svg"
+        }
+      },
+      "issues": [
+        "Duplicate variant solid",
+        "Missing outline variant (solid=false)"
+      ],
+      "fileStem": "support"
+    },
+    {
+      "name": "GoLive",
+      "figmaName": "Icon/GoLive",
+      "kebab": "go-live",
+      "setId": "5317:628",
+      "description": "Go live. Related: live, broadcast, publish, on air, launch",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:624",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/go-live.svg"
+        },
+        "solid": {
+          "id": "5317:626",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/go-live.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "go-live"
+    },
+    {
+      "name": "RecordingIndicator",
+      "figmaName": "Icon/RecordingIndicator",
+      "kebab": "recording-indicator",
+      "setId": "5317:713",
+      "description": "Recording indicator. Related: recording, REC, live, red dot, capture",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:709",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/recording-indicator.svg"
+        },
+        "solid": {
+          "id": "5317:711",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/recording-indicator.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "recording-indicator"
+    },
+    {
+      "name": "AlarmWarning",
+      "figmaName": "Icon/AlarmWarning",
+      "kebab": "alarm-warning",
+      "setId": "6327:584",
+      "description": "Alarm warning. Related: siren, emergency, alarm, alert, warning light, incident",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6327:580",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/alarm-warning.svg"
+        },
+        "solid": {
+          "id": "6327:583",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/alarm-warning.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "alarm-warning"
+    },
+    {
+      "name": "Unconfigured",
+      "figmaName": "Icon/Unconfigured",
+      "kebab": "unconfigured",
+      "setId": "6375:596",
+      "description": "Unconfigured. Related: not configured, setup required, settings off, no configuration, unprovisioned, needs setup",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6375:586",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/unconfigured.svg"
+        },
+        "solid": {
+          "id": "6375:595",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/unconfigured.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "unconfigured"
+    },
+    {
+      "name": "Infinity",
+      "figmaName": "Icon/Infinity",
+      "kebab": "infinity",
+      "setId": "6378:584",
+      "description": "Infinity. Related: all, unlimited, endless, no limit, loop",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6378:580",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/infinity.svg"
+        },
+        "solid": {
+          "id": "6378:583",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/infinity.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "infinity"
+    },
+    {
+      "name": "NoResults",
+      "figmaName": "Icon/NoResults",
+      "kebab": "no-results",
+      "setId": "6378:591",
+      "description": "No results. Related: empty search, not found, no matches, zero results",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6378:587",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/no-results.svg"
+        },
+        "solid": {
+          "id": "6378:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/no-results.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "no-results"
+    }
+  ],
+  "looseComponents": []
+}

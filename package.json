@@ -12,11 +12,12 @@
     "format": "turbo run format --continue",
     "format:fix": "turbo run format -- --write",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
-    "solar:sync": "npm run solar:foundations && npm run solar:web",
+    "solar:sync": "npm run solar:foundations && npm run solar:web && npm run solar:icons",
     "solar:foundations": "node docs/solar/raw/fetch-rest.mjs && node docs/solar/build-docs.mjs",
     "solar:web": "node docs/solar-web/raw/fetch-rest.mjs && node docs/solar-web/build-docs.mjs",
-    "solar:fetch": "node docs/solar/raw/fetch-rest.mjs && node docs/solar-web/raw/fetch-rest.mjs",
-    "solar:docs": "node docs/solar/build-docs.mjs && node docs/solar-web/build-docs.mjs",
+    "solar:icons": "node docs/solar-icons/raw/fetch-rest.mjs && node docs/solar-icons/build-docs.mjs",
+    "solar:fetch": "node docs/solar/raw/fetch-rest.mjs && node docs/solar-web/raw/fetch-rest.mjs && node docs/solar-icons/raw/fetch-rest.mjs",
+    "solar:docs": "node docs/solar/build-docs.mjs && node docs/solar-web/build-docs.mjs && node docs/solar-icons/build-docs.mjs",
     "solar:tokens": "node docs/solar/tokens/build-derived.mjs"
   },
   "devDependencies": {

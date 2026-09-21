@@ -1,0 +1,869 @@
+{
+  "page": "Audio & DSP",
+  "pageId": "5585:578",
+  "kind": "icons",
+  "slug": "audio-dsp",
+  "icons": [
+    {
+      "name": "Fader",
+      "figmaName": "Icon/Fader",
+      "kebab": "fader",
+      "setId": "5316:645",
+      "description": "Fader. Related: volume slider, level, mixer, gain, channel",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:641",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/fader.svg"
+        },
+        "solid": {
+          "id": "5316:643",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/fader.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "fader"
+    },
+    {
+      "name": "Meter",
+      "figmaName": "Icon/Meter",
+      "kebab": "meter",
+      "setId": "5316:713",
+      "description": "Meter. Related: level meter, VU, dB, signal, measurement",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:709",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/meter.svg"
+        },
+        "solid": {
+          "id": "5316:711",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/meter.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "meter"
+    },
+    {
+      "name": "ChannelStrip",
+      "figmaName": "Icon/ChannelStrip",
+      "kebab": "channel-strip",
+      "setId": "5316:594",
+      "description": "Channel strip. Related: mixer channel, strip, audio path, controls",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:590",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/channel-strip.svg"
+        },
+        "solid": {
+          "id": "5316:592",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/channel-strip.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "channel-strip"
+    },
+    {
+      "name": "Matrix",
+      "figmaName": "Icon/Matrix",
+      "kebab": "matrix",
+      "setId": "5316:696",
+      "description": "Matrix. Related: matrix mixer, routing, grid, crosspoint",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:692",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/matrix.svg"
+        },
+        "solid": {
+          "id": "5316:694",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/matrix.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "matrix"
+    },
+    {
+      "name": "PanKnob",
+      "figmaName": "Icon/PanKnob",
+      "kebab": "pan-knob",
+      "setId": "5316:764",
+      "description": "Pan knob. Related: pan, balance, stereo, rotary, dial",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:760",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/pan-knob.svg"
+        },
+        "solid": {
+          "id": "5316:762",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/pan-knob.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "pan-knob"
+    },
+    {
+      "name": "Headphones",
+      "figmaName": "Icon/Headphones",
+      "kebab": "headphones",
+      "setId": "5316:866",
+      "description": "Headphones. Related: monitor, listen, audio output, headset, support",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:862",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/headphones.svg"
+        },
+        "solid": {
+          "id": "5316:864",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/headphones.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "headphones"
+    },
+    {
+      "name": "ClipIndicator",
+      "figmaName": "Icon/ClipIndicator",
+      "kebab": "clip-indicator",
+      "setId": "5316:611",
+      "description": "Clip indicator. Related: clipping, overload, distortion, peak, signal",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:607",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/clip-indicator.svg"
+        },
+        "solid": {
+          "id": "5316:609",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/clip-indicator.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "clip-indicator"
+    },
+    {
+      "name": "PeakIndicator",
+      "figmaName": "Icon/PeakIndicator",
+      "kebab": "peak-indicator",
+      "setId": "5316:781",
+      "description": "Peak indicator. Related: peak, level, maximum, signal, meter",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:777",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/peak-indicator.svg"
+        },
+        "solid": {
+          "id": "5316:779",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/peak-indicator.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "peak-indicator"
+    },
+    {
+      "name": "Phantom48V",
+      "figmaName": "Icon/Phantom48V",
+      "kebab": "phantom48-v",
+      "setId": "5316:798",
+      "description": "Phantom 48V. Related: phantom power, 48V, condenser, mic power",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5316:794",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/phantom48-v.svg"
+        },
+        "solid": {
+          "id": "5316:796",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/phantom48-v.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "phantom48-v"
+    },
+    {
+      "name": "BackgroundMusic",
+      "figmaName": "Icon/BackgroundMusic",
+      "kebab": "background-music",
+      "setId": "5315:611",
+      "description": "Background music. Related: BGM, ambient music, playlist, audio",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:607",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/background-music.svg"
+        },
+        "solid": {
+          "id": "5315:609",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/background-music.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "background-music"
+    },
+    {
+      "name": "VoiceLift",
+      "figmaName": "Icon/VoiceLift",
+      "kebab": "voice-lift",
+      "setId": "5315:1036",
+      "description": "Voice lift. Related: speech reinforcement, voice amplification, lectern",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:1032",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 2,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/voice-lift.svg"
+        },
+        "solid": {
+          "id": "5315:1034",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 2,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/voice-lift.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "voice-lift"
+    },
+    {
+      "name": "Cluster",
+      "figmaName": "Icon/Cluster",
+      "kebab": "cluster",
+      "setId": "5315:662",
+      "description": "Cluster. Related: speaker cluster, array, group, ceiling",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:658",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/cluster.svg"
+        },
+        "solid": {
+          "id": "5315:660",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/cluster.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "cluster"
+    },
+    {
+      "name": "CoverageToggle",
+      "figmaName": "Icon/CoverageToggle",
+      "kebab": "coverage-toggle",
+      "setId": "5315:696",
+      "description": "Coverage toggle. Related: coverage area, zone, range, signal, base station, toggle",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5315:692",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/coverage-toggle.svg"
+        },
+        "solid": {
+          "id": "5315:694",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/coverage-toggle.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "coverage-toggle"
+    },
+    {
+      "name": "ZoneGroup",
+      "figmaName": "Icon/ZoneGroup",
+      "kebab": "zone-group",
+      "setId": "5317:747",
+      "description": "Zone group. Related: audio zones, grouping, areas, distribution",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:743",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/zone-group.svg"
+        },
+        "solid": {
+          "id": "5317:745",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/zone-group.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "zone-group"
+    },
+    {
+      "name": "Phone",
+      "figmaName": "Icon/Phone",
+      "kebab": "phone",
+      "setId": "5317:662",
+      "description": "Phone. Related: call, telephone, dial, VoIP, handset",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5317:658",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/phone--audio-dsp.svg"
+        },
+        "solid": {
+          "id": "5317:660",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/phone--audio-dsp.svg"
+        }
+      },
+      "issues": [
+        "Name collision: \"Icon/Phone\" also exists on page communication; exported as phone--audio-dsp"
+      ],
+      "fileStem": "phone--audio-dsp"
+    },
+    {
+      "name": "Microphone",
+      "figmaName": "Icon/Microphone",
+      "kebab": "microphone",
+      "setId": "5310:1257",
+      "description": "Microphone. Related: mic, audio input, voice, speech, recording",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1253",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/microphone.svg"
+        },
+        "solid": {
+          "id": "5310:1255",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/microphone.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "microphone"
+    },
+    {
+      "name": "MicrophoneOff",
+      "figmaName": "Icon/MicrophoneOff",
+      "kebab": "microphone-off",
+      "setId": "5310:1274",
+      "description": "Microphone off. Related: mute mic, muted, silence, disabled, privacy",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1270",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/microphone-off.svg"
+        },
+        "solid": {
+          "id": "5310:1272",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/microphone-off.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "microphone-off"
+    },
+    {
+      "name": "VolumeMute",
+      "figmaName": "Icon/VolumeMute",
+      "kebab": "volume-mute",
+      "setId": "5310:1359",
+      "description": "Volume mute. Related: mute, silence, no sound, speaker off",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1355",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/volume-mute.svg"
+        },
+        "solid": {
+          "id": "5310:1357",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/volume-mute.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "volume-mute"
+    },
+    {
+      "name": "VolumeDown",
+      "figmaName": "Icon/VolumeDown",
+      "kebab": "volume-down",
+      "setId": "5310:1563",
+      "description": "Volume down. Related: quieter, decrease volume, sound, speaker minus",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1559",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/volume-down.svg"
+        },
+        "solid": {
+          "id": "5310:1561",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/volume-down.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "volume-down"
+    },
+    {
+      "name": "VolumeUp",
+      "figmaName": "Icon/VolumeUp",
+      "kebab": "volume-up",
+      "setId": "5310:1580",
+      "description": "Volume up. Related: louder, increase volume, sound, speaker plus",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5310:1576",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/volume-up.svg"
+        },
+        "solid": {
+          "id": "5310:1578",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/volume-up.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "volume-up"
+    },
+    {
+      "name": "Flash",
+      "figmaName": "Icon/Flash",
+      "kebab": "flash",
+      "setId": "5654:618",
+      "description": "Flash. Related: lightning, bolt, quick, power, energy",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "5654:608",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/flash.svg"
+        },
+        "solid": {
+          "id": "5654:613",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/flash.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "flash"
+    },
+    {
+      "name": "RoomCombine",
+      "figmaName": "Icon/RoomCombine",
+      "kebab": "room-combine",
+      "setId": "6380:619",
+      "description": "Room combine. Related: combine rooms, partition, join spaces, divide",
+      "size": [
+        24,
+        24
+      ],
+      "variants": {
+        "outline": {
+          "id": "6380:615",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/outline/room-combine.svg"
+        },
+        "solid": {
+          "id": "6380:618",
+          "size": [
+            24,
+            24
+          ],
+          "leaves": 1,
+          "fills": [
+            "Primitives:color/neutral/900"
+          ],
+          "file": "svg/solid/room-combine.svg"
+        }
+      },
+      "issues": [],
+      "fileStem": "room-combine"
+    }
+  ],
+  "looseComponents": []
+}
