@@ -168,7 +168,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=selected",
@@ -188,7 +197,14 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/raised"
+              }
+            }
+          }
         }
       ]
     }

@@ -510,7 +510,107 @@
             "{Color:icon/feedback/info}",
             "{Color:icon/feedback/success}",
             "{Color:icon/feedback/neutral}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  110
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    8,
+                    16,
+                    0,
+                    16
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Content": {
+                "size": [
+                  377,
+                  595
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    16,
+                    0,
+                    16
+                  ],
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Content/Filter Tabs": {
+                "size": [
+                  345,
+                  40
+                ]
+              },
+              "/Content/Group · Today": {
+                "size": [
+                  345,
+                  313
+                ]
+              },
+              "/Content/Group · Today/Today": {
+                "textStyle": "label/sm",
+                "size": [
+                  35,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Content/Group · Today/List": {
+                "size": [
+                  345,
+                  296
+                ]
+              },
+              "/Content/Group · Earlier this week": {
+                "size": [
+                  345,
+                  194
+                ]
+              },
+              "/Content/Group · Earlier this week/Earlier this week": {
+                "textStyle": "label/sm",
+                "size": [
+                  91,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Content/Group · Earlier this week/List": {
+                "size": [
+                  345,
+                  177
+                ]
+              }
+            }
+          }
         }
       ]
     }

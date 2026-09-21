@@ -86,7 +86,16 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=disabled, checked=true",
@@ -96,7 +105,21 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Icon": {
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=default, checked=false",
@@ -106,7 +129,19 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "removed": [
+              "/Icon"
+            ]
+          }
         },
         {
           "variant": "state=hover, checked=false",
@@ -119,7 +154,22 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "removed": [
+              "/Icon"
+            ]
+          }
         },
         {
           "variant": "state=disabled, checked=false",
@@ -129,7 +179,19 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "removed": [
+              "/Icon"
+            ]
+          }
         },
         {
           "variant": "state=focus, checked=true",
@@ -143,7 +205,20 @@
           "strokes": [
             "{Color:border/feedback/focus/strong}"
           ],
-          "effect": "shadow/focus/default"
+          "effect": "shadow/focus/default",
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "state=focus, checked=false",
@@ -157,7 +232,23 @@
           "strokes": [
             "{Color:border/feedback/focus/strong}"
           ],
-          "effect": "shadow/focus/default"
+          "effect": "shadow/focus/default",
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              }
+            },
+            "removed": [
+              "/Icon"
+            ]
+          }
         }
       ]
     }

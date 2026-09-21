@@ -623,7 +623,136 @@
             "Spinner",
             "Tag",
             "Trend Badge"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Page Header": {
+                "size": [
+                  377,
+                  64
+                ]
+              },
+              "/Page Header/Container": {
+                "size": [
+                  337,
+                  40
+                ]
+              },
+              "/Container": {
+                "size": [
+                  377,
+                  2634
+                ],
+                "layout": {
+                  "pad": [
+                    24,
+                    12,
+                    24,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/sm",
+                  "paddingRight": "Spatial:stack/sm"
+                }
+              },
+              "/Container/Container": {
+                "size": [
+                  353,
+                  301
+                ]
+              },
+              "/Container/Container/Title": {
+                "size": [
+                  53,
+                  13
+                ]
+              },
+              "/Container/Container/Container": {
+                "size": [
+                  353,
+                  272
+                ],
+                "layout": {
+                  "dir": "GRID",
+                  "gap": 0
+                }
+              },
+              "/Container/Container#2": {
+                "size": [
+                  353,
+                  812
+                ]
+              },
+              "/Container/Container#2/Title": {
+                "size": [
+                  133,
+                  13
+                ]
+              },
+              "/Container/Container#2/Container": {
+                "size": [
+                  353,
+                  783
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Container/Container#3": {
+                "size": [
+                  353,
+                  708
+                ]
+              },
+              "/Container/Container#3/Title": {
+                "size": [
+                  190,
+                  13
+                ]
+              },
+              "/Container/Container#3/Container": {
+                "size": [
+                  353,
+                  679
+                ],
+                "layout": {
+                  "dir": "VERTICAL"
+                }
+              },
+              "/Container/Container#4": {
+                "size": [
+                  353,
+                  681
+                ]
+              },
+              "/Container/Container#4/Title": {
+                "size": [
+                  82,
+                  13
+                ]
+              },
+              "/Container/Container#4/Container": {
+                "size": [
+                  353,
+                  652
+                ],
+                "layout": {
+                  "dir": "VERTICAL"
+                }
+              }
+            },
+            "added": [
+              "/Page Header/Container/Title",
+              "/Page Header/Container/Icon Button"
+            ],
+            "removed": [
+              "/Page Header/Container/TextStack",
+              "/Page Header/Container/Image",
+              "/Page Header/Tabs"
+            ]
+          }
         }
       ]
     }

@@ -635,6 +635,27 @@
   --solar-type-line-height-code-md: 16px;
   --solar-type-size-caption-xs: 10px;
   --solar-type-line-height-caption-xs: 14px;
+  /* layout (SOLAR Web collection: grid columns are unitless counts) */
+  --solar-layout-grid-columns-xs: 4;
+  --solar-layout-grid-columns-sm: 4;
+  --solar-layout-grid-columns-md: 8;
+  --solar-layout-grid-columns-lg: 12;
+  --solar-layout-grid-columns-xl: 12;
+  --solar-layout-grid-margin-xs: 16px;
+  --solar-layout-grid-margin-sm: 16px;
+  --solar-layout-grid-margin-md: 20px;
+  --solar-layout-grid-margin-lg: 24px;
+  --solar-layout-grid-margin-xl: 24px;
+  --solar-layout-grid-gutter-xs: 16px;
+  --solar-layout-grid-gutter-sm: 16px;
+  --solar-layout-grid-gutter-md: 20px;
+  --solar-layout-grid-gutter-lg: 24px;
+  --solar-layout-grid-gutter-xl: 32px;
+  --solar-layout-breakpoint-xs: 393px;
+  --solar-layout-breakpoint-sm: 768px;
+  --solar-layout-breakpoint-md: 1024px;
+  --solar-layout-breakpoint-lg: 1440px;
+  --solar-layout-breakpoint-xl: 1920px;
   /* shadows (Light) */
   --solar-shadow-control: 0px 1px 1px 0px rgba(0, 0, 0, 0.05);
   --solar-shadow-raised: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);

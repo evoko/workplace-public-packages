@@ -348,7 +348,98 @@
             "Helper text",
             "Icon/None",
             "Label"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "vars": {
+                  "width": "Primitives:viewport/xs"
+                }
+              },
+              "/Top Bar": {
+                "variant": {
+                  "breakpoint": "mobile",
+                  "hasSidebar": "false",
+                  "isLoggedIn": "False"
+                },
+                "size": [
+                  393,
+                  56
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/xs",
+                  "paddingRight": "Spatial:stack/xs"
+                }
+              },
+              "/App Content": {
+                "size": [
+                  393,
+                  744
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingBottom": null
+                }
+              },
+              "/App Content/Page Content": {
+                "size": [
+                  377,
+                  744
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "align": "MIN/CENTER"
+                }
+              },
+              "/App Content/Page Content/center": {
+                "size": [
+                  377,
+                  744
+                ],
+                "radius": [
+                  8,
+                  8,
+                  0,
+                  0
+                ],
+                "vars": {
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              },
+              "/App Content/Page Content/center/Breadcrumbs": {
+                "size": [
+                  377,
+                  44
+                ]
+              }
+            },
+            "added": [
+              "/left",
+              "/left/Frame 1",
+              "/left/Frame 1/Rectangle 1",
+              "/left/Segmented Control"
+            ],
+            "removed": [
+              "/App Content/Page Content/left",
+              "/App Content/Page Content/left/Segmented Control"
+            ]
+          }
         }
       ]
     }

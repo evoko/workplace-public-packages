@@ -348,7 +348,48 @@
             "{Color:action/tertiary/icon/default}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/HUG"
+                }
+              },
+              "/content": {
+                "size": [
+                  480,
+                  125
+                ],
+                "layout": {
+                  "gap": 20,
+                  "align": "CENTER/CENTER",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/lg",
+                  "paddingLeft": "Spatial:stack/lg",
+                  "paddingTop": "Spatial:stack/lg",
+                  "paddingRight": "Spatial:stack/lg",
+                  "paddingBottom": "Spatial:stack/lg"
+                }
+              }
+            },
+            "added": [
+              "/image",
+              "/image/Icon Button",
+              "/content/Dialog Title",
+              "/content/Biamp delivers professional audio-visual solutions that help people connect, communicate, and collaborate more effectively across workplaces, venues, and public spaces."
+            ],
+            "removed": [
+              "/Header",
+              "/Header/Text",
+              "/Header/Text/Icon",
+              "/Header/Text/Icon/Icon/Empty",
+              "/Header/Text/Title",
+              "/Header/Text/Icon Button"
+            ]
+          }
         },
         {
           "variant": "type=wizard",
@@ -372,7 +413,54 @@
             "{Color:action/tertiary/icon/default}",
             "{Color:action/secondary/icon/disabled}",
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Header": {
+                "size": [
+                  480,
+                  80
+                ]
+              },
+              "/Header/Text": {
+                "size": [
+                  464,
+                  36
+                ],
+                "layout": {
+                  "gap": 8,
+                  "align": "MIN/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Header/Text/Title": {
+                "size": [
+                  376,
+                  15
+                ]
+              },
+              "/Header/Text/Icon Button": {
+                "size": [
+                  36,
+                  36
+                ]
+              },
+              "/content": {
+                "size": [
+                  480,
+                  336
+                ],
+                "layout": {
+                  "align": "MIN/CENTER"
+                }
+              }
+            },
+            "added": [
+              "/Header/Stepper"
+            ]
+          }
         }
       ]
     }

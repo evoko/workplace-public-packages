@@ -110,7 +110,16 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, state=pressed",
@@ -123,7 +132,16 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, state=focus",
@@ -134,7 +152,14 @@
           "effect": "shadow/focus/default",
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, state=disabled",
@@ -144,7 +169,16 @@
           ],
           "textFills": [
             "{Color:text/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, state=default",
@@ -157,7 +191,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:action/primary/text/default}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, state=hover",
@@ -170,7 +218,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/hover}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:action/primary/text/default}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, state=pressed",
@@ -183,7 +245,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:action/primary/text/default}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, state=focus",
@@ -197,7 +273,22 @@
           "effect": "shadow/focus/default",
           "textFills": [
             "{Color:action/primary/text/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:action/primary/text/default}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, state=disabled",
@@ -210,7 +301,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/disabled}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:action/primary/text/disabled}"
+                ]
+              }
+            }
+          }
         }
       ]
     },
@@ -311,7 +416,16 @@
           ],
           "iconFills": [
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "direction=previous, state=pressed",
@@ -324,7 +438,16 @@
           ],
           "iconFills": [
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "direction=previous, state=focus",
@@ -335,7 +458,14 @@
           "effect": "shadow/focus/default",
           "iconFills": [
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "direction=previous, state=disabled",
@@ -355,7 +485,14 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon": {
+                "main": "Icon/ChevronRight"
+              }
+            }
+          }
         },
         {
           "variant": "direction=next, state=hover",
@@ -368,7 +505,19 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              },
+              "/Icon": {
+                "main": "Icon/ChevronRight"
+              }
+            }
+          }
         },
         {
           "variant": "direction=next, state=pressed",
@@ -381,7 +530,19 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Icon": {
+                "main": "Icon/ChevronRight"
+              }
+            }
+          }
         },
         {
           "variant": "direction=next, state=focus",
@@ -392,7 +553,17 @@
           "effect": "shadow/focus/default",
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Icon": {
+                "main": "Icon/ChevronRight"
+              }
+            }
+          }
         },
         {
           "variant": "direction=next, state=disabled",
@@ -402,7 +573,14 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon": {
+                "main": "Icon/ChevronRight"
+              }
+            }
+          }
         }
       ]
     }

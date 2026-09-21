@@ -437,7 +437,84 @@
           "iconFills": [
             "{Color:action/primary/icon/disabled}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  200,
+                  100
+                ]
+              },
+              "/Field/Enter text...": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  176,
+                  76
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Footer": {
+                "size": [
+                  200,
+                  9
+                ]
+              },
+              "/Footer/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  166,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              },
+              "/Footer/CharCount": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  34,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=hover",
@@ -454,7 +531,16 @@
           "iconFills": [
             "{Color:action/primary/icon/disabled}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=hover",
@@ -471,7 +557,87 @@
           "iconFills": [
             "{Color:action/primary/icon/disabled}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  200,
+                  100
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Field/Enter text...": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  176,
+                  76
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Footer": {
+                "size": [
+                  200,
+                  9
+                ]
+              },
+              "/Footer/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  166,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              },
+              "/Footer/CharCount": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  34,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=focused",
@@ -487,7 +653,38 @@
           "iconFills": [
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Field/Enter text...": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Field/Icon Button": {
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "primary",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control"
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=focused",
@@ -503,7 +700,107 @@
           "iconFills": [
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  200,
+                  100
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Field/Enter text...": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  176,
+                  76
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Field/Icon Button": {
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "primary",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control"
+              },
+              "/Footer": {
+                "size": [
+                  200,
+                  9
+                ]
+              },
+              "/Footer/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  166,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              },
+              "/Footer/CharCount": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  34,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=filled",
@@ -519,7 +816,32 @@
           "iconFills": [
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field/Enter text...": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Field/Icon Button": {
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "primary",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control"
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=filled",
@@ -535,7 +857,103 @@
           "iconFills": [
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  200,
+                  100
+                ]
+              },
+              "/Field/Enter text...": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  176,
+                  76
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Field/Icon Button": {
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "primary",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control"
+              },
+              "/Footer": {
+                "size": [
+                  200,
+                  9
+                ]
+              },
+              "/Footer/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  166,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              },
+              "/Footer/CharCount": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  34,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=disabled",
@@ -549,7 +967,57 @@
           "iconFills": [
             "{Color:action/primary/icon/disabled}",
             "{Color:action/secondary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label/Label": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Label/*": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Field": {
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ]
+              },
+              "/Field/Enter text...": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Field/Icon Button#2": {
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "secondary",
+                  "state": "disabled"
+                },
+                "fills": null,
+                "strokes": [
+                  "{Color:border/disabled}"
+                ],
+                "effectStyle": null
+              },
+              "/Footer/Helper text": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Footer/CharCount": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=disabled",
@@ -563,7 +1031,118 @@
           "iconFills": [
             "{Color:action/primary/icon/disabled}",
             "{Color:action/secondary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  200,
+                  100
+                ],
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ]
+              },
+              "/Field/Enter text...": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  176,
+                  76
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Field/Icon Button#2": {
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "secondary",
+                  "state": "disabled"
+                },
+                "fills": null,
+                "strokes": [
+                  "{Color:border/disabled}"
+                ],
+                "effectStyle": null
+              },
+              "/Footer": {
+                "size": [
+                  200,
+                  9
+                ]
+              },
+              "/Footer/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  166,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              },
+              "/Footer/CharCount": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  34,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=error",
@@ -578,7 +1157,58 @@
           "iconFills": [
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label/Label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/Label/*": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/Field": {
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger"
+              },
+              "/Field/Enter text...": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Field/Icon Button": {
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "primary",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control"
+              },
+              "/Footer/Helper text": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/Footer/CharCount": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=error",
@@ -593,7 +1223,119 @@
           "iconFills": [
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  200,
+                  100
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger"
+              },
+              "/Field/Enter text...": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  176,
+                  76
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Field/Icon Button": {
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "primary",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control"
+              },
+              "/Footer": {
+                "size": [
+                  200,
+                  9
+                ]
+              },
+              "/Footer/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  166,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              },
+              "/Footer/CharCount": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  34,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=focus",
@@ -611,7 +1353,36 @@
           "iconFills": [
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Field": {
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Field/Icon Button": {
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "primary",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control"
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=focus",
@@ -629,7 +1400,107 @@
           "iconFills": [
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  200,
+                  100
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Field/Enter text...": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  176,
+                  76
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Field/Icon Button": {
+                "variant": {
+                  "size": "sm",
+                  "shape": "square",
+                  "prio": "primary",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control"
+              },
+              "/Footer": {
+                "size": [
+                  200,
+                  9
+                ]
+              },
+              "/Footer/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  166,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              },
+              "/Footer/CharCount": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  34,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         }
       ]
     }

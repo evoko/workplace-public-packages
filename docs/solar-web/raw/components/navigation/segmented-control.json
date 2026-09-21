@@ -188,7 +188,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, state=default, size=md",
@@ -201,7 +210,22 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "effectStyle": null
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/secondary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, state=hover, size=md",
@@ -214,7 +238,17 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "effectStyle": null
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, state=default, size=sm",
@@ -234,7 +268,54 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, state=hover, size=sm",
@@ -254,7 +335,57 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, state=default, size=sm",
@@ -267,7 +398,61 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "effectStyle": null,
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, state=hover, size=sm",
@@ -280,7 +465,58 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "effectStyle": null,
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -768,7 +1004,197 @@
           "iconFills": [
             "{Color:icon/primary}",
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Track": {
+                "size": [
+                  290,
+                  32
+                ],
+                "layout": {
+                  "sizing": "HUG/HUG"
+                }
+              },
+              "/Track/Segmented Control Item": {
+                "variant": {
+                  "selected": "true",
+                  "state": "default",
+                  "size": "sm"
+                },
+                "size": [
+                  47,
+                  24
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Track/Segmented Control Item#2": {
+                "variant": {
+                  "selected": "false",
+                  "state": "default",
+                  "size": "sm"
+                },
+                "size": [
+                  47,
+                  24
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Track/Segmented Control Item#3": {
+                "variant": {
+                  "selected": "false",
+                  "state": "default",
+                  "size": "sm"
+                },
+                "size": [
+                  47,
+                  24
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Track/Segmented Control Item#4": {
+                "variant": {
+                  "selected": "false",
+                  "state": "default",
+                  "size": "sm"
+                },
+                "size": [
+                  47,
+                  24
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Track/Segmented Control Item#5": {
+                "variant": {
+                  "selected": "false",
+                  "state": "default",
+                  "size": "sm"
+                },
+                "size": [
+                  47,
+                  24
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Track/Segmented Control Item#6": {
+                "variant": {
+                  "selected": "false",
+                  "state": "default",
+                  "size": "sm"
+                },
+                "size": [
+                  47,
+                  24
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  61,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         }
       ]
     }

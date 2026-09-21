@@ -235,7 +235,33 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Plot": {
+                "size": [
+                  343,
+                  164
+                ]
+              },
+              "/Plot/Line A": {
+                "size": [
+                  343,
+                  164
+                ]
+              },
+              "/Frame": {
+                "size": [
+                  343,
+                  9
+                ]
+              }
+            },
+            "removed": [
+              "/Frame/May",
+              "/Frame/Jun"
+            ]
+          }
         },
         {
           "variant": "series=multi, breakpoint=desktop",
@@ -246,7 +272,57 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Frame": {
+                "size": [
+                  600,
+                  10
+                ],
+                "layout": {
+                  "gap": 16,
+                  "align": "MIN/CENTER"
+                }
+              },
+              "/Plot": {
+                "size": [
+                  600,
+                  176
+                ]
+              },
+              "/Plot/Line A": {
+                "size": [
+                  600,
+                  176
+                ]
+              }
+            },
+            "added": [
+              "/Frame/Frame",
+              "/Frame/Frame/Frame",
+              "/Frame/Frame/Series A",
+              "/Frame/Frame#2",
+              "/Frame/Frame#2/Frame",
+              "/Frame/Frame#2/Series B",
+              "/Plot/Line B",
+              "/Frame#2",
+              "/Frame#2/Jan",
+              "/Frame#2/Feb",
+              "/Frame#2/Mar",
+              "/Frame#2/Apr",
+              "/Frame#2/May",
+              "/Frame#2/Jun"
+            ],
+            "removed": [
+              "/Frame/Jan",
+              "/Frame/Feb",
+              "/Frame/Mar",
+              "/Frame/Apr",
+              "/Frame/May",
+              "/Frame/Jun"
+            ]
+          }
         },
         {
           "variant": "series=multi, breakpoint=mobile",
@@ -257,7 +333,55 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Frame": {
+                "size": [
+                  343,
+                  10
+                ],
+                "layout": {
+                  "gap": 16,
+                  "align": "MIN/CENTER"
+                }
+              },
+              "/Plot": {
+                "size": [
+                  343,
+                  136
+                ]
+              },
+              "/Plot/Line A": {
+                "size": [
+                  343,
+                  136
+                ]
+              }
+            },
+            "added": [
+              "/Frame/Frame",
+              "/Frame/Frame/Frame",
+              "/Frame/Frame/Series A",
+              "/Frame/Frame#2",
+              "/Frame/Frame#2/Frame",
+              "/Frame/Frame#2/Series B",
+              "/Plot/Line B",
+              "/Frame#2",
+              "/Frame#2/Jan",
+              "/Frame#2/Feb",
+              "/Frame#2/Mar",
+              "/Frame#2/Apr"
+            ],
+            "removed": [
+              "/Frame/Jan",
+              "/Frame/Feb",
+              "/Frame/Mar",
+              "/Frame/Apr",
+              "/Frame/May",
+              "/Frame/Jun"
+            ]
+          }
         }
       ]
     }

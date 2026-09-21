@@ -66,35 +66,92 @@
           "size": [
             115,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Line": {
+                "size": [
+                  120,
+                  32
+                ],
+                "strokeWeight": 2
+              }
+            }
+          }
         },
         {
           "variant": "trend=down, size=sm",
           "size": [
             115,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Line": {
+                "strokes": [
+                  "{Color:data/delta/negative-500}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=down, size=md",
           "size": [
             115,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Line": {
+                "size": [
+                  120,
+                  32
+                ],
+                "strokes": [
+                  "{Color:data/delta/negative-500}"
+                ],
+                "strokeWeight": 2
+              }
+            }
+          }
         },
         {
           "variant": "trend=flat, size=sm",
           "size": [
             115,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Line": {
+                "strokes": [
+                  "{Color:data/delta/neutral}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=flat, size=md",
           "size": [
             115,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Line": {
+                "size": [
+                  120,
+                  32
+                ],
+                "strokes": [
+                  "{Color:data/delta/neutral}"
+                ],
+                "strokeWeight": 2
+              }
+            }
+          }
         }
       ]
     }

@@ -116,7 +116,16 @@
           ],
           "textFills": [
             "{Color:text/feedback/info}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Weekday": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

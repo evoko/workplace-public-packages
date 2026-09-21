@@ -100,7 +100,15 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Number"
+            ],
+            "removed": [
+              "/Icon/Check"
+            ]
+          }
         },
         {
           "variant": "status=upcoming",
@@ -116,7 +124,26 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1
+              }
+            },
+            "added": [
+              "/Number"
+            ],
+            "removed": [
+              "/Icon/Check"
+            ]
+          }
         },
         {
           "variant": "status=error",
@@ -132,7 +159,26 @@
           ],
           "textFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1
+              }
+            },
+            "added": [
+              "/Icon"
+            ],
+            "removed": [
+              "/Icon/Check"
+            ]
+          }
         }
       ]
     },
@@ -270,7 +316,28 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/Label",
+              "/Line"
+            ],
+            "removed": [
+              "/Stepper Indicator",
+              "/Step"
+            ]
+          }
         },
         {
           "variant": "status=active, type=round",
@@ -281,7 +348,16 @@
           "textFills": [
             "{Color:text/inverse}",
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Stepper Indicator": {
+                "variant": {
+                  "status": "active"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "status=active, type=horizontal",
@@ -291,7 +367,28 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/Label",
+              "/Line"
+            ],
+            "removed": [
+              "/Stepper Indicator",
+              "/Step"
+            ]
+          }
         },
         {
           "variant": "status=upcoming, type=round",
@@ -302,7 +399,23 @@
           "textFills": [
             "{Color:text/secondary}",
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Stepper Indicator": {
+                "variant": {
+                  "status": "upcoming"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1
+              }
+            }
+          }
         },
         {
           "variant": "status=upcoming, type=horizontal",
@@ -312,7 +425,28 @@
           ],
           "textFills": [
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/Label",
+              "/Line"
+            ],
+            "removed": [
+              "/Stepper Indicator",
+              "/Step"
+            ]
+          }
         },
         {
           "variant": "status=error, type=round",
@@ -323,7 +457,28 @@
           "textFills": [
             "{Color:icon/inverse}",
             "{Color:text/feedback/danger}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Stepper Indicator": {
+                "variant": {
+                  "status": "error"
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1
+              },
+              "/Step": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "status=error, type=horizontal",
@@ -333,7 +488,28 @@
           ],
           "textFills": [
             "{Color:text/feedback/danger}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN",
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/Label",
+              "/Line"
+            ],
+            "removed": [
+              "/Stepper Indicator",
+              "/Step"
+            ]
+          }
         }
       ]
     },
@@ -578,14 +754,81 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 4,
+                  "align": "MIN/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/2xs",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Stepper Indicator",
+              "/Frame",
+              "/Stepper Indicator#2",
+              "/Frame#2",
+              "/Stepper Indicator#3"
+            ],
+            "removed": [
+              "/Progress",
+              "/Progress/Rectangle 2",
+              "/Steps",
+              "/Steps/Step",
+              "/Steps/Step#2",
+              "/Steps/Step#3"
+            ]
+          }
         },
         {
           "variant": "type=line",
           "size": [
             350,
             4
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "align": "MIN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Rectangle 1",
+              "/Rectangle 2",
+              "/Rectangle 3",
+              "/Rectangle 4",
+              "/Rectangle 5"
+            ],
+            "removed": [
+              "/Progress",
+              "/Progress/Rectangle 2",
+              "/Steps",
+              "/Steps/Step",
+              "/Steps/Step#2",
+              "/Steps/Step#3"
+            ]
+          }
         },
         {
           "variant": "type=line+text",
@@ -596,7 +839,40 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 8,
+                  "align": "MIN/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none",
+                  "paddingBottom": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Step/complete/horizontal",
+              "/Step",
+              "/Step#2",
+              "/Step#3",
+              "/Step#4"
+            ],
+            "removed": [
+              "/Progress",
+              "/Progress/Rectangle 2",
+              "/Steps",
+              "/Steps/Step",
+              "/Steps/Step#2",
+              "/Steps/Step#3"
+            ]
+          }
         }
       ]
     }

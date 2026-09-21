@@ -288,7 +288,38 @@
           ],
           "iconFills": [
             "{Color:icon/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "align": "CENTER/CENTER"
+                },
+                "vars": {
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              }
+            },
+            "added": [
+              "/Frame 1",
+              "/Frame 1/Icon/Plus",
+              "/New design"
+            ],
+            "removed": [
+              "/Thumbnail",
+              "/Thumbnail/Icon/Image",
+              "/Footer",
+              "/Footer/Text",
+              "/Footer/Text/File name",
+              "/Footer/Text/Edited just now",
+              "/Footer/Icon/More"
+            ]
+          }
         }
       ]
     }

@@ -1,0 +1,114 @@
+{
+  "$schema-note": "Verbatim capture of the SOLAR Web file's local Layout variable collection (grid columns, margins, gutters, breakpoints). It is the only variable collection SOLAR Web defines itself; everything else is consumed from SOLAR Foundations. Values in curly braces are aliases into the Foundations Primitives collection. Single mode. Captured with docs/solar/tokens/capture-variables.js (Plugin API, read-only) because the REST variables endpoint needs an Enterprise-only scope.",
+  "source": {
+    "figmaFile": "SOLAR Web [v1--2026]",
+    "fileKey": "OGvmMNnywH7JWDyEhOzjcc",
+    "collection": "Layout",
+    "collectionId": "VariableCollectionId:2160:4359",
+    "modes": ["Mode 1"],
+    "capturedOn": "2026-09-21",
+    "count": 20
+  },
+  "variables": {
+    "grid/columns/xs": {
+      "id": "VariableID:2160:4360",
+      "value": 4,
+      "scopes": []
+    },
+    "grid/columns/sm": {
+      "id": "VariableID:2160:4361",
+      "value": 4,
+      "scopes": []
+    },
+    "grid/columns/md": {
+      "id": "VariableID:2160:4362",
+      "value": 8,
+      "scopes": []
+    },
+    "grid/columns/lg": {
+      "id": "VariableID:2160:4363",
+      "value": 12,
+      "scopes": []
+    },
+    "grid/columns/xl": {
+      "id": "VariableID:2160:4364",
+      "value": 12,
+      "scopes": []
+    },
+    "grid/margin/xs": {
+      "id": "VariableID:2160:4365",
+      "value": "{spatial/scale/4}",
+      "scopes": ["WIDTH_HEIGHT", "GAP"]
+    },
+    "grid/margin/sm": {
+      "id": "VariableID:2160:4366",
+      "value": "{spatial/scale/4}",
+      "scopes": ["WIDTH_HEIGHT", "GAP"]
+    },
+    "grid/margin/md": {
+      "id": "VariableID:2160:4367",
+      "value": "{spatial/scale/5}",
+      "scopes": ["WIDTH_HEIGHT", "GAP"]
+    },
+    "grid/margin/lg": {
+      "id": "VariableID:2160:4368",
+      "value": "{spatial/scale/6}",
+      "scopes": ["WIDTH_HEIGHT", "GAP"]
+    },
+    "grid/margin/xl": {
+      "id": "VariableID:2160:4369",
+      "value": "{spatial/scale/6}",
+      "scopes": ["WIDTH_HEIGHT", "GAP"]
+    },
+    "grid/gutter/xs": {
+      "id": "VariableID:2160:4370",
+      "value": "{spatial/scale/4}",
+      "scopes": ["WIDTH_HEIGHT", "GAP"]
+    },
+    "grid/gutter/sm": {
+      "id": "VariableID:2160:4371",
+      "value": "{spatial/scale/4}",
+      "scopes": ["WIDTH_HEIGHT", "GAP"]
+    },
+    "grid/gutter/md": {
+      "id": "VariableID:2160:4372",
+      "value": "{spatial/scale/5}",
+      "scopes": ["WIDTH_HEIGHT", "GAP"]
+    },
+    "grid/gutter/lg": {
+      "id": "VariableID:2160:4373",
+      "value": "{spatial/scale/6}",
+      "scopes": ["WIDTH_HEIGHT", "GAP"]
+    },
+    "grid/gutter/xl": {
+      "id": "VariableID:2160:4374",
+      "value": "{spatial/scale/8}",
+      "scopes": ["WIDTH_HEIGHT", "GAP"]
+    },
+    "breakpoint/xs": {
+      "id": "VariableID:2160:4375",
+      "value": "{viewport/xs}",
+      "scopes": ["WIDTH_HEIGHT"]
+    },
+    "breakpoint/sm": {
+      "id": "VariableID:2160:4376",
+      "value": "{viewport/sm}",
+      "scopes": ["WIDTH_HEIGHT"]
+    },
+    "breakpoint/md": {
+      "id": "VariableID:2160:4377",
+      "value": "{viewport/md}",
+      "scopes": ["WIDTH_HEIGHT"]
+    },
+    "breakpoint/lg": {
+      "id": "VariableID:2160:4378",
+      "value": "{viewport/lg}",
+      "scopes": ["WIDTH_HEIGHT"]
+    },
+    "breakpoint/xl": {
+      "id": "VariableID:2160:4379",
+      "value": "{viewport/xl}",
+      "scopes": ["WIDTH_HEIGHT"]
+    }
+  }
+}

@@ -102,7 +102,18 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Value": {
+                "text": "14:32",
+                "size": [
+                  32,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "format=combined, size=sm, emphasis=default",
@@ -112,7 +123,18 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Value": {
+                "text": "Today, 14:32",
+                "size": [
+                  71,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "format=relative, size=sm, emphasis=subtle",
@@ -122,7 +144,16 @@
           ],
           "textFills": [
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Value": {
+                "fills": [
+                  "{Color:text/tertiary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "format=absolute, size=sm, emphasis=subtle",
@@ -132,7 +163,21 @@
           ],
           "textFills": [
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Value": {
+                "text": "14:32",
+                "size": [
+                  32,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/tertiary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "format=combined, size=sm, emphasis=subtle",
@@ -142,7 +187,21 @@
           ],
           "textFills": [
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Value": {
+                "text": "Today, 14:32",
+                "size": [
+                  71,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/tertiary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "format=relative, size=md, emphasis=default",
@@ -152,7 +211,22 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Value": {
+                "textStyle": "body/md/medium",
+                "size": [
+                  63,
+                  10
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "format=absolute, size=md, emphasis=default",
@@ -162,7 +236,23 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Value": {
+                "text": "14:32",
+                "textStyle": "body/md/medium",
+                "size": [
+                  37,
+                  10
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "format=combined, size=md, emphasis=default",
@@ -172,7 +262,23 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Value": {
+                "text": "Today, 14:32",
+                "textStyle": "body/md/medium",
+                "size": [
+                  82,
+                  10
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "format=relative, size=md, emphasis=subtle",
@@ -182,7 +288,25 @@
           ],
           "textFills": [
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Value": {
+                "textStyle": "body/md/medium",
+                "size": [
+                  63,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "format=absolute, size=md, emphasis=subtle",
@@ -192,7 +316,26 @@
           ],
           "textFills": [
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Value": {
+                "text": "14:32",
+                "textStyle": "body/md/medium",
+                "size": [
+                  37,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "format=combined, size=md, emphasis=subtle",
@@ -202,7 +345,26 @@
           ],
           "textFills": [
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Value": {
+                "text": "Today, 14:32",
+                "textStyle": "body/md/medium",
+                "size": [
+                  82,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              }
+            }
+          }
         }
       ]
     }

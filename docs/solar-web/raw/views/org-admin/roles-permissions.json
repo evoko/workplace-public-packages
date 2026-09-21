@@ -874,7 +874,70 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "vars": null
+              }
+            },
+            "added": [
+              "/Page Header",
+              "/Role list",
+              "/Role list/Role Item",
+              "/Role list/Role Item/Org Admin",
+              "/Role list/Role Item/Trailing",
+              "/Role list/Role Item#2",
+              "/Role list/Role Item#2/Facility Manager",
+              "/Role list/Role Item#2/Trailing",
+              "/Role list/Role Item#3",
+              "/Role list/Role Item#3/AV Technician",
+              "/Role list/Role Item#3/Trailing",
+              "/Role list/Role Item#4",
+              "/Role list/Role Item#4/AV Programmer",
+              "/Role list/Role Item#4/Trailing",
+              "/Role list/Role Item#5",
+              "/Role list/Role Item#5/IT Admin",
+              "/Role list/Role Item#5/Trailing",
+              "/Role list/Role Item#6",
+              "/Role list/Role Item#6/Viewer",
+              "/Role list/Role Item#6/Trailing",
+              "/Role list/New custom role",
+              "/Role list/New custom role/Icon/Plus",
+              "/Role list/New custom role/New custom role"
+            ],
+            "removed": [
+              "/Left",
+              "/Left/Tree Group Header",
+              "/Left/Section Nav Item",
+              "/Left/Section Nav Item#2",
+              "/Left/Tree Group Header#2",
+              "/Left/Section Nav Item#3",
+              "/Left/Section Nav Item#4",
+              "/Left/Tree Group Header#3",
+              "/Left/Section Nav Item#5",
+              "/Left/Section Nav Item#6",
+              "/Left/Section Nav Item#7",
+              "/Left/Section Nav Item#8",
+              "/Center",
+              "/Center/Page Header",
+              "/Center/Org Admin Body",
+              "/Center/Org Admin Body/Role List",
+              "/Center/Org Admin Body/Capability Matrix",
+              "/Center/Scope Footer",
+              "/Center/Scope Footer/Scope:",
+              "/Center/Scope Footer/Tag",
+              "/Center/Scope Footer/· per-Location / per-Zone scoping is a separate axis (deferred to v1.1)"
+            ]
+          }
         },
         {
           "variant": "breakpoint=mobile, step=02",
@@ -914,7 +977,69 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "vars": null
+              }
+            },
+            "added": [
+              "/Back Bar",
+              "/Back Bar/Icon",
+              "/Back Bar/Icon/Icon/ChevronRight",
+              "/Back Bar/Roles & Permissions",
+              "/Page Header",
+              "/Scope",
+              "/Scope/Scope",
+              "/Scope/Tag",
+              "/Capabilities",
+              "/Capabilities/DEVICES",
+              "/Capabilities/Card",
+              "/Capabilities/Card#2",
+              "/Capabilities/Card#3",
+              "/Capabilities/LOCATIONS & ZONES",
+              "/Capabilities/Card#4",
+              "/Capabilities/Card#5",
+              "/Capabilities/BILLING & LICENSES",
+              "/Capabilities/Card#6",
+              "/Capabilities/Card#7",
+              "/Action Bar",
+              "/Action Bar/Button Group"
+            ],
+            "removed": [
+              "/Left",
+              "/Left/Tree Group Header",
+              "/Left/Section Nav Item",
+              "/Left/Section Nav Item#2",
+              "/Left/Tree Group Header#2",
+              "/Left/Section Nav Item#3",
+              "/Left/Section Nav Item#4",
+              "/Left/Tree Group Header#3",
+              "/Left/Section Nav Item#5",
+              "/Left/Section Nav Item#6",
+              "/Left/Section Nav Item#7",
+              "/Left/Section Nav Item#8",
+              "/Center",
+              "/Center/Page Header",
+              "/Center/Org Admin Body",
+              "/Center/Org Admin Body/Role List",
+              "/Center/Org Admin Body/Capability Matrix",
+              "/Center/Scope Footer",
+              "/Center/Scope Footer/Scope:",
+              "/Center/Scope Footer/Tag",
+              "/Center/Scope Footer/· per-Location / per-Zone scoping is a separate axis (deferred to v1.1)"
+            ]
+          }
         }
       ]
     }

@@ -381,6 +381,77 @@ function linkParents(n, p = null) {
   n.__parent = p;
   for (const c of n.children || []) linkParents(c, n);
 }
+// ---- per-variant overrides: what a variant changes relative to the default variant ----
+// Both trees come from layer(); layers are addressed by a path of names, with #k appended
+// when siblings share a name. Only the fields below are compared.
+const DIFF_KEYS = [
+  'hidden',
+  'text',
+  'textStyle',
+  'main',
+  'variant',
+  'size',
+  'layout',
+  'sizing',
+  'fills',
+  'strokes',
+  'strokeWeight',
+  'radius',
+  'effectStyle',
+  'opacity',
+  'vars',
+];
+function flatten(tree, prefix = '', out = {}) {
+  out[prefix || '/'] = tree;
+  const seen = {};
+  for (const c of tree.children || []) {
+    const k = (seen[c.name] = (seen[c.name] || 0) + 1);
+    flatten(c, prefix + '/' + c.name + (k > 1 ? '#' + k : ''), out);
+  }
+  return out;
+}
+function overrides(baseTree, varTree) {
+  const a = flatten(baseTree),
+    b = flatten(varTree);
+  const changed = {},
+    added = [],
+    removed = [];
+  for (const [path, bn] of Object.entries(b)) {
+    const an = a[path];
+    if (!an) {
+      added.push(path);
+      continue;
+    }
+    const diff = {};
+    for (const k of DIFF_KEYS) {
+      if (k === 'size' && path === '/') continue; // root size is in the digest
+      const x = JSON.stringify(an[k] ?? null),
+        y = JSON.stringify(bn[k] ?? null);
+      if (x === y) continue;
+      // vars and layout are objects: report only the sub-keys that differ (null = removed)
+      if ((k === 'vars' || k === 'layout') && an[k] && bn[k]) {
+        const sub = {};
+        for (const kk of new Set([
+          ...Object.keys(an[k]),
+          ...Object.keys(bn[k]),
+        ]))
+          if (
+            JSON.stringify(an[k][kk] ?? null) !==
+            JSON.stringify(bn[k][kk] ?? null)
+          )
+            sub[kk] = bn[k][kk] ?? null;
+        diff[k] = sub;
+      } else diff[k] = bn[k] ?? null;
+    }
+    if (Object.keys(diff).length) changed[path] = diff;
+  }
+  for (const path of Object.keys(a)) if (!b[path]) removed.push(path);
+  const o = {};
+  if (Object.keys(changed).length) o.changed = changed;
+  if (added.length) o.added = added;
+  if (removed.length) o.removed = removed;
+  return Object.keys(o).length ? o : null;
+}
 const props = (defs) =>
   Object.fromEntries(
     Object.entries(defs || {}).map(([k, v]) => [
@@ -431,6 +502,7 @@ function transformPage(resp, pageId) {
       const base = digest(dv, ctx);
       set.variants = [base];
       const bh = (base.hidden || []).join('|');
+      const depth = nc > 300 ? 3 : 6;
       let k = 0;
       for (const c of n.children) {
         if (c === dv) continue;
@@ -438,7 +510,13 @@ function transformPage(resp, pageId) {
           set.variantsTruncated = true;
           break;
         }
-        set.variants.push(digest(c, ctx, bh));
+        const d = digest(c, ctx, bh);
+        const ov = overrides(
+          set.defaultVariantTree,
+          layer(c, n, 0, depth, ctx),
+        );
+        if (ov) d.overrides = ov;
+        set.variants.push(d);
       }
       result.componentSets.push(set);
     } else if (

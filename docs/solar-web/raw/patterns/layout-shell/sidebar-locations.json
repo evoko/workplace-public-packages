@@ -328,7 +328,29 @@
             "Icon/None",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Org Title": {
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Org Title/Title": {
+                "size": [
+                  240,
+                  20
+                ]
+              }
+            },
+            "added": [
+              "/Org Title/Title/Counter",
+              "/Tree Navigation Panel"
+            ],
+            "removed": [
+              "/EmptyState"
+            ]
+          }
         },
         {
           "variant": "state=search",
@@ -357,7 +379,39 @@
             "Icon/None",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Org Title": {
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Org Title/Title": {
+                "size": [
+                  240,
+                  20
+                ]
+              },
+              "/SearchField": {
+                "variant": {
+                  "state": "focus",
+                  "size": "md"
+                },
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              }
+            },
+            "added": [
+              "/Org Title/Title/Counter",
+              "/Tree Navigation Panel"
+            ],
+            "removed": [
+              "/EmptyState"
+            ]
+          }
         },
         {
           "variant": "state=no-results",
@@ -377,7 +431,40 @@
           "iconFills": [
             "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Org Title": {
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Org Title/Title": {
+                "size": [
+                  240,
+                  20
+                ]
+              },
+              "/SearchField": {
+                "variant": {
+                  "state": "focus",
+                  "size": "md"
+                },
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/EmptyState": {
+                "layout": {
+                  "sizing": "FILL/FIXED"
+                }
+              }
+            },
+            "added": [
+              "/Org Title/Title/Counter"
+            ]
+          }
         },
         {
           "variant": "state=rename",
@@ -407,7 +494,29 @@
             "Icon/None",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Org Title": {
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Org Title/Title": {
+                "size": [
+                  240,
+                  20
+                ]
+              }
+            },
+            "added": [
+              "/Org Title/Title/Counter",
+              "/Tree Navigation Panel"
+            ],
+            "removed": [
+              "/EmptyState"
+            ]
+          }
         }
       ]
     }

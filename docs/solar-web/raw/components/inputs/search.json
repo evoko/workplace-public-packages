@@ -176,7 +176,31 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8
+                },
+                "effectStyle": null,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Search": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  128,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "state=hover, size=md",
@@ -217,7 +241,52 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8
+                },
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "effectStyle": null,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/Search": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Search": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  136,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Icon/Filter": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "state=filled, size=md",
@@ -237,7 +306,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Search": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=filled, size=sm",
@@ -256,7 +334,52 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8
+                },
+                "effectStyle": null,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/Search": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Search": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  136,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Icon/Filter": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "state=focus, size=md",
@@ -276,7 +399,22 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Search": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=focus, size=sm",
@@ -297,7 +435,55 @@
           "iconFills": [
             "{Color:icon/primary}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8
+                },
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/Search": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Search": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  136,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Icon/Filter": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "state=error, size=md",
@@ -317,7 +503,25 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "CENTER/CENTER"
+                },
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger"
+              },
+              "/Search": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=error, size=sm",
@@ -338,7 +542,56 @@
           "iconFills": [
             "{Color:icon/primary}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "align": "CENTER/CENTER"
+                },
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/Search": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Search": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  136,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Icon/Filter": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "state=disabled, size=md",
@@ -358,7 +611,16 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Search": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=disabled, size=sm",
@@ -377,7 +639,52 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8
+                },
+                "effectStyle": null,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/Search": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Search": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  136,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Icon/Filter": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -578,7 +885,39 @@
           ],
           "iconFills": [
             "{Color:icon/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/Search": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Search Workplace": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  120,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "state=hover, size=md",
@@ -598,7 +937,24 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Search Workplace": {
+                "fills": [
+                  "{Color:text/secondary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=hover, size=sm",
@@ -618,7 +974,48 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/Search": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Search Workplace": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  120,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/secondary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "state=filled, size=md",
@@ -638,7 +1035,21 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ]
+              },
+              "/Search Workplace": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=filled, size=sm",
@@ -658,7 +1069,45 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/Search": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Search Workplace": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  120,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "state=focus, size=md",
@@ -679,7 +1128,25 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Search Workplace": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=focus, size=sm",
@@ -700,7 +1167,49 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/Search": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Search Workplace": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  120,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "state=error, size=md",
@@ -721,7 +1230,28 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "CENTER/CENTER"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger"
+              },
+              "/Search Workplace": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=error, size=sm",
@@ -742,7 +1272,50 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "align": "CENTER/CENTER"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/Search": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Search Workplace": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  120,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         }
       ]
     }

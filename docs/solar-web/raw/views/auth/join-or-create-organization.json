@@ -333,7 +333,77 @@
             "Icon Button",
             "Icon/None",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    16,
+                    24,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "width": "Layout:breakpoint/xs"
+                }
+              },
+              "/Top Bar": {
+                "variant": {
+                  "breakpoint": "mobile",
+                  "hasSidebar": "true",
+                  "isLoggedIn": "False"
+                },
+                "size": [
+                  393,
+                  56
+                ],
+                "layout": {
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Center Stack": {
+                "size": [
+                  361,
+                  309
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Center Stack/Join organization": {
+                "size": [
+                  140,
+                  13
+                ]
+              },
+              "/Center Stack/Container": {
+                "size": [
+                  361,
+                  190
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              }
+            },
+            "added": [
+              "/Center Stack/Join an organization by entering its ID. The organization can then accept your request.",
+              "/Center Stack/Container#2",
+              "/Center Stack/Container#2/Icon/HelpCircle",
+              "/Center Stack/Container#2/We'll find the right Sign-in method for you."
+            ],
+            "removed": [
+              "/Center Stack/Ask to join an organization by entering the organization ID. Once sent, the organization will be able to accept your request."
+            ]
+          }
         }
       ]
     },
@@ -670,7 +740,75 @@
             "Icon Button",
             "Icon/None",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    16,
+                    24,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "width": "Layout:breakpoint/xs"
+                }
+              },
+              "/Top Bar": {
+                "variant": {
+                  "breakpoint": "mobile",
+                  "hasSidebar": "true",
+                  "isLoggedIn": "False"
+                },
+                "size": [
+                  393,
+                  56
+                ],
+                "layout": {
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Center Stack": {
+                "size": [
+                  361,
+                  371
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Center Stack/Create organization": {
+                "size": [
+                  160,
+                  13
+                ]
+              },
+              "/Center Stack/Set up your organization to start managing your spaces.  Your data region can't be changed later.": {
+                "size": [
+                  361,
+                  30
+                ],
+                "sizing": "FILL/HUG"
+              },
+              "/Center Stack/Container": {
+                "size": [
+                  361,
+                  288
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              }
+            }
+          }
         }
       ]
     }

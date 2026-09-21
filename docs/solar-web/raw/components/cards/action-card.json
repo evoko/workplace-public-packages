@@ -421,7 +421,24 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Title/Title": {
+                "fills": [
+                  "{Color:text/secondary}"
+                ]
+              }
+            },
+            "added": [
+              "/Button"
+            ],
+            "removed": [
+              "/CTA",
+              "/CTA/Button",
+              "/CTA/Button#2"
+            ]
+          }
         },
         {
           "variant": "status=danger, state=default, layout=vertical",
@@ -446,7 +463,29 @@
             "{Color:icon/feedback/danger}",
             "{Color:icon/secondary}",
             "{Color:action/primary/icon/danger/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ]
+              },
+              "/Title/Title": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            },
+            "added": [
+              "/Button"
+            ],
+            "removed": [
+              "/CTA",
+              "/CTA/Button",
+              "/CTA/Button#2"
+            ]
+          }
         },
         {
           "variant": "status=default, state=hover, layout=vertical",
@@ -494,7 +533,29 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Title/Title": {
+                "fills": [
+                  "{Color:text/secondary}"
+                ]
+              }
+            },
+            "added": [
+              "/Button"
+            ],
+            "removed": [
+              "/CTA",
+              "/CTA/Button",
+              "/CTA/Button#2"
+            ]
+          }
         },
         {
           "variant": "status=danger, state=hover, layout=vertical",
@@ -519,7 +580,33 @@
             "{Color:icon/feedback/danger}",
             "{Color:icon/secondary}",
             "{Color:action/primary/icon/danger/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "effectStyle": "shadow/raised"
+              },
+              "/Title/Title": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            },
+            "added": [
+              "/Button"
+            ],
+            "removed": [
+              "/CTA",
+              "/CTA/Button",
+              "/CTA/Button#2"
+            ]
+          }
         }
       ]
     }

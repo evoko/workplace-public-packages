@@ -224,6 +224,7 @@
     "icon.size": "^icon\\.(size\\.)?(xs|sm|md|lg|xl|2xl)$",
     "spatial primitive": "^spatial\\.(scale\\.(\\d|1\\d|2[0-2])|border-width\\.(none|sm|md|lg)|border-radius\\.(none|sm|md|lg|xl|full))$",
     "viewport": "^viewport\\.(xs|sm|md|lg|xl)$",
+    "layout (SOLAR Web)": "^layout\\.(grid\\.(columns|margin|gutter)|breakpoint)\\.(xs|sm|md|lg|xl)$",
     "motion": "^motion\\.(duration\\.(instant|fast|normal|slow|slower)|ease\\.(in|out|both))$",
     "shadow (effect)": "^shadow\\.(control|raised|overlay|dialog|strong|focus\\.(default|danger)|danger|warning)$",
     "text style": "^(display\\.(lg|md|sm|xs\\.(medium|semibold))|title\\.(lg|md|sm|xs|2xs)|body\\.(lg|md|sm|xs|2xs)\\.(regular|medium|semibold|bold)|label\\.(md|sm)|helper\\.(md|sm)|code\\.(lg|md)|caption\\.xs|link\\.(lg|md|sm|xs|2xs)\\.(default|hover))$",

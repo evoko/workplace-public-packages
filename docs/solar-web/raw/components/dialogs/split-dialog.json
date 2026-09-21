@@ -523,7 +523,37 @@
             "Counter",
             "Icon/None",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Body": {
+                "size": [
+                  640,
+                  424
+                ]
+              },
+              "/Body/right": {
+                "size": [
+                  320,
+                  424
+                ]
+              }
+            },
+            "added": [
+              "/Body/Container",
+              "/Body/Container/left",
+              "/Body/Container/left/Primary panel",
+              "/Body/Container/left/Primary panel — main form, picker, or input area.",
+              "/Body/Container/Button Group"
+            ],
+            "removed": [
+              "/Body/left",
+              "/Body/left/Title",
+              "/Body/left/Description",
+              "/Body/left/Text Input",
+              "/Button Group"
+            ]
+          }
         }
       ]
     }

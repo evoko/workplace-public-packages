@@ -81,147 +81,495 @@
           "size": [
             13,
             14
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Imported Layers Copy 4",
+              "/Imported Layers Copy 4/Path",
+              "/Imported Layers Copy 4/Path#2",
+              "/Imported Layers Copy 4/Path#3",
+              "/Imported Layers Copy 4/Path#4"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Default White",
           "size": [
             13,
             14
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              },
+              "/Rectangle 237": {
+                "fills": [
+                  "{Primitives:color/mono/white}"
+                ],
+                "strokes": [
+                  "{Color:border/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Type=Progress",
           "size": [
             22,
             24
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              },
+              "/Rectangle 237": {
+                "size": [
+                  10,
+                  11
+                ]
+              }
+            },
+            "added": [
+              "/Oval 3",
+              "/Rectangle 8",
+              "/Rectangle 8/Path",
+              "/Rectangle 8/Path#2"
+            ]
+          }
         },
         {
           "variant": "Type=Not Allowed",
           "size": [
             21,
             24
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              },
+              "/Rectangle 237": {
+                "size": [
+                  10,
+                  11
+                ]
+              }
+            },
+            "added": [
+              "/Oval 3",
+              "/Oval 3/Path",
+              "/Oval 3/Path#2",
+              "/Oval 3/Path#3"
+            ]
+          }
         },
         {
           "variant": "Type=Move",
           "size": [
             18,
             18
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Rectangle 254",
+              "/Rectangle 254/Path",
+              "/Rectangle 254/Path#2",
+              "/Rectangle 254/Path#3",
+              "/Rectangle 254/Path#4",
+              "/Rectangle 254/Path#5"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Resize Col",
           "size": [
             18,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Rectangle 254",
+              "/Rectangle 254/Path",
+              "/Rectangle 254/Path#2",
+              "/Rectangle 254/Path#3"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Resize Row",
           "size": [
             16,
             18
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Rectangle 254",
+              "/Rectangle 254/Path",
+              "/Rectangle 254/Path#2",
+              "/Rectangle 254/Path#3"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Resize NS",
           "size": [
             8,
             19
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Rectangle 254"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Resize N",
           "size": [
             8,
             15
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Rectangle 254"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Crosshair",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Rectangle 254"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=X",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Rectangle 254"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Text",
           "size": [
             8,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Path",
+              "/Path/Path",
+              "/Path/Path#2",
+              "/Path/Path#3",
+              "/Path/Path#4",
+              "/Path/Path#5"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Unavailable",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Oval 38",
+              "/Oval 38/Path",
+              "/Oval 38/Path#2",
+              "/Oval 38/Path#3"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Zoom In",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Oval 38",
+              "/Oval 38/Oval 38",
+              "/Oval 38/Rectangle 1",
+              "/Oval",
+              "/Oval/Oval",
+              "/Oval/Rectangle 2",
+              "/Oval/Rectangle 2#2"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Zoom Out",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Oval 38",
+              "/Oval 38/Oval 38",
+              "/Oval 38/Rectangle 1",
+              "/Oval",
+              "/Oval/Oval",
+              "/Oval/Rectangle 2"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Resize EW",
           "size": [
             19,
             8
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Rectangle 254"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Resize NW SE",
           "size": [
             13,
             13
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Rectangle 254"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Resize NE SW",
           "size": [
             13,
             13
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Rectangle 254"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Copy",
           "size": [
             21,
             24
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              },
+              "/Rectangle 237": {
+                "size": [
+                  10,
+                  11
+                ]
+              }
+            },
+            "added": [
+              "/Oval 3",
+              "/Rectangle 6"
+            ]
+          }
         },
         {
           "variant": "Type=Pointer",
           "size": [
             14,
             17
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Imported Layers Copy 4",
+              "/Imported Layers Copy 4/Path",
+              "/Imported Layers Copy 4/Path#2",
+              "/Imported Layers Copy 4/Path#3",
+              "/Imported Layers Copy 4/Path#4"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         },
         {
           "variant": "Type=Hourglass",
           "size": [
             11,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": null
+              }
+            },
+            "added": [
+              "/Rectangle 272",
+              "/Rectangle 272/Path",
+              "/Rectangle 272/Path#2",
+              "/Rectangle 272/Path#3",
+              "/Rectangle 272/Path#4",
+              "/Rectangle 272/Path#5",
+              "/Rectangle 272/Path#6",
+              "/Rectangle 272/Path#7",
+              "/Rectangle 272/Path#8",
+              "/Rectangle 272/Path#9",
+              "/Rectangle 272/Path#10",
+              "/Rectangle 272/Path#11",
+              "/Rectangle 272/Path#12",
+              "/Rectangle 272/Path#13",
+              "/Rectangle 272/Path#14",
+              "/Rectangle 272/Path#15",
+              "/Rectangle 272/Path#16",
+              "/Rectangle 272/Path#17",
+              "/Rectangle 272/Path#18",
+              "/Rectangle 272/Path#19"
+            ],
+            "removed": [
+              "/Rectangle 237"
+            ]
+          }
         }
       ]
     }

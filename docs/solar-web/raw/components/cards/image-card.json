@@ -275,7 +275,26 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Image/Checkbox": {
+                "variant": {
+                  "checked": "false",
+                  "disabled": "false",
+                  "hover": "false",
+                  "mixed": "false",
+                  "focus": "false"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "filled=true, selected=false, hover=false",
@@ -293,7 +312,12 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "removed": [
+              "/Image/Checkbox"
+            ]
+          }
         },
         {
           "variant": "filled=false, selected=false, hover=false",
@@ -309,7 +333,46 @@
           ],
           "iconFills": [
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 20,
+                  "pad": [
+                    20,
+                    0,
+                    20,
+                    0
+                  ],
+                  "align": "CENTER/CENTER"
+                },
+                "fills": null,
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "effectStyle": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/lg",
+                  "paddingTop": "Spatial:inset/lg",
+                  "paddingBottom": "Spatial:inset/lg"
+                }
+              }
+            },
+            "added": [
+              "/IconCircle",
+              "/IconCircle/Icon/Plus",
+              "/Label"
+            ],
+            "removed": [
+              "/Image",
+              "/Image/Checkbox",
+              "/Text",
+              "/Text/Title",
+              "/Text/Icon",
+              "/Text/Subtitle"
+            ]
+          }
         }
       ]
     }

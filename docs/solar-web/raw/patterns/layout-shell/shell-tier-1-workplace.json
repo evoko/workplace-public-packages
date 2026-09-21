@@ -363,7 +363,72 @@
           "iconFills": [
             "{Color:action/secondary/icon/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "width": "Primitives:viewport/xs"
+                }
+              },
+              "/Top Bar": {
+                "variant": {
+                  "breakpoint": "mobile",
+                  "hasSidebar": "true",
+                  "isLoggedIn": "False"
+                },
+                "size": [
+                  393,
+                  56
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/xs",
+                  "paddingRight": "Spatial:stack/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/App Content": {
+                "size": [
+                  393,
+                  744
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingBottom": null,
+                  "paddingLeft": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/App Content/center"
+            ],
+            "removed": [
+              "/App Content/Sidebar",
+              "/App Content/Page Content",
+              "/App Content/Page Content/left",
+              "/App Content/Page Content/center",
+              "/App Content/Page Content/right"
+            ]
+          }
         }
       ]
     }

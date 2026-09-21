@@ -89,7 +89,16 @@
           ],
           "strokes": [
             "{Color:border/subtle}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=selected, density=comfortable",
@@ -102,7 +111,19 @@
           ],
           "strokes": [
             "{Color:border/feedback/focus/strong}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=default, density=compact",
@@ -128,7 +149,16 @@
           ],
           "strokes": [
             "{Color:border/subtle}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=selected, density=compact",
@@ -141,7 +171,19 @@
           ],
           "strokes": [
             "{Color:border/feedback/focus/strong}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

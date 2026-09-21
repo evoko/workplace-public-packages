@@ -191,7 +191,40 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Frame": {
+                "size": [
+                  132,
+                  9
+                ],
+                "layout": {
+                  "gap": 16,
+                  "align": "SPACE_BETWEEN/CENTER",
+                  "sizing": "FIXED/HUG"
+                }
+              }
+            },
+            "added": [
+              "/Frame/Frame",
+              "/Frame/Frame/StatusIndicator",
+              "/Frame/Frame/Label",
+              "/Frame#2",
+              "/Frame#2/Frame",
+              "/Frame#2/Frame/StatusIndicator",
+              "/Frame#2/Frame/Label",
+              "/Frame#2/Value",
+              "/Frame#3",
+              "/Frame#3/Frame",
+              "/Frame#3/Frame/StatusIndicator",
+              "/Frame#3/Frame/Label",
+              "/Frame#3/Value"
+            ],
+            "removed": [
+              "/Frame/StatusIndicator"
+            ]
+          }
         }
       ]
     }

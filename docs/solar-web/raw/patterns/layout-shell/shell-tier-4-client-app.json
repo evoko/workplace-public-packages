@@ -483,7 +483,78 @@
           "iconFills": [
             "{Color:action/secondary/icon/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "vars": {
+                  "width": "Primitives:viewport/xs"
+                }
+              },
+              "/Top Bar": {
+                "variant": {
+                  "breakpoint": "mobile",
+                  "hasSidebar": "true",
+                  "isLoggedIn": "False"
+                },
+                "size": [
+                  393,
+                  56
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/xs",
+                  "paddingRight": "Spatial:stack/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/App Content": {
+                "size": [
+                  393,
+                  744
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingBottom": null,
+                  "paddingLeft": "Spatial:inset/xs"
+                }
+              }
+            },
+            "added": [
+              "/App Content/center",
+              "/App Content/center/Container",
+              "/App Content/center/Container#2",
+              "/App Content/center/Container#2/Container",
+              "/App Content/center/Container#2/Container#2",
+              "/App Content/center/Container#3"
+            ],
+            "removed": [
+              "/App Content/Sidebar",
+              "/App Content/Page Shell",
+              "/App Content/Page Shell/left",
+              "/App Content/Page Shell/center",
+              "/App Content/Page Shell/center/Container",
+              "/App Content/Page Shell/center/Container#2",
+              "/App Content/Page Shell/center/Container#2/Container",
+              "/App Content/Page Shell/center/Container#2/Container#2",
+              "/App Content/Page Shell/right"
+            ]
+          }
         }
       ]
     }

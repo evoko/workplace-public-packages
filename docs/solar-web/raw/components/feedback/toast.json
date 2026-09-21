@@ -229,7 +229,29 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/warning}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ]
+              },
+              "/Tag": {
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ]
+              },
+              "/Action": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "status=danger",
@@ -250,7 +272,29 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/danger}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/subtle}"
+                ]
+              },
+              "/Tag": {
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ]
+              },
+              "/Action": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "status=info",
@@ -271,7 +315,29 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/info}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ]
+              },
+              "/Tag": {
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ]
+              },
+              "/Action": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "status=neutral",
@@ -292,7 +358,29 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/neutral}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/Tag": {
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/Action": {
+                "fills": [
+                  "{Color:text/feedback/neutral}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

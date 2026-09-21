@@ -33,7 +33,8 @@ yet**. The scripts here produce documentation and data for it; see
   points at the four Foundations collections consumed from the published library, so
   [`docs/solar/tokens/figma-variables.json`](../solar/tokens/figma-variables.json) resolves
   every token you will see here. The one local collection is **Layout** (grid columns,
-  gutters, margins, breakpoints), documented in [tokens/layout-grid.md](tokens/layout-grid.md).
+  gutters, margins, breakpoints), captured in [tokens/layout-variables.json](tokens/layout-variables.json)
+  and documented in [tokens/layout-grid.md](tokens/layout-grid.md).
 - Text styles and effect styles also come from Foundations (`label/md`, `shadow/control`…).
 - Icons are instances of the SOLAR Icons library (`Icon/ChevronRight`, `Icon/None`…);
   they appear in anatomy trees as composed components.
@@ -75,10 +76,11 @@ HUG/FIXED`), size, and every token binding. A `~~struck~~` layer is hidden by
 
 Know these before designing anything on top of `catalog.json`:
 
-- **Only the default variant's full tree is captured.** Other variants are reduced to a
-  digest: root fill, stroke, effect, and the set of text and icon colors inside. Padding or
-  radius that changes per variant (a `size=sm` button, say) is in the Figma file but not in
-  the data, except where the description states it in words.
+- **Variants are stored as diffs against the default variant.** The default variant has the
+  full layer tree; every other variant has a root digest plus `overrides` listing exactly
+  which layers and fields differ (see [schema.md](schema.md)). Layers deeper than six levels
+  and the internals of nested instances are not captured; sets with more than 151 variants
+  are truncated and flagged.
 - **No motion, no prototype interactions.** Durations, easings and transitions come from
   the Foundations motion tokens and prose, never from the Web file.
 - **Descriptions and sets disagree** on 152 components: variant counts, axis values, state
@@ -94,9 +96,10 @@ Typograhy` and `Scale`; the Coachmark component (added to Figma 2026-09-21) bind
 - **Ten local variables in the Web file duplicate Foundations token names**
   (`Color(local)/…`, `Spatial(local)/…`, `Type(local)/…` in `raw/_variables.json`). Treat
   them as the Foundations token of the same name and report them to SOLAR governance.
-- **Layout tokens exist only here.** Grid columns, gutters, margins and breakpoints are the
-  Web file's local `Layout` collection ([tokens/layout-grid.md](tokens/layout-grid.md)) and
-  are absent from `figma-variables.json` and `css-contract.json`.
+- **Layout tokens are SOLAR Web's own.** Grid columns, gutters, margins and breakpoints are
+  the Web file's local `Layout` collection, absent from `figma-variables.json`. They are
+  captured in [tokens/layout-variables.json](tokens/layout-variables.json) and folded into
+  `css-contract.json` and `reference.css` as `layout.*` / `--solar-layout-*` by `solar:tokens`.
 - **46 pages carry the boilerplate documentation card** ("Breadcrumbs" text left from the
   template). Their `docText` is not about the component; `issues.md` flags them.
 - **Values are never resolved here.** Every token reference is a name; resolve it through

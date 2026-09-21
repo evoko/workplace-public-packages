@@ -368,7 +368,26 @@
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}",
             "{Color:surface/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/alpha/turquoise-50}"
+                ]
+              },
+              "/icon/Union/Icon": {
+                "fills": [
+                  "{Color:icon/feedback/info}"
+                ]
+              },
+              "/icon/Union/Icon#2": {
+                "fills": [
+                  "{Color:icon/feedback/info}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=success",
@@ -388,7 +407,29 @@
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}",
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/success/medium}"
+                ]
+              }
+            },
+            "added": [
+              "/Checkmark-Outline--Streamline-Carbon",
+              "/Checkmark-Outline--Streamline-Carbon/Icon",
+              "/Checkmark-Outline--Streamline-Carbon/Icon#2",
+              "/Checkmark-Outline--Streamline-Carbon/_Transparent_Rectangle_"
+            ],
+            "removed": [
+              "/icon",
+              "/icon/Union",
+              "/icon/Union/Icon",
+              "/icon/Union/Icon#2",
+              "/icon/Icon"
+            ]
+          }
         },
         {
           "variant": "Variant=warning",
@@ -408,7 +449,30 @@
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}",
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/warning/medium}"
+                ]
+              }
+            },
+            "added": [
+              "/Warning-Alt--Streamline-Carbon",
+              "/Warning-Alt--Streamline-Carbon/Icon",
+              "/Warning-Alt--Streamline-Carbon/Icon#2",
+              "/Warning-Alt--Streamline-Carbon/Icon#3",
+              "/Warning-Alt--Streamline-Carbon/_Transparent_Rectangle_"
+            ],
+            "removed": [
+              "/icon",
+              "/icon/Union",
+              "/icon/Union/Icon",
+              "/icon/Union/Icon#2",
+              "/icon/Icon"
+            ]
+          }
         },
         {
           "variant": "Variant=danger",
@@ -428,7 +492,29 @@
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}",
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ]
+              }
+            },
+            "added": [
+              "/Misuse-Outline--Streamline-Carbon",
+              "/Misuse-Outline--Streamline-Carbon/Icon",
+              "/Misuse-Outline--Streamline-Carbon/_Transparent_Rectangle_",
+              "/Misuse-Outline--Streamline-Carbon/Icon#2"
+            ],
+            "removed": [
+              "/icon",
+              "/icon/Union",
+              "/icon/Union/Icon",
+              "/icon/Union/Icon#2",
+              "/icon/Icon"
+            ]
+          }
         }
       ]
     }

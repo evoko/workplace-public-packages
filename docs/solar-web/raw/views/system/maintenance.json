@@ -328,7 +328,28 @@
             "{Color:action/tertiary/icon/default}",
             "{Primitives:color/brand/white}",
             "{Primitives:color/brand/red}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "vars": {
+                  "width": null
+                }
+              },
+              "/Center Stack": {
+                "size": [
+                  182,
+                  243
+                ]
+              },
+              "/Center Stack/Under maintenance": {
+                "size": [
+                  160,
+                  13
+                ]
+              }
+            }
+          }
         }
       ]
     }

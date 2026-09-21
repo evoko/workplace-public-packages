@@ -409,7 +409,50 @@
             "{Color:action/primary/icon/default}",
             "{Primitives:color/brand/white}",
             "{Primitives:color/brand/red}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    24,
+                    16,
+                    24,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "width": "Layout:breakpoint/xs"
+                }
+              },
+              "/Center Stack": {
+                "size": [
+                  361,
+                  386
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Center Stack/Welcome to App Name": {
+                "size": [
+                  187,
+                  13
+                ]
+              },
+              "/Center Stack/Container": {
+                "size": [
+                  361,
+                  274
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -782,7 +825,50 @@
             "{Color:action/tertiary/icon/default}",
             "{Primitives:color/brand/white}",
             "{Primitives:color/brand/red}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    24,
+                    16,
+                    24,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "width": "Layout:breakpoint/xs"
+                }
+              },
+              "/Center Stack": {
+                "size": [
+                  361,
+                  384
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Center Stack/Welcome to App Name": {
+                "size": [
+                  187,
+                  13
+                ]
+              },
+              "/Center Stack/Container": {
+                "size": [
+                  361,
+                  272
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              }
+            }
+          }
         }
       ]
     }

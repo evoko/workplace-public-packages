@@ -271,7 +271,34 @@
             "{Color:icon/primary}",
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Trend/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "status=danger, state=default",
@@ -293,7 +320,34 @@
             "{Color:icon/primary}",
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Trend/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "status=neutral, state=default",
@@ -314,7 +368,34 @@
           "iconFills": [
             "{Color:icon/primary}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Trend/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "status=success, state=hover",
@@ -335,7 +416,16 @@
           "iconFills": [
             "{Color:icon/primary}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "status=warning, state=hover",
@@ -357,7 +447,39 @@
             "{Color:icon/primary}",
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Trend/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "status=danger, state=hover",
@@ -379,7 +501,39 @@
             "{Color:icon/primary}",
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Trend/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "status=neutral, state=hover",
@@ -400,7 +554,39 @@
           "iconFills": [
             "{Color:icon/primary}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Trend/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "status=success, state=disabled",
@@ -421,7 +607,17 @@
           "iconFills": [
             "{Color:icon/disabled}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Title": {
+                "opacity": 0.20000000298023224
+              },
+              "/Trend": {
+                "opacity": 0.20000000298023224
+              }
+            }
+          }
         },
         {
           "variant": "status=warning, state=disabled",
@@ -443,7 +639,43 @@
             "{Color:icon/disabled}",
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Title": {
+                "layout": {
+                  "align": "MIN/CENTER"
+                },
+                "opacity": 0.20000000298023224
+              },
+              "/Trend": {
+                "opacity": 0.20000000298023224
+              },
+              "/Trend/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "status=danger, state=disabled",
@@ -465,7 +697,40 @@
             "{Color:icon/disabled}",
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Title": {
+                "opacity": 0.20000000298023224
+              },
+              "/Trend": {
+                "opacity": 0.20000000298023224
+              },
+              "/Trend/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "status=neutral, state=disabled",
@@ -486,7 +751,40 @@
           "iconFills": [
             "{Color:icon/disabled}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Title": {
+                "opacity": 0.20000000298023224
+              },
+              "/Trend": {
+                "opacity": 0.20000000298023224
+              },
+              "/Trend/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "status=success, state=ghost",
@@ -500,7 +798,21 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "added": [
+              "/Skeleton",
+              "/Skeleton#2"
+            ],
+            "removed": [
+              "/Title",
+              "/Title/Title",
+              "/Title/Icon/More",
+              "/Trend",
+              "/Trend/StatusIndicator",
+              "/Trend/TrendValue"
+            ]
+          }
         },
         {
           "variant": "status=warning, state=ghost",
@@ -514,7 +826,21 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "added": [
+              "/Skeleton",
+              "/Skeleton#2"
+            ],
+            "removed": [
+              "/Title",
+              "/Title/Title",
+              "/Title/Icon/More",
+              "/Trend",
+              "/Trend/StatusIndicator",
+              "/Trend/TrendValue"
+            ]
+          }
         },
         {
           "variant": "status=danger, state=ghost",
@@ -528,7 +854,21 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "added": [
+              "/Skeleton",
+              "/Skeleton#2"
+            ],
+            "removed": [
+              "/Title",
+              "/Title/Title",
+              "/Title/Icon/More",
+              "/Trend",
+              "/Trend/StatusIndicator",
+              "/Trend/TrendValue"
+            ]
+          }
         },
         {
           "variant": "status=neutral, state=ghost",
@@ -542,7 +882,21 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "added": [
+              "/Skeleton",
+              "/Skeleton#2"
+            ],
+            "removed": [
+              "/Title",
+              "/Title/Title",
+              "/Title/Icon/More",
+              "/Trend",
+              "/Trend/StatusIndicator",
+              "/Trend/TrendValue"
+            ]
+          }
         }
       ]
     }

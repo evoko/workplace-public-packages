@@ -778,7 +778,48 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "vars": null
+              }
+            },
+            "added": [
+              "/Page Header",
+              "/Feed",
+              "/Feed/Activity Feed Filter Row",
+              "/Feed/Activity Feed"
+            ],
+            "removed": [
+              "/Left",
+              "/Left/Tree Group Header",
+              "/Left/Section Nav Item",
+              "/Left/Section Nav Item#2",
+              "/Left/Tree Group Header#2",
+              "/Left/Section Nav Item#3",
+              "/Left/Section Nav Item#4",
+              "/Left/Tree Group Header#3",
+              "/Left/Section Nav Item#5",
+              "/Left/Section Nav Item#6",
+              "/Left/Section Nav Item#7",
+              "/Left/Section Nav Item#8",
+              "/Members & Roles",
+              "/Members & Roles/Page Header",
+              "/Members & Roles/Feed",
+              "/Members & Roles/Feed/Activity Feed Filter Row",
+              "/Members & Roles/Feed/Activity Feed",
+              "/Right"
+            ]
+          }
         }
       ]
     }

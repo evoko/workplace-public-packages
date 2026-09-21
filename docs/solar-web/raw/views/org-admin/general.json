@@ -771,7 +771,48 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "vars": null
+              }
+            },
+            "added": [
+              "/Page Header",
+              "/Form",
+              "/Form/FormSection",
+              "/Form/FormSection#2"
+            ],
+            "removed": [
+              "/Left",
+              "/Left/Tree Group Header",
+              "/Left/Section Nav Item",
+              "/Left/Section Nav Item#2",
+              "/Left/Tree Group Header#2",
+              "/Left/Section Nav Item#3",
+              "/Left/Section Nav Item#4",
+              "/Left/Tree Group Header#3",
+              "/Left/Section Nav Item#5",
+              "/Left/Section Nav Item#6",
+              "/Left/Section Nav Item#7",
+              "/Left/Section Nav Item#8",
+              "/Center",
+              "/Center/Page Header",
+              "/Center/Form",
+              "/Center/Form/FormSection",
+              "/Center/Form/FormSection#2",
+              "/Right"
+            ]
+          }
         }
       ]
     }

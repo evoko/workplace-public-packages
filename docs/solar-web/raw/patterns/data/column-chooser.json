@@ -716,7 +716,60 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Header/TitleGroup": {
+                "size": [
+                  212,
+                  12
+                ]
+              },
+              "/content": {
+                "layout": {
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "vars": null
+              }
+            },
+            "added": [
+              "/Header/TitleGroup/Skeleton",
+              "/Header/Skeleton",
+              "/content/Body",
+              "/content/Body/ColumnRow",
+              "/content/Body/ColumnRow/Skeleton",
+              "/content/Body/ColumnRow#2",
+              "/content/Body/ColumnRow#2/Skeleton",
+              "/content/Body/ColumnRow#3",
+              "/content/Body/ColumnRow#3/Skeleton",
+              "/content/Body/ColumnRow#4",
+              "/content/Body/ColumnRow#4/Skeleton",
+              "/content/Body/ColumnRow#5",
+              "/content/Body/ColumnRow#5/Skeleton"
+            ],
+            "removed": [
+              "/Header/TitleGroup/Title",
+              "/Header/TitleGroup/SummaryCounter",
+              "/Header/ClearAll",
+              "/content/SearchField",
+              "/content/List",
+              "/content/List/ColumnRow",
+              "/content/List/ColumnRow#2",
+              "/content/List/ColumnRow#3",
+              "/content/List/ColumnRow#4",
+              "/content/List/ColumnRow#5",
+              "/content/List/ColumnRow#6",
+              "/content/List/ColumnRow#7",
+              "/content/List/ColumnRow#8",
+              "/content/List/ColumnRow#9",
+              "/content/List/ColumnRow#10"
+            ]
+          }
         },
         {
           "variant": "state=empty",
@@ -742,7 +795,26 @@
             "{Color:action/tertiary/icon/default}",
             "{Color:icon/secondary}",
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/content/Body",
+              "/content/Body/No columns match your search"
+            ],
+            "removed": [
+              "/content/List",
+              "/content/List/ColumnRow",
+              "/content/List/ColumnRow#2",
+              "/content/List/ColumnRow#3",
+              "/content/List/ColumnRow#4",
+              "/content/List/ColumnRow#5",
+              "/content/List/ColumnRow#6",
+              "/content/List/ColumnRow#7",
+              "/content/List/ColumnRow#8",
+              "/content/List/ColumnRow#9",
+              "/content/List/ColumnRow#10"
+            ]
+          }
         }
       ]
     },
@@ -911,7 +983,16 @@
           "iconFills": [
             "{Color(local):icon/tertiary}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color(local):surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, hover=false",
@@ -924,7 +1005,31 @@
           ],
           "iconFills": [
             "{Color(local):icon/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Checkbox": {
+                "variant": {
+                  "checked": "false",
+                  "disabled": "false",
+                  "hover": "false",
+                  "mixed": "false",
+                  "focus": "false"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "vars": {
+                  "itemSpacing": null
+                }
+              },
+              "/Column Label": {
+                "fills": [
+                  "{Color(local):text/secondary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, hover=true",
@@ -940,7 +1045,36 @@
           ],
           "iconFills": [
             "{Color(local):icon/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color(local):surface/hover}"
+                ]
+              },
+              "/Checkbox": {
+                "variant": {
+                  "checked": "false",
+                  "disabled": "false",
+                  "hover": "false",
+                  "mixed": "false",
+                  "focus": "false"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "vars": {
+                  "itemSpacing": null
+                }
+              },
+              "/Column Label": {
+                "fills": [
+                  "{Color(local):text/secondary}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

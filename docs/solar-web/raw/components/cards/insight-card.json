@@ -281,7 +281,39 @@
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ]
+              },
+              "/Icon/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "severity=warning, state=default",
@@ -304,7 +336,39 @@
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ]
+              },
+              "/Icon/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "severity=info, state=default",
@@ -326,7 +390,39 @@
           "iconFills": [
             "{Color:icon/inverse}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ]
+              },
+              "/Icon/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "severity=ghost, state=default",
@@ -340,7 +436,32 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "changed": {
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/muted}"
+                ]
+              },
+              "/Content": {
+                "size": [
+                  228,
+                  32
+                ]
+              }
+            },
+            "added": [
+              "/Content/Skeleton",
+              "/Content/Skeleton#2"
+            ],
+            "removed": [
+              "/Icon/StatusIndicator",
+              "/Content/Count",
+              "/Content/Description",
+              "/Icon/More"
+            ]
+          }
         },
         {
           "variant": "severity=success, state=hover",
@@ -362,7 +483,16 @@
           "iconFills": [
             "{Color:icon/inverse}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "severity=danger, state=hover",
@@ -385,7 +515,44 @@
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ]
+              },
+              "/Icon/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "severity=warning, state=hover",
@@ -408,7 +575,44 @@
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ]
+              },
+              "/Icon/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "severity=info, state=hover",
@@ -430,7 +634,44 @@
           "iconFills": [
             "{Color:icon/inverse}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ]
+              },
+              "/Icon/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "severity=ghost, state=hover",
@@ -444,7 +685,37 @@
           "strokes": [
             "{Color:border/medium}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/muted}"
+                ]
+              },
+              "/Content": {
+                "size": [
+                  228,
+                  32
+                ]
+              }
+            },
+            "added": [
+              "/Content/Skeleton",
+              "/Content/Skeleton#2"
+            ],
+            "removed": [
+              "/Icon/StatusIndicator",
+              "/Content/Count",
+              "/Content/Description",
+              "/Icon/More"
+            ]
+          }
         },
         {
           "variant": "severity=success, state=selected",
@@ -467,7 +738,17 @@
           "iconFills": [
             "{Color:icon/inverse}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}",
+                  "{Color:surface/background}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "severity=danger, state=selected",
@@ -491,7 +772,45 @@
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}",
+                  "{Color:surface/background}"
+                ]
+              },
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ]
+              },
+              "/Icon/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "severity=warning, state=selected",
@@ -515,7 +834,45 @@
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}",
+                  "{Color:surface/background}"
+                ]
+              },
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ]
+              },
+              "/Icon/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "severity=info, state=selected",
@@ -538,7 +895,45 @@
           "iconFills": [
             "{Color:icon/inverse}",
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}",
+                  "{Color:surface/background}"
+                ]
+              },
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ]
+              },
+              "/Icon/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "severity=ghost, state=selected",
@@ -553,7 +948,38 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}",
+                  "{Color:surface/background}"
+                ]
+              },
+              "/Icon": {
+                "fills": [
+                  "{Color:surface/muted}"
+                ]
+              },
+              "/Content": {
+                "size": [
+                  228,
+                  32
+                ]
+              }
+            },
+            "added": [
+              "/Content/Skeleton",
+              "/Content/Skeleton#2"
+            ],
+            "removed": [
+              "/Icon/StatusIndicator",
+              "/Content/Count",
+              "/Content/Description",
+              "/Icon/More"
+            ]
+          }
         }
       ]
     },
@@ -817,7 +1243,17 @@
           "iconFills": [
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Container",
+              "/Container/StatusIndicator"
+            ],
+            "removed": [
+              "/Icon",
+              "/Icon/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "severity=warning, state=default",
@@ -839,7 +1275,17 @@
           "iconFills": [
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Container",
+              "/Container/StatusIndicator"
+            ],
+            "removed": [
+              "/Icon",
+              "/Icon/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "severity=info, state=default",
@@ -860,7 +1306,17 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Container",
+              "/Container/StatusIndicator"
+            ],
+            "removed": [
+              "/Icon",
+              "/Icon/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "severity=ghost, state=default",
@@ -874,7 +1330,28 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "changed": {
+              "/Content": {
+                "size": [
+                  244,
+                  32
+                ]
+              }
+            },
+            "added": [
+              "/Container",
+              "/Content/Skeleton",
+              "/Content/Skeleton#2"
+            ],
+            "removed": [
+              "/Icon",
+              "/Icon/StatusIndicator",
+              "/Content/Count",
+              "/Content/Description"
+            ]
+          }
         },
         {
           "variant": "severity=success, state=hover",
@@ -895,7 +1372,24 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/StatusIndicator"
+            ],
+            "removed": [
+              "/Icon",
+              "/Icon/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "severity=danger, state=hover",
@@ -917,7 +1411,24 @@
           "iconFills": [
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/StatusIndicator"
+            ],
+            "removed": [
+              "/Icon",
+              "/Icon/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "severity=warning, state=hover",
@@ -939,7 +1450,24 @@
           "iconFills": [
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/StatusIndicator"
+            ],
+            "removed": [
+              "/Icon",
+              "/Icon/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "severity=info, state=hover",
@@ -960,7 +1488,24 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/StatusIndicator"
+            ],
+            "removed": [
+              "/Icon",
+              "/Icon/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "severity=ghost, state=hover",
@@ -974,7 +1519,33 @@
           "strokes": [
             "{Color:border/medium}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Content": {
+                "size": [
+                  244,
+                  32
+                ]
+              }
+            },
+            "added": [
+              "/Container",
+              "/Content/Skeleton",
+              "/Content/Skeleton#2"
+            ],
+            "removed": [
+              "/Icon",
+              "/Icon/StatusIndicator",
+              "/Content/Count",
+              "/Content/Description"
+            ]
+          }
         }
       ]
     }

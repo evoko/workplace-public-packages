@@ -428,7 +428,36 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              },
+              "/Label": {
+                "size": [
+                  124,
+                  10
+                ]
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              }
+            },
+            "added": [
+              "/CTAs",
+              "/CTAs/Icon/More",
+              "/CTAs/Icon/Plus"
+            ]
+          }
         },
         {
           "variant": "selected=false, expanded=false, state=edit",
@@ -457,7 +486,37 @@
             "Icon/None",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingTop": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              }
+            },
+            "added": [
+              "/|Label"
+            ],
+            "removed": [
+              "/Checkbox",
+              "/Label",
+              "/Icon/None#2"
+            ]
+          }
         },
         {
           "variant": "selected=false, expanded=true, state=default",
@@ -472,7 +531,15 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Chevron/Icon/ChevronDown"
+            ],
+            "removed": [
+              "/Chevron/Icon/ChevronRight"
+            ]
+          }
         },
         {
           "variant": "selected=false, expanded=true, state=edit",
@@ -501,7 +568,39 @@
             "Icon/None",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingTop": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              }
+            },
+            "added": [
+              "/Chevron/Icon/ChevronDown",
+              "/|Label"
+            ],
+            "removed": [
+              "/Chevron/Icon/ChevronRight",
+              "/Checkbox",
+              "/Label",
+              "/Icon/None#2"
+            ]
+          }
         },
         {
           "variant": "selected=false, expanded=true, state=hover",
@@ -519,7 +618,40 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              },
+              "/Label": {
+                "size": [
+                  124,
+                  10
+                ]
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              }
+            },
+            "added": [
+              "/Chevron/Icon/ChevronDown",
+              "/CTAs",
+              "/CTAs/Icon/More",
+              "/CTAs/Icon/Plus"
+            ],
+            "removed": [
+              "/Chevron/Icon/ChevronRight"
+            ]
+          }
         },
         {
           "variant": "selected=true, expanded=false, state=default",
@@ -537,7 +669,39 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Label": {
+                "size": [
+                  124,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              }
+            },
+            "added": [
+              "/CTAs",
+              "/CTAs/Icon/More",
+              "/CTAs/Icon/Plus"
+            ]
+          }
         },
         {
           "variant": "selected=true, expanded=false, state=hover",
@@ -555,7 +719,39 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Label": {
+                "size": [
+                  124,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              }
+            },
+            "added": [
+              "/CTAs",
+              "/CTAs/Icon/More",
+              "/CTAs/Icon/Plus"
+            ]
+          }
         },
         {
           "variant": "selected=true, expanded=false, state=edit",
@@ -583,7 +779,46 @@
             "Icon/None",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingTop": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              }
+            },
+            "added": [
+              "/|Label"
+            ],
+            "removed": [
+              "/Checkbox",
+              "/Label",
+              "/Icon/None#2"
+            ]
+          }
         },
         {
           "variant": "selected=true, expanded=true, state=default",
@@ -601,7 +836,43 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Label": {
+                "size": [
+                  124,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              }
+            },
+            "added": [
+              "/Chevron/Icon/ChevronDown",
+              "/CTAs",
+              "/CTAs/Icon/More",
+              "/CTAs/Icon/Plus"
+            ],
+            "removed": [
+              "/Chevron/Icon/ChevronRight"
+            ]
+          }
         },
         {
           "variant": "selected=true, expanded=true, state=edit",
@@ -629,7 +900,48 @@
             "Icon/None",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingTop": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:stack/none",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              }
+            },
+            "added": [
+              "/Chevron/Icon/ChevronDown",
+              "/|Label"
+            ],
+            "removed": [
+              "/Chevron/Icon/ChevronRight",
+              "/Checkbox",
+              "/Label",
+              "/Icon/None#2"
+            ]
+          }
         },
         {
           "variant": "selected=true, expanded=true, state=hover",
@@ -647,7 +959,43 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Label": {
+                "size": [
+                  124,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              }
+            },
+            "added": [
+              "/Chevron/Icon/ChevronDown",
+              "/CTAs",
+              "/CTAs/Icon/More",
+              "/CTAs/Icon/Plus"
+            ],
+            "removed": [
+              "/Chevron/Icon/ChevronRight"
+            ]
+          }
         }
       ]
     },
@@ -702,70 +1050,335 @@
           "size": [
             16,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "sizing": null
+              }
+            },
+            "added": [
+              "/1"
+            ]
+          }
         },
         {
           "variant": "depth=02",
           "size": [
             32,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "sizing": null
+              }
+            },
+            "added": [
+              "/1",
+              "/2"
+            ]
+          }
         },
         {
           "variant": "depth=03",
           "size": [
             48,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "sizing": null
+              }
+            },
+            "added": [
+              "/1",
+              "/2",
+              "/3"
+            ]
+          }
         },
         {
           "variant": "depth=04",
           "size": [
             64,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "sizing": null
+              }
+            },
+            "added": [
+              "/1",
+              "/2",
+              "/3",
+              "/4"
+            ]
+          }
         },
         {
           "variant": "depth=05",
           "size": [
             80,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "sizing": null
+              }
+            },
+            "added": [
+              "/1",
+              "/2",
+              "/3",
+              "/4",
+              "/5"
+            ]
+          }
         },
         {
           "variant": "depth=06",
           "size": [
             96,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "sizing": null
+              }
+            },
+            "added": [
+              "/1",
+              "/2",
+              "/3",
+              "/4",
+              "/5",
+              "/6"
+            ]
+          }
         },
         {
           "variant": "depth=07",
           "size": [
             112,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "sizing": null
+              }
+            },
+            "added": [
+              "/1",
+              "/2",
+              "/3",
+              "/4",
+              "/5",
+              "/6",
+              "/7"
+            ]
+          }
         },
         {
           "variant": "depth=08",
           "size": [
             128,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "sizing": null
+              }
+            },
+            "added": [
+              "/1",
+              "/2",
+              "/3",
+              "/4",
+              "/5",
+              "/6",
+              "/7",
+              "/8"
+            ]
+          }
         },
         {
           "variant": "depth=09",
           "size": [
             144,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "sizing": null
+              }
+            },
+            "added": [
+              "/1",
+              "/2",
+              "/3",
+              "/4",
+              "/5",
+              "/6",
+              "/7",
+              "/8",
+              "/10"
+            ]
+          }
         },
         {
           "variant": "depth=10",
           "size": [
             160,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "sizing": null
+              }
+            },
+            "added": [
+              "/1",
+              "/2",
+              "/3",
+              "/4",
+              "/5",
+              "/6",
+              "/7",
+              "/8",
+              "/9",
+              "/10"
+            ]
+          }
         }
       ]
     }

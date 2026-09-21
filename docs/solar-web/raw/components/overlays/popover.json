@@ -183,7 +183,63 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Content": {
+                "size": [
+                  240,
+                  66
+                ],
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  216,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Content/Body": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  216,
+                  25
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Tip": {
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "placement=bottom, size=sm",
@@ -195,7 +251,63 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Content": {
+                "size": [
+                  240,
+                  66
+                ],
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ]
+                },
+                "radius": [
+                  0,
+                  8,
+                  8,
+                  8
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "topLeftRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/container"
+                }
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  216,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Content/Body": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  216,
+                  25
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "placement=bottom, size=md",
@@ -207,7 +319,23 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Content": {
+                "radius": [
+                  0,
+                  8,
+                  8,
+                  8
+                ],
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/container"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "placement=left, size=md",
@@ -219,7 +347,28 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                }
+              },
+              "/Content": {
+                "radius": [
+                  8,
+                  0,
+                  8,
+                  8
+                ],
+                "vars": {
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/container"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "placement=left, size=sm",
@@ -231,7 +380,68 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                }
+              },
+              "/Content": {
+                "size": [
+                  240,
+                  66
+                ],
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ]
+                },
+                "radius": [
+                  8,
+                  0,
+                  8,
+                  8
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/container"
+                }
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  216,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Content/Body": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  216,
+                  25
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "placement=right, size=sm",
@@ -243,7 +453,68 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                }
+              },
+              "/Content": {
+                "size": [
+                  240,
+                  66
+                ],
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ]
+                },
+                "radius": [
+                  0,
+                  8,
+                  8,
+                  8
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm",
+                  "topLeftRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/container"
+                }
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  216,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Content/Body": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  216,
+                  25
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "placement=right, size=md",
@@ -255,7 +526,28 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                }
+              },
+              "/Content": {
+                "radius": [
+                  0,
+                  8,
+                  8,
+                  8
+                ],
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/container"
+                }
+              }
+            }
+          }
         }
       ]
     }

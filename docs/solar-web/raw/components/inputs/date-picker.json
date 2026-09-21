@@ -117,7 +117,16 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=focus, range-role=none",
@@ -134,7 +143,27 @@
           "effect": "shadow/focus/default",
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "state=selected, range-role=none",
@@ -147,7 +176,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              },
+              "/Day": {
+                "fills": [
+                  "{Color:action/primary/text/default}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=today, range-role=none",
@@ -160,7 +203,28 @@
           ],
           "textFills": [
             "{Color:action/primary/bg/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              },
+              "/Day": {
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=disabled, range-role=none",
@@ -170,7 +234,16 @@
           ],
           "textFills": [
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Day": {
+                "fills": [
+                  "{Color:text/tertiary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=filled, range-role=none",
@@ -206,7 +279,35 @@
           ],
           "textFills": [
             "{Color:action/primary/text/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": [
+                  8,
+                  0,
+                  0,
+                  8
+                ],
+                "vars": {
+                  "topRightRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/Day": {
+                "fills": [
+                  "{Color:action/primary/text/default}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=default, range-role=middle",
@@ -219,7 +320,18 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ],
+                "radius": null,
+                "vars": null
+              }
+            }
+          }
         },
         {
           "variant": "state=default, range-role=end",
@@ -235,7 +347,35 @@
           ],
           "textFills": [
             "{Color:action/primary/text/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/default}"
+                ],
+                "strokeWeight": 1,
+                "radius": [
+                  0,
+                  8,
+                  8,
+                  0
+                ],
+                "vars": {
+                  "topLeftRadius": null,
+                  "bottomLeftRadius": null
+                }
+              },
+              "/Day": {
+                "fills": [
+                  "{Color:action/primary/text/default}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=default, range-role=preview-middle",
@@ -248,7 +388,18 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "radius": null,
+                "vars": null
+              }
+            }
+          }
         },
         {
           "variant": "state=default, range-role=preview-end",
@@ -264,7 +415,27 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": [
+                  0,
+                  18,
+                  18,
+                  0
+                ],
+                "vars": null
+              }
+            }
+          }
         }
       ]
     },
@@ -562,7 +733,90 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  64,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  64,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  97,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Calendar": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  65,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  97,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=hover",
@@ -576,7 +830,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=hover",
@@ -590,7 +853,93 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  64,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  64,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  97,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Calendar": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  65,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  97,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=focus",
@@ -604,7 +953,17 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=focus",
@@ -618,7 +977,94 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  64,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  64,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  97,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Calendar": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  65,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  97,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=filled",
@@ -646,7 +1092,90 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  64,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  64,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  97,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Calendar": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  65,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  97,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=disabled",
@@ -660,7 +1189,29 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ]
+              },
+              "/Field/Value": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Helper text": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=disabled",
@@ -674,7 +1225,102 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  64,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  64,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  97,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Calendar": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  65,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  97,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=error",
@@ -688,7 +1334,22 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger"
+              },
+              "/Helper text": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=error",
@@ -702,7 +1363,97 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  64,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  64,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  97,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Calendar": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  65,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  97,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=error-focused",
@@ -716,7 +1467,22 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Helper text": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=error-focused",
@@ -730,7 +1496,97 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  64,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  64,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  97,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Calendar": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  65,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  97,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -2248,7 +3104,24 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "effectStyle": null,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "inline=true, type=double",
@@ -2264,7 +3137,176 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "sizing": "FIXED/HUG"
+                },
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "effectStyle": null,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/MonthHeader",
+              "/Container/MonthHeader/Icon/ArrowLeft",
+              "/Container/MonthHeader/MonthLabel",
+              "/Container/WeekdayRow",
+              "/Container/WeekdayRow/Weekday",
+              "/Container/WeekdayRow/Weekday#2",
+              "/Container/WeekdayRow/Weekday#3",
+              "/Container/WeekdayRow/Weekday#4",
+              "/Container/WeekdayRow/Weekday#5",
+              "/Container/WeekdayRow/Weekday#6",
+              "/Container/WeekdayRow/Weekday#7",
+              "/Container/DayGrid",
+              "/Container/DayGrid/Day Cell",
+              "/Container/DayGrid/Day Cell#2",
+              "/Container/DayGrid/Day Cell#3",
+              "/Container/DayGrid/Day Cell#4",
+              "/Container/DayGrid/Day Cell#5",
+              "/Container/DayGrid/Day Cell#6",
+              "/Container/DayGrid/Day Cell#7",
+              "/Container/DayGrid/Day Cell#8",
+              "/Container/DayGrid/Day Cell#9",
+              "/Container/DayGrid/Day Cell#10",
+              "/Container/DayGrid/Day Cell#11",
+              "/Container/DayGrid/Day Cell#12",
+              "/Container/DayGrid/Day Cell#13",
+              "/Container/DayGrid/Day Cell#14",
+              "/Container/DayGrid/Day Cell#15",
+              "/Container/DayGrid/Day Cell#16",
+              "/Container/DayGrid/Day Cell#17",
+              "/Container/DayGrid/Day Cell#18",
+              "/Container/DayGrid/Day Cell#19",
+              "/Container/DayGrid/Day Cell#20",
+              "/Container/DayGrid/Day Cell#21",
+              "/Container/DayGrid/Day Cell#22",
+              "/Container/DayGrid/Day Cell#23",
+              "/Container/DayGrid/Day Cell#24",
+              "/Container/DayGrid/Day Cell#25",
+              "/Container/DayGrid/Day Cell#26",
+              "/Container/DayGrid/Day Cell#27",
+              "/Container/DayGrid/Day Cell#28",
+              "/Container/DayGrid/Day Cell#29",
+              "/Container/DayGrid/Day Cell#30",
+              "/Container/DayGrid/Day Cell#31",
+              "/Container/DayGrid/Day Cell#32",
+              "/Container/DayGrid/Day Cell#33",
+              "/Container/DayGrid/Day Cell#34",
+              "/Container/DayGrid/Day Cell#35",
+              "/Container#2",
+              "/Container#2/MonthHeader",
+              "/Container#2/MonthHeader/Icon/ArrowRight",
+              "/Container#2/MonthHeader/MonthLabel",
+              "/Container#2/WeekdayRow",
+              "/Container#2/WeekdayRow/Weekday",
+              "/Container#2/WeekdayRow/Weekday#2",
+              "/Container#2/WeekdayRow/Weekday#3",
+              "/Container#2/WeekdayRow/Weekday#4",
+              "/Container#2/WeekdayRow/Weekday#5",
+              "/Container#2/WeekdayRow/Weekday#6",
+              "/Container#2/WeekdayRow/Weekday#7",
+              "/Container#2/DayGrid",
+              "/Container#2/DayGrid/Day Cell",
+              "/Container#2/DayGrid/Day Cell#2",
+              "/Container#2/DayGrid/Day Cell#3",
+              "/Container#2/DayGrid/Day Cell#4",
+              "/Container#2/DayGrid/Day Cell#5",
+              "/Container#2/DayGrid/Day Cell#6",
+              "/Container#2/DayGrid/Day Cell#7",
+              "/Container#2/DayGrid/Day Cell#8",
+              "/Container#2/DayGrid/Day Cell#9",
+              "/Container#2/DayGrid/Day Cell#10",
+              "/Container#2/DayGrid/Day Cell#11",
+              "/Container#2/DayGrid/Day Cell#12",
+              "/Container#2/DayGrid/Day Cell#13",
+              "/Container#2/DayGrid/Day Cell#14",
+              "/Container#2/DayGrid/Day Cell#15",
+              "/Container#2/DayGrid/Day Cell#16",
+              "/Container#2/DayGrid/Day Cell#17",
+              "/Container#2/DayGrid/Day Cell#18",
+              "/Container#2/DayGrid/Day Cell#19",
+              "/Container#2/DayGrid/Day Cell#20",
+              "/Container#2/DayGrid/Day Cell#21",
+              "/Container#2/DayGrid/Day Cell#22",
+              "/Container#2/DayGrid/Day Cell#23",
+              "/Container#2/DayGrid/Day Cell#24",
+              "/Container#2/DayGrid/Day Cell#25",
+              "/Container#2/DayGrid/Day Cell#26",
+              "/Container#2/DayGrid/Day Cell#27",
+              "/Container#2/DayGrid/Day Cell#28",
+              "/Container#2/DayGrid/Day Cell#29",
+              "/Container#2/DayGrid/Day Cell#30",
+              "/Container#2/DayGrid/Day Cell#31",
+              "/Container#2/DayGrid/Day Cell#32",
+              "/Container#2/DayGrid/Day Cell#33",
+              "/Container#2/DayGrid/Day Cell#34",
+              "/Container#2/DayGrid/Day Cell#35"
+            ],
+            "removed": [
+              "/MonthHeader",
+              "/MonthHeader/Icon/ArrowLeft",
+              "/MonthHeader/MonthLabel",
+              "/MonthHeader/Icon/ArrowRight",
+              "/WeekdayRow",
+              "/WeekdayRow/Weekday",
+              "/WeekdayRow/Weekday#2",
+              "/WeekdayRow/Weekday#3",
+              "/WeekdayRow/Weekday#4",
+              "/WeekdayRow/Weekday#5",
+              "/WeekdayRow/Weekday#6",
+              "/WeekdayRow/Weekday#7",
+              "/DayGrid",
+              "/DayGrid/Day Cell",
+              "/DayGrid/Day Cell#2",
+              "/DayGrid/Day Cell#3",
+              "/DayGrid/Day Cell#4",
+              "/DayGrid/Day Cell#5",
+              "/DayGrid/Day Cell#6",
+              "/DayGrid/Day Cell#7",
+              "/DayGrid/Day Cell#8",
+              "/DayGrid/Day Cell#9",
+              "/DayGrid/Day Cell#10",
+              "/DayGrid/Day Cell#11",
+              "/DayGrid/Day Cell#12",
+              "/DayGrid/Day Cell#13",
+              "/DayGrid/Day Cell#14",
+              "/DayGrid/Day Cell#15",
+              "/DayGrid/Day Cell#16",
+              "/DayGrid/Day Cell#17",
+              "/DayGrid/Day Cell#18",
+              "/DayGrid/Day Cell#19",
+              "/DayGrid/Day Cell#20",
+              "/DayGrid/Day Cell#21",
+              "/DayGrid/Day Cell#22",
+              "/DayGrid/Day Cell#23",
+              "/DayGrid/Day Cell#24",
+              "/DayGrid/Day Cell#25",
+              "/DayGrid/Day Cell#26",
+              "/DayGrid/Day Cell#27",
+              "/DayGrid/Day Cell#28",
+              "/DayGrid/Day Cell#29",
+              "/DayGrid/Day Cell#30",
+              "/DayGrid/Day Cell#31",
+              "/DayGrid/Day Cell#32",
+              "/DayGrid/Day Cell#33",
+              "/DayGrid/Day Cell#34",
+              "/DayGrid/Day Cell#35"
+            ]
+          }
         }
       ]
     }

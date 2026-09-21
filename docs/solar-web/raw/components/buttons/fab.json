@@ -139,7 +139,16 @@
           "effect": "shadow/overlay",
           "iconFills": [
             "{Color:action/primary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, size=sm, state=pressed",
@@ -156,7 +165,16 @@
           "effect": "shadow/overlay",
           "iconFills": [
             "{Color:action/primary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, size=sm, state=disabled",
@@ -173,7 +191,16 @@
           "effect": "shadow/overlay",
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, size=sm, state=focus",
@@ -210,7 +237,17 @@
           ],
           "hidden": [
             "Icon/None"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon/None": {
+                "hidden": true
+              }
+            },
+            "added": [
+              "/Spinner"
+            ]
+          }
         },
         {
           "variant": "type=icon, size=md, state=default",
@@ -227,7 +264,27 @@
           "effect": "shadow/overlay",
           "iconFills": [
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, size=md, state=hover",
@@ -244,7 +301,30 @@
           "effect": "shadow/overlay",
           "iconFills": [
             "{Color:action/primary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "fills": [
+                  "{Color:action/primary/bg/hover}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, size=md, state=pressed",
@@ -261,7 +341,30 @@
           "effect": "shadow/overlay",
           "iconFills": [
             "{Color:action/primary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, size=md, state=disabled",
@@ -278,7 +381,30 @@
           "effect": "shadow/overlay",
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "fills": [
+                  "{Color:action/primary/bg/disabled}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, size=md, state=focus",
@@ -295,7 +421,27 @@
           "effect": "shadow/overlay",
           "iconFills": [
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, size=md, state=loading",
@@ -309,7 +455,33 @@
           "strokes": [
             "{Color:border/medium}"
           ],
-          "effect": "shadow/overlay"
+          "effect": "shadow/overlay",
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md"
+                }
+              }
+            },
+            "added": [
+              "/Spinner"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=sm, state=default",
@@ -329,7 +501,30 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    20,
+                    12,
+                    12
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "vars": {
+                  "paddingRight": "Spatial:inset/lg",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=sm, state=hover",
@@ -349,7 +544,33 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    20,
+                    12,
+                    12
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/hover}"
+                ],
+                "vars": {
+                  "paddingRight": "Spatial:inset/lg",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=sm, state=pressed",
@@ -369,7 +590,33 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    20,
+                    12,
+                    12
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ],
+                "vars": {
+                  "paddingRight": "Spatial:inset/lg",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=sm, state=disabled",
@@ -389,7 +636,33 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    20,
+                    12,
+                    12
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/disabled}"
+                ],
+                "vars": {
+                  "paddingRight": "Spatial:inset/lg",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=sm, state=focus",
@@ -409,7 +682,30 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    12,
+                    20,
+                    12,
+                    12
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "vars": {
+                  "paddingRight": "Spatial:inset/lg",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=sm, state=loading",
@@ -430,7 +726,26 @@
           "hidden": [
             "Icon/None",
             "Label"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Icon/None": {
+                "hidden": true
+              }
+            },
+            "added": [
+              "/Label",
+              "/Spinner"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=md, state=default",
@@ -450,7 +765,43 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    24,
+                    16,
+                    16
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/xl",
+                  "paddingBottom": "Spatial:inset/md",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  24,
+                  24
+                ],
+                "vars": {
+                  "height": null,
+                  "width": "Spatial:icon/lg"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=md, state=hover",
@@ -470,7 +821,46 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    24,
+                    16,
+                    16
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/hover}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/xl",
+                  "paddingBottom": "Spatial:inset/md",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  24,
+                  24
+                ],
+                "vars": {
+                  "height": null,
+                  "width": "Spatial:icon/lg"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=md, state=pressed",
@@ -490,7 +880,46 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    24,
+                    16,
+                    16
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/xl",
+                  "paddingBottom": "Spatial:inset/md",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  24,
+                  24
+                ],
+                "vars": {
+                  "height": null,
+                  "width": "Spatial:icon/lg"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=md, state=disabled",
@@ -510,7 +939,46 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    24,
+                    16,
+                    16
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/disabled}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/xl",
+                  "paddingBottom": "Spatial:inset/md",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  24,
+                  24
+                ],
+                "vars": {
+                  "height": null,
+                  "width": "Spatial:icon/lg"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=md, state=focus",
@@ -530,7 +998,43 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    24,
+                    16,
+                    16
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/xl",
+                  "paddingBottom": "Spatial:inset/md",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Icon/None": {
+                "size": [
+                  24,
+                  24
+                ],
+                "vars": {
+                  "height": null,
+                  "width": "Spatial:icon/lg"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "type=extended, size=md, state=loading",
@@ -547,7 +1051,36 @@
           "effect": "shadow/overlay",
           "hidden": [
             "Label"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              }
+            },
+            "added": [
+              "/Label",
+              "/Spinner"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         }
       ]
     }

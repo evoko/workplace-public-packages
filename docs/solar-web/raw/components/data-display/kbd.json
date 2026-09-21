@@ -117,7 +117,16 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/neutral/medium}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

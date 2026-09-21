@@ -335,7 +335,33 @@
           "iconFills": [
             "{Primitives:color/neutral/900}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/Content": {
+                "size": [
+                  468,
+                  28
+                ]
+              },
+              "/Content/Name": {
+                "size": [
+                  468,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Icon/Icon/Progress",
+              "/Content/Skeleton"
+            ],
+            "removed": [
+              "/Icon/Icon/Device",
+              "/Content/Description",
+              "/Tag",
+              "/Button"
+            ]
+          }
         },
         {
           "variant": "state=default, type=batch",
@@ -363,7 +389,51 @@
             "Helper text",
             "Icon/None",
             "Label"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "paddingLeft": null,
+                  "paddingTop": null,
+                  "paddingRight": null,
+                  "paddingBottom": null
+                }
+              }
+            },
+            "added": [
+              "/Headline",
+              "/Headline/Icon",
+              "/Headline/Icon/Icon/Device",
+              "/Headline/Content",
+              "/Headline/Content/Name",
+              "/Headline/Content/Count",
+              "/Headline/Tag",
+              "/Serial & Location",
+              "/Serial & Location/Dropdown"
+            ],
+            "removed": [
+              "/Icon",
+              "/Icon/Icon/Device",
+              "/Content",
+              "/Content/Name",
+              "/Content/Description",
+              "/Tag",
+              "/Button"
+            ]
+          }
         },
         {
           "variant": "state=loading, type=batch",
@@ -384,7 +454,50 @@
           "iconFills": [
             "{Primitives:color/neutral/900}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "MIN/MIN"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "paddingLeft": null,
+                  "paddingTop": null,
+                  "paddingRight": null,
+                  "paddingBottom": null
+                }
+              }
+            },
+            "added": [
+              "/Headline",
+              "/Headline/Icon",
+              "/Headline/Icon/Icon/Progress",
+              "/Headline/Content",
+              "/Headline/Content/Row",
+              "/Headline/Content/Row/Name",
+              "/Headline/Content/Row/Count",
+              "/Headline/Content/Skeleton"
+            ],
+            "removed": [
+              "/Icon",
+              "/Icon/Icon/Device",
+              "/Content",
+              "/Content/Name",
+              "/Content/Description",
+              "/Tag",
+              "/Button"
+            ]
+          }
         }
       ]
     }

@@ -766,7 +766,52 @@
             "Text Input",
             "TrailingIcon",
             "action"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "vars": null
+              }
+            },
+            "added": [
+              "/Page Header",
+              "/Form",
+              "/Form/FormSection",
+              "/Form/Access & security",
+              "/Form/Access & security/SectionHeader",
+              "/Form/Access & security/Setting Row",
+              "/Form/Access & security/Setting Row#2",
+              "/Form/Access & security/Setting Row#3",
+              "/Form/Banner"
+            ],
+            "removed": [
+              "/Left",
+              "/Left/Tree Group Header",
+              "/Left/Section Nav Item",
+              "/Left/Section Nav Item#2",
+              "/Left/Tree Group Header#2",
+              "/Left/Section Nav Item#3",
+              "/Left/Section Nav Item#4",
+              "/Left/Tree Group Header#3",
+              "/Left/Section Nav Item#5",
+              "/Left/Section Nav Item#6",
+              "/Left/Section Nav Item#7",
+              "/Left/Section Nav Item#8",
+              "/Center",
+              "/Center/Members & Roles",
+              "/Center/Members & Roles/Page Header",
+              "/Center/Members & Roles/Form",
+              "/Right"
+            ]
+          }
         }
       ]
     }

@@ -171,7 +171,36 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/success}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Icon/Plus"
+            ],
+            "removed": [
+              "/StatusIndicator",
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "status=success, type=icon+text, invert=false",
@@ -190,7 +219,25 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/success}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                }
+              }
+            },
+            "added": [
+              "/Icon/None"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=success, type=closable, invert=false",
@@ -209,7 +256,33 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/success}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              }
+            },
+            "added": [
+              "/Icon/Close"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=success, type=text-only, invert=false",
@@ -225,7 +298,29 @@
           ],
           "textFills": [
             "{Color:text/feedback/success}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm"
+                }
+              }
+            },
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=success, type=icon-only, invert=true",
@@ -241,7 +336,42 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/success/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Icon/Plus"
+            ],
+            "removed": [
+              "/StatusIndicator",
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "status=success, type=icon+text, invert=true",
@@ -260,7 +390,36 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4
+                },
+                "fills": [
+                  "{Color:surface/feedback/success/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/None"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=success, type=closable, invert=true",
@@ -279,7 +438,44 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    4,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/success/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/Close"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=success, type=text-only, invert=true",
@@ -295,7 +491,40 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/success/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=warning, type=status, invert=false",
@@ -311,7 +540,33 @@
           ],
           "textFills": [
             "{Color:text/feedback/warning}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "xs"
+                },
+                "fills": [
+                  "{Color:surface/feedback/warning/strong}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "status=warning, type=icon-only, invert=false",
@@ -327,7 +582,42 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/warning}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Icon/Plus"
+            ],
+            "removed": [
+              "/StatusIndicator",
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "status=warning, type=icon+text, invert=false",
@@ -346,7 +636,36 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/warning}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4
+                },
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/None"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=warning, type=closable, invert=false",
@@ -365,7 +684,44 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/warning}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/Close"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=warning, type=text-only, invert=false",
@@ -381,7 +737,40 @@
           ],
           "textFills": [
             "{Color:text/feedback/warning}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              }
+            },
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=warning, type=icon-only, invert=true",
@@ -397,7 +786,42 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/warning/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Icon/Plus"
+            ],
+            "removed": [
+              "/StatusIndicator",
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "status=warning, type=icon+text, invert=true",
@@ -416,7 +840,36 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4
+                },
+                "fills": [
+                  "{Color:surface/feedback/warning/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/None"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=warning, type=closable, invert=true",
@@ -435,7 +888,44 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    4,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/warning/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/Close"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=warning, type=text-only, invert=true",
@@ -451,7 +941,40 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/warning/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=danger, type=status, invert=false",
@@ -467,7 +990,33 @@
           ],
           "textFills": [
             "{Color:text/feedback/danger}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "xs"
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "status=danger, type=icon-only, invert=false",
@@ -483,7 +1032,42 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/danger}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Icon/Plus"
+            ],
+            "removed": [
+              "/StatusIndicator",
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "status=danger, type=icon+text, invert=false",
@@ -502,7 +1086,36 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/danger}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/None"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=danger, type=closable, invert=false",
@@ -521,7 +1134,44 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/danger}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/Close"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=danger, type=text-only, invert=false",
@@ -537,7 +1187,40 @@
           ],
           "textFills": [
             "{Color:text/feedback/danger}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            },
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=danger, type=icon-only, invert=true",
@@ -553,7 +1236,42 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Icon/Plus"
+            ],
+            "removed": [
+              "/StatusIndicator",
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "status=danger, type=icon+text, invert=true",
@@ -572,7 +1290,36 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/None"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=danger, type=closable, invert=true",
@@ -591,7 +1338,44 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    4,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/Close"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=danger, type=text-only, invert=true",
@@ -607,7 +1391,40 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=info, type=status, invert=false",
@@ -623,7 +1440,33 @@
           ],
           "textFills": [
             "{Color:text/feedback/info}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "xs"
+                },
+                "fills": [
+                  "{Color:icon/feedback/info}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "status=info, type=icon-only, invert=false",
@@ -639,7 +1482,42 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/info}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Icon/Plus"
+            ],
+            "removed": [
+              "/StatusIndicator",
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "status=info, type=icon+text, invert=false",
@@ -658,7 +1536,36 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/info}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4
+                },
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/None"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=info, type=closable, invert=false",
@@ -677,7 +1584,44 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/info}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/Close"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=info, type=text-only, invert=false",
@@ -693,7 +1637,40 @@
           ],
           "textFills": [
             "{Color:text/feedback/info}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            },
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=info, type=icon-only, invert=true",
@@ -709,7 +1686,42 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/info/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Icon/Plus"
+            ],
+            "removed": [
+              "/StatusIndicator",
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "status=info, type=icon+text, invert=true",
@@ -728,7 +1740,36 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4
+                },
+                "fills": [
+                  "{Color:surface/feedback/info/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/None"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=info, type=closable, invert=true",
@@ -747,7 +1788,44 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    4,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/info/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/Close"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=info, type=text-only, invert=true",
@@ -763,7 +1841,40 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/info/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=neutral, type=status, invert=false",
@@ -779,7 +1890,33 @@
           ],
           "textFills": [
             "{Color:text/feedback/neutral}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "xs"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/neutral}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "status=neutral, type=icon-only, invert=false",
@@ -795,7 +1932,42 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/neutral}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Icon/Plus"
+            ],
+            "removed": [
+              "/StatusIndicator",
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "status=neutral, type=icon+text, invert=false",
@@ -814,7 +1986,36 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/neutral}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/neutral}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/None"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=neutral, type=closable, invert=false",
@@ -833,7 +2034,44 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/neutral}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/neutral}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/Close"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=neutral, type=text-only, invert=false",
@@ -849,7 +2087,40 @@
           ],
           "textFills": [
             "{Color:text/feedback/neutral}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/neutral}"
+                ]
+              }
+            },
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=neutral, type=icon-only, invert=true",
@@ -865,7 +2136,42 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Icon/Plus"
+            ],
+            "removed": [
+              "/StatusIndicator",
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "status=neutral, type=icon+text, invert=true",
@@ -884,7 +2190,36 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/None"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=neutral, type=closable, invert=true",
@@ -903,7 +2238,44 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    4,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/2xs"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/Close"
+            ],
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         },
         {
           "variant": "status=neutral, type=text-only, invert=true",
@@ -919,7 +2291,40 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/sm"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              }
+            },
+            "removed": [
+              "/StatusIndicator"
+            ]
+          }
         }
       ]
     }

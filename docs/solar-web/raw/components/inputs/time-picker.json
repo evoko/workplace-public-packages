@@ -296,7 +296,90 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  31,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  88,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Clock": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  56,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  88,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=hover",
@@ -310,7 +393,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=hover",
@@ -324,7 +416,93 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  31,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  88,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Clock": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  56,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  88,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=focus",
@@ -338,7 +516,17 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=focus",
@@ -352,7 +540,94 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  31,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  88,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Clock": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  56,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  88,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=filled",
@@ -380,7 +655,90 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  31,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  88,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Clock": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  56,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  88,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=disabled",
@@ -394,7 +752,29 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ]
+              },
+              "/Field/Value": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Helper text": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=disabled",
@@ -408,7 +788,102 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  31,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  88,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Clock": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  56,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  88,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=error",
@@ -422,7 +897,22 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger"
+              },
+              "/Helper text": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=error",
@@ -436,7 +926,97 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  31,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  88,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Clock": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  56,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  88,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=error-focused",
@@ -450,7 +1030,22 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Helper text": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=error-focused",
@@ -464,7 +1059,97 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  31,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  88,
+                  32
+                ],
+                "layout": {
+                  "gap": 4,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Icon/Clock": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs"
+                }
+              },
+              "/Field/Value": {
+                "textStyle": "body/sm/regular",
+                "size": [
+                  56,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  88,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            }
+          }
         }
       ]
     },
@@ -809,7 +1494,149 @@
           "iconFills": [
             "{Color:icon/inverse}",
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Content": {
+                "size": [
+                  136,
+                  192
+                ]
+              },
+              "/Content/Dropdown Item": {
+                "variant": {
+                  "size": "sm",
+                  "state": "selected"
+                },
+                "size": [
+                  136,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    8,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/xs"
+                }
+              },
+              "/Content/Dropdown Item#2": {
+                "variant": {
+                  "size": "sm",
+                  "state": "default"
+                },
+                "size": [
+                  136,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    8,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/xs"
+                }
+              },
+              "/Content/Dropdown Item#3": {
+                "variant": {
+                  "size": "sm",
+                  "state": "default"
+                },
+                "size": [
+                  136,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    8,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/xs"
+                }
+              },
+              "/Content/Dropdown Item#4": {
+                "variant": {
+                  "size": "sm",
+                  "state": "default"
+                },
+                "size": [
+                  136,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    8,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/xs"
+                }
+              },
+              "/Content/Dropdown Item#5": {
+                "variant": {
+                  "size": "sm",
+                  "state": "default"
+                },
+                "size": [
+                  136,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    8,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/xs"
+                }
+              },
+              "/Content/Dropdown Item#6": {
+                "variant": {
+                  "size": "sm",
+                  "state": "default"
+                },
+                "size": [
+                  136,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    8,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/xs"
+                }
+              }
+            }
+          }
         }
       ]
     }

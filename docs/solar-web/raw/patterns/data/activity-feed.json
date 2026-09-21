@@ -729,7 +729,89 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Date Group": {
+                "size": [
+                  377,
+                  25
+                ]
+              },
+              "/Event Row": {
+                "size": [
+                  377,
+                  56
+                ]
+              },
+              "/Event Row#2": {
+                "size": [
+                  377,
+                  56
+                ]
+              },
+              "/Event Row#3": {
+                "size": [
+                  377,
+                  56
+                ]
+              },
+              "/Event Row#4": {
+                "size": [
+                  377,
+                  56
+                ]
+              },
+              "/Date Group#2": {
+                "size": [
+                  377,
+                  25
+                ]
+              },
+              "/Event Row#5": {
+                "size": [
+                  377,
+                  56
+                ]
+              },
+              "/Event Row#6": {
+                "size": [
+                  377,
+                  56
+                ]
+              },
+              "/Event Row#7": {
+                "size": [
+                  377,
+                  56
+                ]
+              },
+              "/Date Group#3": {
+                "size": [
+                  377,
+                  25
+                ]
+              },
+              "/Event Row#8": {
+                "size": [
+                  377,
+                  56
+                ]
+              },
+              "/Event Row#9": {
+                "size": [
+                  377,
+                  56
+                ]
+              },
+              "/Event Row#10": {
+                "size": [
+                  377,
+                  56
+                ]
+              }
+            }
+          }
         }
       ]
     },
@@ -971,7 +1053,42 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "align": "CENTER/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/SearchField": {
+                "size": [
+                  377,
+                  40
+                ],
+                "layout": {
+                  "sizing": "FILL/FIXED"
+                }
+              }
+            },
+            "added": [
+              "/Frame 1",
+              "/Frame 1/Select",
+              "/Frame 1/Select#2",
+              "/Frame 1/Select#3"
+            ],
+            "removed": [
+              "/Container",
+              "/Container/Select",
+              "/Container/Select#2",
+              "/Container/Select#3"
+            ]
+          }
         }
       ]
     }

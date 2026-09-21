@@ -114,91 +114,461 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/inner-path": {
+                "size": [
+                  7,
+                  5
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=warning, size=md",
           "size": [
             20,
             20
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/inner-path": {
+                "size": [
+                  2,
+                  9
+                ],
+                "sizing": null
+              }
+            },
+            "added": [
+              "/Union"
+            ]
+          }
         },
         {
           "variant": "type=warning, size=sm",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/inner-path": {
+                "size": [
+                  2,
+                  7
+                ],
+                "sizing": null
+              }
+            },
+            "added": [
+              "/Union"
+            ]
+          }
         },
         {
           "variant": "type=danger, size=md",
           "size": [
             20,
             20
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/inner-path": {
+                "size": [
+                  10,
+                  10
+                ],
+                "sizing": null
+              }
+            },
+            "added": [
+              "/Container"
+            ]
+          }
         },
         {
           "variant": "type=danger, size=sm",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/inner-path": {
+                "size": [
+                  8,
+                  8
+                ],
+                "sizing": null
+              }
+            },
+            "added": [
+              "/Container"
+            ]
+          }
         },
         {
           "variant": "type=info, size=md",
           "size": [
             20,
             20
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            },
+            "added": [
+              "/Frame 3",
+              "/Frame 3/inner-path"
+            ],
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=info, size=sm",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            },
+            "added": [
+              "/Frame 3",
+              "/Frame 3/inner-path"
+            ],
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=neutral, size=md",
           "size": [
             20,
             20
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/inner-path"
+            ],
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=help, size=md",
           "size": [
             20,
             20
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/Icon"
+            ],
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=private, size=md",
           "size": [
             20,
             20
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/Union"
+            ],
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=neutral, size=sm",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/inner-path"
+            ],
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=help, size=sm",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/Icon"
+            ],
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=private, size=sm",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/Union"
+            ],
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=success, size=xs",
@@ -211,7 +581,20 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            },
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=warning, size=xs",
@@ -224,7 +607,23 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": [
+                  "{Color:surface/feedback/warning/strong}"
+                ],
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            },
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=danger, size=xs",
@@ -237,7 +636,23 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ],
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            },
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=info, size=xs",
@@ -250,7 +665,23 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": [
+                  "{Color:surface/feedback/info/strong}"
+                ],
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            },
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=neutral, size=xs",
@@ -263,7 +694,23 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ],
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            },
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=help, size=xs",
@@ -276,7 +723,26 @@
           ],
           "strokes": [
             "{Primitives:color/neutral/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": [
+                  "{Primitives:color/neutral/50}"
+                ],
+                "strokes": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            },
+            "removed": [
+              "/inner-path"
+            ]
+          }
         },
         {
           "variant": "type=private, size=xs",
@@ -289,7 +755,23 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "fills": [
+                  "{Color:surface/muted}"
+                ],
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            },
+            "removed": [
+              "/inner-path"
+            ]
+          }
         }
       ]
     }

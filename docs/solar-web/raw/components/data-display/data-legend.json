@@ -228,7 +228,14 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Item#3",
+              "/Item#3/StatusIndicator",
+              "/Item#3/Conversions"
+            ]
+          }
         },
         {
           "variant": "direction=horizontal, items=4",
@@ -238,7 +245,17 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Item#3",
+              "/Item#3/StatusIndicator",
+              "/Item#3/Conversions",
+              "/Item#4",
+              "/Item#4/StatusIndicator",
+              "/Item#4/Returns"
+            ]
+          }
         },
         {
           "variant": "direction=vertical, items=2",
@@ -248,7 +265,20 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "direction=vertical, items=3",
@@ -258,7 +288,25 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/Item#3",
+              "/Item#3/StatusIndicator",
+              "/Item#3/Conversions"
+            ]
+          }
         },
         {
           "variant": "direction=vertical, items=4",
@@ -268,7 +316,28 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 8
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            },
+            "added": [
+              "/Item#3",
+              "/Item#3/StatusIndicator",
+              "/Item#3/Conversions",
+              "/Item#4",
+              "/Item#4/StatusIndicator",
+              "/Item#4/Returns"
+            ]
+          }
         }
       ]
     }

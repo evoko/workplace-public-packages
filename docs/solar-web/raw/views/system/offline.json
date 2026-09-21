@@ -328,7 +328,28 @@
             "{Color:action/tertiary/icon/default}",
             "{Primitives:color/brand/white}",
             "{Primitives:color/brand/red}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "vars": {
+                  "width": "Layout:breakpoint/xs"
+                }
+              },
+              "/Center Stack": {
+                "size": [
+                  199,
+                  243
+                ]
+              },
+              "/Center Stack/You're offline": {
+                "size": [
+                  106,
+                  13
+                ]
+              }
+            }
+          }
         }
       ]
     }

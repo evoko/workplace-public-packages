@@ -101,7 +101,20 @@
           ],
           "fills": [
             "{Color:surface/muted}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "radius": 9999,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "type=circle, size=md",
@@ -111,7 +124,20 @@
           ],
           "fills": [
             "{Color:surface/muted}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "radius": 9999,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "type=circle, size=lg",
@@ -121,7 +147,20 @@
           ],
           "fills": [
             "{Color:surface/muted}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "radius": 9999,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "type=rectangular, size=sm",

@@ -769,7 +769,53 @@
             "Spinner",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Container": {
+                "size": [
+                  712,
+                  470
+                ]
+              },
+              "/Container/Tree": {
+                "size": [
+                  200,
+                  470
+                ]
+              },
+              "/Container/Tree/Tree Item": {
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": null
+              },
+              "/Container/Tree/Tree Item#2": {
+                "variant": {
+                  "selected": "true",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Container/Container": {
+                "size": [
+                  512,
+                  470
+                ]
+              },
+              "/Container/Container/Container": {
+                "size": [
+                  512,
+                  406
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=Notifications",
@@ -815,7 +861,53 @@
             "Spinner",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Container": {
+                "size": [
+                  712,
+                  847
+                ]
+              },
+              "/Container/Tree": {
+                "size": [
+                  200,
+                  847
+                ]
+              },
+              "/Container/Tree/Tree Item": {
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": null
+              },
+              "/Container/Tree/Tree Item#3": {
+                "variant": {
+                  "selected": "true",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Container/Container": {
+                "size": [
+                  512,
+                  847
+                ]
+              },
+              "/Container/Container/Container": {
+                "size": [
+                  512,
+                  783
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=Preferences",
@@ -859,7 +951,57 @@
             "Spinner",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Container": {
+                "size": [
+                  712,
+                  406
+                ]
+              },
+              "/Container/Tree": {
+                "size": [
+                  200,
+                  406
+                ]
+              },
+              "/Container/Tree/Tree Item": {
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": null
+              },
+              "/Container/Tree/Tree Item#4": {
+                "variant": {
+                  "selected": "true",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Container/Container": {
+                "size": [
+                  512,
+                  406
+                ]
+              },
+              "/Container/Container/Container": {
+                "size": [
+                  512,
+                  342
+                ],
+                "layout": {
+                  "gap": 24
+                },
+                "vars": null
+              }
+            }
+          }
         },
         {
           "variant": "type=Security &Sign-in",
@@ -899,7 +1041,57 @@
             "Spinner",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Container": {
+                "size": [
+                  712,
+                  795
+                ]
+              },
+              "/Container/Tree": {
+                "size": [
+                  200,
+                  795
+                ]
+              },
+              "/Container/Tree/Tree Item": {
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": null
+              },
+              "/Container/Tree/Tree Item#5": {
+                "variant": {
+                  "selected": "true",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Container/Container": {
+                "size": [
+                  512,
+                  795
+                ]
+              },
+              "/Container/Container/Container": {
+                "size": [
+                  512,
+                  731
+                ],
+                "layout": {
+                  "gap": 24
+                },
+                "vars": null
+              }
+            }
+          }
         },
         {
           "variant": "type=Connected Apps",
@@ -939,7 +1131,57 @@
             "Spinner",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Container": {
+                "size": [
+                  712,
+                  612
+                ]
+              },
+              "/Container/Tree": {
+                "size": [
+                  200,
+                  612
+                ]
+              },
+              "/Container/Tree/Tree Item": {
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": null
+              },
+              "/Container/Tree/Tree Item#6": {
+                "variant": {
+                  "selected": "true",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Container/Container": {
+                "size": [
+                  512,
+                  612
+                ]
+              },
+              "/Container/Container/Container": {
+                "size": [
+                  512,
+                  548
+                ],
+                "layout": {
+                  "gap": 24
+                },
+                "vars": null
+              }
+            }
+          }
         },
         {
           "variant": "type=Devices & Sessions",
@@ -979,7 +1221,57 @@
             "Spinner",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Container": {
+                "size": [
+                  712,
+                  585
+                ]
+              },
+              "/Container/Tree": {
+                "size": [
+                  200,
+                  585
+                ]
+              },
+              "/Container/Tree/Tree Item": {
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": null
+              },
+              "/Container/Tree/Tree Item#7": {
+                "variant": {
+                  "selected": "true",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Container/Container": {
+                "size": [
+                  512,
+                  585
+                ]
+              },
+              "/Container/Container/Container": {
+                "size": [
+                  512,
+                  521
+                ],
+                "layout": {
+                  "gap": 24
+                },
+                "vars": null
+              }
+            }
+          }
         },
         {
           "variant": "type=Privacy & Data",
@@ -1022,7 +1314,57 @@
             "Spinner",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Container": {
+                "size": [
+                  712,
+                  625
+                ]
+              },
+              "/Container/Tree": {
+                "size": [
+                  200,
+                  625
+                ]
+              },
+              "/Container/Tree/Tree Item": {
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": null
+              },
+              "/Container/Tree/Tree Item#8": {
+                "variant": {
+                  "selected": "true",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Container/Container": {
+                "size": [
+                  512,
+                  625
+                ]
+              },
+              "/Container/Container/Container": {
+                "size": [
+                  512,
+                  561
+                ],
+                "layout": {
+                  "gap": 24
+                },
+                "vars": null
+              }
+            }
+          }
         },
         {
           "variant": "type=Host-Provided",
@@ -1063,7 +1405,57 @@
             "Spinner",
             "StatusIndicator",
             "Tag"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Container": {
+                "size": [
+                  712,
+                  810
+                ]
+              },
+              "/Container/Tree": {
+                "size": [
+                  200,
+                  810
+                ]
+              },
+              "/Container/Tree/Tree Item": {
+                "variant": {
+                  "selected": "false",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": null
+              },
+              "/Container/Tree/Tree Item#9": {
+                "variant": {
+                  "selected": "true",
+                  "expanded": "false",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Container/Container": {
+                "size": [
+                  512,
+                  810
+                ]
+              },
+              "/Container/Container/Container": {
+                "size": [
+                  512,
+                  746
+                ],
+                "layout": {
+                  "gap": 24
+                },
+                "vars": null
+              }
+            }
+          }
         }
       ]
     }

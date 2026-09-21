@@ -177,7 +177,28 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "align": "MAX/MIN"
+                },
+                "vars": null
+              }
+            },
+            "added": [
+              "/Bubble",
+              "/Bubble/Message"
+            ],
+            "removed": [
+              "/Avatar",
+              "/Content",
+              "/Content/Sender",
+              "/Content/Message"
+            ]
+          }
         }
       ]
     },
@@ -265,7 +286,21 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Event": {
+                "text": "Today",
+                "size": [
+                  35,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/secondary}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

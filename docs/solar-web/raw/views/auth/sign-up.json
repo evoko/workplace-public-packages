@@ -266,7 +266,34 @@
             "#1976d2",
             "{Primitives:color/brand/white}",
             "{Primitives:color/brand/red}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "vars": {
+                  "width": "Layout:breakpoint/xs"
+                }
+              },
+              "/Footer/Biamp Logo": {
+                "variant": {
+                  "style": "light",
+                  "size": "sm"
+                }
+              },
+              "/Footer/© 2025 Biamp Systems LLC. v.1.2-b-fd": {
+                "fills": [
+                  "{Color:text/tertiary}"
+                ]
+              }
+            },
+            "added": [
+              "/FormSection"
+            ],
+            "removed": [
+              "/Center Stack",
+              "/Center Stack/FormSection"
+            ]
+          }
         }
       ]
     }

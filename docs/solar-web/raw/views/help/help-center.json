@@ -680,7 +680,137 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    0,
+                    40,
+                    0
+                  ]
+                }
+              },
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "desktop"
+                },
+                "size": [
+                  377,
+                  91
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    8,
+                    24,
+                    0,
+                    24
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "paddingLeft": "Spatial:inset/xl",
+                  "paddingRight": "Spatial:inset/xl"
+                }
+              },
+              "/Content": {
+                "size": [
+                  377,
+                  712
+                ],
+                "layout": {
+                  "gap": 24,
+                  "pad": [
+                    24,
+                    16,
+                    0,
+                    16
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": null
+              },
+              "/Content/Categories": {
+                "size": [
+                  345,
+                  254
+                ],
+                "vars": null
+              },
+              "/Content/Categories/Action Card": {
+                "size": [
+                  168,
+                  78
+                ],
+                "layout": {
+                  "sizing": "FILL/FILL"
+                }
+              },
+              "/Content/Categories/Action Card#2": {
+                "size": [
+                  168,
+                  78
+                ],
+                "layout": {
+                  "sizing": "FILL/FILL"
+                }
+              },
+              "/Content/Categories/Action Card#3": {
+                "size": [
+                  168,
+                  78
+                ],
+                "layout": {
+                  "sizing": "FILL/FILL"
+                }
+              },
+              "/Content/Categories/Action Card#4": {
+                "size": [
+                  168,
+                  78
+                ],
+                "layout": {
+                  "sizing": "FILL/FILL"
+                }
+              },
+              "/Content/Categories/Action Card#5": {
+                "size": [
+                  168,
+                  78
+                ],
+                "layout": {
+                  "sizing": "FILL/FILL"
+                }
+              },
+              "/Content/Categories/Action Card#6": {
+                "size": [
+                  168,
+                  78
+                ],
+                "layout": {
+                  "sizing": "FILL/FILL"
+                }
+              }
+            },
+            "added": [
+              "/Content/Hero",
+              "/Content/Hero/SearchField",
+              "/Content/Popular",
+              "/Content/Popular/Popular articles",
+              "/Content/Popular/Frame 1",
+              "/Content/Action Card"
+            ],
+            "removed": [
+              "/Content/SearchField",
+              "/Content/Resources",
+              "/Content/Resources/Popular",
+              "/Content/Resources/Action Card"
+            ]
+          }
         }
       ]
     }

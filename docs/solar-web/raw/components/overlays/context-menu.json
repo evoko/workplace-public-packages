@@ -191,7 +191,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=focus",
@@ -208,7 +217,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=disabled",
@@ -221,7 +239,21 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Shortcut": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=destructive",
@@ -234,7 +266,21 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/danger}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/Shortcut": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

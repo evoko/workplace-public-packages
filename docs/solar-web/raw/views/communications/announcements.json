@@ -376,7 +376,81 @@
             "Tag",
             "TrailingIcon",
             "item-2"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  103
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    8,
+                    16,
+                    0,
+                    16
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Content": {
+                "size": [
+                  377,
+                  640
+                ],
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md",
+                  "paddingLeft": "Spatial:stack/md",
+                  "paddingTop": "Spatial:stack/md",
+                  "paddingRight": "Spatial:stack/md",
+                  "paddingBottom": "Spatial:stack/md"
+                }
+              },
+              "/Content/Announcement Card": {
+                "size": [
+                  345,
+                  140
+                ]
+              },
+              "/Content/Announcement Card#2": {
+                "size": [
+                  345,
+                  160
+                ]
+              },
+              "/Content/Announcement Card#3": {
+                "size": [
+                  345,
+                  140
+                ]
+              },
+              "/Content/Announcement Card#4": {
+                "size": [
+                  345,
+                  120
+                ]
+              }
+            }
+          }
         }
       ]
     }

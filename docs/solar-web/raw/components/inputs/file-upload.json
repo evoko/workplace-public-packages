@@ -323,7 +323,16 @@
           "iconFills": [
             "{Color:icon/tertiary}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=error",
@@ -341,7 +350,29 @@
           "iconFills": [
             "{Color:icon/feedback/danger}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/subtle}"
+                ]
+              },
+              "/Field/FileName": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/HelperText": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=disabled",
@@ -359,7 +390,40 @@
           "iconFills": [
             "{Color:icon/disabled}",
             "{Color:action/secondary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "fills": [
+                  "{Color:surface/muted}"
+                ],
+                "strokes": null,
+                "strokeWeight": null
+              },
+              "/Field/FileName": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Field/Button": {
+                "variant": {
+                  "size": "md",
+                  "prio": "secondary",
+                  "state": "disabled",
+                  "danger": "false"
+                },
+                "fills": null,
+                "strokes": [
+                  "{Color:action/secondary/border/disabled}"
+                ]
+              },
+              "/HelperText": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=filled",
@@ -377,7 +441,37 @@
             "{Color:action/secondary/icon/default}",
             "{Color:action/secondary/icon/danger/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "size": [
+                  400,
+                  68
+                ],
+                "layout": {
+                  "sizing": "FILL/FIXED"
+                }
+              },
+              "/Field/FileName": {
+                "text": "Filename.jpg",
+                "size": [
+                  236,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            },
+            "added": [
+              "/Field/Icon Button",
+              "/Field/Icon Button#2"
+            ],
+            "removed": [
+              "/Field/Button"
+            ]
+          }
         },
         {
           "variant": "state=focus",
@@ -396,7 +490,14 @@
           "iconFills": [
             "{Color:icon/tertiary}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         }
       ]
     }

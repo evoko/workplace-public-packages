@@ -185,7 +185,24 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL"
+                }
+              }
+            },
+            "added": [
+              "/Header/Icon/ChevronUp",
+              "/Content",
+              "/Content/Content"
+            ],
+            "removed": [
+              "/Header/Icon/ChevronDown"
+            ]
+          }
         },
         {
           "variant": "expanded=false, hover=true",
@@ -205,7 +222,27 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Header": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Header/Title": {
+                "size": [
+                  272,
+                  12
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "expanded=true, hover=true",
@@ -226,7 +263,27 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL"
+                },
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "added": [
+              "/Header/Icon/ChevronUp",
+              "/Content",
+              "/Content/Content"
+            ],
+            "removed": [
+              "/Header/Icon/ChevronDown"
+            ]
+          }
         }
       ]
     }

@@ -254,7 +254,55 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  81
+                ],
+                "layout": {
+                  "pad": [
+                    8,
+                    16,
+                    0,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/DataTable": {
+                "variant": {
+                  "breakpoint": "mobile",
+                  "state": "default"
+                },
+                "size": [
+                  377,
+                  719
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/xs",
+                  "paddingRight": "Spatial:stack/xs"
+                }
+              }
+            }
+          }
         }
       ]
     }

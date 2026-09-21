@@ -383,7 +383,38 @@
             "{Color:icon/tertiary}",
             "{Primitives:color/brand/white}",
             "{Primitives:color/brand/red}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    24,
+                    16,
+                    24,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "width": "Layout:breakpoint/xs"
+                }
+              },
+              "/Center Stack": {
+                "size": [
+                  319,
+                  273
+                ]
+              },
+              "/Center Stack/Verify it's you": {
+                "size": [
+                  109,
+                  13
+                ]
+              }
+            }
+          }
         }
       ]
     }

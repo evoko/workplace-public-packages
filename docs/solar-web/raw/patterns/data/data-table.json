@@ -244,7 +244,16 @@
             "Icon/Refresh",
             "Label",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "breakpoint=mobile, state=default",
@@ -270,7 +279,62 @@
             "Helper text",
             "Icon/None",
             "Label"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/xs",
+                  "paddingRight": "Spatial:stack/xs"
+                }
+              },
+              "/TableHeader": {
+                "variant": {
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  361,
+                  56
+                ]
+              },
+              "/Table": {
+                "variant": {
+                  "breakpoint": "mobile",
+                  "expandable": "true",
+                  "selectable": "true"
+                },
+                "size": [
+                  361,
+                  640
+                ],
+                "layout": {
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/TableFooter": {
+                "variant": {
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  361,
+                  56
+                ],
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "breakpoint=mobile, state=empty",
@@ -300,7 +364,62 @@
             "Icon/Refresh",
             "Label",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/xs",
+                  "paddingRight": "Spatial:stack/xs"
+                }
+              },
+              "/TableHeader": {
+                "variant": {
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  361,
+                  56
+                ]
+              },
+              "/Table": {
+                "variant": {
+                  "breakpoint": "mobile",
+                  "expandable": "true",
+                  "selectable": "true"
+                },
+                "size": [
+                  361,
+                  640
+                ],
+                "layout": {
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/TableFooter": {
+                "variant": {
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  361,
+                  56
+                ],
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              }
+            }
+          }
         }
       ]
     }

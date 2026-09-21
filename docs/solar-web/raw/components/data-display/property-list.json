@@ -292,7 +292,43 @@
           "iconFills": [
             "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Text": {
+                "size": [
+                  337,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  337,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  337,
+                  10
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "in-card=false, trailing=toggle",
@@ -307,7 +343,41 @@
           "iconFills": [
             "{Primitives:color/neutral/900}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/Text": {
+                "size": [
+                  417,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  417,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  417,
+                  10
+                ]
+              },
+              "/Trailing": {
+                "size": [
+                  32,
+                  18
+                ]
+              }
+            },
+            "added": [
+              "/Trailing/Toggle"
+            ],
+            "removed": [
+              "/Trailing/Button"
+            ]
+          }
         },
         {
           "variant": "in-card=true, trailing=toggle",
@@ -322,7 +392,55 @@
           "iconFills": [
             "{Primitives:color/neutral/900}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Text": {
+                "size": [
+                  385,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  385,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  385,
+                  10
+                ]
+              },
+              "/Trailing": {
+                "size": [
+                  32,
+                  18
+                ]
+              }
+            },
+            "added": [
+              "/Trailing/Toggle"
+            ],
+            "removed": [
+              "/Trailing/Button"
+            ]
+          }
         },
         {
           "variant": "in-card=false, trailing=select",
@@ -342,7 +460,41 @@
           "hidden": [
             "Helper text",
             "Label"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Text": {
+                "size": [
+                  289,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  289,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  289,
+                  10
+                ]
+              },
+              "/Trailing": {
+                "size": [
+                  160,
+                  40
+                ]
+              }
+            },
+            "added": [
+              "/Trailing/Select"
+            ],
+            "removed": [
+              "/Trailing/Button"
+            ]
+          }
         },
         {
           "variant": "in-card=true, trailing=select",
@@ -362,7 +514,55 @@
           "hidden": [
             "Helper text",
             "Label"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Text": {
+                "size": [
+                  257,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  257,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  257,
+                  10
+                ]
+              },
+              "/Trailing": {
+                "size": [
+                  160,
+                  40
+                ]
+              }
+            },
+            "added": [
+              "/Trailing/Select"
+            ],
+            "removed": [
+              "/Trailing/Button"
+            ]
+          }
         },
         {
           "variant": "in-card=false, trailing=icon-button",
@@ -378,7 +578,41 @@
             "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/Text": {
+                "size": [
+                  409,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  409,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  409,
+                  10
+                ]
+              },
+              "/Trailing": {
+                "size": [
+                  40,
+                  40
+                ]
+              }
+            },
+            "added": [
+              "/Trailing/Icon Button"
+            ],
+            "removed": [
+              "/Trailing/Button"
+            ]
+          }
         },
         {
           "variant": "in-card=true, trailing=icon-button",
@@ -394,7 +628,55 @@
             "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Text": {
+                "size": [
+                  377,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  377,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  377,
+                  10
+                ]
+              },
+              "/Trailing": {
+                "size": [
+                  40,
+                  40
+                ]
+              }
+            },
+            "added": [
+              "/Trailing/Icon Button"
+            ],
+            "removed": [
+              "/Trailing/Button"
+            ]
+          }
         },
         {
           "variant": "in-card=false, trailing=segmented-control",
@@ -416,7 +698,41 @@
             "Helper text",
             "Icon/None",
             "Label"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Text": {
+                "size": [
+                  81,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  81,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  81,
+                  10
+                ]
+              },
+              "/Trailing": {
+                "size": [
+                  368,
+                  40
+                ]
+              }
+            },
+            "added": [
+              "/Trailing/Segmented Control"
+            ],
+            "removed": [
+              "/Trailing/Button"
+            ]
+          }
         },
         {
           "variant": "in-card=true, trailing=segmented-control",
@@ -438,7 +754,55 @@
             "Helper text",
             "Icon/None",
             "Label"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Text": {
+                "size": [
+                  49,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  49,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  49,
+                  10
+                ]
+              },
+              "/Trailing": {
+                "size": [
+                  368,
+                  40
+                ]
+              }
+            },
+            "added": [
+              "/Trailing/Segmented Control"
+            ],
+            "removed": [
+              "/Trailing/Button"
+            ]
+          }
         },
         {
           "variant": "in-card=false, trailing=none",
@@ -453,7 +817,33 @@
           "iconFills": [
             "{Primitives:color/neutral/900}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/Text": {
+                "size": [
+                  465,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  465,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  465,
+                  10
+                ]
+              }
+            },
+            "removed": [
+              "/Trailing",
+              "/Trailing/Button"
+            ]
+          }
         },
         {
           "variant": "in-card=true, trailing=none",
@@ -468,7 +858,47 @@
           "iconFills": [
             "{Primitives:color/neutral/900}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Text": {
+                "size": [
+                  433,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  433,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  433,
+                  10
+                ]
+              }
+            },
+            "removed": [
+              "/Trailing",
+              "/Trailing/Button"
+            ]
+          }
         },
         {
           "variant": "in-card=false, trailing=tag",
@@ -484,7 +914,41 @@
           "iconFills": [
             "{Primitives:color/neutral/900}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/Text": {
+                "size": [
+                  394,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  394,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  394,
+                  10
+                ]
+              },
+              "/Trailing": {
+                "size": [
+                  55,
+                  24
+                ]
+              }
+            },
+            "added": [
+              "/Trailing/Tag"
+            ],
+            "removed": [
+              "/Trailing/Button"
+            ]
+          }
         },
         {
           "variant": "in-card=true, trailing=tag",
@@ -500,7 +964,55 @@
           "iconFills": [
             "{Primitives:color/neutral/900}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Text": {
+                "size": [
+                  362,
+                  32
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  362,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  362,
+                  10
+                ]
+              },
+              "/Trailing": {
+                "size": [
+                  55,
+                  24
+                ]
+              }
+            },
+            "added": [
+              "/Trailing/Tag"
+            ],
+            "removed": [
+              "/Trailing/Button"
+            ]
+          }
         }
       ]
     },
@@ -849,7 +1361,95 @@
             "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}",
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              },
+              "/items/PropertyRow": {
+                "variant": {
+                  "in-card": "false",
+                  "trailing": "action"
+                },
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": null,
+                  "paddingRight": null
+                }
+              },
+              "/items/PropertyRow#2": {
+                "variant": {
+                  "in-card": "false",
+                  "trailing": "toggle"
+                },
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": null,
+                  "paddingRight": null
+                }
+              },
+              "/items/PropertyRow#3": {
+                "variant": {
+                  "in-card": "false",
+                  "trailing": "select"
+                },
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": null,
+                  "paddingRight": null
+                }
+              },
+              "/items/PropertyRow#4": {
+                "variant": {
+                  "in-card": "false",
+                  "trailing": "icon-button"
+                },
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": null,
+                  "paddingRight": null
+                }
+              }
+            }
+          }
         }
       ]
     }

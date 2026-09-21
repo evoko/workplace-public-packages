@@ -149,7 +149,23 @@
           ],
           "textFills": [
             "{Primitives:color/neutral/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=neutral, Shade=Light",
@@ -165,7 +181,23 @@
           ],
           "textFills": [
             "{Primitives:color/neutral/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=neutral, Shade=Light",
@@ -181,7 +213,23 @@
           ],
           "textFills": [
             "{Primitives:color/neutral/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=neutral, Shade=Dark",
@@ -197,7 +245,21 @@
           ],
           "textFills": [
             "{Primitives:color/neutral/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/neutral/800}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/neutral/100}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=neutral, Shade=Medium",
@@ -213,7 +275,21 @@
           ],
           "textFills": [
             "{Primitives:color/neutral/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/neutral/400}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/neutral/50}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=neutral, Shade=Dark",
@@ -229,7 +305,31 @@
           ],
           "textFills": [
             "{Primitives:color/neutral/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/neutral/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=neutral, Shade=Medium",
@@ -245,7 +345,31 @@
           ],
           "textFills": [
             "{Primitives:color/neutral/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/neutral/400}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/neutral/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=neutral, Shade=Dark",
@@ -261,7 +385,31 @@
           ],
           "textFills": [
             "{Primitives:color/neutral/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/neutral/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=neutral, Shade=Medium",
@@ -277,7 +425,31 @@
           ],
           "textFills": [
             "{Primitives:color/neutral/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/neutral/400}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/neutral/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=neutral, Shade=Dark",
@@ -293,7 +465,31 @@
           ],
           "textFills": [
             "{Primitives:color/neutral/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/neutral/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/neutral/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=neutral, Shade=Medium",
@@ -309,7 +505,31 @@
           ],
           "textFills": [
             "{Primitives:color/neutral/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/neutral/400}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/neutral/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=photo, color=neutral, Shade=Image",
@@ -322,7 +542,25 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                },
+                "fills": [
+                  "IMAGE"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "removed": [
+              "/DS"
+            ]
+          }
         },
         {
           "variant": "size=md, type=photo, color=neutral, Shade=Image",
@@ -335,7 +573,25 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                },
+                "fills": [
+                  "IMAGE"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "removed": [
+              "/DS"
+            ]
+          }
         },
         {
           "variant": "size=sm, type=photo, color=neutral, Shade=Image",
@@ -348,7 +604,25 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                },
+                "fills": [
+                  "IMAGE"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "removed": [
+              "/DS"
+            ]
+          }
         },
         {
           "variant": "size=xs, type=photo, color=neutral, Shade=Image",
@@ -361,7 +635,25 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                },
+                "fills": [
+                  "IMAGE"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "removed": [
+              "/DS"
+            ]
+          }
         },
         {
           "variant": "size=md, type=logo, color=neutral, Shade=Logo",
@@ -371,7 +663,35 @@
           ],
           "fills": [
             "IMAGE"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                },
+                "fills": [
+                  "IMAGE"
+                ],
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": 8,
+                "vars": {
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              }
+            },
+            "removed": [
+              "/DS"
+            ]
+          }
         },
         {
           "variant": "size=sm, type=logo, color=neutral, Shade=Logo",
@@ -381,7 +701,35 @@
           ],
           "fills": [
             "IMAGE"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                },
+                "fills": [
+                  "IMAGE"
+                ],
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": 8,
+                "vars": {
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              }
+            },
+            "removed": [
+              "/DS"
+            ]
+          }
         },
         {
           "variant": "size=lg, type=text, color=red, Shade=Light",
@@ -397,7 +745,21 @@
           ],
           "textFills": [
             "{Primitives:color/red/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/50}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/red/700}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=red, Shade=Light",
@@ -413,7 +775,31 @@
           ],
           "textFills": [
             "{Primitives:color/red/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/red/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=red, Shade=Light",
@@ -429,7 +815,31 @@
           ],
           "textFills": [
             "{Primitives:color/red/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/red/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=red, Shade=Light",
@@ -445,7 +855,31 @@
           ],
           "textFills": [
             "{Primitives:color/red/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/red/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=red, Shade=Dark",
@@ -461,7 +895,21 @@
           ],
           "textFills": [
             "{Primitives:color/red/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/800}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/red/100}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=red, Shade=Medium",
@@ -477,7 +925,21 @@
           ],
           "textFills": [
             "{Primitives:color/red/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/500}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/red/50}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=red, Shade=Dark",
@@ -493,7 +955,31 @@
           ],
           "textFills": [
             "{Primitives:color/red/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/red/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=red, Shade=Medium",
@@ -509,7 +995,31 @@
           ],
           "textFills": [
             "{Primitives:color/red/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/red/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=red, Shade=Dark",
@@ -525,7 +1035,31 @@
           ],
           "textFills": [
             "{Primitives:color/red/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/red/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=red, Shade=Medium",
@@ -541,7 +1075,31 @@
           ],
           "textFills": [
             "{Primitives:color/red/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/red/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=red, Shade=Dark",
@@ -557,7 +1115,31 @@
           ],
           "textFills": [
             "{Primitives:color/red/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/red/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=red, Shade=Medium",
@@ -573,7 +1155,31 @@
           ],
           "textFills": [
             "{Primitives:color/red/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/red/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/red/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=orange, Shade=Light",
@@ -589,7 +1195,21 @@
           ],
           "textFills": [
             "{Primitives:color/orange/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/50}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/orange/700}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=orange, Shade=Light",
@@ -605,7 +1225,31 @@
           ],
           "textFills": [
             "{Primitives:color/orange/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/orange/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=orange, Shade=Light",
@@ -621,7 +1265,31 @@
           ],
           "textFills": [
             "{Primitives:color/orange/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/orange/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=orange, Shade=Light",
@@ -637,7 +1305,31 @@
           ],
           "textFills": [
             "{Primitives:color/orange/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/orange/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=orange, Shade=Dark",
@@ -653,7 +1345,21 @@
           ],
           "textFills": [
             "{Primitives:color/orange/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/800}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/orange/100}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=orange, Shade=Medium",
@@ -669,7 +1375,21 @@
           ],
           "textFills": [
             "{Primitives:color/orange/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/500}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/orange/50}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=orange, Shade=Dark",
@@ -685,7 +1405,31 @@
           ],
           "textFills": [
             "{Primitives:color/orange/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/orange/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=orange, Shade=Medium",
@@ -701,7 +1445,31 @@
           ],
           "textFills": [
             "{Primitives:color/orange/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/orange/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=orange, Shade=Dark",
@@ -717,7 +1485,31 @@
           ],
           "textFills": [
             "{Primitives:color/orange/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/orange/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=orange, Shade=Medium",
@@ -733,7 +1525,31 @@
           ],
           "textFills": [
             "{Primitives:color/orange/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/orange/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=orange, Shade=Dark",
@@ -749,7 +1565,31 @@
           ],
           "textFills": [
             "{Primitives:color/orange/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/orange/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=orange, Shade=Medium",
@@ -765,7 +1605,31 @@
           ],
           "textFills": [
             "{Primitives:color/orange/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/orange/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/orange/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=yellow, Shade=Light",
@@ -781,7 +1645,21 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/50}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/yellow/700}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=yellow, Shade=Light",
@@ -797,7 +1675,31 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/yellow/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=yellow, Shade=Light",
@@ -813,7 +1715,31 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/yellow/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=yellow, Shade=Light",
@@ -829,7 +1755,31 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/yellow/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=yellow, Shade=Dark",
@@ -845,7 +1795,21 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/800}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/yellow/100}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=yellow, Shade=Medium",
@@ -861,7 +1825,21 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/600}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/yellow/50}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=yellow, Shade=Dark",
@@ -877,7 +1855,31 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/yellow/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=yellow, Shade=Medium",
@@ -893,7 +1895,31 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/600}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/yellow/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=yellow, Shade=Dark",
@@ -909,7 +1935,31 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/yellow/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=yellow, Shade=Medium",
@@ -925,7 +1975,31 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/600}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/yellow/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=yellow, Shade=Dark",
@@ -941,7 +2015,31 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/yellow/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=yellow, Shade=Medium",
@@ -957,7 +2055,31 @@
           ],
           "textFills": [
             "{Primitives:color/yellow/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/yellow/600}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/yellow/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=green, Shade=Light",
@@ -973,7 +2095,21 @@
           ],
           "textFills": [
             "{Primitives:color/green/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/50}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/green/700}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=green, Shade=Light",
@@ -989,7 +2125,31 @@
           ],
           "textFills": [
             "{Primitives:color/green/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/green/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=green, Shade=Light",
@@ -1005,7 +2165,31 @@
           ],
           "textFills": [
             "{Primitives:color/green/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/green/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=green, Shade=Light",
@@ -1021,7 +2205,31 @@
           ],
           "textFills": [
             "{Primitives:color/green/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/green/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=green, Shade=Dark",
@@ -1037,7 +2245,21 @@
           ],
           "textFills": [
             "{Primitives:color/green/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/800}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/green/100}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=green, Shade=Medium",
@@ -1053,7 +2275,21 @@
           ],
           "textFills": [
             "{Primitives:color/green/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/500}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/green/50}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=green, Shade=Dark",
@@ -1069,7 +2305,31 @@
           ],
           "textFills": [
             "{Primitives:color/green/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/green/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=green, Shade=Medium",
@@ -1085,7 +2345,31 @@
           ],
           "textFills": [
             "{Primitives:color/green/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/green/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=green, Shade=Dark",
@@ -1101,7 +2385,31 @@
           ],
           "textFills": [
             "{Primitives:color/green/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/green/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=green, Shade=Medium",
@@ -1117,7 +2425,31 @@
           ],
           "textFills": [
             "{Primitives:color/green/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/green/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=green, Shade=Dark",
@@ -1133,7 +2465,31 @@
           ],
           "textFills": [
             "{Primitives:color/green/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/green/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=green, Shade=Medium",
@@ -1149,7 +2505,31 @@
           ],
           "textFills": [
             "{Primitives:color/green/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/green/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/green/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=turquoise, Shade=Light",
@@ -1165,7 +2545,21 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/50}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/turquoise/700}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=turquoise, Shade=Light",
@@ -1181,7 +2575,31 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/turquoise/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=turquoise, Shade=Light",
@@ -1197,7 +2615,31 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/turquoise/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=turquoise, Shade=Light",
@@ -1213,7 +2655,31 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/turquoise/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=turquoise, Shade=Dark",
@@ -1229,7 +2695,21 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/800}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/turquoise/100}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=turquoise, Shade=Medium",
@@ -1245,7 +2725,21 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/500}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/turquoise/50}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=turquoise, Shade=Dark",
@@ -1261,7 +2755,31 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/turquoise/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=turquoise, Shade=Medium",
@@ -1277,7 +2795,31 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/turquoise/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=turquoise, Shade=Dark",
@@ -1293,7 +2835,31 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/turquoise/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=turquoise, Shade=Medium",
@@ -1309,7 +2875,31 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/turquoise/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=turquoise, Shade=Dark",
@@ -1325,7 +2915,31 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/turquoise/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=turquoise, Shade=Medium",
@@ -1341,7 +2955,31 @@
           ],
           "textFills": [
             "{Primitives:color/turquoise/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/turquoise/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/turquoise/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=blue, Shade=Light",
@@ -1357,7 +2995,21 @@
           ],
           "textFills": [
             "{Primitives:color/blue/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/50}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/blue/700}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=blue, Shade=Light",
@@ -1373,7 +3025,31 @@
           ],
           "textFills": [
             "{Primitives:color/blue/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/blue/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=blue, Shade=Light",
@@ -1389,7 +3065,31 @@
           ],
           "textFills": [
             "{Primitives:color/blue/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/blue/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=blue, Shade=Light",
@@ -1405,7 +3105,31 @@
           ],
           "textFills": [
             "{Primitives:color/blue/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/blue/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=blue, Shade=Dark",
@@ -1421,7 +3145,21 @@
           ],
           "textFills": [
             "{Primitives:color/blue/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/800}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/blue/100}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=blue, Shade=Medium",
@@ -1437,7 +3175,21 @@
           ],
           "textFills": [
             "{Primitives:color/blue/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/500}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/blue/50}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=blue, Shade=Dark",
@@ -1453,7 +3205,31 @@
           ],
           "textFills": [
             "{Primitives:color/blue/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/blue/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=blue, Shade=Medium",
@@ -1469,7 +3245,31 @@
           ],
           "textFills": [
             "{Primitives:color/blue/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/blue/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=blue, Shade=Dark",
@@ -1485,7 +3285,31 @@
           ],
           "textFills": [
             "{Primitives:color/blue/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/blue/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=blue, Shade=Medium",
@@ -1501,7 +3325,31 @@
           ],
           "textFills": [
             "{Primitives:color/blue/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/blue/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=blue, Shade=Dark",
@@ -1517,7 +3365,31 @@
           ],
           "textFills": [
             "{Primitives:color/blue/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/blue/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=blue, Shade=Medium",
@@ -1533,7 +3405,31 @@
           ],
           "textFills": [
             "{Primitives:color/blue/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/blue/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/blue/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=purple, Shade=Light",
@@ -1549,7 +3445,21 @@
           ],
           "textFills": [
             "{Primitives:color/purple/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/50}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/purple/700}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=purple, Shade=Light",
@@ -1565,7 +3475,31 @@
           ],
           "textFills": [
             "{Primitives:color/purple/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/purple/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=purple, Shade=Light",
@@ -1581,7 +3515,31 @@
           ],
           "textFills": [
             "{Primitives:color/purple/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/purple/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=purple, Shade=Light",
@@ -1597,7 +3555,31 @@
           ],
           "textFills": [
             "{Primitives:color/purple/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/purple/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=purple, Shade=Dark",
@@ -1613,7 +3595,21 @@
           ],
           "textFills": [
             "{Primitives:color/purple/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/800}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/purple/100}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=purple, Shade=Medium",
@@ -1629,7 +3625,21 @@
           ],
           "textFills": [
             "{Primitives:color/purple/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/500}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/purple/50}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=purple, Shade=Dark",
@@ -1645,7 +3655,31 @@
           ],
           "textFills": [
             "{Primitives:color/purple/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/purple/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=purple, Shade=Medium",
@@ -1661,7 +3695,31 @@
           ],
           "textFills": [
             "{Primitives:color/purple/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/purple/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=purple, Shade=Dark",
@@ -1677,7 +3735,31 @@
           ],
           "textFills": [
             "{Primitives:color/purple/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/purple/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=purple, Shade=Medium",
@@ -1693,7 +3775,31 @@
           ],
           "textFills": [
             "{Primitives:color/purple/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/purple/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=purple, Shade=Dark",
@@ -1709,7 +3815,31 @@
           ],
           "textFills": [
             "{Primitives:color/purple/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/purple/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=purple, Shade=Medium",
@@ -1725,7 +3855,31 @@
           ],
           "textFills": [
             "{Primitives:color/purple/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/purple/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/purple/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=pink, Shade=Light",
@@ -1741,7 +3895,21 @@
           ],
           "textFills": [
             "{Primitives:color/pink/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/50}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/pink/700}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=pink, Shade=Light",
@@ -1757,7 +3925,31 @@
           ],
           "textFills": [
             "{Primitives:color/pink/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/pink/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=pink, Shade=Light",
@@ -1773,7 +3965,31 @@
           ],
           "textFills": [
             "{Primitives:color/pink/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/pink/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=pink, Shade=Light",
@@ -1789,7 +4005,31 @@
           ],
           "textFills": [
             "{Primitives:color/pink/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/50}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/pink/700}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=pink, Shade=Dark",
@@ -1805,7 +4045,21 @@
           ],
           "textFills": [
             "{Primitives:color/pink/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/800}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/pink/100}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, type=text, color=pink, Shade=Medium",
@@ -1821,7 +4075,21 @@
           ],
           "textFills": [
             "{Primitives:color/pink/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/500}"
+                ]
+              },
+              "/DS": {
+                "fills": [
+                  "{Primitives:color/pink/50}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=pink, Shade=Dark",
@@ -1837,7 +4105,31 @@
           ],
           "textFills": [
             "{Primitives:color/pink/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/pink/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, type=text, color=pink, Shade=Medium",
@@ -1853,7 +4145,31 @@
           ],
           "textFills": [
             "{Primitives:color/pink/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  17,
+                  9
+                ],
+                "fills": [
+                  "{Primitives:color/pink/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=pink, Shade=Dark",
@@ -1869,7 +4185,31 @@
           ],
           "textFills": [
             "{Primitives:color/pink/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/pink/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, type=text, color=pink, Shade=Medium",
@@ -1885,7 +4225,31 @@
           ],
           "textFills": [
             "{Primitives:color/pink/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/xs/semibold",
+                "size": [
+                  14,
+                  7
+                ],
+                "fills": [
+                  "{Primitives:color/pink/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/xs",
+                  "fontSize": "Type:size/body/xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=pink, Shade=Dark",
@@ -1901,7 +4265,31 @@
           ],
           "textFills": [
             "{Primitives:color/pink/100}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/800}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/pink/100}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, type=text, color=pink, Shade=Medium",
@@ -1917,7 +4305,31 @@
           ],
           "textFills": [
             "{Primitives:color/pink/50}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Primitives:color/pink/500}"
+                ]
+              },
+              "/DS": {
+                "textStyle": "body/2xs/semibold",
+                "size": [
+                  11,
+                  6
+                ],
+                "fills": [
+                  "{Primitives:color/pink/50}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/2xs",
+                  "fontSize": "Type:size/body/2xs",
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         }
       ]
     }

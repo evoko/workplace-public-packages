@@ -766,7 +766,125 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  84
+                ],
+                "layout": {
+                  "pad": [
+                    8,
+                    16,
+                    0,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Content": {
+                "size": [
+                  377,
+                  704
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    16,
+                    0,
+                    16
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/none",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/none"
+                }
+              },
+              "/Content/TableHeader": {
+                "variant": {
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  345,
+                  56
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Content/Grid": {
+                "size": [
+                  345,
+                  648
+                ],
+                "layout": {
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "counterAxisSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Content/Grid/File Card": {
+                "size": [
+                  167,
+                  208
+                ]
+              },
+              "/Content/Grid/File Card#2": {
+                "size": [
+                  167,
+                  208
+                ]
+              },
+              "/Content/Grid/File Card#3": {
+                "size": [
+                  167,
+                  208
+                ]
+              },
+              "/Content/Grid/File Card#4": {
+                "size": [
+                  167,
+                  208
+                ]
+              },
+              "/Content/Grid/File Card#5": {
+                "size": [
+                  167,
+                  208
+                ]
+              },
+              "/Content/Grid/File Card#6": {
+                "size": [
+                  167,
+                  208
+                ]
+              }
+            },
+            "removed": [
+              "/Content/Grid/File Card#7",
+              "/Content/Grid/File Card#8",
+              "/Content/Grid/File Card#9",
+              "/Content/Grid/File Card#10",
+              "/Content/Grid/File Card#11",
+              "/Content/Grid/File Card#12"
+            ]
+          }
         },
         {
           "variant": "breakpoint=desktop, view=list",
@@ -810,7 +928,40 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Content": {
+                "size": [
+                  1368,
+                  792
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                },
+                "vars": null
+              }
+            },
+            "added": [
+              "/Content/DataTable"
+            ],
+            "removed": [
+              "/Content/TableHeader",
+              "/Content/Grid",
+              "/Content/Grid/File Card",
+              "/Content/Grid/File Card#2",
+              "/Content/Grid/File Card#3",
+              "/Content/Grid/File Card#4",
+              "/Content/Grid/File Card#5",
+              "/Content/Grid/File Card#6",
+              "/Content/Grid/File Card#7",
+              "/Content/Grid/File Card#8",
+              "/Content/Grid/File Card#9",
+              "/Content/Grid/File Card#10",
+              "/Content/Grid/File Card#11",
+              "/Content/Grid/File Card#12"
+            ]
+          }
         },
         {
           "variant": "breakpoint=mobile, view=list",
@@ -849,7 +1000,74 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  84
+                ],
+                "layout": {
+                  "pad": [
+                    8,
+                    16,
+                    0,
+                    16
+                  ],
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Content": {
+                "size": [
+                  377,
+                  780
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    16,
+                    16,
+                    16
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              }
+            },
+            "added": [
+              "/Content/DataTable"
+            ],
+            "removed": [
+              "/Content/TableHeader",
+              "/Content/Grid",
+              "/Content/Grid/File Card",
+              "/Content/Grid/File Card#2",
+              "/Content/Grid/File Card#3",
+              "/Content/Grid/File Card#4",
+              "/Content/Grid/File Card#5",
+              "/Content/Grid/File Card#6",
+              "/Content/Grid/File Card#7",
+              "/Content/Grid/File Card#8",
+              "/Content/Grid/File Card#9",
+              "/Content/Grid/File Card#10",
+              "/Content/Grid/File Card#11",
+              "/Content/Grid/File Card#12"
+            ]
+          }
         },
         {
           "variant": "breakpoint=desktop, view=templates",
@@ -888,7 +1106,51 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Content": {
+                "size": [
+                  1368,
+                  738
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "gap": 24,
+                  "sizing": "FILL/HUG"
+                },
+                "vars": null
+              }
+            },
+            "added": [
+              "/Content/Section Nav",
+              "/Content/Template Grid",
+              "/Content/Template Grid/File Card",
+              "/Content/Template Grid/File Card#2",
+              "/Content/Template Grid/File Card#3",
+              "/Content/Template Grid/File Card#4",
+              "/Content/Template Grid/File Card#5",
+              "/Content/Template Grid/File Card#6",
+              "/Content/Template Grid/File Card#7",
+              "/Content/Template Grid/File Card#8"
+            ],
+            "removed": [
+              "/Content/TableHeader",
+              "/Content/Grid",
+              "/Content/Grid/File Card",
+              "/Content/Grid/File Card#2",
+              "/Content/Grid/File Card#3",
+              "/Content/Grid/File Card#4",
+              "/Content/Grid/File Card#5",
+              "/Content/Grid/File Card#6",
+              "/Content/Grid/File Card#7",
+              "/Content/Grid/File Card#8",
+              "/Content/Grid/File Card#9",
+              "/Content/Grid/File Card#10",
+              "/Content/Grid/File Card#11",
+              "/Content/Grid/File Card#12"
+            ]
+          }
         },
         {
           "variant": "breakpoint=mobile, view=templates",
@@ -923,7 +1185,85 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  84
+                ],
+                "layout": {
+                  "pad": [
+                    8,
+                    16,
+                    0,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Content": {
+                "size": [
+                  377,
+                  734
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    12,
+                    16,
+                    16,
+                    16
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              }
+            },
+            "added": [
+              "/Content/Categories",
+              "/Content/Categories/Tag",
+              "/Content/Categories/Tag#2",
+              "/Content/Categories/Tag#3",
+              "/Content/Categories/Tag#4",
+              "/Content/Categories/Tag#5",
+              "/Content/Template Grid",
+              "/Content/Template Grid/File Card",
+              "/Content/Template Grid/File Card#2",
+              "/Content/Template Grid/File Card#3",
+              "/Content/Template Grid/File Card#4",
+              "/Content/Template Grid/File Card#5",
+              "/Content/Template Grid/File Card#6"
+            ],
+            "removed": [
+              "/Content/TableHeader",
+              "/Content/Grid",
+              "/Content/Grid/File Card",
+              "/Content/Grid/File Card#2",
+              "/Content/Grid/File Card#3",
+              "/Content/Grid/File Card#4",
+              "/Content/Grid/File Card#5",
+              "/Content/Grid/File Card#6",
+              "/Content/Grid/File Card#7",
+              "/Content/Grid/File Card#8",
+              "/Content/Grid/File Card#9",
+              "/Content/Grid/File Card#10",
+              "/Content/Grid/File Card#11",
+              "/Content/Grid/File Card#12"
+            ]
+          }
         }
       ]
     }

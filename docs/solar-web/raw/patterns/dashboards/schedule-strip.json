@@ -246,7 +246,21 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/success}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "strokes": null,
+                "strokeWeight": null,
+                "vars": {
+                  "strokeBottomWeight": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "type=complete, state=default",
@@ -264,7 +278,51 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/neutral}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "xs"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ]
+              },
+              "/Container": {
+                "size": [
+                  194,
+                  27
+                ]
+              },
+              "/Tag": {
+                "variant": {
+                  "status": "neutral",
+                  "type": "icon+text",
+                  "invert": "false"
+                },
+                "size": [
+                  90,
+                  24
+                ],
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "added": [
+              "/Container/Lunch Announcements",
+              "/Container/Mon-Fri · 12:00"
+            ],
+            "removed": [
+              "/Container/Morning Music",
+              "/Container/Mon-Fri · 06:00"
+            ]
+          }
         },
         {
           "variant": "type=complete, state=hover",
@@ -282,7 +340,61 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/neutral}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "strokes": null,
+                "strokeWeight": null,
+                "vars": {
+                  "strokeBottomWeight": null
+                }
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "xs"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ]
+              },
+              "/Container": {
+                "size": [
+                  194,
+                  27
+                ]
+              },
+              "/Tag": {
+                "variant": {
+                  "status": "neutral",
+                  "type": "icon+text",
+                  "invert": "false"
+                },
+                "size": [
+                  90,
+                  24
+                ],
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            },
+            "added": [
+              "/Container/Lunch Announcements",
+              "/Container/Mon-Fri · 12:00"
+            ],
+            "removed": [
+              "/Container/Morning Music",
+              "/Container/Mon-Fri · 06:00"
+            ]
+          }
         },
         {
           "variant": "type=scheduled, state=default",
@@ -300,7 +412,51 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/info}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "info",
+                  "size": "xs"
+                },
+                "fills": [
+                  "{Color:surface/feedback/info/strong}"
+                ]
+              },
+              "/Container": {
+                "size": [
+                  188,
+                  27
+                ]
+              },
+              "/Tag": {
+                "variant": {
+                  "status": "info",
+                  "type": "icon+text",
+                  "invert": "false"
+                },
+                "size": [
+                  96,
+                  24
+                ],
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ]
+              }
+            },
+            "added": [
+              "/Container/Weekend Promotions",
+              "/Container/Sat 10:00"
+            ],
+            "removed": [
+              "/Container/Morning Music",
+              "/Container/Mon-Fri · 06:00"
+            ]
+          }
         },
         {
           "variant": "type=scheduled, state=hover",
@@ -318,7 +474,61 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/info}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "strokes": null,
+                "strokeWeight": null,
+                "vars": {
+                  "strokeBottomWeight": null
+                }
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "info",
+                  "size": "xs"
+                },
+                "fills": [
+                  "{Color:surface/feedback/info/strong}"
+                ]
+              },
+              "/Container": {
+                "size": [
+                  188,
+                  27
+                ]
+              },
+              "/Tag": {
+                "variant": {
+                  "status": "info",
+                  "type": "icon+text",
+                  "invert": "false"
+                },
+                "size": [
+                  96,
+                  24
+                ],
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ]
+              }
+            },
+            "added": [
+              "/Container/Weekend Promotions",
+              "/Container/Sat 10:00"
+            ],
+            "removed": [
+              "/Container/Morning Music",
+              "/Container/Mon-Fri · 06:00"
+            ]
+          }
         },
         {
           "variant": "type=paused, state=default",
@@ -336,7 +546,43 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/warning}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "xs"
+                },
+                "fills": [
+                  "{Color:surface/feedback/warning/strong}"
+                ]
+              },
+              "/Container": {
+                "size": [
+                  206,
+                  27
+                ]
+              },
+              "/Tag": {
+                "variant": {
+                  "status": "warning",
+                  "type": "icon+text",
+                  "invert": "false"
+                },
+                "size": [
+                  78,
+                  24
+                ],
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=paused, state=hover",
@@ -354,7 +600,53 @@
           ],
           "iconFills": [
             "{Color:icon/feedback/warning}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "strokes": null,
+                "strokeWeight": null,
+                "vars": {
+                  "strokeBottomWeight": null
+                }
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "xs"
+                },
+                "fills": [
+                  "{Color:surface/feedback/warning/strong}"
+                ]
+              },
+              "/Container": {
+                "size": [
+                  206,
+                  27
+                ]
+              },
+              "/Tag": {
+                "variant": {
+                  "status": "warning",
+                  "type": "icon+text",
+                  "invert": "false"
+                },
+                "size": [
+                  78,
+                  24
+                ],
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ]
+              }
+            }
+          }
         }
       ]
     },
@@ -752,7 +1044,48 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "changed": {
+              "/Container": {
+                "strokes": null,
+                "strokeWeight": null,
+                "vars": {
+                  "strokeBottomWeight": null
+                }
+              },
+              "/content": {
+                "layout": {
+                  "pad": [
+                    0,
+                    16,
+                    16,
+                    16
+                  ],
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md"
+                }
+              }
+            },
+            "added": [
+              "/Container/Skeleton",
+              "/Container/Skeleton#2",
+              "/content/Skeleton"
+            ],
+            "removed": [
+              "/Container/Audio Schedule",
+              "/Container/Icon/More",
+              "/content/Schedule Entry",
+              "/content/Schedule Entry#2",
+              "/content/Schedule Entry#3",
+              "/content/Schedule Entry#4",
+              "/content/Schedule Entry#5"
+            ]
+          }
         },
         {
           "variant": "state=empty",
@@ -782,7 +1115,34 @@
             "Icon/None",
             "Icon/Refresh",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Container": {
+                "strokes": null,
+                "strokeWeight": null,
+                "vars": {
+                  "strokeBottomWeight": null
+                }
+              },
+              "/content": {
+                "layout": {
+                  "align": "CENTER/CENTER",
+                  "sizing": "FILL/FIXED"
+                }
+              }
+            },
+            "added": [
+              "/content/EmptyState"
+            ],
+            "removed": [
+              "/content/Schedule Entry",
+              "/content/Schedule Entry#2",
+              "/content/Schedule Entry#3",
+              "/content/Schedule Entry#4",
+              "/content/Schedule Entry#5"
+            ]
+          }
         }
       ]
     }

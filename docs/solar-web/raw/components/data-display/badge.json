@@ -109,7 +109,16 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=neutral, size=md",
@@ -122,7 +131,22 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ]
+              },
+              "/Icon": {
+                "size": [
+                  8,
+                  6
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=incline, size=sm",
@@ -135,7 +159,17 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon": {
+                "size": [
+                  6,
+                  6
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=decline, size=sm",
@@ -148,7 +182,22 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ]
+              },
+              "/Icon": {
+                "size": [
+                  6,
+                  6
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=neutral, size=sm",
@@ -161,7 +210,22 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ]
+              },
+              "/Icon": {
+                "size": [
+                  6,
+                  4
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=incline, size=xs",
@@ -174,7 +238,21 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            },
+            "removed": [
+              "/Icon"
+            ]
+          }
         },
         {
           "variant": "type=decline, size=xs",
@@ -187,7 +265,24 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:icon/feedback/danger}"
+                ],
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            },
+            "removed": [
+              "/Icon"
+            ]
+          }
         },
         {
           "variant": "type=neutral, size=xs",
@@ -200,7 +295,24 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ],
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            },
+            "removed": [
+              "/Icon"
+            ]
+          }
         }
       ]
     }

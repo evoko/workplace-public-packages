@@ -77,7 +77,31 @@
           "size": [
             320,
             1
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    16
+                  ],
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md"
+                }
+              },
+              "/Rule": {
+                "size": [
+                  304,
+                  1
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "orientation=horizontal, type=with-label",
@@ -87,14 +111,53 @@
           ],
           "textFills": [
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "align": "CENTER/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Rule": {
+                "size": [
+                  141,
+                  1
+                ]
+              }
+            },
+            "added": [
+              "/Label",
+              "/Rule#2"
+            ]
+          }
         },
         {
           "variant": "orientation=vertical, type=full",
           "size": [
             1,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL"
+                }
+              },
+              "/Rule": {
+                "size": [
+                  1,
+                  32
+                ],
+                "sizing": "FIXED/FILL"
+              }
+            }
+          }
         }
       ]
     }

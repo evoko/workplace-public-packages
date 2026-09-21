@@ -328,7 +328,28 @@
             "{Color:action/tertiary/icon/default}",
             "{Primitives:color/brand/white}",
             "{Primitives:color/brand/red}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "vars": {
+                  "width": "Layout:breakpoint/xs"
+                }
+              },
+              "/Center Stack": {
+                "size": [
+                  223,
+                  243
+                ]
+              },
+              "/Center Stack/Error 500": {
+                "size": [
+                  77,
+                  13
+                ]
+              }
+            }
+          }
         }
       ]
     }

@@ -315,7 +315,37 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Title/Title": {
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG"
+              },
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "decline",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=neutral, state=default",
@@ -339,7 +369,37 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Title/Title": {
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG"
+              },
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/neutral}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=up, state=disabled",
@@ -362,7 +422,34 @@
           "iconFills": [
             "{Color:icon/disabled}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Title/Title": {
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Value": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Trend": {
+                "opacity": 0.30000001192092896
+              }
+            }
+          }
         },
         {
           "variant": "trend=up, state=hover",
@@ -385,7 +472,31 @@
           "iconFills": [
             "{Color:icon/primary}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Title/Title": {
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=down, state=hover",
@@ -408,7 +519,45 @@
           "iconFills": [
             "{Color:icon/primary}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Title/Title": {
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "decline",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=down, state=disabled",
@@ -431,7 +580,48 @@
           "iconFills": [
             "{Color:icon/disabled}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Title/Title": {
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Value": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Trend": {
+                "opacity": 0.23000000417232513
+              },
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "decline",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=neutral, state=hover",
@@ -454,7 +644,45 @@
           "iconFills": [
             "{Color:icon/primary}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Title/Title": {
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/neutral}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=neutral, state=disabled",
@@ -477,7 +705,48 @@
           "iconFills": [
             "{Color:icon/disabled}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Title/Title": {
+                "size": [
+                  36,
+                  10
+                ],
+                "sizing": "HUG/HUG",
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Value": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Trend": {
+                "opacity": 0.30000001192092896
+              },
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/neutral}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=up, state=ghost",
@@ -491,7 +760,24 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "added": [
+              "/Skeleton",
+              "/Skeleton#2",
+              "/Skeleton#3"
+            ],
+            "removed": [
+              "/Title",
+              "/Title/Title",
+              "/Title/Icon/More",
+              "/Value",
+              "/Trend",
+              "/Trend/Trend Badge",
+              "/Trend/TrendValue",
+              "/Trend/Period"
+            ]
+          }
         },
         {
           "variant": "trend=down, state=ghost",
@@ -505,7 +791,24 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "added": [
+              "/Skeleton",
+              "/Skeleton#2",
+              "/Skeleton#3"
+            ],
+            "removed": [
+              "/Title",
+              "/Title/Title",
+              "/Title/Icon/More",
+              "/Value",
+              "/Trend",
+              "/Trend/Trend Badge",
+              "/Trend/TrendValue",
+              "/Trend/Period"
+            ]
+          }
         },
         {
           "variant": "trend=neutral, state=ghost",
@@ -519,7 +822,24 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "added": [
+              "/Skeleton",
+              "/Skeleton#2",
+              "/Skeleton#3"
+            ],
+            "removed": [
+              "/Title",
+              "/Title/Title",
+              "/Title/Icon/More",
+              "/Value",
+              "/Trend",
+              "/Trend/Trend Badge",
+              "/Trend/TrendValue",
+              "/Trend/Period"
+            ]
+          }
         }
       ]
     },
@@ -821,7 +1141,25 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "decline",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=neutral, state=default",
@@ -843,7 +1181,30 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Text/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/neutral}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=up, state=disabled",
@@ -864,7 +1225,29 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Text/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Text/Title/Title": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Text/Value": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Trend": {
+                "opacity": 0.30000001192092896
+              }
+            }
+          }
         },
         {
           "variant": "trend=up, state=hover",
@@ -885,7 +1268,26 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Text/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Text/Title/Title": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=down, state=hover",
@@ -906,7 +1308,40 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Text/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Text/Title/Title": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "decline",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=down, state=disabled",
@@ -927,7 +1362,38 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Text/Title/Title": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Text/Value": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Trend": {
+                "opacity": 0.23000000417232513
+              },
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "decline",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=neutral, state=hover",
@@ -948,7 +1414,40 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Text/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Text/Title/Title": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/neutral}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=neutral, state=disabled",
@@ -969,7 +1468,43 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Text/Title": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                }
+              },
+              "/Text/Title/Title": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Text/Value": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Trend": {
+                "opacity": 0.30000001192092896
+              },
+              "/Trend/Trend Badge": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "sm"
+                },
+                "fills": [
+                  "{Color:surface/feedback/neutral/strong}"
+                ]
+              },
+              "/Trend/TrendValue": {
+                "fills": [
+                  "{Color:text/feedback/neutral}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "trend=up, state=ghost",
@@ -983,7 +1518,33 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "changed": {
+              "/Text": {
+                "size": [
+                  254,
+                  48
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
+                }
+              }
+            },
+            "added": [
+              "/Text/Skeleton",
+              "/Text/Skeleton#2",
+              "/Skeleton"
+            ],
+            "removed": [
+              "/Text/Title",
+              "/Text/Title/Title",
+              "/Text/Value",
+              "/Trend",
+              "/Trend/Trend Badge",
+              "/Trend/TrendValue"
+            ]
+          }
         },
         {
           "variant": "trend=down, state=ghost",
@@ -997,7 +1558,33 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "changed": {
+              "/Text": {
+                "size": [
+                  254,
+                  48
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
+                }
+              }
+            },
+            "added": [
+              "/Text/Skeleton",
+              "/Text/Skeleton#2",
+              "/Skeleton"
+            ],
+            "removed": [
+              "/Text/Title",
+              "/Text/Title/Title",
+              "/Text/Value",
+              "/Trend",
+              "/Trend/Trend Badge",
+              "/Trend/TrendValue"
+            ]
+          }
         },
         {
           "variant": "trend=neutral, state=ghost",
@@ -1011,7 +1598,33 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/raised"
+          "effect": "shadow/raised",
+          "overrides": {
+            "changed": {
+              "/Text": {
+                "size": [
+                  254,
+                  48
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
+                }
+              }
+            },
+            "added": [
+              "/Text/Skeleton",
+              "/Text/Skeleton#2",
+              "/Skeleton"
+            ],
+            "removed": [
+              "/Text/Title",
+              "/Text/Title/Title",
+              "/Text/Value",
+              "/Trend",
+              "/Trend/Trend Badge",
+              "/Trend/TrendValue"
+            ]
+          }
         }
       ]
     }

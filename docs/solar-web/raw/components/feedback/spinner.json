@@ -106,35 +106,149 @@
           "size": [
             24,
             24
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/SpinnerRing": {
+                "size": [
+                  24,
+                  24
+                ]
+              },
+              "/SpinnerRing/Track": {
+                "size": [
+                  24,
+                  24
+                ]
+              },
+              "/SpinnerRing/Indicator": {
+                "size": [
+                  10,
+                  8
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, style=default",
           "size": [
             32,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/SpinnerRing": {
+                "size": [
+                  32,
+                  32
+                ]
+              },
+              "/SpinnerRing/Track": {
+                "size": [
+                  32,
+                  32
+                ]
+              },
+              "/SpinnerRing/Indicator": {
+                "size": [
+                  14,
+                  11
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, style=inverse",
           "size": [
             16,
             16
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/SpinnerRing/Track": {
+                "strokes": [
+                  "{Color:border/inverse/subtle}"
+                ]
+              },
+              "/SpinnerRing/Indicator": {
+                "strokes": [
+                  "{Color:border/inverse/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, style=inverse",
           "size": [
             24,
             24
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/SpinnerRing": {
+                "size": [
+                  24,
+                  24
+                ]
+              },
+              "/SpinnerRing/Track": {
+                "size": [
+                  24,
+                  24
+                ],
+                "strokes": [
+                  "{Color:border/inverse/subtle}"
+                ]
+              },
+              "/SpinnerRing/Indicator": {
+                "size": [
+                  10,
+                  8
+                ],
+                "strokes": [
+                  "{Color:border/inverse/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=lg, style=inverse",
           "size": [
             32,
             32
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/SpinnerRing": {
+                "size": [
+                  32,
+                  32
+                ]
+              },
+              "/SpinnerRing/Track": {
+                "size": [
+                  32,
+                  32
+                ],
+                "strokes": [
+                  "{Color:border/inverse/subtle}"
+                ]
+              },
+              "/SpinnerRing/Indicator": {
+                "size": [
+                  14,
+                  11
+                ],
+                "strokes": [
+                  "{Color:border/inverse/strong}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

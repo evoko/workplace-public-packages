@@ -32,6 +32,15 @@
     "effectStyles": 9,
     "paintStyles": 0
   },
+  "layoutSource": {
+    "figmaFile": "SOLAR Web [v1--2026]",
+    "fileKey": "OGvmMNnywH7JWDyEhOzjcc",
+    "collection": "Layout",
+    "collectionId": "VariableCollectionId:2160:4359",
+    "modes": ["Mode 1"],
+    "capturedOn": "2026-09-21",
+    "count": 20
+  },
   "variables": [
     {
       "collection": "Primitives",
@@ -5617,6 +5626,201 @@
       "alias": "spatial/scale/8"
     },
     {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/columns/xs",
+      "doc": "layout.grid.columns.xs",
+      "css": "--solar-layout-grid-columns-xs",
+      "value": "4"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/columns/sm",
+      "doc": "layout.grid.columns.sm",
+      "css": "--solar-layout-grid-columns-sm",
+      "value": "4"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/columns/md",
+      "doc": "layout.grid.columns.md",
+      "css": "--solar-layout-grid-columns-md",
+      "value": "8"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/columns/lg",
+      "doc": "layout.grid.columns.lg",
+      "css": "--solar-layout-grid-columns-lg",
+      "value": "12"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/columns/xl",
+      "doc": "layout.grid.columns.xl",
+      "css": "--solar-layout-grid-columns-xl",
+      "value": "12"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/margin/xs",
+      "doc": "layout.grid.margin.xs",
+      "css": "--solar-layout-grid-margin-xs",
+      "value": "16px",
+      "alias": "spatial/scale/4"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/margin/sm",
+      "doc": "layout.grid.margin.sm",
+      "css": "--solar-layout-grid-margin-sm",
+      "value": "16px",
+      "alias": "spatial/scale/4"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/margin/md",
+      "doc": "layout.grid.margin.md",
+      "css": "--solar-layout-grid-margin-md",
+      "value": "20px",
+      "alias": "spatial/scale/5"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/margin/lg",
+      "doc": "layout.grid.margin.lg",
+      "css": "--solar-layout-grid-margin-lg",
+      "value": "24px",
+      "alias": "spatial/scale/6"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/margin/xl",
+      "doc": "layout.grid.margin.xl",
+      "css": "--solar-layout-grid-margin-xl",
+      "value": "24px",
+      "alias": "spatial/scale/6"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/gutter/xs",
+      "doc": "layout.grid.gutter.xs",
+      "css": "--solar-layout-grid-gutter-xs",
+      "value": "16px",
+      "alias": "spatial/scale/4"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/gutter/sm",
+      "doc": "layout.grid.gutter.sm",
+      "css": "--solar-layout-grid-gutter-sm",
+      "value": "16px",
+      "alias": "spatial/scale/4"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/gutter/md",
+      "doc": "layout.grid.gutter.md",
+      "css": "--solar-layout-grid-gutter-md",
+      "value": "20px",
+      "alias": "spatial/scale/5"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/gutter/lg",
+      "doc": "layout.grid.gutter.lg",
+      "css": "--solar-layout-grid-gutter-lg",
+      "value": "24px",
+      "alias": "spatial/scale/6"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "grid/gutter/xl",
+      "doc": "layout.grid.gutter.xl",
+      "css": "--solar-layout-grid-gutter-xl",
+      "value": "32px",
+      "alias": "spatial/scale/8"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "breakpoint/xs",
+      "doc": "layout.breakpoint.xs",
+      "css": "--solar-layout-breakpoint-xs",
+      "value": "393px",
+      "alias": "viewport/xs"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "breakpoint/sm",
+      "doc": "layout.breakpoint.sm",
+      "css": "--solar-layout-breakpoint-sm",
+      "value": "768px",
+      "alias": "viewport/sm"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "breakpoint/md",
+      "doc": "layout.breakpoint.md",
+      "css": "--solar-layout-breakpoint-md",
+      "value": "1024px",
+      "alias": "viewport/md"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "breakpoint/lg",
+      "doc": "layout.breakpoint.lg",
+      "css": "--solar-layout-breakpoint-lg",
+      "value": "1440px",
+      "alias": "viewport/lg"
+    },
+    {
+      "collection": "Layout",
+      "tier": "semantic",
+      "source": "solar-web",
+      "figma": "breakpoint/xl",
+      "doc": "layout.breakpoint.xl",
+      "css": "--solar-layout-breakpoint-xl",
+      "value": "1920px",
+      "alias": "viewport/xl"
+    },
+    {
       "collection": "Type",
       "tier": "semantic",
       "figma": "size/display/lg",
@@ -6108,7 +6312,7 @@
           "blur": 0,
           "spread": 2,
           "colorVar": "shadow/strong",
-          "light": "rgba(0,0,0,0.20)"
+          "light": "rgba(0,0,0,0.2)"
         }
       ]
     },
@@ -6127,7 +6331,7 @@
           "blur": 5,
           "spread": 0,
           "colorVar": "shadow/strong",
-          "light": "rgba(0,0,0,0.20)"
+          "light": "rgba(0,0,0,0.2)"
         }
       ]
     },
@@ -6146,7 +6350,7 @@
           "blur": 0,
           "spread": 2,
           "colorVar": "shadow/feedback/focus",
-          "light": "rgba(37,105,253,0.20)"
+          "light": "rgba(37,105,253,0.2)"
         }
       ]
     },
@@ -6165,7 +6369,7 @@
           "blur": 0,
           "spread": 2,
           "colorVar": "shadow/feedback/danger",
-          "light": "rgba(224,3,45,0.20)"
+          "light": "rgba(224,3,45,0.2)"
         }
       ]
     },
@@ -6192,7 +6396,7 @@
           "blur": 0,
           "spread": 2,
           "colorVar": "shadow/feedback/danger",
-          "light": "rgba(224,3,45,0.20)"
+          "light": "rgba(224,3,45,0.2)"
         }
       ]
     },
@@ -6219,7 +6423,7 @@
           "blur": 0,
           "spread": 2,
           "colorVar": "shadow/feedback/warning",
-          "light": "rgba(207,71,0,0.20)"
+          "light": "rgba(207,71,0,0.2)"
         }
       ]
     }
@@ -6339,7 +6543,7 @@
       "fontWeight": 500,
       "sizeDesktop": 12,
       "lineHeightDesktop": 16,
-      "letterSpacing": "+8%",
+      "letterSpacing": "8%",
       "sizeVar": "--solar-type-size-title-2xs",
       "lineHeightVar": "--solar-type-line-height-title-2xs",
       "sizeMobile": 12,

@@ -363,7 +363,32 @@
             "{Color:border/subtle}"
           ],
           "effect": "shadow/raised",
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              }
+            },
+            "added": [
+              "/Header/Skeleton",
+              "/Header/Skeleton#2",
+              "/Skeleton",
+              "/Skeleton#2"
+            ],
+            "removed": [
+              "/Header/Container",
+              "/Header/Container/Trend Badge",
+              "/Header/Container/Title",
+              "/Header/Icon/More",
+              "/body",
+              "/body/Body slot",
+              "/footer",
+              "/footer/Footer slot"
+            ]
+          }
         },
         {
           "variant": "state=error, action=more",
@@ -393,7 +418,27 @@
             "Icon/None",
             "Spinner",
             "Trend Badge"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              }
+            },
+            "added": [
+              "/Body",
+              "/Body/Something went wrong",
+              "/Body/Button"
+            ],
+            "removed": [
+              "/body",
+              "/body/Body slot",
+              "/footer",
+              "/footer/Footer slot"
+            ]
+          }
         },
         {
           "variant": "state=empty, action=more",
@@ -423,7 +468,25 @@
             "Icon/None",
             "Spinner",
             "Trend Badge"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              }
+            },
+            "added": [
+              "/EmptyState"
+            ],
+            "removed": [
+              "/body",
+              "/body/Body slot",
+              "/footer",
+              "/footer/Footer slot"
+            ]
+          }
         },
         {
           "variant": "state=default, action=link",
@@ -445,7 +508,25 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Header": {
+                "size": [
+                  328,
+                  20
+                ]
+              }
+            },
+            "added": [
+              "/Header/Container#2",
+              "/Header/Container#2/Label",
+              "/Header/Container#2/Icon/ChevronRight"
+            ],
+            "removed": [
+              "/Header/Icon/More"
+            ]
+          }
         },
         {
           "variant": "state=loading, action=link",
@@ -460,7 +541,32 @@
             "{Color:border/subtle}"
           ],
           "effect": "shadow/raised",
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              }
+            },
+            "added": [
+              "/Header/Skeleton",
+              "/Header/Skeleton#2",
+              "/Skeleton",
+              "/Skeleton#2"
+            ],
+            "removed": [
+              "/Header/Container",
+              "/Header/Container/Trend Badge",
+              "/Header/Container/Title",
+              "/Header/Icon/More",
+              "/body",
+              "/body/Body slot",
+              "/footer",
+              "/footer/Footer slot"
+            ]
+          }
         },
         {
           "variant": "state=error, action=link",
@@ -491,7 +597,37 @@
             "Icon/None",
             "Spinner",
             "Trend Badge"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Header": {
+                "size": [
+                  328,
+                  20
+                ]
+              }
+            },
+            "added": [
+              "/Header/Container#2",
+              "/Header/Container#2/Label",
+              "/Header/Container#2/Icon/ChevronRight",
+              "/Body",
+              "/Body/Something went wrong",
+              "/Body/Button"
+            ],
+            "removed": [
+              "/Header/Icon/More",
+              "/body",
+              "/body/Body slot",
+              "/footer",
+              "/footer/Footer slot"
+            ]
+          }
         },
         {
           "variant": "state=empty, action=link",
@@ -522,7 +658,35 @@
             "Icon/None",
             "Spinner",
             "Trend Badge"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Header": {
+                "size": [
+                  328,
+                  20
+                ]
+              }
+            },
+            "added": [
+              "/Header/Container#2",
+              "/Header/Container#2/Label",
+              "/Header/Container#2/Icon/ChevronRight",
+              "/EmptyState"
+            ],
+            "removed": [
+              "/Header/Icon/More",
+              "/body",
+              "/body/Body slot",
+              "/footer",
+              "/footer/Footer slot"
+            ]
+          }
         }
       ]
     }

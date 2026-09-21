@@ -298,7 +298,16 @@
             "{Color:text/tertiary}",
             "{Color:text/secondary}",
             "{Primitives:color/purple/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=selected, density=comfortable",
@@ -317,7 +326,16 @@
             "{Color:text/tertiary}",
             "{Color:text/secondary}",
             "{Primitives:color/purple/700}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=default, density=compact",
@@ -333,7 +351,52 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Time": {
+                "size": [
+                  76,
+                  9
+                ]
+              },
+              "/Body": {
+                "size": [
+                  412,
+                  10
+                ]
+              },
+              "/Body/Title": {
+                "size": [
+                  412,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Time/Range"
+            ],
+            "removed": [
+              "/Time/Start",
+              "/Time/End",
+              "/Body/Meta",
+              "/Attendee"
+            ]
+          }
         },
         {
           "variant": "state=hover, density=compact",
@@ -349,7 +412,55 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "vars": {
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Time": {
+                "size": [
+                  76,
+                  9
+                ]
+              },
+              "/Body": {
+                "size": [
+                  412,
+                  10
+                ]
+              },
+              "/Body/Title": {
+                "size": [
+                  412,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Time/Range"
+            ],
+            "removed": [
+              "/Time/Start",
+              "/Time/End",
+              "/Body/Meta",
+              "/Attendee"
+            ]
+          }
         },
         {
           "variant": "state=selected, density=compact",
@@ -365,7 +476,55 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "vars": {
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Time": {
+                "size": [
+                  76,
+                  9
+                ]
+              },
+              "/Body": {
+                "size": [
+                  412,
+                  10
+                ]
+              },
+              "/Body/Title": {
+                "size": [
+                  412,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Time/Range"
+            ],
+            "removed": [
+              "/Time/Start",
+              "/Time/End",
+              "/Body/Meta",
+              "/Attendee"
+            ]
+          }
         }
       ]
     }

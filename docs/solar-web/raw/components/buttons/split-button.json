@@ -227,7 +227,26 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ]
+              },
+              "/Action/Label": {
+                "fills": [
+                  "{Color:action/secondary/text/default}"
+                ]
+              },
+              "/Divider": {
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "prio=primary, size=sm, state=default",
@@ -247,7 +266,64 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Action": {
+                "size": [
+                  55,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "size": [
+                  1,
+                  32
+                ]
+              },
+              "/Trigger": {
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "prio=secondary, size=sm, state=default",
@@ -267,7 +343,75 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ]
+              },
+              "/Action": {
+                "size": [
+                  55,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:action/secondary/text/default}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "size": [
+                  1,
+                  32
+                ],
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Trigger": {
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "prio=primary, size=md, state=hover",
@@ -287,7 +431,16 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "prio=secondary, size=md, state=hover",
@@ -307,7 +460,32 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/hover}"
+                ]
+              },
+              "/Action/Label": {
+                "fills": [
+                  "{Color:action/secondary/text/default}"
+                ]
+              },
+              "/Divider": {
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Trigger": {
+                "size": [
+                  44,
+                  40
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "prio=primary, size=sm, state=hover",
@@ -327,7 +505,69 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/hover}"
+                ]
+              },
+              "/Action": {
+                "size": [
+                  55,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "size": [
+                  1,
+                  32
+                ]
+              },
+              "/Trigger": {
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "prio=secondary, size=sm, state=hover",
@@ -347,7 +587,75 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/hover}"
+                ]
+              },
+              "/Action": {
+                "size": [
+                  55,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:action/secondary/text/default}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "size": [
+                  1,
+                  32
+                ],
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Trigger": {
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "prio=primary, size=md, state=pressed",
@@ -366,7 +674,23 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ],
+                "effectStyle": null
+              },
+              "/Trigger": {
+                "size": [
+                  44,
+                  40
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "prio=secondary, size=md, state=pressed",
@@ -385,7 +709,27 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/active}"
+                ],
+                "effectStyle": null
+              },
+              "/Action/Label": {
+                "fills": [
+                  "{Color:action/secondary/text/default}"
+                ]
+              },
+              "/Divider": {
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "prio=primary, size=sm, state=pressed",
@@ -404,7 +748,67 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ],
+                "effectStyle": null
+              },
+              "/Action": {
+                "size": [
+                  55,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "size": [
+                  1,
+                  32
+                ]
+              },
+              "/Trigger": {
+                "size": [
+                  32,
+                  32
+                ]
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "prio=secondary, size=sm, state=pressed",
@@ -423,7 +827,76 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/active}"
+                ],
+                "effectStyle": null
+              },
+              "/Action": {
+                "size": [
+                  55,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:action/secondary/text/default}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "size": [
+                  1,
+                  32
+                ],
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Trigger": {
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "prio=primary, size=md, state=disabled",
@@ -442,7 +915,22 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/disabled}"
+                ],
+                "effectStyle": null
+              },
+              "/Action/Label": {
+                "fills": [
+                  "{Color:action/primary/text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "prio=secondary, size=md, state=disabled",
@@ -461,7 +949,30 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/disabled}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ],
+                "effectStyle": null
+              },
+              "/Action/Label": {
+                "fills": [
+                  "{Color:action/secondary/text/disabled}"
+                ]
+              },
+              "/Divider": {
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "prio=primary, size=sm, state=disabled",
@@ -480,7 +991,73 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/disabled}"
+                ],
+                "effectStyle": null
+              },
+              "/Action": {
+                "size": [
+                  55,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:action/primary/text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "size": [
+                  1,
+                  32
+                ]
+              },
+              "/Trigger": {
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "prio=secondary, size=sm, state=disabled",
@@ -499,7 +1076,79 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/disabled}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ],
+                "effectStyle": null
+              },
+              "/Action": {
+                "size": [
+                  55,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:action/secondary/text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "size": [
+                  1,
+                  32
+                ],
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Trigger": {
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "prio=primary, size=md, state=focus",
@@ -519,7 +1168,14 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "prio=secondary, size=md, state=focus",
@@ -539,7 +1195,27 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Action/Label": {
+                "fills": [
+                  "{Color:action/secondary/text/default}"
+                ]
+              },
+              "/Divider": {
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "prio=primary, size=sm, state=focus",
@@ -559,7 +1235,67 @@
           ],
           "iconFills": [
             "{Color:action/primary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Action": {
+                "size": [
+                  55,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "size": [
+                  1,
+                  32
+                ]
+              },
+              "/Trigger": {
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "prio=secondary, size=sm, state=focus",
@@ -579,7 +1315,76 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Action": {
+                "size": [
+                  55,
+                  32
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:action/secondary/text/default}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "size": [
+                  1,
+                  32
+                ],
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Trigger": {
+                "size": [
+                  32,
+                  32
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "prio=primary, size=md, state=loading",
@@ -604,7 +1409,42 @@
             "Action",
             "Divider",
             "Trigger"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Action": {
+                "hidden": true,
+                "size": [
+                  68,
+                  44
+                ],
+                "layout": {
+                  "sizing": "HUG/FIXED"
+                }
+              },
+              "/Divider": {
+                "hidden": true,
+                "size": [
+                  1,
+                  44
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              "/Trigger": {
+                "hidden": true,
+                "size": [
+                  44,
+                  44
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              }
+            },
+            "added": [
+              "/Spinner"
+            ]
+          }
         },
         {
           "variant": "prio=secondary, size=md, state=loading",
@@ -629,7 +1469,55 @@
             "Action",
             "Divider",
             "Trigger"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ]
+              },
+              "/Action": {
+                "hidden": true,
+                "size": [
+                  68,
+                  44
+                ],
+                "layout": {
+                  "sizing": "HUG/FIXED"
+                }
+              },
+              "/Action/Label": {
+                "fills": [
+                  "{Color:action/secondary/text/default}"
+                ]
+              },
+              "/Divider": {
+                "hidden": true,
+                "size": [
+                  1,
+                  44
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Trigger": {
+                "hidden": true,
+                "size": [
+                  44,
+                  44
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              }
+            },
+            "added": [
+              "/Spinner"
+            ]
+          }
         },
         {
           "variant": "prio=primary, size=sm, state=loading",
@@ -654,7 +1542,72 @@
             "Action",
             "Divider",
             "Trigger"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Action": {
+                "hidden": true,
+                "size": [
+                  55,
+                  36
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "hidden": true,
+                "size": [
+                  1,
+                  36
+                ],
+                "sizing": "FIXED/FIXED"
+              },
+              "/Trigger": {
+                "hidden": true,
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            },
+            "added": [
+              "/Spinner"
+            ]
+          }
         },
         {
           "variant": "prio=secondary, size=sm, state=loading",
@@ -679,7 +1632,83 @@
             "Action",
             "Divider",
             "Trigger"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ]
+              },
+              "/Action": {
+                "hidden": true,
+                "size": [
+                  55,
+                  36
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Action/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:action/secondary/text/default}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Divider": {
+                "hidden": true,
+                "size": [
+                  1,
+                  36
+                ],
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Trigger": {
+                "hidden": true,
+                "size": [
+                  36,
+                  36
+                ],
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                }
+              },
+              "/Trigger/Icon/ChevronDown": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            },
+            "added": [
+              "/Spinner"
+            ]
+          }
         }
       ]
     }

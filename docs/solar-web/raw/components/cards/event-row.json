@@ -350,7 +350,16 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "density=default, state=focus",
@@ -372,7 +381,16 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Content/Meta": {
+                "fills": [
+                  "#ffffff"
+                ]
+              }
+            }
+          }
         }
       ]
     }

@@ -620,7 +620,37 @@
             "Counter",
             "Icon/None",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Right Zone": {
+                "size": [
+                  180,
+                  40
+                ]
+              },
+              "/Right Zone/Container": {
+                "size": [
+                  80,
+                  40
+                ]
+              }
+            },
+            "added": [
+              "/Right Zone/Button"
+            ],
+            "removed": [
+              "/Right Zone/Container/Nav Item#3",
+              "/Right Zone/Container/Nav Item#4",
+              "/Right Zone/Field",
+              "/Right Zone/Field/Icon/None",
+              "/Right Zone/Field/Avatar",
+              "/Right Zone/Field/Label",
+              "/Right Zone/Field/Icon/None#2",
+              "/Right Zone/Field/Icon/ChevronDown",
+              "/Right Zone/Avatar"
+            ]
+          }
         },
         {
           "variant": "breakpoint=desktop, hasSidebar=false, isLoggedIn=True",
@@ -641,7 +671,45 @@
             "{Color:icon/primary}",
             "{Color:icon/tertiary}",
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/App Name": {
+                "variant": {
+                  "type": "app"
+                },
+                "size": [
+                  231,
+                  40
+                ],
+                "layout": {
+                  "gap": 10,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": null,
+                  "paddingRight": null,
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "breakpoint=desktop, hasSidebar=false, isLoggedIn=False",
@@ -669,7 +737,71 @@
             "Counter",
             "Icon/None",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/App Name": {
+                "variant": {
+                  "type": "app"
+                },
+                "size": [
+                  231,
+                  40
+                ],
+                "layout": {
+                  "gap": 10,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": null,
+                  "paddingRight": null,
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              },
+              "/Right Zone": {
+                "size": [
+                  180,
+                  40
+                ]
+              },
+              "/Right Zone/Container": {
+                "size": [
+                  80,
+                  40
+                ]
+              }
+            },
+            "added": [
+              "/Right Zone/Button"
+            ],
+            "removed": [
+              "/Right Zone/Container/Nav Item#3",
+              "/Right Zone/Container/Nav Item#4",
+              "/Right Zone/Field",
+              "/Right Zone/Field/Icon/None",
+              "/Right Zone/Field/Avatar",
+              "/Right Zone/Field/Label",
+              "/Right Zone/Field/Icon/None#2",
+              "/Right Zone/Field/Icon/ChevronDown",
+              "/Right Zone/Avatar"
+            ]
+          }
         },
         {
           "variant": "breakpoint=mobile, hasSidebar=true, isLoggedIn=False",
@@ -687,7 +819,57 @@
           "iconFills": [
             "{Color:action/secondary/icon/default}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/xs",
+                  "paddingRight": "Spatial:stack/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/App Name": {
+                "size": [
+                  281,
+                  32
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              }
+            },
+            "added": [
+              "/Icon Button",
+              "/Avatar"
+            ],
+            "removed": [
+              "/GlobalSearch",
+              "/Right Zone",
+              "/Right Zone/Container",
+              "/Right Zone/Container/Nav Item",
+              "/Right Zone/Container/Nav Item#2",
+              "/Right Zone/Container/Nav Item#3",
+              "/Right Zone/Container/Nav Item#4",
+              "/Right Zone/Field",
+              "/Right Zone/Field/Icon/None",
+              "/Right Zone/Field/Avatar",
+              "/Right Zone/Field/Label",
+              "/Right Zone/Field/Icon/None#2",
+              "/Right Zone/Field/Icon/ChevronDown",
+              "/Right Zone/Avatar"
+            ]
+          }
         },
         {
           "variant": "breakpoint=mobile, hasSidebar=false, isLoggedIn=False",
@@ -705,7 +887,79 @@
           "iconFills": [
             "{Color:icon/primary}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/xs",
+                  "paddingRight": "Spatial:stack/xs"
+                }
+              },
+              "/App Name": {
+                "variant": {
+                  "type": "app"
+                },
+                "size": [
+                  231,
+                  40
+                ],
+                "layout": {
+                  "gap": 10,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": null,
+                  "paddingRight": null,
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              }
+            },
+            "added": [
+              "/Avatar"
+            ],
+            "removed": [
+              "/GlobalSearch",
+              "/Right Zone",
+              "/Right Zone/Container",
+              "/Right Zone/Container/Nav Item",
+              "/Right Zone/Container/Nav Item#2",
+              "/Right Zone/Container/Nav Item#3",
+              "/Right Zone/Container/Nav Item#4",
+              "/Right Zone/Field",
+              "/Right Zone/Field/Icon/None",
+              "/Right Zone/Field/Avatar",
+              "/Right Zone/Field/Label",
+              "/Right Zone/Field/Icon/None#2",
+              "/Right Zone/Field/Icon/ChevronDown",
+              "/Right Zone/Avatar"
+            ]
+          }
         }
       ]
     },
@@ -847,7 +1101,55 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 10,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    8
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "HUG/FIXED"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": null,
+                  "paddingRight": null,
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              },
+              "/App Icon": {
+                "variant": {
+                  "App": "Designer"
+                },
+                "size": [
+                  26,
+                  26
+                ]
+              }
+            },
+            "added": [
+              "/Label",
+              "/Divider",
+              "/Icon/More"
+            ],
+            "removed": [
+              "/Workplace"
+            ]
+          }
         },
         {
           "variant": "type=horizontal",
@@ -857,7 +1159,34 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "align": "CENTER/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
+                }
+              },
+              "/Workplace": {
+                "textStyle": "display/xs/medium",
+                "size": [
+                  85,
+                  11
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/500"
+                }
+              }
+            }
+          }
         }
       ]
     }

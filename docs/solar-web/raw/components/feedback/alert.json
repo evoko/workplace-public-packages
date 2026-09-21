@@ -286,7 +286,19 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=warning, Style=filled",
@@ -308,7 +320,52 @@
           "iconFills": [
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=warning, Style=outlined",
@@ -330,7 +387,52 @@
           "iconFills": [
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=danger, Style=filled",
@@ -352,7 +454,52 @@
           "iconFills": [
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=danger, Style=outlined",
@@ -374,7 +521,52 @@
           "iconFills": [
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=info, Style=filled",
@@ -395,7 +587,52 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "info",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=info, Style=outlined",
@@ -416,7 +653,52 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "info",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=default, Style=filled",
@@ -436,7 +718,52 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=default, Style=outlined",
@@ -456,7 +783,52 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "md"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         }
       ]
     },
@@ -741,7 +1113,19 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=warning, Style=filled",
@@ -762,7 +1146,52 @@
           "iconFills": [
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/warning/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/warning/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "sm"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=warning, Style=outlined",
@@ -783,7 +1212,52 @@
           "iconFills": [
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "warning",
+                  "size": "sm"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/warning}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=danger, Style=filled",
@@ -804,7 +1278,52 @@
           "iconFills": [
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/danger/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "sm"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=danger, Style=outlined",
@@ -825,7 +1344,52 @@
           "iconFills": [
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "danger",
+                  "size": "sm"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=info, Style=filled",
@@ -845,7 +1409,52 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/info/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "info",
+                  "size": "sm"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=info, Style=outlined",
@@ -865,7 +1474,52 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "info",
+                  "size": "sm"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=default, Style=filled",
@@ -884,7 +1538,52 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/neutral/subtle}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "sm"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "Variant=default, Style=outlined",
@@ -903,7 +1602,52 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/StatusIndicator": {
+                "variant": {
+                  "type": "neutral",
+                  "size": "sm"
+                },
+                "layout": null,
+                "sizing": "FIXED/FIXED",
+                "fills": null,
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm",
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/content/title": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/action-label": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

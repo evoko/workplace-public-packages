@@ -103,7 +103,43 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    4,
+                    4,
+                    4,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "radius": 8,
+                "vars": {
+                  "paddingRight": "Spatial:inset/2xs",
+                  "paddingTop": "Spatial:inset/2xs",
+                  "paddingBottom": "Spatial:inset/2xs",
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
+              },
+              "/Current value": {
+                "size": [
+                  184,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Icon Button"
+            ]
+          }
         },
         {
           "variant": "state=focus",
@@ -123,7 +159,55 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    4,
+                    4,
+                    4,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingRight": "Spatial:inset/2xs",
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/2xs",
+                  "paddingBottom": "Spatial:inset/2xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Current value": {
+                "size": [
+                  152,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Frame 1",
+              "/Frame 1/Confirm",
+              "/Frame 1/Cancel"
+            ]
+          }
         },
         {
           "variant": "state=filled",
@@ -143,7 +227,55 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    4,
+                    4,
+                    4,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "paddingRight": "Spatial:inset/2xs",
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/2xs",
+                  "paddingBottom": "Spatial:inset/2xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Current value": {
+                "size": [
+                  152,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Frame 2",
+              "/Frame 2/Confirm",
+              "/Frame 2/Cancel"
+            ]
+          }
         },
         {
           "variant": "state=error",
@@ -163,7 +295,55 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    4,
+                    4,
+                    4,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "strokeWeight": 1,
+                "radius": 6,
+                "effectStyle": "shadow/danger",
+                "vars": {
+                  "paddingRight": "Spatial:inset/2xs",
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/2xs",
+                  "paddingBottom": "Spatial:inset/2xs",
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Current value": {
+                "size": [
+                  152,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Frame 3",
+              "/Frame 3/Confirm",
+              "/Frame 3/Cancel"
+            ]
+          }
         },
         {
           "variant": "state=disabled",
@@ -173,7 +353,16 @@
           ],
           "textFills": [
             "{Color:text/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Current value": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

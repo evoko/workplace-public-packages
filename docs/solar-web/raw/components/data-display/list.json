@@ -219,7 +219,33 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Body": {
+                "size": [
+                  327,
+                  27
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, state=hover, compact=false",
@@ -236,7 +262,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, state=hover, compact=true",
@@ -253,7 +288,36 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Body": {
+                "size": [
+                  327,
+                  27
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, state=focus, compact=false",
@@ -268,7 +332,14 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, state=focus, compact=true",
@@ -283,7 +354,34 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Body": {
+                "size": [
+                  327,
+                  27
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, state=selected, compact=false",
@@ -300,7 +398,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, state=selected, compact=true",
@@ -317,7 +424,36 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Body": {
+                "size": [
+                  327,
+                  27
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, state=disabled, compact=false",
@@ -331,7 +467,21 @@
           "iconFills": [
             "{Color:icon/disabled}",
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Body/Label": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Body/Supporting": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=icon, state=disabled, compact=true",
@@ -345,7 +495,43 @@
           "iconFills": [
             "{Color:icon/disabled}",
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Body": {
+                "size": [
+                  327,
+                  27
+                ]
+              },
+              "/Body/Label": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Body/Supporting": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=avatar, state=default, compact=false",
@@ -359,7 +545,43 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Body": {
+                "size": [
+                  283,
+                  27
+                ]
+              },
+              "/Body/Label": {
+                "text": "Acme Inc.",
+                "size": [
+                  64,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Leading"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         },
         {
           "variant": "type=avatar, state=default, compact=true",
@@ -373,7 +595,46 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Body": {
+                "size": [
+                  315,
+                  27
+                ]
+              },
+              "/Body/Label": {
+                "text": "Acme Inc.",
+                "size": [
+                  64,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Leading"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         },
         {
           "variant": "type=avatar, state=hover, compact=false",
@@ -390,7 +651,46 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "vars": {
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Body": {
+                "size": [
+                  283,
+                  27
+                ]
+              },
+              "/Body/Label": {
+                "text": "Acme Inc.",
+                "size": [
+                  64,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Leading"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         },
         {
           "variant": "type=avatar, state=hover, compact=true",
@@ -407,7 +707,49 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Body": {
+                "size": [
+                  315,
+                  27
+                ]
+              },
+              "/Body/Label": {
+                "text": "Acme Inc.",
+                "size": [
+                  64,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Leading"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         },
         {
           "variant": "type=avatar, state=focus, compact=false",
@@ -422,7 +764,44 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Body": {
+                "size": [
+                  283,
+                  27
+                ]
+              },
+              "/Body/Label": {
+                "text": "Acme Inc.",
+                "size": [
+                  64,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Leading"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         },
         {
           "variant": "type=avatar, state=focus, compact=true",
@@ -437,7 +816,47 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Body": {
+                "size": [
+                  315,
+                  27
+                ]
+              },
+              "/Body/Label": {
+                "text": "Acme Inc.",
+                "size": [
+                  64,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Leading"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         },
         {
           "variant": "type=avatar, state=selected, compact=false",
@@ -454,7 +873,46 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "vars": {
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Body": {
+                "size": [
+                  283,
+                  27
+                ]
+              },
+              "/Body/Label": {
+                "text": "Acme Inc.",
+                "size": [
+                  64,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Leading"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         },
         {
           "variant": "type=avatar, state=selected, compact=true",
@@ -471,7 +929,49 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Body": {
+                "size": [
+                  315,
+                  27
+                ]
+              },
+              "/Body/Label": {
+                "text": "Acme Inc.",
+                "size": [
+                  64,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Leading"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         },
         {
           "variant": "type=avatar, state=disabled, compact=false",
@@ -484,7 +984,51 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Body": {
+                "size": [
+                  283,
+                  27
+                ]
+              },
+              "/Body/Label": {
+                "text": "Acme Inc.",
+                "size": [
+                  64,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Body/Supporting": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            },
+            "added": [
+              "/Leading"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         },
         {
           "variant": "type=avatar, state=disabled, compact=true",
@@ -497,7 +1041,54 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Body": {
+                "size": [
+                  315,
+                  27
+                ]
+              },
+              "/Body/Label": {
+                "text": "Acme Inc.",
+                "size": [
+                  64,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Body/Supporting": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            },
+            "added": [
+              "/Leading"
+            ],
+            "removed": [
+              "/Icon/None"
+            ]
+          }
         }
       ]
     },
@@ -894,7 +1485,200 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/HUG"
+                },
+                "strokes": null,
+                "strokeWeight": null,
+                "radius": null,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              },
+              "/Items": {
+                "size": [
+                  368,
+                  259
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Items/ListItem": {
+                "variant": {
+                  "type": "icon",
+                  "state": "default",
+                  "compact": "true"
+                },
+                "size": [
+                  368,
+                  51
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Items/Divider": {
+                "size": [
+                  368,
+                  1
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Items/ListItem#2": {
+                "variant": {
+                  "type": "icon",
+                  "state": "default",
+                  "compact": "true"
+                },
+                "size": [
+                  368,
+                  51
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Items/Divider#2": {
+                "size": [
+                  368,
+                  1
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Items/ListItem#3": {
+                "variant": {
+                  "type": "icon",
+                  "state": "default",
+                  "compact": "true"
+                },
+                "size": [
+                  368,
+                  51
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Items/Divider#3": {
+                "size": [
+                  368,
+                  1
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Items/ListItem#4": {
+                "variant": {
+                  "type": "icon",
+                  "state": "default",
+                  "compact": "true"
+                },
+                "size": [
+                  368,
+                  51
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Items/Divider#4": {
+                "size": [
+                  368,
+                  1
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Items/ListItem#5": {
+                "variant": {
+                  "type": "icon",
+                  "state": "default",
+                  "compact": "true"
+                },
+                "size": [
+                  368,
+                  51
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    0,
+                    12,
+                    0
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/none",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:stack/none",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              }
+            }
+          }
         }
       ]
     }

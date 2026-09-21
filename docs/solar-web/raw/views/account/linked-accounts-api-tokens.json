@@ -358,7 +358,83 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  57
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    8,
+                    16,
+                    0,
+                    16
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Container": {
+                "size": [
+                  377,
+                  1187
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    20,
+                    0,
+                    20
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/lg",
+                  "paddingRight": "Spatial:inset/lg"
+                }
+              },
+              "/Container/FormSection": {
+                "size": [
+                  337,
+                  439
+                ]
+              },
+              "/Container/Divider": {
+                "size": [
+                  337,
+                  1
+                ]
+              },
+              "/Container/FormSection#2": {
+                "size": [
+                  337,
+                  415
+                ]
+              },
+              "/Container/Divider#2": {
+                "size": [
+                  337,
+                  1
+                ]
+              },
+              "/Container/FormSection#3": {
+                "size": [
+                  337,
+                  331
+                ]
+              }
+            }
+          }
         }
       ]
     }

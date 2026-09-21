@@ -315,7 +315,47 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Day Num Row/Day Num Pill": {
+                "fills": [
+                  "{Color:surface/inverse}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "strokeWeight": 1
+              },
+              "/Day Num Row/Day Num Pill/Day Num": {
+                "textStyle": null,
+                "size": [
+                  14,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": null
+                }
+              },
+              "/Events/Event": {
+                "variant": {
+                  "category": "blue",
+                  "style": "subtle"
+                }
+              }
+            },
+            "added": [
+              "/Events/Event#2",
+              "/Events/Event#3"
+            ],
+            "removed": [
+              "/Events/Event Chip",
+              "/Events/Event Chip#2"
+            ]
+          }
         },
         {
           "variant": "state=today-column",
@@ -335,7 +375,30 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ]
+              },
+              "/Events/Event": {
+                "variant": {
+                  "category": "blue",
+                  "style": "subtle"
+                }
+              }
+            },
+            "added": [
+              "/Events/Event#2",
+              "/Events/Event#3"
+            ],
+            "removed": [
+              "/Events/Event Chip",
+              "/Events/Event Chip#2"
+            ]
+          }
         },
         {
           "variant": "state=selected",
@@ -355,7 +418,30 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Events/Event": {
+                "variant": {
+                  "category": "blue",
+                  "style": "subtle"
+                }
+              }
+            },
+            "added": [
+              "/Events/Event#2",
+              "/Events/Event#3"
+            ],
+            "removed": [
+              "/Events/Event Chip",
+              "/Events/Event Chip#2"
+            ]
+          }
         },
         {
           "variant": "state=other-month",
@@ -376,7 +462,38 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/background}"
+                ]
+              },
+              "/Day Num Row/Day Num Pill/Day Num": {
+                "fills": [
+                  "{Color:text/tertiary}"
+                ]
+              },
+              "/Events": {
+                "opacity": 0.5
+              },
+              "/Events/Event": {
+                "variant": {
+                  "category": "blue",
+                  "style": "subtle"
+                }
+              }
+            },
+            "added": [
+              "/Events/Event#2",
+              "/Events/Event#3"
+            ],
+            "removed": [
+              "/Events/Event Chip",
+              "/Events/Event Chip#2"
+            ]
+          }
         }
       ]
     }

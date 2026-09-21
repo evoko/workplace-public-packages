@@ -87,7 +87,12 @@
           "size": [
             200,
             200
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Segment#4"
+            ]
+          }
         },
         {
           "variant": "segments=4, center-label=yes",
@@ -98,14 +103,29 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Segment#4",
+              "/Center Label",
+              "/Center Label/100%",
+              "/Center Label/Total"
+            ]
+          }
         },
         {
           "variant": "segments=6, center-label=no",
           "size": [
             200,
             200
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Segment#4",
+              "/Segment#5",
+              "/Segment#6"
+            ]
+          }
         },
         {
           "variant": "segments=6, center-label=yes",
@@ -116,7 +136,17 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Segment#4",
+              "/Segment#5",
+              "/Segment#6",
+              "/Center Label",
+              "/Center Label/100%",
+              "/Center Label/Total"
+            ]
+          }
         },
         {
           "variant": "segments=3, center-label=yes",
@@ -127,7 +157,14 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "added": [
+              "/Center Label",
+              "/Center Label/100%",
+              "/Center Label/Total"
+            ]
+          }
         }
       ]
     }

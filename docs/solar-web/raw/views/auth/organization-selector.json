@@ -331,7 +331,74 @@
             "Icon Button",
             "Icon/Filter",
             "Supporting"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    16,
+                    24,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "width": "Layout:breakpoint/xs"
+                }
+              },
+              "/Top Bar": {
+                "variant": {
+                  "breakpoint": "mobile",
+                  "hasSidebar": "true",
+                  "isLoggedIn": "False"
+                },
+                "size": [
+                  393,
+                  56
+                ],
+                "layout": {
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Center Stack": {
+                "size": [
+                  361,
+                  590
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Center Stack/Select organization": {
+                "size": [
+                  157,
+                  13
+                ]
+              },
+              "/Center Stack/Select your organization to access and manage your AV environments from a single, unified workspace.": {
+                "size": [
+                  361,
+                  30
+                ]
+              },
+              "/Center Stack/Container": {
+                "size": [
+                  361,
+                  507
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "breakpoint=desktop, filled=False",
@@ -365,7 +432,31 @@
             "Icon/None",
             "Nav Item",
             "Supporting"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Center Stack": {
+                "size": [
+                  400,
+                  330
+                ]
+              },
+              "/Center Stack/Container": {
+                "size": [
+                  400,
+                  245
+                ]
+              }
+            },
+            "added": [
+              "/Center Stack/Get started",
+              "/Center Stack/To get started, join an organization, create one, or explore your personal Workplace."
+            ],
+            "removed": [
+              "/Center Stack/Select organization",
+              "/Center Stack/Select your organization to access and manage your AV environments from a single, unified workspace."
+            ]
+          }
         },
         {
           "variant": "breakpoint=mobile, filled=False",
@@ -394,7 +485,70 @@
           "hidden": [
             "Icon Button",
             "Supporting"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    0,
+                    16,
+                    24,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "width": "Layout:breakpoint/xs"
+                }
+              },
+              "/Top Bar": {
+                "variant": {
+                  "breakpoint": "mobile",
+                  "hasSidebar": "true",
+                  "isLoggedIn": "False"
+                },
+                "size": [
+                  393,
+                  56
+                ],
+                "layout": {
+                  "align": "MIN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Center Stack": {
+                "size": [
+                  361,
+                  328
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Center Stack/Container": {
+                "size": [
+                  361,
+                  245
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              }
+            },
+            "added": [
+              "/Center Stack/Get started",
+              "/Center Stack/To get started, join an organization, create one, or explore your personal Workplace."
+            ],
+            "removed": [
+              "/Center Stack/Select organization",
+              "/Center Stack/Select your organization to access and manage your AV environments from a single, unified workspace."
+            ]
+          }
         }
       ]
     }

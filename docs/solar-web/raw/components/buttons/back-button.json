@@ -164,7 +164,47 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/ArrowLeft": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  28,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=hover",
@@ -184,7 +224,21 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/tertiary/bg/hover}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:action/tertiary/text/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=hover",
@@ -204,7 +258,53 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "fills": [
+                  "{Color:action/tertiary/bg/hover}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/ArrowLeft": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  28,
+                  9
+                ],
+                "fills": [
+                  "{Color:action/tertiary/text/hover}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=pressed",
@@ -224,7 +324,21 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:action/tertiary/text/active}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=pressed",
@@ -244,7 +358,53 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "fills": [
+                  "{Color:action/tertiary/bg/active}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/ArrowLeft": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  28,
+                  9
+                ],
+                "fills": [
+                  "{Color:action/tertiary/text/active}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=disabled",
@@ -264,7 +424,21 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/tertiary/bg/disabled}"
+                ]
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:action/tertiary/text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=disabled",
@@ -284,7 +458,53 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "fills": [
+                  "{Color:action/tertiary/bg/disabled}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/ArrowLeft": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  28,
+                  9
+                ],
+                "fills": [
+                  "{Color:action/tertiary/text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=focus",
@@ -304,7 +524,14 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=focus",
@@ -324,7 +551,48 @@
           ],
           "iconFills": [
             "{Color:action/tertiary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/ArrowLeft": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  28,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=loading",
@@ -344,7 +612,20 @@
           ],
           "hidden": [
             "Icon/ArrowLeft"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon/ArrowLeft": {
+                "hidden": true
+              }
+            },
+            "added": [
+              "/Spinner"
+            ],
+            "removed": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "size=sm, state=loading",
@@ -364,7 +645,43 @@
           ],
           "hidden": [
             "Icon/ArrowLeft"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Icon/ArrowLeft": {
+                "hidden": true,
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              }
+            },
+            "added": [
+              "/Spinner"
+            ],
+            "removed": [
+              "/Label"
+            ]
+          }
         }
       ]
     }

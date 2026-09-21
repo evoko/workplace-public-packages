@@ -232,7 +232,44 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/01/subtle}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Title": {
+                "size": [
+                  104,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=red, style=solid",
@@ -252,7 +289,53 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:data/category/01/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  104,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "category=orange, style=subtle",
@@ -266,7 +349,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Stripe": {
+                "fills": [
+                  "{Color:data/category/02/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=orange, style=tinted",
@@ -287,7 +379,47 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/02/subtle}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/02/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Title": {
+                "size": [
+                  104,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=orange, style=solid",
@@ -307,7 +439,56 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:data/category/02/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/02/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  104,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "category=yellow, style=subtle",
@@ -321,7 +502,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Stripe": {
+                "fills": [
+                  "{Color:data/category/03/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=yellow, style=tinted",
@@ -342,7 +532,47 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/03/subtle}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/03/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Title": {
+                "size": [
+                  104,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=yellow, style=solid",
@@ -362,7 +592,56 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:data/category/03/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/03/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  104,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "category=green, style=subtle",
@@ -376,7 +655,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Stripe": {
+                "fills": [
+                  "{Color:data/category/04/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=green, style=tinted",
@@ -397,7 +685,47 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/04/subtle}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/04/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Title": {
+                "size": [
+                  104,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=green, style=solid",
@@ -417,7 +745,56 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:data/category/04/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/04/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  104,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "category=turquoise, style=subtle",
@@ -431,7 +808,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Stripe": {
+                "fills": [
+                  "{Color:data/category/05/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=turquoise, style=tinted",
@@ -452,7 +838,47 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/05/subtle}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/05/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Title": {
+                "size": [
+                  104,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=turquoise, style=solid",
@@ -472,7 +898,56 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:data/category/05/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/05/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  104,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "category=blue, style=subtle",
@@ -486,7 +961,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Stripe": {
+                "fills": [
+                  "{Color:data/category/06/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=blue, style=tinted",
@@ -507,7 +991,47 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/06/subtle}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/06/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Title": {
+                "size": [
+                  104,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=blue, style=solid",
@@ -527,7 +1051,56 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:data/category/06/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/06/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  104,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "category=purple, style=subtle",
@@ -541,7 +1114,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Stripe": {
+                "fills": [
+                  "{Color:data/category/07/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=purple, style=tinted",
@@ -562,7 +1144,47 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/07/subtle}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/07/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Title": {
+                "size": [
+                  104,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=purple, style=solid",
@@ -582,7 +1204,56 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:data/category/07/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/07/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  104,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "category=pink, style=subtle",
@@ -596,7 +1267,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Stripe": {
+                "fills": [
+                  "{Color:data/category/08/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=pink, style=tinted",
@@ -617,7 +1297,47 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/08/subtle}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/08/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Title": {
+                "size": [
+                  104,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "category=pink, style=solid",
@@ -637,7 +1357,56 @@
           "hidden": [
             "Icon/Repeat",
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:data/category/08/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "sizing": "FIXED/FIXED",
+                "fills": [
+                  "{Color:data/category/08/strong}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": "body/sm/semibold",
+                "size": [
+                  104,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         }
       ]
     }

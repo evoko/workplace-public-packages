@@ -580,7 +580,55 @@
             "LeadingIcon",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    8,
+                    16,
+                    0,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Tabs": {
+                "size": [
+                  345,
+                  40
+                ]
+              }
+            },
+            "added": [
+              "/TextStack",
+              "/TextStack/Breadcrumbs",
+              "/TextStack/Container",
+              "/TextStack/Container/Icon/Building",
+              "/TextStack/Container/Title",
+              "/TextStack/Container/Tag",
+              "/TextStack/Container/Icon/More",
+              "/TextStack/Description"
+            ],
+            "removed": [
+              "/Container",
+              "/Container/TextStack",
+              "/Container/TextStack/Breadcrumbs",
+              "/Container/TextStack/Container",
+              "/Container/TextStack/Container/Icon/Building",
+              "/Container/TextStack/Container/Title",
+              "/Container/TextStack/Container/Tag",
+              "/Container/TextStack/Description",
+              "/Container/Image",
+              "/Container/CTA",
+              "/Container/CTA/Button",
+              "/Container/CTA/Button#2"
+            ]
+          }
         },
         {
           "variant": "type=centered, breakpoint=desktop",
@@ -605,7 +653,70 @@
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}",
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 20,
+                  "pad": [
+                    8,
+                    20,
+                    0,
+                    20
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/lg",
+                  "paddingLeft": "Spatial:inset/lg",
+                  "paddingRight": "Spatial:inset/lg"
+                }
+              },
+              "/Container": {
+                "size": [
+                  640,
+                  166
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none"
+                }
+              }
+            },
+            "added": [
+              "/Container/Container",
+              "/Container/Container/TextStack",
+              "/Container/Container/TextStack/Breadcrumbs",
+              "/Container/Container/TextStack/Container",
+              "/Container/Container/TextStack/Container/Icon/Building",
+              "/Container/Container/TextStack/Container/Title",
+              "/Container/Container/TextStack/Container/Tag",
+              "/Container/Container/TextStack/Description",
+              "/Container/Container/CTA",
+              "/Container/Container/CTA/Button",
+              "/Container/Container/CTA/Button#2",
+              "/Container/Tabs"
+            ],
+            "removed": [
+              "/Container/TextStack",
+              "/Container/TextStack/Breadcrumbs",
+              "/Container/TextStack/Container",
+              "/Container/TextStack/Container/Icon/Building",
+              "/Container/TextStack/Container/Title",
+              "/Container/TextStack/Container/Tag",
+              "/Container/TextStack/Description",
+              "/Container/Image",
+              "/Container/CTA",
+              "/Container/CTA/Button",
+              "/Container/CTA/Button#2",
+              "/Tabs"
+            ]
+          }
         }
       ]
     }

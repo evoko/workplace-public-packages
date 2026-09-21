@@ -311,7 +311,102 @@
           ],
           "hidden": [
             "LeadingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  72,
+                  32
+                ],
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Decrement": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Field/0": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  8,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Field/Increment": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  72,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            },
+            "added": [
+              "/Field/LeadingIcon"
+            ]
+          }
         },
         {
           "variant": "size=md, state=default, stepper=side",
@@ -326,7 +421,52 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "size": [
+                  88,
+                  40
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": null
+                }
+              },
+              "/Helper text": {
+                "size": [
+                  88,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Field/Value",
+              "/Field/Stepper",
+              "/Field/Stepper/Increment",
+              "/Field/Stepper/Increment/ChevronUp",
+              "/Field/Stepper/Divider",
+              "/Field/Stepper/Decrement",
+              "/Field/Stepper/Decrement/ChevronDown"
+            ],
+            "removed": [
+              "/Field/Decrement",
+              "/Field/0",
+              "/Field/Increment"
+            ]
+          }
         },
         {
           "variant": "size=sm, state=default, stepper=side",
@@ -341,7 +481,85 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  68,
+                  32
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": null
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  68,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            },
+            "added": [
+              "/Field/Value",
+              "/Field/Stepper",
+              "/Field/Stepper/Increment",
+              "/Field/Stepper/Increment/ChevronUp",
+              "/Field/Stepper/Divider",
+              "/Field/Stepper/Decrement",
+              "/Field/Stepper/Decrement/ChevronDown"
+            ],
+            "removed": [
+              "/Field/Decrement",
+              "/Field/0",
+              "/Field/Increment"
+            ]
+          }
         },
         {
           "variant": "size=md, state=focus, stepper=inline",
@@ -357,7 +575,20 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Field": {
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=focus, stepper=inline",
@@ -376,7 +607,109 @@
           ],
           "hidden": [
             "LeadingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  72,
+                  32
+                ],
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Decrement": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Field/0": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  8,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Field/Increment": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  72,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            },
+            "added": [
+              "/Field/LeadingIcon"
+            ]
+          }
         },
         {
           "variant": "size=md, state=focus, stepper=side",
@@ -392,7 +725,59 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Field": {
+                "size": [
+                  88,
+                  40
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": null
+                }
+              },
+              "/Helper text": {
+                "size": [
+                  88,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Field/Value",
+              "/Field/Stepper",
+              "/Field/Stepper/Increment",
+              "/Field/Stepper/Increment/ChevronUp",
+              "/Field/Stepper/Divider",
+              "/Field/Stepper/Decrement",
+              "/Field/Stepper/Decrement/ChevronDown"
+            ],
+            "removed": [
+              "/Field/Decrement",
+              "/Field/0",
+              "/Field/Increment"
+            ]
+          }
         },
         {
           "variant": "size=sm, state=focus, stepper=side",
@@ -408,7 +793,92 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  68,
+                  32
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": null
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  68,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            },
+            "added": [
+              "/Field/Value",
+              "/Field/Stepper",
+              "/Field/Stepper/Increment",
+              "/Field/Stepper/Increment/ChevronUp",
+              "/Field/Stepper/Divider",
+              "/Field/Stepper/Decrement",
+              "/Field/Stepper/Decrement/ChevronDown"
+            ],
+            "removed": [
+              "/Field/Decrement",
+              "/Field/0",
+              "/Field/Increment"
+            ]
+          }
         },
         {
           "variant": "size=md, state=hover, stepper=inline",
@@ -423,7 +893,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=hover, stepper=inline",
@@ -441,7 +920,106 @@
           ],
           "hidden": [
             "LeadingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  72,
+                  32
+                ],
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Decrement": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Field/0": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  8,
+                  9
+                ],
+                "sizing": "FIXED/HUG",
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Field/Increment": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  72,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            },
+            "added": [
+              "/Field/LeadingIcon"
+            ]
+          }
         },
         {
           "variant": "size=md, state=hover, stepper=side",
@@ -456,7 +1034,55 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Field": {
+                "size": [
+                  88,
+                  40
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": null
+                }
+              },
+              "/Helper text": {
+                "size": [
+                  88,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Field/Value",
+              "/Field/Stepper",
+              "/Field/Stepper/Increment",
+              "/Field/Stepper/Increment/ChevronUp",
+              "/Field/Stepper/Divider",
+              "/Field/Stepper/Decrement",
+              "/Field/Stepper/Decrement/ChevronDown"
+            ],
+            "removed": [
+              "/Field/Decrement",
+              "/Field/0",
+              "/Field/Increment"
+            ]
+          }
         },
         {
           "variant": "size=sm, state=hover, stepper=side",
@@ -471,7 +1097,88 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  68,
+                  32
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": null
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  68,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            },
+            "added": [
+              "/Field/Value",
+              "/Field/Stepper",
+              "/Field/Stepper/Increment",
+              "/Field/Stepper/Increment/ChevronUp",
+              "/Field/Stepper/Divider",
+              "/Field/Stepper/Decrement",
+              "/Field/Stepper/Decrement/ChevronDown"
+            ],
+            "removed": [
+              "/Field/Decrement",
+              "/Field/0",
+              "/Field/Increment"
+            ]
+          }
         },
         {
           "variant": "size=md, state=disabled, stepper=inline",
@@ -487,7 +1194,42 @@
           ],
           "hidden": [
             "LeadingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label/Label": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Label/*": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Field": {
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ]
+              },
+              "/Field/0": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Helper text": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            },
+            "added": [
+              "/Field/LeadingIcon"
+            ]
+          }
         },
         {
           "variant": "size=sm, state=disabled, stepper=inline",
@@ -503,7 +1245,120 @@
           ],
           "hidden": [
             "LeadingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  72,
+                  32
+                ],
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Decrement": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Field/0": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  8,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Field/Increment": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  72,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            },
+            "added": [
+              "/Field/LeadingIcon"
+            ]
+          }
         },
         {
           "variant": "size=md, state=disabled, stepper=side",
@@ -516,7 +1371,71 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label/Label": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Label/*": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Field": {
+                "size": [
+                  88,
+                  40
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ],
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": null
+                }
+              },
+              "/Helper text": {
+                "size": [
+                  88,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            },
+            "added": [
+              "/Field/Value",
+              "/Field/Stepper",
+              "/Field/Stepper/Increment",
+              "/Field/Stepper/Increment/ChevronUp",
+              "/Field/Stepper/Divider",
+              "/Field/Stepper/Decrement",
+              "/Field/Stepper/Decrement/ChevronDown"
+            ],
+            "removed": [
+              "/Field/Decrement",
+              "/Field/0",
+              "/Field/Increment"
+            ]
+          }
         },
         {
           "variant": "size=sm, state=disabled, stepper=side",
@@ -529,7 +1448,100 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  68,
+                  32
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ],
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": null
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  68,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            },
+            "added": [
+              "/Field/Value",
+              "/Field/Stepper",
+              "/Field/Stepper/Increment",
+              "/Field/Stepper/Increment/ChevronUp",
+              "/Field/Stepper/Divider",
+              "/Field/Stepper/Decrement",
+              "/Field/Stepper/Decrement/ChevronDown"
+            ],
+            "removed": [
+              "/Field/Decrement",
+              "/Field/0",
+              "/Field/Increment"
+            ]
+          }
         },
         {
           "variant": "size=md, state=error, stepper=inline",
@@ -546,7 +1558,49 @@
           ],
           "hidden": [
             "LeadingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label/Label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/Label/*": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/Field": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    16,
+                    0,
+                    16
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Helper text": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            },
+            "added": [
+              "/Field/LeadingIcon"
+            ]
+          }
         },
         {
           "variant": "size=sm, state=error, stepper=inline",
@@ -563,7 +1617,115 @@
           ],
           "hidden": [
             "LeadingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  72,
+                  32
+                ],
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs"
+                }
+              },
+              "/Field/Decrement": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Field/0": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  8,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/Field/Increment": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "height": "Spatial:icon/sm"
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  72,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            },
+            "added": [
+              "/Field/LeadingIcon"
+            ]
+          }
         },
         {
           "variant": "size=md, state=error, stepper=side",
@@ -577,7 +1739,69 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label/Label": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/Label/*": {
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              },
+              "/Field": {
+                "size": [
+                  88,
+                  40
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    16
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger",
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": null
+                }
+              },
+              "/Helper text": {
+                "size": [
+                  88,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ]
+              }
+            },
+            "added": [
+              "/Field/Value",
+              "/Field/Stepper",
+              "/Field/Stepper/Increment",
+              "/Field/Stepper/Increment/ChevronUp",
+              "/Field/Stepper/Divider",
+              "/Field/Stepper/Decrement",
+              "/Field/Stepper/Decrement/ChevronDown"
+            ],
+            "removed": [
+              "/Field/Decrement",
+              "/Field/0",
+              "/Field/Increment"
+            ]
+          }
         },
         {
           "variant": "size=sm, state=error, stepper=side",
@@ -591,7 +1815,98 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "size": [
+                  42,
+                  9
+                ]
+              },
+              "/Label/Label": {
+                "textStyle": "label/sm",
+                "size": [
+                  31,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Label/*": {
+                "textStyle": "label/sm",
+                "size": [
+                  7,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/label/sm",
+                  "fontSize": "Type:size/label/sm"
+                }
+              },
+              "/Field": {
+                "size": [
+                  68,
+                  32
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    8
+                  ],
+                  "sizing": "FIXED/FIXED"
+                },
+                "strokes": [
+                  "{Color:border/feedback/danger/strong}"
+                ],
+                "effectStyle": "shadow/danger",
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": null
+                }
+              },
+              "/Helper text": {
+                "textStyle": "helper/sm",
+                "size": [
+                  68,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/feedback/danger}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/sm",
+                  "fontSize": "Type:size/helper/sm"
+                }
+              }
+            },
+            "added": [
+              "/Field/Value",
+              "/Field/Stepper",
+              "/Field/Stepper/Increment",
+              "/Field/Stepper/Increment/ChevronUp",
+              "/Field/Stepper/Divider",
+              "/Field/Stepper/Decrement",
+              "/Field/Stepper/Decrement/ChevronDown"
+            ],
+            "removed": [
+              "/Field/Decrement",
+              "/Field/0",
+              "/Field/Increment"
+            ]
+          }
         }
       ]
     }

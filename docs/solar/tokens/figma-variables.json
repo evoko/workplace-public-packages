@@ -1775,7 +1775,7 @@
     "title/md": ["Inter", "Medium", 32, 40, "-3%"],
     "title/sm": ["Inter", "Medium", 20, 28, "-3%"],
     "title/xs": ["Inter", "Medium", 16, 24, "-3%"],
-    "title/2xs": ["Inter", "Medium", 12, 16, "+8%"],
+    "title/2xs": ["Inter", "Medium", 12, 16, "8%"],
     "body/lg/regular": ["Inter", "Regular", 16, 24, "-2%"],
     "body/lg/medium": ["Inter", "Medium", 16, 24, "-2%"],
     "body/lg/semibold": ["Inter", "Semi Bold", 16, 24, "-2%"],
@@ -1880,7 +1880,7 @@
         "blur": 0,
         "spread": 2,
         "colorVar": "shadow/strong",
-        "light": "rgba(0,0,0,0.20)"
+        "light": "rgba(0,0,0,0.2)"
       }
     ],
     "shadow/strong": [
@@ -1890,7 +1890,7 @@
         "blur": 5,
         "spread": 0,
         "colorVar": "shadow/strong",
-        "light": "rgba(0,0,0,0.20)"
+        "light": "rgba(0,0,0,0.2)"
       }
     ],
     "shadow/focus/default": [
@@ -1900,7 +1900,7 @@
         "blur": 0,
         "spread": 2,
         "colorVar": "shadow/feedback/focus",
-        "light": "rgba(37,105,253,0.20)"
+        "light": "rgba(37,105,253,0.2)"
       }
     ],
     "shadow/focus/danger": [
@@ -1910,7 +1910,7 @@
         "blur": 0,
         "spread": 2,
         "colorVar": "shadow/feedback/danger",
-        "light": "rgba(224,3,45,0.20)"
+        "light": "rgba(224,3,45,0.2)"
       }
     ],
     "shadow/danger": [
@@ -1928,7 +1928,7 @@
         "blur": 0,
         "spread": 2,
         "colorVar": "shadow/feedback/danger",
-        "light": "rgba(224,3,45,0.20)"
+        "light": "rgba(224,3,45,0.2)"
       }
     ],
     "shadow/warning": [
@@ -1946,7 +1946,7 @@
         "blur": 0,
         "spread": 2,
         "colorVar": "shadow/feedback/warning",
-        "light": "rgba(207,71,0,0.20)"
+        "light": "rgba(207,71,0,0.2)"
       }
     ]
   }

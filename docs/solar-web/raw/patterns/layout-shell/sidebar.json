@@ -451,7 +451,252 @@
             "{Color:icon/primary}",
             "{Color:icon/secondary}",
             "{Primitives:color/brand/red}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    8,
+                    8,
+                    8
+                  ],
+                  "sizing": "HUG/FIXED"
+                },
+                "radius": 6,
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/xs",
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Menu": {
+                "size": [
+                  182,
+                  669
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                }
+              },
+              "/Menu/Nav Item": {
+                "variant": {
+                  "selected": "true",
+                  "hover": "false",
+                  "expanded": "true"
+                },
+                "size": [
+                  182,
+                  40
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Menu/Nav Item#2": {
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "true"
+                },
+                "size": [
+                  182,
+                  40
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Menu/Nav Item#3": {
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "true"
+                },
+                "size": [
+                  182,
+                  40
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Menu/Nav Item#4": {
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "true"
+                },
+                "size": [
+                  182,
+                  40
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Menu/Nav Item#5": {
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "true"
+                },
+                "size": [
+                  182,
+                  40
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Menu/Nav Item#6": {
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "true"
+                },
+                "size": [
+                  182,
+                  40
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Menu/Nav Item#7": {
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "true"
+                },
+                "size": [
+                  182,
+                  40
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Nav Item": {
+                "main": "Nav Item",
+                "variant": {
+                  "selected": "false",
+                  "hover": "false",
+                  "expanded": "true"
+                },
+                "size": [
+                  182,
+                  40
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              }
+            },
+            "added": [
+              "/Container",
+              "/Container/Biamp Logo",
+              "/Container/© 2025 Biamp"
+            ],
+            "removed": [
+              "/Nav Item/Icon/PanelOpen",
+              "/Biamp Logo"
+            ]
+          }
         }
       ]
     }

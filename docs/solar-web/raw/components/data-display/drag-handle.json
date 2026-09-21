@@ -201,14 +201,82 @@
           "size": [
             26,
             33
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Col1/Dot": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col1/Dot#2": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col1/Dot#3": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2/Dot": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2/Dot#2": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2/Dot#3": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=pressed",
           "size": [
             26,
             33
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Col1/Dot": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col1/Dot#2": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col1/Dot#3": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2/Dot": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2/Dot#2": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2/Dot#3": {
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=focus",
@@ -216,35 +284,268 @@
             26,
             33
           ],
-          "effect": "shadow/focus/default"
+          "effect": "shadow/focus/default",
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=disabled",
           "size": [
             26,
             33
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Col1/Dot": {
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Col1/Dot#2": {
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Col1/Dot#3": {
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Col2/Dot": {
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Col2/Dot#2": {
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Col2/Dot#3": {
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=default",
           "size": [
             28,
             36
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Col1": {
+                "size": [
+                  4,
+                  20
+                ]
+              },
+              "/Col1/Dot": {
+                "size": [
+                  4,
+                  4
+                ]
+              },
+              "/Col1/Dot#2": {
+                "size": [
+                  4,
+                  4
+                ]
+              },
+              "/Col1/Dot#3": {
+                "size": [
+                  4,
+                  4
+                ]
+              },
+              "/Col2": {
+                "size": [
+                  4,
+                  20
+                ]
+              },
+              "/Col2/Dot": {
+                "size": [
+                  4,
+                  4
+                ]
+              },
+              "/Col2/Dot#2": {
+                "size": [
+                  4,
+                  4
+                ]
+              },
+              "/Col2/Dot#3": {
+                "size": [
+                  4,
+                  4
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=hover",
           "size": [
             28,
             36
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Col1": {
+                "size": [
+                  4,
+                  20
+                ]
+              },
+              "/Col1/Dot": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col1/Dot#2": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col1/Dot#3": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2": {
+                "size": [
+                  4,
+                  20
+                ]
+              },
+              "/Col2/Dot": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2/Dot#2": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2/Dot#3": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=pressed",
           "size": [
             28,
             36
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Col1": {
+                "size": [
+                  4,
+                  20
+                ]
+              },
+              "/Col1/Dot": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col1/Dot#2": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col1/Dot#3": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2": {
+                "size": [
+                  4,
+                  20
+                ]
+              },
+              "/Col2/Dot": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2/Dot#2": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              },
+              "/Col2/Dot#3": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=focus",
@@ -252,14 +553,139 @@
             28,
             36
           ],
-          "effect": "shadow/focus/default"
+          "effect": "shadow/focus/default",
+          "overrides": {
+            "changed": {
+              "/": {
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Col1": {
+                "size": [
+                  4,
+                  20
+                ]
+              },
+              "/Col1/Dot": {
+                "size": [
+                  4,
+                  4
+                ]
+              },
+              "/Col1/Dot#2": {
+                "size": [
+                  4,
+                  4
+                ]
+              },
+              "/Col1/Dot#3": {
+                "size": [
+                  4,
+                  4
+                ]
+              },
+              "/Col2": {
+                "size": [
+                  4,
+                  20
+                ]
+              },
+              "/Col2/Dot": {
+                "size": [
+                  4,
+                  4
+                ]
+              },
+              "/Col2/Dot#2": {
+                "size": [
+                  4,
+                  4
+                ]
+              },
+              "/Col2/Dot#3": {
+                "size": [
+                  4,
+                  4
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=disabled",
           "size": [
             28,
             36
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Col1": {
+                "size": [
+                  4,
+                  20
+                ]
+              },
+              "/Col1/Dot": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Col1/Dot#2": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Col1/Dot#3": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Col2": {
+                "size": [
+                  4,
+                  20
+                ]
+              },
+              "/Col2/Dot": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Col2/Dot#2": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              },
+              "/Col2/Dot#3": {
+                "size": [
+                  4,
+                  4
+                ],
+                "fills": [
+                  "{Color:icon/disabled}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

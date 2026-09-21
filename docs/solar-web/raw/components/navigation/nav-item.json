@@ -124,7 +124,30 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "selected=false, hover=true, expanded=false",
@@ -137,7 +160,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, hover=true, expanded=true",
@@ -153,7 +185,33 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "selected=true, hover=false, expanded=false",
@@ -166,7 +224,21 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Icon/Home": {
+                "variant": {
+                  "solid": "true"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, hover=false, expanded=true",
@@ -182,7 +254,38 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Icon/Home": {
+                "variant": {
+                  "solid": "true"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         },
         {
           "variant": "selected=true, hover=true, expanded=false",
@@ -195,7 +298,21 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Icon/Home": {
+                "variant": {
+                  "solid": "true"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, hover=true, expanded=true",
@@ -211,7 +328,38 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    12
+                  ]
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              },
+              "/Icon/Home": {
+                "variant": {
+                  "solid": "true"
+                }
+              }
+            },
+            "added": [
+              "/Label"
+            ]
+          }
         }
       ]
     }

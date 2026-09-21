@@ -380,7 +380,48 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Axis Line": {
+                "size": [
+                  343,
+                  1
+                ]
+              },
+              "/Ticks": {
+                "size": [
+                  343,
+                  17
+                ]
+              },
+              "/Ticks/Tick#2": {
+                "size": [
+                  16,
+                  17
+                ]
+              },
+              "/Ticks/Tick#4": {
+                "size": [
+                  21,
+                  17
+                ]
+              }
+            },
+            "added": [
+              "/Ticks/Tick#2/33",
+              "/Ticks/Tick#3/67",
+              "/Ticks/Tick#4/100"
+            ],
+            "removed": [
+              "/Ticks/Tick#2/25",
+              "/Ticks/Tick#3/50",
+              "/Ticks/Tick#4/75",
+              "/Ticks/Tick#5",
+              "/Ticks/Tick#5/Tick Mark",
+              "/Ticks/Tick#5/100"
+            ]
+          }
         },
         {
           "variant": "orientation=vertical, breakpoint=desktop",
@@ -390,7 +431,127 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "sizing": "HUG/FIXED"
+                }
+              },
+              "/Ticks": {
+                "size": [
+                  95,
+                  280
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "align": "SPACE_BETWEEN/MAX",
+                  "sizing": "FILL/FILL"
+                }
+              },
+              "/Ticks/Tick": {
+                "size": [
+                  29,
+                  9
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "align": "MAX/CENTER"
+                }
+              },
+              "/Ticks/Tick/Tick Mark": {
+                "size": [
+                  4,
+                  1
+                ]
+              },
+              "/Ticks/Tick#2": {
+                "size": [
+                  22,
+                  9
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "align": "MAX/CENTER"
+                }
+              },
+              "/Ticks/Tick#2/Tick Mark": {
+                "size": [
+                  4,
+                  1
+                ]
+              },
+              "/Ticks/Tick#3": {
+                "size": [
+                  23,
+                  9
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "align": "MAX/CENTER"
+                }
+              },
+              "/Ticks/Tick#3/Tick Mark": {
+                "size": [
+                  4,
+                  1
+                ]
+              },
+              "/Ticks/Tick#4": {
+                "size": [
+                  23,
+                  9
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "align": "MAX/CENTER"
+                }
+              },
+              "/Ticks/Tick#4/Tick Mark": {
+                "size": [
+                  4,
+                  1
+                ]
+              },
+              "/Ticks/Tick#5": {
+                "size": [
+                  16,
+                  9
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "align": "MAX/CENTER"
+                }
+              },
+              "/Ticks/Tick#5/Tick Mark": {
+                "size": [
+                  4,
+                  1
+                ]
+              },
+              "/Axis Line": {
+                "size": [
+                  1,
+                  280
+                ],
+                "sizing": "FIXED/FILL"
+              }
+            },
+            "added": [
+              "/Ticks/Tick/100",
+              "/Ticks/Tick#2/75",
+              "/Ticks/Tick#4/25",
+              "/Ticks/Tick#5/0"
+            ],
+            "removed": [
+              "/Ticks/Tick/0",
+              "/Ticks/Tick#2/25",
+              "/Ticks/Tick#4/75",
+              "/Ticks/Tick#5/100"
+            ]
+          }
         },
         {
           "variant": "orientation=vertical, breakpoint=mobile",
@@ -400,7 +561,114 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "sizing": "HUG/FIXED"
+                }
+              },
+              "/Ticks": {
+                "size": [
+                  95,
+                  220
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "align": "SPACE_BETWEEN/MAX",
+                  "sizing": "FILL/FILL"
+                }
+              },
+              "/Ticks/Tick": {
+                "size": [
+                  29,
+                  9
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "align": "MAX/CENTER"
+                }
+              },
+              "/Ticks/Tick/Tick Mark": {
+                "size": [
+                  4,
+                  1
+                ]
+              },
+              "/Ticks/Tick#2": {
+                "size": [
+                  23,
+                  9
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "align": "MAX/CENTER"
+                }
+              },
+              "/Ticks/Tick#2/Tick Mark": {
+                "size": [
+                  4,
+                  1
+                ]
+              },
+              "/Ticks/Tick#3": {
+                "size": [
+                  24,
+                  9
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "align": "MAX/CENTER"
+                }
+              },
+              "/Ticks/Tick#3/Tick Mark": {
+                "size": [
+                  4,
+                  1
+                ]
+              },
+              "/Ticks/Tick#4": {
+                "size": [
+                  16,
+                  9
+                ],
+                "layout": {
+                  "dir": "HORIZONTAL",
+                  "align": "MAX/CENTER"
+                }
+              },
+              "/Ticks/Tick#4/Tick Mark": {
+                "size": [
+                  4,
+                  1
+                ]
+              },
+              "/Axis Line": {
+                "size": [
+                  1,
+                  220
+                ],
+                "sizing": "FIXED/FILL"
+              }
+            },
+            "added": [
+              "/Ticks/Tick/100",
+              "/Ticks/Tick#2/67",
+              "/Ticks/Tick#3/33",
+              "/Ticks/Tick#4/0"
+            ],
+            "removed": [
+              "/Ticks/Tick/0",
+              "/Ticks/Tick#2/25",
+              "/Ticks/Tick#3/50",
+              "/Ticks/Tick#4/75",
+              "/Ticks/Tick#5",
+              "/Ticks/Tick#5/Tick Mark",
+              "/Ticks/Tick#5/100"
+            ]
+          }
         }
       ]
     },
@@ -531,21 +799,136 @@
           "size": [
             343,
             220
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Gridline": {
+                "size": [
+                  343,
+                  1
+                ]
+              },
+              "/Gridline#2": {
+                "size": [
+                  343,
+                  1
+                ]
+              },
+              "/Gridline#3": {
+                "size": [
+                  343,
+                  1
+                ]
+              },
+              "/Gridline#4": {
+                "size": [
+                  343,
+                  1
+                ]
+              }
+            },
+            "removed": [
+              "/Gridline#5"
+            ]
+          }
         },
         {
           "variant": "orientation=vertical, breakpoint=desktop",
           "size": [
             600,
             280
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                }
+              },
+              "/Gridline": {
+                "size": [
+                  1,
+                  280
+                ],
+                "sizing": "FIXED/FILL"
+              },
+              "/Gridline#2": {
+                "size": [
+                  1,
+                  280
+                ],
+                "sizing": "FIXED/FILL"
+              },
+              "/Gridline#3": {
+                "size": [
+                  1,
+                  280
+                ],
+                "sizing": "FIXED/FILL"
+              },
+              "/Gridline#4": {
+                "size": [
+                  1,
+                  280
+                ],
+                "sizing": "FIXED/FILL"
+              },
+              "/Gridline#5": {
+                "size": [
+                  1,
+                  280
+                ],
+                "sizing": "FIXED/FILL"
+              }
+            }
+          }
         },
         {
           "variant": "orientation=vertical, breakpoint=mobile",
           "size": [
             343,
             220
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                }
+              },
+              "/Gridline": {
+                "size": [
+                  1,
+                  220
+                ],
+                "sizing": "FIXED/FILL"
+              },
+              "/Gridline#2": {
+                "size": [
+                  1,
+                  220
+                ],
+                "sizing": "FIXED/FILL"
+              },
+              "/Gridline#3": {
+                "size": [
+                  1,
+                  220
+                ],
+                "sizing": "FIXED/FILL"
+              },
+              "/Gridline#4": {
+                "size": [
+                  1,
+                  220
+                ],
+                "sizing": "FIXED/FILL"
+              }
+            },
+            "removed": [
+              "/Gridline#5"
+            ]
+          }
         }
       ]
     }

@@ -568,7 +568,67 @@
             "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/secondary/icon/danger/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/feedback/info/subtle}"
+                ]
+              },
+              "/Toggle": {
+                "variant": {
+                  "selected": "true",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              },
+              "/Radio": {
+                "variant": {
+                  "state": "default",
+                  "checked": "true"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/Checkbox": {
+                "variant": {
+                  "checked": "true",
+                  "disabled": "false",
+                  "hover": "false",
+                  "mixed": "false",
+                  "focus": "false"
+                },
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 16,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "sizing": null,
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "vars": {
+                  "itemSpacing": "Spatial:stack/md"
+                }
+              },
+              "/Text/Description": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, drag=true",
@@ -591,7 +651,24 @@
             "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/secondary/icon/danger/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/feedback/focus/strong}"
+                ],
+                "strokeWeight": 2,
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/strong",
+                  "strokeBottomWeight": "Spatial:border/strong",
+                  "strokeLeftWeight": "Spatial:border/strong",
+                  "strokeRightWeight": "Spatial:border/strong"
+                }
+              }
+            }
+          }
         }
       ]
     }

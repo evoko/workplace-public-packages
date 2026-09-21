@@ -134,7 +134,26 @@
           ],
           "iconFills": [
             "{Color:icon/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Text Input": {
+                "size": [
+                  203,
+                  76
+                ]
+              },
+              "/Text Input#2": {
+                "size": [
+                  203,
+                  76
+                ]
+              }
+            },
+            "added": [
+              "/Text Input#3"
+            ]
+          }
         },
         {
           "variant": "columns=4",
@@ -150,7 +169,27 @@
           ],
           "iconFills": [
             "{Color:icon/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Text Input": {
+                "size": [
+                  148,
+                  76
+                ]
+              },
+              "/Text Input#2": {
+                "size": [
+                  148,
+                  76
+                ]
+              }
+            },
+            "added": [
+              "/Text Input#3",
+              "/Text Input#4"
+            ]
+          }
         }
       ]
     }

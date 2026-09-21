@@ -225,7 +225,79 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  79
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    8,
+                    16,
+                    0,
+                    16
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Activity Feed Filter Row": {
+                "variant": {
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  112
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ],
+                  "align": "CENTER/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/md",
+                  "paddingRight": "Spatial:stack/md",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Activity Feed": {
+                "size": [
+                  377,
+                  731
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    16,
+                    0,
+                    16
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/md",
+                  "paddingRight": "Spatial:stack/md"
+                }
+              }
+            }
+          }
         }
       ]
     }

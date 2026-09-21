@@ -151,7 +151,19 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "direction=prev, state=pressed",
@@ -170,7 +182,20 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/active}"
+                ],
+                "effectStyle": null
+              }
+            }
+          }
         },
         {
           "variant": "direction=prev, state=focus",
@@ -190,7 +215,17 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                },
+                "effectStyle": "shadow/focus/default"
+              }
+            }
+          }
         },
         {
           "variant": "direction=prev, state=disabled",
@@ -209,7 +244,25 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/disabled}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ],
+                "effectStyle": null
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:action/secondary/text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "direction=next, state=default",
@@ -229,7 +282,32 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": null
+                }
+              },
+              "/Label": {
+                "text": "Next",
+                "size": [
+                  31,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Icon/ArrowRight"
+            ],
+            "removed": [
+              "/Icon/ArrowLeft"
+            ]
+          }
         },
         {
           "variant": "direction=next, state=hover",
@@ -249,7 +327,35 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/hover}"
+                ],
+                "vars": {
+                  "itemSpacing": null
+                }
+              },
+              "/Label": {
+                "text": "Next",
+                "size": [
+                  31,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Icon/ArrowRight"
+            ],
+            "removed": [
+              "/Icon/ArrowLeft"
+            ]
+          }
         },
         {
           "variant": "direction=next, state=pressed",
@@ -268,7 +374,36 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/active}"
+                ],
+                "effectStyle": null,
+                "vars": {
+                  "itemSpacing": null
+                }
+              },
+              "/Label": {
+                "text": "Next",
+                "size": [
+                  31,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Icon/ArrowRight"
+            ],
+            "removed": [
+              "/Icon/ArrowLeft"
+            ]
+          }
         },
         {
           "variant": "direction=next, state=focus",
@@ -288,7 +423,33 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                },
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "itemSpacing": null
+                }
+              },
+              "/Label": {
+                "text": "Next",
+                "size": [
+                  31,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/Icon/ArrowRight"
+            ],
+            "removed": [
+              "/Icon/ArrowLeft"
+            ]
+          }
         },
         {
           "variant": "direction=next, state=disabled",
@@ -307,7 +468,42 @@
           ],
           "iconFills": [
             "{Color:action/secondary/icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/disabled}"
+                ],
+                "strokes": [
+                  "{Color:border/disabled}"
+                ],
+                "effectStyle": null,
+                "vars": {
+                  "itemSpacing": null
+                }
+              },
+              "/Label": {
+                "text": "Next",
+                "size": [
+                  31,
+                  10
+                ],
+                "fills": [
+                  "{Color:action/secondary/text/disabled}"
+                ]
+              }
+            },
+            "added": [
+              "/Icon/ArrowRight"
+            ],
+            "removed": [
+              "/Icon/ArrowLeft"
+            ]
+          }
         }
       ]
     }

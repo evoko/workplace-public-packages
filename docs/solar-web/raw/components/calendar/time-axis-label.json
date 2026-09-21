@@ -108,7 +108,16 @@
           ],
           "textFills": [
             "{Color:text/feedback/info}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Hour": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "emphasis=default, density=compact",
@@ -134,7 +143,16 @@
           ],
           "textFills": [
             "{Color:text/feedback/info}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Hour": {
+                "fills": [
+                  "{Color:text/feedback/info}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

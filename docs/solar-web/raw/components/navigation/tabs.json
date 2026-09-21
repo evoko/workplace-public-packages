@@ -213,7 +213,58 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    8,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/xs"
+                }
+              },
+              "/LeadingIcon": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Label": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  21,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/TrailingIcon": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=hover",
@@ -227,7 +278,16 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=hover",
@@ -241,7 +301,61 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    8,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/xs"
+                }
+              },
+              "/LeadingIcon": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Label": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  21,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/TrailingIcon": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=selected",
@@ -258,7 +372,37 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/strong}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "strokeBottomWeight": "Spatial:border/strong"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=selected",
@@ -275,7 +419,78 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    8,
+                    12
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/strong}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/xs",
+                  "strokeBottomWeight": "Spatial:border/strong"
+                }
+              },
+              "/LeadingIcon": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Label": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  21,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/TrailingIcon": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=focus",
@@ -293,7 +508,38 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Spatial:border/strong}"
+                ],
+                "strokeWeight": "mixed",
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "strokeBottomWeight": "Spatial:border/strong"
+                }
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=focus",
@@ -311,7 +557,79 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    8,
+                    12
+                  ]
+                },
+                "strokes": [
+                  "{Spatial:border/strong}"
+                ],
+                "strokeWeight": "mixed",
+                "effectStyle": "shadow/focus/default",
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/xs",
+                  "strokeBottomWeight": "Spatial:border/strong"
+                }
+              },
+              "/LeadingIcon": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Label": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  21,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/primary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/TrailingIcon": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=disabled",
@@ -325,7 +643,28 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=disabled",
@@ -339,7 +678,73 @@
           ],
           "iconFills": [
             "{Color:icon/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    8,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/xs"
+                }
+              },
+              "/LeadingIcon": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Label": {
+                "textStyle": "body/sm/medium",
+                "size": [
+                  21,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/sm",
+                  "fontSize": "Type:size/body/sm"
+                }
+              },
+              "/TrailingIcon": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "height": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/xs"
+                }
+              },
+              "/Counter": {
+                "variant": {
+                  "type": "regular",
+                  "state": "default"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         }
       ]
     },
@@ -731,7 +1136,209 @@
           "iconFills": [
             "{Color:icon/primary}",
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Tabs": {
+                "size": [
+                  456,
+                  40
+                ]
+              },
+              "/Tabs/Tab Item": {
+                "variant": {
+                  "size": "md",
+                  "state": "selected"
+                },
+                "size": [
+                  57,
+                  40
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Tabs/Tab Item#2": {
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  57,
+                  40
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Tabs/Tab Item#3": {
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  57,
+                  40
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Tabs/Tab Item#4": {
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  57,
+                  40
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Tabs/Tab Item#5": {
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  57,
+                  40
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Tabs/Tab Item#6": {
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  57,
+                  40
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Tabs/Tab Item#7": {
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  57,
+                  40
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Tabs/Tab Item#8": {
+                "variant": {
+                  "size": "md",
+                  "state": "default"
+                },
+                "size": [
+                  57,
+                  40
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    16,
+                    12,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              }
+            }
+          }
         }
       ]
     }

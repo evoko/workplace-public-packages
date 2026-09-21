@@ -167,7 +167,32 @@
           ],
           "iconFills": [
             "{Primitives:color/neutral/900}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/hover}"
+                ],
+                "radius": null,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              },
+              "/Text": {
+                "size": [
+                  556,
+                  27
+                ]
+              }
+            },
+            "added": [
+              "/Kbd"
+            ]
+          }
         }
       ]
     }

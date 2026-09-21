@@ -187,7 +187,23 @@
           "textFills": [
             "{Color:text/secondary}",
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Content": {
+                "size": [
+                  197,
+                  22
+                ]
+              },
+              "/Content/Title": {
+                "size": [
+                  127,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "style=subtle, span=middle",
@@ -198,7 +214,23 @@
           "textFills": [
             "{Color:text/secondary}",
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Content": {
+                "size": [
+                  237,
+                  22
+                ]
+              },
+              "/Content/Title": {
+                "size": [
+                  167,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "style=subtle, span=end",
@@ -209,7 +241,23 @@
           "textFills": [
             "{Color:text/secondary}",
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Content": {
+                "size": [
+                  197,
+                  22
+                ]
+              },
+              "/Content/Title": {
+                "size": [
+                  127,
+                  9
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "style=solid, span=single",
@@ -225,7 +273,60 @@
           ],
           "hidden": [
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/06/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "size": [
+                  3,
+                  25
+                ],
+                "sizing": "FIXED/FIXED",
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  160,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": null,
+                "size": [
+                  90,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "style=solid, span=start",
@@ -241,7 +342,60 @@
           ],
           "hidden": [
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/06/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "size": [
+                  3,
+                  25
+                ],
+                "sizing": "FIXED/FIXED",
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  200,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": null,
+                "size": [
+                  130,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "style=solid, span=middle",
@@ -257,7 +411,60 @@
           ],
           "hidden": [
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/06/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "size": [
+                  3,
+                  25
+                ],
+                "sizing": "FIXED/FIXED",
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  240,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": null,
+                "size": [
+                  170,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "style=solid, span=end",
@@ -273,7 +480,60 @@
           ],
           "hidden": [
             "Stripe"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "fills": [
+                  "{Color:data/category/06/strong}"
+                ],
+                "radius": 6,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/control",
+                  "topRightRadius": "Spatial:radius/control",
+                  "bottomLeftRadius": "Spatial:radius/control",
+                  "bottomRightRadius": "Spatial:radius/control"
+                }
+              },
+              "/Stripe": {
+                "hidden": true,
+                "size": [
+                  3,
+                  25
+                ],
+                "sizing": "FIXED/FIXED",
+                "radius": null,
+                "vars": null
+              },
+              "/Content": {
+                "size": [
+                  200,
+                  22
+                ]
+              },
+              "/Content/Time": {
+                "fills": [
+                  "{Color:text/inverse}"
+                ]
+              },
+              "/Content/Title": {
+                "textStyle": null,
+                "size": [
+                  130,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/inverse}"
+                ],
+                "vars": {
+                  "fontStyle": "Primitives:type/font-weight/600"
+                }
+              }
+            }
+          }
         }
       ]
     }

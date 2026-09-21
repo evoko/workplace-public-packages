@@ -126,7 +126,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/hover}"
+                ]
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/primary/text/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=regular, state=pressed",
@@ -142,7 +156,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/active}"
+                ]
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/primary/text/active}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=regular, state=disabled",
@@ -158,7 +186,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/disabled}"
+                ]
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/primary/text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=idle, state=default",
@@ -174,7 +216,24 @@
           ],
           "textFills": [
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/0": {
+                "fills": [
+                  "{Color:text/tertiary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=idle, state=hover",
@@ -190,7 +249,24 @@
           ],
           "textFills": [
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/0": {
+                "fills": [
+                  "{Color:text/secondary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=idle, state=pressed",
@@ -206,7 +282,24 @@
           ],
           "textFills": [
             "{Color:text/tertiary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ]
+              },
+              "/0": {
+                "fills": [
+                  "{Color:text/tertiary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=idle, state=disabled",
@@ -222,7 +315,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/disabled}"
+                ]
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/primary/text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=danger, state=default",
@@ -238,7 +345,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/danger/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/danger/default}"
+                ]
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/primary/text/danger/default}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=danger, state=hover",
@@ -254,7 +375,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/danger/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/danger/hover}"
+                ]
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/primary/text/danger/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=danger, state=pressed",
@@ -270,7 +405,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/danger/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/danger/active}"
+                ]
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/primary/text/danger/active}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=danger, state=disabled",
@@ -286,7 +435,21 @@
           ],
           "textFills": [
             "{Color:action/primary/text/danger/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/danger/disabled}"
+                ]
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/primary/text/danger/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=inverted, state=default",
@@ -302,7 +465,28 @@
           ],
           "textFills": [
             "{Color:action/secondary/text/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokeWeight": 0,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/none",
+                  "strokeBottomWeight": "Spatial:border/none",
+                  "strokeLeftWeight": "Spatial:border/none",
+                  "strokeRightWeight": "Spatial:border/none"
+                }
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/secondary/text/default}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=inverted, state=hover",
@@ -318,7 +502,28 @@
           ],
           "textFills": [
             "{Color:action/secondary/text/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/hover}"
+                ],
+                "strokeWeight": 0,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/none",
+                  "strokeBottomWeight": "Spatial:border/none",
+                  "strokeLeftWeight": "Spatial:border/none",
+                  "strokeRightWeight": "Spatial:border/none"
+                }
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/secondary/text/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=inverted, state=pressed",
@@ -334,7 +539,28 @@
           ],
           "textFills": [
             "{Color:action/secondary/text/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/active}"
+                ],
+                "strokeWeight": 0,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/none",
+                  "strokeBottomWeight": "Spatial:border/none",
+                  "strokeLeftWeight": "Spatial:border/none",
+                  "strokeRightWeight": "Spatial:border/none"
+                }
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/secondary/text/active}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=inverted, state=disabled",
@@ -350,7 +576,28 @@
           ],
           "textFills": [
             "{Color:action/secondary/text/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/secondary/bg/disabled}"
+                ],
+                "strokeWeight": 0,
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/none",
+                  "strokeBottomWeight": "Spatial:border/none",
+                  "strokeLeftWeight": "Spatial:border/none",
+                  "strokeRightWeight": "Spatial:border/none"
+                }
+              },
+              "/0": {
+                "fills": [
+                  "{Color:action/secondary/text/disabled}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

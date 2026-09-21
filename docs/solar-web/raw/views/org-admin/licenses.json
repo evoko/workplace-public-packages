@@ -804,7 +804,55 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 0,
+                  "align": "MIN/MIN",
+                  "sizing": "FIXED/HUG"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "vars": null
+              }
+            },
+            "added": [
+              "/Page Header",
+              "/Content",
+              "/Content/Payment methods Section",
+              "/Content/Payment methods Section/Section Header",
+              "/Content/Payment methods Section/Payment Cards",
+              "/Content/Active subscriptions Section",
+              "/Content/Active subscriptions Section/Section Header",
+              "/Content/Active subscriptions Section/Subscription List"
+            ],
+            "removed": [
+              "/Left",
+              "/Left/Tree Group Header",
+              "/Left/Section Nav Item",
+              "/Left/Section Nav Item#2",
+              "/Left/Tree Group Header#2",
+              "/Left/Section Nav Item#3",
+              "/Left/Section Nav Item#4",
+              "/Left/Tree Group Header#3",
+              "/Left/Section Nav Item#5",
+              "/Left/Section Nav Item#6",
+              "/Left/Section Nav Item#7",
+              "/Left/Section Nav Item#8",
+              "/Center",
+              "/Center/Page Header",
+              "/Center/Payment methods Section",
+              "/Center/Payment methods Section/Section Header",
+              "/Center/Payment methods Section/Payment Cards",
+              "/Center/Active subscriptions Section",
+              "/Center/Active subscriptions Section/Section Header",
+              "/Center/Active subscriptions Section/Subscription List"
+            ]
+          }
         }
       ]
     },
@@ -1264,7 +1312,77 @@
             "Counter",
             "Icon/None",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/background}"
+                ],
+                "strokes": null,
+                "strokeWeight": null,
+                "vars": {
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null
+                }
+              },
+              "/Info": {
+                "size": [
+                  559,
+                  28
+                ]
+              },
+              "/Info/Title Row": {
+                "size": [
+                  89,
+                  10
+                ]
+              },
+              "/Info/Title Row/Service Name": {
+                "text": "Conferencing",
+                "size": [
+                  89,
+                  10
+                ]
+              },
+              "/Info/Meta": {
+                "text": "Not subscribed",
+                "size": [
+                  98,
+                  10
+                ]
+              },
+              "/Meter": {
+                "size": [
+                  210,
+                  10
+                ]
+              },
+              "/Meter/Usage Label": {
+                "text": "—",
+                "textStyle": "helper/md",
+                "size": [
+                  14,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/md",
+                  "fontSize": "Type:size/helper/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            },
+            "removed": [
+              "/Info/Title Row/Tag",
+              "/Info/Tag",
+              "/Meter/ProgressBar"
+            ]
+          }
         },
         {
           "variant": "breakpoint=mobile, status=active",
@@ -1289,7 +1407,55 @@
           "iconFills": [
             "{Color:icon/feedback/warning}",
             "{Color:action/secondary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/HUG"
+                },
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": null,
+                  "paddingTop": null,
+                  "paddingRight": null,
+                  "paddingBottom": null
+                }
+              },
+              "/Info": {
+                "size": [
+                  326,
+                  42
+                ]
+              },
+              "/Meter": {
+                "size": [
+                  326,
+                  23
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              }
+            },
+            "added": [
+              "/Footer",
+              "/Footer/Price",
+              "/Footer/Button"
+            ],
+            "removed": [
+              "/Price",
+              "/Button"
+            ]
+          }
         },
         {
           "variant": "breakpoint=mobile, status=unsubscribed",
@@ -1314,7 +1480,103 @@
             "Counter",
             "Icon/None",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "gap": 12,
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "sizing": "FIXED/HUG"
+                },
+                "fills": [
+                  "{Color:surface/muted}"
+                ],
+                "strokes": null,
+                "strokeWeight": null,
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": null,
+                  "paddingTop": null,
+                  "paddingRight": null,
+                  "paddingBottom": null,
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null
+                }
+              },
+              "/Info": {
+                "size": [
+                  326,
+                  28
+                ]
+              },
+              "/Info/Title Row": {
+                "size": [
+                  89,
+                  10
+                ]
+              },
+              "/Info/Title Row/Service Name": {
+                "text": "Conferencing",
+                "size": [
+                  89,
+                  10
+                ]
+              },
+              "/Info/Meta": {
+                "text": "Not subscribed",
+                "size": [
+                  98,
+                  10
+                ]
+              },
+              "/Meter": {
+                "size": [
+                  326,
+                  10
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Meter/Usage Label": {
+                "text": "—",
+                "textStyle": "helper/md",
+                "size": [
+                  14,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/tertiary}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/helper/md",
+                  "fontSize": "Type:size/helper/md",
+                  "fontStyle": "Primitives:type/font-weight/400"
+                }
+              }
+            },
+            "added": [
+              "/Footer",
+              "/Footer/Price",
+              "/Footer/Button"
+            ],
+            "removed": [
+              "/Info/Title Row/Tag",
+              "/Info/Tag",
+              "/Meter/ProgressBar",
+              "/Price",
+              "/Button"
+            ]
+          }
         }
       ]
     },
@@ -1700,7 +1962,45 @@
           "iconFills": [
             "{Primitives:color/neutral/900}"
           ],
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    20,
+                    0,
+                    20,
+                    0
+                  ],
+                  "align": "CENTER/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": null,
+                "strokes": [
+                  "{Color:border/medium}"
+                ],
+                "vars": {
+                  "paddingLeft": null,
+                  "paddingRight": null
+                }
+              }
+            },
+            "added": [
+              "/Icon/Plus",
+              "/Add payment method"
+            ],
+            "removed": [
+              "/Information",
+              "/Information/Card Header",
+              "/Information/Card Header/Icon/Subscription",
+              "/Information/Card Header/Tag",
+              "/Information/Card ending •••• 0000",
+              "/Information/Expires MM / YY · billing contact name",
+              "/Button",
+              "/Button#2"
+            ]
+          }
         }
       ]
     }

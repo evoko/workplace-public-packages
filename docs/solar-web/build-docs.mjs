@@ -473,6 +473,8 @@ for (const p of pages) {
       defaultVariant: set.defaultVariant || null,
       axes,
       props: other,
+      variants: set.variants,
+      variantsTruncated: !!set.variantsTruncated,
       defaultSize: set.defaultVariantTree.size,
       layout: set.defaultVariantTree.layout || null,
       tokens: analysis.used,

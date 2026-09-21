@@ -8,13 +8,15 @@ SOLAR core team's automated Figma → JSON export replaces it (pipeline stage 2 
 
 ## Files in this folder
 
-| File                   | What it is                                                                                                                                                                     |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `figma-variables.json` | **Source of truth.** Verbatim capture of every variable, text style and effect style                                                                                           |
-| `css-contract.json`    | Generated. Every token as `{figma, doc, css}` with resolved Light/Dark or Desktop/Mobile values, shadow composites, text-style composites, z-index ladder                      |
-| `reference.css`        | Generated. All `--solar-*` custom properties: Light defaults, Dark under `[data-theme="dark"]`, Mobile type under a `max-width: 767.98px` media query, reduced-motion baseline |
-| `grammar.json`         | Generated. Enumerations, anchored regex patterns per token category (semantic and primitive), and the banned-name list, for validating token references                        |
-| `build-derived.mjs`    | Generates the three files above from the JSON. `node docs/solar/tokens/build-derived.mjs`                                                                                      |
+| File                   | What it is                                                                                                                                                                                                                     |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `figma-variables.json` | **Source of truth.** Verbatim capture of every variable, text style and effect style                                                                                                                                           |
+| `css-contract.json`    | Generated. Every token as `{figma, doc, css}` with resolved Light/Dark or Desktop/Mobile values, shadow composites, text-style composites, z-index ladder                                                                      |
+| `reference.css`        | Generated. All `--solar-*` custom properties: Light defaults, Dark under `[data-theme="dark"]`, Mobile type under a `max-width: 767.98px` media query, reduced-motion baseline                                                 |
+| `grammar.json`         | Generated. Enumerations, anchored regex patterns per token category (semantic and primitive), and the banned-name list, for validating token references                                                                        |
+| `build-derived.mjs`    | Generates the three files above from the JSON, plus the SOLAR Web `Layout` collection from [`../../solar-web/tokens/layout-variables.json`](../../solar-web/tokens/layout-variables.json) when present. `npm run solar:tokens` |
+| `capture-variables.js` | Figma Plugin API script (read-only) that produces `figma-variables.json` from the Foundations file. Run through the Figma MCP `use_figma` tool in slices, or a scripter plugin; see Regenerating below                         |
+| `compare-capture.mjs`  | Semantic diff of a fresh capture against `figma-variables.json`: `node docs/solar/tokens/compare-capture.mjs <capture.json or slice dir>`                                                                                      |
 
 ## Shape of the file
 
@@ -117,7 +119,7 @@ explaining themselves. Never edit them; change the JSON or the script.
 {
   "_note": "…",
   "generatedFrom": { "figmaFile", "fileKey", "exportedOn", "solarVersion", "collections": { … } },
-  "variables": [Variable, …], // 627: 265 primitives + 287 color + 34 spatial + 41 type
+  "variables": [Variable, …], // 647: 265 primitives + 287 color + 34 spatial + 41 type + 20 layout (SOLAR Web)
   "effectStyles": [EffectStyle, …], // 9
   "textStyles": [TextStyle, …], // 47: the 60 Figma styles minus the 13 whose names start with "_" or "."
   "zIndex": { "base": 0, "sticky": 100, "dropdown": 200, "overlay": 300, "dialog": 400, "toast": 500, "tooltip": 600 }
@@ -129,12 +131,13 @@ Every `Variable` has `collection` (`Primitives | Color | Spatial | Type`), `tier
 `doc` (`color.surface.background`), `css` (`--solar-color-surface-background`). The value
 fields depend on the collection:
 
-| Collection   | Value fields                                               | Example                                                                 |
-| ------------ | ---------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `Primitives` | `value`                                                    | `"#d22730"`, `"8px"`, `"rgba(0, 0, 0, 0.05)"`                           |
-| `Color`      | `light`, `dark` (resolved sRGB), `lightAlias`, `darkAlias` | `"#f5f5f5"`, `"#111111"`, `color/neutral/50`, `color/neutral/900`       |
-| `Spatial`    | `value` (resolved px), `alias`                             | `"0px"`, `spatial/border-width/none`                                    |
-| `Type`       | `desktop`, `mobile` (px), `naming: "proposed"`             | `"56px"`, `"40px"`. The `type.` doc prefix is not yet ratified by SOLAR |
+| Collection   | Value fields                                                                           | Example                                                                              |
+| ------------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `Primitives` | `value`                                                                                | `"#d22730"`, `"8px"`, `"rgba(0, 0, 0, 0.05)"`                                        |
+| `Color`      | `light`, `dark` (resolved sRGB), `lightAlias`, `darkAlias`                             | `"#f5f5f5"`, `"#111111"`, `color/neutral/50`, `color/neutral/900`                    |
+| `Spatial`    | `value` (resolved px), `alias`                                                         | `"0px"`, `spatial/border-width/none`                                                 |
+| `Type`       | `desktop`, `mobile` (px), `naming: "proposed"`                                         | `"56px"`, `"40px"`. The `type.` doc prefix is not yet ratified by SOLAR              |
+| `Layout`     | `value` (px, or a unitless count for `grid/columns/*`), `alias`, `source: "solar-web"` | `"20px"`, `spatial/scale/5`. SOLAR Web's own collection, folded in for the web theme |
 
 `EffectStyle` adds `light` and `dark` as ready-to-use `box-shadow` strings plus `layers[]`
 (`x, y, blur, spread, colorVar`). `TextStyle` has `figma`, `fontFamily`, `fontWeight`,
@@ -170,8 +173,23 @@ CSS custom-property form; a reference that matches none of them is invalid.
 
 ## Regenerating
 
-Until the official export exists, the file can be regenerated with a Figma Plugin API
-script (`figma.variables.getLocalVariableCollectionsAsync()`,
-`getLocalVariablesAsync()`, `getLocalTextStylesAsync()`, `getLocalEffectStylesAsync()`)
-against file key `Y21OGpk2z6ig9cRMc5cl9L` (Biamp's original; a content-identical copy works
-too, the capture reads only local collections). Keep the same shape so diffs stay readable.
+`capture-variables.js` reproduces this file from the Foundations Figma file with the Plugin
+API. The REST variables endpoint needs the Enterprise-only `file_variables:read` scope, so the
+capture cannot run from `solar:sync`; it is a deliberate action:
+
+1. Run the script inside the file (key `Y21OGpk2z6ig9cRMc5cl9L`). Through the Figma MCP
+   `use_figma` tool the 20 KB output limit means three calls with `CAPTURE_OFF` = 0, 14000,
+   28000 and `CAPTURE_LIM` = 14000; save each result `{total, off, text}` as a JSON file in one
+   directory.
+2. `node docs/solar/tokens/compare-capture.mjs <that directory>` prints every token that
+   differs, or `identical (semantically)`.
+3. If it differs, assemble the slices into `figma-variables.json` (keep the `$schema-note` and
+   `source.capturedFrom`), run `npm run solar:tokens`, and review the affected chapters.
+
+Last verification: 2026-09-21 against Biamp's original file, file version
+`2397931579128493119`: identical in every primitive, colour, spatial, type variable, text
+style and effect style.
+
+The SOLAR Web `Layout` collection is captured the same way from the Web file (key
+`OGvmMNnywH7JWDyEhOzjcc`, `getLocalVariableCollectionsAsync()`), into
+[`../../solar-web/tokens/layout-variables.json`](../../solar-web/tokens/layout-variables.json).

@@ -263,7 +263,81 @@
             "{Color:action/primary/icon/default}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/tertiary/icon/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "VERTICAL",
+                  "align": "CENTER/MIN"
+                }
+              },
+              "/Button": {
+                "hidden": null,
+                "variant": {
+                  "size": "md",
+                  "prio": "primary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  431,
+                  40
+                ],
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/default}"
+                ],
+                "effectStyle": "shadow/control",
+                "vars": {
+                  "itemSpacing": null
+                }
+              },
+              "/Button#2": {
+                "size": [
+                  431,
+                  40
+                ],
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER"
+                },
+                "vars": {
+                  "itemSpacing": null
+                }
+              },
+              "/Button#3": {
+                "hidden": true,
+                "variant": {
+                  "size": "md",
+                  "prio": "tertiary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  431,
+                  40
+                ],
+                "layout": {
+                  "align": "SPACE_BETWEEN/CENTER",
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": null,
+                "strokes": [
+                  "{Color:action/tertiary/border/default}"
+                ],
+                "effectStyle": null,
+                "vars": {
+                  "itemSpacing": null
+                }
+              }
+            }
+          }
         },
         {
           "variant": "orientation=horizontal, type=full-width",
@@ -286,7 +360,126 @@
             "Counter",
             "Icon/None",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    0,
+                    0,
+                    0,
+                    0
+                  ]
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": null,
+                  "paddingTop": null,
+                  "paddingRight": null,
+                  "paddingBottom": null,
+                  "strokeTopWeight": "Spatial:border/default"
+                }
+              },
+              "/Button": {
+                "hidden": null,
+                "variant": {
+                  "size": "xl",
+                  "prio": "secondary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  228,
+                  48
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    20,
+                    0,
+                    20
+                  ],
+                  "align": "SPACE_BETWEEN/CENTER",
+                  "sizing": "FILL/FIXED"
+                },
+                "fills": [
+                  "{Color:action/secondary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/secondary/border/default}"
+                ],
+                "strokeWeight": 0,
+                "radius": null,
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/lg",
+                  "paddingRight": "Spatial:inset/lg",
+                  "strokeTopWeight": "Spatial:border/none",
+                  "strokeBottomWeight": "Spatial:border/none",
+                  "strokeLeftWeight": "Spatial:border/none",
+                  "strokeRightWeight": "Spatial:border/none",
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              },
+              "/Button#2": {
+                "variant": {
+                  "size": "xl",
+                  "prio": "primary",
+                  "state": "default",
+                  "danger": "false"
+                },
+                "size": [
+                  228,
+                  48
+                ],
+                "layout": {
+                  "gap": 12,
+                  "pad": [
+                    0,
+                    20,
+                    0,
+                    20
+                  ],
+                  "align": "SPACE_BETWEEN/CENTER"
+                },
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ],
+                "strokes": [
+                  "{Color:action/primary/border/default}"
+                ],
+                "strokeWeight": 0,
+                "radius": null,
+                "effectStyle": null,
+                "vars": {
+                  "itemSpacing": null,
+                  "paddingLeft": "Spatial:inset/lg",
+                  "paddingRight": "Spatial:inset/lg",
+                  "strokeTopWeight": "Spatial:border/none",
+                  "strokeBottomWeight": "Spatial:border/none",
+                  "strokeLeftWeight": "Spatial:border/none",
+                  "strokeRightWeight": "Spatial:border/none",
+                  "topLeftRadius": "Spatial:radius/none",
+                  "topRightRadius": "Spatial:radius/none",
+                  "bottomLeftRadius": "Spatial:radius/none",
+                  "bottomRightRadius": "Spatial:radius/none"
+                }
+              }
+            },
+            "removed": [
+              "/Button#3"
+            ]
+          }
         }
       ]
     }

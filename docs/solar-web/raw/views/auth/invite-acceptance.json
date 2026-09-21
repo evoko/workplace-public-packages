@@ -383,7 +383,50 @@
             "{Color:icon/tertiary}",
             "{Primitives:color/brand/white}",
             "{Primitives:color/brand/red}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "pad": [
+                    24,
+                    16,
+                    24,
+                    16
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "width": "Layout:breakpoint/xs"
+                }
+              },
+              "/Center Stack": {
+                "size": [
+                  361,
+                  269
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Center Stack/You're invited to App Name": {
+                "size": [
+                  220,
+                  13
+                ]
+              },
+              "/Center Stack/Container": {
+                "size": [
+                  361,
+                  150
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              }
+            }
+          }
         }
       ]
     }

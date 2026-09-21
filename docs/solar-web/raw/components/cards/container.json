@@ -108,7 +108,27 @@
           "strokes": [
             "{Color:border/subtle}"
           ],
-          "effect": "shadow/overlay"
+          "effect": "shadow/overlay",
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:surface/raised}"
+                ],
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "strokeWeight": 1,
+                "effectStyle": "shadow/overlay",
+                "vars": {
+                  "strokeTopWeight": "Spatial:border/default",
+                  "strokeBottomWeight": "Spatial:border/default",
+                  "strokeLeftWeight": "Spatial:border/default",
+                  "strokeRightWeight": "Spatial:border/default"
+                }
+              }
+            }
+          }
         }
       ]
     }

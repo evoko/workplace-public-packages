@@ -149,7 +149,17 @@
           ],
           "iconFills": [
             "{Color:icon/link/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "textStyle": "link/lg/hover",
+                "fills": [
+                  "{Color:text/link/hover}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=pressed",
@@ -162,7 +172,16 @@
           ],
           "iconFills": [
             "{Color:icon/link/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "fills": [
+                  "{Color:text/link/active}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=disabled",
@@ -176,7 +195,19 @@
           ],
           "iconFills": [
             "{Color:icon/link/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "opacity": 0.5
+              },
+              "/Label": {
+                "fills": [
+                  "{Color:text/link/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, state=focus",
@@ -202,7 +233,40 @@
           ],
           "iconFills": [
             "{Color:icon/link/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": "link/md/default",
+                "size": [
+                  55,
+                  10
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=hover",
@@ -215,7 +279,43 @@
           ],
           "iconFills": [
             "{Color:icon/link/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": "link/md/hover",
+                "size": [
+                  55,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/link/hover}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=pressed",
@@ -228,7 +328,43 @@
           ],
           "iconFills": [
             "{Color:icon/link/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": "link/md/default",
+                "size": [
+                  55,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/link/active}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=disabled",
@@ -242,7 +378,46 @@
           ],
           "iconFills": [
             "{Color:icon/link/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "opacity": 0.5
+              },
+              "/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": "link/md/default",
+                "size": [
+                  55,
+                  10
+                ],
+                "fills": [
+                  "{Color:text/link/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, state=focus",
@@ -255,7 +430,40 @@
           ],
           "iconFills": [
             "{Color:icon/link/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon/None": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": "link/md/default",
+                "size": [
+                  55,
+                  10
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  16,
+                  16
+                ],
+                "vars": {
+                  "width": "Spatial:icon/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, state=default",
@@ -268,7 +476,42 @@
           ],
           "iconFills": [
             "{Color:icon/link/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon/None": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "width": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": null,
+                "size": [
+                  48,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type(local):line-height/body/xs",
+                  "fontSize": "Type(local):size/body/xs"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "width": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, state=hover",
@@ -281,7 +524,45 @@
           ],
           "iconFills": [
             "{Color:icon/link/hover}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon/None": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "width": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": null,
+                "size": [
+                  48,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/link/hover}"
+                ],
+                "vars": {
+                  "lineHeight": "Type(local):line-height/body/xs",
+                  "fontSize": "Type(local):size/body/xs"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "width": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, state=pressed",
@@ -294,7 +575,45 @@
           ],
           "iconFills": [
             "{Color:icon/link/active}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon/None": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "width": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": null,
+                "size": [
+                  48,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/link/active}"
+                ],
+                "vars": {
+                  "lineHeight": "Type(local):line-height/body/xs",
+                  "fontSize": "Type(local):size/body/xs"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "width": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, state=disabled",
@@ -308,7 +627,48 @@
           ],
           "iconFills": [
             "{Color:icon/link/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "opacity": 0.5
+              },
+              "/Icon/None": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "width": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": null,
+                "size": [
+                  48,
+                  9
+                ],
+                "fills": [
+                  "{Color:text/link/disabled}"
+                ],
+                "vars": {
+                  "lineHeight": "Type(local):line-height/body/xs",
+                  "fontSize": "Type(local):size/body/xs"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "width": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=xs, state=focus",
@@ -321,7 +681,42 @@
           ],
           "iconFills": [
             "{Color:icon/link/default}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Icon/None": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "width": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              },
+              "/Label": {
+                "textStyle": null,
+                "size": [
+                  48,
+                  9
+                ],
+                "vars": {
+                  "lineHeight": "Type(local):line-height/body/xs",
+                  "fontSize": "Type(local):size/body/xs"
+                }
+              },
+              "/Icon/None#2": {
+                "size": [
+                  12,
+                  12
+                ],
+                "vars": {
+                  "width": "Spatial:icon/xs",
+                  "itemSpacing": "Spatial:stack/sm"
+                }
+              }
+            }
+          }
         }
       ]
     }

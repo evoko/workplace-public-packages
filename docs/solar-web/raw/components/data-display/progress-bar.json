@@ -73,7 +73,20 @@
           ],
           "fills": [
             "{Color:surface/muted}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Indicator": {
+                "size": [
+                  120,
+                  6
+                ],
+                "fills": [
+                  "{Color:surface/feedback/info/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "feedback=success",
@@ -83,7 +96,20 @@
           ],
           "fills": [
             "{Color:surface/muted}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Indicator": {
+                "size": [
+                  200,
+                  6
+                ],
+                "fills": [
+                  "{Color:surface/feedback/success/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "feedback=warning",
@@ -93,7 +119,20 @@
           ],
           "fills": [
             "{Color:surface/muted}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Indicator": {
+                "size": [
+                  180,
+                  6
+                ],
+                "fills": [
+                  "{Color:surface/feedback/warning/strong}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "feedback=danger",
@@ -103,7 +142,20 @@
           ],
           "fills": [
             "{Color:surface/muted}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Indicator": {
+                "size": [
+                  190,
+                  6
+                ],
+                "fills": [
+                  "{Color:surface/feedback/danger/strong}"
+                ]
+              }
+            }
+          }
         }
       ]
     }

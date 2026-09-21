@@ -643,7 +643,75 @@
             "Supporting",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  150
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    8,
+                    16,
+                    0,
+                    16
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Body": {
+                "size": [
+                  377,
+                  1242
+                ],
+                "layout": {
+                  "dir": "VERTICAL",
+                  "pad": [
+                    16,
+                    16,
+                    16,
+                    16
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              }
+            },
+            "added": [
+              "/Body/Card / Details",
+              "/Body/Card / Recent activity",
+              "/Body/Card / Description",
+              "/Body/Card / Owner",
+              "/Body/Card / Metadata",
+              "/Body/Card / Quick actions",
+              "/Body/Card / Related"
+            ],
+            "removed": [
+              "/Body/Main",
+              "/Body/Main/Card / Details",
+              "/Body/Main/Card / Recent activity",
+              "/Body/Main/Card / Description",
+              "/Body/Side rail",
+              "/Body/Side rail/Card / Owner",
+              "/Body/Side rail/Card / Metadata",
+              "/Body/Side rail/Card / Quick actions",
+              "/Body/Side rail/Card / Related"
+            ]
+          }
         }
       ]
     }

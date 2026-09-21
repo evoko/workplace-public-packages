@@ -756,7 +756,94 @@
             "Icon/None",
             "Icon/Refresh",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "radius": 8,
+                "vars": {
+                  "topLeftRadius": null,
+                  "topRightRadius": null,
+                  "bottomLeftRadius": null,
+                  "bottomRightRadius": null
+                }
+              },
+              "/SearchHeader": {
+                "vars": {
+                  "strokeBottomWeight": null
+                }
+              },
+              "/SearchHeader/GlobalSearch": {
+                "variant": {
+                  "state": "filled",
+                  "size": "md"
+                },
+                "strokes": [
+                  "{Color:border/subtle}"
+                ],
+                "effectStyle": null
+              },
+              "/SearchHeader/FilterChips": {
+                "size": [
+                  69,
+                  24
+                ],
+                "layout": {
+                  "gap": 8
+                },
+                "vars": null
+              },
+              "/SearchHeader/FilterChips/Tag": {
+                "variant": {
+                  "status": "info",
+                  "type": "status",
+                  "invert": "false"
+                },
+                "size": [
+                  69,
+                  24
+                ],
+                "layout": {
+                  "gap": 8,
+                  "pad": [
+                    0,
+                    12,
+                    0,
+                    8
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/sm"
+                }
+              }
+            },
+            "added": [
+              "/EmptyBody",
+              "/EmptyBody/EmptyState"
+            ],
+            "removed": [
+              "/SearchHeader/FilterChips/Tag#2",
+              "/SearchHeader/FilterChips/Tag#3",
+              "/ResultsBody",
+              "/ResultsBody/Dropdown Group Label",
+              "/ResultsBody/Dropdown Group Label/Category Name",
+              "/ResultsBody/Dropdown Group Label/Link",
+              "/ResultsBody/ResultRow",
+              "/ResultsBody/ResultRow#2",
+              "/ResultsBody/ResultRow#3",
+              "/ResultsBody/Dropdown Group Label#2",
+              "/ResultsBody/Dropdown Group Label#2/Category Name",
+              "/ResultsBody/Dropdown Group Label#2/Link",
+              "/ResultsBody/ResultRow#4",
+              "/ResultsBody/ResultRow#5",
+              "/ResultsBody/ResultRow#6"
+            ]
+          }
         },
         {
           "variant": "state=ghost",
@@ -768,7 +855,73 @@
             "{Color:surface/overlay}"
           ],
           "effect": "shadow/dialog",
-          "hidden": []
+          "hidden": [],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "radius": 8,
+                "vars": null
+              }
+            },
+            "added": [
+              "/Frame",
+              "/Frame/Rectangle",
+              "/Frame/Frame",
+              "/Frame/Frame/Rectangle",
+              "/Frame/Frame/Rectangle#2",
+              "/Frame/Frame/Rectangle#3",
+              "/Frame#2",
+              "/Frame#2/Frame",
+              "/Frame#2/Frame/Rectangle",
+              "/Frame#2/Frame/Frame",
+              "/Frame#2/Frame/Frame/Rectangle",
+              "/Frame#2/Frame/Frame/Rectangle#2",
+              "/Frame#2/Frame#2",
+              "/Frame#2/Frame#2/Rectangle",
+              "/Frame#2/Frame#2/Frame",
+              "/Frame#2/Frame#2/Frame/Rectangle",
+              "/Frame#2/Frame#2/Frame/Rectangle#2",
+              "/Frame#2/Frame#3",
+              "/Frame#2/Frame#3/Rectangle",
+              "/Frame#2/Frame#3/Frame",
+              "/Frame#2/Frame#3/Frame/Rectangle",
+              "/Frame#2/Frame#3/Frame/Rectangle#2",
+              "/Frame#2/Frame#4",
+              "/Frame#2/Frame#4/Rectangle",
+              "/Frame#2/Frame#4/Frame",
+              "/Frame#2/Frame#4/Frame/Rectangle",
+              "/Frame#2/Frame#4/Frame/Rectangle#2",
+              "/Frame#2/Frame#5",
+              "/Frame#2/Frame#5/Rectangle",
+              "/Frame#2/Frame#5/Frame",
+              "/Frame#2/Frame#5/Frame/Rectangle",
+              "/Frame#2/Frame#5/Frame/Rectangle#2"
+            ],
+            "removed": [
+              "/SearchHeader",
+              "/SearchHeader/GlobalSearch",
+              "/SearchHeader/FilterChips",
+              "/SearchHeader/FilterChips/Tag",
+              "/SearchHeader/FilterChips/Tag#2",
+              "/SearchHeader/FilterChips/Tag#3",
+              "/ResultsBody",
+              "/ResultsBody/Dropdown Group Label",
+              "/ResultsBody/Dropdown Group Label/Category Name",
+              "/ResultsBody/Dropdown Group Label/Link",
+              "/ResultsBody/ResultRow",
+              "/ResultsBody/ResultRow#2",
+              "/ResultsBody/ResultRow#3",
+              "/ResultsBody/Dropdown Group Label#2",
+              "/ResultsBody/Dropdown Group Label#2/Category Name",
+              "/ResultsBody/Dropdown Group Label#2/Link",
+              "/ResultsBody/ResultRow#4",
+              "/ResultsBody/ResultRow#5",
+              "/ResultsBody/ResultRow#6"
+            ]
+          }
         },
         {
           "variant": "state=empty",
@@ -795,7 +948,47 @@
             "Counter",
             "Icon/None",
             "Spinner"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN"
+                },
+                "radius": 8,
+                "vars": null
+              }
+            },
+            "added": [
+              "/Frame",
+              "/Frame/Frame",
+              "/Frame/Frame/Search",
+              "/Frame#2",
+              "/Frame#2/EmptyBody",
+              "/Frame#2/EmptyBody/EmptyState"
+            ],
+            "removed": [
+              "/SearchHeader",
+              "/SearchHeader/GlobalSearch",
+              "/SearchHeader/FilterChips",
+              "/SearchHeader/FilterChips/Tag",
+              "/SearchHeader/FilterChips/Tag#2",
+              "/SearchHeader/FilterChips/Tag#3",
+              "/ResultsBody",
+              "/ResultsBody/Dropdown Group Label",
+              "/ResultsBody/Dropdown Group Label/Category Name",
+              "/ResultsBody/Dropdown Group Label/Link",
+              "/ResultsBody/ResultRow",
+              "/ResultsBody/ResultRow#2",
+              "/ResultsBody/ResultRow#3",
+              "/ResultsBody/Dropdown Group Label#2",
+              "/ResultsBody/Dropdown Group Label#2/Category Name",
+              "/ResultsBody/Dropdown Group Label#2/Link",
+              "/ResultsBody/ResultRow#4",
+              "/ResultsBody/ResultRow#5",
+              "/ResultsBody/ResultRow#6"
+            ]
+          }
         }
       ]
     }

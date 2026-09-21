@@ -26,3 +26,15 @@ Source: Figma file `SOLAR Foundations [v1--2026]` (key `Y21OGpk2z6ig9cRMc5cl9L`)
 | [16-governance-validation.md](16-governance-validation.md)     | [documentation/governance](figma-pages/documentation/governance.md), [meta/lint-plugin](figma-pages/meta/lint-plugin.md), [meta/changelog](figma-pages/meta/changelog.md)                                                                            | ✅ in sync | 2026-09-21 |
 | [17-implementation-pipeline.md](17-implementation-pipeline.md) | [documentation/implementation-guidelines](figma-pages/documentation/implementation-guidelines.md), [documentation/execution-impact](figma-pages/documentation/execution-impact.md), [meta/directory](figma-pages/meta/directory.md)                  | ✅ in sync | 2026-09-21 |
 | [18-agent-reference.md](18-agent-reference.md)                 | [documentation/agentic-reference](figma-pages/documentation/agentic-reference.md), `page-context`                                                                                                                                                    | ✅ in sync | 2026-09-21 |
+
+## Primitives pages vs `tokens/figma-variables.json`
+
+Swatches on the primitives pages carry a name and a hex; token tables carry a name and a value. Both are looked up in the token inventory on every build. A mismatch here means Figma changed a primitive and the deliberate capture (`tokens/capture-variables.js`) has not been re-run.
+
+- Colour swatches: 98 of 100 match a primitive by hex; **2 do not**.
+- No token tables were recognised on the primitives pages (the scale sheets use column instances, not row frames); only swatches are checked.
+
+A swatch mismatch where the rendered colour equals another primitive means the label text on the Figma page is wrong, not the variable; report it to the SOLAR team.
+
+- ⚠️ primitives/color: 300 · #878787 (rendered #a8a8a8)
+- ⚠️ primitives/color: 600 · #C39900 (rendered #24791d)

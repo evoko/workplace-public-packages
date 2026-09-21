@@ -174,7 +174,25 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Control": {
+                "main": "Radio",
+                "variant": {
+                  "state": "default",
+                  "checked": "false"
+                },
+                "radius": 9999,
+                "vars": {
+                  "topLeftRadius": "Spatial:radius/pill",
+                  "topRightRadius": "Spatial:radius/pill",
+                  "bottomLeftRadius": "Spatial:radius/pill",
+                  "bottomRightRadius": "Spatial:radius/pill"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "Variant=Toggle",
@@ -185,7 +203,35 @@
           "textFills": [
             "{Color:text/primary}",
             "{Color:text/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Text": {
+                "size": [
+                  280,
+                  27
+                ]
+              },
+              "/Text/Label": {
+                "size": [
+                  280,
+                  10
+                ]
+              },
+              "/Text/Description": {
+                "size": [
+                  280,
+                  9
+                ]
+              }
+            },
+            "added": [
+              "/Toggle"
+            ],
+            "removed": [
+              "/Control"
+            ]
+          }
         }
       ]
     }

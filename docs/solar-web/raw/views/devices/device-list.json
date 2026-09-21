@@ -255,7 +255,68 @@
             "RowExpand",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "align": "MIN/MIN",
+                  "sizing": "HUG/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/base}"
+                ],
+                "radius": null,
+                "vars": null
+              },
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  97
+                ],
+                "layout": {
+                  "pad": [
+                    8,
+                    12,
+                    0,
+                    12
+                  ],
+                  "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/sm",
+                  "paddingRight": "Spatial:stack/sm"
+                }
+              },
+              "/DataTable": {
+                "variant": {
+                  "breakpoint": "mobile",
+                  "state": "default"
+                },
+                "size": [
+                  377,
+                  752
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    8,
+                    0,
+                    8
+                  ],
+                  "sizing": "FILL/FIXED"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:stack/xs",
+                  "paddingRight": "Spatial:stack/xs"
+                }
+              }
+            }
+          }
         }
       ]
     }

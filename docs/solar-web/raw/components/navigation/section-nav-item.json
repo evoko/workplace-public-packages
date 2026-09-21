@@ -136,7 +136,25 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/hover}"
+                ]
+              },
+              "/Label": {
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=focus",
@@ -150,7 +168,20 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                },
+                "effectStyle": "shadow/focus/default"
+              },
+              "/Label": {
+                "sizing": "FILL/HUG"
+              }
+            }
+          }
         },
         {
           "variant": "state=selected",
@@ -166,7 +197,25 @@
           ],
           "iconFills": [
             "{Color:icon/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                },
+                "fills": [
+                  "{Color:surface/active}"
+                ]
+              },
+              "/Label": {
+                "sizing": "FILL/HUG",
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "state=disabled",
@@ -180,7 +229,20 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "sizing": "FIXED/FIXED"
+                },
+                "opacity": 0.4000000059604645
+              },
+              "/Label": {
+                "sizing": "FILL/HUG"
+              }
+            }
+          }
         }
       ]
     }

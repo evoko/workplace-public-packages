@@ -98,7 +98,16 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=link, state=disabled",
@@ -108,7 +117,16 @@
           ],
           "textFills": [
             "{Color:text/disabled}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "fills": [
+                  "{Color:text/disabled}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "type=current, state=default",
@@ -118,7 +136,16 @@
           ],
           "textFills": [
             "{Color:text/primary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Label": {
+                "fills": [
+                  "{Color:text/primary}"
+                ]
+              }
+            }
+          }
         }
       ]
     },
@@ -324,7 +351,13 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "removed": [
+              "/item-2",
+              "/Icon/ChevronRight#2"
+            ]
+          }
         },
         {
           "variant": "items=3",
@@ -338,7 +371,17 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/item-2": {
+                "size": [
+                  36,
+                  10
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "items=4",
@@ -352,7 +395,21 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/item-2": {
+                "size": [
+                  36,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/item-3",
+              "/Icon/ChevronRight#3"
+            ]
+          }
         },
         {
           "variant": "items=5",
@@ -366,7 +423,23 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/item-2": {
+                "size": [
+                  36,
+                  10
+                ]
+              }
+            },
+            "added": [
+              "/item-3",
+              "/Icon/ChevronRight#3",
+              "/item-4",
+              "/Icon/ChevronRight#4"
+            ]
+          }
         }
       ]
     }

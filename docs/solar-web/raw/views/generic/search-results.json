@@ -477,7 +477,123 @@
             "Tabs",
             "Tag",
             "TrailingIcon"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Page Header": {
+                "variant": {
+                  "type": "left-aligned",
+                  "breakpoint": "mobile"
+                },
+                "size": [
+                  377,
+                  79
+                ],
+                "layout": {
+                  "gap": 0,
+                  "pad": [
+                    8,
+                    16,
+                    0,
+                    16
+                  ]
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:stack/none",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Container": {
+                "size": [
+                  377,
+                  610
+                ],
+                "layout": {
+                  "pad": [
+                    0,
+                    16,
+                    0,
+                    16
+                  ],
+                  "sizing": "FILL/FILL"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
+                }
+              },
+              "/Container/Search Results Item": {
+                "size": [
+                  345,
+                  147
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Container/Search Results Item#2": {
+                "size": [
+                  345,
+                  107
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Container/Search Results Item#3": {
+                "size": [
+                  345,
+                  107
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Container/Search Results Item#4": {
+                "size": [
+                  345,
+                  107
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Container/Search Results Item#5": {
+                "size": [
+                  345,
+                  147
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Container/Search Results Item#6": {
+                "size": [
+                  345,
+                  107
+                ],
+                "layout": {
+                  "sizing": "FILL/HUG"
+                }
+              },
+              "/Footer": {
+                "size": [
+                  377,
+                  56
+                ]
+              },
+              "/Footer/Container": {
+                "size": [
+                  377,
+                  40
+                ]
+              }
+            },
+            "removed": [
+              "/Footer/Container/Showing 1–10 of 128"
+            ]
+          }
         }
       ]
     }

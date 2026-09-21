@@ -160,7 +160,42 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Tooltip Content": {
+                "size": [
+                  60,
+                  34
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Tooltip Content/Content": {
+                "textStyle": "body/md/medium",
+                "size": [
+                  36,
+                  10
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, position=right",
@@ -170,7 +205,22 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                }
+              },
+              "/arrow": {
+                "size": [
+                  3,
+                  7
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, position=right",
@@ -180,7 +230,53 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                }
+              },
+              "/arrow": {
+                "size": [
+                  3,
+                  7
+                ]
+              },
+              "/Tooltip Content": {
+                "size": [
+                  60,
+                  34
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Tooltip Content/Content": {
+                "textStyle": "body/md/medium",
+                "size": [
+                  36,
+                  10
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, position=bottom",
@@ -200,7 +296,42 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Tooltip Content": {
+                "size": [
+                  60,
+                  34
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Tooltip Content/Content": {
+                "textStyle": "body/md/medium",
+                "size": [
+                  36,
+                  10
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              }
+            }
+          }
         },
         {
           "variant": "size=sm, position=left",
@@ -210,7 +341,22 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                }
+              },
+              "/arrow": {
+                "size": [
+                  3,
+                  7
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "size=md, position=left",
@@ -220,7 +366,53 @@
           ],
           "textFills": [
             "{Color:text/inverse}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "layout": {
+                  "dir": "HORIZONTAL"
+                }
+              },
+              "/Tooltip Content": {
+                "size": [
+                  60,
+                  34
+                ],
+                "layout": {
+                  "pad": [
+                    12,
+                    12,
+                    12,
+                    12
+                  ]
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/sm",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/sm",
+                  "paddingBottom": "Spatial:inset/sm"
+                }
+              },
+              "/Tooltip Content/Content": {
+                "textStyle": "body/md/medium",
+                "size": [
+                  36,
+                  10
+                ],
+                "vars": {
+                  "lineHeight": "Type:line-height/body/md",
+                  "fontSize": "Type:size/body/md"
+                }
+              },
+              "/arrow": {
+                "size": [
+                  3,
+                  7
+                ]
+              }
+            }
+          }
         }
       ]
     }

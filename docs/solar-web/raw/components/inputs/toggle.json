@@ -103,7 +103,21 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Thumb": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=false, state=disabled",
@@ -116,7 +130,18 @@
           ],
           "strokes": [
             "{Color:border/subtle}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/Thumb": {
+                "fills": [
+                  "{Color:action/primary/icon/disabled}"
+                ],
+                "strokes": null,
+                "strokeWeight": null
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, state=default",
@@ -129,7 +154,16 @@
           ],
           "strokes": [
             "{Color:border/subtle}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/default}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, state=hover",
@@ -142,7 +176,24 @@
           ],
           "strokes": [
             "{Color:border/medium}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/hover}"
+                ],
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              },
+              "/Thumb": {
+                "strokes": [
+                  "{Color:border/medium}"
+                ]
+              }
+            }
+          }
         },
         {
           "variant": "selected=true, state=disabled",
@@ -155,7 +206,23 @@
           ],
           "strokes": [
             "{Color:border/subtle}"
-          ]
+          ],
+          "overrides": {
+            "changed": {
+              "/": {
+                "fills": [
+                  "{Color:action/primary/bg/disabled}"
+                ]
+              },
+              "/Thumb": {
+                "fills": [
+                  "{Color:action/primary/icon/disabled}"
+                ],
+                "strokes": null,
+                "strokeWeight": null
+              }
+            }
+          }
         }
       ]
     }
