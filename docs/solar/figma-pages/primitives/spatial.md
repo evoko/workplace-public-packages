@@ -1,6 +1,6 @@
 # Spatial
 
-> Verbatim text of the Figma page `Spatial` (id `27:298`, section primitives, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `f11777fc454c`. Curated chapter: [12-spatial-borders-radius.md](../../12-spatial-borders-radius.md).
+> Verbatim text of the Figma page `Spatial` (id `27:298`, section primitives, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `6728940bf23a`. Curated chapter: [12-spatial-borders-radius.md](../../12-spatial-borders-radius.md).
 
 ## Size Scale
 
@@ -14,95 +14,95 @@ Using a shared size scale helps maintain visual balance and alignment across pro
 
 **Value, px**
 
-****MAJOR****
+****spatial/scale/0****
 
 **0**
 
-****MAJOR****
+****spatial/scale/1****
 
 **4**
 
-****MAJOR****
+****spatial/scale/2****
 
 **8**
 
-****MAJOR****
+****spatial/scale/3****
 
 **12**
 
-****MAJOR****
+****spatial/scale/4****
 
 **16**
 
-****MAJOR****
+****spatial/scale/5****
 
 **20**
 
-****MAJOR****
+****spatial/scale/6****
 
 **24**
 
-****MAJOR****
+****spatial/scale/7****
 
 **28**
 
-****MAJOR****
+****spatial/scale/8****
 
 **32**
 
-****MAJOR****
+****spatial/scale/9****
 
 **36**
 
-****MAJOR****
+****spatial/scale/10****
 
 **40**
 
-****MAJOR****
+****spatial/scale/11****
 
 **44**
 
-****MAJOR****
+****spatial/scale/12****
 
 **48**
 
-****MAJOR****
+****spatial/scale/13****
 
 **52**
 
-****MAJOR****
+****spatial/scale/14****
 
 **56**
 
-****MAJOR****
+****spatial/scale/15****
 
 **64**
 
-****MAJOR****
+****spatial/scale/16****
 
 **72**
 
-****MAJOR****
+****spatial/scale/17****
 
 **80**
 
-****MAJOR****
+****spatial/scale/18****
 
 **96**
 
-****MAJOR****
+****spatial/scale/19****
 
 **112**
 
-****MAJOR****
+****spatial/scale/20****
 
 **128**
 
-****MAJOR****
+****spatial/scale/21****
 
 **144**
 
-****MAJOR****
+****spatial/scale/22****
 
 **160**
 
@@ -118,19 +118,19 @@ Border width values should be applied through semantic tokens such as component 
 
 **Width, px**
 
-****MAJOR****
+****spatial/border-width/none****
 
 **0**
 
-****MAJOR****
+****spatial/border-width/sm****
 
 **1**
 
-****MAJOR****
+****spatial/border-width/md****
 
 **2**
 
-****MAJOR****
+****spatial/border-width/lg****
 
 **4**
 
@@ -144,27 +144,27 @@ Using a shared radius scale helps maintain a cohesive visual language and predic
 
 **Radius, px**
 
-****MAJOR****
+****spatial/border-radius/none****
 
 **0**
 
-****MAJOR****
+****spatial/border-radius/sm****
 
 **4**
 
-****MAJOR****
+****spatial/border-radius/md****
 
 **6**
 
-****MAJOR****
+****spatial/border-radius/lg****
 
 **8**
 
-****MAJOR****
+****spatial/border-radius/xl****
 
 **12**
 
-****MAJOR****
+****spatial/border-radius/full****
 
 **9999**
 
@@ -180,23 +180,23 @@ Using shared viewport tokens ensures responsive layouts remain aligned across pr
 
 **Width, px**
 
-****MAJOR****
+****viewport/xs****
 
 **393**
 
-****MAJOR****
+****viewport/sm****
 
 **768**
 
-****MAJOR****
+****viewport/md****
 
 **1024**
 
-****MAJOR****
+****viewport/lg****
 
 **1440**
 
-****MAJOR****
+****viewport/xl****
 
 **1920**
 
@@ -212,47 +212,59 @@ Using inset tokens helps maintain balanced layouts and predictable component siz
 
 **Value**
 
-****MAJOR****
+****inset/none****
 
-****MAJOR****
+****spatial/scale/0****
 
 **0px**
 
-****MAJOR****
+****inset/2xs****
 
-****MAJOR****
+****spatial/scale/1****
 
 **4px**
 
-****MAJOR****
+****inset/xs****
 
-****MAJOR****
+****spatial/scale/2****
 
 **8px**
 
-****MAJOR****
+****inset/sm****
 
-****MAJOR****
+****spatial/scale/3****
 
 **12px**
 
-****MAJOR****
+****inset/md****
 
-****MAJOR****
+****spatial/scale/4****
 
 **16px**
 
-****MAJOR****
+****inset/lg****
 
-****MAJOR****
+****spatial/scale/5****
+
+**20px**
+
+****inset/xl****
+
+****spatial/scale/6****
 
 **24px**
 
-****MAJOR****
+****inset/2xl****
 
-****MAJOR****
+****spatial/scale/7****
 
-**32px**
+**28px**
+
+****inset/3xl****
+
+****spatial/scale/10****
+
+**40px**
 
 ## Spatial / Stack
 
@@ -266,131 +278,151 @@ Using stack tokens helps maintain predictable vertical alignment and visual hier
 
 **Value**
 
-****MAJOR****
+****stack/none****
 
-****MAJOR****
+****spatial/scale/0****
 
 **0px**
 
-****MAJOR****
+****stack/2xs****
 
-****MAJOR****
+****spatial/scale/1****
 
 **4px**
 
-****MAJOR****
+****stack/xs****
 
-****MAJOR****
+****spatial/scale/2****
 
 **8px**
 
-****MAJOR****
+****stack/sm****
 
-****MAJOR****
+****spatial/scale/3****
 
 **12px**
 
-****MAJOR****
+****stack/md****
 
-****MAJOR****
+****spatial/scale/4****
 
 **16px**
 
-****MAJOR****
+****stack/lg****
 
-****MAJOR****
+****spatial/scale/5****
+
+**20px**
+
+****stack/xl****
+
+****spatial/scale/6****
 
 **24px**
 
-****MAJOR****
+****stack/2xl****
 
-****MAJOR****
+****spatial/scale/7****
 
-**32px**
+**28px**
+
+****stack/3xl****
+
+****spatial/scale/10****
+
+**40px**
 
 ## Swatches bound to variables
 
 Containers on this page whose fill is bound to a Figma variable, with their labels. Variable ids are local to the Foundations file; names come from [../../tokens/figma-variables.json](../../tokens/figma-variables.json).
 
-| Labels     | Rendered  | Variable id          |
-| ---------- | --------- | -------------------- |
-| Token      | `#f5f5f5` | `VariableID:27:723`  |
-| Value, px  | `#f5f5f5` | `VariableID:27:723`  |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| Token      | `#f5f5f5` | `VariableID:27:723`  |
-| Width, px  | `#f5f5f5` | `VariableID:27:723`  |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| Token      | `#f5f5f5` | `VariableID:27:723`  |
-| Radius, px | `#f5f5f5` | `VariableID:27:723`  |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| Token      | `#f5f5f5` | `VariableID:27:723`  |
-| Width, px  | `#f5f5f5` | `VariableID:27:723`  |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| Token      | `#f5f5f5` | `VariableID:27:723`  |
-| Base token | `#f5f5f5` | `VariableID:27:723`  |
-| Value      | `#f5f5f5` | `VariableID:27:723`  |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| Token      | `#f5f5f5` | `VariableID:27:723`  |
-| Base token | `#f5f5f5` | `VariableID:27:723`  |
-| Value      | `#f5f5f5` | `VariableID:27:723`  |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
-| MAJOR      | `#00b600` | `VariableID:34:3281` |
+| Labels                     | Rendered  | Variable id          |
+| -------------------------- | --------- | -------------------- |
+| Token                      | `#f5f5f5` | `VariableID:27:723`  |
+| Value, px                  | `#f5f5f5` | `VariableID:27:723`  |
+| spatial/scale/0            | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/1            | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/2            | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/3            | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/4            | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/5            | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/6            | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/7            | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/8            | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/9            | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/10           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/11           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/12           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/13           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/14           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/15           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/16           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/17           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/18           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/19           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/20           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/21           | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/22           | `#00b600` | `VariableID:34:3281` |
+| Token                      | `#f5f5f5` | `VariableID:27:723`  |
+| Width, px                  | `#f5f5f5` | `VariableID:27:723`  |
+| spatial/border-width/none  | `#00b600` | `VariableID:34:3281` |
+| spatial/border-width/sm    | `#00b600` | `VariableID:34:3281` |
+| spatial/border-width/md    | `#00b600` | `VariableID:34:3281` |
+| spatial/border-width/lg    | `#00b600` | `VariableID:34:3281` |
+| Token                      | `#f5f5f5` | `VariableID:27:723`  |
+| Radius, px                 | `#f5f5f5` | `VariableID:27:723`  |
+| spatial/border-radius/none | `#00b600` | `VariableID:34:3281` |
+| spatial/border-radius/sm   | `#00b600` | `VariableID:34:3281` |
+| spatial/border-radius/md   | `#00b600` | `VariableID:34:3281` |
+| spatial/border-radius/lg   | `#00b600` | `VariableID:34:3281` |
+| spatial/border-radius/xl   | `#00b600` | `VariableID:34:3281` |
+| spatial/border-radius/full | `#00b600` | `VariableID:34:3281` |
+| Token                      | `#f5f5f5` | `VariableID:27:723`  |
+| Width, px                  | `#f5f5f5` | `VariableID:27:723`  |
+| viewport/xs                | `#00b600` | `VariableID:34:3281` |
+| viewport/sm                | `#00b600` | `VariableID:34:3281` |
+| viewport/md                | `#00b600` | `VariableID:34:3281` |
+| viewport/lg                | `#00b600` | `VariableID:34:3281` |
+| viewport/xl                | `#00b600` | `VariableID:34:3281` |
+| Token                      | `#f5f5f5` | `VariableID:27:723`  |
+| Base token                 | `#f5f5f5` | `VariableID:27:723`  |
+| Value                      | `#f5f5f5` | `VariableID:27:723`  |
+| inset/none                 | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/0            | `#00b600` | `VariableID:34:3281` |
+| inset/2xs                  | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/1            | `#00b600` | `VariableID:34:3281` |
+| inset/xs                   | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/2            | `#00b600` | `VariableID:34:3281` |
+| inset/sm                   | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/3            | `#00b600` | `VariableID:34:3281` |
+| inset/md                   | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/4            | `#00b600` | `VariableID:34:3281` |
+| inset/lg                   | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/5            | `#00b600` | `VariableID:34:3281` |
+| inset/xl                   | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/6            | `#00b600` | `VariableID:34:3281` |
+| inset/2xl                  | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/7            | `#00b600` | `VariableID:34:3281` |
+| inset/3xl                  | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/10           | `#00b600` | `VariableID:34:3281` |
+| Token                      | `#f5f5f5` | `VariableID:27:723`  |
+| Base token                 | `#f5f5f5` | `VariableID:27:723`  |
+| Value                      | `#f5f5f5` | `VariableID:27:723`  |
+| stack/none                 | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/0            | `#00b600` | `VariableID:34:3281` |
+| stack/2xs                  | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/1            | `#00b600` | `VariableID:34:3281` |
+| stack/xs                   | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/2            | `#00b600` | `VariableID:34:3281` |
+| stack/sm                   | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/3            | `#00b600` | `VariableID:34:3281` |
+| stack/md                   | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/4            | `#00b600` | `VariableID:34:3281` |
+| stack/lg                   | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/5            | `#00b600` | `VariableID:34:3281` |
+| stack/xl                   | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/6            | `#00b600` | `VariableID:34:3281` |
+| stack/2xl                  | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/7            | `#00b600` | `VariableID:34:3281` |
+| stack/3xl                  | `#00b600` | `VariableID:34:3281` |
+| spatial/scale/10           | `#00b600` | `VariableID:34:3281` |

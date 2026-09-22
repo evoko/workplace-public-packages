@@ -728,28 +728,28 @@
       "section": "patterns/layout-shell",
       "slug": "shell-tier-1-workplace",
       "id": "6400:4",
-      "title": "Shell Tier 1 \u00b7 Workplace",
+      "title": "Shell Tier 1 · Workplace",
       "status": "done"
     },
     {
       "section": "patterns/layout-shell",
       "slug": "shell-tier-2-canvas-app",
       "id": "6400:5",
-      "title": "Shell Tier 2 \u00b7 Canvas app",
+      "title": "Shell Tier 2 · Canvas app",
       "status": "done"
     },
     {
       "section": "patterns/layout-shell",
       "slug": "shell-tier-3-config-app",
       "id": "6400:6",
-      "title": "Shell Tier 3 \u00b7 Config app (Chatter Config)",
+      "title": "Shell Tier 3 · Config app (Chatter Config)",
       "status": "done"
     },
     {
       "section": "patterns/layout-shell",
       "slug": "shell-tier-4-client-app",
       "id": "6400:7",
-      "title": "Shell Tier 4 \u00b7 Client app (Chatter)",
+      "title": "Shell Tier 4 · Client app (Chatter)",
       "status": "done"
     },
     {
@@ -922,14 +922,14 @@
       "section": "views/auth",
       "slug": "sign-in",
       "id": "2966:641",
-      "title": "Auth \u2014 Sign In",
+      "title": "Auth — Sign In",
       "status": "done"
     },
     {
       "section": "views/auth",
       "slug": "sign-up",
       "id": "3768:2",
-      "title": "Auth \u2014 Sign Up",
+      "title": "Auth — Sign Up",
       "status": "done"
     },
     {
@@ -1267,7 +1267,7 @@
       "section": "meta",
       "slug": "section-covers",
       "id": "135:899",
-      "title": "\u2756 COMPONENTS (section cover; other covers: 2159:569 TOKENS, 135:1528 PATTERNS, 2229:4791 VIEWS, 3620:2 Navigation, 3620:3 Buttons & Actions, 3620:4 Inputs & Forms, 3620:5 Data Display, 3620:6 Data Visualization, 3620:7 Feedback & Alerts, 4531:81 Overlays, 3620:8 Dialogs & Sheets, 3620:9 Cards & Containers, 6622:2 Calendar, 8871:552 Utility, 5814:2 Layout & Shell, 3620:11 Data, 3620:12 Forms, 3620:14 Dashboards, 7182:2 Generic Views, 5066:25 Auth & Onboarding, 5066:27 Account & Identity, 5066:26 Organization & Admin, 5066:29 Communications, 5066:28 Devices & Operations, 6007:6159 Help & Discovery, 5066:30 System States)"
+      "title": "❖ COMPONENTS (section cover; other covers: 2159:569 TOKENS, 135:1528 PATTERNS, 2229:4791 VIEWS, 3620:2 Navigation, 3620:3 Buttons & Actions, 3620:4 Inputs & Forms, 3620:5 Data Display, 3620:6 Data Visualization, 3620:7 Feedback & Alerts, 4531:81 Overlays, 3620:8 Dialogs & Sheets, 3620:9 Cards & Containers, 6622:2 Calendar, 8871:552 Utility, 5814:2 Layout & Shell, 3620:11 Data, 3620:12 Forms, 3620:14 Dashboards, 7182:2 Generic Views, 5066:25 Auth & Onboarding, 5066:27 Account & Identity, 5066:26 Organization & Admin, 5066:29 Communications, 5066:28 Devices & Operations, 6007:6159 Help & Discovery, 5066:30 System States)"
     },
     {
       "section": "components/overlays",
@@ -1279,8 +1279,8 @@
   ],
   "lastSync": {
     "file": "OGvmMNnywH7JWDyEhOzjcc",
-    "version": "2402022067860668168",
-    "lastModified": "2026-09-22T11:46:20Z",
+    "version": "2402033758226209016",
+    "lastModified": "2026-09-22T12:35:16Z",
     "date": "2026-09-22"
   }
 }

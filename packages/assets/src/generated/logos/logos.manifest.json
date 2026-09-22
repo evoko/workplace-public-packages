@@ -1,7 +1,7 @@
 {
   "_note": "Written by the SOLAR codegen. One entry per logo set; \"digest\" is a SHA-256 of the canonical JSON of that variant's paths, or of the raw SVG source for a variant the vector IR cannot represent, or of the file bytes for a raster asset. The app icons ship as base64 data URLs in app-icon.ts; the Teams variant of os-logo is the one asset Flutter does not carry.",
   "target": "react",
-  "fileVersion": "2400491293726842862",
+  "fileVersion": "2402050745869349423",
   "logos": {
     "app-icon": {
       "raster": true,

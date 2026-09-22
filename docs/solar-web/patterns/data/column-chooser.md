@@ -4,6 +4,8 @@
 
 ## Component set: Column Chooser
 
+Panel for showing, hiding and reordering DataTable columns: title with a Counter, search, a draggable ColumnRow list and a footer Button. 3 variants: state (default, loading, empty). loading shows the skeleton list; empty is the no-match message after search. Props: List (slot). Changes apply live; the footer resets to the table default.
+
 ### Props
 
 | Prop    | Type    | Options / default             |
@@ -92,11 +94,9 @@ Default variant: `state=default` · 3 variants · default size 320×720px
 | loading | 320×720 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` | `color.action.primary.text.default`<br>`color.action.secondary.text.default`                                                                                           | `color.action.primary.icon.default`                                                                                                                    |
 | empty   | 320×720 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.tertiary.text.default`<br>`color.text.secondary`<br>`color.action.secondary.text.default` | `color.action.tertiary.icon.default`<br>`color.icon.secondary`<br>`color.action.primary.icon.default`                                                  |
 
-### Issues detected
-
-- Component description is empty.
-
 ## Component set: ColumnRow
+
+One column entry inside Column Chooser: drag handle, Checkbox and the column label. 4 variants: selected (true, false) × hover (false, true). selected mirrors the checkbox; hover is pointer feedback only. Reorder by dragging the handle or with Alt+Arrow when the row has focus; the checkbox owns the visible/hidden state.
 
 ### Props
 
@@ -146,10 +146,6 @@ Default variant: `selected=true, hover=false` · 4 variants · default size 296�
 | true     | true  | 296×44 | `color.surface.hover` |        |        | `color.text.primary`   | `color.icon.tertiary`<br>`color.icon.inverse` |
 | false    | false | 296×44 |                       |        |        | `color.text.secondary` | `color.icon.tertiary`                         |
 | false    | true  | 296×44 | `color.surface.hover` |        |        | `color.text.secondary` | `color.icon.tertiary`                         |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Issues detected (page)
 

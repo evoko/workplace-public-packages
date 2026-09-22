@@ -5,7 +5,7 @@
     {
       "name": "Layout / Workplace",
       "id": "6498:5921",
-      "description": "",
+      "description": "Shell Tier 1: Top Bar, Sidebar and a three-column page area (left, center, right). 2 variants: breakpoint (desktop, mobile). Props: left, center, right (slots), hasLeft, hasRight (booleans). Use for products with full navigation, such as Workplace; mobile collapses the sidebar and stacks the columns. App-branded sidebars stay in the product file.",
       "docLinks": [],
       "variantCount": 2,
       "props": {

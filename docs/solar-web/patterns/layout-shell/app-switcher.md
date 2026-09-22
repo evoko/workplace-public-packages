@@ -4,6 +4,8 @@
 
 ## Component: AppSwitcherItem
 
+One product row in the App Switcher: App Icon, app name and a SplitButton to open or launch in a new tab. Single component. Props: hasButton (default on; off for the current app). Use only inside the App Switcher popover; for in-app navigation use Nav Item.
+
 ### Props
 
 | Prop        | Type    | Options / default |
@@ -16,7 +18,7 @@
   stroke `color.border.subtle` mixedpx · itemSpacing `stack.sm` · padding `inset.md` · strokeWeight `border.default` · radius `radius.none`
   - **App Icon** · instance of **App Icon** (App=Workplace) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
     fill `IMAGE` ⚠️ hard-coded · itemSpacing `spatial.scale.0` · padding `spatial.scale.0` · radius `spatial.border-radius.md`
-  - **Frame 6** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 204×10  
+  - **Container** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 204×10  
     itemSpacing `inset.xs`
     - **Title** · text `label/md` "App Name" · FILL/HUG · 204×10  
       fill `color.text.primary` · lineHeight `type.line-height.label.md` · fontFamily `type.font-family.inter` · fontSize `type.size.label.md` · fontStyle `type.font-weight.500`
@@ -47,10 +49,6 @@
 
 - App Icon
 - SplitButton
-
-### Issues detected
-
-- Component description is empty.
 
 ## Component: App switcher
 

@@ -1,6 +1,6 @@
 # Color
 
-> Verbatim text of the Figma page `Color` (id `15:366`, section primitives, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `3208ee1f768d`. Curated chapter: [05-color.md](../../05-color.md).
+> Verbatim text of the Figma page `Color` (id `15:366`, section primitives, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `d9f38cc14287`. Curated chapter: [05-color.md](../../05-color.md).
 
 ## Colors / Primitives
 
@@ -76,7 +76,7 @@
 
 **300**
 
-#878787
+#A8A8A8
 
 **200**
 
@@ -232,7 +232,7 @@
 
 **600**
 
-#C39900
+#24791D
 
 **500**
 
@@ -3085,7 +3085,7 @@ Containers on this page whose fill is bound to a Figma variable, with their labe
 | 600 · #484848                                 | `#484848`       | `VariableID:27:718`     |
 | 500 · #646464                                 | `#646464`       | `VariableID:27:719`     |
 | 400 · #878787                                 | `#878787`       | `VariableID:27:720`     |
-| 300 · #878787                                 | `#a8a8a8`       | `VariableID:31:3124`    |
+| 300 · #A8A8A8                                 | `#a8a8a8`       | `VariableID:31:3124`    |
 | 200 · #C9C9C9                                 | `#c9c9c9`       | `VariableID:27:721`     |
 | 100 · #E0E0E0                                 | `#e0e0e0`       | `VariableID:27:722`     |
 | 50 · #F5F5F5                                  | `#f5f5f5`       | `VariableID:27:723`     |
@@ -3122,7 +3122,7 @@ Containers on this page whose fill is bound to a Figma variable, with their labe
 | 900 · #001300                                 | `#001300`       | `VariableID:27:739`     |
 | 800 · #002400                                 | `#002400`       | `VariableID:34:3284`    |
 | 700 · #084D03                                 | `#084d03`       | `VariableID:34:3283`    |
-| 600 · #C39900                                 | `#24791d`       | `VariableID:34:3282`    |
+| 600 · #24791D                                 | `#24791d`       | `VariableID:34:3282`    |
 | 500 · #009600                                 | `#009600`       | `VariableID:27:737`     |
 | 400 · #00B600                                 | `#00b600`       | `VariableID:34:3281`    |
 | 300 · #51D845                                 | `#51d845`       | `VariableID:27:729`     |

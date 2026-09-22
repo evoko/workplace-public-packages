@@ -1,10 +1,10 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/color: 6cdc7fe02d26
-    primitives/color: 3208ee1f768d
+    documentation/color: c157f4a1cc5f
+    primitives/color: d9f38cc14287
 ---
 
 # 05 · Color
@@ -214,9 +214,11 @@ Feedback borders: `color.border.feedback.{focus|success|warning|danger|info|neut
 | neutral   | neutral/100 → neutral/800     | neutral/300 → neutral/600     | neutral/500 → neutral/400     |
 
 There is **no `color.border.default`** variable; use `subtle`, `medium` or `strong`
-(the Theming slide's example "color.border.default = alpha-black-20" corresponds to
-`color.border.medium`). There is also no `color.border.focus` or `color.border.error`;
-use `color.border.feedback.focus.strong` and `color.border.feedback.danger.strong`.
+(what the Theming slide used to call "color.border.default = alpha-black-20" is
+`color.border.medium`). There is also no `color.border.interactive`,
+`color.border.focus` or `color.border.error`; use `color.border.medium`,
+`color.border.feedback.focus.strong` and `color.border.feedback.danger.strong`. Borders
+on interactive controls come from `color.action.{intent}.border.{state}`.
 
 ### Shadow colors
 
@@ -241,7 +243,15 @@ Action tokens describe interactive intent (`primary`, `secondary`, `tertiary`) �
 with a `danger` (destructive) variant. Documentation writes the destructive intent as
 `primary-danger`; Figma stores it as `action/primary/{property}/danger/{state}`.
 
+⚠️ The revised Color and Borders page contexts write the state set as
+`{default|hover|focus|pressed|disabled}`. The Color collection ships
+`{default|hover|active|disabled}` — there is no `focus` or `pressed` state variable.
+Use the variable spelling; the focus ring is `shadow/focus/*` plus
+`color.border.feedback.focus.strong`, not an action state.
+
 **Primary** (filled, high emphasis). Brand-neutral: black in Light, near-white in Dark.
+Blue is reserved for links and focus rings and is never an action fill; `primary-danger`
+is the only chromatic intent.
 
 | Property | default (L → D)           | hover                    | active                    | disabled                        |
 | -------- | ------------------------- | ------------------------ | ------------------------- | ------------------------------- |

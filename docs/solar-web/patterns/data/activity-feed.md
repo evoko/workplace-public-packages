@@ -4,6 +4,8 @@
 
 ## Component set: Activity Feed
 
+Chronological list of Event Rows grouped under date headers (Today, Yesterday, then ISO dates). 2 variants: breakpoint (desktop, mobile). Rows are fixed-order newest first; the date group headers are non-interactive. Pair with Activity Feed Filter Row above it; for a single-line alert stream use Insight Row in a List.
+
 ### Props
 
 | Prop         | Type    | Options / default    |
@@ -76,10 +78,11 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 640×731px
 
 ### Issues detected
 
-- Component description is empty.
 - Primitive color bound directly (CLR-002): `color.blue.700`, `color.purple.700`, `color.red.700`.
 
 ## Component set: Activity Feed Filter Row
+
+Filter bar for Activity Feed: a SearchField plus three Select filters. 2 variants: breakpoint (desktop, mobile). Desktop lays the controls in one row; mobile stacks the search above a wrapped filter row. Filters apply immediately on change and the feed announces its new count; this row does not own a submit action.
 
 ### Props
 
@@ -131,7 +134,6 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 640×64px
 
 ### Issues detected
 
-- Component description is empty.
 - Hard-coded gap `8px` on layer _breakpoint=desktop_
 
 ## Documentation card

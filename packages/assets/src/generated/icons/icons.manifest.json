@@ -1,7 +1,7 @@
 {
   "_note": "Written by the SOLAR codegen. One entry per icon; \"digest\" is a SHA-256 of the canonical JSON of that variant's paths, which is what the parity suite compares across targets. The path data itself is not repeated here: it is 358 KB and already lives in the generated modules.",
   "target": "react",
-  "fileVersion": "2400491293726842862",
+  "fileVersion": "2402050745869349423",
   "icons": {
     "accessibility": {
       "component": "IconAccessibility",
@@ -4419,7 +4419,7 @@
         "outline": {
           "viewBox": "0 0 24 24",
           "pathCount": 1,
-          "digest": "08e3f1610da75b50e2812a02d85f51f9898f18a721cff85350eacd54795a4073"
+          "digest": "5ca067544e676e4db85e93bbef434dae0091a49c536def0f0c28acc7eff3728d"
         },
         "solid": {
           "viewBox": "0 0 24 24",
@@ -5062,9 +5062,9 @@
       "component": "IconZone",
       "variants": {
         "outline": {
-          "viewBox": "0 0 24 25",
+          "viewBox": "0 0 24 24",
           "pathCount": 9,
-          "digest": "b28f5efe03f67530255c2fa07672e36147fb9dd59a5ff586d0b7599608b26329"
+          "digest": "9350c3a5deba6f1dd9fee041cee8750ddb06eeb63db5d21806e1d26e9c959875"
         },
         "solid": {
           "viewBox": "0 0 24 24",

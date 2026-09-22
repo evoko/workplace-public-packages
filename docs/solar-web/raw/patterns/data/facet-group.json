@@ -6,7 +6,7 @@
     {
       "name": "Facet Group",
       "id": "5739:86",
-      "description": "",
+      "description": "Row of active filter Tags followed by Clear all and Add filter Buttons. Single component. Each Tag is dismissable and removes its facet; Clear all removes every facet. Sit it directly under the search or table header; on overflow the tags wrap, the buttons stay last.",
       "props": {},
       "nodeCount": 36,
       "tree": {

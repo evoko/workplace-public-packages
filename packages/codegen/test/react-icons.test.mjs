@@ -11,6 +11,32 @@ const { modules, barrel, icons } = renderReactIcons(spec);
 const byStem = new Map(modules.map((m) => [m.stem, m]));
 const exported = [...barrel.matchAll(/export \{ (\w+) \}/g)].map((m) => m[1]);
 
+// A spec written here rather than read from docs/: svg/outline/zone.svg was drawn 0 0 24 25
+// beside a square solid until SOLAR redrew it on 2026-09-22, and it was the only asset whose two
+// variants had different extents. The emitter must keep carrying a viewBox per variant, or the
+// next off-grid export would be drawn into the wrong box.
+const offGrid = {
+  icons: {
+    sample: {
+      component: 'IconSample',
+      name: 'Sample',
+      category: 'Test',
+      description: 'A hand-built icon, one variant off the 24 grid.',
+      variants: {
+        outline: {
+          viewBox: [0, 0, 24, 25],
+          paths: [{ d: 'M0 0H24V25H0Z', fillRule: 'nonzero' }],
+        },
+        solid: {
+          viewBox: [0, 0, 24, 24],
+          paths: [{ d: 'M0 0H24V24H0Z', fillRule: 'nonzero' }],
+        },
+      },
+    },
+  },
+  logos: {},
+};
+
 const geometry = {
   viewBox: '0 0 24 24',
   paths: [{ d: 'M0 0H24V24H0Z' }, { d: 'M4 4H8V8H4Z', fillRule: 'evenodd' }],
@@ -35,10 +61,26 @@ describe('renderReactIcons: modules', () => {
     expect(coloured.map((m) => m.stem)).toEqual([]);
   });
 
-  it('carries the per-variant viewBox, so zone stays 1px taller', () => {
-    const zone = byStem.get('zone').tsx;
-    expect(zone).toContain("viewBox: '0 0 24 25'");
-    expect(zone).toContain("viewBox: '0 0 24 24'");
+  it('carries a viewBox per variant, not one per module', () => {
+    // svg/outline/zone.svg was 0 0 24 25 while its solid was square, and it was the asset that
+    // proved the two slots are emitted independently; SOLAR redrew it on the grid on
+    // 2026-09-22, so the mixed case is built here instead.
+    const [module] = renderReactIcons(offGrid).modules;
+    expect(module.tsx).toContain(
+      "const outline: IconGeometry = {\n  viewBox: '0 0 24 25'",
+    );
+    expect(module.tsx).toContain(
+      "const solid: IconGeometry = {\n  viewBox: '0 0 24 24'",
+    );
+
+    // What the corpus says today: every module declares two square viewBoxes and nothing else.
+    const odd = modules.filter(
+      (m) =>
+        [...m.tsx.matchAll(/viewBox: '([^']*)'/g)]
+          .map((v) => v[1])
+          .join('|') !== '0 0 24 24|0 0 24 24',
+    );
+    expect(odd.map((m) => m.stem)).toEqual([]);
   });
 
   it('emits fillRule only where the source says evenodd', () => {
@@ -76,10 +118,25 @@ describe('renderReactIcons: manifest', () => {
   });
 
   it('records the geometry the module draws', () => {
-    expect(icons.zone.variants.outline).toMatchObject({
-      viewBox: '0 0 24 25',
-      pathCount: spec.icons.zone.variants.outline.paths.length,
-    });
+    // The manifest reports the variant's own extent, which zone outline used to be the one
+    // asset to distinguish from a hard-coded 24 (fixed in Figma on 2026-09-22).
+    const synthetic = renderReactIcons(offGrid).icons.sample.variants;
+    expect(synthetic.outline).toMatchObject({ viewBox: '0 0 24 25' });
+    expect(synthetic.solid).toMatchObject({ viewBox: '0 0 24 24' });
+
+    const wrong = [];
+    for (const [stem, entry] of Object.entries(icons))
+      for (const [variant, recorded] of Object.entries(entry.variants)) {
+        const geometry = spec.icons[stem].variants[variant];
+        if (
+          recorded.viewBox !== '0 0 24 24' ||
+          recorded.pathCount !== geometry.paths.length
+        )
+          wrong.push(
+            `${stem}/${variant}: ${recorded.viewBox}, ${recorded.pathCount} paths`,
+          );
+      }
+    expect(wrong).toEqual([]);
   });
 });
 

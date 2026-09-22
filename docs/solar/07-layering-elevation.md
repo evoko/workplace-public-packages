@@ -1,10 +1,10 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/layering-elevation: cf5b344c4df1
-    primitives/elevation: 9588ae47137a
+    documentation/layering-elevation: c58446db9889
+    primitives/elevation: 04848690d0f9
 ---
 
 # 07 · Layering & Elevation
@@ -44,7 +44,13 @@ Utility surfaces outside the hierarchy: `color.surface.muted` (recessed areas),
 (`color.surface.feedback.{success,warning,danger,info,neutral}.*`).
 
 Elevated surfaces (base, raised, overlay, dialog) **share one color by design**: white in
-Light, neutral/800 in Dark. Depth is communicated by shadow, not surface contrast.
+Light, neutral/800 in Dark. Depth is communicated by shadow, not surface contrast — dark
+mode does not tint elevated surfaces lighter, it raises shadow alpha instead.
+
+Two more layers sit above the table but reuse its surfaces: **toast** uses
+`color.surface.raised` with `shadow/overlay`, and **tooltip** uses
+`color.surface.inverse`. Sticky headers and toolbars stay on `color.surface.base` with no
+shadow until the content scrolls under them.
 
 ## Shadow scale (effect styles)
 
@@ -78,23 +84,25 @@ Light-mode CSS equivalents:
 --solar-shadow-focus-danger: 0 0 0 2px rgba(224, 3, 45, 0.2);
 ```
 
-In Dark mode the same properties are reassigned with the dark shadow-color values. The
-Agentic Reference page names the dialog composite `shadow.modal`; the effect style is
-`shadow/dialog`. Use `dialog`.
+In Dark mode the same properties are reassigned with the dark shadow-color values.
+`shadow.modal`, `shadow.medium` and `shadow.strongest` are retired names and do not
+exist; the dialog composite is `shadow/dialog`. `shadow.subtle` and `shadow.strong` are
+shadow _color_ variables (`color.shadow.*`); only `shadow/strong` doubles as an effect
+style. Bind `effectStyleId` — never an inline `box-shadow`.
 
 ## Z-index ladder
 
 SOLAR fixes seven z-index levels. Never use arbitrary values.
 
-| Level          | Value | Used by                                                                 |
-| -------------- | ----- | ----------------------------------------------------------------------- |
-| base           | 0     | Page content                                                            |
-| sticky         | 100   | Sticky headers, fixed toolbars                                          |
-| dropdown       | 200   | Menus, dropdowns                                                        |
-| overlay        | 300   | Popovers, drawers' backdrop, scrims                                     |
-| modal / dialog | 400   | Dialogs, drawers' content                                               |
-| toast          | 500   | Notifications, snackbars                                                |
-| tooltip        | 600   | Tooltips (outrank toasts so a tooltip on a notification stays readable) |
+| Level    | Value | Used by                                                                 |
+| -------- | ----- | ----------------------------------------------------------------------- |
+| base     | 0     | Page content                                                            |
+| sticky   | 100   | Sticky headers, fixed toolbars                                          |
+| dropdown | 200   | Menus, dropdowns                                                        |
+| overlay  | 300   | Popovers, drawers' backdrop, scrims                                     |
+| dialog   | 400   | Dialogs, drawers' content                                               |
+| toast    | 500   | Notifications, snackbars                                                |
+| tooltip  | 600   | Tooltips (outrank toasts so a tooltip on a notification stays readable) |
 
 Suggested CSS names follow the contract: `--solar-z-base`, `--solar-z-sticky`,
 `--solar-z-dropdown`, `--solar-z-overlay`, `--solar-z-dialog`, `--solar-z-toast`,

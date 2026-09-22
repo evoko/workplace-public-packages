@@ -5,7 +5,7 @@
     {
       "name": "Layout",
       "id": "6499:6699",
-      "description": "",
+      "description": "Shell Tier 4: Top Bar, Sidebar and a Page Shell with left, center and right slots, sized for a client app. 2 variants: breakpoint (desktop, mobile). Props: left, center, right (slots), hasLeft, hasRight (booleans). Use for end-user client apps such as Chatter; differs from Layout / Workplace in its Page Shell density. Name is under review.",
       "docLinks": [],
       "variantCount": 2,
       "props": {

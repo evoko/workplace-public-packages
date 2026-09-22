@@ -62,7 +62,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "surface/raised",
                   "style": "10/700"
                 }
               ]
@@ -79,7 +79,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "mono/white",
                   "style": "10/700"
                 }
               ]
@@ -96,7 +96,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "neutral/800",
                   "style": "10/700"
                 }
               ]
@@ -113,7 +113,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "surface/overlay",
                   "style": "10/700"
                 }
               ]
@@ -130,7 +130,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "mono/white",
                   "style": "10/700"
                 }
               ]
@@ -147,7 +147,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "neutral/800",
                   "style": "10/700"
                 }
               ]
@@ -164,7 +164,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "surface/dialog",
                   "style": "10/700"
                 }
               ]
@@ -181,7 +181,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "mono/white",
                   "style": "10/700"
                 }
               ]
@@ -198,7 +198,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "neutral/800",
                   "style": "10/700"
                 }
               ]
@@ -264,7 +264,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/control",
                   "style": "10/700"
                 }
               ]
@@ -292,7 +292,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/subtle",
                   "style": "10/700"
                 }
               ]
@@ -309,7 +309,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/raised",
                   "style": "10/700"
                 }
               ]
@@ -322,7 +322,7 @@
           "blocks": [
             {
               "t": "p",
-              "text": "y:3 / blur:4",
+              "text": "y:1 / blur:2",
               "style": "Body/Body S/Medium"
             }
           ]
@@ -337,7 +337,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/subtle",
                   "style": "10/700"
                 }
               ]
@@ -354,7 +354,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/overlay",
                   "style": "10/700"
                 }
               ]
@@ -382,7 +382,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/subtle",
                   "style": "10/700"
                 }
               ]
@@ -399,7 +399,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/strong",
                   "style": "10/700"
                 }
               ]
@@ -427,7 +427,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/strong",
                   "style": "10/700"
                 }
               ]
@@ -444,7 +444,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/dialog",
                   "style": "10/700"
                 }
               ]
@@ -483,7 +483,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/focus/default",
                   "style": "10/700"
                 }
               ]
@@ -511,7 +511,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/feedback/focus",
                   "style": "10/700"
                 }
               ]
@@ -528,7 +528,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/focus/danger",
                   "style": "10/700"
                 }
               ]
@@ -556,7 +556,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/feedback/danger",
                   "style": "10/700"
                 }
               ]
@@ -573,7 +573,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/danger",
                   "style": "10/700"
                 }
               ]
@@ -612,7 +612,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "shadow/warning",
                   "style": "10/700"
                 }
               ]
@@ -956,7 +956,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "surface/raised"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -965,7 +965,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "mono/white"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -974,7 +974,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "neutral/800"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -983,7 +983,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "surface/overlay"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -992,7 +992,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "mono/white"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1001,7 +1001,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "neutral/800"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1010,7 +1010,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "surface/dialog"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1019,7 +1019,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "mono/white"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1028,7 +1028,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "neutral/800"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1064,7 +1064,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/control"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1073,7 +1073,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/subtle"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1082,7 +1082,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/raised"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1091,7 +1091,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/subtle"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1100,7 +1100,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/overlay"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1109,7 +1109,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/subtle"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1118,7 +1118,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/strong"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1127,7 +1127,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/strong"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1136,7 +1136,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/dialog"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1145,7 +1145,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/focus/default"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1154,7 +1154,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/feedback/focus"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1163,7 +1163,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/focus/danger"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1172,7 +1172,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/feedback/danger"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1181,7 +1181,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/danger"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1190,7 +1190,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "shadow/warning"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",

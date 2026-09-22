@@ -6,7 +6,7 @@
     {
       "name": "FormSection",
       "id": "5612:6418",
-      "description": "",
+      "description": "Titled group of FormRows: optional section header (title and description), optional CTA Button and the SectionFields slot. Single component. Props: SectionFields (slot), hasSectionHeader (default on), hasCTA (default off). Stack sections with stack/xl inside a form; each section renders as a fieldset with the title as its legend.",
       "props": {
         "SectionFields#5612:11": {
           "type": "SLOT",
@@ -60,7 +60,7 @@
         },
         "children": [
           {
-            "name": "Contaner",
+            "name": "Container",
             "type": "FRAME",
             "size": [
               640,

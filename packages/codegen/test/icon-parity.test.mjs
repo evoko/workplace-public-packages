@@ -20,7 +20,12 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { beforeAll, describe, expect, it } from 'vitest';
-import { dartVariantName } from '../src/emit/flutter-icons.mjs';
+import {
+  dartVariantName,
+  renderFlutterIcons,
+} from '../src/emit/flutter-icons.mjs';
+import { renderReactIcons } from '../src/emit/react-icons.mjs';
+import { renderSvgFiles } from '../src/emit/svg-files.mjs';
 import { buildIconSpec, loadIconCatalog } from '../src/normalize/icons.mjs';
 import { parseSvg } from '../src/normalize/svg.mjs';
 import { packagesDir, repoRoot } from '../src/util/paths.mjs';
@@ -588,26 +593,75 @@ describe('icon parity', () => {
     expect(deviation.reason).toMatch(/Flutter/);
   });
 
-  it('zone keeps its off-grid viewBox in all three targets', () => {
-    // The one asset a target could plausibly normalise to a square. Cropping it to 24 would not
-    // fail any count and would shift the drawing.
-    const want = { outline: '0 0 24 25', solid: '0 0 24 24' };
-    for (const variant of ['outline', 'solid']) {
+  it('every icon variant is on the 24 grid in all three targets', () => {
+    // Icon/Zone's outline was drawn 0 0 24 25 -- the one asset a target could plausibly
+    // normalise to a square -- until SOLAR redrew it on the grid on 2026-09-22. Nothing on disk
+    // is off grid now, so this is the assertion that would notice a new one arriving, and the
+    // synthetic test below is what keeps the per-variant handling covered.
+    const offGrid = [];
+    for (const [stem, variant] of variants) {
       const got = {
-        spec: fromSpec(spec.icons.zone.variants[variant]).viewBox,
-        react: react.get('zone').get(variant).viewBox,
-        svg: svg.get(`zone-${variant}.svg`).viewBox,
-        flutter: dart.vectors.get(dartVariantName('zone', variant)).viewBox,
+        spec: fromSpec(spec.icons[stem].variants[variant]).viewBox,
+        react: react.get(stem).get(variant).viewBox,
+        svg: svg.get(`${stem}-${variant}.svg`).viewBox,
+        flutter: dart.vectors.get(dartVariantName(stem, variant)).viewBox,
       };
-      expect(got).toEqual({
-        spec: want[variant],
-        react: want[variant],
-        svg: want[variant],
-        flutter: want[variant],
-      });
+      for (const [target, viewBox] of Object.entries(got))
+        if (viewBox !== '0 0 24 24')
+          offGrid.push(`${target} ${stem}/${variant}: ${viewBox}`);
     }
-    // The SVG file also carries an intrinsic size, which is where a square would creep back in.
-    expect(svg.get('zone-outline.svg').source).toContain(
+    expect(offGrid).toEqual([]);
+
+    // The SVG files also carry an intrinsic size, which is where a square would creep back in.
+    const mis = [...svg]
+      .filter(([, file]) => !file.source.includes('width="24" height="24"'))
+      .map(([name]) => name);
+    expect(mis).toEqual([]);
+  });
+
+  it('carries a viewBox per variant into all three targets', () => {
+    // The one assertion in this file that runs the emitters in memory rather than reading the
+    // generated tree: since zone was redrawn there is no off-grid asset on disk to read, and
+    // cropping an off-grid variant to 24 would still fail no count and still shift the drawing.
+    const sample = {
+      component: 'IconSample',
+      name: 'Sample',
+      category: 'Test',
+      description: 'A hand-built icon, one variant off the 24 grid.',
+      variants: {
+        outline: {
+          viewBox: [0, 0, 24, 25],
+          paths: [{ d: 'M0 0H24V25H0Z', fillRule: 'nonzero' }],
+        },
+        solid: {
+          viewBox: [0, 0, 24, 24],
+          paths: [{ d: 'M0 0H24V24H0Z', fillRule: 'nonzero' }],
+        },
+      },
+    };
+    // The real logos travel with it: the Flutter emitter asserts which variants it skipped.
+    const synthetic = { icons: { sample }, logos: spec.logos };
+    const [module] = renderReactIcons(synthetic).modules;
+    const files = renderSvgFiles(synthetic);
+    const dartSource = renderFlutterIcons(synthetic).icons;
+
+    for (const variant of ['outline', 'solid']) {
+      const want = fromSpec(sample.variants[variant]).viewBox;
+      const tsx = new RegExp(
+        `const ${variant}: IconGeometry = \\{\\n  viewBox: '([^']*)'`,
+      ).exec(module.tsx);
+      const vector = new RegExp(
+        `${dartVariantName('sample', variant)} = SolarVector\\(\\n` +
+          `    width: ([\\d.]+),\\n    height: ([\\d.]+),`,
+      ).exec(dartSource);
+      const file = `icons/sample-${variant}.svg`;
+      expect({
+        react: tsx?.[1],
+        svg: parseSvg(files.get(file), { file }).viewBox.join(' '),
+        flutter: vector && `0 0 ${Number(vector[1])} ${Number(vector[2])}`,
+      }).toEqual({ react: want, svg: want, flutter: want });
+    }
+    expect(files.get('icons/sample-outline.svg')).toContain(
       'width="24" height="25"',
     );
   });

@@ -1,6 +1,6 @@
 # Lint Plugin
 
-> Verbatim text of the Figma page `Lint Plugin` (id `1086:16826`, section meta), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `bb87660da815`. Curated chapter: [16-governance-validation.md](../../16-governance-validation.md).
+> Verbatim text of the Figma page `Lint Plugin` (id `1086:16826`, section meta), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `f8b268dcd32d`. Curated chapter: [16-governance-validation.md](../../16-governance-validation.md).
 
 ## Slide 1
 
@@ -47,30 +47,17 @@ _[image: image 2]_
 
 #### You pick a scope (page, selection, or all pages), hit Scan, and the plugin walks every node — resolving component references, running all rules, and classifying every instance. Results appear as summary cards, a coverage bar, and a filterable findings table.
 
-##### Error Messages
+##### 1. Scan
 
-Structure: What happened + Why + What to do next.
+Pick a scope — page, selection, or all pages — and run. The plugin resolves every instance to its library source and evaluates each rule against every node it visits.
 
-Never show raw error codes or technical IDs.\
-Always include a recovery action when one exists.\
-Use color.text.feedback.danger for error text and pair with an icon — never rely on color alone.\
-Keep under 2 lines.
+##### 2. Review
 
-##### Empty States
+Findings group by severity and category. Summary cards give the counts, the coverage bar shows how much of the scope is bound to SOLAR, and the table filters by rule.
 
-Structure: What this space is for + How to get started.
+##### 3. Fix
 
-Include a primary action when possible (e.g., “Add device” button).\
-Empty states should feel temporary, not permanent.\
-Don’t use illustrations that look like errors.
-
-##### Confirmation Dialogs
-
-Structure: What will happen (specific) + What can’t be undone + Action button that names the action.
-
-Never use “Are you sure?” as the only content.\
-Confirm button names the action: “Delete device” not “OK.”\
-Cancel is always “Cancel.”
+Click a finding to select the node in Figma. Each row names the rule, what it flags, and the action that clears it. Re-scan to confirm the count drops to zero.
 
 | Rule ID  | What It Flags                                          | Severity | Category      | Example              | Action                 |
 | -------- | ------------------------------------------------------ | -------- | ------------- | -------------------- | ---------------------- |

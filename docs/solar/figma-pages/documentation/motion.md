@@ -1,6 +1,6 @@
 # Motion
 
-> Verbatim text of the Figma page `Motion` (id `763:61136`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `b8f0cb82f962`. Curated chapter: [13-motion.md](../../13-motion.md).
+> Verbatim text of the Figma page `Motion` (id `763:61136`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `e08e65deab41`. Curated chapter: [13-motion.md](../../13-motion.md).
 
 ## Slide 1
 
@@ -149,7 +149,7 @@ The machine-readable context block the SOLAR team placed on this page, verbatim.
 page: Motion
 domain: Animation & Transition System
 version: 1.0
-updated: 2026-03-23
+updated: 2026-09-22
 
 [ROLE]
 You are the SOLAR motion specialist. Motion should be purposeful, subtle, and accessible. All animation values are token-driven — never hardcode durations, easings, or keyframes.
@@ -163,29 +163,29 @@ You are the SOLAR motion specialist. Motion should be purposeful, subtle, and ac
 - Staggered and sequenced animations
 
 [DURATION_TOKENS]
-motion.duration.instant: 0ms — immediate state swaps, disabled transitions
-motion.duration.fast: 100–150ms — hover states, tooltips, micro-interactions
-motion.duration.normal: 200–300ms — standard transitions, expand/collapse, tab switches
-motion.duration.slow: 400–500ms — dialogs entering, page transitions, complex reveals
-motion.duration.slower: 600–800ms — hero animations, onboarding sequences (rare)
-rule: use the shortest duration that feels natural — never slow for the sake of slow
+motion.duration.instant: 0ms — immediate state swaps, disabled transitions, keyboard focus
+motion.duration.fast: 100ms — hover states, tooltips, micro-interactions
+motion.duration.normal: 300ms — standard transitions, expand/collapse, tab switches
+motion.duration.slow: 600ms — dialogs entering, page transitions, complex reveals
+motion.duration.slower: 900ms — hero animations, onboarding sequences (rare)
+rule: five fixed values, no ranges — use the shortest duration that feels natural
 
 [EASING_TOKENS]
-motion.easing.standard: ease-in-out — default for most transitions (symmetric movement)
-motion.easing.enter: ease-out / decelerate — elements arriving on screen (fast start, slow end)
-motion.easing.exit: ease-in / accelerate — elements leaving screen (slow start, fast end)
-motion.easing.linear: linear — progress bars, continuous rotation, opacity fades
-rule: match easing to the motion's intent — enter uses decelerate, exit uses accelerate
+motion.ease.out: decelerate — elements arriving on screen (fast start, slow end)
+motion.ease.in: accelerate — elements leaving screen (slow start, fast end)
+motion.ease.both: ease-in-out — state transitions and symmetric movement
+linear: CSS linear, no token — progress bars, continuous rotation only
+rule: three easings only — motion.easing.* and standard/enter/exit names are retired
 
 [TRANSITION_PATTERNS]
-fade_in: opacity 0→1 | duration.normal | easing.enter
-fade_out: opacity 1→0 | duration.fast | easing.exit
-slide_in: translateY(8px→0) + fade | duration.normal | easing.enter
-slide_out: translateY(0→8px) + fade | duration.fast | easing.exit
-expand: height 0→auto + fade | duration.normal | easing.standard
-collapse: height auto→0 + fade | duration.fast | easing.standard
-scale_in: scale(0.95→1) + fade | duration.normal | easing.enter
-scale_out: scale(1→0.95) + fade | duration.fast | easing.exit
+fade_in: opacity 0→1 | duration.normal | ease.out
+fade_out: opacity 1→0 | duration.fast | ease.in
+slide_in: translateY(8px→0) + fade | duration.normal | ease.out
+slide_out: translateY(0→8px) + fade | duration.fast | ease.in
+expand: height 0→auto + fade | duration.normal | ease.both
+collapse: height auto→0 + fade | duration.fast | ease.both
+scale_in: scale(0.95→1) + fade | duration.normal | ease.out
+scale_out: scale(1→0.95) + fade | duration.fast | ease.in
 
 [COMPONENT_MOTION]
 tooltips: fade_in fast | fade_out fast

@@ -33,21 +33,26 @@ describe('buildIconSpec: icons', () => {
     });
   });
 
-  it('draws 340 of the 341 outlines from their own file', () => {
-    // Not a geometry comparison: 80 sets are drawn identically in both variants -- a chevron or
-    // a plus has nothing to fill -- so only the missing source file marks the fallback.
+  it('draws all 341 outlines from their own file', () => {
+    // Icon/Support shipped its solid drawing in both variant slots and no outline until SOLAR
+    // drew the missing one on 2026-09-22; it was the only icon that reached the fallback, which
+    // is now exercised synthetically below. Not a geometry comparison: 80 sets are drawn
+    // identically in both variants -- a chevron or a plus has nothing to fill -- so only a
+    // missing source file marks the fallback.
     const missing = catalog.icons.filter((i) => !i.variants.outline);
-    expect(missing.map((i) => i.fileStem)).toEqual(['support']);
+    expect(missing.map((i) => i.fileStem)).toEqual([]);
+    expect(
+      catalog.icons.filter((i) => i.variants.outline && i.variants.solid),
+    ).toHaveLength(341);
     expect(icons.every((i) => i.variants.outline && i.variants.solid)).toBe(
       true,
     );
   });
 
-  it('falls back to solid for the missing Support outline, and says so', () => {
+  it('draws support in two variants of its own, no longer one cloned', () => {
     const support = spec.icons.support;
-    expect(support.variants.outline).toEqual(support.variants.solid);
-    expect(support.variants.outline).not.toBe(support.variants.solid);
-    expect(tokens).toContain('icon.support');
+    expect(support.variants.outline).not.toEqual(support.variants.solid);
+    expect(tokens).not.toContain('icon.support');
   });
 
   it('separates the two Icon/Phone components by file stem', () => {
@@ -61,10 +66,17 @@ describe('buildIconSpec: icons', () => {
     expect(spec.icons['io-device'].component).toBe('IconIODevice');
   });
 
-  it('carries the Zone outline viewBox verbatim, off grid as it is', () => {
-    expect(spec.icons.zone.variants.outline.viewBox).toEqual([0, 0, 24, 25]);
-    expect(spec.icons.zone.variants.solid.viewBox).toEqual([0, 0, 24, 24]);
-    expect(tokens).toContain('icon.zone');
+  it('draws every icon variant on the 24 grid', () => {
+    // Icon/Zone's outline was 0 0 24 25 until SOLAR redrew it on 2026-09-22, and it was the one
+    // icon off the grid. This says what is true of the corpus today; that a viewBox is carried
+    // per variant rather than assumed is asserted synthetically below.
+    const offGrid = [];
+    for (const [stem, icon] of Object.entries(spec.icons))
+      for (const [variant, geometry] of Object.entries(icon.variants))
+        if (geometry.viewBox.join(' ') !== '0 0 24 24')
+          offGrid.push(`${stem}/${variant}: ${geometry.viewBox.join(' ')}`);
+    expect(offGrid).toEqual([]);
+    expect(tokens).not.toContain('icon.zone');
   });
 
   it('gives no icon path a colour, anywhere', () => {
@@ -72,6 +84,74 @@ describe('buildIconSpec: icons', () => {
       expect(Object.keys(path).sort(), where).toEqual(['d', 'fillRule']);
       expect(JSON.stringify(path), where).not.toContain('#111111');
     }
+  });
+});
+
+// Both defects these two cover were fixed in Figma on 2026-09-22, so nothing in
+// docs/solar-icons triggers either code path any more. The catalogs are written by hand instead
+// of deleting the tests: an export with no outline still has to render, and a viewBox still has
+// to be read per variant rather than assumed, or the next defective export would emit a hole or
+// a silently cropped drawing instead of a recorded deviation.
+describe('buildIconSpec: the paths only a defective catalog reaches', () => {
+  const build = (icon) => buildIconSpec({ icons: [icon], logos: [] });
+  const base = {
+    category: 'Status & Feedback',
+    description: 'Support.',
+    size: [24, 24],
+  };
+
+  it('falls back to solid when Figma ships no outline, and says so', () => {
+    // How Icon/Support arrived until 2026-09-22: two solid variants, so the outline slot is
+    // empty and there is no outline geometry to emit.
+    const { spec: built, deviations: found } = build({
+      ...base,
+      name: 'Support',
+      component: 'IconSupport',
+      kebab: 'support',
+      fileStem: 'support',
+      variants: { solid: { file: 'svg/solid/support.svg' } },
+    });
+    const support = built.icons.support;
+    expect(support.variants.outline).toEqual(support.variants.solid);
+    // A clone rather than the same object, so a consumer holding one variant cannot reach the
+    // other through it.
+    expect(support.variants.outline).not.toBe(support.variants.solid);
+    expect(found.map((d) => d.token)).toEqual(['icon.support']);
+  });
+
+  it('carries the viewBox the file declares, not the size the catalog claims', () => {
+    // How Icon/Zone arrived until 2026-09-22: a viewBox that is not the set's declared size.
+    // The file wins, because the geometry was drawn against its own viewBox -- cropping it to
+    // the declared grid would shift the drawing -- and the disagreement is recorded.
+    const { spec: built, deviations: found } = build({
+      ...base,
+      name: 'Zone',
+      component: 'IconZone',
+      kebab: 'zone',
+      fileStem: 'zone',
+      size: [24, 25],
+      variants: {
+        outline: { file: 'svg/outline/zone.svg' },
+        solid: { file: 'svg/solid/zone.svg' },
+      },
+    });
+    expect(built.icons.zone.variants.outline.viewBox).toEqual([0, 0, 24, 24]);
+    expect(built.icons.zone.variants.solid.viewBox).toEqual([0, 0, 24, 24]);
+    // Recorded once, however many variants trigger it.
+    expect(found.map((d) => d.token)).toEqual(['icon.zone']);
+  });
+
+  it('stops rather than invent a deviation the registry does not hold', () => {
+    expect(() =>
+      build({
+        ...base,
+        name: 'Invented',
+        component: 'IconInvented',
+        kebab: 'invented',
+        fileStem: 'invented',
+        variants: { solid: { file: 'svg/solid/support.svg' } },
+      }),
+    ).toThrow(/has no recorded deviation for icon\.invented/);
   });
 });
 
@@ -140,9 +220,10 @@ describe('buildIconSpec: logos', () => {
 });
 
 describe('buildIconSpec: totals', () => {
-  // The corpus is 686 SVG files: 681 icon files (340 outline, 341 solid) and 5 logo files, one
-  // of which is teams.svg. The spec holds one more variant and one more path than were parsed,
-  // and that difference is exactly the Support outline standing in for its solid.
+  // The corpus is 687 SVG files: 682 icon files (341 outline, 341 solid) and 5 logo files, one
+  // of which is teams.svg. Since SOLAR drew the missing Support outline on 2026-09-22 nothing
+  // is cloned, so the spec holds exactly the variants and paths that were parsed: 686 files and
+  // 812 paths, teams excluded from both because it has no IR.
   it('matches the measured corpus', () => {
     let variants = 0;
     let paths = 0;
@@ -162,20 +243,17 @@ describe('buildIconSpec: totals', () => {
         paths += variant.paths.length;
       }
     }
-    expect(variants - 1).toBe(685);
-    expect(paths - 1).toBe(811);
+    expect(variants).toBe(686);
+    expect(paths).toBe(812);
   });
 
   it('records one deviation per source defect and no others', () => {
     // logo.size is not a defect in one asset: SOLAR publishes no logo size scale at all, so it
     // is triggered by the first drawable logo and reported once, like the rest.
-    expect(tokens).toEqual([
-      'icon.phone',
-      'icon.support',
-      'icon.zone',
-      'logo.size',
-      'logo.os-logo.teams',
-    ]);
+    // icon.support and icon.zone were both recorded here until SOLAR fixed the two icons on
+    // 2026-09-22; they stay in ICON_DEVIATIONS as the registry entries the fallback and the
+    // off-grid paths look up, and are reported only when the data triggers them again.
+    expect(tokens).toEqual(['icon.phone', 'logo.size', 'logo.os-logo.teams']);
     for (const d of deviations) {
       expect(ICON_DEVIATIONS).toContainEqual(d);
       expect(d.raise.length, d.token).toBeGreaterThan(20);

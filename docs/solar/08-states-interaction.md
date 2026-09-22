@@ -1,9 +1,9 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/states-interaction: b7503e047c18
+    documentation/states-interaction: f0eabdf31897
 ---
 
 # 08 · States & Interaction
@@ -42,6 +42,11 @@ shifts**.
 States are mutually exclusive within one interaction flow (not hovered and active at
 once) but layer with persistent conditions: selected + hovered, focused + active.
 
+Naming: the **component variant value is `pressed`**, while the **token state segment is
+`active`** (`color.action.primary.bg.active`). The revised page context now says
+"pressed, never active" for both; the Color collection still ships `active`, so keep the
+token spelling as the variables define it.
+
 ## State tokens
 
 - `color.action.{intent}.{property}.{state}` where intent ∈ `primary | secondary |
@@ -54,13 +59,15 @@ hover | active | disabled`. Full resolution table in [05-color.md](05-color.md#a
   validation outlines.
 - `color.border.feedback.focus.strong` (blue/500 | blue/400) for the focus border.
 - Validation states on inputs use `color.border.feedback.{danger,warning,success}.strong`.
-- Disabled opacity: the page context names `opacity.disabled` (≈ 0.38) for non-action
-  elements. There is **no opacity variable in the Figma inventory yet**; action
-  components use their explicit `disabled` color tokens instead. Never reduce disabled
-  opacity below 0.38.
-- Motion: the page names `motion/hover` and `motion/focus`; these semantic motion tokens
-  are a planned workstream. Today use `motion.duration.fast` (100 ms) and
-  `motion.ease.out` for state transitions. See [13-motion.md](13-motion.md).
+- Disabled is a **colour swap, not an opacity swap**. There is no `opacity.disabled`
+  token and no opacity variable in the inventory; use `color.text.disabled`,
+  `color.icon.disabled`, `color.border.disabled` and
+  `color.action.{intent}.{property}.disabled` (alpha/black-20 Light · alpha/white-20
+  Dark). Never dim a disabled element with `opacity` — contrast stops being predictable.
+- Motion: there are no `motion/hover` or `motion/focus` tokens. State transitions use
+  `motion.duration.fast` (100 ms) with `motion.ease.both`; hover-out uses
+  `motion.ease.out`; focus uses `motion.duration.instant` — keyboard focus is never
+  delayed. See [13-motion.md](13-motion.md).
 
 Every state change traces to a token swap; no hard-coded overrides.
 
@@ -84,13 +91,13 @@ Every state change traces to a token swap; no hard-coded overrides.
 
 ## Transition timing
 
-| Transition | Timing                                           |
-| ---------- | ------------------------------------------------ |
-| hover in   | Instant or ≤ 100 ms (`motion.duration.fast`)     |
-| hover out  | ~150 ms ease-out (slight delay prevents flicker) |
-| focus      | Instant                                          |
-| disabled   | Instant (never animate into or out of disabled)  |
-| loading    | `motion.duration.normal` for skeleton fade-in    |
+| Transition | Timing                                          |
+| ---------- | ----------------------------------------------- |
+| hover in   | Instant or ≤ 100 ms (`motion.duration.fast`)    |
+| hover out  | `motion.duration.fast` + `motion.ease.out`      |
+| focus      | Instant (`motion.duration.instant`)             |
+| disabled   | Instant (never animate into or out of disabled) |
+| loading    | `motion.duration.normal` for skeleton fade-in   |
 
 ## Cursor mapping
 

@@ -4,6 +4,8 @@
 
 ## Component set: Layout / Workplace
 
+Shell Tier 1: Top Bar, Sidebar and a three-column page area (left, center, right). 2 variants: breakpoint (desktop, mobile). Props: left, center, right (slots), hasLeft, hasRight (booleans). Use for products with full navigation, such as Workplace; mobile collapses the sidebar and stacks the columns. App-branded sidebars stay in the product file.
+
 ### Props
 
 | Prop         | Type    | Options / default         |
@@ -71,7 +73,6 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ### Issues detected
 
-- Component description is empty.
 - Primitive color bound directly (CLR-002): `color.purple.700`, `color.brand.red`.
 
 ## Documentation card

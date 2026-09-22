@@ -130,8 +130,17 @@ void main() {
       );
       // The constants the widgets are documented with really exist and really are constants.
       expect(SolarIcons.chevronRightOutline.paths, hasLength(1));
-      expect(SolarIcons.zoneOutline.height, 25.0);
+      expect(SolarIcons.zoneOutline.height, 24.0);
       expect(SolarLogos.biampDarkSm.width, 36.0);
+
+      // Every icon is on the 24 grid. Icon/Zone's outline was 24 x 25 until SOLAR redrew it on
+      // 2026-09-22; that the painter still fits a vector that is not square is covered by
+      // SolarVectorPainter's own test, which builds one.
+      expect(
+        generated.values
+            .where((SolarVector v) => v.width != 24 || v.height != 24),
+        isEmpty,
+      );
     });
 
     test('every one of the 682 paints without throwing', () {
@@ -191,17 +200,26 @@ void main() {
       expect(nonZero.contains(const Offset(5, 5)), isTrue);
     });
 
-    test('fits zone into a square box rather than stretching it', () {
-      // zone outline is the one icon drawn on a 0 0 24 25 viewBox. SVG letterboxes it for free
-      // through the default preserveAspectRatio, so Flutter has to as well or the two platforms
-      // draw the same icon differently.
-      final RecordingCanvas zone =
-          record(SolarIcons.zoneOutline, const Size(24, 24));
-      expect(zone.scales, <double>[24 / 25]);
-      expect(zone.translations.single.dx,
+    test('fits a non-square vector into a square box rather than stretching it',
+        () {
+      // SolarIcons.zoneOutline was drawn on a 0 0 24 25 viewBox and was the one real asset that
+      // needed this, until SOLAR redrew Icon/Zone on the grid on 2026-09-22. SVG letterboxes an
+      // off-grid drawing for free through the default preserveAspectRatio, so Flutter has to as
+      // well or the two platforms draw the same icon differently. The case is built here so it
+      // stays covered while no generated icon exercises it.
+      const SolarVector tall = SolarVector(
+        width: 24,
+        height: 25,
+        paths: <SolarVectorPath>[SolarVectorPath('M0 0H24V25H0Z')],
+      );
+      final RecordingCanvas fitted = record(tall, const Size(24, 24));
+      expect(fitted.scales, <double>[24 / 25]);
+      expect(fitted.translations.single.dx,
           closeTo((24 - 24 * (24 / 25)) / 2, 1e-9));
-      expect(zone.translations.single.dy, 0);
+      expect(fitted.translations.single.dy, 0);
 
+      // A square vector in a square box is scaled by 1 and not offset at all, which is every
+      // generated icon today.
       final RecordingCanvas square =
           record(SolarIcons.zoneSolid, const Size(24, 24));
       expect(square.scales, <double>[1.0]);

@@ -4,6 +4,8 @@
 
 ## Component: Facet Group
 
+Row of active filter Tags followed by Clear all and Add filter Buttons. Single component. Each Tag is dismissable and removes its facet; Clear all removes every facet. Sit it directly under the search or table header; on overflow the tags wrap, the buttons stay last.
+
 ### Anatomy (default variant)
 
 - **Facet Group** · component · row gap 12 pad 0/12/0/12 HUG/FIXED · 518×44  
@@ -33,10 +35,6 @@
 
 - Button
 - Tag
-
-### Issues detected
-
-- Component description is empty.
 
 ## Documentation card
 

@@ -19,7 +19,7 @@ export interface IconPath {
   fillRule?: 'evenodd';
 }
 
-/** One variant's drawing. The viewBox travels with it: `zone` outline is `0 0 24 25`. */
+/** One variant's drawing. The viewBox travels with it, so a variant off the 24 grid keeps it. */
 export interface IconGeometry {
   viewBox: string;
   paths: readonly IconPath[];

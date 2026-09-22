@@ -1,9 +1,9 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/iconography: 149b8a944ed6
+    documentation/iconography: 5332d7846a42
 ---
 
 # 09 · Iconography
@@ -31,38 +31,39 @@ understood.
 ## Sizes
 
 Six fixed sizes tied to the spatial scale. Icons are never stretched, scaled between
-steps, or rotated/free-scaled after export. All glyphs are sourced from **Remix Icon**.
+steps, or rotated/free-scaled after export.
 
-| Name | px  | Spatial token (Figma) | Use                                                                                          |
-| ---- | --- | --------------------- | -------------------------------------------------------------------------------------------- |
-| xs   | 12  | `icon/xs`             | Tight inline usage: status badges, meta labels. Intentionally chunkier stroke for legibility |
-| sm   | 16  | `icon/sm`             | Compact controls: buttons, inputs, menu items. Minimum for body contexts                     |
-| md   | 20  | `icon/md`             | **Default UI size**: buttons, toolbars, list items, nav items                                |
-| lg   | 24  | `icon/lg`             | Prominent placement: section headers, card actions, top-bar icons                            |
-| xl   | 32  | —                     | Feature callouts, illustrations, feature tiles                                               |
-| xxl  | 40  | —                     | Hero placements: empty states, onboarding, error pages, marketing                            |
+| Name | px  | Spatial token (Figma) | Use                                                                    |
+| ---- | --- | --------------------- | ---------------------------------------------------------------------- |
+| xs   | 12  | `icon/xs`             | Tight inline usage: status badges, meta labels, dense table cells      |
+| sm   | 16  | `icon/sm`             | Badges, inputs, menu items; inline with body text                      |
+| md   | 20  | `icon/md`             | **Default UI size**: buttons, toolbars, list items, nav items          |
+| lg   | 24  | `icon/lg`             | Prominent placement: section headers, card actions, top-bar icons      |
+| xl   | 28  | `icon/xl`             | Large controls and feature callouts. Not yet used by a component       |
+| 2xl  | 32  | `icon/2xl`            | Empty states, onboarding, hero placements. Not yet used by a component |
 
-Inventory note: the Spatial collection currently defines `icon/xl` = **28 px** and
-`icon/2xl` = **32 px**, which does not match the documented xl = 32 / xxl = 40 above.
-Until the variables are reconciled, treat the six documented sizes as the design intent
-and the variables as a governance gap (see [source-discrepancies.md](source-discrepancies.md)).
-Documentation name: `icon.size.{size}`.
+There is **no 40 px or 48 px icon size**, and no `xxl` step. Documentation name:
+`icon.size.{size}`. The rendered size always comes from an `icon/*` variable, never from
+a resized copy of the glyph.
 
 ## Grid and construction
 
-- Canvas matches the rendered size (12, 16, 20, 24, 32, 40 px); each size has its own
-  live area inset from the canvas edge. At 24 px the live area is 20 × 20.
+- Every glyph is drawn **once, on a 24 × 24 px canvas**; the rendered size comes from the
+  `icon/*` variables. The live area is inset from the canvas edge — at 24 px it is
+  20 × 20.
 - Keyline shapes define target optical volume so icons feel equally sized: at 24 px,
   circle Ø 20, square 18 × 18, portrait rect 16 × 20, landscape rect 20 × 16.
 - Pixel alignment: the **outside** of the stroke sits on the pixel grid; only one side
   may sit on a .5 px boundary. A centred stroke anti-aliases on both sides and looks
   fuzzy at small sizes.
-- Each size is drawn for that size, never stretched from another.
+- No rotation or free-scaling of finished icons. Check legibility at 12 px, the smallest
+  rendered size, before release.
 - No sub-pixel paths in final exported icons.
 
 ## Stroke and geometry
 
-- Stroke weight: sm, md, lg, xl, xxl share a baseline weight; xs runs chunkier by design.
+- Stroke weight: one baseline weight across the whole set. Glyphs are not redrawn per
+  size.
 - Terminators: round caps and round joins on all outline glyphs.
 - Angles move in 15° steps; arcs follow perfect circles; no bezier drift.
 - Integer-pixel measurements on every vertex and endpoint (except at the
@@ -72,30 +73,34 @@ Documentation name: `icon.size.{size}`.
 
 ## Outline vs solid
 
-Every icon ships as an **Outline** (default) and a **Solid** variant with the same
-metaphor, name and canvas, drawn independently (never an auto-fill of the outline).
+Every icon ships as an **outline** (default) and a **solid** twin with the same metaphor,
+name and canvas, drawn independently (never an auto-fill of the outline). Both live on
+**one component set** behind a `solid` boolean: `solid=false` is the base, `solid=true`
+the filled twin.
 
 - Outline is the default across surfaces: toolbars, inputs, list items, body content.
 - Solid signals emphasis or state: selected tab, active nav item, filled status, hero
   illustration.
 - Directional glyphs (chevron, arrow, caret, triangle) share one sharp, tall-narrow
   triangle silhouette for the solid variant, rotated 0°/90°/180°/270°.
-- Library naming: Outline has no suffix; Solid uses the `/Solid` suffix
-  (`Icon/Circle`, `Icon/Circle / Solid`).
 
 ## Naming
 
-- Element first, modifier second: `chevron-right`, `arrow-up`, `circle-check`.
-- Lowercase, hyphen-separated; no camelCase, no underscores, **no size suffixes**.
-- Direction modifiers: `-up`, `-down`, `-left`, `-right`.
-- State modifiers: `-filled`, `-open`, `-closed`, only when the state is a distinct
-  glyph, not a colour variant.
-- Solid suffix: `{name}/Solid`.
-- The name is identical across xs…xxl; only the Size variant property changes.
+- `Icon/{PascalCaseName}`, element first, modifier second: `Icon/ChevronRight`,
+  `Icon/ArrowUp`, `Icon/CircleCheck`.
+- PascalCase under the `Icon/` group; no kebab-case, no camelCase, no underscores, and
+  **never a size in the name**.
+- Direction modifiers: `Up`, `Down`, `Left`, `Right`.
+- State modifiers: `Filled`, `Open`, `Closed`, only when the state is a distinct glyph,
+  not a colour variant.
+- Fill is the `solid` boolean, not a name: there is no `/Solid` suffix and no size
+  variant property.
 
-(The page context describes a `{category}/{action-or-object}` scheme with categories
-`navigation | action | status | content | communication | media | file | social`. The
-library slides use the flat element–modifier grammar above; follow the slides.)
+Two slides on the page still describe the retired scheme — a `/Solid` suffix and a
+component set "with Size and Style variants". The Naming slide and the page context
+supersede them, and the shipped library agrees: see
+[../solar-icons/catalog.json](../solar-icons/catalog.json), where every entry is a single
+24 × 24 set with `outline` and `solid` variants under a PascalCase name.
 
 ## Color
 
@@ -138,28 +143,34 @@ Icon color tokens mirror text color tokens exactly (see [05-color.md](05-color.m
 - SOLAR Icons is the single source of truth. Custom or third-party icons are not
   permitted without approval from the **SOLAR Gatekeeper**, a single designated person
   at Biamp who handles all additions, renames and deprecations.
-- The library is a Figma component set with Size and Style variants.
+- The library is a set of Figma component sets, one per icon, with a `solid` boolean and
+  no size variant.
 - Workflow: check the library first → intake (channel TBD; raise with the Gatekeeper) →
   Gatekeeper review against the acceptance checklist → promotion.
 - Page status legend in the icon file: no emoji = not started, 🟡 WIP, 🟠 draft (pending
   review), 🟢 done (promoted by the Gatekeeper).
 
-**Acceptance checklist** (every item must pass):
+**Acceptance checklist** (every item must pass). The Gatekeeper-checklist slide still
+carries the pre-2026-09 wording — "at every size", "canvas matches the rendered size",
+"identical across sizes" — which the Sizing, Grid and Naming slides retired; read it
+against the single 24 × 24 canvas:
 
-1. Sourced from Remix at every size; no Nova, no Phosphor, no custom SVGs.
-2. Canvas matches the rendered size; live area respected.
+1. Sourced from the approved source set; no Nova, no Phosphor, no custom SVGs.
+2. Drawn on the 24 × 24 canvas; live area respected.
 3. Strokes expanded to filled paths; paths combined; integer pixels only.
 4. Stroke and fill colour bound to semantic tokens (`color.icon.*` or
    `color.action.*.icon.*`), never hard-coded hex.
-5. Outline and Solid pair present with the same name, canvas and optical volume.
-6. Name follows element–modifier grammar and is identical across sizes.
+5. Outline and solid pair present on one component set, with the same name, canvas and
+   optical volume.
+6. Name follows the `Icon/{PascalCaseName}` element–modifier grammar and carries no size.
 7. Does not override, rename, or detach any existing protected icon.
 8. Reviewed and approved by the SOLAR Gatekeeper.
 
 ## Do and don't
 
-| Do                                               | Don't                                                             |
-| ------------------------------------------------ | ----------------------------------------------------------------- |
-| Use icons from the SOLAR Icons library           | Resize icons between steps (a 20 px icon at 22 px renders blurry) |
-| Provide accessible labels for every icon         | Recolor icons manually with hex values                            |
-| Reference icons by system name with a size token | Mix outline and solid within one UI context                       |
+| Do                                                               | Don't                                                             |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Use icons from the SOLAR Icons library                           | Resize icons between steps (a 20 px icon at 22 px renders blurry) |
+| Provide accessible labels for every icon                         | Recolor icons manually with hex values                            |
+| Reference icons by system name with a size token                 | Mix outline and solid within one UI context                       |
+| Bind every instance to `color.icon.*` or `color.action.*.icon.*` | Leave an instance on the library's `neutral/900` authoring fill   |

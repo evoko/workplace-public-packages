@@ -4,6 +4,8 @@
 
 ## Component set: Sidebar
 
+Primary app navigation rail: a Menu slot of Nav Items, a collapse toggle and the Biamp logo at the foot. 2 variants: expanded (False, True). Collapsed shows icons only with labels as tooltips; expanded shows icon and label. Props: Menu (slot). Generic primitive only: Sidebar/Workplace and Sidebar/Chatter assemblies live in the product files.
+
 ### Props
 
 | Prop       | Type    | Options / default         |
@@ -71,7 +73,6 @@ Default variant: `expanded=False` · 2 variants · default size 64×744px
 
 ### Issues detected
 
-- Component description is empty.
 - Primitive color bound directly (CLR-002): `color.brand.red`.
 
 ## Issues detected (page)

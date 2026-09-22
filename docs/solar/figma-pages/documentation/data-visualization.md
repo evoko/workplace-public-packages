@@ -1,6 +1,6 @@
 # Data Visualization
 
-> Verbatim text of the Figma page `Data Visualization` (id `763:55486`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `43e7bb7b6566`. Curated chapter: [10-data-visualization.md](../../10-data-visualization.md).
+> Verbatim text of the Figma page `Data Visualization` (id `763:55486`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `52f3b4622300`. Curated chapter: [10-data-visualization.md](../../10-data-visualization.md).
 
 ## Slide 1
 
@@ -117,10 +117,10 @@ The machine-readable context block the SOLAR team placed on this page, verbatim.
 page: Data Visualization
 domain: Visual Language > Charts & Data Display
 version: 1.0
-updated: 2026-03-23
+updated: 2026-09-22
 
 [ROLE]
-You are the SOLAR data visualization specialist. Charts, graphs, and data displays must be accessible, consistent, truthful, and use the dedicated data viz token palette — never UI semantic colors.
+You are the SOLAR data visualization specialist. Charts, graphs, and data displays must be accessible, consistent, truthful, and use the dedicated color.data.* palette — never UI semantic colors.
 
 [SCOPE]
 - Chart type selection guidelines
@@ -145,7 +145,7 @@ categorical: 6–8 distinct hues for nominal data — optimized for max distingu
 sequential: single-hue ramp (light → dark) for ordered/quantitative data
 diverging: two-hue ramp with neutral midpoint for data with a meaningful center
 colorblind_safe: all palettes tested for deuteranopia, protanopia, tritanopia
-tokens: dataviz.color.categorical.{1–8}, dataviz.color.sequential.{100–900}, dataviz.color.diverging.{neg|neutral|pos}
+tokens: color.data.category.{01–08}.{strong|subtle}, color.data.scale.*, color.data.delta.{positive|negative|neutral} — Figma: data/category/NN/{strong|subtle}, data/scale/*, data/delta/*
 rule: NEVER reuse UI semantic colors (action, feedback, surface) for data encoding
 
 [AXIS_AND_LABELS]
@@ -186,7 +186,7 @@ animation: data entrance animations respect prefers-reduced-motion
 
 [AGENT_BEHAVIOR]
 - When recommending a chart type, justify why it's the best fit for the data shape
-- Always specify data viz palette tokens — never UI colors
+- Always specify color.data.* tokens — never UI colors
 - If a chart lacks a text alternative, flag it as a critical accessibility violation
 - Verify y-axis starts at zero for bar charts
 - Check that all data series are distinguishable without color (shape/pattern markers)

@@ -1,11 +1,11 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
     documentation/layout: bb4e84ef17db
-    documentation/responsive: e05f7f27e5f6
-    documentation/grid: f23dcb8032c0
+    documentation/responsive: b349eda36390
+    documentation/grid: d28c16fdb34e
     primitives/viewport: 8aa9628ed0f8
 ---
 
@@ -54,19 +54,22 @@ which a layout transition may occur.
 | `viewport.sm` | 768  | 4            | 16 px (1rem)    | 16 px (1rem)    | Tablet portrait  |
 | `viewport.md` | 1024 | 8            | 20 px (1.25rem) | 20 px (1.25rem) | Tablet landscape |
 | `viewport.lg` | 1440 | 12           | 24 px (1.5rem)  | 24 px (1.5rem)  | Standard desktop |
-| `viewport.xl` | 1920 | 12           | 24 px (1.5rem)  | 24 px (1.5rem)  | Large display    |
+| `viewport.xl` | 1920 | 12           | 32 px (2rem)    | 24 px (1.5rem)  | Large display    |
 
 Figma: Primitives › `viewport/xs…xl`. CSS: `--solar-viewport-xs` etc. Gutter and margin
-values correspond to `inset.md` (16), `inset.lg` (20) and `inset.xl` (24) on the spatial
-scale.
+values sit on the spatial scale: 16 px = `spatial.scale.4`, 20 px = `spatial.scale.5`,
+24 px = `spatial.scale.6`, 32 px = `spatial.scale.8`. Only `xl` differs between the two
+— a 32 px gutter with a 24 px margin.
 
-Viewport tokens are defined in Foundations and consumed by SOLAR Web and domain
-libraries for responsive transitions, grid and container systems, and adaptive
-component behaviour.
+The **viewport** tokens are Foundations and platform-agnostic. The columns, gutters,
+margins and breakpoints themselves live in SOLAR Web's **Layout** collection
+(`layout.grid.columns.{bp}`, `layout.grid.gutter.{bp}`, `layout.grid.margin.{bp}`,
+`layout.breakpoint.{bp}` → `--solar-layout-*`), where `breakpoint/{bp}` aliases
+Foundations `viewport/{bp}`. Foundations defines the widths; SOLAR Web defines what the
+grid does at them.
 
-(The Responsive page context lists a different, illustrative set: mobile 0–599,
-tablet 600–1023, desktop 1024–1439, wide 1440+, with `viewport.breakpoint.sm: 600px`.
-Those values do not exist in the inventory; use the table above.)
+There are only these five named breakpoints. There is no 600 px or 1023 px boundary, no
+mobile/tablet/desktop/wide band naming, and no `viewport.breakpoint.*` token.
 
 ## Responsive principles
 
@@ -78,7 +81,7 @@ Those values do not exist in the inventory; use the table above.)
 
 Responsive is not about resizing; it is about controlled structural transitions driven
 by breakpoint tokens. Layout is fluid (percentage or flex) between breakpoints; the
-type scale swaps Desktop/Mobile modes at the tablet boundary; images are `max-width:
+type scale swaps Desktop/Mobile modes at `sm` (768 px); images are `max-width:
 100%`; content width is capped on wide screens.
 
 ## Responsive behaviour rules
@@ -128,7 +131,9 @@ asymmetric 5/12 + 7/12.
 Rules:
 
 - Express widths as column spans, never percentages or pixels.
-- Gutters and margins are spatial tokens; never modify gutter width per component.
+- Gutters and margins are variables (`layout.grid.gutter.{bp}` / `layout.grid.margin.{bp}`,
+  aliasing the spatial scale); never hard-code them and never modify gutter width per
+  component.
 - Nested grids are allowed but subdivide the parent span and reuse the parent gutter.
 - Full-bleed (content past the margins to the viewport edge) is a documented exception;
   content inside still aligns to the inner grid.

@@ -454,31 +454,31 @@
         {
           "t": "h",
           "level": 4,
-          "text": "Error Messages"
+          "text": "1. Scan"
         },
         {
           "t": "p",
-          "text": "Structure: What happened + Why + What to do next.\n\nNever show raw error codes or technical IDs.\nAlways include a recovery action when one exists.\nUse color.text.feedback.danger for error text and pair with an icon — never rely on color alone.\nKeep under 2 lines.",
+          "text": "Pick a scope — page, selection, or all pages — and run. The plugin resolves every instance to its library source and evaluates each rule against every node it visits.",
           "style": "Body/Body M/Regular"
         },
         {
           "t": "h",
           "level": 4,
-          "text": "Empty States"
+          "text": "2. Review"
         },
         {
           "t": "p",
-          "text": "Structure: What this space is for + How to get started.\n\nInclude a primary action when possible (e.g., “Add device” button).\nEmpty states should feel temporary, not permanent.\nDon’t use illustrations that look like errors.",
+          "text": "Findings group by severity and category. Summary cards give the counts, the coverage bar shows how much of the scope is bound to SOLAR, and the table filters by rule.",
           "style": "Body/Body M/Regular"
         },
         {
           "t": "h",
           "level": 4,
-          "text": "Confirmation Dialogs"
+          "text": "3. Fix"
         },
         {
           "t": "p",
-          "text": "Structure: What will happen (specific) + What can’t be undone + Action button that names the action.\n\nNever use “Are you sure?” as the only content.\nConfirm button names the action: “Delete device” not “OK.”\nCancel is always “Cancel.”",
+          "text": "Click a finding to select the node in Figma. Each row names the rule, what it flags, and the action that clears it. Re-scan to confirm the count drops to zero.",
           "style": "Body/Body M/Regular"
         },
         {
@@ -597,12 +597,12 @@
         "© 2026 Biamp",
         "[Confidential]",
         "You pick a scope (page, selection, or all pages), hit Scan, and the plugin walks every node — resolving component references, running all rules, and classifying every instance. Results appear as summary cards, a coverage bar, and a filterable findings table.",
-        "Error Messages",
-        "Structure: What happened + Why + What to do next.\n\nNever show raw error codes or technical IDs.\nAlways include a recovery action when one exists.\nUse color.text.feedback.danger for error text and pair with an icon — never rely on color alone.\nKeep under 2 lines.",
-        "Empty States",
-        "Structure: What this space is for + How to get started.\n\nInclude a primary action when possible (e.g., “Add device” button).\nEmpty states should feel temporary, not permanent.\nDon’t use illustrations that look like errors.",
-        "Confirmation Dialogs",
-        "Structure: What will happen (specific) + What can’t be undone + Action button that names the action.\n\nNever use “Are you sure?” as the only content.\nConfirm button names the action: “Delete device” not “OK.”\nCancel is always “Cancel.”",
+        "1. Scan",
+        "Pick a scope — page, selection, or all pages — and run. The plugin resolves every instance to its library source and evaluates each rule against every node it visits.",
+        "2. Review",
+        "Findings group by severity and category. Summary cards give the counts, the coverage bar shows how much of the scope is bound to SOLAR, and the table filters by rule.",
+        "3. Fix",
+        "Click a finding to select the node in Figma. Each row names the rule, what it flags, and the action that clears it. Re-scan to confirm the count drops to zero.",
         "Rule ID",
         "What It Flags",
         "Severity",

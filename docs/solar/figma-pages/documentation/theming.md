@@ -1,6 +1,6 @@
 # Theming
 
-> Verbatim text of the Figma page `Theming` (id `1114:9360`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `fd9f62704592`. Curated chapter: [14-theming.md](../../14-theming.md).
+> Verbatim text of the Figma page `Theming` (id `1114:9360`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `9cc2105a7018`. Curated chapter: [14-theming.md](../../14-theming.md).
 
 ## Slide 1
 
@@ -40,7 +40,7 @@ Surface and background colors invert\
 Text and icon colors invert\
 Border colors shift to maintain separation\
 Action colors invert (neutral/900 → neutral/50)\
-Shadow intensity may increase in dark mode
+Shadow alpha increases in dark mode (5% → 50%, 20% → 70%)
 
 ##### What Does NOT Change
 
@@ -54,12 +54,12 @@ Motion durations and easing stay the same
 
 Feedback colors (success, warning, danger, info) use shifted steps between modes. For example, success uses green/500 in both modes for text, but green/50 in light and green/800 in dark for surfaces. The semantic meaning is always preserved.
 
-| Feedback Surface         | Light Primitive | Dark Primitive | Light Hex | Dark Hex | Shift    |
-| ------------------------ | --------------- | -------------- | --------- | -------- | -------- |
-| surface.feedback.success | green/50        | green/800      | #ECFFE9   | #002400  | 50 → 800 |
-| surface.feedback.warning | yellow/50       | yellow/900     | #FFFBD5   | #271E00  | 50 → 900 |
-| surface.feedback.danger  | red/50          | red/900        | #FFE4DF   | #280000  | 50 → 900 |
-| surface.feedback.info    | blue/50         | blue/900       | #E9F2FF   | #01082D  | 50 → 900 |
+| Feedback Surface                | Light Primitive | Dark Primitive | Light Hex | Dark Hex | Shift    |
+| ------------------------------- | --------------- | -------------- | --------- | -------- | -------- |
+| surface.feedback.success.subtle | green/50        | green/800      | #ECFFE9   | #002400  | 50 → 800 |
+| surface.feedback.warning.subtle | orange/50       | orange/800     | #FFEEDA   | #3E0000  | 50 → 800 |
+| surface.feedback.danger.subtle  | red/50          | red/800        | #FFE4DF   | #410001  | 50 → 800 |
+| surface.feedback.info.subtle    | turquoise/50    | turquoise/800  | #F0FFFF   | #033238  | 50 → 800 |
 
 ## Accessibility and Theming
 
@@ -110,7 +110,7 @@ Provide a foundation for future theme extensions (e.g., high contrast).
 | ------------------------------- | -------------- | -------------- | --------------- | --------------------- | -------- |
 | color.text.primary              | neutral/900    | neutral/50     | #111111         | #F5F5F5               | Text     |
 | color.surface.base              | mono/white     | neutral/800    | #FFFFFF         | #222222               | Surface  |
-| color.border.default            | alpha/black-20 | alpha/white-20 | rgba(0,0,0,0.2) | rgba(255,255,255,0.2) | Border   |
+| color.border.medium             | alpha/black-20 | alpha/white-20 | rgba(0,0,0,0.2) | rgba(255,255,255,0.2) | Border   |
 | color.action.primary.bg.default | neutral/900    | neutral/50     | #111111         | #F5F5F5               | Action   |
 
 ## Non-Color Tokens and Theming
@@ -129,12 +129,13 @@ radius.pill → 9999px (border-radius/full)
 
 border.none → 0px\
 border.default → 1px (border-width/sm)\
-border.strong → 2px (border-width/md)
+border.strong → 2px (border-width/md)\
+border.emphasis → 4px (border-width/lg)
 
 ###### Shadow Color Variables
 
-shadow.subtle → alpha/black-05 (light) \| alpha/black-90 (dark)\
-shadow.strong → alpha/black-20 (light) \| mono/black (dark)\
+shadow.subtle → alpha/black-05 (light) \| alpha/black-50 (dark)\
+shadow.strong → alpha/black-20 (light) \| alpha/black-70 (dark)\
 shadow.feedback.focus → alpha/blue-20 (both modes)\
 shadow.feedback.danger → alpha/red-20 (both modes)
 
@@ -142,7 +143,7 @@ shadow.feedback.danger → alpha/red-20 (both modes)
 | ----------- | ----- | ----------- | ----- | ------- | ---------------- |
 | inset.md    | 16px  | stack.md    | 16px  | No      | Single mode only |
 | inset.sm    | 12px  | stack.sm    | 12px  | No      | Single mode only |
-| inset.lg    | 24px  | stack.lg    | 24px  | No      | Single mode only |
+| inset.lg    | 20px  | stack.lg    | 20px  | No      | Single mode only |
 
 ## Theming Do's and Don'ts
 
@@ -184,7 +185,7 @@ The machine-readable context block the SOLAR team placed on this page, verbatim.
 page: Theming
 domain: Theme Architecture & Multi-Brand Support
 version: 1.0
-updated: 2026-03-23
+updated: 2026-09-22
 
 [ROLE]
 You are the SOLAR theming specialist. Theming enables the system to support multiple visual expressions — light/dark modes and brand variants — through token swapping. Components never contain theme-specific logic; they consume semantic tokens that the theme resolves.
@@ -203,11 +204,11 @@ layers: primitive palette (fixed) → semantic tokens (theme-resolved) → compo
 rule: components ONLY reference semantic tokens — this is what makes theming work
 
 [LIGHT_DARK_MODE]
-light: semantic tokens alias lighter primitives (e.g., surface.default → neutral-0, text.primary → neutral-900)
-dark: semantic tokens alias darker primitives (e.g., surface.default → neutral-900, text.primary → neutral-50)
+light: semantic tokens alias lighter primitives (e.g., surface.base → mono/white, text.primary → neutral/900)
+dark: semantic tokens alias darker primitives (e.g., surface.base → neutral/800, text.primary → neutral/50)
 swap: same semantic name, different underlying value per mode
-surfaces: dark mode uses progressively lighter surfaces for elevation (not just inverted)
-shadows: reduced shadow intensity in dark mode — darker environment needs less contrast
+surfaces: raised, overlay and dialog share one fill per mode (mono/white light, neutral/800 dark) — depth comes from shadow, not tint
+shadows: shadow colour alpha increases in dark mode (shadow/subtle 5% → 50%, shadow/strong 20% → 70%) so the lift stays visible
 borders: may need increased opacity/strength in dark mode for visibility
 rule: dark mode ≠ inverted colors — it requires intentional design of every token mapping
 

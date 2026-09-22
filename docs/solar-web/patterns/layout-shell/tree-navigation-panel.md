@@ -4,6 +4,8 @@
 
 ## Component: Tree Navigation Panel
 
+Side panel that holds a hierarchy of Tree Items for browsing nested locations, folders or devices. Single component. Props: Tree Items (slot). Items expand and collapse in place; Arrow keys move and open nodes, the selected item carries aria-selected. For a flat section list use Section Nav.
+
 ### Props
 
 | Prop         | Type | Options / default         |
@@ -87,10 +89,6 @@ Instance census (tree capped at depth 3): StatusIndicator ×48, Icon/None ×42, 
 - Tree Item/02/false/false/false
 - Tree Item/02/false/false/true
 - Tree Item/03/false/true/false
-
-### Issues detected
-
-- Component description is empty.
 
 ## Documentation card
 

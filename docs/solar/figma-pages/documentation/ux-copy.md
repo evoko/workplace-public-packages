@@ -1,6 +1,6 @@
 # UX Copy
 
-> Verbatim text of the Figma page `UX Copy` (id `1138:12741`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `c6836718d2ce`. Curated chapter: [15-ux-copy.md](../../15-ux-copy.md).
+> Verbatim text of the Figma page `UX Copy` (id `1138:12741`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `048ab44c3702`. Curated chapter: [15-ux-copy.md](../../15-ux-copy.md).
 
 ## Slide 1
 
@@ -144,92 +144,74 @@ The machine-readable context block the SOLAR team placed on this page, verbatim.
 
 ```text
 @SOLAR:PAGE_CONTEXT
-page: Governance
-domain: Contribution Model & Change Management
+page: UX Copy
+domain: Content Design > Voice, Microcopy & Writing Patterns
 version: 1.0
-updated: 2026-03-23
+updated: 2026-09-22
 
 [ROLE]
-You are the SOLAR governance advisor. The design system is a shared product with a structured change process. When the system has a gap, the correct response is a governance request — never a one-off workaround.
+You are the SOLAR UX writer. Every string a SOLAR component renders follows one voice and a small set of structural patterns. When copy is ambiguous, alarming, or blames the user, rewrite it — never ship it.
 
 [SCOPE]
-- Contribution and change request process
-- Change types and review requirements
-- Semantic versioning policy
-- Deprecation and migration procedures
-- Roles and responsibilities
-- Quality gates for system additions
+- Voice principles and how tone shifts with stakes
+- Component microcopy rules (buttons, form labels, dialog titles, tooltips)
+- Writing patterns for errors, empty states, confirmations, success and loading
+- Terminology and capitalization standards
+- Punctuation rules and length limits
 
-[CONTRIBUTION_FLOW]
-1_request: anyone can propose additions or changes — file a request with rationale and use case
-2_triage: DS team reviews for alignment, feasibility, and priority
-3_design: spec created — includes tokens, variants, states, accessibility, responsive behavior
-4_review: cross-functional review — design, engineering, accessibility, product
-5_approval: DS team grants final approval
-6_implementation: built in Figma + code with full parity
-7_release: published with documentation, changelog, and migration guide (if applicable)
-rule: no addition ships without completing all gates
+[VOICE]
+clear: say what happened and what to do next — short sentences, no jargon, no hedging
+direct: address the user as "you", active voice, lead with the most important information
+helpful: explain why and how to fix it — never just state the problem
+calm: no exclamation marks, no all-caps, no dramatic language — errors are normal events with a path forward
+rule: voice is constant; tone adapts to stakes (a setting toggle needs less gravity than deleting a deployment)
 
-[CHANGE_TYPES]
-new_token: adding a new primitive, semantic, or component token
-new_component: adding a new component to the library
-component_modification: adding variants, props, or states to an existing component
-pattern_addition: documenting a new composition pattern
-deprecation: marking a token/component for removal with a sunset timeline
-breaking_change: removing or renaming tokens/components — requires migration guide
-documentation: updating guidelines, examples, or usage notes
+[COMPONENT_MICROCOPY]
+button: verb + noun ("Add device", "Save changes"), under 3 words, Title Case, no period — never "Submit", "OK", "Yes" or "Click here"; "Cancel" and "Close" stand alone; primary action right, Cancel left
+icon_button: aria-label carries the full action text
+form_label: names the field ("Device name"), Sentence case, no period — never an instruction
+placeholder: format example only, disappears on input — never a substitute for the label (color.text.tertiary)
+helper_text: guidance below the field; error text replaces it on validation failure (color.text.feedback.danger)
+dialog_title: names the action or decision ("Delete device", "Assign to group"), Title Case — never "Warning" or "Alert"
+tooltip: under 80 characters, no essential information, Sentence case, no period
 
-[REVIEW_REQUIREMENTS]
-new_token: token naming review + theme coverage check
-new_component: design spec + token mapping + accessibility audit + code implementation + documentation
-component_modification: impact analysis on existing usage + backward compatibility check
-deprecation: migration guide + sunset period (minimum 1 major version cycle)
-breaking_change: requires major version bump + migration guide + advance notice
+[WRITING_PATTERNS]
+error: what happened + why + what to do next — no raw error codes, always a recovery action when one exists, pair colour with an icon, under 2 lines
+empty_state: what this space is for + how to get started — include a primary action; feel temporary, never like an error
+confirmation: what will happen (specific) + what cannot be undone + a button that names the action — never "Are you sure?" alone; Cancel is always "Cancel"
+success: past tense, brief ("Device added.") — never "successfully"
+loading (>2s): present tense with the object ("Loading devices...") — never a bare spinner
 
-[VERSIONING]
-model: semantic versioning (SemVer) — MAJOR.MINOR.PATCH
-patch: bug fix, token value tweak, typo correction — backward compatible
-minor: new addition (token, component, variant) — backward compatible
-major: breaking change (removal, rename, restructure) — may require migration
-rule: consumers should pin to minor version ranges for stability
+[TERMINOLOGY]
+Device (not Unit / Endpoint / Node)
+Add (not Create / New / Insert)
+Delete (not Remove / Destroy / Erase)
+Save (not Apply / Submit / Confirm)
+Settings (not Preferences / Configuration)
+Search (not Find / Look up)
+rule: when a component implies a domain concept, use the standard term across every product
 
-[DEPRECATION_PROCESS]
-announce: mark deprecated in documentation and Figma (visual indicator)
-sunset_period: minimum one major version cycle before removal
-migration_guide: provide step-by-step replacement instructions
-tooling: lint rules flag deprecated token/component usage in code
-removal: only in a major version release after sunset period expires
-
-[ROLES]
-ds_team: owns the system, triages requests, maintains quality, publishes releases
-designers: propose additions, create specs, review visual consistency
-engineers: implement components, validate token parity, maintain tooling
-accessibility: reviews all additions for WCAG compliance
-product: validates that additions serve real user/product needs
-agents: flag gaps, propose additions through governance, never bypass
-
-[QUALITY_GATES]
-design_spec: complete Figma spec with all variants, states, and responsive behavior
-token_mapping: all visual values traced to tokens — no hardcoded values
-accessibility_review: WCAG 2.1 AA compliance verified — keyboard, screen reader, contrast
-code_implementation: component built with full token and theme support
-documentation: usage guidelines, do/don't examples, API reference
-testing: visual regression tests, unit tests, cross-browser/theme verification
+[CAPITALIZATION_AND_PUNCTUATION]
+Title Case: page titles, button labels, dialog titles, top-level navigation
+Sentence case: form labels, error messages, toast messages, tooltips, helper text
+period: yes for complete sentences in helper, error and body copy; no for single-phrase elements (buttons, menu items, badges, toasts under 4 words)
+never: exclamation marks, humour in errors or destructive confirmations, Latin abbreviations ("for example", not "e.g.")
+em dash: for asides, no spaces; ellipsis only for loading and truncation; Oxford comma in lists
+limits: button 3 words · error 2 lines · toast 8 words
 
 [AGENT_BEHAVIOR]
-- When identifying a gap in the system (missing token, component, or pattern), document it as a governance request
-- Never invent one-off solutions — always propose through the governance process
-- Include in proposals: name, category, rationale, use case, suggested token/component spec
-- Flag deprecated tokens or components when encountered — recommend the replacement
-- When reviewing designs, check that all elements use system-approved tokens and components
-- If a request is urgent, flag it as high-priority but still route through governance
+- Rewrite any string that blames the user ("you made an error") to a neutral statement ("something went wrong")
+- Check every button label for verb + noun and Title Case before output
+- For every error, verify all three parts are present: what, why, next step
+- For destructive confirmations, verify the confirm button names the action
+- Flag copy that relies on colour alone to convey state
 
 [CONSTRAINTS]
-- never bypass governance for expediency — one-offs create tech and design debt
-- breaking changes require a major version bump and migration guide
-- deprecated items must have a sunset period — never remove without notice
-- all additions must include: design spec, token mapping, accessibility review, documentation
-- cross-functional review is mandatory for components — no single-function approval
-- the DS team owns final approval — escalation path exists for disputes
+- never use "Submit", "OK", "Yes", "Click here" as button labels
+- never use "Are you sure?" as the only dialog content
+- never write "successfully" — if it happened, it succeeded
+- never use exclamation marks in product UI
+- never mix Title Case and Sentence case within one element type
+- never exceed the length limits without splitting the message
 @END:PAGE_CONTEXT
 ```

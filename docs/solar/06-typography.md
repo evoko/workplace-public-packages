@@ -1,10 +1,10 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/typography: f6bd55d8994b
-    primitives/typography: 57576dc27ef0
+    documentation/typography: 8db3b87449b6
+    primitives/typography: d11813ce6771
 ---
 
 # 06 · Typography
@@ -36,7 +36,8 @@ Typography is applied through tokens and text styles, never ad-hoc.
 Primitive variables: `type/font-family/{gotham,montserrat,inter,opensans,ibmplexmono,robotomono}`.
 In the Figma text styles, Display uses **Montserrat** (Gotham is the licensed brand
 font; Montserrat is its open substitute), everything else uses **Inter**, and code uses
-**IBM Plex Mono**.
+**IBM Plex Mono**. Family is fixed per text style and is not variable-bound; a new
+typeface is a governance change, never a product choice.
 
 ## Font weight
 
@@ -48,7 +49,10 @@ styles reference the token (design consistency).
 | Thin | Extra Light | Light | Regular | Medium | Semi Bold | Bold | Extra Bold | Black |
 
 Primitive variables: `type/font-weight/100…900` (string values are the Figma style
-names, e.g. `Semi Bold`).
+names, e.g. `Semi Bold`). The text styles use only Regular 400, Medium 500, Semi Bold 600
+and Bold 700; the rest exist as primitives for completeness. Weight is fixed per text
+style and is not variable-bound — emphasis comes from choosing another style, never from
+a local override.
 
 ## Two layers: tokens define, styles apply
 
@@ -56,8 +60,10 @@ names, e.g. `Semi Bold`).
 14, 16, 18, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 64, 72, 80, 96, 112, 128 px.
 
 **Semantic type tokens** (Type collection, modes **Desktop | Mobile**): `size/{role}/{size}`
-and `line-height/{role}/{size}`. This is the only place responsive typography lives;
-switching the collection mode changes every bound text style.
+and `line-height/{role}/{size}`, 41 variables in all. This is the only place responsive
+typography lives; switching the collection mode changes every bound text style. Only size
+and line height are variable-bound — family, weight and letter spacing are baked into the
+text style.
 
 **Text styles** compose family + weight + size + line height + letter spacing into a
 named role. The chapter refers to them as `font.desktop.body.md.regular` /
@@ -130,10 +136,13 @@ Text color is never a raw hex. Text uses `color.text.*` semantic tokens, which m
 different palette steps per mode (see [05-color.md](05-color.md#text)). Rule: apply the
 semantic role (primary/secondary/…); theme mapping handles the rest.
 
-The Typography chapter's own "Text Color" slide lists older mappings (e.g. secondary
-dark = neutral/500, disabled = black-alpha-40, info = blue/700). The variables are
-authoritative: secondary dark = neutral/300, disabled = alpha/black-20 | alpha/white-20,
-info = turquoise/700 | turquoise/400. See [source-discrepancies.md](source-discrepancies.md).
+The Typography page's own "Text Color" table agrees with the variables: `text.primary`
+neutral/900 | neutral/50, `text.secondary` neutral/500 | neutral/300, `text.tertiary`
+neutral/300 | neutral/500, `text.disabled` alpha/black-20 | alpha/white-20,
+`text.inverse` brand/white | neutral/900. Feedback text carries the `feedback` segment:
+`color.text.feedback.success` green/600 | green/400, `.warning` orange/600 | orange/400,
+`.danger` red/600 | red/300, `.info` turquoise/700 | turquoise/400. There is no
+`color.text.success`, `.warning`, `.danger` or `.info` without it.
 
 ## Applying text styles
 

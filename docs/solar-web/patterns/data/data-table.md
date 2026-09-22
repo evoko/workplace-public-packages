@@ -4,6 +4,8 @@
 
 ## Component set: DataTable
 
+Full table pattern: TableHeader (title, search, actions), Table body and TableFooter (pagination). 4 variants: breakpoint (desktop, mobile) × state (default, empty). empty replaces the body with EmptyState while keeping header and footer. Use for any list of records with more than one column; for a plain list use List. Pair with Bulk Actions Bar and Column Chooser.
+
 ### Props
 
 | Prop         | Type    | Options / default    |
@@ -51,10 +53,6 @@ Instance census (tree capped at depth 3): Column Item ×80, Row ×16, RowSelect 
 | desktop    | empty   | 1280×752 |      |        |        | `color.text.secondary`<br>`color.text.feedback.info`<br>`color.text.primary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
 | mobile     | default | 377×752  |      |        |        | `color.text.feedback.info`<br>`color.text.primary`<br>`color.text.secondary`<br>`color.action.primary.text.default`                                          | `color.icon.primary`<br>`color.icon.secondary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
 | mobile     | empty   | 377×752  |      |        |        | `color.text.feedback.info`<br>`color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.icon.secondary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Issues detected (page)
 

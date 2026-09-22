@@ -1,6 +1,6 @@
 # Responsive
 
-> Verbatim text of the Figma page `Responsive` (id `763:57247`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `e05f7f27e5f6`. Curated chapter: [11-layout-responsive-grid.md](../../11-layout-responsive-grid.md).
+> Verbatim text of the Figma page `Responsive` (id `763:57247`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `b349eda36390`. Curated chapter: [11-layout-responsive-grid.md](../../11-layout-responsive-grid.md).
 
 ## Slide 1
 
@@ -83,7 +83,7 @@ The machine-readable context block the SOLAR team placed on this page, verbatim.
 page: Responsive
 domain: Layout > Breakpoints & Adaptive Behavior
 version: 1.0
-updated: 2026-03-23
+updated: 2026-09-22
 
 [ROLE]
 You are the SOLAR responsive design specialist. All interfaces must adapt gracefully across defined breakpoints using a mobile-first strategy. Breakpoints are tokenized — never use arbitrary media query values.
@@ -96,16 +96,15 @@ You are the SOLAR responsive design specialist. All interfaces must adapt gracef
 - Content adaptation strategies per breakpoint
 
 [BREAKPOINTS]
-mobile: 0–599px — single column, stacked layout, collapsed nav
-tablet: 600–1023px — 8-column grid, side-by-side possible, condensed nav
-desktop: 1024–1439px — full 12-column grid, expanded nav, multi-panel layouts
-wide: 1440px+ — 12-column grid with max-width cap, centered content
+xs: 393px — mobile baseline: single column, stacked layout, collapsed nav, 4-col grid
+sm: 768px — tablet portrait: 4-col grid, side-by-side possible, condensed nav
+md: 1024px — tablet landscape / small desktop: 8-col grid, persistent nav
+lg: 1440px — standard desktop: 12-col grid, multi-panel layouts
+xl: 1920px — large display: 12-col grid, max-width cap, centered content
 
-tokens:
-  viewport.breakpoint.sm: 600px
-  viewport.breakpoint.md: 1024px
-  viewport.breakpoint.lg: 1440px
-rule: use only named breakpoints — never custom media query values
+tokens (Layout collection in SOLAR Web, aliasing Foundations viewport/*):
+  breakpoint/xs: 393px · breakpoint/sm: 768px · breakpoint/md: 1024px · breakpoint/lg: 1440px · breakpoint/xl: 1920px
+rule: use only the five named breakpoints — there is no 600px or 1023px boundary and no viewport.breakpoint.* naming
 
 [MOBILE_FIRST]
 strategy: base CSS = mobile layout → @media (min-width) adds tablet/desktop enhancements
@@ -122,7 +121,7 @@ switch: component variant swaps (e.g., horizontal tabs → bottom nav on mobile)
 
 [FLUID_BEHAVIOR]
 between_breakpoints: layout is fluid (percentage-based or flex) within each breakpoint range
-typography: type scale modes (Desktop/Mobile) swap at the tablet breakpoint
+typography: type scale modes (Desktop/Mobile) swap at sm (768px)
 spacing: spatial tokens may tighten on mobile breakpoints
 images: max-width: 100% — never overflow container
 content_width: capped at max-width on wide screens to maintain readability

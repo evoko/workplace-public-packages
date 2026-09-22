@@ -1,6 +1,6 @@
 # Tokens
 
-> Verbatim text of the Figma page `Tokens` (id `763:47331`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `dfb943521b08`. Curated chapter: [02-tokens.md](../../02-tokens.md).
+> Verbatim text of the Figma page `Tokens` (id `763:47331`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `890a13304be2`. Curated chapter: [02-tokens.md](../../02-tokens.md).
 
 ## Slide 1
 
@@ -35,9 +35,9 @@ Tokens are the layer beneath components — the layer that ensures change is int
 
 - color.action.primary.border.default
 - color.action.primary.bg.default
-- size.radius.control
+- radius.control
 - Button label
-- size.inset.md
+- inset.md
 - font.desktop.label.md
 - shadow.subtle
 
@@ -195,7 +195,7 @@ shadow.{level} — elevation
 
 ## CSS Implementation Contract
 
-#### When SOLAR tokens are implemented in code, they must follow a consistent CSS custom property naming convention. This contract ensures portability across products and predictability for automated tooling. Resolved token values (Light and Dark mode) are documented in the Token Resolution Table in Chapter 08 — Theming.
+#### When SOLAR tokens are implemented in code, they must follow a consistent CSS custom property naming convention. This contract ensures portability across products and predictability for automated tooling. Resolved token values (Light and Dark mode) are documented in the Token Resolution Table in Chapter 07 — Theming.
 
 ##### Naming Convention
 

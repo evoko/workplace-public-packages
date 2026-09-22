@@ -4,6 +4,8 @@
 
 ## Component set: Time Range Selector
 
+Compact trigger that shows the active time range as a label and resolved date span, and opens the range picker. 2 variants: state (default, hover). Clock icon leads, chevron trails; both are decorative. Use above charts, feeds and dashboards where the range applies to the whole view; for a single field use Date Picker.
+
 ### Props
 
 | Prop    | Type    | Options / default   |
@@ -52,10 +54,6 @@ Default variant: `state=default` · 2 variants · default size 268×40px
 | ------- | ------ | -------------------- | --------------------- | ---------------- | ---------------------------------------------- | -------------------- |
 | default | 268×40 | `color.surface.base` | `color.border.subtle` | `shadow/control` | `color.text.primary`<br>`color.text.secondary` | `color.icon.primary` |
 | hover   | 268×40 | `color.surface.base` | `color.border.medium` | `shadow/control` | `color.text.primary`<br>`color.text.secondary` | `color.icon.primary` |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Component: Time Range
 

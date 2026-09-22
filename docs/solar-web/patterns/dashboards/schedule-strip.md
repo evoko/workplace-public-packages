@@ -4,6 +4,8 @@
 
 ## Component set: Schedule Entry
 
+One row of a Schedule Strip: playback status, entry name with its recurrence and time, and a Tag. 8 variants: type (playing, paused, scheduled, complete) × state (default, hover). type drives the StatusIndicator and Tag; state is the pointer feedback only. Use inside Schedule Strip, not as a standalone list row; for generic rows use List Item.
+
 ### Props
 
 | Prop    | Type    | Options / default                           |
@@ -60,11 +62,9 @@ Default variant: `type=playing, state=default` · 8 variants · default size 348
 | paused    | default | 348×59 |                       | `color.border.surface` |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.warning` | `color.icon.feedback.warning` |
 | paused    | hover   | 348×59 | `color.surface.hover` |                        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.warning` | `color.icon.feedback.warning` |
 
-### Issues detected
-
-- Component description is empty.
-
 ## Component set: Schedule Strip
+
+Titled panel that lists a sequence of Schedule Entry rows with an overflow menu in the header. 3 variants: state (default, empty, ghost). default holds entries in the content slot; empty is the no-schedule message; ghost is the loading skeleton. Props: content (slot). Keep entries in chronological order; the strip does not sort.
 
 ### Props
 
@@ -135,7 +135,6 @@ Default variant: `state=default` · 3 variants · default size 380×343px
 
 ### Issues detected
 
-- Component description is empty.
 - State axis uses non-standard value(s): ghost.
 - Hard-coded gap `8px` on layer _Container_
 

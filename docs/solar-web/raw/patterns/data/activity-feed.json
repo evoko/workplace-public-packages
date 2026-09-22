@@ -5,7 +5,7 @@
     {
       "name": "Activity Feed",
       "id": "8512:5284",
-      "description": "",
+      "description": "Chronological list of Event Rows grouped under date headers (Today, Yesterday, then ISO dates). 2 variants: breakpoint (desktop, mobile). Rows are fixed-order newest first; the date group headers are non-interactive. Pair with Activity Feed Filter Row above it; for a single-line alert stream use Insight Row in a List.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
@@ -818,7 +818,7 @@
     {
       "name": "Activity Feed Filter Row",
       "id": "8512:5759",
-      "description": "",
+      "description": "Filter bar for Activity Feed: a SearchField plus three Select filters. 2 variants: breakpoint (desktop, mobile). Desktop lays the controls in one row; mobile stacks the search above a wrapped filter row. Filters apply immediately on change and the feed announces its new count; this row does not own a submit action.",
       "docLinks": [],
       "variantCount": 2,
       "props": {

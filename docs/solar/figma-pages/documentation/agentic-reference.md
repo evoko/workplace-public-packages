@@ -1,6 +1,6 @@
 # Agentic Reference
 
-> Verbatim text of the Figma page `Agentic Reference` (id `1251:578`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `c5d73d846622`. Curated chapter: [18-agent-reference.md](../../18-agent-reference.md).
+> Verbatim text of the Figma page `Agentic Reference` (id `1251:578`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `6e99bfa09cd4`. Curated chapter: [18-agent-reference.md](../../18-agent-reference.md).
 
 ## Slide 1
 
@@ -130,12 +130,12 @@ Every visual property must trace to a token. Every interactive element must meet
 
 1.  Every color → semantic token (color.\*) — never hex, never primitive\
 2.  Every spacing → spatial token (inset.\*, stack.\*) — never raw px/rem\
-3.  Every text → named text style (type.body.md.\*) — never raw font props\
-4.  Every shadow → effect token (shadow.\*) — never raw box-shadow\
+3.  Every text → named text style (body/md/regular, title/sm…) — never raw font props\
+4.  Every shadow → effect style (shadow/\*) — never raw box-shadow\
 5.  Every duration → motion token (motion.duration.\*) — never raw ms
 
-6.  Every easing → motion token (motion.easing.\*) — never raw cubic-bezier\
-7.  Every border-radius → spatial.border-radius.\* — never raw px\
+6.  Every easing → motion token (motion.ease.\*) — never raw cubic-bezier\
+7.  Every border-radius → radius.\* — never raw px\
 8.  Every z-index → defined level (0/100/200/300/400/500/600) — never arbitrary\
 9.  Every interactive element → minimum 44×44px touch target\
 10. Every interactive element → visible focus ring on :focus-visible
@@ -201,7 +201,7 @@ The machine-readable context block the SOLAR team placed on this page, verbatim.
 page: Agentic Reference
 domain: AI Agent Toolkit > Quick-Reference Specification
 version: 1.0
-updated: 2026-03-27
+updated: 2026-09-22
 
 [ROLE]
 You are the SOLAR agentic implementation specialist. This page is the minimum viable knowledge an AI agent needs to generate a valid SOLAR interface. Every token name, spacing value, and component rule on this page is the canonical quick-reference — use it as the first lookup before consulting the full Guidelines spec.
@@ -209,7 +209,7 @@ You are the SOLAR agentic implementation specialist. This page is the minimum vi
 [SCOPE]
 - Ten foundational rules for valid SOLAR output
 - Complete semantic color token grammar and patterns
-- Spatial token system: inset, stack, gap, border-radius
+- Spatial token system: inset, stack, icon size, radius, border width
 - Shadow and elevation token inventory
 - Z-index level system
 - Component-to-HTML mapping with key tokens and touch targets
@@ -220,20 +220,20 @@ You are the SOLAR agentic implementation specialist. This page is the minimum vi
 
 [TOKEN_RULES]
 rule_01: every color → semantic token (color.*) — never hex, never primitive
-rule_02: every spacing → spatial token (inset.*, stack.*, gap.*) — never raw px/rem
-rule_03: every text → named text style (Display/L, Body/M/Regular, etc.) — never raw font props
+rule_02: every spacing → spatial token (inset.*, stack.*) — never raw px/rem; there is no gap.* family
+rule_03: every text → named text style (display/lg, body/md/regular, etc.) — never raw font props
 rule_04: every shadow → effect token (shadow.*) — never raw box-shadow
 rule_05: every duration → motion token (motion.duration.*) — never raw ms
-rule_06: every easing → motion token (motion.easing.*) — never raw cubic-bezier
-rule_07: every border-radius → spatial.border-radius.* — never raw px
+rule_06: every easing → motion token (motion.ease.*) — never raw cubic-bezier
+rule_07: every border-radius → radius.* — never raw px
 rule_08: every z-index → defined level (0/100/200/300/400/500/600) — never arbitrary
 rule_09: every interactive element → minimum 44x44px touch target
 rule_10: every interactive element → visible focus ring on :focus-visible
 
 [COLOR_TOKEN_GRAMMAR]
-surface: color.surface.{variant} → base, raised, overlay, modal, background, muted, scrim, hover, active, inverse, feedback.*
+surface: color.surface.{variant} → base, raised, overlay, dialog, background, muted, scrim, hover, active, inverse, feedback.{type}.{subtle|medium|strong}
 text: color.text.{variant} → primary, secondary, tertiary, disabled, inverse, feedback.{type}, link.{state}
-border: color.border.{variant} → default, subtle, strong, disabled, inverse, feedback.{type}.{subtle|strong}
+border: color.border.{variant} → medium, subtle, strong, disabled, inverse, surface, highlight, feedback.{type}.{subtle|medium|strong}
 icon: color.icon.{variant} → primary, secondary, tertiary, disabled, inverse, feedback.{type}
 action: color.action.{intent}.{property}.{state}
 data: color.data.{type}.{id} → category.01-08, scale.01-08, delta.positive|negative|neutral
@@ -251,33 +251,36 @@ shadow.subtle → shadow.raised
 shadow.elevated → shadow.overlay
 
 [SPATIAL_SYSTEM]
-inset: none=0 | 2xs=2 | xs=4 | sm=8 | md=16 | lg=24 | xl=32
-stack: none=0 | 2xs=2 | xs=4 | sm=8 | md=16 | lg=24 | xl=32 | 2xl=48
-icon.size: xs=16 | sm=20 | md=24 | lg=32 | xl=40
-border-radius: none=0 | sm=4 | md=6 | lg=8 | xl=12 | full=9999
+inset: none=0 | 2xs=4 | xs=8 | sm=12 | md=16 | lg=20 | xl=24 | 2xl=28 | 3xl=40
+stack: none=0 | 2xs=4 | xs=8 | sm=12 | md=16 | lg=20 | xl=24 | 2xl=28 | 3xl=40
+gap: horizontal auto-layout gaps bind to inset.* — no gap.* family
+icon.size: xs=12 | sm=16 | md=20 | lg=24 | xl=28 | 2xl=32 (Figma icon/{size})
+radius: none=0 | subtle=4 | control=6 | container=8 | dialog=12 | pill=9999
+border width: none=0 | default=1 | strong=2 | emphasis=4
 
 [SHADOW_TOKENS]
 shadow.control: inputs, small controls
 shadow.raised: cards, raised surfaces
 shadow.overlay: dropdowns, menus, popovers
-shadow.modal: dialogs, modals, drawers
+shadow.dialog: dialogs, drawers
 shadow.focus.default: focus ring (blue)
-shadow.focus.danger: focus ring (red/error)
+shadow.focus.danger: focus ring (red)
+shadow.danger | shadow.warning: composite — raised lift + feedback ring for input error/warning states
 
 [Z_INDEX_SYSTEM]
-base=0 | sticky=100 | dropdown=200 | overlay=300 | modal=400 | toast=500 | tooltip=600
+base=0 | sticky=100 | dropdown=200 | overlay=300 | dialog=400 | toast=500 | tooltip=600
 
 [COMPONENT_MAP]
-Button: <button> → color.action.{hierarchy}.*, border-radius.md → 44x36(sm), 44x44(md/lg)
+Button: <button> → color.action.{prio}.*, radius.control → 44x36(sm), 44x44(md/lg)
 TextInput: <input>+<label> → color.surface.base, color.border.* → 44x40px
 SelectDropdown: <div>(custom) → color.surface.raised, shadow.overlay → 44x40px
 Checkbox: <input type="checkbox"> → color.action.primary.bg.default → 44x20px
 Radio: <input type="radio"> → color.action.primary.bg.default → 44x20px
 Switch: <button role="switch"> → color.action.primary.bg.default → 44x24px
-Dialog: <div role="dialog"> → shadow.modal, z-index:400
-Drawer: <aside>|<div> → shadow.modal, z-index:300
+Dialog: <div role="dialog"> → shadow.dialog, z-index:400
+Drawer: <aside>|<div> → shadow.dialog, z-index:300
 Card: <div> → color.surface.raised, shadow.raised
-Table: <table> → color.surface.secondary (phantom) → 44x36px(row)
+Table: <table> → color.surface.base, color.border.subtle → 44x36px(row)
 Tabs: <div role="tablist"> → color.action.primary.bg.default → 44x40px
 Accordion: heading+<button> → color.surface.base, color.border.subtle → 44x48px
 Tooltip: <div role="tooltip"> → color.surface.inverse, z-index:600
@@ -288,16 +291,18 @@ XS: 393px, 4col, 16px margin/gutter
 SM: 768px, 4col, 16px margin/gutter
 MD: 1024px, 8col, 20px margin/gutter
 LG: 1440px, 12col, 24px margin/gutter
-XL: 1920px, 12col, 24px margin/gutter
+XL: 1920px, 12col, 24px margin, 32px gutter
 
 [TYPOGRAPHY_SCALE]
-Display: Gotham Medium 500 → L:56/72, M:40/52, S:32/40
-Title: Inter Medium 500 → L:44/56, M:32/40, S:20/28, XS:16/24
-Body: Inter Regular 400 → M:16/24, S:14/20, XS:12/16
-Label: Inter Medium 500 → M:14/20, S:12/16
-Helper: Inter Regular 400 → M:14/16, S:12/16
-Code: IBM Plex Mono Medium 500 → M:16/24, S:14/20
-rule: 32 variables x 2 modes (Desktop/Mobile) — size + line-height only
+Display: Gotham (Montserrat fallback) Medium 500 → lg:56/72, md:40/52, sm:32/40, xs:16 (no line-height pair)
+Title: Inter Medium 500 → lg:40/48, md:32/40, sm:20/28, xs:16/24, 2xs:12/16
+Body: Inter Regular 400 (medium/semibold/bold weights per style) → lg:16/24, md:14/20, sm:12/16, xs:10/14, 2xs:8/12
+Label: Inter Medium 500 → md:14/20, sm:12/16
+Helper: Inter Regular 400 → md:14/20, sm:12/16
+Code: IBM Plex Mono Medium 500 → lg:16/20, md:14/16
+Caption: Inter Regular 400 → xs:10/14
+variables: size/{category}/{size} and line-height/{category}/{size} in the Type collection — 41 variables × 2 modes (Desktop/Mobile); weight, family and letter-spacing are fixed per text style
+style names: lowercase with slashes — display/lg, title/sm, body/md/regular, label/md, helper/sm, code/md, caption/xs
 
 [CSS_CONVENTION]
 prefix: --solar-
@@ -318,8 +323,8 @@ contexts: Figma=slash, docs=dot, CSS=hyphen — never mix
 - this page is a quick-reference — does not replace the full spec
 - all token names use dot (.) separators per documentation convention
 - never mix separator styles within a single context
-- color.surface.secondary is a known phantom token — flag it, do not silently use
+- color.surface.secondary is a known phantom token (retired from the component map) — flag it, do not silently use
 - typography scale shows Desktop values — Mobile values differ (see full spec)
-- shadow tokens listed here are CSS composites, not Figma color variables
+- shadow tokens listed here are effect styles / CSS composites, not the shadow/* color variables (subtle, strong, feedback.*)
 @END:PAGE_CONTEXT
 ```

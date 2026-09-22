@@ -4,6 +4,8 @@
 
 ## Component set: Command Item
 
+One result in the Command Palette: leading icon slot, command label and a Group · Category meta line. 2 variants: state (default, hover). hover doubles as the keyboard-highlighted row. Use only inside Command Palette; for menu rows use Dropdown Item.
+
 ### Props
 
 | Prop    | Type    | Options / default   |
@@ -49,11 +51,9 @@ Default variant: `state=default` · 2 variants · default size 640×56px
 | default | 640×56 |                       |        |        | `color.text.primary`<br>`color.text.secondary`                         | `color.icon.primary` |
 | hover   | 640×56 | `color.surface.hover` |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.inverse` | `color.icon.primary` |
 
-### Issues detected
-
-- Component description is empty.
-
 ## Component: Command Palette
+
+Keyboard-first dialog for finding and running commands: search field with a Kbd shortcut, grouped Command Item results and a footer of key hints (Navigate, Select, Close). Single component. Open with the global shortcut; Arrow keys move, Enter runs, Escape closes. Results filter as the user types and the list announces its count; use Search Results Panel for content search.
 
 ### Anatomy (default variant)
 
@@ -133,10 +133,6 @@ Default variant: `state=default` · 2 variants · default size 640×56px
 - Dropdown Group Label
 - Icon/Search
 - Kbd
-
-### Issues detected
-
-- Component description is empty.
 
 ## Issues detected (page)
 

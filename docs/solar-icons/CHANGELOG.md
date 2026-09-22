@@ -1,6 +1,6 @@
 # SOLAR Icons — Figma changelog
 
-Verbatim from the file's Changelog page (contributor column omitted). Source: Figma file `SOLAR Icons [v2--2026]` (key `f0slPVSjDnXgdyPmWOSVOw`), version `2400491293726842862`, last modified 2026-09-18, fetched 2026-09-22.
+Verbatim from the file's Changelog page (contributor column omitted). Source: Figma file `SOLAR Icons [v2--2026]` (key `f0slPVSjDnXgdyPmWOSVOw`), version `2402050745869349423`, last modified 2026-09-22, fetched 2026-09-22.
 
 SOLAR maintains a clear record of what changes in each release, including what was updated, who contributed the change, and when it was introduced. This ensures transparency, traceability, and predictable evolution of the design system.
 

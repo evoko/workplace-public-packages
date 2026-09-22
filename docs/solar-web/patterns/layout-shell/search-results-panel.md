@@ -4,6 +4,8 @@
 
 ## Component set: SearchResultsPanel
 
+Global search results: GlobalSearch field with filter Tags, then results grouped by category with a See all Link per group. 4 variants: state (default, empty, no-results, ghost). empty is before a query; no-results is after a query with zero hits; ghost is loading. Rows are ResultRow instances; the panel announces the result count on each change.
+
 ### Props
 
 | Prop    | Type    | Options / default                        |
@@ -88,12 +90,13 @@ Default variant: `state=default` · 4 variants · default size 400×470px
 
 ### Issues detected
 
-- Component description is empty.
 - State axis uses non-standard value(s): no-results, ghost.
 - Hard-coded gap `8px` on layer _ResultsBody › Dropdown Group Label_
 - Hard-coded gap `8px` on layer _ResultsBody › Dropdown Group Label_
 
 ## Component: ResultRow
+
+One hit in SearchResultsPanel: type icon, result title and helper text (path, owner or snippet). Single component. Swap the icon per result type; the whole row is one link. For command results use Command Item.
 
 ### Anatomy (default variant)
 
@@ -123,10 +126,6 @@ Default variant: `state=default` · 4 variants · default size 400×470px
 ### Composes
 
 - Icon/File
-
-### Issues detected
-
-- Component description is empty.
 
 ## Issues detected (page)
 

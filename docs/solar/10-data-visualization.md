@@ -1,9 +1,9 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/data-visualization: 43e7bb7b6566
+    documentation/data-visualization: 52f3b4622300
 ---
 
 # 10 · Data Visualization
@@ -105,6 +105,8 @@ Chart backgrounds use `color.surface.base`; grid lines use a low-contrast neutra
 | Label every axis, series, and threshold  | Exceed 5 categories without grouping into "Other" or splitting the chart    |
 | Justify the chart type by the data shape | Reuse UI semantic colors (action, surface) for data encoding, or vice versa |
 
-Note: the page context names tokens as `dataviz.color.categorical.{1–8}` and a
-`diverging` ramp; the actual variables are `color.data.category.NN`, `color.data.scale.*`
-and `color.data.delta.*`. Use the variable names.
+The `dataviz.color.categorical.{1–8}` / `dataviz.color.sequential.*` /
+`dataviz.color.diverging.*` family does not exist. The variables are
+`color.data.category.NN.{strong,subtle}`, `color.data.scale.*` and `color.data.delta.*`
+(Figma `data/category/NN/{strong|subtle}`, `data/scale/*`, `data/delta/*`). The diverging
+role is carried by `color.data.delta.*`, signed around `neutral`.

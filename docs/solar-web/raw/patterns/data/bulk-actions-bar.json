@@ -6,7 +6,7 @@
     {
       "name": "Bulk Actions Bar",
       "id": "6786:85",
-      "description": "",
+      "description": "Floating bar that appears when rows are selected in a table or list: selection count, select-all Checkbox, a clear Link and the actions slot. Single component. Props: Actions (slot, holds Buttons in priority order left to right). Mount it fixed at the bottom of the viewport; it is announced as a toolbar and Escape clears the selection.",
       "props": {
         "Actions#7110:3": {
           "type": "SLOT",
@@ -124,7 +124,7 @@
                 }
               },
               {
-                "name": "Cointainer",
+                "name": "Container",
                 "type": "FRAME",
                 "size": [
                   174,

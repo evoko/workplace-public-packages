@@ -5,7 +5,7 @@
     {
       "name": "DataTable",
       "id": "6596:47707",
-      "description": "",
+      "description": "Full table pattern: TableHeader (title, search, actions), Table body and TableFooter (pagination). 4 variants: breakpoint (desktop, mobile) × state (default, empty). empty replaces the body with EmptyState while keeping header and footer. Use for any list of records with more than one column; for a plain list use List. Pair with Bulk Actions Bar and Column Chooser.",
       "docLinks": [],
       "variantCount": 4,
       "props": {

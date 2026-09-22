@@ -1,9 +1,9 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/theming: fd9f62704592
+    documentation/theming: 9cc2105a7018
 ---
 
 # 14 · Theming
@@ -96,10 +96,11 @@ Full table: [tokens/figma-variables.json](tokens/figma-variables.json) → `colo
 Feedback tokens keep their semantic meaning across modes by shifting palette steps
 (surfaces 50 → 800, strong fills 500 → 400, text 600 → 400).
 
-The Theming slides themselves print a few values that differ from the variables (warning
-surface as yellow/50 → yellow/900, danger as red/900, info as blue/900, shadow.subtle dark
-as black-90, a `color.border.default` token). The variables above are authoritative; see
-[source-discrepancies.md](source-discrepancies.md).
+The Theming slides now print the same values. The retired spellings they used to carry
+— `color.border.default`, unsuffixed `surface.feedback.{type}`, warning as yellow/50 →
+yellow/900, danger as red/900, info as blue/900, `shadow.subtle` dark as black-90 — do not
+exist. Use `color.border.medium` and the `.subtle` / `.medium` / `.strong` feedback
+surfaces.
 
 ## Non-color tokens and theming
 

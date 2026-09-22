@@ -5,7 +5,7 @@
     {
       "name": "Layout / Config",
       "id": "6499:6532",
-      "description": "",
+      "description": "Shell Tier 3: Top Bar over a single centered content column, no Sidebar. 2 variants: breakpoint (desktop, mobile). Props: center (slot). Use for configuration apps with one task at a time, such as Chatter Config; the column is constrained by the Layout grid tokens.",
       "docLinks": [],
       "variantCount": 2,
       "props": {

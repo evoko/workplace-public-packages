@@ -5,7 +5,7 @@
     {
       "name": "Sidebar",
       "id": "2666:781",
-      "description": "",
+      "description": "Primary app navigation rail: a Menu slot of Nav Items, a collapse toggle and the Biamp logo at the foot. 2 variants: expanded (False, True). Collapsed shows icons only with labels as tooltips; expanded shows icon and label. Props: Menu (slot). Generic primitive only: Sidebar/Workplace and Sidebar/Chatter assemblies live in the product files.",
       "docLinks": [],
       "variantCount": 2,
       "props": {

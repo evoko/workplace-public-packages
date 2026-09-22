@@ -4,6 +4,8 @@
 
 ## Component: FormSection
 
+Titled group of FormRows: optional section header (title and description), optional CTA Button and the SectionFields slot. Single component. Props: SectionFields (slot), hasSectionHeader (default on), hasCTA (default off). Stack sections with stack/xl inside a form; each section renders as a fieldset with the title as its legend.
+
 ### Props
 
 | Prop               | Type    | Options / default         |
@@ -16,7 +18,7 @@
 
 - **FormSection** · component · column gap 20 pad 20/0/20/0 FIXED/HUG · 640×377  
   stroke `color.border.surface` mixedpx · itemSpacing `stack.lg` · padding `stack.none`, `stack.lg` · strokeWeight `border.default`
-  - **Contaner** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×41  
+  - **Container** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×41  
     itemSpacing `inset.xl`
     - **SectionHeader** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 640×41  
       itemSpacing `stack.md` · padding `stack.none` · prop visible←hasSectionHeader
@@ -51,20 +53,16 @@
 
 ### Slots and prop-controlled layers
 
-| Layer                    | Controlled property | Prop               |
-| ------------------------ | ------------------- | ------------------ |
-| Contaner › SectionHeader | visible             | `hasSectionHeader` |
-| Contaner › Button        | visible             | `hasCTA`           |
-| SectionFields            | slotContentId       | `SectionFields`    |
+| Layer                     | Controlled property | Prop               |
+| ------------------------- | ------------------- | ------------------ |
+| Container › SectionHeader | visible             | `hasSectionHeader` |
+| Container › Button        | visible             | `hasCTA`           |
+| SectionFields             | slotContentId       | `SectionFields`    |
 
 ### Composes
 
 - Button
 - FormRow
-
-### Issues detected
-
-- Component description is empty.
 
 ## Issues detected (page)
 

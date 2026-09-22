@@ -554,10 +554,10 @@
             [
               "10 categories",
               "CLR through NAM",
-              "39 total",
+              "42 total",
               "Error or Warning",
-              "30",
-              "9"
+              "31",
+              "11"
             ]
           ]
         }
@@ -1113,10 +1113,10 @@
         "Warnings",
         "10 categories",
         "CLR through NAM",
-        "39 total",
+        "42 total",
         "Error or Warning",
-        "30",
-        "9"
+        "31",
+        "11"
       ],
       "variableId": "VariableID:27:725",
       "hex": "#ffffff",

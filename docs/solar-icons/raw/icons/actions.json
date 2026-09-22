@@ -2336,14 +2336,12 @@
           ],
           "leaves": 1,
           "fills": [
-            "#111111"
+            "Primitives:color/neutral/900"
           ],
           "file": "svg/solid/design.svg"
         }
       },
-      "issues": [
-        "solid fill is hard-coded #111111"
-      ],
+      "issues": [],
       "fileStem": "design"
     },
     {

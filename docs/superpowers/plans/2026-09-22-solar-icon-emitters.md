@@ -14,17 +14,18 @@ its machinery: the `writeGenerated` guard, the manifest/parity pattern, `byCodeU
 
 ## What the source data actually is
 
-Measured, not assumed:
+Measured, not assumed. Re-measured on 2026-09-22, after SOLAR shipped the missing `support`
+outline and redrew `zone` on the 24 grid; the two rows that changed say so:
 
 | | |
 | --- | --- |
-| 341 icon sets | 681 SVG files: 340 outline, 341 solid |
-| 451 KB total | 358 KB of it path data; median 348 B per file |
+| 341 icon sets | 682 SVG files: 341 outline, 341 solid (340 outlines until `support` gained its own on 2026-09-22) |
+| 452 KB total | 358 KB of it path data; median 348 B per file |
 | Every **icon** file | `<svg>` + `<path>` only. No groups, masks, clip paths, strokes, gradients or opacity |
 | Path commands | `M C L H V Z` only, all absolute, none implicitly repeated. **No arcs.** Numbers may use `1e-05` form |
 | Colour | one, `#111111`, on every icon path |
 | `fill-rule="evenodd"` | 75 paths, always paired with a redundant `clip-rule` that can be ignored |
-| viewBox | `0 0 24 24` everywhere except `zone` outline, which is `0 0 24 25` |
+| viewBox | `0 0 24 24` on every icon. `zone` outline was `0 0 24 25` until SOLAR redrew it on 2026-09-22; the code still carries a viewBox per variant, because a constant would crop the next one silently |
 | Logos | 5 SVG and 5 raster PNG. `google`, `microsoft` and both `biamp-logo` files are plain multi-colour paths |
 | **`teams.svg` is the outlier** | 13 paths, 12 of them filled by `url(#…)` referencing 11 radial and 1 linear gradient with 27 stops, plus all 7 `fill-opacity` attributes in the whole set. It is the only file the vector IR cannot represent |
 
@@ -319,22 +320,24 @@ export function parseSvg(source, { file }) {
 }
 ```
 
-**Tests (26, all passing).** Real files from `docs/solar-icons/` for the accepting cases, inline
+**Tests (29, all passing).** Real files from `docs/solar-icons/` for the accepting cases, inline
 synthetic documents for the rejections: a single-path icon (`chevron-right`); an `evenodd` path
 whose `clip-rule` does not survive; a four-colour logo (`os-logo/google`); the named colours in
-both `biamp-logo` files; the `0 0 24 25` and `0 0 36 12` viewBoxes; scientific-notation `d` data
+both `biamp-logo` files; a synthetic `0 0 24 25` document and the logos' real `0 0 36 12` viewBox,
+since no icon is off the grid since 2026-09-22; scientific-notation `d` data
 round-tripping verbatim; `#rgb` expansion; `currentColor` and an absent fill as `null`; and a
 rejection each for an arc command, a relative command, a `<g>`, a `<defs>`, a `stroke`, a
 `stroke-width`, a gradient fill, a `fill-opacity`, a missing viewBox, a short viewBox, a
 zero-extent viewBox, an unknown colour keyword, `fill="none"`, an unsupported `fill-rule` and an
 empty document.
 
-The last block is the one that matters: it walks all 686 SVG files under `docs/solar-icons/svg/`
-and `docs/solar-icons/logos/` and asserts the measured totals — 824 `<path>` elements in the
-files, 685 files parsed, `logos/os-logo/teams.svg` the only failure (and failing on its first
-gradient fill), 811 paths in the parsed set, 75 of them `evenodd`, every fill either `null` or
-`#rrggbb`, every viewBox four numbers with a positive extent. That is what proves the parser
-matches the corpus rather than the prose describing it.
+The last block is the one that matters: it walks all 687 SVG files under `docs/solar-icons/svg/`
+and `docs/solar-icons/logos/` and asserts the measured totals — 825 `<path>` elements in the
+files, 686 files parsed, `logos/os-logo/teams.svg` the only failure (and failing on its first
+gradient fill), 812 paths in the parsed set, 75 of them `evenodd`, every fill either `null` or
+`#rrggbb`, every viewBox four numbers with a positive extent, and all 682 icon files on
+`0 0 24 24`. That is what proves the parser matches the corpus rather than the prose describing
+it.
 
 Run: `npx vitest run packages/codegen/test/svg.test.mjs`
 
@@ -417,12 +420,16 @@ here:
   the stem is lowercase, so `usb` alone cannot know it is `IconUSB`. That keeps `IconUSB`,
   `IconIODevice`, `IconUIBuilder` and `IconUIOnly` as SOLAR spells them while the Audio & DSP phone
   still becomes `IconPhoneAudioDsp`. All 341 names are asserted unique at the end.
-- **`support` has no outline**, so its `outline` is a clone of its `solid` and the component still
-  renders. It is not the only set whose two variants are identical — 80 others, a chevron or a plus
-  with nothing to fill, are drawn the same in both — so the fallback is identified by the missing
-  source file, never by comparing geometry.
-- **`zone` keeps its `0 0 24 25` viewBox** verbatim, taken from the parsed SVG. `catalog.size` says
-  `[24, 24]` and is wrong for this one; it is used only to notice the mismatch.
+- **A set with no outline falls back to its solid**, so the component still renders. `support` was
+  that set — two solid variants and no outline — until SOLAR drew the missing outline on
+  2026-09-22, and every one of the 341 sets now draws both variants from its own file. The fallback
+  stays, and is now covered by a hand-built catalog: it is not the only set whose two variants are
+  identical — 80, a chevron or a plus with nothing to fill, are drawn the same in both — so the
+  fallback is identified by the missing source file, never by comparing geometry.
+- **A viewBox is kept verbatim**, taken from the parsed SVG, and `catalog.size` is used only to
+  notice a mismatch. `zone` outline was `0 0 24 25` against a declared `[24, 24]` until SOLAR
+  redrew it on the grid on 2026-09-22. Nothing is off grid today; cropping to the declared size
+  would shift the drawing, so the comparison and the verbatim carry stay.
 
 **The one unsupported asset.** `logos/os-logo/teams.svg` is 13 paths, 12 filled by `url(#…)` from 11
 radial and one linear gradient with 27 stops, plus every `fill-opacity` in the set, so `parseSvg`
@@ -445,8 +452,8 @@ something to fold into an existing row.
 | Token | Why we differ |
 | --- | --- |
 | `icon.phone` | Two Figma components are both named `Icon/Phone`. The Audio & DSP one is emitted as `IconPhoneAudioDsp`. Ask SOLAR to rename one. |
-| `icon.support` | Figma has two solid variants and no outline. `outline` falls back to `solid`, so the component still renders. Ask SOLAR to supply the outline. |
-| `icon.zone` | Its outline viewBox is `0 0 24 25`, so the icon is 1px taller than the grid. The viewBox is carried verbatim rather than cropped. Ask SOLAR to redraw on the 24 grid. |
+| `icon.support` | **Resolved in Figma on 2026-09-22**, so it is no longer reported. It said: Figma has two solid variants and no outline, `outline` falls back to `solid` so the component still renders, ask SOLAR to supply the outline. The entry stays in `ICON_DEVIATIONS` as the row the fallback looks up if a set arrives without an outline again. |
+| `icon.zone` | **Resolved in Figma on 2026-09-22**, so it is no longer reported. It said: the outline viewBox is `0 0 24 25`, 1px taller than the grid, carried verbatim rather than cropped, ask SOLAR to redraw on the 24 grid. The entry stays in `ICON_DEVIATIONS` for the same reason. |
 | `logo.os-logo.teams` | Gradient fills and `fill-opacity` cannot be represented as vector paths. It ships as raw SVG. Ask SOLAR whether a flat-colour Teams mark exists. |
 
 ```js
@@ -680,24 +687,30 @@ export function buildIconSpec(catalog) {
 }
 ```
 
-**Tests (18, all passing).** The spec is built once at module scope from the real catalog, as
+**Tests (21, all passing).** The spec is built once at module scope from the real catalog, as
 `tokens.test.mjs` does. 341 sets under 341 distinct component names; the catalog metadata beside the
-geometry; 340 outlines drawn from their own file with `support` the only fallback, its `outline`
-equal to but not the same object as its `solid`; the two Phone components separated; the acronyms
-kept; `zone` at `0 0 24 25` against its solid's `0 0 24 24`; and — the assertion that proves
-`currentColor` will work — every path of every variant of all 341 icons carrying exactly `d` and
-`fillRule` and no `#111111` anywhere. Then the logos: each set named after its Figma prop; every logo
+geometry; all 341 outlines drawn from their own file, `support` among them since 2026-09-22 and its
+two variants no longer the same drawing; the two Phone components separated; the acronyms kept;
+every icon variant on `0 0 24 24`; and — the assertion that proves `currentColor` will work —
+every path of every variant of all 341 icons carrying exactly `d` and `fillRule` and no `#111111`
+anywhere. Three cases run `buildIconSpec` over catalogs written by hand rather than read from
+`docs/`, because the two defects that used to reach those branches are fixed and the branches
+must keep working: a set with no outline (its `outline` equal to but not the same object as its
+`solid`, recording `icon.support`), a set whose file disagrees with its declared size (the file
+wins, recording `icon.zone` once), and a trigger with no registry entry, which throws.
+
+Then the logos: each set named after its Figma prop; every logo
 path with a `#rrggbb` fill; Google's four brand colours in order; both Biamp marks resolving `white`
 and `black` and differing from each other; Teams as `{unsupported, source}` whose source contains
 `radialGradient`; and the app icons as five `.png` files with no paths. A totals block ties the spec
 to the measured corpus, and two tests hold the allowlist to being an allowlist: a synthetic gradient
 document throws under any other file name, and is recorded only under `logos/os-logo/teams.svg`.
 
-The totals are worth stating exactly, because the corpus and the spec differ by one on purpose.
-686 SVG files exist: 681 icon files (340 outline, 341 solid) and 5 logo files. 685 parse — teams.svg
-is the exception — carrying 811 paths, 791 of them in icons and 20 in the four vector logos. The spec
-holds 682 icon variants and 792 icon paths, one more of each, and that difference is exactly the
-`support` outline standing in for its solid.
+The totals are worth stating exactly. 687 SVG files exist: 682 icon files (341 outline, 341 solid)
+and 5 logo files. 686 parse — teams.svg is the exception — carrying 812 paths, 792 of them in icons
+and 20 in the four vector logos. The spec holds 682 icon variants and 792 icon paths, which is
+exactly what was parsed: until 2026-09-22 it held one variant and one path more, the `support`
+outline standing in for its solid.
 
 Run: `npx vitest run packages/codegen/test/icons.test.mjs`
 
@@ -755,7 +768,7 @@ export interface IconPath {
   fillRule?: 'evenodd';
 }
 
-/** One variant's drawing. The viewBox travels with it: `zone` outline is `0 0 24 25`. */
+/** One variant's drawing. The viewBox travels with it, so a variant off the 24 grid keeps it. */
 export interface IconGeometry {
   viewBox: string;
   paths: readonly IconPath[];
@@ -879,8 +892,10 @@ and both `@types` packages are devDependencies of `packages/assets` at `^19.3.0`
 automatic JSX runtime; tsup already externalises it.
 
 **Tests** are 13 cases in one file: 341 modules and a barrel of 341 unique names including
-`IconUSB` and `IconPhoneAudioDsp`; no `#111111` in any module; `zone` carrying `0 0 24 25` for
-outline beside `0 0 24 24` for solid; `fillRule` present only where the source says `evenodd`; no
+`IconUSB` and `IconPhoneAudioDsp`; no `#111111` in any module; a viewBox emitted per variant,
+asserted by rendering a hand-built spec whose outline is `0 0 24 25` beside a square solid —
+`zone` was that asset until SOLAR redrew it on 2026-09-22 — with every real module declaring two
+square viewBoxes and nothing else; `fillRule` present only where the source says `evenodd`; no
 `px` literal or hard-coded size anywhere; and a manifest of 341 entries, 682 variants and
 distinct digests for geometry that differs.
 
@@ -934,7 +949,8 @@ One `<svg>`, one line, no header comment:
 ```
 
 - `width` and `height` come from the viewBox extent rather than a constant, so the file has an
-  intrinsic size for `<img>` and `zone` outline is `24` × `25` while everything else is 24 × 24.
+  intrinsic size for `<img>`. Every icon is 24 × 24 today; `zone` outline was `24` × `25` until
+  SOLAR redrew it on 2026-09-22, and a constant would have cropped it.
 - The root's own `fill="none"` is **not** emitted. It is Figma chrome, and the parser already
   refuses to inherit it into a path.
 - Every icon path is `fill="currentColor"`; every logo path carries its literal colour.
@@ -991,7 +1007,9 @@ const pathElement = (path, fill) =>
 function serialize(geometry, fillOf) {
   const [, , width, height] = geometry.viewBox;
   // width/height give the file an intrinsic size, which is what an <img> or a CSS mask needs;
-  // they come from the viewBox extent rather than a constant, so zone outline is 24 x 25.
+  // they come from the viewBox extent rather than a constant. Every icon is 24 x 24 today --
+  // zone outline was 24 x 25 until SOLAR redrew it on the grid on 2026-09-22 -- and a constant
+  // would silently crop the next variant that is not.
   // The root's own fill is deliberately absent: Figma writes fill="none" on every export and it
   // is chrome, not geometry.
   return (
@@ -1060,10 +1078,12 @@ generated tree needs no ignore entry.
 **Tests** are 8 cases in one file. 687 files, 682 + 5, with the five logo names spelled out; no
 `#111111` in any icon file and every icon path `fill="currentColor"`, which is the tinting
 contract at the file level; `os-logo-google.svg` carrying all four of `#ffc107`, `#ff3d00`,
-`#4caf50`, `#1976d2` and no `currentColor`; `zone-outline.svg` at `0 0 24 25` with `height="25"`
-beside `zone-solid.svg` at 24; exactly 75 files with `fill-rule="evenodd"` and none with
-`nonzero`; and `support-outline.svg` existing with the same path data as `support-solid.svg`,
-since Figma ships no outline for it.
+`#4caf50`, `#1976d2` and no `currentColor`; a file sized from its own viewBox, asserted by
+serializing a hand-built spec whose outline is `0 0 24 25` with `height="25"` — `zone` was that
+asset until 2026-09-22 — beside every real icon file at `0 0 24 24` and `height="24"`; exactly 75
+files with `fill-rule="evenodd"` and none with `nonzero`; and a file written per variant even when
+both are the same drawing, which is what the `support` fallback needed until Figma supplied its
+outline, with `support-outline.svg` and `support-solid.svg` now differing.
 
 The last two are the ones that matter. `os-logo-teams.svg` is asserted byte-equal to the spec's
 `source` and to contain `radialGradient` and `fill-opacity`. And **the round trip**: all 686
@@ -2169,10 +2189,12 @@ lowercase arc (unsupported, not relative), data starting with a letter that is n
 starting with a number, a truncated `C`, a truncated `L`, a `Z` given an argument, empty data and
 an unreadable character.
 
-The last case is a real one: `zone`'s outline path 7 of 9, pasted verbatim from the spec. It has
-two subpaths wound against each other, eight cubics, a `Z` on each and the negative control
-points that put its bounds above the origin, on the one icon whose viewBox is `0 0 24 25`. Its
-bounds and four containment probes are asserted, including the hole through the middle of the pin.
+The last case is a real one: `zone`'s outline path 7 of 9, pasted verbatim from the spec as SOLAR
+drew it until 2026-09-22. It has two subpaths wound against each other, eight cubics, a `Z` on each
+and the negative control points that put its bounds above the origin, on what was then the one icon
+whose viewBox is `0 0 24 25`. Its bounds and four containment probes are asserted, including the
+hole through the middle of the pin. The string is kept now that the icon has been redrawn, because
+what it proves about the parser is a property of the string, not of which icon it came from.
 
 JS (`packages/codegen/test/flutter-svg-path.test.mjs`) is the anti-drift assertion: the Dart file
 declares `_commands` exactly once, that set equals `SUPPORTED_COMMANDS`, `_arity` gives every one
@@ -2244,8 +2266,10 @@ target quietly.
 
 **Fit, do not stretch.** The painter scales the viewBox into the target box by
 `min(w/vw, h/vh)` and centres it — `BoxFit.contain` semantics. SVG gets this free from the default
-`preserveAspectRatio`, so Flutter has to match it or `zone`, the one icon drawn on `0 0 24 25`,
-would render squashed here and letterboxed on the web. `SolarVector` carries an extent rather than
+`preserveAspectRatio`, so Flutter has to match it or a drawing that is not square would render
+squashed here and letterboxed on the web. `zone`, drawn on `0 0 24 25`, was the icon that needed it
+until SOLAR redrew it on 2026-09-22; the logos are not square either, and the test now builds its
+own 24 × 25 vector so the case stays covered. `SolarVector` carries an extent rather than
 a rectangle, and the emitter throws on a viewBox that does not start at the origin: nothing in the
 corpus is offset, and dropping an offset silently would draw the mark in the wrong place.
 
@@ -2328,7 +2352,8 @@ class SolarVector {
   /// The viewBox width. Every SOLAR viewBox starts at the origin, so this is its extent.
   final double width;
 
-  /// The viewBox height. 24 for every icon but `zone` outline, which is drawn 25 tall.
+  /// The viewBox height. 24 for every icon today, but carried per variant: `zone` outline was
+  /// drawn 25 tall until SOLAR redrew it on the grid.
   final double height;
 
   /// The paths, painted in order.
@@ -2360,8 +2385,9 @@ Path _pathOf(SolarVectorPath source) {
 /// Paints a [SolarVector] into a box, scaled to fit and centred.
 ///
 /// The fit is `BoxFit.contain`: one scale factor for both axes. SVG does this for free through
-/// the default `preserveAspectRatio`, so Flutter has to match it or `zone` -- the one icon drawn
-/// on a `0 0 24 25` viewBox -- would render stretched here and letterboxed on the web.
+/// the default `preserveAspectRatio`, so Flutter has to match it or a drawing that is not square
+/// -- `zone` outline was `0 0 24 25` until SOLAR redrew it, and the logos still are not square --
+/// would render stretched here and letterboxed on the web.
 class SolarVectorPainter extends CustomPainter {
   /// Creates a painter for [vector], drawing inheriting paths in [color].
   const SolarVectorPainter(this.vector, this.color);
@@ -2423,7 +2449,8 @@ Widget _labelled(String? semanticLabel, Widget child) => Semantics(
 /// 4. black, which is only reached if a caller has removed the default icon theme.
 ///
 /// **Size.** [size] is the side of a square box and defaults to [SolarIconSize.lg] (24). The
-/// drawing is scaled to fit that box with its aspect ratio kept, so `zone` stays 24 x 25.
+/// drawing is scaled to fit that box with its aspect ratio kept, so a variant that is not square
+/// is letterboxed rather than stretched.
 ///
 /// **Semantics.** [semanticLabel] names the icon for assistive technology. Without one the icon
 /// is excluded from the semantics tree, because an unlabelled icon sits beside a label that
@@ -2768,7 +2795,8 @@ export function emitFlutterIcons(spec, fileVersion) {
 JS (`packages/codegen/test/flutter-icons.test.mjs`) reads the emitter's output back the way a Dart
 compiler would — one block per `static const SolarVector`, and the path data inside it in order —
 and asserts: 682 constants, all uniquely and legally named; every `d` string and both viewBox
-extents byte-identical to the spec, for all 682; `zone` at 25 against its solid's 24; `evenOdd`
+extents byte-identical to the spec, for all 682; an extent taken from the variant rather than a
+constant 24, asserted by emitting a hand-built 24 × 25 outline now that `zone` is square; `evenOdd`
 exactly where the spec says `evenodd`, 75 times; no `#111111` and no `Color(` anywhere in
 `icons.dart`; no `Map<` in the emitted code; and all 682 digests equal to the React emitter's.
 Then the logos: the four constants in order, Google's four brand colours as `Color(0x…)` in order,
@@ -2785,8 +2813,9 @@ which keeps the assertion over the whole set without putting anything in the shi
 only a test wants. The rest use a `RecordingCanvas implements Canvas` whose `noSuchMethod` throws,
 so a new drawing call cannot slip past: `evenOdd` reaches the `Path` and a square with a hole
 really has one (`Path.contains` at its centre is false under even-odd and true under non-zero);
-`zone` is scaled by 24/25 and offset by 0.48 on x with nothing on y, while `zoneSolid` is scaled
-by 1 and not offset at all; the Biamp wordmark at 24 high is scaled 2× and drawn 72 × 24; Google's
+a hand-built 24 × 25 vector is scaled by 24/25 and offset by 0.48 on x with nothing on y, while
+`zoneSolid` -- like every icon since 2026-09-22 -- is scaled by 1 and not offset at all; the Biamp
+wordmark at 24 high is scaled 2× and drawn 72 × 24; Google's
 four paths draw in their own four colours with the widget's red nowhere among them; and an icon's
 paths all draw in the colour the painter was given. Six widget cases cover the `lg` default, the
 three steps of the colour chain, and the semantics — a named icon is an image carrying that name,
@@ -2860,12 +2889,13 @@ Nine assertions:
 | **logos are the inverse** | Every path of every drawable logo variant names a `#rrggbb` in all three targets, and no generated logo artifact — the two TSX modules, `app-icon.ts`, the barrel, the manifest, the five SVG files, `logos.dart` — contains `currentColor`. `os-logo/teams` has no path list anywhere, so it is asserted to name its colours in gradient stops in both targets that carry it. |
 | **logo geometry** | Every logo variant a target does carry is the same drawing as the spec, fills included. |
 | **exactly one divergence** | Each logo variant gets a signature of which targets carry it. Only `react+svg+flutter` and `react+svg` are permitted, the `react+svg` group is exactly `['os-logo.teams']`, and the `logo.os-logo.teams` deviation the build actually recorded explains it. A second, undocumented divergence fails here and names the asset. |
-| **`zone` keeps its off-grid viewBox** | `0 0 24 25` outline and `0 0 24 24` solid in the spec and all three targets, plus the `width="24" height="25"` intrinsic size in the SVG file. It is the one asset a target could plausibly normalise to a square, and cropping it would fail no count. |
+| **a viewBox is per variant** | Two assertions since SOLAR redrew `zone` on the grid on 2026-09-22. On disk: every one of the 682 variants is `0 0 24 24` in the spec and all three targets, and every generated SVG file carries `width="24" height="24"`. In memory: the three emitters are run over a hand-built spec whose outline is `0 0 24 25`, and all three carry it, `width="24" height="25"` included. `zone` was the one asset a target could plausibly normalise to a square, and cropping it would fail no count. |
 
-**Verified.** The suite is **9 tests in one file**, reading **1,035 files** (341 icon TSX, 682 icon
-SVG, 5 logo modules, 5 logo SVG, `icons.dart`, `logos.dart`): **331–375 ms** for the file on its
-own, of which roughly 250 ms is the tests themselves. It is not slow enough to be annoying, and it
-parallelises with the rest. `npx vitest run` in `packages/codegen` is **217 passing across 21
+**Verified.** The suite is **10 tests in one file** (9 until the off-grid case was split into an
+on-disk assertion and an in-memory one on 2026-09-22), reading **1,035 files** (341 icon TSX, 682
+icon SVG, 5 logo modules, 5 logo SVG, `icons.dart`, `logos.dart`): **331–375 ms** for the file on
+its own, of which roughly 250 ms is the tests themselves. It is not slow enough to be annoying, and
+it parallelises with the rest. `npx vitest run` in `packages/codegen` is **225 passing across 21
 files in 588 ms**, up from 208 across 20. `npm run lint`, `format`, `typecheck` and `build` all
 pass from the root, and `git status --porcelain` shows only the new test file.
 
@@ -2939,7 +2969,12 @@ suite:
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { beforeAll, describe, expect, it } from 'vitest';
-import { dartVariantName } from '../src/emit/flutter-icons.mjs';
+import {
+  dartVariantName,
+  renderFlutterIcons,
+} from '../src/emit/flutter-icons.mjs';
+import { renderReactIcons } from '../src/emit/react-icons.mjs';
+import { renderSvgFiles } from '../src/emit/svg-files.mjs';
 import { buildIconSpec, loadIconCatalog } from '../src/normalize/icons.mjs';
 import { parseSvg } from '../src/normalize/svg.mjs';
 import { packagesDir, repoRoot } from '../src/util/paths.mjs';
@@ -3507,26 +3542,75 @@ describe('icon parity', () => {
     expect(deviation.reason).toMatch(/Flutter/);
   });
 
-  it('zone keeps its off-grid viewBox in all three targets', () => {
-    // The one asset a target could plausibly normalise to a square. Cropping it to 24 would not
-    // fail any count and would shift the drawing.
-    const want = { outline: '0 0 24 25', solid: '0 0 24 24' };
-    for (const variant of ['outline', 'solid']) {
+  it('every icon variant is on the 24 grid in all three targets', () => {
+    // Icon/Zone's outline was drawn 0 0 24 25 -- the one asset a target could plausibly
+    // normalise to a square -- until SOLAR redrew it on the grid on 2026-09-22. Nothing on disk
+    // is off grid now, so this is the assertion that would notice a new one arriving, and the
+    // synthetic test below is what keeps the per-variant handling covered.
+    const offGrid = [];
+    for (const [stem, variant] of variants) {
       const got = {
-        spec: fromSpec(spec.icons.zone.variants[variant]).viewBox,
-        react: react.get('zone').get(variant).viewBox,
-        svg: svg.get(`zone-${variant}.svg`).viewBox,
-        flutter: dart.vectors.get(dartVariantName('zone', variant)).viewBox,
+        spec: fromSpec(spec.icons[stem].variants[variant]).viewBox,
+        react: react.get(stem).get(variant).viewBox,
+        svg: svg.get(`${stem}-${variant}.svg`).viewBox,
+        flutter: dart.vectors.get(dartVariantName(stem, variant)).viewBox,
       };
-      expect(got).toEqual({
-        spec: want[variant],
-        react: want[variant],
-        svg: want[variant],
-        flutter: want[variant],
-      });
+      for (const [target, viewBox] of Object.entries(got))
+        if (viewBox !== '0 0 24 24')
+          offGrid.push(`${target} ${stem}/${variant}: ${viewBox}`);
     }
-    // The SVG file also carries an intrinsic size, which is where a square would creep back in.
-    expect(svg.get('zone-outline.svg').source).toContain(
+    expect(offGrid).toEqual([]);
+
+    // The SVG files also carry an intrinsic size, which is where a square would creep back in.
+    const mis = [...svg]
+      .filter(([, file]) => !file.source.includes('width="24" height="24"'))
+      .map(([name]) => name);
+    expect(mis).toEqual([]);
+  });
+
+  it('carries a viewBox per variant into all three targets', () => {
+    // The one assertion in this file that runs the emitters in memory rather than reading the
+    // generated tree: since zone was redrawn there is no off-grid asset on disk to read, and
+    // cropping an off-grid variant to 24 would still fail no count and still shift the drawing.
+    const sample = {
+      component: 'IconSample',
+      name: 'Sample',
+      category: 'Test',
+      description: 'A hand-built icon, one variant off the 24 grid.',
+      variants: {
+        outline: {
+          viewBox: [0, 0, 24, 25],
+          paths: [{ d: 'M0 0H24V25H0Z', fillRule: 'nonzero' }],
+        },
+        solid: {
+          viewBox: [0, 0, 24, 24],
+          paths: [{ d: 'M0 0H24V24H0Z', fillRule: 'nonzero' }],
+        },
+      },
+    };
+    // The real logos travel with it: the Flutter emitter asserts which variants it skipped.
+    const synthetic = { icons: { sample }, logos: spec.logos };
+    const [module] = renderReactIcons(synthetic).modules;
+    const files = renderSvgFiles(synthetic);
+    const dartSource = renderFlutterIcons(synthetic).icons;
+
+    for (const variant of ['outline', 'solid']) {
+      const want = fromSpec(sample.variants[variant]).viewBox;
+      const tsx = new RegExp(
+        `const ${variant}: IconGeometry = \\{\\n  viewBox: '([^']*)'`,
+      ).exec(module.tsx);
+      const vector = new RegExp(
+        `${dartVariantName('sample', variant)} = SolarVector\\(\\n` +
+          `    width: ([\\d.]+),\\n    height: ([\\d.]+),`,
+      ).exec(dartSource);
+      const file = `icons/sample-${variant}.svg`;
+      expect({
+        react: tsx?.[1],
+        svg: parseSvg(files.get(file), { file }).viewBox.join(' '),
+        flutter: vector && `0 0 ${Number(vector[1])} ${Number(vector[2])}`,
+      }).toEqual({ react: want, svg: want, flutter: want });
+    }
+    expect(files.get('icons/sample-outline.svg')).toContain(
       'width="24" height="25"',
     );
   });
@@ -3581,10 +3665,12 @@ is an explicit request and the run dies with "No parser could be inferred". So t
 generated SVG files are written already formatted and need no pass.
 
 **One report, both sources.** `writeDeviationsReport` previously received only the token
-deviations, so `spec/deviations.md` carried 13 rows while the five icon deviations reached nothing
+deviations, so `spec/deviations.md` carried 13 rows while the icon deviations reached nothing
 a human reads. It now receives both sets concatenated, and the renderer's existing dedupe and
-`byCodeUnit` sort do the rest: **18 rows**, the five new ones being `icon.phone`, `icon.support`,
-`icon.zone`, `logo.os-logo.teams` and `logo.size`. The report's header sentence was the one line
+`byCodeUnit` sort do the rest: **16 rows**, the three from the icons being `icon.phone`,
+`logo.os-logo.teams` and `logo.size`. It was 18 when this task was executed; SOLAR fixed the two
+icons behind `icon.support` and `icon.zone` on 2026-09-22 and, because a deviation is reported
+only when the data triggers it, both rows left the report on their own. The report's header sentence was the one line
 of `report/deviations.mjs` that had to change — it named `spec/tokens.json` as its only source and
 now names both, and says that the `icon.*` and `logo.*` rows come from the SOLAR Icons file whose
 version `spec/icons.json` records.
@@ -3595,19 +3681,23 @@ blind spot: the icon emitters run against the spec `buildIconSpec` holds in memo
 `flattenSpec` does not read it; a local `flattenIconSpec` walks `icons` and `logos` into one row
 per variant — name, component, viewBox, every path's `d`, `fillRule` and `fill`, the
 `unsupported`/`source` pair for Teams and the `files` map for the rasters — and the committed file
-must equal the in-memory build row for row. Verified by mutating `zone`'s outline viewBox to
-`0 0 24 24` in the committed file: the test fails, and `npm run solar:codegen` restores it.
+must equal the in-memory build row for row. Verified by cropping `zone`'s outline viewBox, then
+`0 0 24 25`, to `0 0 24 24` in the committed file: the test fails, and `npm run solar:codegen`
+restores it. SOLAR has since redrawn the icon on the grid, so repeating that check today means
+mutating any variant's viewBox, not that one's.
 
-Measured on this corpus:
+Measured on this corpus. The three sizes were re-measured on 2026-09-22, after SOLAR shipped the
+`support` outline and redrew `zone`; the determinism hash is from the run this task was executed
+in and no longer matches, though two consecutive runs still agree with each other:
 
 | | |
 | --- | --- |
-| Summary line | `codegen: css 663, mui 710, tailwind 371, flutter 710 tokens, react 341, svg 687, logos 3, flutter 341 icons, 18 deviations` |
+| Summary line | `codegen: css 663, mui 710, tailwind 371, flutter 710 tokens, react 341, svg 687, logos 3, flutter 341 icons, 16 deviations` (18 when this task was executed; `icon.support` and `icon.zone` stopped triggering when SOLAR fixed the two icons on 2026-09-22) |
 | Wall clock | 3.26 s cold, 2.69 s warm |
 | Prettier step | 1.15 s of that, standalone; 0.76 s before the assets glob, so the 341 TSX modules and two manifests cost **~0.4 s**. It is ~40% of the run and the largest single step, but it does not dominate it. |
 | `dart format lib` | 0.56 s |
-| `spec/icons.json` | 603,207 bytes (592 KB), 341 icon sets and 3 logo sets |
-| `spec/deviations.md` | 18,686 bytes, 18 rows |
+| `spec/icons.json` | 603,242 bytes (592 KB), 341 icon sets and 3 logo sets |
+| `spec/deviations.md` | 16,864 bytes, 16 rows |
 | Generated files | 1,049 across `spec/`, `packages/styles/src/generated`, `packages/assets/src/generated` and `packages/solar_flutter/lib/src/generated` |
 | Determinism | two consecutive runs hash to `aca7fed5e3dd610db35b5de7be9230b2a397aacbc4f6342e92dc42d878307694` over all 1,049 files, and `git status --porcelain docs/` is empty |
 
@@ -3922,21 +4012,24 @@ All of these hold.
 
 - `npm run solar:codegen` emits icons for all three targets, is deterministic, and writes nothing
   under `docs/`. Its summary line is
-  `codegen: css 663, mui 710, tailwind 371, flutter 710 tokens, react 341, svg 687, logos 3, flutter 341 icons, 18 deviations`,
+  `codegen: css 663, mui 710, tailwind 371, flutter 710 tokens, react 341, svg 687, logos 3, flutter 341 icons, 16 deviations`,
   and two consecutive runs leave the tree unchanged.
 - A React app can `import { IconChevronRight } from '@bwp-web/assets'` and tint it by setting
   `color`; a Flutter app can use `SolarIcon(SolarIcons.chevronRightOutline)` and get the same
   shape.
 - The icon parity suite proves React, the raw SVG and Flutter carry identical geometry for all
-  **682** variants — the plan's opening table counted the 681 SVG files on disk, and the spec
-  holds one more because `support`'s missing outline falls back to its solid. `os-logo.teams` is
-  the one asset the targets do not share, and the suite asserts it is the only one.
+  **682** variants — one per variant of the 341 sets, which is also the number of SVG files on
+  disk since `support` gained its own outline on 2026-09-22. `os-logo.teams` is the one asset the
+  targets do not share, and the suite asserts it is the only one.
 - `flutter analyze` and `flutter test` pass (39 tests), and the npm build, lint, typecheck and
-  format pass; `npx vitest run` in `packages/codegen` is 220 tests across 21 files.
-- **Five**, not three, source defects appear in `spec/deviations.md` with an action for SOLAR:
-  `icon.phone`, `icon.support`, `icon.zone`, `logo.os-logo.teams` and `logo.size` — the last two
-  were found while executing tasks 5 and 7 and were not foreseen when this plan was written. They
-  join the 13 token rows for 18 in total.
+  format pass; `npx vitest run` in `packages/codegen` is 225 tests across 21 files.
+- **Three** source defects appear in `spec/deviations.md` with an action for SOLAR: `icon.phone`,
+  `logo.os-logo.teams` and `logo.size` — the last two were found while executing tasks 5 and 7 and
+  were not foreseen when this plan was written. They join the 13 token rows for 16 in total. It was
+  five and 18 until 2026-09-22, when SOLAR drew the missing `support` outline and redrew `zone` on
+  the grid; a deviation is reported only when the data triggers it, so both rows left the report
+  without any code change, while their `ICON_DEVIATIONS` entries and the branches that look them up
+  stayed.
 - The packages are documented: `packages/assets/README.md` and the icon sections of
   `packages/solar_flutter/README.md` for consumers, `packages/codegen/README.md` and `CLAUDE.md`
   for whoever changes the generator. CI needed no new step; task 10 records why.

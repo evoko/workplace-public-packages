@@ -6,7 +6,7 @@
     {
       "name": "AppSwitcherItem",
       "id": "6431:1625",
-      "description": "",
+      "description": "One product row in the App Switcher: App Icon, app name and a SplitButton to open or launch in a new tab. Single component. Props: hasButton (default on; off for the current app). Use only inside the App Switcher popover; for in-app navigation use Nav Item.",
       "props": {
         "hasButton#10422:20": {
           "type": "BOOLEAN",
@@ -90,7 +90,7 @@
             }
           },
           {
-            "name": "Frame 6",
+            "name": "Container",
             "type": "FRAME",
             "size": [
               204,

@@ -1,9 +1,9 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/tokens: dfb943521b08
+    documentation/tokens: 890a13304be2
 ---
 
 # 02 · Tokens
@@ -38,13 +38,15 @@ is intentional, traceable, and scalable.
 
 ## Three tiers
 
-| Tier                        | What it is                                                                                                             | Examples                                                   | Who uses it                                           |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
-| **Primitive** (base)        | Raw, context-free values: palettes, sizes, numeric scales. Stable, rarely change.                                      | `color/blue/500`, `spatial/scale/4`, `type/font-size/14`   | Only other tokens. **Never used directly in UI.**     |
-| **Semantic**                | Intent and usage: what a value is _for_. Map to primitives under the hood.                                             | `color.text.primary`, `stack.md`, `radius.control`         | Designers and engineers. **The tokens products use.** |
-| **Component** (when needed) | Scoped, intentional overrides for one component when semantics are not enough. Must still map back to semantic tokens. | `ui-primary-default` (illustrative), `button.space.inline` | Sparingly, to avoid fragmentation and drift.          |
+| Tier                        | What it is                                                                                                             | Examples                                                 | Who uses it                                           |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------- |
+| **Primitive** (base)        | Raw, context-free values: palettes, sizes, numeric scales. Stable, rarely change.                                      | `color/blue/500`, `spatial/scale/4`, `type/font-size/14` | Only other tokens. **Never used directly in UI.**     |
+| **Semantic**                | Intent and usage: what a value is _for_. Map to primitives under the hood.                                             | `color.text.primary`, `stack.md`, `radius.control`       | Designers and engineers. **The tokens products use.** |
+| **Component** (when needed) | Scoped, intentional overrides for one component when semantics are not enough. Must still map back to semantic tokens. | `ui-primary-default` (illustrative)                      | Sparingly, to avoid fragmentation and drift.          |
 
-In the Figma file this maps to four collections:
+No component-scoped **spacing** tokens exist: `{component}.space.{property}` (for example
+`button.space.inline`) is a banned pattern, and components bind directly to `inset.*` and
+`stack.*`. In the Figma file the three tiers map to four collections:
 
 | Collection     | Tier      | Modes           | Count | Contents                                                                                                                                          |
 | -------------- | --------- | --------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -242,9 +244,10 @@ The Tokens page annotates a single desktop button to show how tokens compose:
 | Background    | `color.action.primary.bg.default`     | Color › `action/primary/bg/default`                          |
 | Border        | `color.action.primary.border.default` | Color › `action/primary/border/default`                      |
 | Label type    | `font.desktop.label.md`               | Text style `label/md` (Type mode Desktop)                    |
-| Padding       | `size.inset.md`                       | Spatial › `inset/md` (16 px)                                 |
-| Corner radius | `size.radius.control`                 | Spatial › `radius/control` (6 px)                            |
+| Padding       | `inset.md`                            | Spatial › `inset/md` (16 px)                                 |
+| Corner radius | `radius.control`                      | Spatial › `radius/control` (6 px)                            |
 | Shadow        | `shadow.subtle`                       | Effect style `shadow/control` bound to color `shadow/subtle` |
 
-(The annotation uses a `size.` prefix for spatial tokens that the naming grammar and
-the Theming chapter do not; treat `inset.md` / `radius.control` as canonical.)
+The annotation used to carry a `size.` prefix on the spatial tokens (`size.inset.md`,
+`size.radius.control`); that prefix does not exist. `inset.md` and `radius.control` are
+the token names.

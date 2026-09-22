@@ -1,6 +1,6 @@
 # Spatial
 
-> Verbatim text of the Figma page `Spatial` (id `763:59204`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `2f5eb8cf2ed9`. Curated chapter: [12-spatial-borders-radius.md](../../12-spatial-borders-radius.md).
+> Verbatim text of the Figma page `Spatial` (id `763:59204`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `a9b6dfb289de`. Curated chapter: [12-spatial-borders-radius.md](../../12-spatial-borders-radius.md).
 
 ## Slide 1
 
@@ -67,6 +67,66 @@ _[image: Screenshot 2026-03-13 at 15.35.42 1]_
 
 ## Stack
 
+**Token**
+
+**Base token**
+
+**Value**
+
+****stack/none****
+
+****spatial/scale/0****
+
+**0px**
+
+****stack/2xs****
+
+****spatial/scale/1****
+
+**4px**
+
+****stack/xs****
+
+****spatial/scale/2****
+
+**8px**
+
+****stack/sm****
+
+****spatial/scale/3****
+
+**12px**
+
+****stack/md****
+
+****spatial/scale/4****
+
+**16px**
+
+****stack/lg****
+
+****spatial/scale/5****
+
+**20px**
+
+****stack/xl****
+
+****spatial/scale/6****
+
+**24px**
+
+****stack/2xl****
+
+****spatial/scale/7****
+
+**28px**
+
+****stack/3xl****
+
+****spatial/scale/10****
+
+**40px**
+
 #### Stack defines vertical separation between sibling elements. It governs layout rhythm and grouping across pages and components.
 
 ###### Token Structure
@@ -81,8 +141,9 @@ stack.lg
 Each stack token maps to a rem value from size / scale.
 
 Example:\
-stack.md → 1rem\
-stack.lg → 1.5rem
+stack.md → 1rem (16px)\
+stack.lg → 1.25rem (20px)\
+stack.xl → 1.5rem (24px)
 
 ###### When to Use Stack
 
@@ -94,9 +155,67 @@ Layout blocks
 
 If two elements share the same parent and require spacing between them, use a stack token.
 
-_[image: image 1]_
-
 ## Inset
+
+**Token**
+
+**Base token**
+
+**Value**
+
+****inset/none****
+
+****spatial/scale/0****
+
+**0px**
+
+****inset/2xs****
+
+****spatial/scale/1****
+
+**4px**
+
+****inset/xs****
+
+****spatial/scale/2****
+
+**8px**
+
+****inset/sm****
+
+****spatial/scale/3****
+
+**12px**
+
+****inset/md****
+
+****spatial/scale/4****
+
+**16px**
+
+****inset/lg****
+
+****spatial/scale/5****
+
+**20px**
+
+****inset/xl****
+
+****spatial/scale/6****
+
+**24px**
+
+****inset/2xl****
+
+****spatial/scale/7****
+
+**28px**
+
+****inset/3xl****
+
+****spatial/scale/10****
+
+**40px**
 
 #### Inset defines internal padding within containers. It creates breathing room between content and structural boundaries.
 
@@ -112,10 +231,11 @@ inset.lg
 Each inset token references a rem value from the sizing scale.
 
 Example:\
-inset.md → 1rem\
-inset.lg → 1.5rem
+inset.md → 1rem (16px)\
+inset.lg → 1.25rem (20px)\
+inset.xl → 1.5rem (24px)
 
-###### When to Use Stack
+###### When to Use Inset
 
 Use inset inside:\
 Cards\
@@ -126,8 +246,6 @@ Page containers
 
 Inset defines containment — not separation between siblings.
 
-_[image: image 1]_
-
 ## @SOLAR:PAGE_CONTEXT
 
 The machine-readable context block the SOLAR team placed on this page, verbatim.
@@ -137,15 +255,15 @@ The machine-readable context block the SOLAR team placed on this page, verbatim.
 page: Spatial
 domain: Layout > Spacing System
 version: 1.0
-updated: 2026-03-23
+updated: 2026-09-22
 
 [ROLE]
 You are the SOLAR spatial system specialist. Consistent spacing creates visual rhythm, hierarchy, and grouping. All spacing values must use spatial tokens — never arbitrary pixel values.
 
 [SCOPE]
-- Base unit and spacing scale
-- Spatial token naming and usage types
-- Padding, margin, and gap conventions
+- Base unit and the spatial scale
+- Semantic spacing families: inset and stack
+- Padding and gap conventions
 - Proximity principle and visual grouping
 - Responsive spacing adjustments
 
@@ -154,52 +272,53 @@ unit: 4px — all spacing values are multiples of 4
 rationale: 4px base aligns with pixel grids, sub-pixel rendering, and standard display densities
 
 [SPACING_SCALE]
-space.0: 0px — no space
-space.2xs: 2px — hairline gaps, divider offsets
-space.xs: 4px — tightest grouping, inline icon gaps
-space.sm: 8px — compact grouping, small component padding
-space.md: 16px — default spacing, standard padding and gaps
-space.lg: 24px — section separation, generous padding
-space.xl: 32px — major section breaks
-space.2xl: 48px — page-level section spacing
-space.3xl: 64px — hero spacing, large section breaks
-space.4xl: 96px — maximum spacing, page margins on wide screens
+primitive: spatial.scale.0–22 — 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 64, 72, 80, 96, 112, 128, 144, 160px
+semantic (inset.* and stack.* share these nine steps):
+  none: 0px — spatial.scale.0
+  2xs: 4px — spatial.scale.1 — tightest grouping, icon + label gaps
+  xs: 8px — spatial.scale.2 — compact grouping, control padding
+  sm: 12px — spatial.scale.3 — dense component padding
+  md: 16px — spatial.scale.4 — default spacing, card padding
+  lg: 20px — spatial.scale.5 — comfortable padding
+  xl: 24px — spatial.scale.6 — section separation
+  2xl: 28px — spatial.scale.7 — large containers
+  3xl: 40px — spatial.scale.10 — page-level regions
+rule: lg is 20px and xl is 24px — older docs that said 24/32 were wrong; there is no 2px, 48px or 64px semantic step
 
 [USAGE_TYPES]
-inline: horizontal spacing between sibling elements (e.g., icon + label gap)
-stack: vertical spacing between stacked elements (e.g., heading → paragraph → button)
-inset: padding inside a container (e.g., card padding, button padding)
-squish_inset: asymmetric padding — tighter top/bottom, wider left/right (e.g., tags, chips)
-stretch_inset: asymmetric padding — taller top/bottom, narrower left/right (e.g., list items)
+inset: padding inside a container (card padding, button padding) — inset.{size}
+stack: vertical spacing between stacked siblings (heading → paragraph → button) — stack.{size}
+gap: horizontal auto-layout gaps bind to the same scale via inset.{size}; there is no gap.* family
+rule: only inset.* and stack.* exist — no space.*, inline, squish or stretch families
 
 [TOKEN_NAMING]
-pattern: space.{scale} for general use
-component_specific: {component}.space.{property} for component-level overrides
+pattern: inset.{size} | stack.{size} — docs use dots, Figma uses slashes (inset/md)
 examples:
-  space.md → 16px general purpose
-  button.space.inline → gap between icon and label in a button
-  card.space.inset → internal padding of a card
+  inset.md → 16px card padding
+  stack.xl → 24px between content sections
+  inset.2xs → 4px between a button icon and its label
+rule: no component-scoped spacing tokens — components bind directly to the semantic scale
 
 [PROXIMITY_PRINCIPLE]
-tight: related items grouped with smaller spacing (space.xs to space.sm)
-medium: sub-sections within a group (space.md)
-loose: distinct sections separated with larger spacing (space.lg to space.2xl)
+tight: related items grouped with smaller spacing (2xs to xs)
+medium: sub-sections within a group (md)
+loose: distinct sections separated with larger spacing (xl to 3xl)
 rule: spacing communicates relationship — closer = more related
 
 [COMPONENT_SPACING]
-internal_padding: inset tokens (e.g., card uses space.md inset)
-between_components: stack/inline tokens (e.g., space.md between form fields)
-section_spacing: larger tokens (e.g., space.xl between page sections)
-rule: component internal spacing uses inset; between-component spacing uses stack/inline
+internal_padding: inset tokens (e.g., card uses inset.md)
+between_components: stack tokens (e.g., stack.md between form fields)
+section_spacing: larger tokens (e.g., stack.xl between page sections, stack.3xl between page regions)
+rule: component internal spacing uses inset; between-component spacing uses stack
 
 [RESPONSIVE_SPACING]
-mobile: spacing may tighten by one scale step (e.g., space.lg → space.md)
+mobile: spacing may tighten by one scale step (e.g., inset.lg → inset.md)
 desktop: full spacing scale applies
 mechanism: spatial tokens may have breakpoint-specific values, or layout rules specify tighter tokens on mobile
 rule: maintain proportional rhythm — don't tighten some spacing while leaving others loose
 
 [AGENT_BEHAVIOR]
-- When recommending spacing, always provide the token name (e.g., "space.md") not a pixel value
+- When recommending spacing, always provide the token name (e.g., "inset.md") not a pixel value
 - Use proximity principle: suggest tighter spacing for related items, looser for separate sections
 - If a spacing value isn't in the scale, recommend the nearest token — never invent values
 - Check that component internal padding uses inset tokens

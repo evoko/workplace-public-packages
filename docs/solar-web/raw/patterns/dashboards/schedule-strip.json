@@ -5,7 +5,7 @@
     {
       "name": "Schedule Entry",
       "id": "6593:41012",
-      "description": "",
+      "description": "One row of a Schedule Strip: playback status, entry name with its recurrence and time, and a Tag. 8 variants: type (playing, paused, scheduled, complete) × state (default, hover). type drives the StatusIndicator and Tag; state is the pointer feedback only. Use inside Schedule Strip, not as a standalone list row; for generic rows use List Item.",
       "docLinks": [],
       "variantCount": 8,
       "props": {
@@ -653,7 +653,7 @@
     {
       "name": "Schedule Strip",
       "id": "6593:41547",
-      "description": "",
+      "description": "Titled panel that lists a sequence of Schedule Entry rows with an overflow menu in the header. 3 variants: state (default, empty, ghost). default holds entries in the content slot; empty is the no-schedule message; ghost is the loading skeleton. Props: content (slot). Keep entries in chronological order; the strip does not sort.",
       "docLinks": [],
       "variantCount": 3,
       "props": {

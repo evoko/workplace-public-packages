@@ -4,6 +4,8 @@
 
 ## Component set: Layout
 
+Shell Tier 4: Top Bar, Sidebar and a Page Shell with left, center and right slots, sized for a client app. 2 variants: breakpoint (desktop, mobile). Props: left, center, right (slots), hasLeft, hasRight (booleans). Use for end-user client apps such as Chatter; differs from Layout / Workplace in its Page Shell density. Name is under review.
+
 ### Props
 
 | Prop         | Type    | Options / default         |
@@ -79,7 +81,6 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ### Issues detected
 
-- Component description is empty.
 - Primitive color bound directly (CLR-002): `color.purple.700`, `color.brand.red`.
 
 ## Documentation card

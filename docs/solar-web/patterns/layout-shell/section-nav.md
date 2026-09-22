@@ -4,6 +4,8 @@
 
 ## Component: Section Nav
 
+Vertical in-page navigation: Section Nav Group Headers with their Section Nav Items in one slot. Single component. Props: Items (slot). Use at the left of a long settings or detail page to jump between sections; it is a nav landmark and the active item carries aria-current. For app-level navigation use Sidebar.
+
 ### Props
 
 | Prop    | Type | Options / default         |
@@ -62,7 +64,6 @@
 
 ### Issues detected
 
-- Component description is empty.
 - Hard-coded fill `#ffffff` on layer _Items_
 
 ## Documentation card

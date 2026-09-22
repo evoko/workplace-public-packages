@@ -1,10 +1,10 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/governance: b3ae3e3a71ce
-    meta/lint-plugin: bb87660da815
+    documentation/governance: 2b399162762f
+    meta/lint-plugin: f8b268dcd32d
     meta/changelog: d049b47cafd2
 ---
 
@@ -109,7 +109,7 @@ may be promoted to system tokens through the normal proposal process.
 
 Machine-checkable rules with stable IDs, used by the SOLAR Lint plugin, the CI lint
 agent, agent self-validation and manual checklists. Classified **Error** (must fix) or
-**Warning** (should fix). The Governance page counts 39 rules (30 errors, 9 warnings)
+**Warning** (should fix). The Governance page counts 42 rules (31 errors, 11 warnings)
 across ten categories.
 
 | Category      | IDs          | Scope                                                                                                                                            |
@@ -151,7 +151,11 @@ deviation at design time.
 
 - 22+ rules across 7 categories: Tokens, Components, Detached instances, Library
   sources, Icons, Typography, Accessibility.
-- Scan by page, selection, or entire file; click any finding to jump to the node.
+- Three steps: **Scan** (pick page, selection or all pages; the plugin resolves every
+  instance to its library source and evaluates each rule), **Review** (findings grouped
+  by severity and category, a coverage bar for how much of the scope is bound to SOLAR,
+  a table filterable by rule), **Fix** (click a finding to select the node; re-scan to
+  confirm the count drops to zero).
 - Component coverage tracking; scan history with diff (new vs resolved); CSV export;
   SOLAR-branded dark UI.
 - Severity: Error (must fix), Warning (should fix), Info (recommendation).

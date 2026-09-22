@@ -3,13 +3,16 @@ import 'dart:ui' show Offset, Path, Rect;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:solar_flutter/src/svg_path.dart';
 
-/// `zone`'s outline, path 7 of 9, pasted verbatim from `spec/icons.json`.
+/// `zone`'s outline, path 7 of 9, as SOLAR drew it until 2026-09-22, pasted verbatim from
+/// `spec/icons.json` at the time.
 ///
-/// It is the most demanding real string in the corpus: two subpaths wound against each other,
-/// eight cubics, an explicit `Z` on each, and negative coordinates. `zone` is also the one icon
+/// It was the most demanding real string in the corpus: two subpaths wound against each other,
+/// eight cubics, an explicit `Z` on each, and negative coordinates. `zone` was also the one icon
 /// drawn on a `0 0 24 25` viewBox, so nothing about it can be checked against an assumed 24-unit
 /// box. Negatives are not unique to it -- twelve of the 682 icon variants carry one -- but they
-/// are rare enough that a parser could drop a sign and pass every other test.
+/// are rare enough that a parser could drop a sign and pass every other test. SOLAR redrew the
+/// icon on the 24 grid on 2026-09-22; the string is kept because what it proves about the parser
+/// is a property of the string, not of which icon it came from.
 const String zoneOutlinePin =
     'M17.2246 1.1495C18.7574 -0.38319 21.2426 -0.383143 22.7754 1.1495C24.3076 '
     '2.68219 24.3076 5.16656 22.7754 6.6993L20 9.47567L17.2246 6.6993C15.6924 '

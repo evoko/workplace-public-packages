@@ -1,6 +1,6 @@
 # Iconography
 
-> Verbatim text of the Figma page `Iconography` (id `763:53729`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `149b8a944ed6`. Curated chapter: [09-iconography.md](../../09-iconography.md).
+> Verbatim text of the Figma page `Iconography` (id `763:53729`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `5332d7846a42`. Curated chapter: [09-iconography.md](../../09-iconography.md).
 
 ## Slide 1
 
@@ -32,16 +32,16 @@ Icons must never be the sole means of conveying information. They are always pai
 
 #### SOLAR defines six fixed icon sizes tied to the spatial scale. Icons are always rendered at these sizes — never stretched, scaled arbitrarily, or used between steps.
 
-Icon sizes correspond to common component contexts. Smaller sizes appear inside compact controls like inputs and list items. Larger sizes are used in empty states, illustrations, and standalone navigation. All sizes source from Remix. The xs size (12 px) uses an intentionally chunkier stroke so it holds up at the smallest step — this is a legibility decision, not a drawing error.
+Icon sizes correspond to common component contexts. Smaller sizes appear inside compact controls like inputs and list items. Larger sizes are used in empty states, illustrations, and standalone navigation. Every glyph is drawn once on the 24 px grid; the rendered size comes from the icon/\* variables (12–32 px), never from a resized copy.
 
 ##### Size scale
 
-12 px (xs) — tight inline usage: status badges, meta labels, controls with very little room. Remix, chunkier stroke.\
-16 px (sm) — compact controls: buttons, inputs, menu items. Minimum usable size for body contexts.\
+12 px (xs) — tight inline usage: status badges, meta labels, dense table cells. Minimum usable size.\
+16 px (sm) — compact controls: badges, inputs, menu items. Inline with body text.\
 20 px (md) — default UI size across most SOLAR surfaces: buttons, toolbars, list items, nav items.\
-24 px (lg) — prominent placement: section headers, card actions, top-bar icons.\
-32 px (xl) — feature callouts, illustrations, and feature tiles.\
-40 px (xxl) — hero-level placements: empty states, onboarding, error pages, marketing surfaces.
+24 px (lg) — prominent placement: section headers, card actions, top-bar icons. Matches the authoring grid.\
+28 px (xl) — large controls and feature callouts. Not yet used by a component.\
+32 px (2xl) — empty states, onboarding, hero placements. Not yet used by a component.
 
 ## Grid & Construction
 
@@ -51,10 +51,10 @@ Icons are drawn on a fixed canvas with a smaller live area inset from the edge. 
 
 ##### Rules
 
-Canvas matches the rendered size (12, 16, 20, 24, 32, 40 px). Each size has its own live area inset from the canvas edge.\
+Canvas is 24 × 24 px for every icon; rendered sizes (12, 16, 20, 24, 28, 32 px) come from the icon/\* variables. The live area is inset from the canvas edge.\
 Keyline shapes define target optical volume: circle, square, landscape rect, portrait rect.\
 Pixel alignment: the outside of the stroke sits on the grid. Only one side may sit on a .5 px boundary.\
-No rotation or free-scaling of finished icons. Each size is drawn for that size — never stretched from another.\
+No rotation or free-scaling of finished icons. Check legibility at 12 px before release.\
 Subpixel paths are not allowed in final, exported icons.
 
 - 24 px canvas · keyline reference
@@ -68,13 +68,13 @@ Canvas = full icon size · Live area (dashed) = 20×20 inset · Keylines guide o
 
 ## Stroke & Geometry Rules
 
-#### Stroke weight, terminators, and angle rules are shared across the set so icons feel cohesive. The xs size (12 px) runs a chunkier stroke by design so legibility holds at the smallest step.
+#### Stroke weight, terminators, and angle rules are shared across the set so icons feel cohesive. Legibility is checked at 12 px, the smallest rendered size.
 
 Outline icons use a consistent stroke weight per size. All segments are straight or follow perfect arcs — no bezier drift. Angles move in 15° increments. Integer pixel measurements on every vertex and endpoint. Strokes are expanded to filled paths before export.
 
 ##### Rules
 
-Stroke weight: sm, md, lg, xl, xxl share a baseline weight; xs runs chunkier for 12 px legibility — intentional, not a bug.\
+Stroke weight: one baseline weight across the set — glyphs are not redrawn per size.\
 Terminators: round caps and round joins on all outline glyphs.\
 Angles move in 15° steps. Arcs follow perfect circles; no ad-hoc curves.\
 Measurements are integer pixels on every vertex, except at the outside-of-stroke grid-alignment boundary.\
@@ -115,16 +115,16 @@ Solid variants use the /Solid suffix in the library; outline has no suffix.
 - Same metaphor · same canvas · drawn independently
 - Outline
 - Solid
-- Icon/Circle
-- Icon/Circle / Solid
+- Icon/Circle · solid=false
+- Icon/Circle · solid=true
 - Outline
 - Solid
-- Icon/Square
-- Icon/Square / Solid
+- Icon/Square · solid=false
+- Icon/Square · solid=true
 - Outline
 - Solid
-- Icon/Triangle
-- Icon/Triangle / Solid
+- Icon/Triangle · solid=false
+- Icon/Triangle · solid=true
 
 Directional glyphs · shared sharp, tall-narrow triangle silhouette
 
@@ -179,18 +179,18 @@ Never use icons as decoration. If an icon doesn't improve comprehension or scann
 
 ## Naming
 
-#### Icon names are identical across every size. A chevron-right at xs uses the same name as its xxl sibling. Only the Size variant property changes.
+#### Icon names are identical across every rendered size and both fills. A chevron at 12 px uses the same component as at 32 px; only the solid boolean and the icon/\* size variable change.
 
-Names follow an element–modifier grammar. The element is a concrete noun or metaphor. The modifier — when used — adds direction, state, or a specific shape variant. Solid variants inherit the same name, with /Solid appended. Lowercase, hyphen-separated, never suffixed with a size.
+Names follow an element–modifier grammar. The element is a concrete noun or metaphor. The modifier — when used — adds direction, state, or a specific shape variant. The solid variant lives on the same component set behind a solid boolean, so it never gets its own name. PascalCase under Icon/, never suffixed with a size.
 
 ##### Grammar
 
-Element first, modifier second — chevron-right, arrow-up, circle-check.\
-Lowercase, hyphen-separated. No camelCase, no underscores, no size suffixes.\
-Direction modifiers: -up, -down, -left, -right.\
-State modifiers: -filled, -open, -closed — only when the state is a distinct glyph, not a colour variant.\
-Solid suffix: {name}/Solid. Outline is the base — no suffix.\
-Name stays identical across xs, sm, md, lg, xl, xxl — only the Size property changes.
+Element first, modifier second — Icon/ChevronRight, Icon/ArrowUp, Icon/CircleCheck.\
+PascalCase under the Icon/ group. No kebab-case, no camelCase, no size suffixes.\
+Direction modifiers: Up, Down, Left, Right.\
+State modifiers: Filled, Open, Closed — only when the state is a distinct glyph, not a colour variant.\
+Fill: one component set per icon with a solid boolean — solid=false (outline) is the base, solid=true the filled twin.\
+Size is never in the name — it comes from the icon/\* variables.
 
 ## Icon Library & Contribution
 
@@ -256,7 +256,7 @@ The machine-readable context block the SOLAR team placed on this page, verbatim.
 page: Iconography
 domain: Visual Language > Icon System
 version: 1.0
-updated: 2026-03-23
+updated: 2026-09-22
 
 [ROLE]
 You are the SOLAR iconography specialist. Icons must follow SOLAR's icon system for visual consistency, sizing, and accessibility. All icon properties are token-driven.
@@ -277,24 +277,25 @@ corners: consistent corner radius on strokes (e.g., 1px radius on joins)
 rule: all icons are designed on the same grid for interchangeability
 
 [SIZE_TOKENS]
-icon.size.xs: 12px — inline metadata, decorative
-icon.size.sm: 16px — compact UI, badges, tags
-icon.size.md: 20px — default for most UI contexts
-icon.size.lg: 24px — primary actions, navigation
-icon.size.xl: 32px — hero, empty states, illustrations
-rule: never use arbitrary icon sizes — always reference a size token
+icon.size.xs: 12px (Figma icon/xs) — inline with caption text, dense table cells
+icon.size.sm: 16px (icon/sm) — badges, compact controls, inline with body text
+icon.size.md: 20px (icon/md) — default for buttons, inputs, list and nav items
+icon.size.lg: 24px (icon/lg) — toolbars, section headers, card actions; matches the 24px grid
+icon.size.xl: 28px (icon/xl) — large controls, feature callouts; unused by any component today
+icon.size.2xl: 32px (icon/2xl) — empty states, onboarding; unused by any component today
+rule: never use arbitrary icon sizes — always reference a size token; there is no 40px or 48px size
 
 [STYLE]
-type: outlined | filled | two-tone — SOLAR defines one primary style
-consistency: all icons in a given context use the same style variant
-color: icons use color.icon.{variant} tokens — default, secondary, disabled, inverse, on-color
-inheritance: inline icons inherit parent text color by default
-rule: never mix outlined and filled icons in the same UI context
+type: outline is the base; every icon also ships a solid twin on a single solid=true/false boolean
+consistency: all icons in a given context use the same fill variant
+color: the library ships glyphs on color/neutral/900 — the moment an instance lands in a page it binds to color.icon.{primary|secondary|tertiary|disabled|inverse|feedback.{type}} or, inside an action component, color.action.{prio}.icon.{state}
+rule: never mix outline and solid icons in the same UI context; never leave an instance on neutral/900
 
 [NAMING_CONVENTION]
-pattern: {category}/{action-or-object} — e.g., navigation/arrow-left, action/edit, status/warning
-categories: navigation | action | status | content | communication | media | file | social
-rule: names describe what the icon represents, not how it looks
+pattern: Icon/{PascalCaseName} — e.g., Icon/ArrowLeft, Icon/Edit, Icon/Warning
+variants: one component set per icon; solid=false (outline, default) and solid=true — no size variants
+modifiers: direction (Up, Down, Left, Right) and state (Filled, Open, Closed) as PascalCase suffixes
+rule: names describe what the icon represents, not how it looks; never kebab-case, never camelCase, never a size in the name
 
 [ACCESSIBILITY]
 decorative_icons: aria-hidden="true" — no alt text, no screen reader announcement
@@ -310,8 +311,8 @@ visual_vs_tap: icon may be 20px visually but wrapped in a 44px tap target
 rule: always verify tap area meets minimum, especially for icon-only buttons
 
 [AGENT_BEHAVIOR]
-- When recommending an icon, reference it by its system name (e.g., "action/edit")
-- Always specify the size token alongside the icon name
+- When recommending an icon, reference it by its system name (e.g., "Icon/Edit")
+- Always specify the size token (icon/*) and the colour token (icon/* or action/*/icon/*) alongside the icon name
 - If an icon is used as a button, verify it has an accessible name
 - Flag any icon used without a size token as a violation
 - When reviewing icon usage, check for style consistency within the context
@@ -320,7 +321,7 @@ rule: always verify tap area meets minimum, especially for icon-only buttons
 [CONSTRAINTS]
 - never use arbitrary icon sizes — always a size token
 - never use icon-only buttons without an accessible name
-- never mix icon styles (outlined/filled) within the same UI context
+- never mix icon styles (outline/solid) within the same UI context
 - never rely on icon color alone to convey meaning
 - never introduce new icons outside the naming convention and governance process
 - decorative icons must be hidden from assistive technology

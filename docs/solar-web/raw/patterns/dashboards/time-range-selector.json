@@ -5,7 +5,7 @@
     {
       "name": "Time Range Selector",
       "id": "7266:25548",
-      "description": "",
+      "description": "Compact trigger that shows the active time range as a label and resolved date span, and opens the range picker. 2 variants: state (default, hover). Clock icon leads, chevron trails; both are decorative. Use above charts, feeds and dashboards where the range applies to the whole view; for a single field use Date Picker.",
       "docLinks": [],
       "variantCount": 2,
       "props": {

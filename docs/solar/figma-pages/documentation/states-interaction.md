@@ -1,6 +1,6 @@
 # States & Interaction
 
-> Verbatim text of the Figma page `States & Interaction` (id `1054:14458`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `b7503e047c18`. Curated chapter: [08-states-interaction.md](../../08-states-interaction.md).
+> Verbatim text of the Figma page `States & Interaction` (id `1054:14458`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `f0eabdf31897`. Curated chapter: [08-states-interaction.md](../../08-states-interaction.md).
 
 ## Slide 1
 
@@ -65,9 +65,9 @@ color.action.primary-danger.bg.hover — Destructive button hovered fill
 ##### Non-color state tokens:
 
 shadow/control — Subtle shadow applied to input elements in their default state\
-opacity/disabled — Opacity value applied to disabled non-action elements\
-motion/hover — Duration and easing for hover state transitions\
-motion/focus — Duration and easing for focus ring appearance
+color.\*.disabled — Explicit disabled colours for text, icon, border and action tokens (alpha/black-20 light · alpha/white-20 dark); there is no opacity token\
+motion.duration.fast + motion.ease.both — Hover and pressed state transitions\
+motion.duration.instant — Focus ring appearance; keyboard focus is never delayed
 
 _[image: image 2]_
 
@@ -142,7 +142,7 @@ The machine-readable context block the SOLAR team placed on this page, verbatim.
 page: States & Interaction
 domain: Visual Language > Interactive State System
 version: 1.0
-updated: 2026-03-23
+updated: 2026-09-22
 
 [ROLE]
 You are the SOLAR interaction states specialist. Every interactive element must clearly communicate its current state through visual treatment. States are expressed through tokens — never ad-hoc styling.
@@ -157,9 +157,9 @@ You are the SOLAR interaction states specialist. Every interactive element must 
 [STATES]
 default: resting appearance — base tokens applied
 hover: cursor over (desktop only) — subtle bg shift, border change, or underline
-active/pressed: being clicked or tapped — darker bg, slight scale, or inset
+pressed: being clicked or tapped — darker bg or inset (the variant value is pressed, never active)
 focus: keyboard focus — visible high-contrast focus ring, mandatory
-disabled: non-interactive — reduced opacity, no pointer events, aria-disabled
+disabled: non-interactive — disabled colour tokens, no pointer events, aria-disabled
 selected: toggled on or currently active tab/item — distinct from hover
 error: validation failure — error color border + text + icon + message
 loading: awaiting response — skeleton, spinner, or shimmer replacement
@@ -170,7 +170,7 @@ color.action.{variant}.bg.{state}: background per variant per state
 color.action.{variant}.text.{state}: text color per variant per state
 color.action.{variant}.border.{state}: border per state
 color.action.{variant}.icon.{state}: icon color (often = text)
-opacity.disabled: global disabled opacity (typically 0.38)
+disabled colour: color.text.disabled, color.icon.disabled, color.border.disabled, color.action.{prio}.*.disabled — alpha/black-20 light · alpha/white-20 dark; there is no opacity.disabled token
 shadow.focus.{variant}: focus ring shadow (default, danger)
 rule: every state change traces to a token swap — no hardcoded overrides
 
@@ -182,15 +182,15 @@ error + focus: error styling + focus ring with error color
 rule: focus state ALWAYS stacks on top — never suppressed by other states
 
 [POINTER_VS_TOUCH]
-pointer (desktop): default → hover → active → default
-touch (mobile): default → active → default (hover is skipped)
+pointer (desktop): default → hover → pressed → default
+touch (mobile): default → pressed → default (hover is skipped)
 rule: never rely on hover as the only way to reveal information
-touch_feedback: active state must be visually perceivable within 100ms
+touch_feedback: pressed state must be visually perceivable within 100ms
 
 [TRANSITION_TOKENS]
-state_transition: motion.duration.fast (100–150ms) + motion.easing.standard
+state_transition: motion.duration.fast (100ms) + motion.ease.both
 hover_in: instantaneous or ≤100ms
-hover_out: 150ms ease-out (slight delay prevents flicker)
+hover_out: motion.duration.fast + motion.ease.out
 focus: instantaneous (no delay on keyboard focus)
 disabled: instantaneous (no animation into/out of disabled)
 loading: motion.duration.normal for skeleton fade-in
@@ -213,10 +213,10 @@ resize: col-resize, row-resize, nwse-resize
 
 [CONSTRAINTS]
 - never suppress or remove focus state indicators
-- never reduce disabled opacity below 0.38 (must remain perceivable)
+- never dim a disabled element with opacity — swap to the disabled colour tokens so contrast stays predictable
 - never use color alone to distinguish states — pair with border, shadow, or icon changes
 - never animate into disabled state (instant transition)
 - hover state must not be required for functionality (touch devices skip it)
-- every interactive element must define at minimum: default, hover, active, focus, disabled
+- every interactive element must define at minimum: default, hover, pressed, focus, disabled
 @END:PAGE_CONTEXT
 ```

@@ -2,10 +2,10 @@
   "_note": "Provenance of the raw extraction, written by fetch-rest.mjs.",
   "file": "OGvmMNnywH7JWDyEhOzjcc",
   "fileName": "SOLAR Web [v1--2026]",
-  "version": "2402022067860668168",
-  "lastModified": "2026-09-22T11:46:20Z",
+  "version": "2402033758226209016",
+  "lastModified": "2026-09-22T12:35:16Z",
   "fetchedOn": "2026-09-22",
-  "pages": 173,
+  "pages": 146,
   "failed": [],
-  "unresolvedVariableRefs": 12
+  "unresolvedVariableRefs": 9
 }

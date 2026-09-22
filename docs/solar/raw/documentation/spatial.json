@@ -487,6 +487,444 @@
       "h": 1080,
       "blocks": [
         {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Base token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "stack/none",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/0",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "0px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "stack/2xs",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/1",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "4px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "stack/xs",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/2",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "8px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "stack/sm",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/3",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "12px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "stack/md",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/4",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "16px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "stack/lg",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/5",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "20px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "stack/xl",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/6",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "24px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "stack/2xl",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/7",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "28px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "stack/3xl",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/10",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "40px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
           "t": "h",
           "level": 3,
           "text": "Stack defines vertical separation between sibling elements. It governs layout rhythm and grouping across pages and components."
@@ -498,7 +936,7 @@
         },
         {
           "t": "p",
-          "text": "Located in: Semantic — Size → stack.*\n\nExamples:\nstack.sm\nstack.md\nstack.lg\n\nEach stack token maps to a rem value from size / scale.\n\nExample:\nstack.md → 1rem\nstack.lg → 1.5rem",
+          "text": "Located in: Semantic — Size → stack.*\n\nExamples:\nstack.sm\nstack.md\nstack.lg\n\nEach stack token maps to a rem value from size / scale.\n\nExample:\nstack.md → 1rem (16px)\nstack.lg → 1.25rem (20px)\nstack.xl → 1.5rem (24px)",
           "style": "16/400"
         },
         {
@@ -510,10 +948,6 @@
           "t": "p",
           "text": "Use stack to separate:\nSections\nContent groups\nForm fields\nLayout blocks\n\nIf two elements share the same parent and require spacing between them, use a stack token.",
           "style": "Body/Body M/Regular"
-        },
-        {
-          "t": "image",
-          "name": "image 1"
         }
       ]
     },
@@ -527,6 +961,444 @@
       "h": 1080,
       "blocks": [
         {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Base token",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Column",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "Value",
+              "style": "Body/Body S/Semibold"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "inset/none",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/0",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "0px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "inset/2xs",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/1",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "4px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "inset/xs",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/2",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "8px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "inset/sm",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/3",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "12px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "inset/md",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/4",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "16px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "inset/lg",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/5",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "20px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "inset/xl",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/6",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "24px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "inset/2xl",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/7",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "28px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "inset/3xl",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/10",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "40px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
           "t": "h",
           "level": 3,
           "text": "Inset defines internal padding within containers. It creates breathing room between content and structural boundaries."
@@ -538,27 +1410,23 @@
         },
         {
           "t": "p",
-          "text": "Located in: Semantic — Size → inset.*\n\nExamples:\ninset.sm\ninset.md\ninset.lg\n\nEach inset token references a rem value from the sizing scale.\n\nExample:\ninset.md → 1rem\ninset.lg → 1.5rem",
+          "text": "Located in: Semantic — Size → inset.*\n\nExamples:\ninset.sm\ninset.md\ninset.lg\n\nEach inset token references a rem value from the sizing scale.\n\nExample:\ninset.md → 1rem (16px)\ninset.lg → 1.25rem (20px)\ninset.xl → 1.5rem (24px)",
           "style": "16/400"
         },
         {
           "t": "h",
           "level": 5,
-          "text": "When to Use Stack"
+          "text": "When to Use Inset"
         },
         {
           "t": "p",
           "text": "Use inset inside:\nCards\nPanels\nSections\nDialogs\nPage containers\n\nInset defines containment — not separation between siblings.",
           "style": "Body/Body M/Regular"
-        },
-        {
-          "t": "image",
-          "name": "image 1"
         }
       ]
     }
   ],
-  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Spatial\ndomain: Layout > Spacing System\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR spatial system specialist. Consistent spacing creates visual rhythm, hierarchy, and grouping. All spacing values must use spatial tokens — never arbitrary pixel values.\n\n[SCOPE]\n- Base unit and spacing scale\n- Spatial token naming and usage types\n- Padding, margin, and gap conventions\n- Proximity principle and visual grouping\n- Responsive spacing adjustments\n\n[BASE_UNIT]\nunit: 4px — all spacing values are multiples of 4\nrationale: 4px base aligns with pixel grids, sub-pixel rendering, and standard display densities\n\n[SPACING_SCALE]\nspace.0: 0px — no space\nspace.2xs: 2px — hairline gaps, divider offsets\nspace.xs: 4px — tightest grouping, inline icon gaps\nspace.sm: 8px — compact grouping, small component padding\nspace.md: 16px — default spacing, standard padding and gaps\nspace.lg: 24px — section separation, generous padding\nspace.xl: 32px — major section breaks\nspace.2xl: 48px — page-level section spacing\nspace.3xl: 64px — hero spacing, large section breaks\nspace.4xl: 96px — maximum spacing, page margins on wide screens\n\n[USAGE_TYPES]\ninline: horizontal spacing between sibling elements (e.g., icon + label gap)\nstack: vertical spacing between stacked elements (e.g., heading → paragraph → button)\ninset: padding inside a container (e.g., card padding, button padding)\nsquish_inset: asymmetric padding — tighter top/bottom, wider left/right (e.g., tags, chips)\nstretch_inset: asymmetric padding — taller top/bottom, narrower left/right (e.g., list items)\n\n[TOKEN_NAMING]\npattern: space.{scale} for general use\ncomponent_specific: {component}.space.{property} for component-level overrides\nexamples:\n  space.md → 16px general purpose\n  button.space.inline → gap between icon and label in a button\n  card.space.inset → internal padding of a card\n\n[PROXIMITY_PRINCIPLE]\ntight: related items grouped with smaller spacing (space.xs to space.sm)\nmedium: sub-sections within a group (space.md)\nloose: distinct sections separated with larger spacing (space.lg to space.2xl)\nrule: spacing communicates relationship — closer = more related\n\n[COMPONENT_SPACING]\ninternal_padding: inset tokens (e.g., card uses space.md inset)\nbetween_components: stack/inline tokens (e.g., space.md between form fields)\nsection_spacing: larger tokens (e.g., space.xl between page sections)\nrule: component internal spacing uses inset; between-component spacing uses stack/inline\n\n[RESPONSIVE_SPACING]\nmobile: spacing may tighten by one scale step (e.g., space.lg → space.md)\ndesktop: full spacing scale applies\nmechanism: spatial tokens may have breakpoint-specific values, or layout rules specify tighter tokens on mobile\nrule: maintain proportional rhythm — don't tighten some spacing while leaving others loose\n\n[AGENT_BEHAVIOR]\n- When recommending spacing, always provide the token name (e.g., \"space.md\") not a pixel value\n- Use proximity principle: suggest tighter spacing for related items, looser for separate sections\n- If a spacing value isn't in the scale, recommend the nearest token — never invent values\n- Check that component internal padding uses inset tokens\n- Verify responsive spacing maintains proportional rhythm\n- Flag any hardcoded pixel spacing as a violation\n\n[CONSTRAINTS]\n- never use arbitrary pixel values for spacing — always a spatial token\n- never use values outside the spacing scale without governance approval\n- never mix spacing scales (e.g., 10px, 15px, 22px are not on the 4px grid)\n- component internal spacing is separate from between-component spacing\n- spacing tokens may differ per breakpoint — always specify context\n- optical adjustments (±1–2px) are allowed in Figma but must be documented\n@END:PAGE_CONTEXT",
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Spatial\ndomain: Layout > Spacing System\nversion: 1.0\nupdated: 2026-09-22\n\n[ROLE]\nYou are the SOLAR spatial system specialist. Consistent spacing creates visual rhythm, hierarchy, and grouping. All spacing values must use spatial tokens — never arbitrary pixel values.\n\n[SCOPE]\n- Base unit and the spatial scale\n- Semantic spacing families: inset and stack\n- Padding and gap conventions\n- Proximity principle and visual grouping\n- Responsive spacing adjustments\n\n[BASE_UNIT]\nunit: 4px — all spacing values are multiples of 4\nrationale: 4px base aligns with pixel grids, sub-pixel rendering, and standard display densities\n\n[SPACING_SCALE]\nprimitive: spatial.scale.0–22 — 0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 64, 72, 80, 96, 112, 128, 144, 160px\nsemantic (inset.* and stack.* share these nine steps):\n  none: 0px — spatial.scale.0\n  2xs: 4px — spatial.scale.1 — tightest grouping, icon + label gaps\n  xs: 8px — spatial.scale.2 — compact grouping, control padding\n  sm: 12px — spatial.scale.3 — dense component padding\n  md: 16px — spatial.scale.4 — default spacing, card padding\n  lg: 20px — spatial.scale.5 — comfortable padding\n  xl: 24px — spatial.scale.6 — section separation\n  2xl: 28px — spatial.scale.7 — large containers\n  3xl: 40px — spatial.scale.10 — page-level regions\nrule: lg is 20px and xl is 24px — older docs that said 24/32 were wrong; there is no 2px, 48px or 64px semantic step\n\n[USAGE_TYPES]\ninset: padding inside a container (card padding, button padding) — inset.{size}\nstack: vertical spacing between stacked siblings (heading → paragraph → button) — stack.{size}\ngap: horizontal auto-layout gaps bind to the same scale via inset.{size}; there is no gap.* family\nrule: only inset.* and stack.* exist — no space.*, inline, squish or stretch families\n\n[TOKEN_NAMING]\npattern: inset.{size} | stack.{size} — docs use dots, Figma uses slashes (inset/md)\nexamples:\n  inset.md → 16px card padding\n  stack.xl → 24px between content sections\n  inset.2xs → 4px between a button icon and its label\nrule: no component-scoped spacing tokens — components bind directly to the semantic scale\n\n[PROXIMITY_PRINCIPLE]\ntight: related items grouped with smaller spacing (2xs to xs)\nmedium: sub-sections within a group (md)\nloose: distinct sections separated with larger spacing (xl to 3xl)\nrule: spacing communicates relationship — closer = more related\n\n[COMPONENT_SPACING]\ninternal_padding: inset tokens (e.g., card uses inset.md)\nbetween_components: stack tokens (e.g., stack.md between form fields)\nsection_spacing: larger tokens (e.g., stack.xl between page sections, stack.3xl between page regions)\nrule: component internal spacing uses inset; between-component spacing uses stack\n\n[RESPONSIVE_SPACING]\nmobile: spacing may tighten by one scale step (e.g., inset.lg → inset.md)\ndesktop: full spacing scale applies\nmechanism: spatial tokens may have breakpoint-specific values, or layout rules specify tighter tokens on mobile\nrule: maintain proportional rhythm — don't tighten some spacing while leaving others loose\n\n[AGENT_BEHAVIOR]\n- When recommending spacing, always provide the token name (e.g., \"inset.md\") not a pixel value\n- Use proximity principle: suggest tighter spacing for related items, looser for separate sections\n- If a spacing value isn't in the scale, recommend the nearest token — never invent values\n- Check that component internal padding uses inset tokens\n- Verify responsive spacing maintains proportional rhythm\n- Flag any hardcoded pixel spacing as a violation\n\n[CONSTRAINTS]\n- never use arbitrary pixel values for spacing — always a spatial token\n- never use values outside the spacing scale without governance approval\n- never mix spacing scales (e.g., 10px, 15px, 22px are not on the 4px grid)\n- component internal spacing is separate from between-component spacing\n- spacing tokens may differ per breakpoint — always specify context\n- optical adjustments (±1–2px) are allowed in Figma but must be documented\n@END:PAGE_CONTEXT",
   "swatches": [
     {
       "layer": "Slide",
@@ -619,43 +1487,383 @@
       "opacity": 1
     },
     {
-      "layer": "Slide",
+      "layer": ".Table / Column",
       "labels": [
-        "SOLAR®",
-        "Biamp Design System",
-        "1.0",
-        "Stack",
-        "© 2026 Biamp",
-        "[Confidential]",
-        "Stack defines vertical separation between sibling elements. It governs layout rhythm and grouping across pages and components.",
-        "Token Structure",
-        "Located in: Semantic — Size → stack.*\n\nExamples:\nstack.sm\nstack.md\nstack.lg\n\nEach stack token maps to a rem value from size / scale.\n\nExample:\nstack.md → 1rem\nstack.lg → 1.5rem",
-        "When to Use Stack",
-        "Use stack to separate:\nSections\nContent groups\nForm fields\nLayout blocks\n\nIf two elements share the same parent and require spacing between them, use a stack token."
+        "Token"
       ],
-      "variableId": "VariableID:27:725",
-      "hex": "#ffffff",
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
       "opacity": 1
     },
     {
-      "layer": "Slide",
+      "layer": ".Table / Column",
       "labels": [
-        "SOLAR®",
-        "Biamp Design System",
-        "1.0",
-        "Inset",
-        "© 2026 Biamp",
-        "[Confidential]",
-        "Inset defines internal padding within containers. It creates breathing room between content and structural boundaries.",
-        "Token Structure",
-        "Located in: Semantic — Size → inset.*\n\nExamples:\ninset.sm\ninset.md\ninset.lg\n\nEach inset token references a rem value from the sizing scale.\n\nExample:\ninset.md → 1rem\ninset.lg → 1.5rem",
-        "When to Use Stack",
-        "Use inset inside:\nCards\nPanels\nSections\nDialogs\nPage containers\n\nInset defines containment — not separation between siblings."
+        "Base token"
       ],
-      "variableId": "VariableID:27:725",
-      "hex": "#ffffff",
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/none"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/0"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/2xs"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/1"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/xs"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/2"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/sm"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/3"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/md"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/4"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/lg"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/5"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/xl"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/6"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/2xl"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/7"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/3xl"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/10"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Base token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "inset/none"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/0"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "inset/2xs"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/1"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "inset/xs"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/2"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "inset/sm"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/3"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "inset/md"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/4"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "inset/lg"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/5"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "inset/xl"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/6"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "inset/2xl"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/7"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "inset/3xl"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/10"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
       "opacity": 1
     }
   ],
-  "blockCount": 98
+  "blockCount": 156
 }

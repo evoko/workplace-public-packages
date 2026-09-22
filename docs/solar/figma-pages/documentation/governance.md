@@ -1,6 +1,6 @@
 # Governance
 
-> Verbatim text of the Figma page `Governance` (id `1114:10348`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `b3ae3e3a71ce`. Curated chapter: [16-governance-validation.md](../../16-governance-validation.md).
+> Verbatim text of the Figma page `Governance` (id `1114:10348`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `2b399162762f`. Curated chapter: [16-governance-validation.md](../../16-governance-validation.md).
 
 ## Slide 1
 
@@ -85,7 +85,7 @@ Naming (NAM-001–003): --solar- prefix, grammar-conformant names.
 
 | Category      | Rule IDs        | Rules    | Severity         | Errors | Warnings |
 | ------------- | --------------- | -------- | ---------------- | ------ | -------- |
-| 10 categories | CLR through NAM | 39 total | Error or Warning | 30     | 9        |
+| 10 categories | CLR through NAM | 42 total | Error or Warning | 31     | 11       |
 
 ## Contribution Model
 

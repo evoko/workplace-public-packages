@@ -51,7 +51,8 @@ class SolarVector {
   /// The viewBox width. Every SOLAR viewBox starts at the origin, so this is its extent.
   final double width;
 
-  /// The viewBox height. 24 for every icon but `zone` outline, which is drawn 25 tall.
+  /// The viewBox height. 24 for every icon today, but carried per variant: `zone` outline was
+  /// drawn 25 tall until SOLAR redrew it on the grid.
   final double height;
 
   /// The paths, painted in order.
@@ -83,8 +84,9 @@ Path _pathOf(SolarVectorPath source) {
 /// Paints a [SolarVector] into a box, scaled to fit and centred.
 ///
 /// The fit is `BoxFit.contain`: one scale factor for both axes. SVG does this for free through
-/// the default `preserveAspectRatio`, so Flutter has to match it or `zone` -- the one icon drawn
-/// on a `0 0 24 25` viewBox -- would render stretched here and letterboxed on the web.
+/// the default `preserveAspectRatio`, so Flutter has to match it or a drawing that is not square
+/// -- `zone` outline was `0 0 24 25` until SOLAR redrew it, and the logos still are not square --
+/// would render stretched here and letterboxed on the web.
 class SolarVectorPainter extends CustomPainter {
   /// Creates a painter for [vector], drawing inheriting paths in [color].
   const SolarVectorPainter(this.vector, this.color);
@@ -146,7 +148,8 @@ Widget _labelled(String? semanticLabel, Widget child) => Semantics(
 /// 4. black, which is only reached if a caller has removed the default icon theme.
 ///
 /// **Size.** [size] is the side of a square box and defaults to [SolarIconSize.lg] (24). The
-/// drawing is scaled to fit that box with its aspect ratio kept, so `zone` stays 24 x 25.
+/// drawing is scaled to fit that box with its aspect ratio kept, so a variant that is not square
+/// is letterboxed rather than stretched.
 ///
 /// **Semantics.** [semanticLabel] names the icon for assistive technology. Without one the icon
 /// is excluded from the semantics tree, because an unlabelled icon sits beside a label that

@@ -5,7 +5,7 @@
     {
       "name": "Layout / Canvas",
       "id": "6499:6448",
-      "description": "",
+      "description": "Shell Tier 2: Top Bar over a two-column canvas area (left panel, center canvas), no Sidebar. 2 variants: breakpoint (Desktop, Mobile). Props: left, center (slots). Use for editor and canvas products such as Designer where the tool panels replace app navigation; mobile stacks the panel above the canvas.",
       "docLinks": [],
       "variantCount": 2,
       "props": {

@@ -296,7 +296,7 @@
             },
             {
               "t": "p",
-              "text": "#878787",
+              "text": "#A8A8A8",
               "style": "Body/Body S/Semibold"
             }
           ]
@@ -908,7 +908,7 @@
             },
             {
               "t": "p",
-              "text": "#C39900",
+              "text": "#24791D",
               "style": "Body/Body S/Semibold"
             }
           ]
@@ -9289,7 +9289,7 @@
       "layer": "Color container",
       "labels": [
         "300",
-        "#878787"
+        "#A8A8A8"
       ],
       "variableId": "VariableID:31:3124",
       "hex": "#a8a8a8",
@@ -9659,7 +9659,7 @@
       "layer": "Color container",
       "labels": [
         "600",
-        "#C39900"
+        "#24791D"
       ],
       "variableId": "VariableID:34:3282",
       "hex": "#24791d",

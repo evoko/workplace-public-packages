@@ -83,9 +83,48 @@ describe('renderFlutterIcons: icons.dart', () => {
     expect(drift).toEqual([]);
   });
 
-  it('keeps zone 1px taller, because its viewBox is', () => {
-    expect(iconConstants.get('zoneOutline').height).toBe(25);
-    expect(iconConstants.get('zoneSolid').height).toBe(24);
+  it('takes each extent from its own variant, not from a constant 24', () => {
+    // zoneOutline was 25 tall beside a 24 solid until SOLAR redrew Icon/Zone on the grid on
+    // 2026-09-22. It was the only asset that could tell a per-variant extent apart from a
+    // hard-coded one, so the mixed case is built here; the logos come from the real spec
+    // because the emitter asserts which variants it skipped.
+    const synthetic = constants(
+      renderFlutterIcons({
+        icons: {
+          sample: {
+            component: 'IconSample',
+            name: 'Sample',
+            category: 'Test',
+            description: 'A hand-built icon, one variant off the 24 grid.',
+            variants: {
+              outline: {
+                viewBox: [0, 0, 24, 25],
+                paths: [{ d: 'M0 0H24V25H0Z', fillRule: 'nonzero' }],
+              },
+              solid: {
+                viewBox: [0, 0, 24, 24],
+                paths: [{ d: 'M0 0H24V24H0Z', fillRule: 'nonzero' }],
+              },
+            },
+          },
+        },
+        logos: spec.logos,
+      }).icons,
+    );
+    expect(synthetic.get('sampleOutline')).toMatchObject({
+      width: 24,
+      height: 25,
+    });
+    expect(synthetic.get('sampleSolid')).toMatchObject({
+      width: 24,
+      height: 24,
+    });
+
+    // The corpus as it stands: every icon constant is 24 x 24.
+    const offGrid = [...iconConstants]
+      .filter(([, v]) => v.width !== 24 || v.height !== 24)
+      .map(([name, v]) => `${name}: ${v.width} x ${v.height}`);
+    expect(offGrid).toEqual([]);
   });
 
   it('marks evenOdd exactly where the spec says evenodd, 75 times', () => {

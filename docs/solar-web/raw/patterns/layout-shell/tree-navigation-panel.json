@@ -6,7 +6,7 @@
     {
       "name": "Tree Navigation Panel",
       "id": "3773:518",
-      "description": "",
+      "description": "Side panel that holds a hierarchy of Tree Items for browsing nested locations, folders or devices. Single component. Props: Tree Items (slot). Items expand and collapse in place; Arrow keys move and open nodes, the selected item carries aria-selected. For a flat section list use Section Nav.",
       "props": {
         "Tree Items#3773:0": {
           "type": "SLOT",

@@ -35,7 +35,9 @@ const pathElement = (path, fill) =>
 function serialize(geometry, fillOf) {
   const [, , width, height] = geometry.viewBox;
   // width/height give the file an intrinsic size, which is what an <img> or a CSS mask needs;
-  // they come from the viewBox extent rather than a constant, so zone outline is 24 x 25.
+  // they come from the viewBox extent rather than a constant. Every icon is 24 x 24 today --
+  // zone outline was 24 x 25 until SOLAR redrew it on the grid on 2026-09-22 -- and a constant
+  // would silently crop the next variant that is not.
   // The root's own fill is deliberately absent: Figma writes fill="none" on every export and it
   // is chrome, not geometry.
   return (

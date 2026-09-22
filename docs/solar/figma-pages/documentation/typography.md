@@ -1,6 +1,6 @@
 # Typography
 
-> Verbatim text of the Figma page `Typography` (id `763:51711`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `f6bd55d8994b`. Curated chapter: [06-typography.md](../../06-typography.md).
+> Verbatim text of the Figma page `Typography` (id `763:51711`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `8db3b87449b6`. Curated chapter: [06-typography.md](../../06-typography.md).
 
 ## Slide 1
 
@@ -157,24 +157,82 @@ _[image: Screenshot 2026-02-23 at 10.39.00 1]_
 
 ## Text Color
 
+**Token**
+
+**Light mode**
+
+**Dark mode**
+
+****text/primary****
+
+****neutral/900****
+
+****neutral/50****
+
+****text/secondary****
+
+****neutral/500****
+
+****neutral/300****
+
+****text/tertiary****
+
+****neutral/300****
+
+****neutral/500****
+
+****text/disabled****
+
+****alpha/black-20****
+
+****alpha/white-20****
+
+****text/inverse****
+
+****brand/white****
+
+****neutral/900****
+
+****text/feedback/success****
+
+****green/600****
+
+****green/400****
+
+****text/feedback/warning****
+
+****orange/600****
+
+****orange/400****
+
+****text/feedback/danger****
+
+****red/600****
+
+****red/300****
+
+****text/feedback/info****
+
+****turquoise/700****
+
+****turquoise/400****
+
 #### Text color in SOLAR is applied through semantic text tokens that map to different palette steps in Light and Dark mode. This keeps meaning consistent (primary, secondary, danger, etc.) while automatically adapting contrast per theme.
 
 Font color is never set as raw HEX. Text styles reference color.text.\* tokens, which map like this:\
 color.text.primary → Light: color/neutral/900 · Dark: color/neutral/50\
-color.text.secondary → Light: color/neutral/500 · Dark: color/neutral/500\
-color.text.tertiary → Light: color/neutral/300 · Dark: color/neutral/700\
-color.text.disabled → Light: color/mono/black-alpha-40 · Dark: color/mono/white-alpha-40\
-color.text.inverse → Light: color/neutral/50 · Dark: color/neutral/900
+color.text.secondary → Light: color/neutral/500 · Dark: color/neutral/300\
+color.text.tertiary → Light: color/neutral/300 · Dark: color/neutral/500\
+color.text.disabled → Light: color/alpha/black-20 · Dark: color/alpha/white-20\
+color.text.inverse → Light: color/brand/white · Dark: color/neutral/900
 
 Feedback text:\
-color.text.success → Light: color/green/700 · Dark: color/green/300\
-color.text.warning → Light: color/orange/700 · Dark: color/orange/300\
-color.text.danger → Light: color/red/700 · Dark: color/red/300\
-color.text.info → Light: color/blue/700 · Dark: color/blue/300
+color.text.feedback.success → Light: color/green/600 · Dark: color/green/400\
+color.text.feedback.warning → Light: color/orange/600 · Dark: color/orange/400\
+color.text.feedback.danger → Light: color/red/600 · Dark: color/red/300\
+color.text.feedback.info → Light: color/turquoise/700 · Dark: color/turquoise/400
 
 Rule: Apply semantic text tokens (primary/secondary/etc.) — theme mapping handles the rest.
-
-_[image: Screenshot 2026-02-23 at 10.43.20 1]_
 
 ## Display
 

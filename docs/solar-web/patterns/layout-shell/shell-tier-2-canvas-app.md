@@ -4,6 +4,8 @@
 
 ## Component set: Layout / Canvas
 
+Shell Tier 2: Top Bar over a two-column canvas area (left panel, center canvas), no Sidebar. 2 variants: breakpoint (Desktop, Mobile). Props: left, center (slots). Use for editor and canvas products such as Designer where the tool panels replace app navigation; mobile stacks the panel above the canvas.
+
 ### Props
 
 | Prop         | Type    | Options / default         |
@@ -69,7 +71,6 @@ Default variant: `breakpoint=Desktop` · 2 variants · default size 1440×800px
 
 ### Issues detected
 
-- Component description is empty.
 - Primitive color bound directly (CLR-002): `color.purple.700`.
 
 ## Documentation card

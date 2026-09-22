@@ -5,7 +5,7 @@
     {
       "name": "Page Header",
       "id": "6186:21246",
-      "description": "",
+      "description": "Top-of-page block: Breadcrumbs, title with optional icon, image and Tag, description, primary and secondary CTA Buttons and an optional Tabs row. 3 variants: type (left-aligned, centered) × breakpoint (desktop, mobile); centered ships desktop only. Props: page-title (text) plus hasBreadcrumbs, hasIcon, hasImage, hasTag, hasDescription, hasPrimaryCTA, hasSecondaryCTA, hasTabs (booleans). The title is the page h1; keep one Page Header per view.",
       "docLinks": [],
       "variantCount": 3,
       "props": {

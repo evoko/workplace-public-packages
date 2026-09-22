@@ -1,16 +1,16 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/ux-copy: c6836718d2ce
+    documentation/ux-copy: 048ab44c3702
 ---
 
 # 15 · UX Copy
 
 > Source: Figma page "UX Copy" (voice principles, terminology & capitalization,
-> component microcopy, writing patterns). Note: the `@SOLAR:PAGE_CONTEXT` block on this
-> page is a copy of the Governance block; there is no UX-Copy-specific agent context.
+> component microcopy, writing patterns) and its `@SOLAR:PAGE_CONTEXT`. The page used to
+> carry a duplicate of the Governance context block; since 2026-09-22 it has its own.
 
 ## Voice
 
@@ -97,3 +97,14 @@ Examples:
 | Delete single    | "Delete 'Conference Room A'? This device will be permanently removed." | "Are you sure?"                                     | Dialog (danger)    | `action.primary-danger`      |
 | Success toast    | "Device added."                                                        | "Success! Your device has been successfully added." | Toast              | `color.text.primary`         |
 | Loading (> 2 s)  | "Loading devices..."                                                   | No text, just a spinner                             | Spinner + text     | `color.text.secondary`       |
+
+## Agent behaviour (from the page context)
+
+- Rewrite any string that blames the user ("you made an error") into a neutral statement
+  ("something went wrong").
+- Check every button label for verb + noun and Title Case before output.
+- For every error, verify all three parts are present: what happened, why, next step.
+- For destructive confirmations, verify the confirm button names the action.
+- Flag copy that relies on colour alone to convey state.
+- Never exceed the length limits (button 3 words, error 2 lines, toast 8 words); split
+  the message instead.

@@ -1,6 +1,6 @@
 # Elevation
 
-> Verbatim text of the Figma page `Elevation` (id `1627:10994`, section primitives, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `9588ae47137a`. Curated chapter: [07-layering-elevation.md](../../07-layering-elevation.md).
+> Verbatim text of the Figma page `Elevation` (id `1627:10994`, section primitives, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `04848690d0f9`. Curated chapter: [07-layering-elevation.md](../../07-layering-elevation.md).
 
 ## Elevation / Surfaces
 
@@ -16,23 +16,23 @@ Scope: this page documents elevational surfaces only. Non-elevational surface to
 
 **Dark mode**
 
-****MAJOR****
+****surface/raised****
 
-****MAJOR****
+****mono/white****
 
-****MAJOR****
+****neutral/800****
 
-****MAJOR****
+****surface/overlay****
 
-****MAJOR****
+****mono/white****
 
-****MAJOR****
+****neutral/800****
 
-****MAJOR****
+****surface/dialog****
 
-****MAJOR****
+****mono/white****
 
-****MAJOR****
+****neutral/800****
 
 ## Elevation / Shadows
 
@@ -46,55 +46,55 @@ All shadow color is variable-bound and adapts to mode automatically.
 
 **Color reference**
 
-****MAJOR****
+****shadow/control****
 
 **y:1 / blur:1**
 
-****MAJOR****
+****shadow/subtle****
 
-****MAJOR****
+****shadow/raised****
 
-**y:3 / blur:4**
+**y:1 / blur:2**
 
-****MAJOR****
+****shadow/subtle****
 
-****MAJOR****
+****shadow/overlay****
 
 **y:2 / blur:12**
 
-****MAJOR****
+****shadow/subtle****
 
-****MAJOR****
+****shadow/strong****
 
 **y:4 / blur:5**
 
-****MAJOR****
+****shadow/strong****
 
-****MAJOR****
+****shadow/dialog****
 
 **y:12 / blur:26 + spread:2**
 
 **shadow/subtle + shadow/strong**
 
-****MAJOR****
+****shadow/focus/default****
 
 **spread:2**
 
-****MAJOR****
+****shadow/feedback/focus****
 
-****MAJOR****
+****shadow/focus/danger****
 
 **spread:2**
 
-****MAJOR****
+****shadow/feedback/danger****
 
-****MAJOR****
+****shadow/danger****
 
 **y:1 / blur:1 + spread:2**
 
 **shadow/subtle + shadow/feedback/danger**
 
-****MAJOR****
+****shadow/warning****
 
 **y:1 / blur:1 + spread:2**
 
@@ -158,38 +158,38 @@ When running an a11y review on a component that uses elevation, walk the table b
 
 Containers on this page whose fill is bound to a Figma variable, with their labels. Variable ids are local to the Foundations file; names come from [../../tokens/figma-variables.json](../../tokens/figma-variables.json).
 
-| Labels          | Rendered  | Variable id          |
-| --------------- | --------- | -------------------- |
-| Token           | `#f5f5f5` | `VariableID:27:723`  |
-| Light mode      | `#f5f5f5` | `VariableID:27:723`  |
-| Dark mode       | `#f5f5f5` | `VariableID:27:723`  |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| Effect          | `#f5f5f5` | `VariableID:27:723`  |
-| Layers          | `#f5f5f5` | `VariableID:27:723`  |
-| Color reference | `#f5f5f5` | `VariableID:27:723`  |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| MAJOR           | `#00b600` | `VariableID:34:3281` |
-| Concern         | `#f5f5f5` | `VariableID:27:723`  |
-| Rule            | `#f5f5f5` | `VariableID:27:723`  |
-| Why             | `#f5f5f5` | `VariableID:27:723`  |
+| Labels                 | Rendered  | Variable id          |
+| ---------------------- | --------- | -------------------- |
+| Token                  | `#f5f5f5` | `VariableID:27:723`  |
+| Light mode             | `#f5f5f5` | `VariableID:27:723`  |
+| Dark mode              | `#f5f5f5` | `VariableID:27:723`  |
+| surface/raised         | `#00b600` | `VariableID:34:3281` |
+| mono/white             | `#00b600` | `VariableID:34:3281` |
+| neutral/800            | `#00b600` | `VariableID:34:3281` |
+| surface/overlay        | `#00b600` | `VariableID:34:3281` |
+| mono/white             | `#00b600` | `VariableID:34:3281` |
+| neutral/800            | `#00b600` | `VariableID:34:3281` |
+| surface/dialog         | `#00b600` | `VariableID:34:3281` |
+| mono/white             | `#00b600` | `VariableID:34:3281` |
+| neutral/800            | `#00b600` | `VariableID:34:3281` |
+| Effect                 | `#f5f5f5` | `VariableID:27:723`  |
+| Layers                 | `#f5f5f5` | `VariableID:27:723`  |
+| Color reference        | `#f5f5f5` | `VariableID:27:723`  |
+| shadow/control         | `#00b600` | `VariableID:34:3281` |
+| shadow/subtle          | `#00b600` | `VariableID:34:3281` |
+| shadow/raised          | `#00b600` | `VariableID:34:3281` |
+| shadow/subtle          | `#00b600` | `VariableID:34:3281` |
+| shadow/overlay         | `#00b600` | `VariableID:34:3281` |
+| shadow/subtle          | `#00b600` | `VariableID:34:3281` |
+| shadow/strong          | `#00b600` | `VariableID:34:3281` |
+| shadow/strong          | `#00b600` | `VariableID:34:3281` |
+| shadow/dialog          | `#00b600` | `VariableID:34:3281` |
+| shadow/focus/default   | `#00b600` | `VariableID:34:3281` |
+| shadow/feedback/focus  | `#00b600` | `VariableID:34:3281` |
+| shadow/focus/danger    | `#00b600` | `VariableID:34:3281` |
+| shadow/feedback/danger | `#00b600` | `VariableID:34:3281` |
+| shadow/danger          | `#00b600` | `VariableID:34:3281` |
+| shadow/warning         | `#00b600` | `VariableID:34:3281` |
+| Concern                | `#f5f5f5` | `VariableID:27:723`  |
+| Rule                   | `#f5f5f5` | `VariableID:27:723`  |
+| Why                    | `#f5f5f5` | `VariableID:27:723`  |

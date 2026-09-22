@@ -422,7 +422,7 @@
         },
         {
           "t": "p",
-          "text": "Surface and background colors invert\nText and icon colors invert\nBorder colors shift to maintain separation\nAction colors invert (neutral/900 → neutral/50)\nShadow intensity may increase in dark mode",
+          "text": "Surface and background colors invert\nText and icon colors invert\nBorder colors shift to maintain separation\nAction colors invert (neutral/900 → neutral/50)\nShadow alpha increases in dark mode (5% → 50%, 20% → 70%)",
           "style": "Body/Body M/Regular"
         },
         {
@@ -457,7 +457,7 @@
               "Shift"
             ],
             [
-              "surface.feedback.success",
+              "surface.feedback.success.subtle",
               "green/50",
               "green/800",
               "#ECFFE9",
@@ -465,28 +465,28 @@
               "50 → 800"
             ],
             [
-              "surface.feedback.warning",
-              "yellow/50",
-              "yellow/900",
-              "#FFFBD5",
-              "#271E00",
-              "50 → 900"
+              "surface.feedback.warning.subtle",
+              "orange/50",
+              "orange/800",
+              "#FFEEDA",
+              "#3E0000",
+              "50 → 800"
             ],
             [
-              "surface.feedback.danger",
+              "surface.feedback.danger.subtle",
               "red/50",
-              "red/900",
+              "red/800",
               "#FFE4DF",
-              "#280000",
-              "50 → 900"
+              "#410001",
+              "50 → 800"
             ],
             [
-              "surface.feedback.info",
-              "blue/50",
-              "blue/900",
-              "#E9F2FF",
-              "#01082D",
-              "50 → 900"
+              "surface.feedback.info.subtle",
+              "turquoise/50",
+              "turquoise/800",
+              "#F0FFFF",
+              "#033238",
+              "50 → 800"
             ]
           ]
         }
@@ -627,7 +627,7 @@
               "Surface"
             ],
             [
-              "color.border.default",
+              "color.border.medium",
               "alpha/black-20",
               "alpha/white-20",
               "rgba(0,0,0,0.2)",
@@ -677,7 +677,7 @@
         },
         {
           "t": "p",
-          "text": "border.none → 0px\nborder.default → 1px (border-width/sm)\nborder.strong → 2px (border-width/md)",
+          "text": "border.none → 0px\nborder.default → 1px (border-width/sm)\nborder.strong → 2px (border-width/md)\nborder.emphasis → 4px (border-width/lg)",
           "style": "Body/Body M/Regular"
         },
         {
@@ -687,7 +687,7 @@
         },
         {
           "t": "p",
-          "text": "shadow.subtle → alpha/black-05 (light) | alpha/black-90 (dark)\nshadow.strong → alpha/black-20 (light) | mono/black (dark)\nshadow.feedback.focus → alpha/blue-20 (both modes)\nshadow.feedback.danger → alpha/red-20 (both modes)",
+          "text": "shadow.subtle → alpha/black-05 (light) | alpha/black-50 (dark)\nshadow.strong → alpha/black-20 (light) | alpha/black-70 (dark)\nshadow.feedback.focus → alpha/blue-20 (both modes)\nshadow.feedback.danger → alpha/red-20 (both modes)",
           "style": "Body/Body M/Regular"
         },
         {
@@ -719,9 +719,9 @@
             ],
             [
               "inset.lg",
-              "24px",
+              "20px",
               "stack.lg",
-              "24px",
+              "20px",
               "No",
               "Single mode only"
             ]
@@ -813,7 +813,7 @@
       ]
     }
   ],
-  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Theming\ndomain: Theme Architecture & Multi-Brand Support\nversion: 1.0\nupdated: 2026-03-23\n\n[ROLE]\nYou are the SOLAR theming specialist. Theming enables the system to support multiple visual expressions — light/dark modes and brand variants — through token swapping. Components never contain theme-specific logic; they consume semantic tokens that the theme resolves.\n\n[SCOPE]\n- Theme architecture and token swapping model\n- Light/dark mode implementation\n- Brand theming and white-labeling\n- How themes interact with Figma variable modes\n- Theme creation and governance\n\n[THEME_ARCHITECTURE]\ndefinition: a theme is a complete set of semantic token values that map to primitives\nmechanism: switching themes swaps the underlying primitive values while semantic token names stay stable\nlayers: primitive palette (fixed) → semantic tokens (theme-resolved) → component tokens (optional overrides)\nrule: components ONLY reference semantic tokens — this is what makes theming work\n\n[LIGHT_DARK_MODE]\nlight: semantic tokens alias lighter primitives (e.g., surface.default → neutral-0, text.primary → neutral-900)\ndark: semantic tokens alias darker primitives (e.g., surface.default → neutral-900, text.primary → neutral-50)\nswap: same semantic name, different underlying value per mode\nsurfaces: dark mode uses progressively lighter surfaces for elevation (not just inverted)\nshadows: reduced shadow intensity in dark mode — darker environment needs less contrast\nborders: may need increased opacity/strength in dark mode for visibility\nrule: dark mode ≠ inverted colors — it requires intentional design of every token mapping\n\n[FIGMA_VARIABLE_MODES]\nstructure: semantic variable collection with Light and Dark modes\nswitching: toggle mode in Figma to preview both themes\nbinding: all components bind to semantic variables — mode switch is automatic\nrule: Figma variable mode names must match code theme identifiers\n\n[BRAND_THEMING]\nconcept: multiple brands share the same component architecture but differ in visual expression\nbrand_overrides: different primitive palettes (brand colors), different type stacks, different radius scales\nscoped_tokens: brand-specific theme file overrides semantic token values\nshared: component structure, spacing, interaction patterns remain constant across brands\nrule: brand themes override visual tokens only — never structural or behavioral properties\n\n[THEME_FILE_STRUCTURE]\nbase_theme: default semantic token values (typically light mode)\ndark_theme: dark mode overrides extending base\nbrand_theme: brand-specific overrides extending base\nbrand_dark_theme: brand + dark mode combined\nrule: themes cascade — brand extends base, brand-dark extends brand + dark\n\n[CREATING_NEW_THEMES]\nprocess: governance proposal → full token mapping → design review → Figma mode setup → code implementation → QA\nrequirements: every semantic token must have a value — no gaps allowed\ntesting: all components rendered in new theme + light/dark modes\ndeliverables: theme token file (JSON/YAML), Figma variable mode, migration guide if replacing existing theme\n\n[AGENT_BEHAVIOR]\n- When recommending any visual value, verify it works across ALL supported themes\n- If a design looks good in light mode, explicitly check dark mode and any brand themes\n- Never recommend primitive tokens in components — always semantic (this breaks theming)\n- Flag components with hardcoded colors, shadows, or borders as theme-breaking violations\n- When proposing a new color or visual treatment, provide values for all theme modes\n- Test edge cases: subtle backgrounds, borders, and shadows are the most common dark mode failures\n\n[CONSTRAINTS]\n- components must ONLY reference semantic tokens — never primitives\n- theme switching must be instant — CSS custom property swap or class toggle, no layout shift\n- every semantic token must have a value in every supported theme — no undefined tokens\n- dark mode requires intentional surface/elevation hierarchy — not a simple inversion\n- new themes require governance approval and a full token mapping\n- brand overrides are limited to visual tokens — structural behavior stays constant\n@END:PAGE_CONTEXT",
+  "pageContext": "@SOLAR:PAGE_CONTEXT\npage: Theming\ndomain: Theme Architecture & Multi-Brand Support\nversion: 1.0\nupdated: 2026-09-22\n\n[ROLE]\nYou are the SOLAR theming specialist. Theming enables the system to support multiple visual expressions — light/dark modes and brand variants — through token swapping. Components never contain theme-specific logic; they consume semantic tokens that the theme resolves.\n\n[SCOPE]\n- Theme architecture and token swapping model\n- Light/dark mode implementation\n- Brand theming and white-labeling\n- How themes interact with Figma variable modes\n- Theme creation and governance\n\n[THEME_ARCHITECTURE]\ndefinition: a theme is a complete set of semantic token values that map to primitives\nmechanism: switching themes swaps the underlying primitive values while semantic token names stay stable\nlayers: primitive palette (fixed) → semantic tokens (theme-resolved) → component tokens (optional overrides)\nrule: components ONLY reference semantic tokens — this is what makes theming work\n\n[LIGHT_DARK_MODE]\nlight: semantic tokens alias lighter primitives (e.g., surface.base → mono/white, text.primary → neutral/900)\ndark: semantic tokens alias darker primitives (e.g., surface.base → neutral/800, text.primary → neutral/50)\nswap: same semantic name, different underlying value per mode\nsurfaces: raised, overlay and dialog share one fill per mode (mono/white light, neutral/800 dark) — depth comes from shadow, not tint\nshadows: shadow colour alpha increases in dark mode (shadow/subtle 5% → 50%, shadow/strong 20% → 70%) so the lift stays visible\nborders: may need increased opacity/strength in dark mode for visibility\nrule: dark mode ≠ inverted colors — it requires intentional design of every token mapping\n\n[FIGMA_VARIABLE_MODES]\nstructure: semantic variable collection with Light and Dark modes\nswitching: toggle mode in Figma to preview both themes\nbinding: all components bind to semantic variables — mode switch is automatic\nrule: Figma variable mode names must match code theme identifiers\n\n[BRAND_THEMING]\nconcept: multiple brands share the same component architecture but differ in visual expression\nbrand_overrides: different primitive palettes (brand colors), different type stacks, different radius scales\nscoped_tokens: brand-specific theme file overrides semantic token values\nshared: component structure, spacing, interaction patterns remain constant across brands\nrule: brand themes override visual tokens only — never structural or behavioral properties\n\n[THEME_FILE_STRUCTURE]\nbase_theme: default semantic token values (typically light mode)\ndark_theme: dark mode overrides extending base\nbrand_theme: brand-specific overrides extending base\nbrand_dark_theme: brand + dark mode combined\nrule: themes cascade — brand extends base, brand-dark extends brand + dark\n\n[CREATING_NEW_THEMES]\nprocess: governance proposal → full token mapping → design review → Figma mode setup → code implementation → QA\nrequirements: every semantic token must have a value — no gaps allowed\ntesting: all components rendered in new theme + light/dark modes\ndeliverables: theme token file (JSON/YAML), Figma variable mode, migration guide if replacing existing theme\n\n[AGENT_BEHAVIOR]\n- When recommending any visual value, verify it works across ALL supported themes\n- If a design looks good in light mode, explicitly check dark mode and any brand themes\n- Never recommend primitive tokens in components — always semantic (this breaks theming)\n- Flag components with hardcoded colors, shadows, or borders as theme-breaking violations\n- When proposing a new color or visual treatment, provide values for all theme modes\n- Test edge cases: subtle backgrounds, borders, and shadows are the most common dark mode failures\n\n[CONSTRAINTS]\n- components must ONLY reference semantic tokens — never primitives\n- theme switching must be instant — CSS custom property swap or class toggle, no layout shift\n- every semantic token must have a value in every supported theme — no undefined tokens\n- dark mode requires intentional surface/elevation hierarchy — not a simple inversion\n- new themes require governance approval and a full token mapping\n- brand overrides are limited to visual tokens — structural behavior stays constant\n@END:PAGE_CONTEXT",
   "swatches": [
     {
       "layer": "Slide",
@@ -847,7 +847,7 @@
         "#FFFFFF",
         "#222222",
         "Surface",
-        "color.border.default",
+        "color.border.medium",
         "alpha/black-20",
         "alpha/white-20",
         "rgba(0,0,0,0.2)",
@@ -875,7 +875,7 @@
         "[Confidential]",
         "Understanding what changes and what stays constant between Light and Dark modes is critical. Token names, spacing, typography, and component structure remain identical — only color mappings shift.",
         "What Changes",
-        "Surface and background colors invert\nText and icon colors invert\nBorder colors shift to maintain separation\nAction colors invert (neutral/900 → neutral/50)\nShadow intensity may increase in dark mode",
+        "Surface and background colors invert\nText and icon colors invert\nBorder colors shift to maintain separation\nAction colors invert (neutral/900 → neutral/50)\nShadow alpha increases in dark mode (5% → 50%, 20% → 70%)",
         "What Does NOT Change",
         "Token names remain identical\nTypography (size, weight, line height) stays the same\nSpacing and layout tokens stay the same\nComponent structure and behavior stay the same\nMotion durations and easing stay the same",
         "Feedback Tokens",
@@ -886,30 +886,30 @@
         "Light Hex",
         "Dark Hex",
         "Shift",
-        "surface.feedback.success",
+        "surface.feedback.success.subtle",
         "green/50",
         "green/800",
         "#ECFFE9",
         "#002400",
         "50 → 800",
-        "surface.feedback.warning",
-        "yellow/50",
-        "yellow/900",
-        "#FFFBD5",
-        "#271E00",
-        "50 → 900",
-        "surface.feedback.danger",
+        "surface.feedback.warning.subtle",
+        "orange/50",
+        "orange/800",
+        "#FFEEDA",
+        "#3E0000",
+        "50 → 800",
+        "surface.feedback.danger.subtle",
         "red/50",
-        "red/900",
+        "red/800",
         "#FFE4DF",
-        "#280000",
-        "50 → 900",
-        "surface.feedback.info",
-        "blue/50",
-        "blue/900",
-        "#E9F2FF",
-        "#01082D",
-        "50 → 900"
+        "#410001",
+        "50 → 800",
+        "surface.feedback.info.subtle",
+        "turquoise/50",
+        "turquoise/800",
+        "#F0FFFF",
+        "#033238",
+        "50 → 800"
       ],
       "variableId": "VariableID:27:725",
       "hex": "#ffffff",
@@ -990,9 +990,9 @@
         "Border Radius Tokens",
         "radius.none → 0px\nradius.control → 6px (border-radius/md)\nradius.container → 8px (border-radius/lg)\nradius.dialog → 12px (border-radius/xl)\nradius.pill → 9999px (border-radius/full)",
         "Border Width Tokens",
-        "border.none → 0px\nborder.default → 1px (border-width/sm)\nborder.strong → 2px (border-width/md)",
+        "border.none → 0px\nborder.default → 1px (border-width/sm)\nborder.strong → 2px (border-width/md)\nborder.emphasis → 4px (border-width/lg)",
         "Shadow Color Variables",
-        "shadow.subtle → alpha/black-05 (light) | alpha/black-90 (dark)\nshadow.strong → alpha/black-20 (light) | mono/black (dark)\nshadow.feedback.focus → alpha/blue-20 (both modes)\nshadow.feedback.danger → alpha/red-20 (both modes)",
+        "shadow.subtle → alpha/black-05 (light) | alpha/black-50 (dark)\nshadow.strong → alpha/black-20 (light) | alpha/black-70 (dark)\nshadow.feedback.focus → alpha/blue-20 (both modes)\nshadow.feedback.danger → alpha/red-20 (both modes)",
         "Inset Token",
         "Value",
         "Stack Token",
@@ -1012,9 +1012,9 @@
         "No",
         "Single mode only",
         "inset.lg",
-        "24px",
+        "20px",
         "stack.lg",
-        "24px",
+        "20px",
         "No",
         "Single mode only"
       ],

@@ -4,6 +4,8 @@
 
 ## Component set: Top Bar
 
+App-wide header: App Name, GlobalSearch, a set of Nav Items, tenant switcher and account Avatar. 6 variants: breakpoint (desktop, mobile) × hasSidebar (true, false) × isLoggedIn (True, False), shipped as the used combinations only. Props: hasTenantSwitcher, hasSearchField, hasNotifications (booleans). It is the banner landmark; the app name links home and the search opens Search Results Panel.
+
 ### Props
 
 | Prop                | Type    | Options / default    |
@@ -98,11 +100,12 @@ Default variant: `breakpoint=desktop, hasSidebar=true, isLoggedIn=True` · 6 var
 
 ### Issues detected
 
-- Component description is empty.
 - Primitive color bound directly (CLR-002): `color.purple.50`, `color.purple.700`.
 - Hard-coded gap `12px` on layer _breakpoint=desktop, hasSidebar=true, isLoggedIn=True_
 
 ## Component set: App Name
+
+Product identity block for the Top Bar: App Icon plus name. 3 variants: type (vertical, horizontal, app). vertical stacks icon over name, horizontal sets them inline, app is the icon alone for narrow bars. Use only inside Top Bar and App Switcher; the name text is the link label.
 
 ### Props
 
@@ -145,10 +148,6 @@ Default variant: `type=vertical` · 3 variants · default size 131×32px
 | vertical   | 131×32 |      |                       |                  | `color.text.primary` |                      |
 | app        | 227×40 |      | `color.border.subtle` | `shadow/control` | `color.text.primary` | `color.icon.primary` |
 | horizontal | 85×59  |      |                       |                  | `color.text.inverse` |                      |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Compositions and examples on this page
 

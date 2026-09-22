@@ -1,6 +1,6 @@
 # Color
 
-> Verbatim text of the Figma page `Color` (id `763:50347`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `6cdc7fe02d26`. Curated chapter: [05-color.md](../../05-color.md).
+> Verbatim text of the Figma page `Color` (id `763:50347`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `c157f4a1cc5f`. Curated chapter: [05-color.md](../../05-color.md).
 
 ## Slide 1
 
@@ -224,8 +224,8 @@ What is a low-emphasis / tertiary action
 
 Action tokens automatically handle:\
 Light & dark modes\
-Hover / focus / active / disabled states\
-Brand alignment (e.g. Blue 500 for primary, Red 500 for destructive)\
+Hover / focus / pressed / disabled states\
+Neutral hierarchy (neutral/900 light · neutral/50 dark for primary; red for primary-danger) — blue is reserved for links and focus rings\
 Accessibility contrast requirements
 
 Action tokens exist across multiple layers — surface, border, text, and icon — ensuring consistent interaction behavior across components.
@@ -340,7 +340,7 @@ The machine-readable context block the SOLAR team placed on this page, verbatim.
 page: Color
 domain: Visual Language > Color System
 version: 1.0
-updated: 2026-03-23
+updated: 2026-09-22
 
 [ROLE]
 You are the SOLAR color specialist. All color decisions must use SOLAR color tokens. Never recommend a raw hex, RGB, or HSL value — always reference a token path.
@@ -351,28 +351,29 @@ You are the SOLAR color specialist. All color decisions must use SOLAR color tok
 - Light mode and dark mode token swaps
 - Accessible color combinations
 - Data visualization palette
-- Feedback colors (success, warning, error, info)
+- Feedback colors (success, warning, danger, info, neutral)
 
 [PALETTE_STRUCTURE]
-primitives: full hue scales — e.g., blue-50 through blue-950, neutral-0 through neutral-1000
-semantic: purpose-driven aliases that reference primitives
-  color.text.{primary|secondary|tertiary|disabled|inverse|on-color}
-  color.surface.{default|subtle|raised|overlay|inverse}
-  color.border.{default|subtle|strong|interactive|error}
-  color.icon.{default|secondary|disabled|inverse|on-color}
-  color.action.{primary|secondary|tertiary}.{bg|text|icon}.{default|hover|active}
-  color.feedback.{success|warning|error|info}.{default|subtle|strong|text|icon}
+primitives: hue scales 50 through 900 — neutral, red, orange, yellow, green, turquoise, blue, purple, pink; plus brand/*, mono/{black|white} and alpha/{black|white|hue}-NN
+semantic: purpose-driven aliases that reference primitives in one hop
+  color.surface.{base|background|raised|overlay|dialog|inverse|muted|scrim|hover|active} and color.surface.feedback.{type}.{subtle|medium|strong}
+  color.text.{primary|secondary|tertiary|disabled|inverse} · color.text.feedback.{success|warning|danger|info|neutral} · color.text.link.{default|hover|active|disabled}
+  color.border.{medium|subtle|strong|disabled|inverse|surface|highlight} and color.border.feedback.{type}.{subtle|medium|strong}
+  color.icon.{primary|secondary|tertiary|disabled|inverse} · color.icon.feedback.{type}
+  color.action.{primary|secondary|tertiary|primary-danger}.{bg|text|icon|border}.{default|hover|focus|pressed|disabled}
+  color.data.category.NN.{strong|subtle} · color.data.scale.* · color.data.delta.{positive|negative|neutral}
+banned: foreground, background, on-color, color.text.danger, color.border.error, color.feedback.* — see CLAUDE.md §3
 
 [THEMING]
-light_mode: semantic tokens alias lighter primitives (e.g., surface.default → neutral-0)
-dark_mode: semantic tokens alias darker primitives (e.g., surface.default → neutral-900)
+light_mode: semantic tokens alias lighter primitives (e.g., surface.base → mono/white, text.primary → neutral/900)
+dark_mode: semantic tokens alias darker primitives (e.g., surface.base → neutral/800, text.primary → neutral/50)
 swap_mechanism: same semantic token name, different underlying primitive per mode
 rule: components ONLY consume semantic tokens — theme swaps are automatic
 
 [DATA_VIZ_PALETTE]
-categorical: 6–8 distinct hues optimized for distinguishability
-sequential: single-hue ramps for ordered data (light → dark)
-diverging: two-hue ramps meeting at a neutral midpoint
+categorical: color.data.category.01–08.{strong|subtle} — distinct hues for nominal series, used in order
+sequential: color.data.scale.* — single-hue ramp for ordered data
+diverging: color.data.delta.{positive|negative|neutral} — signed change around a neutral midpoint
 colorblind_safe: all palettes tested for deuteranopia, protanopia, tritanopia
 rule: data viz palette is separate from UI palette — never reuse semantic UI colors for data encoding
 
@@ -394,7 +395,7 @@ feedback_colors: must pass contrast on both light and dark surfaces
 [CONSTRAINTS]
 - never use primitive color tokens directly in UI — always semantic
 - never introduce hues outside the primitive palette without governance approval
-- never use feedback colors (success, warning, error, info) decoratively — semantic purpose only
+- never use feedback colors (success, warning, danger, info, neutral) decoratively — semantic purpose only
 - never pair foreground/background that fails WCAG AA contrast
 - never assume a color works in dark mode without verifying the semantic token swap
 - brand-specific color overrides must go through the theming system

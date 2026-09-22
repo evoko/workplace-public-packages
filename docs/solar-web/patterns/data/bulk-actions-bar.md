@@ -4,6 +4,8 @@
 
 ## Component: Bulk Actions Bar
 
+Floating bar that appears when rows are selected in a table or list: selection count, select-all Checkbox, a clear Link and the actions slot. Single component. Props: Actions (slot, holds Buttons in priority order left to right). Mount it fixed at the bottom of the viewport; it is announced as a toolbar and Escape clears the selection.
+
 ### Props
 
 | Prop      | Type | Options / default         |
@@ -18,7 +20,7 @@
     - **Icon/DragHandle** · instance of **Icon/DragHandle** (solid=false) · FIXED/FIXED · 20×20  
       height `icon.md`
     - **Divider** · instance of **Divider** (orientation=vertical, type=full) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 1×36
-    - **Cointainer** · frame · row gap 12 pad 0/16/0/16 HUG/FILL · 174×48  
+    - **Container** · frame · row gap 12 pad 0/16/0/16 HUG/FILL · 174×48  
       itemSpacing `inset.sm` · padding `inset.md`
       - **Checkbox** · instance of **Checkbox** (checked=true, disabled=false, hover=false, mixed=false, focus=false) · column gap 16 pad 0/0/0/0 FIXED/FIXED · 16×16  
         fill `color.action.primary.bg.default` · stroke `color.border.medium` 1px · itemSpacing `stack.md` · strokeWeight `border.default` · radius `radius.control`
@@ -66,10 +68,6 @@
 - Divider
 - Icon/DragHandle
 - Link
-
-### Issues detected
-
-- Component description is empty.
 
 ## Issues detected (page)
 

@@ -1,9 +1,9 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/motion: b8f0cb82f962
+    documentation/motion: e08e65deab41
     primitives/motion: 0f555e5b7217
 ---
 
@@ -43,13 +43,13 @@ Figma: Primitives › `motion/duration/*`. Documentation: `motion.duration.*`. C
 | `slower`  | 900 | Choreographed multi-step sequences, onboarding, hero moments. Use sparingly              |
 
 Duration reflects distance and complexity, not preference. Use the shortest duration
-that feels natural. (The page context quotes looser ranges such as 100–150 ms and
-200–300 ms; the tokens are the exact values above.)
+that feels natural. Five fixed values, no ranges: `fast` is 100 ms exactly, `normal`
+300 ms, `slow` 600 ms.
 
 ## Easing tokens
 
-Figma: Primitives › `motion/ease/*`. Documentation: `motion.easing.*` (grammar slide)
-or `motion.ease.*` (Figma path). CSS: `--solar-motion-ease-*`.
+Figma: Primitives › `motion/ease/*`. Documentation: `motion.ease.*`. CSS:
+`--solar-motion-ease-*`. `motion.easing.*` is a retired spelling and does not exist.
 
 | Token       | CSS           | Use for                                                                                     |
 | ----------- | ------------- | ------------------------------------------------------------------------------------------- |
@@ -57,11 +57,11 @@ or `motion.ease.*` (Figma path). CSS: `--solar-motion-ease-*`.
 | `ease-in`   | `ease-in`     | Leaving the screen: dismissing toasts, closing drawers. Slow start, fast end                |
 | `ease-both` | `ease-in-out` | Staying on screen but transforming: size change, layout reflow, state transitions           |
 
-The page context additionally lists `motion.easing.standard`, `enter`, `exit` and
-`linear` (for progress bars and continuous rotation). A Web-specific semantic motion
-layer (`motion/duration/hover`, `motion/duration/expand`, `motion/ease/enter`,
-`motion/ease/exit`, …) is a **planned next workstream and not yet defined**. Until it
-lands, reference the primitives directly and follow the per-token guidance.
+Three easings only. `motion.easing.standard`, `.enter` and `.exit` are retired names and
+do not exist; `linear` is plain CSS with no token, reserved for progress bars and
+continuous rotation. A Web-specific semantic motion layer (`motion/duration/hover`,
+`motion/duration/expand`, …) is a **planned next workstream and not yet defined**. Until
+it lands, reference the primitives directly and follow the per-token guidance.
 
 ## Transition patterns
 

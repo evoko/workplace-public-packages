@@ -4,6 +4,8 @@
 
 ## Component set: Layout / Config
 
+Shell Tier 3: Top Bar over a single centered content column, no Sidebar. 2 variants: breakpoint (desktop, mobile). Props: center (slot). Use for configuration apps with one task at a time, such as Chatter Config; the column is constrained by the Layout grid tokens.
+
 ### Props
 
 | Prop         | Type    | Options / default         |
@@ -57,7 +59,6 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 ### Issues detected
 
-- Component description is empty.
 - Primitive color bound directly (CLR-002): `color.purple.700`.
 
 ## Documentation card

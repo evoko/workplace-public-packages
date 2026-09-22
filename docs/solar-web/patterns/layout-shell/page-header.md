@@ -4,6 +4,8 @@
 
 ## Component set: Page Header
 
+Top-of-page block: Breadcrumbs, title with optional icon, image and Tag, description, primary and secondary CTA Buttons and an optional Tabs row. 3 variants: type (left-aligned, centered) × breakpoint (desktop, mobile); centered ships desktop only. Props: page-title (text) plus hasBreadcrumbs, hasIcon, hasImage, hasTag, hasDescription, hasPrimaryCTA, hasSecondaryCTA, hasTabs (booleans). The title is the page h1; keep one Page Header per view.
+
 ### Props
 
 | Prop              | Type    | Options / default           |
@@ -102,7 +104,6 @@ Default variant: `type=left-aligned, breakpoint=desktop` · 3 variants · defaul
 
 ### Issues detected
 
-- Component description is empty.
 - Hard-coded gap `16px` on layer _Container_
 
 ## Issues detected (page)

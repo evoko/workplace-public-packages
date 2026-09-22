@@ -1,11 +1,11 @@
 ---
 solar:
-  reviewed: 2026-09-21
-  figmaVersion: '2397931579128493119'
+  reviewed: 2026-09-22
+  figmaVersion: '2402047167094879156'
   sources:
-    documentation/spatial: 2f5eb8cf2ed9
-    documentation/borders-radius: 008a48773d80
-    primitives/spatial: f11777fc454c
+    documentation/spatial: a9b6dfb289de
+    documentation/borders-radius: 0bc35e725a69
+    primitives/spatial: 6728940bf23a
 ---
 
 # 12 · Spatial, Borders & Radius
@@ -79,19 +79,16 @@ Figma: Spatial › `stack/md`, `inset/md` (scope GAP). CSS: `--solar-stack-md`,
 elements share a parent and need space between them, use stack. **Inset** goes inside
 cards, panels, sections, dialogs, page containers: containment, not separation.
 
-Inventory caution: the prose slides say `stack.lg → 1.5rem` (24 px) and the Theming
-chapter says `inset.lg = 24px`; the Spatial variables resolve `lg` to **20 px** and `xl`
-to 24 px. The Primitives › Spatial tables list seven inset/stack values (0, 4, 8, 12, 16,
-24, 32) rather than the nine variables. The variables are authoritative; the naming
-overlap is logged in [source-discrepancies.md](source-discrepancies.md).
+Horizontal auto-layout gaps bind to the same scale through `inset.*`. There is no
+`gap.*` family and no component-scoped spacing tokens: components bind directly to the
+semantic scale. Banned spacing names, called out by the Spatial page context: `space.{scale}`,
+`inline`, `squish_inset`, `stretch_inset` and `{component}.space.{property}`. Only
+`inset.*` and `stack.*` exist.
 
-The Spatial page context also describes `space.{scale}`, `inline`, `squish_inset` and
-`stretch_inset` usage types and component-level `{component}.space.{property}` overrides.
-None of these exist as variables; `stack` and `inset` are the shipped semantics. The
-proximity principle still applies: tight (`2xs`–`xs`) for related items, medium (`md`)
-within a group, loose (`xl`–`3xl`) between sections. Spacing may tighten one step on
-mobile while keeping proportional rhythm. Optical adjustments of ±1–2 px are allowed in
-Figma only if documented.
+Proximity principle: tight (`2xs`–`xs`) for related items, medium (`md`) within a group,
+loose (`xl`–`3xl`) between sections. Spacing may tighten one step on mobile
+(`inset.lg` → `inset.md`) while keeping proportional rhythm. Optical adjustments of
+±1–2 px are allowed in Figma only if documented.
 
 ## Border width
 
@@ -126,9 +123,12 @@ Rules for applying radius:
   `radius.none` or `radius.subtle` inside).
 - Structural containers keep consistent edge logic; radius hierarchy feels intentional.
 
-The Borders page context lists an eight-step radius scale (`xs` 2 px, `2xl` 16 px, etc.)
-and eight border color roles (`interactive`, `error`, `focus`…). Those are illustrative;
-the six radius steps and the `color.border.*` roles above are what exists.
+Radius supports recognition, not decoration. Six semantic radii only: there is no 2 px or
+16 px step, and the `radius.xs` / `radius.sm` / `radius.md` / `radius.lg` / `radius.xl` /
+`radius.2xl` / `radius.full` naming is banned. Border colour has no
+`color.border.default`, `.interactive`, `.error` or `.focus`; use `color.border.medium`,
+`color.border.feedback.danger.strong` and `color.border.feedback.focus.strong` (see
+[05-color.md](05-color.md#border)).
 
 ## Agent behaviour (from the page contexts)
 

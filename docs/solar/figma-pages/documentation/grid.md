@@ -1,6 +1,6 @@
 # Grid
 
-> Verbatim text of the Figma page `Grid` (id `763:58215`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `f23dcb8032c0`. Curated chapter: [11-layout-responsive-grid.md](../../11-layout-responsive-grid.md).
+> Verbatim text of the Figma page `Grid` (id `763:58215`, section documentation, status done), extracted by `raw/fetch-rest.mjs` and rendered by `build-docs.mjs`. Generated file, do not edit; it is review material, not the reference. Content hash `d28c16fdb34e`. Curated chapter: [11-layout-responsive-grid.md](../../11-layout-responsive-grid.md).
 
 ## Slide 1
 
@@ -93,7 +93,7 @@ Spacing scales proportionally through stack and inset tokens
 | sm         | 768px     | 4       | 1rem / 16px    | 1rem / 16px    | Tablet portrait  |
 | md         | 1024px    | 8       | 1.25rem / 20px | 1.25rem / 20px | Tablet landscape |
 | lg         | 1440px    | 12      | 1.5rem / 24px  | 1.5rem / 24px  | Standard desktop |
-| xl         | 1920px    | 12      | 1.5rem / 24px  | 1.5rem / 24px  | Large display    |
+| xl         | 1920px    | 12      | 2rem / 32px    | 1.5rem / 24px  | Large display    |
 
 ## @SOLAR:PAGE_CONTEXT
 
@@ -104,7 +104,7 @@ The machine-readable context block the SOLAR team placed on this page, verbatim.
 page: Grid
 domain: Layout > Column Grid System
 version: 1.0
-updated: 2026-03-23
+updated: 2026-09-22
 
 [ROLE]
 You are the SOLAR grid system specialist. The grid provides the structural backbone for page layouts. All page-level and section-level content aligns to the column grid — never arbitrary widths.
@@ -117,17 +117,20 @@ You are the SOLAR grid system specialist. The grid provides the structural backb
 - Nested grids and exceptions
 
 [GRID_PER_BREAKPOINT]
-mobile: 4 columns | gutter: space.md (16px) | margin: space.md (16px)
-tablet: 8 columns | gutter: space.lg (24px) | margin: space.lg (24px)
-desktop: 12 columns | gutter: space.lg (24px) | margin: space.xl (40px)
-wide: 12 columns | gutter: space.lg (24px) | margin: auto (centered, max-width capped)
+xs (393px): 4 columns | gutter 16px | margin 16px
+sm (768px): 4 columns | gutter 16px | margin 16px
+md (1024px): 8 columns | gutter 20px | margin 20px
+lg (1440px): 12 columns | gutter 24px | margin 24px
+xl (1920px): 12 columns | gutter 32px | margin 24px
+rule: values verified against the Layout collection 2026-09-22 — older docs saying tablet 8/24/24 and desktop margin 40px were wrong
 
 [GRID_TOKENS]
-grid.columns.{breakpoint}: column count per breakpoint
-grid.gutter: spatial token for gap between columns
-grid.margin: spatial token for page-edge margins
-grid.max-width: maximum content width (e.g., 1280px or 1440px)
-rule: gutters and margins are spatial tokens — never hardcoded px values
+grid/columns/{xs|sm|md|lg|xl}: column count per breakpoint (4, 4, 8, 12, 12)
+grid/gutter/{bp}: gap between columns — aliases spatial/scale/{4|4|5|6|8}
+grid/margin/{bp}: page-edge margin — aliases spatial/scale/{4|4|5|6|6}
+breakpoint/{bp}: aliases Foundations viewport/{bp}
+location: Layout collection, local to SOLAR Web (web-specific; Foundations stays platform-agnostic)
+rule: gutters and margins are variables — never hardcoded px values
 
 [COLUMN_SPANNING]
 full_width: 12/12 (desktop) — hero sections, full-bleed content

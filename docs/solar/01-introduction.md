@@ -121,9 +121,10 @@ previous one, from foundational logic to visual expression, structure, and behav
 | 05  | Layout          | 11  | Execution & Impact        |
 | 06  | Motion          | 12  | Agentic Reference         |
 
-Note that some slides cross-reference chapters by a different numbering (for example
-"Token Resolution Table in Chapter 08 — Theming" and "Ch.09 Compliance Validation
-Rules"). The table above is the numbering in the file's own Table of Contents.
+Slide cross-references follow this numbering: the Tokens page points at the "Token
+Resolution Table in Chapter 07 — Theming" and the Accessibility page at "Ch.09 Compliance
+Validation Rules" (the rules live in the Governance chapter). The 2026-09-22 revision
+brought the last mismatched reference into line.
 
 ## Versioning and changelog
 

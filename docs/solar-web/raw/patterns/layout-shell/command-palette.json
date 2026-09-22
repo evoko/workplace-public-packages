@@ -5,7 +5,7 @@
     {
       "name": "Command Item",
       "id": "5760:4612",
-      "description": "",
+      "description": "One result in the Command Palette: leading icon slot, command label and a Group · Category meta line. 2 variants: state (default, hover). hover doubles as the keyboard-highlighted row. Use only inside Command Palette; for menu rows use Dropdown Item.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
@@ -201,7 +201,7 @@
     {
       "name": "Command Palette",
       "id": "5607:3799",
-      "description": "",
+      "description": "Keyboard-first dialog for finding and running commands: search field with a Kbd shortcut, grouped Command Item results and a footer of key hints (Navigate, Select, Close). Single component. Open with the global shortcut; Arrow keys move, Enter runs, Escape closes. Results filter as the user types and the list announces its count; use Search Results Panel for content search.",
       "props": {},
       "nodeCount": 76,
       "tree": {

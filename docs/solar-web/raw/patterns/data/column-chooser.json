@@ -5,7 +5,7 @@
     {
       "name": "Column Chooser",
       "id": "6952:1068",
-      "description": "",
+      "description": "Panel for showing, hiding and reordering DataTable columns: title with a Counter, search, a draggable ColumnRow list and a footer Button. 3 variants: state (default, loading, empty). loading shows the skeleton list; empty is the no-match message after search. Props: List (slot). Changes apply live; the footer resets to the table default.",
       "docLinks": [],
       "variantCount": 3,
       "props": {
@@ -825,7 +825,7 @@
     {
       "name": "ColumnRow",
       "id": "6951:14726",
-      "description": "",
+      "description": "One column entry inside Column Chooser: drag handle, Checkbox and the column label. 4 variants: selected (true, false) × hover (false, true). selected mirrors the checkbox; hover is pointer feedback only. Reorder by dragging the handle or with Alt+Arrow when the row has focus; the checkbox owns the visible/hidden state.",
       "docLinks": [],
       "variantCount": 4,
       "props": {

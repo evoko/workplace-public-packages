@@ -73,7 +73,15 @@ describe('parseSvg', () => {
   });
 
   it('keeps a viewBox that is not 0 0 24 24', () => {
-    expect(parse('svg/outline/zone.svg').viewBox).toEqual([0, 0, 24, 25]);
+    // svg/outline/zone.svg was the real example -- its outline was drawn 0 0 24 25 -- until
+    // SOLAR redrew it on the 24 grid on 2026-09-22. No icon is off grid today, so the off-grid
+    // case is made here rather than read from the corpus: the parser must never assume 24, or a
+    // future off-grid export would be cropped and the drawing would shift.
+    expect(
+      parseSvg(svg(path('fill="#111111"'), 'viewBox="0 0 24 25" fill="none"'), {
+        file: 'x.svg',
+      }).viewBox,
+    ).toEqual([0, 0, 24, 25]);
     expect(parse('logos/biamp-logo/light-sm.svg').viewBox).toEqual([
       0, 0, 36, 12,
     ]);
@@ -291,9 +299,9 @@ describe('the whole icon corpus', () => {
     }
   }
 
-  it('holds 686 SVG files carrying 824 <path> elements', () => {
-    expect(files).toHaveLength(686);
-    expect(rawPaths).toBe(824);
+  it('holds 687 SVG files carrying 825 <path> elements', () => {
+    expect(files).toHaveLength(687);
+    expect(rawPaths).toBe(825);
   });
 
   it('parses every file except teams.svg', () => {
@@ -301,14 +309,28 @@ describe('the whole icon corpus', () => {
     expect(failed.get('logos/os-logo/teams.svg')).toMatch(
       /path is filled by a reference \(url\(#paint0_radial_6196_626\)\)/,
     );
-    expect(parsed.size).toBe(685);
+    expect(parsed.size).toBe(686);
   });
 
-  it('yields 811 paths, 75 of them evenodd', () => {
+  it('yields 812 paths, 75 of them evenodd', () => {
     const paths = [...parsed.values()].flatMap((icon) => icon.paths);
-    // 824 in the files minus the 13 in teams.svg, which is the one file the IR cannot hold.
-    expect(paths).toHaveLength(811);
+    // 825 in the files minus the 13 in teams.svg, which is the one file the IR cannot hold.
+    expect(paths).toHaveLength(812);
     expect(paths.filter((p) => p.fillRule === 'evenodd')).toHaveLength(75);
+  });
+
+  it('draws every icon on the 24 grid', () => {
+    // True of the corpus as it stands on 2026-09-22, not of the parser: svg/outline/zone.svg was
+    // 0 0 24 25 until SOLAR redrew it. The parser keeps whatever a file declares -- asserted
+    // synthetically above -- and this is the assertion that would notice a new off-grid export.
+    const offGrid = [...parsed]
+      .filter(([file]) => file.startsWith('svg/'))
+      .filter(([, icon]) => icon.viewBox.join(' ') !== '0 0 24 24')
+      .map(([file]) => file);
+    expect(offGrid).toEqual([]);
+    expect([...parsed.keys()].filter((f) => f.startsWith('svg/'))).toHaveLength(
+      682,
+    );
   });
 
   it('gives every path a valid fill and every file a viewBox with a positive extent', () => {

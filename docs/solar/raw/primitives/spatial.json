@@ -51,7 +51,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/0",
                   "style": "10/700"
                 }
               ]
@@ -79,7 +79,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/1",
                   "style": "10/700"
                 }
               ]
@@ -107,7 +107,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/2",
                   "style": "10/700"
                 }
               ]
@@ -135,7 +135,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/3",
                   "style": "10/700"
                 }
               ]
@@ -163,7 +163,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/4",
                   "style": "10/700"
                 }
               ]
@@ -191,7 +191,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/5",
                   "style": "10/700"
                 }
               ]
@@ -219,7 +219,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/6",
                   "style": "10/700"
                 }
               ]
@@ -247,7 +247,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/7",
                   "style": "10/700"
                 }
               ]
@@ -275,7 +275,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/8",
                   "style": "10/700"
                 }
               ]
@@ -303,7 +303,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/9",
                   "style": "10/700"
                 }
               ]
@@ -331,7 +331,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/10",
                   "style": "10/700"
                 }
               ]
@@ -359,7 +359,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/11",
                   "style": "10/700"
                 }
               ]
@@ -387,7 +387,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/12",
                   "style": "10/700"
                 }
               ]
@@ -415,7 +415,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/13",
                   "style": "10/700"
                 }
               ]
@@ -443,7 +443,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/14",
                   "style": "10/700"
                 }
               ]
@@ -471,7 +471,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/15",
                   "style": "10/700"
                 }
               ]
@@ -499,7 +499,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/16",
                   "style": "10/700"
                 }
               ]
@@ -527,7 +527,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/17",
                   "style": "10/700"
                 }
               ]
@@ -555,7 +555,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/18",
                   "style": "10/700"
                 }
               ]
@@ -583,7 +583,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/19",
                   "style": "10/700"
                 }
               ]
@@ -611,7 +611,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/20",
                   "style": "10/700"
                 }
               ]
@@ -639,7 +639,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/21",
                   "style": "10/700"
                 }
               ]
@@ -667,7 +667,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/22",
                   "style": "10/700"
                 }
               ]
@@ -733,7 +733,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/border-width/none",
                   "style": "10/700"
                 }
               ]
@@ -761,7 +761,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/border-width/sm",
                   "style": "10/700"
                 }
               ]
@@ -789,7 +789,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/border-width/md",
                   "style": "10/700"
                 }
               ]
@@ -817,7 +817,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/border-width/lg",
                   "style": "10/700"
                 }
               ]
@@ -883,7 +883,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/border-radius/none",
                   "style": "10/700"
                 }
               ]
@@ -911,7 +911,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/border-radius/sm",
                   "style": "10/700"
                 }
               ]
@@ -939,7 +939,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/border-radius/md",
                   "style": "10/700"
                 }
               ]
@@ -967,7 +967,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/border-radius/lg",
                   "style": "10/700"
                 }
               ]
@@ -995,7 +995,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/border-radius/xl",
                   "style": "10/700"
                 }
               ]
@@ -1023,7 +1023,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/border-radius/full",
                   "style": "10/700"
                 }
               ]
@@ -1089,7 +1089,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "viewport/xs",
                   "style": "10/700"
                 }
               ]
@@ -1117,7 +1117,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "viewport/sm",
                   "style": "10/700"
                 }
               ]
@@ -1145,7 +1145,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "viewport/md",
                   "style": "10/700"
                 }
               ]
@@ -1173,7 +1173,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "viewport/lg",
                   "style": "10/700"
                 }
               ]
@@ -1201,7 +1201,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "viewport/xl",
                   "style": "10/700"
                 }
               ]
@@ -1228,7 +1228,7 @@
       "x": 4160,
       "y": 0,
       "w": 1440,
-      "h": 968,
+      "h": 1112,
       "blocks": [
         {
           "t": "p",
@@ -1278,7 +1278,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "inset/none",
                   "style": "10/700"
                 }
               ]
@@ -1295,7 +1295,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/0",
                   "style": "10/700"
                 }
               ]
@@ -1323,7 +1323,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "inset/2xs",
                   "style": "10/700"
                 }
               ]
@@ -1340,7 +1340,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/1",
                   "style": "10/700"
                 }
               ]
@@ -1368,7 +1368,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "inset/xs",
                   "style": "10/700"
                 }
               ]
@@ -1385,7 +1385,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/2",
                   "style": "10/700"
                 }
               ]
@@ -1413,7 +1413,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "inset/sm",
                   "style": "10/700"
                 }
               ]
@@ -1430,7 +1430,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/3",
                   "style": "10/700"
                 }
               ]
@@ -1458,7 +1458,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "inset/md",
                   "style": "10/700"
                 }
               ]
@@ -1475,7 +1475,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/4",
                   "style": "10/700"
                 }
               ]
@@ -1503,7 +1503,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "inset/lg",
                   "style": "10/700"
                 }
               ]
@@ -1520,7 +1520,52 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/5",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "20px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "inset/xl",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/6",
                   "style": "10/700"
                 }
               ]
@@ -1548,7 +1593,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "inset/2xl",
                   "style": "10/700"
                 }
               ]
@@ -1565,7 +1610,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/7",
                   "style": "10/700"
                 }
               ]
@@ -1578,7 +1623,52 @@
           "blocks": [
             {
               "t": "p",
-              "text": "32px",
+              "text": "28px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "inset/3xl",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/10",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "40px",
               "style": "Body/Body S/Medium"
             }
           ]
@@ -1592,7 +1682,7 @@
       "x": 5680,
       "y": 0,
       "w": 1440,
-      "h": 968,
+      "h": 1112,
       "blocks": [
         {
           "t": "p",
@@ -1642,7 +1732,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "stack/none",
                   "style": "10/700"
                 }
               ]
@@ -1659,7 +1749,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/0",
                   "style": "10/700"
                 }
               ]
@@ -1687,7 +1777,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "stack/2xs",
                   "style": "10/700"
                 }
               ]
@@ -1704,7 +1794,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/1",
                   "style": "10/700"
                 }
               ]
@@ -1732,7 +1822,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "stack/xs",
                   "style": "10/700"
                 }
               ]
@@ -1749,7 +1839,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/2",
                   "style": "10/700"
                 }
               ]
@@ -1777,7 +1867,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "stack/sm",
                   "style": "10/700"
                 }
               ]
@@ -1794,7 +1884,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/3",
                   "style": "10/700"
                 }
               ]
@@ -1822,7 +1912,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "stack/md",
                   "style": "10/700"
                 }
               ]
@@ -1839,7 +1929,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/4",
                   "style": "10/700"
                 }
               ]
@@ -1867,7 +1957,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "stack/lg",
                   "style": "10/700"
                 }
               ]
@@ -1884,7 +1974,52 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/5",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "20px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "stack/xl",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/6",
                   "style": "10/700"
                 }
               ]
@@ -1912,7 +2047,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "stack/2xl",
                   "style": "10/700"
                 }
               ]
@@ -1929,7 +2064,7 @@
               "blocks": [
                 {
                   "t": "p",
-                  "text": "MAJOR",
+                  "text": "spatial/scale/7",
                   "style": "10/700"
                 }
               ]
@@ -1942,7 +2077,52 @@
           "blocks": [
             {
               "t": "p",
-              "text": "32px",
+              "text": "28px",
+              "style": "Body/Body S/Medium"
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "stack/3xl",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "group",
+              "name": ".Version Status",
+              "blocks": [
+                {
+                  "t": "p",
+                  "text": "spatial/scale/10",
+                  "style": "10/700"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "t": "group",
+          "name": ".Table / Row",
+          "blocks": [
+            {
+              "t": "p",
+              "text": "40px",
               "style": "Body/Body S/Medium"
             }
           ]
@@ -1973,7 +2153,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/0"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1982,7 +2162,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/1"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -1991,7 +2171,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/2"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2000,7 +2180,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/3"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2009,7 +2189,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/4"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2018,7 +2198,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/5"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2027,7 +2207,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/6"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2036,7 +2216,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/7"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2045,7 +2225,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/8"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2054,7 +2234,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/9"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2063,7 +2243,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/10"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2072,7 +2252,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/11"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2081,7 +2261,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/12"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2090,7 +2270,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/13"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2099,7 +2279,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/14"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2108,7 +2288,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/15"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2117,7 +2297,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/16"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2126,7 +2306,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/17"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2135,7 +2315,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/18"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2144,7 +2324,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/19"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2153,7 +2333,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/20"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2162,7 +2342,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/21"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2171,7 +2351,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/22"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2198,7 +2378,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/border-width/none"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2207,7 +2387,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/border-width/sm"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2216,7 +2396,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/border-width/md"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2225,7 +2405,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/border-width/lg"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2252,7 +2432,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/border-radius/none"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2261,7 +2441,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/border-radius/sm"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2270,7 +2450,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/border-radius/md"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2279,7 +2459,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/border-radius/lg"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2288,7 +2468,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/border-radius/xl"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2297,7 +2477,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/border-radius/full"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2324,7 +2504,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "viewport/xs"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2333,7 +2513,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "viewport/sm"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2342,7 +2522,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "viewport/md"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2351,7 +2531,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "viewport/lg"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2360,160 +2540,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Table / Column",
-      "labels": [
-        "Token"
-      ],
-      "variableId": "VariableID:27:723",
-      "hex": "#f5f5f5",
-      "opacity": 1
-    },
-    {
-      "layer": ".Table / Column",
-      "labels": [
-        "Base token"
-      ],
-      "variableId": "VariableID:27:723",
-      "hex": "#f5f5f5",
-      "opacity": 1
-    },
-    {
-      "layer": ".Table / Column",
-      "labels": [
-        "Value"
-      ],
-      "variableId": "VariableID:27:723",
-      "hex": "#f5f5f5",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
-      ],
-      "variableId": "VariableID:34:3281",
-      "hex": "#00b600",
-      "opacity": 1
-    },
-    {
-      "layer": ".Version Status",
-      "labels": [
-        "MAJOR"
+        "viewport/xl"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2549,7 +2576,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "inset/none"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2558,7 +2585,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/0"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2567,7 +2594,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "inset/2xs"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2576,7 +2603,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/1"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2585,7 +2612,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "inset/xs"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2594,7 +2621,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/2"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2603,7 +2630,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "inset/sm"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2612,7 +2639,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/3"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2621,7 +2648,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "inset/md"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2630,7 +2657,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/4"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2639,7 +2666,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "inset/lg"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2648,7 +2675,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/5"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2657,7 +2684,7 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "inset/xl"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
@@ -2666,12 +2693,237 @@
     {
       "layer": ".Version Status",
       "labels": [
-        "MAJOR"
+        "spatial/scale/6"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "inset/2xl"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/7"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "inset/3xl"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/10"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Base token"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Table / Column",
+      "labels": [
+        "Value"
+      ],
+      "variableId": "VariableID:27:723",
+      "hex": "#f5f5f5",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/none"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/0"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/2xs"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/1"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/xs"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/2"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/sm"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/3"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/md"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/4"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/lg"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/5"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/xl"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/6"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/2xl"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/7"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "stack/3xl"
+      ],
+      "variableId": "VariableID:34:3281",
+      "hex": "#00b600",
+      "opacity": 1
+    },
+    {
+      "layer": ".Version Status",
+      "labels": [
+        "spatial/scale/10"
       ],
       "variableId": "VariableID:34:3281",
       "hex": "#00b600",
       "opacity": 1
     }
   ],
-  "blockCount": 138
+  "blockCount": 150
 }
