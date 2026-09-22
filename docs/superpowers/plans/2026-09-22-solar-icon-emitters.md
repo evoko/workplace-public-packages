@@ -343,23 +343,24 @@ The repository owner commits `packages/codegen/src/normalize/svg.mjs` and
 
 ---
 
-### Task 2: Normalize every icon and logo into `spec/icons.json`
+### Task 2: Normalize every icon and logo into the icon spec — done
 
 **Files:**
 
-- Create: `packages/codegen/src/normalize/icons.mjs`
-- Create: `packages/codegen/test/icons.test.mjs`
-- Modify: `packages/codegen/src/normalize/deviations.mjs`
+- Created: `packages/codegen/src/normalize/icons.mjs`
+- Created: `packages/codegen/test/icons.test.mjs`
+- Modified: `packages/codegen/src/normalize/deviations.mjs`
 
-`buildIconSpec(catalog)` reads `docs/solar-icons/catalog.json` and the SVG files beside it and
-returns `{spec, deviations}` shaped as:
+`loadIconCatalog()` reads `docs/solar-icons/catalog.json`; `buildIconSpec(catalog)` reads the SVG
+files beside it and returns `{spec, deviations}`. It returns data and writes nothing: `spec/icons.json`
+is written by the CLI in task 9, so nothing here can reach into `spec/` or `docs/`.
 
 ```json
 {
   "icons": {
     "chevron-right": {
       "component": "IconChevronRight",
-      "name": "Chevron right",
+      "name": "ChevronRight",
       "category": "Navigation",
       "description": "Chevron right. Related: next, forward, caret, drill in, expand",
       "variants": {
@@ -371,6 +372,8 @@ returns `{spec, deviations}` shaped as:
   "logos": {
     "biamp-logo": {
       "component": "LogoBiamp",
+      "name": "Biamp Logo",
+      "prop": "variant",
       "raster": false,
       "variants": {
         "light-sm": {
@@ -379,27 +382,333 @@ returns `{spec, deviations}` shaped as:
         }
       }
     },
-    "app-icon": { "raster": true, "files": { "workplace": "app-icon/workplace@2x.png" } }
+    "os-logo": {
+      "component": "LogoOs",
+      "prop": "logo",
+      "raster": false,
+      "variants": { "teams": { "unsupported": "gradient", "source": "<svg …>" } }
+    },
+    "app-icon": {
+      "component": "LogoAppIcon",
+      "prop": "app",
+      "raster": true,
+      "files": { "workplace": "logos/app-icon/workplace@2x.png" }
+    }
   }
 }
 ```
 
-Three deviations are added to `DEVIATIONS` so they reach `spec/deviations.md` rather than living
-as comments:
+Icons are keyed by `fileStem`, which is unique across all 341; `kebab` is not, because two Figma
+components are both named `Icon/Phone`. Logos are keyed by their set's kebab and their variants by
+the file's slug, with the raster density (`@2x`) stripped. `prop` is the Figma property the variant
+is chosen by — one shared property becomes that property's name, and `biamp-logo`, which crosses
+`style` with `size`, becomes `variant`, matching the one slug its files are named by.
+
+**The policy this file owns.** Task 1's parser is deliberately policy-free, so the SOLAR rules land
+here:
+
+- **An icon's colour is inherited.** Every icon path in the corpus is `#111111`. That is asserted
+  and the fill dropped, so an icon path carries only `{d, fillRule}` and `currentColor` is safe. A
+  differently coloured icon path throws naming the file: it is a governance question, not something
+  to normalize away.
+- **A logo's colour is its own.** Every logo path keeps its `fill`, and an inherited one is an error.
+- **Component names come from the file stem**, never from `catalog.component`, which is not unique.
+  The catalog name is consulted only for its letters' case, and only when it spells the same name —
+  the stem is lowercase, so `usb` alone cannot know it is `IconUSB`. That keeps `IconUSB`,
+  `IconIODevice`, `IconUIBuilder` and `IconUIOnly` as SOLAR spells them while the Audio & DSP phone
+  still becomes `IconPhoneAudioDsp`. All 341 names are asserted unique at the end.
+- **`support` has no outline**, so its `outline` is a clone of its `solid` and the component still
+  renders. It is not the only set whose two variants are identical — 80 others, a chevron or a plus
+  with nothing to fill, are drawn the same in both — so the fallback is identified by the missing
+  source file, never by comparing geometry.
+- **`zone` keeps its `0 0 24 25` viewBox** verbatim, taken from the parsed SVG. `catalog.size` says
+  `[24, 24]` and is wrong for this one; it is used only to notice the mismatch.
+
+**The one unsupported asset.** `logos/os-logo/teams.svg` is 13 paths, 12 filled by `url(#…)` from 11
+radial and one linear gradient with 27 stops, plus every `fill-opacity` in the set, so `parseSvg`
+throws on it. It is handled by an explicit allowlist, `UNSUPPORTED_VECTORS`, and not by wrapping the
+parse in a bare try/catch: swallowing every parse failure would turn the same gradient appearing in
+some *other* asset into a silent omission, which is the one failure this pipeline exists to prevent.
+A failure for a file on the list becomes `{unsupported: 'gradient', source}`; a failure anywhere else
+propagates. The raw SVG **source string** travels in the spec rather than a path, because emitters
+read the spec and never reach into `docs/`. React inlines it as JSX in task 5; Flutter decides in
+task 7.
+
+**Deviations** are a second export, `ICON_DEVIATIONS`, beside `DEVIATIONS` in
+`normalize/deviations.mjs`. `DEVIATIONS` is the lookup `applyDeviation` walks per token value and is
+the wrong shape for these, but the record shape is the same `{token, figmaValue, reason, raise}`, so
+both sets render as rows of the one `spec/deviations.md` table. `buildIconSpec` returns the ones the
+catalog actually triggered, the way `buildTokenSpec` does, and a trigger with no matching entry
+throws: a second name collision or a second off-grid viewBox is a new governance question, not
+something to fold into an existing row.
 
 | Token | Why we differ |
 | --- | --- |
 | `icon.phone` | Two Figma components are both named `Icon/Phone`. The Audio & DSP one is emitted as `IconPhoneAudioDsp`. Ask SOLAR to rename one. |
 | `icon.support` | Figma has two solid variants and no outline. `outline` falls back to `solid`, so the component still renders. Ask SOLAR to supply the outline. |
 | `icon.zone` | Its outline viewBox is `0 0 24 25`, so the icon is 1px taller than the grid. The viewBox is carried verbatim rather than cropped. Ask SOLAR to redraw on the 24 grid. |
+| `logo.os-logo.teams` | Gradient fills and `fill-opacity` cannot be represented as vector paths. It ships as raw SVG. Ask SOLAR whether a flat-colour Teams mark exists. |
 
-Tests: all 341 icons present; 340 have both variants and `support` has `outline === solid` with a
-deviation recorded; the two Phone icons have distinct component names; `zone` keeps its viewBox;
-every icon path has no `fill`; every logo path has one; the raster set carries files, not paths.
+```js
+/**
+ * Turns docs/solar-icons into the icon spec.
+ *
+ * parseSvg reads SVG; this file holds the SOLAR policy parseSvg deliberately does not: which
+ * files are icons and which are logos, and therefore which paths own a colour and which inherit
+ * one. An icon is drawn in color/neutral/900 and tinted at use through `color.icon.*`, so its
+ * fill is asserted and dropped; a logo is a brand mark, so its fill is kept and a missing one is
+ * an error.
+ */
+
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { docsDir } from '../util/paths.mjs';
+import { byCodeUnit } from '../util/sort.mjs';
+import { ICON_DEVIATIONS } from './deviations.mjs';
+import { parseSvg } from './svg.mjs';
+
+const iconsDir = join(docsDir, 'solar-icons');
+
+// The single colour every icon path in the corpus is drawn in. Asserting it rather than
+// accepting any colour is what makes dropping the fill safe: a recoloured icon is a governance
+// question, not something to normalize away into currentColor.
+const ICON_COLOR = '#111111';
+
+/**
+ * Assets the vector IR cannot represent, listed one by one on purpose.
+ *
+ * logos/os-logo/teams.svg is 13 paths, 12 of them filled by `url(#…)` from 11 radial and one
+ * linear gradient, plus every `fill-opacity` in the set. It ships as raw SVG instead. Catching
+ * parse failures generally would turn the same gradient appearing in some *other* asset into a
+ * silent omission, which is the one failure this pipeline exists to prevent, so a failure
+ * anywhere else still propagates.
+ */
+export const UNSUPPORTED_VECTORS = new Set(['logos/os-logo/teams.svg']);
+
+export function loadIconCatalog() {
+  return JSON.parse(readFileSync(join(iconsDir, 'catalog.json'), 'utf8'));
+}
+
+/**
+ * Parses one asset, or records it as unsupported if it is on the allowlist.
+ *
+ * The raw source travels in the spec rather than a path, because emitters read the spec and
+ * never reach into docs/.
+ *
+ * @param {string} source
+ * @param {{file: string}} context the path relative to docs/solar-icons
+ */
+export function readVector(source, { file }) {
+  try {
+    return parseSvg(source, { file });
+  } catch (error) {
+    if (!UNSUPPORTED_VECTORS.has(file)) throw error;
+    return { unsupported: 'gradient', source };
+  }
+}
+
+const loadVector = (file) =>
+  readVector(readFileSync(join(iconsDir, file), 'utf8'), { file });
+
+const pascal = (text) =>
+  text
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(Boolean)
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join('');
+
+/**
+ * The component name is derived from the file stem, never taken from the catalog: two Figma
+ * components are both named `Icon/Phone`, so `catalog.component` is not unique while the stem
+ * is. The catalog name is consulted only for its letters' case, and only when it spells the
+ * derived name -- the stem is lowercase, so `usb` alone cannot know it is `IconUSB`.
+ */
+function componentName(prefix, stem, catalogName) {
+  const derived = prefix + pascal(stem);
+  return catalogName && catalogName.toLowerCase() === derived.toLowerCase()
+    ? catalogName
+    : derived;
+}
+
+// Basenames carry the raster density (workplace@2x.png); the slug is the variant, not the file.
+const slugOf = (file) =>
+  file
+    .split('/')
+    .pop()
+    .replace(/(@\d+x)?\.\w+$/, '');
+
+function iconPath(path, file) {
+  if (path.fill !== ICON_COLOR)
+    throw new Error(
+      `${file}: icon path is filled ${path.fill ?? 'by inheritance'}, expected ${ICON_COLOR}; ` +
+        'an icon takes its colour from color.icon.*, so a different one is a governance question',
+    );
+  return { d: path.d, fillRule: path.fillRule };
+}
+
+function logoPath(path, file) {
+  if (path.fill === null)
+    throw new Error(
+      `${file}: logo path inherits its fill; a brand mark carries its own colours and is ` +
+        'never tinted',
+    );
+  return { d: path.d, fillRule: path.fillRule, fill: path.fill };
+}
+
+function logoProp(group) {
+  // One shared prop is the component's prop; biamp-logo crosses style with size, so its two
+  // Figma props collapse into the one variant slug the files are named by.
+  const keys = [
+    ...new Set(group.variants.flatMap((v) => Object.keys(v.props ?? {}))),
+  ];
+  return keys.length === 1 ? keys[0].toLowerCase() : 'variant';
+}
+
+export function buildIconSpec(catalog) {
+  const deviations = [];
+  const recorded = new Set();
+  // Deviations are recorded because the data triggered them, so the report describes the corpus
+  // rather than a list someone remembered to update. A trigger with no entry stops the build: a
+  // second off-grid viewBox or a second name collision is a new governance question, not
+  // something to fold into an existing row.
+  const record = (token, trigger) => {
+    const known = ICON_DEVIATIONS.find((d) => d.token === token);
+    if (!known)
+      throw new Error(
+        `${trigger} has no recorded deviation for ${token}; add one to ICON_DEVIATIONS ` +
+          'and take it to SOLAR governance',
+      );
+    if (recorded.has(token)) return;
+    recorded.add(token);
+    deviations.push({ ...known });
+  };
+
+  const collisions = new Map();
+  for (const icon of catalog.icons) {
+    const seen = collisions.get(icon.component);
+    if (seen) record(`icon.${seen.kebab}`, `${seen.fileStem}/${icon.fileStem}`);
+    else collisions.set(icon.component, icon);
+  }
+
+  const icons = {};
+  for (const icon of [...catalog.icons].sort((a, b) =>
+    byCodeUnit(a.fileStem, b.fileStem),
+  )) {
+    const variants = {};
+    for (const name of ['outline', 'solid']) {
+      const source = icon.variants[name];
+      if (!source) continue;
+      const vector = loadVector(source.file);
+      const expected = [0, 0, ...icon.size];
+      if (vector.viewBox.some((n, i) => n !== expected[i]))
+        record(`icon.${icon.kebab}`, source.file);
+      variants[name] = {
+        viewBox: vector.viewBox,
+        paths: vector.paths.map((p) => iconPath(p, source.file)),
+      };
+    }
+
+    // A missing variant still has to render, so it falls back to the other one rather than
+    // leaving a hole every consumer would have to branch on.
+    if (!variants.outline) {
+      record(`icon.${icon.kebab}`, `${icon.fileStem} outline`);
+      variants.outline = structuredClone(variants.solid);
+    }
+    if (!variants.solid)
+      throw new Error(
+        `${icon.fileStem}: has neither a solid nor an outline variant`,
+      );
+
+    icons[icon.fileStem] = {
+      component: componentName('Icon', icon.fileStem, icon.component),
+      name: icon.name,
+      category: icon.category,
+      description: icon.description,
+      variants: { outline: variants.outline, solid: variants.solid },
+    };
+  }
+
+  const names = new Set(Object.values(icons).map((i) => i.component));
+  if (names.size !== Object.keys(icons).length)
+    throw new Error(
+      `component names are not unique: ${Object.keys(icons).length} icons produced ${names.size} names`,
+    );
+
+  const logos = {};
+  for (const group of [...catalog.logos].sort((a, b) =>
+    byCodeUnit(a.kebab, b.kebab),
+  )) {
+    const entry = {
+      // os-logo and biamp-logo already say "logo"; app-icon does not.
+      component: componentName('Logo', group.kebab.replace(/-logo$/, '')),
+      name: group.name,
+      prop: logoProp(group),
+      raster: group.variants.every((v) => v.raster),
+    };
+    if (group.variants.some((v) => v.raster) !== entry.raster)
+      throw new Error(
+        `${group.kebab}: mixes raster and vector variants, which need different components`,
+      );
+
+    if (entry.raster) {
+      entry.files = Object.fromEntries(
+        group.variants.map((v) => [slugOf(v.file), v.file]),
+      );
+    } else {
+      entry.variants = {};
+      for (const variant of group.variants) {
+        const slug = slugOf(variant.file);
+        const vector = loadVector(variant.file);
+        if (vector.unsupported) {
+          record(`logo.${group.kebab}.${slug}`, variant.file);
+          entry.variants[slug] = vector;
+          continue;
+        }
+        entry.variants[slug] = {
+          viewBox: vector.viewBox,
+          paths: vector.paths.map((p) => logoPath(p, variant.file)),
+        };
+      }
+    }
+    logos[group.kebab] = entry;
+  }
+
+  return { spec: { icons, logos }, deviations };
+}
+```
+
+**Tests (18, all passing).** The spec is built once at module scope from the real catalog, as
+`tokens.test.mjs` does. 341 sets under 341 distinct component names; the catalog metadata beside the
+geometry; 340 outlines drawn from their own file with `support` the only fallback, its `outline`
+equal to but not the same object as its `solid`; the two Phone components separated; the acronyms
+kept; `zone` at `0 0 24 25` against its solid's `0 0 24 24`; and — the assertion that proves
+`currentColor` will work — every path of every variant of all 341 icons carrying exactly `d` and
+`fillRule` and no `#111111` anywhere. Then the logos: each set named after its Figma prop; every logo
+path with a `#rrggbb` fill; Google's four brand colours in order; both Biamp marks resolving `white`
+and `black` and differing from each other; Teams as `{unsupported, source}` whose source contains
+`radialGradient`; and the app icons as five `.png` files with no paths. A totals block ties the spec
+to the measured corpus, and two tests hold the allowlist to being an allowlist: a synthetic gradient
+document throws under any other file name, and is recorded only under `logos/os-logo/teams.svg`.
+
+The totals are worth stating exactly, because the corpus and the spec differ by one on purpose.
+686 SVG files exist: 681 icon files (340 outline, 341 solid) and 5 logo files. 685 parse — teams.svg
+is the exception — carrying 811 paths, 791 of them in icons and 20 in the four vector logos. The spec
+holds 682 icon variants and 792 icon paths, one more of each, and that difference is exactly the
+`support` outline standing in for its solid.
 
 Run: `npx vitest run packages/codegen/test/icons.test.mjs`
 
+The repository owner commits `packages/codegen/src/normalize/icons.mjs`,
+`packages/codegen/test/icons.test.mjs` and the `ICON_DEVIATIONS` export in
+`packages/codegen/src/normalize/deviations.mjs`.
+
 ---
+
+**Measured, so Task 3 does not rediscover it as a bug:** 81 of the 341 icons are drawn
+identically in outline and solid. They have distinct Figma node ids, so it is deliberate, not a
+duplication fault. Both targets will therefore carry two identical path sets for those icons —
+about 28 KB before compression. That is not worth de-duplicating behind a level of indirection,
+but it should be stated rather than discovered.
 
 ### Task 3: React icon emitter
 

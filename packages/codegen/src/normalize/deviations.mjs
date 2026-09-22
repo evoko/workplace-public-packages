@@ -27,6 +27,41 @@ export const DEVIATIONS = [
   },
 ];
 
+// The icon corpus has its own defects. They are a separate export because DEVIATIONS is the
+// lookup applyDeviation walks per token value, and these are not token values: buildIconSpec
+// records them when the catalog actually triggers them. The record shape is the same, so both
+// sets render as rows of the one spec/deviations.md table.
+export const ICON_DEVIATIONS = [
+  {
+    token: 'icon.phone',
+    figmaValue: 'two components named Icon/Phone',
+    reason:
+      'Icon/Phone exists on both the Communication and the Audio & DSP page, so the Figma name is not unique. Component names are derived from the file stem instead, which makes the Audio & DSP one IconPhoneAudioDsp.',
+    raise: 'Ask SOLAR to rename one of the two Icon/Phone components.',
+  },
+  {
+    token: 'icon.support',
+    figmaValue: 'two solid variants, no outline',
+    reason:
+      'Icon/Support has its solid drawing in both variant slots and no outline, so there is no outline geometry to emit. The outline falls back to the solid one, so the component still renders rather than leaving a hole every consumer has to branch on.',
+    raise: 'Ask SOLAR to draw the missing outline variant of Icon/Support.',
+  },
+  {
+    token: 'icon.zone',
+    figmaValue: '0 0 24 25',
+    reason:
+      'The outline of Icon/Zone is drawn 1px off the 24 grid. Its viewBox is carried verbatim so the geometry stays correct; cropping it to 24 would shift the drawing.',
+    raise: 'Ask SOLAR to redraw the Icon/Zone outline on the 24 grid.',
+  },
+  {
+    token: 'logo.os-logo.teams',
+    figmaValue: '12 gradient fills and 7 fill-opacity attributes',
+    reason:
+      'The Teams mark is drawn with radial and linear gradients and per-path opacity, neither of which the vector IR represents. It ships as its raw SVG source instead of as paths, so each target decides for itself how to render it.',
+    raise: 'Ask SOLAR whether a flat-colour Teams mark exists.',
+  },
+];
+
 /**
  * @returns {{value: unknown, deviation: null | {token: string, figmaValue: unknown, reason: string}}}
  */
