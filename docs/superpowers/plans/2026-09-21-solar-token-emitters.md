@@ -632,6 +632,16 @@ describe('buildTokenSpec', () => {
     expect(names.has('color.border.inverse.strong')).toBe(true);
   });
 
+  it('falls back to the desktop value where SOLAR has no mobile one', () => {
+    // The Type collection has size/display/xs but no line-height/display/xs, so these two text
+    // styles have no Mobile line height at all. The gap is reported, not silently filled.
+    const t = flat.get('typography.display.xs.medium');
+    expect(t.ext.modes.mobile.lineHeight).toBe(t.ext.modes.desktop.lineHeight);
+    expect(
+      deviations.some((d) => d.token === 'typography.display.xs.medium'),
+    ).toBe(true);
+  });
+
   it('reports the deviations it applied', () => {
     expect(deviations.length).toBeGreaterThan(0);
     for (const d of deviations) expect(d.reason).toBeTruthy();
@@ -817,6 +827,19 @@ export function buildTokenSpec(contract) {
   for (const t of contract.textStyles) {
     if (t.figma.startsWith('.') || t.figma.startsWith('_')) continue;
     const doc = `typography.${t.figma.replaceAll('/', '.')}`;
+    // A text style only gets a Mobile value where the Type collection has the matching
+    // variable. display/xs has a size variable but no line-height one, so those styles have no
+    // Mobile line height at all. The Desktop value is carried over, since the size is identical
+    // in both modes, and the gap is reported for SOLAR governance.
+    if (t.sizeMobile == null || t.lineHeightMobile == null) {
+      record({
+        token: doc,
+        figmaValue: 'no Mobile value',
+        reason:
+          'The Type collection has no matching variable for this text style, so Figma exposes no Mobile value. The Desktop value is used for both modes.',
+        raise: `Ask SOLAR to add the missing Type variable for ${t.figma}.`,
+      });
+    }
     setPath(spec, doc, {
       $type: 'typography',
       $value: {
@@ -838,8 +861,8 @@ export function buildTokenSpec(contract) {
               lineHeight: px(t.lineHeightDesktop),
             },
             mobile: {
-              fontSize: px(t.sizeMobile),
-              lineHeight: px(t.lineHeightMobile),
+              fontSize: px(t.sizeMobile ?? t.sizeDesktop),
+              lineHeight: px(t.lineHeightMobile ?? t.lineHeightDesktop),
             },
           },
         },
@@ -1845,12 +1868,28 @@ git commit -m "feat(flutter): add the solar_flutter package skeleton"
 
 ### Task 10: Flutter token emitter
 
-Dart classes are not first-class values, so a static-only `SolarColorsLight` would force an
-`if (dark) ... else ...` at every call site. Groups whose values change with a mode (colour,
-type, typography, shadow) are therefore emitted as **instance classes with `static const`
-instances per mode**, and a `SolarTheme` `ThemeExtension` bundles them so a widget reads
-`Theme.of(context).extension<SolarTheme>()!.colors.surfaceBackground`. Mode-invariant groups
-(spacing, radius, motion, z-index and the rest) stay as plain static holders.
+What decides how a token is emitted is **whether it varies with a mode**, not which family it
+belongs to. Two families hold both kinds, so splitting on the family name alone produces two
+Dart classes with the same name:
+
+| Family | Mode varying                                                     | Mode invariant                                      |
+| ------ | ---------------------------------------------------------------- | --------------------------------------------------- |
+| colour | the 287 semantic tokens, Light and Dark, in `SolarColors`        | the 158 raw palette values in `SolarPalette`        |
+| type   | the 41 Type collection sizes, Desktop and Mobile, in `SolarType` | families, weights and the raw scales in `SolarFont` |
+
+Mode-varying groups become instance classes with one `static const` instance per mode, because
+Dart classes are not first-class values: a static-only `SolarColorsLight` would force an
+`if (dark)` at every call site. Mode-invariant groups stay static holders.
+
+A `SolarTheme` `ThemeExtension` bundles the four mode-varying sets, so a widget reads
+`Theme.of(context).extension<SolarTheme>()!.colors.surfaceBackground`. Its type field is called
+`typeScale`, because `ThemeExtension` already declares `type` and `ThemeData` keys extensions by
+it; a field of that name breaks extension lookup entirely, and the analyzer catches it.
+
+Seven token names are not legal Dart identifiers and one collides with a reserved word. All are
+escaped with a `$` prefix, which keeps the SOLAR spelling verbatim: `inset.2xs` becomes `$2xs`
+and `border.default` becomes `$default`. Respelling them as `twoXs` or `defaultWidth` would
+invent names the design system does not use.
 
 **Files:**
 
@@ -1865,6 +1904,7 @@ instances per mode**, and a `SolarTheme` `ThemeExtension` bundles them so a widg
 ```js
 import { describe, expect, it } from 'vitest';
 import { buildTokenSpec, loadContract } from '../src/normalize/tokens.mjs';
+import { flattenSpec } from '../src/spec.mjs';
 import { dartColor, dartName, renderFlutter } from '../src/emit/flutter.mjs';
 
 const { spec } = buildTokenSpec(loadContract());
@@ -1883,50 +1923,69 @@ describe('dartName', () => {
     expect(dartName('font-size.14')).toBe('fontSize14');
     expect(dartName('category.01.strong')).toBe('category01Strong');
   });
+
+  it('escapes what Dart would reject, keeping the SOLAR spelling', () => {
+    // A leading digit is not a legal identifier and `default` is a reserved word.
+    expect(dartName('2xs')).toBe('$2xs');
+    expect(dartName('default')).toBe('$default');
+  });
 });
 
 describe('renderFlutter', () => {
-  it('emits mode-varying groups as instance classes with one instance per mode', () => {
+  it('splits each family by whether it varies with a mode', () => {
+    // Colour holds both a mode-varying semantic set and a flat primitive palette; they cannot
+    // share a class, because one needs instances per mode and the other is static.
     expect(dart).toContain('class SolarColors {');
     expect(dart).toContain('  final Color surfaceBackground;');
     expect(dart).toMatch(/static const SolarColors light = SolarColors\(/);
     expect(dart).toMatch(/static const SolarColors dark = SolarColors\(/);
-    expect(dart).toContain('surfaceBackground: Color(0xFFF5F5F5)');
-    expect(dart).toContain('surfaceBackground: Color(0xFF111111)');
+    expect(dart).toContain('abstract final class SolarPalette');
+    expect(dart).toContain('static const Color brandRed = Color(0xFFD22730);');
+  });
+
+  it('separates the mode-varying type scale from the mode-invariant fonts', () => {
+    expect(dart).toContain('class SolarType {');
+    expect(dart).toMatch(/static const SolarType desktop = SolarType\(/);
+    expect(dart).toContain('abstract final class SolarFont');
+    expect(dart).toContain("static const String fontFamilyInter = 'Inter';");
+    expect(dart).toContain(
+      'static const FontWeight fontWeight600 = FontWeight.w600;',
+    );
   });
 
   it('emits mode-invariant groups as static holders', () => {
     expect(dart).toContain('abstract final class SolarInset');
     expect(dart).toContain('static const double md = 16.0;');
     expect(dart).toContain(
-      'static const Duration fast = Duration(milliseconds: 100);',
+      'static const Duration durationFast = Duration(milliseconds: 100);',
     );
   });
 
   it('emits easings as Cubic, which is why the keywords had to go', () => {
     expect(dart).toContain(
-      'static const Cubic both = Cubic(0.42, 0, 0.58, 1);',
+      'static const Cubic easeBoth = Cubic(0.42, 0, 0.58, 1);',
     );
   });
 
-  it('emits text styles with letter spacing resolved from percentages to pixels', () => {
-    expect(dart).toMatch(/final TextStyle labelMd;/);
-    expect(dart).toMatch(/labelMd: TextStyle\([\s\S]*?fontSize: 14\.0/);
-  });
-
-  it('bundles the mode-varying sets into a ThemeExtension', () => {
+  it('names the theme extension field typeScale, not type', () => {
+    // ThemeExtension already declares `type`, and ThemeData keys extensions by it.
     expect(dart).toContain(
       'class SolarTheme extends ThemeExtension<SolarTheme>',
     );
-    expect(dart).toContain('static const SolarTheme light = SolarTheme(');
-    expect(dart).toContain('SolarTheme lerp(');
+    expect(dart).toContain('final SolarType typeScale;');
+    expect(dart).not.toMatch(/final SolarType type;/);
   });
 
-  it('records canonical values in the manifest so parity can compare targets', () => {
+  it('covers every token in the spec', () => {
+    expect(Object.keys(manifest)).toHaveLength(flattenSpec(spec).length);
+  });
+
+  it('records canonical values so parity can compare targets', () => {
     expect(manifest['color.surface.background'].normalized).toBe(
       'rgba(245, 245, 245, 1)',
     );
     expect(manifest['inset.md'].normalized).toBe(16);
+    expect(manifest['motion.ease.both'].normalized).toEqual([0.42, 0, 0.58, 1]);
   });
 });
 ```
@@ -1950,11 +2009,25 @@ import { shadowLayers } from './shadow.mjs';
 
 const OUT_DIR = join(packagesDir, 'solar_flutter', 'lib', 'src', 'generated');
 
+// Dart reserved words a token's tail could collide with, e.g. border.default.
+const RESERVED = new Set(
+  'assert break case catch class const continue default do else enum extends false final finally for if in is new null rethrow return super switch this throw true try var void while with'.split(
+    ' ',
+  ),
+);
+
+/**
+ * A token's path tail as a camelCase Dart field. A leading digit is not a legal identifier and
+ * a reserved word cannot be a field name; both are escaped with `$` so the SOLAR name survives
+ * verbatim (`inset.2xs` becomes `$2xs`) rather than being respelled into something else.
+ */
 export function dartName(rest) {
-  const parts = rest.split(/[.\-]/).filter(Boolean);
-  return parts
+  const name = rest
+    .split(/[.-]/)
+    .filter(Boolean)
     .map((p, i) => (i === 0 ? p : p.charAt(0).toUpperCase() + p.slice(1)))
     .join('');
+  return /^[0-9]/.test(name) || RESERVED.has(name) ? `$${name}` : name;
 }
 
 /** `#rrggbb` or `rgba(r, g, b, a)` to Dart `Color(0xAARRGGBB)`. */
@@ -1973,18 +2046,25 @@ const letterSpacingPx = (ls, fontSizePx) =>
     ? Math.round((parseFloat(ls) / 100) * fontSizePx * 100) / 100
     : parseFloat(ls);
 
-// Groups whose values depend on a mode become instance classes with one instance per mode.
-const MODAL_GROUPS = {
-  color: ['light', 'dark'],
-  type: ['desktop', 'mobile'],
-  typography: ['desktop', 'mobile'],
-  shadow: ['light', 'dark'],
-};
-const CLASS_FOR = {
+// Whether a token varies by mode decides how it is emitted, not which family it sits in: the
+// colour family holds both the mode-varying semantic set and the flat primitive palette, and
+// the type family holds the mode-varying scale alongside mode-invariant families and weights.
+const modesOf = (t) =>
+  t.modes
+    ? t.modes.light !== undefined
+      ? ['light', 'dark']
+      : ['desktop', 'mobile']
+    : null;
+
+const MODAL_CLASS = {
   color: 'SolarColors',
   type: 'SolarType',
   typography: 'SolarTypography',
   shadow: 'SolarShadows',
+};
+const STATIC_CLASS = {
+  color: 'SolarPalette',
+  type: 'SolarFont',
   inset: 'SolarInset',
   stack: 'SolarStack',
   radius: 'SolarRadius',
@@ -2001,15 +2081,19 @@ export function renderFlutter(spec) {
   const tokens = flattenSpec(spec);
   const index = new Map(tokens.map((t) => [t.name, t]));
   const manifest = {};
-  const statics = new Map(); // class -> lines
-  const modal = new Map(); // class -> {fields: [], values: {mode: []}}
+  const statics = new Map();
+  const modal = new Map();
+
   const addStatic = (cls, line) =>
     statics.set(cls, [...(statics.get(cls) ?? []), line]);
   const addModal = (cls, modes, dartType, field, perMode) => {
     const g = modal.get(cls) ?? {
+      modes,
+      names: [],
       fields: [],
       values: Object.fromEntries(modes.map((m) => [m, []])),
     };
+    g.names.push(field);
     g.fields.push(`  final ${dartType} ${field};`);
     for (const m of modes) g.values[m].push(`    ${field}: ${perMode[m]},`);
     modal.set(cls, g);
@@ -2033,53 +2117,69 @@ export function renderFlutter(spec) {
 
   for (const t of tokens) {
     const [head, ...rest] = t.name.split('.');
-    const cls = CLASS_FOR[head];
-    if (!cls)
-      throw new Error(
-        `no Dart class mapped for token group "${head}" (${t.name})`,
-      );
     const field = dartName(rest.join('.')) || dartName(head);
-    const modes = MODAL_GROUPS[head];
+    const modes = modesOf(t);
 
+    if (modes) {
+      const cls = MODAL_CLASS[head];
+      if (!cls)
+        throw new Error(`no mode-varying Dart class for "${head}" (${t.name})`);
+      if (t.type === 'color') {
+        addModal(cls, modes, 'Color', field, {
+          light: dartColor(t.modes.light),
+          dark: dartColor(t.modes.dark),
+        });
+        manifest[t.name] = entry(
+          'color',
+          dartColor(t.modes.light),
+          t.modes.light,
+        );
+      } else if (t.type === 'typography') {
+        addModal(cls, modes, 'TextStyle', field, {
+          desktop: textStyle({ ...t.value, ...t.ext.modes.desktop }),
+          mobile: textStyle({ ...t.value, ...t.ext.modes.mobile }),
+        });
+        manifest[t.name] = entry('typography', 'TextStyle', {
+          ...t.value,
+          ...t.ext.modes.desktop,
+        });
+      } else if (t.type === 'shadow') {
+        addModal(cls, modes, 'List<BoxShadow>', field, {
+          light: boxShadows(shadowLayers(index, { $value: t.value }, 'light')),
+          dark: boxShadows(shadowLayers(index, { $value: t.value }, 'dark')),
+        });
+        manifest[t.name] = entry(
+          'shadow',
+          'BoxShadow[]',
+          shadowLayers(index, { $value: t.value }, 'light'),
+        );
+      } else if (t.type === 'dimension') {
+        addModal(cls, modes, 'double', field, {
+          desktop: dbl(canonical.dimension(t.modes.desktop)),
+          mobile: dbl(canonical.dimension(t.modes.mobile)),
+        });
+        manifest[t.name] = entry(
+          'dimension',
+          dbl(canonical.dimension(t.modes.desktop)),
+        );
+      } else {
+        throw new Error(
+          `no mode-varying Dart emitter for type ${t.type} (${t.name})`,
+        );
+      }
+      continue;
+    }
+
+    const cls = STATIC_CLASS[head];
+    if (!cls)
+      throw new Error(`no Dart class for token group "${head}" (${t.name})`);
     if (t.type === 'color') {
-      addModal(cls, modes, 'Color', field, {
-        light: dartColor(t.modes.light),
-        dark: dartColor(t.modes.dark),
-      });
-      manifest[t.name] = entry(
-        'color',
-        dartColor(t.modes.light),
-        t.modes.light,
-      );
-    } else if (t.type === 'typography') {
-      const d = { ...t.value, ...t.ext.modes.desktop };
-      const m = { ...t.value, ...t.ext.modes.mobile };
-      addModal(cls, modes, 'TextStyle', field, {
-        desktop: textStyle(d),
-        mobile: textStyle(m),
-      });
-      manifest[t.name] = entry('typography', 'TextStyle', t.value);
-    } else if (t.type === 'shadow') {
-      const light = shadowLayers(index, { $value: t.value }, 'light');
-      const night = shadowLayers(index, { $value: t.value }, 'dark');
-      addModal(cls, modes, 'List<BoxShadow>', field, {
-        light: boxShadows(light),
-        dark: boxShadows(night),
-      });
-      manifest[t.name] = entry('shadow', 'BoxShadow[]', light);
-    } else if (head === 'type') {
-      addModal(cls, modes, 'double', field, {
-        desktop: dbl(canonical.dimension(t.modes.desktop)),
-        mobile: dbl(canonical.dimension(t.modes.mobile)),
-      });
-      manifest[t.name] = entry(
-        'dimension',
-        dbl(canonical.dimension(t.modes.desktop)),
-      );
+      addStatic(cls, `  static const Color ${field} = ${dartColor(t.value)};`);
+      manifest[t.name] = entry('color', dartColor(t.value), t.value);
     } else if (t.type === 'dimension') {
-      const v = canonical.dimension(t.value);
-      addStatic(cls, `  static const double ${field} = ${dbl(v)};`);
-      manifest[t.name] = entry('dimension', dbl(v));
+      const v = dbl(canonical.dimension(t.value));
+      addStatic(cls, `  static const double ${field} = ${v};`);
+      manifest[t.name] = entry('dimension', v);
     } else if (t.type === 'duration') {
       const ms = canonical.duration(t.value);
       addStatic(
@@ -2088,15 +2188,9 @@ export function renderFlutter(spec) {
       );
       manifest[t.name] = entry('duration', `Duration(milliseconds: ${ms})`, ms);
     } else if (t.type === 'cubicBezier') {
-      addStatic(
-        cls,
-        `  static const Cubic ${field} = Cubic(${t.value.join(', ')});`,
-      );
-      manifest[t.name] = entry(
-        'cubicBezier',
-        `Cubic(${t.value.join(', ')})`,
-        t.value,
-      );
+      const lit = `Cubic(${t.value.join(', ')})`;
+      addStatic(cls, `  static const Cubic ${field} = ${lit};`);
+      manifest[t.name] = entry('cubicBezier', lit);
     } else if (t.type === 'number') {
       addStatic(cls, `  static const int ${field} = ${t.value};`);
       manifest[t.name] = entry('number', t.value);
@@ -2104,11 +2198,9 @@ export function renderFlutter(spec) {
       addStatic(cls, `  static const String ${field} = '${t.value}';`);
       manifest[t.name] = entry('fontFamily', t.value);
     } else if (t.type === 'fontWeight') {
-      addStatic(
-        cls,
-        `  static const FontWeight ${field} = FontWeight.w${t.value};`,
-      );
-      manifest[t.name] = entry('fontWeight', `FontWeight.w${t.value}`, t.value);
+      const lit = `FontWeight.w${t.value}`;
+      addStatic(cls, `  static const FontWeight ${field} = ${lit};`);
+      manifest[t.name] = entry('fontWeight', lit, t.value);
     } else {
       throw new Error(`no Dart emitter for type ${t.type} (${t.name})`);
     }
@@ -2117,13 +2209,11 @@ export function renderFlutter(spec) {
   const modalClasses = [...modal.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([cls, g]) => {
-      const params = g.fields
-        .map((f) => `    required this.${/ (\w+);$/.exec(f)[1]},`)
-        .join('\n');
-      const instances = Object.entries(g.values)
+      const params = g.names.map((n) => `    required this.${n},`).join('\n');
+      const instances = g.modes
         .map(
-          ([mode, lines]) =>
-            `  static const ${cls} ${mode} = ${cls}(\n${lines.join('\n')}\n  );`,
+          (mode) =>
+            `  static const ${cls} ${mode} = ${cls}(\n${g.values[mode].join('\n')}\n  );`,
         )
         .join('\n\n');
       return (
@@ -2141,18 +2231,19 @@ export function renderFlutter(spec) {
     )
     .join('\n');
 
-  // The ThemeExtension bundles the mode-varying sets. lerp snaps at the halfway point: design
-  // tokens are discrete values, and interpolating a semantic colour would invent a token.
+  // Bundles the mode-varying sets so a widget reads them from the ambient theme. The type field
+  // is called typeScale because ThemeExtension already declares `type`, which ThemeData uses to
+  // key extensions; shadowing it breaks Theme.of(context).extension<SolarTheme>(). lerp snaps at
+  // the halfway point: design tokens are discrete, and interpolating a semantic colour would
+  // invent a value that is not in the system.
   const theme =
     `@immutable\nclass SolarTheme extends ThemeExtension<SolarTheme> {\n` +
-    `  const SolarTheme({required this.colors, required this.shadows, required this.type, required this.typography});\n\n` +
-    `  final SolarColors colors;\n  final SolarShadows shadows;\n  final SolarType type;\n  final SolarTypography typography;\n\n` +
-    `  static const SolarTheme light = SolarTheme(colors: SolarColors.light, shadows: SolarShadows.light, type: SolarType.desktop, typography: SolarTypography.desktop);\n` +
-    `  static const SolarTheme dark = SolarTheme(colors: SolarColors.dark, shadows: SolarShadows.dark, type: SolarType.desktop, typography: SolarTypography.desktop);\n\n` +
-    `  @override\n  SolarTheme copyWith({SolarColors? colors, SolarShadows? shadows, SolarType? type, SolarTypography? typography}) =>\n` +
-    `      SolarTheme(colors: colors ?? this.colors, shadows: shadows ?? this.shadows, type: type ?? this.type, typography: typography ?? this.typography);\n\n` +
-    `  @override\n  SolarTheme lerp(ThemeExtension<SolarTheme>? other, double t) =>\n` +
-    `      (other is SolarTheme && t >= 0.5) ? other : this;\n}\n`;
+    `  const SolarTheme({\n    required this.colors,\n    required this.shadows,\n    required this.typeScale,\n    required this.typography,\n  });\n\n` +
+    `  final SolarColors colors;\n  final SolarShadows shadows;\n  final SolarType typeScale;\n  final SolarTypography typography;\n\n` +
+    `  static const SolarTheme light = SolarTheme(\n    colors: SolarColors.light,\n    shadows: SolarShadows.light,\n    typeScale: SolarType.desktop,\n    typography: SolarTypography.desktop,\n  );\n\n` +
+    `  static const SolarTheme dark = SolarTheme(\n    colors: SolarColors.dark,\n    shadows: SolarShadows.dark,\n    typeScale: SolarType.desktop,\n    typography: SolarTypography.desktop,\n  );\n\n` +
+    `  @override\n  SolarTheme copyWith({\n    SolarColors? colors,\n    SolarShadows? shadows,\n    SolarType? typeScale,\n    SolarTypography? typography,\n  }) => SolarTheme(\n    colors: colors ?? this.colors,\n    shadows: shadows ?? this.shadows,\n    typeScale: typeScale ?? this.typeScale,\n    typography: typography ?? this.typography,\n  );\n\n` +
+    `  @override\n  SolarTheme lerp(ThemeExtension<SolarTheme>? other, double t) =>\n      (other is SolarTheme && t >= 0.5) ? other : this;\n}\n`;
 
   const header =
     `// SOLAR design tokens for Flutter.\n` +
@@ -2160,7 +2251,7 @@ export function renderFlutter(spec) {
     `import 'package:flutter/animation.dart' show Cubic;\n` +
     `import 'package:flutter/foundation.dart' show immutable;\n` +
     `import 'package:flutter/material.dart' show ThemeExtension;\n` +
-    `import 'package:flutter/painting.dart' show BoxShadow, Color, FontWeight, Offset, TextStyle;\n\n`;
+    `import 'package:flutter/painting.dart'\n    show BoxShadow, Color, FontWeight, Offset, TextStyle;\n\n`;
 
   return {
     dart: header + modalClasses + '\n' + staticClasses + '\n' + theme,
@@ -2191,25 +2282,62 @@ Expected: PASS, 9 tests.
 `packages/solar_flutter/test/tokens_test.dart`:
 
 ```dart
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:solar_flutter/solar_flutter.dart';
 
 void main() {
-  test('light and dark surface backgrounds differ', () {
-    expect(SolarColors.light.surfaceBackground, isNot(SolarColors.dark.surfaceBackground));
+  test('light and dark are different sets, not the same one twice', () {
+    expect(
+      SolarColors.light.surfaceBackground,
+      isNot(SolarColors.dark.surfaceBackground),
+    );
   });
 
-  test('spacing is exposed as logical pixels', () {
+  test('spacing and radius are logical pixels', () {
     expect(SolarInset.md, 16.0);
+    expect(SolarRadius.control, 6.0);
   });
 
-  test('easings are curves, not keywords', () {
-    expect(SolarMotion.both.transform(0.5), closeTo(0.5, 0.01));
+  test('easings are curves, which is why the CSS keywords could not be kept',
+      () {
+    expect(SolarMotion.easeBoth.transform(0.5), closeTo(0.5, 0.01));
+  });
+
+  test('escaped names keep the SOLAR spelling behind a dollar', () {
+    expect(SolarInset.$2xs, 4.0);
+    expect(SolarBorder.$default, 1.0);
+  });
+
+  test('the primitive palette is separate from the semantic set', () {
+    expect(SolarPalette.brandRed, const Color(0xFFD22730));
   });
 
   test('the theme extension carries a full set per mode', () {
-    expect(SolarTheme.light.colors.surfaceBackground, SolarColors.light.surfaceBackground);
-    expect(SolarTheme.dark.colors.surfaceBackground, SolarColors.dark.surfaceBackground);
+    expect(
+      SolarTheme.light.colors.surfaceBackground,
+      SolarColors.light.surfaceBackground,
+    );
+    expect(
+      SolarTheme.dark.colors.surfaceBackground,
+      SolarColors.dark.surfaceBackground,
+    );
+  });
+
+  test('the theme extension does not shadow ThemeExtension.type', () {
+    // ThemeData keys extensions by `type`; a field of that name would break lookup.
+    expect(SolarTheme.light.type, SolarTheme);
+    final theme = ThemeData(extensions: const [SolarTheme.light]);
+    expect(theme.extension<SolarTheme>(), isNotNull);
+  });
+
+  test('type and typography switch with the viewport, not the brightness', () {
+    expect(SolarType.mobile.sizeDisplayLg,
+        lessThan(SolarType.desktop.sizeDisplayLg));
+    expect(
+      SolarTypography.mobile.displayLg.fontSize,
+      lessThan(SolarTypography.desktop.displayLg.fontSize!),
+    );
   });
 }
 ```

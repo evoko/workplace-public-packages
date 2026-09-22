@@ -120,6 +120,19 @@ export function buildTokenSpec(contract) {
   for (const t of contract.textStyles) {
     if (t.figma.startsWith('.') || t.figma.startsWith('_')) continue;
     const doc = `typography.${t.figma.replaceAll('/', '.')}`;
+    // A text style only gets a Mobile value where the Type collection has the matching
+    // variable. display/xs has a size variable but no line-height one, so those styles have no
+    // Mobile line height at all. The Desktop value is carried over, since the size is identical
+    // in both modes, and the gap is reported for SOLAR governance.
+    if (t.sizeMobile == null || t.lineHeightMobile == null) {
+      record({
+        token: doc,
+        figmaValue: 'no Mobile value',
+        reason:
+          'The Type collection has no matching variable for this text style, so Figma exposes no Mobile value. The Desktop value is used for both modes.',
+        raise: `Ask SOLAR to add the missing Type variable for ${t.figma}.`,
+      });
+    }
     setPath(spec, doc, {
       $type: 'typography',
       $value: {
@@ -141,8 +154,8 @@ export function buildTokenSpec(contract) {
               lineHeight: px(t.lineHeightDesktop),
             },
             mobile: {
-              fontSize: px(t.sizeMobile),
-              lineHeight: px(t.lineHeightMobile),
+              fontSize: px(t.sizeMobile ?? t.sizeDesktop),
+              lineHeight: px(t.lineHeightMobile ?? t.lineHeightDesktop),
             },
           },
         },

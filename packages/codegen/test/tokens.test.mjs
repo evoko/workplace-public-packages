@@ -75,6 +75,16 @@ describe('buildTokenSpec', () => {
     expect(names.has('color.border.inverse.strong')).toBe(true);
   });
 
+  it('falls back to the desktop value where SOLAR has no mobile one', () => {
+    // The Type collection has size/display/xs but no line-height/display/xs, so these two text
+    // styles have no Mobile line height at all. The gap is reported, not silently filled.
+    const t = flat.get('typography.display.xs.medium');
+    expect(t.ext.modes.mobile.lineHeight).toBe(t.ext.modes.desktop.lineHeight);
+    expect(
+      deviations.some((d) => d.token === 'typography.display.xs.medium'),
+    ).toBe(true);
+  });
+
   it('reports the deviations it applied', () => {
     expect(deviations.length).toBeGreaterThan(0);
     for (const d of deviations) expect(d.reason).toBeTruthy();
