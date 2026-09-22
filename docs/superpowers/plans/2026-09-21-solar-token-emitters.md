@@ -77,8 +77,9 @@ report what changed, and leave the working tree for review.
   },
   "devDependencies": {
     "@bwp-web/eslint-config": "*",
-    "eslint": "^9.39.2",
-    "prettier": "^3.8.3"
+    "eslint": "^9.39.5",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.8"
   }
 }
 ```
@@ -122,15 +123,25 @@ export default defineConfig({
 - [ ] **Step 3: Give the package an ESLint config**
 
 Every workspace package needs one, or the repo-wide `npm run lint` fails on the new package.
+The shared base config declares no ambient globals, because the published packages target the
+browser. This one runs on Node, so it declares the Node globals through the `globals` package;
+without that, `no-undef` fires on `structuredClone`, `process` and `console`.
 
 `packages/codegen/eslint.config.js`:
 
 ```js
 import baseConfig from '@bwp-web/eslint-config/base';
+import globals from 'globals';
 
 /** @type {import('typescript-eslint').Config} */
 export default [
   ...baseConfig,
+  {
+    // Unlike the published packages, which target the browser, the generator runs on Node.
+    // The shared base config declares no ambient globals, so they are declared here.
+    files: ['**/*.mjs'],
+    languageOptions: { globals: globals.node },
+  },
   {
     // The generator is a command line tool; printing progress is its job.
     files: ['bin/**/*.mjs', 'src/**/*.mjs'],
@@ -1010,7 +1021,14 @@ export const canonical = {
     }),
 };
 
-/** @param {{target: string, dir: string, entries: Record<string, {emitted: unknown}>, spec: object}} args */
+/**
+ * @param {{
+ *   target: string,
+ *   dir: string,
+ *   entries: Record<string, {emitted: unknown, normalized: unknown}>,
+ *   fileVersion: string,
+ * }} args
+ */
 export function writeManifest({ target, dir, entries, fileVersion }) {
   const body = {
     _note:
@@ -1020,7 +1038,7 @@ export function writeManifest({ target, dir, entries, fileVersion }) {
     tokens: entries,
   };
   return writeGenerated(
-    join(dir, `tokens.manifest.json`),
+    join(dir, 'tokens.manifest.json'),
     JSON.stringify(body, null, 2) + '\n',
   );
 }
