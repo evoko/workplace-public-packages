@@ -1,0 +1,1491 @@
+{
+  "_note": "Written by the SOLAR codegen. \"emitted\" is the literal this target produced; \"normalized\" is that literal parsed back to canonical form; \"modes\" carries the same canonical form per mode (light/dark or desktop/mobile) for the tokens that vary, and is absent for the ones that do not. The parity suite compares normalized and every mode across targets.",
+  "target": "tailwind",
+  "fileVersion": "2026-09-20",
+  "tokens": {
+    "color.brand.primary": {
+      "emitted": "var(--solar-color-brand-primary)",
+      "normalized": "rgba(210, 39, 48, 1)"
+    },
+    "color.brand.secondary": {
+      "emitted": "var(--solar-color-brand-secondary)",
+      "normalized": "rgba(0, 0, 0, 1)"
+    },
+    "color.brand.tertiary": {
+      "emitted": "var(--solar-color-brand-tertiary)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.surface.background": {
+      "emitted": "var(--solar-color-surface-background)",
+      "normalized": "rgba(245, 245, 245, 1)"
+    },
+    "color.surface.base": {
+      "emitted": "var(--solar-color-surface-base)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.surface.raised": {
+      "emitted": "var(--solar-color-surface-raised)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.surface.overlay": {
+      "emitted": "var(--solar-color-surface-overlay)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.surface.dialog": {
+      "emitted": "var(--solar-color-surface-dialog)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.surface.scrim": {
+      "emitted": "var(--solar-color-surface-scrim)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.surface.muted": {
+      "emitted": "var(--solar-color-surface-muted)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.surface.inverse": {
+      "emitted": "var(--solar-color-surface-inverse)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.surface.hover": {
+      "emitted": "var(--solar-color-surface-hover)",
+      "normalized": "rgba(0, 0, 0, 0.051)"
+    },
+    "color.surface.active": {
+      "emitted": "var(--solar-color-surface-active)",
+      "normalized": "rgba(0, 0, 0, 0.102)"
+    },
+    "color.surface.feedback.success.subtle-alpha": {
+      "emitted": "var(--solar-color-surface-feedback-success-subtle-alpha)",
+      "normalized": "rgba(236, 255, 233, 0.502)"
+    },
+    "color.surface.feedback.success.subtle": {
+      "emitted": "var(--solar-color-surface-feedback-success-subtle)",
+      "normalized": "rgba(236, 255, 233, 1)"
+    },
+    "color.surface.feedback.success.medium": {
+      "emitted": "var(--solar-color-surface-feedback-success-medium)",
+      "normalized": "rgba(134, 238, 124, 1)"
+    },
+    "color.surface.feedback.success.strong": {
+      "emitted": "var(--solar-color-surface-feedback-success-strong)",
+      "normalized": "rgba(0, 150, 0, 1)"
+    },
+    "color.surface.feedback.warning.subtle-alpha": {
+      "emitted": "var(--solar-color-surface-feedback-warning-subtle-alpha)",
+      "normalized": "rgba(255, 238, 218, 0.502)"
+    },
+    "color.surface.feedback.warning.subtle": {
+      "emitted": "var(--solar-color-surface-feedback-warning-subtle)",
+      "normalized": "rgba(255, 238, 218, 1)"
+    },
+    "color.surface.feedback.warning.medium": {
+      "emitted": "var(--solar-color-surface-feedback-warning-medium)",
+      "normalized": "rgba(255, 172, 115, 1)"
+    },
+    "color.surface.feedback.warning.strong": {
+      "emitted": "var(--solar-color-surface-feedback-warning-strong)",
+      "normalized": "rgba(207, 71, 0, 1)"
+    },
+    "color.surface.feedback.danger.subtle-alpha": {
+      "emitted": "var(--solar-color-surface-feedback-danger-subtle-alpha)",
+      "normalized": "rgba(255, 228, 223, 0.502)"
+    },
+    "color.surface.feedback.danger.subtle": {
+      "emitted": "var(--solar-color-surface-feedback-danger-subtle)",
+      "normalized": "rgba(255, 228, 223, 1)"
+    },
+    "color.surface.feedback.danger.medium": {
+      "emitted": "var(--solar-color-surface-feedback-danger-medium)",
+      "normalized": "rgba(255, 150, 145, 1)"
+    },
+    "color.surface.feedback.danger.strong": {
+      "emitted": "var(--solar-color-surface-feedback-danger-strong)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.surface.feedback.info.subtle-alpha": {
+      "emitted": "var(--solar-color-surface-feedback-info-subtle-alpha)",
+      "normalized": "rgba(240, 255, 255, 0.502)"
+    },
+    "color.surface.feedback.info.subtle": {
+      "emitted": "var(--solar-color-surface-feedback-info-subtle)",
+      "normalized": "rgba(240, 255, 255, 1)"
+    },
+    "color.surface.feedback.info.medium": {
+      "emitted": "var(--solar-color-surface-feedback-info-medium)",
+      "normalized": "rgba(142, 244, 250, 1)"
+    },
+    "color.surface.feedback.info.strong": {
+      "emitted": "var(--solar-color-surface-feedback-info-strong)",
+      "normalized": "rgba(8, 184, 201, 1)"
+    },
+    "color.surface.feedback.neutral.subtle-alpha": {
+      "emitted": "var(--solar-color-surface-feedback-neutral-subtle-alpha)",
+      "normalized": "rgba(0, 0, 0, 0.051)"
+    },
+    "color.surface.feedback.neutral.subtle": {
+      "emitted": "var(--solar-color-surface-feedback-neutral-subtle)",
+      "normalized": "rgba(245, 245, 245, 1)"
+    },
+    "color.surface.feedback.neutral.medium": {
+      "emitted": "var(--solar-color-surface-feedback-neutral-medium)",
+      "normalized": "rgba(201, 201, 201, 1)"
+    },
+    "color.surface.feedback.neutral.strong": {
+      "emitted": "var(--solar-color-surface-feedback-neutral-strong)",
+      "normalized": "rgba(100, 100, 100, 1)"
+    },
+    "color.border.subtle": {
+      "emitted": "var(--solar-color-border-subtle)",
+      "normalized": "rgba(0, 0, 0, 0.102)"
+    },
+    "color.border.medium": {
+      "emitted": "var(--solar-color-border-medium)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.border.strong": {
+      "emitted": "var(--solar-color-border-strong)",
+      "normalized": "rgba(0, 0, 0, 0.8)"
+    },
+    "color.border.disabled": {
+      "emitted": "var(--solar-color-border-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.border.inverse": {
+      "emitted": "var(--solar-color-border-inverse)",
+      "normalized": "rgba(100, 100, 100, 1)"
+    },
+    "color.border.inverse.subtle": {
+      "emitted": "var(--solar-color-border-inverse-subtle)",
+      "normalized": "rgba(255, 255, 255, 0.2)"
+    },
+    "color.border.inverse.strong": {
+      "emitted": "var(--solar-color-border-inverse-strong)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.border.surface": {
+      "emitted": "var(--solar-color-border-surface)",
+      "normalized": "rgba(245, 245, 245, 1)"
+    },
+    "color.border.highlight": {
+      "emitted": "var(--solar-color-border-highlight)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.border.feedback.focus.subtle": {
+      "emitted": "var(--solar-color-border-feedback-focus-subtle)",
+      "normalized": "rgba(201, 222, 255, 1)"
+    },
+    "color.border.feedback.focus.medium": {
+      "emitted": "var(--solar-color-border-feedback-focus-medium)",
+      "normalized": "rgba(107, 156, 255, 1)"
+    },
+    "color.border.feedback.focus.strong": {
+      "emitted": "var(--solar-color-border-feedback-focus-strong)",
+      "normalized": "rgba(37, 105, 253, 1)"
+    },
+    "color.border.feedback.success.subtle": {
+      "emitted": "var(--solar-color-border-feedback-success-subtle)",
+      "normalized": "rgba(178, 251, 170, 1)"
+    },
+    "color.border.feedback.success.medium": {
+      "emitted": "var(--solar-color-border-feedback-success-medium)",
+      "normalized": "rgba(81, 216, 69, 1)"
+    },
+    "color.border.feedback.success.strong": {
+      "emitted": "var(--solar-color-border-feedback-success-strong)",
+      "normalized": "rgba(0, 150, 0, 1)"
+    },
+    "color.border.feedback.warning.subtle": {
+      "emitted": "var(--solar-color-border-feedback-warning-subtle)",
+      "normalized": "rgba(255, 205, 165, 1)"
+    },
+    "color.border.feedback.warning.medium": {
+      "emitted": "var(--solar-color-border-feedback-warning-medium)",
+      "normalized": "rgba(255, 133, 53, 1)"
+    },
+    "color.border.feedback.warning.strong": {
+      "emitted": "var(--solar-color-border-feedback-warning-strong)",
+      "normalized": "rgba(207, 71, 0, 1)"
+    },
+    "color.border.feedback.danger.subtle": {
+      "emitted": "var(--solar-color-border-feedback-danger-subtle)",
+      "normalized": "rgba(255, 197, 191, 1)"
+    },
+    "color.border.feedback.danger.medium": {
+      "emitted": "var(--solar-color-border-feedback-danger-medium)",
+      "normalized": "rgba(255, 95, 100, 1)"
+    },
+    "color.border.feedback.danger.strong": {
+      "emitted": "var(--solar-color-border-feedback-danger-strong)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.border.feedback.info.subtle": {
+      "emitted": "var(--solar-color-border-feedback-info-subtle)",
+      "normalized": "rgba(201, 251, 253, 1)"
+    },
+    "color.border.feedback.info.medium": {
+      "emitted": "var(--solar-color-border-feedback-info-medium)",
+      "normalized": "rgba(61, 230, 242, 1)"
+    },
+    "color.border.feedback.info.strong": {
+      "emitted": "var(--solar-color-border-feedback-info-strong)",
+      "normalized": "rgba(8, 184, 201, 1)"
+    },
+    "color.border.feedback.neutral.subtle": {
+      "emitted": "var(--solar-color-border-feedback-neutral-subtle)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.border.feedback.neutral.medium": {
+      "emitted": "var(--solar-color-border-feedback-neutral-medium)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.border.feedback.neutral.strong": {
+      "emitted": "var(--solar-color-border-feedback-neutral-strong)",
+      "normalized": "rgba(100, 100, 100, 1)"
+    },
+    "color.text.primary": {
+      "emitted": "var(--solar-color-text-primary)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.text.secondary": {
+      "emitted": "var(--solar-color-text-secondary)",
+      "normalized": "rgba(100, 100, 100, 1)"
+    },
+    "color.text.tertiary": {
+      "emitted": "var(--solar-color-text-tertiary)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.text.disabled": {
+      "emitted": "var(--solar-color-text-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.text.inverse": {
+      "emitted": "var(--solar-color-text-inverse)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.text.feedback.success": {
+      "emitted": "var(--solar-color-text-feedback-success)",
+      "normalized": "rgba(36, 121, 29, 1)"
+    },
+    "color.text.feedback.warning": {
+      "emitted": "var(--solar-color-text-feedback-warning)",
+      "normalized": "rgba(179, 50, 0, 1)"
+    },
+    "color.text.feedback.danger": {
+      "emitted": "var(--solar-color-text-feedback-danger)",
+      "normalized": "rgba(192, 0, 36, 1)"
+    },
+    "color.text.feedback.info": {
+      "emitted": "var(--solar-color-text-feedback-info)",
+      "normalized": "rgba(6, 95, 106, 1)"
+    },
+    "color.text.feedback.neutral": {
+      "emitted": "var(--solar-color-text-feedback-neutral)",
+      "normalized": "rgba(100, 100, 100, 1)"
+    },
+    "color.text.link.default": {
+      "emitted": "var(--solar-color-text-link-default)",
+      "normalized": "rgba(38, 88, 213, 1)"
+    },
+    "color.text.link.hover": {
+      "emitted": "var(--solar-color-text-link-hover)",
+      "normalized": "rgba(37, 105, 253, 1)"
+    },
+    "color.text.link.active": {
+      "emitted": "var(--solar-color-text-link-active)",
+      "normalized": "rgba(38, 88, 213, 1)"
+    },
+    "color.text.link.disabled": {
+      "emitted": "var(--solar-color-text-link-disabled)",
+      "normalized": "rgba(135, 135, 135, 1)"
+    },
+    "color.icon.primary": {
+      "emitted": "var(--solar-color-icon-primary)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.icon.secondary": {
+      "emitted": "var(--solar-color-icon-secondary)",
+      "normalized": "rgba(100, 100, 100, 1)"
+    },
+    "color.icon.tertiary": {
+      "emitted": "var(--solar-color-icon-tertiary)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.icon.disabled": {
+      "emitted": "var(--solar-color-icon-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.icon.inverse": {
+      "emitted": "var(--solar-color-icon-inverse)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.icon.feedback.success": {
+      "emitted": "var(--solar-color-icon-feedback-success)",
+      "normalized": "rgba(36, 121, 29, 1)"
+    },
+    "color.icon.feedback.warning": {
+      "emitted": "var(--solar-color-icon-feedback-warning)",
+      "normalized": "rgba(179, 50, 0, 1)"
+    },
+    "color.icon.feedback.danger": {
+      "emitted": "var(--solar-color-icon-feedback-danger)",
+      "normalized": "rgba(192, 0, 36, 1)"
+    },
+    "color.icon.feedback.info": {
+      "emitted": "var(--solar-color-icon-feedback-info)",
+      "normalized": "rgba(6, 95, 106, 1)"
+    },
+    "color.icon.feedback.neutral": {
+      "emitted": "var(--solar-color-icon-feedback-neutral)",
+      "normalized": "rgba(100, 100, 100, 1)"
+    },
+    "color.icon.link.default": {
+      "emitted": "var(--solar-color-icon-link-default)",
+      "normalized": "rgba(38, 88, 213, 1)"
+    },
+    "color.icon.link.hover": {
+      "emitted": "var(--solar-color-icon-link-hover)",
+      "normalized": "rgba(37, 105, 253, 1)"
+    },
+    "color.icon.link.active": {
+      "emitted": "var(--solar-color-icon-link-active)",
+      "normalized": "rgba(38, 88, 213, 1)"
+    },
+    "color.icon.link.disabled": {
+      "emitted": "var(--solar-color-icon-link-disabled)",
+      "normalized": "rgba(135, 135, 135, 1)"
+    },
+    "color.shadow.subtle": {
+      "emitted": "var(--solar-color-shadow-subtle)",
+      "normalized": "rgba(0, 0, 0, 0.051)"
+    },
+    "color.shadow.strong": {
+      "emitted": "var(--solar-color-shadow-strong)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.shadow.feedback.focus": {
+      "emitted": "var(--solar-color-shadow-feedback-focus)",
+      "normalized": "rgba(37, 105, 253, 0.2)"
+    },
+    "color.shadow.feedback.warning": {
+      "emitted": "var(--solar-color-shadow-feedback-warning)",
+      "normalized": "rgba(207, 71, 0, 0.2)"
+    },
+    "color.shadow.feedback.danger": {
+      "emitted": "var(--solar-color-shadow-feedback-danger)",
+      "normalized": "rgba(224, 3, 45, 0.2)"
+    },
+    "color.shadow.feedback.success": {
+      "emitted": "var(--solar-color-shadow-feedback-success)",
+      "normalized": "rgba(0, 150, 0, 0.2)"
+    },
+    "color.shadow.feedback.info": {
+      "emitted": "var(--solar-color-shadow-feedback-info)",
+      "normalized": "rgba(8, 184, 201, 0.2)"
+    },
+    "color.shadow.feedback.neutral": {
+      "emitted": "var(--solar-color-shadow-feedback-neutral)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.action.primary.bg.default": {
+      "emitted": "var(--solar-color-action-primary-bg-default)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.primary.bg.hover": {
+      "emitted": "var(--solar-color-action-primary-bg-hover)",
+      "normalized": "rgba(51, 51, 51, 1)"
+    },
+    "color.action.primary.bg.active": {
+      "emitted": "var(--solar-color-action-primary-bg-active)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.primary.bg.disabled": {
+      "emitted": "var(--solar-color-action-primary-bg-disabled)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.action.primary.bg.danger.default": {
+      "emitted": "var(--solar-color-action-primary-bg-danger-default)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.primary.bg.danger.hover": {
+      "emitted": "var(--solar-color-action-primary-bg-danger-hover)",
+      "normalized": "rgba(246, 29, 60, 1)"
+    },
+    "color.action.primary.bg.danger.active": {
+      "emitted": "var(--solar-color-action-primary-bg-danger-active)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.primary.bg.danger.disabled": {
+      "emitted": "var(--solar-color-action-primary-bg-danger-disabled)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.action.primary.text.default": {
+      "emitted": "var(--solar-color-action-primary-text-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.text.hover": {
+      "emitted": "var(--solar-color-action-primary-text-hover)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.text.active": {
+      "emitted": "var(--solar-color-action-primary-text-active)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.text.disabled": {
+      "emitted": "var(--solar-color-action-primary-text-disabled)",
+      "normalized": "rgba(135, 135, 135, 1)"
+    },
+    "color.action.primary.text.danger.default": {
+      "emitted": "var(--solar-color-action-primary-text-danger-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.text.danger.hover": {
+      "emitted": "var(--solar-color-action-primary-text-danger-hover)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.text.danger.active": {
+      "emitted": "var(--solar-color-action-primary-text-danger-active)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.text.danger.disabled": {
+      "emitted": "var(--solar-color-action-primary-text-danger-disabled)",
+      "normalized": "rgba(135, 135, 135, 1)"
+    },
+    "color.action.primary.icon.default": {
+      "emitted": "var(--solar-color-action-primary-icon-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.icon.hover": {
+      "emitted": "var(--solar-color-action-primary-icon-hover)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.icon.active": {
+      "emitted": "var(--solar-color-action-primary-icon-active)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.icon.disabled": {
+      "emitted": "var(--solar-color-action-primary-icon-disabled)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.action.primary.icon.danger.default": {
+      "emitted": "var(--solar-color-action-primary-icon-danger-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.icon.danger.hover": {
+      "emitted": "var(--solar-color-action-primary-icon-danger-hover)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.icon.danger.active": {
+      "emitted": "var(--solar-color-action-primary-icon-danger-active)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.primary.icon.danger.disabled": {
+      "emitted": "var(--solar-color-action-primary-icon-danger-disabled)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.action.primary.border.default": {
+      "emitted": "var(--solar-color-action-primary-border-default)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.primary.border.hover": {
+      "emitted": "var(--solar-color-action-primary-border-hover)",
+      "normalized": "rgba(34, 34, 34, 1)"
+    },
+    "color.action.primary.border.active": {
+      "emitted": "var(--solar-color-action-primary-border-active)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.primary.border.disabled": {
+      "emitted": "var(--solar-color-action-primary-border-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.action.primary.border.danger.default": {
+      "emitted": "var(--solar-color-action-primary-border-danger-default)",
+      "normalized": "rgba(192, 0, 36, 1)"
+    },
+    "color.action.primary.border.danger.hover": {
+      "emitted": "var(--solar-color-action-primary-border-danger-hover)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.primary.border.danger.active": {
+      "emitted": "var(--solar-color-action-primary-border-danger-active)",
+      "normalized": "rgba(192, 0, 36, 1)"
+    },
+    "color.action.primary.border.danger.disabled": {
+      "emitted": "var(--solar-color-action-primary-border-danger-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.action.secondary.bg.default": {
+      "emitted": "var(--solar-color-action-secondary-bg-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.secondary.bg.hover": {
+      "emitted": "var(--solar-color-action-secondary-bg-hover)",
+      "normalized": "rgba(245, 245, 245, 1)"
+    },
+    "color.action.secondary.bg.active": {
+      "emitted": "var(--solar-color-action-secondary-bg-active)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.secondary.bg.disabled": {
+      "emitted": "var(--solar-color-action-secondary-bg-disabled)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.action.secondary.bg.danger.default": {
+      "emitted": "var(--solar-color-action-secondary-bg-danger-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.secondary.bg.danger.hover": {
+      "emitted": "var(--solar-color-action-secondary-bg-danger-hover)",
+      "normalized": "rgba(255, 228, 223, 1)"
+    },
+    "color.action.secondary.bg.danger.active": {
+      "emitted": "var(--solar-color-action-secondary-bg-danger-active)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.secondary.bg.danger.disabled": {
+      "emitted": "var(--solar-color-action-secondary-bg-danger-disabled)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.action.secondary.text.default": {
+      "emitted": "var(--solar-color-action-secondary-text-default)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.secondary.text.hover": {
+      "emitted": "var(--solar-color-action-secondary-text-hover)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.secondary.text.active": {
+      "emitted": "var(--solar-color-action-secondary-text-active)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.secondary.text.disabled": {
+      "emitted": "var(--solar-color-action-secondary-text-disabled)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.action.secondary.text.danger.default": {
+      "emitted": "var(--solar-color-action-secondary-text-danger-default)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.secondary.text.danger.hover": {
+      "emitted": "var(--solar-color-action-secondary-text-danger-hover)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.secondary.text.danger.active": {
+      "emitted": "var(--solar-color-action-secondary-text-danger-active)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.secondary.text.danger.disabled": {
+      "emitted": "var(--solar-color-action-secondary-text-danger-disabled)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.action.secondary.icon.default": {
+      "emitted": "var(--solar-color-action-secondary-icon-default)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.secondary.icon.hover": {
+      "emitted": "var(--solar-color-action-secondary-icon-hover)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.secondary.icon.active": {
+      "emitted": "var(--solar-color-action-secondary-icon-active)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.secondary.icon.disabled": {
+      "emitted": "var(--solar-color-action-secondary-icon-disabled)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.action.secondary.icon.danger.default": {
+      "emitted": "var(--solar-color-action-secondary-icon-danger-default)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.secondary.icon.danger.hover": {
+      "emitted": "var(--solar-color-action-secondary-icon-danger-hover)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.secondary.icon.danger.active": {
+      "emitted": "var(--solar-color-action-secondary-icon-danger-active)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.secondary.icon.danger.disabled": {
+      "emitted": "var(--solar-color-action-secondary-icon-danger-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.102)"
+    },
+    "color.action.secondary.border.default": {
+      "emitted": "var(--solar-color-action-secondary-border-default)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.action.secondary.border.hover": {
+      "emitted": "var(--solar-color-action-secondary-border-hover)",
+      "normalized": "rgba(0, 0, 0, 0.302)"
+    },
+    "color.action.secondary.border.active": {
+      "emitted": "var(--solar-color-action-secondary-border-active)",
+      "normalized": "rgba(0, 0, 0, 0.302)"
+    },
+    "color.action.secondary.border.disabled": {
+      "emitted": "var(--solar-color-action-secondary-border-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.102)"
+    },
+    "color.action.secondary.border.danger.default": {
+      "emitted": "var(--solar-color-action-secondary-border-danger-default)",
+      "normalized": "rgba(255, 197, 191, 1)"
+    },
+    "color.action.secondary.border.danger.hover": {
+      "emitted": "var(--solar-color-action-secondary-border-danger-hover)",
+      "normalized": "rgba(255, 197, 191, 1)"
+    },
+    "color.action.secondary.border.danger.active": {
+      "emitted": "var(--solar-color-action-secondary-border-danger-active)",
+      "normalized": "rgba(255, 197, 191, 1)"
+    },
+    "color.action.secondary.border.danger.disabled": {
+      "emitted": "var(--solar-color-action-secondary-border-danger-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.102)"
+    },
+    "color.action.tertiary.bg.default": {
+      "emitted": "var(--solar-color-action-tertiary-bg-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.tertiary.bg.hover": {
+      "emitted": "var(--solar-color-action-tertiary-bg-hover)",
+      "normalized": "rgba(245, 245, 245, 1)"
+    },
+    "color.action.tertiary.bg.active": {
+      "emitted": "var(--solar-color-action-tertiary-bg-active)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.tertiary.bg.disabled": {
+      "emitted": "var(--solar-color-action-tertiary-bg-disabled)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.action.tertiary.bg.danger.default": {
+      "emitted": "var(--solar-color-action-tertiary-bg-danger-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.tertiary.bg.danger.hover": {
+      "emitted": "var(--solar-color-action-tertiary-bg-danger-hover)",
+      "normalized": "rgba(255, 228, 223, 1)"
+    },
+    "color.action.tertiary.bg.danger.active": {
+      "emitted": "var(--solar-color-action-tertiary-bg-danger-active)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.action.tertiary.bg.danger.disabled": {
+      "emitted": "var(--solar-color-action-tertiary-bg-danger-disabled)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.action.tertiary.text.default": {
+      "emitted": "var(--solar-color-action-tertiary-text-default)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.tertiary.text.hover": {
+      "emitted": "var(--solar-color-action-tertiary-text-hover)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.tertiary.text.active": {
+      "emitted": "var(--solar-color-action-tertiary-text-active)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.tertiary.text.disabled": {
+      "emitted": "var(--solar-color-action-tertiary-text-disabled)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.action.tertiary.text.danger.default": {
+      "emitted": "var(--solar-color-action-tertiary-text-danger-default)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.tertiary.text.danger.hover": {
+      "emitted": "var(--solar-color-action-tertiary-text-danger-hover)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.tertiary.text.danger.active": {
+      "emitted": "var(--solar-color-action-tertiary-text-danger-active)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.tertiary.text.danger.disabled": {
+      "emitted": "var(--solar-color-action-tertiary-text-danger-disabled)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.action.tertiary.icon.default": {
+      "emitted": "var(--solar-color-action-tertiary-icon-default)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.tertiary.icon.hover": {
+      "emitted": "var(--solar-color-action-tertiary-icon-hover)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.tertiary.icon.active": {
+      "emitted": "var(--solar-color-action-tertiary-icon-active)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.action.tertiary.icon.disabled": {
+      "emitted": "var(--solar-color-action-tertiary-icon-disabled)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.action.tertiary.icon.danger.default": {
+      "emitted": "var(--solar-color-action-tertiary-icon-danger-default)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.tertiary.icon.danger.hover": {
+      "emitted": "var(--solar-color-action-tertiary-icon-danger-hover)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.tertiary.icon.danger.active": {
+      "emitted": "var(--solar-color-action-tertiary-icon-danger-active)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.action.tertiary.icon.danger.disabled": {
+      "emitted": "var(--solar-color-action-tertiary-icon-danger-disabled)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.action.tertiary.border.default": {
+      "emitted": "var(--solar-color-action-tertiary-border-default)",
+      "normalized": "rgba(255, 255, 255, 0)"
+    },
+    "color.action.tertiary.border.hover": {
+      "emitted": "var(--solar-color-action-tertiary-border-hover)",
+      "normalized": "rgba(255, 255, 255, 0)"
+    },
+    "color.action.tertiary.border.active": {
+      "emitted": "var(--solar-color-action-tertiary-border-active)",
+      "normalized": "rgba(255, 255, 255, 0)"
+    },
+    "color.action.tertiary.border.disabled": {
+      "emitted": "var(--solar-color-action-tertiary-border-disabled)",
+      "normalized": "rgba(255, 255, 255, 0)"
+    },
+    "color.action.tertiary.border.danger.default": {
+      "emitted": "var(--solar-color-action-tertiary-border-danger-default)",
+      "normalized": "rgba(255, 255, 255, 0)"
+    },
+    "color.action.tertiary.border.danger.hover": {
+      "emitted": "var(--solar-color-action-tertiary-border-danger-hover)",
+      "normalized": "rgba(255, 255, 255, 0)"
+    },
+    "color.action.tertiary.border.danger.active": {
+      "emitted": "var(--solar-color-action-tertiary-border-danger-active)",
+      "normalized": "rgba(255, 255, 255, 0)"
+    },
+    "color.action.tertiary.border.danger.disabled": {
+      "emitted": "var(--solar-color-action-tertiary-border-danger-disabled)",
+      "normalized": "rgba(255, 255, 255, 0)"
+    },
+    "color.data.category.01.strong": {
+      "emitted": "var(--solar-color-data-category-01-strong)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.data.category.01.subtle": {
+      "emitted": "var(--solar-color-data-category-01-subtle)",
+      "normalized": "rgba(255, 228, 223, 1)"
+    },
+    "color.data.category.02.strong": {
+      "emitted": "var(--solar-color-data-category-02-strong)",
+      "normalized": "rgba(207, 71, 0, 1)"
+    },
+    "color.data.category.02.subtle": {
+      "emitted": "var(--solar-color-data-category-02-subtle)",
+      "normalized": "rgba(255, 238, 218, 1)"
+    },
+    "color.data.category.03.strong": {
+      "emitted": "var(--solar-color-data-category-03-strong)",
+      "normalized": "rgba(236, 182, 0, 1)"
+    },
+    "color.data.category.03.subtle": {
+      "emitted": "var(--solar-color-data-category-03-subtle)",
+      "normalized": "rgba(255, 251, 213, 1)"
+    },
+    "color.data.category.04.strong": {
+      "emitted": "var(--solar-color-data-category-04-strong)",
+      "normalized": "rgba(0, 150, 0, 1)"
+    },
+    "color.data.category.04.subtle": {
+      "emitted": "var(--solar-color-data-category-04-subtle)",
+      "normalized": "rgba(236, 255, 233, 1)"
+    },
+    "color.data.category.05.strong": {
+      "emitted": "var(--solar-color-data-category-05-strong)",
+      "normalized": "rgba(8, 184, 201, 1)"
+    },
+    "color.data.category.05.subtle": {
+      "emitted": "var(--solar-color-data-category-05-subtle)",
+      "normalized": "rgba(240, 255, 255, 1)"
+    },
+    "color.data.category.06.strong": {
+      "emitted": "var(--solar-color-data-category-06-strong)",
+      "normalized": "rgba(37, 105, 253, 1)"
+    },
+    "color.data.category.06.subtle": {
+      "emitted": "var(--solar-color-data-category-06-subtle)",
+      "normalized": "rgba(233, 242, 255, 1)"
+    },
+    "color.data.category.07.strong": {
+      "emitted": "var(--solar-color-data-category-07-strong)",
+      "normalized": "rgba(123, 58, 255, 1)"
+    },
+    "color.data.category.07.subtle": {
+      "emitted": "var(--solar-color-data-category-07-subtle)",
+      "normalized": "rgba(244, 237, 255, 1)"
+    },
+    "color.data.category.08.strong": {
+      "emitted": "var(--solar-color-data-category-08-strong)",
+      "normalized": "rgba(225, 54, 188, 1)"
+    },
+    "color.data.category.08.subtle": {
+      "emitted": "var(--solar-color-data-category-08-subtle)",
+      "normalized": "rgba(255, 241, 250, 1)"
+    },
+    "color.data.scale.100": {
+      "emitted": "var(--solar-color-data-scale-100)",
+      "normalized": "rgba(226, 210, 255, 1)"
+    },
+    "color.data.scale.200": {
+      "emitted": "var(--solar-color-data-scale-200)",
+      "normalized": "rgba(197, 169, 255, 1)"
+    },
+    "color.data.scale.300": {
+      "emitted": "var(--solar-color-data-scale-300)",
+      "normalized": "rgba(167, 119, 255, 1)"
+    },
+    "color.data.scale.400": {
+      "emitted": "var(--solar-color-data-scale-400)",
+      "normalized": "rgba(142, 75, 255, 1)"
+    },
+    "color.data.scale.500": {
+      "emitted": "var(--solar-color-data-scale-500)",
+      "normalized": "rgba(123, 58, 255, 1)"
+    },
+    "color.data.scale.600": {
+      "emitted": "var(--solar-color-data-scale-600)",
+      "normalized": "rgba(98, 38, 209, 1)"
+    },
+    "color.data.scale.700": {
+      "emitted": "var(--solar-color-data-scale-700)",
+      "normalized": "rgba(69, 16, 145, 1)"
+    },
+    "color.data.scale.800": {
+      "emitted": "var(--solar-color-data-scale-800)",
+      "normalized": "rgba(36, 0, 75, 1)"
+    },
+    "color.data.scale.900": {
+      "emitted": "var(--solar-color-data-scale-900)",
+      "normalized": "rgba(20, 0, 40, 1)"
+    },
+    "color.data.delta.neutral": {
+      "emitted": "var(--solar-color-data-delta-neutral)",
+      "normalized": "rgba(168, 168, 168, 1)"
+    },
+    "color.data.delta.negative-100": {
+      "emitted": "var(--solar-color-data-delta-negative-100)",
+      "normalized": "rgba(255, 197, 191, 1)"
+    },
+    "color.data.delta.negative-300": {
+      "emitted": "var(--solar-color-data-delta-negative-300)",
+      "normalized": "rgba(255, 95, 100, 1)"
+    },
+    "color.data.delta.negative-500": {
+      "emitted": "var(--solar-color-data-delta-negative-500)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.data.delta.positive-100": {
+      "emitted": "var(--solar-color-data-delta-positive-100)",
+      "normalized": "rgba(178, 251, 170, 1)"
+    },
+    "color.data.delta.positive-300": {
+      "emitted": "var(--solar-color-data-delta-positive-300)",
+      "normalized": "rgba(81, 216, 69, 1)"
+    },
+    "color.data.delta.positive-500": {
+      "emitted": "var(--solar-color-data-delta-positive-500)",
+      "normalized": "rgba(0, 150, 0, 1)"
+    },
+    "color.meter.nominal": {
+      "emitted": "var(--solar-color-meter-nominal)",
+      "normalized": "rgba(0, 150, 0, 1)"
+    },
+    "color.meter.warning": {
+      "emitted": "var(--solar-color-meter-warning)",
+      "normalized": "rgba(255, 205, 7, 1)"
+    },
+    "color.meter.peak": {
+      "emitted": "var(--solar-color-meter-peak)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.control.neutral.bg.default": {
+      "emitted": "var(--solar-color-control-neutral-bg-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.control.neutral.bg.hover": {
+      "emitted": "var(--solar-color-control-neutral-bg-hover)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.control.neutral.bg.active": {
+      "emitted": "var(--solar-color-control-neutral-bg-active)",
+      "normalized": "rgba(245, 245, 245, 1)"
+    },
+    "color.control.neutral.bg.disabled": {
+      "emitted": "var(--solar-color-control-neutral-bg-disabled)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.control.neutral.border.default": {
+      "emitted": "var(--solar-color-control-neutral-border-default)",
+      "normalized": "rgba(0, 0, 0, 0.102)"
+    },
+    "color.control.neutral.border.hover": {
+      "emitted": "var(--solar-color-control-neutral-border-hover)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.neutral.border.active": {
+      "emitted": "var(--solar-color-control-neutral-border-active)",
+      "normalized": "rgba(0, 0, 0, 0.102)"
+    },
+    "color.control.neutral.border.disabled": {
+      "emitted": "var(--solar-color-control-neutral-border-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.neutral.icon.default": {
+      "emitted": "var(--solar-color-control-neutral-icon-default)",
+      "normalized": "rgba(34, 34, 34, 1)"
+    },
+    "color.control.neutral.icon.hover": {
+      "emitted": "var(--solar-color-control-neutral-icon-hover)",
+      "normalized": "rgba(34, 34, 34, 1)"
+    },
+    "color.control.neutral.icon.active": {
+      "emitted": "var(--solar-color-control-neutral-icon-active)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.control.neutral.icon.disabled": {
+      "emitted": "var(--solar-color-control-neutral-icon-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.mute.bg.default": {
+      "emitted": "var(--solar-color-control-mute-bg-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.control.mute.bg.hover": {
+      "emitted": "var(--solar-color-control-mute-bg-hover)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.control.mute.bg.active": {
+      "emitted": "var(--solar-color-control-mute-bg-active)",
+      "normalized": "rgba(255, 228, 223, 1)"
+    },
+    "color.control.mute.bg.disabled": {
+      "emitted": "var(--solar-color-control-mute-bg-disabled)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.control.mute.border.default": {
+      "emitted": "var(--solar-color-control-mute-border-default)",
+      "normalized": "rgba(0, 0, 0, 0.102)"
+    },
+    "color.control.mute.border.hover": {
+      "emitted": "var(--solar-color-control-mute-border-hover)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.mute.border.active": {
+      "emitted": "var(--solar-color-control-mute-border-active)",
+      "normalized": "rgba(255, 197, 191, 1)"
+    },
+    "color.control.mute.border.disabled": {
+      "emitted": "var(--solar-color-control-mute-border-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.mute.icon.default": {
+      "emitted": "var(--solar-color-control-mute-icon-default)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.control.mute.icon.hover": {
+      "emitted": "var(--solar-color-control-mute-icon-hover)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.control.mute.icon.active": {
+      "emitted": "var(--solar-color-control-mute-icon-active)",
+      "normalized": "rgba(224, 3, 45, 1)"
+    },
+    "color.control.mute.icon.disabled": {
+      "emitted": "var(--solar-color-control-mute-icon-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.solo.bg.default": {
+      "emitted": "var(--solar-color-control-solo-bg-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.control.solo.bg.hover": {
+      "emitted": "var(--solar-color-control-solo-bg-hover)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.control.solo.bg.active": {
+      "emitted": "var(--solar-color-control-solo-bg-active)",
+      "normalized": "rgba(255, 251, 213, 1)"
+    },
+    "color.control.solo.bg.disabled": {
+      "emitted": "var(--solar-color-control-solo-bg-disabled)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.control.solo.border.default": {
+      "emitted": "var(--solar-color-control-solo-border-default)",
+      "normalized": "rgba(0, 0, 0, 0.102)"
+    },
+    "color.control.solo.border.hover": {
+      "emitted": "var(--solar-color-control-solo-border-hover)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.solo.border.active": {
+      "emitted": "var(--solar-color-control-solo-border-active)",
+      "normalized": "rgba(255, 245, 168, 1)"
+    },
+    "color.control.solo.border.disabled": {
+      "emitted": "var(--solar-color-control-solo-border-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.solo.icon.default": {
+      "emitted": "var(--solar-color-control-solo-icon-default)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.control.solo.icon.hover": {
+      "emitted": "var(--solar-color-control-solo-icon-hover)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.control.solo.icon.active": {
+      "emitted": "var(--solar-color-control-solo-icon-active)",
+      "normalized": "rgba(236, 182, 0, 1)"
+    },
+    "color.control.solo.icon.disabled": {
+      "emitted": "var(--solar-color-control-solo-icon-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.phantom.bg.default": {
+      "emitted": "var(--solar-color-control-phantom-bg-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.control.phantom.bg.hover": {
+      "emitted": "var(--solar-color-control-phantom-bg-hover)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.control.phantom.bg.active": {
+      "emitted": "var(--solar-color-control-phantom-bg-active)",
+      "normalized": "rgba(244, 237, 255, 1)"
+    },
+    "color.control.phantom.bg.disabled": {
+      "emitted": "var(--solar-color-control-phantom-bg-disabled)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.control.phantom.border.default": {
+      "emitted": "var(--solar-color-control-phantom-border-default)",
+      "normalized": "rgba(0, 0, 0, 0.102)"
+    },
+    "color.control.phantom.border.hover": {
+      "emitted": "var(--solar-color-control-phantom-border-hover)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.phantom.border.active": {
+      "emitted": "var(--solar-color-control-phantom-border-active)",
+      "normalized": "rgba(226, 210, 255, 1)"
+    },
+    "color.control.phantom.border.disabled": {
+      "emitted": "var(--solar-color-control-phantom-border-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.phantom.icon.default": {
+      "emitted": "var(--solar-color-control-phantom-icon-default)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.control.phantom.icon.hover": {
+      "emitted": "var(--solar-color-control-phantom-icon-hover)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.control.phantom.icon.active": {
+      "emitted": "var(--solar-color-control-phantom-icon-active)",
+      "normalized": "rgba(123, 58, 255, 1)"
+    },
+    "color.control.phantom.icon.disabled": {
+      "emitted": "var(--solar-color-control-phantom-icon-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.phase.bg.default": {
+      "emitted": "var(--solar-color-control-phase-bg-default)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.control.phase.bg.hover": {
+      "emitted": "var(--solar-color-control-phase-bg-hover)",
+      "normalized": "rgba(0, 0, 0, 0.051)"
+    },
+    "color.control.phase.bg.active": {
+      "emitted": "var(--solar-color-control-phase-bg-active)",
+      "normalized": "rgba(37, 105, 253, 1)"
+    },
+    "color.control.phase.bg.disabled": {
+      "emitted": "var(--solar-color-control-phase-bg-disabled)",
+      "normalized": "rgba(224, 224, 224, 1)"
+    },
+    "color.control.phase.border.default": {
+      "emitted": "var(--solar-color-control-phase-border-default)",
+      "normalized": "rgba(0, 0, 0, 0.102)"
+    },
+    "color.control.phase.border.hover": {
+      "emitted": "var(--solar-color-control-phase-border-hover)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.phase.border.active": {
+      "emitted": "var(--solar-color-control-phase-border-active)",
+      "normalized": "rgba(37, 105, 253, 1)"
+    },
+    "color.control.phase.border.disabled": {
+      "emitted": "var(--solar-color-control-phase-border-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "color.control.phase.icon.default": {
+      "emitted": "var(--solar-color-control-phase-icon-default)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.control.phase.icon.hover": {
+      "emitted": "var(--solar-color-control-phase-icon-hover)",
+      "normalized": "rgba(17, 17, 17, 1)"
+    },
+    "color.control.phase.icon.active": {
+      "emitted": "var(--solar-color-control-phase-icon-active)",
+      "normalized": "rgba(255, 255, 255, 1)"
+    },
+    "color.control.phase.icon.disabled": {
+      "emitted": "var(--solar-color-control-phase-icon-disabled)",
+      "normalized": "rgba(0, 0, 0, 0.2)"
+    },
+    "type.font-family.gotham": {
+      "emitted": "var(--solar-type-font-family-gotham)",
+      "normalized": "Gotham"
+    },
+    "type.font-family.montserrat": {
+      "emitted": "var(--solar-type-font-family-montserrat)",
+      "normalized": "Montserrat"
+    },
+    "type.font-family.inter": {
+      "emitted": "var(--solar-type-font-family-inter)",
+      "normalized": "Inter"
+    },
+    "type.font-family.opensans": {
+      "emitted": "var(--solar-type-font-family-opensans)",
+      "normalized": "Open Sans"
+    },
+    "type.font-family.ibmplexmono": {
+      "emitted": "var(--solar-type-font-family-ibmplexmono)",
+      "normalized": "IBM Plex Mono"
+    },
+    "type.font-family.robotomono": {
+      "emitted": "var(--solar-type-font-family-robotomono)",
+      "normalized": "Roboto Mono"
+    },
+    "type.size.display.lg": {
+      "emitted": "var(--solar-type-size-display-lg)",
+      "normalized": 56
+    },
+    "type.size.display.md": {
+      "emitted": "var(--solar-type-size-display-md)",
+      "normalized": 40
+    },
+    "type.size.display.sm": {
+      "emitted": "var(--solar-type-size-display-sm)",
+      "normalized": 32
+    },
+    "type.size.display.xs": {
+      "emitted": "var(--solar-type-size-display-xs)",
+      "normalized": 16
+    },
+    "type.size.title.lg": {
+      "emitted": "var(--solar-type-size-title-lg)",
+      "normalized": 40
+    },
+    "type.size.title.md": {
+      "emitted": "var(--solar-type-size-title-md)",
+      "normalized": 32
+    },
+    "type.size.title.sm": {
+      "emitted": "var(--solar-type-size-title-sm)",
+      "normalized": 20
+    },
+    "type.size.title.xs": {
+      "emitted": "var(--solar-type-size-title-xs)",
+      "normalized": 16
+    },
+    "type.size.title.2xs": {
+      "emitted": "var(--solar-type-size-title-2xs)",
+      "normalized": 12
+    },
+    "type.size.body.lg": {
+      "emitted": "var(--solar-type-size-body-lg)",
+      "normalized": 16
+    },
+    "type.size.body.md": {
+      "emitted": "var(--solar-type-size-body-md)",
+      "normalized": 14
+    },
+    "type.size.body.sm": {
+      "emitted": "var(--solar-type-size-body-sm)",
+      "normalized": 12
+    },
+    "type.size.body.xs": {
+      "emitted": "var(--solar-type-size-body-xs)",
+      "normalized": 10
+    },
+    "type.size.body.2xs": {
+      "emitted": "var(--solar-type-size-body-2xs)",
+      "normalized": 8
+    },
+    "type.size.label.md": {
+      "emitted": "var(--solar-type-size-label-md)",
+      "normalized": 14
+    },
+    "type.size.label.sm": {
+      "emitted": "var(--solar-type-size-label-sm)",
+      "normalized": 12
+    },
+    "type.size.helper.md": {
+      "emitted": "var(--solar-type-size-helper-md)",
+      "normalized": 14
+    },
+    "type.size.helper.sm": {
+      "emitted": "var(--solar-type-size-helper-sm)",
+      "normalized": 12
+    },
+    "type.size.code.lg": {
+      "emitted": "var(--solar-type-size-code-lg)",
+      "normalized": 16
+    },
+    "type.size.code.md": {
+      "emitted": "var(--solar-type-size-code-md)",
+      "normalized": 14
+    },
+    "type.size.caption.xs": {
+      "emitted": "var(--solar-type-size-caption-xs)",
+      "normalized": 10
+    },
+    "motion.duration.instant": {
+      "emitted": "var(--solar-motion-duration-instant)",
+      "normalized": 0
+    },
+    "motion.duration.fast": {
+      "emitted": "var(--solar-motion-duration-fast)",
+      "normalized": 100
+    },
+    "motion.duration.normal": {
+      "emitted": "var(--solar-motion-duration-normal)",
+      "normalized": 300
+    },
+    "motion.duration.slow": {
+      "emitted": "var(--solar-motion-duration-slow)",
+      "normalized": 600
+    },
+    "motion.duration.slower": {
+      "emitted": "var(--solar-motion-duration-slower)",
+      "normalized": 900
+    },
+    "motion.ease.in": {
+      "emitted": "var(--solar-motion-ease-in)",
+      "normalized": [0.42, 0, 1, 1]
+    },
+    "motion.ease.out": {
+      "emitted": "var(--solar-motion-ease-out)",
+      "normalized": [0, 0, 0.58, 1]
+    },
+    "motion.ease.both": {
+      "emitted": "var(--solar-motion-ease-both)",
+      "normalized": [0.42, 0, 0.58, 1]
+    },
+    "border.none": {
+      "emitted": "var(--solar-border-none)",
+      "normalized": 0
+    },
+    "border.default": {
+      "emitted": "var(--solar-border-default)",
+      "normalized": 1
+    },
+    "border.strong": {
+      "emitted": "var(--solar-border-strong)",
+      "normalized": 2
+    },
+    "border.emphasis": {
+      "emitted": "var(--solar-border-emphasis)",
+      "normalized": 4
+    },
+    "radius.none": {
+      "emitted": "var(--solar-radius-none)",
+      "normalized": 0
+    },
+    "radius.subtle": {
+      "emitted": "var(--solar-radius-subtle)",
+      "normalized": 4
+    },
+    "radius.control": {
+      "emitted": "var(--solar-radius-control)",
+      "normalized": 6
+    },
+    "radius.container": {
+      "emitted": "var(--solar-radius-container)",
+      "normalized": 8
+    },
+    "radius.dialog": {
+      "emitted": "var(--solar-radius-dialog)",
+      "normalized": 12
+    },
+    "radius.pill": {
+      "emitted": "var(--solar-radius-pill)",
+      "normalized": 9999
+    },
+    "inset.none": {
+      "emitted": "var(--solar-inset-none)",
+      "normalized": 0
+    },
+    "inset.2xs": {
+      "emitted": "var(--solar-inset-2xs)",
+      "normalized": 4
+    },
+    "inset.xs": {
+      "emitted": "var(--solar-inset-xs)",
+      "normalized": 8
+    },
+    "inset.sm": {
+      "emitted": "var(--solar-inset-sm)",
+      "normalized": 12
+    },
+    "inset.md": {
+      "emitted": "var(--solar-inset-md)",
+      "normalized": 16
+    },
+    "inset.lg": {
+      "emitted": "var(--solar-inset-lg)",
+      "normalized": 20
+    },
+    "inset.xl": {
+      "emitted": "var(--solar-inset-xl)",
+      "normalized": 24
+    },
+    "inset.2xl": {
+      "emitted": "var(--solar-inset-2xl)",
+      "normalized": 28
+    },
+    "inset.3xl": {
+      "emitted": "var(--solar-inset-3xl)",
+      "normalized": 40
+    },
+    "stack.none": {
+      "emitted": "var(--solar-stack-none)",
+      "normalized": 0
+    },
+    "stack.2xs": {
+      "emitted": "var(--solar-stack-2xs)",
+      "normalized": 4
+    },
+    "stack.xs": {
+      "emitted": "var(--solar-stack-xs)",
+      "normalized": 8
+    },
+    "stack.sm": {
+      "emitted": "var(--solar-stack-sm)",
+      "normalized": 12
+    },
+    "stack.md": {
+      "emitted": "var(--solar-stack-md)",
+      "normalized": 16
+    },
+    "stack.lg": {
+      "emitted": "var(--solar-stack-lg)",
+      "normalized": 20
+    },
+    "stack.xl": {
+      "emitted": "var(--solar-stack-xl)",
+      "normalized": 24
+    },
+    "stack.2xl": {
+      "emitted": "var(--solar-stack-2xl)",
+      "normalized": 28
+    },
+    "stack.3xl": {
+      "emitted": "var(--solar-stack-3xl)",
+      "normalized": 40
+    },
+    "layout.breakpoint.xs": {
+      "emitted": "393px",
+      "normalized": 393
+    },
+    "layout.breakpoint.sm": {
+      "emitted": "768px",
+      "normalized": 768
+    },
+    "layout.breakpoint.md": {
+      "emitted": "1024px",
+      "normalized": 1024
+    },
+    "layout.breakpoint.lg": {
+      "emitted": "1440px",
+      "normalized": 1440
+    },
+    "layout.breakpoint.xl": {
+      "emitted": "1920px",
+      "normalized": 1920
+    },
+    "shadow.control": {
+      "emitted": "var(--solar-shadow-control)",
+      "normalized": "[{\"color\":\"rgba(0, 0, 0, 0.051)\",\"offsetX\":0,\"offsetY\":1,\"blur\":1,\"spread\":0}]"
+    },
+    "shadow.raised": {
+      "emitted": "var(--solar-shadow-raised)",
+      "normalized": "[{\"color\":\"rgba(0, 0, 0, 0.051)\",\"offsetX\":0,\"offsetY\":1,\"blur\":2,\"spread\":0}]"
+    },
+    "shadow.overlay": {
+      "emitted": "var(--solar-shadow-overlay)",
+      "normalized": "[{\"color\":\"rgba(0, 0, 0, 0.051)\",\"offsetX\":0,\"offsetY\":2,\"blur\":12,\"spread\":0}]"
+    },
+    "shadow.dialog": {
+      "emitted": "var(--solar-shadow-dialog)",
+      "normalized": "[{\"color\":\"rgba(0, 0, 0, 0.051)\",\"offsetX\":0,\"offsetY\":12,\"blur\":26,\"spread\":0},{\"color\":\"rgba(0, 0, 0, 0.2)\",\"offsetX\":0,\"offsetY\":0,\"blur\":0,\"spread\":2}]"
+    },
+    "shadow.strong": {
+      "emitted": "var(--solar-shadow-strong)",
+      "normalized": "[{\"color\":\"rgba(0, 0, 0, 0.2)\",\"offsetX\":0,\"offsetY\":4,\"blur\":5,\"spread\":0}]"
+    },
+    "shadow.focus.default": {
+      "emitted": "var(--solar-shadow-focus-default)",
+      "normalized": "[{\"color\":\"rgba(37, 105, 253, 0.2)\",\"offsetX\":0,\"offsetY\":0,\"blur\":0,\"spread\":2}]"
+    },
+    "shadow.focus.danger": {
+      "emitted": "var(--solar-shadow-focus-danger)",
+      "normalized": "[{\"color\":\"rgba(224, 3, 45, 0.2)\",\"offsetX\":0,\"offsetY\":0,\"blur\":0,\"spread\":2}]"
+    },
+    "shadow.danger": {
+      "emitted": "var(--solar-shadow-danger)",
+      "normalized": "[{\"color\":\"rgba(0, 0, 0, 0.051)\",\"offsetX\":0,\"offsetY\":1,\"blur\":1,\"spread\":0},{\"color\":\"rgba(224, 3, 45, 0.2)\",\"offsetX\":0,\"offsetY\":0,\"blur\":0,\"spread\":2}]"
+    },
+    "shadow.warning": {
+      "emitted": "var(--solar-shadow-warning)",
+      "normalized": "[{\"color\":\"rgba(0, 0, 0, 0.051)\",\"offsetX\":0,\"offsetY\":1,\"blur\":1,\"spread\":0},{\"color\":\"rgba(207, 71, 0, 0.2)\",\"offsetX\":0,\"offsetY\":0,\"blur\":0,\"spread\":2}]"
+    },
+    "z.base": {
+      "emitted": "var(--solar-z-base)",
+      "normalized": 0
+    },
+    "z.sticky": {
+      "emitted": "var(--solar-z-sticky)",
+      "normalized": 100
+    },
+    "z.dropdown": {
+      "emitted": "var(--solar-z-dropdown)",
+      "normalized": 200
+    },
+    "z.overlay": {
+      "emitted": "var(--solar-z-overlay)",
+      "normalized": 300
+    },
+    "z.dialog": {
+      "emitted": "var(--solar-z-dialog)",
+      "normalized": 400
+    },
+    "z.toast": {
+      "emitted": "var(--solar-z-toast)",
+      "normalized": 500
+    },
+    "z.tooltip": {
+      "emitted": "var(--solar-z-tooltip)",
+      "normalized": 600
+    }
+  }
+}

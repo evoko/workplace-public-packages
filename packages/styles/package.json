@@ -16,14 +16,15 @@
         "types": "./dist/index.d.ts",
         "default": "./dist/index.cjs"
       }
-    }
+    },
+    "./tokens.css": "./dist/tokens.css"
   },
   "files": [
     "dist"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsup && tsc -p tsconfig.build.json",
+    "build": "tsup && tsc -p tsconfig.build.json && cp src/generated/css/tokens.css dist/tokens.css",
     "build:types": "tsc -p tsconfig.build.json",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",

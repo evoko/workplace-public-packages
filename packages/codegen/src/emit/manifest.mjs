@@ -73,15 +73,39 @@ export const canonical = {
         spread: canonical.dimension(l.spread),
       })),
     ),
-  typography: (t) =>
-    JSON.stringify({
+  typography(t) {
+    const fontSize = canonical.dimension(t.fontSize);
+    return JSON.stringify({
       fontFamily: canonical.fontFamily(t.fontFamily),
       fontWeight: canonical.fontWeight(t.fontWeight),
-      fontSize: canonical.dimension(t.fontSize),
+      fontSize,
       lineHeight: canonical.dimension(t.lineHeight),
-      letterSpacing: String(t.letterSpacing),
-    }),
+      letterSpacing: letterSpacingEm(t.letterSpacing, fontSize),
+    });
+  },
 };
+
+/**
+ * Letter spacing as a fraction of the font size.
+ *
+ * Figma states it as a percentage of the font size, CSS wants a length, and Flutter wants
+ * logical pixels, so the same quantity reaches the targets in three unit systems. Comparing the
+ * literals would call `-3%` and `-1.68` different values and, worse, would let a target emit a
+ * percentage unnoticed -- which is not a valid CSS letter-spacing at all and is dropped by the
+ * browser. A bare number is read as pixels, which is what Flutter emits.
+ */
+export function letterSpacingEm(value, fontSizePx) {
+  const text = String(value).trim();
+  const n = parseFloat(text);
+  if (!Number.isFinite(n))
+    throw new Error(`cannot parse letter spacing: ${JSON.stringify(value)}`);
+  const em = text.endsWith('%')
+    ? n / 100
+    : text.endsWith('em')
+      ? n
+      : n / fontSizePx;
+  return Math.round(em * 1e5) / 1e5;
+}
 
 /**
  * @param {{

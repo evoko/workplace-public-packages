@@ -33,6 +33,35 @@ describe('renderMui', () => {
     });
   });
 
+  it('emits letter spacing CSS can actually use', () => {
+    // Figma states it as a percentage of the font size, which is not a valid CSS
+    // letter-spacing: a browser drops the declaration outright. em is the same quantity and
+    // stays correct when the Mobile scale changes the font size underneath it.
+    const style = data.typography.desktop['display.lg'];
+    expect(style.letterSpacing).toBe('-0.03em');
+    for (const v of Object.values(data.typography.desktop))
+      expect(String(v.letterSpacing)).not.toContain('%');
+  });
+
+  it('carries both viewports in one variant, the way createTheme reads them', () => {
+    const style = data.responsiveTypography['title.lg'];
+    expect(style.fontSize).toBe('40px');
+    expect(style['@media (max-width: 767.98px)']).toEqual({
+      fontSize: '32px',
+      lineHeight: '40px',
+    });
+  });
+
+  it('adds a media query only to the styles that actually change', () => {
+    const withQuery = Object.values(data.responsiveTypography).filter((v) =>
+      Object.keys(v).some((k) => k.startsWith('@media')),
+    );
+    expect(withQuery).toHaveLength(8);
+    expect(data.responsiveTypography['body.md.regular']).not.toHaveProperty(
+      '@media (max-width: 767.98px)',
+    );
+  });
+
   it('exposes the z-index ladder under MUI names', () => {
     expect(data.zIndex.dialog).toBe(400);
   });
@@ -41,6 +70,8 @@ describe('renderMui', () => {
     expect(ts).not.toContain("from '@mui/material'");
     expect(ts).toContain('export const solarTokens');
     expect(ts).toContain('export const solarViewportTokens');
+    expect(ts).toContain('export const solarResponsiveTypography');
+    expect(ts).toContain('typography: solarResponsiveTypography');
     expect(ts).toContain('export function createSolarThemeOptions');
   });
 

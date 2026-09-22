@@ -19,7 +19,8 @@
     "solar:icons": "node docs/solar-icons/raw/fetch-rest.mjs && node docs/solar-icons/build-docs.mjs",
     "solar:fetch": "node docs/solar/raw/fetch-rest.mjs && node docs/solar-web/raw/fetch-rest.mjs && node docs/solar-icons/raw/fetch-rest.mjs",
     "solar:docs": "node docs/solar/build-docs.mjs && node docs/solar-web/build-docs.mjs && node docs/solar-icons/build-docs.mjs",
-    "solar:tokens": "node docs/solar/tokens/build-derived.mjs"
+    "solar:tokens": "node docs/solar/tokens/build-derived.mjs",
+    "solar:codegen": "node packages/codegen/bin/solar-codegen.mjs"
   },
   "devDependencies": {
     "turbo": "^2.11.2",

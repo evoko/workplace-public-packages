@@ -1,1 +1,11 @@
-export {};
+export {
+  solarTokens,
+  solarViewportTokens,
+  solarTypography,
+  solarResponsiveTypography,
+  solarShadows,
+  solarZIndex,
+  createSolarThemeOptions,
+  type SolarMode,
+} from './generated/mui/theme.js';
+export { solarTailwindPreset } from './generated/tailwind/preset.js';

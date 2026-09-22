@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { canonical } from '../src/emit/manifest.mjs';
+import { canonical, letterSpacingEm } from '../src/emit/manifest.mjs';
 
 describe('canonical', () => {
   it('reduces every colour spelling to the same value', () => {
@@ -64,5 +64,35 @@ describe('canonical', () => {
 
   it('rejects a colour it cannot parse rather than guessing', () => {
     expect(() => canonical.color('ease-both')).toThrow(/cannot parse colour/);
+  });
+});
+
+describe('letterSpacingEm', () => {
+  it('reads all three unit systems as the same quantity', () => {
+    // Figma says -3% of the font size, CSS wants a length, Flutter wants logical pixels.
+    expect(letterSpacingEm('-3%', 56)).toBe(-0.03);
+    expect(letterSpacingEm('-1.68', 56)).toBe(-0.03);
+    expect(letterSpacingEm('-0.03em', 56)).toBe(-0.03);
+    expect(letterSpacingEm('-0.32px', 16)).toBe(-0.02);
+  });
+
+  it('lets a typography composite compare across targets', () => {
+    const figma = {
+      fontFamily: 'Inter',
+      fontWeight: 500,
+      fontSize: '56px',
+      lineHeight: '72px',
+      letterSpacing: '-3%',
+    };
+    const css = { ...figma, letterSpacing: '-0.03em' };
+    const flutter = { ...figma, letterSpacing: '-1.68' };
+    expect(canonical.typography(css)).toBe(canonical.typography(figma));
+    expect(canonical.typography(flutter)).toBe(canonical.typography(figma));
+  });
+
+  it('refuses a value it cannot read', () => {
+    expect(() => letterSpacingEm('normal', 16)).toThrow(
+      /cannot parse letter spacing/,
+    );
   });
 });

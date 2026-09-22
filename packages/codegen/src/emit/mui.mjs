@@ -2,7 +2,13 @@ import { join } from 'node:path';
 import { flattenSpec } from '../spec.mjs';
 import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
-import { entry, writeManifest } from './manifest.mjs';
+import {
+  canonical,
+  entry,
+  letterSpacingEm,
+  writeManifest,
+} from './manifest.mjs';
+import { mobileMediaQuery } from './breakpoint.mjs';
 import { shadowLayers, shadowToCss } from './shadow.mjs';
 
 const OUT_DIR = join(packagesDir, 'styles', 'src', 'generated', 'mui');
@@ -16,13 +22,32 @@ const literal = (type, value) => {
   return value;
 };
 
+/**
+ * A text style as CSS-valid declarations. Figma states letter spacing as a percentage of the
+ * font size, which is not a valid CSS letter-spacing and is dropped by the browser, so it is
+ * emitted in em: the same quantity, and the one unit that stays correct when the Mobile scale
+ * changes the font size underneath it.
+ */
+const cssTextStyle = (v) => ({
+  ...v,
+  letterSpacing: `${letterSpacingEm(v.letterSpacing, canonical.dimension(v.fontSize))}em`,
+});
+
+/** Only the declarations the Mobile mode actually changes. */
+const overrides = (desktop, mobile) =>
+  Object.fromEntries(
+    Object.entries(mobile).filter(([k, v]) => desktop[k] !== v),
+  );
+
 export function renderMui(spec) {
   const tokens = flattenSpec(spec);
   const index = new Map(tokens.map((t) => [t.name, t]));
+  const mq = mobileMediaQuery(index);
   const data = {
     tokens: { light: {}, dark: {} },
     viewport: { desktop: {}, mobile: {} },
     typography: { desktop: {}, mobile: {} },
+    responsiveTypography: {},
     zIndex: {},
     shadows: {},
   };
@@ -38,17 +63,22 @@ export function renderMui(spec) {
       // The Type collection switches size and line height between Desktop and Mobile, so both
       // are emitted. Dropping mobile here would lose an axis only the CSS media query has.
       const key = t.name.replace(/^typography\./, '');
-      data.typography.desktop[key] = { ...t.value, ...t.ext.modes.desktop };
-      data.typography.mobile[key] = { ...t.value, ...t.ext.modes.mobile };
-      manifest[t.name] = entry(
-        'typography',
-        data.typography.desktop[key],
-        data.typography.desktop[key],
-        {
-          desktop: data.typography.desktop[key],
-          mobile: data.typography.mobile[key],
-        },
-      );
+      const desktop = cssTextStyle({ ...t.value, ...t.ext.modes.desktop });
+      const mobile = cssTextStyle({ ...t.value, ...t.ext.modes.mobile });
+      data.typography.desktop[key] = desktop;
+      data.typography.mobile[key] = mobile;
+
+      // MUI reads a media query nested in a variant, so one entry carries both viewports and
+      // createTheme needs no help from the consumer to switch at the tablet boundary.
+      const mobileOnly = overrides(desktop, mobile);
+      data.responsiveTypography[key] = Object.keys(mobileOnly).length
+        ? { ...desktop, [`@media ${mq}`]: mobileOnly }
+        : { ...desktop };
+
+      manifest[t.name] = entry('typography', desktop, desktop, {
+        desktop,
+        mobile,
+      });
       continue;
     }
     if (t.type === 'shadow') {
@@ -99,6 +129,10 @@ export function renderMui(spec) {
     `// it carries the Desktop value of every viewport-varying token in both entries.\n` +
     `export const solarViewportTokens = ${JSON.stringify(data.viewport, null, 2)} as const;\n\n` +
     `export const solarTypography = ${JSON.stringify(data.typography, null, 2)} as const;\n\n` +
+    `// One entry per text style carrying both viewports: MUI applies the nested media query, so\n` +
+    `// this can be handed to createTheme as-is. solarTypography above keeps the two viewports\n` +
+    `// separate for consumers that are not MUI.\n` +
+    `export const solarResponsiveTypography = ${JSON.stringify(data.responsiveTypography, null, 2)} as const;\n\n` +
     `export const solarShadows = ${JSON.stringify(data.shadows, null, 2)} as const;\n\n` +
     `export const solarZIndex = ${JSON.stringify(data.zIndex, null, 2)} as const;\n\n` +
     `export type SolarMode = 'light' | 'dark';\n\n` +
@@ -117,7 +151,7 @@ export function renderMui(spec) {
     `    },\n` +
     `    shape: { borderRadius: parseFloat(t['radius.control']) },\n` +
     `    zIndex: solarZIndex,\n` +
-    `    typography: solarTypography.desktop,\n` +
+    `    typography: solarResponsiveTypography,\n` +
     `  };\n` +
     `}\n`;
 
