@@ -20,15 +20,22 @@ Measured, not assumed:
 | --- | --- |
 | 341 icon sets | 681 SVG files: 340 outline, 341 solid |
 | 451 KB total | 358 KB of it path data; median 348 B per file |
-| Every file | `<svg>` + `<path>` only. No groups, masks, clip paths, strokes or gradients |
-| Path commands | `M C L H V Z` only, all absolute. **No arcs.** Numbers may use `1e-05` form |
+| Every **icon** file | `<svg>` + `<path>` only. No groups, masks, clip paths, strokes, gradients or opacity |
+| Path commands | `M C L H V Z` only, all absolute, none implicitly repeated. **No arcs.** Numbers may use `1e-05` form |
 | Colour | one, `#111111`, on every icon path |
-| `fill-rule="evenodd"` | 75 paths. Dropping it renders those icons as filled blobs |
+| `fill-rule="evenodd"` | 75 paths, always paired with a redundant `clip-rule` that can be ignored |
 | viewBox | `0 0 24 24` everywhere except `zone` outline, which is `0 0 24 25` |
-| Logos | same structure, but **per-path brand colours**; 5 SVG and 5 raster PNG |
+| Logos | 5 SVG and 5 raster PNG. `google`, `microsoft` and both `biamp-logo` files are plain multi-colour paths |
+| **`teams.svg` is the outlier** | 13 paths, 12 of them filled by `url(#…)` referencing 11 radial and 1 linear gradient with 27 stops, plus all 7 `fill-opacity` attributes in the whole set. It is the only file the vector IR cannot represent |
 
-The uniformity is what makes a dependency-free Flutter path worth taking. If arcs or gradients
-appeared later the parser must fail loudly rather than render something subtly wrong.
+The uniformity of the **icons** is what makes a dependency-free Flutter path worth taking. If an
+arc or a gradient appears there later, the parser must fail loudly rather than render something
+subtly wrong.
+
+`teams.svg` is a genuine exception and needs its own decision in Task 5, not a silent workaround.
+Modelling radial gradients with focal points, `gradientTransform` matrices and 27 stops in a Dart
+painter is disproportionate work for one third-party brand mark. React renders it as-is, because
+JSX mirrors SVG and gradients cost nothing there; the open question is only what Flutter does.
 
 ## Decisions taken
 
@@ -50,7 +57,7 @@ appeared later the parser must fail loudly rather than render something subtly w
 
 ---
 
-### Task 1: Parse SVG into the icon IR
+### Task 1: Parse SVG into the icon IR — done
 
 A parser narrow enough to reject anything it does not fully understand. It accepts `<svg>` with
 a `viewBox` and one or more `<path>`, and nothing else: an unexpected element, a stroke, a
@@ -58,20 +65,281 @@ gradient or an unsupported path command is an error naming the file, not a silen
 
 **Files:**
 
-- Create: `packages/codegen/src/normalize/svg.mjs`
-- Create: `packages/codegen/test/svg.test.mjs`
+- Created: `packages/codegen/src/normalize/svg.mjs`
+- Created: `packages/codegen/test/svg.test.mjs`
 
 Exports `parseSvg(source, {file})` returning `{viewBox: [x, y, w, h], paths: [{d, fillRule, fill}]}`,
-where `fill` is `null` for `currentColor`/`#111111` and a lowercased hex string otherwise, and
-`fillRule` is `'evenodd'` or `'nonzero'`. Also exports `SUPPORTED_COMMANDS` and a `checkPathData`
-that scans a `d` string and throws on any command outside `M C L H V Z`, so the no-arcs finding
-is enforced rather than remembered.
+plus `SUPPORTED_COMMANDS` and `checkPathData(d, {file})`, which scans a `d` string and throws on
+any command outside `M C L H V Z`, so the no-arcs finding is enforced rather than remembered.
 
-Tests must cover: a single-path icon; an `evenodd` path; a multi-path logo with per-path colours;
-the `0 0 24 25` viewBox; a named colour (`white`); scientific-notation numbers; and a rejection
-each for an arc command, a `<g>`, a stroke and a gradient.
+**`fill` layering.** The parser holds no SOLAR policy: it is a plain SVG-to-IR reader, so `fill`
+is a lowercased `#rrggbb` string whenever the path names a colour — **including `#111111`** — and
+`null` only when the attribute is `currentColor` or absent. Collapsing `#111111` to "inherited" is
+the SOLAR rule that an icon takes its colour from `color.icon.*`, and it belongs to Task 2's
+normalizer, which knows which files are icons and which are logos. `fillRule` is `'evenodd'` or
+`'nonzero'`, the default when the attribute is absent; `clip-rule` is dropped, since it only takes
+effect inside a `<clipPath>` and in this corpus is always an `evenodd` duplicate of `fill-rule`.
+
+Named colours are limited to `white` and `black`, the only two the corpus uses; any other keyword
+throws rather than being guessed at. `#rgb` shorthand is expanded. `fill="none"` on a path throws —
+it is the root's chrome, never a path's colour — and the root's own `fill` is never read.
+
+```js
+/**
+ * A deliberately narrow SVG reader for the icon IR.
+ *
+ * It understands `<svg>` with a `viewBox` holding one or more `<path>`, and nothing else.
+ * Anything it cannot represent -- a group, a stroke, a gradient, an opacity, an arc -- is an
+ * error naming the file, because the Flutter target re-draws this geometry by hand and a
+ * silently dropped attribute would ship as a subtly wrong icon that no test would catch.
+ *
+ * It is a pure SVG-to-IR reader and holds no SOLAR policy: a path that names a colour gets that
+ * colour, including `#111111`. Deciding that an icon's colour is inherited belongs to the
+ * normalizer that knows which files are icons and which are logos.
+ */
+
+/**
+ * The path commands the IR can represent. Absolute only: the whole corpus is absolute today,
+ * and a relative command would shift the geometry of every later subpath if a target replayed
+ * it as absolute.
+ */
+export const SUPPORTED_COMMANDS = new Set(['M', 'L', 'C', 'H', 'V', 'Z']);
+
+/**
+ * How many numbers each command consumes. A command may repeat its arguments -- `H1 2` is two
+ * horizontal linetos -- so a run is well formed when its count is a positive multiple of this,
+ * which is what separates a legal repeat from a truncated `C1 2 3`.
+ */
+const ARITY = { M: 2, L: 2, C: 6, H: 1, V: 1, Z: 0 };
+
+// Only the keywords the corpus actually uses. Guessing at the rest of the CSS colour list would
+// mean inventing brand colours for logos, which is exactly the kind of quiet error this parser
+// exists to prevent.
+const NAMED_COLORS = { white: '#ffffff', black: '#000000' };
+
+const TAG = /<(\/?)([a-zA-Z][\w:.-]*)((?:"[^"]*"|'[^']*'|[^>"'])*)>/g;
+const ATTR = /([a-zA-Z_:][\w:.-]*)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
+
+// Sticky, so the scan can report the exact character it could not read rather than skipping it.
+const NUMBER = /[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?/y;
+const LETTER = /[a-zA-Z]/y;
+const SEPARATOR = /[\s,]+/y;
+
+function fail(file, detail) {
+  throw new Error(`${file}: ${detail}`);
+}
+
+function parseAttrs(text) {
+  const attrs = {};
+  for (const m of text.matchAll(ATTR)) attrs[m[1]] = m[2] ?? m[3];
+  return attrs;
+}
+
+/**
+ * Scans a `d` string and throws on anything outside `M L C H V Z`.
+ *
+ * It validates without rewriting: the `d` the caller holds reaches every target byte for byte,
+ * so parity between React and Flutter is a property of the data rather than of two formatters
+ * agreeing.
+ */
+export function checkPathData(d, { file }) {
+  const text = String(d).trim();
+  if (text === '') fail(file, 'path has an empty d attribute');
+
+  let at = 0;
+  let first = true;
+  let command = null;
+  let count = 0;
+
+  // Checked when the run ends rather than per number, because only the total distinguishes a
+  // legal repeat from a truncated command.
+  const endRun = () => {
+    if (command === null) return;
+    const need = ARITY[command];
+    if (need === 0 ? count !== 0 : count === 0 || count % need !== 0)
+      fail(
+        file,
+        `"${command}" takes ${need} argument${need === 1 ? '' : 's'} but was given ${count}`,
+      );
+  };
+
+  while (at < text.length) {
+    NUMBER.lastIndex = at;
+    const number = NUMBER.exec(text);
+    if (number) {
+      if (first)
+        fail(file, `path data starts with "${number[0]}", not a moveto`);
+      count += 1;
+      at = NUMBER.lastIndex;
+      continue;
+    }
+
+    LETTER.lastIndex = at;
+    const letter = LETTER.exec(text);
+    if (letter) {
+      const next = letter[0];
+      if (!SUPPORTED_COMMANDS.has(next)) {
+        const why = SUPPORTED_COMMANDS.has(next.toUpperCase())
+          ? `relative path command "${next}"`
+          : `unsupported path command "${next}"`;
+        fail(
+          file,
+          `${why} in path data; only ${[...SUPPORTED_COMMANDS].join(' ')} are supported`,
+        );
+      }
+      if (first && next !== 'M')
+        fail(file, `path data starts with "${next}", not a moveto`);
+      endRun();
+      first = false;
+      command = next;
+      count = 0;
+      at = LETTER.lastIndex;
+      continue;
+    }
+
+    SEPARATOR.lastIndex = at;
+    const separator = SEPARATOR.exec(text);
+    if (separator) {
+      at = SEPARATOR.lastIndex;
+      continue;
+    }
+
+    fail(
+      file,
+      `unreadable character "${text[at]}" in path data at offset ${at}`,
+    );
+  }
+  endRun();
+}
+
+function readViewBox(value, file) {
+  if (value === undefined) fail(file, '<svg> has no viewBox');
+  const parts = value.trim().split(/[\s,]+/);
+  const numbers = parts.map(Number);
+  if (parts.length !== 4 || numbers.some((n) => !Number.isFinite(n)))
+    fail(file, `malformed viewBox "${value}"; expected four numbers`);
+  if (numbers[2] <= 0 || numbers[3] <= 0)
+    fail(
+      file,
+      `malformed viewBox "${value}"; width and height must be positive`,
+    );
+  return numbers;
+}
+
+function readFillRule(value, file) {
+  if (value === undefined) return 'nonzero';
+  if (value === 'evenodd' || value === 'nonzero') return value;
+  fail(file, `unsupported fill-rule "${value}"`);
+}
+
+function readFill(value, file) {
+  if (value === undefined) return null;
+  const text = value.trim().toLowerCase();
+  if (text === 'currentcolor') return null;
+  if (text.startsWith('url('))
+    fail(
+      file,
+      `path is filled by a reference (${value}); gradients and patterns cannot be represented`,
+    );
+  if (text === 'none')
+    fail(
+      file,
+      'path has fill="none" and would draw nothing; the IR carries filled paths only',
+    );
+  if (text in NAMED_COLORS) return NAMED_COLORS[text];
+  const hex = /^#([0-9a-f]{3}|[0-9a-f]{6})$/.exec(text);
+  if (!hex)
+    fail(
+      file,
+      `unsupported fill "${value}"; expected #rgb, #rrggbb, currentColor, or a known colour keyword`,
+    );
+  const digits = hex[1];
+  return digits.length === 3
+    ? `#${[...digits].map((c) => c + c).join('')}`
+    : `#${digits}`;
+}
+
+function readPath(attrs, file) {
+  for (const [name, value] of Object.entries(attrs)) {
+    if (name === 'stroke' || name.startsWith('stroke-'))
+      fail(
+        file,
+        `path carries ${name}="${value}"; the IR fills paths, it never strokes them`,
+      );
+    if (name === 'fill-opacity')
+      fail(
+        file,
+        `path carries fill-opacity="${value}"; the IR has no opacity channel`,
+      );
+  }
+  if (attrs.d === undefined) fail(file, 'path has no d attribute');
+  checkPathData(attrs.d, { file });
+  // clip-rule is deliberately dropped. It only takes effect on a path used inside a <clipPath>,
+  // and none of these are; in this corpus it is always evenodd beside an identical fill-rule.
+  return {
+    d: attrs.d,
+    fillRule: readFillRule(attrs['fill-rule'], file),
+    fill: readFill(attrs.fill, file),
+  };
+}
+
+/**
+ * @param {string} source
+ * @param {{file: string}} context the path reported in every error message
+ * @returns {{viewBox: number[], paths: {d: string, fillRule: string, fill: string | null}[]}}
+ */
+export function parseSvg(source, { file }) {
+  // Comments are stripped first so that markup quoted inside one is never read as geometry.
+  const text = source.replace(/<!--[\s\S]*?-->/g, '');
+  let viewBox = null;
+  const paths = [];
+
+  for (const [, closing, name, attrText] of text.matchAll(TAG)) {
+    if (name === 'svg') {
+      if (closing) continue;
+      if (viewBox) fail(file, 'more than one <svg> element');
+      // The root's own fill is chrome -- Figma writes fill="none" on every export -- and must
+      // never be inherited into a path, which is why only the viewBox is read here.
+      viewBox = readViewBox(parseAttrs(attrText).viewBox, file);
+      continue;
+    }
+    if (!viewBox) fail(file, `<${name}> appears before the root <svg>`);
+    if (name !== 'path')
+      fail(
+        file,
+        `unsupported element <${name}>; only <svg> and <path> can be represented`,
+      );
+    if (closing) continue;
+    paths.push(readPath(parseAttrs(attrText), file));
+  }
+
+  if (!viewBox) fail(file, 'no <svg> root element');
+  if (paths.length === 0) fail(file, 'no <path> elements');
+  return { viewBox, paths };
+}
+```
+
+**Tests (26, all passing).** Real files from `docs/solar-icons/` for the accepting cases, inline
+synthetic documents for the rejections: a single-path icon (`chevron-right`); an `evenodd` path
+whose `clip-rule` does not survive; a four-colour logo (`os-logo/google`); the named colours in
+both `biamp-logo` files; the `0 0 24 25` and `0 0 36 12` viewBoxes; scientific-notation `d` data
+round-tripping verbatim; `#rgb` expansion; `currentColor` and an absent fill as `null`; and a
+rejection each for an arc command, a relative command, a `<g>`, a `<defs>`, a `stroke`, a
+`stroke-width`, a gradient fill, a `fill-opacity`, a missing viewBox, a short viewBox, a
+zero-extent viewBox, an unknown colour keyword, `fill="none"`, an unsupported `fill-rule` and an
+empty document.
+
+The last block is the one that matters: it walks all 686 SVG files under `docs/solar-icons/svg/`
+and `docs/solar-icons/logos/` and asserts the measured totals — 824 `<path>` elements in the
+files, 685 files parsed, `logos/os-logo/teams.svg` the only failure (and failing on its first
+gradient fill), 811 paths in the parsed set, 75 of them `evenodd`, every fill either `null` or
+`#rrggbb`, every viewBox four numbers with a positive extent. That is what proves the parser
+matches the corpus rather than the prose describing it.
 
 Run: `npx vitest run packages/codegen/test/svg.test.mjs`
+
+The repository owner commits `packages/codegen/src/normalize/svg.mjs` and
+`packages/codegen/test/svg.test.mjs`.
 
 ---
 
@@ -189,7 +457,7 @@ each file re-parses with `parseSvg` to the same IR it came from, which is the ro
 
 ---
 
-### Task 5: Logo emitter for React
+### Task 5: Logo emitter for React, and what Flutter does about `teams.svg`
 
 **Files:**
 
@@ -197,7 +465,11 @@ each file re-parses with `parseSvg` to the same IR it came from, which is the ro
 - Create: `packages/codegen/test/react-logos.test.mjs`
 
 `LogoBiamp` and `LogoOs` take a `variant` prop (`light-sm | dark-sm`, `microsoft | google | teams`)
-and render fixed `fill` values. They deliberately do **not** accept `color`: a tinted brand mark
+and render fixed `fill` values. `teams` additionally carries its `<defs>` gradients verbatim,
+which React handles natively; its ids must be made unique per instance so two Teams logos on one
+page cannot collide. Flutter cannot represent it as a vector path, so decide there between
+shipping it as a raster asset or dropping the Teams variant on that platform — either way it is
+a recorded deviation, never a silently different logo. They deliberately do **not** accept `color`: a tinted brand mark
 is a brand violation, and the type system should say so. The raster app icons are exported as
 URLs, not components.
 
