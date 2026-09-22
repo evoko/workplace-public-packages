@@ -17,6 +17,14 @@ describe('renderMui', () => {
     expect(data.typography.desktop['display.lg'].fontSize).toBe('56px');
   });
 
+  it('keeps the viewport axis the theme map has no room for', () => {
+    // solarTokens is keyed by theme mode, so both entries hold the Desktop size; without
+    // solarViewportTokens the Mobile value would exist nowhere in the MUI output.
+    expect(data.viewport.desktop['type.size.title.lg']).toBe('40px');
+    expect(data.viewport.mobile['type.size.title.lg']).toBe('32px');
+    expect(data.tokens.dark['type.size.title.lg']).toBe('40px');
+  });
+
   it('exposes typography composites MUI can use directly', () => {
     expect(data.typography.desktop['label.md']).toMatchObject({
       fontFamily: 'Inter',
@@ -32,6 +40,7 @@ describe('renderMui', () => {
   it('emits a TypeScript module with no MUI import', () => {
     expect(ts).not.toContain("from '@mui/material'");
     expect(ts).toContain('export const solarTokens');
+    expect(ts).toContain('export const solarViewportTokens');
     expect(ts).toContain('export function createSolarThemeOptions');
   });
 

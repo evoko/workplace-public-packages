@@ -114,10 +114,10 @@ Create `vitest.config.mjs` at the repo root:
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
 
+// Turbo runs each package's `test` script with the package directory as cwd, so `root`
+// must be set explicitly here; otherwise the `include` glob below (relative to `root`)
+// would resolve against the wrong directory and silently find no tests.
 export default defineConfig({
-  // Turbo runs each package's `test` script with cwd set to that package, and Vitest resolves
-  // `include` against cwd rather than against the config file. Pinning root makes both
-  // `npm run test` and a direct `npx vitest run <path>` resolve the same files.
   root: fileURLToPath(new URL('.', import.meta.url)),
   test: {
     include: ['packages/*/test/**/*.test.mjs'],
@@ -1120,7 +1120,7 @@ export function entry(type, emitted, canonicalInput = emitted) {
 - [ ] **Step 4: Run the test and watch it pass**
 
 Run: `npx vitest run packages/codegen/test/manifest.test.mjs`
-Expected: PASS, 7 tests.
+Expected: PASS, 8 tests.
 
 - [ ] **Step 5: Commit**
 
@@ -2362,18 +2362,374 @@ git commit -m "feat(codegen): emit SOLAR tokens as Dart sets and a ThemeExtensio
 Targets cover different subsets on purpose, so the suite states those subsets explicitly
 rather than requiring identical key sets.
 
-| Target   | Covers                                                          |
-| -------- | --------------------------------------------------------------- |
-| css      | everything except `typography.*` composites                     |
-| mui      | everything                                                      |
-| flutter  | everything                                                      |
-| tailwind | semantic tokens in the mapped categories only, never primitives |
+| Target   | Covers                                                                                                                             |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| css      | everything except `typography.*` composites                                                                                        |
+| mui      | everything                                                                                                                         |
+| flutter  | everything                                                                                                                         |
+| tailwind | semantic tokens in the mapped categories, plus `motion.*` and `type.font-family.*`, the two families SOLAR gives no semantic layer |
+
+A manifest entry records only the Light/Desktop value, so parity compares one mode and is
+blind to the other. SOLAR has two independent axes — theme (Light/Dark, colour and shadow
+only) and viewport (Desktop/Mobile, type and typography only) — and of the 710 tokens, 296
+vary by theme and 88 by viewport. This task gives every entry an optional `modes` map holding
+what that target emitted for each mode, so the round trip is real on both axes.
 
 **Files:**
 
+- Modify: `packages/codegen/src/emit/manifest.mjs`
+- Modify: `packages/codegen/src/emit/css.mjs`
+- Modify: `packages/codegen/src/emit/mui.mjs`
+- Modify: `packages/codegen/src/emit/flutter.mjs`
+- Modify: `packages/codegen/test/manifest.test.mjs`
+- Modify: `packages/codegen/test/mui.test.mjs`
 - Create: `packages/codegen/test/parity.test.mjs`
 
-- [ ] **Step 1: Write the parity suite**
+- [ ] **Step 1: Give a manifest entry a per-mode record**
+
+Two fixes in `packages/codegen/src/emit/manifest.mjs`. First, `canonical.color` must accept the
+literal Flutter actually emits — `Color(0xFF111111)`, not a bare `0xFF111111` — or the emitter
+just passes the spec value back in and the round trip proves nothing. Accepting it exposes the
+8-bit alpha channel of `Color(0xAARRGGBB)`, so alpha is quantized the same way on every target.
+Second, `entry` takes an optional `modes` map; when it is absent the entry is byte-identical to
+before.
+
+```js
+// Alpha is quantized to 8 bits before rounding, because that is the most a target can carry:
+// Dart's Color(0xAARRGGBB) gives it one byte, so CSS's 0.05 and Dart's 0x0D are the same
+// colour and must not read as a parity failure.
+const alpha8 = (a) => Math.round((Math.round(a * 255) / 255) * 1000) / 1000;
+const rgba = (r, g, b, a) => `rgba(${r}, ${g}, ${b}, ${alpha8(a)})`;
+```
+
+```js
+      // Dart Color(0xAARRGGBB). The wrapper is accepted because that is the literal the
+      // Flutter target actually emits; without it the round trip would be fake.
+      m = /^(?:Color\()?0x([0-9a-f]{8})\)?$/i.exec(v.trim());
+```
+
+```js
+/**
+ * @param {{
+ *   target: string,
+ *   dir: string,
+ *   entries: Record<string, {emitted: unknown, normalized: unknown, modes?: Record<string, unknown>}>,
+ *   fileVersion: string,
+ * }} args
+ */
+export function writeManifest({ target, dir, entries, fileVersion }) {
+  const body = {
+    _note:
+      'Written by the SOLAR codegen. "emitted" is the literal this target produced; "normalized" is that literal parsed back to canonical form; "modes" carries the same canonical form per mode (light/dark or desktop/mobile) for the tokens that vary, and is absent for the ones that do not. The parity suite compares normalized and every mode across targets.',
+    target,
+    fileVersion,
+    tokens: entries,
+  };
+  return writeGenerated(
+    join(dir, 'tokens.manifest.json'),
+    JSON.stringify(body, null, 2) + '\n',
+  );
+}
+
+/**
+ * Builds a manifest entry.
+ *
+ * For scalar types the emitted literal is parsed back, so a bad conversion in one target is
+ * caught. For the composite types (shadow, typography) the target's literal syntax differs too
+ * much to round-trip, so the emitter passes the structured value it derived from the spec as
+ * `canonicalInput`; parity then compares structure, and literal formatting is covered by each
+ * emitter's own snapshot test.
+ *
+ * `modes` maps a mode name (light/dark or desktop/mobile) to the canonical input for that mode,
+ * i.e. whatever this target emitted there. The entry then carries the canonicalized value per
+ * mode, and parity compares those across targets; without it only one mode would ever be
+ * compared and the other axis could drift unnoticed. Omit it for mode-invariant tokens: the
+ * entry then has no `modes` key at all.
+ */
+export function entry(type, emitted, canonicalInput = emitted, modes) {
+  const parse = canonical[type];
+  if (!parse) throw new Error(`no canonicalizer for type ${type}`);
+  const built = { emitted, normalized: parse(canonicalInput) };
+  if (modes)
+    built.modes = Object.fromEntries(
+      Object.entries(modes).map(([mode, value]) => [mode, parse(value)]),
+    );
+  return built;
+}
+```
+
+The 8-bit quantization changes one existing expectation, so
+`packages/codegen/test/manifest.test.mjs` states the rule instead of hiding it:
+
+```js
+    expect(canonical.color('0xFFF5F5F5')).toBe('rgba(245, 245, 245, 1)');
+    expect(canonical.color('Color(0xFFF5F5F5)')).toBe('rgba(245, 245, 245, 1)');
+    expect(canonical.color('#F5F5F5')).toBe('rgba(245, 245, 245, 1)');
+  });
+
+  it('quantizes alpha to the 8 bits Dart can carry, so the targets can agree', () => {
+    // Color(0xAARRGGBB) has one byte for alpha, so 0.05 is stored as 13/255. Comparing the
+    // CSS float against the Dart byte unquantized would report every alpha as a mismatch.
+    expect(canonical.color('rgba(0, 0, 0, 0.05)')).toBe('rgba(0, 0, 0, 0.051)');
+    expect(canonical.color('Color(0x0D000000)')).toBe('rgba(0, 0, 0, 0.051)');
+  });
+```
+
+Run: `npx vitest run packages/codegen/test/manifest.test.mjs`
+Expected: PASS, 8 tests.
+
+- [ ] **Step 2: Record both modes from the CSS target**
+
+In `packages/codegen/src/emit/css.mjs` the canonical input per mode is the literal CSS itself
+emitted for that mode, never the spec value read a second time. The mobile literal is computed
+before it is pushed, because the media-query rule bakes an extra indent into the string.
+
+```js
+    if (t.type === 'shadow') {
+      const lightLayers = shadowLayers(index, { $value: t.value }, 'light');
+      const darkLayers = shadowLayers(index, { $value: t.value }, 'dark');
+      root.push(`  ${name}: ${shadowToCss(lightLayers)};`);
+      dark.push(`  ${name}: ${shadowToCss(darkLayers)};`);
+      manifest[t.name] = entry(
+        'shadow',
+        shadowToCss(lightLayers),
+        lightLayers,
+        {
+          light: lightLayers,
+          dark: darkLayers,
+        },
+      );
+      continue;
+    }
+
+    const literal = cssLiteral(t.type, t.value);
+    root.push(`  ${name}: ${literal};`);
+
+    // The literal for the other mode is computed before it is pushed, because the mobile rule
+    // carries an extra level of indentation that must not reach the manifest.
+    let modes;
+    if (t.modes?.dark !== undefined) {
+      const darkLiteral = cssLiteral(t.type, t.modes.dark);
+      dark.push(`  ${name}: ${darkLiteral};`);
+      modes = { light: literal, dark: darkLiteral };
+    }
+    if (t.modes?.mobile !== undefined) {
+      const mobileLiteral = cssLiteral(t.type, t.modes.mobile);
+      mobile.push(`    ${name}: ${mobileLiteral};`);
+      modes = { desktop: literal, mobile: mobileLiteral };
+    }
+    manifest[t.name] = entry(t.type, literal, literal, modes);
+  }
+```
+
+Run: `npx vitest run packages/codegen/test/css.test.mjs`
+Expected: PASS, 7 tests.
+
+- [ ] **Step 3: Record both modes from the Flutter target**
+
+In `packages/codegen/src/emit/flutter.mjs` each mode-varying branch keeps the literals it hands
+to `addModal` and passes the same ones to `entry`. With the step 1 fix a colour now round-trips
+properly, so the Dart literal replaces the spec value as the canonical input, in the static
+branch as well. `fontWeight` is left alone: `FontWeight.w600` has no canonicalizer, so it stays
+anchored to the spec value.
+
+`MODAL_CLASS` is also exported, so step 6 can find a token in the generated Dart without
+re-deriving the mapping, and so renaming a class cannot make that lookup silently miss.
+
+```js
+// Exported so the parity suite can locate a token in the generated Dart without re-deriving
+// the mapping, and so a class rename cannot silently make that lookup miss.
+export const MODAL_CLASS = {
+  color: 'SolarColors',
+  type: 'SolarType',
+  typography: 'SolarTypography',
+  shadow: 'SolarShadows',
+};
+```
+
+```js
+      if (t.type === 'color') {
+        const perMode = {
+          light: dartColor(t.modes.light),
+          dark: dartColor(t.modes.dark),
+        };
+        addModal(cls, modes, 'Color', field, perMode);
+        manifest[t.name] = entry(
+          'color',
+          perMode.light,
+          perMode.light,
+          perMode,
+        );
+      } else if (t.type === 'typography') {
+        const perMode = {
+          desktop: { ...t.value, ...t.ext.modes.desktop },
+          mobile: { ...t.value, ...t.ext.modes.mobile },
+        };
+        addModal(cls, modes, 'TextStyle', field, {
+          desktop: textStyle(perMode.desktop),
+          mobile: textStyle(perMode.mobile),
+        });
+        manifest[t.name] = entry(
+          'typography',
+          'TextStyle',
+          perMode.desktop,
+          perMode,
+        );
+      } else if (t.type === 'shadow') {
+        const perMode = {
+          light: shadowLayers(index, { $value: t.value }, 'light'),
+          dark: shadowLayers(index, { $value: t.value }, 'dark'),
+        };
+        addModal(cls, modes, 'List<BoxShadow>', field, {
+          light: boxShadows(perMode.light),
+          dark: boxShadows(perMode.dark),
+        });
+        manifest[t.name] = entry(
+          'shadow',
+          'BoxShadow[]',
+          perMode.light,
+          perMode,
+        );
+      } else if (t.type === 'dimension') {
+        const perMode = {
+          desktop: dbl(canonical.dimension(t.modes.desktop)),
+          mobile: dbl(canonical.dimension(t.modes.mobile)),
+        };
+        addModal(cls, modes, 'double', field, perMode);
+        manifest[t.name] = entry(
+          'dimension',
+          perMode.desktop,
+          perMode.desktop,
+          perMode,
+        );
+      } else {
+```
+
+```js
+    if (t.type === 'color') {
+      const lit = dartColor(t.value);
+      addStatic(cls, `  static const Color ${field} = ${lit};`);
+      manifest[t.name] = entry('color', lit);
+    } else if (t.type === 'dimension') {
+```
+
+Run: `npx vitest run packages/codegen/test/flutter.test.mjs`
+Expected: PASS, 10 tests.
+
+- [ ] **Step 4: Give MUI somewhere to put the viewport axis**
+
+MUI's token map is keyed by theme alone, so 41 viewport-varying tokens have nowhere to live and
+14 of them are wrong: a consumer reading `solarTokens.light['type.size.title.lg']` gets 40px on
+every viewport, while CSS and Flutter give 32px below the `sm` breakpoint. The 8 typography
+composites already carry both viewports via `solarTypography`; these raw tokens do not. The fix
+mirrors the CSS target — `:root` holds everything at its Desktop value and a media query
+overrides the subset that moves — so `solarTokens` stays a complete lookup and
+`solarViewportTokens` carries the override. All 41 are emitted, not only the 14 that differ:
+completeness beats a delta.
+
+In `packages/codegen/src/emit/mui.mjs`:
+
+```js
+  const data = {
+    tokens: { light: {}, dark: {} },
+    viewport: { desktop: {}, mobile: {} },
+    typography: { desktop: {}, mobile: {} },
+    zIndex: {},
+    shadows: {},
+  };
+```
+
+```js
+      manifest[t.name] = entry(
+        'typography',
+        data.typography.desktop[key],
+        data.typography.desktop[key],
+        {
+          desktop: data.typography.desktop[key],
+          mobile: data.typography.mobile[key],
+        },
+      );
+```
+
+```js
+    if (t.type === 'shadow') {
+      const lightLayers = shadowLayers(index, { $value: t.value }, 'light');
+      const darkLayers = shadowLayers(index, { $value: t.value }, 'dark');
+      const key = t.name.replace(/^shadow\./, '');
+      data.shadows[key] = {
+        light: shadowToCss(lightLayers),
+        dark: shadowToCss(darkLayers),
+      };
+      manifest[t.name] = entry(
+        'shadow',
+        shadowToCss(lightLayers),
+        lightLayers,
+        { light: lightLayers, dark: darkLayers },
+      );
+      continue;
+    }
+    const light = literal(
+      t.type,
+      t.modes?.light ?? t.modes?.desktop ?? t.value,
+    );
+    const dark = literal(t.type, t.modes?.dark ?? t.modes?.desktop ?? t.value);
+    data.tokens.light[t.name] = light;
+    data.tokens.dark[t.name] = dark;
+
+    let modes;
+    if (t.modes?.light !== undefined) modes = { light, dark };
+    else if (t.modes?.desktop !== undefined) {
+      // MUI's theme is keyed by theme mode alone, so a viewport-varying token has nowhere to
+      // live in solarTokens: both entries hold the Desktop value. The Mobile value is emitted
+      // separately rather than dropped, mirroring the CSS media query.
+      const mobile = literal(t.type, t.modes.mobile);
+      data.viewport.desktop[t.name] = light;
+      data.viewport.mobile[t.name] = mobile;
+      modes = { desktop: light, mobile };
+    }
+    manifest[t.name] = entry(t.type, light, light, modes);
+  }
+```
+
+```js
+    `export const solarTokens = ${JSON.stringify(data.tokens, null, 2)} as const;\n\n` +
+    `// Mirrors the CSS @media (max-width: 767.98px) override: apply these on top of\n` +
+    `// solarTokens[mode] below the sm breakpoint. solarTokens is keyed by theme mode only, so\n` +
+    `// it carries the Desktop value of every viewport-varying token in both entries.\n` +
+    `export const solarViewportTokens = ${JSON.stringify(data.viewport, null, 2)} as const;\n\n` +
+```
+
+- [ ] **Step 5: Cover the viewport map in the MUI test**
+
+In `packages/codegen/test/mui.test.mjs`:
+
+```js
+  it('keeps the viewport axis the theme map has no room for', () => {
+    // solarTokens is keyed by theme mode, so both entries hold the Desktop size; without
+    // solarViewportTokens the Mobile value would exist nowhere in the MUI output.
+    expect(data.viewport.desktop['type.size.title.lg']).toBe('40px');
+    expect(data.viewport.mobile['type.size.title.lg']).toBe('32px');
+    expect(data.tokens.dark['type.size.title.lg']).toBe('40px');
+  });
+```
+
+```js
+    expect(ts).toContain('export const solarTokens');
+    expect(ts).toContain('export const solarViewportTokens');
+    expect(ts).toContain('export function createSolarThemeOptions');
+```
+
+Run: `npx vitest run packages/codegen/test/mui.test.mjs`
+Expected: PASS, 7 tests.
+
+- [ ] **Step 6: Write the parity suite**
+
+Six of the assertions compare manifests. That is not enough on its own: each emitter builds its
+manifest alongside its output rather than from it, so a manifest can promise a mode the artifact
+never received — which is precisely the defect parity exists to catch. Deleting the CSS mobile
+push, the MUI viewport map or the second Flutter mode instance leaves all six of those assertions
+green. The last assertion therefore reads the three artifacts back and checks the promise against
+them, so each of those deletions fails and names the tokens.
 
 `packages/codegen/test/parity.test.mjs`:
 
@@ -2381,37 +2737,114 @@ rather than requiring identical key sets.
 import { beforeAll, describe, expect, it } from 'vitest';
 import { buildTokenSpec, loadContract } from '../src/normalize/tokens.mjs';
 import { flattenSpec } from '../src/spec.mjs';
+import { canonical } from '../src/emit/manifest.mjs';
 import { renderCss } from '../src/emit/css.mjs';
 import { renderMui } from '../src/emit/mui.mjs';
 import { renderTailwind } from '../src/emit/tailwind.mjs';
-import { renderFlutter } from '../src/emit/flutter.mjs';
+import { dartName, MODAL_CLASS, renderFlutter } from '../src/emit/flutter.mjs';
 
-let spec, tokens, manifests;
+let spec, tokens, byName, rendered, manifests;
 
 beforeAll(() => {
   spec = buildTokenSpec(loadContract()).spec;
   tokens = flattenSpec(spec);
-  manifests = {
-    css: renderCss(spec).manifest,
-    mui: renderMui(spec).manifest,
-    tailwind: renderTailwind(spec).manifest,
-    flutter: renderFlutter(spec).manifest,
+  byName = new Map(tokens.map((t) => [t.name, t]));
+  rendered = {
+    css: renderCss(spec),
+    mui: renderMui(spec),
+    tailwind: renderTailwind(spec),
+    flutter: renderFlutter(spec),
   };
+  manifests = Object.fromEntries(
+    Object.entries(rendered).map(([target, r]) => [target, r.manifest]),
+  );
 });
+
+/** The mode names a token varies over, or null when it is mode invariant. */
+const modeNames = (t) =>
+  t.type === 'typography'
+    ? ['desktop', 'mobile']
+    : t.modes
+      ? Object.keys(t.modes)
+      : null;
+
+/** The spec value for one mode. `ext.modes` holds only the fields a text style overrides. */
+const specValue = (t, mode) =>
+  t.type === 'typography'
+    ? { ...t.value, ...t.ext.modes[mode] }
+    : t.modes[mode];
+
+const show = (v) => JSON.stringify(v);
+
+/** Every `--solar-*` declaration in the generated stylesheet, as "<var> [<mode>]". */
+const cssDeclarations = (css) => {
+  const block = (open) => {
+    const from = css.indexOf('{', css.indexOf(open)) + 1;
+    return css.slice(from, css.indexOf('\n}', from));
+  };
+  // Light and Desktop are both the unqualified :root rule; the other two are the overrides.
+  const blocks = {
+    light: block(':root {'),
+    desktop: block(':root {'),
+    dark: block("[data-theme='dark'] {"),
+    mobile: block('@media (max-width: 767.98px)'),
+  };
+  const out = new Set();
+  for (const [mode, text] of Object.entries(blocks))
+    for (const m of text.matchAll(/^\s*(--solar-[\w-]+):/gm))
+      out.add(`${m[1]} [${mode}]`);
+  return out;
+};
+
+/** Every token the MUI data module actually carries, as "<name> [<mode>]". */
+const muiKeys = (data) => {
+  const out = new Set();
+  const add = (group, prefix = '') => {
+    for (const [mode, entries] of Object.entries(group))
+      for (const name of Object.keys(entries))
+        out.add(`${prefix}${name} [${mode}]`);
+  };
+  add(data.tokens);
+  add(data.viewport);
+  add(data.typography, 'typography.');
+  for (const [name, modes] of Object.entries(data.shadows))
+    for (const mode of Object.keys(modes)) out.add(`shadow.${name} [${mode}]`);
+  return out;
+};
+
+/** Every field assigned in a generated Dart mode instance, as "<Class>.<field> [<mode>]". */
+const dartFields = (dart) => {
+  const out = new Set();
+  for (const m of dart.matchAll(
+    /static const (\w+) (\w+) = \1\(\n([\s\S]*?)\n {2}\);/g,
+  ))
+    for (const f of m[3].matchAll(/^\s*(\$?\w+):/gm))
+      out.add(`${m[1]}.${f[1]} [${m[2]}]`);
+  return out;
+};
+
+/** Where one token for one mode should appear in a given target's output. */
+const artifactKey = (target, t, mode) => {
+  if (target === 'css')
+    return `--solar-${t.name.replaceAll('.', '-')} [${mode}]`;
+  if (target === 'mui') return `${t.name} [${mode}]`;
+  const [head, ...rest] = t.name.split('.');
+  return `${MODAL_CLASS[head]}.${dartName(rest.join('.'))} [${mode}]`;
+};
 
 describe('token parity', () => {
   it('every emitted token exists in the spec', () => {
-    const known = new Set(tokens.map((t) => t.name));
     for (const [target, m] of Object.entries(manifests)) {
       for (const name of Object.keys(m)) {
-        expect(known.has(name), `${target} emitted unknown token ${name}`).toBe(
-          true,
-        );
+        expect(
+          byName.has(name),
+          `${target} emitted unknown token ${name}`,
+        ).toBe(true);
       }
     }
   });
 
-  it('css, mui and flutter cover every non-typography token', () => {
+  it('css covers every non-typography token, mui and flutter cover every token', () => {
     for (const t of tokens) {
       if (t.type !== 'typography') {
         expect(manifests.css[t.name], `css is missing ${t.name}`).toBeDefined();
@@ -2425,7 +2858,6 @@ describe('token parity', () => {
   });
 
   it('tailwind exposes the semantic layer, and a primitive only where SOLAR has no semantic one', () => {
-    const byName = new Map(tokens.map((t) => [t.name, t]));
     for (const name of Object.keys(manifests.tailwind)) {
       if (byName.get(name).ext.tier !== 'primitive') continue;
       // motion and the font families are the only ones with no semantic layer in SOLAR
@@ -2436,6 +2868,16 @@ describe('token parity', () => {
     expect(Object.keys(manifests.tailwind).length).toBeGreaterThan(100);
   });
 
+  it('tailwind points at the CSS variables, except breakpoints, which media queries cannot read', () => {
+    for (const [name, e] of Object.entries(manifests.tailwind)) {
+      if (name.startsWith('layout.breakpoint.')) {
+        expect(e.emitted).toBe(byName.get(name).value);
+      } else {
+        expect(e.emitted).toBe(`var(--solar-${name.replaceAll('.', '-')})`);
+      }
+    }
+  });
+
   it('every target that emits a token agrees on its canonical value', () => {
     const mismatches = [];
     for (const t of tokens) {
@@ -2443,11 +2885,11 @@ describe('token parity', () => {
         .map(([target, m]) => [target, m[t.name]])
         .filter(([, e]) => e !== undefined);
       if (seen.length < 2) continue;
-      const [, first] = seen[0];
+      const [firstTarget, first] = seen[0];
       for (const [target, e] of seen.slice(1)) {
-        if (JSON.stringify(e.normalized) !== JSON.stringify(first.normalized)) {
+        if (show(e.normalized) !== show(first.normalized)) {
           mismatches.push(
-            `${t.name}: ${seen[0][0]}=${JSON.stringify(first.normalized)} vs ${target}=${JSON.stringify(e.normalized)}`,
+            `${t.name}: ${firstTarget}=${show(first.normalized)} vs ${target}=${show(e.normalized)}`,
           );
         }
       }
@@ -2455,33 +2897,124 @@ describe('token parity', () => {
     expect(mismatches).toEqual([]);
   });
 
-  it('matches the spec value, not just each other', () => {
+  it('every target that records a mode agrees on that mode', () => {
+    const mismatches = [];
     for (const t of tokens) {
-      const e = manifests.mui[t.name];
-      if (!e || t.type === 'typography' || t.type === 'shadow') continue;
-      const expected =
-        t.type === 'color'
-          ? undefined // colours carry modes; compared target to target above
-          : t.value;
-      if (expected === undefined) continue;
-      expect(String(e.emitted).replace(/px$|ms$/, '')).toBe(
-        String(expected).replace(/px$|ms$/, ''),
-      );
+      for (const mode of modeNames(t) ?? []) {
+        const seen = Object.entries(manifests)
+          .map(([target, m]) => [target, m[t.name]?.modes?.[mode]])
+          .filter(([, v]) => v !== undefined);
+        if (seen.length < 2) continue;
+        const [firstTarget, first] = seen[0];
+        for (const [target, v] of seen.slice(1)) {
+          if (show(v) !== show(first)) {
+            mismatches.push(
+              `${t.name} [${mode}]: ${firstTarget}=${show(first)} vs ${target}=${show(v)}`,
+            );
+          }
+        }
+      }
     }
+    expect(mismatches).toEqual([]);
+  });
+
+  it('matches the spec value, not just each other', () => {
+    // Agreement alone would pass if every target were uniformly wrong, so each value is also
+    // checked against the spec. Shadows are excluded: their layers resolve a colour alias, so
+    // there is no single spec value to compare and cross-target agreement covers them.
+    const mismatches = [];
+    for (const t of tokens) {
+      if (t.type === 'shadow') continue;
+      const base = show(canonical[t.type](t.value));
+      for (const [target, m] of Object.entries(manifests)) {
+        const e = m[t.name];
+        if (!e) continue;
+        if (show(e.normalized) !== base)
+          mismatches.push(
+            `${t.name}: ${target}=${show(e.normalized)} vs spec=${base}`,
+          );
+        for (const [mode, v] of Object.entries(e.modes ?? {})) {
+          const want = show(canonical[t.type](specValue(t, mode)));
+          if (show(v) !== want)
+            mismatches.push(
+              `${t.name} [${mode}]: ${target}=${show(v)} vs spec=${want}`,
+            );
+        }
+      }
+    }
+    expect(mismatches).toEqual([]);
+  });
+
+  it('no target silently drops a mode axis', () => {
+    // Tailwind is exempt: every entry it emits is a var() reference into the CSS target, so it
+    // inherits both modes at runtime and has nothing of its own to record.
+    const missing = [];
+    for (const t of tokens) {
+      const modes = modeNames(t);
+      if (!modes) continue;
+      for (const target of ['css', 'mui', 'flutter']) {
+        // CSS does not emit typography composites at all; they exist there as type.* parts.
+        if (target === 'css' && t.type === 'typography') continue;
+        const e = manifests[target][t.name];
+        for (const mode of modes)
+          if (e?.modes?.[mode] === undefined)
+            missing.push(`${t.name} [${mode}]: ${target} recorded nothing`);
+      }
+    }
+    expect(missing).toEqual([]);
+  });
+
+  it('claims no mode the generated output does not actually contain', () => {
+    // Every assertion above reads the manifest, which each emitter builds alongside its output
+    // rather than from it. That leaves the manifest able to promise a mode the artifact never
+    // received, which is exactly the defect parity exists to catch, so the artifacts are read
+    // back here and the promise is checked against them.
+    const present = {
+      css: cssDeclarations(rendered.css.css),
+      mui: muiKeys(rendered.mui.data),
+      flutter: dartFields(rendered.flutter.dart),
+    };
+    const unmet = [];
+    for (const t of tokens) {
+      for (const mode of modeNames(t) ?? []) {
+        for (const target of ['css', 'mui', 'flutter']) {
+          if (manifests[target][t.name]?.modes?.[mode] === undefined) continue;
+          const key = artifactKey(target, t, mode);
+          if (!present[target].has(key))
+            unmet.push(
+              `${t.name} [${mode}]: ${target} manifest claims it, ${key} is not in the output`,
+            );
+        }
+      }
+    }
+    expect(unmet).toEqual([]);
   });
 });
 ```
 
-- [ ] **Step 2: Run the suite**
+- [ ] **Step 7: Run the suite**
 
 Run: `npx vitest run packages/codegen/test/parity.test.mjs`
-Expected: PASS, 5 tests. If a target is missing tokens, the failure names them.
+Expected: PASS, 9 tests. If a target is missing tokens or a mode, or claims a mode its output
+does not contain, the failure names them.
+Written before step 4, the last assertion fails with 82 entries — the 41 viewport-varying
+`type.*` tokens times two modes, each reading `mui recorded nothing`.
 
-- [ ] **Step 3: Commit**
+- [ ] **Step 8: Regenerate the committed Flutter output**
+
+The manifest shape changes, so the file checked in under `packages/solar_flutter` has to be
+rewritten. The same `fileVersion` already in it is reused so the value does not churn, and
+`tokens.dart` comes out unchanged.
+
+Run: `node -e "const n=await import('./packages/codegen/src/normalize/tokens.mjs');const f=await import('./packages/codegen/src/emit/flutter.mjs');f.emitFlutter(n.buildTokenSpec(n.loadContract()).spec,'dev');" --input-type=module`
+Then: `cd packages/solar_flutter && dart format lib test && flutter analyze && flutter test && cd ../..`
+Expected: `No issues found!` and 8 passing Dart tests; only `tokens.manifest.json` differs.
+
+- [ ] **Step 9: Commit**
 
 ```bash
-git add packages/codegen/test/parity.test.mjs
-git commit -m "test(codegen): assert token parity across CSS, MUI, Tailwind and Flutter"
+git add packages/codegen/src/emit packages/codegen/test packages/solar_flutter
+git commit -m "test(codegen): assert token parity across CSS, MUI, Tailwind and Flutter in both modes"
 ```
 
 ---

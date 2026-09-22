@@ -54,7 +54,9 @@ const modesOf = (t) =>
       : ['desktop', 'mobile']
     : null;
 
-const MODAL_CLASS = {
+// Exported so the parity suite can locate a token in the generated Dart without re-deriving
+// the mapping, and so a class rename cannot silently make that lookup miss.
+export const MODAL_CLASS = {
   color: 'SolarColors',
   type: 'SolarType',
   typography: 'SolarTypography',
@@ -123,42 +125,58 @@ export function renderFlutter(spec) {
       if (!cls)
         throw new Error(`no mode-varying Dart class for "${head}" (${t.name})`);
       if (t.type === 'color') {
-        addModal(cls, modes, 'Color', field, {
+        const perMode = {
           light: dartColor(t.modes.light),
           dark: dartColor(t.modes.dark),
-        });
+        };
+        addModal(cls, modes, 'Color', field, perMode);
         manifest[t.name] = entry(
           'color',
-          dartColor(t.modes.light),
-          t.modes.light,
+          perMode.light,
+          perMode.light,
+          perMode,
         );
       } else if (t.type === 'typography') {
+        const perMode = {
+          desktop: { ...t.value, ...t.ext.modes.desktop },
+          mobile: { ...t.value, ...t.ext.modes.mobile },
+        };
         addModal(cls, modes, 'TextStyle', field, {
-          desktop: textStyle({ ...t.value, ...t.ext.modes.desktop }),
-          mobile: textStyle({ ...t.value, ...t.ext.modes.mobile }),
+          desktop: textStyle(perMode.desktop),
+          mobile: textStyle(perMode.mobile),
         });
-        manifest[t.name] = entry('typography', 'TextStyle', {
-          ...t.value,
-          ...t.ext.modes.desktop,
-        });
+        manifest[t.name] = entry(
+          'typography',
+          'TextStyle',
+          perMode.desktop,
+          perMode,
+        );
       } else if (t.type === 'shadow') {
+        const perMode = {
+          light: shadowLayers(index, { $value: t.value }, 'light'),
+          dark: shadowLayers(index, { $value: t.value }, 'dark'),
+        };
         addModal(cls, modes, 'List<BoxShadow>', field, {
-          light: boxShadows(shadowLayers(index, { $value: t.value }, 'light')),
-          dark: boxShadows(shadowLayers(index, { $value: t.value }, 'dark')),
+          light: boxShadows(perMode.light),
+          dark: boxShadows(perMode.dark),
         });
         manifest[t.name] = entry(
           'shadow',
           'BoxShadow[]',
-          shadowLayers(index, { $value: t.value }, 'light'),
+          perMode.light,
+          perMode,
         );
       } else if (t.type === 'dimension') {
-        addModal(cls, modes, 'double', field, {
+        const perMode = {
           desktop: dbl(canonical.dimension(t.modes.desktop)),
           mobile: dbl(canonical.dimension(t.modes.mobile)),
-        });
+        };
+        addModal(cls, modes, 'double', field, perMode);
         manifest[t.name] = entry(
           'dimension',
-          dbl(canonical.dimension(t.modes.desktop)),
+          perMode.desktop,
+          perMode.desktop,
+          perMode,
         );
       } else {
         throw new Error(
@@ -172,8 +190,9 @@ export function renderFlutter(spec) {
     if (!cls)
       throw new Error(`no Dart class for token group "${head}" (${t.name})`);
     if (t.type === 'color') {
-      addStatic(cls, `  static const Color ${field} = ${dartColor(t.value)};`);
-      manifest[t.name] = entry('color', dartColor(t.value), t.value);
+      const lit = dartColor(t.value);
+      addStatic(cls, `  static const Color ${field} = ${lit};`);
+      manifest[t.name] = entry('color', lit);
     } else if (t.type === 'dimension') {
       const v = dbl(canonical.dimension(t.value));
       addStatic(cls, `  static const double ${field} = ${v};`);

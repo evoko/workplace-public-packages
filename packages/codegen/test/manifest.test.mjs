@@ -4,9 +4,16 @@ import { canonical } from '../src/emit/manifest.mjs';
 describe('canonical', () => {
   it('reduces every colour spelling to the same value', () => {
     expect(canonical.color('#f5f5f5')).toBe('rgba(245, 245, 245, 1)');
-    expect(canonical.color('rgba(0, 0, 0, 0.05)')).toBe('rgba(0, 0, 0, 0.05)');
     expect(canonical.color('0xFFF5F5F5')).toBe('rgba(245, 245, 245, 1)');
+    expect(canonical.color('Color(0xFFF5F5F5)')).toBe('rgba(245, 245, 245, 1)');
     expect(canonical.color('#F5F5F5')).toBe('rgba(245, 245, 245, 1)');
+  });
+
+  it('quantizes alpha to the 8 bits Dart can carry, so the targets can agree', () => {
+    // Color(0xAARRGGBB) has one byte for alpha, so 0.05 is stored as 13/255. Comparing the
+    // CSS float against the Dart byte unquantized would report every alpha as a mismatch.
+    expect(canonical.color('rgba(0, 0, 0, 0.05)')).toBe('rgba(0, 0, 0, 0.051)');
+    expect(canonical.color('Color(0x0D000000)')).toBe('rgba(0, 0, 0, 0.051)');
   });
 
   it('reduces dimensions to a number of pixels', () => {

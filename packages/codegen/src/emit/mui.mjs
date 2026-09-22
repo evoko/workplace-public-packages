@@ -21,6 +21,7 @@ export function renderMui(spec) {
   const index = new Map(tokens.map((t) => [t.name, t]));
   const data = {
     tokens: { light: {}, dark: {} },
+    viewport: { desktop: {}, mobile: {} },
     typography: { desktop: {}, mobile: {} },
     zIndex: {},
     shadows: {},
@@ -39,18 +40,31 @@ export function renderMui(spec) {
       const key = t.name.replace(/^typography\./, '');
       data.typography.desktop[key] = { ...t.value, ...t.ext.modes.desktop };
       data.typography.mobile[key] = { ...t.value, ...t.ext.modes.mobile };
-      manifest[t.name] = entry('typography', data.typography.desktop[key]);
+      manifest[t.name] = entry(
+        'typography',
+        data.typography.desktop[key],
+        data.typography.desktop[key],
+        {
+          desktop: data.typography.desktop[key],
+          mobile: data.typography.mobile[key],
+        },
+      );
       continue;
     }
     if (t.type === 'shadow') {
-      const light = shadowLayers(index, { $value: t.value }, 'light');
-      const night = shadowLayers(index, { $value: t.value }, 'dark');
+      const lightLayers = shadowLayers(index, { $value: t.value }, 'light');
+      const darkLayers = shadowLayers(index, { $value: t.value }, 'dark');
       const key = t.name.replace(/^shadow\./, '');
       data.shadows[key] = {
-        light: shadowToCss(light),
-        dark: shadowToCss(night),
+        light: shadowToCss(lightLayers),
+        dark: shadowToCss(darkLayers),
       };
-      manifest[t.name] = entry('shadow', shadowToCss(light), light);
+      manifest[t.name] = entry(
+        'shadow',
+        shadowToCss(lightLayers),
+        lightLayers,
+        { light: lightLayers, dark: darkLayers },
+      );
       continue;
     }
     const light = literal(
@@ -60,7 +74,19 @@ export function renderMui(spec) {
     const dark = literal(t.type, t.modes?.dark ?? t.modes?.desktop ?? t.value);
     data.tokens.light[t.name] = light;
     data.tokens.dark[t.name] = dark;
-    manifest[t.name] = entry(t.type, light);
+
+    let modes;
+    if (t.modes?.light !== undefined) modes = { light, dark };
+    else if (t.modes?.desktop !== undefined) {
+      // MUI's theme is keyed by theme mode alone, so a viewport-varying token has nowhere to
+      // live in solarTokens: both entries hold the Desktop value. The Mobile value is emitted
+      // separately rather than dropped, mirroring the CSS media query.
+      const mobile = literal(t.type, t.modes.mobile);
+      data.viewport.desktop[t.name] = light;
+      data.viewport.mobile[t.name] = mobile;
+      modes = { desktop: light, mobile };
+    }
+    manifest[t.name] = entry(t.type, light, light, modes);
   }
 
   const ts =
@@ -68,6 +94,10 @@ export function renderMui(spec) {
     `// Plain data on purpose: this module imports nothing, so @bwp-web/styles stays dependency free.\n` +
     `// Pass the result of createSolarThemeOptions(mode) to MUI's createTheme.\n\n` +
     `export const solarTokens = ${JSON.stringify(data.tokens, null, 2)} as const;\n\n` +
+    `// Mirrors the CSS @media (max-width: 767.98px) override: apply these on top of\n` +
+    `// solarTokens[mode] below the sm breakpoint. solarTokens is keyed by theme mode only, so\n` +
+    `// it carries the Desktop value of every viewport-varying token in both entries.\n` +
+    `export const solarViewportTokens = ${JSON.stringify(data.viewport, null, 2)} as const;\n\n` +
     `export const solarTypography = ${JSON.stringify(data.typography, null, 2)} as const;\n\n` +
     `export const solarShadows = ${JSON.stringify(data.shadows, null, 2)} as const;\n\n` +
     `export const solarZIndex = ${JSON.stringify(data.zIndex, null, 2)} as const;\n\n` +

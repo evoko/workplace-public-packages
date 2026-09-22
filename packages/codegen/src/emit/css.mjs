@@ -41,22 +41,39 @@ export function renderCss(spec) {
     const name = cssVar(t.name);
 
     if (t.type === 'shadow') {
-      const light = shadowLayers(index, { $value: t.value }, 'light');
-      const night = shadowLayers(index, { $value: t.value }, 'dark');
-      root.push(`  ${name}: ${shadowToCss(light)};`);
-      dark.push(`  ${name}: ${shadowToCss(night)};`);
-      manifest[t.name] = entry('shadow', shadowToCss(light), light);
+      const lightLayers = shadowLayers(index, { $value: t.value }, 'light');
+      const darkLayers = shadowLayers(index, { $value: t.value }, 'dark');
+      root.push(`  ${name}: ${shadowToCss(lightLayers)};`);
+      dark.push(`  ${name}: ${shadowToCss(darkLayers)};`);
+      manifest[t.name] = entry(
+        'shadow',
+        shadowToCss(lightLayers),
+        lightLayers,
+        {
+          light: lightLayers,
+          dark: darkLayers,
+        },
+      );
       continue;
     }
 
     const literal = cssLiteral(t.type, t.value);
     root.push(`  ${name}: ${literal};`);
-    manifest[t.name] = entry(t.type, literal);
 
-    if (t.modes?.dark !== undefined)
-      dark.push(`  ${name}: ${cssLiteral(t.type, t.modes.dark)};`);
-    if (t.modes?.mobile !== undefined)
-      mobile.push(`    ${name}: ${cssLiteral(t.type, t.modes.mobile)};`);
+    // The literal for the other mode is computed before it is pushed, because the mobile rule
+    // carries an extra level of indentation that must not reach the manifest.
+    let modes;
+    if (t.modes?.dark !== undefined) {
+      const darkLiteral = cssLiteral(t.type, t.modes.dark);
+      dark.push(`  ${name}: ${darkLiteral};`);
+      modes = { light: literal, dark: darkLiteral };
+    }
+    if (t.modes?.mobile !== undefined) {
+      const mobileLiteral = cssLiteral(t.type, t.modes.mobile);
+      mobile.push(`    ${name}: ${mobileLiteral};`);
+      modes = { desktop: literal, mobile: mobileLiteral };
+    }
+    manifest[t.name] = entry(t.type, literal, literal, modes);
   }
 
   const css =

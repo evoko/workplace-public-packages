@@ -1,8 +1,11 @@
 import { join } from 'node:path';
 import { writeGenerated } from '../util/write.mjs';
 
-const rgba = (r, g, b, a) =>
-  `rgba(${r}, ${g}, ${b}, ${Math.round(a * 1000) / 1000})`;
+// Alpha is quantized to 8 bits before rounding, because that is the most a target can carry:
+// Dart's Color(0xAARRGGBB) gives it one byte, so CSS's 0.05 and Dart's 0x0D are the same
+// colour and must not read as a parity failure.
+const alpha8 = (a) => Math.round((Math.round(a * 255) / 255) * 1000) / 1000;
+const rgba = (r, g, b, a) => `rgba(${r}, ${g}, ${b}, ${alpha8(a)})`;
 
 export const canonical = {
   color(v) {
@@ -18,7 +21,9 @@ export const canonical = {
           v.trim(),
         );
       if (m) return rgba(+m[1], +m[2], +m[3], m[4] === undefined ? 1 : +m[4]);
-      m = /^0x([0-9a-f]{8})$/i.exec(v.trim()); // Dart Color(0xAARRGGBB)
+      // Dart Color(0xAARRGGBB). The wrapper is accepted because that is the literal the
+      // Flutter target actually emits; without it the round trip would be fake.
+      m = /^(?:Color\()?0x([0-9a-f]{8})\)?$/i.exec(v.trim());
       if (m) {
         const n = parseInt(m[1], 16);
         return rgba(
@@ -82,14 +87,14 @@ export const canonical = {
  * @param {{
  *   target: string,
  *   dir: string,
- *   entries: Record<string, {emitted: unknown, normalized: unknown}>,
+ *   entries: Record<string, {emitted: unknown, normalized: unknown, modes?: Record<string, unknown>}>,
  *   fileVersion: string,
  * }} args
  */
 export function writeManifest({ target, dir, entries, fileVersion }) {
   const body = {
     _note:
-      'Written by the SOLAR codegen. "emitted" is the literal this target produced; "normalized" is that literal parsed back to canonical form. The parity suite compares normalized values across targets.',
+      'Written by the SOLAR codegen. "emitted" is the literal this target produced; "normalized" is that literal parsed back to canonical form; "modes" carries the same canonical form per mode (light/dark or desktop/mobile) for the tokens that vary, and is absent for the ones that do not. The parity suite compares normalized and every mode across targets.',
     target,
     fileVersion,
     tokens: entries,
@@ -108,9 +113,20 @@ export function writeManifest({ target, dir, entries, fileVersion }) {
  * much to round-trip, so the emitter passes the structured value it derived from the spec as
  * `canonicalInput`; parity then compares structure, and literal formatting is covered by each
  * emitter's own snapshot test.
+ *
+ * `modes` maps a mode name (light/dark or desktop/mobile) to the canonical input for that mode,
+ * i.e. whatever this target emitted there. The entry then carries the canonicalized value per
+ * mode, and parity compares those across targets; without it only one mode would ever be
+ * compared and the other axis could drift unnoticed. Omit it for mode-invariant tokens: the
+ * entry then has no `modes` key at all.
  */
-export function entry(type, emitted, canonicalInput = emitted) {
+export function entry(type, emitted, canonicalInput = emitted, modes) {
   const parse = canonical[type];
   if (!parse) throw new Error(`no canonicalizer for type ${type}`);
-  return { emitted, normalized: parse(canonicalInput) };
+  const built = { emitted, normalized: parse(canonicalInput) };
+  if (modes)
+    built.modes = Object.fromEntries(
+      Object.entries(modes).map(([mode, value]) => [mode, parse(value)]),
+    );
+  return built;
 }
