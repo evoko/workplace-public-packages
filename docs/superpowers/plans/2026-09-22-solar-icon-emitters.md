@@ -902,22 +902,189 @@ dependency. `packages/codegen` gets `react` and `react-dom` as devDependencies t
 test renders a component with `renderToStaticMarkup`; without that they resolve only through npm
 hoisting from `packages/assets`, which is undeclared and breaks under a stricter installer.
 
-### Task 4: Raw SVG output
+### Task 4: Raw SVG output — done
 
 **Files:**
 
-- Create: `packages/codegen/src/emit/svg-files.mjs`
-- Create: `packages/codegen/test/svg-files.test.mjs`
+- Created: `packages/codegen/src/emit/svg-files.mjs`
+- Created: `packages/codegen/test/svg-files.test.mjs`
+- Modified: `packages/assets/package.json` (the `./svg/*` export and the build copy)
 
-The spec promises "plus raw SVG". Writes `packages/assets/src/generated/svg/<name>-<variant>.svg`
-rewritten to `currentColor`, for consumers using `<img>`, a sprite or a CSS mask. Logos keep
-their own colours. The build copies the directory into `dist` and `package.json` exposes
-`./svg/*`, the same shape as the `./tokens.css` export in `@bwp-web/styles`.
+The spec promises "plus raw SVG", for consumers using `<img>`, a sprite or a CSS mask.
+`renderSvgFiles(spec)` returns a `Map` of path to contents, so the tests never touch the disk;
+`emitSvgFiles(spec, fileVersion)` writes it through `writeGenerated` into
+`packages/assets/src/generated/svg/`. **687 files**: 682 at
+`icons/<fileStem>-<variant>.svg`, one per icon variant, and 5 at `logos/<set>-<variant>.svg` —
+`biamp-logo-light-sm`, `biamp-logo-dark-sm`, `os-logo-microsoft`, `os-logo-google` and
+`os-logo-teams`. The app icons are raster and are skipped here; they ship as files in task 5.
 
-Tests: file count is 681 + 5; no `#111111` remains in an icon; a logo's brand colours are intact;
-each file re-parses with `parseSvg` to the same IR it came from, which is the round trip.
+**The files are serialized from the spec, never copied out of `docs/`.** That is the whole point
+of the task. React, Flutter and these files have to draw the same geometry, and a copy could
+drift from the IR the other two are built from: the raw SVG would then be a fourth source of
+truth instead of a fourth rendering of the one source. Serializing is also what makes the round
+trip a real assertion rather than a tautology about a copied byte.
+
+One `<svg>`, one line, no header comment:
+
+```svg
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M16 12L10 18V6L16 12Z" fill="currentColor"/></svg>
+```
+
+- `width` and `height` come from the viewBox extent rather than a constant, so the file has an
+  intrinsic size for `<img>` and `zone` outline is `24` × `25` while everything else is 24 × 24.
+- The root's own `fill="none"` is **not** emitted. It is Figma chrome, and the parser already
+  refuses to inherit it into a path.
+- Every icon path is `fill="currentColor"`; every logo path carries its literal colour.
+- `fill-rule="evenodd"` appears on the 75 paths the spec says so about, spread across 75 distinct
+  files. `nonzero` is SVG's default and is never spelled out.
+- Nothing is escaped, because nothing can carry markup: `checkPathData` has already rejected
+  every character in `d` outside numbers, separators and `M L C H V Z`, and a fill is a validated
+  `#rrggbb`.
+
+**The one exception is `os-logo/teams`.** It has no IR — 12 gradient fills and every
+`fill-opacity` in the set — so its `spec.logos['os-logo'].variants.teams.source` is written
+verbatim. Raw SVG is the one target that can carry it faithfully, so this is the target that
+ships the real mark rather than a flattened approximation of it.
+
+`fileVersion` is accepted for signature parity with the other emitters and deliberately unused:
+these files carry no provenance header, because an SVG is downloaded by a browser rather than
+read as source.
+
+```js
+/**
+ * Writes every icon and logo back out as a standalone SVG file.
+ *
+ * The files are serialized from the spec, never copied out of docs/. React, Flutter and these
+ * files have to draw the same geometry, and a copy could drift from the IR the other two are
+ * built from: the raw SVG would then be a fourth source of truth instead of a fourth rendering
+ * of the one source. Serializing means the round trip -- parse the generated file and compare it
+ * to the spec it came from -- is a real assertion rather than a tautology about a copied byte.
+ */
+
+import { join } from 'node:path';
+import { packagesDir } from '../util/paths.mjs';
+import { byCodeUnit } from '../util/sort.mjs';
+import { writeGenerated } from '../util/write.mjs';
+
+const OUT_DIR = join(packagesDir, 'assets', 'src', 'generated', 'svg');
+
+/**
+ * Serializes one path element.
+ *
+ * Nothing is escaped, because nothing here can carry markup: `checkPathData` has already
+ * rejected every character in `d` outside numbers, separators and `M L C H V Z`, and a fill is
+ * a validated `#rrggbb`. `fill-rule` is written only for `evenodd`; `nonzero` is SVG's default
+ * and spelling it out would add 682 attributes that say nothing.
+ */
+const pathElement = (path, fill) =>
+  `<path d="${path.d}"` +
+  (path.fillRule === 'evenodd' ? ' fill-rule="evenodd"' : '') +
+  ` fill="${fill}"/>`;
+
+/**
+ * @param {{viewBox: number[], paths: object[]}} geometry
+ * @param {(path: object) => string} fillOf icons inherit their colour, logos own theirs
+ */
+function serialize(geometry, fillOf) {
+  const [, , width, height] = geometry.viewBox;
+  // width/height give the file an intrinsic size, which is what an <img> or a CSS mask needs;
+  // they come from the viewBox extent rather than a constant, so zone outline is 24 x 25.
+  // The root's own fill is deliberately absent: Figma writes fill="none" on every export and it
+  // is chrome, not geometry.
+  return (
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${geometry.viewBox.join(' ')}"` +
+    ` width="${width}" height="${height}">` +
+    geometry.paths.map((p) => pathElement(p, fillOf(p))).join('') +
+    '</svg>\n'
+  );
+}
+
+/**
+ * Renders every file as data, keyed by its path below the generated svg/ directory.
+ *
+ * Returning a Map rather than writing keeps the tests off the disk, so "no #111111 survives"
+ * is a property of what this function produces rather than of whatever happens to be checked in.
+ */
+export function renderSvgFiles(spec) {
+  const files = new Map();
+
+  for (const stem of Object.keys(spec.icons).sort(byCodeUnit)) {
+    for (const variant of ['outline', 'solid']) {
+      files.set(
+        `icons/${stem}-${variant}.svg`,
+        serialize(spec.icons[stem].variants[variant], () => 'currentColor'),
+      );
+    }
+  }
+
+  for (const set of Object.keys(spec.logos).sort(byCodeUnit)) {
+    const logo = spec.logos[set];
+    if (logo.raster) continue; // the app icons are PNGs and ship as files of their own
+    for (const slug of Object.keys(logo.variants).sort(byCodeUnit)) {
+      const geometry = logo.variants[slug];
+      // os-logo/teams has no IR -- it is 12 gradient fills and every fill-opacity in the set --
+      // so its source travels verbatim. Raw SVG is the one target that can carry it faithfully,
+      // and shipping the real mark here beats shipping a flattened approximation of it.
+      files.set(
+        `logos/${set}-${slug}.svg`,
+        geometry.unsupported
+          ? geometry.source
+          : serialize(geometry, (p) => p.fill),
+      );
+    }
+  }
+
+  return files;
+}
+
+// fileVersion is accepted for signature parity with the other emitters, which record it in a
+// manifest. These files carry no header: an SVG is consumed by a browser, not read as source,
+// and a provenance comment would be bytes every consumer downloads and no consumer reads.
+export function emitSvgFiles(spec, _fileVersion) {
+  const files = renderSvgFiles(spec);
+  for (const [file, contents] of files)
+    writeGenerated(join(OUT_DIR, file), contents);
+  return files.size;
+}
+```
+
+**Package wiring.** `packages/assets/package.json` gains `"./svg/*": "./dist/svg/*"` in `exports`
+and `&& cp -R src/generated/svg/. dist/svg` on the `build` script, mirroring how
+`@bwp-web/styles` copies `tokens.css`. `files` stays `["dist"]`. Prettier has no `.svg` parser;
+it skips the files when expanding a directory, so `npm run format` still passes and the
+generated tree needs no ignore entry.
+
+**Tests** are 8 cases in one file. 687 files, 682 + 5, with the five logo names spelled out; no
+`#111111` in any icon file and every icon path `fill="currentColor"`, which is the tinting
+contract at the file level; `os-logo-google.svg` carrying all four of `#ffc107`, `#ff3d00`,
+`#4caf50`, `#1976d2` and no `currentColor`; `zone-outline.svg` at `0 0 24 25` with `height="25"`
+beside `zone-solid.svg` at 24; exactly 75 files with `fill-rule="evenodd"` and none with
+`nonzero`; and `support-outline.svg` existing with the same path data as `support-solid.svg`,
+since Figma ships no outline for it.
+
+The last two are the ones that matter. `os-logo-teams.svg` is asserted byte-equal to the spec's
+`source` and to contain `radialGradient` and `fill-opacity`. And **the round trip**: all 686
+representable files are re-parsed with `parseSvg` and compared to the spec geometry they came
+from — same viewBox, same `d` strings in order, same fill rules. A spec icon path carries no
+`fill` key while `parseSvg` reports `currentColor` as `null`, so both sides are normalized to
+`fill ?? null` before comparing. `teams` is excluded because it has no IR by definition. This is
+the assertion that proves the files are a faithful rendering rather than plausible-looking markup.
+
+Run: `npx vitest run packages/codegen/test/svg-files.test.mjs`
+
+The repository owner commits `packages/codegen/src/emit/svg-files.mjs`,
+`packages/codegen/test/svg-files.test.mjs`, `packages/assets/src/generated/svg/` and
+`packages/assets/package.json`.
 
 ---
+
+**No SVG manifest, decided here so Task 8 does not reopen it.** The other emitters write a
+digest manifest because their output is code that could drift from the spec. The raw SVG is
+checked more strongly than a digest would check it: every one of the 686 representable files is
+re-parsed and asserted equal to the spec geometry it came from. Task 8 proves React equals the
+spec and Flutter equals the spec, so all three agree transitively. `emitSvgFiles` therefore
+ignores `fileVersion`, and these files carry no provenance header — a browser downloads an SVG,
+it does not read it as source.
 
 ### Task 5: Logo emitter for React, and what Flutter does about `teams.svg`
 

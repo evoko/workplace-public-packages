@@ -16,14 +16,15 @@
         "types": "./dist/index.d.ts",
         "default": "./dist/index.cjs"
       }
-    }
+    },
+    "./svg/*": "./dist/svg/*"
   },
   "files": [
     "dist"
   ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsup && tsc -p tsconfig.build.json",
+    "build": "tsup && tsc -p tsconfig.build.json && cp -R src/generated/svg/. dist/svg",
     "build:types": "tsc -p tsconfig.build.json",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
