@@ -167,10 +167,13 @@ describe('buildIconSpec: totals', () => {
   });
 
   it('records one deviation per source defect and no others', () => {
+    // logo.size is not a defect in one asset: SOLAR publishes no logo size scale at all, so it
+    // is triggered by the first drawable logo and reported once, like the rest.
     expect(tokens).toEqual([
       'icon.phone',
       'icon.support',
       'icon.zone',
+      'logo.size',
       'logo.os-logo.teams',
     ]);
     for (const d of deviations) {

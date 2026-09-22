@@ -668,6 +668,9 @@ export function buildIconSpec(catalog) {
           viewBox: vector.viewBox,
           paths: vector.paths.map((p) => logoPath(p, variant.file)),
         };
+        // Triggered by the existence of a drawable logo rather than by a defect in one: SOLAR
+        // has no logo size scale, so every logo component has to borrow the icon ladder.
+        record('logo.size', variant.file);
       }
     }
     logos[group.kebab] = entry;
@@ -1086,24 +1089,803 @@ spec and Flutter equals the spec, so all three agree transitively. `emitSvgFiles
 ignores `fileVersion`, and these files carry no provenance header — a browser downloads an SVG,
 it does not read it as source.
 
-### Task 5: Logo emitter for React, and what Flutter does about `teams.svg`
+### Task 5: Logo emitter for React, and what Flutter does about `teams.svg` — done
 
 **Files:**
 
-- Create: `packages/codegen/src/emit/react-logos.mjs`
-- Create: `packages/codegen/test/react-logos.test.mjs`
+- Created: `packages/assets/src/logo.tsx` (hand written)
+- Created: `packages/codegen/src/emit/react-logos.mjs`
+- Created: `packages/codegen/test/react-logos.test.mjs`
+- Modified: `packages/codegen/src/normalize/deviations.mjs` (the Teams row now records the Flutter decision this task takes)
 
-`LogoBiamp` and `LogoOs` take a `variant` prop (`light-sm | dark-sm`, `microsoft | google | teams`)
-and render fixed `fill` values. `teams` additionally carries its `<defs>` gradients verbatim,
-which React handles natively; its ids must be made unique per instance so two Teams logos on one
-page cannot collide. Flutter cannot represent it as a vector path, so decide there between
-shipping it as a raster asset or dropping the Teams variant on that platform — either way it is
-a recorded deviation, never a silently different logo. They deliberately do **not** accept `color`: a tinted brand mark
-is a brand violation, and the type system should say so. The raster app icons are exported as
-URLs, not components.
+`renderReactLogos(spec)` returns `{modules, barrel, logos}` as strings and data, so the tests run
+without touching the disk; `emitReactLogos(spec, fileVersion)` writes them through `writeGenerated`
+into `packages/assets/src/generated/logos/`: `biamp.tsx` (`LogoBiamp`), `os.tsx` (`LogoOs`),
+`app-icon.ts` (the five raster icons), the barrel `index.ts` and `logos.manifest.json`.
+`src/index.ts` and the package `exports` map stay task 9.
 
-Tests: no `currentColor` anywhere in a logo; every brand colour from the source survives; the
-app-icon export is a record of paths to `.png` files.
+**The shell is hand written**, at `packages/assets/src/logo.tsx`, for the same reason `icon.tsx`
+is: the generated modules are recipes and everything that is behaviour lives in one place. It
+carries two rules `Icon` does not.
+
+- **`color` and `fill` are omitted from the props.** A tinted brand mark is a brand violation, so
+  `LogoProps` is `Omit<SVGProps<SVGSVGElement>, 'color' | 'fill' | 'children'>` and the compiler
+  refuses `<LogoBiamp fill="red" />` rather than a comment asking callers not to. `currentColor`
+  appears nowhere in the shell, the emitter or anything either produces — the exact inverse of the
+  icon contract, and asserted as such.
+- **`size` sets the height alone.** Marks are not square: the Biamp wordmark is 36 × 12, and
+  setting width and height to one length the way `Icon` does would squash it. The width comes from
+  the viewBox's intrinsic ratio instead. ⚠️ SOLAR publishes no `logo.*` size scale, so a named step
+  reuses the `icon.*` ladder (`var(--solar-icon-lg)` by default); that is a reuse of an existing
+  token, not an invented name, but it is worth a governance question. `title` and the
+  `role`/`aria-hidden`/`focusable` handling are identical to `Icon`'s.
+
+**Two API choices that differ from the spec data.** `spec.logos['os-logo'].prop` is `logo`, because
+that is what the Figma property is called; both components nevertheless take `variant`, so the two
+logos have one API rather than one each. And the default variant is the first in `byCodeUnit` order
+— `dark-sm` for Biamp, `google` for the OS marks — which is a deterministic generated choice rather
+than an editorial one, so adding a variant cannot quietly change what a caller gets without also
+changing the emitted union.
+
+```tsx
+import { useId, type ReactNode, type SVGProps } from 'react';
+
+/**
+ * The shared shell every generated logo delegates to.
+ *
+ * Hand written, not generated, for the same reason `icon.tsx` is: the generated modules are
+ * recipes -- artwork and a name -- and everything that is behaviour rather than data is decided
+ * once here. Only `src/generated/**` is machine owned.
+ *
+ * A logo is not an icon with brand colours. Two things follow, and both are enforced by the
+ * types rather than by a comment asking nicely:
+ *
+ * - **It is never tinted.** `color` and `fill` are omitted from the props, so a caller cannot
+ *   recolour a brand mark by accident. Every path carries the colour the SOLAR source drew it
+ *   in; nothing here or in anything generated beside it inherits a colour from its surroundings,
+ *   which is the exact inverse of the icon contract and is asserted as such.
+ * - **It is never squashed.** Marks are not square -- the Biamp wordmark is 36 x 12 -- so `size`
+ *   sets the height alone and the width follows from the viewBox's intrinsic ratio. Setting both
+ *   the way `Icon` does would distort every non-square mark.
+ */
+
+/**
+ * The SOLAR `icon.*` steps: 12, 16, 20, 24, 28 and 32px.
+ *
+ * SOLAR publishes no `logo.*` size scale, so a named step reuses the icon ladder -- a logo sits
+ * beside icons in a toolbar or a header and shares their rhythm. Anything outside the ladder is
+ * the caller's own CSS length, which is the escape hatch for a lockup that needs its own size.
+ */
+export type LogoSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+
+const STEPS: readonly LogoSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
+
+export interface LogoPath {
+  d: string;
+  /** Only ever `'evenodd'`; `'nonzero'` is SVG's default and is left off. */
+  fillRule?: 'evenodd';
+  /** The brand colour. A logo path always owns one; it never inherits. */
+  fill: string;
+}
+
+/** One mark's drawing, as vector paths. */
+export interface LogoGeometry {
+  viewBox: string;
+  paths: readonly LogoPath[];
+}
+
+/**
+ * One mark the vector IR cannot represent, carried as JSX instead.
+ *
+ * `render` is given a per-instance id namespace: a mark drawn with gradients defines ids and
+ * refers to them with `url(#…)`, and a browser resolves such a reference to the first match in
+ * the document, so two copies of the same logo on one page would both paint with the first
+ * copy's gradients. Every id the generator emits is prefixed with `uid`.
+ */
+export interface LogoMarkup {
+  viewBox: string;
+  render: (uid: string) => ReactNode;
+}
+
+export type LogoArtwork = LogoGeometry | LogoMarkup;
+
+/**
+ * `color` and `fill` are deliberately absent. A tinted brand mark is a brand violation, and the
+ * type system should refuse it rather than document it.
+ */
+export interface LogoProps extends Omit<
+  SVGProps<SVGSVGElement>,
+  'color' | 'fill' | 'children'
+> {
+  /** A SOLAR icon.* step, or any CSS length. Sets the height. Defaults to lg (24px). */
+  size?: LogoSize | (string & {}) | number;
+  /** Accessible name. Without it the logo is hidden from assistive technology. */
+  title?: string;
+}
+
+export interface LogoShellProps extends LogoProps {
+  artwork: LogoArtwork;
+}
+
+/**
+ * A named step resolves to its CSS variable rather than to px, so the rendered size traces to
+ * `icon.*` and follows a token change. Anything else -- a number, `1em`, `100%` -- is the
+ * caller's own length and passes through untouched.
+ */
+const length = (size: LogoSize | (string & {}) | number) =>
+  typeof size === 'string' && (STEPS as readonly string[]).includes(size)
+    ? `var(--solar-icon-${size})`
+    : size;
+
+export function Logo({
+  size = 'lg',
+  title,
+  artwork,
+  ...props
+}: LogoShellProps) {
+  // useId, not a counter: the id has to be stable between the server render and hydration.
+  // React spells its ids with punctuation (`«r0»` in 19, `:r0:` in 18), so they are reduced to
+  // their alphanumerics before being spliced into an `id` or a `url(#…)` fragment reference;
+  // the alphanumeric part is the part that makes them distinct. The leading letter keeps the
+  // result a valid identifier for anything that later reads the id as a selector.
+  const uid = `l${useId().replace(/[^a-zA-Z0-9]/g, '')}`;
+  const titleId = `${uid}title`;
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={artwork.viewBox}
+      // Height only: the width comes from the viewBox's intrinsic ratio, so a 36 x 12 wordmark
+      // stays a wordmark. A caller who wants a fixed box sets width in CSS.
+      height={length(size)}
+      // A logo with a name is an image; one without is decoration beside a label that already
+      // says it, and is taken out of the tree entirely. focusable="false" is for IE/Edge legacy,
+      // where an svg is a tab stop by default.
+      role={title ? 'img' : undefined}
+      aria-labelledby={title ? titleId : undefined}
+      aria-hidden={title ? undefined : true}
+      focusable={title ? undefined : false}
+      {...props}
+    >
+      {title ? <title id={titleId}>{title}</title> : null}
+      {'render' in artwork
+        ? artwork.render(uid)
+        : artwork.paths.map((path, i) => (
+            // The list is a fixed generated constant, so the index is a stable identity.
+            <path
+              key={i}
+              d={path.d}
+              fillRule={path.fillRule}
+              fill={path.fill}
+            />
+          ))}
+    </svg>
+  );
+}
+```
+
+**The Teams mark, which is the real work.** `spec.logos['os-logo'].variants.teams` is
+`{unsupported: 'gradient', source}` — no vector IR. React renders gradients natively, so
+`svgToJsx` converts that source string to JSX at generation time rather than approximating the
+mark. The transform is narrow because the file is known, and every one of these numbers was
+measured rather than assumed:
+
+| | |
+| --- | --- |
+| Elements | `svg`, `path` × 13, `defs`, `radialGradient` × 11, `linearGradient` × 1, `stop` × 27 |
+| Hyphenated attributes | `fill-opacity` × 7, `stop-color` × 27, `stop-opacity` × 7, and nothing else |
+| Ids | 12 defined, 12 `url(#…)` references, matching exactly: no dangling reference, no unused id |
+
+Those three attribute names are camelCased from a three-entry table and **a fourth throws**, so a
+future mark carrying a stroke or a mask fails the build instead of shipping an attribute React
+drops and no test notices. Everything else the file uses — `gradientUnits`, `gradientTransform`,
+`cx`, `cy`, `r`, `x1`, `y1`, `x2`, `y2`, `offset` — is already a valid JSX prop name and passes
+through untouched. So does text content, a namespaced attribute, `class`, an unbalanced element,
+a root attribute the shell cannot own, a reference nothing defines and an id nothing uses: each is
+an error naming the file. The root `<svg>` itself is dropped, and its `viewBox` returned separately,
+so the shell writes the sizing and accessibility attributes for every mark alike; its `fill="none"`
+is Figma chrome and is asserted rather than inherited.
+
+**Ids are namespaced per instance, and renamed rather than prefixed.** A browser resolves
+`url(#id)` to the first match in the document, so two `<LogoOs variant="teams" />` on one page would
+both paint with the first one's gradients. `LogoMarkup.render` therefore takes a `uid` from the
+shell's `useId`, and every id and reference is emitted as a template literal around it —
+``id={`${uid}g0`}`` and ``fill={`url(#${uid}g0)`}``. The Figma ids (`paint0_radial_6196_626`) are
+replaced by short generated names, not merely prefixed, which is what lets a test assert their
+absence literally instead of reasoning about where a prefix sits. React's own id spelling carries
+punctuation (`«r0»` in 19, `:r0:` in 18), so the shell reduces it to its alphanumerics before
+splicing it into a fragment reference.
+
+**The five app icons are raster, so they are not components.** They ship as base64
+`data:image/png;base64,…` string constants — one exported const each (`appIconWorkplace`, …) so a
+consumer can take one without the other four, plus an `appIcons` record for convenience. 14,884
+bytes of PNG become 19,852 characters of base64. The alternative, `import … from './x.png'`, needs
+a bundler loader and a `*.png` TypeScript shim from every consumer; a data URL needs neither and is
+the value of an `<img src>` or a `background-image` as it stands. The bytes are read from
+`docs/solar-icons/logos/app-icon/` rather than carried in `spec/icons.json`, because 20 KB of
+base64 in the spec would be noise to every other target; `docs/` is read-only to the generator, and
+reading is what that means.
+
+**Flutter omits the Teams variant entirely.** That is decided here, recorded in the
+`logo.os-logo.teams` row of `ICON_DEVIATIONS`, implemented in task 7 and asserted in task 8 as the
+*only* difference between the React and Flutter asset sets. Redrawing 11 radial gradients with
+focal points, `gradientTransform` matrices and 27 stops in a hand-written painter is
+disproportionate work for one third-party brand mark; approximating it with flat colours would
+invent a brand colour, which is worse than a missing asset. React and the raw SVG output both carry
+the real mark, so the gap is one platform's, documented rather than silent.
+
+**The manifest does not reuse `geometryDigest`.** The icon digest hashes `d` and `fillRule` only,
+which is right for an icon: an icon has no colour of its own. A logo's colours *are* the drawing —
+the two Biamp wordmarks differ in nothing else, and the two hashes collide without the fill — so
+`logoDigest` hashes `{d, fillRule, fill}` and is exported for task 7 to use rather than agree with
+by coincidence. A variant with no geometry is fingerprinted by its raw source, and a raster file by
+its bytes, so every entry says something.
+
+**Tests (18, all passing).** The spec is built once at module scope from the real catalog. Three
+modules and a barrel; both Biamp marks sharing `#d22730` while one wordmark is `#000000` and the
+other `#ffffff`; all three OS marks with Google in `#ffc107`, `#ff3d00`, `#4caf50`, `#1976d2`; no
+`currentColor` in any module, the barrel or the shell; and the shell's `Omit` of `color` and `fill`
+with no module reintroducing either. Then the Teams transform: 12 namespaced ids and 12 namespaced
+references, no `paint0_radial_6196_626` or `_6196_626` surviving anywhere, `fillOpacity`,
+`stopColor` and `stopOpacity` present with no hyphenated attribute name left, all 13 paths, 11
+radial gradients, 1 linear gradient and 27 stops carried through, a synthetic `stroke-linecap`
+throwing while the same document without it does not, and a dangling `url(#missing)` throwing. The
+five app icons decode from their data URLs to bytes equal to the files in `docs/`, each exported on
+its own beside the record. The manifest fingerprints every variant, including the one with no
+geometry.
+
+Four render the real component with `react-dom/server`'s `renderToStaticMarkup`. **The one that
+matters is two `<LogoOs variant="teams" />` in one tree**: 24 ids, all distinct, the reference set
+equal to the id set, and 12 ids under each of two prefixes — which proves the collision is fixed
+rather than merely prefixed. The others check that only `height` is written and that it resolves
+`lg` to `var(--solar-icon-lg)` and `48` to `48`; that a `title` produces `role="img"` and a matching
+`aria-labelledby` while its absence produces `aria-hidden="true"` and `focusable="false"`; and that
+Microsoft's four paths render in their own four colours with no `currentColor`.
+
+```js
+/**
+ * Emits the SOLAR logos as React components, and the raster app icons as data URLs.
+ *
+ * A logo is not an icon with brand colours, and this file is where that difference is made
+ * mechanical rather than remembered:
+ *
+ * - **No tinting.** Every path keeps the colour SOLAR drew it in, `currentColor` is never
+ *   emitted, and the shell's props omit `color` and `fill` so the type system refuses a tinted
+ *   brand mark instead of a comment asking for one.
+ * - **`os-logo/teams` has no vector IR.** It is 13 paths, 12 of them filled from 11 radial and
+ *   one linear gradient, plus every `fill-opacity` in the corpus. React renders that natively,
+ *   so its source is converted to JSX here rather than approximated. The conversion is
+ *   deliberately narrow: it camelCases the three hyphenated attributes this document actually
+ *   uses and throws on a fourth, so a future mark with an unhandled attribute fails the build
+ *   instead of rendering an attribute the DOM silently ignores.
+ * - **Gradient ids are namespaced per instance.** A browser resolves `url(#id)` to the first
+ *   match in the document, so two Teams marks on one page would both paint with the first one's
+ *   gradients. Every id is rewritten to a short generated name and prefixed with the shell's
+ *   `useId` value; the Figma ids (`paint0_radial_6196_626`) do not survive into the output at
+ *   all, which is what lets a test assert their absence literally.
+ * - **The app icons are raster and are not components.** They are emitted as base64 data URLs,
+ *   one exported const each plus a record, so a consumer can take one without the rest. 14.5 KB
+ *   of PNG becomes ~20 KB of base64, which costs no bundler loader, no `*.png` type shim and no
+ *   asset-serving decision on the consumer's side.
+ */
+
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { docsDir, packagesDir } from '../util/paths.mjs';
+import { byCodeUnit } from '../util/sort.mjs';
+import { writeGenerated } from '../util/write.mjs';
+
+const OUT_DIR = join(packagesDir, 'assets', 'src', 'generated', 'logos');
+
+const HEADER =
+  '// Generated by @bwp-web/codegen from spec/icons.json. Do not edit.\n';
+
+// The three hyphenated attributes the corpus uses. An unlisted one throws: React would render
+// `fill-opacity` as an unknown attribute on some elements and drop it on others, and either way
+// a mark would ship subtly wrong with nothing to notice it.
+const JSX_ATTRIBUTES = {
+  'fill-opacity': 'fillOpacity',
+  'stop-color': 'stopColor',
+  'stop-opacity': 'stopOpacity',
+};
+
+// What the shell owns on the root element, and therefore what may be dropped from it. Anything
+// else on a root is an instruction we would be discarding.
+const ROOT_ATTRIBUTES = new Set([
+  'width',
+  'height',
+  'viewBox',
+  'fill',
+  'xmlns',
+]);
+
+const MIME = { '.png': 'image/png' };
+
+const TAG = /<(\/?)([a-zA-Z][\w:.-]*)((?:"[^"]*"|'[^']*'|[^>"'])*)>/g;
+const ATTR = /([a-zA-Z_:][\w:.-]*)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
+const URL_REF = /url\(#([^)\s]+)\)/g;
+
+function fail(file, detail) {
+  throw new Error(`${file}: ${detail}`);
+}
+
+function parseAttrs(text) {
+  const attrs = {};
+  for (const m of text.matchAll(ATTR)) attrs[m[1]] = m[2] ?? m[3];
+  return attrs;
+}
+
+const quote = (text) =>
+  `'${text.replaceAll('\\', '\\\\').replaceAll("'", "\\'")}'`;
+
+// A JSX expression holding a template literal, written as source rather than evaluated.
+const template = (body) => '{`' + body + '`}';
+
+// `google: google` rather than `google` is valid and ugly; a slug that is already an identifier
+// gets the shorthand, and `dark-sm` keeps its quotes because it has to.
+const entry = (key, value) =>
+  key === value ? `  ${key},\n` : `  ${quote(key)}: ${value},\n`;
+
+const pascal = (text) =>
+  text
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(Boolean)
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join('');
+
+const camel = (text) => {
+  const name = pascal(text);
+  return name[0].toLowerCase() + name.slice(1);
+};
+
+// os-logo and biamp-logo already say "logo" in their component name, so the module is named
+// after the component rather than after the Figma set: os.tsx exports LogoOs.
+const moduleStem = (kebab) => kebab.replace(/-logo$/, '');
+
+const sha256 = (text) => createHash('sha256').update(text).digest('hex');
+
+/**
+ * A stable fingerprint of one mark's artwork, for the parity suite in task 8.
+ *
+ * Deliberately not `geometryDigest` from the icon emitter. That one hashes `d` and `fillRule`
+ * only, which is right for an icon: an icon has no colour of its own, so two icons with the same
+ * outline are the same drawing. A logo's colours *are* the drawing -- the two Biamp wordmarks
+ * differ in nothing else -- so the fill is part of the fingerprint here. Exported so the Flutter
+ * emitter hashes the same canonical form rather than a second one that happens to agree.
+ */
+export const logoDigest = (paths) =>
+  sha256(
+    JSON.stringify(
+      paths.map((p) => ({
+        d: p.d,
+        fillRule: p.fillRule ?? 'nonzero',
+        fill: p.fill,
+      })),
+    ),
+  );
+
+function rootViewBox(attrs, file) {
+  for (const name of Object.keys(attrs)) {
+    if (!ROOT_ATTRIBUTES.has(name)) {
+      fail(
+        file,
+        `the root <svg> carries "${name}", which the shell cannot own; the shell writes ` +
+          'viewBox, the height and the accessibility attributes itself, so anything else on ' +
+          'the root would be dropped',
+      );
+    }
+  }
+  // Figma writes fill="none" on every export. It is chrome, not geometry, and the vector reader
+  // refuses to inherit it into a path; the same rule applies here.
+  if (attrs.fill && attrs.fill !== 'none')
+    fail(file, `the root <svg> is filled ${attrs.fill}, which is not chrome`);
+  if (!attrs.viewBox) fail(file, 'the root <svg> has no viewBox');
+  return attrs.viewBox;
+}
+
+/**
+ * Renders one attribute as JSX source, namespacing any id it defines or refers to.
+ *
+ * @param {{file: string, defined: Set<string>, referenced: Set<string>, rename: (id: string) => string}} ctx
+ */
+function jsxAttribute(name, value, ctx) {
+  if (name.includes(':'))
+    fail(ctx.file, `namespaced attribute "${name}" is not supported`);
+  if (name === 'class' || name === 'for')
+    fail(ctx.file, `attribute "${name}" is spelled differently in JSX`);
+
+  let jsxName = name;
+  if (name.includes('-')) {
+    jsxName = JSX_ATTRIBUTES[name];
+    if (!jsxName) {
+      fail(
+        ctx.file,
+        `attribute "${name}" has no known JSX spelling; add it to JSX_ATTRIBUTES once you ` +
+          'have checked how React spells it, rather than emitting an attribute the DOM ignores',
+      );
+    }
+  }
+
+  if (value.includes('`') || value.includes('${') || value.includes('"'))
+    fail(
+      ctx.file,
+      `attribute "${name}" has a value JSX cannot quote: ${value}`,
+    );
+
+  if (jsxName === 'id') {
+    ctx.defined.add(value);
+    return 'id=' + template('${uid}' + ctx.rename(value));
+  }
+
+  if (value.includes('url(#')) {
+    const body = value.replace(URL_REF, (_, id) => {
+      ctx.referenced.add(id);
+      return 'url(#${uid}' + ctx.rename(id) + ')';
+    });
+    return `${jsxName}=` + template(body);
+  }
+
+  return `${jsxName}="${value}"`;
+}
+
+/**
+ * Converts an SVG document the vector IR cannot represent into the JSX body of a `<Logo>`.
+ *
+ * The root `<svg>` is dropped -- the shell writes it, so the sizing and accessibility rules are
+ * the same for every mark -- and its `viewBox` is returned separately. Everything below it is
+ * carried through verbatim apart from the two rewrites this transform exists for: the three
+ * hyphenated attribute names, and the ids.
+ *
+ * It is narrow on purpose. Every element, attribute and text node it does not recognise is an
+ * error naming the file. The alternative -- passing the unknown through and hoping -- is how an
+ * asset pipeline ships a mark that renders wrong in one browser and right in the next.
+ *
+ * @param {string} source
+ * @param {{file: string}} context
+ * @returns {{viewBox: string, jsx: string, ids: string[]}}
+ */
+export function svgToJsx(source, { file }) {
+  const names = new Map();
+  const defined = new Set();
+  const referenced = new Set();
+  // Short generated names rather than prefixed Figma ones: `paint0_radial_6196_626` says
+  // nothing a reader needs, and dropping it entirely means "no source id survives" is a literal
+  // assertion a test can make rather than a claim about where a prefix happens to sit.
+  const rename = (id) => {
+    if (!names.has(id)) names.set(id, `g${names.size}`);
+    return names.get(id);
+  };
+  const ctx = { file, defined, referenced, rename };
+
+  const lines = [];
+  let viewBox = null;
+  let closed = false;
+  let open = 0;
+  let cursor = 0;
+  TAG.lastIndex = 0;
+
+  for (let tag; (tag = TAG.exec(source));) {
+    const between = source.slice(cursor, tag.index);
+    if (between.trim() !== '')
+      fail(file, `text content "${between.trim()}" cannot be carried into JSX`);
+    cursor = TAG.lastIndex;
+
+    const [, closing, name, attrText] = tag;
+    const selfClosing = attrText.trimEnd().endsWith('/');
+    const attrs = parseAttrs(attrText);
+
+    if (name === 'svg') {
+      if (closing) {
+        closed = true;
+        continue;
+      }
+      if (viewBox !== null) fail(file, 'a nested <svg> is not supported');
+      viewBox = rootViewBox(attrs, file);
+      continue;
+    }
+
+    if (viewBox === null)
+      fail(file, `<${name}> appears outside the root <svg>`);
+    if (closed) fail(file, `<${name}> appears after the root </svg>`);
+
+    if (closing) {
+      open -= 1;
+      if (open < 0) fail(file, `</${name}> closes an element that is not open`);
+      lines.push(`${'  '.repeat(open)}</${name}>`);
+      continue;
+    }
+
+    const rendered = Object.entries(attrs).map(([key, value]) =>
+      jsxAttribute(key, value, ctx),
+    );
+    const head = `<${name}${rendered.map((a) => ` ${a}`).join('')}`;
+    lines.push(`${'  '.repeat(open)}${head}${selfClosing ? ' />' : '>'}`);
+    if (!selfClosing) open += 1;
+  }
+
+  if (source.slice(cursor).trim() !== '')
+    fail(file, 'trailing text after the root </svg>');
+  if (viewBox === null) fail(file, 'no root <svg>');
+  if (!closed || open !== 0) fail(file, 'unbalanced elements');
+
+  const missing = [...referenced].filter((id) => !defined.has(id));
+  const unused = [...defined].filter((id) => !referenced.has(id));
+  if (missing.length)
+    fail(
+      file,
+      `url(#…) refers to ${missing.join(', ')}, which nothing defines`,
+    );
+  if (unused.length)
+    fail(file, `${unused.join(', ')} is defined but never referenced`);
+
+  return { viewBox, jsx: lines.join('\n'), ids: [...names.values()] };
+}
+
+const pathLiteral = (path) =>
+  `{ d: ${quote(path.d)}` +
+  (path.fillRule === 'evenodd' ? `, fillRule: 'evenodd'` : '') +
+  `, fill: ${quote(path.fill)} }`;
+
+const geometryLiteral = (name, geometry) =>
+  `const ${name}: LogoGeometry = {\n` +
+  `  viewBox: ${quote(geometry.viewBox.join(' '))},\n` +
+  `  paths: [${geometry.paths.map(pathLiteral).join(', ')}],\n` +
+  `};\n`;
+
+function markupLiteral(name, variant, file) {
+  const { viewBox, jsx } = svgToJsx(variant.source, { file });
+  return (
+    `const ${name}: LogoMarkup = {\n` +
+    `  viewBox: ${quote(viewBox)},\n` +
+    '  // Every id below is namespaced with uid, which the shell takes from useId: a browser\n' +
+    '  // resolves url(#id) to the first match in the document, so two of these on one page\n' +
+    "  // would otherwise both paint with the first one's gradients.\n" +
+    '  render: (uid) => (\n' +
+    '    <>\n' +
+    jsx
+      .split('\n')
+      .map((line) => `      ${line}\n`)
+      .join('') +
+    '    </>\n' +
+    '  ),\n' +
+    '};\n'
+  );
+}
+
+/** One vector or gradient logo set: a component, its variant union and its artwork. */
+function vectorModule(set, logo) {
+  const slugs = Object.keys(logo.variants).sort(byCodeUnit);
+  const file = (slug) => `logos/${set}/${slug}.svg`;
+  const constName = (slug) => camel(slug);
+  const variantType = `${logo.component}Variant`;
+  const propsType = `${logo.component}Props`;
+  // The default is the first variant in sorted order: a generated, deterministic choice rather
+  // than an editorial one, so adding a variant cannot quietly change which mark a caller gets
+  // without also changing this list.
+  const fallback = slugs[0];
+
+  const kinds = ['LogoArtwork', 'LogoProps'];
+  if (slugs.some((slug) => !logo.variants[slug].unsupported))
+    kinds.push('LogoGeometry');
+  if (slugs.some((slug) => logo.variants[slug].unsupported))
+    kinds.push('LogoMarkup');
+
+  const artwork = slugs
+    .map((slug) => {
+      const variant = logo.variants[slug];
+      return variant.unsupported
+        ? markupLiteral(constName(slug), variant, file(slug))
+        : geometryLiteral(constName(slug), variant);
+    })
+    .join('\n');
+
+  const source =
+    HEADER +
+    `import {\n  Logo,\n${kinds
+      .sort(byCodeUnit)
+      .map((kind) => `  type ${kind},\n`)
+      .join('')}} from '../../logo.js';\n\n` +
+    artwork +
+    '\n' +
+    `export type ${variantType} = ${slugs.map(quote).join(' | ')};\n\n` +
+    `const VARIANTS: Record<${variantType}, LogoArtwork> = {\n${slugs
+      .map((slug) => entry(slug, constName(slug)))
+      .join('')}};\n\n` +
+    `export interface ${propsType} extends LogoProps {\n` +
+    `  /** Which mark to draw. Defaults to ${fallback}. */\n` +
+    `  variant?: ${variantType};\n` +
+    '}\n\n' +
+    `/**\n * ${logo.name}. A brand mark: it carries its own colours and is never tinted.\n */\n` +
+    `export function ${logo.component}({\n` +
+    `  variant = ${quote(fallback)},\n` +
+    `  ...props\n` +
+    `}: ${propsType}) {\n` +
+    `  return <Logo {...props} artwork={VARIANTS[variant]} />;\n` +
+    '}\n';
+
+  return {
+    set,
+    file: `${moduleStem(set)}.tsx`,
+    component: logo.component,
+    source,
+  };
+}
+
+/**
+ * One raster set, as base64 data URLs.
+ *
+ * Read from docs/ rather than carried in spec/icons.json: the spec records the path because
+ * 20 KB of base64 in a checked-in JSON file would be noise to every other target. docs/ is
+ * read-only to the generator, and reading is what that means.
+ */
+function rasterModule(set, logo) {
+  const slugs = Object.keys(logo.files).sort(byCodeUnit);
+  const nameType = `${pascal(set)}Name`;
+  const constName = (slug) => camel(set) + pascal(slug);
+  const recordName = `${camel(set)}s`;
+  const urls = new Map();
+
+  for (const slug of slugs) {
+    const path = logo.files[slug];
+    const ext = path.slice(path.lastIndexOf('.'));
+    const mime = MIME[ext];
+    if (!mime)
+      throw new Error(`${path}: no known media type for a ${ext} asset`);
+    urls.set(
+      slug,
+      `data:${mime};base64,${readFileSync(join(docsDir, 'solar-icons', path)).toString('base64')}`,
+    );
+  }
+
+  const source =
+    HEADER +
+    `\n/**\n * ${logo.name}s as base64 data URLs.\n *\n` +
+    ' * Raster, so these are not components: they are the value of an `<img src>`, a CSS\n' +
+    ' * `background-image` or a manifest entry. Inlined rather than shipped as files so a\n' +
+    ' * consumer needs no bundler loader, no `*.png` type shim and no decision about where to\n' +
+    ' * serve them from; one exported const each means taking one does not pull in the rest.\n' +
+    ' */\n\n' +
+    `export type ${nameType} = ${slugs.map(quote).join(' | ')};\n\n` +
+    slugs
+      .map(
+        (slug) =>
+          `export const ${constName(slug)} =\n  ${quote(urls.get(slug))};\n`,
+      )
+      .join('\n') +
+    '\n' +
+    `export const ${recordName}: Record<${nameType}, string> = {\n${slugs
+      .map((slug) => entry(slug, constName(slug)))
+      .join('')}};\n`;
+
+  return {
+    set,
+    file: `${moduleStem(set)}.ts`,
+    exports: [nameType, ...slugs.map(constName), recordName],
+    types: [nameType],
+    source,
+  };
+}
+
+/**
+ * Renders every logo module, the barrel and the manifest, as data.
+ *
+ * Returning strings rather than writing them keeps the test suite off the disk, so
+ * "no currentColor anywhere" is a property of what this function produces rather than of
+ * whatever happens to be checked in.
+ */
+export function renderReactLogos(spec) {
+  const sets = Object.keys(spec.logos).sort(byCodeUnit);
+  const modules = [];
+  const logos = {};
+
+  for (const set of sets) {
+    const logo = spec.logos[set];
+    if (logo.raster) {
+      modules.push(rasterModule(set, logo));
+      logos[set] = {
+        raster: true,
+        files: Object.fromEntries(
+          Object.keys(logo.files)
+            .sort(byCodeUnit)
+            .map((slug) => {
+              const bytes = readFileSync(
+                join(docsDir, 'solar-icons', logo.files[slug]),
+              );
+              return [
+                slug,
+                {
+                  bytes: bytes.length,
+                  digest: createHash('sha256').update(bytes).digest('hex'),
+                },
+              ];
+            }),
+        ),
+      };
+      continue;
+    }
+
+    modules.push(vectorModule(set, logo));
+    logos[set] = {
+      component: logo.component,
+      raster: false,
+      variants: Object.fromEntries(
+        Object.keys(logo.variants)
+          .sort(byCodeUnit)
+          .map((slug) => {
+            const variant = logo.variants[slug];
+            // A mark with no vector IR is fingerprinted by its source, which is the only thing
+            // there is to compare; the manifest says so rather than leaving a hole.
+            return [
+              slug,
+              variant.unsupported
+                ? {
+                    unsupported: variant.unsupported,
+                    digest: sha256(variant.source),
+                  }
+                : {
+                    viewBox: variant.viewBox.join(' '),
+                    pathCount: variant.paths.length,
+                    digest: logoDigest(variant.paths),
+                  },
+            ];
+          }),
+      ),
+    };
+  }
+
+  const barrel =
+    HEADER +
+    modules
+      .map((m) => {
+        const stem = `./${m.file.replace(/\.tsx?$/, '.js')}`;
+        if (m.exports)
+          return `export {\n${m.exports
+            .map(
+              (name) => `  ${m.types.includes(name) ? 'type ' : ''}${name},\n`,
+            )
+            .join('')}} from '${stem}';\n`;
+        return (
+          `export {\n  ${m.component},\n  type ${m.component}Props,\n` +
+          `  type ${m.component}Variant,\n} from '${stem}';\n`
+        );
+      })
+      .join('');
+
+  return { modules, barrel, logos };
+}
+
+export function emitReactLogos(spec, fileVersion) {
+  const { modules, barrel, logos } = renderReactLogos(spec);
+  for (const m of modules) writeGenerated(join(OUT_DIR, m.file), m.source);
+  writeGenerated(join(OUT_DIR, 'index.ts'), barrel);
+  writeGenerated(
+    join(OUT_DIR, 'logos.manifest.json'),
+    JSON.stringify(
+      {
+        _note:
+          'Written by the SOLAR codegen. One entry per logo set; "digest" is a SHA-256 of the canonical JSON of that variant\'s paths, or of the raw SVG source for a variant the vector IR cannot represent, or of the file bytes for a raster asset. The app icons ship as base64 data URLs in app-icon.ts; the Teams variant of os-logo is the one asset Flutter does not carry.',
+        target: 'react',
+        fileVersion,
+        logos,
+      },
+      null,
+      2,
+    ) + '\n',
+  );
+  return modules.length;
+}
+```
+
+Run: `npx vitest run packages/codegen/test/react-logos.test.mjs`
+
+Emitting twice and hashing the directory gives the same digest both times, so the output is a pure
+function of `docs/`.
+
+The repository owner commits `packages/assets/src/logo.tsx`,
+`packages/assets/src/generated/logos/`, `packages/codegen/src/emit/react-logos.mjs`,
+`packages/codegen/test/react-logos.test.mjs` and the `logo.os-logo.teams` row in
+`packages/codegen/src/normalize/deviations.mjs`.
 
 ---
 

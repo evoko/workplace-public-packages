@@ -216,6 +216,9 @@ export function buildIconSpec(catalog) {
           viewBox: vector.viewBox,
           paths: vector.paths.map((p) => logoPath(p, variant.file)),
         };
+        // Triggered by the existence of a drawable logo rather than by a defect in one: SOLAR
+        // has no logo size scale, so every logo component has to borrow the icon ladder.
+        record('logo.size', variant.file);
       }
     }
     logos[group.kebab] = entry;

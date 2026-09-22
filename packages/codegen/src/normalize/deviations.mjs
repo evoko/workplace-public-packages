@@ -57,8 +57,16 @@ export const ICON_DEVIATIONS = [
     token: 'logo.os-logo.teams',
     figmaValue: '12 gradient fills and 7 fill-opacity attributes',
     reason:
-      'The Teams mark is drawn with radial and linear gradients and per-path opacity, neither of which the vector IR represents. It ships as its raw SVG source instead of as paths, so each target decides for itself how to render it.',
+      'The Teams mark is drawn with radial and linear gradients and per-path opacity, neither of which the vector IR represents. It ships as its raw SVG source instead of as paths. React and the raw SVG output render it faithfully -- React from JSX generated out of that source, with per-instance gradient ids -- but Flutter omits the Teams variant entirely: redrawing 11 radial gradients with focal points, gradientTransform matrices and 27 stops in a hand-written painter is disproportionate for one third-party mark, and approximating it with flat colours would invent a brand colour, which is worse than a missing asset. It is therefore the only asset the two targets do not share, and the parity suite asserts that it is the only one.',
     raise: 'Ask SOLAR whether a flat-colour Teams mark exists.',
+  },
+  {
+    token: 'logo.size',
+    figmaValue: 'no logo size scale',
+    reason:
+      'SOLAR publishes icon.xs through icon.2xl but no equivalent ladder for logos, so a named size step on a logo component resolves to the icon variable. No name is invented -- an existing token is reused -- but a wordmark is not an icon and the two scales have no reason to stay equal.',
+    raise:
+      'Ask SOLAR for a logo.* size scale, or confirm that logos should track the icon ladder.',
   },
 ];
 

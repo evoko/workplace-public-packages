@@ -1,0 +1,68 @@
+{
+  "_note": "Written by the SOLAR codegen. One entry per logo set; \"digest\" is a SHA-256 of the canonical JSON of that variant's paths, or of the raw SVG source for a variant the vector IR cannot represent, or of the file bytes for a raster asset. The app icons ship as base64 data URLs in app-icon.ts; the Teams variant of os-logo is the one asset Flutter does not carry.",
+  "target": "react",
+  "fileVersion": "2400491293726842862",
+  "logos": {
+    "app-icon": {
+      "raster": true,
+      "files": {
+        "booking": {
+          "bytes": 2491,
+          "digest": "463ac131eb61fddbe32a7ff1aadf844886bce13c90c5600c12f8c088bcd349fd"
+        },
+        "command": {
+          "bytes": 3036,
+          "digest": "328c86ce642852eed4bee0180f6754f3be07563c6c963d3589e66c57539da128"
+        },
+        "designer": {
+          "bytes": 3184,
+          "digest": "7ba8ab12419ea1bc04d9847d5dada14c42b1b019b614eb568adee4e2fcb4e170"
+        },
+        "tools": {
+          "bytes": 2649,
+          "digest": "f67710f6571e770f5096a6bee4e0b78e2f4429ec1c99ea8fa0f8a4dc586b0311"
+        },
+        "workplace": {
+          "bytes": 3524,
+          "digest": "216bbd1fe68e7d97153427a38141b3748a152f7eedfddd4c55d0d275d15fb4b7"
+        }
+      }
+    },
+    "biamp-logo": {
+      "component": "LogoBiamp",
+      "raster": false,
+      "variants": {
+        "dark-sm": {
+          "viewBox": "0 0 36 12",
+          "pathCount": 6,
+          "digest": "a5f312d38b5acf869cfda1de8f49201b49d5333da395a22124f99bdcb6cfd5bc"
+        },
+        "light-sm": {
+          "viewBox": "0 0 36 12",
+          "pathCount": 6,
+          "digest": "c5fd357e9289cd3d9477139336a84f6f7ad19351b6661b88f7219a7bcfadc30e"
+        }
+      }
+    },
+    "os-logo": {
+      "component": "LogoOs",
+      "raster": false,
+      "variants": {
+        "google": {
+          "viewBox": "0 0 32 32",
+          "pathCount": 4,
+          "digest": "e0ef6dad76e676b4276233141a9b58fc6990c2da887123b6058844212ebfe9f7"
+        },
+        "microsoft": {
+          "viewBox": "0 0 32 32",
+          "pathCount": 4,
+          "digest": "c2db7b4f282fb096e933f10f0b8905b91daedd21ef865e2f14c0b8e9ffeeb57e"
+        },
+        "teams": {
+          "unsupported": "gradient",
+          "digest": "eb53d1d0a6a7939dc6be62938336d2099adf18eb31cc40482a20cf9d62149d12"
+        }
+      }
+    }
+  }
+}
