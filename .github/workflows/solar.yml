@@ -59,6 +59,7 @@ jobs:
           npx prettier --check
           "docs/**/*.md" "docs/**/*.mjs" "docs/**/*.js" "docs/**/*.json"
           "scripts/**/*.mjs" "scripts/**/*.json"
+          "packages/solar_flutter/**/*.md"
           README.md CLAUDE.md package.json
 
   personal-data:

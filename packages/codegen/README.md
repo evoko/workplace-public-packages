@@ -9,8 +9,9 @@ One command does everything:
 npm run solar:codegen
 ```
 
-It reads the committed Figma data, writes `spec/tokens.json`, and emits four targets from it. It
-needs no Figma token and no network.
+It reads the committed Figma data and writes two contracts — `spec/tokens.json` and
+`spec/icons.json` — then emits the tokens to four targets and the icons to three. It needs no
+Figma token and no network.
 
 ## The one invariant
 
@@ -24,8 +25,7 @@ re-checks it after each run. This is invariant 1 of
 
 `spec/tokens.json` is the contract: 710 tokens in [DTCG](https://tr.designtokens.org/) format —
 647 variables, 9 shadows, 47 text styles and the 7-level z-index ladder. Modes live under
-`$extensions["com.biamp.solar"].modes`. Everything downstream is generated from this one file,
-and `spec/deviations.md` lists the 13 places the code deliberately differs from what Figma says.
+`$extensions["com.biamp.solar"].modes`. Every token target is generated from this one file.
 
 | Target     | Output                                                 | Covers                                                      |
 | ---------- | ------------------------------------------------------ | ----------------------------------------------------------- |
@@ -37,6 +37,10 @@ and `spec/deviations.md` lists the 13 places the code deliberately differs from 
 The four are independent emitters reading one normalized spec. They are **not** transpiled from
 each other: a Dart file is not a translation of a stylesheet, and pretending otherwise is how
 the two drift apart.
+
+`spec/deviations.md` lists the **18 places the code deliberately differs from what Figma says**:
+13 from the tokens and 5 from the icons. It is the report SOLAR governance reads, so every entry
+names an action for them.
 
 ## How the targets are kept in agreement
 
@@ -56,15 +60,53 @@ Two subtleties worth knowing before changing an emitter:
   last assertion re-reads the stylesheet, the MUI data and the Dart source, because an emitter
   that recorded a mode it forgot to emit would otherwise pass.
 
+## Icons
+
+`spec/icons.json` is the second contract, built from `docs/solar-icons/`: 341 icon sets in
+outline and solid, 3 logo sets, each variant reduced to `{viewBox, paths}` and each path to its
+`d` string and fill rule. Three targets are emitted from it.
+
+| Target    | Output                                                              | Covers                                            |
+| --------- | ------------------------------------------------------------------- | ------------------------------------------------- |
+| `react`   | `packages/assets/src/generated/icons/`, `.../logos/`                | 341 icon components, 2 logo components, 5 rasters |
+| `svg`     | `packages/assets/src/generated/svg/`                                | 687 standalone files: 682 icon variants, 5 marks  |
+| `flutter` | `packages/solar_flutter/lib/src/generated/icons.dart`, `logos.dart` | 682 icon and 4 logo `SolarVector` constants       |
+
+The path data reaches all three byte for byte, so agreement is a property of the data rather
+than of three formatters happening to concur. [`test/icon-parity.test.mjs`](test/icon-parity.test.mjs)
+proves it the hard way: it opens the generated TSX, the generated SVG and the generated Dart,
+extracts the geometry back out and compares it to the spec, never to a manifest.
+
+Two contracts make icons different from tokens, and each is asserted in both directions:
+
+- **No icon carries a colour.** Every icon in SOLAR is drawn `#111111`; the normalizer asserts
+  that and drops the fill, so a React path is `fill="currentColor"`, an SVG file's path is too,
+  and a Dart path's `fill` is null and takes the widget's colour. The colour comes from
+  `color.icon.*` at the point of use. A token's whole content is its value; an icon must have
+  none, so the suite checks both the absence of any hex, `Color(` or `rgb(` and the presence of
+  the inheritance that replaces it.
+- **Every logo carries one.** A brand mark is not an icon with a tint, so a logo path keeps its
+  own `#rrggbb`, an inherited one is an error, and `currentColor` appears in no generated logo
+  artifact at all. The React and Flutter types omit a colour prop, so the compiler refuses a
+  tinted mark rather than a comment asking nicely.
+
+The one asset the vector IR cannot represent is the Teams mark — 12 gradient fills and every
+`fill-opacity` in the corpus. React and the raw SVG ship it verbatim; Flutter omits it. The
+emitter asserts that is the _only_ variant it skipped, and the parity suite asserts it is the
+only divergence between the targets, so a second unrepresentable asset fails the build instead
+of disappearing.
+
 ## Layout
 
 ```
 bin/solar-codegen.mjs      the CLI
-src/normalize/             css-contract.json -> the DTCG spec, and the recorded deviations
-src/emit/                  one file per target, plus the shared manifest and canonical values
+src/normalize/             css-contract.json -> the DTCG spec, solar-icons/ -> the icon spec,
+                           the SVG reader, and the recorded deviations
+src/emit/                  one file per emitter, plus the shared manifest and canonical values
 src/report/                spec/deviations.md
 src/util/                  paths, the docs/ write guard, deterministic sorting
-test/                      unit suites per module, plus parity across the four targets
+test/                      unit suites per module, plus token parity across four targets and
+                           icon parity across three
 ```
 
 ## Changing it
@@ -75,6 +117,9 @@ test/                      unit suites per module, plus parity across the four t
   consistently and reported to SOLAR governance in `spec/deviations.md`. Do not edit `docs/`.
 - **A new token appeared in Figma** → nothing here; re-run `npm run solar:tokens`, and the
   normalizer picks it up. An unknown token _type_ fails loudly rather than guessing.
+- **A new icon appeared in Figma** → nothing here either; re-run `npm run solar:icons`, and
+  `src/normalize/icons.mjs` picks it up. An SVG feature the IR cannot represent — a gradient, a
+  stroke, an arc — fails naming the file rather than being quietly dropped.
 
 Everything generated is committed, and CI regenerates it and fails on any difference, so run
 `npm run solar:codegen` and commit the result after touching this package.

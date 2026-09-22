@@ -9,7 +9,7 @@ except package names.
 The SOLAR Foundations reference is in [docs/solar/](docs/solar/README.md). SOLAR names
 `CLAUDE.md` as the agent instruction layer, so treat the rules below as hard.
 [docs/README.md](docs/README.md) maps the whole pipeline: inputs, scripts, outputs, and
-what is not built yet (the design-to-code generator itself does not exist).
+what is not built yet (nothing generates a component yet).
 CI ([.github/workflows/solar.yml](.github/workflows/solar.yml)) rebuilds every generated file
 and fails if the result differs from what is committed, and scans for credentials and
 unreviewed personal data. `npm run solar:sync` does the whole chain — fetch, docs, derived tokens, code — and
@@ -17,9 +17,11 @@ unreviewed personal data. `npm run solar:sync` does the whole chain — fetch, d
 builder. Commit the output. Builders must stay pure functions of `raw/`:
 never write a build timestamp into a generated file.
 
-`npm run solar:codegen` ([packages/codegen](packages/codegen/README.md)) turns the token data
-into code: `spec/tokens.json`, then CSS, an MUI theme and a Tailwind preset in
-`@bwp-web/styles`, and Dart in `solar_flutter`. **It must never write to `docs/`**, which is the
+`npm run solar:codegen` ([packages/codegen](packages/codegen/README.md)) turns the data under
+`docs/` into code in two stages. Tokens: `spec/tokens.json`, then CSS, an MUI theme and a
+Tailwind preset in `@bwp-web/styles`, and Dart in `solar_flutter`. Icons: `spec/icons.json` from
+`docs/solar-icons/`, then 341 React components and 687 standalone SVG files in `@bwp-web/assets`,
+and `SolarVector` constants in `solar_flutter`. **It must never write to `docs/`**, which is the
 Figma mirror; a write guard enforces this and CI re-checks it. When generated styling is wrong,
 fix the normalizer in `packages/codegen/src/normalize/` for a systemic rule, or the single
 emitter in `src/emit/` for a target-specific one. Never edit a generated file to keep a change,
@@ -50,8 +52,15 @@ touching that package. The tweak loop the design spec describes (`spec/overlay/`
   automated); the curated chapters and the token JSON are never rewritten by it.
 - SOLAR Icons are in [docs/solar-icons/](docs/solar-icons/README.md): `svg/outline/` and
   `svg/solid/` hold the verbatim Figma exports, `catalog.json` maps Figma names to file stems
-  and component names. Icons take their colour from `color.icon.*` tokens via `currentColor`;
-  logos keep their own colours.
+  and component names. Generated from them: `spec/icons.json` and the three icon targets
+  ([packages/assets](packages/assets/README.md), the raw SVG files, `solar_flutter`).
+- **An icon never carries a colour, and must never be given one.** It inherits — `currentColor`
+  on the web, the widget's colour in Flutter — so tint it at the point of use with a
+  `color.icon.*` token (`color: var(--solar-color-icon-primary)`), never with a `fill` on the
+  icon. Size it from the `icon.xs`…`icon.2xl` ladder, never a px literal.
+- **A logo always carries its own colours and is never tintable.** `LogoBiamp`, `LogoOs` and
+  `SolarLogo` take no `color` or `fill`, and the types refuse one; a recoloured brand mark is a
+  brand violation, not a styling choice.
 - Each curated chapter carries front matter naming its Figma source pages and their content
   hashes. [docs/solar/review-status.md](docs/solar/review-status.md) (generated) says which
   chapters are behind Figma. To bring one up to date: read the changed page under
@@ -75,9 +84,10 @@ touching that package. The tweak loop the design spec describes (`spec/overlay/`
 
 - Monorepo: npm workspaces + Turbo. `npm run build`, `lint`, `typecheck`, `format` from
   the root. Each package builds ESM + CJS with tsup and emits types with tsc.
-- Packages: `@bwp-web/styles` (tokens and theme, generated), `@bwp-web/assets` (icons, static
-  assets), `@bwp-web/canvas` (interactive canvas), `@bwp-web/components` (React components), all
-  at `2.0.0-alpha.0`; assets, canvas and components are still empty skeletons. Plus
+- Packages: `@bwp-web/styles` (tokens and theme, generated), `@bwp-web/assets` (the 341 SOLAR
+  icons, the logos and the app icons, generated), `@bwp-web/canvas` (interactive canvas),
+  `@bwp-web/components` (React components), all at `2.0.0-alpha.0`; canvas and components are
+  still empty skeletons. Plus
   `@bwp-web/codegen` (private build tool) and `solar_flutter` (a Dart package, outside the npm
   workspace, formatted by `dart format` and pinned to the Flutter version in `solar.yml`).
 - Node 22, pinned in `.nvmrc` and in every workflow. The packages' `engines` says `>=20`,

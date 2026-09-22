@@ -5,8 +5,10 @@ docs/solar-icons/raw/**/*.json
 # Exported Figma assets are byte-exact copies.
 docs/solar-icons/svg/**
 docs/solar-icons/logos/**
-# Dart package: formatted by dart format, not Prettier.
+# Dart package: formatted by dart format, not Prettier. Its markdown is the exception -- dart
+# format does not touch it, and without this it is the one README no check ever reads.
 packages/solar_flutter/**
+!packages/solar_flutter/**/*.md
 # Working documents for agents and maintainers, not published prose. Their fenced code blocks
 # are excerpts lifted from inside functions, so they are legitimately indented; Prettier formats
 # each block as a standalone program and would dedent them, breaking the byte-for-byte match

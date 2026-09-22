@@ -3825,31 +3825,118 @@ the corrected `packages/solar_flutter/lib/src/generated/icons.manifest.json`.
 
 ---
 
-### Task 10: CI and documentation
+### Task 10: CI and documentation — done
 
 **Files:**
 
-- Modify: `.github/workflows/solar.yml` (only if the icon stage needs its own step)
-- Modify: `docs/README.md`, `CLAUDE.md`, `packages/codegen/README.md`
-- Create: `packages/assets/README.md`
+- Rewritten: `packages/assets/README.md` (was a three-line "work in progress" stub)
+- Modified: `packages/codegen/README.md`, `packages/solar_flutter/README.md`, `docs/README.md`,
+  `CLAUDE.md`
+- **Not modified: `.github/workflows/solar.yml`.** See below.
 
-The existing `codegen` job already regenerates everything and fails on a difference, so icons are
-covered by construction; check that the job's runtime is still reasonable with 681 files.
+**CI needs no new step, and that was checked rather than assumed.** The `codegen` job runs
+`npm run solar:codegen`, then fails if `git status --porcelain docs/` is non-empty, then fails if
+`git status --porcelain` is non-empty, then runs `npx vitest run` — which is all 21 files and 220
+tests, `icon-parity.test.mjs` and the icon-spec guard in `spec.test.mjs` among them. Every icon
+artifact is written by that one command and is committed, so the three existing assertions cover
+the icon stage by construction: a stale generated module, a spec that no longer matches the
+catalog, and a write into `docs/` each fail without anything naming icons. The `flutter` job's
+`dart format --set-exit-if-changed lib test`, `flutter analyze` and `flutter test` already reach
+`icons.dart`, `logos.dart`, `solar_icon.dart`, `svg_path.dart` and `icons_test.dart`, because
+they name directories rather than files.
 
-Documentation must say: how to use an icon in React and in Flutter, that icons take their colour
-from `color.icon.*` through `currentColor` while logos never do, that sizes come from `icon.*`,
-and that the three source defects are recorded in `spec/deviations.md` rather than patched in
-`docs/`.
+Runtime, measured locally on this corpus, is not a problem:
+
+| | |
+| --- | --- |
+| `npm run solar:codegen` | **2.3–3.0 s** wall clock, unchanged from task 9's 2.69–3.26 s |
+| `npx vitest run` in `packages/codegen` | 220 tests across 21 files in 650 ms |
+| `flutter analyze` | 1.2 s, with `icons.dart` at 589 KB |
+| `flutter test` | 39 tests |
+| `dart format --set-exit-if-changed lib test` | 9 files, 0 changed, 0.32 s |
+
+One gap worth stating and not worth fixing: `packages/solar_flutter/README.md` is checked by no
+Prettier run, because the Dart package is outside the npm workspace and `solar.yml`'s formatting
+step names `docs/`, `scripts/`, `README.md`, `CLAUDE.md` and `package.json`. The file is
+Prettier-clean; adding it to the glob would be the only reason to touch the workflow, and that is
+not what this task is for.
+
+**What each document now says.**
+
+- **`packages/assets/README.md`** — rewritten from the stub into the package's real
+  documentation, modelled on `packages/styles/README.md`. Importing an icon and what the three
+  props do; that a named `size` step resolves to `var(--solar-icon-<step>)` rather than to px;
+  that colour is inherited through `currentColor` and is set at the point of use with
+  `color: var(--solar-color-icon-*)`, which also means Light and Dark need nothing from the
+  component; what `title` does to `role`, `aria-labelledby`, `aria-hidden` and `focusable`. Then
+  the logos, with the two rules that differ — never tintable, because `color` and `fill` are
+  omitted from `LogoProps` and the compiler refuses them, and `size` sets the height alone so a
+  36 × 12 wordmark is not squashed — the app icons as base64 data URLs, the `./svg/*` export with
+  its naming scheme, and the four source defects with a pointer to `spec/deviations.md`.
+  Tree-shaking is stated as the measured **1,454 bytes gzipped** for one icon.
+- **`packages/codegen/README.md`** — the three false claims are gone: the intro now says two
+  contracts, four token targets and three icon targets; `spec/deviations.md` is **18** places, 13
+  token and 5 icon; and the parity paragraph is explicitly about the token targets, with icon
+  parity described in its own section. That section gives `spec/icons.json`, a table of the three
+  icon targets and their counts, that `icon-parity.test.mjs` reads the artifacts rather than the
+  manifests, and the two contracts that make icons unlike tokens — **no icon carries a colour**
+  and **every logo does**, each asserted in both directions — plus the Teams mark as the one
+  divergence the emitter and the suite both pin. "Changing it" gains the icon row.
+- **`docs/README.md`** — the outputs table gains `spec/icons.json` and two rows for the generated
+  code itself (the styles/Flutter token output, and the assets/Flutter icon output), and the
+  deviations row says 18 rather than 13. "From docs to code" now describes both stages, the icon
+  colour contract in one sentence, and that no target is transpiled from another. The pipeline
+  picture, the `solar:codegen` command line, the "what exists" row and the "Where to start" table
+  follow.
+- **`CLAUDE.md`** — the codegen paragraph describes both stages. `@bwp-web/assets` is no longer
+  listed as an empty skeleton; only canvas and components are. Two new hard rules for an agent:
+  an icon never carries a colour and must never be given one — tint at the point of use with a
+  `color.icon.*` token, size from the `icon.*` ladder — and a logo always carries its own and is
+  never tintable, with the types refusing it. The stale "the design-to-code generator itself does
+  not exist" became "nothing generates a component yet", which is what was meant and is still
+  true.
+- **`packages/solar_flutter/README.md`** — never mentioned icons. It now covers
+  `SolarIcon(SolarIcons.chevronRightOutline)`, why there is no `Map<String, SolarVector>`, the
+  four-step colour chain (explicit `color` → `SolarTheme`'s `colors.iconPrimary` →
+  `IconTheme.of(context).color` → black), `size` defaulting to `SolarIconSize.lg` and fitting
+  rather than stretching, and `semanticLabel`. Then `SolarLogos` and its four constants, the two
+  inversions (`SolarLogo` takes no colour; `size` is the height), and the Teams variant's
+  deliberate absence with the reason and a link to `spec/deviations.md`.
+
+**Verified.** `npx prettier --check "docs/**/*.md" README.md CLAUDE.md package.json` passes, as do
+the root `npm run lint`, `format`, `typecheck` and `build`; `npx vitest run` in `packages/codegen`
+is 220 passing across 21 files; `flutter analyze`, `flutter test` and
+`dart format --set-exit-if-changed lib test` pass; `node scripts/check-personal-data.mjs` reports
+2 accepted, 0 new, 0 credentials. `npm run solar:codegen` was re-run afterwards and printed the
+same summary line with no change to the tree, and `git status --porcelain docs/` names only
+`docs/README.md` and this plan file — no documentation edit reached generated output.
+
+The repository owner commits `packages/assets/README.md`, `packages/codegen/README.md`,
+`packages/solar_flutter/README.md`, `docs/README.md`, `CLAUDE.md` and this plan.
 
 ---
 
 ## Done when
 
-- `npm run solar:codegen` emits icons for both targets, is deterministic, and writes nothing
-  under `docs/`.
+All of these hold.
+
+- `npm run solar:codegen` emits icons for all three targets, is deterministic, and writes nothing
+  under `docs/`. Its summary line is
+  `codegen: css 663, mui 710, tailwind 371, flutter 710 tokens, react 341, svg 687, logos 3, flutter 341 icons, 18 deviations`,
+  and two consecutive runs leave the tree unchanged.
 - A React app can `import { IconChevronRight } from '@bwp-web/assets'` and tint it by setting
   `color`; a Flutter app can use `SolarIcon(SolarIcons.chevronRightOutline)` and get the same
   shape.
-- The icon parity suite proves the two carry identical geometry for all 681 variants.
-- `flutter analyze` and `flutter test` pass, and the npm build, lint, typecheck and format pass.
-- The three source defects appear in `spec/deviations.md` with an action for SOLAR.
+- The icon parity suite proves React, the raw SVG and Flutter carry identical geometry for all
+  **682** variants — the plan's opening table counted the 681 SVG files on disk, and the spec
+  holds one more because `support`'s missing outline falls back to its solid. `os-logo.teams` is
+  the one asset the targets do not share, and the suite asserts it is the only one.
+- `flutter analyze` and `flutter test` pass (39 tests), and the npm build, lint, typecheck and
+  format pass; `npx vitest run` in `packages/codegen` is 220 tests across 21 files.
+- **Five**, not three, source defects appear in `spec/deviations.md` with an action for SOLAR:
+  `icon.phone`, `icon.support`, `icon.zone`, `logo.os-logo.teams` and `logo.size` — the last two
+  were found while executing tasks 5 and 7 and were not foreseen when this plan was written. They
+  join the 13 token rows for 18 in total.
+- The packages are documented: `packages/assets/README.md` and the icon sections of
+  `packages/solar_flutter/README.md` for consumers, `packages/codegen/README.md` and `CLAUDE.md`
+  for whoever changes the generator. CI needed no new step; task 10 records why.
