@@ -1,23 +1,24 @@
 # SOLAR documentation and data pipeline
 
 This folder is everything the repository knows about Biamp's SOLAR design system, and the
-scripts that keep that knowledge in step with Figma. It exists so that a **SOLAR
-design-to-code generator** can be built on top of it. Read this page first; it is the only
-place that describes the whole pipeline end to end.
+scripts that keep that knowledge in step with Figma, plus the generator that turns it into
+code. Read this page first; it is the only place that describes the whole pipeline end to end.
 
 ## What exists today, and what does not
 
-| Exists                                                                                          | Does not exist yet                                                                                                                                               |
-| ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Human-written Foundations reference (18 chapters + agent quick-reference)                       | The design-to-code generator itself. Nothing in this repository emits React, CSS or TypeScript from SOLAR data yet.                                              |
-| Foundations token inventory as JSON, and three files derived from it by a script                | `@bwp-web/styles` content: the `--solar-*` theme that `reference.css` prototypes is not shipped from the package.                                                |
-| Verbatim text of every Foundations Figma page, fetched over REST, plus every page-context block | `@bwp-web/components` content: no component is implemented.                                                                                                      |
-| SOLAR Web component, pattern and view data extracted from Figma, and docs built from it         | An automated Foundations token export from the SOLAR core team (pipeline stage 2 in [solar/17-implementation-pipeline.md](solar/17-implementation-pipeline.md)). |
-| SOLAR Icons: every icon as outline and solid SVG, logos, and a catalog for `@bwp-web/assets`    |                                                                                                                                                                  |
+| Exists                                                                                                                                        | Does not exist yet                                                                                                                                                                                            |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Human-written Foundations reference (18 chapters + agent quick-reference)                                                                     | `@bwp-web/components` content: no component is implemented, and nothing generates one. Tokens are milestone 1 of the docs-to-code spec; components are a later one.                                           |
+| Foundations token inventory as JSON, and three files derived from it by a script                                                              | The developer tweak loop: `spec/overlay/`, `solar:explain` and the Storybook review surface are designed in [the docs-to-code spec](superpowers/specs/2026-09-21-solar-docs-to-code-design.md) and not built. |
+| Verbatim text of every Foundations Figma page, fetched over REST, plus every page-context block                                               | An automated Foundations token export from the SOLAR core team (pipeline stage 2 in [solar/17-implementation-pipeline.md](solar/17-implementation-pipeline.md)).                                              |
+| SOLAR Web component, pattern and view data extracted from Figma, and docs built from it                                                       |                                                                                                                                                                                                               |
+| SOLAR Icons: every icon as outline and solid SVG, logos, and a catalog for `@bwp-web/assets`                                                  |                                                                                                                                                                                                               |
+| **Token code generation**: `npm run solar:codegen` emits CSS, MUI, Tailwind and Flutter from one spec, with a parity suite proving they agree |                                                                                                                                                                                                               |
 
 One command, `npm run solar:sync`, refreshes all three Figma files without any model or agent.
-When a document here says "a generator", it means the future tool. The scripts that exist
-today generate **documentation and machine-readable data**, not code.
+The scripts under `docs/` generate **documentation and machine-readable data**; `solar:codegen`
+generates **code** from that data. The two never run together and never write to each other's
+outputs.
 
 ## The pipeline in one picture
 
@@ -36,7 +37,7 @@ reference.css            solar/01-…18-*.md (curated chapters)           │
 grammar.json                  │                                         │
    └──────────────────────────┴─────────────────────────────────────────┘
                                           ▼
-                    future generator → @bwp-web/styles, @bwp-web/components
+            npm run solar:codegen → spec/tokens.json → css · mui · tailwind · flutter
 ```
 
 `npm run solar:sync` runs the REST columns end to end (`solar:foundations`, `solar:web`, then
@@ -72,6 +73,8 @@ token JSON on the left is refreshed deliberately, never by the sync.
 | [solar-web/token-usage.json](solar-web/token-usage.json)                                                                   | `build-docs.mjs`             | Impact analysis: which components consume a token                                | same                                                                        |
 | [solar-web/INDEX.md](solar-web/INDEX.md), [issues.md](solar-web/issues.md), per-page `.md`                                 | `build-docs.mjs`             | Humans and agents reading about one component                                    | [solar-web/README.md](solar-web/README.md#reading-a-component-page)         |
 | `solar/raw/_meta.json`, `solar-web/raw/_meta.json`                                                                         | the fetchers                 | Provenance: file version, date, failed pages, unresolved variable ids            | [solar-web/README.md](solar-web/README.md#keeping-it-in-sync-with-figma)    |
+| [`spec/tokens.json`](../spec/tokens.json)                                                                                  | `solar:codegen`              | The DTCG contract every target is generated from: 710 tokens with their modes    | [packages/codegen/README.md](../packages/codegen/README.md)                 |
+| [`spec/deviations.md`](../spec/deviations.md)                                                                              | `solar:codegen`              | SOLAR governance: the 13 places the code deliberately differs from Figma         | its own header                                                              |
 
 All generated files are committed so that the repository is usable without a Figma token.
 Edit the scripts, never the outputs.
@@ -86,6 +89,7 @@ npm run solar:icons        # SOLAR Icons only: fetch, export SVG/PNG assets, reb
 npm run solar:fetch        # fetch all three, build nothing
 npm run solar:docs         # rebuild all three from the checked-in raw JSON and assets, no Figma access
 npm run solar:tokens       # rebuild css-contract.json, reference.css, grammar.json from figma-variables.json
+npm run solar:codegen      # rebuild spec/tokens.json and all four code targets, no Figma access
 ```
 
 Anything that fetches needs a Figma personal access token with `file_content:read` in
@@ -94,16 +98,39 @@ of them are deterministic: running them twice on unchanged inputs produces no di
 shared REST client, version-keyed cache and manifest helpers live in
 [\_shared/figma-rest.mjs](_shared/figma-rest.mjs).
 
+## From docs to code
+
+`npm run solar:codegen` reads the token data under `docs/` and writes `spec/tokens.json`, a
+[DTCG](https://tr.designtokens.org/) contract of 710 tokens. Four independent emitters generate
+from that one file: CSS custom properties and an MUI theme and a Tailwind preset into
+[`@bwp-web/styles`](../packages/styles/README.md), and Dart constants into
+[`solar_flutter`](../packages/solar_flutter/README.md). They are not transpiled from one another;
+agreement is proved instead by a parity suite that compares every token, in every mode, against
+the spec as the oracle.
+
+**It never writes to `docs/`.** This folder mirrors Figma, so when generated code is wrong the
+fix belongs in the generator, never in the mirror. A write guard enforces it and CI re-checks it
+after every run. How to change it: [packages/codegen/README.md](../packages/codegen/README.md).
+Why it is built this way, and what the tweak loop will look like when it exists:
+[the docs-to-code spec](superpowers/specs/2026-09-21-solar-docs-to-code-design.md).
+
 ## Checks in CI
 
 [`.github/workflows/solar.yml`](../.github/workflows/solar.yml) runs on every pull request and
-on pushes to `main` and the `v*` branches. **Neither job needs a Figma token**, because both
+on pushes to `main` and the `v*` branches. **No job needs a Figma token**, because all of them
 work from data that is committed here.
 
 | Job                                        | What it does                                                                                                                                                       | Fixing a failure                                                                 |
 | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
 | Generated docs and tokens are up to date   | Reruns `solar:docs` and `solar:tokens` from the committed raw data and fails if any file changes, then checks Prettier formatting of the docs and scripts          | Run those two commands locally and commit the result                             |
 | No unreviewed personal data or credentials | [`scripts/check-personal-data.mjs`](../scripts/check-personal-data.mjs) scans every tracked and untracked file for credentials, e-mail addresses and phone numbers | Redact in the extractor, or accept the finding with a written reason (see below) |
+| Generated code is up to date               | Reruns `solar:codegen`, fails if `docs/` was written to, fails if any generated file changed, then runs the unit and parity suites                                 | Run `npm run solar:codegen` locally and commit the result                        |
+| Dart package analyzes and tests            | `dart format --set-exit-if-changed`, `flutter analyze` and `flutter test` in `packages/solar_flutter`                                                              | Run the same three locally                                                       |
+
+The Flutter version is pinned in the workflow, because `dart format` changed its output in Dart
+3.7 and the codegen job diffs the formatted file. Upgrading Flutter locally means reformatting
+`tokens.dart` and raising `FLUTTER_VERSION` in the same commit. Node is pinned to 22 in every
+job and in `.nvmrc`.
 
 Generated files record the **source's** fetch date and Figma file version (`sourceFetchedOn`,
 `fileVersion`), never the build date, so rebuilding on a later day produces no diff. Keep it
@@ -129,15 +156,18 @@ when Figma content changes.
 
 ## Where to start
 
-| You want to…                          | Read                                                                                                                                                     |
-| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Write UI as an agent                  | [solar/18-agent-reference.md](solar/18-agent-reference.md), then the component's page under `solar-web/`                                                 |
-| Understand a design rule              | The chapter in [solar/README.md](solar/README.md)                                                                                                        |
-| See what a Figma page says today      | [solar/figma-pages/INDEX.md](solar/figma-pages/INDEX.md)                                                                                                 |
-| Know whether the chapters are current | [solar/review-status.md](solar/review-status.md)                                                                                                         |
-| Look up a token's CSS name or value   | `solar/tokens/css-contract.json`, or `reference.css` for the whole theme                                                                                 |
-| Validate a token reference            | `solar/tokens/grammar.json`                                                                                                                              |
-| Generate icon assets                  | [solar-icons/README.md](solar-icons/README.md#conventions-a-generator-can-rely-on), then `solar-icons/catalog.json`                                      |
-| Design the generator                  | [solar-web/schema.md](solar-web/schema.md), then [solar-web/README.md](solar-web/README.md#conventions-a-generator-can-rely-on) and its limits section   |
-| Refresh from Figma                    | `npm run solar:sync`; details in [solar/raw/README.md](solar/raw/README.md) and [solar-web/README.md](solar-web/README.md#keeping-it-in-sync-with-figma) |
-| Know why two sources disagree         | [solar/source-discrepancies.md](solar/source-discrepancies.md) and [solar-web/issues.md](solar-web/issues.md)                                            |
+| You want to…                          | Read                                                                                                                                                                     |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Write UI as an agent                  | [solar/18-agent-reference.md](solar/18-agent-reference.md), then the component's page under `solar-web/`                                                                 |
+| Understand a design rule              | The chapter in [solar/README.md](solar/README.md)                                                                                                                        |
+| See what a Figma page says today      | [solar/figma-pages/INDEX.md](solar/figma-pages/INDEX.md)                                                                                                                 |
+| Know whether the chapters are current | [solar/review-status.md](solar/review-status.md)                                                                                                                         |
+| Look up a token's CSS name or value   | `solar/tokens/css-contract.json`, or `reference.css` for the whole theme                                                                                                 |
+| Validate a token reference            | `solar/tokens/grammar.json`                                                                                                                                              |
+| Generate icon assets                  | [solar-icons/README.md](solar-icons/README.md#conventions-a-generator-can-rely-on), then `solar-icons/catalog.json`                                                      |
+| Use the tokens in code                | [packages/styles/README.md](../packages/styles/README.md) for MUI, CSS and Tailwind; [packages/solar_flutter/README.md](../packages/solar_flutter/README.md) for Flutter |
+| Change what the generator emits       | [packages/codegen/README.md](../packages/codegen/README.md)                                                                                                              |
+| Know why the code differs from Figma  | [`spec/deviations.md`](../spec/deviations.md)                                                                                                                            |
+| Design the component generator        | [solar-web/schema.md](solar-web/schema.md), then [solar-web/README.md](solar-web/README.md#conventions-a-generator-can-rely-on) and its limits section                   |
+| Refresh from Figma                    | `npm run solar:sync`; details in [solar/raw/README.md](solar/raw/README.md) and [solar-web/README.md](solar-web/README.md#keeping-it-in-sync-with-figma)                 |
+| Know why two sources disagree         | [solar/source-discrepancies.md](solar/source-discrepancies.md) and [solar-web/issues.md](solar-web/issues.md)                                                            |

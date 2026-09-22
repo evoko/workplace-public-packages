@@ -7,3 +7,8 @@ docs/solar-icons/svg/**
 docs/solar-icons/logos/**
 # Dart package: formatted by dart format, not Prettier.
 packages/solar_flutter/**
+# Working documents for agents and maintainers, not published prose. Their fenced code blocks
+# are excerpts lifted from inside functions, so they are legitimately indented; Prettier formats
+# each block as a standalone program and would dedent them, breaking the byte-for-byte match
+# with the files they document.
+docs/superpowers/**

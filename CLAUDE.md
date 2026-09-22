@@ -16,6 +16,16 @@ unreviewed personal data. After editing a builder or syncing, run `npm run solar
 `npm run solar:tokens` and commit the output. Builders must stay pure functions of `raw/`:
 never write a build timestamp into a generated file.
 
+`npm run solar:codegen` ([packages/codegen](packages/codegen/README.md)) turns the token data
+into code: `spec/tokens.json`, then CSS, an MUI theme and a Tailwind preset in
+`@bwp-web/styles`, and Dart in `solar_flutter`. **It must never write to `docs/`**, which is the
+Figma mirror; a write guard enforces this and CI re-checks it. When generated styling is wrong,
+fix the normalizer in `packages/codegen/src/normalize/` for a systemic rule, or the single
+emitter in `src/emit/` for a target-specific one. Never edit a generated file to keep a change,
+and never edit `docs/` to make code look right. Run the command and commit its output after
+touching that package. The tweak loop the design spec describes (`spec/overlay/`,
+`solar:explain`, the Storybook review surface) is **not built yet**.
+
 - Start with [docs/solar/18-agent-reference.md](docs/solar/18-agent-reference.md): the
   ten foundational rules, verified token grammar, banned segments, spatial and type
   scales, z-index ladder, and the pre-submission checklist.
@@ -64,7 +74,11 @@ never write a build timestamp into a generated file.
 
 - Monorepo: npm workspaces + Turbo. `npm run build`, `lint`, `typecheck`, `format` from
   the root. Each package builds ESM + CJS with tsup and emits types with tsc.
-- Packages: `@bwp-web/styles` (tokens, theme), `@bwp-web/assets` (icons, static assets),
-  `@bwp-web/canvas` (interactive canvas), `@bwp-web/components` (React components), all
-  at `2.0.0-alpha.0` and currently empty skeletons.
+- Packages: `@bwp-web/styles` (tokens and theme, generated), `@bwp-web/assets` (icons, static
+  assets), `@bwp-web/canvas` (interactive canvas), `@bwp-web/components` (React components), all
+  at `2.0.0-alpha.0`; assets, canvas and components are still empty skeletons. Plus
+  `@bwp-web/codegen` (private build tool) and `solar_flutter` (a Dart package, outside the npm
+  workspace, formatted by `dart format` and pinned to the Flutter version in `solar.yml`).
+- Node 22, pinned in `.nvmrc` and in every workflow. The packages' `engines` says `>=20`,
+  which is what consumers need, not what builds the repo.
 - The user handles all git operations. Do not run git write commands.

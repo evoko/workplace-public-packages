@@ -3874,52 +3874,72 @@ git commit -m "ci: verify codegen determinism, the docs/ guard, the Dart package
 
 ### Task 14: Documentation
 
+The original plan for this task was two paragraphs. It was not enough, and part of it described
+things that do not exist: it had the generator reading `spec/overlay/`, which is milestone 2.
+What humans and agents actually need is a page for the generator itself, a page saying how to
+consume what it emits, an updated pipeline map, and one hard rule in `CLAUDE.md`.
+
 **Files:**
 
+- Create: `packages/codegen/README.md`
+- Modify: `packages/styles/README.md`
 - Modify: `docs/README.md`
 - Modify: `CLAUDE.md`
+- Modify: `.prettierignore`
 
-- [ ] **Step 1: Add the code layer to the pipeline map**
+- [ ] **Step 1: Document the generator**
 
-In `docs/README.md`, in the "What exists today, and what does not" table, replace the row
-`| SOLAR Icons: every icon as outline and solid SVG, logos, and a catalog for `@bwp-web/assets` |`
-right-hand cell content by moving the generator entry out of "Does not exist yet", and add a
-new section before "Checks in CI":
+`packages/codegen/README.md` did not exist. It covers the one invariant, what the four targets
+are and how many tokens each carries, how parity is proved against the spec rather than by
+consensus, the two canonicalization subtleties an emitter author will trip over (8-bit alpha,
+letter spacing as a fraction of font size), and a short "where do I change this" table.
 
-```markdown
-## From docs to code
+- [ ] **Step 2: Document how to consume the output**
 
-`npm run solar:codegen` reads `docs/` and `spec/overlay/`, writes `spec/tokens.json` in DTCG
-format, and emits four targets: CSS custom properties, MUI theme options, a Tailwind preset and
-Dart constants for Flutter. It never writes to `docs/`; that invariant is enforced by a write
-guard in the generator and asserted in CI.
+`packages/styles/README.md` said only "V2 (SOLAR) work in progress". It now shows the MUI,
+plain-CSS and Tailwind entry points and lists the raw exports, including why `solarTokens` and
+`solarViewportTokens` are separate.
 
-Design: [the docs-to-code spec](superpowers/specs/2026-09-21-solar-docs-to-code-design.md).
-Deviations from Figma are reported in [`spec/deviations.md`](../spec/deviations.md).
+- [ ] **Step 3: Update the pipeline map**
+
+`docs/README.md` claimed the generator did not exist and that "when a document here says 'a
+generator', it means the future tool". Replace that with what is true: the docs scripts generate
+data, `solar:codegen` generates code from it, and the two never write to each other's outputs.
+Add `spec/tokens.json` and `spec/deviations.md` to the outputs table, `solar:codegen` to the
+commands, the two new jobs to the CI table with the Flutter pin explained, and rows to "Where to
+start" for using the tokens and for changing the generator.
+
+- [ ] **Step 4: State the rule for agents**
+
+In `CLAUDE.md`, after the CI paragraph: `solar:codegen` must never write to `docs/`; fix the
+normalizer for a systemic rule or one emitter for a target-specific one; never edit a generated
+file to keep a change, and never edit `docs/` to make code look right. Say plainly that the
+tweak loop is not built yet, so no agent goes looking for `spec/overlay/`. Also correct the
+"currently empty skeletons" line, which is no longer true of `@bwp-web/styles`, and record the
+Node 22 pin.
+
+- [ ] **Step 5: Stop Prettier fighting the working documents**
+
+`npx prettier --check "docs/**/*.md"` runs in CI and covers `docs/superpowers/`, and **it was
+already failing before this task**: Prettier formats each fenced block as a standalone program
+and dedents the excerpts these plans lift from inside functions, which is exactly what would
+break their byte-for-byte agreement with the real files. Append to `.prettierignore`:
+
+```
+docs/superpowers/**
 ```
 
-- [ ] **Step 2: Add the hard rule for agents**
+- [ ] **Step 6: Verify**
 
-In `CLAUDE.md`, after the CI paragraph, add:
-
-```markdown
-`npm run solar:codegen` generates code from `docs/` plus `spec/overlay/` into `spec/` and the
-packages. It must never write to `docs/`: that is the Figma mirror. When generated styling is
-wrong, fix `spec/overlay/` for a single component, the normalizer in `packages/codegen` for a
-systemic rule, or the hand-written shell for behaviour. Never edit a generated file to keep a
-change, and never edit `docs/` to make code look right.
-```
-
-- [ ] **Step 3: Verify the docs checks still pass**
-
-Run: `npx prettier --check "docs/**/*.md" README.md CLAUDE.md && node scripts/check-personal-data.mjs`
+Run: `npx prettier --check "docs/**/*.md" README.md CLAUDE.md package.json && npm run format`
+Then: `node scripts/check-personal-data.mjs`
 Expected: clean, and `0 new, 0 credentials`.
 
-- [ ] **Step 4: Commit**
+- [ ] **Step 7: Commit**
 
 ```bash
-git add docs/README.md CLAUDE.md
-git commit -m "docs: describe the docs-to-code generator and its invariant"
+git add docs/README.md CLAUDE.md .prettierignore packages/codegen/README.md packages/styles/README.md
+git commit -m "docs: document the docs-to-code generator, its output and its invariant"
 ```
 
 ---
@@ -3930,5 +3950,5 @@ git commit -m "docs: describe the docs-to-code generator and its invariant"
 - `npx vitest run` passes, including the parity suite.
 - `flutter analyze` and `flutter test` pass in `packages/solar_flutter`.
 - An MUI app can call `createSolarThemeOptions('light')` and a Flutter app can read
-  `SolarColorsLight.surfaceBackground`, from the same spec, with the parity suite proving they
-  agree.
+  `SolarColors.light.surfaceBackground`, from the same spec, with the parity suite proving they
+  agree in both modes.
