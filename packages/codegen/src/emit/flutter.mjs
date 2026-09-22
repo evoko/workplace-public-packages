@@ -4,6 +4,7 @@ import { packagesDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
 import { canonical, entry, writeManifest } from './manifest.mjs';
 import { shadowLayers } from './shadow.mjs';
+import { byCodeUnit } from '../util/sort.mjs';
 
 const OUT_DIR = join(packagesDir, 'solar_flutter', 'lib', 'src', 'generated');
 
@@ -224,7 +225,7 @@ export function renderFlutter(spec) {
   }
 
   const modalClasses = [...modal.entries()]
-    .sort(([a], [b]) => a.localeCompare(b))
+    .sort(([a], [b]) => byCodeUnit(a, b))
     .map(([cls, g]) => {
       const params = g.names.map((n) => `    required this.${n},`).join('\n');
       const instances = g.modes
@@ -241,7 +242,7 @@ export function renderFlutter(spec) {
     .join('\n');
 
   const staticClasses = [...statics.entries()]
-    .sort(([a], [b]) => a.localeCompare(b))
+    .sort(([a], [b]) => byCodeUnit(a, b))
     .map(
       ([cls, lines]) =>
         `abstract final class ${cls} {\n${lines.join('\n')}\n}\n`,

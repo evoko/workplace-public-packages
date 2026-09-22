@@ -1,6 +1,7 @@
 import { join } from 'node:path';
 import { specDir } from '../util/paths.mjs';
 import { writeGenerated } from '../util/write.mjs';
+import { byCodeUnit } from '../util/sort.mjs';
 
 const cell = (value) => String(value).replaceAll('|', '\\|');
 
@@ -13,7 +14,7 @@ export function renderDeviations(deviations, fileVersion) {
   // fires twice would otherwise silently double a row.
   const unique = [
     ...new Map(deviations.map((d) => [d.token, d])).values(),
-  ].sort((a, b) => a.token.localeCompare(b.token));
+  ].sort((a, b) => byCodeUnit(a.token, b.token));
   const rows = unique
     .map(
       (d) =>

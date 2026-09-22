@@ -3654,99 +3654,220 @@ git commit -m "fix(codegen): emit CSS-valid letter spacing and responsive MUI ty
 
 ### Task 13: CI
 
+The pipeline is only guarded if CI regenerates everything and fails on a difference. Three
+things had to be true before that check could be trusted.
+
+`npm run solar:codegen` shells out to `dart format`, so **the codegen job needs a Dart toolchain
+or it rewrites `tokens.dart` unformatted and fails on an 845-line diff every run**. It also has
+to be the *same* toolchain that produced the committed file: `dart format` changed its output in
+Dart 3.7, so the version is pinned at the workflow level.
+
+The generator sorted some output with `String.prototype.localeCompare`, which orders by the ICU
+data built into the running Node. A check whose job is to diff generated files cannot depend on
+the environment that generates them, so those sorts now compare code units.
+
+Tests and `build` ran in no workflow at all: `main.yml` covered lint, typecheck and format only,
+so the parity suite was never executed in CI.
+
 **Files:**
 
-- Modify: `.github/workflows/solar.yml`
+- Create: `packages/codegen/src/util/sort.mjs`, `packages/codegen/test/sort.test.mjs`
+- Create: `.nvmrc`
+- Modify: `packages/codegen/src/emit/flutter.mjs`, `packages/codegen/src/report/deviations.mjs`
+- Modify: `.github/workflows/solar.yml`, `.github/workflows/main.yml`
 
-- [ ] **Step 1: Add the codegen job**
+- [ ] **Step 1: Make the generated ordering independent of the environment**
+
+`packages/codegen/src/util/sort.mjs`:
+
+```js
+/**
+ * Code-unit ordering, for anything whose order reaches a generated file.
+ *
+ * `String.prototype.localeCompare` sorts by the ICU data built into the running Node, which
+ * differs between Node builds and platforms: it ignores punctuation at the primary strength, so
+ * `color.border.inverse` and `colorborder` can order differently on two machines. CI regenerates
+ * every target and fails on any difference, so a comparator that depends on the environment
+ * would make that check report a change nobody made. Code units are the same everywhere.
+ */
+export const byCodeUnit = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
+```
+
+Replace both `localeCompare` sorts in `packages/codegen/src/emit/flutter.mjs` (the modal and
+static class lists) and the one in `packages/codegen/src/report/deviations.mjs` with
+`byCodeUnit`. The committed output does not change -- every name involved is ASCII, so the two
+comparators agree here; the point is that they are no longer guaranteed to agree elsewhere.
+
+`packages/codegen/test/sort.test.mjs`:
+
+```js
+import { describe, expect, it } from 'vitest';
+import { byCodeUnit } from '../src/util/sort.mjs';
+
+describe('byCodeUnit', () => {
+  it('sorts punctuation before letters, so a token path orders under its own prefix', () => {
+    // The ordering that matters for generated output: a dot is code unit 46 and sorts ahead of
+    // any letter, so color.border.inverse stays next to its children instead of drifting.
+    expect(
+      ['colorBorder', 'color.border.inverse', 'color.border'].sort(byCodeUnit),
+    ).toEqual(['color.border', 'color.border.inverse', 'colorBorder']);
+  });
+
+  it('sorts capitals before lower case, which is where a locale comparator disagrees', () => {
+    expect(
+      ['SolarType', 'SolarColors', 'Solarcolors'].sort(byCodeUnit),
+    ).toEqual(['SolarColors', 'SolarType', 'Solarcolors']);
+  });
+
+  it('reports equality as zero so sorts stay stable', () => {
+    expect(byCodeUnit('a', 'a')).toBe(0);
+  });
+});
+```
+
+Run: `npx vitest run packages/codegen/test/sort.test.mjs && npm run solar:codegen`
+Expected: PASS, 3 tests, and no change to any generated file.
+
+- [ ] **Step 2: Pin the Dart toolchain at the workflow level**
+
+In `.github/workflows/solar.yml`, above `jobs:`:
+
+```yaml
+# The committed Dart under packages/solar_flutter is formatted by this exact SDK, and the
+# codegen job below regenerates it and fails on any difference. `dart format` changed its output
+# in Dart 3.7, so an unpinned toolchain would reformat the file and fail that check on every run.
+# Raising this means reformatting locally on the same version and committing the result.
+env:
+  FLUTTER_VERSION: '3.24.4'
+```
+
+- [ ] **Step 3: Add the codegen and Flutter jobs**
 
 Append to `.github/workflows/solar.yml` under `jobs:`:
 
 ```yaml
-codegen:
-  name: Generated code is up to date
-  runs-on: ubuntu-latest
-  steps:
-    - name: Check out code
-      uses: actions/checkout@v4
+  codegen:
+    name: Generated code is up to date
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v4
-      with:
-        node-version: 22
-        cache: 'npm'
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: npm ci
+      # Needed only for `dart format`, which npm run solar:codegen shells out to. Without it the
+      # generator prints "dart format skipped" and leaves tokens.dart unformatted, which the
+      # determinism check below would then report as an 845-line diff.
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
 
-    - name: Regenerate the spec and every target
-      run: npm run solar:codegen
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Fail if docs/ was written to
-      run: |
-        if [ -n "$(git status --porcelain docs/)" ]; then
-          echo "::error::The generator wrote to docs/. docs/ is the Figma mirror and is read-only to codegen (design spec invariant 1)."
-          git status --short docs/
-          exit 1
-        fi
+      - name: Regenerate the spec and every target
+        run: npm run solar:codegen
 
-    - name: Fail if the regeneration changed anything
-      run: |
-        if [ -n "$(git status --porcelain)" ]; then
-          echo "::error::Generated code does not match the spec. Run 'npm run solar:codegen' locally and commit the result."
-          git status --short
-          git --no-pager diff --stat
-          exit 1
-        fi
+      - name: Fail if docs/ was written to
+        run: |
+          if [ -n "$(git status --porcelain docs/)" ]; then
+            echo "::error::The generator wrote to docs/. docs/ is the Figma mirror and is read-only to codegen (design spec invariant 1)."
+            git status --short docs/
+            exit 1
+          fi
+          echo "docs/ untouched."
 
-    - name: Run the unit and parity suites
-      run: npx vitest run
+      - name: Fail if the regeneration changed anything
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Generated code does not match the spec. Run 'npm run solar:codegen' locally and commit the result."
+            git status --short
+            git --no-pager diff --stat
+            git --no-pager diff | head -n 300
+            exit 1
+          fi
+          echo "Generated code matches spec/tokens.json."
+
+      # Runs here as well as in the CI workflow because this job has just rebuilt spec/, and
+      # spec.test.mjs asserts the committed spec matches what the emitters were handed.
+      - name: Run the unit and parity suites
+        run: npx vitest run
+
+  flutter:
+    name: Dart package analyzes and tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/solar_flutter
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed lib test
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test
 ```
 
-- [ ] **Step 2: Add the Flutter job**
+- [ ] **Step 4: Run the tests and the build in the CI workflow**
 
-Append below it:
+`main.yml` ran lint, typecheck and format only, so nothing ever executed the suites. Append to
+its `check` job:
 
 ```yaml
-flutter:
-  name: Dart package analyzes and tests
-  runs-on: ubuntu-latest
-  defaults:
-    run:
-      working-directory: packages/solar_flutter
-  steps:
-    - name: Check out code
-      uses: actions/checkout@v4
+      - name: Build every package
+        run: npm run build
 
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        channel: stable
-        cache: true
-
-    - name: Install dependencies
-      run: flutter pub get
-
-    - name: Check formatting
-      run: dart format --output=none --set-exit-if-changed lib test
-
-    - name: Analyze
-      run: flutter analyze
-
-    - name: Test
-      run: flutter test
+      - name: Run tests
+        run: npm run test
 ```
 
-- [ ] **Step 3: Validate the workflow parses**
+- [ ] **Step 5: Agree on a Node version**
 
-Run: `npx prettier --check .github/workflows/solar.yml`
-Expected: `All matched files use Prettier code style!`
+Every workflow pins `node-version: 22`; `.nvmrc` records the same for local work so the two
+cannot drift. The root `engines` stays `>=20`, which is a statement about what consumers of the
+published packages need, not about the toolchain used to build them.
 
-- [ ] **Step 4: Commit**
+```
+22
+```
+
+Run: `npm run solar:codegen` under Node 20 and Node 22 and compare a hash of every generated
+file.
+Expected: identical. (Verified: `a36f09ea3871` on both.)
+
+- [ ] **Step 6: Validate the workflows**
+
+Run: `npx prettier --check .github/workflows/*.yml`
+Expected: `All matched files use Prettier code style!`, and both files parse as YAML with the
+jobs `generated-docs`, `personal-data`, `codegen`, `flutter` and `check`.
+
+- [ ] **Step 7: Commit**
 
 ```bash
-git add .github/workflows/solar.yml
-git commit -m "ci: verify generated code determinism, the docs/ guard, and the Dart package"
+git add .github/workflows .nvmrc packages/codegen
+git commit -m "ci: verify codegen determinism, the docs/ guard, the Dart package and the suites"
 ```
 
 ---

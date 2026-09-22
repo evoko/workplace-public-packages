@@ -14,6 +14,13 @@ on:
       - main
       - 'v[0-9]*'
 
+# The committed Dart under packages/solar_flutter is formatted by this exact SDK, and the
+# codegen job below regenerates it and fails on any difference. `dart format` changed its output
+# in Dart 3.7, so an unpinned toolchain would reformat the file and fail that check on every run.
+# Raising this means reformatting locally on the same version and committing the result.
+env:
+  FLUTTER_VERSION: '3.24.4'
+
 jobs:
   generated-docs:
     name: Generated docs and tokens are up to date
@@ -68,3 +75,86 @@ jobs:
 
       - name: Scan for credentials, e-mail addresses and phone numbers
         run: node scripts/check-personal-data.mjs
+
+  codegen:
+    name: Generated code is up to date
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      # Needed only for `dart format`, which npm run solar:codegen shells out to. Without it the
+      # generator prints "dart format skipped" and leaves tokens.dart unformatted, which the
+      # determinism check below would then report as an 845-line diff.
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Regenerate the spec and every target
+        run: npm run solar:codegen
+
+      - name: Fail if docs/ was written to
+        run: |
+          if [ -n "$(git status --porcelain docs/)" ]; then
+            echo "::error::The generator wrote to docs/. docs/ is the Figma mirror and is read-only to codegen (design spec invariant 1)."
+            git status --short docs/
+            exit 1
+          fi
+          echo "docs/ untouched."
+
+      - name: Fail if the regeneration changed anything
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Generated code does not match the spec. Run 'npm run solar:codegen' locally and commit the result."
+            git status --short
+            git --no-pager diff --stat
+            git --no-pager diff | head -n 300
+            exit 1
+          fi
+          echo "Generated code matches spec/tokens.json."
+
+      # Runs here as well as in the CI workflow because this job has just rebuilt spec/, and
+      # spec.test.mjs asserts the committed spec matches what the emitters were handed.
+      - name: Run the unit and parity suites
+        run: npx vitest run
+
+  flutter:
+    name: Dart package analyzes and tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/solar_flutter
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Check formatting
+        run: dart format --output=none --set-exit-if-changed lib test
+
+      - name: Analyze
+        run: flutter analyze
+
+      - name: Test
+        run: flutter test

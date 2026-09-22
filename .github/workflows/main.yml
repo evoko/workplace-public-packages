@@ -29,3 +29,9 @@ jobs:
 
       - name: Run format
         run: npm run format
+
+      - name: Build every package
+        run: npm run build
+
+      - name: Run tests
+        run: npm run test
