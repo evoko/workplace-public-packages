@@ -46,7 +46,17 @@ export const canonical = {
   number: (v) => Number(v),
   fontFamily: (v) => String(v).replace(/^["']|["']$/g, ''),
   fontWeight: (v) => Number(v),
-  cubicBezier: (v) => v.map(Number),
+  // Accepts the spec's numeric array and the literals the targets emit, so a bad conversion
+  // in one target is caught by the round trip instead of being echoed back unchecked.
+  cubicBezier(v) {
+    if (Array.isArray(v)) return v.map(Number);
+    const m =
+      /^(?:cubic-bezier|Cubic)\(\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*\)$/.exec(
+        String(v).trim(),
+      );
+    if (!m) throw new Error(`cannot parse cubic bezier: ${JSON.stringify(v)}`);
+    return m.slice(1).map(Number);
+  },
   // Composites: normalise the structure, not the target's literal syntax.
   shadow: (layers) =>
     JSON.stringify(

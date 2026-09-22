@@ -880,6 +880,13 @@ Every emitter writes a manifest recording, per token, the literal it emitted and
 parsed back to a canonical form. The parity test compares the parsed-back values, so a bad
 conversion in one target fails rather than hiding.
 
+Each canonicalizer therefore has to parse the literal its targets actually emit, not just the
+value the spec holds. `cubicBezier` accepts the spec's numeric array, the CSS
+`cubic-bezier(a, b, c, d)` form and Dart's `Cubic(a, b, c, d)`. If it only accepted the array,
+every emitter would have to hand back the source value and the round trip would check nothing.
+The two composite types are the exception: their target syntax is too different to parse back,
+so the emitter passes the structured value it derived and parity compares structure.
+
 **Files:**
 
 - Create: `packages/codegen/src/emit/manifest.mjs`
@@ -917,6 +924,18 @@ describe('canonical', () => {
     expect(canonical.fontFamily('Open Sans')).toBe('Open Sans');
     expect(canonical.fontWeight(600)).toBe(600);
     expect(canonical.cubicBezier([0.42, 0, 1, 1])).toEqual([0.42, 0, 1, 1]);
+  });
+
+  it('parses the easing literals each target emits, so the round trip is real', () => {
+    expect(canonical.cubicBezier('cubic-bezier(0.42, 0, 1, 1)')).toEqual([
+      0.42, 0, 1, 1,
+    ]);
+    expect(canonical.cubicBezier('Cubic(0.42, 0, 0.58, 1)')).toEqual([
+      0.42, 0, 0.58, 1,
+    ]);
+    expect(() => canonical.cubicBezier('ease-both')).toThrow(
+      /cannot parse cubic bezier/,
+    );
   });
 
   it('normalises composite shadows by structure, not by target syntax', () => {
@@ -999,7 +1018,17 @@ export const canonical = {
   number: (v) => Number(v),
   fontFamily: (v) => String(v).replace(/^["']|["']$/g, ''),
   fontWeight: (v) => Number(v),
-  cubicBezier: (v) => v.map(Number),
+  // Accepts the spec's numeric array and the literals the targets emit, so a bad conversion
+  // in one target is caught by the round trip instead of being echoed back unchecked.
+  cubicBezier(v) {
+    if (Array.isArray(v)) return v.map(Number);
+    const m =
+      /^(?:cubic-bezier|Cubic)\(\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*\)$/.exec(
+        String(v).trim(),
+      );
+    if (!m) throw new Error(`cannot parse cubic bezier: ${JSON.stringify(v)}`);
+    return m.slice(1).map(Number);
+  },
   // Composites: normalise the structure, not the target's literal syntax.
   shadow: (layers) =>
     JSON.stringify(
@@ -1062,7 +1091,7 @@ export function entry(type, emitted, canonicalInput = emitted) {
 - [ ] **Step 4: Run the test and watch it pass**
 
 Run: `npx vitest run packages/codegen/test/manifest.test.mjs`
-Expected: PASS, 6 tests.
+Expected: PASS, 7 tests.
 
 - [ ] **Step 5: Commit**
 
@@ -1075,8 +1104,11 @@ git commit -m "feat(codegen): canonical token values and the emitter manifest"
 
 ### Task 6: CSS emitter
 
-Emits `:root` defaults, a `[data-theme="dark"]` block for colour and shadow, and a mobile
-media query for the Type collection. Typography composites are deliberately not emitted as CSS
+Emits `:root` defaults, a `[data-theme='dark']` block for colour and shadow, and a mobile
+media query for the Type collection. The dark selector deliberately has no `:root` prefix,
+unlike the `reference.css` prototype in `docs/`: without it the attribute can be set on any
+element, so a dark panel can sit inside a light page. Specificity still resolves correctly
+because the dark block comes later in the file. Typography composites are deliberately not emitted as CSS
 custom properties; their parts already exist as `type.*` tokens, and MUI and Flutter consume
 the composite form instead.
 
@@ -1128,7 +1160,12 @@ describe('renderCss', () => {
   });
 
   it('never emits the invalid values that are in the Figma data', () => {
-    expect(css).not.toContain('ease-both');
+    // The token is legitimately named motion.ease.both, so the property name contains
+    // "ease-both". What must never appear is the invalid keyword as a value.
+    expect(css).not.toMatch(/:\s*ease-(both|in|out)\s*;/);
+    expect(css).toContain(
+      '--solar-motion-ease-both: cubic-bezier(0.42, 0, 0.58, 1);',
+    );
     expect(css).not.toMatch(/--solar-type-font-weight-\d+: [A-Za-z]/);
   });
 

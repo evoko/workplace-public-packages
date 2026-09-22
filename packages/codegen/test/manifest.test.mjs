@@ -27,6 +27,18 @@ describe('canonical', () => {
     expect(canonical.cubicBezier([0.42, 0, 1, 1])).toEqual([0.42, 0, 1, 1]);
   });
 
+  it('parses the easing literals each target emits, so the round trip is real', () => {
+    expect(canonical.cubicBezier('cubic-bezier(0.42, 0, 1, 1)')).toEqual([
+      0.42, 0, 1, 1,
+    ]);
+    expect(canonical.cubicBezier('Cubic(0.42, 0, 0.58, 1)')).toEqual([
+      0.42, 0, 0.58, 1,
+    ]);
+    expect(() => canonical.cubicBezier('ease-both')).toThrow(
+      /cannot parse cubic bezier/,
+    );
+  });
+
   it('normalises composite shadows by structure, not by target syntax', () => {
     const layers = [
       {
