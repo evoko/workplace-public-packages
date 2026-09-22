@@ -1,7 +1,7 @@
 {
   "_note": "Written by the SOLAR codegen. One entry per icon and logo variant; \"constant\" is the Dart field it was emitted as and \"digest\" is a SHA-256 of the canonical JSON of that variant's paths, which is what the parity suite compares across targets. The path data itself is not repeated here: it is 358 KB and already lives in icons.dart. \"omitted\" lists the variants this target does not carry.",
   "target": "flutter",
-  "fileVersion": "2026-09-20",
+  "fileVersion": "2400491293726842862",
   "icons": {
     "accessibility": {
       "variants": {
