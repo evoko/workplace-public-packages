@@ -48,6 +48,7 @@
           "sizing": "FIXED/FIXED"
         },
         "vars": {
+          "itemSpacing": "Spatial:inset/xs",
           "paddingLeft": "Spatial:inset/sm",
           "paddingRight": "Spatial:inset/sm"
         },
@@ -182,7 +183,6 @@
                 "effectStyle": "shadow/focus/default",
                 "vars": {
                   "paddingRight": "Spatial:inset/2xs",
-                  "itemSpacing": "Spatial:inset/xs",
                   "paddingTop": "Spatial:inset/2xs",
                   "paddingBottom": "Spatial:inset/2xs",
                   "strokeTopWeight": "Spatial:border/default",
@@ -250,7 +250,6 @@
                 "effectStyle": "shadow/control",
                 "vars": {
                   "paddingRight": "Spatial:inset/2xs",
-                  "itemSpacing": "Spatial:inset/xs",
                   "paddingTop": "Spatial:inset/2xs",
                   "paddingBottom": "Spatial:inset/2xs",
                   "strokeTopWeight": "Spatial:border/default",
@@ -318,7 +317,6 @@
                 "effectStyle": "shadow/danger",
                 "vars": {
                   "paddingRight": "Spatial:inset/2xs",
-                  "itemSpacing": "Spatial:inset/xs",
                   "paddingTop": "Spatial:inset/2xs",
                   "paddingBottom": "Spatial:inset/2xs",
                   "strokeTopWeight": "Spatial:border/default",

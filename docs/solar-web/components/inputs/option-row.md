@@ -60,6 +60,8 @@ Default variant: `Variant=Checkbox` · 3 variants · default size 320×51px
 
 ## Component: Options List
 
+Vertical stack of Option Rows that share one question — the fieldset around a group of checkboxes, radios or toggles. Single variant; Content is a slot for Option Row instances. Keep one control type per list and wrap it in fieldset + legend. Above five mutually exclusive options use Select.
+
 ### Props
 
 | Prop      | Type | Options / default         |
@@ -91,10 +93,6 @@ Default variant: `Variant=Checkbox` · 3 variants · default size 320×51px
 ### Composes
 
 - Option Row
-
-### Issues detected
-
-- Component description is empty.
 
 ## Documentation card
 

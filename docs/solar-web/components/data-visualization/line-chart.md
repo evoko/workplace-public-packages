@@ -25,7 +25,8 @@ Default variant: `series=single, breakpoint=desktop` · 4 variants · default si
 
 ### Anatomy (default variant)
 
-- **series=single, breakpoint=desktop** · component · column gap 12 pad 0/0/0/0 FIXED/FIXED · 600×240
+- **series=single, breakpoint=desktop** · component · column gap 12 pad 0/0/0/0 FIXED/FIXED · 600×240  
+  itemSpacing `inset.sm`
   - **Plot** · frame · FILL/FIXED · 600×204
     - **Line A** · vector · 600×204  
       stroke `color.data.category.06.strong` 2px
@@ -49,6 +50,7 @@ Default variant: `series=single, breakpoint=desktop` · 4 variants · default si
 | --------------- | ----------------------------------------------------------------------------------------------------- |
 | Strokes         | `color.data.category.06.strong`                                                                       |
 | Text color      | `color.text.primary`, `color.text.secondary`                                                          |
+| Spacing         | `inset.sm`                                                                                            |
 | Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.line-height.helper.sm`, `type.size.helper.sm` |
 | Text styles     | `helper/sm`                                                                                           |
 
@@ -60,10 +62,6 @@ Default variant: `series=single, breakpoint=desktop` · 4 variants · default si
 | single | mobile     | 343×200 |      |        |        | `color.text.secondary`                         |      |
 | multi  | desktop    | 600×240 |      |        |        | `color.text.primary`<br>`color.text.secondary` |      |
 | multi  | mobile     | 343×200 |      |        |        | `color.text.primary`<br>`color.text.secondary` |      |
-
-### Issues detected
-
-- Hard-coded gap `12px` on layer _series=single, breakpoint=desktop_
 
 ## Documentation card
 

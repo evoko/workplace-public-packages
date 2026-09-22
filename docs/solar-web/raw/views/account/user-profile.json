@@ -175,6 +175,9 @@
                       "align": "MIN/MIN",
                       "sizing": "FILL/HUG"
                     },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/md"
+                    },
                     "children": [
                       {
                         "name": "Name and Pronouns Container",
@@ -703,6 +706,9 @@
                   "align": "MIN/CENTER",
                   "sizing": "FILL/HUG"
                 },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
+                },
                 "children": [
                   {
                     "name": "SectionHeader",
@@ -1067,6 +1073,9 @@
                   ],
                   "align": "MIN/MIN",
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
                 },
                 "children": [
                   {
@@ -1499,6 +1508,9 @@
                   "align": "MIN/MIN",
                   "sizing": "FILL/HUG"
                 },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
+                },
                 "children": [
                   {
                     "name": "Reports Container",
@@ -1629,6 +1641,9 @@
                               ],
                               "align": "CENTER/MIN",
                               "sizing": "HUG/HUG"
+                            },
+                            "vars": {
+                              "itemSpacing": "Spatial:inset/xs"
                             },
                             "children": [
                               {
@@ -1899,6 +1914,9 @@
                   ],
                   "align": "MIN/MIN",
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
                 },
                 "children": [
                   {

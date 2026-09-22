@@ -4,6 +4,8 @@
 
 ## Component set: Stepper Indicator
 
+The numbered or ticked circle that marks one step's status inside Stepper. 4 variants: status (upcoming, active, completed, error). Building block of Step; not used on its own.
+
 ### Props
 
 | Prop     | Type    | Options / default                         |
@@ -44,11 +46,9 @@ Default variant: `status=completed` · 4 variants · default size 24×24px
 | upcoming  | 24×24 | `color.surface.base`                   | `color.border.medium` |        | `color.text.secondary` |                      |
 | error     | 24×24 | `color.surface.feedback.danger.strong` | `color.border.medium` |        | `color.icon.inverse`   |                      |
 
-### Issues detected
-
-- Component description is empty.
-
 ## Component set: Step
+
+One step of a Stepper — indicator plus label. 8 variants: status (upcoming, active, complete, error) × type (round, horizontal). Building block of Stepper; not used on its own.
 
 ### Props
 
@@ -98,11 +98,9 @@ Default variant: `status=complete, type=round` · 8 variants · default size 26�
 | error    | round      | 26×41 |      |        |        | `color.icon.inverse`<br>`color.text.feedback.danger` |                      |
 | error    | horizontal | 39×20 |      |        |        | `color.text.feedback.danger`                         |                      |
 
-### Issues detected
-
-- Component description is empty.
-
 ## Component set: Stepper
+
+Progress indicator for a linear multi-step flow — wizard, onboarding, device setup. 4 variants: type (line, with label, no label, line+text). Booleans showStep3, showStep4, showStep5 set the step count (2–5). Steps are informational unless the flow allows going back, in which case completed steps are links. Back/next buttons belong to the Multi-step Wizard pattern, not to Stepper. For non-linear sections use Tabs.
 
 ### Props
 
@@ -155,7 +153,6 @@ Default variant: `type=with label` · 4 variants · default size 350×41px
 
 ### Issues detected
 
-- Component description is empty.
 - Hard-coded paddingRight `225px` on layer _Progress_
 - Hard-coded gap `197px` on layer _Steps_
 

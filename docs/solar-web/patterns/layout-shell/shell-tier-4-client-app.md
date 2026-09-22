@@ -32,10 +32,11 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
       - **left** · slot · column gap 0 pad 0/0/0/0 FIXED/FILL · 221×736  
         fill `color.surface.raised` · itemSpacing `stack.none` · padding `inset.none` · radius `radius.container` · prop visible←hasLeft, slotContentId←left
       - **center** · slot · column gap 8 pad 0/0/0/0 FILL/FILL · 795×736  
-        prop slotContentId←center
+        itemSpacing `inset.xs` · prop slotContentId←center
         - **Container** · frame · column gap 0 pad 0/0/0/0 FILL/FILL · 795×364  
           fill `color.surface.raised` · itemSpacing `stack.none` · padding `stack.none`, `inset.none` · radius `radius.container`
-        - **Container** · frame · row gap 8 pad 0/0/0/0 FILL/FILL · 795×364
+        - **Container** · frame · row gap 8 pad 0/0/0/0 FILL/FILL · 795×364  
+          itemSpacing `inset.xs`
           - **Container** · frame · column gap 0 pad 0/0/0/0 FILL/FILL · 394×364  
             fill `color.surface.raised` · itemSpacing `stack.none` · padding `stack.none`, `inset.none` · radius `radius.container`
           - **Container** · frame · column gap 0 pad 0/0/0/0 FILL/FILL · 394×364  
@@ -80,8 +81,6 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 - Component description is empty.
 - Primitive color bound directly (CLR-002): `color.purple.700`, `color.brand.red`.
-- Hard-coded gap `8px` on layer _App Content › Page Shell › center_
-- Hard-coded gap `8px` on layer _App Content › Page Shell › center › Container_
 
 ## Documentation card
 

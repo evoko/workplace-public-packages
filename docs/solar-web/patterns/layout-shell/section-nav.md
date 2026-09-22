@@ -1,6 +1,6 @@
 # Section Nav
 
-> SOLAR Web · Figma page `↳ 🟢 Section Nav ` (id `8041:127`) · section `patterns/layout-shell` · raw data: [`raw/patterns/layout-shell/section-nav.json`](../../raw/patterns/layout-shell/section-nav.json)
+> SOLAR Web · Figma page `↳ 🟢 Section Nav` (id `8041:127`) · section `patterns/layout-shell` · raw data: [`raw/patterns/layout-shell/section-nav.json`](../../raw/patterns/layout-shell/section-nav.json)
 
 ## Component: Section Nav
 
@@ -15,7 +15,7 @@
 - **Section Nav** · component · column gap 16 pad 12/12/12/12 FIXED/HUG · 221×416  
   fill `color.surface.base` · stroke `color.border.subtle` mixedpx · itemSpacing `stack.md` · padding `inset.sm` · strokeWeight `border.default`
   - **Items** · slot · column gap 4 pad 0/0/0/0 FILL/HUG · 197×392  
-    fill `#ffffff` ⚠️ hard-coded · prop slotContentId←Items
+    fill `#ffffff` ⚠️ hard-coded · itemSpacing `inset.2xs` · prop slotContentId←Items
     - **Section Nav Group Header** · instance of **Section Nav Group Header** · row gap 0 pad 0/8/0/8 FILL/FIXED · 197×32  
       padding `inset.xs`
     - **Section Nav Item** · instance of **Section Nav Item** (state=selected) · row gap 8 pad 0/8/0/8 FILL/FIXED · 197×32  
@@ -41,13 +41,13 @@
 
 ### Tokens used
 
-| Role         | Tokens                                           |
-| ------------ | ------------------------------------------------ |
-| Fills        | `color.surface.active`, `color.surface.base`     |
-| Strokes      | `color.border.subtle`                            |
-| Spacing      | `inset.none`, `inset.sm`, `inset.xs`, `stack.md` |
-| Radius       | `radius.control`                                 |
-| Border width | `border.default`                                 |
+| Role         | Tokens                                                        |
+| ------------ | ------------------------------------------------------------- |
+| Fills        | `color.surface.active`, `color.surface.base`                  |
+| Strokes      | `color.border.subtle`                                         |
+| Spacing      | `inset.2xs`, `inset.none`, `inset.sm`, `inset.xs`, `stack.md` |
+| Radius       | `radius.control`                                              |
+| Border width | `border.default`                                              |
 
 ### Slots and prop-controlled layers
 
@@ -64,7 +64,6 @@
 
 - Component description is empty.
 - Hard-coded fill `#ffffff` on layer _Items_
-- Hard-coded gap `4px` on layer _Items_
 
 ## Documentation card
 

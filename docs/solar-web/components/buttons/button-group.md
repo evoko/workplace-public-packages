@@ -4,7 +4,7 @@
 
 ## Component set: Button Group
 
-Container that assembles 2–5 Buttons into a joined row. 2 variants: full (false / true). full=false sizes to content; full=true stretches buttons to fill the container width (equal widths). All children must share the same prio and size — mixing breaks the visual grouping. For multi-action toolbars with dividers use a Toolbar pattern; for segmented exclusive selection use Segmented Control.
+Container that assembles 2–5 Buttons into a joined row. 3 variants: orientation (horizontal, vertical) × type (regular, full-width) — built combinations: horizontal/regular, vertical/regular, horizontal/full-width. regular sizes to content; full-width stretches buttons to fill the container width (equal widths). All children must share the same prio and size — mixing breaks the visual grouping. For multi-action toolbars with dividers use a Toolbar pattern; for segmented exclusive selection use Segmented Control.
 
 ### Props
 
@@ -60,10 +60,6 @@ Default variant: `orientation=horizontal, type=regular` · 3 variants · default
 | horizontal  | regular    | 455×64  |      |                       |        | `color.action.tertiary.text.default`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
 | vertical    | regular    | 455×112 |      |                       |        | `color.action.primary.text.default`<br>`color.action.secondary.text.default`<br>`color.action.tertiary.text.default` | `color.action.primary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.action.tertiary.icon.default` |
 | horizontal  | full-width | 455×48  |      | `color.border.subtle` |        | `color.action.secondary.text.default`<br>`color.action.primary.text.default`                                         | `color.action.secondary.icon.default`<br>`color.action.primary.icon.default`                                         |
-
-### Issues detected
-
-- Description says 2 variants; the set has 3.
 
 ## Documentation card
 

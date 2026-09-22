@@ -131,6 +131,9 @@
               "align": "MIN/CENTER",
               "sizing": "HUG/HUG"
             },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs"
+            },
             "children": [
               {
                 "name": "Icon/ChevronRight",

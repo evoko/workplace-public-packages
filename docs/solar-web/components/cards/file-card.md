@@ -4,6 +4,8 @@
 
 ## Component set: File Card
 
+Card for a single file or asset in a file-browser grid — type icon, name and meta line. 2 variants: type (File Card, New Asset Tile). File Card shows an existing item; New Asset Tile is the dashed add-new placeholder that opens the upload flow. Props: title, meta, label (text), fileIcon (instance swap). The whole card is one focusable control named by the file name. Not a generic content card — use Card for that.
+
 ### Props
 
 | Prop       | Type          | Options / default              |
@@ -25,7 +27,7 @@ Default variant: `type=File Card` · 2 variants · default size 308×222px
     - **Icon/Image** · instance of **Icon/Image** (solid=false) · FIXED/FIXED · 24×24  
       width `icon.lg` · prop mainComponent←fileIcon
   - **Footer** · frame · row gap 8 pad 16/16/16/16 FILL/HUG · 308×59  
-    padding `inset.md`
+    itemSpacing `inset.xs` · padding `inset.md`
     - **Text** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 248×27  
       itemSpacing `stack.xs`
       - **File name** · text `body/md/medium` "File name" · FILL/HUG · 248×10  
@@ -43,7 +45,7 @@ Default variant: `type=File Card` · 2 variants · default size 308×222px
 | Strokes         | `color.border.subtle`                                                                                                                                                      |
 | Text color      | `color.text.primary`, `color.text.secondary`                                                                                                                               |
 | Icon color      | `color.icon.primary`, `color.icon.tertiary`                                                                                                                                |
-| Spacing         | `inset.md`, `stack.xs`                                                                                                                                                     |
+| Spacing         | `inset.md`, `inset.xs`, `stack.xs`                                                                                                                                         |
 | Radius          | `radius.container`                                                                                                                                                         |
 | Border width    | `border.default`                                                                                                                                                           |
 | Sizes           | `icon.lg`, `icon.md`                                                                                                                                                       |
@@ -70,11 +72,6 @@ Default variant: `type=File Card` · 2 variants · default size 308×222px
 | -------------- | ------- | -------------------- | --------------------- | --------------- | ---------------------------------------------- | --------------------------------------------- |
 | File Card      | 308×222 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.tertiary`<br>`color.icon.primary` |
 | New Asset Tile | 308×222 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary`                           | `color.icon.tertiary`                         |
-
-### Issues detected
-
-- Component description is empty.
-- Hard-coded gap `8px` on layer _Footer_
 
 ## Documentation card
 

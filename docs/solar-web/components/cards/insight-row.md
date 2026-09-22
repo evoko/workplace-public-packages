@@ -4,6 +4,8 @@
 
 ## Component set: Insight Row
 
+Single-line insight for a feed or panel — severity icon, title, meta and an optional action. 10 variants: severity (success, danger, warning, info, ghost) × state (default, hover). ghost is the empty placeholder row. Props: Title, Meta (text), showAction + action (instance swap). Stack rows in a List; for the same content as a standalone card use Insight Card.
+
 ### Props
 
 | Prop         | Type          | Options / default                             |
@@ -76,10 +78,6 @@ Default variant: `severity=success, state=default` · 10 variants · default siz
 | warning  | hover   | 480×64 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.action.secondary.icon.default` |
 | info     | hover   | 480×64 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.action.secondary.icon.default` |
 | ghost    | hover   | 480×64 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.action.secondary.text.default`<br>`color.action.primary.text.default`                                                   | `color.action.secondary.icon.default` |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Issues detected (page)
 

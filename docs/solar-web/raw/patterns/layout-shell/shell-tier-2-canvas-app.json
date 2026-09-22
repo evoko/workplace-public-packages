@@ -209,6 +209,9 @@
                           ],
                           "align": "MIN/MIN",
                           "sizing": "FILL/FIXED"
+                        },
+                        "vars": {
+                          "itemSpacing": "Spatial:inset/xs"
                         }
                       }
                     ]

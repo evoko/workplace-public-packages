@@ -242,6 +242,7 @@
                     "name": "Already a member? Sign in instead.",
                     "type": "TEXT",
                     "text": "Already a member? Sign in instead.",
+                    "textStyle": "body/sm/regular",
                     "size": [
                       192,
                       9
@@ -251,14 +252,13 @@
                       "{Color:text/tertiary}"
                     ],
                     "vars": {
-                      "lineHeight": "Type(local):line-height/body/xs",
+                      "lineHeight": "Type:line-height/body/sm",
                       "fontFamily": "Primitives:type/font-family/inter",
-                      "fontSize": "Type(local):size/body/xs",
+                      "fontSize": "Type:size/body/sm",
                       "fontStyle": [
                         "Primitives:type/font-weight/400",
                         "Primitives:type/font-weight/500"
-                      ],
-                      "textRangeFills": "Color:text/tertiary"
+                      ]
                     }
                   }
                 ]

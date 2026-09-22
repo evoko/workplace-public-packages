@@ -41,7 +41,7 @@ Default variant: `state=default, type=single` · 4 variants · default size 560�
 | Fills           | `color.surface.background`, `color.surface.base`, `color.surface.feedback.success.subtle`                                                               |
 | Strokes         | `color.action.secondary.border.default`, `color.border.feedback.success.subtle`, `color.border.subtle`                                                  |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.success`, `color.text.primary`, `color.text.secondary` |
-| Icon color      | `color.action.secondary.icon.default`, `color.icon.primary`, `color.neutral.900`                                                                        |
+| Icon color      | `color.action.secondary.icon.default`, `color.icon.primary`                                                                                             |
 | Spacing         | `inset.md`, `inset.none`, `inset.sm`, `inset.xs`, `stack.md`, `stack.xs`                                                                                |
 | Radius          | `radius.container`, `radius.control`, `radius.pill`                                                                                                     |
 | Border width    | `border.default`                                                                                                                                        |
@@ -63,16 +63,12 @@ Default variant: `state=default, type=single` · 4 variants · default size 560�
 
 ### Variant matrix
 
-| state   | type   | size    | fill                 | stroke                | effect | text                                                                                                                                                            | icon                                                         |
-| ------- | ------ | ------- | -------------------- | --------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| default | single | 560×68  | `color.surface.base` | `color.border.subtle` |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.neutral.900`<br>`color.action.secondary.icon.default` |
-| loading | single | 560×68  | `color.surface.base` | `color.border.subtle` |        | `color.text.primary`                                                                                                                                            | `color.neutral.900`                                          |
-| default | batch  | 560×120 | `color.surface.base` | `color.border.subtle` |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.success`                                                                                 | `color.neutral.900`<br>`color.icon.primary`                  |
-| loading | batch  | 560×56  | `color.surface.base` | `color.border.subtle` |        | `color.text.primary`<br>`color.text.secondary`                                                                                                                  | `color.neutral.900`                                          |
-
-### Issues detected
-
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
+| state   | type   | size    | fill                 | stroke                | effect | text                                                                                                                                                            | icon                                                          |
+| ------- | ------ | ------- | -------------------- | --------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| default | single | 560×68  | `color.surface.base` | `color.border.subtle` |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.action.secondary.icon.default` |
+| loading | single | 560×68  | `color.surface.base` | `color.border.subtle` |        | `color.text.primary`                                                                                                                                            | `color.icon.primary`                                          |
+| default | batch  | 560×120 | `color.surface.base` | `color.border.subtle` |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.success`                                                                                 | `color.icon.primary`                                          |
+| loading | batch  | 560×56  | `color.surface.base` | `color.border.subtle` |        | `color.text.primary`<br>`color.text.secondary`                                                                                                                  | `color.icon.primary`                                          |
 
 ## Documentation card
 

@@ -36,7 +36,7 @@ Instance census (tree capped at depth 3): Icon/None ×50, Counter ×25, Button �
 | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Strokes      | `color.border.subtle`, `color.border.surface`                                                                                                                                                       |
 | Text color   | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.success`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary`, `color.neutral.700` |
-| Icon color   | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.primary`, `color.icon.secondary`, `color.neutral.900`                 |
+| Icon color   | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.primary`, `color.icon.secondary`                                      |
 | Spacing      | `inset.lg`, `inset.none`, `inset.xs`, `stack.lg`, `stack.none`                                                                                                                                      |
 | Radius       | `radius.container`, `radius.none`                                                                                                                                                                   |
 | Border width | `border.default`                                                                                                                                                                                    |
@@ -51,13 +51,13 @@ Instance census (tree capped at depth 3): Icon/None ×50, Counter ×25, Button �
 
 | breakpoint | size      | fill | stroke | effect | text                                                                                                                                                                                                            | icon                                                                                                                                                                   |
 | ---------- | --------- | ---- | ------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| desktop    | 1368×1172 |      |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`color.neutral.700` | `color.icon.secondary`<br>`color.neutral.900`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`<br>`color.icon.primary`                  |
+| desktop    | 1368×1172 |      |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`color.neutral.700` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`                                         |
 | mobile     | 377×1244  |      |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`color.action.secondary.text.default`<br>`color.neutral.700` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
 
 ### Issues detected
 
 - Component description is empty.
-- Primitive color bound directly (CLR-002): `color.neutral.700`, `color.neutral.900`.
+- Primitive color bound directly (CLR-002): `color.neutral.700`.
 
 ## Documentation card
 

@@ -5,7 +5,7 @@
     {
       "name": "Stepper Indicator",
       "id": "2574:3254",
-      "description": "",
+      "description": "The numbered or ticked circle that marks one step's status inside Stepper. 4 variants: status (upcoming, active, completed, error). Building block of Step; not used on its own.",
       "docLinks": [],
       "variantCount": 4,
       "props": {
@@ -185,7 +185,7 @@
     {
       "name": "Step",
       "id": "5760:5192",
-      "description": "",
+      "description": "One step of a Stepper — indicator plus label. 8 variants: status (upcoming, active, complete, error) × type (round, horizontal). Building block of Stepper; not used on its own.",
       "docLinks": [],
       "variantCount": 8,
       "props": {
@@ -516,7 +516,7 @@
     {
       "name": "Stepper",
       "id": "5762:5846",
-      "description": "",
+      "description": "Progress indicator for a linear multi-step flow — wizard, onboarding, device setup. 4 variants: type (line, with label, no label, line+text). Booleans showStep3, showStep4, showStep5 set the step count (2–5). Steps are informational unless the flow allows going back, in which case completed steps are links. Back/next buttons belong to the Multi-step Wizard pattern, not to Stepper. For non-linear sections use Tabs.",
       "docLinks": [],
       "variantCount": 4,
       "props": {

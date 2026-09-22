@@ -751,7 +751,7 @@
     {
       "name": "Tabs",
       "id": "6165:12202",
-      "description": "",
+      "description": "Horizontal tab strip that switches between 2–7 peer views under the same context. 2 variants: size (sm 36px, md 44px). Tabs is a slot for Tab Item instances. role=tablist; arrow keys move focus and aria-selected marks the current tab. For ordered flows use Stepper or Page Navigator; for 2–5 inline view toggles inside a form use Segmented Control.",
       "docLinks": [],
       "variantCount": 2,
       "props": {

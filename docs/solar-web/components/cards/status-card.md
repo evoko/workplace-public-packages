@@ -4,6 +4,8 @@
 
 ## Component set: Status Card
 
+Compact card that reports the status of one thing — a device, service or job — with a feedback-coloured indicator, title and value. 16 variants: status (success, neutral, danger, warning) × state (default, hover, disabled, ghost). ghost is the skeleton placeholder while data loads. Status is conveyed by icon + label, not colour alone. For KPI numbers use Stat Card; for an actionable alert use Insight Card.
+
 ### Props
 
 | Prop     | Type    | Options / default                        |
@@ -74,7 +76,6 @@ Default variant: `status=success, state=default` · 16 variants · default size 
 
 ### Issues detected
 
-- Component description is empty.
 - State axis uses non-standard value(s): ghost.
 
 ## Issues detected (page)

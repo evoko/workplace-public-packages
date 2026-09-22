@@ -1025,6 +1025,9 @@
           "align": "MIN/MIN",
           "sizing": "FIXED/FIXED"
         },
+        "vars": {
+          "itemSpacing": "Spatial:inset/sm"
+        },
         "children": [
           {
             "name": "Plot",
@@ -1045,6 +1048,9 @@
               "align": "MIN/MIN",
               "sizing": "FILL/FILL"
             },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs"
+            },
             "children": [
               {
                 "name": "Bars",
@@ -1064,6 +1070,9 @@
                   ],
                   "align": "MIN/MAX",
                   "sizing": "FILL/FILL"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 },
                 "children": [
                   {
@@ -1350,6 +1359,9 @@
                   ],
                   "align": "MIN/CENTER",
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 },
                 "children": [
                   {
@@ -1646,7 +1658,8 @@
                 ],
                 "layout": {
                   "gap": 10
-                }
+                },
+                "vars": null
               },
               "/Plot/Bars/Col-0": {
                 "size": [
@@ -1703,7 +1716,8 @@
                 ],
                 "layout": {
                   "gap": 10
-                }
+                },
+                "vars": null
               },
               "/Plot/Labels/LabelCell": {
                 "size": [
@@ -1909,6 +1923,9 @@
                 ],
                 "layout": {
                   "gap": 24
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
                 }
               },
               "/Plot/Bars/Col-0": {
@@ -1920,6 +1937,9 @@
                   "dir": "HORIZONTAL",
                   "gap": 4,
                   "align": "CENTER/MAX"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 }
               },
               "/Plot/Bars/Col-0/color=category-06-strong": {
@@ -1937,6 +1957,9 @@
                   "dir": "HORIZONTAL",
                   "gap": 4,
                   "align": "CENTER/MAX"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 }
               },
               "/Plot/Bars/Col-1/color=category-06-strong": {
@@ -1954,6 +1977,9 @@
                   "dir": "HORIZONTAL",
                   "gap": 4,
                   "align": "CENTER/MAX"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 }
               },
               "/Plot/Bars/Col-2/color=category-06-strong": {
@@ -1971,6 +1997,9 @@
                   "dir": "HORIZONTAL",
                   "gap": 4,
                   "align": "CENTER/MAX"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 }
               },
               "/Plot/Bars/Col-3/color=category-06-strong": {
@@ -1988,6 +2017,9 @@
                   "dir": "HORIZONTAL",
                   "gap": 4,
                   "align": "CENTER/MAX"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 }
               },
               "/Plot/Bars/Col-4/color=category-06-strong": {
@@ -2005,6 +2037,9 @@
                   "dir": "HORIZONTAL",
                   "gap": 4,
                   "align": "CENTER/MAX"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 }
               },
               "/Plot/Bars/Col-5/color=category-06-strong": {
@@ -2016,6 +2051,9 @@
               "/Plot/Labels": {
                 "layout": {
                   "gap": 24
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
                 }
               },
               "/Plot/Labels/LabelCell": {
@@ -2097,6 +2135,9 @@
                 ],
                 "layout": {
                   "gap": 12
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm"
                 }
               },
               "/Plot/Bars/Col-0": {
@@ -2108,6 +2149,9 @@
                   "dir": "HORIZONTAL",
                   "gap": 4,
                   "align": "CENTER/MAX"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 }
               },
               "/Plot/Bars/Col-0/color=category-06-strong": {
@@ -2125,6 +2169,9 @@
                   "dir": "HORIZONTAL",
                   "gap": 4,
                   "align": "CENTER/MAX"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 }
               },
               "/Plot/Bars/Col-1/color=category-06-strong": {
@@ -2142,6 +2189,9 @@
                   "dir": "HORIZONTAL",
                   "gap": 4,
                   "align": "CENTER/MAX"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 }
               },
               "/Plot/Bars/Col-2/color=category-06-strong": {
@@ -2159,6 +2209,9 @@
                   "dir": "HORIZONTAL",
                   "gap": 4,
                   "align": "CENTER/MAX"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 }
               },
               "/Plot/Bars/Col-3/color=category-06-strong": {
@@ -2174,6 +2227,9 @@
                 ],
                 "layout": {
                   "gap": 12
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm"
                 }
               },
               "/Plot/Labels/LabelCell": {
@@ -2245,6 +2301,9 @@
                 ],
                 "layout": {
                   "gap": 12
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm"
                 }
               }
             },
@@ -2342,6 +2401,9 @@
                 ],
                 "layout": {
                   "gap": 12
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/sm"
                 }
               }
             },
@@ -2564,7 +2626,8 @@
                 ],
                 "layout": {
                   "gap": 10
-                }
+                },
+                "vars": null
               },
               "/Plot/Bars/Col-0": {
                 "size": [
@@ -2597,7 +2660,8 @@
                 ],
                 "layout": {
                   "gap": 10
-                }
+                },
+                "vars": null
               }
             },
             "added": [

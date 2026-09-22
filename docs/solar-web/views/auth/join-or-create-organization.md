@@ -2,7 +2,7 @@
 
 > SOLAR Web · Figma page `↳ 🟢 Join or Create Organization` (id `9441:1818`) · section `views/auth` · raw data: [`raw/views/auth/join-or-create-organization.json`](../../raw/views/auth/join-or-create-organization.json)
 
-## Component set: Auth - Join Organization
+## Component set: Auth — Join Organization
 
 ### Props
 
@@ -66,7 +66,7 @@ Default variant: `Breakpoint=desktop` · 2 variants · default size 1440×800px
 - Component description is empty.
 - Primitive color bound directly (CLR-002): `color.purple.700`, `color.brand.red`, `color.brand.white`.
 
-## Component set: Auth - Create organization
+## Component set: Auth — Create Organization
 
 ### Props
 

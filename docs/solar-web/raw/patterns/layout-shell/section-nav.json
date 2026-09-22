@@ -1,5 +1,5 @@
 {
-  "page": "↳ 🟢 Section Nav ",
+  "page": "↳ 🟢 Section Nav",
   "pageId": "8041:127",
   "componentSets": [],
   "components": [
@@ -76,6 +76,9 @@
             "fills": [
               "#ffffff"
             ],
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
+            },
             "propRefs": {
               "slotContentId": "Items#8072:1"
             },

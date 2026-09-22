@@ -18,7 +18,8 @@ Top toolbar for Calendar views. Left: prev/next IconButtons (ghost) + Today butt
   fill `color.surface.base` · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
   - **Left** · frame · row gap 12 pad 0/0/0/0 HUG/FIXED · 320×32  
     itemSpacing `inset.sm`
-    - **Nav** · frame · row gap 4 pad 0/0/0/0 HUG/HUG · 84×40
+    - **Nav** · frame · row gap 4 pad 0/0/0/0 HUG/HUG · 84×40  
+      itemSpacing `inset.2xs`
       - **Prev** · instance of **Icon Button** (size=md, shape=square, prio=tertiary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
         fill `color.action.tertiary.bg.default` · strokeWeight `border.default` · radius `radius.control`
       - **Next** · instance of **Icon Button** (size=md, shape=square, prio=tertiary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
@@ -29,7 +30,8 @@ Top toolbar for Calendar views. Left: prev/next IconButtons (ghost) + Today butt
       fill `color.text.primary` · lineHeight `type.line-height.title.xs` · fontFamily `type.font-family.inter` · fontSize `type.size.title.xs` · fontStyle `type.font-weight.500` · prop characters←range
   - **Right** · frame · row gap 12 pad 0/0/0/0 HUG/HUG · 407×32  
     itemSpacing `inset.sm`
-    - **View Switcher** · instance of **Segmented Control** (size=sm) · column gap 8 pad 0/0/0/0 HUG/HUG · 295×32
+    - **View Switcher** · instance of **Segmented Control** (size=sm) · column gap 8 pad 0/0/0/0 HUG/HUG · 295×32  
+      itemSpacing `inset.xs`
     - **New Event** · instance of **Button** (size=sm, prio=primary, state=default, danger=false) · row gap 8 pad 0/8/0/8 HUG/FIXED · 100×32  
       fill `color.action.primary.bg.default` · stroke `color.action.primary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control`
 
@@ -40,7 +42,7 @@ Top toolbar for Calendar views. Left: prev/next IconButtons (ghost) + Today butt
 | Fills           | `color.action.primary.bg.default`, `color.action.tertiary.bg.default`, `color.surface.base`         |
 | Strokes         | `color.action.primary.border.default`, `color.action.secondary.border.default`                      |
 | Text color      | `color.text.primary`                                                                                |
-| Spacing         | `inset.md`, `inset.sm`, `inset.xs`                                                                  |
+| Spacing         | `inset.2xs`, `inset.md`, `inset.sm`, `inset.xs`                                                     |
 | Radius          | `radius.control`                                                                                    |
 | Border width    | `border.default`                                                                                    |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.title.xs`, `type.size.title.xs` |
@@ -62,7 +64,6 @@ Top toolbar for Calendar views. Left: prev/next IconButtons (ghost) + Today butt
 ### Issues detected
 
 - Hard-coded gap `16px` on layer _Calendar Toolbar_
-- Hard-coded gap `4px` on layer _Left › Nav_
 
 ## Issues detected (page)
 

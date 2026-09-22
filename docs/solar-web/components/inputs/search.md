@@ -4,7 +4,7 @@
 
 ## Component set: SearchField
 
-Local search field for filtering an in-page list or table. 4 variants: state (default, hover, focus, error). Trailing clear affordance (×) when filled. Live-filter on input (debounced); result count announced via aria-live. For global product-wide search use GlobalSearch.
+Local search field for filtering an in-page list or table. 12 variants: size (sm, md) × state (default, hover, focus, filled, error, disabled). Trailing clear affordance (×) when filled. Live-filter on input (debounced); result count announced via aria-live. For global product-wide search use GlobalSearch.
 
 ### Props
 
@@ -34,7 +34,7 @@ Default variant: `state=default, size=md` · 12 variants · default size 240×40
 | Fills           | `color.surface.base`                                                                                                      |
 | Strokes         | `color.border.feedback.danger.strong`, `color.border.feedback.focus.strong`, `color.border.medium`, `color.border.subtle` |
 | Text color      | `color.text.disabled`, `color.text.primary`, `color.text.secondary`                                                       |
-| Icon color      | `color.icon.disabled`, `color.icon.primary`, `color.icon.secondary`, `color.neutral.900`                                  |
+| Icon color      | `color.icon.disabled`, `color.icon.primary`, `color.icon.secondary`                                                       |
 | Spacing         | `inset.none`, `inset.sm`                                                                                                  |
 | Radius          | `radius.control`                                                                                                          |
 | Border width    | `border.default`                                                                                                          |
@@ -60,25 +60,20 @@ Default variant: `state=default, size=md` · 12 variants · default size 240×40
 | -------- | ---- | ------ | -------------------- | ------------------------------------- | ---------------------- | ---------------------- | ---------------------------------------------- |
 | default  | md   | 240×40 | `color.surface.base` | `color.border.subtle`                 | `shadow/control`       | `color.text.secondary` | `color.icon.secondary`                         |
 | default  | sm   | 200×32 | `color.surface.base` | `color.border.subtle`                 |                        | `color.text.secondary` | `color.icon.secondary`                         |
-| hover    | md   | 240×40 | `color.surface.base` | `color.border.subtle`                 | `shadow/control`       | `color.text.secondary` | `color.icon.secondary`<br>`color.neutral.900`  |
+| hover    | md   | 240×40 | `color.surface.base` | `color.border.subtle`                 | `shadow/control`       | `color.text.secondary` | `color.icon.secondary`<br>`color.icon.primary` |
 | hover    | sm   | 200×32 | `color.surface.base` | `color.border.medium`                 |                        | `color.text.secondary` | `color.icon.secondary`<br>`color.icon.primary` |
 | filled   | md   | 240×40 | `color.surface.base` | `color.border.subtle`                 | `shadow/control`       | `color.text.primary`   | `color.icon.primary`                           |
 | filled   | sm   | 200×32 | `color.surface.base` | `color.border.subtle`                 |                        | `color.text.primary`   | `color.icon.primary`                           |
 | focus    | md   | 240×40 | `color.surface.base` | `color.border.feedback.focus.strong`  | `shadow/focus/default` | `color.text.primary`   | `color.icon.primary`                           |
-| focus    | sm   | 200×32 | `color.surface.base` | `color.border.feedback.focus.strong`  | `shadow/focus/default` | `color.text.primary`   | `color.icon.primary`<br>`color.neutral.900`    |
+| focus    | sm   | 200×32 | `color.surface.base` | `color.border.feedback.focus.strong`  | `shadow/focus/default` | `color.text.primary`   | `color.icon.primary`                           |
 | error    | md   | 240×40 | `color.surface.base` | `color.border.feedback.danger.strong` | `shadow/danger`        | `color.text.primary`   | `color.icon.primary`                           |
-| error    | sm   | 200×32 | `color.surface.base` | `color.border.feedback.danger.strong` | `shadow/danger`        | `color.text.primary`   | `color.icon.primary`<br>`color.neutral.900`    |
+| error    | sm   | 200×32 | `color.surface.base` | `color.border.feedback.danger.strong` | `shadow/danger`        | `color.text.primary`   | `color.icon.primary`                           |
 | disabled | md   | 240×40 | `color.surface.base` | `color.border.subtle`                 | `shadow/control`       | `color.text.disabled`  | `color.icon.disabled`                          |
 | disabled | sm   | 200×32 | `color.surface.base` | `color.border.subtle`                 |                        | `color.text.disabled`  | `color.icon.disabled`                          |
 
-### Issues detected
-
-- Description says 4 variants; the set has 12.
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
-
 ## Component set: GlobalSearch
 
-Global product-wide search entry, usually in the app header. 4 variants: state (default, hover, focus, error). Opens a command-palette / global-search overlay when activated; the field itself is a trigger. Keyboard shortcut: ⌘K or / (product decides; document in-place via Kbd). For scoped local filter use SearchField.
+Global product-wide search entry, usually in the app header. 10 variants: size (sm, md) × state (default, hover, focus, filled, error). Opens a command-palette / global-search overlay when activated; the field itself is a trigger. Keyboard shortcut: ⌘K or / (product decides; document in-place via Kbd). For scoped local filter use SearchField.
 
 ### Props
 
@@ -135,10 +130,6 @@ Default variant: `state=default, size=md` · 10 variants · default size 240×40
 | focus   | sm   | 200×32 | `color.surface.base`       | `color.border.feedback.focus.strong`  | `shadow/focus/default` | `color.text.primary`<br>`color.text.inverse`   | `color.icon.primary`   |
 | error   | md   | 240×40 | `color.surface.base`       | `color.border.feedback.danger.strong` | `shadow/danger`        | `color.text.primary`<br>`color.text.inverse`   | `color.icon.primary`   |
 | error   | sm   | 200×32 | `color.surface.base`       | `color.border.feedback.danger.strong` | `shadow/danger`        | `color.text.primary`<br>`color.text.inverse`   | `color.icon.primary`   |
-
-### Issues detected
-
-- Description says 4 variants; the set has 10.
 
 ## Documentation card
 

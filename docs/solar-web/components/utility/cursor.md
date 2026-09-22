@@ -4,6 +4,8 @@
 
 ## Component set: Cursor
 
+Custom pointer glyphs for canvas and authoring surfaces — the Spatial and Flow editors — where the native cursor cannot express the active tool. 22 variants: Type (Default, Default White, Pointer, Text, Move, Grabbing, Crosshair, Copy, Not Allowed, Unavailable, Progress, Hourglass, Zoom In, Zoom Out, Resize N, NS, EW, NE SW, NW SE, Col, Row, X). Glyphs bind icon/primary with an icon/inverse outline so they read on light and dark. Non-interactive: the cursor mirrors state set elsewhere and is never the only signal. Standard UI keeps native cursors.
+
 ### Props
 
 | Prop   | Type    | Options / default                                                                                                                                                                                                                                        |
@@ -17,15 +19,15 @@ Default variant: `Type=Default` · 22 variants · default size 12×14px
 - **Type=Default** · component · 12×14  
   effect `shadow/raised`
   - **Rectangle 237** · vector · 12×14  
-    fill `color.neutral.900` · stroke `color.mono.white` 1px
+    fill `color.icon.primary` · stroke `color.icon.inverse` 1px
 
 ### Tokens used
 
-| Role       | Tokens              |
-| ---------- | ------------------- |
-| Strokes    | `color.mono.white`  |
-| Icon color | `color.neutral.900` |
-| Effects    | `shadow/raised`     |
+| Role       | Tokens               |
+| ---------- | -------------------- |
+| Strokes    | `color.icon.inverse` |
+| Icon color | `color.icon.primary` |
+| Effects    | `shadow/raised`      |
 
 ### Variant matrix
 
@@ -53,11 +55,6 @@ Default variant: `Type=Default` · 22 variants · default size 12×14px
 | Copy          | 21×24 |      |        |                 |      |      |
 | Pointer       | 14×17 |      |        |                 |      |      |
 | Hourglass     | 11×16 |      |        |                 |      |      |
-
-### Issues detected
-
-- Component description is empty.
-- Primitive color bound directly (CLR-002): `color.mono.white`, `color.neutral.900`.
 
 ## Documentation card
 

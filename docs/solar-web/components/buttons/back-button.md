@@ -4,7 +4,7 @@
 
 ## Component set: BackButton
 
-Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). 8 variants: size (sm 36px, md 44px) × state (default, hover, pressed, disabled). Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.
+Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). 12 variants: size (sm 36px, md 44px) × state (default, hover, pressed, focus, disabled, loading). Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.
 
 ### Props
 
@@ -69,10 +69,6 @@ Default variant: `size=md, state=default` · 12 variants · default size 89×40p
 | sm   | focus    | 68×32 | `color.action.tertiary.bg.default`  | `color.border.medium` | `shadow/focus/default` | `color.action.tertiary.text.default`  | `color.action.tertiary.icon.default`  |
 | md   | loading  | 48×40 | `color.action.tertiary.bg.default`  | `color.border.medium` | `shadow/control`       |                                       | `color.action.tertiary.icon.default`  |
 | sm   | loading  | 32×32 | `color.action.tertiary.bg.default`  | `color.border.medium` | `shadow/control`       |                                       | `color.action.tertiary.icon.default`  |
-
-### Issues detected
-
-- Description says 8 variants; the set has 12.
 
 ## Documentation card
 

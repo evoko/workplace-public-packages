@@ -5,7 +5,7 @@
     {
       "name": "PIN Input",
       "id": "7795:222",
-      "description": "",
+      "description": "Fixed-length numeric code entry (4–6 digits) for one-time codes and verification, one cell per digit. 12 variants: size (sm, md) × state (default, hover, focus, filled, disabled, error). Booleans hasLabel, hasHelper, mandatory. Auto-advances, Backspace steps back, paste fills every cell; each cell is inputmode=numeric with autocomplete=one-time-code. For passwords or free text use Password Input or Text Input.",
       "docLinks": [],
       "variantCount": 12,
       "props": {

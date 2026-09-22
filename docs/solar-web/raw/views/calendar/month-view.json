@@ -118,7 +118,11 @@
                   "strokeTopWeight": "Spatial:border/default",
                   "strokeBottomWeight": "Spatial:border/default",
                   "strokeLeftWeight": "Spatial:border/default",
-                  "strokeRightWeight": "Spatial:border/default"
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/dialog",
+                  "topRightRadius": "Spatial:radius/dialog",
+                  "bottomLeftRadius": "Spatial:radius/dialog",
+                  "bottomRightRadius": "Spatial:radius/dialog"
                 },
                 "children": [
                   {

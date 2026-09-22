@@ -4,7 +4,7 @@
 
 ## Component set: Slider
 
-Single-thumb slider for selecting one value in a continuous range. 4 variants: state (default, hover, pressed, disabled). Use for visual, approximate value selection (volume, zoom, opacity) where precision is secondary to responsiveness. For exact numeric entry pair with a Number Input. For ranges use Slider Range.
+Single-thumb slider for selecting one value in a continuous range. 7 variants: state (default, hover, pressed, focus, filled, error, disabled). Use for visual, approximate value selection (volume, zoom, opacity) where precision is secondary to responsiveness. For exact numeric entry pair with a Number Input. For ranges use Slider Range.
 
 ### Props
 
@@ -45,10 +45,6 @@ Default variant: `state=default` · 7 variants · default size 320×20px
 | focus    | 320×20 |      |        | `shadow/focus/default` |      |      |
 | filled   | 320×20 |      |        |                        |      |      |
 | error    | 320×20 |      |        |                        |      |      |
-
-### Issues detected
-
-- Description says 4 variants; the set has 7.
 
 ## Component set: Slider Range
 

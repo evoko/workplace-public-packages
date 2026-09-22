@@ -4,7 +4,7 @@
 
 ## Component set: Number Input
 
-Numeric input with stepper controls. 16 variants: size (sm, md) × state (default, hover, disabled, error) × stepper (inline, side). inline places steppers inside the field trailing; side places them outside (larger hit area, preferred for touch). inputmode="numeric" for mobile keyboards. Validate on blur. Constrain via min / max / step; do not accept characters the field does not allow.
+Numeric input with stepper controls. 20 variants: size (sm, md) × state (default, hover, focus, disabled, error) × stepper (inline, side). inline places steppers inside the field trailing; side places them outside (larger hit area, preferred for touch). inputmode="numeric" for mobile keyboards. Validate on blur. Constrain via min / max / step; do not accept characters the field does not allow.
 
 ### Props
 
@@ -93,10 +93,6 @@ Default variant: `size=md, state=default, stepper=inline` · 20 variants · defa
 | sm   | error    | inline  | 72×66 |      |        |                        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
 | md   | error    | side    | 88×76 |      |        |                        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
 | sm   | error    | side    | 68×66 |      |        |                        | `color.text.feedback.danger`<br>`color.text.primary`                         | `color.icon.primary`  |
-
-### Issues detected
-
-- Description says 16 variants; the set has 20.
 
 ## Documentation card
 

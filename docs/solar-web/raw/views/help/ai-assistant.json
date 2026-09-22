@@ -535,6 +535,9 @@
                       "align": "MIN/MIN",
                       "sizing": "FILL/HUG"
                     },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    },
                     "children": [
                       {
                         "name": "Button",
@@ -698,6 +701,7 @@
                   "sizing": "FILL/HUG"
                 },
                 "vars": {
+                  "itemSpacing": "Spatial:inset/md",
                   "paddingLeft": "Spatial:stack/md",
                   "paddingTop": "Spatial:stack/md",
                   "paddingRight": "Spatial:stack/md",
@@ -898,6 +902,9 @@
                               "align": "MIN/MIN",
                               "sizing": "HUG/HUG"
                             },
+                            "vars": {
+                              "itemSpacing": "Spatial:inset/xs"
+                            },
                             "children": [
                               {
                                 "name": "Button",
@@ -1025,6 +1032,7 @@
             ],
             "strokeWeight": "mixed",
             "vars": {
+              "itemSpacing": "Spatial:inset/xs",
               "paddingLeft": "Spatial:stack/sm",
               "paddingTop": "Spatial:stack/sm",
               "paddingRight": "Spatial:stack/sm",

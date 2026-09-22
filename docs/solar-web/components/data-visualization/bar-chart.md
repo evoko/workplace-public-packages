@@ -103,9 +103,12 @@ Default variant: `type=simple, orientation=vertical, breakpoint=desktop` · 12 v
 
 ### Anatomy (default variant)
 
-- **type=simple, orientation=vertical, breakpoint=desktop** · component · column gap 12 pad 0/0/0/0 FIXED/FIXED · 600×320
-  - **Plot** · frame · column gap 8 pad 0/0/0/0 FILL/FILL · 600×320
-    - **Bars** · frame · row gap 16 pad 0/0/0/0 FILL/FILL · 600×303
+- **type=simple, orientation=vertical, breakpoint=desktop** · component · column gap 12 pad 0/0/0/0 FIXED/FIXED · 600×320  
+  itemSpacing `inset.sm`
+  - **Plot** · frame · column gap 8 pad 0/0/0/0 FILL/FILL · 600×320  
+    itemSpacing `inset.xs`
+    - **Bars** · frame · row gap 16 pad 0/0/0/0 FILL/FILL · 600×303  
+      itemSpacing `inset.md`
       - **Col-0** · frame · column gap 0 pad 0/0/0/0 FILL/FILL · 87×303
         - **color=category-06-strong** · instance of **Bar** (color=category-06-strong) · FIXED/FIXED · 40×146  
           fill `color.data.category.06.strong` · radius `radius.none`
@@ -124,7 +127,8 @@ Default variant: `type=simple, orientation=vertical, breakpoint=desktop` · 12 v
       - **Col-5** · frame · column gap 0 pad 0/0/0/0 FILL/FILL · 87×303
         - **color=category-06-strong** · instance of **Bar** (color=category-06-strong) · FIXED/FIXED · 40×134  
           fill `color.data.category.06.strong` · radius `radius.none`
-    - **Labels** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 600×9
+    - **Labels** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 600×9  
+      itemSpacing `inset.md`
       - **LabelCell** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 87×9
         - **Jan** · text `helper/sm` "Jan" · HUG/HUG · 20×9  
           fill `color.text.secondary` · lineHeight `type.line-height.helper.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.helper.sm` · fontStyle `type.font-weight.400`
@@ -150,6 +154,7 @@ Default variant: `type=simple, orientation=vertical, breakpoint=desktop` · 12 v
 | --------------- | ----------------------------------------------------------------------------------------------------- |
 | Fills           | `color.data.category.06.strong`                                                                       |
 | Text color      | `color.text.primary`, `color.text.secondary`                                                          |
+| Spacing         | `inset.md`, `inset.sm`, `inset.xs`                                                                    |
 | Radius          | `radius.none`                                                                                         |
 | Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.line-height.helper.sm`, `type.size.helper.sm` |
 | Text styles     | `helper/sm`                                                                                           |
@@ -174,13 +179,6 @@ Default variant: `type=simple, orientation=vertical, breakpoint=desktop` · 12 v
 | stacked | vertical    | mobile     | 343×240 |      |        |        | `color.text.primary`<br>`color.text.secondary` |      |
 | stacked | horizontal  | desktop    | 600×320 |      |        |        | `color.text.primary`<br>`color.text.secondary` |      |
 | stacked | horizontal  | mobile     | 343×240 |      |        |        | `color.text.primary`<br>`color.text.secondary` |      |
-
-### Issues detected
-
-- Hard-coded gap `12px` on layer _type=simple, orientation=vertical, breakpoint=desktop_
-- Hard-coded gap `8px` on layer _Plot_
-- Hard-coded gap `16px` on layer _Plot › Bars_
-- Hard-coded gap `16px` on layer _Plot › Labels_
 
 ## Component set: Bar Stack
 

@@ -83,6 +83,7 @@
               "sizing": "FILL/HUG"
             },
             "vars": {
+              "itemSpacing": "Spatial:inset/md",
               "paddingLeft": "Spatial:inset/lg",
               "paddingTop": "Spatial:inset/sm",
               "paddingRight": "Spatial:inset/lg",
@@ -107,6 +108,9 @@
                   ],
                   "align": "MIN/MIN",
                   "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 },
                 "children": [
                   {
@@ -186,6 +190,7 @@
                     "strokeWeight": 1,
                     "radius": 8,
                     "vars": {
+                      "itemSpacing": "Spatial:inset/xs",
                       "paddingLeft": "Spatial:inset/md",
                       "paddingTop": "Spatial:inset/md",
                       "paddingRight": "Spatial:inset/md",
@@ -278,7 +283,11 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "vars": {
+                      "paddingTop": "Spatial:inset/2xs",
+                      "paddingBottom": "Spatial:inset/2xs"
+                    }
                   },
                   {
                     "name": "Time Grid Row",

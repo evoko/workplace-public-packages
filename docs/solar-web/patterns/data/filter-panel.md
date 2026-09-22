@@ -88,7 +88,7 @@ Default variant: `type=checkbox-list, state=default` · 3 variants · default si
 
 ## Component set: FilterPanel
 
-FilterPanel chassis. Day-1: layout × footerBehavior × state = 12 variants. Staged-apply (apply-button) is the canonical default per hardening review §4.1. Section children take Expanded:Boolean as a component property. Slot-based composition — consumers drop FilterSection (or any) instances into the Sections region.
+FilterPanel chassis. Day-1: state (default, loading, empty) = 3 variants; layout and footerBehavior are not variant axes. Staged-apply (apply-button) is the canonical default per hardening review §4.1. Section children take Expanded:Boolean as a component property. Slot-based composition — consumers drop FilterSection (or any) instances into the Sections region.
 
 ### Props
 
@@ -182,10 +182,6 @@ Default variant: `state=default` · 3 variants · default size 320×720px
 | default | 320×720 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.text.secondary`<br>`color.text.feedback.neutral`<br>`color.action.secondary.text.default` | `color.action.tertiary.icon.default`<br>`color.icon.secondary`<br>`color.icon.inverse`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
 | loading | 320×720 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                  | `color.action.tertiary.icon.default`<br>`color.icon.secondary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`                                                 |
 | empty   | 320×720 | `color.surface.raised` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                  | `color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`                                                                           |
-
-### Issues detected
-
-- Description says 12 variants; the set has 3.
 
 ## Issues detected (page)
 

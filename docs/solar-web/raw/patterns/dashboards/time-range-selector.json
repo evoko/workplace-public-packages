@@ -419,7 +419,11 @@
                 ],
                 "strokeWeight": "mixed",
                 "vars": {
-                  "itemSpacing": "Spatial:inset/none"
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/sm"
                 },
                 "children": [
                   {
@@ -757,7 +761,14 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xl",
+                      "paddingLeft": "Spatial:inset/xl",
+                      "paddingTop": "Spatial:inset/xl",
+                      "paddingRight": "Spatial:inset/xl",
+                      "paddingBottom": "Spatial:inset/xl"
+                    }
                   },
                   {
                     "name": "Date Picker Open",

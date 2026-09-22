@@ -34,19 +34,19 @@ Default variant: `severity=success, state=default` · 15 variants · default siz
 
 ### Tokens used
 
-| Role            | Tokens                                                                                                                             |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.surface.background`, `color.surface.base`, `color.surface.feedback.success.strong`, `color.surface.feedback.success.subtle` |
-| Strokes         | `color.border.medium`, `color.border.subtle`                                                                                       |
-| Text color      | `color.text.primary`, `color.text.secondary`                                                                                       |
-| Icon color      | `color.icon.inverse`, `color.surface.feedback.danger.strong`, `color.surface.feedback.warning.strong`, `color.neutral.900`         |
-| Spacing         | `inset.md`, `inset.xs`, `stack.md`, `stack.none`, `stack.sm`, `stack.xs`                                                           |
-| Radius          | `radius.container`, `radius.control`, `radius.pill`                                                                                |
-| Border width    | `border.default`                                                                                                                   |
-| Sizes           | `icon.md`                                                                                                                          |
-| Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `type.line-height.body.md`, `type.size.body.md`          |
-| Effects         | `shadow/raised`                                                                                                                    |
-| Text styles     | `body/md/medium`, `body/md/regular`                                                                                                |
+| Role            | Tokens                                                                                                                                                                                                                        |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fills           | `color.surface.background`, `color.surface.base`, `color.surface.feedback.success.strong`, `color.surface.feedback.success.subtle`                                                                                            |
+| Strokes         | `color.border.medium`, `color.border.subtle`                                                                                                                                                                                  |
+| Text color      | `color.text.primary`, `color.text.secondary`                                                                                                                                                                                  |
+| Icon color      | `color.icon.feedback.danger`, `color.icon.feedback.info`, `color.icon.feedback.success`, `color.icon.feedback.warning`, `color.icon.inverse`, `color.surface.feedback.danger.strong`, `color.surface.feedback.warning.strong` |
+| Spacing         | `inset.md`, `inset.xs`, `stack.md`, `stack.none`, `stack.sm`, `stack.xs`                                                                                                                                                      |
+| Radius          | `radius.container`, `radius.control`, `radius.pill`                                                                                                                                                                           |
+| Border width    | `border.default`                                                                                                                                                                                                              |
+| Sizes           | `icon.md`                                                                                                                                                                                                                     |
+| Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `type.line-height.body.md`, `type.size.body.md`                                                                                                     |
+| Effects         | `shadow/raised`                                                                                                                                                                                                               |
+| Text styles     | `body/md/medium`, `body/md/regular`                                                                                                                                                                                           |
 
 ### Composes
 
@@ -55,27 +55,23 @@ Default variant: `severity=success, state=default` · 15 variants · default siz
 
 ### Variant matrix
 
-| severity | state    | size   | fill                                               | stroke                | effect          | text                                           | icon                                                                                   |
-| -------- | -------- | ------ | -------------------------------------------------- | --------------------- | --------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------- |
-| success  | default  | 320×68 | `color.surface.base`                               | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.neutral.900`                                            |
-| danger   | default  | 320×68 | `color.surface.base`                               | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.danger.strong`<br>`color.icon.inverse`<br>`color.neutral.900`  |
-| warning  | default  | 320×68 | `color.surface.base`                               | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.warning.strong`<br>`color.icon.inverse`<br>`color.neutral.900` |
-| info     | default  | 320×68 | `color.surface.base`                               | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.neutral.900`                                            |
-| ghost    | default  | 320×68 | `color.surface.base`                               | `color.border.subtle` | `shadow/raised` |                                                |                                                                                        |
-| success  | hover    | 320×68 | `color.surface.base`                               | `color.border.medium` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.neutral.900`                                            |
-| danger   | hover    | 320×68 | `color.surface.base`                               | `color.border.medium` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.danger.strong`<br>`color.icon.inverse`<br>`color.neutral.900`  |
-| warning  | hover    | 320×68 | `color.surface.base`                               | `color.border.medium` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.warning.strong`<br>`color.icon.inverse`<br>`color.neutral.900` |
-| info     | hover    | 320×68 | `color.surface.base`                               | `color.border.medium` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.neutral.900`                                            |
-| ghost    | hover    | 320×68 | `color.surface.base`                               | `color.border.medium` | `shadow/raised` |                                                |                                                                                        |
-| success  | selected | 320×68 | `color.surface.base`<br>`color.surface.background` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.neutral.900`                                            |
-| danger   | selected | 320×68 | `color.surface.base`<br>`color.surface.background` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.danger.strong`<br>`color.icon.inverse`<br>`color.neutral.900`  |
-| warning  | selected | 320×68 | `color.surface.base`<br>`color.surface.background` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.warning.strong`<br>`color.icon.inverse`<br>`color.neutral.900` |
-| info     | selected | 320×68 | `color.surface.base`<br>`color.surface.background` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.neutral.900`                                            |
-| ghost    | selected | 320×68 | `color.surface.base`<br>`color.surface.background` | `color.border.subtle` | `shadow/raised` |                                                |                                                                                        |
-
-### Issues detected
-
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
+| severity | state    | size   | fill                                               | stroke                | effect          | text                                           | icon                                                                                             |
+| -------- | -------- | ------ | -------------------------------------------------- | --------------------- | --------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| success  | default  | 320×68 | `color.surface.base`                               | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.icon.feedback.success`                                            |
+| danger   | default  | 320×68 | `color.surface.base`                               | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.danger.strong`<br>`color.icon.inverse`<br>`color.icon.feedback.danger`   |
+| warning  | default  | 320×68 | `color.surface.base`                               | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.warning.strong`<br>`color.icon.inverse`<br>`color.icon.feedback.warning` |
+| info     | default  | 320×68 | `color.surface.base`                               | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.icon.feedback.info`                                               |
+| ghost    | default  | 320×68 | `color.surface.base`                               | `color.border.subtle` | `shadow/raised` |                                                |                                                                                                  |
+| success  | hover    | 320×68 | `color.surface.base`                               | `color.border.medium` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.icon.feedback.success`                                            |
+| danger   | hover    | 320×68 | `color.surface.base`                               | `color.border.medium` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.danger.strong`<br>`color.icon.inverse`<br>`color.icon.feedback.danger`   |
+| warning  | hover    | 320×68 | `color.surface.base`                               | `color.border.medium` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.warning.strong`<br>`color.icon.inverse`<br>`color.icon.feedback.warning` |
+| info     | hover    | 320×68 | `color.surface.base`                               | `color.border.medium` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.icon.feedback.info`                                               |
+| ghost    | hover    | 320×68 | `color.surface.base`                               | `color.border.medium` | `shadow/raised` |                                                |                                                                                                  |
+| success  | selected | 320×68 | `color.surface.base`<br>`color.surface.background` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.icon.feedback.success`                                            |
+| danger   | selected | 320×68 | `color.surface.base`<br>`color.surface.background` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.danger.strong`<br>`color.icon.inverse`<br>`color.icon.feedback.danger`   |
+| warning  | selected | 320×68 | `color.surface.base`<br>`color.surface.background` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.surface.feedback.warning.strong`<br>`color.icon.inverse`<br>`color.icon.feedback.warning` |
+| info     | selected | 320×68 | `color.surface.base`<br>`color.surface.background` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse`<br>`color.icon.feedback.info`                                               |
+| ghost    | selected | 320×68 | `color.surface.base`<br>`color.surface.background` | `color.border.subtle` | `shadow/raised` |                                                |                                                                                                  |
 
 ## Component set: Insight Card Small
 

@@ -153,6 +153,7 @@
                     ],
                     "strokeWeight": "mixed",
                     "vars": {
+                      "itemSpacing": "Spatial:inset/xs",
                       "paddingLeft": "Spatial:inset/md",
                       "paddingTop": "Spatial:inset/sm",
                       "paddingRight": "Spatial:inset/md",
@@ -434,6 +435,7 @@
                 "strokeWeight": 1,
                 "radius": 8,
                 "vars": {
+                  "itemSpacing": "Spatial:inset/md",
                   "paddingLeft": "Spatial:inset/lg",
                   "paddingTop": "Spatial:inset/lg",
                   "paddingRight": "Spatial:inset/lg",
@@ -462,6 +464,9 @@
                       ],
                       "align": "MIN/MIN",
                       "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/2xs"
                     },
                     "children": [
                       {

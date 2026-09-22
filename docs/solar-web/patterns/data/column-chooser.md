@@ -16,7 +16,7 @@ Default variant: `state=default` · 3 variants · default size 320×720px
 ### Anatomy (default variant)
 
 - **state=default** · component · column gap 0 pad 0/0/0/0 FIXED/FIXED · 320×720  
-  fill `color.surface.raised` · stroke `color.border.subtle` 1px · effect `shadow/raised` · strokeWeight `border.default`
+  fill `color.surface.raised` · stroke `color.border.subtle` 1px · effect `shadow/raised` · strokeWeight `border.default` · radius `radius.container`
   - **Header** · frame · row gap 12 pad 8/16/8/16 FILL/FIXED · 320×52  
     stroke `color.border.subtle` mixedpx · itemSpacing `stack.sm` · padding `inset.md`, `inset.xs` · strokeWeight `border.default`
     - **TitleGroup** · frame · row gap 8 pad 0/0/0/0 FILL/HUG · 212×20  
@@ -65,7 +65,7 @@ Default variant: `state=default` · 3 variants · default size 320×720px
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.action.tertiary.text.default`, `color.text.primary`, `color.text.secondary` |
 | Icon color      | `color.action.primary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.inverse`, `color.icon.secondary`, `color.icon.tertiary`                 |
 | Spacing         | `inset.lg`, `inset.md`, `inset.none`, `inset.sm`, `inset.xs`, `stack.sm`, `stack.xs`                                                                           |
-| Radius          | `radius.control`, `radius.none`, `radius.pill`                                                                                                                 |
+| Radius          | `radius.container`, `radius.control`, `radius.none`, `radius.pill`                                                                                             |
 | Border width    | `border.default`, `border.none`                                                                                                                                |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.body.lg`, `type.size.body.lg`                                                              |
 | Effects         | `shadow/control`, `shadow/raised`                                                                                                                              |
@@ -95,7 +95,6 @@ Default variant: `state=default` · 3 variants · default size 320×720px
 ### Issues detected
 
 - Component description is empty.
-- Hard-coded radius `8px` on layer _state=default_
 
 ## Component set: ColumnRow
 
@@ -116,22 +115,23 @@ Default variant: `selected=true, hover=false` · 4 variants · default size 296�
     height `icon.md`
   - **Checkbox** · instance of **Checkbox** (checked=true, disabled=false, hover=false, mixed=false, focus=false) · column gap 16 pad 0/0/0/0 FIXED/FIXED · 16×16  
     fill `color.action.primary.bg.default` · stroke `color.border.medium` 1px · itemSpacing `stack.md` · strokeWeight `border.default` · radius `radius.control`
-  - **Column Label** · text "Column Label" · FILL/HUG · 244×10  
-    fill `text.primary` (Color(local)) · lineHeight `line-height.body.sm` · letterSpacing `typography.letter-spacing.body (-0,2em)` · fontFamily `type.font-family.inter` · fontSize `size.body.sm` · fontStyle `type.font-weight.500`
+  - **Column Label** · text `body/md/medium` "Column Label" · FILL/HUG · 244×10  
+    fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.500`
 
 ### Tokens used
 
-| Role            | Tokens                                                                                                                             |
-| --------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `surface.hover`, `color.action.primary.bg.default`                                                                                 |
-| Strokes         | `color.border.medium`                                                                                                              |
-| Text color      | `text.primary`, `text.secondary`                                                                                                   |
-| Icon color      | `icon.tertiary`, `color.icon.inverse`                                                                                              |
-| Spacing         | `inset.xs`, `stack.md`                                                                                                             |
-| Radius          | `radius.control`                                                                                                                   |
-| Border width    | `border.default`                                                                                                                   |
-| Sizes           | `icon.md`                                                                                                                          |
-| Typography vars | `typography.letter-spacing.body (-0,2em)`, `type.font-family.inter`, `type.font-weight.500`, `line-height.body.sm`, `size.body.sm` |
+| Role            | Tokens                                                                                            |
+| --------------- | ------------------------------------------------------------------------------------------------- |
+| Fills           | `color.action.primary.bg.default`, `color.surface.hover`                                          |
+| Strokes         | `color.border.medium`                                                                             |
+| Text color      | `color.text.primary`, `color.text.secondary`                                                      |
+| Icon color      | `color.icon.inverse`, `color.icon.tertiary`                                                       |
+| Spacing         | `inset.xs`, `stack.md`                                                                            |
+| Radius          | `radius.control`                                                                                  |
+| Border width    | `border.default`                                                                                  |
+| Sizes           | `icon.md`                                                                                         |
+| Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.body.md`, `type.size.body.md` |
+| Text styles     | `body/md/medium`                                                                                  |
 
 ### Composes
 
@@ -140,17 +140,16 @@ Default variant: `selected=true, hover=false` · 4 variants · default size 296�
 
 ### Variant matrix
 
-| selected | hover | size   | fill                           | stroke | effect | text                            | icon                                                   |
-| -------- | ----- | ------ | ------------------------------ | ------ | ------ | ------------------------------- | ------------------------------------------------------ |
-| true     | false | 296×44 |                                |        |        | `text.primary` (Color(local))   | `icon.tertiary` (Color(local))<br>`color.icon.inverse` |
-| true     | true  | 296×44 | `surface.hover` (Color(local)) |        |        | `text.primary` (Color(local))   | `icon.tertiary` (Color(local))<br>`color.icon.inverse` |
-| false    | false | 296×44 |                                |        |        | `text.secondary` (Color(local)) | `icon.tertiary` (Color(local))                         |
-| false    | true  | 296×44 | `surface.hover` (Color(local)) |        |        | `text.secondary` (Color(local)) | `icon.tertiary` (Color(local))                         |
+| selected | hover | size   | fill                  | stroke | effect | text                   | icon                                          |
+| -------- | ----- | ------ | --------------------- | ------ | ------ | ---------------------- | --------------------------------------------- |
+| true     | false | 296×44 |                       |        |        | `color.text.primary`   | `color.icon.tertiary`<br>`color.icon.inverse` |
+| true     | true  | 296×44 | `color.surface.hover` |        |        | `color.text.primary`   | `color.icon.tertiary`<br>`color.icon.inverse` |
+| false    | false | 296×44 |                       |        |        | `color.text.secondary` | `color.icon.tertiary`                         |
+| false    | true  | 296×44 | `color.surface.hover` |        |        | `color.text.secondary` | `color.icon.tertiary`                         |
 
 ### Issues detected
 
 - Component description is empty.
-- Bound to a LOCAL duplicate of a Foundations token (should bind the library variable): `Color(local):surface/hover`, `Color(local):text/primary`, `Color(local):text/secondary`, `Color(local):icon/tertiary`, `Spatial(local):inset/xs`, `Type(local):line-height/body/sm`, `Type(local):size/body/sm`.
 
 ## Issues detected (page)
 

@@ -94,11 +94,16 @@
                   "{Primitives:color/neutral/100}"
                 ],
                 "strokeWeight": "mixed",
+                "vars": {
+                  "paddingLeft": "unresolved:8fd955719573",
+                  "paddingRight": "unresolved:8fd955719573"
+                },
                 "children": [
                   {
                     "name": "SOLAR®",
                     "type": "TEXT",
                     "text": "SOLAR®",
+                    "textStyle": "body/md/semibold",
                     "size": [
                       311,
                       10
@@ -108,16 +113,17 @@
                       "{Primitives:color/neutral/900}"
                     ],
                     "vars": {
-                      "lineHeight": "Scale:1,25rem",
-                      "fontFamily": "Base Typograhy:font-family/Inter",
-                      "fontSize": "Scale:0,875rem",
-                      "fontStyle": "Base Typograhy:font-weight/600"
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/600"
                     }
                   },
                   {
                     "name": "Biamp Design System",
                     "type": "TEXT",
                     "text": "Biamp Design System",
+                    "textStyle": "body/md/semibold",
                     "size": [
                       854,
                       10
@@ -127,10 +133,10 @@
                       "{Primitives:color/neutral/900}"
                     ],
                     "vars": {
-                      "lineHeight": "Scale:1,25rem",
-                      "fontFamily": "Base Typograhy:font-family/Inter",
-                      "fontSize": "Scale:0,875rem",
-                      "fontStyle": "Base Typograhy:font-weight/600"
+                      "lineHeight": "Type:line-height/body/md",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/body/md",
+                      "fontStyle": "Primitives:type/font-weight/600"
                     }
                   },
                   {
@@ -156,11 +162,21 @@
                       "{Primitives:color/neutral/900}"
                     ],
                     "radius": 6,
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs",
+                      "paddingLeft": "Spatial:inset/xs",
+                      "paddingRight": "Spatial:inset/xs",
+                      "topLeftRadius": "Spatial:radius/control",
+                      "topRightRadius": "Spatial:radius/control",
+                      "bottomLeftRadius": "Spatial:radius/control",
+                      "bottomRightRadius": "Spatial:radius/control"
+                    },
                     "children": [
                       {
                         "name": "1.0",
                         "type": "TEXT",
                         "text": "1.0",
+                        "textStyle": "body/md/semibold",
                         "size": [
                           19,
                           10
@@ -170,10 +186,10 @@
                           "{Primitives:color/neutral/100}"
                         ],
                         "vars": {
-                          "lineHeight": "Scale:1,25rem",
-                          "fontFamily": "Base Typograhy:font-family/Inter",
-                          "fontSize": "Scale:0,875rem",
-                          "fontStyle": "Base Typograhy:font-weight/600"
+                          "lineHeight": "Type:line-height/body/md",
+                          "fontFamily": "Primitives:type/font-family/inter",
+                          "fontSize": "Type:size/body/md",
+                          "fontStyle": "Primitives:type/font-weight/600"
                         }
                       }
                     ]
@@ -217,13 +233,19 @@
                   "{Primitives:color/neutral/900}"
                 ],
                 "strokeWeight": "mixed",
+                "vars": {
+                  "itemSpacing": "Spatial:inset/lg",
+                  "paddingLeft": "unresolved:8fd955719573",
+                  "paddingRight": "unresolved:8fd955719573"
+                },
                 "children": [
                   {
                     "name": "Component name",
                     "type": "TEXT",
                     "text": "Component name",
+                    "textStyle": "title/lg",
                     "size": [
-                      330,
+                      325,
                       29
                     ],
                     "sizing": "HUG/HUG",
@@ -231,9 +253,10 @@
                       "{Primitives:color/neutral/900}"
                     ],
                     "vars": {
-                      "fontFamily": "Base Typograhy:font-family/Inter",
-                      "fontSize": "Base Typograhy:font-sizing/2,5rem",
-                      "fontStyle": "Base Typograhy:font-weight/500"
+                      "lineHeight": "unresolved:e8eb718f4e2f",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "unresolved:e8cce36e4d83",
+                      "fontStyle": "Primitives:type/font-weight/500"
                     }
                   },
                   {
@@ -312,8 +335,9 @@
                     "name": "Description",
                     "type": "TEXT",
                     "text": "Description",
+                    "textStyle": "title/sm",
                     "size": [
-                      109,
+                      104,
                       15
                     ],
                     "sizing": "HUG/HUG",
@@ -321,11 +345,10 @@
                       "{Primitives:color/neutral/900}"
                     ],
                     "vars": {
-                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
-                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
-                      "fontFamily": "Base Typograhy:font-family/Inter",
-                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
-                      "fontStyle": "Base Typograhy:font-weight/600"
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
                     }
                   },
                   {
@@ -378,8 +401,9 @@
                     "name": "Anatomy",
                     "type": "TEXT",
                     "text": "Anatomy",
+                    "textStyle": "title/sm",
                     "size": [
-                      85,
+                      82,
                       15
                     ],
                     "sizing": "HUG/HUG",
@@ -387,11 +411,10 @@
                       "{Primitives:color/neutral/900}"
                     ],
                     "vars": {
-                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
-                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
-                      "fontFamily": "Base Typograhy:font-family/Inter",
-                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
-                      "fontStyle": "Base Typograhy:font-weight/600"
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
                     }
                   },
                   {
@@ -447,8 +470,9 @@
                     "name": "States",
                     "type": "TEXT",
                     "text": "States",
+                    "textStyle": "title/sm",
                     "size": [
-                      61,
+                      59,
                       15
                     ],
                     "sizing": "HUG/HUG",
@@ -456,11 +480,10 @@
                       "{Primitives:color/neutral/900}"
                     ],
                     "vars": {
-                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
-                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
-                      "fontFamily": "Base Typograhy:font-family/Inter",
-                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
-                      "fontStyle": "Base Typograhy:font-weight/600"
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
                     }
                   },
                   {
@@ -513,8 +536,9 @@
                     "name": "Truncation",
                     "type": "TEXT",
                     "text": "Truncation",
+                    "textStyle": "title/sm",
                     "size": [
-                      102,
+                      98,
                       15
                     ],
                     "sizing": "HUG/HUG",
@@ -522,11 +546,10 @@
                       "{Primitives:color/neutral/900}"
                     ],
                     "vars": {
-                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
-                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
-                      "fontFamily": "Base Typograhy:font-family/Inter",
-                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
-                      "fontStyle": "Base Typograhy:font-weight/600"
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
                     }
                   },
                   {
@@ -582,8 +605,9 @@
                     "name": "Accessibility",
                     "type": "TEXT",
                     "text": "Accessibility",
+                    "textStyle": "title/sm",
                     "size": [
-                      120,
+                      114,
                       15
                     ],
                     "sizing": "HUG/HUG",
@@ -591,11 +615,10 @@
                       "{Primitives:color/neutral/900}"
                     ],
                     "vars": {
-                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
-                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
-                      "fontFamily": "Base Typograhy:font-family/Inter",
-                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
-                      "fontStyle": "Base Typograhy:font-weight/600"
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
                     }
                   },
                   {
@@ -648,8 +671,9 @@
                     "name": "Rules",
                     "type": "TEXT",
                     "text": "Rules",
+                    "textStyle": "title/sm",
                     "size": [
-                      52,
+                      50,
                       15
                     ],
                     "sizing": "HUG/HUG",
@@ -657,11 +681,10 @@
                       "{Primitives:color/neutral/900}"
                     ],
                     "vars": {
-                      "lineHeight": "Base Typograhy:font-sizing/1,5rem",
-                      "letterSpacing": "Base Typograhy:letter-spacing/body (-0,2em)",
-                      "fontFamily": "Base Typograhy:font-family/Inter",
-                      "fontSize": "Base Typograhy:font-sizing/1,25rem",
-                      "fontStyle": "Base Typograhy:font-weight/600"
+                      "lineHeight": "Type:line-height/title/sm",
+                      "fontFamily": "Primitives:type/font-family/inter",
+                      "fontSize": "Type:size/title/sm",
+                      "fontStyle": "Primitives:type/font-weight/500"
                     }
                   },
                   {
@@ -682,6 +705,9 @@
                       ],
                       "align": "MIN/MIN",
                       "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xl"
                     },
                     "children": [
                       {

@@ -121,7 +121,11 @@
                   "strokeTopWeight": "Spatial:border/default",
                   "strokeBottomWeight": "Spatial:border/default",
                   "strokeLeftWeight": "Spatial:border/default",
-                  "strokeRightWeight": "Spatial:border/default"
+                  "strokeRightWeight": "Spatial:border/default",
+                  "topLeftRadius": "Spatial:radius/dialog",
+                  "topRightRadius": "Spatial:radius/dialog",
+                  "bottomLeftRadius": "Spatial:radius/dialog",
+                  "bottomRightRadius": "Spatial:radius/dialog"
                 },
                 "children": [
                   {
@@ -170,7 +174,11 @@
                     "strokes": [
                       "{Color:border/subtle}"
                     ],
-                    "strokeWeight": "mixed"
+                    "strokeWeight": "mixed",
+                    "vars": {
+                      "paddingTop": "Spatial:inset/2xs",
+                      "paddingBottom": "Spatial:inset/2xs"
+                    }
                   },
                   {
                     "name": "Time Grid Row",

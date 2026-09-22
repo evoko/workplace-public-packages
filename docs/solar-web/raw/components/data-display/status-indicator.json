@@ -719,20 +719,20 @@
             8
           ],
           "fills": [
-            "{Primitives:color/neutral/50}"
+            "{Color:surface/feedback/neutral/subtle}"
           ],
           "strokes": [
-            "{Primitives:color/neutral/100}"
+            "{unresolved:5f4e0e43eb89}"
           ],
           "overrides": {
             "changed": {
               "/": {
                 "layout": null,
                 "fills": [
-                  "{Primitives:color/neutral/50}"
+                  "{Color:surface/feedback/neutral/subtle}"
                 ],
                 "strokes": [
-                  "{Primitives:color/neutral/100}"
+                  "{unresolved:5f4e0e43eb89}"
                 ],
                 "vars": {
                   "itemSpacing": null

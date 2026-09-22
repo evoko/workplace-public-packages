@@ -4,6 +4,8 @@
 
 ## Component set: Text Input
 
+Single-line text field for free-form input — label above, helper or error below, optional leading and trailing icons. 12 variants: size (sm 36px, md 44px) × state (default, hover, pressed, filled, disabled, error). NOTE: pressed is the focused state here and is flagged to rename to focus (Class B). Booleans show label, show helper, show leading icon, show trailing icon, show mandatory; label and helper are text props. Validate on blur; a placeholder never replaces the label. For multi-line use Text Area; for numbers use Number Input.
+
 ### Props
 
 | Prop                 | Type    | Options / default                                         |
@@ -90,10 +92,6 @@ Default variant: `size=md, state=default` · 12 variants · default size 240×76
 | sm   | disabled | 160×66 |      |        |        | `color.text.disabled`                                                                                 | `color.icon.disabled`        |
 | md   | error    | 240×76 |      |        |        | `color.text.feedback.danger`<br>`color.text.primary`                                                  | `color.icon.feedback.danger` |
 | sm   | error    | 160×66 |      |        |        | `color.text.feedback.danger`<br>`color.text.primary`                                                  | `color.icon.feedback.danger` |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Documentation card
 

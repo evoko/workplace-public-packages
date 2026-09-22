@@ -5,7 +5,7 @@
     {
       "name": "DragHandle",
       "id": "4583:170",
-      "description": "",
+      "description": "Grip affordance that marks a row or card as draggable for reordering. 10 variants: size (sm, md) × state (default, hover, focus, pressed, disabled); pressed is the grabbing state. Glyph binds icon/secondary; hit area ≥24px, padded to 44×44 on touch. Not a button — pair with keyboard reordering (Space to lift, arrows to move, Space to drop) and aria-label \"Reorder\".",
       "docLinks": [],
       "variantCount": 10,
       "props": {

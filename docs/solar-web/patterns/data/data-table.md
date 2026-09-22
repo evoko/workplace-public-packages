@@ -32,7 +32,7 @@ Instance census (tree capped at depth 3): Column Item ×80, Row ×16, RowSelect 
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Strokes      | `color.border.subtle`                                                                                                                                |
 | Text color   | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.info`, `color.text.primary`, `color.text.secondary` |
-| Icon color   | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.icon.primary`, `color.icon.secondary`, `color.neutral.900`        |
+| Icon color   | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.icon.primary`, `color.icon.secondary`                             |
 | Spacing      | `inset.none`, `inset.xs`, `stack.none`                                                                                                               |
 | Radius       | `radius.none`                                                                                                                                        |
 | Border width | `border.default`                                                                                                                                     |
@@ -45,17 +45,16 @@ Instance census (tree capped at depth 3): Column Item ×80, Row ×16, RowSelect 
 
 ### Variant matrix
 
-| breakpoint | state   | size     | fill | stroke | effect | text                                                                                                                                                         | icon                                                                                                                                                  |
-| ---------- | ------- | -------- | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| desktop    | default | 1280×752 |      |        |        | `color.text.secondary`<br>`color.text.feedback.info`<br>`color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.neutral.900`<br>`color.action.primary.icon.default` |
-| desktop    | empty   | 1280×752 |      |        |        | `color.text.secondary`<br>`color.text.feedback.info`<br>`color.text.primary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.neutral.900`<br>`color.action.primary.icon.default` |
-| mobile     | default | 377×752  |      |        |        | `color.text.feedback.info`<br>`color.text.primary`<br>`color.text.secondary`<br>`color.action.primary.text.default`                                          | `color.icon.primary`<br>`color.icon.secondary`<br>`color.action.secondary.icon.default`<br>`color.neutral.900`<br>`color.action.primary.icon.default` |
-| mobile     | empty   | 377×752  |      |        |        | `color.text.feedback.info`<br>`color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.icon.secondary`<br>`color.action.secondary.icon.default`<br>`color.neutral.900`<br>`color.action.primary.icon.default` |
+| breakpoint | state   | size     | fill | stroke | effect | text                                                                                                                                                         | icon                                                                                                                           |
+| ---------- | ------- | -------- | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| desktop    | default | 1280×752 |      |        |        | `color.text.secondary`<br>`color.text.feedback.info`<br>`color.text.primary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
+| desktop    | empty   | 1280×752 |      |        |        | `color.text.secondary`<br>`color.text.feedback.info`<br>`color.text.primary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
+| mobile     | default | 377×752  |      |        |        | `color.text.feedback.info`<br>`color.text.primary`<br>`color.text.secondary`<br>`color.action.primary.text.default`                                          | `color.icon.primary`<br>`color.icon.secondary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
+| mobile     | empty   | 377×752  |      |        |        | `color.text.feedback.info`<br>`color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.icon.secondary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
 
 ### Issues detected
 
 - Component description is empty.
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
 
 ## Issues detected (page)
 

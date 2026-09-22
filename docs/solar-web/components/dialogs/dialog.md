@@ -4,6 +4,8 @@
 
 ## Component set: Dialog
 
+Modal dialog centred over a scrim for a focused task or decision. 3 variants: type (default, image, wizard) — image adds a media header (show modal-image + image slot); wizard adds a Stepper for multi-step flows. title is a text prop, content is a slot, footer actions use a Button Group. role=dialog with aria-modal=true; focus is trapped, Esc closes, focus returns to the trigger. For two panes use Split Dialog; for a yes/no decision use Confirmation Dialog; for an edge-anchored panel use Drawer.
+
 ### Props
 
 | Prop               | Type    | Options / default            |
@@ -72,10 +74,6 @@ Default variant: `type=default` · 3 variants · default size 480×464px
 | default | 480×464 | `color.surface.dialog` |        | `shadow/dialog` | `color.text.primary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                                                                                                   | `color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`  |
 | image   | 480×452 | `color.surface.dialog` |        | `shadow/dialog` | `color.text.primary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                                                                                                   | `color.action.tertiary.icon.default`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`  |
 | wizard  | 480×464 | `color.surface.dialog` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.tertiary`<br>`color.action.secondary.text.danger.disabled`<br>`color.action.primary.text.disabled`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.action.tertiary.icon.default`<br>`color.action.secondary.icon.disabled`<br>`color.action.primary.icon.default` |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Issues detected (page)
 

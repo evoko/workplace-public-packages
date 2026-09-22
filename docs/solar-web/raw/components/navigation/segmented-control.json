@@ -5,7 +5,7 @@
     {
       "name": "Segmented Control Item",
       "id": "2488:12014",
-      "description": "Single segment inside Segmented Control. 4 variants: selected (false/true) × state (default, hover). Selection is persistent — a click commits, not previews. Optional leading/trailing icons via boolean instance-swap. Only default and hover states are defined here; pressed/focus/disabled are handled by the parent assembly treating the segment as a radio.",
+      "description": "Single segment inside Segmented Control. 8 variants: selected (false/true) × state (default, hover) × size (md, sm). Selection is persistent — a click commits, not previews. Optional leading/trailing icons via boolean instance-swap. Only default and hover states are defined here; pressed/focus/disabled are handled by the parent assembly treating the segment as a radio.",
       "docLinks": [],
       "variantCount": 8,
       "props": {
@@ -523,7 +523,7 @@
     {
       "name": "Segmented Control",
       "id": "6170:20250",
-      "description": "",
+      "description": "Inline group of 2–5 mutually exclusive segments, with an optional field label and helper so it can sit in a form. 2 variants: size (sm, md). Booleans show helper, show mandatory; label and helper are text props; Track is a slot for Segmented Control Item instances. Behaves as a radio group: commits on click, one segment always selected. For 6+ options or URL-level navigation use Tabs; for on/off use Toggle.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
@@ -582,6 +582,9 @@
           "align": "MIN/MIN",
           "sizing": "HUG/HUG"
         },
+        "vars": {
+          "itemSpacing": "Spatial:inset/xs"
+        },
         "children": [
           {
             "name": "Label",
@@ -602,6 +605,9 @@
               ],
               "align": "MIN/MIN",
               "sizing": "HUG/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/2xs"
             },
             "children": [
               {

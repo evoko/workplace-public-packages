@@ -83,7 +83,7 @@ Instance census (tree capped at depth 3): Icon/None ×37, Counter ×17, Tag ×10
 | breakpoint | size     | fill                 | stroke | effect | text                                                                                                                                                                                                                                                                                                                                     | icon                                                                                                                                                                                                                                   |
 | ---------- | -------- | -------------------- | ------ | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | desktop    | 1368×811 |                      |        |        | `color.text.tertiary`<br>`color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.feedback.info`<br>`color.action.secondary.text.danger.default`<br>`color.text.feedback.neutral`<br>`color.text.feedback.warning` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`<br>`color.action.secondary.icon.danger.default`<br>`color.neutral.900`<br>`color.icon.feedback.warning` |
-| mobile     | 390×1228 | `color.surface.base` |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.feedback.warning`<br>`color.action.secondary.text.default`                                                 | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.tertiary.icon.default`<br>`color.neutral.900`<br>`color.icon.feedback.warning`<br>`color.action.secondary.icon.default`                                                |
+| mobile     | 390×1228 | `color.surface.base` |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.feedback.warning`<br>`color.action.secondary.text.default`                                                 | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.tertiary.icon.default`<br>`color.icon.feedback.warning`<br>`color.action.secondary.icon.default`                                                                       |
 
 ### Issues detected
 
@@ -186,7 +186,8 @@ Default variant: `type=method` · 2 variants · default size 542×104px
 
 - **type=method** · component · row gap 8 pad 20/20/20/20 FIXED/HUG · 542×104  
   fill `color.surface.base` · stroke `color.border.subtle` 1px · itemSpacing `stack.xs` · padding `inset.lg` · strokeWeight `border.default` · radius `radius.container`
-  - **Information** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 430×64
+  - **Information** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 430×64  
+    itemSpacing `inset.xs`
     - **Card Header** · frame · row gap 8 pad 0/0/4/0 FILL/HUG · 430×28  
       itemSpacing `inset.xs` · padding `stack.2xs`
       - **Icon/Subscription** · instance of **Icon/Subscription** (solid=false) · FIXED/FIXED · 24×24  
@@ -209,7 +210,7 @@ Default variant: `type=method` · 2 variants · default size 542×104px
 | Fills           | `color.surface.base`, `color.surface.feedback.info.subtle`                                                                                                                                        |
 | Strokes         | `color.action.secondary.border.danger.default`, `color.action.secondary.border.default`, `color.border.feedback.info.subtle`, `color.border.medium`, `color.border.subtle`                        |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.danger.default`, `color.action.secondary.text.default`, `color.text.feedback.info`, `color.text.primary`, `color.text.tertiary` |
-| Icon color      | `color.action.secondary.icon.danger.default`, `color.action.secondary.icon.default`, `color.icon.secondary`, `color.neutral.900`                                                                  |
+| Icon color      | `color.action.secondary.icon.danger.default`, `color.action.secondary.icon.default`, `color.icon.primary`, `color.icon.secondary`                                                                 |
 | Spacing         | `inset.2xs`, `inset.lg`, `inset.none`, `inset.sm`, `inset.xs`, `stack.2xs`, `stack.xs`                                                                                                            |
 | Radius          | `radius.container`, `radius.control`, `radius.pill`                                                                                                                                               |
 | Border width    | `border.default`                                                                                                                                                                                  |
@@ -237,12 +238,7 @@ Default variant: `type=method` · 2 variants · default size 542×104px
 | type   | size    | fill                 | stroke                | effect | text                                                                                                                                                                                                        | icon                                                                                                            |
 | ------ | ------- | -------------------- | --------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | method | 542×104 | `color.surface.base` | `color.border.subtle` |        | `color.text.feedback.info`<br>`color.text.primary`<br>`color.text.tertiary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.danger.default` | `color.icon.secondary`<br>`color.action.secondary.icon.default`<br>`color.action.secondary.icon.danger.default` |
-| add    | 542×104 |                      | `color.border.medium` |        | `color.text.primary`                                                                                                                                                                                        | `color.neutral.900`                                                                                             |
-
-### Issues detected
-
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
-- Hard-coded gap `8px` on layer _Information_
+| add    | 542×104 |                      | `color.border.medium` |        | `color.text.primary`                                                                                                                                                                                        | `color.icon.primary`                                                                                            |
 
 ## Documentation card
 

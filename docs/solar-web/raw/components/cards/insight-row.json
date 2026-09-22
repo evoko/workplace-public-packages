@@ -5,7 +5,7 @@
     {
       "name": "Insight Row",
       "id": "6905:61",
-      "description": "",
+      "description": "Single-line insight for a feed or panel — severity icon, title, meta and an optional action. 10 variants: severity (success, danger, warning, info, ghost) × state (default, hover). ghost is the empty placeholder row. Props: Title, Meta (text), showAction + action (instance swap). Stack rows in a List; for the same content as a standalone card use Insight Card.",
       "docLinks": [],
       "variantCount": 10,
       "props": {

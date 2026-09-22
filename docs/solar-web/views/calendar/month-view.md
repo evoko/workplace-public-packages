@@ -14,7 +14,7 @@ Composed Month View pattern. Wires up Calendar Toolbar (top), Weekday Header row
   - **Calendar Body** · frame · column gap 0 pad 4/20/4/20 FILL/HUG · 1280×644  
     padding `inset.lg`, `inset.2xs`
     - **Calendar Surface** · frame · column gap 0 pad 0/0/0/0 FILL/HUG · 1240×636  
-      fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/raised` · strokeWeight `border.default`
+      fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/raised` · strokeWeight `border.default` · radius `radius.dialog`
       - **Weekday Header Row** · frame · row gap 0 pad 0/0/0/0 FILL/FIXED · 1240×36
       - **Day Grid** · frame · grid gap 0 pad 0/0/0/0 FILL/HUG · 1240×600
 
@@ -27,16 +27,13 @@ Instance census (tree capped at depth 3): Event Chip ×105, Icon/Repeat ×105, D
 | Fills        | `color.surface.base`                            |
 | Strokes      | `color.border.subtle`                           |
 | Spacing      | `inset.2xs`, `inset.lg`, `inset.md`, `inset.sm` |
+| Radius       | `radius.dialog`                                 |
 | Border width | `border.default`                                |
 | Effects      | `shadow/raised`                                 |
 
 ### Composes
 
 - Calendar Toolbar
-
-### Issues detected
-
-- Hard-coded radius `12px` on layer _Calendar Body › Calendar Surface_
 
 ## Issues detected (page)
 

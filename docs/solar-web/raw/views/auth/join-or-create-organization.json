@@ -3,7 +3,7 @@
   "pageId": "9441:1818",
   "componentSets": [
     {
-      "name": "Auth - Join Organization ",
+      "name": "Auth — Join Organization",
       "id": "9441:2459",
       "description": "",
       "docLinks": [],
@@ -408,7 +408,7 @@
       ]
     },
     {
-      "name": "Auth - Create organization",
+      "name": "Auth — Create Organization",
       "id": "9441:2461",
       "description": "",
       "docLinks": [],

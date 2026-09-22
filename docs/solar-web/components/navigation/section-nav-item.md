@@ -4,6 +4,8 @@
 
 ## Component set: Section Nav Item
 
+One item in a vertical section nav rail — settings and admin sub-navigation. 5 variants: state (default, hover, focus, selected, disabled); selected maps to aria-current=page and uses tint + indicator, not colour alone. Props: label (text), icon (instance swap). Part of the Section Nav pattern; for primary app navigation use Nav Item inside Sidebar.
+
 ### Props
 
 | Prop    | Type          | Options / default                                 |
@@ -58,11 +60,9 @@ Default variant: `state=default` · 5 variants · default size 220×32px
 | selected | 220×32 | `color.surface.active` |        |                        | `color.text.primary`   | `color.icon.primary`   |
 | disabled | 220×32 |                        |        |                        | `color.text.secondary` | `color.icon.secondary` |
 
-### Issues detected
-
-- Component description is empty.
-
 ## Component: Section Nav Group Header
+
+Heading that groups Section Nav Items under a category label. Single variant; label is a text prop. Non-interactive; render as a heading or list-group label so screen readers announce the group. Used only inside Section Nav.
 
 ### Props
 
@@ -91,10 +91,6 @@ Default variant: `state=default` · 5 variants · default size 220×32px
 | Layer | Controlled property | Prop    |
 | ----- | ------------------- | ------- |
 | Label | characters          | `label` |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Documentation card
 

@@ -57,7 +57,15 @@ try {
     stdio: 'ignore',
   });
 } catch {
-  console.log('dart format skipped: the Dart SDK is not on PATH');
+  // Not a warning to skim past: the emitter writes unformatted Dart and the committed file is
+  // formatted, so without the SDK tokens.dart is left differing from what is checked in by
+  // hundreds of lines. Exiting non-zero says so plainly rather than leaving a diff to puzzle over.
+  console.error(
+    'dart format FAILED: the Dart SDK is not on PATH, so packages/solar_flutter/lib/src/generated/tokens.dart\n' +
+      'is unformatted and will not match the committed file. Install Flutter, or restore that file and\n' +
+      'regenerate once the SDK is available. Everything else was written normally.',
+  );
+  process.exitCode = 1;
 }
 
 console.log(

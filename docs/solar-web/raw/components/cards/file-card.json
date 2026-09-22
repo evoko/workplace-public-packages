@@ -5,7 +5,7 @@
     {
       "name": "File Card",
       "id": "8273:15264",
-      "description": "",
+      "description": "Card for a single file or asset in a file-browser grid — type icon, name and meta line. 2 variants: type (File Card, New Asset Tile). File Card shows an existing item; New Asset Tile is the dashed add-new placeholder that opens the upload flow. Props: title, meta, label (text), fileIcon (instance swap). The whole card is one focusable control named by the file name. Not a generic content card — use Card for that.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
@@ -149,6 +149,7 @@
               "sizing": "FILL/HUG"
             },
             "vars": {
+              "itemSpacing": "Spatial:inset/xs",
               "paddingLeft": "Spatial:inset/md",
               "paddingTop": "Spatial:inset/md",
               "paddingRight": "Spatial:inset/md",

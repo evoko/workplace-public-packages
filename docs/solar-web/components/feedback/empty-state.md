@@ -4,6 +4,8 @@
 
 ## Component: EmptyState
 
+Placeholder for a view with nothing to show — icon, title, description and an optional call to action. Single variant; hasAction toggles the Button. The copy carries the meaning: say why it is empty and what to do next (first use, no results, error). Use inside tables, panels and full pages; for a loading placeholder use Skeleton or Spinner.
+
 ### Props
 
 | Prop        | Type    | Options / default |
@@ -49,10 +51,6 @@
 
 - Button
 - Icon/None
-
-### Issues detected
-
-- Component description is empty.
 
 ## Issues detected (page)
 

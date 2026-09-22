@@ -626,4 +626,9 @@ writeMeta(here, file, { pages: n, failed, unresolvedVariableRefs: unresolved });
 console.log(
   `done: ${n} pages, file version ${version}${failed.length ? `, ${failed.length} FAILED (re-run to retry: ${failed.join(', ')})` : ''}${unresolved ? `, ${unresolved} UNRESOLVED variable refs: resolve the new VariableIDs (see raw/README.md) and add them to _variables.json` : ''}`,
 );
-if (unresolved || failed.length) process.exitCode = 2;
+// A page that could not be fetched is a failure: the data on disk is now incomplete.
+// An unresolved variable reference is not -- every page was written, and the id is recorded in
+// _meta.json and named in the output above so it can be added to _variables.json. Exiting
+// non-zero for a finding is what stopped `solar:sync` from rebuilding the docs and from
+// reaching the icons file at all.
+if (failed.length) process.exitCode = 2;

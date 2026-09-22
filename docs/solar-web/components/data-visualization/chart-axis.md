@@ -25,31 +25,37 @@ Default variant: `orientation=horizontal, breakpoint=desktop` · 4 variants · d
 
 ### Anatomy (default variant)
 
-- **orientation=horizontal, breakpoint=desktop** · component · column gap 4 pad 0/0/0/0 FIXED/HUG · 600×22
+- **orientation=horizontal, breakpoint=desktop** · component · column gap 4 pad 0/0/0/0 FIXED/HUG · 600×22  
+  itemSpacing `inset.2xs`
   - **Axis Line** · frame · FILL/FIXED · 600×1  
     fill `color.border.medium`
   - **Ticks** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 600×17
-    - **Tick** · frame · column gap 4 pad 0/0/0/0 HUG/HUG · 8×17
+    - **Tick** · frame · column gap 4 pad 0/0/0/0 HUG/HUG · 8×17  
+      itemSpacing `inset.2xs`
       - **Tick Mark** · frame · FIXED/FIXED · 1×4  
         fill `color.border.medium`
       - **0** · text `helper/sm` "0" · HUG/HUG · 8×9  
         fill `color.text.secondary` · lineHeight `type.line-height.helper.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.helper.sm` · fontStyle `type.font-weight.400`
-    - **Tick** · frame · column gap 4 pad 0/0/0/0 HUG/HUG · 15×17
+    - **Tick** · frame · column gap 4 pad 0/0/0/0 HUG/HUG · 15×17  
+      itemSpacing `inset.2xs`
       - **Tick Mark** · frame · FIXED/FIXED · 1×4  
         fill `color.border.medium`
       - **25** · text `helper/sm` "25" · HUG/HUG · 15×9  
         fill `color.text.secondary` · lineHeight `type.line-height.helper.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.helper.sm` · fontStyle `type.font-weight.400`
-    - **Tick** · frame · column gap 4 pad 0/0/0/0 HUG/HUG · 15×17
+    - **Tick** · frame · column gap 4 pad 0/0/0/0 HUG/HUG · 15×17  
+      itemSpacing `inset.2xs`
       - **Tick Mark** · frame · FIXED/FIXED · 1×4  
         fill `color.border.medium`
       - **50** · text `helper/sm` "50" · HUG/HUG · 15×9  
         fill `color.text.secondary` · lineHeight `type.line-height.helper.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.helper.sm` · fontStyle `type.font-weight.400`
-    - **Tick** · frame · column gap 4 pad 0/0/0/0 HUG/HUG · 14×17
+    - **Tick** · frame · column gap 4 pad 0/0/0/0 HUG/HUG · 14×17  
+      itemSpacing `inset.2xs`
       - **Tick Mark** · frame · FIXED/FIXED · 1×4  
         fill `color.border.medium`
       - **75** · text `helper/sm` "75" · HUG/HUG · 14×9  
         fill `color.text.secondary` · lineHeight `type.line-height.helper.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.helper.sm` · fontStyle `type.font-weight.400`
-    - **Tick** · frame · column gap 4 pad 0/0/0/0 HUG/HUG · 21×17
+    - **Tick** · frame · column gap 4 pad 0/0/0/0 HUG/HUG · 21×17  
+      itemSpacing `inset.2xs`
       - **Tick Mark** · frame · FIXED/FIXED · 1×4  
         fill `color.border.medium`
       - **100** · text `helper/sm` "100" · HUG/HUG · 21×9  
@@ -61,6 +67,7 @@ Default variant: `orientation=horizontal, breakpoint=desktop` · 4 variants · d
 | --------------- | ----------------------------------------------------------------------------------------------------- |
 | Fills           | `color.border.medium`                                                                                 |
 | Text color      | `color.text.secondary`                                                                                |
+| Spacing         | `inset.2xs`                                                                                           |
 | Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.line-height.helper.sm`, `type.size.helper.sm` |
 | Text styles     | `helper/sm`                                                                                           |
 
@@ -72,15 +79,6 @@ Default variant: `orientation=horizontal, breakpoint=desktop` · 4 variants · d
 | horizontal  | mobile     | 343×22  |      |        |        | `color.text.secondary` |      |
 | vertical    | desktop    | 100×280 |      |        |        | `color.text.secondary` |      |
 | vertical    | mobile     | 100×220 |      |        |        | `color.text.secondary` |      |
-
-### Issues detected
-
-- Hard-coded gap `4px` on layer _orientation=horizontal, breakpoint=desktop_
-- Hard-coded gap `4px` on layer _Ticks › Tick_
-- Hard-coded gap `4px` on layer _Ticks › Tick_
-- Hard-coded gap `4px` on layer _Ticks › Tick_
-- Hard-coded gap `4px` on layer _Ticks › Tick_
-- Hard-coded gap `4px` on layer _Ticks › Tick_
 
 ## Component set: Chart Gridlines
 

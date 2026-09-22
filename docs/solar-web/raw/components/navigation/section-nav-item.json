@@ -5,7 +5,7 @@
     {
       "name": "Section Nav Item",
       "id": "8109:19",
-      "description": "",
+      "description": "One item in a vertical section nav rail — settings and admin sub-navigation. 5 variants: state (default, hover, focus, selected, disabled); selected maps to aria-current=page and uses tint + indicator, not colour alone. Props: label (text), icon (instance swap). Part of the Section Nav pattern; for primary app navigation use Nav Item inside Sidebar.",
       "docLinks": [],
       "variantCount": 5,
       "props": {
@@ -251,7 +251,7 @@
     {
       "name": "Section Nav Group Header",
       "id": "8044:7",
-      "description": "",
+      "description": "Heading that groups Section Nav Items under a category label. Single variant; label is a text prop. Non-interactive; render as a heading or list-group label so screen readers announce the group. Used only inside Section Nav.",
       "props": {
         "label#8044:0": {
           "type": "TEXT",

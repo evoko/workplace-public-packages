@@ -4,7 +4,7 @@
 
 ## Component set: Link
 
-Inline text link for navigating within or across the product. Renders as `<a>` and binds to color/text/link/\* tokens. 12 variants: size (xs 12px, sm 14px, md 16px) × state (default, hover, active, disabled). Optional leading and trailing icons via instance swap. Underlines on hover so the affordance never relies on color alone. 'active' here is the momentary pressed/visited color — for persistent selection use a Nav Item pattern. For actions that trigger a side effect (save, submit), use Button, not Link.
+Inline text link for navigating within or across the product. Renders as `<a>` and binds to color/text/link/\* tokens. 15 variants: size (xs 12px, sm 14px, md 16px) × state (default, hover, pressed, focus, disabled). Optional leading and trailing icons via instance swap. Underlines on hover so the affordance never relies on color alone. 'pressed' here is the momentary pressed/visited color — for persistent selection use a Nav Item pattern. For actions that trigger a side effect (save, submit), use Button, not Link.
 
 ### Props
 
@@ -69,10 +69,6 @@ Default variant: `size=md, state=default` · 15 variants · default size 127×24
 | xs   | pressed  | 88×12  |      |        |        | `color.text.link.active`   | `color.icon.link.active`   |
 | xs   | disabled | 88×12  |      |        |        | `color.text.link.disabled` | `color.icon.link.disabled` |
 | xs   | focus    | 88×12  |      |        |        | `color.text.link.default`  | `color.icon.link.default`  |
-
-### Issues detected
-
-- Description says 12 variants; the set has 15.
 
 ## Documentation card
 

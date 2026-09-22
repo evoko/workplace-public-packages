@@ -147,7 +147,7 @@
             "{Color:text/secondary}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "hidden": []
         },
@@ -166,7 +166,7 @@
             "{Color:text/inverse}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "overrides": {
             "changed": {

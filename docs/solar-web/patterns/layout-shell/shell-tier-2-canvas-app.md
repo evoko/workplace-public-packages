@@ -26,7 +26,8 @@ Default variant: `breakpoint=Desktop` · 2 variants · default size 1440×800px
       itemSpacing `stack.xs` · layoutGrids `grid.columns.lg,Spatial(local):stack.xs`
       - **left** · slot · column gap 0 pad 8/8/8/8 FIXED/FILL · 324×736  
         fill `color.surface.raised` · itemSpacing `stack.none` · padding `inset.xs` · radius `radius.container` · prop slotContentId←left
-        - **Segmented Control** · instance of **Segmented Control** (size=md) · column gap 8 pad 0/0/0/0 FILL/FIXED · 308×40
+        - **Segmented Control** · instance of **Segmented Control** (size=md) · column gap 8 pad 0/0/0/0 FILL/FIXED · 308×40  
+          itemSpacing `inset.xs`
       - **center** · slot · column gap 0 pad 0/0/0/0 FILL/FILL · 1092×736  
         fill `color.surface.raised` · itemSpacing `stack.none` · padding `stack.none`, `inset.none` · radius `radius.container` · prop slotContentId←center
         - **Breadcrumbs** · instance of **Breadcrumbs** (items=5) · row gap 12 pad 16/20/16/20 FILL/HUG · 1092×44  

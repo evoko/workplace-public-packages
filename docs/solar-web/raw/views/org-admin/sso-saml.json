@@ -591,6 +591,13 @@
                       ],
                       "align": "MIN/CENTER",
                       "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xl",
+                      "paddingLeft": "Spatial:inset/lg",
+                      "paddingTop": "Spatial:inset/xs",
+                      "paddingRight": "Spatial:inset/lg",
+                      "paddingBottom": "Spatial:inset/xl"
                     }
                   }
                 ]
@@ -695,7 +702,6 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
-            "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}",
             "{Color:icon/tertiary}",

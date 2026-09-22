@@ -2,11 +2,11 @@
 
 > SOLAR Web · Figma page `↳ 🟠 Coachmark` (id `10785:28`) · section `components/overlays` · raw data: [`raw/components/overlays/coachmark.json`](../../raw/components/overlays/coachmark.json)
 
-## Component set: Node end
+## Component set: Node End
 
 Terminator dot for the Coachmark connector — the marker that sits on the element a tour step is describing.
 
-Variants (2): State = 01 | 02. 01 is a plain 6px dot, for the connector origin or a passive anchor. 02 adds a halo around the dot, marking the element the current step is about.
+Variants (2): halo = false | true. false is a plain 6px Dot, for a passive anchor. true adds a Halo around the Dot, marking the element the current step is about.
 
 Both states bind surface/feedback/info/strong. Used inside Coachmark; not intended to be placed on its own.
 
@@ -14,18 +14,18 @@ Accessibility: decorative. Mark it aria-hidden and give the target element its o
 
 ### Props
 
-| Prop    | Type    | Options / default |
-| ------- | ------- | ----------------- |
-| `State` | variant | **01** · 02       |
+| Prop   | Type    | Options / default |
+| ------ | ------- | ----------------- |
+| `halo` | variant | **false** · true  |
 
-Default variant: `State=01` · 2 variants · default size 12×12px
+Default variant: `halo=false` · 2 variants · default size 12×12px
 
 ### Anatomy (default variant)
 
-- **State=01** · component · FIXED/FIXED · 12×12
-  - **Ellipse 5** · ellipse · 6×6  
+- **halo=false** · component · FIXED/FIXED · 12×12
+  - **Halo** · ellipse · 6×6  
     fill `color.surface.feedback.info.strong` · opacity 0.20000000298023224
-  - **Ellipse 3** · ellipse · 6×6  
+  - **Dot** · ellipse · 6×6  
     fill `color.surface.feedback.info.strong`
 
 ### Tokens used
@@ -36,14 +36,10 @@ Default variant: `State=01` · 2 variants · default size 12×12px
 
 ### Variant matrix
 
-| State | size  | fill | stroke | effect | text | icon |
+| halo  | size  | fill | stroke | effect | text | icon |
 | ----- | ----- | ---- | ------ | ------ | ---- | ---- |
-| 01    | 12×12 |      |        |        |      |      |
-| 02    | 12×12 |      |        |        |      |      |
-
-### Issues detected
-
-- State axis uses non-standard value(s): 01, 02.
+| false | 12×12 |      |        |        |      |      |
+| true  | 12×12 |      |        |        |      |      |
 
 ## Component set: Coachmark
 
@@ -51,16 +47,16 @@ Anchored step card for a guided product tour. The card carries one step of copy;
 
 Variants (2): side = right (default) | left — which edge the connector leaves from. Choose the side that points toward the target without the card covering it.
 
-Anatomy: 320px card on surface/inverse (16px padding, 20px gap) · Title 20px text/inverse with a trailing Icon/Close · step text 12px text/inverse · counter 14px text/secondary · Button Group (regular, 8px gap) with two equal-width md secondary Buttons · connector line + origin dot + Node end terminator, all surface/feedback/info/strong.
+Anatomy: Card (320px, surface/inverse, 16px padding, 20px gap) · Header = Title 20px text/inverse + Icon/Close · Body 12px text/inverse · Counter 14px text/tertiary · Button Group (regular, 8px gap) with two equal-width md secondary Buttons · Connector = Line + Origin Dot + Node End terminator, all surface/feedback/info/strong.
 
 Use for: first-run tours, feature announcements tied to a specific control, progressive disclosure of a multi-step workflow.
 Do not use for: hover hints (Tooltip), on-demand detail (Popover), or anything blocking (Dialog). A tour must always be skippable.
 
 Content: keep tours to 3–6 steps, one idea per step. Disable Back on step 1 and relabel Next to "Done" on the last step.
 
-Open issue: the counter fails WCAG AA in both modes (3.19:1 Light, 2.18:1 Dark, against 4.5:1 at 14px) because text/secondary and surface/inverse invert in the same direction. Needs an inverse-secondary text token. See BACKLOG TOK-2 — blocks 1.0 promotion.
+Contrast: all three text roles pass WCAG AA on the inverse card (Title 18.88/17.32, Body 18.88/17.32, Counter 7.94/5.43, Light/Dark). The Counter intentionally uses text/tertiary — it is the one de-emphasised token that inverts opposite to the surface. text/secondary fails at 3.19:1 / 2.18:1; do not swap it.
 
-Accessibility: role="dialog" aria-modal="false", aria-labelledby on the title. Move focus to the card on step change and announce via aria-live="polite". Esc dismisses the tour. The connector is decorative.
+Accessibility: role="dialog" aria-modal="false", aria-labelledby on the Title. Move focus to the card on step change and announce via aria-live="polite". Esc dismisses the tour. The Connector is decorative.
 
 ### Props
 
@@ -73,25 +69,26 @@ Default variant: `side=right` · 2 variants · default size 320×171px
 ### Anatomy (default variant)
 
 - **side=right** · component · row gap 0 pad 0/0/0/0 HUG/HUG · 320×171
-  - **Coachmark** · frame · column gap 20 pad 16/16/16/16 FIXED/HUG · 320×171  
+  - **Card** · frame · column gap 20 pad 16/16/16/16 FIXED/HUG · 320×171  
     fill `color.surface.inverse` · effect `shadow/overlay` · itemSpacing `stack.lg` · padding `inset.md` · radius `radius.container`
-    - **Frame 20069** · frame · row gap 8 pad 0/0/0/0 FILL/HUG · 288×20
+    - **Header** · frame · row gap 8 pad 0/0/0/0 FILL/HUG · 288×20  
+      itemSpacing `inset.xs`
       - **Icon/Close** · instance of **Icon/Close** (solid=false) · FIXED/FIXED · 20×20  
         width `icon.md`
       - **Title** · text `title/sm` "Title" · FIXED/FIXED · 41×15  
         fill `color.text.inverse` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500`
-    - **Tutorial step text** · text `body/sm/regular` "Tutorial step text" · FILL/HUG · 288×9  
+    - **Body** · text `body/sm/regular` "Tutorial step text" · FILL/HUG · 288×9  
       fill `color.text.inverse` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.400`
-    - **1 / 6 steps** · text `body/md/medium` "1 / 6 steps" · FILL/HUG · 288×10  
+    - **Counter** · text `body/md/medium` "1 / 6 steps" · FILL/HUG · 288×10  
       fill `color.text.tertiary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.500`
     - **Button Group** · instance of **Button Group** (orientation=horizontal, type=regular) · row gap 8 pad 0/0/0/0 FILL/HUG · 288×40  
       itemSpacing `inset.xs`
-  - **Tutorial node** · frame · row gap 122 pad 0/0/0/0 FIXED/FIXED · 100×6
-    - **Vector (Stroke)** · vector · FILL/FIXED · 100×1  
+  - **Connector** · frame · row gap 122 pad 0/0/0/0 FIXED/FIXED · 100×6
+    - **Line** · vector · FILL/FIXED · 100×1  
       fill `color.surface.feedback.info.strong`
-    - **Ellipse** · ellipse · FIXED/FIXED · 6×6  
+    - **Origin Dot** · ellipse · FIXED/FIXED · 6×6  
       fill `color.surface.feedback.info.strong`
-    - **Node end** · instance of **Node end** (State=02) · FIXED/FIXED · 12×12
+    - **Node End** · instance of **Node End** (halo=true) · FIXED/FIXED · 12×12
 
 ### Tokens used
 
@@ -111,7 +108,7 @@ Default variant: `side=right` · 2 variants · default size 320×171px
 
 - Button Group
 - Icon/Close
-- Node end
+- Node End
 
 ### Variant matrix
 
@@ -122,8 +119,7 @@ Default variant: `side=right` · 2 variants · default size 320×171px
 
 ### Issues detected
 
-- Hard-coded gap `8px` on layer _Coachmark › Frame 20069_
-- Hard-coded gap `122px` on layer _Tutorial node_
+- Hard-coded gap `122px` on layer _Connector_
 
 ## Documentation card
 
@@ -134,18 +130,19 @@ Anchored step card for a guided product tour. The card carries the copy for one 
 **Anatomy**
 
 Card 320px, surface/inverse, 16px padding, 20px gap, shared shadow effect style.  
-Title 20px, text/inverse, centred, with a close glyph (Icon/Close, 20px) on the trailing edge.  
-Step text 12px, text/inverse, centred — the copy for this step.  
-Counter 14px, text/secondary, centred — position in the tour.  
-Actions Button Group (regular, 8px gap), two equal-width md secondary Buttons.  
-Connector 100px line + origin dot + a Node end terminator, all surface/feedback/info/strong.
+Header Title (20px, text/inverse, centred) + Icon/Close glyph on the trailing edge.  
+Body 12px, text/inverse, centred — the copy for this step.  
+Counter 14px, text/tertiary, centred — position in the tour.  
+Button Group Regular, 8px gap, two equal-width md secondary Buttons.  
+Connector Line (100px) + Origin Dot at the card edge + a Node End terminator,  
+all surface/feedback/info/strong.
 
 **Variants**
 
 Coachmark side = right (default) | left  
 Which edge the connector leaves from. Pick the side that points toward the target without the card covering it.  
-Node end State = 01 | 02  
-The terminator on the far end of the connector. 01 is a plain 6px dot; 02 adds a halo, marking the element the step is about.  
+Node End state = 01 | 02  
+The terminator on the far end of the connector. 01 is a plain 6px Dot; 02 adds a Halo, marking the element the step is about.  
 Coachmark has no interactive states of its own — Back and Next carry Button states, and the close glyph is a bare icon.
 
 **Usage**
@@ -155,12 +152,11 @@ Don't — use this for a hover hint (Tooltip) or on-demand detail (Popover), blo
 
 **Accessibility**
 
-Role role="dialog" aria-modal="false", aria-labelledby on the title.  
+Role role="dialog" aria-modal="false", aria-labelledby on the Title.  
 Focus Move focus to the card on every step change; keep Tab order inside it.  
-SR Announce step changes via aria-live="polite"; the counter reads "Step 1 of 6".  
+SR Announce step changes via aria-live="polite"; the Counter reads "Step 1 of 6".  
 Keys Esc dismisses the tour. Back, Next and close are real buttons, not divs.  
-Target The connector is decorative — the target element still needs its own accessible name.  
-⚠️ Open issue — the counter binds text/secondary on surface/inverse and fails WCAG AA in both modes: 3.19:1 in Light (#646464 on #111111) and 2.18:1 in Dark (#a8a8a8 on #f5f5f5), against 4.5:1 required at 14px. Both tokens invert in the same direction, so the pair never separates. Needs an inverse-secondary text token — SOLAR has no text/inverse/secondary today. See BACKLOG TOK-2. Blocks 🟢.
+Target The Connector is decorative.
 
 **Rules**
 

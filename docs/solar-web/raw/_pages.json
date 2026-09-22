@@ -1142,7 +1142,8 @@
       "slug": "publish-deploy",
       "id": "6312:2",
       "title": "Publish / Deploy",
-      "status": "done"
+      "status": "done",
+      "missingInFigma": true
     },
     {
       "section": "views/help",
@@ -1222,8 +1223,8 @@
   ],
   "lastSync": {
     "file": "OGvmMNnywH7JWDyEhOzjcc",
-    "version": "2401655272813649785",
-    "lastModified": "2026-09-21T12:38:18Z",
-    "date": "2026-09-21"
+    "version": "2402022067860668168",
+    "lastModified": "2026-09-22T11:46:20Z",
+    "date": "2026-09-22"
   }
 }

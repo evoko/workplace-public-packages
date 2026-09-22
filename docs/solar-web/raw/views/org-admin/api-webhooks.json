@@ -1714,7 +1714,6 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
-            "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}",
             "{Color:action/tertiary/icon/danger/default}"

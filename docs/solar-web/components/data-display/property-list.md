@@ -4,6 +4,8 @@
 
 ## Component set: PropertyRow
 
+One label–value row inside Property List — optional leading icon, label, optional description and a trailing control. 14 variants: in-card (false, true) × trailing (none, action, toggle, select, icon-button, segmented-control, tag). Props: label, description (text), hasDescription, hasLeading + leading (instance swap), hasTrailing. Renders as `<dt>`/`<dd>`; the trailing control carries its own interaction states. For editable fields use Form Row.
+
 ### Props
 
 | Prop             | Type          | Options / default                                                           |
@@ -43,7 +45,7 @@ Default variant: `in-card=false, trailing=action` · 14 variants · default size
 | Fills           | `color.action.secondary.bg.default`                                                                                                                                                 |
 | Strokes         | `color.action.secondary.border.default`                                                                                                                                             |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.info`, `color.text.feedback.neutral`, `color.text.primary`, `color.text.secondary` |
-| Icon color      | `color.action.secondary.icon.default`, `color.icon.primary`, `color.icon.secondary`, `color.neutral.900`                                                                            |
+| Icon color      | `color.action.secondary.icon.default`, `color.icon.primary`, `color.icon.secondary`                                                                                                 |
 | Spacing         | `inset.none`, `inset.sm`, `inset.xs`, `stack.md`                                                                                                                                    |
 | Radius          | `radius.control`                                                                                                                                                                    |
 | Border width    | `border.default`                                                                                                                                                                    |
@@ -70,29 +72,26 @@ Default variant: `in-card=false, trailing=action` · 14 variants · default size
 
 ### Variant matrix
 
-| in-card | trailing          | size   | fill | stroke | effect | text                                                                                                                           | icon                                                                  |
-| ------- | ----------------- | ------ | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
-| false   | action            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.neutral.900`<br>`color.action.secondary.icon.default`          |
-| true    | action            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.neutral.900`<br>`color.action.secondary.icon.default`          |
-| false   | toggle            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.neutral.900`                                                   |
-| true    | toggle            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.neutral.900`                                                   |
-| false   | select            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.info`                                                   | `color.neutral.900`<br>`color.icon.primary`                           |
-| true    | select            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.info`                                                   | `color.neutral.900`<br>`color.icon.primary`                           |
-| false   | icon-button       | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.neutral.900`<br>`color.action.secondary.icon.default`          |
-| true    | icon-button       | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.neutral.900`<br>`color.action.secondary.icon.default`          |
-| false   | segmented-control | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.info`                                                   | `color.neutral.900`<br>`color.icon.primary`<br>`color.icon.secondary` |
-| true    | segmented-control | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.info`                                                   | `color.neutral.900`<br>`color.icon.primary`<br>`color.icon.secondary` |
-| false   | none              | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.neutral.900`                                                   |
-| true    | none              | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.neutral.900`                                                   |
-| false   | tag               | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.neutral`                                                | `color.neutral.900`                                                   |
-| true    | tag               | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.neutral`                                                | `color.neutral.900`                                                   |
-
-### Issues detected
-
-- Component description is empty.
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
+| in-card | trailing          | size   | fill | stroke | effect | text                                                                                                                           | icon                                                          |
+| ------- | ----------------- | ------ | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
+| false   | action            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.action.secondary.icon.default` |
+| true    | action            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.action.secondary.icon.default` |
+| false   | toggle            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.icon.primary`                                          |
+| true    | toggle            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.icon.primary`                                          |
+| false   | select            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.info`                                                   | `color.icon.primary`                                          |
+| true    | select            | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.info`                                                   | `color.icon.primary`                                          |
+| false   | icon-button       | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.icon.primary`<br>`color.action.secondary.icon.default` |
+| true    | icon-button       | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.icon.primary`<br>`color.action.secondary.icon.default` |
+| false   | segmented-control | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.info`                                                   | `color.icon.primary`<br>`color.icon.secondary`                |
+| true    | segmented-control | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.info`                                                   | `color.icon.primary`<br>`color.icon.secondary`                |
+| false   | none              | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.icon.primary`                                          |
+| true    | none              | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`                                                                                 | `color.icon.primary`                                          |
+| false   | tag               | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.neutral`                                                | `color.icon.primary`                                          |
+| true    | tag               | 505×64 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.feedback.neutral`                                                | `color.icon.primary`                                          |
 
 ## Component set: PropertyList
+
+Container for the read-only key–value pairs of an entity, built from PropertyRow instances. 2 variants: in-card (false, true) — true removes the outer chrome for placement inside Card or Detail Side Panel. items is a slot. Renders as a description list (`<dl>`) so label and value stay programmatically paired. For editable fields use Form Section; for tabular data use Table.
 
 ### Props
 
@@ -128,7 +127,7 @@ Default variant: `in-card=true` · 2 variants · default size 560×259px
 | Fills      | `color.surface.raised`                                                                                                                               |
 | Strokes    | `color.border.subtle`                                                                                                                                |
 | Text color | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.info`, `color.text.primary`, `color.text.secondary` |
-| Icon color | `color.action.secondary.icon.default`, `color.icon.primary`, `color.neutral.900`                                                                     |
+| Icon color | `color.action.secondary.icon.default`, `color.icon.primary`                                                                                          |
 | Spacing    | `inset.md`, `inset.none`, `inset.sm`, `stack.md`                                                                                                     |
 | Radius     | `radius.container`                                                                                                                                   |
 
@@ -145,15 +144,10 @@ Default variant: `in-card=true` · 2 variants · default size 560×259px
 
 ### Variant matrix
 
-| in-card | size    | fill                   | stroke                | effect | text                                                                                                                                                         | icon                                                                                 |
-| ------- | ------- | ---------------------- | --------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| true    | 560×259 | `color.surface.raised` | `color.border.subtle` |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.feedback.info` | `color.neutral.900`<br>`color.action.secondary.icon.default`<br>`color.icon.primary` |
-| false   | 560×259 |                        |                       |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.feedback.info` | `color.neutral.900`<br>`color.action.secondary.icon.default`<br>`color.icon.primary` |
-
-### Issues detected
-
-- Component description is empty.
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
+| in-card | size    | fill                   | stroke                | effect | text                                                                                                                                                         | icon                                                          |
+| ------- | ------- | ---------------------- | --------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
+| true    | 560×259 | `color.surface.raised` | `color.border.subtle` |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.feedback.info` | `color.icon.primary`<br>`color.action.secondary.icon.default` |
+| false   | 560×259 |                        |                       |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.feedback.info` | `color.icon.primary`<br>`color.action.secondary.icon.default` |
 
 ## Documentation card
 

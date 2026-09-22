@@ -22,7 +22,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1368×1462px
       itemSpacing `inset.md` · padding `inset.xl`
       - **Avatar** · instance of **Avatar** (size=lg, type=text, color=neutral, Shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 44×44  
         fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
-      - **Name and Pronouns** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 580×69
+      - **Name and Pronouns** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 580×69  
+        itemSpacing `inset.md`
         - **Name and Pronouns Container** · frame · row gap 12 pad 0/0/0/0 HUG/HUG · 201×15  
           itemSpacing `inset.sm`
           - **Title** · text `title/sm` "Display Name" · HUG/HUG · 125×15  
@@ -59,7 +60,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1368×1462px
         fill `color.action.secondary.bg.default` · stroke `color.border.medium` 1px · effect `shadow/control` · strokeWeight `border.default` · radius `radius.control`
   - **FormSection** · frame · column gap 20 pad 20/0/20/0 FILL/HUG · 640×141  
     stroke `color.border.surface` mixedpx · itemSpacing `stack.lg` · padding `stack.none`, `stack.lg` · strokeWeight `border.default`
-    - **Contaner** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×101
+    - **Contaner** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×101  
+      itemSpacing `inset.xl`
       - **SectionHeader** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 640×101  
         itemSpacing `stack.md` · padding `stack.none`
         - **Title** · text `title/sm` "About" · FILL/HUG · 640×15  
@@ -80,7 +82,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1368×1462px
     stroke `color.border.surface` mixedpx · itemSpacing `stack.lg` · padding `stack.none`, `stack.lg` · strokeWeight `border.default`
     - **Title** · text `title/sm` "Contact" · FILL/HUG · 640×15  
       fill `color.text.primary` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500`
-    - **Contacts Container** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×72
+    - **Contacts Container** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×72  
+      itemSpacing `inset.xl`
       - **Email and Handle Container** · frame · column gap 12 pad 0/0/0/0 FILL/HUG · 308×72  
         itemSpacing `stack.sm`
         - **Email Container** · frame · row gap 8 pad 0/0/0/0 HUG/HUG · 152×16  
@@ -119,7 +122,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1368×1462px
     stroke `color.border.surface` mixedpx · itemSpacing `stack.lg` · padding `stack.none`, `stack.lg` · strokeWeight `border.default`
     - **Title** · text `title/sm` "Organization" · FILL/HUG · 640×15  
       fill `color.text.primary` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500`
-    - **Reports and Direct Reports Container** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×54
+    - **Reports and Direct Reports Container** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×54  
+      itemSpacing `inset.xl`
       - **Reports Container** · frame · column gap 12 pad 0/0/0/0 FILL/HUG · 308×54  
         itemSpacing `stack.sm`
         - **Description** · text `body/md/medium` "Reports to" · HUG/HUG · 68×10  
@@ -128,7 +132,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1368×1462px
           itemSpacing `inset.xs`
           - **Avatar** · instance of **Avatar** (size=md, type=text, color=neutral, Shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
             fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
-          - **Manager Info** · frame · column gap 8 pad 0/0/0/0 HUG/HUG · 99×27
+          - **Manager Info** · frame · column gap 8 pad 0/0/0/0 HUG/HUG · 99×27  
+            itemSpacing `inset.xs`
             - **Description** · text `body/md/medium` "Manager Name" · HUG/HUG · 99×10  
               fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.500`
             - **Description** · text `body/sm/regular` "Role" · HUG/HUG · 24×9  
@@ -144,7 +149,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1368×1462px
             fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
           - **Avatar** · instance of **Avatar** (size=md, type=text, color=neutral, Shade=Light) · column gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
             fill `color.neutral.50` · stroke `color.border.subtle` 1px · strokeWeight `border.default` · radius `radius.pill`
-    - **Teams and Spaces Container** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×46
+    - **Teams and Spaces Container** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×46  
+      itemSpacing `inset.xl`
       - **Teams Container** · frame · column gap 12 pad 0/0/0/0 FILL/HUG · 308×46  
         itemSpacing `stack.sm`
         - **Description** · text `body/md/medium` "Teams" · HUG/HUG · 43×10  
@@ -216,13 +222,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1368×1462px
 
 - Component description is empty.
 - Primitive color bound directly (CLR-002): `color.neutral.50`, `color.blue.700`, `color.neutral.700`, `color.purple.700`, `color.red.700`.
-- Hard-coded gap `16px` on layer _Container › Title Container › Name and Pronouns_
-- Hard-coded gap `24px` on layer _FormSection › Contaner_
-- Hard-coded gap `24px` on layer _FormSection › Contacts Container_
-- Hard-coded gap `24px` on layer _FormSection › Reports and Direct Reports Container_
-- Hard-coded gap `8px` on layer _FormSection › Reports and Direct Reports Container › Reports Container › Manager Info Container › Manager Info_
 - Hard-coded gap `-8px` on layer _FormSection › Reports and Direct Reports Container › Direct Reports Container › Direct Reports Info_
-- Hard-coded gap `24px` on layer _FormSection › Teams and Spaces Container_
 - Hard-coded gap `24px` on layer _FormSection › Recent Activity Header_
 
 ## Documentation card

@@ -12,8 +12,9 @@ ANATOMY
 Card surface + fixed Body anatomy: leading Icon (instance swap, 24px) → Title → Description → CTA row (Button Group instance swap).
 
 VARIANT PROPERTIES
-• status — default, done (controls CTA-row vs done-indicator swap)
+• status — default, done, danger (controls CTA-row vs done-indicator swap; danger marks a destructive action)
 • state — default, hover (pressed / focus queued)
+• layout — vertical (horizontal queued)
 
 BOOLEANS
 • Show CTA • Show Primary CTA • Show Secondary CTA • Show Icon • Content (slot)
@@ -110,10 +111,6 @@ Default variant: `status=default, state=default, layout=vertical` · 6 variants 
 | default | hover   | vertical | 300×166 | `color.surface.base`                   | `color.border.subtle` | `shadow/control` | `color.text.primary`<br>`color.text.secondary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default`                | `color.icon.primary`<br>`color.action.primary.icon.default`<br>`color.action.secondary.icon.default` |
 | done    | hover   | vertical | 300×166 | `color.surface.base`                   | `color.border.medium` | `shadow/control` | `color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                                        | `color.icon.secondary`<br>`color.action.secondary.icon.default`                                      |
 | danger  | hover   | vertical | 300×166 | `color.surface.feedback.danger.subtle` | `color.border.medium` | `shadow/raised`  | `color.text.feedback.danger`<br>`color.text.secondary`<br>`color.action.primary.text.danger.default`<br>`color.action.secondary.text.default` | `color.icon.feedback.danger`<br>`color.icon.secondary`<br>`color.action.primary.icon.danger.default` |
-
-### Issues detected
-
-- Axis `status`: description lists [default, done], set has [default, done, danger].
 
 ## Issues detected (page)
 

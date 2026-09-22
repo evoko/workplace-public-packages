@@ -62,7 +62,11 @@
           "strokeTopWeight": "Spatial:border/default",
           "strokeBottomWeight": "Spatial:border/default",
           "strokeLeftWeight": "Spatial:border/default",
-          "strokeRightWeight": "Spatial:border/default"
+          "strokeRightWeight": "Spatial:border/default",
+          "topLeftRadius": "Spatial:radius/container",
+          "topRightRadius": "Spatial:radius/container",
+          "bottomLeftRadius": "Spatial:radius/container",
+          "bottomRightRadius": "Spatial:radius/container"
         },
         "children": [
           {
@@ -864,7 +868,7 @@
           "sizing": "FIXED/FIXED"
         },
         "vars": {
-          "itemSpacing": "Spatial(local):inset/xs"
+          "itemSpacing": "Spatial:inset/xs"
         },
         "children": [
           {
@@ -934,19 +938,19 @@
             "name": "Column Label",
             "type": "TEXT",
             "text": "Column Label",
+            "textStyle": "body/md/medium",
             "size": [
               244,
               10
             ],
             "sizing": "FILL/HUG",
             "fills": [
-              "{Color(local):text/primary}"
+              "{Color:text/primary}"
             ],
             "vars": {
-              "lineHeight": "Type(local):line-height/body/sm",
-              "letterSpacing": ".Primitives:typography/letter-spacing/body (-0,2em)",
+              "lineHeight": "Type:line-height/body/md",
               "fontFamily": "Primitives:type/font-family/inter",
-              "fontSize": "Type(local):size/body/sm",
+              "fontSize": "Type:size/body/md",
               "fontStyle": "Primitives:type/font-weight/500"
             }
           }
@@ -960,10 +964,10 @@
             44
           ],
           "textFills": [
-            "{Color(local):text/primary}"
+            "{Color:text/primary}"
           ],
           "iconFills": [
-            "{Color(local):icon/tertiary}",
+            "{Color:icon/tertiary}",
             "{Color:icon/inverse}"
           ],
           "hidden": []
@@ -975,20 +979,20 @@
             44
           ],
           "fills": [
-            "{Color(local):surface/hover}"
+            "{Color:surface/hover}"
           ],
           "textFills": [
-            "{Color(local):text/primary}"
+            "{Color:text/primary}"
           ],
           "iconFills": [
-            "{Color(local):icon/tertiary}",
+            "{Color:icon/tertiary}",
             "{Color:icon/inverse}"
           ],
           "overrides": {
             "changed": {
               "/": {
                 "fills": [
-                  "{Color(local):surface/hover}"
+                  "{Color:surface/hover}"
                 ]
               }
             }
@@ -1001,10 +1005,10 @@
             44
           ],
           "textFills": [
-            "{Color(local):text/secondary}"
+            "{Color:text/secondary}"
           ],
           "iconFills": [
-            "{Color(local):icon/tertiary}"
+            "{Color:icon/tertiary}"
           ],
           "overrides": {
             "changed": {
@@ -1025,7 +1029,7 @@
               },
               "/Column Label": {
                 "fills": [
-                  "{Color(local):text/secondary}"
+                  "{Color:text/secondary}"
                 ]
               }
             }
@@ -1038,19 +1042,19 @@
             44
           ],
           "fills": [
-            "{Color(local):surface/hover}"
+            "{Color:surface/hover}"
           ],
           "textFills": [
-            "{Color(local):text/secondary}"
+            "{Color:text/secondary}"
           ],
           "iconFills": [
-            "{Color(local):icon/tertiary}"
+            "{Color:icon/tertiary}"
           ],
           "overrides": {
             "changed": {
               "/": {
                 "fills": [
-                  "{Color(local):surface/hover}"
+                  "{Color:surface/hover}"
                 ]
               },
               "/Checkbox": {
@@ -1070,7 +1074,7 @@
               },
               "/Column Label": {
                 "fills": [
-                  "{Color(local):text/secondary}"
+                  "{Color:text/secondary}"
                 ]
               }
             }

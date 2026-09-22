@@ -110,7 +110,8 @@ Default variant: `type=status` · 2 variants · default size 316×25px
       stroke `color.border.surface` mixedpx · itemSpacing `stack.md` · padding `stack.md` · strokeWeight `border.default`
       - **Hi Anatoliy — ask me about device health, firmware, room status, or how to configure a system.** · text `body/md/regular` "Hi Anatoliy — ask me about device health, firmware, room status, or how to confi" · FILL/HUG · 316×50  
         fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400`
-      - **Suggested prompts** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 316×112
+      - **Suggested prompts** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 316×112  
+        itemSpacing `inset.xs`
         - **Button** · instance of **Button** (size=sm, prio=secondary, state=default, danger=false) · row gap 8 pad 0/8/0/8 FILL/FIXED · 316×32  
           stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control`
         - **Button** · instance of **Button** (size=sm, prio=secondary, state=default, danger=false) · row gap 8 pad 0/8/0/8 FILL/FIXED · 316×32  
@@ -118,7 +119,7 @@ Default variant: `type=status` · 2 variants · default size 316×25px
         - **Button** · instance of **Button** (size=sm, prio=secondary, state=default, danger=false) · row gap 8 pad 0/8/0/8 FILL/FIXED · 316×32  
           stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control`
     - **Exchange** · frame · column gap 16 pad 16/16/16/16 FILL/HUG · 348×379  
-      padding `stack.md`
+      itemSpacing `inset.md` · padding `stack.md`
       - **AI Assistant / Conversation Event** · instance of **AI Assistant / Conversation Event** (type=date) · row gap 0 pad 8/0/8/0 FILL/HUG · 316×25  
         padding `stack.xs`
       - **AI Assistant / Chat Message** · instance of **AI Assistant / Chat Message** (sender=user) · row gap 0 pad 0/0/0/0 FILL/HUG · 316×54
@@ -130,13 +131,14 @@ Default variant: `type=status` · 2 variants · default size 316×25px
           itemSpacing `stack.sm` · padding `stack.3xl`
           - **Insight Card** · instance of **Insight Card** (severity=danger, state=default) · row gap 16 pad 8/16/8/8 FILL/HUG · 276×68  
             fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/raised` · itemSpacing `stack.md` · padding `inset.xs`, `inset.md` · strokeWeight `border.default` · radius `radius.container`
-          - **Actions** · frame · row gap 8 pad 0/0/0/0 HUG/HUG · 186×32
+          - **Actions** · frame · row gap 8 pad 0/0/0/0 HUG/HUG · 186×32  
+            itemSpacing `inset.xs`
             - **Button** · instance of **Button** (size=sm, prio=secondary, state=default, danger=false) · row gap 8 pad 0/8/0/8 HUG/FIXED · 98×32  
               stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control`
             - **Button** · instance of **Button** (size=sm, prio=secondary, state=default, danger=false) · row gap 8 pad 0/8/0/8 HUG/FIXED · 80×32  
               stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.xs` · strokeWeight `border.default` · radius `radius.control`
   - **Composer** · frame · column gap 8 pad 12/12/12/12 FILL/HUG · 348×144  
-    stroke `color.border.surface` mixedpx · padding `stack.sm` · strokeWeight `border.default`
+    stroke `color.border.surface` mixedpx · itemSpacing `inset.xs` · padding `stack.sm` · strokeWeight `border.default`
     - **Text Area** · instance of **Text Area** (size=md, state=default) · column gap 8 pad 0/0/0/0 FILL/HUG · 324×120  
       itemSpacing `stack.xs`
 
@@ -168,10 +170,6 @@ Default variant: `type=status` · 2 variants · default size 316×25px
 ### Issues detected
 
 - Component description is empty.
-- Hard-coded gap `8px` on layer _content › Conversation › Suggested prompts_
-- Hard-coded gap `16px` on layer _content › Exchange_
-- Hard-coded gap `8px` on layer _content › Exchange › Turn / AI Assistant › Extras › Actions_
-- Hard-coded gap `8px` on layer _Composer_
 
 ## Documentation card
 

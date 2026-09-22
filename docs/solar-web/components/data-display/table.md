@@ -4,6 +4,8 @@
 
 ## Component set: RowSelect
 
+Checkbox cell for a selectable Table row. 2 variants: title-row (false, true) — true is the header cell that selects all rows and supports the indeterminate state. Internal building block of Row and Table; not for use outside a table.
+
 ### Props
 
 | Prop        | Type    | Options / default |
@@ -40,11 +42,9 @@ Default variant: `title-row=true` · 2 variants · default size 40×40px
 | true      | 40×40 | `color.surface.background` |        |        |      |      |
 | false     | 40×40 |                            |        |        |      |      |
 
-### Issues detected
-
-- Component description is empty.
-
 ## Component set: RowExpand
+
+Expand/collapse cell and connector for expandable Table rows. 6 variants: type (title-row, collapsed, expanded, middle-row, bottom-row, vertical-only) — the chevron cell on the parent row plus the connector segments drawn beside its child rows. Internal building block of Row and Table.
 
 ### Props
 
@@ -79,11 +79,9 @@ Default variant: `type=title-row` · 6 variants · default size 16×40px
 | middle-row    | 16×40 |                            |        |        |      |                      |
 | vertical-only | 16×40 |                            |        |        |      |                      |
 
-### Issues detected
-
-- Component description is empty.
-
 ## Component set: Row
+
+A Table row. 10 variants: type (title, top, middle, bottom, non-expandable) × state (default, selected). title is the header row; top, middle and bottom are the positions inside an expanded group; non-expandable is a flat row. Booleans show expand and showCheckBox add the RowExpand and RowSelect cells; TitleRowContent and Row Content are slots for Column Items. Hover renders at runtime as a surface/hover overlay.
 
 ### Props
 
@@ -158,11 +156,9 @@ Default variant: `type=title, state=default` · 10 variants · default size 1055
 | middle         | selected | 1055×44 | `color.surface.active` |        |        | `color.text.primary`   | `color.icon.inverse`                         |
 | bottom         | selected | 1055×44 | `color.surface.active` |        |        | `color.text.primary`   | `color.icon.inverse`                         |
 
-### Issues detected
-
-- Component description is empty.
-
 ## Component set: Column Item
+
+A single Table cell. 9 variants: title (false, true) × type (text, status, input, select, icon, button, toggle, user) — title=true is the sortable column header. Pick the type that matches the cell content so padding and alignment stay consistent; numeric text right-aligns. Building block of Row.
 
 ### Props
 
@@ -209,10 +205,11 @@ Default variant: `title=true, type=text` · 9 variants · default size 176×40px
 
 ### Issues detected
 
-- Component description is empty.
 - Primitive color bound directly (CLR-002): `color.neutral.700`.
 
 ## Component set: Table
+
+Data table chassis — header row plus a Rows slot of Row instances. 6 variants: breakpoint (desktop, mobile) × expandable (false, true) × selectable (false, true); 6 of the 8 combinations are built. mobile collapses rows to a card-style list. Compose with TableHeader above and TableFooter below; for the full toolbar + pagination assembly use the Data Table pattern.
 
 ### Props
 
@@ -281,11 +278,9 @@ Default variant: `breakpoint=desktop, expandable=true, selectable=true` · 6 var
 | desktop    | false      | false      | 1020×640 |      | `color.border.subtle` |        | `color.text.secondary`<br>`color.text.primary` | `color.icon.primary` |
 | mobile     | false      | false      | 361×640  |      | `color.border.subtle` |        | `color.text.secondary`<br>`color.text.primary` | `color.icon.primary` |
 
-### Issues detected
-
-- Component description is empty.
-
 ## Component set: TableFooter
+
+Footer strip for Table — row count and pagination on the left, an optional action on the right. 2 variants: breakpoint (desktop, mobile). showButton toggles the trailing Button. Part of the Data Table pattern; sits directly under Table.
 
 ### Props
 
@@ -319,7 +314,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 | Fills           | `color.action.primary.bg.default`                                                                                        |
 | Strokes         | `color.action.primary.border.default`                                                                                    |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.primary`, `color.text.secondary` |
-| Icon color      | `color.action.primary.icon.default`, `color.icon.primary`, `color.neutral.900`                                           |
+| Icon color      | `color.action.primary.icon.default`, `color.icon.primary`                                                                |
 | Spacing         | `inset.sm`, `inset.xs`, `stack.none`, `stack.xs`                                                                         |
 | Radius          | `radius.control`                                                                                                         |
 | Border width    | `border.default`                                                                                                         |
@@ -341,18 +336,18 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 
 ### Variant matrix
 
-| breakpoint | size    | fill | stroke | effect | text                                                                                                                           | icon                                                                               |
-| ---------- | ------- | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
-| desktop    | 1020×56 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.neutral.900`<br>`color.action.primary.icon.default` |
-| mobile     | 377×56  |      |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.text.secondary`                                          | `color.icon.primary`<br>`color.neutral.900`<br>`color.action.primary.icon.default` |
+| breakpoint | size    | fill | stroke | effect | text                                                                                                                           | icon                                                        |
+| ---------- | ------- | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| desktop    | 1020×56 |      |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.action.primary.text.default`<br>`color.action.secondary.text.default` | `color.icon.primary`<br>`color.action.primary.icon.default` |
+| mobile     | 377×56  |      |        |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.text.secondary`                                          | `color.icon.primary`<br>`color.action.primary.icon.default` |
 
 ### Issues detected
 
-- Component description is empty.
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
 - Hard-coded gap `242px` on layer _Container_
 
 ## Component set: TableHeader
+
+Toolbar strip above Table — title and count, search, and an Actions slot for filters and bulk actions. 2 variants: breakpoint (desktop, mobile); mobile stacks the actions under the title. Part of the Data Table pattern; for a page-level title use Page Header.
 
 ### Props
 
@@ -370,7 +365,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
   - **Container** · frame · row gap 692 pad 0/0/0/0 FILL/HUG · 1020×40
     - **SearchField** · instance of **SearchField** (state=default, size=md) · row gap 12 pad 0/12/0/12 FIXED/FIXED · 240×40  
       fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/control` · itemSpacing `inset.sm` · padding `inset.sm`, `inset.none` · strokeWeight `border.default` · radius `radius.control`
-    - **Segmented Control** · instance of **Segmented Control** (size=md) · column gap 8 pad 0/0/0/0 HUG/HUG · 128×40
+    - **Segmented Control** · instance of **Segmented Control** (size=md) · column gap 8 pad 0/0/0/0 HUG/HUG · 128×40  
+      itemSpacing `inset.xs`
     - **Actions** · slot · row gap 8 pad 0/0/0/0 FIXED/HUG · 240×40  
       itemSpacing `stack.xs` · prop slotContentId←Actions
       - **Icon Button** · instance of **Icon Button** (size=md, shape=square, prio=secondary, state=default) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 40×40  
@@ -414,7 +410,6 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1020×56px
 
 ### Issues detected
 
-- Component description is empty.
 - Hard-coded gap `692px` on layer _Container_
 
 ## Issues detected (page)

@@ -4,6 +4,8 @@
 
 ## Component set: Option Card
 
+Large selectable card that behaves as a rich radio or checkbox — icon, title and description the user picks from a small set. 3 variants: state (default, hover, selected). selected uses border + surface tint, never colour alone; focus and disabled come from the nested control. The whole card is the label and the hit target; group with role=radiogroup and a legend. For dense or long lists use Radio, Checkbox or Option Row.
+
 ### Props
 
 | Prop    | Type    | Options / default              |
@@ -50,10 +52,6 @@ Default variant: `state=default` · 3 variants · default size 240×228px
 | default  | 240×228 | `color.surface.base` | `color.border.medium` |                 | `color.text.primary` | `color.icon.secondary` |
 | hover    | 240×228 | `color.surface.base` | `color.border.subtle` |                 | `color.text.primary` | `color.icon.primary`   |
 | selected | 240×228 | `color.surface.base` | `color.border.medium` | `shadow/raised` | `color.text.primary` | `color.icon.primary`   |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Documentation card
 

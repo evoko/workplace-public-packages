@@ -37,7 +37,8 @@ Default variant: `selected=false, expanded=false, state=default` · 12 variants 
 - **selected=false, expanded=false, state=default** · component · row gap 4 pad 0/8/0/4 FIXED/FIXED · 200×32  
   itemSpacing `inset.2xs` · padding `inset.2xs`, `inset.xs` · radius `radius.control`
   - **Tree Indent** · instance of **.Tree Indent** (depth=00) · FIXED/FIXED · 0×32
-  - **Chevron** · frame · row gap 8 pad 0/0/0/0 HUG/HUG · 16×16
+  - **Chevron** · frame · row gap 8 pad 0/0/0/0 HUG/HUG · 16×16  
+    itemSpacing `inset.xs`
     - **Icon/ChevronRight** · instance of **Icon/ChevronRight** (solid=false) · FIXED/FIXED · 16×16  
       height `icon.sm` · prop visible←hasChevron
   - ~~**Checkbox**~~ (hidden by default) · instance of **Checkbox** (checked=false, disabled=false, hover=false, mixed=false, focus=false) · FIXED/FIXED · 16×16  
@@ -113,7 +114,6 @@ Default variant: `selected=false, expanded=false, state=default` · 12 variants 
 ### Issues detected
 
 - State axis uses non-standard value(s): edit.
-- Hard-coded gap `8px` on layer _Chevron_
 
 ## Component set: .Tree Indent
 

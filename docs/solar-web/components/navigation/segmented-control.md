@@ -4,7 +4,7 @@
 
 ## Component set: Segmented Control Item
 
-Single segment inside Segmented Control. 4 variants: selected (false/true) × state (default, hover). Selection is persistent — a click commits, not previews. Optional leading/trailing icons via boolean instance-swap. Only default and hover states are defined here; pressed/focus/disabled are handled by the parent assembly treating the segment as a radio.
+Single segment inside Segmented Control. 8 variants: selected (false/true) × state (default, hover) × size (md, sm). Selection is persistent — a click commits, not previews. Optional leading/trailing icons via boolean instance-swap. Only default and hover states are defined here; pressed/focus/disabled are handled by the parent assembly treating the segment as a radio.
 
 ### Props
 
@@ -69,11 +69,9 @@ Default variant: `selected=true, state=default, size=md` · 8 variants · defaul
 | false    | default | sm   | 87×24  |                         |                       |                  | `color.text.secondary` | `color.icon.secondary` |
 | false    | hover   | sm   | 87×24  |                         |                       |                  | `color.text.primary`   | `color.icon.primary`   |
 
-### Issues detected
-
-- Description says 4 variants; the set has 8.
-
 ## Component set: Segmented Control
+
+Inline group of 2–5 mutually exclusive segments, with an optional field label and helper so it can sit in a form. 2 variants: size (sm, md). Booleans show helper, show mandatory; label and helper are text props; Track is a slot for Segmented Control Item instances. Behaves as a radio group: commits on click, one segment always selected. For 6+ options or URL-level navigation use Tabs; for on/off use Toggle.
 
 ### Props
 
@@ -90,8 +88,10 @@ Default variant: `size=md` · 2 variants · default size 368×40px
 
 ### Anatomy (default variant)
 
-- **size=md** · component · column gap 8 pad 0/0/0/0 HUG/HUG · 368×40
-  - ~~**Label**~~ (hidden by default) · frame · row gap 4 pad 0/0/0/0 HUG/HUG · 48×10
+- **size=md** · component · column gap 8 pad 0/0/0/0 HUG/HUG · 368×40  
+  itemSpacing `inset.xs`
+  - ~~**Label**~~ (hidden by default) · frame · row gap 4 pad 0/0/0/0 HUG/HUG · 48×10  
+    itemSpacing `inset.2xs`
     - ~~**Label**~~ (hidden by default) · text `label/md` "Label" · FIXED/FIXED · 36×10  
       fill `color.text.primary` · lineHeight `type.line-height.label.md` · fontFamily `type.font-family.inter` · fontSize `type.size.label.md` · fontStyle `type.font-weight.500` · prop characters←label
     - **\*** · text `label/md` "\*" · HUG/HUG · 8×10  
@@ -148,12 +148,6 @@ Default variant: `size=md` · 2 variants · default size 368×40px
 | ---- | ------ | ---- | ------ | ------ | ---------------------------------------------------------------------------- | ---------------------------------------------- |
 | md   | 368×40 |      |        |        | `color.text.feedback.info`<br>`color.text.primary`<br>`color.text.secondary` | `color.icon.primary`<br>`color.icon.secondary` |
 | sm   | 290×32 |      |        |        | `color.text.feedback.info`<br>`color.text.primary`<br>`color.text.secondary` | `color.icon.primary`<br>`color.icon.secondary` |
-
-### Issues detected
-
-- Component description is empty.
-- Hard-coded gap `8px` on layer _size=md_
-- Hard-coded gap `4px` on layer _Label_
 
 ## Documentation card
 

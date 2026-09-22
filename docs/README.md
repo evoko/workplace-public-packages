@@ -82,7 +82,9 @@ Edit the scripts, never the outputs.
 ## Commands
 
 ```bash
-npm run solar:sync         # refresh both Figma files and rebuild every generated doc
+npm run solar:sync         # everything: fetch all three Figma files, rebuild every generated doc,
+                           #   the derived token files and the generated code
+npm run solar:rebuild      # the same without the fetch, so no Figma token is needed
 npm run solar:foundations  # Foundations only: fetch + rebuild docs/solar/figma-pages/
 npm run solar:web          # SOLAR Web only: fetch + rebuild docs/solar-web/
 npm run solar:icons        # SOLAR Icons only: fetch, export SVG/PNG assets, rebuild docs/solar-icons/
@@ -93,8 +95,16 @@ npm run solar:codegen      # rebuild spec/tokens.json and all four code targets,
 ```
 
 Anything that fetches needs a Figma personal access token with `file_content:read` in
-`~/.config/figma/token` or `$FIGMA_TOKEN`; `solar:docs` and `solar:tokens` need nothing. All
-of them are deterministic: running them twice on unchanged inputs produces no diff. The
+`~/.config/figma/token` or `$FIGMA_TOKEN`; `solar:rebuild`, `solar:docs`, `solar:tokens` and
+`solar:codegen` need nothing. All of them are deterministic: running them twice on unchanged
+inputs produces no diff.
+
+`solar:sync` runs every step even after one of them reports a problem, and lists the failures at
+the end. That is deliberate. A fetcher that cannot name a variable has still written its pages, so
+stopping there would leave `raw/` ahead of the generated docs — a state CI rejects — and would
+skip the files that had not been fetched yet. Only a page that genuinely failed to fetch is an
+error; an unresolved variable id is a finding, recorded in `raw/_meta.json` and named in the
+output so it can be added to `_variables.json`. The
 shared REST client, version-keyed cache and manifest helpers live in
 [\_shared/figma-rest.mjs](_shared/figma-rest.mjs).
 

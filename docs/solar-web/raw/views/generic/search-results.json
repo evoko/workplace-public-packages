@@ -9,7 +9,7 @@
       "docLinks": [],
       "variantCount": 2,
       "props": {
-        "breakdpoint": {
+        "breakpoint": {
           "type": "VARIANT",
           "default": "desktop",
           "options": [
@@ -18,10 +18,10 @@
           ]
         }
       },
-      "defaultVariant": "breakdpoint=desktop",
+      "defaultVariant": "breakpoint=desktop",
       "defaultVariantNodeCount": 177,
       "defaultVariantTree": {
-        "name": "breakdpoint=desktop",
+        "name": "breakpoint=desktop",
         "type": "COMPONENT",
         "size": [
           1368,
@@ -412,7 +412,7 @@
       },
       "variants": [
         {
-          "variant": "breakdpoint=desktop",
+          "variant": "breakpoint=desktop",
           "size": [
             1368,
             745
@@ -429,10 +429,9 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}",
-            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}",
-            "{Color:action/primary/icon/default}",
-            "{Color:icon/primary}"
+            "{Color:action/primary/icon/default}"
           ],
           "hidden": [
             "Breadcrumbs",
@@ -448,7 +447,7 @@
           ]
         },
         {
-          "variant": "breakdpoint=mobile",
+          "variant": "breakpoint=mobile",
           "size": [
             377,
             745
@@ -465,8 +464,7 @@
           "iconFills": [
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
-            "{Color:action/tertiary/icon/default}",
-            "{Primitives:color/neutral/900}"
+            "{Color:action/tertiary/icon/default}"
           ],
           "hidden": [
             "Breadcrumbs",

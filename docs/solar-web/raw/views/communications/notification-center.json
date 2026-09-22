@@ -96,6 +96,9 @@
               "align": "MIN/MIN",
               "sizing": "FIXED/HUG"
             },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xl"
+            },
             "children": [
               {
                 "name": "Filter Tabs",
@@ -121,6 +124,7 @@
                 ],
                 "strokeWeight": "mixed",
                 "vars": {
+                  "itemSpacing": "Spatial:inset/2xs",
                   "strokeBottomWeight": "Spatial:border/default"
                 },
                 "children": [
@@ -278,6 +282,9 @@
                   "align": "MIN/MIN",
                   "sizing": "FILL/HUG"
                 },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                },
                 "children": [
                   {
                     "name": "Today",
@@ -357,6 +364,9 @@
                   ],
                   "align": "MIN/MIN",
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
                 },
                 "children": [
                   {
@@ -555,6 +565,10 @@
                     16
                   ],
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md"
                 }
               },
               "/Content/Filter Tabs": {

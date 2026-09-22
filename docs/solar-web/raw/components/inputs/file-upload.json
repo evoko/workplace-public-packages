@@ -5,7 +5,7 @@
     {
       "name": "FileUpload",
       "id": "4475:5361",
-      "description": "File upload control with drag-and-drop + click-to-select. 5 variants by state: idle, hover, error, disabled, filled. idle shows drop affordance + CTA; hover highlights the drop zone; filled shows the selected file(s) with a remove control; error surfaces size/format rejection; disabled locks the control. Helper text communicates limits (\"Max 10MB, .jpg .png\"). Pair with a real <input type=\"file\"> for accessibility; the drop zone is visual sugar on top.",
+      "description": "File upload control with drag-and-drop + click-to-select. 6 variants by state: default, hover, focus, filled, error, disabled. default shows drop affordance + CTA; hover highlights the drop zone; focus shows the focus ring; filled shows the selected file(s) with a remove control; error surfaces size/format rejection; disabled locks the control. Helper text communicates limits (&quot;Max 10MB, .jpg .png&quot;). Pair with a real &lt;input type=&quot;file&quot;&gt; for accessibility; the drop zone is visual sugar on top.",
       "docLinks": [],
       "variantCount": 6,
       "props": {

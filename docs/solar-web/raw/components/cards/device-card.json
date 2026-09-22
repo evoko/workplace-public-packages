@@ -307,7 +307,7 @@
             "{Color:action/primary/text/default}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}"
           ],
           "hidden": [
@@ -333,7 +333,7 @@
             "{Color:text/primary}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "hidden": [],
           "overrides": {
@@ -381,7 +381,6 @@
             "{Color:text/feedback/success}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
             "{Color:icon/primary}"
           ],
           "hidden": [
@@ -452,7 +451,7 @@
             "{Color:text/secondary}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "hidden": [],
           "overrides": {

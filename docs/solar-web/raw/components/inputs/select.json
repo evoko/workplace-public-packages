@@ -5,7 +5,7 @@
     {
       "name": "Select",
       "id": "5422:92",
-      "description": "Dropdown selector for picking one option from a predefined list. 10 variants: size (sm 36px, md 44px) × state (default, hover, open, disabled, error). Trailing chevron rotates when open. Use when options are < ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern. SelectOpen (sibling component) is the expanded panel.",
+      "description": "Dropdown selector for picking one option from a predefined list. 12 variants: size (sm 36px, md 44px) × state (default, hover, focus, open, disabled, error). Trailing chevron rotates when open. Use when options are &lt; ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern. SelectOpen (sibling component) is the expanded panel.",
       "docLinks": [],
       "variantCount": 12,
       "props": {

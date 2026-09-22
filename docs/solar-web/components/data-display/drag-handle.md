@@ -4,6 +4,8 @@
 
 ## Component set: DragHandle
 
+Grip affordance that marks a row or card as draggable for reordering. 10 variants: size (sm, md) × state (default, hover, focus, pressed, disabled); pressed is the grabbing state. Glyph binds icon/secondary; hit area ≥24px, padded to 44×44 on touch. Not a button — pair with keyboard reordering (Space to lift, arrows to move, Space to drop) and aria-label "Reorder".
+
 ### Props
 
 | Prop    | Type    | Options / default                                |
@@ -57,10 +59,6 @@ Default variant: `size=sm, state=default` · 10 variants · default size 26×33p
 | md   | pressed  | 28×36 |      |        |                        |      |      |
 | md   | focus    | 28×36 |      |        | `shadow/focus/default` |      |      |
 | md   | disabled | 28×36 |      |        |                        |      |      |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Documentation card
 

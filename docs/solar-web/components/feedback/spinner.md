@@ -4,6 +4,8 @@
 
 ## Component set: Spinner
 
+Circular indeterminate loading indicator. 6 variants: size (sm, md, lg) × style (default, inverse) — inverse is for dark and inverse surfaces. Non-interactive. Pair with visually-hidden text or aria-busy on the region it covers; for known progress use Progress Bar, for layout placeholders use Skeleton.
+
 ### Props
 
 | Prop    | Type    | Options / default     |
@@ -42,7 +44,6 @@ Default variant: `size=sm, style=default` · 6 variants · default size 16×16px
 
 ### Issues detected
 
-- Component description is empty.
 - Non-color variable bound as a color: `border.strong`.
 
 ## Issues detected (page)

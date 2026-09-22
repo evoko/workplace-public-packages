@@ -4,6 +4,8 @@
 
 ## Component set: Popover
 
+Anchored overlay with an arrow for rich content — a title, body text and optionally controls — opened from a trigger. 8 variants: placement (top, bottom, left, right) × size (sm, md). title and body are text props. Uses shadow/overlay at the overlay z level; dismisses on Esc or outside click; focus moves into it only when it contains controls. For a one-line hint use Tooltip; for a list of actions use Dropdown.
+
 ### Props
 
 | Prop        | Type    | Options / default                                                 |
@@ -54,10 +56,6 @@ Default variant: `placement=top, size=md` · 8 variants · default size 320×100
 | left      | sm   | 250×66  |      |        | `shadow/dialog` | `color.text.primary`<br>`color.text.secondary` |      |
 | right     | sm   | 250×66  |      |        | `shadow/dialog` | `color.text.primary`<br>`color.text.secondary` |      |
 | right     | md   | 330×90  |      |        | `shadow/dialog` | `color.text.primary`<br>`color.text.secondary` |      |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Issues detected (page)
 

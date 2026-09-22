@@ -259,6 +259,9 @@
                       "align": "CENTER/MIN",
                       "sizing": "FILL/FILL"
                     },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/xs"
+                    },
                     "propRefs": {
                       "slotContentId": "center#6499:28"
                     },
@@ -317,6 +320,9 @@
                           ],
                           "align": "MIN/MIN",
                           "sizing": "FILL/FILL"
+                        },
+                        "vars": {
+                          "itemSpacing": "Spatial:inset/xs"
                         },
                         "children": [
                           {

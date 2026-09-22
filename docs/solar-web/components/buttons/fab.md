@@ -4,7 +4,7 @@
 
 ## Component set: FAB
 
-Floating Action Button — the single most important action on a screen, elevated above content. 20 variants: type (icon / extended) × size (sm 44px / md 56px) × state (default, hover, pressed, focus, disabled). Fixed position (usually bottom-right). Uses action/primary tokens + shadow/raised. extended type adds a label alongside the icon for discoverability. Strict rule: one FAB per screen.
+Floating Action Button — the single most important action on a screen, elevated above content. 24 variants: type (icon / extended) × size (sm 44px / md 56px) × state (default, hover, pressed, focus, disabled, loading). Fixed position (usually bottom-right). Uses action/primary tokens + shadow/raised. extended type adds a label alongside the icon for discoverability. Strict rule: one FAB per screen.
 
 ### Props
 
@@ -70,10 +70,6 @@ Default variant: `type=icon, size=sm, state=default` · 24 variants · default s
 | extended | md   | disabled | 112×56 | `color.action.primary.bg.disabled` | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.disabled` | `color.action.primary.icon.disabled` |
 | extended | md   | focus    | 112×56 | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` | `color.action.primary.text.default`  | `color.action.primary.icon.default`  |
 | extended | md   | loading  | 104×56 | `color.action.primary.bg.default`  | `color.border.medium` | `shadow/overlay` |                                      |                                      |
-
-### Issues detected
-
-- Description says 20 variants; the set has 24.
 
 ## Documentation card
 

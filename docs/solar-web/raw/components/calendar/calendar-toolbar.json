@@ -86,6 +86,9 @@
                   "align": "MIN/CENTER",
                   "sizing": "HUG/HUG"
                 },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                },
                 "children": [
                   {
                     "name": "Prev",
@@ -287,6 +290,9 @@
                   ],
                   "align": "MIN/MIN",
                   "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
                 }
               },
               {

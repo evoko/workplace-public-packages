@@ -16,7 +16,8 @@
   stroke `color.border.subtle` mixedpx · itemSpacing `stack.sm` · padding `inset.md` · strokeWeight `border.default` · radius `radius.none`
   - **App Icon** · instance of **App Icon** (App=Workplace) · row gap 0 pad 0/0/0/0 FIXED/FIXED · 32×32  
     fill `IMAGE` ⚠️ hard-coded · itemSpacing `spatial.scale.0` · padding `spatial.scale.0` · radius `spatial.border-radius.md`
-  - **Frame 6** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 204×10
+  - **Frame 6** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 204×10  
+    itemSpacing `inset.xs`
     - **Title** · text `label/md` "App Name" · FILL/HUG · 204×10  
       fill `color.text.primary` · lineHeight `type.line-height.label.md` · fontFamily `type.font-family.inter` · fontSize `type.size.label.md` · fontStyle `type.font-weight.500`
   - **SplitButton** · instance of **SplitButton** (prio=secondary, size=sm, state=default) · row gap 0 pad 0/0/0/0 HUG/FIXED · 88×32  
@@ -29,7 +30,7 @@
 | Fills           | `color.action.secondary.bg.default`                                                                 |
 | Strokes         | `color.border.medium`, `color.border.subtle`                                                        |
 | Text color      | `color.text.primary`                                                                                |
-| Spacing         | `spatial.scale.0`, `inset.md`, `stack.sm`                                                           |
+| Spacing         | `spatial.scale.0`, `inset.md`, `inset.xs`, `stack.sm`                                               |
 | Radius          | `spatial.border-radius.md`, `radius.control`, `radius.none`                                         |
 | Border width    | `border.default`                                                                                    |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.label.md`, `type.size.label.md` |
@@ -50,7 +51,6 @@
 ### Issues detected
 
 - Component description is empty.
-- Hard-coded gap `8px` on layer _Frame 6_
 
 ## Component: App switcher
 
@@ -134,26 +134,29 @@ Uses: App Icon ×8, AppSwitcherItem ×7, SplitButton ×7, Icon/ExternalLink ×7,
 - ~~**AppSwitcher**~~ (hidden by default) · frame · column gap 0 pad 0/0/0/0 FIXED/HUG · 564×568  
   fill `color.surface.dialog` · stroke `color.border.medium` 1px · effect `shadow/dialog` · itemSpacing `stack.none` · padding `inset.none` · strokeWeight `border.default` · radius `radius.dialog`
   - **Frame 11** · frame · column gap 8 pad 16/16/16/16 FILL/HUG · 564×124  
-    stroke `color.border.subtle` mixedpx · padding `spatial.scale.4`
+    stroke `color.border.subtle` mixedpx · itemSpacing `inset.xs` · padding `spatial.scale.4`
     - **Divider** · frame · row gap 12 pad 0/0/0/0 FILL/FIXED · 532×20  
       itemSpacing `stack.sm`
     - **AppSwitcherItem** · frame · row gap 12 pad 16/16/16/16 FILL/HUG · 532×64  
       fill `GRADIENT_LINEAR` ⚠️ hard-coded · stroke `color.border.subtle` 1px · itemSpacing `stack.sm` · padding `inset.md` · strokeWeight `border.default` · radius `radius.container`
   - **Frame 12** · frame · column gap 8 pad 16/16/16/16 FILL/HUG · 564×196  
-    stroke `color.border.subtle` mixedpx · padding `spatial.scale.4`
+    stroke `color.border.subtle` mixedpx · itemSpacing `inset.xs` · padding `spatial.scale.4`
     - **Divider** · frame · row gap 12 pad 0/0/0/0 FILL/FIXED · 532×20  
       itemSpacing `stack.sm`
-    - **App Grid** · frame · grid gap 0 pad 0/0/0/0 FILL/HUG · 532×136
+    - **App Grid** · frame · grid gap 0 pad 0/0/0/0 FILL/HUG · 532×136  
+      itemSpacing `inset.xs`
   - **Frame 13** · frame · column gap 8 pad 16/16/16/16 FILL/HUG · 564×124  
-    stroke `color.border.subtle` mixedpx · padding `spatial.scale.4`
+    stroke `color.border.subtle` mixedpx · itemSpacing `inset.xs` · padding `spatial.scale.4`
     - **Divider** · frame · row gap 12 pad 0/0/0/0 FILL/FIXED · 532×20  
       itemSpacing `stack.sm`
-    - **App Grid** · frame · row gap 8 pad 0/0/0/0 FILL/HUG · 532×64
+    - **App Grid** · frame · row gap 8 pad 0/0/0/0 FILL/HUG · 532×64  
+      itemSpacing `inset.xs`
   - **Frame 14** · frame · column gap 8 pad 16/16/16/16 FILL/HUG · 564×124  
-    padding `spatial.scale.4`
+    itemSpacing `inset.xs` · padding `spatial.scale.4`
     - **Divider** · frame · row gap 12 pad 0/0/0/0 FILL/FIXED · 532×20  
       itemSpacing `stack.sm`
-    - **App Grid** · frame · row gap 8 pad 0/0/0/0 FILL/HUG · 532×64
+    - **App Grid** · frame · row gap 8 pad 0/0/0/0 FILL/HUG · 532×64  
+      itemSpacing `inset.xs`
 
 > Monitor and manage your entire AV infrastructure.
 

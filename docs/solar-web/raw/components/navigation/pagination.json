@@ -401,7 +401,7 @@
             24
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "hidden": []
         },
@@ -415,7 +415,7 @@
             "{Color:surface/hover}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "overrides": {
             "changed": {
@@ -437,7 +437,7 @@
             "{Color:surface/active}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "overrides": {
             "changed": {
@@ -457,7 +457,7 @@
           ],
           "effect": "shadow/focus/default",
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "overrides": {
             "changed": {
@@ -474,7 +474,7 @@
             24
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/disabled}"
           ]
         },
         {

@@ -1,5 +1,5 @@
 {
-  "page": "↳ 🟢 Settings ",
+  "page": "↳ 🟢 Settings",
   "pageId": "3768:9",
   "componentSets": [
     {
@@ -225,10 +225,9 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}",
-            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}",
-            "{Color:icon/primary}",
             "{Color:icon/disabled}",
             "{Color:icon/tertiary}",
             "{Color:action/secondary/icon/danger/default}"
@@ -350,10 +349,9 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}",
-            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}",
-            "{Color:icon/primary}",
             "{Color:icon/tertiary}"
           ],
           "overrides": {
@@ -464,10 +462,9 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}",
-            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}",
-            "{Color:action/primary/icon/default}",
-            "{Color:icon/primary}"
+            "{Color:action/primary/icon/default}"
           ],
           "hidden": [
             "Breadcrumbs",
@@ -592,10 +589,9 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}",
-            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}",
-            "{Color:icon/primary}",
             "{Color:icon/disabled}"
           ],
           "hidden": [

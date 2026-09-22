@@ -5,7 +5,7 @@
     {
       "name": "Cursor",
       "id": "8871:436",
-      "description": "",
+      "description": "Custom pointer glyphs for canvas and authoring surfaces — the Spatial and Flow editors — where the native cursor cannot express the active tool. 22 variants: Type (Default, Default White, Pointer, Text, Move, Grabbing, Crosshair, Copy, Not Allowed, Unavailable, Progress, Hourglass, Zoom In, Zoom Out, Resize N, NS, EW, NE SW, NW SE, Col, Row, X). Glyphs bind icon/primary with an icon/inverse outline so they read on light and dark. Non-interactive: the cursor mirrors state set elsewhere and is never the only signal. Standard UI keeps native cursors.",
       "docLinks": [],
       "variantCount": 22,
       "props": {
@@ -57,10 +57,10 @@
               14
             ],
             "fills": [
-              "{Primitives:color/neutral/900}"
+              "{Color:icon/primary}"
             ],
             "strokes": [
-              "{Primitives:color/mono/white}"
+              "{Color:icon/inverse}"
             ],
             "strokeWeight": 1
           }
@@ -113,7 +113,7 @@
               },
               "/Rectangle 237": {
                 "fills": [
-                  "{Primitives:color/mono/white}"
+                  "{Color:icon/inverse}"
                 ],
                 "strokes": [
                   "{Color:border/strong}"

@@ -89,6 +89,8 @@ Default variant: `type=icon, state=default, compact=false` · 20 variants · def
 
 ## Component set: List
 
+Container that stacks ListItem rows with optional dividers. 2 variants: in-card (false, true) — true drops the outer border and padding for placement inside Card. Items is a slot: drop ListItem instances in. Use for navigation, settings and entity pickers; for column-structured data use Table.
+
 ### Props
 
 | Prop      | Type    | Options / default         |
@@ -148,10 +150,6 @@ Default variant: `in-card=true` · 2 variants · default size 387×299px
 | ------- | ------- | ---- | --------------------- | --------------- | ---------------------------------------------- | -------------------- |
 | true    | 387×299 |      | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.primary` |
 | false   | 368×259 |      |                       | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.primary` |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Documentation card
 

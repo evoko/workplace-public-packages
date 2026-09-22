@@ -5,7 +5,7 @@
     {
       "name": "Spinner",
       "id": "4626:102",
-      "description": "",
+      "description": "Circular indeterminate loading indicator. 6 variants: size (sm, md, lg) × style (default, inverse) — inverse is for dark and inverse surfaces. Non-interactive. Pair with visually-hidden text or aria-busy on the region it covers; for known progress use Progress Bar, for layout placeholders use Skeleton.",
       "docLinks": [],
       "variantCount": 6,
       "props": {

@@ -18,7 +18,7 @@ Default variant: `state=default` · 6 variants · default size 240×40px
 ### Anatomy (default variant)
 
 - **state=default** · component · row gap 8 pad 0/12/0/12 FIXED/FIXED · 240×40  
-  padding `inset.sm`
+  itemSpacing `inset.xs` · padding `inset.sm`
   - **Current value** · text `body/md/regular` "Current value" · FILL/HUG · 216×10  
     fill `color.text.primary` · lineHeight `type.line-height.body.md` · fontFamily `type.font-family.inter` · fontSize `type.size.body.md` · fontStyle `type.font-weight.400` · prop characters←value
 
@@ -30,7 +30,7 @@ Default variant: `state=default` · 6 variants · default size 240×40px
 | Strokes         | `color.border.feedback.danger.strong`, `color.border.feedback.focus.strong`, `color.border.subtle` |
 | Text color      | `color.text.disabled`, `color.text.primary`                                                        |
 | Icon color      | `color.action.tertiary.icon.default`                                                               |
-| Spacing         | `inset.sm`                                                                                         |
+| Spacing         | `inset.sm`, `inset.xs`                                                                             |
 | Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.line-height.body.md`, `type.size.body.md`  |
 | Effects         | `shadow/control`, `shadow/danger`, `shadow/focus/default`                                          |
 | Text styles     | `body/md/regular`                                                                                  |
@@ -51,10 +51,6 @@ Default variant: `state=default` · 6 variants · default size 240×40px
 | filled   | 240×40 | `color.surface.base`  | `color.border.subtle`                 | `shadow/control`       | `color.text.primary`  | `color.action.tertiary.icon.default` |
 | error    | 240×40 | `color.surface.base`  | `color.border.feedback.danger.strong` | `shadow/danger`        | `color.text.primary`  | `color.action.tertiary.icon.default` |
 | disabled | 240×40 |                       |                                       |                        | `color.text.disabled` |                                      |
-
-### Issues detected
-
-- Hard-coded gap `8px` on layer _state=default_
 
 ## Documentation card
 

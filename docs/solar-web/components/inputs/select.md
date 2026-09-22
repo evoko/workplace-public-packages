@@ -4,7 +4,7 @@
 
 ## Component set: Select
 
-Dropdown selector for picking one option from a predefined list. 10 variants: size (sm 36px, md 44px) × state (default, hover, open, disabled, error). Trailing chevron rotates when open. Use when options are < ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern. SelectOpen (sibling component) is the expanded panel.
+Dropdown selector for picking one option from a predefined list. 12 variants: size (sm 36px, md 44px) × state (default, hover, focus, open, disabled, error). Trailing chevron rotates when open. Use when options are < ~7 — beyond that, switch to Autocomplete for typeahead, or a multi-select pattern. SelectOpen (sibling component) is the expanded panel.
 
 ### Props
 
@@ -87,10 +87,6 @@ Default variant: `size=md, state=default` · 12 variants · default size 240×76
 | sm   | error    | 200×66 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.danger` | `color.icon.primary`                          |
 | md   | focus    | 240×76 |      |        | `shadow/focus/default` | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary`       | `color.icon.primary`                          |
 | sm   | focus    | 200×66 |      |        | `shadow/focus/default` | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.secondary`       | `color.icon.primary`                          |
-
-### Issues detected
-
-- Description says 10 variants; the set has 12.
 
 ## Documentation card
 

@@ -5,7 +5,7 @@
     {
       "name": "PropertyRow",
       "id": "7676:169",
-      "description": "",
+      "description": "One label–value row inside Property List — optional leading icon, label, optional description and a trailing control. 14 variants: in-card (false, true) × trailing (none, action, toggle, select, icon-button, segmented-control, tag). Props: label, description (text), hasDescription, hasLeading + leading (instance swap), hasTrailing. Renders as <dt>/<dd>; the trailing control carries its own interaction states. For editable fields use Form Row.",
       "docLinks": [],
       "variantCount": 14,
       "props": {
@@ -268,7 +268,7 @@
             "{Color:action/primary/text/default}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}"
           ],
           "hidden": [
@@ -290,7 +290,7 @@
             "{Color:action/primary/text/default}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}"
           ],
           "overrides": {
@@ -341,7 +341,7 @@
             "{Color:text/secondary}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "hidden": [],
           "overrides": {
@@ -390,7 +390,7 @@
             "{Color:text/secondary}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "hidden": [],
           "overrides": {
@@ -454,7 +454,6 @@
             "{Color:text/feedback/info}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
             "{Color:icon/primary}"
           ],
           "hidden": [
@@ -508,7 +507,6 @@
             "{Color:text/feedback/info}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
             "{Color:icon/primary}"
           ],
           "hidden": [
@@ -575,7 +573,7 @@
             "{Color:text/secondary}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}"
           ],
           "hidden": [],
@@ -625,7 +623,7 @@
             "{Color:text/secondary}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}"
           ],
           "hidden": [],
@@ -690,7 +688,6 @@
             "{Color:text/feedback/info}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
             "{Color:icon/primary}",
             "{Color:icon/secondary}"
           ],
@@ -746,7 +743,6 @@
             "{Color:text/feedback/info}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
             "{Color:icon/primary}",
             "{Color:icon/secondary}"
           ],
@@ -815,7 +811,7 @@
             "{Color:text/secondary}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "hidden": [],
           "overrides": {
@@ -856,7 +852,7 @@
             "{Color:text/secondary}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "hidden": [],
           "overrides": {
@@ -912,7 +908,7 @@
             "{Color:text/feedback/neutral}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "hidden": [],
           "overrides": {
@@ -962,7 +958,7 @@
             "{Color:text/feedback/neutral}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "hidden": [],
           "overrides": {
@@ -1019,7 +1015,7 @@
     {
       "name": "PropertyList",
       "id": "7739:29013",
-      "description": "",
+      "description": "Container for the read-only key–value pairs of an entity, built from PropertyRow instances. 2 variants: in-card (false, true) — true removes the outer chrome for placement inside Card or Detail Side Panel. items is a slot. Renders as a description list (<dl>) so label and value stay programmatically paired. For editable fields use Form Section; for tabular data use Table.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
@@ -1332,9 +1328,8 @@
             "{Color:text/feedback/info}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
-            "{Color:action/secondary/icon/default}",
-            "{Color:icon/primary}"
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}"
           ],
           "hidden": [
             "Counter",
@@ -1358,9 +1353,8 @@
             "{Color:text/feedback/info}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}",
-            "{Color:action/secondary/icon/default}",
-            "{Color:icon/primary}"
+            "{Color:icon/primary}",
+            "{Color:action/secondary/icon/default}"
           ],
           "overrides": {
             "changed": {

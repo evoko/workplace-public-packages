@@ -77,13 +77,13 @@ Default variant: `direction=previous, state=default` · 10 variants · default s
 
 ### Tokens used
 
-| Role       | Tokens                                                           |
-| ---------- | ---------------------------------------------------------------- |
-| Fills      | `color.surface.active`, `color.surface.hover`                    |
-| Icon color | `color.icon.disabled`, `color.icon.primary`, `color.neutral.900` |
-| Radius     | `radius.container`                                               |
-| Sizes      | `icon.sm`                                                        |
-| Effects    | `shadow/focus/default`                                           |
+| Role       | Tokens                                        |
+| ---------- | --------------------------------------------- |
+| Fills      | `color.surface.active`, `color.surface.hover` |
+| Icon color | `color.icon.disabled`, `color.icon.primary`   |
+| Radius     | `radius.container`                            |
+| Sizes      | `icon.sm`                                     |
+| Effects    | `shadow/focus/default`                        |
 
 ### Composes
 
@@ -93,20 +93,16 @@ Default variant: `direction=previous, state=default` · 10 variants · default s
 
 | direction | state    | size  | fill                   | stroke | effect                 | text | icon                  |
 | --------- | -------- | ----- | ---------------------- | ------ | ---------------------- | ---- | --------------------- |
-| previous  | default  | 24×24 |                        |        |                        |      | `color.neutral.900`   |
-| previous  | hover    | 24×24 | `color.surface.hover`  |        |                        |      | `color.neutral.900`   |
-| previous  | pressed  | 24×24 | `color.surface.active` |        |                        |      | `color.neutral.900`   |
-| previous  | focus    | 24×24 |                        |        | `shadow/focus/default` |      | `color.neutral.900`   |
-| previous  | disabled | 24×24 |                        |        |                        |      | `color.neutral.900`   |
+| previous  | default  | 24×24 |                        |        |                        |      | `color.icon.primary`  |
+| previous  | hover    | 24×24 | `color.surface.hover`  |        |                        |      | `color.icon.primary`  |
+| previous  | pressed  | 24×24 | `color.surface.active` |        |                        |      | `color.icon.primary`  |
+| previous  | focus    | 24×24 |                        |        | `shadow/focus/default` |      | `color.icon.primary`  |
+| previous  | disabled | 24×24 |                        |        |                        |      | `color.icon.disabled` |
 | next      | default  | 24×24 |                        |        |                        |      | `color.icon.primary`  |
 | next      | hover    | 24×24 | `color.surface.hover`  |        |                        |      | `color.icon.primary`  |
 | next      | pressed  | 24×24 | `color.surface.active` |        |                        |      | `color.icon.primary`  |
 | next      | focus    | 24×24 |                        |        | `shadow/focus/default` |      | `color.icon.primary`  |
 | next      | disabled | 24×24 |                        |        |                        |      | `color.icon.disabled` |
-
-### Issues detected
-
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
 
 ## Component: PaginationEllipsis
 

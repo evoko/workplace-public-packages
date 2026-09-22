@@ -5,7 +5,7 @@
     {
       "name": "Dialog",
       "id": "5888:18256",
-      "description": "",
+      "description": "Modal dialog centred over a scrim for a focused task or decision. 3 variants: type (default, image, wizard) — image adds a media header (show modal-image + image slot); wizard adds a Stepper for multi-step flows. title is a text prop, content is a slot, footer actions use a Button Group. role=dialog with aria-modal=true; focus is trapped, Esc closes, focus returns to the trigger. For two panes use Split Dialog; for a yes/no decision use Confirmation Dialog; for an edge-anchored panel use Drawer.",
       "docLinks": [],
       "variantCount": 3,
       "props": {

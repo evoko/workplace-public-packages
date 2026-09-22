@@ -31,7 +31,7 @@ Default variant: `state=default` · 2 variants · default size 640×56px
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Fills           | `color.surface.hover`                                                                                                                              |
 | Text color      | `color.text.inverse`, `color.text.primary`, `color.text.secondary`                                                                                 |
-| Icon color      | `color.neutral.900`                                                                                                                                |
+| Icon color      | `color.icon.primary`                                                                                                                               |
 | Spacing         | `inset.sm`, `stack.sm`, `stack.xs`                                                                                                                 |
 | Radius          | `radius.control`                                                                                                                                   |
 | Sizes           | `icon.sm`                                                                                                                                          |
@@ -44,15 +44,14 @@ Default variant: `state=default` · 2 variants · default size 640×56px
 
 ### Variant matrix
 
-| state   | size   | fill                  | stroke | effect | text                                                                   | icon                |
-| ------- | ------ | --------------------- | ------ | ------ | ---------------------------------------------------------------------- | ------------------- |
-| default | 640×56 |                       |        |        | `color.text.primary`<br>`color.text.secondary`                         | `color.neutral.900` |
-| hover   | 640×56 | `color.surface.hover` |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.inverse` | `color.neutral.900` |
+| state   | size   | fill                  | stroke | effect | text                                                                   | icon                 |
+| ------- | ------ | --------------------- | ------ | ------ | ---------------------------------------------------------------------- | -------------------- |
+| default | 640×56 |                       |        |        | `color.text.primary`<br>`color.text.secondary`                         | `color.icon.primary` |
+| hover   | 640×56 | `color.surface.hover` |        |        | `color.text.primary`<br>`color.text.secondary`<br>`color.text.inverse` | `color.icon.primary` |
 
 ### Issues detected
 
 - Component description is empty.
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
 
 ## Component: Command Palette
 

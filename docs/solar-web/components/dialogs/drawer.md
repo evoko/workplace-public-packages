@@ -4,6 +4,8 @@
 
 ## Component: Drawer
 
+Panel that slides in from the viewport edge for a secondary task that keeps the page in context — filters, quick edits, settings. Single variant; title is a text prop, content is a slot, hasCTA toggles the footer Button Group. Traps focus like a dialog; Esc closes and focus returns to the trigger. Use Dialog when the task must finish before the page continues; use Detail Side Panel for read-only detail.
+
 ### Props
 
 | Prop      | Type    | Options / default         |
@@ -55,10 +57,6 @@
 
 - Button Group
 - Icon Button
-
-### Issues detected
-
-- Component description is empty.
 
 ## Issues detected (page)
 

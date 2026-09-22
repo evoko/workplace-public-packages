@@ -5,7 +5,7 @@
     {
       "name": "Popover",
       "id": "4572:120",
-      "description": "",
+      "description": "Anchored overlay with an arrow for rich content — a title, body text and optionally controls — opened from a trigger. 8 variants: placement (top, bottom, left, right) × size (sm, md). title and body are text props. Uses shadow/overlay at the overlay z level; dismisses on Esc or outside click; focus moves into it only when it contains controls. For a one-line hint use Tooltip; for a list of actions use Dropdown.",
       "docLinks": [],
       "variantCount": 8,
       "props": {

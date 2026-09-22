@@ -6,15 +6,15 @@
 
 ### Props
 
-| Prop          | Type    | Options / default    |
-| ------------- | ------- | -------------------- |
-| `breakdpoint` | variant | mobile · **desktop** |
+| Prop         | Type    | Options / default    |
+| ------------ | ------- | -------------------- |
+| `breakpoint` | variant | mobile · **desktop** |
 
-Default variant: `breakdpoint=desktop` · 2 variants · default size 1368×745px
+Default variant: `breakpoint=desktop` · 2 variants · default size 1368×745px
 
 ### Anatomy (default variant)
 
-- **breakdpoint=desktop** · component · column gap 0 pad 0/0/0/0 FIXED/FIXED · 1368×745  
+- **breakpoint=desktop** · component · column gap 0 pad 0/0/0/0 FIXED/FIXED · 1368×745  
   itemSpacing `stack.none` · padding `stack.none`, `inset.none` · radius `radius.container`, `radius.none`
   - **Page Header** · instance of **Page Header** (type=centered, breakpoint=desktop) · column gap 20 pad 8/20/0/20 FILL/HUG · 1368×105  
     stroke `color.border.subtle` mixedpx · itemSpacing `stack.lg` · padding `inset.lg`, `inset.xs`, `inset.none` · strokeWeight `border.default`
@@ -45,7 +45,7 @@ Default variant: `breakdpoint=desktop` · 2 variants · default size 1368×745px
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Strokes         | `color.border.subtle`, `color.border.surface`                                                                                                                                                                                             |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.info`, `color.text.feedback.neutral`, `color.text.feedback.success`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary` |
-| Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.primary`, `color.icon.secondary`, `color.neutral.900`                                                       |
+| Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.primary`, `color.icon.secondary`                                                                            |
 | Spacing         | `inset.lg`, `inset.none`, `inset.xs`, `stack.lg`, `stack.md`, `stack.none`, `stack.xs`                                                                                                                                                    |
 | Radius          | `radius.container`, `radius.none`                                                                                                                                                                                                         |
 | Border width    | `border.default`                                                                                                                                                                                                                          |
@@ -60,15 +60,14 @@ Default variant: `breakdpoint=desktop` · 2 variants · default size 1368×745px
 
 ### Variant matrix
 
-| breakdpoint | size     | fill | stroke | effect | text                                                                                                                                                                                                                                                    | icon                                                                                                                                                  |
-| ----------- | -------- | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| desktop     | 1368×745 |      |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`color.text.feedback.neutral`<br>`color.text.feedback.info` | `color.icon.secondary`<br>`color.neutral.900`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`<br>`color.icon.primary` |
-| mobile      | 377×745  |      |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`color.text.feedback.neutral`<br>`color.text.feedback.info`                                          | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.tertiary.icon.default`<br>`color.neutral.900`                                         |
+| breakpoint | size     | fill | stroke | effect | text                                                                                                                                                                                                                                                    | icon                                                                                                                           |
+| ---------- | -------- | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| desktop    | 1368×745 |      |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`color.text.feedback.neutral`<br>`color.text.feedback.info` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
+| mobile     | 377×745  |      |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`color.text.feedback.neutral`<br>`color.text.feedback.info`                                          | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.tertiary.icon.default`                                         |
 
 ### Issues detected
 
 - Component description is empty.
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
 - Hard-coded gap `242px` on layer _Footer › Container_
 
 ## Component: Search Results Item

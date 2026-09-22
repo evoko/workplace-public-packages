@@ -8,7 +8,7 @@
 
 | Prop    | Type    | Options / default                        |
 | ------- | ------- | ---------------------------------------- |
-| `state` | variant | no results · empty · ghost · **default** |
+| `state` | variant | no-results · empty · ghost · **default** |
 
 Default variant: `state=default` · 4 variants · default size 400×470px
 
@@ -21,7 +21,7 @@ Default variant: `state=default` · 4 variants · default size 400×470px
     - **GlobalSearch** · instance of **GlobalSearch** (state=focus, size=md) · row gap 12 pad 0/12/0/12 FILL/FIXED · 376×40  
       fill `color.surface.base` · stroke `color.border.feedback.focus.strong` 1px · effect `shadow/focus/default` · itemSpacing `inset.sm` · padding `inset.sm`, `inset.none` · strokeWeight `border.default` · radius `radius.control`
     - **FilterChips** · frame · row gap 4 pad 0/0/0/0 HUG/HUG · 306×24  
-      itemSpacing `stack.2xs`
+      itemSpacing `stack.2xs` · counterAxisSpacing `inset.xs`
       - **Tag** · instance of **Tag** (status=info, type=closable, invert=false) · row gap 4 pad 0/8/0/12 HUG/FIXED · 50×24  
         fill `color.surface.feedback.info.subtle` · stroke `color.border.feedback.info.subtle` 1px · itemSpacing `inset.2xs` · padding `inset.sm`, `inset.none`, `inset.xs` · strokeWeight `border.default` · radius `radius.pill`
       - **Tag** · instance of **Tag** (status=neutral, type=closable, invert=false) · row gap 4 pad 0/8/0/12 HUG/FIXED · 124×24  
@@ -82,14 +82,14 @@ Default variant: `state=default` · 4 variants · default size 400×470px
 | state      | size    | fill                    | stroke | effect          | text                                                                                                                                                                                 | icon                                                                                                                                      |
 | ---------- | ------- | ----------------------- | ------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | default    | 400×470 | `color.surface.overlay` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.inverse`<br>`color.text.feedback.info`<br>`color.text.feedback.neutral`<br>`color.text.secondary`<br>`color.text.link.default`                   | `color.icon.primary`<br>`color.icon.feedback.info`<br>`color.icon.feedback.neutral`<br>`color.icon.link.default`<br>`color.icon.tertiary` |
-| no results | 400×300 | `color.surface.overlay` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.inverse`<br>`color.text.feedback.info`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.action.secondary.icon.default`                                                                             |
+| no-results | 400×300 | `color.surface.overlay` |        | `shadow/dialog` | `color.text.primary`<br>`color.text.inverse`<br>`color.text.feedback.info`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default` | `color.icon.primary`<br>`color.action.secondary.icon.default`                                                                             |
 | ghost      | 400×396 | `color.surface.overlay` |        | `shadow/dialog` |                                                                                                                                                                                      |                                                                                                                                           |
 | empty      | 400×308 | `color.surface.overlay` |        | `shadow/dialog` | `color.text.tertiary`<br>`color.text.primary`<br>`color.text.secondary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`                              | `color.icon.primary`<br>`color.action.secondary.icon.default`                                                                             |
 
 ### Issues detected
 
 - Component description is empty.
-- State axis uses non-standard value(s): no results, ghost.
+- State axis uses non-standard value(s): no-results, ghost.
 - Hard-coded gap `8px` on layer _ResultsBody › Dropdown Group Label_
 - Hard-coded gap `8px` on layer _ResultsBody › Dropdown Group Label_
 

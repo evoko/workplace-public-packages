@@ -5,7 +5,7 @@
     {
       "name": "BackButton",
       "id": "4549:130",
-      "description": "Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). 8 variants: size (sm 36px, md 44px) × state (default, hover, pressed, disabled). Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.",
+      "description": "Left-chevron + label affordance for returning to the previous context (parent list, detail ancestor, wizard step back). 12 variants: size (sm 36px, md 44px) × state (default, hover, pressed, focus, disabled, loading). Used above page titles on detail views and inside side panels. Routes to the ancestor the user came from — should never be a no-op or hit browser-back.",
       "docLinks": [],
       "variantCount": 12,
       "props": {

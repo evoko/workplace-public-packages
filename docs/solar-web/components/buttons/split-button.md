@@ -4,7 +4,7 @@
 
 ## Component set: SplitButton
 
-Primary action + adjacent dropdown of related secondary actions. 16 variants: prio (primary, secondary) × size (sm 36px, md 44px) × state (default, hover, pressed, disabled). Use when one action is clearly dominant but the user may sometimes need a variant (Save / Save as draft / Save and close). For 3+ equal actions use a Button Group; for a pure menu trigger use Dropdown.
+Primary action + adjacent dropdown of related secondary actions. 24 variants: prio (primary, secondary) × size (sm 36px, md 44px) × state (default, hover, pressed, disabled, focus, loading). Use when one action is clearly dominant but the user may sometimes need a variant (Save / Save as draft / Save and close). For 3+ equal actions use a Button Group; for a pure menu trigger use Dropdown.
 
 ### Props
 
@@ -85,10 +85,6 @@ Default variant: `prio=primary, size=md, state=default` · 24 variants · defaul
 | secondary | md   | loading  | 112×40 | `color.action.secondary.bg.default`  | `color.border.medium`   | `shadow/control`       | `color.action.secondary.text.default`  | `color.action.secondary.icon.default`  |
 | primary   | sm   | loading  | 88×32  | `color.action.primary.bg.default`    | `color.border.medium`   | `shadow/control`       | `color.action.primary.text.default`    | `color.action.primary.icon.default`    |
 | secondary | sm   | loading  | 88×32  | `color.action.secondary.bg.default`  | `color.border.medium`   | `shadow/control`       | `color.action.secondary.text.default`  | `color.action.secondary.icon.default`  |
-
-### Issues detected
-
-- Description says 16 variants; the set has 24.
 
 ## Documentation card
 

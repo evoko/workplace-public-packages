@@ -13,8 +13,8 @@ Vertical auto-layout frame with slots governed by visibility booleans. Body is t
 
 VARIANT PROPERTIES
 • state — default, hover, disabled (pressed / focus / selected queued)
-• status — none, danger, warning, success (semantic border override via color.border.feedback.{type}.strong)
-• loading — skeleton placeholder state
+• status — none, danger, warning, success, info (semantic border override via color.border.feedback.{type}.strong)
+• loading — false, true (true renders the skeleton placeholder state)
 
 BOOLEANS
 • title (text prop) • show tag • Content (slot)
@@ -130,11 +130,6 @@ Default variant: `state=default, status=none, loading=false` · 12 variants · d
 | default  | none    | true    | 320×156 | `color.surface.base`                    | `color.border.subtle` | `shadow/raised` |                                                                                 |                                               |
 | hover    | info    | false   | 320×150 | `color.surface.feedback.info.subtle`    | `color.border.medium` | `shadow/raised` | `color.text.feedback.info`<br>`color.text.secondary`<br>`color.text.inverse`    | `color.icon.feedback.info`                    |
 | default  | info    | false   | 320×150 | `color.surface.feedback.info.subtle`    | `color.border.subtle` | `shadow/raised` | `color.text.feedback.info`<br>`color.text.secondary`<br>`color.text.inverse`    | `color.icon.feedback.info`                    |
-
-### Issues detected
-
-- Axis `status`: description lists [none, danger, warning, success], set has [none, danger, warning, success, info].
-- Axis `loading`: description lists [skeleton], set has [false, true].
 
 ## Issues detected (page)
 

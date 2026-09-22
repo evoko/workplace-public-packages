@@ -332,7 +332,7 @@
             "{Color:text/primary}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "overrides": {
             "changed": {

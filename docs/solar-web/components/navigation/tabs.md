@@ -83,6 +83,8 @@ Default variant: `size=md, state=default` · 10 variants · default size 138×40
 
 ## Component set: Tabs
 
+Horizontal tab strip that switches between 2–7 peer views under the same context. 2 variants: size (sm 36px, md 44px). Tabs is a slot for Tab Item instances. role=tablist; arrow keys move focus and aria-selected marks the current tab. For ordered flows use Stepper or Page Navigator; for 2–5 inline view toggles inside a form use Segmented Control.
+
 ### Props
 
 | Prop   | Type    | Options / default         |
@@ -141,10 +143,6 @@ Default variant: `size=sm` · 2 variants · default size 456×32px
 | ---- | ------ | ---- | --------------------- | ------ | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | sm   | 456×32 |      | `color.border.subtle` |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.text.secondary`<br>`color.text.tertiary` | `color.icon.primary`<br>`color.icon.secondary` |
 | md   | 456×40 |      | `color.border.subtle` |        | `color.text.primary`<br>`color.action.primary.text.default`<br>`color.text.secondary`<br>`color.text.tertiary` | `color.icon.primary`<br>`color.icon.secondary` |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Documentation card
 

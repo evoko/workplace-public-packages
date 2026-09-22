@@ -5,7 +5,7 @@
     {
       "name": "Status Card",
       "id": "3763:676",
-      "description": "",
+      "description": "Compact card that reports the status of one thing — a device, service or job — with a feedback-coloured indicator, title and value. 16 variants: status (success, neutral, danger, warning) × state (default, hover, disabled, ghost). ghost is the skeleton placeholder while data loads. Status is conveyed by icon + label, not colour alone. For KPI numbers use Stat Card; for an actionable alert use Insight Card.",
       "docLinks": [],
       "variantCount": 16,
       "props": {

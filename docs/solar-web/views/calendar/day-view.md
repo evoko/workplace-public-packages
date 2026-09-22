@@ -11,32 +11,33 @@
   - **Calendar Toolbar** · instance of **Calendar Toolbar** · row gap 16 pad 12/16/12/16 FILL/HUG · 1024×56  
     fill `color.surface.base` · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
   - **Calendar Body** · frame · row gap 16 pad 12/20/12/20 FILL/HUG · 1024×668  
-    padding `inset.lg`, `inset.sm`
-    - **Side Rail** · frame · column gap 16 pad 0/0/0/0 HUG/HUG · 300×561
+    itemSpacing `inset.md` · padding `inset.lg`, `inset.sm`
+    - **Side Rail** · frame · column gap 16 pad 0/0/0/0 HUG/HUG · 300×561  
+      itemSpacing `inset.md`
       - **Date Picker Open** · instance of **Date Picker Open** (inline=false, type=single) · column gap 12 pad 12/12/12/12 HUG/HUG · 300×285  
         fill `color.surface.raised` · stroke `color.border.subtle` 1px · effect `shadow/overlay` · itemSpacing `stack.sm` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.container`
       - **Up Next** · frame · column gap 8 pad 16/16/16/16 FIXED/HUG · 300×260  
-        fill `color.surface.base` · stroke `color.border.subtle` 1px · padding `inset.md` · radius `radius.container`
+        fill `color.surface.base` · stroke `color.border.subtle` 1px · itemSpacing `inset.xs` · padding `inset.md` · radius `radius.container`
     - **Calendar Surface** · frame · column gap 0 pad 0/0/0/0 FILL/HUG · 668×644  
       fill `color.surface.base` · stroke `color.border.subtle` 1px · radius `radius.container`
       - **Header Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 668×36  
         stroke `color.border.subtle` mixedpx
       - **All-Day Strip** · frame · row gap 0 pad 4/0/4/0 FILL/HUG · 668×32  
-        stroke `color.border.subtle` mixedpx
+        stroke `color.border.subtle` mixedpx · padding `inset.2xs`
       - **Time Grid Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 668×576
 
 Instance census (tree capped at depth 3): Day Cell ×35, Icon/None ×17, Time Axis Label ×12, Time Slot ×12, Segmented Control Item ×6, Event Chip ×6, Icon/Repeat ×6, Agenda Row ×3, Avatar ×3, Icon Button ×2, Button ×2, Spinner ×2, Counter ×2, Calendar Toolbar ×1, Segmented Control ×1, Icon/Plus ×1, Date Picker Open ×1, Icon/ArrowLeft ×1, Icon/ArrowRight ×1, Weekday Header ×1, All-Day Bar ×1
 
 ### Tokens used
 
-| Role         | Tokens                                         |
-| ------------ | ---------------------------------------------- |
-| Fills        | `color.surface.base`, `color.surface.raised`   |
-| Strokes      | `color.border.subtle`                          |
-| Spacing      | `inset.lg`, `inset.md`, `inset.sm`, `stack.sm` |
-| Radius       | `radius.container`                             |
-| Border width | `border.default`                               |
-| Effects      | `shadow/overlay`                               |
+| Role         | Tokens                                                                  |
+| ------------ | ----------------------------------------------------------------------- |
+| Fills        | `color.surface.base`, `color.surface.raised`                            |
+| Strokes      | `color.border.subtle`                                                   |
+| Spacing      | `inset.2xs`, `inset.lg`, `inset.md`, `inset.sm`, `inset.xs`, `stack.sm` |
+| Radius       | `radius.container`                                                      |
+| Border width | `border.default`                                                        |
+| Effects      | `shadow/overlay`                                                        |
 
 ### Composes
 
@@ -46,11 +47,6 @@ Instance census (tree capped at depth 3): Day Cell ×35, Icon/None ×17, Time Ax
 ### Issues detected
 
 - Component description is empty.
-- Hard-coded gap `16px` on layer _Calendar Body_
-- Hard-coded gap `16px` on layer _Calendar Body › Side Rail_
-- Hard-coded gap `8px` on layer _Calendar Body › Side Rail › Up Next_
-- Hard-coded paddingTop `4px` on layer _Calendar Body › Calendar Surface › All-Day Strip_
-- Hard-coded paddingBottom `4px` on layer _Calendar Body › Calendar Surface › All-Day Strip_
 
 ## Documentation card
 

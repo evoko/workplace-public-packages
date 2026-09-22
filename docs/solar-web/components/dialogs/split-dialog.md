@@ -4,6 +4,8 @@
 
 ## Component set: Split Dialog
 
+Modal dialog with two panes — a navigation or list rail on the left, content on the right — for multi-section tasks such as settings or import mapping. 2 variants: cta (regular, full-width) for the footer Button Group. left and right are slots. Same contract as Dialog: role=dialog, aria-modal, focus trap, Esc closes, focus returns to the trigger. Collapses to one stacked pane on narrow viewports. For a single-pane task use Dialog.
+
 ### Props
 
 | Prop    | Type    | Options / default         |
@@ -87,7 +89,6 @@ Default variant: `cta=full-width` · 2 variants · default size 640×480px
 
 ### Issues detected
 
-- Component description is empty.
 - Hard-coded fill `#ffffff` on layer _Body_
 
 ## Documentation card

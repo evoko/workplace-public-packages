@@ -105,6 +105,9 @@
               "align": "MIN/CENTER",
               "sizing": "FIXED/HUG"
             },
+            "vars": {
+              "itemSpacing": "unresolved:8fd955719573"
+            },
             "children": [
               {
                 "name": "FormSection",

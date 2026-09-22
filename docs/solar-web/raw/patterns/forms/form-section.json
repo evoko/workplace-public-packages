@@ -78,6 +78,9 @@
               "align": "MIN/CENTER",
               "sizing": "FILL/HUG"
             },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xl"
+            },
             "children": [
               {
                 "name": "SectionHeader",
@@ -222,6 +225,9 @@
               ],
               "align": "MIN/MIN",
               "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xl"
             },
             "propRefs": {
               "slotContentId": "SectionFields#5612:11"

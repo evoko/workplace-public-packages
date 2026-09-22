@@ -5,7 +5,7 @@
     {
       "name": "Option Card",
       "id": "9385:28717",
-      "description": "",
+      "description": "Large selectable card that behaves as a rich radio or checkbox — icon, title and description the user picks from a small set. 3 variants: state (default, hover, selected). selected uses border + surface tint, never colour alone; focus and disabled come from the nested control. The whole card is the label and the hit target; group with role=radiogroup and a legend. For dense or long lists use Radio, Checkbox or Option Row.",
       "docLinks": [],
       "variantCount": 3,
       "props": {

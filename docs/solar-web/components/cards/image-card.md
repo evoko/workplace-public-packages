@@ -40,7 +40,7 @@ Default variant: `filled=true, selected=true, hover=false` · 4 variants · defa
 | Fills           | `color.action.primary.bg.default`, `color.surface.background`, `color.surface.base`                                                                                          |
 | Strokes         | `color.border.medium`, `color.border.subtle`                                                                                                                                 |
 | Text color      | `color.text.primary`, `color.text.secondary`                                                                                                                                 |
-| Icon color      | `color.icon.inverse`, `color.icon.secondary`, `color.neutral.900`                                                                                                            |
+| Icon color      | `color.icon.inverse`, `color.icon.primary`, `color.icon.secondary`                                                                                                           |
 | Spacing         | `inset.md`, `inset.xs`, `stack.md`, `stack.sm`                                                                                                                               |
 | Radius          | `radius.container`, `radius.control`                                                                                                                                         |
 | Border width    | `border.default`                                                                                                                                                             |
@@ -59,11 +59,7 @@ Default variant: `filled=true, selected=true, hover=false` · 4 variants · defa
 | true   | true     | false | 200×190 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` | `color.icon.inverse` |
 | true   | false    | true  | 200×190 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` |                      |
 | true   | false    | false | 200×190 | `color.surface.base` | `color.border.subtle` | `shadow/raised` | `color.text.primary`<br>`color.text.secondary` |                      |
-| false  | false    | false | 200×190 |                      | `color.border.medium` |                 | `color.text.primary`                           | `color.neutral.900`  |
-
-### Issues detected
-
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
+| false  | false    | false | 200×190 |                      | `color.border.medium` |                 | `color.text.primary`                           | `color.icon.primary` |
 
 ## Documentation card
 

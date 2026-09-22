@@ -13,7 +13,7 @@
           "type": "VARIANT",
           "default": "default",
           "options": [
-            "no results",
+            "no-results",
             "empty",
             "ghost",
             "default"
@@ -161,7 +161,8 @@
                   "sizing": "HUG/HUG"
                 },
                 "vars": {
-                  "itemSpacing": "Spatial:stack/2xs"
+                  "itemSpacing": "Spatial:stack/2xs",
+                  "counterAxisSpacing": "Spatial:inset/xs"
                 },
                 "children": [
                   {
@@ -730,7 +731,7 @@
           ]
         },
         {
-          "variant": "state=no results",
+          "variant": "state=no-results",
           "size": [
             400,
             300
@@ -765,10 +766,10 @@
                 },
                 "radius": 8,
                 "vars": {
-                  "topLeftRadius": null,
-                  "topRightRadius": null,
-                  "bottomLeftRadius": null,
-                  "bottomRightRadius": null
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
                 }
               },
               "/SearchHeader": {
@@ -794,7 +795,9 @@
                 "layout": {
                   "gap": 8
                 },
-                "vars": null
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
+                }
               },
               "/SearchHeader/FilterChips/Tag": {
                 "variant": {
@@ -863,7 +866,16 @@
                   "align": "MIN/MIN"
                 },
                 "radius": 8,
-                "vars": null
+                "vars": {
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
               }
             },
             "added": [
@@ -956,7 +968,16 @@
                   "align": "MIN/MIN"
                 },
                 "radius": 8,
-                "vars": null
+                "vars": {
+                  "strokeTopWeight": null,
+                  "strokeBottomWeight": null,
+                  "strokeLeftWeight": null,
+                  "strokeRightWeight": null,
+                  "topLeftRadius": "Spatial:radius/container",
+                  "topRightRadius": "Spatial:radius/container",
+                  "bottomLeftRadius": "Spatial:radius/container",
+                  "bottomRightRadius": "Spatial:radius/container"
+                }
               }
             },
             "added": [

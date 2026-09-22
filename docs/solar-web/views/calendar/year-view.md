@@ -12,10 +12,14 @@
     fill `color.surface.base` · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
   - **Calendar Body** · frame · column gap 0 pad 12/20/12/20 FILL/HUG · 1280×623  
     padding `inset.lg`, `inset.sm`
-    - **Year Grid** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 1240×599
-      - **Mini Month Row** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1240×189
-      - **Mini Month Row** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1240×189
-      - **Mini Month Row** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1240×189
+    - **Year Grid** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 1240×599  
+      itemSpacing `inset.md`
+      - **Mini Month Row** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1240×189  
+        itemSpacing `inset.md`
+      - **Mini Month Row** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1240×189  
+        itemSpacing `inset.md`
+      - **Mini Month Row** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1240×189  
+        itemSpacing `inset.md`
 
 Instance census (tree capped at depth 3): Icon/None ×17, Segmented Control Item ×6, Icon Button ×2, Button ×2, Spinner ×2, Counter ×2, Calendar Toolbar ×1, Segmented Control ×1, Icon/Plus ×1
 
@@ -34,10 +38,6 @@ Instance census (tree capped at depth 3): Icon/None ×17, Segmented Control Item
 ### Issues detected
 
 - Component description is empty.
-- Hard-coded gap `16px` on layer _Calendar Body › Year Grid_
-- Hard-coded gap `16px` on layer _Calendar Body › Year Grid › Mini Month Row_
-- Hard-coded gap `16px` on layer _Calendar Body › Year Grid › Mini Month Row_
-- Hard-coded gap `16px` on layer _Calendar Body › Year Grid › Mini Month Row_
 
 ## Documentation card
 

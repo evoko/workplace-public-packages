@@ -4,6 +4,8 @@
 
 ## Component set: PIN Input
 
+Fixed-length numeric code entry (4–6 digits) for one-time codes and verification, one cell per digit. 12 variants: size (sm, md) × state (default, hover, focus, filled, disabled, error). Booleans hasLabel, hasHelper, mandatory. Auto-advances, Backspace steps back, paste fills every cell; each cell is inputmode=numeric with autocomplete=one-time-code. For passwords or free text use Password Input or Text Input.
+
 ### Props
 
 | Prop        | Type    | Options / default                                       |
@@ -93,10 +95,6 @@ Default variant: `size=md, state=default` · 12 variants · default size 236×84
 | sm   | disabled | 188×66 |      |        |        | `color.text.disabled`                                                                                 |      |
 | md   | error    | 236×76 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.danger`                    |      |
 | sm   | error    | 188×66 |      |        |        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.feedback.danger`                    |      |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Documentation card
 

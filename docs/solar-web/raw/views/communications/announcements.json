@@ -97,7 +97,8 @@
               "sizing": "FIXED/HUG"
             },
             "vars": {
-              "itemSpacing": "Spatial:stack/md"
+              "itemSpacing": "Spatial:stack/md",
+              "paddingTop": "Spatial:inset/xl"
             },
             "children": [
               {
@@ -324,10 +325,9 @@
           ],
           "iconFills": [
             "{Color:icon/secondary}",
-            "{Primitives:color/neutral/900}",
+            "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}",
-            "{Color:action/primary/icon/default}",
-            "{Color:icon/primary}"
+            "{Color:action/primary/icon/default}"
           ],
           "hidden": [
             "CTA",
@@ -419,8 +419,8 @@
                 },
                 "vars": {
                   "itemSpacing": "Spatial:inset/md",
-                  "paddingLeft": "Spatial:stack/md",
                   "paddingTop": "Spatial:stack/md",
+                  "paddingLeft": "Spatial:stack/md",
                   "paddingRight": "Spatial:stack/md",
                   "paddingBottom": "Spatial:stack/md"
                 }

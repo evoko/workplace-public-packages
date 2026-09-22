@@ -83,19 +83,24 @@ Know these before designing anything on top of `catalog.json`:
   are truncated and flagged.
 - **No motion, no prototype interactions.** Durations, easings and transitions come from
   the Foundations motion tokens and prose, never from the Web file.
-- **Descriptions and sets disagree** on 152 components: variant counts, axis values, state
-  vocabularies. `issues.md` lists every case; the set is what was drawn, the description is
-  what was intended, and neither is automatically right.
-- **149 hard-coded values on 51 components**, listed per component under `hardcoded`. A
-  generator must not turn these into literals; each one is a governance gap.
-- **Some bindings point at pre-SOLAR libraries.** The documentation chrome binds `Base
-Typograhy` and `Scale`; the Coachmark component (added to Figma 2026-09-21) binds
-  `Sematic`, a legacy `Spatial:Spacing/*` collection and a `Legacy Palette` colour. These
-  are not SOLAR tokens, resolve to nothing in `css-contract.json`, and are flagged per
-  component as "Binds legacy non-SOLAR collection(s)". Treat each as a governance gap.
+- **Descriptions and sets disagree** on 77 sets: mostly an empty description, and on Button a
+  variant count and two axis vocabularies that no longer match what was drawn. `issues.md`
+  lists every case; the set is what was drawn, the description is what was intended, and
+  neither is automatically right. Every `components/*` set is now described; what is left is
+  in `patterns/*` and `views/*`.
+- **44 hard-coded values on 27 sets**, listed per component under `hardcoded`. A generator
+  must not turn these into literals; each one is a governance gap. Only 16 still match a
+  token exactly — the other 28 sit off the scale and need a SOLAR decision before they can
+  be bound to anything.
+- **The pre-SOLAR bindings are gone.** Until the 2026-09-22 sync the documentation chrome
+  bound `Base Typograhy` and `Scale`, and Coachmark bound `Sematic`, a legacy
+  `Spatial:Spacing/*` collection and a `Legacy Palette` colour. No component binds any of
+  them now. Their ids remain in `raw/_variables.json`, which is maintained by hand and keeps
+  historical entries; the check that would flag them is still in place.
 - **Ten local variables in the Web file duplicate Foundations token names**
   (`Color(local)/…`, `Spatial(local)/…`, `Type(local)/…` in `raw/_variables.json`). Treat
-  them as the Foundations token of the same name and report them to SOLAR governance.
+  them as the Foundations token of the same name and report them to SOLAR governance. One is
+  still bound by a component — `Color(local):text/primary` on Auth — Create Organization.
 - **Layout tokens are SOLAR Web's own.** Grid columns, gutters, margins and breakpoints are
   the Web file's local `Layout` collection, absent from `figma-variables.json`. They are
   captured in [tokens/layout-variables.json](tokens/layout-variables.json) and folded into

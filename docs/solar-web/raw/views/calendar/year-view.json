@@ -108,6 +108,9 @@
                   "align": "MIN/MIN",
                   "sizing": "FILL/HUG"
                 },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
+                },
                 "children": [
                   {
                     "name": "Mini Month Row",
@@ -127,6 +130,9 @@
                       ],
                       "align": "MIN/MIN",
                       "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/md"
                     }
                   },
                   {
@@ -147,6 +153,9 @@
                       ],
                       "align": "MIN/MIN",
                       "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/md"
                     }
                   },
                   {
@@ -167,6 +176,9 @@
                       ],
                       "align": "MIN/MIN",
                       "sizing": "FILL/HUG"
+                    },
+                    "vars": {
+                      "itemSpacing": "Spatial:inset/md"
                     }
                   }
                 ]

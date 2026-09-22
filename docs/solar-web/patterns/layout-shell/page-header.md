@@ -55,19 +55,19 @@ Default variant: `type=left-aligned, breakpoint=desktop` · 3 variants · defaul
 
 ### Tokens used
 
-| Role            | Tokens                                                                                                                                                                              |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.action.primary.bg.default`, `color.action.secondary.bg.default`, `color.surface.feedback.success.subtle`                                                                     |
-| Strokes         | `color.action.primary.border.default`, `color.action.secondary.border.default`, `color.border.feedback.success.subtle`, `color.border.subtle`                                       |
-| Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.success`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary`      |
-| Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.primary`, `color.icon.secondary`, `color.neutral.900` |
-| Spacing         | `inset.none`, `inset.sm`, `inset.xl`, `inset.xs`, `stack.lg`, `stack.md`, `stack.none`, `stack.sm`                                                                                  |
-| Radius          | `radius.control`, `radius.pill`                                                                                                                                                     |
-| Border width    | `border.default`                                                                                                                                                                    |
-| Sizes           | `icon.lg`                                                                                                                                                                           |
-| Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `type.line-height.body.md`, `type.line-height.title.md`, `type.size.body.md`, `type.size.title.md`        |
-| Effects         | `shadow/control`                                                                                                                                                                    |
-| Text styles     | `body/md/regular`, `title/md`                                                                                                                                                       |
+| Role            | Tokens                                                                                                                                                                         |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Fills           | `color.action.primary.bg.default`, `color.action.secondary.bg.default`, `color.surface.feedback.success.subtle`                                                                |
+| Strokes         | `color.action.primary.border.default`, `color.action.secondary.border.default`, `color.border.feedback.success.subtle`, `color.border.subtle`                                  |
+| Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.success`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary` |
+| Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.action.tertiary.icon.default`, `color.icon.primary`, `color.icon.secondary`                 |
+| Spacing         | `inset.none`, `inset.sm`, `inset.xl`, `inset.xs`, `stack.lg`, `stack.md`, `stack.none`, `stack.sm`                                                                             |
+| Radius          | `radius.control`, `radius.pill`                                                                                                                                                |
+| Border width    | `border.default`                                                                                                                                                               |
+| Sizes           | `icon.lg`                                                                                                                                                                      |
+| Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `type.line-height.body.md`, `type.line-height.title.md`, `type.size.body.md`, `type.size.title.md`   |
+| Effects         | `shadow/control`                                                                                                                                                               |
+| Text styles     | `body/md/regular`, `title/md`                                                                                                                                                  |
 
 ### Slots and prop-controlled layers
 
@@ -94,16 +94,15 @@ Default variant: `type=left-aligned, breakpoint=desktop` · 3 variants · defaul
 
 ### Variant matrix
 
-| type         | breakpoint | size     | fill | stroke                | effect | text                                                                                                                                                                                     | icon                                                                                                                                                  |
-| ------------ | ---------- | -------- | ---- | --------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| left-aligned | desktop    | 1368×166 |      | `color.border.subtle` |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`                        |
-| left-aligned | mobile     | 377×150  |      | `color.border.subtle` |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.primary.text.default`<br>`color.text.tertiary`                                          | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.tertiary.icon.default`                                                                |
-| centered     | desktop    | 1368×174 |      | `color.border.subtle` |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary` | `color.icon.secondary`<br>`color.neutral.900`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`<br>`color.icon.primary` |
+| type         | breakpoint | size     | fill | stroke                | effect | text                                                                                                                                                                                     | icon                                                                                                                           |
+| ------------ | ---------- | -------- | ---- | --------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| left-aligned | desktop    | 1368×166 |      | `color.border.subtle` |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
+| left-aligned | mobile     | 377×150  |      | `color.border.subtle` |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.primary.text.default`<br>`color.text.tertiary`                                          | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.tertiary.icon.default`                                         |
+| centered     | desktop    | 1368×174 |      | `color.border.subtle` |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary` | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
 
 ### Issues detected
 
 - Component description is empty.
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
 - Hard-coded gap `16px` on layer _Container_
 
 ## Issues detected (page)

@@ -47,6 +47,9 @@
           "align": "MIN/MIN",
           "sizing": "FIXED/HUG"
         },
+        "vars": {
+          "itemSpacing": "Spatial:inset/2xs"
+        },
         "children": [
           {
             "name": "Axis Line",
@@ -99,6 +102,9 @@
                   ],
                   "align": "MIN/CENTER",
                   "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 },
                 "children": [
                   {
@@ -155,6 +161,9 @@
                   "align": "MIN/CENTER",
                   "sizing": "HUG/HUG"
                 },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                },
                 "children": [
                   {
                     "name": "Tick Mark",
@@ -209,6 +218,9 @@
                   ],
                   "align": "MIN/CENTER",
                   "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 },
                 "children": [
                   {
@@ -265,6 +277,9 @@
                   "align": "MIN/CENTER",
                   "sizing": "HUG/HUG"
                 },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
+                },
                 "children": [
                   {
                     "name": "Tick Mark",
@@ -319,6 +334,9 @@
                   ],
                   "align": "MIN/CENTER",
                   "sizing": "HUG/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/2xs"
                 },
                 "children": [
                   {

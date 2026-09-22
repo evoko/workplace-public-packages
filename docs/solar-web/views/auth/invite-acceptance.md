@@ -30,8 +30,8 @@ Default variant: `breakpoint=default` · 2 variants · default size 1440×800px
       itemSpacing `inset.xs`
       - **Icon/HelpCircle** · instance of **Icon/HelpCircle** (solid=false) · FIXED/FIXED · 16×16  
         height `icon.sm`
-      - **Already a member? Sign in instead.** · text "Already a member? Sign in instead." · HUG/HUG · 192×9  
-        fill `color.text.tertiary` · lineHeight `line-height.body.xs` · fontFamily `type.font-family.inter` · fontSize `size.body.xs` · fontStyle `type.font-weight.400,Primitives:type.font-weight.500` · textRangeFills `color.text.tertiary`
+      - **Already a member? Sign in instead.** · text `body/sm/regular` "Already a member? Sign in instead." · HUG/HUG · 192×9  
+        fill `color.text.tertiary` · lineHeight `type.line-height.body.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.body.sm` · fontStyle `type.font-weight.400,Primitives:type.font-weight.500`
   - **Footer** · frame · column gap 12 pad 0/0/0/0 HUG/HUG · 216×32  
     itemSpacing `stack.sm`
     - **Biamp Logo** · instance of **Biamp Logo** (style=light, size=sm) · FIXED/FIXED · 36×11
@@ -40,20 +40,19 @@ Default variant: `breakpoint=default` · 2 variants · default size 1440×800px
 
 ### Tokens used
 
-| Role            | Tokens                                                                                                                                                                                                                                                               |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills           | `color.surface.inverse`, `color.surface.raised`                                                                                                                                                                                                                      |
-| Strokes         | `color.border.subtle`                                                                                                                                                                                                                                                |
-| Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.disabled`, `color.text.inverse`, `color.text.tertiary`                                                                                                                       |
-| Icon color      | `color.action.primary.icon.default`, `color.icon.disabled`, `color.icon.tertiary`, `color.brand.red`, `color.brand.white`                                                                                                                                            |
-| Spacing         | `inset.md`, `inset.none`, `inset.xl`, `inset.xs`, `stack.lg`, `stack.md`, `stack.sm`                                                                                                                                                                                 |
-| Radius          | `radius.control`, `radius.dialog`                                                                                                                                                                                                                                    |
-| Border width    | `border.default`                                                                                                                                                                                                                                                     |
-| Sizes           | `breakpoint.lg`, `icon.sm`                                                                                                                                                                                                                                           |
-| Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `line-height.body.xs`, `size.body.xs`, `type.line-height.body.md`, `type.line-height.body.sm`, `type.line-height.title.sm`, `type.size.body.md`, `type.size.body.sm`, `type.size.title.sm` |
-| Effects         | `shadow/overlay`                                                                                                                                                                                                                                                     |
-| Text styles     | `body/md/regular`, `body/sm/regular`, `title/sm`                                                                                                                                                                                                                     |
-| Other           | `textRangeFills={Color:text/tertiary}`                                                                                                                                                                                                                               |
+| Role            | Tokens                                                                                                                                                                                                                        |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fills           | `color.surface.inverse`, `color.surface.raised`                                                                                                                                                                               |
+| Strokes         | `color.border.subtle`                                                                                                                                                                                                         |
+| Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.disabled`, `color.text.inverse`, `color.text.tertiary`                                                                                |
+| Icon color      | `color.action.primary.icon.default`, `color.icon.disabled`, `color.icon.tertiary`, `color.brand.red`, `color.brand.white`                                                                                                     |
+| Spacing         | `inset.md`, `inset.none`, `inset.xl`, `inset.xs`, `stack.lg`, `stack.md`, `stack.sm`                                                                                                                                          |
+| Radius          | `radius.control`, `radius.dialog`                                                                                                                                                                                             |
+| Border width    | `border.default`                                                                                                                                                                                                              |
+| Sizes           | `breakpoint.lg`, `icon.sm`                                                                                                                                                                                                    |
+| Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `type.line-height.body.md`, `type.line-height.body.sm`, `type.line-height.title.sm`, `type.size.body.md`, `type.size.body.sm`, `type.size.title.sm` |
+| Effects         | `shadow/overlay`                                                                                                                                                                                                              |
+| Text styles     | `body/md/regular`, `body/sm/regular`, `title/sm`                                                                                                                                                                              |
 
 ### Composes
 
@@ -73,7 +72,6 @@ Default variant: `breakpoint=default` · 2 variants · default size 1440×800px
 
 - Component description is empty.
 - Primitive color bound directly (CLR-002): `color.brand.red`, `color.brand.white`.
-- Bound to a LOCAL duplicate of a Foundations token (should bind the library variable): `Type(local):line-height/body/xs`, `Type(local):size/body/xs`.
 
 ## Issues detected (page)
 

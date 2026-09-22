@@ -790,7 +790,6 @@
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
             "{Color:action/tertiary/icon/default}",
-            "{Primitives:color/neutral/900}",
             "{Color:icon/feedback/warning}",
             "{Color:action/secondary/icon/default}"
           ],
@@ -1423,11 +1422,11 @@
                   "sizing": "FIXED/HUG"
                 },
                 "vars": {
-                  "itemSpacing": null,
-                  "paddingLeft": null,
-                  "paddingTop": null,
-                  "paddingRight": null,
-                  "paddingBottom": null
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md"
                 }
               },
               "/Info": {
@@ -1501,11 +1500,11 @@
                 "strokes": null,
                 "strokeWeight": null,
                 "vars": {
-                  "itemSpacing": null,
-                  "paddingLeft": null,
-                  "paddingTop": null,
-                  "paddingRight": null,
-                  "paddingBottom": null,
+                  "itemSpacing": "Spatial:inset/sm",
+                  "paddingLeft": "Spatial:inset/md",
+                  "paddingTop": "Spatial:inset/md",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md",
                   "strokeTopWeight": null,
                   "strokeBottomWeight": null,
                   "strokeLeftWeight": null,
@@ -1675,6 +1674,9 @@
               ],
               "align": "MIN/MIN",
               "sizing": "FILL/HUG"
+            },
+            "vars": {
+              "itemSpacing": "Spatial:inset/xs"
             },
             "children": [
               {
@@ -1960,7 +1962,7 @@
             "{Color:text/primary}"
           ],
           "iconFills": [
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/primary}"
           ],
           "hidden": [],
           "overrides": {

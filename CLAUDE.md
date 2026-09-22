@@ -12,8 +12,9 @@ The SOLAR Foundations reference is in [docs/solar/](docs/solar/README.md). SOLAR
 what is not built yet (the design-to-code generator itself does not exist).
 CI ([.github/workflows/solar.yml](.github/workflows/solar.yml)) rebuilds every generated file
 and fails if the result differs from what is committed, and scans for credentials and
-unreviewed personal data. After editing a builder or syncing, run `npm run solar:docs` and
-`npm run solar:tokens` and commit the output. Builders must stay pure functions of `raw/`:
+unreviewed personal data. `npm run solar:sync` does the whole chain — fetch, docs, derived tokens, code — and
+`npm run solar:rebuild` does the same without the fetch, which is what to run after editing a
+builder. Commit the output. Builders must stay pure functions of `raw/`:
 never write a build timestamp into a generated file.
 
 `npm run solar:codegen` ([packages/codegen](packages/codegen/README.md)) turns the token data

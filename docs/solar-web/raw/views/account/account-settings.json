@@ -242,7 +242,11 @@
                 ],
                 "strokeWeight": "mixed",
                 "vars": {
-                  "itemSpacing": "Spatial:inset/none"
+                  "itemSpacing": "Spatial:inset/none",
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/xs",
+                  "paddingBottom": "Spatial:inset/sm"
                 },
                 "children": [
                   {
@@ -614,7 +618,11 @@
                       "sizing": "FILL/FILL"
                     },
                     "vars": {
-                      "itemSpacing": "Spatial:stack/lg"
+                      "itemSpacing": "Spatial:stack/lg",
+                      "paddingLeft": "Spatial:inset/xl",
+                      "paddingTop": "Spatial:inset/xl",
+                      "paddingRight": "Spatial:inset/xl",
+                      "paddingBottom": "Spatial:inset/xl"
                     }
                   },
                   {
@@ -841,7 +849,6 @@
             "{Color:action/tertiary/icon/default}",
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
-            "{Primitives:color/neutral/900}",
             "{Color:icon/inverse}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}"
@@ -934,7 +941,6 @@
             "{Color:action/tertiary/icon/default}",
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
-            "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}"
           ],
@@ -998,7 +1004,9 @@
                 "layout": {
                   "gap": 24
                 },
-                "vars": null
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
+                }
               }
             }
           }
@@ -1027,7 +1035,6 @@
             "{Color:action/tertiary/icon/default}",
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
-            "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}"
           ],
@@ -1088,7 +1095,9 @@
                 "layout": {
                   "gap": 24
                 },
-                "vars": null
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
+                }
               }
             }
           }
@@ -1117,7 +1126,6 @@
             "{Color:action/tertiary/icon/default}",
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
-            "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}"
           ],
@@ -1178,7 +1186,9 @@
                 "layout": {
                   "gap": 24
                 },
-                "vars": null
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
+                }
               }
             }
           }
@@ -1207,7 +1217,6 @@
             "{Color:action/tertiary/icon/default}",
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
-            "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}"
           ],
@@ -1268,7 +1277,9 @@
                 "layout": {
                   "gap": 24
                 },
-                "vars": null
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
+                }
               }
             }
           }
@@ -1299,7 +1310,6 @@
             "{Color:action/tertiary/icon/default}",
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
-            "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/secondary/icon/danger/default}",
             "{Color:action/primary/icon/default}"
@@ -1361,7 +1371,9 @@
                 "layout": {
                   "gap": 24
                 },
-                "vars": null
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
+                }
               }
             }
           }
@@ -1391,7 +1403,6 @@
             "{Color:action/tertiary/icon/default}",
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
-            "{Primitives:color/neutral/900}",
             "{Color:action/secondary/icon/default}",
             "{Color:action/primary/icon/default}"
           ],
@@ -1452,7 +1463,9 @@
                 "layout": {
                   "gap": 24
                 },
-                "vars": null
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
+                }
               }
             }
           }

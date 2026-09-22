@@ -1095,7 +1095,7 @@
     {
       "name": "List",
       "id": "7739:28903",
-      "description": "",
+      "description": "Container that stacks ListItem rows with optional dividers. 2 variants: in-card (false, true) — true drops the outer border and padding for placement inside Card. Items is a slot: drop ListItem instances in. Use for navigation, settings and entity pickers; for column-structured data use Table.",
       "docLinks": [],
       "variantCount": 2,
       "props": {

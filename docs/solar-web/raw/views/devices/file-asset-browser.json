@@ -1,5 +1,5 @@
 {
-  "page": "↳ 🟢 File & Asset Browser ",
+  "page": "↳ 🟢 File & Asset Browser",
   "pageId": "3772:3",
   "componentSets": [
     {
@@ -109,7 +109,11 @@
               "sizing": "FILL/FILL"
             },
             "vars": {
-              "itemSpacing": "Spatial:stack/md"
+              "itemSpacing": "Spatial:stack/md",
+              "paddingLeft": "unresolved:8fd955719573",
+              "paddingTop": "Spatial:inset/md",
+              "paddingRight": "unresolved:8fd955719573",
+              "paddingBottom": "Spatial:inset/xl"
             },
             "children": [
               {
@@ -908,8 +912,7 @@
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}",
-            "{Color:action/primary/icon/default}",
-            "{Primitives:color/neutral/900}"
+            "{Color:action/primary/icon/default}"
           ],
           "hidden": [
             "*",
@@ -939,7 +942,9 @@
                 "layout": {
                   "sizing": "FILL/HUG"
                 },
-                "vars": null
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
+                }
               }
             },
             "added": [
@@ -985,7 +990,6 @@
             "{Color:icon/primary}",
             "{Color:action/tertiary/icon/default}",
             "{Color:action/secondary/icon/default}",
-            "{Primitives:color/neutral/900}",
             "{Color:action/primary/icon/default}"
           ],
           "hidden": [
@@ -1042,9 +1046,11 @@
                   "sizing": "FILL/HUG"
                 },
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/md",
-                  "paddingRight": "Spatial:inset/md"
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md"
                 }
               }
             },
@@ -1119,7 +1125,9 @@
                   "gap": 24,
                   "sizing": "FILL/HUG"
                 },
-                "vars": null
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xl"
+                }
               }
             },
             "added": [
@@ -1226,9 +1234,11 @@
                   "sizing": "FILL/HUG"
                 },
                 "vars": {
-                  "itemSpacing": null,
+                  "itemSpacing": "Spatial:inset/sm",
                   "paddingLeft": "Spatial:inset/md",
-                  "paddingRight": "Spatial:inset/md"
+                  "paddingTop": "Spatial:inset/sm",
+                  "paddingRight": "Spatial:inset/md",
+                  "paddingBottom": "Spatial:inset/md"
                 }
               }
             },

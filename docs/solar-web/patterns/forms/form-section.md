@@ -16,7 +16,8 @@
 
 - **FormSection** · component · column gap 20 pad 20/0/20/0 FIXED/HUG · 640×377  
   stroke `color.border.surface` mixedpx · itemSpacing `stack.lg` · padding `stack.none`, `stack.lg` · strokeWeight `border.default`
-  - **Contaner** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×41
+  - **Contaner** · frame · row gap 24 pad 0/0/0/0 FILL/HUG · 640×41  
+    itemSpacing `inset.xl`
     - **SectionHeader** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 640×41  
       itemSpacing `stack.md` · padding `stack.none` · prop visible←hasSectionHeader
       - **Title** · text `title/sm` "Section title" · FILL/HUG · 640×15  
@@ -26,7 +27,7 @@
     - ~~**Button**~~ (hidden by default) · instance of **Button** (size=md, prio=secondary, state=default, danger=false) · row gap 8 pad 0/12/0/12 HUG/FIXED · 80×40  
       fill `color.action.secondary.bg.default` · stroke `color.action.secondary.border.default` 1px · effect `shadow/control` · itemSpacing `inset.xs` · padding `inset.sm` · strokeWeight `border.default` · radius `radius.control` · prop visible←hasCTA
   - **SectionFields** · slot · column gap 24 pad 0/0/0/0 FILL/HUG · 640×276  
-    prop slotContentId←SectionFields
+    itemSpacing `inset.xl` · prop slotContentId←SectionFields
     - **FormRow** · instance of **FormRow** (columns=2) · row gap 16 pad 0/0/0/0 FILL/HUG · 640×76  
       itemSpacing `stack.md`
     - **FormRow** · instance of **FormRow** (columns=2) · row gap 16 pad 0/0/0/0 FILL/HUG · 640×76  
@@ -41,7 +42,7 @@
 | Fills           | `color.action.secondary.bg.default`                                                                                                                                          |
 | Strokes         | `color.action.secondary.border.default`, `color.border.surface`                                                                                                              |
 | Text color      | `color.text.primary`, `color.text.secondary`                                                                                                                                 |
-| Spacing         | `inset.sm`, `inset.xs`, `stack.lg`, `stack.md`, `stack.none`                                                                                                                 |
+| Spacing         | `inset.sm`, `inset.xl`, `inset.xs`, `stack.lg`, `stack.md`, `stack.none`                                                                                                     |
 | Radius          | `radius.control`                                                                                                                                                             |
 | Border width    | `border.default`                                                                                                                                                             |
 | Typography vars | `type.font-family.inter`, `type.font-weight.400`, `type.font-weight.500`, `type.line-height.body.md`, `type.line-height.title.sm`, `type.size.body.md`, `type.size.title.sm` |
@@ -64,8 +65,6 @@
 ### Issues detected
 
 - Component description is empty.
-- Hard-coded gap `24px` on layer _Contaner_
-- Hard-coded gap `24px` on layer _SectionFields_
 
 ## Issues detected (page)
 

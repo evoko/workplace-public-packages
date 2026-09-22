@@ -666,7 +666,7 @@
     {
       "name": "FilterPanel",
       "id": "5674:637",
-      "description": "FilterPanel chassis. Day-1: layout × footerBehavior × state = 12 variants. Staged-apply (apply-button) is the canonical default per hardening review §4.1. Section children take Expanded:Boolean as a component property. Slot-based composition — consumers drop FilterSection (or any) instances into the Sections region.",
+      "description": "FilterPanel chassis. Day-1: state (default, loading, empty) = 3 variants; layout and footerBehavior are not variant axes. Staged-apply (apply-button) is the canonical default per hardening review §4.1. Section children take Expanded:Boolean as a component property. Slot-based composition — consumers drop FilterSection (or any) instances into the Sections region.",
       "docLinks": [],
       "variantCount": 3,
       "props": {

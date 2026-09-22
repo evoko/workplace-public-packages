@@ -15,7 +15,7 @@
     - **Agenda List** · frame · column gap 0 pad 0/0/0/0 FIXED/HUG · 800×356  
       fill `color.surface.base` · stroke `color.border.subtle` 1px · itemSpacing `stack.none` · padding `inset.none` · radius `radius.container`
       - **Frame 1** · frame · row gap 8 pad 12/16/12/16 FILL/HUG · 800×36  
-        stroke `color.border.subtle` mixedpx · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
+        stroke `color.border.subtle` mixedpx · itemSpacing `inset.xs` · padding `inset.md`, `inset.sm` · strokeWeight `border.default`
         - **Today · Friday, April 17** · text `title/xs` "Today · Friday, April 17" · HUG/HUG · 161×12  
           fill `color.text.primary` · lineHeight `type.line-height.title.xs` · fontFamily `type.font-family.inter` · fontSize `type.size.title.xs` · fontStyle `type.font-weight.500`
       - **Rows** · frame · column gap 0 pad 0/0/0/0 FILL/HUG · 800×320  
@@ -31,8 +31,9 @@
         - **Agenda Row** · instance of **Agenda Row** (state=default, density=comfortable) · row gap 16 pad 16/16/16/16 FILL/FIXED · 800×64  
           fill `color.surface.base` · itemSpacing `stack.md` · padding `inset.md` · strokeWeight `border.default`
     - **Agenda List** · frame · column gap 16 pad 20/20/20/20 FIXED/HUG · 800×376  
-      fill `color.surface.base` · stroke `color.border.subtle` 1px · padding `inset.lg` · radius `radius.container`
-      - **Date Section** · frame · column gap 4 pad 0/0/0/0 FILL/HUG · 760×336
+      fill `color.surface.base` · stroke `color.border.subtle` 1px · itemSpacing `inset.md` · padding `inset.lg` · radius `radius.container`
+      - **Date Section** · frame · column gap 4 pad 0/0/0/0 FILL/HUG · 760×336  
+        itemSpacing `inset.2xs`
         - **Yesterday · Thursday, April 16** · text `title/xs` "Yesterday · Thursday, April 16" · HUG/HUG · 213×12  
           fill `color.text.primary` · lineHeight `type.line-height.title.xs` · fontFamily `type.font-family.inter` · fontSize `type.size.title.xs` · fontStyle `type.font-weight.500`
         - **Rows** · frame · column gap 0 pad 0/0/0/0 FILL/HUG · 760×320  
@@ -55,7 +56,7 @@
 | Fills           | `color.surface.active`, `color.surface.base`                                                        |
 | Strokes         | `color.border.subtle`                                                                               |
 | Text color      | `color.text.primary`                                                                                |
-| Spacing         | `inset.lg`, `inset.md`, `inset.none`, `inset.sm`, `stack.md`, `stack.none`                          |
+| Spacing         | `inset.2xs`, `inset.lg`, `inset.md`, `inset.none`, `inset.sm`, `inset.xs`, `stack.md`, `stack.none` |
 | Radius          | `radius.container`                                                                                  |
 | Border width    | `border.default`                                                                                    |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.title.xs`, `type.size.title.xs` |
@@ -69,9 +70,6 @@
 ### Issues detected
 
 - Component description is empty.
-- Hard-coded gap `8px` on layer _Calendar Body › Agenda List › Frame 1_
-- Hard-coded gap `16px` on layer _Calendar Body › Agenda List_
-- Hard-coded gap `4px` on layer _Calendar Body › Agenda List › Date Section_
 
 ## Documentation card
 

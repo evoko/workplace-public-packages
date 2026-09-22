@@ -18,7 +18,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
   fill `color.surface.background` · padding `inset.none`, `inset.xl` · width `breakpoint.lg`
   - **App Name** · instance of **App Name** (type=horizontal) · column gap 16 pad 0/0/0/0 HUG/HUG · 85×59  
     itemSpacing `inset.md` · padding `inset.none` · radius `radius.control`
-  - **Center Stack** · frame · column gap 40 pad 0/0/0/0 FIXED/HUG · 420×285
+  - **Center Stack** · frame · column gap 40 pad 0/0/0/0 FIXED/HUG · 420×285  
+    itemSpacing `8fd955719573`
     - **FormSection** · instance of **FormSection** · column gap 28 pad 20/0/0/0 FIXED/HUG · 420×285  
       stroke `color.border.surface` mixedpx · itemSpacing `stack.2xl` · padding `stack.none`, `stack.lg` · strokeWeight `border.default`
   - **Footer** · frame · column gap 12 pad 0/0/0/0 HUG/HUG · 216×32  
@@ -35,7 +36,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 | Strokes         | `color.border.surface`                                                                                                                                                |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.inverse`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary` |
 | Icon color      | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.brand.black`, `color.brand.red`, `color.brand.white`                               |
-| Spacing         | `inset.md`, `inset.none`, `inset.xl`, `stack.2xl`, `stack.lg`, `stack.none`, `stack.sm`                                                                               |
+| Spacing         | `inset.md`, `inset.none`, `inset.xl`, `stack.2xl`, `stack.lg`, `stack.none`, `stack.sm`, `8fd955719573`                                                               |
 | Radius          | `radius.control`                                                                                                                                                      |
 | Border width    | `border.default`                                                                                                                                                      |
 | Sizes           | `breakpoint.lg`                                                                                                                                                       |
@@ -59,7 +60,6 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1440×800px
 
 - Component description is empty.
 - Primitive color bound directly (CLR-002): `color.brand.black`, `color.brand.red`, `color.brand.white`.
-- Hard-coded gap `40px` on layer _Center Stack_
 
 ## Documentation card
 

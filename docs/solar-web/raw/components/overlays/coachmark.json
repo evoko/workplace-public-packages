@@ -3,25 +3,25 @@
   "pageId": "10785:28",
   "componentSets": [
     {
-      "name": "Node end",
+      "name": "Node End",
       "id": "10802:2282",
-      "description": "Terminator dot for the Coachmark connector — the marker that sits on the element a tour step is describing.\n\nVariants (2): State = 01 | 02. 01 is a plain 6px dot, for the connector origin or a passive anchor. 02 adds a halo around the dot, marking the element the current step is about.\n\nBoth states bind surface/feedback/info/strong. Used inside Coachmark; not intended to be placed on its own.\n\nAccessibility: decorative. Mark it aria-hidden and give the target element its own accessible name — the dot must never be the only indication of what a step refers to.",
+      "description": "Terminator dot for the Coachmark connector — the marker that sits on the element a tour step is describing.\n\nVariants (2): halo = false | true. false is a plain 6px Dot, for a passive anchor. true adds a Halo around the Dot, marking the element the current step is about.\n\nBoth states bind surface/feedback/info/strong. Used inside Coachmark; not intended to be placed on its own.\n\nAccessibility: decorative. Mark it aria-hidden and give the target element its own accessible name — the dot must never be the only indication of what a step refers to.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
-        "State": {
+        "halo": {
           "type": "VARIANT",
-          "default": "01",
+          "default": "false",
           "options": [
-            "01",
-            "02"
+            "false",
+            "true"
           ]
         }
       },
-      "defaultVariant": "State=01",
+      "defaultVariant": "halo=false",
       "defaultVariantNodeCount": 2,
       "defaultVariantTree": {
-        "name": "State=01",
+        "name": "halo=false",
         "type": "COMPONENT",
         "size": [
           12,
@@ -30,7 +30,7 @@
         "sizing": "FIXED/FIXED",
         "children": [
           {
-            "name": "Ellipse 5",
+            "name": "Halo",
             "type": "ELLIPSE",
             "size": [
               6,
@@ -42,7 +42,7 @@
             "opacity": 0.20000000298023224
           },
           {
-            "name": "Ellipse 3",
+            "name": "Dot",
             "type": "ELLIPSE",
             "size": [
               6,
@@ -56,7 +56,7 @@
       },
       "variants": [
         {
-          "variant": "State=01",
+          "variant": "halo=false",
           "size": [
             12,
             12
@@ -64,14 +64,14 @@
           "hidden": []
         },
         {
-          "variant": "State=02",
+          "variant": "halo=true",
           "size": [
             12,
             12
           ],
           "overrides": {
             "changed": {
-              "/Ellipse 5": {
+              "/Halo": {
                 "size": [
                   14,
                   14
@@ -85,7 +85,7 @@
     {
       "name": "Coachmark",
       "id": "10813:32930",
-      "description": "Anchored step card for a guided product tour. The card carries one step of copy; a connector runs from its edge to the element the step is about.\n\nVariants (2): side = right (default) | left — which edge the connector leaves from. Choose the side that points toward the target without the card covering it.\n\nAnatomy: 320px card on surface/inverse (16px padding, 20px gap) · Title 20px text/inverse with a trailing Icon/Close · step text 12px text/inverse · counter 14px text/secondary · Button Group (regular, 8px gap) with two equal-width md secondary Buttons · connector line + origin dot + Node end terminator, all surface/feedback/info/strong.\n\nUse for: first-run tours, feature announcements tied to a specific control, progressive disclosure of a multi-step workflow.\nDo not use for: hover hints (Tooltip), on-demand detail (Popover), or anything blocking (Dialog). A tour must always be skippable.\n\nContent: keep tours to 3–6 steps, one idea per step. Disable Back on step 1 and relabel Next to \"Done\" on the last step.\n\nOpen issue: the counter fails WCAG AA in both modes (3.19:1 Light, 2.18:1 Dark, against 4.5:1 at 14px) because text/secondary and surface/inverse invert in the same direction. Needs an inverse-secondary text token. See BACKLOG TOK-2 — blocks 1.0 promotion.\n\nAccessibility: role=\"dialog\" aria-modal=\"false\", aria-labelledby on the title. Move focus to the card on step change and announce via aria-live=\"polite\". Esc dismisses the tour. The connector is decorative.",
+      "description": "Anchored step card for a guided product tour. The card carries one step of copy; a connector runs from its edge to the element the step is about.\n\nVariants (2): side = right (default) | left — which edge the connector leaves from. Choose the side that points toward the target without the card covering it.\n\nAnatomy: Card (320px, surface/inverse, 16px padding, 20px gap) · Header = Title 20px text/inverse + Icon/Close · Body 12px text/inverse · Counter 14px text/tertiary · Button Group (regular, 8px gap) with two equal-width md secondary Buttons · Connector = Line + Origin Dot + Node End terminator, all surface/feedback/info/strong.\n\nUse for: first-run tours, feature announcements tied to a specific control, progressive disclosure of a multi-step workflow.\nDo not use for: hover hints (Tooltip), on-demand detail (Popover), or anything blocking (Dialog). A tour must always be skippable.\n\nContent: keep tours to 3–6 steps, one idea per step. Disable Back on step 1 and relabel Next to \"Done\" on the last step.\n\nContrast: all three text roles pass WCAG AA on the inverse card (Title 18.88/17.32, Body 18.88/17.32, Counter 7.94/5.43, Light/Dark). The Counter intentionally uses text/tertiary — it is the one de-emphasised token that inverts opposite to the surface. text/secondary fails at 3.19:1 / 2.18:1; do not swap it.\n\nAccessibility: role=\"dialog\" aria-modal=\"false\", aria-labelledby on the Title. Move focus to the card on step change and announce via aria-live=\"polite\". Esc dismisses the tour. The Connector is decorative.",
       "docLinks": [],
       "variantCount": 2,
       "props": {
@@ -121,7 +121,7 @@
         },
         "children": [
           {
-            "name": "Coachmark",
+            "name": "Card",
             "type": "FRAME",
             "size": [
               320,
@@ -157,7 +157,7 @@
             },
             "children": [
               {
-                "name": "Frame 20069",
+                "name": "Header",
                 "type": "FRAME",
                 "size": [
                   288,
@@ -174,6 +174,9 @@
                   ],
                   "align": "MAX/CENTER",
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/xs"
                 },
                 "children": [
                   {
@@ -215,7 +218,7 @@
                 ]
               },
               {
-                "name": "Tutorial step text",
+                "name": "Body",
                 "type": "TEXT",
                 "text": "Tutorial step text",
                 "textStyle": "body/sm/regular",
@@ -235,7 +238,7 @@
                 }
               },
               {
-                "name": "1 / 6 steps",
+                "name": "Counter",
                 "type": "TEXT",
                 "text": "1 / 6 steps",
                 "textStyle": "body/md/medium",
@@ -285,7 +288,7 @@
             ]
           },
           {
-            "name": "Tutorial node",
+            "name": "Connector",
             "type": "FRAME",
             "size": [
               100,
@@ -305,7 +308,7 @@
             },
             "children": [
               {
-                "name": "Vector (Stroke)",
+                "name": "Line",
                 "type": "VECTOR",
                 "size": [
                   100,
@@ -317,7 +320,7 @@
                 ]
               },
               {
-                "name": "Ellipse",
+                "name": "Origin Dot",
                 "type": "ELLIPSE",
                 "size": [
                   6,
@@ -329,11 +332,11 @@
                 ]
               },
               {
-                "name": "Node end",
+                "name": "Node End",
                 "type": "INSTANCE",
-                "main": "Node end",
+                "main": "Node End",
                 "variant": {
-                  "State": "02"
+                  "halo": "true"
                 },
                 "size": [
                   12,
@@ -389,7 +392,7 @@
           ],
           "overrides": {
             "changed": {
-              "/Tutorial node": {
+              "/Connector": {
                 "size": [
                   100,
                   7
@@ -411,13 +414,13 @@
     "Description",
     "Anchored step card for a guided product tour. The card carries the copy for one step; a connector runs from its edge to the element the step is about, so the user can see exactly what is being described. Use it for first-run tours, feature announcements tied to a specific control, and progressive disclosure of a multi-step workflow.",
     "Anatomy",
-    "Card              320px, surface/inverse, 16px padding, 20px gap, shared shadow effect style.\nTitle              20px, text/inverse, centred, with a close glyph (Icon/Close, 20px) on the trailing edge.\nStep text      12px, text/inverse, centred — the copy for this step.\nCounter        14px, text/secondary, centred — position in the tour.\nActions         Button Group (regular, 8px gap), two equal-width md secondary Buttons.\nConnector   100px line + origin dot + a Node end terminator, all surface/feedback/info/strong.",
+    "Card                320px, surface/inverse, 16px padding, 20px gap, shared shadow effect style.\nHeader           Title (20px, text/inverse, centred) + Icon/Close glyph on the trailing edge.\nBody               12px, text/inverse, centred — the copy for this step.\nCounter          14px, text/tertiary, centred — position in the tour.\nButton Group  Regular, 8px gap, two equal-width md secondary Buttons.\nConnector      Line (100px) + Origin Dot at the card edge + a Node End terminator,\n                       all surface/feedback/info/strong.",
     "Variants",
-    "Coachmark   side = right (default) | left\n                      Which edge the connector leaves from. Pick the side that points toward the target without the card covering it.\n\nNode end       State = 01 | 02\n                      The terminator on the far end of the connector. 01 is a plain 6px dot; 02 adds a halo, marking the element the step is about.\n\nCoachmark has no interactive states of its own — Back and Next carry Button states, and the close glyph is a bare icon.",
+    "Coachmark   side = right (default) | left\n                      Which edge the connector leaves from. Pick the side that points toward the target without the card covering it.\n\nNode End       state = 01 | 02\n                      The terminator on the far end of the connector. 01 is a plain 6px Dot; 02 adds a Halo, marking the element the step is about.\n\nCoachmark has no interactive states of its own — Back and Next carry Button states, and the close glyph is a bare icon.",
     "Usage",
     "Do — keep tours to 3–6 steps and one idea per step. Anchor the connector to something visible on screen. Disable Back on step 1 and relabel Next to \"Done\" on the last step. Always leave a way out.\nDon't — use this for a hover hint (Tooltip) or on-demand detail (Popover), block the UI behind a scrim (that is a Dialog), or run the connector across content the step is not about.",
     "Accessibility",
-    "Role       role=\"dialog\" aria-modal=\"false\", aria-labelledby on the title.\nFocus     Move focus to the card on every step change; keep Tab order inside it.\nSR          Announce step changes via aria-live=\"polite\"; the counter reads \"Step 1 of 6\".\nKeys      Esc dismisses the tour. Back, Next and close are real buttons, not divs.\nTarget    The connector is decorative — the target element still needs its own accessible name.\n\n⚠️ Open issue — the counter binds text/secondary on surface/inverse and fails WCAG AA in both modes: 3.19:1 in Light (#646464 on #111111) and 2.18:1 in Dark (#a8a8a8 on #f5f5f5), against 4.5:1 required at 14px. Both tokens invert in the same direction, so the pair never separates. Needs an inverse-secondary text token — SOLAR has no text/inverse/secondary today. See BACKLOG TOK-2. Blocks 🟢.",
+    "Role       role=\"dialog\" aria-modal=\"false\", aria-labelledby on the Title.\nFocus     Move focus to the card on every step change; keep Tab order inside it.\nSR          Announce step changes via aria-live=\"polite\"; the Counter reads \"Step 1 of 6\".\nKeys      Esc dismisses the tour. Back, Next and close are real buttons, not divs.\nTarget    The Connector is decorative.",
     "Rules",
     "DO   Point the connector at the element the step describes\nDO   Keep the tour to 3–6 steps, one idea per step\nDO   Disable Back on step 1 and label the last action \"Done\"\nDO   Let Esc and the close glyph exit the whole tour",
     "DON'T   Use a Coachmark for a hover hint — that's Tooltip\nDON'T   Block the UI behind a scrim — a tour is not a Dialog\nDON'T   Let the card cover the element it is pointing at\nDON'T   Make a coachmark the only route to a feature"

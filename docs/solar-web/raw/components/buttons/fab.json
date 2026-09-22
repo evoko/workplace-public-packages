@@ -5,7 +5,7 @@
     {
       "name": "FAB",
       "id": "4557:130",
-      "description": "Floating Action Button — the single most important action on a screen, elevated above content. 20 variants: type (icon / extended) × size (sm 44px / md 56px) × state (default, hover, pressed, focus, disabled). Fixed position (usually bottom-right). Uses action/primary tokens + shadow/raised. extended type adds a label alongside the icon for discoverability. Strict rule: one FAB per screen.",
+      "description": "Floating Action Button — the single most important action on a screen, elevated above content. 24 variants: type (icon / extended) × size (sm 44px / md 56px) × state (default, hover, pressed, focus, disabled, loading). Fixed position (usually bottom-right). Uses action/primary tokens + shadow/raised. extended type adds a label alongside the icon for discoverability. Strict rule: one FAB per screen.",
       "docLinks": [],
       "variantCount": 24,
       "props": {

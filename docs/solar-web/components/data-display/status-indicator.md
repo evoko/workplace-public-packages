@@ -24,45 +24,41 @@ Default variant: `type=success, size=md` · 21 variants · default size 20×20px
 
 ### Tokens used
 
-| Role         | Tokens                                                                                                                                                                                                                                             |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fills        | `color.surface.feedback.danger.strong`, `color.surface.feedback.info.strong`, `color.surface.feedback.neutral.strong`, `color.surface.feedback.success.strong`, `color.surface.feedback.warning.strong`, `color.surface.muted`, `color.neutral.50` |
-| Strokes      | `color.border.medium`, `color.neutral.100`                                                                                                                                                                                                         |
-| Icon color   | `color.icon.inverse`                                                                                                                                                                                                                               |
-| Spacing      | `stack.none`                                                                                                                                                                                                                                       |
-| Radius       | `radius.pill`                                                                                                                                                                                                                                      |
-| Border width | `border.default`                                                                                                                                                                                                                                   |
-| Effects      | `shadow/raised`                                                                                                                                                                                                                                    |
+| Role         | Tokens                                                                                                                                                                                                                                                                  |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fills        | `color.surface.feedback.danger.strong`, `color.surface.feedback.info.strong`, `color.surface.feedback.neutral.strong`, `color.surface.feedback.neutral.subtle`, `color.surface.feedback.success.strong`, `color.surface.feedback.warning.strong`, `color.surface.muted` |
+| Strokes      | `color.border.medium`, `5f4e0e43eb89`                                                                                                                                                                                                                                   |
+| Icon color   | `color.icon.inverse`                                                                                                                                                                                                                                                    |
+| Spacing      | `stack.none`                                                                                                                                                                                                                                                            |
+| Radius       | `radius.pill`                                                                                                                                                                                                                                                           |
+| Border width | `border.default`                                                                                                                                                                                                                                                        |
+| Effects      | `shadow/raised`                                                                                                                                                                                                                                                         |
 
 ### Variant matrix
 
-| type    | size | size  | fill                                    | stroke                | effect | text | icon |
-| ------- | ---- | ----- | --------------------------------------- | --------------------- | ------ | ---- | ---- |
-| success | md   | 20×20 | `color.surface.feedback.success.strong` | `color.border.medium` |        |      |      |
-| success | sm   | 16×16 | `color.surface.feedback.success.strong` | `color.border.medium` |        |      |      |
-| warning | md   | 20×20 |                                         |                       |        |      |      |
-| warning | sm   | 16×16 |                                         |                       |        |      |      |
-| danger  | md   | 20×20 |                                         |                       |        |      |      |
-| danger  | sm   | 16×16 |                                         |                       |        |      |      |
-| info    | md   | 20×20 |                                         |                       |        |      |      |
-| info    | sm   | 16×16 |                                         |                       |        |      |      |
-| neutral | md   | 20×20 |                                         |                       |        |      |      |
-| help    | md   | 20×20 |                                         |                       |        |      |      |
-| private | md   | 20×20 |                                         |                       |        |      |      |
-| neutral | sm   | 16×16 |                                         |                       |        |      |      |
-| help    | sm   | 16×16 |                                         |                       |        |      |      |
-| private | sm   | 16×16 |                                         |                       |        |      |      |
-| success | xs   | 8×8   | `color.surface.feedback.success.strong` | `color.border.medium` |        |      |      |
-| warning | xs   | 8×8   | `color.surface.feedback.warning.strong` | `color.border.medium` |        |      |      |
-| danger  | xs   | 8×8   | `color.surface.feedback.danger.strong`  | `color.border.medium` |        |      |      |
-| info    | xs   | 8×8   | `color.surface.feedback.info.strong`    | `color.border.medium` |        |      |      |
-| neutral | xs   | 8×8   | `color.surface.feedback.neutral.strong` | `color.border.medium` |        |      |      |
-| help    | xs   | 8×8   | `color.neutral.50`                      | `color.neutral.100`   |        |      |      |
-| private | xs   | 8×8   | `color.surface.muted`                   | `color.border.medium` |        |      |      |
-
-### Issues detected
-
-- Primitive color bound directly (CLR-002): `color.neutral.50`, `color.neutral.100`.
+| type    | size | size  | fill                                    | stroke                      | effect | text | icon |
+| ------- | ---- | ----- | --------------------------------------- | --------------------------- | ------ | ---- | ---- |
+| success | md   | 20×20 | `color.surface.feedback.success.strong` | `color.border.medium`       |        |      |      |
+| success | sm   | 16×16 | `color.surface.feedback.success.strong` | `color.border.medium`       |        |      |      |
+| warning | md   | 20×20 |                                         |                             |        |      |      |
+| warning | sm   | 16×16 |                                         |                             |        |      |      |
+| danger  | md   | 20×20 |                                         |                             |        |      |      |
+| danger  | sm   | 16×16 |                                         |                             |        |      |      |
+| info    | md   | 20×20 |                                         |                             |        |      |      |
+| info    | sm   | 16×16 |                                         |                             |        |      |      |
+| neutral | md   | 20×20 |                                         |                             |        |      |      |
+| help    | md   | 20×20 |                                         |                             |        |      |      |
+| private | md   | 20×20 |                                         |                             |        |      |      |
+| neutral | sm   | 16×16 |                                         |                             |        |      |      |
+| help    | sm   | 16×16 |                                         |                             |        |      |      |
+| private | sm   | 16×16 |                                         |                             |        |      |      |
+| success | xs   | 8×8   | `color.surface.feedback.success.strong` | `color.border.medium`       |        |      |      |
+| warning | xs   | 8×8   | `color.surface.feedback.warning.strong` | `color.border.medium`       |        |      |      |
+| danger  | xs   | 8×8   | `color.surface.feedback.danger.strong`  | `color.border.medium`       |        |      |      |
+| info    | xs   | 8×8   | `color.surface.feedback.info.strong`    | `color.border.medium`       |        |      |      |
+| neutral | xs   | 8×8   | `color.surface.feedback.neutral.strong` | `color.border.medium`       |        |      |      |
+| help    | xs   | 8×8   | `color.surface.feedback.neutral.subtle` | `5f4e0e43eb89` (unresolved) |        |      |      |
+| private | xs   | 8×8   | `color.surface.muted`                   | `color.border.medium`       |        |      |      |
 
 ## Documentation card
 

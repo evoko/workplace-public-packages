@@ -76,7 +76,7 @@ Base Dialog overlay container. Responsive — adapts to content width. Uses real
         fill `color.action.tertiary.bg.default` · strokeWeight `border.default` · radius `radius.pill`
   - **Container** · frame · row gap 0 pad 0/0/0/0 HUG/HUG · 824×515
     - **Tree** · frame · column gap 0 pad 12/8/12/8 FIXED/FILL · 200×515  
-      fill `color.surface.background` · stroke `color.border.subtle` mixedpx · itemSpacing `inset.none`
+      fill `color.surface.background` · stroke `color.border.subtle` mixedpx · itemSpacing `inset.none` · padding `inset.xs`, `inset.sm`
       - **Tree Item** · instance of **Tree Item** (selected=false, expanded=false, state=default) · row gap 4 pad 0/8/0/4 FILL/FIXED · 184×32  
         itemSpacing `inset.2xs` · padding `inset.2xs`, `inset.xs` · radius `radius.control`
       - **Tree Item** · instance of **Tree Item** (selected=false, expanded=false, state=default) · row gap 4 pad 0/8/0/4 FILL/FIXED · 184×32  
@@ -95,7 +95,7 @@ Base Dialog overlay container. Responsive — adapts to content width. Uses real
         fill `color.surface.active` · itemSpacing `inset.2xs` · padding `inset.2xs`, `inset.xs` · radius `radius.control`
     - **Container** · frame · column gap 0 pad 0/0/0/0 HUG/HUG · 624×515
       - **Container** · frame · column gap 24 pad 24/24/24/24 FILL/HUG · 624×142  
-        stroke `color.border.subtle` mixedpx
+        stroke `color.border.subtle` mixedpx · itemSpacing `inset.xl` · padding `inset.xl`
       - **Date Picker Open** · instance of **Date Picker Open** (inline=true, type=double) · row gap 24 pad 24/24/24/24 HUG/HUG · 624×309  
         padding `inset.xl` · strokeWeight `border.default` · radius `radius.none`
       - **Button Group** · instance of **Button Group** (orientation=horizontal, type=regular) · row gap 8 pad 12/12/12/12 FILL/HUG · 624×64  
@@ -123,18 +123,6 @@ Instance census (tree capped at depth 3): Day Cell ×70, Icon/None ×23, StatusI
 - Date Picker Open
 - Icon Button
 - Tree Item
-
-### Issues detected
-
-- Hard-coded paddingTop `12px` on layer _Container › Tree_
-- Hard-coded paddingRight `8px` on layer _Container › Tree_
-- Hard-coded paddingBottom `12px` on layer _Container › Tree_
-- Hard-coded paddingLeft `8px` on layer _Container › Tree_
-- Hard-coded gap `24px` on layer _Container › Container › Container_
-- Hard-coded paddingTop `24px` on layer _Container › Container › Container_
-- Hard-coded paddingRight `24px` on layer _Container › Container › Container_
-- Hard-coded paddingBottom `24px` on layer _Container › Container › Container_
-- Hard-coded paddingLeft `24px` on layer _Container › Container › Container_
 
 ## Documentation card
 

@@ -748,8 +748,7 @@
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
             "{Color:action/secondary/icon/default}",
-            "{Color:action/primary/icon/default}",
-            "{Primitives:color/neutral/900}"
+            "{Color:action/primary/icon/default}"
           ],
           "hidden": [
             "*",
@@ -795,8 +794,7 @@
             "{Color:icon/secondary}",
             "{Color:icon/primary}",
             "{Color:action/tertiary/icon/default}",
-            "{Color:action/secondary/icon/default}",
-            "{Primitives:color/neutral/900}"
+            "{Color:action/secondary/icon/default}"
           ],
           "hidden": [
             "*",

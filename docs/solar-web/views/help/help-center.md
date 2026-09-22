@@ -22,7 +22,7 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1368×747px
     - **SearchField** · instance of **SearchField** (state=default, size=md) · row gap 12 pad 0/12/0/12 FILL/FIXED · 640×40  
       fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/control` · itemSpacing `inset.sm` · padding `inset.sm`, `inset.none` · strokeWeight `border.default` · radius `radius.control`
     - **Categories** · frame · grid gap 0 pad 0/0/0/0 FILL/HUG · 640×258  
-      gridRowGap `stack.sm` · gridColumnGap `stack.sm`
+      itemSpacing `inset.sm` · gridRowGap `stack.sm` · gridColumnGap `stack.sm`
       - **Action Card** · instance of **Action Card** (status=default, state=default, layout=vertical) · column gap 16 pad 16/16/16/16 FILL/FIXED · 314×78  
         fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/control` · itemSpacing `stack.md` · padding `inset.md` · strokeWeight `border.default` · radius `radius.container`
       - **Action Card** · instance of **Action Card** (status=default, state=default, layout=vertical) · column gap 16 pad 16/16/16/16 FILL/FIXED · 314×78  
@@ -37,7 +37,8 @@ Default variant: `breakpoint=desktop` · 2 variants · default size 1368×747px
         fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/control` · itemSpacing `stack.md` · padding `inset.md` · strokeWeight `border.default` · radius `radius.container`
     - **Resources** · frame · row gap 12 pad 0/0/0/0 FILL/HUG · 640×196  
       itemSpacing `stack.sm`
-      - **Popular** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 314×196
+      - **Popular** · frame · column gap 8 pad 0/0/0/0 FILL/HUG · 314×196  
+        itemSpacing `inset.xs`
       - **Action Card** · instance of **Action Card** (status=default, state=default, layout=vertical) · column gap 16 pad 16/16/16/16 FILL/HUG · 314×146  
         fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/control` · itemSpacing `stack.md` · padding `inset.md` · strokeWeight `border.default` · radius `radius.container`
 
@@ -50,7 +51,7 @@ Instance census (tree capped at depth 3): Icon/None ×48, Counter ×24, Button �
 | Fills        | `color.surface.base`                                                                                                                                                           |
 | Strokes      | `color.border.subtle`                                                                                                                                                          |
 | Text color   | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.text.feedback.success`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary` |
-| Icon color   | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.icon.primary`, `color.icon.secondary`, `color.neutral.900`                                  |
+| Icon color   | `color.action.primary.icon.default`, `color.action.secondary.icon.default`, `color.icon.primary`, `color.icon.secondary`                                                       |
 | Spacing      | `inset.lg`, `inset.md`, `inset.none`, `inset.sm`, `inset.xs`, `stack.lg`, `stack.md`, `stack.sm`                                                                               |
 | Radius       | `radius.container`, `radius.control`                                                                                                                                           |
 | Border width | `border.default`                                                                                                                                                               |
@@ -65,18 +66,16 @@ Instance census (tree capped at depth 3): Icon/None ×48, Counter ×24, Button �
 
 ### Variant matrix
 
-| breakpoint | size     | fill | stroke | effect | text                                                                                                                                                                                                                | icon                                                                                                                                                  |
-| ---------- | -------- | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| desktop    | 1368×747 |      |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`#000000` ⚠️ hard-coded | `color.icon.secondary`<br>`color.neutral.900`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`<br>`color.icon.primary` |
-| mobile     | 377×843  |      |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`#000000` ⚠️ hard-coded | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default`                        |
+| breakpoint | size     | fill | stroke | effect | text                                                                                                                                                                                                                | icon                                                                                                                           |
+| ---------- | -------- | ---- | ------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| desktop    | 1368×747 |      |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`#000000` ⚠️ hard-coded | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
+| mobile     | 377×843  |      |        |        | `color.text.secondary`<br>`color.text.primary`<br>`color.text.feedback.success`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`<br>`color.text.tertiary`<br>`#000000` ⚠️ hard-coded | `color.icon.secondary`<br>`color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.primary.icon.default` |
 
 ### Issues detected
 
 - Component description is empty.
-- Primitive color bound directly (CLR-002): `color.neutral.900`.
 - Hard-coded paddingBottom `64px` on layer _breakpoint=desktop_
 - Hard-coded gap `32px` on layer _Content_
-- Hard-coded gap `8px` on layer _Content › Resources › Popular_
 
 ## Documentation card
 

@@ -242,6 +242,9 @@
                   "align": "MIN/MIN",
                   "sizing": "FILL/HUG"
                 },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
+                },
                 "children": [
                   {
                     "name": "Title",
@@ -308,6 +311,9 @@
                   ],
                   "align": "MIN/MIN",
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 },
                 "children": [
                   {
@@ -376,6 +382,9 @@
                   "align": "MIN/MIN",
                   "sizing": "FILL/HUG"
                 },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
+                },
                 "children": [
                   {
                     "name": "Title",
@@ -442,6 +451,9 @@
                   ],
                   "align": "MIN/MIN",
                   "sizing": "FILL/HUG"
+                },
+                "vars": {
+                  "itemSpacing": "Spatial:inset/md"
                 },
                 "children": [
                   {

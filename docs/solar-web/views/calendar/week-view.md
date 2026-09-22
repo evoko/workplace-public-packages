@@ -13,24 +13,25 @@
   - **Calendar Body** · frame · column gap 0 pad 12/20/12/20 FILL/HUG · 1280×585  
     padding `inset.lg`, `inset.sm`
     - **Calendar Surface** · frame · column gap 0 pad 0/0/0/0 FILL/HUG · 1240×561  
-      fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/raised` · strokeWeight `border.default`
+      fill `color.surface.base` · stroke `color.border.subtle` 1px · effect `shadow/raised` · strokeWeight `border.default` · radius `radius.dialog`
       - **Header Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 1240×49  
         stroke `color.border.subtle` mixedpx
       - **All-Day Strip** · frame · row gap 0 pad 4/0/4/0 FILL/FIXED · 1240×28  
-        stroke `color.border.subtle` mixedpx
+        stroke `color.border.subtle` mixedpx · padding `inset.2xs`
       - **Time Grid Row** · frame · row gap 0 pad 0/0/0/0 FILL/HUG · 1240×484
 
 Instance census (tree capped at depth 3): Time Slot ×70, Icon/None ×17, Event Chip ×12, Icon/Repeat ×12, Time Axis Label ×10, Weekday Header ×7, Segmented Control Item ×6, All-Day Bar ×4, Icon Button ×2, Button ×2, Spinner ×2, Counter ×2, Calendar Toolbar ×1, Segmented Control ×1, Icon/Plus ×1
 
 ### Tokens used
 
-| Role         | Tokens                             |
-| ------------ | ---------------------------------- |
-| Fills        | `color.surface.base`               |
-| Strokes      | `color.border.subtle`              |
-| Spacing      | `inset.lg`, `inset.md`, `inset.sm` |
-| Border width | `border.default`                   |
-| Effects      | `shadow/raised`                    |
+| Role         | Tokens                                          |
+| ------------ | ----------------------------------------------- |
+| Fills        | `color.surface.base`                            |
+| Strokes      | `color.border.subtle`                           |
+| Spacing      | `inset.2xs`, `inset.lg`, `inset.md`, `inset.sm` |
+| Radius       | `radius.dialog`                                 |
+| Border width | `border.default`                                |
+| Effects      | `shadow/raised`                                 |
 
 ### Composes
 
@@ -39,9 +40,6 @@ Instance census (tree capped at depth 3): Time Slot ×70, Icon/None ×17, Event 
 ### Issues detected
 
 - Component description is empty.
-- Hard-coded radius `12px` on layer _Calendar Body › Calendar Surface_
-- Hard-coded paddingTop `4px` on layer _Calendar Body › Calendar Surface › All-Day Strip_
-- Hard-coded paddingBottom `4px` on layer _Calendar Body › Calendar Surface › All-Day Strip_
 
 ## Documentation card
 

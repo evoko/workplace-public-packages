@@ -262,13 +262,25 @@ a theme, before any component exists, and the token data is already verified.
 
 Milestone 3 deliberately picks hard cases over easy ones: Button (variant breadth, `danger`),
 Text Input (states, helper text), Checkbox (indeterminate), Card (bespoke layout), Dialog
-(portal, focus trap), Tabs (keyboard navigation), and one audio component such as Meter that
-Material has no answer for.
+(portal, focus trap), Tabs (keyboard navigation), and Sparkline, which Material has no answer
+for and which draws rather than composes.
+
+The seventh pick was originally "one audio component such as Meter". **SOLAR Web has no audio or
+AV components at all** — no meter, gauge, fader or level — so that component cannot be generated
+from data that does not exist. Sparkline takes its place for the same reason it was chosen: it
+has no MUI equivalent, so it exercises the own-component path rather than the wrapping one.
+Six of the seven are clean today; Button carries three findings, all of them its description
+disagreeing with its own variant set.
 
 Milestone 4 needs a readiness gate rather than a loop over the catalog. A component is eligible
 when it has a description, a recorded base decision, no unresolved variable references, and its
-hard-coded values either mapped or deviated. Today 111 of 227 components have no description,
-so much of the catalog is not ready and generating it would produce confident guesses.
+hard-coded values either mapped or deviated.
+
+As of the 2026-09-22 sync, **114 of the 132 `components/*` sets pass that gate today**: every one
+of the 132 is described, 121 carry no hard-coded value and 125 bind no primitive colour. The gate
+still matters, but it no longer blocks the component layer — it blocks the compositions, where
+only 9 of 39 patterns and 3 of 55 views are eligible. Generate components broadly; gate patterns
+and views.
 
 ## 11. Out of scope
 
@@ -282,8 +294,9 @@ so much of the catalog is not ready and generating it would produce confident gu
 
 | Risk                                                 | Mitigation                                                                                |
 | ---------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| 111 of 227 components have no description            | Readiness gate; push descriptions upstream to SOLAR                                       |
-| 151 hard-coded values on 52 components               | Recipes reject raw literals; each needs a mapping or a deviation                          |
+| 78 of 227 sets have no description, all in patterns and views | Readiness gate; push descriptions upstream to SOLAR                               |
+| 44 hard-coded values on 27 sets, 28 of them off-scale | Recipes reject raw literals; each needs a mapping or a deviation. The off-scale ones need a SOLAR decision first |
+| 44 sets bind a primitive colour directly, so they will not follow Light/Dark | Raised with SOLAR; the readiness gate excludes them until bound |
 | Hybrid base means two patterns to maintain           | The choice is recorded per component in the overlay and reviewed                          |
 | Wrapping MUI lets its defaults leak into the look    | `solar:explain` labels them; the overlay pins them so Flutter matches                     |
 | Two toolchains, npm and Dart, in one repo and one CI | Accepted cost of single-commit parity                                                     |

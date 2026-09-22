@@ -4,7 +4,7 @@
 
 ## Component set: Day Cell
 
-Single day cell used inside the Date Picker calendar grid. 6 variants by state: default, hover, focus, selected, today, disabled. selected is persistent (the chosen date); today is a visual marker on the current day even when not selected. today × selected compose at runtime — today wins for the marker, selected wins for the fill.
+Single day cell used inside the Date Picker calendar grid. 13 variants: state (default, hover, focus, selected, today, disabled, filled, error) × range-role (none, start, middle, end, preview-middle, preview-end) — only the combinations the calendar grid needs are built. selected is persistent (the chosen date); today is a visual marker on the current day even when not selected. today × selected compose at runtime — today wins for the marker, selected wins for the fill.
 
 ### Props
 
@@ -61,12 +61,11 @@ Default variant: `state=default, range-role=none` · 13 variants · default size
 
 ### Issues detected
 
-- Description says 6 variants; the set has 13.
 - State axis uses non-standard value(s): today.
 
 ## Component set: DatePicker
 
-Time-of-day selector. 14 variants: size (sm 36px, md 44px) × state (default, hover, focused, filled, disabled, error, error-focused). NOTE: state `focused` / `error-focused` flagged for rename to match SOLAR's locked `focus`. Text input accepts typed times; paired TimePicker Dropdown presents hour/minute columns for click selection. 12h or 24h based on locale.
+Date selector. 14 variants: size (sm 36px, md 44px) × state (default, hover, focus, filled, disabled, error, error-focused). NOTE: state `error-focused` flagged for rename to match SOLAR's locked `focus` naming. Text input accepts typed dates; paired Date Picker Open presents the calendar grid for click selection. Date format follows locale.
 
 ### Props
 
@@ -153,6 +152,8 @@ Default variant: `size=md, state=default` · 14 variants · default size 123×76
 | sm   | error-focused | 97×66  |      |        |        | `color.text.primary`<br>`color.text.feedback.danger` | `color.icon.primary`  |
 
 ## Component set: Date Picker Open
+
+The open calendar panel of Date Picker — month header with prev/next, weekday row and a 6×7 grid of Day Cells. 3 variants: inline (true, false) × type (single, double) — double shows two months side by side for range selection; inline embeds the calendar in the page instead of floating it. month is a text prop. role=dialog when floating, role=grid inside; arrow keys move by day, Page Up/Down by month, Enter selects, Esc closes. Pairs with DatePicker, the field that opens it.
 
 ### Props
 
@@ -300,10 +301,6 @@ Default variant: `inline=false, type=single` · 3 variants · default size 300×
 | false  | single | 300×285 | `color.surface.raised` | `color.border.subtle` | `shadow/overlay` | `color.text.primary`<br>`color.text.tertiary`<br>`color.action.primary.bg.default`<br>`color.action.primary.text.default` | `color.action.tertiary.icon.default` |
 | true   | single | 300×285 |                        |                       |                  | `color.text.primary`<br>`color.text.tertiary`<br>`color.action.primary.bg.default`<br>`color.action.primary.text.default` | `color.action.tertiary.icon.default` |
 | true   | double | 588×285 |                        |                       |                  | `color.text.primary`<br>`color.text.tertiary`<br>`color.action.primary.bg.default`<br>`color.action.primary.text.default` | `color.action.tertiary.icon.default` |
-
-### Issues detected
-
-- Component description is empty.
 
 ## Documentation card
 

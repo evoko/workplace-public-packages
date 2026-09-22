@@ -27,22 +27,26 @@ Default variant: `Property 1=Desktop` · 2 variants · default size 1368×1607px
       padding `inset.none` · strokeWeight `border.default`
   - **Container** · frame · column gap 28 pad 24/0/24/0 FILL/HUG · 1280×1527  
     itemSpacing `inset.2xl` · padding `stack.none`, `inset.xl`
-    - **Container** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 1280×158
+    - **Container** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 1280×158  
+      itemSpacing `inset.md`
       - **Title** · text `title/sm` "Status" · HUG/HUG · 59×15  
         fill `color.text.primary` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500`
       - **Container** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1280×127  
         itemSpacing `stack.md` · padding `inset.none`
-    - **Container** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 1280×445
+    - **Container** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 1280×445  
+      itemSpacing `inset.md`
       - **Title** · text `title/sm` "Needs Attention" · HUG/HUG · 147×15  
         fill `color.text.primary` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500`
       - **Container** · frame · row gap 16 pad 0/0/0/0 FILL/FIXED · 1280×414  
         itemSpacing `stack.md` · padding `inset.none`
-    - **Container** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 1280×404
+    - **Container** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 1280×404  
+      itemSpacing `inset.md`
       - **Title** · text `title/sm` "Predict & Contextualize" · HUG/HUG · 211×15  
         fill `color.text.primary` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500`
       - **Container** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1280×373  
         itemSpacing `stack.md` · padding `inset.none`
-    - **Container** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 1280×388
+    - **Container** · frame · column gap 16 pad 0/0/0/0 FILL/HUG · 1280×388  
+      itemSpacing `inset.md`
       - **Title** · text `title/sm` "Live Pulse" · HUG/HUG · 91×15  
         fill `color.text.primary` · lineHeight `type.line-height.title.sm` · fontFamily `type.font-family.inter` · fontSize `type.size.title.sm` · fontStyle `type.font-weight.500`
       - **Container** · frame · row gap 16 pad 0/0/0/0 FILL/HUG · 1280×357  
@@ -58,7 +62,7 @@ Instance census (tree capped at depth 3): Icon/None ×63, Column Item ×33, Bar 
 | Strokes         | `color.border.subtle`, `color.border.surface`                                                                                                                                                                                                                                                                                                |
 | Text color      | `color.action.primary.text.default`, `color.action.secondary.text.default`, `color.action.tertiary.text.default`, `color.text.feedback.danger`, `color.text.feedback.info`, `color.text.feedback.neutral`, `color.text.feedback.success`, `color.text.feedback.warning`, `color.text.primary`, `color.text.secondary`, `color.text.tertiary` |
 | Icon color      | `color.action.secondary.icon.default`, `color.icon.inverse`, `color.icon.primary`, `color.icon.secondary`, `color.neutral.900`                                                                                                                                                                                                               |
-| Spacing         | `inset.2xl`, `inset.lg`, `inset.none`, `inset.xl`, `stack.lg`, `stack.md`, `stack.none`                                                                                                                                                                                                                                                      |
+| Spacing         | `inset.2xl`, `inset.lg`, `inset.md`, `inset.none`, `inset.xl`, `stack.lg`, `stack.md`, `stack.none`                                                                                                                                                                                                                                          |
 | Radius          | `radius.control`, `radius.none`                                                                                                                                                                                                                                                                                                              |
 | Border width    | `border.default`                                                                                                                                                                                                                                                                                                                             |
 | Typography vars | `type.font-family.inter`, `type.font-weight.500`, `type.line-height.title.sm`, `type.size.title.sm`                                                                                                                                                                                                                                          |
@@ -80,10 +84,6 @@ Instance census (tree capped at depth 3): Icon/None ×63, Column Item ×33, Bar 
 - Component description is empty.
 - Primitive color bound directly (CLR-002): `color.neutral.900`.
 - Hard-coded gap `16px` on layer _Page Header › Container_
-- Hard-coded gap `16px` on layer _Container › Container_
-- Hard-coded gap `16px` on layer _Container › Container_
-- Hard-coded gap `16px` on layer _Container › Container_
-- Hard-coded gap `16px` on layer _Container › Container_
 
 ## Documentation card
 

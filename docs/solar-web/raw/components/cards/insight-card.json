@@ -256,7 +256,7 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/success}"
           ],
           "hidden": []
         },
@@ -280,7 +280,7 @@
           "iconFills": [
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/danger}"
           ],
           "overrides": {
             "changed": {
@@ -335,7 +335,7 @@
           "iconFills": [
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/warning}"
           ],
           "overrides": {
             "changed": {
@@ -389,7 +389,7 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/info}"
           ],
           "overrides": {
             "changed": {
@@ -482,7 +482,7 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/success}"
           ],
           "overrides": {
             "changed": {
@@ -514,7 +514,7 @@
           "iconFills": [
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/danger}"
           ],
           "overrides": {
             "changed": {
@@ -574,7 +574,7 @@
           "iconFills": [
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/warning}"
           ],
           "overrides": {
             "changed": {
@@ -633,7 +633,7 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/info}"
           ],
           "overrides": {
             "changed": {
@@ -737,7 +737,7 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/success}"
           ],
           "overrides": {
             "changed": {
@@ -771,7 +771,7 @@
           "iconFills": [
             "{Color:surface/feedback/danger/strong}",
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/danger}"
           ],
           "overrides": {
             "changed": {
@@ -833,7 +833,7 @@
           "iconFills": [
             "{Color:surface/feedback/warning/strong}",
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/warning}"
           ],
           "overrides": {
             "changed": {
@@ -894,7 +894,7 @@
           ],
           "iconFills": [
             "{Color:icon/inverse}",
-            "{Primitives:color/neutral/900}"
+            "{Color:icon/feedback/info}"
           ],
           "overrides": {
             "changed": {

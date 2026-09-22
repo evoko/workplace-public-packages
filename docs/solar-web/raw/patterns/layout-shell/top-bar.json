@@ -700,8 +700,8 @@
                 "effectStyle": "shadow/control",
                 "vars": {
                   "itemSpacing": null,
-                  "paddingLeft": null,
-                  "paddingRight": null,
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/sm",
                   "strokeTopWeight": "Spatial:border/default",
                   "strokeBottomWeight": "Spatial:border/default",
                   "strokeLeftWeight": "Spatial:border/default",
@@ -766,8 +766,8 @@
                 "effectStyle": "shadow/control",
                 "vars": {
                   "itemSpacing": null,
-                  "paddingLeft": null,
-                  "paddingRight": null,
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/sm",
                   "strokeTopWeight": "Spatial:border/default",
                   "strokeBottomWeight": "Spatial:border/default",
                   "strokeLeftWeight": "Spatial:border/default",
@@ -931,8 +931,8 @@
                 "effectStyle": "shadow/control",
                 "vars": {
                   "itemSpacing": null,
-                  "paddingLeft": null,
-                  "paddingRight": null,
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/sm",
                   "strokeTopWeight": "Spatial:border/default",
                   "strokeBottomWeight": "Spatial:border/default",
                   "strokeLeftWeight": "Spatial:border/default",
@@ -1123,8 +1123,8 @@
                 "effectStyle": "shadow/control",
                 "vars": {
                   "itemSpacing": null,
-                  "paddingLeft": null,
-                  "paddingRight": null,
+                  "paddingLeft": "Spatial:inset/xs",
+                  "paddingRight": "Spatial:inset/sm",
                   "strokeTopWeight": "Spatial:border/default",
                   "strokeBottomWeight": "Spatial:border/default",
                   "strokeLeftWeight": "Spatial:border/default",

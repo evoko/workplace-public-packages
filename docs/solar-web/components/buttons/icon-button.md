@@ -4,7 +4,7 @@
 
 ## Component set: Icon Button
 
-Icon-only action button. 72 variants: size (sm 28px, md 36px, lg 44px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, pressed, disabled). Mirrors the Button priority/size/state system using SOLAR action tokens. Always expand hit area to 44×44 via invisible padding when the visible size is smaller (WCAG 2.5.5). An icon-only control must carry an aria-label — the icon alone is not a name.
+Icon-only action button. 126 variants: size (sm 28px, md 36px, lg 44px) × shape (square, round) × prio (primary, secondary, tertiary) × state (default, hover, active, pressed, disabled, focus, loading). NOTE: `active` duplicates `pressed` and is scheduled for removal (→ 108 variants). Mirrors the Button priority/size/state system using SOLAR action tokens. Always expand hit area to 44×44 via invisible padding when the visible size is smaller (WCAG 2.5.5). An icon-only control must carry an aria-label — the icon alone is not a name.
 
 ### Props
 
@@ -173,7 +173,6 @@ Default variant: `size=sm, shape=square, prio=primary, state=default` · 126 var
 
 ### Issues detected
 
-- Description says 72 variants; the set has 126.
 - State axis has both `pressed` and `active`.
 
 ## Documentation card

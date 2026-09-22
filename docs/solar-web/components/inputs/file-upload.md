@@ -4,7 +4,7 @@
 
 ## Component set: FileUpload
 
-File upload control with drag-and-drop + click-to-select. 5 variants by state: idle, hover, error, disabled, filled. idle shows drop affordance + CTA; hover highlights the drop zone; filled shows the selected file(s) with a remove control; error surfaces size/format rejection; disabled locks the control. Helper text communicates limits ("Max 10MB, .jpg .png"). Pair with a real `<input type="file">` for accessibility; the drop zone is visual sugar on top.
+File upload control with drag-and-drop + click-to-select. 6 variants by state: default, hover, focus, filled, error, disabled. default shows drop affordance + CTA; hover highlights the drop zone; focus shows the focus ring; filled shows the selected file(s) with a remove control; error surfaces size/format rejection; disabled locks the control. Helper text communicates limits ("Max 10MB, .jpg .png"). Pair with a real `<input type="file">` for accessibility; the drop zone is visual sugar on top.
 
 ### Props
 
@@ -77,10 +77,6 @@ Default variant: `state=default` · 6 variants · default size 400×107px
 | disabled | 400×107 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.disabled`<br>`color.action.secondary.text.disabled`<br>`color.action.primary.text.disabled`      | `color.icon.disabled`<br>`color.action.secondary.icon.disabled`                                               |
 | filled   | 400×111 |      |        |                        | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`                                                                                        | `color.icon.primary`<br>`color.action.secondary.icon.default`<br>`color.action.secondary.icon.danger.default` |
 | focus    | 400×107 |      |        | `shadow/focus/default` | `color.text.primary`<br>`color.text.feedback.info`<br>`color.text.tertiary`<br>`color.action.secondary.text.default`<br>`color.action.primary.text.default`        | `color.icon.tertiary`<br>`color.action.secondary.icon.default`                                                |
-
-### Issues detected
-
-- Description says 5 variants; the set has 6.
 
 ## Documentation card
 
