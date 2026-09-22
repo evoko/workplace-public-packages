@@ -1889,27 +1889,305 @@ The repository owner commits `packages/assets/src/logo.tsx`,
 
 ---
 
-### Task 6: The Dart path parser
+### Task 6: The Dart path parser — done
 
 **Files:**
 
-- Create: `packages/codegen/src/emit/flutter-svg-path.mjs` (emits the parser)
-- Create: `packages/solar_flutter/test/svg_path_test.dart`
+- Created: `packages/solar_flutter/lib/src/svg_path.dart` (hand written)
+- Created: `packages/solar_flutter/test/svg_path_test.dart`
+- Created: `packages/codegen/test/flutter-svg-path.test.mjs`
 
-Generates `lib/src/generated/svg_path.dart`: `Path parseSvgPath(String d)` handling `M C L H V Z`
-absolutely, with a number scanner that accepts `1e-05`. Anything else throws `FormatException`
-naming the command, so a future arc fails loudly on the Dart side too.
+`Path parseSvgPath(String d)` is the runtime half of Task 1's `checkPathData`: the JS validates
+every `d` string once, at generation time, and this replays the same string on a device.
 
-It is generated rather than hand-written so its supported command set cannot drift from the
-validator in Task 1; both read `SUPPORTED_COMMANDS`.
+**It is hand written, not generated — the reverse of what this plan first said.** The design
+separates generated recipes from hand-written shells, and a parser is behaviour, not data: Task 3
+already hand-wrote `icon.tsx` on the same grounds. Generating control flow through a JS template
+string would be hard to read, harder to debug, and would put the file where Dart's own tooling
+treats it as machine-owned. So it lives at `lib/src/svg_path.dart`, **outside**
+`lib/src/generated/`, which stays the tree `solar:codegen` writes.
 
-Dart tests: a line, a cubic, `H`/`V` shorthands, `Z` closing, scientific notation, and a
-`FormatException` for `A`. Also an implicit repeated command (`L 1 2 3 4` meaning two line-tos):
-it appears nowhere in today's 686 files — every command carries exactly its argument count — but
-it is valid SVG, so the parser supports it and the test for it is synthetic rather than drawn
-from the data.
+The anti-drift guarantee that generating it would have given for free comes from a test instead.
+The Dart file states its command set once, in a single greppable `const String _commands =
+'MLCHVZ';`, and `packages/codegen/test/flutter-svg-path.test.mjs` reads the file and asserts that
+set is exactly `SUPPORTED_COMMANDS`. The check is deliberately shallow — one declaration, not
+regex archaeology over a switch — because everything else about the two agreeing is proved by
+behaviour on both sides.
 
-Run: `cd packages/solar_flutter && flutter test test/svg_path_test.dart`
+**The contract is "accept everything the JS accepts, reject everything it rejects".** The
+symmetry is the point: a Dart parser that is *stricter* would let a future Figma export pass the
+build and then throw inside an app, which is the worst of the two failure modes. So the scanner
+is `checkPathData` transposed, regex for regex:
+
+- `M L C H V Z`, absolute only. A lowercase form of one of those six is reported as a **relative**
+  command, which is a different problem from an unsupported one and worth telling apart. Every
+  other letter is unsupported — including `a`, because `A` is not in the set either, so the
+  lowercase/relative distinction never applies to an arc.
+- Path data must begin with a moveto, whether the first token is a letter or a number.
+- **Arity is a multiple, not an equality.** `H1 2` is two horizontal linetos, `M0 0 5 5` is a
+  moveto and then an implicit lineto, `C` with 12 numbers is two cubics, and `C` with 3 is an
+  error. `Z` takes none. The count is checked when a run ends, because only the total tells a
+  legal repeat from a truncation.
+- Numbers are the full SVG grammar: optional sign, digits with an optional decimal point
+  including the leading-dot form `.5`, optional exponent. Separators are any run of whitespace
+  and commas, or nothing at all when a sign starts the next number, so `1-2` is two numbers.
+- Every rejection is a `FormatException` carrying the message, the offending `d` and the offset.
+
+**What the corpus actually holds**, measured over all 812 path strings in the spec, so it is
+clear which of that grammar is load-bearing and which is defensive:
+
+| | |
+| --- | --- |
+| 812 path strings | 792 in the 682 icon variants, 20 in the four vector logos |
+| Negative numbers | 21 of them, in 12 paths, in 12 icon variants. **Real** |
+| Scientific notation | 5 paths, in 5 variants: `channel-strip` outline, both `meeting-room`, `touch-panel` outline, `zone` solid. Smallest is `9.87904e-05`. **Real** |
+| Commas, leading-dot numbers, `1-2` minus separators, explicit `+`, implicit repeats | **none, anywhere.** Supported because they are valid SVG and `checkPathData` accepts them, but speculative — the code and the tests say so rather than implying the data contains one |
+
+**Geometry.** The current point and the subpath start are tracked by hand: `M` moves and records
+the start, `L` and `C` draw, `H` and `V` line to one new coordinate and the current value of the
+other, and `Z` closes and returns the current point to the subpath start — which is what a
+following `H` or `V` measures from. The fill type is deliberately left alone; `fill-rule` travels
+beside the path data in the spec and Task 7 applies it per path.
+
+```dart
+import 'dart:ui' show Path;
+
+/// Turns SVG path data into a [Path].
+///
+/// Hand written, not generated. A parser is behaviour, not data: the generated files under
+/// `lib/src/generated/` are recipes -- geometry and a name -- and everything that reads them
+/// lives outside that tree, the way `icon.tsx` sits outside `src/generated/` on the React side.
+///
+/// **It accepts exactly what the generator accepts.** `checkPathData` in
+/// `packages/codegen/src/normalize/svg.mjs` validates every `d` string at generation time and
+/// this function replays it at run time, so the two have to agree in both directions. If this
+/// parser were stricter, a future Figma export could pass the build and then throw inside an
+/// app; if it were looser, it would draw something the generator never checked. The command set
+/// is stated once, in [_commands], and `packages/codegen/test/flutter-svg-path.test.mjs` reads
+/// this file and asserts it matches `SUPPORTED_COMMANDS` so the two cannot drift apart.
+
+/// The commands this parser draws, absolute only. Mirrors `SUPPORTED_COMMANDS` on the JS side.
+///
+/// A lowercase form of one of these is a *relative* command and is reported as such, separately
+/// from a letter that is simply not supported: `a` and `A` alike are unsupported, because an arc
+/// is not in the set at all, and an arc is the one that will actually turn up.
+const String _commands = 'MLCHVZ';
+
+/// How many numbers each command consumes.
+///
+/// A command may repeat its arguments: `H1 2` is two horizontal linetos and `M0 0 5 5` is a
+/// moveto followed by an implicit lineto. A run is therefore well formed when its count is a
+/// positive multiple of this, which is what separates a legal repeat from a truncated `C1 2 3`.
+const Map<String, int> _arity = <String, int>{
+  'M': 2,
+  'L': 2,
+  'C': 6,
+  'H': 1,
+  'V': 1,
+  'Z': 0,
+};
+
+// Matched with matchAsPrefix, so the scan can name the exact character it could not read rather
+// than skipping ahead to the next thing that happens to match. These are the JS scanner's three
+// regexes, character for character.
+final RegExp _number = RegExp(r'[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?');
+final RegExp _letter = RegExp(r'[a-zA-Z]');
+final RegExp _separator = RegExp(r'[\s,]+');
+
+/// Parses SVG path data into a [Path].
+///
+/// Accepts `M L C H V Z`, absolute only, with numbers in the full SVG grammar: an optional sign,
+/// digits with an optional decimal point (including the leading-dot form `.5`) and an optional
+/// exponent, separated by any run of whitespace and commas, or by nothing at all when a sign
+/// starts the next number (`1-2` is two numbers). Of those, only negative numbers and scientific
+/// notation occur in the SOLAR corpus today -- commas, leading-dot numbers, `1-2` separators,
+/// explicit plus signs and implicit repeats do not. They are supported anyway, because they are
+/// valid SVG and the generator's validator accepts them, but they are speculative rather than
+/// exercised by the data.
+///
+/// The fill type is deliberately not set: `fill-rule` travels beside the path data in the spec
+/// and is applied per path by the caller.
+///
+/// Throws a [FormatException] naming what it found for anything else.
+Path parseSvgPath(String d) {
+  final String text = d.trim();
+  if (text.isEmpty) {
+    throw FormatException('path data is empty', d);
+  }
+
+  final Path path = Path();
+  final List<double> args = <double>[];
+
+  int at = 0;
+  bool first = true;
+  String? command;
+  int count = 0;
+  // Which argument group of the current run is being read. Only M cares: its first group is a
+  // moveto and every later one is an implicit lineto.
+  int group = 0;
+
+  // The current point, and the start of the current subpath, which is where Z returns to.
+  double x = 0;
+  double y = 0;
+  double startX = 0;
+  double startY = 0;
+
+  // Checked when the run ends rather than per number, because only the total distinguishes a
+  // legal repeat from a truncated command.
+  void endRun() {
+    if (command == null) {
+      return;
+    }
+    final int need = _arity[command]!;
+    final bool ok = need == 0 ? count == 0 : count > 0 && count % need == 0;
+    if (!ok) {
+      throw FormatException(
+        '"$command" takes $need argument${need == 1 ? '' : 's'} '
+        'but was given $count',
+        d,
+      );
+    }
+  }
+
+  void apply() {
+    switch (command) {
+      case 'M':
+        // Extra coordinate pairs after a moveto are linetos, per the SVG grammar.
+        if (group == 0) {
+          path.moveTo(args[0], args[1]);
+          startX = args[0];
+          startY = args[1];
+        } else {
+          path.lineTo(args[0], args[1]);
+        }
+        x = args[0];
+        y = args[1];
+      case 'L':
+        path.lineTo(args[0], args[1]);
+        x = args[0];
+        y = args[1];
+      case 'C':
+        path.cubicTo(args[0], args[1], args[2], args[3], args[4], args[5]);
+        x = args[4];
+        y = args[5];
+      case 'H':
+        x = args[0];
+        path.lineTo(x, y);
+      case 'V':
+        y = args[0];
+        path.lineTo(x, y);
+    }
+    args.clear();
+    group += 1;
+  }
+
+  while (at < text.length) {
+    final Match? number = _number.matchAsPrefix(text, at);
+    if (number != null) {
+      if (first) {
+        throw FormatException(
+          'path data starts with "${number[0]}", not a moveto',
+          d,
+          at,
+        );
+      }
+      args.add(double.parse(number[0]!));
+      count += 1;
+      at = number.end;
+      if (args.length == _arity[command]) {
+        apply();
+      }
+      continue;
+    }
+
+    final Match? letter = _letter.matchAsPrefix(text, at);
+    if (letter != null) {
+      final String next = letter[0]!;
+      if (!_commands.contains(next)) {
+        final String why = _commands.contains(next.toUpperCase())
+            ? 'relative path command "$next"'
+            : 'unsupported path command "$next"';
+        throw FormatException(
+          '$why in path data; only ${_commands.split('').join(' ')} '
+          'are supported',
+          d,
+          at,
+        );
+      }
+      if (first && next != 'M') {
+        throw FormatException(
+          'path data starts with "$next", not a moveto',
+          d,
+          at,
+        );
+      }
+      endRun();
+      first = false;
+      command = next;
+      count = 0;
+      group = 0;
+      args.clear();
+      at = letter.end;
+      if (next == 'Z') {
+        path.close();
+        // Z leaves the current point at the start of the subpath it closed, which is what a
+        // following H or V measures from.
+        x = startX;
+        y = startY;
+      }
+      continue;
+    }
+
+    final Match? separator = _separator.matchAsPrefix(text, at);
+    if (separator != null) {
+      at = separator.end;
+      continue;
+    }
+
+    throw FormatException(
+      'unreadable character "${text[at]}" in path data at offset $at',
+      d,
+      at,
+    );
+  }
+
+  endRun();
+  return path;
+}
+```
+
+**Tests: 14 Dart cases and 4 JS.**
+
+Dart (`packages/solar_flutter/test/svg_path_test.dart`) asserts geometry — `Path.getBounds()` and
+`Path.contains()` — rather than only that nothing threw. A line; a cubic, checked by a point
+under its sag; `H` then `V` continuing from each other; `Z` proved by building a second triangle
+out of `H`/`V` that is only the right shape if the current point went back to the subpath start;
+negative coordinates; scientific notation; an implicit repeat, checked as a triangle that a
+second moveto could not have drawn; and the comma, doubled-space, `10-10`, `.5` and `+10` forms
+that the corpus does not contain. Then a `FormatException` each for an arc, a relative `l`, a
+lowercase arc (unsupported, not relative), data starting with a letter that is not `M`, data
+starting with a number, a truncated `C`, a truncated `L`, a `Z` given an argument, empty data and
+an unreadable character.
+
+The last case is a real one: `zone`'s outline path 7 of 9, pasted verbatim from the spec. It has
+two subpaths wound against each other, eight cubics, a `Z` on each and the negative control
+points that put its bounds above the origin, on the one icon whose viewBox is `0 0 24 25`. Its
+bounds and four containment probes are asserted, including the hole through the middle of the pin.
+
+JS (`packages/codegen/test/flutter-svg-path.test.mjs`) is the anti-drift assertion: the Dart file
+declares `_commands` exactly once, that set equals `SUPPORTED_COMMANDS`, `_arity` gives every one
+of them a count and invents none, and no `case` in the parser names a command outside the set.
+
+Separately, as a one-off check rather than a committed test, all 812 spec path strings were run
+through the Dart parser: every one parses and none yields empty bounds. Task 8 is where that
+becomes a standing assertion.
+
+Run: `cd packages/solar_flutter && flutter test test/svg_path_test.dart` and
+`npx vitest run packages/codegen/test/flutter-svg-path.test.mjs`
+
+The repository owner commits `packages/solar_flutter/lib/src/svg_path.dart`,
+`packages/solar_flutter/test/svg_path_test.dart` and
+`packages/codegen/test/flutter-svg-path.test.mjs`.
 
 ---
 
