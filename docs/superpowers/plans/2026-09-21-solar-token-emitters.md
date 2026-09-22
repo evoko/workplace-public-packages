@@ -1517,6 +1517,20 @@ git commit -m "feat(codegen): emit SOLAR tokens as MUI theme options"
 
 ### Task 8: Tailwind preset emitter
 
+Values point at the CSS custom properties, so Light and Dark switch with `[data-theme]` and the
+preset stays a single source rather than a second copy of every value. Screens are the
+exception: media queries cannot read custom properties, so breakpoints are emitted literally.
+
+Only the semantic layer is exposed, so app code cannot reach for a raw palette value. Two
+families are exceptions, because SOLAR gives them no semantic layer at all: motion, and the font
+families, which Tailwind's own `sans` / `serif` / `mono` defaults know nothing about. Font
+weights are deliberately not exposed, since SOLAR's 100 to 900 are exactly Tailwind's built-in
+scale and `font-400` would only duplicate `font-normal`.
+
+The 47 text styles are not emitted here yet. Tailwind can express one as a `fontSize` tuple
+carrying line height, weight and tracking, which would give `text-label-md` in a single utility
+and is the better mapping. That belongs with the component work rather than this milestone.
+
 **Files:**
 
 - Create: `packages/codegen/src/emit/tailwind.mjs`
@@ -1555,6 +1569,15 @@ describe('renderTailwind', () => {
 
   it('maps breakpoints to screens using real pixel values, not variables', () => {
     expect(preset.theme.extend.screens.md).toBe('1024px');
+  });
+
+  it('exposes the font families, which Tailwind has no default for, but not the weights', () => {
+    expect(preset.theme.extend.fontFamily.inter).toBe(
+      'var(--solar-type-font-family-inter)',
+    );
+    expect(Object.keys(preset.theme.extend.fontFamily)).toHaveLength(6);
+    // SOLAR's 100 to 900 are exactly Tailwind's built-in scale, so they are not re-exported.
+    expect(preset.theme.extend.fontWeight).toBeUndefined();
   });
 
   it('maps durations and easings', () => {
@@ -1611,7 +1634,6 @@ export function renderTailwind(spec) {
     boxShadow: {},
     fontSize: {},
     fontFamily: {},
-    fontWeight: {},
     screens: {},
     zIndex: {},
     transitionDuration: {},
@@ -1621,7 +1643,13 @@ export function renderTailwind(spec) {
 
   for (const t of tokens) {
     const n = t.name;
-    if (t.ext.tier === 'primitive') continue; // Tailwind exposes the semantic layer only
+    // Tailwind exposes the semantic layer, so app code cannot reach for a raw palette value.
+    // Two families are exceptions because SOLAR gives them no semantic layer at all: motion,
+    // and the font families, which Tailwind's own sans/serif/mono defaults know nothing about.
+    // Font weights are deliberately not exposed: SOLAR's 100 to 900 are exactly Tailwind's
+    // built-in scale, so font-400 would only duplicate font-normal.
+    const EXPOSED_PRIMITIVES = /^(motion\.|type\.font-family\.)/;
+    if (t.ext.tier === 'primitive' && !EXPOSED_PRIMITIVES.test(n)) continue;
     if (n.startsWith('color.')) extend.colors[key(n, 'color.')] = ref(n);
     else if (n.startsWith('inset.') || n.startsWith('stack.'))
       extend.spacing[key(n, '')] = ref(n);
@@ -1633,6 +1661,8 @@ export function renderTailwind(spec) {
       extend.boxShadow[key(n, 'shadow.')] = ref(n);
     else if (n.startsWith('type.size.'))
       extend.fontSize[key(n, 'type.size.')] = ref(n);
+    else if (n.startsWith('type.font-family.'))
+      extend.fontFamily[key(n, 'type.font-family.')] = ref(n);
     else if (n.startsWith('z.')) extend.zIndex[key(n, 'z.')] = ref(n);
     else if (n.startsWith('motion.duration.'))
       extend.transitionDuration[key(n, 'motion.duration.')] = ref(n);
@@ -1643,16 +1673,18 @@ export function renderTailwind(spec) {
       extend.screens[key(n, 'layout.breakpoint.')] = t.value;
     else continue;
 
-    // Shadows carry layers whose colour is an alias, so they are resolved the same way the
-    // CSS and Flutter emitters resolve them; everything else is a scalar.
+    // What the preset holds is a var() reference, except screens, which must be literal. The
+    // resolved value is passed as the canonical input so parity can compare across targets;
+    // shadows resolve their colour alias first, the same way CSS and Flutter do.
+    const emitted = n.startsWith('layout.breakpoint.') ? t.value : ref(n);
     manifest[n] =
       t.type === 'shadow'
         ? entry(
             'shadow',
-            ref(n),
+            emitted,
             shadowLayers(index, { $value: t.value }, 'light'),
           )
-        : entry(t.type, t.modes?.light ?? t.modes?.desktop ?? t.value);
+        : entry(t.type, emitted, t.modes?.light ?? t.modes?.desktop ?? t.value);
   }
 
   const preset = { theme: { extend } };
@@ -1681,7 +1713,7 @@ export function emitTailwind(spec, fileVersion) {
 - [ ] **Step 4: Run the test and watch it pass**
 
 Run: `npx vitest run packages/codegen/test/tailwind.test.mjs`
-Expected: PASS, 6 tests.
+Expected: PASS, 7 tests.
 
 - [ ] **Step 5: Commit**
 
@@ -2256,11 +2288,13 @@ describe('token parity', () => {
     }
   });
 
-  it('tailwind exposes the semantic layer and never a primitive', () => {
+  it('tailwind exposes the semantic layer, and a primitive only where SOLAR has no semantic one', () => {
     const byName = new Map(tokens.map((t) => [t.name, t]));
     for (const name of Object.keys(manifests.tailwind)) {
-      expect(byName.get(name).ext.tier, `${name} is a primitive`).not.toBe(
-        'primitive',
+      if (byName.get(name).ext.tier !== 'primitive') continue;
+      // motion and the font families are the only ones with no semantic layer in SOLAR
+      expect(name, `${name} is an unexpected primitive`).toMatch(
+        /^(motion|type\.font-family)\./,
       );
     }
     expect(Object.keys(manifests.tailwind).length).toBeGreaterThan(100);
