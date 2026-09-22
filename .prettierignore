@@ -5,3 +5,5 @@ docs/solar-icons/raw/**/*.json
 # Exported Figma assets are byte-exact copies.
 docs/solar-icons/svg/**
 docs/solar-icons/logos/**
+# Dart package: formatted by dart format, not Prettier.
+packages/solar_flutter/**

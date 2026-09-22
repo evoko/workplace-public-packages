@@ -11,9 +11,15 @@
 **Read first:** [the design spec](../specs/2026-09-21-solar-docs-to-code-design.md). Invariant 1 is absolute: the generator must never write to `docs/`.
 
 **Dependencies:** always use the latest stable version available; versions named below are a
-floor, not a pin. Two are capped by upstream peer ranges and cannot go higher yet: TypeScript
-stays on 6.x because `typescript-eslint` peers `typescript <6.1.0`, and ESLint stays on 9.x
-because `eslint-plugin-react` and `eslint-plugin-jsx-a11y` do not accept 10.
+floor, not a pin. Three are capped and cannot go higher yet:
+
+- TypeScript stays on 6.x because `typescript-eslint` peers `typescript <6.1.0`.
+- ESLint stays on 9.x because `eslint-plugin-react` and `eslint-plugin-jsx-a11y` do not accept 10.
+- `flutter_lints` stays on 5.x because the installed Flutter is 3.24.4 with Dart 3.5.4, and
+  `flutter_lints` 6 needs Dart 3.8. This one is an environment cap rather than an upstream one:
+  upgrading the local Flutter unlocks it. Until then, running the Dart checks locally is what
+  keeps the generated Dart honest, so matching the installed SDK is worth more than the newer
+  lint rules.
 
 **Git:** the repository owner handles all version control. The `git add` / `git commit` block
 that closes each task is a **record of what belongs in that commit, for the owner to run**. An
@@ -1755,7 +1761,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
+  flutter_lints: ^5.0.0
 ```
 
 - [ ] **Step 2: Create the lint config, entry point, gitignore and README**
@@ -1771,14 +1777,16 @@ linter:
     prefer_const_declarations: true
 ```
 
-`packages/solar_flutter/lib/solar_flutter.dart`:
+`packages/solar_flutter/lib/solar_flutter.dart`. The library declaration is deliberately
+unnamed: modern Dart drops the name, and `flutter_lints` flags `library <name>;` as
+`unnecessary_library_name`.
 
 ```dart
 /// Biamp SOLAR for Flutter.
 ///
 /// Everything under `src/generated` is written by `npm run solar:codegen` from
 /// `spec/tokens.json`. Do not edit those files by hand.
-library solar_flutter;
+library;
 
 export 'src/generated/tokens.dart';
 ```
