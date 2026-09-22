@@ -2191,44 +2191,629 @@ The repository owner commits `packages/solar_flutter/lib/src/svg_path.dart`,
 
 ---
 
-### Task 7: Flutter icon and logo emitter
+### Task 7: Flutter icon and logo emitter — done
 
 **Files:**
 
-- Create: `packages/codegen/src/emit/flutter-icons.mjs`
-- Create: `packages/codegen/test/flutter-icons.test.mjs`
-- Create: `packages/solar_flutter/test/icons_test.dart`
+- Created: `packages/solar_flutter/lib/src/solar_icon.dart` (hand written)
+- Created: `packages/codegen/src/emit/flutter-icons.mjs`
+- Created: `packages/codegen/test/flutter-icons.test.mjs`
+- Created: `packages/solar_flutter/test/icons_test.dart`
+- Modified: `packages/solar_flutter/lib/solar_flutter.dart` (the new public surface)
 
-Writes `lib/src/generated/icons.dart` and `logos.dart`:
+`renderFlutterIcons(spec)` returns `{icons, logos, manifest}` as strings and data, so the tests
+run without touching the disk; `emitFlutterIcons(spec, fileVersion)` writes them through
+`writeGenerated` into `packages/solar_flutter/lib/src/generated/`: `icons.dart`, `logos.dart` and
+`icons.manifest.json`. The CLI wiring is still task 9, so the files were emitted by calling the
+emitter directly and then formatted with `dart format`, which is what the CLI already does for
+`tokens.dart`.
+
+**The types and the widget are hand written; only the data is generated.** This is the same split
+tasks 3 and 6 arrived at, and it is now the rule rather than three separate decisions:
+`lib/src/solar_icon.dart` holds `SolarVector`, `SolarVectorPath`, `SolarVectorPainter`,
+`SolarIcon` and `SolarLogo`, and sits **outside** `lib/src/generated/`, which stays the tree
+`solar:codegen` owns. Accessibility, the colour chain, the fit and the parse cache are behaviour,
+and deciding them once beats generating 682 copies of the same control flow through a JS template
+string. `parseSvgPath` stays internal: `solar_flutter.dart` exports the two generated data
+libraries, `tokens.dart` and `solar_icon.dart`, and nothing else.
+
+**One `static const` per variant, and deliberately no map.** The constants are
+`SolarIcons.chevronRightOutline` / `chevronRightSolid` and `SolarLogos.biampDarkSm`. Dart
+tree-shakes static fields individually — the same property `SolarIconSize.lg` already relies on
+in the token file — so taking one icon costs one icon, and the names autocomplete. A
+`Map<String, SolarVector>` would reference every field, so any build that touched the class would
+retain all 358 KB of path data; the class doc says so, and a test asserts the emitted code holds
+no `Map<`. Measured on the real catalog: **682 names, all unique, every one matching
+`^[a-z][A-Za-z0-9]*(Outline|Solid)$`**, so none needs the `$` escaping the token emitter uses for
+`2xs` and `default` — a stem is always followed by `Outline` or `Solid`.
+
+**What is in the files.** 341 icons × 2 variants = **682 `SolarVector` constants carrying 792
+paths, 75 of them `evenOdd: true`**, and no colour at all: `#111111` does not appear, and neither
+does `Color(`, which is asserted on both sides. `logos.dart` carries **four** constants —
+`biampDarkSm`, `biampLightSm`, `osGoogle`, `osMicrosoft` — with 20 paths, every one of which names
+its own `Color(0x…)` through the token emitter's `dartColor`, so the two Dart files convert
+colours the same way. The `app-icon` set is skipped because it is raster: it is not an omission,
+it is five PNGs that React ships as data URLs and a Flutter app loads as image assets.
+
+**The Teams mark is absent, and the emitter proves that is the only thing missing.**
+`spec.logos['os-logo'].variants.teams` is `{unsupported, source}` and task 5 recorded that Flutter
+omits it. The emitter collects what it actually skipped and compares it to `OMITTED_VARIANTS`,
+which is exactly `['os-logo.teams']`; anything else stops the build with both lists in the
+message. A second unrepresentable mark is a governance question, not something to drop from one
+target quietly.
+
+**Fit, do not stretch.** The painter scales the viewBox into the target box by
+`min(w/vw, h/vh)` and centres it — `BoxFit.contain` semantics. SVG gets this free from the default
+`preserveAspectRatio`, so Flutter has to match it or `zone`, the one icon drawn on `0 0 24 25`,
+would render squashed here and letterboxed on the web. `SolarVector` carries an extent rather than
+a rectangle, and the emitter throws on a viewBox that does not start at the origin: nothing in the
+corpus is offset, and dropping an offset silently would draw the mark in the wrong place.
+
+**The colour chain**, documented on `SolarIcon` and asserted three times: the explicit `color`,
+else the ambient `SolarTheme` extension's `colors.iconPrimary`, else `IconTheme.of(context).color`
+— so a SOLAR icon in a Material button matches the icons beside it — else black. A path whose
+`fill` is non-null uses that colour and ignores the widget's, which is the one thing that lets a
+single painter serve both icons and brand marks.
+
+**`SolarLogo` takes no `color` argument at all.** A tinted brand mark is a brand violation, so the
+type system refuses it rather than a comment asking nicely — the exact inverse of `SolarIcon`, and
+the inverse of the `currentColor` contract on the web. Its `size` sets the **height** and the width
+follows the aspect ratio, because the Biamp wordmark is 36 × 12 and one length on both axes would
+squash it.
+
+**The parsed `Path` is cached.** `parseSvgPath` scans strings up to 3913 characters and a painter
+repaints far more often than its data changes. The cache is an `Expando<Path>` keyed on the
+`SolarVectorPath` instance: the vectors are compile-time constants with no `==` of their own, so
+identity is the right key, and an `Expando` being weak means it holds nothing alive that the
+program has otherwise dropped. `evenOdd` is applied there, as `PathFillType.evenOdd` — without it
+the 75 even-odd paths render as filled blobs.
+
+**A manifest, not only two Dart files.** `icons.manifest.json` records
+`{constant, viewBox, pathCount, digest}` per variant plus the `omitted` list, using
+`geometryDigest` from the React icon emitter and `logoDigest` from the React logo emitter rather
+than a second canonical form that happens to agree. That is what task 5 exported them for, and it
+is what task 8 compares; a test here already checks all 682 icon digests against React's.
 
 ```dart
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart' show Theme;
+import 'package:flutter/widgets.dart';
+
+import 'generated/tokens.dart' show SolarIconSize, SolarTheme;
+import 'svg_path.dart';
+
+/// The vector types and the widgets that draw them.
+///
+/// Hand written, not generated, the same way `icon.tsx` is on the React side: the files under
+/// `lib/src/generated/` are recipes -- geometry and a name -- and everything that is behaviour
+/// rather than data is decided once, here. Only `lib/src/generated/` is machine owned.
+
+/// One filled subpath of a SOLAR vector.
 @immutable
 class SolarVectorPath {
+  /// Creates a path from SVG path data.
   const SolarVectorPath(this.d, {this.evenOdd = false, this.fill});
+
+  /// SVG path data, byte identical to the string the web target ships.
+  ///
+  /// It is replayed by [parseSvgPath], which accepts exactly what the generator validated:
+  /// `M L C H V Z`, absolute only.
   final String d;
+
+  /// Whether the path is filled by the even-odd rule rather than the non-zero rule.
+  ///
+  /// 75 paths in the SOLAR corpus are even-odd. Without this they render as filled blobs
+  /// instead of shapes with holes.
   final bool evenOdd;
-  /// Null means the widget's colour, matching currentColor on the web.
+
+  /// The colour this path is drawn in.
+  ///
+  /// Null means the colour the widget was given, matching `currentColor` on the web: an icon
+  /// path always inherits, a logo path never does. A path that names a colour ignores the
+  /// widget's, which is what lets one painter serve both icons and brand marks.
   final Color? fill;
 }
 
+/// One drawing: a viewBox extent and the paths inside it.
 @immutable
 class SolarVector {
-  const SolarVector({required this.width, required this.height, required this.paths});
+  /// Creates a vector from its viewBox extent and its paths.
+  const SolarVector({
+    required this.width,
+    required this.height,
+    required this.paths,
+  });
+
+  /// The viewBox width. Every SOLAR viewBox starts at the origin, so this is its extent.
   final double width;
+
+  /// The viewBox height. 24 for every icon but `zone` outline, which is drawn 25 tall.
   final double height;
+
+  /// The paths, painted in order.
   final List<SolarVectorPath> paths;
+
+  /// The drawing's intrinsic ratio, which is what keeps a 36 x 12 wordmark a wordmark.
+  double get aspectRatio => width / height;
+}
+
+/// Parsed paths, keyed by the [SolarVectorPath] they came from.
+///
+/// [parseSvgPath] scans strings up to 3913 characters, and a painter repaints far more often
+/// than the data changes, so the result is kept rather than rebuilt on every frame. The vectors
+/// are compile-time constants with no `==` of their own, so the [Expando] is keyed on identity;
+/// being weak, it also holds nothing alive that the program has otherwise dropped.
+final Expando<Path> _parsed = Expando<Path>('SolarVectorPath');
+
+Path _pathOf(SolarVectorPath source) {
+  final Path? cached = _parsed[source];
+  if (cached != null) {
+    return cached;
+  }
+  final Path path = parseSvgPath(source.d)
+    ..fillType = source.evenOdd ? PathFillType.evenOdd : PathFillType.nonZero;
+  _parsed[source] = path;
+  return path;
+}
+
+/// Paints a [SolarVector] into a box, scaled to fit and centred.
+///
+/// The fit is `BoxFit.contain`: one scale factor for both axes. SVG does this for free through
+/// the default `preserveAspectRatio`, so Flutter has to match it or `zone` -- the one icon drawn
+/// on a `0 0 24 25` viewBox -- would render stretched here and letterboxed on the web.
+class SolarVectorPainter extends CustomPainter {
+  /// Creates a painter for [vector], drawing inheriting paths in [color].
+  const SolarVectorPainter(this.vector, this.color);
+
+  /// The drawing.
+  final SolarVector vector;
+
+  /// The colour for paths that inherit one. A path with its own [SolarVectorPath.fill]
+  /// ignores it.
+  final Color color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (size.isEmpty) {
+      return;
+    }
+    final double scale = math.min(
+      size.width / vector.width,
+      size.height / vector.height,
+    );
+    canvas.save();
+    canvas.translate(
+      (size.width - vector.width * scale) / 2,
+      (size.height - vector.height * scale) / 2,
+    );
+    canvas.scale(scale);
+    final Paint paint = Paint()..isAntiAlias = true;
+    for (final SolarVectorPath source in vector.paths) {
+      paint.color = source.fill ?? color;
+      canvas.drawPath(_pathOf(source), paint);
+    }
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(SolarVectorPainter oldDelegate) =>
+      oldDelegate.vector != vector || oldDelegate.color != color;
+}
+
+Widget _labelled(String? semanticLabel, Widget child) => Semantics(
+      label: semanticLabel,
+      image: semanticLabel == null ? null : true,
+      child: ExcludeSemantics(child: child),
+    );
+
+/// A SOLAR icon, drawn from its vector data.
+///
+/// ```dart
+/// const SolarIcon(SolarIcons.chevronRightOutline)
+/// ```
+///
+/// **Colour.** An icon is monochrome and takes its colour from its surroundings, the way
+/// `currentColor` works on the web. The first of these that is set wins:
+///
+/// 1. the explicit [color];
+/// 2. the ambient [SolarTheme] extension's `colors.iconPrimary`;
+/// 3. `IconTheme.of(context).color`, so an icon inside a button or a list tile matches the
+///    Material icons beside it;
+/// 4. black, which is only reached if a caller has removed the default icon theme.
+///
+/// **Size.** [size] is the side of a square box and defaults to [SolarIconSize.lg] (24). The
+/// drawing is scaled to fit that box with its aspect ratio kept, so `zone` stays 24 x 25.
+///
+/// **Semantics.** [semanticLabel] names the icon for assistive technology. Without one the icon
+/// is excluded from the semantics tree, because an unlabelled icon sits beside a label that
+/// already says what it means.
+class SolarIcon extends StatelessWidget {
+  /// Creates an icon drawing [icon].
+  const SolarIcon(
+    this.icon, {
+    super.key,
+    this.size,
+    this.color,
+    this.semanticLabel,
+  });
+
+  /// The drawing, normally a constant from `SolarIcons`.
+  final SolarVector icon;
+
+  /// The side of the square box to draw into. Defaults to [SolarIconSize.lg].
+  final double? size;
+
+  /// The colour to draw in. See the class doc for what is used when this is null.
+  final Color? color;
+
+  /// The accessible name. Without one the icon is hidden from assistive technology.
+  final String? semanticLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final double side = size ?? SolarIconSize.lg;
+    final Color resolved = color ??
+        Theme.of(context).extension<SolarTheme>()?.colors.iconPrimary ??
+        IconTheme.of(context).color ??
+        const Color(0xFF000000);
+
+    return _labelled(
+      semanticLabel,
+      SizedBox(
+        width: side,
+        height: side,
+        child: CustomPaint(
+          size: Size(side, side),
+          painter: SolarVectorPainter(icon, resolved),
+        ),
+      ),
+    );
+  }
+}
+
+/// A SOLAR brand mark, drawn from its vector data.
+///
+/// ```dart
+/// const SolarLogo(SolarLogos.biampDarkSm)
+/// ```
+///
+/// **It takes no colour.** A logo carries the colours SOLAR drew it in and a tinted brand mark
+/// is a brand violation, so there is no `color` argument for the compiler to accept -- the
+/// inverse of [SolarIcon], and enforced by the type rather than by a comment asking nicely.
+///
+/// **[size] sets the height** and the width follows the mark's aspect ratio. The Biamp wordmark
+/// is 36 x 12: one length on both axes would squash it.
+class SolarLogo extends StatelessWidget {
+  /// Creates a logo drawing [logo].
+  const SolarLogo(this.logo, {super.key, this.size, this.semanticLabel});
+
+  /// The drawing, normally a constant from `SolarLogos`.
+  final SolarVector logo;
+
+  /// The height to draw at. Defaults to [SolarIconSize.lg]; SOLAR publishes no logo scale.
+  final double? size;
+
+  /// The accessible name. Without one the logo is hidden from assistive technology.
+  final String? semanticLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    final double height = size ?? SolarIconSize.lg;
+    final double width = height * logo.aspectRatio;
+
+    return _labelled(
+      semanticLabel,
+      SizedBox(
+        width: width,
+        height: height,
+        child: CustomPaint(
+          size: Size(width, height),
+          // Every logo path carries its own fill, so this colour is never used. The painter
+          // needs one because it also serves icons, where every path inherits.
+          painter: SolarVectorPainter(logo, const Color(0xFF000000)),
+        ),
+      ),
+    );
+  }
 }
 ```
 
-One top-level `const` per icon variant so Dart's tree shaker can drop the rest, named
-`chevronRightOutline` / `chevronRightSolid`, grouped in `SolarIcons` for discovery. A
-`SolarIcon` widget paints them through a `CustomPainter`, taking `size` (defaulting to
-`SolarIconSize.lg` from the token package) and `color` (defaulting to the ambient
-`SolarTheme.colors.iconPrimary`).
+```js
+/**
+ * Emits the SOLAR icons and logos as Dart data.
+ *
+ * **Data only.** The types, the widgets and the painter are hand written in
+ * `packages/solar_flutter/lib/src/solar_icon.dart`, for the same reason `icon.tsx` is hand
+ * written on the React side: a generated file is a recipe -- a viewBox and some path strings --
+ * and everything that is behaviour is decided once, outside the machine-owned tree.
+ *
+ * **One static const per variant, and deliberately no map.** Dart tree-shakes static fields
+ * individually, the way `SolarIconSize.lg` already does in the token file, so taking one icon
+ * costs one icon. A `Map<String, SolarVector>` would reference every field, and any build that
+ * touched the class would retain all 358 KB of path data. The constants also autocomplete,
+ * which a string-keyed map does not.
+ *
+ * **The Teams mark is absent.** `logos/os-logo/teams.svg` is 11 radial gradients, one linear
+ * gradient and every `fill-opacity` in the corpus, which the vector IR cannot represent;
+ * redrawing it in a hand-written painter is disproportionate work for one third-party mark and
+ * approximating it would invent a brand colour. React and the raw SVG output both carry the real
+ * mark, so the gap is one platform's, recorded in the `logo.os-logo.teams` deviation. The
+ * emitter asserts it is the *only* variant it skipped, so a second unsupported asset fails the
+ * build instead of disappearing quietly.
+ */
 
-Tests, both sides: the path data string for a given icon is byte-identical to the spec; the
-widget paints without throwing for every one of the 681 variants; `evenOdd` reaches the `Path`;
-a logo renders its own colours and ignores the `color` argument.
+import { join } from 'node:path';
+import { packagesDir } from '../util/paths.mjs';
+import { byCodeUnit } from '../util/sort.mjs';
+import { writeGenerated } from '../util/write.mjs';
+import { dartColor } from './flutter.mjs';
+import { geometryDigest } from './react-icons.mjs';
+import { logoDigest } from './react-logos.mjs';
+
+const OUT_DIR = join(packagesDir, 'solar_flutter', 'lib', 'src', 'generated');
+
+const HEADER =
+  '// Generated by @bwp-web/codegen from spec/icons.json. Do not edit.\n';
+
+/**
+ * The one asset the Flutter target does not carry, spelled out rather than inferred.
+ *
+ * Written as `<set>.<variant>`. The emitter compares what it actually skipped against this, so
+ * a second unrepresentable mark stops the build.
+ */
+export const OMITTED_VARIANTS = ['os-logo.teams'];
+
+const quote = (text) =>
+  `'${text.replaceAll('\\', '\\\\').replaceAll("'", "\\'")}'`;
+
+const dbl = (n) => (Number.isInteger(n) ? `${n}.0` : String(n));
+
+const pascal = (text) =>
+  text
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(Boolean)
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join('');
+
+const camel = (text) => {
+  const name = pascal(text);
+  return name[0].toLowerCase() + name.slice(1);
+};
+
+/**
+ * A Dart field name for one variant of one asset: `chevron-right` + `outline` becomes
+ * `chevronRightOutline`.
+ *
+ * No `$` escaping, unlike the token emitter: a token tail can be `2xs` or `default`, but every
+ * one of the 682 icon names is a stem followed by `Outline` or `Solid`, so none can start with
+ * a digit and none can be a reserved word. That is asserted rather than assumed.
+ */
+export function dartVariantName(stem, variant) {
+  const name = camel(stem) + pascal(variant);
+  if (!/^[a-z][A-Za-z0-9]*$/.test(name))
+    throw new Error(
+      `${stem}/${variant} produces "${name}", which is not a plain Dart field name`,
+    );
+  return name;
+}
+
+// A doc comment is line based, so only a newline could break out of it; the catalog descriptions
+// are single-line prose today, and collapsing rather than trusting that keeps it true.
+const line = (text) => String(text).replace(/\s+/g, ' ').trim();
+
+const pathLiteral = (path) =>
+  `SolarVectorPath(${quote(path.d)}` +
+  (path.fillRule === 'evenodd' ? ', evenOdd: true' : '') +
+  (path.fill ? `, fill: ${dartColor(path.fill)}` : '') +
+  ')';
+
+function vectorLiteral(name, geometry, doc) {
+  const [minX, minY, width, height] = geometry.viewBox;
+  // The type carries an extent, not a rectangle: nothing in the corpus is offset, and silently
+  // dropping an offset would draw the mark in the wrong place.
+  if (minX !== 0 || minY !== 0)
+    throw new Error(
+      `${name}: viewBox "${geometry.viewBox.join(' ')}" does not start at the origin, ` +
+        'which SolarVector cannot represent',
+    );
+  return (
+    doc.map((text) => `  /// ${text}\n`).join('  ///\n') +
+    `  static const SolarVector ${name} = SolarVector(\n` +
+    `    width: ${dbl(width)},\n` +
+    `    height: ${dbl(height)},\n` +
+    '    paths: <SolarVectorPath>[\n' +
+    geometry.paths.map((p) => `      ${pathLiteral(p)},\n`).join('') +
+    '    ],\n' +
+    '  );\n'
+  );
+}
+
+const CLASS_DOC =
+  '/// Every SOLAR %WHAT%, one `static const` per variant.\n' +
+  '///\n' +
+  '/// Static fields tree-shake individually, so taking one costs one: there is deliberately no\n' +
+  '/// `Map<String, SolarVector>` here, because a map would reference every field and pull all of\n' +
+  '/// the path data into any build that touched the class.\n';
+
+/**
+ * Renders both Dart files and the manifest, as data.
+ *
+ * Returning strings rather than writing them keeps the tests off the disk, so "no #111111
+ * anywhere" is a property of what this function produces rather than of whatever is checked in.
+ */
+export function renderFlutterIcons(spec) {
+  const icons = {};
+  const iconMembers = [];
+
+  for (const stem of Object.keys(spec.icons).sort(byCodeUnit)) {
+    const icon = spec.icons[stem];
+    const variants = {};
+    for (const variant of ['outline', 'solid']) {
+      const geometry = icon.variants[variant];
+      const name = dartVariantName(stem, variant);
+      iconMembers.push(
+        vectorLiteral(name, geometry, [
+          line(icon.description),
+          `The ${variant} variant of ${icon.name}, in the ${icon.category} category.`,
+        ]),
+      );
+      variants[variant] = {
+        constant: name,
+        viewBox: geometry.viewBox.join(' '),
+        pathCount: geometry.paths.length,
+        digest: geometryDigest(geometry.paths),
+      };
+    }
+    icons[stem] = { variants };
+  }
+
+  const logos = {};
+  const logoMembers = [];
+  const omitted = [];
+
+  for (const set of Object.keys(spec.logos).sort(byCodeUnit)) {
+    const logo = spec.logos[set];
+    // The app icons are PNGs. They have no vector to emit and are not omissions: React ships
+    // them as data URLs and a Flutter app loads them as image assets.
+    if (logo.raster) continue;
+    // LogoBiamp becomes biamp*, LogoOs becomes os*: the constants are named after the component
+    // the React side exports, not after the Figma set, so the two targets read the same.
+    const prefix = camel(logo.component.replace(/^Logo/, ''));
+    const variants = {};
+    for (const slug of Object.keys(logo.variants).sort(byCodeUnit)) {
+      const geometry = logo.variants[slug];
+      if (geometry.unsupported) {
+        omitted.push(`${set}.${slug}`);
+        continue;
+      }
+      const name = dartVariantName(prefix, slug);
+      logoMembers.push(
+        vectorLiteral(name, geometry, [
+          `${logo.name}, ${slug}. A brand mark: it carries its own colours and is never tinted.`,
+        ]),
+      );
+      variants[slug] = {
+        constant: name,
+        viewBox: geometry.viewBox.join(' '),
+        pathCount: geometry.paths.length,
+        digest: logoDigest(geometry.paths),
+      };
+    }
+    logos[set] = { component: logo.component, variants };
+  }
+
+  if (
+    omitted.length !== OMITTED_VARIANTS.length ||
+    omitted.some((name, i) => name !== OMITTED_VARIANTS[i])
+  )
+    throw new Error(
+      `Flutter skipped ${omitted.join(', ') || 'nothing'}, but only ` +
+        `${OMITTED_VARIANTS.join(', ')} may be skipped; an asset the vector IR cannot ` +
+        'represent is a governance question, not something to drop from one target quietly',
+    );
+
+  const library = (what, className, members, imports) =>
+    `// SOLAR ${what}s for Flutter.\n` +
+    HEADER +
+    '\n' +
+    imports +
+    CLASS_DOC.replaceAll('%WHAT%', what) +
+    `abstract final class ${className} {\n` +
+    members.join('\n') +
+    '}\n';
+
+  return {
+    icons: library(
+      'icon',
+      'SolarIcons',
+      iconMembers,
+      "import '../solar_icon.dart';\n\n",
+    ),
+    logos: library(
+      'logo',
+      'SolarLogos',
+      logoMembers,
+      "import 'package:flutter/painting.dart' show Color;\n\n" +
+        "import '../solar_icon.dart';\n\n",
+    ),
+    manifest: { icons, logos, omitted },
+  };
+}
+
+export function emitFlutterIcons(spec, fileVersion) {
+  const { icons, logos, manifest } = renderFlutterIcons(spec);
+  writeGenerated(join(OUT_DIR, 'icons.dart'), icons);
+  writeGenerated(join(OUT_DIR, 'logos.dart'), logos);
+  writeGenerated(
+    join(OUT_DIR, 'icons.manifest.json'),
+    JSON.stringify(
+      {
+        _note:
+          'Written by the SOLAR codegen. One entry per icon and logo variant; "constant" is the Dart field it was emitted as and "digest" is a SHA-256 of the canonical JSON of that variant\'s paths, which is what the parity suite compares across targets. The path data itself is not repeated here: it is 358 KB and already lives in icons.dart. "omitted" lists the variants this target does not carry.',
+        target: 'flutter',
+        fileVersion,
+        ...manifest,
+      },
+      null,
+      2,
+    ) + '\n',
+  );
+  return Object.keys(manifest.icons).length;
+}
+```
+
+**Tests: 17 Dart cases and 14 JS.**
+
+JS (`packages/codegen/test/flutter-icons.test.mjs`) reads the emitter's output back the way a Dart
+compiler would — one block per `static const SolarVector`, and the path data inside it in order —
+and asserts: 682 constants, all uniquely and legally named; every `d` string and both viewBox
+extents byte-identical to the spec, for all 682; `zone` at 25 against its solid's 24; `evenOdd`
+exactly where the spec says `evenodd`, 75 times; no `#111111` and no `Color(` anywhere in
+`icons.dart`; no `Map<` in the emitted code; and all 682 digests equal to the React emitter's.
+Then the logos: the four constants in order, Google's four brand colours as `Color(0x…)` in order,
+every logo path owning a fill, the two Biamp wordmarks differing only in it, and no `teams`
+anywhere in `logos.dart` or the manifest. Three cases hold the refusals: Teams is the one
+omission, a second `unsupported` variant throws naming both, and an offset viewBox throws.
+
+Dart (`packages/solar_flutter/test/icons_test.dart`) paints. The central case is **every one of
+the 682 vectors painted into a `PictureRecorder` canvas** — not a sample, because a path string
+the Dart parser cannot replay is an icon that throws inside an app. Dart has no reflection, so
+there is no way to walk 682 static fields by name, and adding a list to the library to make one
+possible is exactly what the emitter refuses to do; the test reads the generated source instead,
+which keeps the assertion over the whole set without putting anything in the shipped package that
+only a test wants. The rest use a `RecordingCanvas implements Canvas` whose `noSuchMethod` throws,
+so a new drawing call cannot slip past: `evenOdd` reaches the `Path` and a square with a hole
+really has one (`Path.contains` at its centre is false under even-odd and true under non-zero);
+`zone` is scaled by 24/25 and offset by 0.48 on x with nothing on y, while `zoneSolid` is scaled
+by 1 and not offset at all; the Biamp wordmark at 24 high is scaled 2× and drawn 72 × 24; Google's
+four paths draw in their own four colours with the widget's red nowhere among them; and an icon's
+paths all draw in the colour the painter was given. Six widget cases cover the `lg` default, the
+three steps of the colour chain, and the semantics — a named icon is an image carrying that name,
+an unnamed one has no label at all. The last reads the `SolarLogo` constructor out of
+`solar_icon.dart` and asserts it has no `color` parameter, which is the only way to assert the
+absence of an argument.
+
+**Verified.** `dart format lib test` clean; `flutter analyze` **1.3 s, no issues** — a 589 KB
+generated file costs it nothing measurable; `flutter test` 39 passing (22 existing, 17 new) in
+2.4 s; `npx vitest run` in `packages/codegen` 208 passing across 20 files; `npm run lint`,
+`format`, `typecheck` and `build` all pass from the root. Emitting twice and formatting each time
+gives identical SHA-256 digests for all three files, and `git status --porcelain docs/` is empty.
+
+**Sizes**, after `dart format`: `icons.dart` **588,838 bytes / 8,428 lines**, `logos.dart` 9,086
+bytes / 99 lines, `icons.manifest.json` 168,424 bytes. Unformatted the emitter writes 569,146 and
+8,731 bytes; the difference is the formatter moving long string literals onto their own lines.
+
+Run: `npx vitest run packages/codegen/test/flutter-icons.test.mjs` and
+`cd packages/solar_flutter && flutter test test/icons_test.dart`
+
+The repository owner commits `packages/solar_flutter/lib/src/solar_icon.dart`,
+`packages/solar_flutter/lib/src/generated/icons.dart`,
+`packages/solar_flutter/lib/src/generated/logos.dart`,
+`packages/solar_flutter/lib/src/generated/icons.manifest.json`,
+`packages/solar_flutter/lib/solar_flutter.dart`, `packages/solar_flutter/test/icons_test.dart`,
+`packages/codegen/src/emit/flutter-icons.mjs` and
+`packages/codegen/test/flutter-icons.test.mjs`.
 
 ---
 
