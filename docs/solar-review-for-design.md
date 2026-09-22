@@ -19,6 +19,11 @@ section at a time.
 Where we suggest a token, we picked the one whose value already matches what is drawn, so in most
 cases the visual result does not change at all.
 
+The counts below cover **the whole SOLAR Web file**, all 227 component sets. Our own build now
+skips 28 view pages that are out of scope for us this quarter, so the totals in our generated
+`issues.md` are smaller. That is a decision about our pipeline, not about your file — the items
+below are worth fixing either way.
+
 ## Summary
 
 | #                                                                                 | What                                                      | Count       | File        |

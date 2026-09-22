@@ -728,28 +728,28 @@
       "section": "patterns/layout-shell",
       "slug": "shell-tier-1-workplace",
       "id": "6400:4",
-      "title": "Shell Tier 1 · Workplace",
+      "title": "Shell Tier 1 \u00b7 Workplace",
       "status": "done"
     },
     {
       "section": "patterns/layout-shell",
       "slug": "shell-tier-2-canvas-app",
       "id": "6400:5",
-      "title": "Shell Tier 2 · Canvas app",
+      "title": "Shell Tier 2 \u00b7 Canvas app",
       "status": "done"
     },
     {
       "section": "patterns/layout-shell",
       "slug": "shell-tier-3-config-app",
       "id": "6400:6",
-      "title": "Shell Tier 3 · Config app (Chatter Config)",
+      "title": "Shell Tier 3 \u00b7 Config app (Chatter Config)",
       "status": "done"
     },
     {
       "section": "patterns/layout-shell",
       "slug": "shell-tier-4-client-app",
       "id": "6400:7",
-      "title": "Shell Tier 4 · Client app (Chatter)",
+      "title": "Shell Tier 4 \u00b7 Client app (Chatter)",
       "status": "done"
     },
     {
@@ -869,55 +869,67 @@
       "slug": "dashboard",
       "id": "3768:4",
       "title": "Dashboard",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Generic Views\" views are out of scope for now"
     },
     {
       "section": "views/generic",
       "slug": "entity-list",
       "id": "3768:5",
       "title": "Entity List",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Generic Views\" views are out of scope for now"
     },
     {
       "section": "views/generic",
       "slug": "entity-detail",
       "id": "3768:6",
       "title": "Entity Detail",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Generic Views\" views are out of scope for now"
     },
     {
       "section": "views/generic",
       "slug": "detail-side-panel",
       "id": "7709:24874",
       "title": "Detail Side Panel",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Generic Views\" views are out of scope for now"
     },
     {
       "section": "views/generic",
       "slug": "settings",
       "id": "3768:9",
       "title": "Settings",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Generic Views\" views are out of scope for now"
     },
     {
       "section": "views/generic",
       "slug": "search-results",
       "id": "3768:13",
       "title": "Search Results",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Generic Views\" views are out of scope for now"
     },
     {
       "section": "views/auth",
       "slug": "sign-in",
       "id": "2966:641",
-      "title": "Auth — Sign In",
+      "title": "Auth \u2014 Sign In",
       "status": "done"
     },
     {
       "section": "views/auth",
       "slug": "sign-up",
       "id": "3768:2",
-      "title": "Auth — Sign Up",
+      "title": "Auth \u2014 Sign Up",
       "status": "done"
     },
     {
@@ -974,98 +986,126 @@
       "slug": "user-profile",
       "id": "3768:10",
       "title": "User Profile",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Account & Identity\" views are out of scope for now"
     },
     {
       "section": "views/account",
       "slug": "account-settings",
       "id": "5066:10",
       "title": "Account Settings",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Account & Identity\" views are out of scope for now"
     },
     {
       "section": "views/account",
       "slug": "linked-accounts-api-tokens",
       "id": "5066:12",
       "title": "Linked Accounts & API Tokens",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Account & Identity\" views are out of scope for now"
     },
     {
       "section": "views/org-admin",
       "slug": "members",
       "id": "5066:9",
       "title": "Members",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Organization & Admin\" views are out of scope for now"
     },
     {
       "section": "views/org-admin",
       "slug": "roles-permissions",
       "id": "8001:29187",
       "title": "Roles & Permissions",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Organization & Admin\" views are out of scope for now"
     },
     {
       "section": "views/org-admin",
       "slug": "licenses",
       "id": "3768:11",
       "title": "Licenses",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Organization & Admin\" views are out of scope for now"
     },
     {
       "section": "views/org-admin",
       "slug": "billing-history",
       "id": "5066:22",
       "title": "Billing History",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Organization & Admin\" views are out of scope for now"
     },
     {
       "section": "views/org-admin",
       "slug": "general",
       "id": "5066:23",
       "title": "General",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Organization & Admin\" views are out of scope for now"
     },
     {
       "section": "views/org-admin",
       "slug": "sso-saml",
       "id": "5066:21",
       "title": "SSO & SAML",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Organization & Admin\" views are out of scope for now"
     },
     {
       "section": "views/org-admin",
       "slug": "api-webhooks",
       "id": "8366:10823",
       "title": "API & Webhooks",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Organization & Admin\" views are out of scope for now"
     },
     {
       "section": "views/org-admin",
       "slug": "audit-log",
       "id": "8366:10824",
       "title": "Audit Log",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Organization & Admin\" views are out of scope for now"
     },
     {
       "section": "views/communications",
       "slug": "activity-log",
       "id": "3768:12",
       "title": "Activity Log",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Communications\" views are out of scope for now"
     },
     {
       "section": "views/communications",
       "slug": "notification-center",
       "id": "3772:2",
       "title": "Notification Center",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Communications\" views are out of scope for now"
     },
     {
       "section": "views/communications",
       "slug": "announcements",
       "id": "5066:15",
       "title": "Announcements / What's New",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Communications\" views are out of scope for now"
     },
     {
       "section": "views/calendar",
@@ -1114,28 +1154,36 @@
       "slug": "device-list",
       "id": "6133:3",
       "title": "Device List",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Devices & Operations\" views are out of scope for now"
     },
     {
       "section": "views/devices",
       "slug": "device-detail",
       "id": "5066:13",
       "title": "Device Detail",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Devices & Operations\" views are out of scope for now"
     },
     {
       "section": "views/devices",
       "slug": "device-onboarding",
       "id": "6133:4",
       "title": "Device Onboarding",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Devices & Operations\" views are out of scope for now"
     },
     {
       "section": "views/devices",
       "slug": "file-asset-browser",
       "id": "3772:3",
       "title": "File & Asset Browser",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Devices & Operations\" views are out of scope for now"
     },
     {
       "section": "views/devices",
@@ -1143,28 +1191,36 @@
       "id": "6312:2",
       "title": "Publish / Deploy",
       "status": "done",
-      "missingInFigma": true
+      "missingInFigma": true,
+      "exclude": true,
+      "excludeReason": "deferred: the \"Devices & Operations\" views are out of scope for now"
     },
     {
       "section": "views/help",
       "slug": "ai-assistant",
       "id": "6312:3",
       "title": "AI Assistant",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Help & Discovery\" views are out of scope for now"
     },
     {
       "section": "views/help",
       "slug": "help-center",
       "id": "6133:2",
       "title": "Help Center",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Help & Discovery\" views are out of scope for now"
     },
     {
       "section": "views/help",
       "slug": "keyboard-shortcuts",
       "id": "5066:24",
       "title": "Keyboard Shortcuts",
-      "status": "done"
+      "status": "done",
+      "exclude": true,
+      "excludeReason": "deferred: the \"Help & Discovery\" views are out of scope for now"
     },
     {
       "section": "views/system",
@@ -1211,7 +1267,7 @@
       "section": "meta",
       "slug": "section-covers",
       "id": "135:899",
-      "title": "❖ COMPONENTS (section cover; other covers: 2159:569 TOKENS, 135:1528 PATTERNS, 2229:4791 VIEWS, 3620:2 Navigation, 3620:3 Buttons & Actions, 3620:4 Inputs & Forms, 3620:5 Data Display, 3620:6 Data Visualization, 3620:7 Feedback & Alerts, 4531:81 Overlays, 3620:8 Dialogs & Sheets, 3620:9 Cards & Containers, 6622:2 Calendar, 8871:552 Utility, 5814:2 Layout & Shell, 3620:11 Data, 3620:12 Forms, 3620:14 Dashboards, 7182:2 Generic Views, 5066:25 Auth & Onboarding, 5066:27 Account & Identity, 5066:26 Organization & Admin, 5066:29 Communications, 5066:28 Devices & Operations, 6007:6159 Help & Discovery, 5066:30 System States)"
+      "title": "\u2756 COMPONENTS (section cover; other covers: 2159:569 TOKENS, 135:1528 PATTERNS, 2229:4791 VIEWS, 3620:2 Navigation, 3620:3 Buttons & Actions, 3620:4 Inputs & Forms, 3620:5 Data Display, 3620:6 Data Visualization, 3620:7 Feedback & Alerts, 4531:81 Overlays, 3620:8 Dialogs & Sheets, 3620:9 Cards & Containers, 6622:2 Calendar, 8871:552 Utility, 5814:2 Layout & Shell, 3620:11 Data, 3620:12 Forms, 3620:14 Dashboards, 7182:2 Generic Views, 5066:25 Auth & Onboarding, 5066:27 Account & Identity, 5066:26 Organization & Admin, 5066:29 Communications, 5066:28 Devices & Operations, 6007:6159 Help & Discovery, 5066:30 System States)"
     },
     {
       "section": "components/overlays",

@@ -5,14 +5,7 @@
 //   docs/solar-web/token-usage.json      reverse index: token -> components that bind it
 //   docs/solar-web/INDEX.md              table of every page with links
 //   docs/solar-web/<section>/<slug>.md   one page per Figma page
-import {
-  readFileSync,
-  writeFileSync,
-  readdirSync,
-  mkdirSync,
-  existsSync,
-  statSync,
-} from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync, statSync, rmSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
@@ -64,7 +57,19 @@ const fmtTok = (s) => {
 const CHROME = new Set(['SOLAR®', 'Biamp Design System', '1.0']);
 
 const pages = [];
+const excluded = manifest.pages.filter((p) => p.exclude);
+// The page this builder wrote on an earlier run is removed too, so `exclude` is one switch in
+// both directions: the fetcher drops the raw file, this drops the rendered one, and deleting the
+// flag brings both back on the next sync. Unlike the Foundations builder this one writes in
+// place rather than wiping its output directory, so the removal has to be explicit.
+for (const p of excluded) {
+  const stale = join(here, p.section, p.slug + '.md');
+  if (existsSync(stale)) rmSync(stale);
+}
 for (const p of manifest.pages) {
+  // Excluded pages leave the pipeline here rather than being reported as "not extracted": they
+  // have no raw file by design, and counting them as missing would hide a page that really is.
+  if (p.exclude) continue;
   const f = join(rawDir, p.section, p.slug + '.json');
   if (!existsSync(f)) {
     pages.push({ ...p, missing: true });
@@ -709,6 +714,13 @@ for (const [section, rows] of Object.entries(indexRows)) {
     total.variants += r.variants;
     idx += `| ${r.title} | ${r.missing ? '_not extracted_' : (r.names || []).join(', ') + ' (' + r.variants + ')'} | [${r.slug}.md](${r.section}/${r.slug}.md) |\n`;
   }
+  idx += '\n';
+}
+if (excluded.length) {
+  idx += `## Excluded\n\nNot fetched and not documented. Remove \`exclude\` from the page's entry in\n\`raw/_pages.json\` and run \`npm run solar:sync\` to bring one back.\n\n`;
+  idx += '| Page | Section | Why |\n| --- | --- | --- |\n';
+  for (const p of excluded)
+    idx += `| ${p.title} | ${p.section} | ${p.excludeReason || ''} |\n`;
   idx += '\n';
 }
 idx = idx.replace(

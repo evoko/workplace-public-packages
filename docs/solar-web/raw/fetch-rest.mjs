@@ -16,7 +16,13 @@
 // --cache     directory for raw REST responses (default: $TMPDIR/solar-web-rest-cache)
 // --out       output root (default: docs/solar-web/raw). Use a temp dir to compare.
 // Token: $FIGMA_TOKEN or ~/.config/figma/token.
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import {
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  mkdirSync,
+  rmSync,
+} from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { tmpdir } from 'node:os';
@@ -593,6 +599,23 @@ let n = 0,
   unresolved = 0;
 const failed = [];
 for (const p of todo) {
+  // Excluded pages are never fetched and any previously fetched copy is removed, so the flag is
+  // the single switch: delete it from _pages.json and the next sync brings the page back.
+  if (p.exclude) {
+    const stale = join(OUT, p.section, p.slug + '.json');
+    if (existsSync(stale)) {
+      rmSync(stale);
+      console.log(
+        'REMOVED stale raw file of excluded page',
+        p.section + '/' + p.slug,
+      );
+    }
+    console.log(
+      `SKIP (excluded: ${p.excludeReason || 'no reason given'})`,
+      p.section + '/' + p.slug,
+    );
+    continue;
+  }
   if (p.missingInFigma) {
     console.log('SKIP (missing in Figma)', p.section + '/' + p.slug);
     continue;

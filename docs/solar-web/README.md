@@ -136,6 +136,25 @@ npm run solar:tokens  # regenerate the Foundations css-contract / reference.css 
    the file version and date, and rebuilds `INDEX.md`, `catalog.json`,
    `token-usage.json`, `issues.md` and the per-page docs.
 
+### Excluding a page
+
+Set `"exclude": true` and an `"excludeReason"` on the page's entry in
+[`raw/_pages.json`](raw/_pages.json). The fetcher then skips it and deletes any raw file it
+had already written; the builder skips it, deletes the page it had already rendered, and
+lists it under **Excluded** in [`INDEX.md`](INDEX.md). The page stops contributing to
+`catalog.json`, `token-usage.json` and `issues.md`, so the counts there describe only what
+is included.
+
+It is one switch in both directions: delete the two keys and run `npm run solar:sync`, and
+the page is fetched and documented again. Nothing else records the decision, and the sync
+preserves the flag because it updates page entries in place rather than rebuilding them.
+
+Currently excluded: the 28 pages under the **Generic Views**, **Account & Identity**,
+**Organization & Admin**, **Communications**, **Devices & Operations** and
+**Help & Discovery** section covers — product views that are out of scope for the component
+pipeline for now. Everything under `components/*`, `patterns/*`, `views/auth`,
+`views/calendar` and `views/system` is still fetched.
+
 It exits non-zero if a page binds a variable that is not yet in
 [`raw/_variables.json`](raw/_variables.json). That happens only when Figma adds a new
 variable; resolving it is a one-line lookup described in [raw/README.md](raw/README.md).
