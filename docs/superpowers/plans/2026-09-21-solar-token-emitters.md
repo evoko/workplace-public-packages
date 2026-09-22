@@ -1324,6 +1324,11 @@ git commit -m "feat(codegen): emit SOLAR tokens as CSS custom properties"
 Emits plain data, with no import from `@mui/material`, so `@bwp-web/styles` stays
 dependency-free. Consumers pass the result to `createTheme`.
 
+Typography is emitted for both Desktop and Mobile. `createSolarThemeOptions` uses the desktop
+set, because an MUI theme carries one typography scale; an app that wants the mobile sizes
+either imports `tokens.css`, whose media query already switches them, or reads
+`solarTypography.mobile` at a breakpoint.
+
 **Files:**
 
 - Create: `packages/codegen/src/emit/mui.mjs`
@@ -1348,8 +1353,13 @@ describe('renderMui', () => {
     expect(data.tokens.light['inset.md']).toBe('16px');
   });
 
+  it('keeps both type modes, so the mobile sizes are not lost', () => {
+    expect(data.typography.mobile['display.lg'].fontSize).toBe('40px');
+    expect(data.typography.desktop['display.lg'].fontSize).toBe('56px');
+  });
+
   it('exposes typography composites MUI can use directly', () => {
-    expect(data.typography['label.md']).toMatchObject({
+    expect(data.typography.desktop['label.md']).toMatchObject({
       fontFamily: 'Inter',
       fontWeight: 500,
       fontSize: '14px',
@@ -1405,7 +1415,7 @@ export function renderMui(spec) {
   const index = new Map(tokens.map((t) => [t.name, t]));
   const data = {
     tokens: { light: {}, dark: {} },
-    typography: {},
+    typography: { desktop: {}, mobile: {} },
     zIndex: {},
     shadows: {},
   };
@@ -1418,8 +1428,12 @@ export function renderMui(spec) {
       continue;
     }
     if (t.type === 'typography') {
-      data.typography[t.name.replace(/^typography\./, '')] = t.value;
-      manifest[t.name] = entry('typography', t.value, t.value);
+      // The Type collection switches size and line height between Desktop and Mobile, so both
+      // are emitted. Dropping mobile here would lose an axis only the CSS media query has.
+      const key = t.name.replace(/^typography\./, '');
+      data.typography.desktop[key] = { ...t.value, ...t.ext.modes.desktop };
+      data.typography.mobile[key] = { ...t.value, ...t.ext.modes.mobile };
+      manifest[t.name] = entry('typography', data.typography.desktop[key]);
       continue;
     }
     if (t.type === 'shadow') {
@@ -1467,7 +1481,7 @@ export function renderMui(spec) {
     `    },\n` +
     `    shape: { borderRadius: parseFloat(t['radius.control']) },\n` +
     `    zIndex: solarZIndex,\n` +
-    `    typography: solarTypography,\n` +
+    `    typography: solarTypography.desktop,\n` +
     `  };\n` +
     `}\n`;
 
@@ -1490,7 +1504,7 @@ export function emitMui(spec, fileVersion) {
 - [ ] **Step 4: Run the test and watch it pass**
 
 Run: `npx vitest run packages/codegen/test/mui.test.mjs`
-Expected: PASS, 5 tests.
+Expected: PASS, 6 tests.
 
 - [ ] **Step 5: Commit**
 
