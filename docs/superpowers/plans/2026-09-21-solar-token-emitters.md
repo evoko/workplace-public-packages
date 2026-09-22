@@ -350,17 +350,20 @@ git commit -m "feat(codegen): classify SOLAR tokens into DTCG types"
 
 ---
 
-### Task 3: Record the three known Figma defects as deviations
+### Task 3: Record the known Figma defects as deviations
 
-Three values in the contract are not usable as emitted. Each is a real defect in the Figma
-file, so the fix belongs in the generator with a written reason, never in `docs/`.
+Two things happen here. Some values in the contract are genuinely unusable as emitted, and
+those are real defects in the Figma file: the fix belongs in the generator with a written
+reason, never in `docs/`. Separately, the easing keywords are valid CSS but have no Flutter
+equivalent, so all of them are converted to cubic beziers; that is a faithful conversion and is
+not recorded as a deviation.
 
-| Token                | Figma value            | Problem                          | We emit                                |
-| -------------------- | ---------------------- | -------------------------------- | -------------------------------------- |
-| `motion.ease.both`   | `ease-both`            | Not a CSS keyword                | cubic-bezier `[0.42, 0, 0.58, 1]`      |
-| `motion.ease.in`     | `ease-in`              | Keyword, not portable to Flutter | cubic-bezier `[0.42, 0, 1, 1]`         |
-| `motion.ease.out`    | `ease-out`             | Keyword, not portable to Flutter | cubic-bezier `[0, 0, 0.58, 1]`         |
-| `type.font-weight.*` | `Thin`, `Semi Bold`, … | Not a CSS `font-weight` value    | the numeric weight from the token name |
+| Token                | Figma value            | Problem                                       | We emit                                                                |
+| -------------------- | ---------------------- | --------------------------------------------- | ---------------------------------------------------------------------- |
+| `motion.ease.both`   | `ease-both`            | Not a valid CSS timing function               | cubic-bezier `[0.42, 0, 0.58, 1]`, recorded as a deviation             |
+| `motion.ease.in`     | `ease-in`              | Valid CSS, but Flutter has no keyword easings | cubic-bezier `[0.42, 0, 1, 1]`, a faithful conversion, not a deviation |
+| `motion.ease.out`    | `ease-out`             | Valid CSS, but Flutter has no keyword easings | cubic-bezier `[0, 0, 0.58, 1]`, a faithful conversion, not a deviation |
+| `type.font-weight.*` | `Thin`, `Semi Bold`, … | Not a CSS `font-weight` value                 | the numeric weight from the token name, recorded as a deviation        |
 
 **Files:**
 
@@ -514,6 +517,16 @@ Naming decisions, fixed here so every later task agrees:
 Text styles whose Figma name starts with `.` or `_` are utility styles used inside the
 Foundations file itself and are skipped, matching `build-derived.mjs`.
 
+**One name in the data is both a value and a group.** Figma defines `border/inverse` together
+with `border/inverse/subtle` and `border/inverse/strong`, so `color.border.inverse` has to carry
+a `$value` and child keys at once. A strict DTCG reader treats a node with `$value` as a token
+and would drop the two children, so this is recorded as a structural deviation and reported to
+SOLAR governance. The flat namespace every emitter reads is unaffected: all three names survive,
+and `--solar-color-border-inverse` keeps the name the docs already publish. Renaming the
+standalone to `…inverse.default` would make the tree valid but would invent a name and change a
+published CSS property, which is worse. `setPath` therefore merges rather than assigns, so the
+result does not depend on the order the variables arrive in.
+
 **Files:**
 
 - Create: `packages/codegen/src/normalize/tokens.mjs`
@@ -587,6 +600,21 @@ describe('buildTokenSpec', () => {
       expect(flat.has(v.doc), v.doc).toBe(true);
   });
 
+  it('does not depend on the order the variables arrive in', () => {
+    // color.border.inverse is both a value and the namespace root of .subtle and .strong.
+    // If the parent is written after its children, a naive assignment drops them.
+    const contract = loadContract();
+    const reversed = buildTokenSpec({
+      ...contract,
+      variables: [...contract.variables].reverse(),
+    });
+    expect(flattenSpec(reversed.spec).length).toBe(flattenSpec(spec).length);
+    const names = new Set(flattenSpec(reversed.spec).map((t) => t.name));
+    expect(names.has('color.border.inverse')).toBe(true);
+    expect(names.has('color.border.inverse.subtle')).toBe(true);
+    expect(names.has('color.border.inverse.strong')).toBe(true);
+  });
+
   it('reports the deviations it applied', () => {
     expect(deviations.length).toBeGreaterThan(0);
     for (const d of deviations) expect(d.reason).toBeTruthy();
@@ -621,16 +649,21 @@ export function flattenSpec(spec) {
     for (const [key, child] of Object.entries(node)) {
       if (key.startsWith('$')) continue;
       const name = path ? `${path}.${key}` : key;
-      if (child && typeof child === 'object' && '$value' in child) {
-        const ext = child.$extensions?.[EXT] ?? {};
-        out.push({
-          name,
-          type: child.$type,
-          value: child.$value,
-          modes: ext.modes ?? null,
-          ext,
-        });
-      } else if (child && typeof child === 'object') {
+      if (child && typeof child === 'object') {
+        // A handful of Figma doc names (e.g. color.border.inverse) are both a value in
+        // their own right AND the namespace root for finer variants (…inverse.subtle).
+        // Such a node carries $value alongside further, non-$ child keys, so it is
+        // pushed as a leaf here and still walked below for those children.
+        if ('$value' in child) {
+          const ext = child.$extensions?.[EXT] ?? {};
+          out.push({
+            name,
+            type: child.$type,
+            value: child.$value,
+            modes: ext.modes ?? null,
+            ext,
+          });
+        }
         walk(child, name);
       }
     }
@@ -663,16 +696,20 @@ function setPath(tree, docName, node) {
   let cur = tree;
   for (const part of parts.slice(0, -1)) {
     cur[part] ??= {};
-    if ('$value' in cur[part]) {
-      throw new Error(
-        `token name collision: ${docName} would nest under the leaf ${part}`,
-      );
-    }
+    // Do not reject nesting under a segment that already carries $value: a few Figma
+    // doc names (color.border.inverse) are both a value and the namespace root for
+    // finer variants (…inverse.subtle, …inverse.strong). Such a node ends up with
+    // $type/$value/$extensions alongside further, non-$ child keys; flattenSpec()
+    // knows to read both. A genuine duplicate is still caught below.
     cur = cur[part];
   }
   const leaf = parts.at(-1);
-  if (cur[leaf]) throw new Error(`duplicate token: ${docName}`);
-  cur[leaf] = node;
+  if (cur[leaf] && '$value' in cur[leaf]) {
+    throw new Error(`duplicate token: ${docName}`);
+  }
+  // Merge rather than assign. The leaf may already exist as a group holding finer variants
+  // that happened to be processed first, and overwriting it would silently drop them.
+  cur[leaf] = { ...(cur[leaf] ?? {}), ...node };
 }
 
 const px = (n) => `${n}px`;
@@ -684,14 +721,43 @@ export function buildTokenSpec(contract) {
     if (d) deviations.push(d);
   };
 
+  // Doc names that are both a leaf value and the namespace root of finer variants
+  // (e.g. color.border.inverse vs. color.border.inverse.subtle) are a structural
+  // deviation from a plain DTCG tree, not a value deviation, so they are recorded
+  // here rather than in normalize/deviations.mjs.
+  const allDocs = new Set(contract.variables.map((v) => v.doc));
+  const hybridRoots = new Set(
+    contract.variables
+      .map((v) => v.doc)
+      .filter((doc) =>
+        [...allDocs].some((other) => other.startsWith(`${doc}.`)),
+      ),
+  );
+
   for (const v of contract.variables) {
     const type = dtcgType(v);
     const raw = v.value ?? v.light ?? v.desktop;
+    // Layout's grid/columns/* values are numeric (a column count), but css-contract.json
+    // carries every "value" field as a string; coerce to a real number here so the DTCG
+    // $type: 'number' tokens hold numbers, not numeric strings.
+    const typedRaw = type === 'number' ? Number(raw) : raw;
     const { value, deviation } = applyDeviation(
-      { doc: v.doc, value: raw },
+      { doc: v.doc, value: typedRaw },
       type,
     );
     record(deviation);
+
+    if (hybridRoots.has(v.doc)) {
+      record({
+        token: v.doc,
+        figmaValue: v.figma,
+        reason:
+          `${v.doc} is used in Figma both as a standalone value and as the namespace ` +
+          `for finer variants (e.g. ${v.doc}.subtle). A DTCG tree node cannot cleanly be ` +
+          'both, so it is emitted with its own $value and the variants nested beneath it.',
+        raise: `Ask SOLAR to give ${v.doc} an explicit base/default sibling name in Figma.`,
+      });
+    }
 
     const meta = { tier: v.tier, figma: v.figma, collection: v.collection };
     if (v.collection === 'Color') meta.modes = { light: v.light, dark: v.dark };
@@ -710,20 +776,17 @@ export function buildTokenSpec(contract) {
   }
 
   for (const e of contract.effectStyles) {
-    const layer = (l, mode) => ({
-      color: `{color.${l.colorVar.replaceAll('/', '.')}}`,
-      offsetX: px(l.x),
-      offsetY: px(l.y),
-      blur: px(l.blur),
-      spread: px(l.spread),
-      $mode: mode,
-    });
+    // Layer geometry is mode independent; only the bound colour changes between Light and
+    // Dark, so the alias is kept here and resolved by each emitter.
     setPath(spec, e.doc, {
       $type: 'shadow',
-      $value: e.layers.map((l) => {
-        const { $mode, ...rest } = layer(l);
-        return rest;
-      }),
+      $value: e.layers.map((l) => ({
+        color: `{color.${l.colorVar.replaceAll('/', '.')}}`,
+        offsetX: px(l.x),
+        offsetY: px(l.y),
+        blur: px(l.blur),
+        spread: px(l.spread),
+      })),
       $extensions: {
         [EXT]: {
           tier: 'semantic',
@@ -789,7 +852,7 @@ export function buildTokenSpec(contract) {
 - [ ] **Step 5: Run the test and watch it pass**
 
 Run: `npx vitest run packages/codegen/test/tokens.test.mjs`
-Expected: PASS, 10 tests.
+Expected: PASS, 11 tests.
 
 - [ ] **Step 6: Commit**
 
