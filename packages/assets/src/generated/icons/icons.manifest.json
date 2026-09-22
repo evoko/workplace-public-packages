@@ -1,0 +1,5122 @@
+{
+  "_note": "Written by the SOLAR codegen. One entry per icon; \"digest\" is a SHA-256 of the canonical JSON of that variant's paths, which is what the parity suite compares across targets. The path data itself is not repeated here: it is 358 KB and already lives in the generated modules.",
+  "target": "react",
+  "fileVersion": "2400491293726842862",
+  "icons": {
+    "accessibility": {
+      "component": "IconAccessibility",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2bdaa5f09c0b8926a4dbb4650d9238d58d9810827e2c2461463798736ec33f1e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cd8d1a53f8459e8ce7ad56ad5f5f2bc70f0e76b5883182714aec0164e5325407"
+        }
+      }
+    },
+    "admin": {
+      "component": "IconAdmin",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9c0d0d4503dae0f1744abf71f5247c17748b9dd98716b633a697100dc76aa84a"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "eafbf3542e7f013c098d914ef0f93cf68e921f8eedd621b4a1a3558e34d8d755"
+        }
+      }
+    },
+    "alarm-warning": {
+      "component": "IconAlarmWarning",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5c65047ca2638c1e490dd0a7f4e58d29e03e3bd89d30fd2da34bfa45a4e9f54c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "68d887455d11e057682d3a9e2a29c6e8e42d981aa93b558be6b5487e526d3fa3"
+        }
+      }
+    },
+    "align-center": {
+      "component": "IconAlignCenter",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "13ebbee8f4c1f2fb81f95af8b68fcaf174aee927abc546a03b72d85ffeb6a7a9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "13ebbee8f4c1f2fb81f95af8b68fcaf174aee927abc546a03b72d85ffeb6a7a9"
+        }
+      }
+    },
+    "align-justify": {
+      "component": "IconAlignJustify",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "07b6d11a0e6fb61bb266f4a7881abf6c495a07bd20e7e73032a79e5b8cac07a9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "07b6d11a0e6fb61bb266f4a7881abf6c495a07bd20e7e73032a79e5b8cac07a9"
+        }
+      }
+    },
+    "align-left": {
+      "component": "IconAlignLeft",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a437a95907f412ae44e0bd2d366d3e722522d1ffa110c42b9cecea44e0d881d8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a437a95907f412ae44e0bd2d366d3e722522d1ffa110c42b9cecea44e0d881d8"
+        }
+      }
+    },
+    "align-object-bottom": {
+      "component": "IconAlignObjectBottom",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "4cdab3652ae38af09df66567046af4ff572b9cb64ed0a5e1cd1df75ede32a61c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "4cdab3652ae38af09df66567046af4ff572b9cb64ed0a5e1cd1df75ede32a61c"
+        }
+      }
+    },
+    "align-object-center": {
+      "component": "IconAlignObjectCenter",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 3,
+          "digest": "38f9ee24a8c8a3624b3900201cd84f59ca6aaff2f7aff778954f4924c0935458"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 3,
+          "digest": "38f9ee24a8c8a3624b3900201cd84f59ca6aaff2f7aff778954f4924c0935458"
+        }
+      }
+    },
+    "align-object-left": {
+      "component": "IconAlignObjectLeft",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "c6c366289d75af812d9a8a78eb6b7d73801f3a584915b73bcd778ac0c0b22ca8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "c6c366289d75af812d9a8a78eb6b7d73801f3a584915b73bcd778ac0c0b22ca8"
+        }
+      }
+    },
+    "align-object-middle": {
+      "component": "IconAlignObjectMiddle",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 3,
+          "digest": "01b5f48a52b53720362bc071369ae1045eb1d391ed41ee18787ef4afee610632"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 3,
+          "digest": "01b5f48a52b53720362bc071369ae1045eb1d391ed41ee18787ef4afee610632"
+        }
+      }
+    },
+    "align-object-right": {
+      "component": "IconAlignObjectRight",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "99e5e112e23f850044e45df0804b5fde769b5a1b855fa5e302fe163071c8ccee"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "99e5e112e23f850044e45df0804b5fde769b5a1b855fa5e302fe163071c8ccee"
+        }
+      }
+    },
+    "align-object-top": {
+      "component": "IconAlignObjectTop",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "55c50dc67996c2a8df3bfe09cf3f1101fec2b75123e930cc29592af6bc2f17b8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "55c50dc67996c2a8df3bfe09cf3f1101fec2b75123e930cc29592af6bc2f17b8"
+        }
+      }
+    },
+    "align-right": {
+      "component": "IconAlignRight",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b25f65a322eea2ce178e4eeb8d47a29c24cd6c12dbf8057de2d8e5c1768be66e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b25f65a322eea2ce178e4eeb8d47a29c24cd6c12dbf8057de2d8e5c1768be66e"
+        }
+      }
+    },
+    "amplifier": {
+      "component": "IconAmplifier",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0bbfcfff6b80a66de76f1b841b07eea04d52bafd5fd86cb22e88a9ced0c76797"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b859e0217238e401b06eec14e7ffeb332c40f0c771ae18de4433b96eea1c5b1f"
+        }
+      }
+    },
+    "amplifier-rack": {
+      "component": "IconAmplifierRack",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "51ab11f139f22f57760e1d89dc0116a046299a9470552ea520d5a676cc455eff"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "51ab11f139f22f57760e1d89dc0116a046299a9470552ea520d5a676cc455eff"
+        }
+      }
+    },
+    "announcement": {
+      "component": "IconAnnouncement",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "712b8871871b1dc1f0f1a18679e24cc5304640b72d414b047a115aee52218d68"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3f4c6304bc944af237a6a94fbf4d0986c2dbee649361e3aa9b9ba2c497c3102e"
+        }
+      }
+    },
+    "app-switcher": {
+      "component": "IconAppSwitcher",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "52d31ca69eb2ec86555c3fdf99a74c91f481b751195fb671611f10ec44e7d16d"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "54695b583c5897542e418bd91c2e3f5e9f9081a5b3276bc6fb79fe10e01c1900"
+        }
+      }
+    },
+    "archive": {
+      "component": "IconArchive",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1a80b7b7d1a5bb2c6a0910c8e0cda220ae223cae9b83a72ef31c296b3faf1082"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "428b48f6adf1128622a987aa20134a4a014839abf47d210fe4522c40b4026885"
+        }
+      }
+    },
+    "area": {
+      "component": "IconArea",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "787556085a05e6dbc2d6a792209cdf57cd7b6b04213f1ce786b0cdb8a58860c7"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1383789df5e205501b08b82bf0dd0089bea53699115ca1a22b914c36e25bc6c8"
+        }
+      }
+    },
+    "arrow-down": {
+      "component": "IconArrowDown",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6bf97c37cdf62515b969be54ab564a21f23a211e8eccbe17e6b84355e3280fc9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3d17dc8ac00cb23f667d3929c4028fd1f8c16e0e398c8293c73a82999e2e8af0"
+        }
+      }
+    },
+    "arrow-down-left": {
+      "component": "IconArrowDownLeft",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4fa91506cc8910cb36b86b5d80332b29777e39fb5127d2c4c1e0cd123a12010b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "77441322a7deca743952d895274375beda4991ae3800181aa150070e948215f3"
+        }
+      }
+    },
+    "arrow-down-right": {
+      "component": "IconArrowDownRight",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "97f38b098dd7891d0e6a94b2f23db48caf5dd2bc4eda89185f45ab1245f709e6"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ba3248ad44d3ecb6be9c028062840125b0a0f4a1cbce2def2636f511ebec00ba"
+        }
+      }
+    },
+    "arrow-left": {
+      "component": "IconArrowLeft",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9189c6b64e73b856c09d8876e88d21a815dd9ab36ab02b59958a6065fd8c9696"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0d66f7897ed25c253cb0e54e0170b6079bc6b0ab59bdc5f5c8187e8a342af290"
+        }
+      }
+    },
+    "arrow-right": {
+      "component": "IconArrowRight",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "62d194a72ac9c22d2fdb6af27eb7765c69731a8d2c387194bcefd6f25900382d"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "996a7fbd7400044ae7f841678b412660331c94f05b95335480c40583484ea33e"
+        }
+      }
+    },
+    "arrow-up": {
+      "component": "IconArrowUp",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "31dbb1fc063201ee698c6f29229c18e46df8bb7c77a277b5d3606e4ec365ec31"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "08fc94988fd28845b5cadca625de32199dea0eec48799277a6eaed1f3145ae87"
+        }
+      }
+    },
+    "arrow-up-left": {
+      "component": "IconArrowUpLeft",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "46abf569986f05d2ab06093af4a2d24371d7fee1b0e683069a0324ede9bdd5ba"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "24ce82311b053ed4715fb32e758c2d04716a6b3f2b4ff2047a8ab5943cbd3b0f"
+        }
+      }
+    },
+    "arrow-up-right": {
+      "component": "IconArrowUpRight",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1c79230cb85fc56f44c700e4ae374f1793ac3c866c9019f8d8418aad868a0198"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "58f39855b6872d049ca62e523904588484079decbf7aac3fb8735c8cb66bb61b"
+        }
+      }
+    },
+    "attachment": {
+      "component": "IconAttachment",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f1f13494a1a313e6988fe4ef8d53772ed37b1fbb3230dc23b0a214c41b5c5b63"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "357f2c29108c3d1e888c67dc2529cfb075603922fef3f39e5b53e3e63ecab111"
+        }
+      }
+    },
+    "back": {
+      "component": "IconBack",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9189c6b64e73b856c09d8876e88d21a815dd9ab36ab02b59958a6065fd8c9696"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0d66f7897ed25c253cb0e54e0170b6079bc6b0ab59bdc5f5c8187e8a342af290"
+        }
+      }
+    },
+    "back-space": {
+      "component": "IconBackSpace",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b9d820cdfad60151a65ec40d56b932d185a6f79d3d6afa0733a26de8cb838e00"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "08f15d14d0c9ab44f4bbc13009eb36271fc72253a694b98ccb27d82fe84785e0"
+        }
+      }
+    },
+    "background-music": {
+      "component": "IconBackgroundMusic",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "795d1d563fd4dd2167fe46d269956c6b8f95daaabb6f5fc968b3d43048dd3a58"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "dc66ae528a3604ff15d679922f0a53d48ae7a05de8f18909aa57831f72592fde"
+        }
+      }
+    },
+    "battery": {
+      "component": "IconBattery",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7c731459b48a7c2f891c7f6178fc19b8e50f15686273dbfac90f09163a4d6f59"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "765725049ea272b9d9b3d2b8fddcd167ceb51fba9755b9773239fbc8709dbb32"
+        }
+      }
+    },
+    "bell": {
+      "component": "IconBell",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0dc6635736fc50f4347b97b368583987fb44750bce9bb3cac577b3630b2a6423"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3f14fbb84eed1eccdbb291803370bbc57c8de06b9adef86f10c9325058949840"
+        }
+      }
+    },
+    "bike": {
+      "component": "IconBike",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fd4d0eeefd1e6cc50a90f5f55feaffd7a49ee626ad8c35ba6df7b36bec4ec3ec"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "645ab1d1f367bf8563589bdce89c33adf7e6ce64ef5171ee9672ea1524efb239"
+        }
+      }
+    },
+    "binding": {
+      "component": "IconBinding",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d7f3be0a33f7d686ee14a02c40de8d9befe61720b9a086d1fb0d53ec645cd906"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fec749a160da621c94b0b6ce985e86e2545891db0e6da14a3f9c8c07d0d8e9f2"
+        }
+      }
+    },
+    "blinds": {
+      "component": "IconBlinds",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "83c82c90468091bed440a986594d8503f541845de6cbc1ea9b8e17c1118f934b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 4,
+          "digest": "c5923249d3a85cf15ac4be3c93bf6275127b304c6ceecb8f0a577ada17a84452"
+        }
+      }
+    },
+    "bluetooth": {
+      "component": "IconBluetooth",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3ecf94a91653400b89c970936fad594d87dcaec7b771a4169469fa752988c211"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3ecf94a91653400b89c970936fad594d87dcaec7b771a4169469fa752988c211"
+        }
+      }
+    },
+    "bold": {
+      "component": "IconBold",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "06415b314da2a96758013dcb5d996d0b1f39fb99797e10f40acc0a377d44f524"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "06415b314da2a96758013dcb5d996d0b1f39fb99797e10f40acc0a377d44f524"
+        }
+      }
+    },
+    "book": {
+      "component": "IconBook",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cb832e6eac16961a12766f620299f44937c11f8a3708a5ca9d30e452fc735ada"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e409c470fb031e9a1f299edfd5a122f90d53bc8f889855922f1fc0ce37e76bcd"
+        }
+      }
+    },
+    "book-open": {
+      "component": "IconBookOpen",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b88f9fbbe4a1435b8d5a76fc11682101cc77993bb8c0ffb80e6296376729a2a8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "31103f5929466284d60076403a06cc3a20ef05be90c2175ac2cc4d42a2a94820"
+        }
+      }
+    },
+    "booker": {
+      "component": "IconBooker",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4d431a56d80027d8afa5c5f420cabacc440e041db2f3c4031c9756a53e849f78"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4d431a56d80027d8afa5c5f420cabacc440e041db2f3c4031c9756a53e849f78"
+        }
+      }
+    },
+    "bookmark": {
+      "component": "IconBookmark",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6ae4f9e3c2450bf9b866f77271cfc25bfd045547b9e42db23640098a0efd7392"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ea9dbb3dd5f2810a8cd0cf554343384cd9afc2d265aa14109252fa11faa2f83a"
+        }
+      }
+    },
+    "box": {
+      "component": "IconBox",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3406c7f4a8621ad3e8d1d344e92227fbe3118eeb1353bc9ca14c9c4d37bb13e0"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ddee42bf2214c31570aec0c7dd33c0aa9ddb4711ec029c7e56f4c4a9f5da45f6"
+        }
+      }
+    },
+    "breadcrumb": {
+      "component": "IconBreadcrumb",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0708b5de0f18d283eecbb37ef573512d845af48d5d5e2712a23421c8758efec2"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f088bef98726be8b9d70f7e9f46706dbd4497b30f42d59974e9fabf5d956f2e1"
+        }
+      }
+    },
+    "broadcast": {
+      "component": "IconBroadcast",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cc68c830b445769ce692a49bd8a3c7bdafc4c1b87c0a26e9148463eb9e1fa8e7"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c86cd8e4e20e57b1fc95762a02298ecda934e05a88b6f23080857a95a6f8017c"
+        }
+      }
+    },
+    "building": {
+      "component": "IconBuilding",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c49ad7c887b6017b4730a64f7ae23535b86049e64e7dcaf9d4d168b91900dd75"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9ced749a298de8d6cb800fbf3c64b030cb61216395c34a8655691ce38e4621a9"
+        }
+      }
+    },
+    "button-control": {
+      "component": "IconButtonControl",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ebfac493af6d68ff867625734166d6de33cd3326f2c8076256be516055b0337c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e5fbdb0837fa46e66a22af32bf358e17f10d4b86bced1555be2158065ef20a56"
+        }
+      }
+    },
+    "calculator": {
+      "component": "IconCalculator",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "482a8780c5f6711882d7e69d9fb5ca4ff0ba518049926fbc494e6688e82a0608"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0b8d18f40462eba8addc8ae53d82072b912819d161e41437d89a54d5e6b0f839"
+        }
+      }
+    },
+    "calendar": {
+      "component": "IconCalendar",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6f643517b211e6a8b5244a80623cdcbb18e735e26faa37acc974cec3c2d901c1"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "aa3b7364ba4cc8de2b2e5435c8945833afad126e467e1abaa38d20c480e63dbf"
+        }
+      }
+    },
+    "camera": {
+      "component": "IconCamera",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6df70a77d0f0bee3d64322520edd0a9e1836abff590b7b64c58d5a52b7d3b64f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "bcf8dc214a739be9670ea63892843349d1095577a56a33b58f3ac82604395804"
+        }
+      }
+    },
+    "campus": {
+      "component": "IconCampus",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4158c99daaeaf6ff322b581ff7a83881eb39d2f5f3750e69b2b9130547f4af08"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 3,
+          "digest": "78cd5c1ac688e1cb7eb9bbfed8591ce962bcc724f294ad7776b25c388179df8c"
+        }
+      }
+    },
+    "car": {
+      "component": "IconCar",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fe4145f4f605335bbfa39e5f4191736cb0235f8aa34a510c4611d53d5d005fce"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7531db9d93e6177087eec07b938b3f4a012c2cf33a8fdaf345dc047d407806c7"
+        }
+      }
+    },
+    "channel-strip": {
+      "component": "IconChannelStrip",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "501bfc15963e7f11ca95c111798e3187a277e23add815f93fb04a1f811a2ca71"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cf6d873eab6d22735f54387955317a8d83790f2c818782e496407168c3cd5bd0"
+        }
+      }
+    },
+    "chart-bar": {
+      "component": "IconChartBar",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6b25803ac303cc016ed407032dfc9484d1e475dd771ee7a38843e75fb33f5b19"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7f9463db74740d6283ad20d21b879e8513824e2978d5e18a98d6f0548d31cba3"
+        }
+      }
+    },
+    "chart-line": {
+      "component": "IconChartLine",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b340714260533df89f68705f92e8563f871dd8dedbb794ee3da7ad6fb31f2f47"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6b56130eac4ec150d3430c1818f2364b82c9f0e145b8210b21eb4dc1b04cc2d3"
+        }
+      }
+    },
+    "chart-pie": {
+      "component": "IconChartPie",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6ed6c3a8358f7ffded82ea7a351cba10ada75a2d816c677c2d4a2a352beede89"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e0584bd12d6959f12e8d14bf50971afa4745ea917f8e960870dd9b9fee363425"
+        }
+      }
+    },
+    "chat": {
+      "component": "IconChat",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0988c9fd310baf52ed48a65a4f8e05643cb2aba18700cefa8563fecdefd8f12b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "92d48c417ca059ee969561fd8f3ba291c416de9b4806dc84814276edc463ab57"
+        }
+      }
+    },
+    "check": {
+      "component": "IconCheck",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6b2b1af7cb439f9967501954a79abed63e9bc8aed028edf8862d8299c87185d6"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6b2b1af7cb439f9967501954a79abed63e9bc8aed028edf8862d8299c87185d6"
+        }
+      }
+    },
+    "chevron-down": {
+      "component": "IconChevronDown",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "491dd5842b8e1db52c065d4dd74760041ccd8a3e681fb95ccd862d03b42df851"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "737db0d26cd779d2bfe1d462daa6051765bcd66ba4173a5710ee792d2c1b6821"
+        }
+      }
+    },
+    "chevron-left": {
+      "component": "IconChevronLeft",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e0da757f754750ecd4af14924a7fdecbafb4fbe1d1ee0f02c136228cc801d9ea"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "aec04c6f5e27450e5df6b20d5fd46bc5ae935173dab455e0431b02659ee8d8ee"
+        }
+      }
+    },
+    "chevron-right": {
+      "component": "IconChevronRight",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f5f4382c294e95628461352d69c753cbd103affa9778cd62708d9dc1ce734320"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7a0445d4141dbf58416fa1c24993479bbac1097cc010f9bd134770b96d7b1627"
+        }
+      }
+    },
+    "chevron-up": {
+      "component": "IconChevronUp",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6ad298d32bfc9a6b63c7b07243d81dad9602d370dd3b2584ab7026d4fb8c0661"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3ee4e6e4105e6815bf2a4dafb5af887cb772b7f861412669360b11cc875d861b"
+        }
+      }
+    },
+    "chevron-up-down": {
+      "component": "IconChevronUpDown",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "827283a4aaeb7cf87d9c69731469f81fa6feec61f46c8756edab8ca9282e385b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d1ef5dadf77118d9431f2305cc6f25d0f76d46d3e7cab69bc7cf021bae289101"
+        }
+      }
+    },
+    "clip-indicator": {
+      "component": "IconClipIndicator",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "802db8b238009a23b6e4f2bfa672cfe3adba65315fe330e4d9ed239e7388108e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "96caca207751b27c2404d0bf3bea8f522536ff395f0b7ade71d09e24932e0735"
+        }
+      }
+    },
+    "clipboard": {
+      "component": "IconClipboard",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6ce61bcfd328c6079c54f7c5b4e3285ea9916ceae04bb10d37464ebe15b802c2"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1509b892e79f05136d9402b1d6dd673f088db3657059a62e4b261376f5df39bc"
+        }
+      }
+    },
+    "clock": {
+      "component": "IconClock",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a36e37f0f23cf714b34aff914c18139fd83f5086b52dc3f7fcaa830eb875fdca"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b65e46d0604658cbf617e65dcfa741c94892b5f82b61d3a09d4b3cc3ef1e7bd2"
+        }
+      }
+    },
+    "close": {
+      "component": "IconClose",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "daac6f1fdf76ad82a6c039af6108033472580bbbc432e06ae7f32e2040774e58"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "daac6f1fdf76ad82a6c039af6108033472580bbbc432e06ae7f32e2040774e58"
+        }
+      }
+    },
+    "cloud": {
+      "component": "IconCloud",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d5cff8482632ddb49c5fbc1994c75dccbc02a0b7fc60610ed5f8ab9c013f0ed0"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "76c2a260ed13de27e77769d17988748e403a07846df8df33b172ed7431cb6610"
+        }
+      }
+    },
+    "cloud-download": {
+      "component": "IconCloudDownload",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0f2c47a3d62961a34fdf3eadf687377bc4256c5159086b4d7da2e3a9b95691b3"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a897d106a8a03bfe06368958728cdc2898ab49b69b57724e3e6616b1ab00be27"
+        }
+      }
+    },
+    "cloud-off": {
+      "component": "IconCloudOff",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "259ea161b35d6ec82de2caf565e16dd7c9101d68c5d25d6af62d552b61da9c39"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e689d98a882a35ae906c751ccc429f98ab6b7917aa4eb8e089c32abd93ccd301"
+        }
+      }
+    },
+    "cloud-upload": {
+      "component": "IconCloudUpload",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0247789b5754278e9264858ff354665c0a96c664cfa7de245448698f4040f421"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7d54499e36c255237e743b054b1900c8a2d1a10aad6340a7fdab2ab01f39bdd6"
+        }
+      }
+    },
+    "cluster": {
+      "component": "IconCluster",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ea5909eda318365c4c20bfe9db9fb80ae130ad1c0e3922e94923a852b734d567"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fd1e32e87c074b36737906651a271b5bddfb9bcbeccf86c93e4925ac607f1394"
+        }
+      }
+    },
+    "code": {
+      "component": "IconCode",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4f072c90f970a1b38e76a394821893080557799ccc4ee48c4dec3911511274e8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4f072c90f970a1b38e76a394821893080557799ccc4ee48c4dec3911511274e8"
+        }
+      }
+    },
+    "color-picker": {
+      "component": "IconColorPicker",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7843719c9b8ed33c6ce06f120b08bd3068f8822274e8ea75668a3febc3b150b0"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "12cce30c568225bf78317473bf6a6dc6f81996a5e124cc3f77b81c45622805e9"
+        }
+      }
+    },
+    "columns": {
+      "component": "IconColumns",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c15ae9c1a50c16cd84645f36f93e80e72cf3c073602428b8e544c0df0438c689"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c0e58f897e7574c392a0732c702dee3ff58634174090288ab49356bd47544241"
+        }
+      }
+    },
+    "conf-bar": {
+      "component": "IconConfBar",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "10236a071eef9098860657a429d302bc953caebf8efb09815d812f2a72094746"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "10236a071eef9098860657a429d302bc953caebf8efb09815d812f2a72094746"
+        }
+      }
+    },
+    "conferencing": {
+      "component": "IconConferencing",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "76295b82954a49fc1012a648b75b836f3cbaee68e3baa28a8c55336db8e71193"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "38340df1233b5c47667601d79896cd65c86421f24822e32a1aea400163e5c953"
+        }
+      }
+    },
+    "connector": {
+      "component": "IconConnector",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "da95d6536b627be3574865a42ea6240816fe10bcc2d54e4a22543c4cda5a047f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "da95d6536b627be3574865a42ea6240816fe10bcc2d54e4a22543c4cda5a047f"
+        }
+      }
+    },
+    "controller": {
+      "component": "IconController",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "523fa86a8332a720d66da0cc7a7a0ae3dfa499d34fcdc761b53a226ec107c028"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4018abc66595800591dda4fb4cc992635ba53d513b0f1b00eefabbcc1fe7c516"
+        }
+      }
+    },
+    "controller-keypad": {
+      "component": "IconControllerKeypad",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4f1552f255740c3a1da283aa564667c2493c3189f5b9a47112123f203975461c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4f1552f255740c3a1da283aa564667c2493c3189f5b9a47112123f203975461c"
+        }
+      }
+    },
+    "copy": {
+      "component": "IconCopy",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c7e6b1c88137ebf47670524644ae10f2d07044f9db7df4e5df3a6c6f77042c3b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "605594dababbe136a931e2195e2b3def1005a50eba58d12165ee1f19758700c6"
+        }
+      }
+    },
+    "corner-down-left": {
+      "component": "IconCornerDownLeft",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "14a33ff7769d8903a806c06a17e5fb10a5d1ae4a6c6e77672363da4200b6f81b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8a1c8725b96a44a85060da701a8bdb18c5273192dfdb9a89f91cb62f6b17cf8a"
+        }
+      }
+    },
+    "corner-down-right": {
+      "component": "IconCornerDownRight",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b5655f9ece2697f1b048e035a2fc16f9d2a6b10c533e4d3a7ad027e8224f48ab"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "977eaacead1240e334b1e83a37ced2d7bc57d8e816c5993e431445ee1533be8b"
+        }
+      }
+    },
+    "corner-up-left": {
+      "component": "IconCornerUpLeft",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "36a22bd13790ac8fa6e907ff8cccf80495bfe9fd22eaf74545f6b9544edaf5da"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ce5b16b6c1636e9b2e42136b50874fab33509ad528d111c58151421b347876e5"
+        }
+      }
+    },
+    "corner-up-right": {
+      "component": "IconCornerUpRight",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c4f0e287d0550c2e5a6787a6fbd0b964e9cf029f983517b692430b5ab5b63229"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "62f13f3cf47c330c20f369bf08d52936f514beedfc78559d4bc3a00f573a7c18"
+        }
+      }
+    },
+    "coverage-toggle": {
+      "component": "IconCoverageToggle",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "22bfbb34bff07f9853d4e81b80d7105b3bc7f7c079cdd3472c42125d3f6f3a4c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "382a2e63c25ab98e140d1349c52f7063c31b5ab70c6bb0d36a520a20d2a72dee"
+        }
+      }
+    },
+    "cursor": {
+      "component": "IconCursor",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "20a26da6f2a4609c38bf98b5b2ff24e7722c89f76a01064000a5c0d989eaf5f7"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5e95b229a1072ea30c18ebf06c6c05cc1f2bc7e075750d3e83793d7cc6314d8f"
+        }
+      }
+    },
+    "cut": {
+      "component": "IconCut",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f7ca1db96614af69b65767bfeb7a950022fbf970e466abc163e74f11885dc71b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "22db29073a8c42af6f0a84065d863f1d8dce21f619ae419d312bf697562da60b"
+        }
+      }
+    },
+    "danger": {
+      "component": "IconDanger",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7f8083ca709fc2ce3b56bcd98a27267e14d4ab3018efe89d690e881e0d810f58"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3a560c894ef9980218f1af823d27ea1e68b404c898f14e96515c94890a660bba"
+        }
+      }
+    },
+    "database": {
+      "component": "IconDatabase",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7372d9353e8a8d87938a007d644003eccef5ead82b81922a5cf482281a2a5902"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8436dc375690bd6952cc8eca3df978b7551207638ef31240f8eaf83791d9a4d7"
+        }
+      }
+    },
+    "decrement": {
+      "component": "IconDecrement",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a902a18b002f42cc383dd4a77ee23cd3210d5908a25ffb0901bf355ca8490ec8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b39df12511df944e0fcca38b93b52c44fb2228178f15b1f86c3605ca76c7d2f8"
+        }
+      }
+    },
+    "delete": {
+      "component": "IconDelete",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "07e165d341b559c7d99438bdac02a322b9dd71ab4a28880f8eda060d8ab53196"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "385a12eb7ba9279c65c426621982909f1d84b680138cfa563b4666743848c7f3"
+        }
+      }
+    },
+    "deploy": {
+      "component": "IconDeploy",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6cf0230bc0f3a19bd30721bb0c0623d14ff3e0561f72242505b87bcb82282335"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7e14c91a9660f0b3579593b05a357940cdaeb9fcecc6e200c4fe7c0a86673f3e"
+        }
+      }
+    },
+    "design": {
+      "component": "IconDesign",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d2d034c4159bbed5879dd5165bb8054c057f0b0b7c13cb621a998996ebb8da51"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6b6ebb59aa2aacd625dc27c264734a1a79b2714c89844b8d13544ab0b469318b"
+        }
+      }
+    },
+    "desk": {
+      "component": "IconDesk",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8d5700dd82d3443af6c212ec00aed49789f30221626b1e58129d16c6f2efa4e1"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a3a8f479e59bd9db87bf6c484f8224aafc8ff495a46b7956ebdcf2fed9a53496"
+        }
+      }
+    },
+    "device": {
+      "component": "IconDevice",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3ea4783aa69ff74efa800cad2387e655daa34872d00292776d280592ef82c57b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3945ea179fbef412b351cbaba457b8c8f375e287adf22240a2b5f839a1a65c5c"
+        }
+      }
+    },
+    "device-kleeo": {
+      "component": "IconDeviceKleeo",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c091faac5611be1e716648e44102c8f0daf2ccf5c9f634a2a09c9a0ecce80d33"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3834dde193ac1f0dfdfa6db28b19402f36ac853fa88b65a34a7ee2dde0d0d277"
+        }
+      }
+    },
+    "device-mohazeic": {
+      "component": "IconDeviceMohazeic",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2653a312cd1d13de2c690c6158403656e777aad914cd069a951abcb4e2ee09f9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e2f3bc0d546250f1a724e1586e79667cfd8bfa2eb8bf90ddec720c6b7eb2304c"
+        }
+      }
+    },
+    "device-naso": {
+      "component": "IconDeviceNaso",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9e8c24848c93f1d624dcbb28e5b2b04e93812247971bf96484ed0da115107469"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f6a36e7860d63b8e78cdbf27d20f3ad7ededc51a33a4f3034178f3228cc14ce3"
+        }
+      }
+    },
+    "device-tesira": {
+      "component": "IconDeviceTesira",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1ed2ac0b56e47f4e6902411bfad9cf76f10bc5e961df854a887f557f0e41193f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e6287f9df014d51cf4cf7bb44c1735ddd084abe0fa2a42728b29eae2d9e785ef"
+        }
+      }
+    },
+    "dialpad": {
+      "component": "IconDialpad",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8100a58f96240734fe615732698f83496cd18ae77f70a0d45a53fe32ceeadbf8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8100a58f96240734fe615732698f83496cd18ae77f70a0d45a53fe32ceeadbf8"
+        }
+      }
+    },
+    "display": {
+      "component": "IconDisplay",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b6aad808e29c7a210b42e1fa0c722e224713eedc1b6204bfcc9607eefa6b079a"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "39f17fec59d753c5b6ce5d06bbebb2f795d57e297739d77e2e8de14bc292562d"
+        }
+      }
+    },
+    "door": {
+      "component": "IconDoor",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0aec2c3c179080e39be0b7b35b11a16f558920aeb4d47735de743b552f95cff3"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5f9ae74b51a31d2770519b5e408a9e385e2df3c6f4f0d0d6e531e22c8ee5faf0"
+        }
+      }
+    },
+    "double-chevron-down": {
+      "component": "IconDoubleChevronDown",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fbf65a23043b9e677bae87c51e429a38992d29e4f7931dc2a5c62200899615d2"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fbf65a23043b9e677bae87c51e429a38992d29e4f7931dc2a5c62200899615d2"
+        }
+      }
+    },
+    "double-chevron-left": {
+      "component": "IconDoubleChevronLeft",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "446b6b72bc19d3e0cdae24dbae9fab16b60a0e4f66034fcd45466d649c85e835"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "446b6b72bc19d3e0cdae24dbae9fab16b60a0e4f66034fcd45466d649c85e835"
+        }
+      }
+    },
+    "double-chevron-right": {
+      "component": "IconDoubleChevronRight",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8f1e9b2c3393c356bbe0b5b48676e57563549cc6fc7d5580f7c8487e4d86b422"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8f1e9b2c3393c356bbe0b5b48676e57563549cc6fc7d5580f7c8487e4d86b422"
+        }
+      }
+    },
+    "double-chevron-up": {
+      "component": "IconDoubleChevronUp",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4bb7aef6517b083a70efefb93ef4dc28fd83348019d3ac42227ff94fc0bdd4dd"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4bb7aef6517b083a70efefb93ef4dc28fd83348019d3ac42227ff94fc0bdd4dd"
+        }
+      }
+    },
+    "double-monitor": {
+      "component": "IconDoubleMonitor",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "5b644b2b8e475ee13df9f0babb3a1821d2e8d993184dae3514ca516889dd0ea1"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "45b0b83b6fcbfebc6584df7f67dddd82cd7753037239c1e82d89c6c569fe6a4c"
+        }
+      }
+    },
+    "download": {
+      "component": "IconDownload",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0f2c47a3d62961a34fdf3eadf687377bc4256c5159086b4d7da2e3a9b95691b3"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a897d106a8a03bfe06368958728cdc2898ab49b69b57724e3e6616b1ab00be27"
+        }
+      }
+    },
+    "drag-handle": {
+      "component": "IconDragHandle",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b14c1d72aa3fcb826275ec138799201542d9b090adeb9fd55b08d4bf73820ee4"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b14c1d72aa3fcb826275ec138799201542d9b090adeb9fd55b08d4bf73820ee4"
+        }
+      }
+    },
+    "duplicate": {
+      "component": "IconDuplicate",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c7e6b1c88137ebf47670524644ae10f2d07044f9db7df4e5df3a6c6f77042c3b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "605594dababbe136a931e2195e2b3def1005a50eba58d12165ee1f19758700c6"
+        }
+      }
+    },
+    "edit": {
+      "component": "IconEdit",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5462a2456f222fce730fdaceaeed1622743aa3d250016600d8c4c8f00e745839"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ec1aa7938b894a669fe9701204689c919e1ded10c7e79de5412ce2b28345cc13"
+        }
+      }
+    },
+    "email": {
+      "component": "IconEmail",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2130cd8083d058306187001ab027678af09050a8edc664b0cdc9d607143d2125"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "abf3ecd2d203cb54c3f523868e80816ea2c9a330e3c0feb674bcc8031620237e"
+        }
+      }
+    },
+    "empty": {
+      "component": "IconEmpty",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9f173d8af5cdf44eb9c17641eadb9493a59d3ffbb8ef191ebc66d2b4c6d84426"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e7bb329c1c46e88cb70045acce14c9f7113a2bc0f05badd42e389d0744095309"
+        }
+      }
+    },
+    "ethernet": {
+      "component": "IconEthernet",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "53d59970c475ae05318838daf5030d220228f7504af92c03c7605b633f06bff2"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9aaa5ae28fee2ffbf3034d2418d718eaaa6be1556853c970d15a61f6dc2f8362"
+        }
+      }
+    },
+    "event": {
+      "component": "IconEvent",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "1d13ea15f0f0a69214392812c83249234e03d9836e72aeae24f14befb06f4e63"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e82a0456add4c0c57a1ade3f3ad745eabef9dce8999fe95d903167d5fa6022d9"
+        }
+      }
+    },
+    "exclusive-select": {
+      "component": "IconExclusiveSelect",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3947003a2639ce3bfeda8d93acaa8c79a453afe9b0814b49fdb9ce46d5fb4367"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f4494c481dfd06794f3d0805fef02257a67607e34ea3a4aa5948b5641fd3e60a"
+        }
+      }
+    },
+    "expand": {
+      "component": "IconExpand",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4373fa77e0a5daff72af6e029c5ba1223eec543d3d55000e033d834304b639c5"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6d2f9ef678b7876a8ca2087bede39df9c3c300083248375897a81a7438bc45d6"
+        }
+      }
+    },
+    "export": {
+      "component": "IconExport",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "68054481373d2f8bb63033cd368bf00a1579494e57d2bb767ab9a2829c72846f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b3677fb34b6058bb5bbdc9ad13ac2e8b28974490f1c51f32a948934f6866d95b"
+        }
+      }
+    },
+    "external-link": {
+      "component": "IconExternalLink",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9afc83f6111b7d84f465533b50ad9183ed7201e8b38579c8b006a5c6e6f3478c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "631def45d49af5cd17d8a2781b49d7cf93f23a9b7433445b74676e209b97be57"
+        }
+      }
+    },
+    "eye": {
+      "component": "IconEye",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5930d59b1cfb8c5aa65d8d9c8a3e78464a08aebb7075089f933232e4ca46bf0c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "20228b1c7b1befa0349d40b75ed41f3273642567c22d3335505b2e30bfcd7ab6"
+        }
+      }
+    },
+    "eye-off": {
+      "component": "IconEyeOff",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "14a6d2962319c2bca2355b283370bb3576c38c87b91832dd2c76e02f0a3e19ac"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "258132f94e98d0a5a73730e16299543125a9970c8e3c49fe74380b6253a85dae"
+        }
+      }
+    },
+    "fader": {
+      "component": "IconFader",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6a2c0643bf1b557a362990daed57dca9d48038644c269c32c30699069994089b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "29e0d403b9b7bd95284ebbebb0d940824c42192e2d730a4bfd04d8a041e4c784"
+        }
+      }
+    },
+    "fast-forward": {
+      "component": "IconFastForward",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8124e868f2885410def7f21b10144d89c060a86206082fd25dd019ed66f1a4ff"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "87bcd6310fac43dd7381c5c914350702817f00e53a8cdd28c2677a81da70c683"
+        }
+      }
+    },
+    "file": {
+      "component": "IconFile",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e5fef5ac350a2eaa3d4a216505ad6e3b3c4115bf3d9014e6e68d06830bcda86e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5bb87b0858277f4f5a66a417290adb9e85ffd64240a4bc1d6136094a11af53a3"
+        }
+      }
+    },
+    "file-audio": {
+      "component": "IconFileAudio",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6c72569064c9b86b057245e89b197e84b39ae0c143bc59e83101cf865c845376"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2abffa02475ac13bff052b66f97fb3cdc42534ce0f4e46c3b43779fc20d37cbf"
+        }
+      }
+    },
+    "file-code": {
+      "component": "IconFileCode",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8f183f861e7d62595c735b0ed992c395543dde86bef1ef7514565f4835fd6396"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "76bfb39893c184af054d4dded269fb9722e3e18d2780acadd366fa73bbfe2f12"
+        }
+      }
+    },
+    "file-image": {
+      "component": "IconFileImage",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4f0e4b1117b8e15c1ea3551058b6508bf06684da746817dea22a3093a0cd2d90"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e84311dfb6fa2d9ba90e949de0430b102375caf93e62e53104cdcb529f43f757"
+        }
+      }
+    },
+    "file-pdf": {
+      "component": "IconFilePdf",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "20284e8b43921e5f9d1ab61119342bc7bed2badbb3b8efb551bf020a01b77f49"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "79e3c2bc13df5bb3c62cb1e9120ea5b7869a5bc24332366b0d68fafa6180ceaf"
+        }
+      }
+    },
+    "file-video": {
+      "component": "IconFileVideo",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "beb436c1a6693ab683eb1fc716ba9b25a78365d9e3afb75cc262351b6c821caa"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fe01c656b740c752adc38a59b35d7d2934001540af25074c9b2a5f23878aaf0b"
+        }
+      }
+    },
+    "files": {
+      "component": "IconFiles",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7a18589bc900cbbff2b56173afbea0405b1c278956d2314598cfaf62cdc5787f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "97c42704db46d2a608338cd5ab60d976ee26d5e6fb0457d51b9fa61b9982fa76"
+        }
+      }
+    },
+    "fill": {
+      "component": "IconFill",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4b3226b51163ceeba9a9282b6d90d522cde111010cd76dfac4dd6e347289b58b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4b3226b51163ceeba9a9282b6d90d522cde111010cd76dfac4dd6e347289b58b"
+        }
+      }
+    },
+    "filter": {
+      "component": "IconFilter",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d0d6a688d3bf123eb6fe9b3694c8117e3629fcf4b82b8416bbb0b7ab7c0dff0e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d0d6a688d3bf123eb6fe9b3694c8117e3629fcf4b82b8416bbb0b7ab7c0dff0e"
+        }
+      }
+    },
+    "fingerprint": {
+      "component": "IconFingerprint",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e23c066d6e83ca49640a6a088f2cacd5fb032f3aee05b4ed5bc25fbb751deda8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e23c066d6e83ca49640a6a088f2cacd5fb032f3aee05b4ed5bc25fbb751deda8"
+        }
+      }
+    },
+    "firmware": {
+      "component": "IconFirmware",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "22b0e469fcfcc8fb3c87b166cee49f7ccea7adb9816db6c7bb5337cc38d72abf"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a217a3017265912266523e81b521ebaff5b85c171fd6b49bb577f12a322bb524"
+        }
+      }
+    },
+    "flash": {
+      "component": "IconFlash",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b832134224c634451c9e818c3510fa47af52857ba92b98c35ee5162542124e3e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "902fe6eb43f0d329dec53d668d3b6f0305c3865741358a89fe041062e788bc9a"
+        }
+      }
+    },
+    "floor": {
+      "component": "IconFloor",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "efea5c29bff026b0a8a0da2acd91e3ca1268380902507565f67e3f856114b134"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "502fb865e64fca319ad627cf1aa9562a24569bd0b30a8bea79229099718febcf"
+        }
+      }
+    },
+    "folder": {
+      "component": "IconFolder",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "aa8f02cc3aa6f1ee107d8906d63e1c562472d860151ef65baf1df40f283ba42f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "03a533613f7a81a8e4f6e528e9655e9a73b6c2988c7d0082e8ffea7361a9ebcf"
+        }
+      }
+    },
+    "folder-open": {
+      "component": "IconFolderOpen",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fa207bfd379ca3c7712707f472ee866f4fdb6ec14c7ddebc85606a421efb2489"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "db6b5c962910fba880a8300f4050531e527db676b988fab91a7702432c1e5cf0"
+        }
+      }
+    },
+    "furniture": {
+      "component": "IconFurniture",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0e4108176dddf103d9eb715584a418f114f160a22875cf778a01cdfb6e84c5d1"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b394ff341a6a834abc537269f585778756c88ee41f02d51aa22dcafa2a6e3bff"
+        }
+      }
+    },
+    "git-branch": {
+      "component": "IconGitBranch",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ee95c59829aa72f311da7362210af74d563786fdaf26341b70962256a978e207"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9b12deae44b07851b58140f297db3e411d6427f218a1b6cd0d28090d163843e7"
+        }
+      }
+    },
+    "git-commit": {
+      "component": "IconGitCommit",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0ea991793c3bc8d5e37d4ff42e5fc3fbd04a5310e1cc58f7801896dd93f1e7ec"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8489ef724d82ac6faa78128d05fc019d51eb0fa06cb267bd6a75964afdae7946"
+        }
+      }
+    },
+    "git-merge": {
+      "component": "IconGitMerge",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6679dbb4b1c906f325e1ec85b3dbbe7b440d3eeaef8bd7877b3be34bb335e073"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "14b97f57915ac625a95f0b0f819d77d916f2d3ff7c397fd59b5bc0cea8a7c2c6"
+        }
+      }
+    },
+    "git-pull-request": {
+      "component": "IconGitPullRequest",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6591bf9856790c451c23ce965899aef1401e415cceb9548bc22e4bbddafda1b1"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9d38f57d464df5da2086f43607a7b76b3836df1f0e46b78e425459518489f8fd"
+        }
+      }
+    },
+    "globe": {
+      "component": "IconGlobe",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0da66857aee540fe398a1083a4a2435623589d947fe939c77bfbb432f36d5d9d"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c5f641f69dac89d6638edce7ee671f90418032224d72c394a46bbdf0c94ba6df"
+        }
+      }
+    },
+    "go-live": {
+      "component": "IconGoLive",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cc68c830b445769ce692a49bd8a3c7bdafc4c1b87c0a26e9148463eb9e1fa8e7"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c86cd8e4e20e57b1fc95762a02298ecda934e05a88b6f23080857a95a6f8017c"
+        }
+      }
+    },
+    "gradient": {
+      "component": "IconGradient",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "db0a094d9e07d34510737e51a0e3a759fcc26ac5ade35860e644917fe5fdaa30"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "db0a094d9e07d34510737e51a0e3a759fcc26ac5ade35860e644917fe5fdaa30"
+        }
+      }
+    },
+    "grid-toggle": {
+      "component": "IconGridToggle",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2151d5edfd4d0b1d3b956c6551bba922d2eaceed9097e602e0e32d4a7e098943"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "966dece123a0eac1f6965286fffb4ff9a5b99380a139bf9e3634004e57c29473"
+        }
+      }
+    },
+    "hand-raised": {
+      "component": "IconHandRaised",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "63c132bb65743f9e8be8deb2947c2d6d33bd6922849d5a4eb48ee5e8bf7391fe"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "63c132bb65743f9e8be8deb2947c2d6d33bd6922849d5a4eb48ee5e8bf7391fe"
+        }
+      }
+    },
+    "hash": {
+      "component": "IconHash",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a578215d57527b35363f51d8ba6c9ef06f1f50a31139de6731fe85f555e8dcb9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a578215d57527b35363f51d8ba6c9ef06f1f50a31139de6731fe85f555e8dcb9"
+        }
+      }
+    },
+    "headphones": {
+      "component": "IconHeadphones",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ec94e07cb2890d68e58a147d0865e67143ec71ee6836a5c7d94cbcaf595aca52"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "da31712ab609d2ff5c9bdd6fe1a094f96c964580be2bce792de441c36d80823d"
+        }
+      }
+    },
+    "heart": {
+      "component": "IconHeart",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7b9f7b77c237e7def14f763f90707a9af482836a6189b8774c9ed6c72022ef71"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f89f86611463a17941c560e3e5276a51c28af5be52645caba41d98ba45a6d7c8"
+        }
+      }
+    },
+    "help-circle": {
+      "component": "IconHelpCircle",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "87ffbbf344639ae5dd9de9458500c6cbad605f04ba413d1c723588c5ee8b2918"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "90f24db0e1139a7e54b2951dd7ee2c22e1dac9e97e085d52c77020cb82b71401"
+        }
+      }
+    },
+    "history": {
+      "component": "IconHistory",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c7e681cdd184e89bb5609acd7dd88ae7ef15a814e9902b214bb03848bf80a856"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "97cde7b8aad3c8da7b8247c7d3d997c66143c7d2910d956bea9de0b033f355b4"
+        }
+      }
+    },
+    "home": {
+      "component": "IconHome",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "65f1c5299bbdf4312cceca2a0e2cc3f36120136e867a3dad7ad9f05a71c7a357"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0240e9bd28fc80c60bffaa10f8a1f3fdde7c3dd8a0195f77e410379625fbe47d"
+        }
+      }
+    },
+    "huddle-room": {
+      "component": "IconHuddleRoom",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "92ed63c479351a4b57fa53aae5d6f39d0cb3369bdeafb899cb5688abad16b5e9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fc3d837bfa9e50ebaa63caaf86c7af8b3d30293f182141c6c4177ada1e680178"
+        }
+      }
+    },
+    "if-then": {
+      "component": "IconIfThen",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e824c2f3dfb60bf3b68edbf85ffb5cac68d0572a3edeb7eba4711b4e8f74878c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ba9fd2b20943753dec9c95239ec4cdba1e9ac1ace945babc62e89b32e514096d"
+        }
+      }
+    },
+    "image": {
+      "component": "IconImage",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "eda595cb12dc8ab703ed60615d941ac8ae6e440a830d15cbd3e3ea5455f621fc"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ea820de700e5383e6e1f9115f5beeae338462ff7322f08623622583aa8d1c1b0"
+        }
+      }
+    },
+    "import": {
+      "component": "IconImport",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b6133baec905a81748e0a736fbf0b0c96d9e0a1a318885528456bcd9dd191510"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "32db1605bb142eced05ce3e215922a57c5913e8528bc4230c8510a1d6330587f"
+        }
+      }
+    },
+    "increment": {
+      "component": "IconIncrement",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a5ecae12f26ccfb8599e4dd7d785de6d14e7e4479958f844562040862c73b4f4"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a5ecae12f26ccfb8599e4dd7d785de6d14e7e4479958f844562040862c73b4f4"
+        }
+      }
+    },
+    "infinity": {
+      "component": "IconInfinity",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "01de64f4a2bcc4fc3e18e0b769e6036397caee48aa66b433874828c7a233f958"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "01de64f4a2bcc4fc3e18e0b769e6036397caee48aa66b433874828c7a233f958"
+        }
+      }
+    },
+    "info": {
+      "component": "IconInfo",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "908a46d14326b43c9dd9c746eaaa115ad3cd2021f80d7cf5ac326acbb83ff6c5"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2bd5e09ce6982417f5fb9412fc2ccc5dd92315843207d7bc9cc1d633f4a34230"
+        }
+      }
+    },
+    "input-output-block": {
+      "component": "IconInputOutputBlock",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9d52804accd21fea9c05975e9ded711ba6aff752ac83478cf32dfc5c04cdb501"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "004987f584d2a80e4349789eb8f6f6543189b53f1d78ed4e2da32a15c1b145e7"
+        }
+      }
+    },
+    "invite": {
+      "component": "IconInvite",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ca867c7b891a3a9c69ecd84f86cc2b15be0f466a1d809c24d37a978feb8e989f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8ad209dfe85f678a0a5a8aa2898e14097fcd5f168694ee2ce23f888205691e39"
+        }
+      }
+    },
+    "io-device": {
+      "component": "IconIODevice",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5da712471c80237bed66203a86dbd4450567f33b3eb8e3f13b50c04cc8cb907f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4159fae65b2a9ccf53a4195ca4beb91bf3d183afb36732527a0d6a70f4739082"
+        }
+      }
+    },
+    "italic": {
+      "component": "IconItalic",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3163309efa14ff6222adeae3629b6ffafc7bead94f0fb42ad14e0dd2698951f8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3163309efa14ff6222adeae3629b6ffafc7bead94f0fb42ad14e0dd2698951f8"
+        }
+      }
+    },
+    "javascript": {
+      "component": "IconJavascript",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "351ca9eff8de39d51f90afcbab00cba0d4e02d8f94c80865ca9bd10bcbab1b9a"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "351ca9eff8de39d51f90afcbab00cba0d4e02d8f94c80865ca9bd10bcbab1b9a"
+        }
+      }
+    },
+    "key": {
+      "component": "IconKey",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b43d3911694844cfda6133efaf9c63911f1def4d0d7aa603ebded8953f767207"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c8010ec6981e3d9c2c351e833085819c338a29f7e42b5e90c43968e01817b185"
+        }
+      }
+    },
+    "laptop": {
+      "component": "IconLaptop",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "acd55d8212c823032551d7960689490df6f594b35d313fd084b95b508eeed62d"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "25f56666ca95e97dab5c7b3108a2a65182b8e53efed1a1e36172247d1d5032e8"
+        }
+      }
+    },
+    "layer-stack": {
+      "component": "IconLayerStack",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7bd8e2e53977269eb7fc08df89f5da693fab6e98574fd7bbb80baf2faacba8a4"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c39e22888d6b4eb0fe50d0cb00d8c6bbd4279731e18be4e41cf7fd6a4054ab3e"
+        }
+      }
+    },
+    "licenses": {
+      "component": "IconLicenses",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a961eae74fb719669b3687a6034de200db50c5b750e4a13aab43fecc201105c2"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cc9f8d920c7317855ce9c869da488ff45efcdee883d5c2696052426406a87f18"
+        }
+      }
+    },
+    "lightbulb": {
+      "component": "IconLightbulb",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "939b7e5be503239e29ab2e61cbf9d626bd307c9e124c5d209eec58c842e8a393"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "79eda0467923e10569fc0cc26f2ce8417eb090e2d29c033816077829b00a9a3e"
+        }
+      }
+    },
+    "link": {
+      "component": "IconLink",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9e9099f64a026a54cf457ad169fff3ec889a9130976d3a23a3bee630ede2c97f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9e9099f64a026a54cf457ad169fff3ec889a9130976d3a23a3bee630ede2c97f"
+        }
+      }
+    },
+    "list-bullet": {
+      "component": "IconListBullet",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4f73a72b0d5951f0541904e1e6790186ce5bcd2a6ec6545a6e66a44088359761"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4f73a72b0d5951f0541904e1e6790186ce5bcd2a6ec6545a6e66a44088359761"
+        }
+      }
+    },
+    "list-numbered": {
+      "component": "IconListNumbered",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f8a32a4de0ebb71be64de78ffeb1a172eae1c77a156723c8b7387deddfda8914"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f8a32a4de0ebb71be64de78ffeb1a172eae1c77a156723c8b7387deddfda8914"
+        }
+      }
+    },
+    "loader": {
+      "component": "IconLoader",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7b9e9b1d83ce5b1fec91f19158a830817301bacfe6b752775b39162bf2d0e7da"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7b9e9b1d83ce5b1fec91f19158a830817301bacfe6b752775b39162bf2d0e7da"
+        }
+      }
+    },
+    "locate": {
+      "component": "IconLocate",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a598fbbab4d32777dd775068ce1a0663ff1dae86d5640ceaaf4f24b8e793dfa4"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b0c9eb404f3a6e4bf01609ed44ed0ab3f5e0d10fe88eea0b35fb8e4227a503b0"
+        }
+      }
+    },
+    "location": {
+      "component": "IconLocation",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "bf6598192bf87a6ee8e17f07abc9ffe5433f33f63326b22a02afd16390ef6b0c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "48decd7335c28a181bd0e0861b320a38a665cb4528a8c5df761c0d9cc37c2d2f"
+        }
+      }
+    },
+    "lock": {
+      "component": "IconLock",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "64564063e6e83b33aa178b9e8e84a26b72a36034ced6f3e07a55712d7980d758"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "889339c6da890ced8397ebeff87183f04bdd381afaa9a190f2fa6d6df0700a73"
+        }
+      }
+    },
+    "locker": {
+      "component": "IconLocker",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "41867bf0dd77477ce9b8d7938095f1ed2a2c007f70aeb1fcf850933b1717ae85"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e07516fcd8afbc90b79200e421c98caeeca86a1631262ef6a3cb59d75e05fb08"
+        }
+      }
+    },
+    "logic-block": {
+      "component": "IconLogicBlock",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "83519d95b5e4f0881470687e4612c910a7a83ecc5fafbbc898f87aa82ee6e4ae"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a715a40465d9d9c5bf34362a6fe7e5618f9020c60092c3c33613159cfc73bf0b"
+        }
+      }
+    },
+    "logs": {
+      "component": "IconLogs",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "47ab5afa491b7fc8bfe71cb32ba7c5b6d466eca4af4943e18581b488689d5743"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "663da01998d2adc1972c42d569bb3c89679b55675d68d3ce37dcca6218921ab1"
+        }
+      }
+    },
+    "map": {
+      "component": "IconMap",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "802db8b238009a23b6e4f2bfa672cfe3adba65315fe330e4d9ed239e7388108e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "96caca207751b27c2404d0bf3bea8f522536ff395f0b7ade71d09e24932e0735"
+        }
+      }
+    },
+    "mark-ceiling": {
+      "component": "IconMarkCeiling",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "05a209ef9643685b8f56d3a231b4ccd6ac0ce7f551ffd2d8eb6b22763b67fff3"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5ebdf14e133d9056438481b59cc5fb9596e2b02a16170daf0accf5cb2bd162af"
+        }
+      }
+    },
+    "matrix": {
+      "component": "IconMatrix",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2151d5edfd4d0b1d3b956c6551bba922d2eaceed9097e602e0e32d4a7e098943"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "966dece123a0eac1f6965286fffb4ff9a5b99380a139bf9e3634004e57c29473"
+        }
+      }
+    },
+    "maximize": {
+      "component": "IconMaximize",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2f506d0febed204c1bc723a4cfb70964019c358853ac14297f52ee0391be5c4f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "aadc32799fcb470a421c5197f95ab821d3168134ac47d9984b23debc9b177042"
+        }
+      }
+    },
+    "measure": {
+      "component": "IconMeasure",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "18f624e493a74afe9f0cf59887f12f4fcd1e14c6ef8c25c2732428e790698f12"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b3200047d57557714337ed5123d59c1af272158f406e49eead7cf22f16e8f620"
+        }
+      }
+    },
+    "meeting-room": {
+      "component": "IconMeetingRoom",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e8c970170c533f40697d0a7ef780a86f9f0bc54b84ae0be21699ce0436598e74"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3c5d59ce2245e43d9b2bacf1dd0479901488b6e188b2d58af21331c5c6050422"
+        }
+      }
+    },
+    "menu": {
+      "component": "IconMenu",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "77f716c78ae8d76279f26e958ad50d1d6c647083bf6c5d9e73b62d17d2fd7a17"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "77f716c78ae8d76279f26e958ad50d1d6c647083bf6c5d9e73b62d17d2fd7a17"
+        }
+      }
+    },
+    "meter": {
+      "component": "IconMeter",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3345b23dc6c4cd93dfd27872876cb6dabbec425fa93b9aa8a9b3ae23174b2d91"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fb8162f1d91315fc7af15cb44174a5ebc50c2cd8ccd05711247c2065d6791862"
+        }
+      }
+    },
+    "microphone": {
+      "component": "IconMicrophone",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "44d9136e67c2617e7d784244848283e5095722a2ce1333de370d9a06fdd93e20"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e4d8644c416c980873feb3c4dfcf25826fc17d9cbd604afd09fbffeface18f23"
+        }
+      }
+    },
+    "microphone-off": {
+      "component": "IconMicrophoneOff",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a702ea5caa1500b7e992723307a29e9e7e2204baecce1bc01c346a5c9f031a94"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "68e567db9664b463c868b9b63db364d505aba2174b203436bcb17ce2d252b7cb"
+        }
+      }
+    },
+    "minimize": {
+      "component": "IconMinimize",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cbf0d76bbee597e994c1cf31d4972d4fc0534373a4b4135144f0fe464954cc3b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cbf0d76bbee597e994c1cf31d4972d4fc0534373a4b4135144f0fe464954cc3b"
+        }
+      }
+    },
+    "minus": {
+      "component": "IconMinus",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a902a18b002f42cc383dd4a77ee23cd3210d5908a25ffb0901bf355ca8490ec8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b39df12511df944e0fcca38b93b52c44fb2228178f15b1f86c3605ca76c7d2f8"
+        }
+      }
+    },
+    "mixer-block": {
+      "component": "IconMixerBlock",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "64564063e6e83b33aa178b9e8e84a26b72a36034ced6f3e07a55712d7980d758"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "889339c6da890ced8397ebeff87183f04bdd381afaa9a190f2fa6d6df0700a73"
+        }
+      }
+    },
+    "mobile": {
+      "component": "IconMobile",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "56c4357b3bca4f594e1279f32b02e1aed33f376fe2a4e14836b4cc273d8bc7e1"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c25d11bfb6dbc273943e6d150a80a6db932e1a7dd2983a1b30de13b4205a1a96"
+        }
+      }
+    },
+    "momentary": {
+      "component": "IconMomentary",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ea0ddb60278eec6d9bb7e1d4151e48bad73304f53eaeb5c6d4cbbfd01b621167"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ea0ddb60278eec6d9bb7e1d4151e48bad73304f53eaeb5c6d4cbbfd01b621167"
+        }
+      }
+    },
+    "monitor": {
+      "component": "IconMonitor",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "20bcd0ba0286754e1218f1451a9048117030e83680c5e103efb2128233d0501d"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5887ed791d6425a617c6c65ae39e28e4661738f37f4770d83be6920dd75d3216"
+        }
+      }
+    },
+    "more": {
+      "component": "IconMore",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2a52092701f8e0a1ff8345804fb922961e8c23e470dd68f8dc602fa5110e7cd1"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a4bf71b907f6c41d0a47ee7d2888d1a45afc523ea949c8c8a58fb7b1e478ccb0"
+        }
+      }
+    },
+    "motorbike": {
+      "component": "IconMotorbike",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ac1c089249c6a2b8a7cbaf5f0a552ed0fc54fdef513f14b95ce86863bb02eb20"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "27208c5f35d7545085329cdc0015200433e8f56800dd6f9ed58bb88c33cb476e"
+        }
+      }
+    },
+    "move": {
+      "component": "IconMove",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "57b1d82074c541b0379b6a789afe558dd96e402d2f9ff26968bf49b855c044d9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "82613cbdc04aab48e9c045ea87aeb00155e8c7cf0e116aa32d97bfc242824f28"
+        }
+      }
+    },
+    "mug": {
+      "component": "IconMug",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "524b389837993dbc5dae1dcdfa7d1fde664324e4b6899379e88e401cb9d8efd4"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f43341340f78a657aa5dd0002986c53c678801c935ad6f001f31851430cea23c"
+        }
+      }
+    },
+    "no-results": {
+      "component": "IconNoResults",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "231996222190b6359d56062d60324733bc6889e6d0d0718cb75fcb0e4b7ab7e9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "231996222190b6359d56062d60324733bc6889e6d0d0718cb75fcb0e4b7ab7e9"
+        }
+      }
+    },
+    "node-designer": {
+      "component": "IconNodeDesigner",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ebee298a78ee96007e962c881cb13ffcb724e7d4d5903ee6bb165fcae4463734"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6745e08a97eced4433ee04cdf29bf58a307b3fc8000ed366fb87f16c479d1bb6"
+        }
+      }
+    },
+    "none": {
+      "component": "IconNone",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d6d038e799a1e8a6ee0a2a7703d5b144dc64f94836cc65276060f70a2008598b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "95d12f2df628cb08a11359d6127d725b4f31654b04339cfb208e332ba144f5ea"
+        }
+      }
+    },
+    "notification": {
+      "component": "IconNotification",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c7df76156678cc6bea12722c44af914aceefb6e7f28cc65628c85363495f60aa"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9c9a4825d482704e4e6fad8a5b4768572466e70f2b923671096a2c0e42f56c56"
+        }
+      }
+    },
+    "notification-off": {
+      "component": "IconNotificationOff",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "62b7b9a13e03a9234a0a920d56ae707c6a0a0eb16deae237698eeecc9c2c81cc"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f3deafff63fb5225d5049e3df1d7162483cba392cdba3ed5059dc9548ece495d"
+        }
+      }
+    },
+    "online": {
+      "component": "IconOnline",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "05a209ef9643685b8f56d3a231b4ccd6ac0ce7f551ffd2d8eb6b22763b67fff3"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5ebdf14e133d9056438481b59cc5fb9596e2b02a16170daf0accf5cb2bd162af"
+        }
+      }
+    },
+    "overflow": {
+      "component": "IconOverflow",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0708b5de0f18d283eecbb37ef573512d845af48d5d5e2712a23421c8758efec2"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f088bef98726be8b9d70f7e9f46706dbd4497b30f42d59974e9fabf5d956f2e1"
+        }
+      }
+    },
+    "page-nav": {
+      "component": "IconPageNav",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8e1d07a7d8499b460511b0a44a9627af70319493ce9eb0aede9597f148a64595"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b42d3e500cfee91a1244e3398b000008e3ebfb34584ee8de036006115cdb7495"
+        }
+      }
+    },
+    "paging": {
+      "component": "IconPaging",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "252b618ec771ab04b7cc9d0b8afdcbdbce6d8b5497aa3a7ae1b01709121bfd97"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "252b618ec771ab04b7cc9d0b8afdcbdbce6d8b5497aa3a7ae1b01709121bfd97"
+        }
+      }
+    },
+    "paging-goose-neck": {
+      "component": "IconPagingGooseNeck",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9d263f5c6f1fdaeb2e4e92519b9e7fc2b13b5e0516999b681329a2315fb941ea"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9d263f5c6f1fdaeb2e4e92519b9e7fc2b13b5e0516999b681329a2315fb941ea"
+        }
+      }
+    },
+    "paging-hand-held": {
+      "component": "IconPagingHandHeld",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3ded098b6d3dfab0c1901eafe93ed383821f1de56e27de909e881a0b613865fd"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3ded098b6d3dfab0c1901eafe93ed383821f1de56e27de909e881a0b613865fd"
+        }
+      }
+    },
+    "palette": {
+      "component": "IconPalette",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4742f874f501c63cf243dee8be84ccbdeaee805ef68988f2dc814b5778d6d3e7"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "16f9cb1a3fb86a86f1268d06e381bd6873b86d859db113de095c58a63ba41091"
+        }
+      }
+    },
+    "pan": {
+      "component": "IconPan",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ce1405f63058535813213cfca6745e41343a99e0d608afe424eddcc08d1322a6"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c1701006d2caf165eaa866906419204e5cf4e2072cac9e978e56f1a8ccfda0a6"
+        }
+      }
+    },
+    "pan-knob": {
+      "component": "IconPanKnob",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f1c536bfd5bc4c9a694e726e687d95cf1d7f2fb56c068f1f2723ab938a8eef53"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c86fba5ec810137aad2f0cb065086ba065957274b0c383ca9be38a7bd9c87751"
+        }
+      }
+    },
+    "panel": {
+      "component": "IconPanel",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "84c8ce08f9f1123f08ad878e6049f16fdd57be611ef521c8608adb32d4868e3c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "34d6a9937c71b6e80b09f3c80266cd600cae3ce809da9079850e107a165acf1f"
+        }
+      }
+    },
+    "panel-close": {
+      "component": "IconPanelClose",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "11f1267408719af3d284cb51cb8c779ee92f92cd9a12c0743e0d0a1ba4428efb"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7be2173557e02ac8efcc10d502e1d62d02223a6521045e01789eca73bfdbb088"
+        }
+      }
+    },
+    "panel-open": {
+      "component": "IconPanelOpen",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1177a28d9859a1752a4b37ef36b83da797b63abb5a3c68ae2195716501cd9040"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "38573362ce8d6061876eae6438b948164482c2390641fd30d7e7cca762557724"
+        }
+      }
+    },
+    "parking": {
+      "component": "IconParking",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b8ae75d5263a04be636ce5a626e214972bec7d1dec9a2089d2260a6228dd5a92"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "825afd677549db0d2b336af6ecf52552735f92207380d9591ef6e85422c3a2c5"
+        }
+      }
+    },
+    "pass-in": {
+      "component": "IconPassIn",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d5ca6b441b1b5235af5ba881bf5de3d41e7bae7066a33c0d0d0faceeecff92de"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d5ca6b441b1b5235af5ba881bf5de3d41e7bae7066a33c0d0d0faceeecff92de"
+        }
+      }
+    },
+    "pass-out": {
+      "component": "IconPassOut",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "b14c7a338217b5767039626eb1836aac6f94d3f74d5707554ff43d03dbe0faed"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "b14c7a338217b5767039626eb1836aac6f94d3f74d5707554ff43d03dbe0faed"
+        }
+      }
+    },
+    "paste": {
+      "component": "IconPaste",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6ce61bcfd328c6079c54f7c5b4e3285ea9916ceae04bb10d37464ebe15b802c2"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1509b892e79f05136d9402b1d6dd673f088db3657059a62e4b261376f5df39bc"
+        }
+      }
+    },
+    "pause": {
+      "component": "IconPause",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e7fefd8ee4202aa16541c3091864a8c4288272f14df2c77b9039603ea3ea41a9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e7fefd8ee4202aa16541c3091864a8c4288272f14df2c77b9039603ea3ea41a9"
+        }
+      }
+    },
+    "peak-indicator": {
+      "component": "IconPeakIndicator",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "119c7a3e98ca18940cd3552a080989bbfdc332a491106ca48c257911b673be78"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5c84787ce6b8791ea67e62f042665dadec48624a16679314a091ba4ad1aee23c"
+        }
+      }
+    },
+    "phantom48-v": {
+      "component": "IconPhantom48V",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0db92e7c94cc396c850faa11a4d31b67572f39b1056ca61b9933871adecb29b6"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0db92e7c94cc396c850faa11a4d31b67572f39b1056ca61b9933871adecb29b6"
+        }
+      }
+    },
+    "phone": {
+      "component": "IconPhone",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4a02dc07111cb81dae99d9dc51583bbafdc76488eb501a80202420d98a4a7743"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3a546873f99ca23c5085c7f3c98d06c7dbd43ba4bc6198ceb252ceda06f26977"
+        }
+      }
+    },
+    "phone--audio-dsp": {
+      "component": "IconPhoneAudioDsp",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4a02dc07111cb81dae99d9dc51583bbafdc76488eb501a80202420d98a4a7743"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3a546873f99ca23c5085c7f3c98d06c7dbd43ba4bc6198ceb252ceda06f26977"
+        }
+      }
+    },
+    "phone-booth": {
+      "component": "IconPhoneBooth",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "173b9750b1aab9a3f5ab6ec6b35127cd61e3de3f35ddbc814e5a71759fb91673"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "80280d93045f52b72a943c4737a3c30d55f7115b96c61f1fbd09b28cf06fca07"
+        }
+      }
+    },
+    "pin": {
+      "component": "IconPin",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "802db8b238009a23b6e4f2bfa672cfe3adba65315fe330e4d9ed239e7388108e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "96caca207751b27c2404d0bf3bea8f522536ff395f0b7ade71d09e24932e0735"
+        }
+      }
+    },
+    "play": {
+      "component": "IconPlay",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b6aad808e29c7a210b42e1fa0c722e224713eedc1b6204bfcc9607eefa6b079a"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "39f17fec59d753c5b6ce5d06bbebb2f795d57e297739d77e2e8de14bc292562d"
+        }
+      }
+    },
+    "plus": {
+      "component": "IconPlus",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a5ecae12f26ccfb8599e4dd7d785de6d14e7e4479958f844562040862c73b4f4"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a5ecae12f26ccfb8599e4dd7d785de6d14e7e4479958f844562040862c73b4f4"
+        }
+      }
+    },
+    "port-input": {
+      "component": "IconPortInput",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8cf4071b66a8d854a009f5d6f042acc61a3d6b97eee686166ad55db19363c7cf"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "14192901fe0177a64fe558f0459d5526c7707364ae8026487067274b5d048e79"
+        }
+      }
+    },
+    "port-output": {
+      "component": "IconPortOutput",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "85c73467ea078c3937eb9643af006e84e227aafc042302a278a82bd739c73002"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b7b76ce7e93ea54ed99d62bb7406c5d2df1c316c67df6bf9cbb9e5b9f4aef62f"
+        }
+      }
+    },
+    "power": {
+      "component": "IconPower",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7c731459b48a7c2f891c7f6178fc19b8e50f15686273dbfac90f09163a4d6f59"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "765725049ea272b9d9b3d2b8fddcd167ceb51fba9755b9773239fbc8709dbb32"
+        }
+      }
+    },
+    "power-button": {
+      "component": "IconPowerButton",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b1921514e46f9f1e8d00260f2176300a1eb21589c761c051db11192115153ee3"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "471e56127eff12c813fb1251d3417f89c35c91a90a04a3c203475e3f42317538"
+        }
+      }
+    },
+    "presentation": {
+      "component": "IconPresentation",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cb5c35edab39e6ff2105a34acaedbdaf0448b743ecf887753faaf792202f976c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9d7034b3172996b02c619ca04493a0a32fd52f4f6f59c6d4621a7ba928c90a87"
+        }
+      }
+    },
+    "preset": {
+      "component": "IconPreset",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6ae4f9e3c2450bf9b866f77271cfc25bfd045547b9e42db23640098a0efd7392"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ea9dbb3dd5f2810a8cd0cf554343384cd9afc2d265aa14109252fa11faa2f83a"
+        }
+      }
+    },
+    "preview": {
+      "component": "IconPreview",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5930d59b1cfb8c5aa65d8d9c8a3e78464a08aebb7075089f933232e4ca46bf0c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "20228b1c7b1befa0349d40b75ed41f3273642567c22d3335505b2e30bfcd7ab6"
+        }
+      }
+    },
+    "print": {
+      "component": "IconPrint",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2e316906ab799091decb3bb299b9d7ad77ec38d0a71bb2d24646887ac2066372"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "59a77844d86a516e311f38fa2d88f2ae23517bae441cd2e32518a96d6f42f49c"
+        }
+      }
+    },
+    "priority": {
+      "component": "IconPriority",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e5a139b10afed55a95510fe871e104bce9790e2d59d3d373796fa2e7d2e601ad"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "73e3929f9b352c8c0059d3828e592d9b61ec591b9769ea975b0489880d4fe0a5"
+        }
+      }
+    },
+    "process-block": {
+      "component": "IconProcessBlock",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4f072c90f970a1b38e76a394821893080557799ccc4ee48c4dec3911511274e8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4f072c90f970a1b38e76a394821893080557799ccc4ee48c4dec3911511274e8"
+        }
+      }
+    },
+    "processor": {
+      "component": "IconProcessor",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "be3420b51d66e3416d5b0ff67c9076041a50a50fc29190af1c8a38adc5415341"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "be3420b51d66e3416d5b0ff67c9076041a50a50fc29190af1c8a38adc5415341"
+        }
+      }
+    },
+    "progress": {
+      "component": "IconProgress",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fb89d699f6ff557052eac2bbffa0898a39e2c220b1654559c7d19fb719d08077"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fb89d699f6ff557052eac2bbffa0898a39e2c220b1654559c7d19fb719d08077"
+        }
+      }
+    },
+    "puzzle": {
+      "component": "IconPuzzle",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7c6767038983b203099ffee14724b56434fa2f185d7ce0255613e8262e8db052"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "fd76be0ed4cc246d9e1f7cc4a016de2347c32b56b530d141239bf757c8bdc221"
+        }
+      }
+    },
+    "reboot": {
+      "component": "IconReboot",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "92274b796ac98ff8facdf31aed039fa9278c44378c0f494bb2ec35d43e38b228"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3163bf6df0fba16eb3398848c2fd4d5efb14127d2c8c40df2ecfe5e6a2ab302f"
+        }
+      }
+    },
+    "record": {
+      "component": "IconRecord",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8ebd23168071e243775414cd1469a99ddfa080f54d4be59a1ccee1a3cd1864a8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "92e0c4c5085d0e017127cd9e853f630a4c7e3ca34df12cd50c078f33ee61ab10"
+        }
+      }
+    },
+    "recording-indicator": {
+      "component": "IconRecordingIndicator",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "50f1fcecae8fd5c43a6ec534e15461e98786e80258f0c5bed5fea30601ec36e9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 2,
+          "digest": "67fcb72c6a8d1936f50f08c03e66c381a5d4f9437a779c138c1ab374b5a265a8"
+        }
+      }
+    },
+    "redo": {
+      "component": "IconRedo",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cefc00e4247b0eb77a5b0aaf8dcbeed3e1052f24d259ff2f187ec936da1c1ec3"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "74fcde4eb4fb3ed4d3e6de2ce529e5e72e904c1a21c2e00f30ff3b9b11658f4a"
+        }
+      }
+    },
+    "refresh": {
+      "component": "IconRefresh",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "92274b796ac98ff8facdf31aed039fa9278c44378c0f494bb2ec35d43e38b228"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3163bf6df0fba16eb3398848c2fd4d5efb14127d2c8c40df2ecfe5e6a2ab302f"
+        }
+      }
+    },
+    "region": {
+      "component": "IconRegion",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "83341dc9b3e038270932360bad2e948ed99234f59e935f757d191e5ffb68244f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f11bb0fec3af40e959f5314e3a4620e58388b82432302763ac2cfa1e37be67e9"
+        }
+      }
+    },
+    "repeat": {
+      "component": "IconRepeat",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6933073444937f05421552654ed56487797872dd8c8316cd90e069b7f92fd96e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6933073444937f05421552654ed56487797872dd8c8316cd90e069b7f92fd96e"
+        }
+      }
+    },
+    "rewind": {
+      "component": "IconRewind",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "64107d10b7327ea04438beaebc885ad1127f4bd563d26fa4f095f41f0019e155"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cee07dd2dac2a6e69ed0aa3a5e67f117527e7d09619e701f519b898aa55a1425"
+        }
+      }
+    },
+    "room": {
+      "component": "IconRoom",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "800837eb58237d3073c4b93f256b0777263ad3bd5055cb73e48d1b827a3af0da"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ab3a04691fbc5a1e2cf54428a538c53d41d7c85d1cfe653065cdb2130c1c4775"
+        }
+      }
+    },
+    "room-combine": {
+      "component": "IconRoomCombine",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cb835a2dd3a6175d0f700964a7bdab3017e0779b526a34d7e8be170d3cc1318a"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cb835a2dd3a6175d0f700964a7bdab3017e0779b526a34d7e8be170d3cc1318a"
+        }
+      }
+    },
+    "rotate": {
+      "component": "IconRotate",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "813ebf313a4e9b5a243fe62e9e3c48228ed9b76debbfc972ab9ccb93531a7caa"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3fe760909c29b7c7d13369c5c0dfda13435bf9f6bbb477926a1c5d9734cafecb"
+        }
+      }
+    },
+    "route-block": {
+      "component": "IconRouteBlock",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6fe6d2bd5296d4ecaa03ae092f53a2a453b1f6db5d65a855c385ed16e89e9fb5"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e987a761b0ba55c47f233404e435c6a9a54f5e9a4ff82721534e8f9bd213c0cc"
+        }
+      }
+    },
+    "router": {
+      "component": "IconRouter",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2f3c0961bfa4a547c031b33d019362b528ca96c9ac3237a3daae842903d2d1cb"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "916ca349a352d0a0e6461a8537dc2010c5e9e2ada64daaa301f2739d280d159a"
+        }
+      }
+    },
+    "router-split": {
+      "component": "IconRouterSplit",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "039897324cc809b2c87dde40ed408c6187292d5ec1d13a9d235986214f8a541b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "039897324cc809b2c87dde40ed408c6187292d5ec1d13a9d235986214f8a541b"
+        }
+      }
+    },
+    "save": {
+      "component": "IconSave",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "11f44ed13b7ab95528a797957e15ae102f887b469a01a44e0b2df17eb504e393"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5c2d6c525a918d2687e73019759017fdb1b4e9b59883fe819524bf75d99d15bb"
+        }
+      }
+    },
+    "scan-barcode": {
+      "component": "IconScanBarcode",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2da49d6ee8197887286a9f10ddec985a680714208f1960fec0a2535fb01177f2"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cdcd868c554ec46ab35438a69570862b39175372ad1b39510df40ed93f41f5ef"
+        }
+      }
+    },
+    "screen-share": {
+      "component": "IconScreenShare",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f7b71fb336e1906af7b2f34bde5643920994e1f10b94021326256b12a3272980"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e5ef7791d6f4d0b7b50aa89cae461032e53ce43f8f2953663e839c05d44e195b"
+        }
+      }
+    },
+    "search": {
+      "component": "IconSearch",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ec2a0aa49da522879a3e76a75b8db69a2867457cb768d8acf6ef75037729e19b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "341323817a825f08b53fb01b25a77ffd53e333f276cc0c922234dbedffcea457"
+        }
+      }
+    },
+    "section": {
+      "component": "IconSection",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f9f7af210cdf30e0aa10688d891ac8b35b6541af03e0bf5ede68a57eca56d266"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 4,
+          "digest": "5aff921659c2bc88c572512f40b114d49635a4b61820855ef033cfc4ac4955de"
+        }
+      }
+    },
+    "select-all": {
+      "component": "IconSelectAll",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d64a34f70e330e0cf23f3eabb4dc8166d690aaa945cc8cf4ed543a5139be4547"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 17,
+          "digest": "42ea573fa0263cab41b112aa3d3f31455d95cf5b78eaa16eee875a260881d100"
+        }
+      }
+    },
+    "send": {
+      "component": "IconSend",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a1e313e7cb8f45cba57b5aff55a39bd7134f3b4bcdcf270f73e76c2f86788e1d"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1112869ea135536ef6e0e093ba6140cc635fe37aefd49a49175310c255475123"
+        }
+      }
+    },
+    "sequence": {
+      "component": "IconSequence",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2672eaaef2b1305268a8431194742bdc71c1e78f922bbaf98bdb7d5d15cf7fb7"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "40012bfc83c9a44b3853a89f88ab143454f7f39b7769f7d2903138bf257ab0a1"
+        }
+      }
+    },
+    "server": {
+      "component": "IconServer",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3ea4783aa69ff74efa800cad2387e655daa34872d00292776d280592ef82c57b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3945ea179fbef412b351cbaba457b8c8f375e287adf22240a2b5f839a1a65c5c"
+        }
+      }
+    },
+    "settings": {
+      "component": "IconSettings",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1877da2efb14110a87270c18fc44bec1237980055278e9399d75808bab812f44"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "be25c3b2c2d6b18b004e19f966e2b4f9fb99c9d36fe5dd019ad2ce4c71d16e8b"
+        }
+      }
+    },
+    "shape-square": {
+      "component": "IconShapeSquare",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7af8b2948bf044299d096bebbe352847e9af774cf4cab1f3f604cabaf3e8fd8b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f95330efb63d265729c9f5630410d02a5b8061e00510647edcbbf41b34e2f497"
+        }
+      }
+    },
+    "shape-tall": {
+      "component": "IconShapeTall",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d4621f050be10ebb7650b6890133be36d2fabb676ab690f6f865fa3fdd4b3b3e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1d0c48d95f7d5581b1164bff8f6fa7dc5202f4a08b33394c785b37fc93ba73ee"
+        }
+      }
+    },
+    "shape-wide": {
+      "component": "IconShapeWide",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ee54dace5edcce9bbf353a1146d18abc1df0eeb3604e4c478f9d5d0c15f8d6ee"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "33ba4fecba1f9346968bbb85a2cc8b224e4110d61d225c16f3da47f9e87dc72a"
+        }
+      }
+    },
+    "share": {
+      "component": "IconShare",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f7b71fb336e1906af7b2f34bde5643920994e1f10b94021326256b12a3272980"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e5ef7791d6f4d0b7b50aa89cae461032e53ce43f8f2953663e839c05d44e195b"
+        }
+      }
+    },
+    "shield": {
+      "component": "IconShield",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6e8958e38f6e2895f1f93ac00a4d10c79415d18f4ee6cb57212591bdc2acbead"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "16fbd99646ba96139db7b7f8a07155f5141d10aa2b6683a965aa5f2dcab490ed"
+        }
+      }
+    },
+    "shuffle": {
+      "component": "IconShuffle",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0852f92caa06893e2409293de430e18ec94e796769b5a3a29a54e35ddf108fbd"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0852f92caa06893e2409293de430e18ec94e796769b5a3a29a54e35ddf108fbd"
+        }
+      }
+    },
+    "size-large": {
+      "component": "IconSizeLarge",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "aa0b25781f391117154eb449f7b795d92f1318e813f4b1641827463c1dc417ef"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "aa0b25781f391117154eb449f7b795d92f1318e813f4b1641827463c1dc417ef"
+        }
+      }
+    },
+    "size-medium": {
+      "component": "IconSizeMedium",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c010720405add8c655694ae62f8272eb83175db835de2a377ba74812201edd33"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c010720405add8c655694ae62f8272eb83175db835de2a377ba74812201edd33"
+        }
+      }
+    },
+    "size-small": {
+      "component": "IconSizeSmall",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "998cdd30965f5a4da431da69fae8ad5f2f7a18d07b301c09e8f7eaf4198ec36e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "998cdd30965f5a4da431da69fae8ad5f2f7a18d07b301c09e8f7eaf4198ec36e"
+        }
+      }
+    },
+    "skip-back": {
+      "component": "IconSkipBack",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "89ef612101578bd270315cdf3fa4c4c6ca81b9678bd46443cfe616f4f29108d8"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "75714bf9193bdd9ebd36b74475cbf04220d93edcc6aa5135d8a6a8028ada29d6"
+        }
+      }
+    },
+    "skip-forward": {
+      "component": "IconSkipForward",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7d7aad85c14dda437c6246c7b1aababe36b013b1e58798fa6246c3551b92ab89"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c7594e1e0307abbf47c4e15b453ce5fff13ecd780f48f63e97b9fa2000289bde"
+        }
+      }
+    },
+    "snap": {
+      "component": "IconSnap",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d4cd305a029db3474a8033d6577d5f6d4d411a3d7c4ff07f4287bca410ddcacb"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1d7475abd48ae1acc7dfed0c0d375d8d73fff9b74d5100e7e75b3f736600f847"
+        }
+      }
+    },
+    "sort-ascending": {
+      "component": "IconSortAscending",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0ab720445fd5d2a05f1ca1a2782712c861d3b98e7110fddfb5b1fc8516c7056f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "02a8c121f97fac8112d2af08e0bd8b3254aa51507608d1454188ad23ceafdaf3"
+        }
+      }
+    },
+    "sort-descending": {
+      "component": "IconSortDescending",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0ab720445fd5d2a05f1ca1a2782712c861d3b98e7110fddfb5b1fc8516c7056f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "02a8c121f97fac8112d2af08e0bd8b3254aa51507608d1454188ad23ceafdaf3"
+        }
+      }
+    },
+    "sound-masking": {
+      "component": "IconSoundMasking",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 12,
+          "digest": "ce1c9132ea650e6a280f338b52be3420201d68d65618472a813795da55b6af7c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 12,
+          "digest": "ce1c9132ea650e6a280f338b52be3420201d68d65618472a813795da55b6af7c"
+        }
+      }
+    },
+    "source-selector": {
+      "component": "IconSourceSelector",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5f7d771fe4eb1e8b2381e63af43153eb9bed2fbb883812ff10e9b4792e414b1b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 4,
+          "digest": "3d93bcf4d3d8d31d968b27c24306294c5c4c5087a090eee2f0f40d2e0b166420"
+        }
+      }
+    },
+    "sparkling": {
+      "component": "IconSparkling",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1c073e02a1eab9bdce2614520797409bf0784b38e69457903b89a428249ff412"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "16b0b14c144b482ea0aef58d543ad61fa069b744e8757821300d31e6be4201e9"
+        }
+      }
+    },
+    "speaker": {
+      "component": "IconSpeaker",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 9,
+          "digest": "2a2baa2eb4627a0a7043594532b953dcf35d6484529238d9f844045077ce1ee0"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 9,
+          "digest": "2a2baa2eb4627a0a7043594532b953dcf35d6484529238d9f844045077ce1ee0"
+        }
+      }
+    },
+    "split-view": {
+      "component": "IconSplitView",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5596e72c232e7cec2858b03822c845400795e20e029e499c9e300782421b17c7"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5596e72c232e7cec2858b03822c845400795e20e029e499c9e300782421b17c7"
+        }
+      }
+    },
+    "star": {
+      "component": "IconStar",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8b2a4995e5ff0eb823061f9ce12a39b37e2a06b355bd32c78f015d3c3af4b198"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c7e401e7f8e181568325feb26dfafbbf691870b98ebf2edc0b16f62eafd4fe14"
+        }
+      }
+    },
+    "stop": {
+      "component": "IconStop",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "86f2a659aac6bdbc0d084974b0ef30c778ea8cb97d6baf27d90e1f695185e070"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "330b8d4e276bb6124cfcb77be54261e4e4e8aa954187c76c40645ed37eec4b36"
+        }
+      }
+    },
+    "strikethrough": {
+      "component": "IconStrikethrough",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d9c2b3120cd41eeae00605f8661c154b8ac67a9022a14b9b4006b4a141a9a715"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d9c2b3120cd41eeae00605f8661c154b8ac67a9022a14b9b4006b4a141a9a715"
+        }
+      }
+    },
+    "subscription": {
+      "component": "IconSubscription",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9eb623731805a1e21b904359857bb3e5029aa6c5617f358e91ef11e66bdc9ae1"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4f83144abbc2b710db9ef93d625e8c2f16da86a08bba0f4eb182817aff0adee2"
+        }
+      }
+    },
+    "success": {
+      "component": "IconSuccess",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "daaea2989f3ebd5c54b54ca167868a5915657b0ee7deca0103094d68d14e5ed5"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c03d3965c44d2563667b4423df64605065e1dd7c42c3ba54e7289f106706f783"
+        }
+      }
+    },
+    "sun": {
+      "component": "IconSun",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "55eecc3e1908e5bd55c6a67c2416b1b671b788ff2ad9de086bceef16fdbca575"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4851efd4b247458a26bf8d36078e50f161a3cf005a2867e528330216f528c7db"
+        }
+      }
+    },
+    "support": {
+      "component": "IconSupport",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "08e3f1610da75b50e2812a02d85f51f9898f18a721cff85350eacd54795a4073"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "08e3f1610da75b50e2812a02d85f51f9898f18a721cff85350eacd54795a4073"
+        }
+      }
+    },
+    "systems": {
+      "component": "IconSystems",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3e2904f913a8a2404b17ac0604a5eb273d594062924ae68bbf8977e0d6fdfa5b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3e2904f913a8a2404b17ac0604a5eb273d594062924ae68bbf8977e0d6fdfa5b"
+        }
+      }
+    },
+    "tablet": {
+      "component": "IconTablet",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c886413bc930e37ea69920cf3d75b7210ee77776dfaeb6e0fca8fd4a6a0a3229"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a221978641383b71b7f4c73fa96912bffedbe237a647e6860b662de13a2e06b0"
+        }
+      }
+    },
+    "tag": {
+      "component": "IconTag",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6ae73de7f386040b032eee5c7c00d0502544d25a03ae431c5c92995979f402e5"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "6a97187958ca97dfa6fab0e47ebc77593607773e905345f7ec2b3e7570ea21e9"
+        }
+      }
+    },
+    "terminal": {
+      "component": "IconTerminal",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1fd13d76ae2119b5894ff4d4216402608a11be10e75b4b3c510c530ac2d4fdac"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1fd13d76ae2119b5894ff4d4216402608a11be10e75b4b3c510c530ac2d4fdac"
+        }
+      }
+    },
+    "text": {
+      "component": "IconText",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d9094a31dc5d720d3d902d8d4c78fc917b896d400511eadc2f275c16d49f82bc"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d9094a31dc5d720d3d902d8d4c78fc917b896d400511eadc2f275c16d49f82bc"
+        }
+      }
+    },
+    "threshold": {
+      "component": "IconThreshold",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "310bdeb7a2cfc376159f45a2ebcf9a6422bafd3786a721c4815cbf3685415349"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "310bdeb7a2cfc376159f45a2ebcf9a6422bafd3786a721c4815cbf3685415349"
+        }
+      }
+    },
+    "timer": {
+      "component": "IconTimer",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "39f143d88389ac5c6339fb0d08253a28a7f08c24b49df98182e81b8151c8b9ce"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "83a6228b74623ce777ec98c6891e57b6b00103296563efef085c7e704f805785"
+        }
+      }
+    },
+    "touch-panel": {
+      "component": "IconTouchPanel",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "84c34dad88e46553f7e30bdb660e853b677fd8268822d8c49f9d32ef7b7d5f34"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8b215a45cd12e610cc7ab6f88536bfc9893dd851dc8abff5115d92281cf48dec"
+        }
+      }
+    },
+    "transform": {
+      "component": "IconTransform",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d71c56379ca6bd107664ae03ee225edfc924411d98adb69c3b531494b82349ef"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d71c56379ca6bd107664ae03ee225edfc924411d98adb69c3b531494b82349ef"
+        }
+      }
+    },
+    "trend-down": {
+      "component": "IconTrendDown",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a0fb7dde6641a707876e83235c11447dceb2faa079a6f836e203b91d98300254"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5a91815dd0a791898cac159628c91acce52340fbe417877c36d8d445a32e9f44"
+        }
+      }
+    },
+    "trend-up": {
+      "component": "IconTrendUp",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "53a427f4c379e2d9c023dff1b5e071ad1fbab73440c56d722bcac07f4bb0e085"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "72dbb91418049cb5520f1168c5a2eb51dbf5da0a412dac21542da35dc7d88e29"
+        }
+      }
+    },
+    "tune": {
+      "component": "IconTune",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "06641fa24d2d1a4dbc1cb44a83ca88c3bdd21fd2affaa5bcff2e0440f566f90b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "06641fa24d2d1a4dbc1cb44a83ca88c3bdd21fd2affaa5bcff2e0440f566f90b"
+        }
+      }
+    },
+    "ui-builder": {
+      "component": "IconUIBuilder",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9b02a95a243ea84d2bc06947585f13a7c317740e4f8bcfa7c03d78aa4b982d1d"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c8a3836842f46846481bd6a277df7e4bea4d19fed3531311f60ba04313317a17"
+        }
+      }
+    },
+    "ui-only": {
+      "component": "IconUIOnly",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "233bc9b51b44c8e0bf1e380aa494361a598c2ccbeefa877ee99cf1014a3dbafe"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "8abacfc39c3d1c283203617d65ac3ade6f4b2c163ba4d116c42e80c8b2c4e896"
+        }
+      }
+    },
+    "unconfigured": {
+      "component": "IconUnconfigured",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 3,
+          "digest": "a5d9fe5c1b17860320c08233ca03020062f5edb86038d14f9c3589e9c06163a0"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 3,
+          "digest": "f7f53be9aa551051ba65850d9087bc70d4e6740ff6e9a3b89b241ba710cf5b4d"
+        }
+      }
+    },
+    "underline": {
+      "component": "IconUnderline",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9fe647210be643f1922457226574735baa353ebe95486d3763ac5d387af2a682"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9fe647210be643f1922457226574735baa353ebe95486d3763ac5d387af2a682"
+        }
+      }
+    },
+    "undo": {
+      "component": "IconUndo",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e4d4f9a20042c2a4d14c5b9d9f27b762adf5224f1c995983ed977fbaf390ea3b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "865bf823584cb7a9b8a5cbdcd0ffc7da9581445d1171a493de1f9dbbfa0d8244"
+        }
+      }
+    },
+    "ungroup": {
+      "component": "IconUngroup",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1da2f3290e95e123b4232f8bc0133236e1f0cfa52531c7bb5a790a5edb92ccbc"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1da2f3290e95e123b4232f8bc0133236e1f0cfa52531c7bb5a790a5edb92ccbc"
+        }
+      }
+    },
+    "unlink": {
+      "component": "IconUnlink",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "dde7f99ba58b99b00e2beadfd62728012940692158f6692f50c9ea5a10c88f34"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "dde7f99ba58b99b00e2beadfd62728012940692158f6692f50c9ea5a10c88f34"
+        }
+      }
+    },
+    "unlock": {
+      "component": "IconUnlock",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "433b11e8d6b6cf7b7212e976409818b27a9814f89be121a985a84cda231a12d9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "b10594c433ac59f331727911af9ec2db07860252bf2d20f44873deec52fa9644"
+        }
+      }
+    },
+    "unpin": {
+      "component": "IconUnpin",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2092919870279fe76a19278f539fb2e8ef79a4d402a486bb15ba634b75b73e2a"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "649b5ce7f8faaf9dfcfa7be75a383a3dbbcc3333c75203c6e991f9794f671452"
+        }
+      }
+    },
+    "upload": {
+      "component": "IconUpload",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "0247789b5754278e9264858ff354665c0a96c664cfa7de245448698f4040f421"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "7d54499e36c255237e743b054b1900c8a2d1a10aad6340a7fdab2ab01f39bdd6"
+        }
+      }
+    },
+    "usb": {
+      "component": "IconUSB",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "25eef0d62358e1202a0f210e2ce392a95543129d845d4e27133c9c2641976ac3"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "50fd31912105c92a23e055627ebdc34808d5dd4f7924b3b97e9487cf15ce2bd9"
+        }
+      }
+    },
+    "user": {
+      "component": "IconUser",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "a49ac99ba34aa9ffff00621c3a1bb57913639dfd8f4eaa68e8366571eeccf6ce"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f0987109adcdf004853ae105ee74eb251b52d379eda7032be3ce8aeb92bf08cb"
+        }
+      }
+    },
+    "variable": {
+      "component": "IconVariable",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "18ad96336483d2ad02a40bf5959f1bd98549947cba635979e0261a20cd4f3044"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "18ad96336483d2ad02a40bf5959f1bd98549947cba635979e0261a20cd4f3044"
+        }
+      }
+    },
+    "video": {
+      "component": "IconVideo",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "76295b82954a49fc1012a648b75b836f3cbaee68e3baa28a8c55336db8e71193"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "38340df1233b5c47667601d79896cd65c86421f24822e32a1aea400163e5c953"
+        }
+      }
+    },
+    "video-camera": {
+      "component": "IconVideoCamera",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e3c446f03186ab29e4ea112d8cdf82d9180d2ede3e5f4446084b1ee6a3f0b0db"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "540c9b8d25a9cd65b787b12d1bf0ecb16d7d4100318b96c6e8b78bcbacfa52fc"
+        }
+      }
+    },
+    "video-camera-off": {
+      "component": "IconVideoCameraOff",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c9985267e6bcb0a88c31f40ac5dd3e819334c8072945028f37186850d9098152"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "5f97fd65e43878ad935e2225bf99737786a574806069184fb2453b7befd51e06"
+        }
+      }
+    },
+    "video-processor": {
+      "component": "IconVideoProcessor",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "57c6911f89a75969599397a4ebc769f337a20bb323d9d60d68b2463840e829fb"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "57c6911f89a75969599397a4ebc769f337a20bb323d9d60d68b2463840e829fb"
+        }
+      }
+    },
+    "voice-lift": {
+      "component": "IconVoiceLift",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ce653c5f37becb6286094da6c71c1c34724fd74fab573779c5bcb84c255176d4"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "db61f168d9309b00342cb4af5d713e818042de5b36d297f497d7bbbe40bc750c"
+        }
+      }
+    },
+    "volume-down": {
+      "component": "IconVolumeDown",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2c1597d228bc622873de8616c9217575e4acf72623e099e77c777a6a7726204b"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4c53b5fee2ee57ab5f6b30d4ba0f6711dbda3dc88e99d5f082d752070e93be20"
+        }
+      }
+    },
+    "volume-mute": {
+      "component": "IconVolumeMute",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "ab712afc5991bd7110f8b32f66af8e96156df38966c5650e35227cdd987f64f6"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3c04132a255b1f5218715f8eacb8ab1cb8f05df6a528790690cb711a2c731320"
+        }
+      }
+    },
+    "volume-up": {
+      "component": "IconVolumeUp",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "d116105bcac7705bd01a495086887116b76460ae43c6799a7da045fed69de33e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "41c5790648d0349a304c97dbab1df89a58aa993d1ab5630dec028ecd650670fc"
+        }
+      }
+    },
+    "wall-controller": {
+      "component": "IconWallController",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "686e44c7b4f63c8478b608e11fa85aae82d03c1c7433dd834bec04bfb49295e6"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "686e44c7b4f63c8478b608e11fa85aae82d03c1c7433dd834bec04bfb49295e6"
+        }
+      }
+    },
+    "wall-controller-touch": {
+      "component": "IconWallControllerTouch",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f335af5eb423ecd7c62dffd6784d0003b48e884f6ab1060cfb5a02c712fecbc9"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f335af5eb423ecd7c62dffd6784d0003b48e884f6ab1060cfb5a02c712fecbc9"
+        }
+      }
+    },
+    "warning": {
+      "component": "IconWarning",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c3a26f954141ef99d7c81f61b13fd422892364c5c4bf72ce28cd25f966e18e4f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "cf6c01a766b1723f6690439023a25bd2fef734145bc49d53eecfd0118022fa64"
+        }
+      }
+    },
+    "water": {
+      "component": "IconWater",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "608021cb7fa027ed9d1b3cd47f0543a354dfa4de4d5c05ef11d54dbb6243188c"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "3672bf7ad135b0565982afb5c123274d5e371184336d108ffbff2416e9425511"
+        }
+      }
+    },
+    "waveform": {
+      "component": "IconWaveform",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c205885b5e9f9ed203d232cea89d04326ef5e8841a43110a4efca020876a45bb"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c205885b5e9f9ed203d232cea89d04326ef5e8841a43110a4efca020876a45bb"
+        }
+      }
+    },
+    "wifi": {
+      "component": "IconWifi",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2979009fd5e194dbd39813025041c009318ddf8456fd394eb839a772d3a9b598"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "937bf5c336f3748c703d12c259e8667916e81c0f9c6d34b3fb249a4e462da163"
+        }
+      }
+    },
+    "wifi-off": {
+      "component": "IconWifiOff",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "e17006d6ea143255f14465c2d175a9e6a516ec9c5090627113244d51d68ed239"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "899fdbf2d24cd6195c78c995d9832b655c486266030eb50afcef2a62999aa35b"
+        }
+      }
+    },
+    "window": {
+      "component": "IconWindow",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "4e05653d87ca4421e1cb41e94f473c9e973cf897f2a211dd06f322eeca43be44"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "82021688f71116d199a972c81bda7976a4970cd97407fe4e26a13e2dde5af73d"
+        }
+      }
+    },
+    "wire": {
+      "component": "IconWire",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "22541a65c941493e5ad95e1bcd1fd9a521406cd716c060530fd6611fe0e9ee52"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "c4ccf0e78c4e033cf5e9b14e9606cf09c7d0e7fd7e51bca7cf2f96b7f61cdc1f"
+        }
+      }
+    },
+    "zone": {
+      "component": "IconZone",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 25",
+          "pathCount": 9,
+          "digest": "b28f5efe03f67530255c2fa07672e36147fb9dd59a5ff586d0b7599608b26329"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 8,
+          "digest": "22b3c6d104ceb05d9c0a2cdcfbc8188033bf46450be5a1db26dd94c83610f305"
+        }
+      }
+    },
+    "zone-group": {
+      "component": "IconZoneGroup",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "9ae9fa7fb5399a5d73b631d1eb63c8613b8be1b7407835fe3b9e78ca2855a11f"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "06f5d043b8c5bc25315d471459b8600dddfb3301f65740271f37660e10a5460a"
+        }
+      }
+    },
+    "zoom-in": {
+      "component": "IconZoomIn",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "19982a099b0891ef1e1541df24558471efff1b52ebfd2878e5717a45dcbaa19e"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "f7ec9283af02938a369c50a15bee94a116151efcb95c448ea837cc0733880c09"
+        }
+      }
+    },
+    "zoom-out": {
+      "component": "IconZoomOut",
+      "variants": {
+        "outline": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "2471e13240db012ad71a13dd923d956959b2574743bce22c963694caf70f06c2"
+        },
+        "solid": {
+          "viewBox": "0 0 24 24",
+          "pathCount": 1,
+          "digest": "1a5fac0e1219748580b71fa36ed5fca082c7c8320639fcdd47f2e331efffdf9a"
+        }
+      }
+    }
+  }
+}

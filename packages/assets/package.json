@@ -34,10 +34,17 @@
   },
   "devDependencies": {
     "@bwp-web/eslint-config": "*",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "eslint": "^9.39.5",
     "prettier": "^3.9.8",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3"
+  },
+  "peerDependencies": {
+    "react": ">=18"
   },
   "license": "MIT",
   "repository": {

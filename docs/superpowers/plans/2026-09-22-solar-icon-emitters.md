@@ -710,44 +710,197 @@ duplication fault. Both targets will therefore carry two identical path sets for
 about 28 KB before compression. That is not worth de-duplicating behind a level of indirection,
 but it should be stated rather than discovered.
 
-### Task 3: React icon emitter
+### Task 3: React icon emitter — done
 
 **Files:**
 
-- Create: `packages/codegen/src/emit/react-icons.mjs`
-- Create: `packages/codegen/test/react-icons.test.mjs`
+- Created: `packages/assets/src/icon.tsx` (hand written)
+- Created: `packages/codegen/src/emit/react-icons.mjs`
+- Created: `packages/codegen/test/react-icons.test.mjs`
+- Modified: `packages/assets/package.json` (React added; `exports` stays for task 9)
 
-Writes `packages/assets/src/generated/icons/` — one module per icon so bundlers drop what is not
-imported — plus a barrel `index.ts`, a shared `Icon.tsx` shell, and `tokens.manifest.json`.
+`renderReactIcons(spec)` returns `{modules, barrel, icons}` as strings and data, so the tests run
+without touching the disk; `emitReactIcons(spec, fileVersion)` writes them through
+`writeGenerated` into `packages/assets/src/generated/icons/`: one `<fileStem>.tsx` per icon, the
+barrel `index.ts` sorted with `byCodeUnit`, and `icons.manifest.json`.
 
-The shell is hand-shaped, not generated per icon:
+**The shell is hand written, not generated.** The design separates generated recipes from
+hand-written shells that carry behaviour, and accessibility is behaviour: deciding once what
+`title` does beats deciding it 341 times, and only `src/generated/**` is machine owned. It lives
+at `packages/assets/src/icon.tsx`, outside the generated tree, and every generated module imports
+it.
 
 ```tsx
+import { useId, type SVGProps } from 'react';
+
+/**
+ * The shared shell every generated icon delegates to.
+ *
+ * Hand written, not generated: the generated modules are recipes -- geometry and a name -- and
+ * everything that is behaviour rather than data lives here, so accessibility is decided once
+ * instead of 341 times. Only `src/generated/**` is machine owned.
+ */
+
+/** The SOLAR `icon.*` steps: 12, 16, 20, 24, 28 and 32px. */
 export type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+
+const STEPS: readonly IconSize[] = ['xs', 'sm', 'md', 'lg', 'xl', '2xl'];
+
+export interface IconPath {
+  d: string;
+  /** Only ever `'evenodd'`; `'nonzero'` is SVG's default and is left off. */
+  fillRule?: 'evenodd';
+}
+
+/** One variant's drawing. The viewBox travels with it: `zone` outline is `0 0 24 25`. */
+export interface IconGeometry {
+  viewBox: string;
+  paths: readonly IconPath[];
+}
+
 export interface IconProps extends Omit<SVGProps<SVGSVGElement>, 'children'> {
   /** A SOLAR icon.* step, or any CSS length. Defaults to lg (24px). */
   size?: IconSize | (string & {}) | number;
   variant?: 'outline' | 'solid';
-  /** Accessible name. Without it the icon is aria-hidden. */
+  /** Accessible name. Without it the icon is hidden from assistive technology. */
   title?: string;
+}
+
+export interface IconShellProps extends IconProps {
+  outline: IconGeometry;
+  solid: IconGeometry;
+}
+
+/**
+ * A named step resolves to its CSS variable rather than to px, so the rendered size traces to
+ * `icon.*` and follows a token change. Anything else -- a number, `1em`, `100%` -- is the
+ * caller's own length and passes through untouched.
+ */
+const length = (size: IconSize | (string & {}) | number) =>
+  typeof size === 'string' && (STEPS as readonly string[]).includes(size)
+    ? `var(--solar-icon-${size})`
+    : size;
+
+export function Icon({
+  size = 'lg',
+  variant = 'outline',
+  title,
+  outline,
+  solid,
+  ...props
+}: IconShellProps) {
+  const geometry = variant === 'solid' ? solid : outline;
+  const side = length(size);
+  // useId, not a counter: the id has to be stable between the server render and hydration.
+  const titleId = `${useId()}title`;
+
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox={geometry.viewBox}
+      width={side}
+      height={side}
+      // An icon with a name is an image; one without is decoration beside a label that already
+      // says it, and is taken out of the tree entirely. focusable="false" is for IE/Edge legacy,
+      // where an svg is a tab stop by default.
+      role={title ? 'img' : undefined}
+      aria-labelledby={title ? titleId : undefined}
+      aria-hidden={title ? undefined : true}
+      focusable={title ? undefined : false}
+      {...props}
+    >
+      {title ? <title id={titleId}>{title}</title> : null}
+      {geometry.paths.map((path, i) => (
+        // Every path inherits its colour, so `color: var(--solar-color-icon-primary)` on any
+        // ancestor tints the icon. The SOLAR source draws them all in color/neutral/900.
+        // The list is a fixed generated constant, so the index is a stable identity.
+        <path key={i} d={path.d} fillRule={path.fillRule} fill="currentColor" />
+      ))}
+    </svg>
+  );
 }
 ```
 
-Rules the tests must hold:
+A generated module is geometry, a name and a JSDoc line from the catalog. It emits a real function
+per icon rather than a call to a shared factory: a bundler can see an unimported function is
+unreachable without following a call, and React DevTools shows the icon's own name.
 
-- `fill="currentColor"` on every path, so `color: var(--solar-color-icon-primary)` tints it. No
-  `#111111` survives anywhere in the output.
-- `size` maps a token step to `var(--solar-icon-lg)`, never a hard-coded px, so it traces to a
-  token. A number or string passes through.
-- `viewBox` comes from the spec per variant, so `zone` stays correct.
-- `fillRule` is emitted as React's `fillRule` prop wherever the source had `evenodd`.
-- `title` renders `<title>` and wires `aria-labelledby`; without it, `aria-hidden="true"` and
-  `focusable="false"`.
-- The barrel is sorted with `byCodeUnit` and exports 341 icons and no duplicate name.
+```tsx
+// Generated by @bwp-web/codegen from spec/icons.json. Do not edit.
+import { Icon, type IconGeometry, type IconProps } from '../../icon.js';
+
+const outline: IconGeometry = {
+  viewBox: '0 0 24 24',
+  paths: [
+    {
+      d: 'M13.1717 12.0007L8.22192 7.05093L9.63614 5.63672L16.0001 12.0007L9.63614 18.3646L8.22192 16.9504L13.1717 12.0007Z',
+    },
+  ],
+};
+
+const solid: IconGeometry = {
+  viewBox: '0 0 24 24',
+  paths: [{ d: 'M16 12L10 18V6L16 12Z' }],
+};
+
+/**
+ * Chevron right. Related: next, forward, caret, drill in, expand
+ *
+ * @category Navigation
+ */
+export function IconChevronRight(props: IconProps) {
+  return <Icon {...props} outline={outline} solid={solid} />;
+}
+```
+
+**The manifest records digests, not path data.** `d` strings are 358 KB; repeating them in the
+React, SVG and Flutter manifests would trip that to over a megabyte of checked-in duplication for
+a question that is only ever asked as "is this the same geometry?". Each entry is
+`{viewBox, pathCount, digest}`, where `digest` is a SHA-256 over the canonical JSON of the paths
+array with `fillRule` spelled out, so a target that silently drops the attribute reads as a
+different digest. Task 8 compares digests across targets. `geometryDigest` is exported from
+`react-icons.mjs` for the other two emitters to import; if a third caller appears it should move
+to a shared module.
+
+**Tree shaking is measured, not assumed.** Bundling a fixture that imports exactly one icon
+through the barrel, with esbuild, `--bundle --minify --format=esm` and React external, gives
+**961 bytes**: the shell, chevron-right's two variants and nothing else. Bundling the whole barrel
+gives **428 KB**. Every one of the other 340 icons' `d` strings was searched for in the one-icon
+bundle; none survived. The measurement is against `src/` because `@bwp-web/assets` does not export
+the icons yet — its `exports` map and `src/index.ts` are task 9 — so it should be repeated against
+`dist/` once that lands.
+
+**React is a new dependency of the repository.** Nothing here used it before. `react`, `react-dom`
+and both `@types` packages are devDependencies of `packages/assets` at `^19.3.0`, with
+`"react": ">=18"` as its one peerDependency. The generated modules import React only through the
+automatic JSX runtime; tsup already externalises it.
+
+**Tests** are 13 cases in one file: 341 modules and a barrel of 341 unique names including
+`IconUSB` and `IconPhoneAudioDsp`; no `#111111` in any module; `zone` carrying `0 0 24 25` for
+outline beside `0 0 24 24` for solid; `fillRule` present only where the source says `evenodd`; no
+`px` literal or hard-coded size anywhere; and a manifest of 341 entries, 682 variants and
+distinct digests for geometry that differs.
+
+Six of them render the real component with `react-dom/server`'s `renderToStaticMarkup`, which
+needs no DOM, and assert the markup rather than the source: every `<path>` carries
+`fill="currentColor"`; `size` resolves `lg` to `var(--solar-icon-lg)` and passes `40` and `1em`
+through; a `title` produces `role="img"` and an `aria-labelledby` matching the `<title>`'s
+`useId` id; without one the icon is `aria-hidden="true"` and `focusable="false"`.
 
 Run: `npx vitest run packages/codegen/test/react-icons.test.mjs`
 
+The repository owner commits `packages/assets/src/icon.tsx`,
+`packages/assets/src/generated/icons/`, `packages/codegen/src/emit/react-icons.mjs`,
+`packages/codegen/test/react-icons.test.mjs`, `packages/assets/package.json` and
+`package-lock.json`.
+
 ---
+
+**Dependencies added.** `packages/assets` gets `react`, `react-dom`, `@types/react` and
+`@types/react-dom` at `^19.3.0` as devDependencies and `"react": ">=18"` as its one peer
+dependency. `packages/codegen` gets `react` and `react-dom` as devDependencies too, because its
+test renders a component with `renderToStaticMarkup`; without that they resolve only through npm
+hoisting from `packages/assets`, which is undeclared and breaks under a stricter installer.
 
 ### Task 4: Raw SVG output
 
