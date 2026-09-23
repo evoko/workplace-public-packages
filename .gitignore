@@ -24,3 +24,8 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+
+# Playwright (packages/components visual checks)
+packages/components/test/visual/.out/
+packages/components/test-results/
+packages/components/playwright-report/

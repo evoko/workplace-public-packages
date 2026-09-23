@@ -116,9 +116,13 @@ ${api.map((p) => `    ${p},`).join('\n')}
           variant={spinner['variant.style'] as SolarSpinnerVariant}
         />
       }
-      // SOLAR's states have their own colours; MUI's ripple and elevation would paint over them.
+      // SOLAR's states have their own colours; MUI's ripple would paint over them. MUI draws
+      // elevation only for its contained variant, so its own variant is pinned to text: an app
+      // theme defaulting Buttons to contained cannot bring Material's shadows back.
+      // (disableElevation would not do: it writes box-shadow none on hover and press, over
+      // SOLAR's control shadow.)
+      variant="text"
       disableRipple
-      disableElevation
       sx={[
         solarButtonStyle({ ${api.join(', ')} }),
         ...(Array.isArray(sx) ? sx : [sx]),

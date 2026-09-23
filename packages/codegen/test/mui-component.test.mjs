@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import * as stage from '../src/stages/components.mjs';
 import { buildTokenSpec, loadContract } from '../src/normalize/tokens.mjs';
-import { renderMuiComponent, MUI_SLOTS } from '../src/emit/mui-component.mjs';
+import {
+  renderMuiComponent,
+  restateOverlaps,
+  MUI_SLOTS,
+  OVERLAPS,
+} from '../src/emit/mui-component.mjs';
 import { writeFileSync, mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -258,5 +263,44 @@ describe('the generated compose lookup', () => {
     expect(rest.label.present).toBe(true);
     expect(solarButtonCompose({}, 'loading').label.present).toBe(false);
     rmSync(dir, { recursive: true, force: true });
+  });
+});
+
+describe('states that overlap in CSS', () => {
+  const restated = restateOverlaps(button);
+
+  it('restates hover’s link style as rest for tertiary pressed, per size', () => {
+    const combo = 'variant=tertiary, danger=false';
+    const hover = (z) => button.style.label.combined[z][combo].hover.typography;
+    const pressed = (z) => restated.label.combined[z][combo].pressed.typography;
+    // Figma's pressed tertiary is not underlined; in CSS it is also hovered.
+    expect(hover('md').token).toBe('typography.link.md.hover');
+    expect(pressed('md')).toMatchObject({
+      token: 'typography.label.md',
+      restates: 'hover',
+    });
+    // sm draws its own pressed style, so there is nothing to restate.
+    expect(pressed('sm')).toMatchObject({ token: 'typography.label.sm' });
+    expect(pressed('sm')).not.toHaveProperty('restates');
+  });
+
+  it('restates only where an earlier state would show through, and only states that overlap', () => {
+    const all = [];
+    for (const [layer, s] of Object.entries(restated))
+      for (const byCombo of Object.values(s.combined ?? {}))
+        for (const states of Object.values(byCombo))
+          for (const [state, cells] of Object.entries(states))
+            for (const [cell, e] of Object.entries(cells))
+              if (e.restates) all.push({ layer, cell, state, by: e.restates });
+    expect(all.length).toBeGreaterThan(0);
+    for (const { state, by } of all) expect(OVERLAPS[state]).toContain(by);
+    // A disabled or loading MUI button takes no pointer and no focus: nothing to restate there.
+    expect(all.some((x) => ['disabled', 'loading'].includes(x.state))).toBe(
+      false,
+    );
+  });
+
+  it('leaves the IR itself as it was', () => {
+    expect(JSON.stringify(button.style)).not.toContain('restates');
   });
 });

@@ -255,6 +255,96 @@ function context(spec, tokens) {
   return { declare };
 }
 
+/**
+ * CSS states overlap where Figma's do not (`OVERLAPS`): a pressed button is hovered too.
+ * Figma draws each state alone, and the IR lists only what a state changes, so a property hover
+ * sets and pressed does not would stay hover's while pressed (tertiary's underline). Each state
+ * therefore restates every cell an earlier one in the cascade sets, with its own value where it
+ * has one and the resting value otherwise -- per size, since the resting value can depend on it --
+ * which is what Flutter's one-state-at-a-time lookup draws. Returns the style with those entries
+ * added, marked `restates`.
+ */
+/**
+ * Which earlier states in the cascade can hold at the same time as each state, in MUI. A pressed
+ * button is hovered; a focused one may be hovered or pressed. A disabled or loading one (MUI marks
+ * loading disabled) takes no pointer events and cannot keep focus, so it overlaps nothing.
+ */
+export const OVERLAPS = { pressed: ['hover'], focus: ['hover', 'pressed'] };
+
+export function restateOverlaps(spec) {
+  const style = structuredClone(spec.style);
+  const states = Object.keys(STATE_SELECTORS).filter((s) => s !== 'default');
+  const sizes = spec.api.size?.values ?? null;
+  for (const s of Object.values(style)) {
+    const combos = new Set([
+      ...Object.keys(s.appearance),
+      ...Object.values(s.combined ?? {}).flatMap((c) => Object.keys(c)),
+    ]);
+    for (const combo of combos) {
+      const at = (size, state) => s.combined?.[size]?.[combo]?.[state];
+      const rest = (size, cell) =>
+        at(size, 'default')?.[cell] ??
+        s.appearance[combo]?.default?.[cell] ??
+        s.size[size]?.[cell] ??
+        s.base[cell];
+      states.forEach((state) => {
+        const earlier = OVERLAPS[state] ?? [];
+        const cells = new Set(
+          earlier.flatMap((e) => [
+            ...Object.keys(s.appearance[combo]?.[e] ?? {}),
+            ...(sizes ?? []).flatMap((z) => Object.keys(at(z, e) ?? {})),
+          ]),
+        );
+        // Two entries are the same drawing whatever their provenance.
+        const same = (a, b) =>
+          JSON.stringify({ ...a, from: 0, reason: 0, restates: 0 }) ===
+          JSON.stringify({ ...b, from: 0, reason: 0, restates: 0 });
+        for (const cell of cells) {
+          if (COMPOSITION(cell)) continue;
+          const own = s.appearance[combo]?.[state]?.[cell];
+          // What each earlier state draws for this cell at a size, and whether it is per size:
+          // a per-size rule comes later in the merge than a per-appearance one, so it beats this
+          // state's own per-appearance entry.
+          const earlierAt = (z) =>
+            earlier
+              .map((e) => ({
+                value:
+                  (z && at(z, e)?.[cell]) || s.appearance[combo]?.[e]?.[cell],
+                perSize: Boolean(z && at(z, e)?.[cell]),
+                e,
+              }))
+              .filter((x) => x.value);
+          if (!sizes) {
+            const value =
+              own ?? s.appearance[combo]?.default?.[cell] ?? s.base[cell];
+            const shows = earlierAt(null).find((x) => !same(x.value, value));
+            if (!own && value && shows)
+              ((s.appearance[combo] ??= {})[state] ??= {})[cell] = {
+                ...value,
+                restates: shows.e,
+              };
+            continue;
+          }
+          for (const z of sizes) {
+            if (at(z, state)?.[cell]) continue;
+            const value = own ?? rest(z, cell);
+            if (!value) continue;
+            // This state's own entry wins over earlier per-appearance ones by order already; only
+            // a per-size earlier entry, or a state with none of its own, can show through.
+            const shows = earlierAt(z).find(
+              (x) => (!own || x.perSize) && !same(x.value, value),
+            );
+            if (!shows) continue;
+            (((s.combined ??= {})[z] ??= {})[combo] ??= {})[state] ??= {};
+            s.combined[z][combo][state][cell] = { ...value, restates: shows.e };
+          }
+        }
+      });
+    }
+  }
+  return style;
+}
+
 /** Merges declarations under a selector; the same property twice with two values is an error. */
 function place(target, selector, decls, at) {
   const into = selector === '&' ? target : (target[selector] ??= {});
@@ -312,7 +402,7 @@ export function renderMuiComponent(spec, tokens) {
         );
   };
 
-  for (const [layer, s] of Object.entries(spec.style)) {
+  for (const [layer, s] of Object.entries(restateOverlaps(spec))) {
     render(styles.root, layer, s.base, 'base');
     for (const [size, cells] of Object.entries(s.size))
       render((styles.sizes[size] ??= {}), layer, cells, `size.${size}`);

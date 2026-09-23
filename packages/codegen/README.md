@@ -146,7 +146,11 @@ Two emitters generate from the IR, and neither imports its framework:
 Both resolve states in one order — disabled, loading, focus, pressed, hover — which the Flutter
 emitter imports from the MUI one reversed, because in CSS the later rule wins. What MUI draws that
 SOLAR does not (Button's 64px minimum width, its upper-case label) is undone by `MUI_RESETS` in the
-emitter, so a component looks right with or without the SOLAR MUI theme installed.
+emitter, so a component looks right with or without the SOLAR MUI theme installed. CSS states
+overlap where Figma's do not — a pressed button is hovered too — so the emitter restates, in each
+later state, whatever an earlier one it overlaps (`OVERLAPS`) sets and it does not: tertiary
+pressed is not underlined although tertiary hover is. Flutter resolves one state at a time and
+needs no such step.
 
 **Recipe and shell.** The recipe is what a component looks like; it regenerates on every run and
 is never edited. The shell — `packages/components/src/<Name>.tsx`: props, slots, loading,

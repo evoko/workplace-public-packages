@@ -187,7 +187,9 @@ export function buildOracle(
     paint('background', layer.fills);
     paint('borderColor', layer.strokes);
     out.borderWidth = layer.strokes?.length ? (layer.strokeWeight ?? 0) : 0;
-    out.radius = layer.radius ?? 0;
+    // A shape (Spinner's ring) has no box to round; a frame or rectangle does.
+    if (!['ELLIPSE', 'VECTOR', 'LINE', 'STAR', 'POLYGON'].includes(layer.type))
+      out.radius = layer.radius ?? 0;
     if (path === '/') out.shadow = shadow(layer.effectStyle);
     if (layer.layout) {
       const [top, right, bottom, left] = layer.layout.pad ?? [0, 0, 0, 0];

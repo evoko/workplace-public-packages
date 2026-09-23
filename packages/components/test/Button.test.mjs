@@ -4,6 +4,7 @@ import { renderToString } from 'react-dom/server';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Button } from '../src/Button.tsx';
 
 /** Server-renders one element and returns its markup and the CSS emotion produced for it. */
@@ -118,6 +119,21 @@ describe('the SOLAR Button shell', () => {
     expect(classes).toContain('Mui-disabled');
     expect(classes).not.toContain('MuiButton-loading');
     expect(html).not.toContain('MuiButton-loadingIndicator');
+  });
+
+  it('keeps SOLAR’s shadow in every state: no Material elevation, whatever the app theme', () => {
+    // An app theme that defaults Buttons to contained would bring Material's shadows; and MUI's
+    // disableElevation writes box-shadow none on hover and press, over SOLAR's control shadow.
+    const theme = createTheme({
+      components: { MuiButton: { defaultProps: { variant: 'contained' } } },
+    });
+    const { html, css } = render(
+      h(ThemeProvider, { theme }, h(Button, null, 'Save')),
+    );
+    const classes = /<button[^>]*class="([^"]*)"/.exec(html)[1].split(' ');
+    expect(classes).toContain('MuiButton-text');
+    expect(classes).not.toContain('MuiButton-disableElevation');
+    expect(css).not.toMatch(/:hover\{box-shadow:none/);
   });
 
   it('puts the icons in MUI’s slots and the counter in its own', () => {

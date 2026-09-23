@@ -274,6 +274,29 @@ both to sRGB.
 Tests: all 108 variants match; a deliberate break in the recipe fails it, naming the variant and
 property.
 
+**Done 2026-09-23.** `@playwright/test` 1.63.0 and esbuild 0.28.2 (dev, `@bwp-web/components`);
+`npm run test:visual`. The page is bundled from sources and served through Playwright's routing
+(Chromium refuses module scripts over `file://`). All 108 Button and 6 Spinner variants match
+Figma; the 18 excused entries are measured and written to the gap report.
+
+The first run found two real web bugs, both in what 3a shipped:
+
+- **Hover and pressed dropped the control shadow** (32 variants). The shell passed MUI's
+  `disableElevation`, which writes `box-shadow: none` on `:hover` and `:active`, and the recipe
+  states only what changes. MUI draws elevation only for its contained variant, so the shell now
+  pins MUI's own variant to `text` instead, and an app theme defaulting Buttons to contained cannot
+  bring Material's shadows back (tested).
+- **Tertiary pressed kept hover's underline and link spacing.** CSS states overlap where Figma's
+  do not: `:active` holds with `:hover`. The MUI emitter now restates, per size, each cell an
+  overlapping earlier state sets and a later one does not (`restateOverlaps`, `OVERLAPS`: pressed
+  over hover, focus over hover and pressed; disabled and loading take no pointer or focus in MUI
+  and overlap nothing), only where the earlier value would show through: 21 entries.
+
+And one oracle bug: it recorded a radius for SVG shapes, which have none. Proven: a real one-token
+break in the generated recipe fails the check for exactly the variants that draw it, naming variant,
+layer, property, Figma's value and the rendered one; a permanent test injects such a break too.
+460 unit tests, lint, typecheck and format pass.
+
 ### Task 8: Flutter visual parity
 
 **Files:** create `packages/solar_flutter/test/visual/`, reading `spec/verify/button.json`.

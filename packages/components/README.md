@@ -49,6 +49,12 @@ MUI's CircularProgress with its track, restyled by the recipe; the motion is MUI
 no token for a spinner's rotation. Figma calls `variant` `style`, which is React's inline-style prop.
 Give it an `aria-label` saying what is loading.
 
+## Checked against Figma
+
+`npm run test:visual` renders every variant of every component here in Chromium, puts each into
+its state as a user would, and compares what the browser computes with what Figma draws
+(`spec/verify/`). See [test/visual/README.md](test/visual/README.md).
+
 ## Generated look, owned behaviour
 
 A component here is two parts, with a hard line between them:

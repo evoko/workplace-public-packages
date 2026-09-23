@@ -38,14 +38,12 @@
         "track": {
           "background": "transparent",
           "borderColor": "#0000001a",
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         },
         "indicator": {
           "background": "transparent",
           "borderColor": null,
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         }
       },
       "excused": [
@@ -90,14 +88,12 @@
         "track": {
           "background": "transparent",
           "borderColor": "#0000001a",
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         },
         "indicator": {
           "background": "transparent",
           "borderColor": null,
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         }
       },
       "excused": [
@@ -142,14 +138,12 @@
         "track": {
           "background": "transparent",
           "borderColor": "#0000001a",
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         },
         "indicator": {
           "background": "transparent",
           "borderColor": null,
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         }
       },
       "excused": [
@@ -194,14 +188,12 @@
         "track": {
           "background": "transparent",
           "borderColor": "#ffffff33",
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         },
         "indicator": {
           "background": "transparent",
           "borderColor": "#ffffff",
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         }
       }
     },
@@ -236,14 +228,12 @@
         "track": {
           "background": "transparent",
           "borderColor": "#ffffff33",
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         },
         "indicator": {
           "background": "transparent",
           "borderColor": "#ffffff",
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         }
       }
     },
@@ -278,14 +268,12 @@
         "track": {
           "background": "transparent",
           "borderColor": "#ffffff33",
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         },
         "indicator": {
           "background": "transparent",
           "borderColor": "#ffffff",
-          "borderWidth": 2,
-          "radius": 0
+          "borderWidth": 2
         }
       }
     }
